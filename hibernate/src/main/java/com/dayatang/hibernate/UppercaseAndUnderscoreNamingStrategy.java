@@ -64,8 +64,7 @@ public class UppercaseAndUnderscoreNamingStrategy implements NamingStrategy {
 		String header = propertyName != null ? StringHelper.unqualify(propertyName) : propertyTableName;
 		if (header == null)
 			throw new AssertionFailure("NamingStrategy not properly filled");
-		return columnName(header); // + "_" + referencedColumnName not used for
-									// backward compatibility
+		return columnName(header); 
 	}
 
 	@Override
