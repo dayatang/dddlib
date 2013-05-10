@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+			
+	<bean id="dataSource" class="com.dayatang.dsrouter.SaasDataSource">
+	    <constructor-arg index="0">
+	        <bean class="com.dayatang.dsrouter.tenantservice.ThreadLocalTenantService"/>
+	    </constructor-arg>
+	    <constructor-arg index="1" ref="dataSourceRegistry" />
+	</bean>
+	
+	<bean id="dataSourceRegistry" class="com.dayatang.dsrouter.dsregistry.JdbcDataSourceRegistry">
+	    <constructor-arg ref="dataSourceCreator"/>
+	</bean>
+
+	<bean id="dataSourceCreator" class="com.dayatang.dsrouter.dscreator.C3P0DataSourceCreator">
+	    <constructor-arg index="0" ref="urlTranslator"/>
+	    <constructor-arg index="1" ref="dsConfiguration"/>
+	</bean>
+	
+	<bean id="urlTranslator" class="com.dayatang.dsrouter.urltranslator.MySqlUrlTranslator">
+	    <constructor-arg ref="mappingStrategy"/>
+	</bean>
+		
+	<bean id="mappingStrategy" class="com.dayatang.dsrouter.mappingstrategy.DbNameBasedMappingStrategy">
+	    <constructor-arg ref="mappingConfiguration"/>
+	</bean>
+	
+	<bean id="configurationFactory" class="com.dayatang.configuration.ConfigurationFactory"/>
+		
+	<bean id="mappingConfiguration" factory-bean="configurationFactory" factory-method="fromUrl">
+	    <constructor-arg value="http://www.dayatang.com/tenant-db-mapping.properties"/>
+	</bean>
+		
+	<bean id="dsConfiguration" factory-bean="configurationFactory" factory-method="fromClasspath">
+	    <constructor-arg value="/ds-config.properties"/>
+	</bean>
+</beans>

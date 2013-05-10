@@ -1,0 +1,51 @@
+package org.drools.examples
+ 
+//import com.ce.component.examples.HelloWorld.Message;
+
+/* 
+rule "Hello World"
+    dialect "mvel"
+	when
+		m : Message( status == Message.HELLO, message : message )
+	then
+		System.out.println( message ); 
+	modify ( m ) { message = "Goodbyte cruel world",
+	               status = Message.GOODBYE };
+		System.out.println( message ); 	               
+end
+
+rule "Good Bye"
+    dialect "java"
+	when
+		Message( status == Message.GOODBYE, message : message )
+	then
+		System.out.println( message ); 
+end
+
+*/
+
+
+
+
+global java.util.Map map
+
+rule "hello beyond"
+
+	dialect "mvel"
+	when 
+		
+	then
+		System.out.println("Successfully!");
+		
+end
+
+
+rule "hello beyond2"
+
+	dialect "java"
+	when 
+		
+	then
+		System.out.println("Successfully!1111111111111");
+		
+end

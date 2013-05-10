@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	<bean id="service1" class="com.dayatang.commons.ioc.MyService1" />
+	
+	<bean id="configurationFactory" class="com.dayatang.configuration.ConfigurationFactory"/>
+	
+	<bean id="configureService" factory-bean="configurationFactory" factory-method="fromClasspath">
+		<constructor-arg value="/log4j.properties"/>
+	</bean>
+</beans>

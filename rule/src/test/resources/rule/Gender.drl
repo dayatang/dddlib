@@ -1,0 +1,24 @@
+package org.drools.examples
+ 
+import com.dayatang.rule.examples.Person
+import com.dayatang.rule.examples.Helper
+global java.util.List list
+ 
+
+rule "male"
+    dialect "mvel" 
+	when
+		$p : Person( gender == "male" )
+	then
+		System.out.println("rule 'male' is running...")
+		$p.retireAge = 60		
+end
+
+rule "female"
+    dialect "mvel" 
+	when
+		$p : Person( gender == "female" )
+	then
+		System.out.println("rule 'female' is running...")
+		$p.retireAge = 55		
+end

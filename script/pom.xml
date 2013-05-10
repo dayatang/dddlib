@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.dayatang.commons</groupId>
+		<artifactId>dayatang-commons-project</artifactId>
+		<version>3.6-SNAPSHOT</version>
+	</parent>
+	<artifactId>dayatang-commons-script</artifactId>
+	<packaging>jar</packaging>
+	<name>Dayatang Script Language API</name>
+	<description> Dayatang Script Language API.</description>
+	
+	<scm>
+		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/script/</connection>
+		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/script/</developerConnection>
+	</scm>
+	<dependencies>
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy</artifactId>
+			<version>${groovy.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+	<properties>
+		<groovy.version>1.8.9</groovy.version>
+	</properties>
+</project>

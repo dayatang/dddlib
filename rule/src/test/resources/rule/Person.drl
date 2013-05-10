@@ -1,0 +1,46 @@
+package org.drools.examples
+ 
+import com.dayatang.rule.examples.Person
+import com.dayatang.rule.examples.Helper
+global java.util.List list
+ 
+
+rule "Person-1"
+    dialect "mvel" 
+	when
+		p : Person( id == 1 )
+	then
+		System.out.println("rule Person-1 is running...")
+		modify(p){id = 100}		
+end
+
+rule "Person-2"
+	salience 10
+    dialect "java"
+	when
+		p : Person( id == 2 )
+	then
+		System.out.println("rule Person-2 is running...");
+		p.setId(200L);
+end
+
+rule "Person-2-1"
+    dialect "java"
+	when
+		p : Person( id == 2 )
+	then
+		System.out.println("rule Person-2-1 is running...");
+		p.setName("chencao changed");
+end
+
+rule "Person-3"
+    dialect "java"
+	when
+		p : Person( id == 3 )
+	then
+		System.out.println("rule Person-3 is running...");
+		p.setId(300L);
+		list.add(p);
+		list.add(new Person(400L, "pengmei"));
+		Helper.sayStatic();
+end

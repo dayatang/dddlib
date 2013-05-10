@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.dayatang.commons</groupId>
+		<artifactId>dayatang-commons-project</artifactId>
+		<version>3.6-SNAPSHOT</version>
+	</parent>
+	<artifactId>dayatang-commons-domain</artifactId>
+	<packaging>jar</packaging>
+	<name>Dayatang Common API Interfaces and Base Classes</name>
+	<description> Common Domain APIs of dayatang.com. Includes interfaces and base	classes.</description>
+
+	<scm>
+		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/domain/</connection>
+		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/domain/</developerConnection>
+	</scm>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+		</dependency>
+	</dependencies>
+</project>

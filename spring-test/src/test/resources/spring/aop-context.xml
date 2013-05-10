@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+            http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+            http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- 支持 @Transactional 标记 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!--
+		支持 @AspectJ 标记 <aop:aspectj-autoproxy proxy-target-class="false"/>
+	-->
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!--
+				tx:method name="save*" propagation="REQUIRES_NEW" timeout="600"
+				timeout="30" read-only="false" rollback-for="Exception" /
+			-->
+			<!-- other methods use the default transaction settings (see below) -->
+
+			<tx:method name="*" propagation="REQUIRED" />
+	<tx:method name="get*" read-only="true" />
+	<tx:method name="query*" read-only="true" />
+	<tx:method name="page*" read-only="true" />
+	<tx:method name="find*" read-only="true" />
+
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<aop:pointcut id="my-domain-service"
+			expression="execution(* com.dayatang.springtest.application.MyApplication.*(..))" />
+
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="my-domain-service" />
+	</aop:config>
+
+</beans>

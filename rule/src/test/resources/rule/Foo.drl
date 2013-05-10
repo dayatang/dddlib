@@ -1,0 +1,32 @@
+package org.drools.examples
+ 
+import com.dayatang.rule.examples.Person
+import com.dayatang.rule.examples.Helper
+import com.dayatang.rule.time.Foo
+import java.util.Date
+ 
+
+
+rule "Check time"
+	dialect "mvel" 
+	when
+		//foo : Foo( id == 2, startDate > "20-六月-2007", name matches ".*foo.*" )
+		foo : Foo( id == 2, name matches ".*foo.*" )
+	then
+		System.out.println( "Test pass. Foo name = " +  foo);
+
+end
+
+rule "Check time2"
+	dialect "mvel" 
+	when
+		 $str : String()
+                from accumulate( String( ),
+                                 init( String cheesery = Foo.hello("good"); ),
+                                 action( ),
+                                 reverse( ),
+                                 result( cheesery)  );
+		eval($str == "good")
+	then
+		System.out.println( "Test pass. Foo name = " +  $str);
+end

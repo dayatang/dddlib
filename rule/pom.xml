@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.dayatang.commons</groupId>
+		<artifactId>dayatang-commons-project</artifactId>
+		<version>3.6-SNAPSHOT</version>
+	</parent>
+	<artifactId>dayatang-commons-rule</artifactId>
+	<packaging>jar</packaging>
+	<name>Dayatang Commons Rule Module</name>
+	
+	<scm>
+		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/rule/</connection>
+		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/rule/</developerConnection>
+	</scm>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/rules</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>jsr94</groupId>
+			<artifactId>jsr94</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-jsr94</artifactId>
+			<version>${drools.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+
+	<properties>
+		<drools.version>5.5.0.Final</drools.version>
+	</properties>
+</project>

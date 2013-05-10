@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<inceptionYear>dayatang</inceptionYear>
+	<parent>
+		<groupId>com.dayatang.commons</groupId>
+		<artifactId>dayatang-commons-project</artifactId>
+		<version>3.6-SNAPSHOT</version>
+	</parent>
+	<artifactId>dayatang-commons-excel</artifactId>
+	<packaging>jar</packaging>
+	<name>Dayatang Excel Date Import and Export Library</name>
+	<description>Dayatang Excel Date Import and Export Library</description>
+
+	<scm>
+		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/excel/</connection>
+		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/excel/</developerConnection>
+	</scm>
+
+	<dependencies>
+		<dependency>
+		<groupId>com.dayatang.commons</groupId>
+		<artifactId>dayatang-commons-utils</artifactId>
+		<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+	</dependencies>
+	<build>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>false</filtering>
+			</testResource>
+		</testResources>
+	</build>
+	<properties>
+		<poi.version>3.9</poi.version>
+	</properties>
+</project>

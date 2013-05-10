@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.dayatang.commons</groupId>
+		<artifactId>dayatang-commons-project</artifactId>
+		<version>3.6-SNAPSHOT</version>
+	</parent>
+	<artifactId>dayatang-commons-dsrouter</artifactId>
+	<packaging>jar</packaging>
+	<name>Dayatang Datasource Router classes for spring</name>
+	<description>Datasource Router classes for spring</description>
+
+	<scm>
+		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/dsrouter/</connection>
+		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/dsrouter/</developerConnection>
+	</scm>
+
+	<dependencies>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-configuration</groupId>
+			<artifactId>commons-configuration</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>proxool</groupId>
+			<artifactId>proxool</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>proxool</groupId>
+			<artifactId>proxool-cglib</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>${jdbc.groupId}</groupId>
+			<artifactId>${jdbc.artifactId}</artifactId>
+			<version>${jdbc.version}</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>dayatang-commons-spring-test</artifactId>
+			<version>${project.parent.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<properties>
+		<maven.test.skip>true</maven.test.skip>
+		<rep.jdbc.driverClassName>org.beyond.gemini.mysql.jdbc.GeminiReplicationDriver</rep.jdbc.driverClassName>
+		<jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+		<jdbc.groupId>mysql</jdbc.groupId>
+		<jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
+		<jdbc.version>5.1.21</jdbc.version>
+		<jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+		<database-url-prefix><![CDATA[jdbc:mysql://localhost,127.0.0.1/]]></database-url-prefix>
+		<database-name><![CDATA[test]]></database-name>
+		<jdbc.url>${database-url-prefix}${database-name}<![CDATA[?characterEncoding=UTF-8&amp;useUnicode=true]]></jdbc.url>
+		<!-- <jdbc.url><![CDATA[jdbc:mysql://localhost,127.0.0.1/test?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url> -->
+		<pool1.jdbc.url><![CDATA[jdbc:mysql://localhost/test?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></pool1.jdbc.url>
+		<pool2.jdbc.url><![CDATA[jdbc:mysql://127.0.0.1/testdb?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></pool2.jdbc.url>
+		<jdbc.username>${mysql.username}</jdbc.username>
+		<jdbc.password>${mysql.password}</jdbc.password>
+	</properties>
+</project>
