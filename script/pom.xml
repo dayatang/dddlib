@@ -11,10 +11,6 @@
 	<name>Dayatang Script Language API</name>
 	<description> Dayatang Script Language API.</description>
 	
-	<scm>
-		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/script/</connection>
-		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/script/</developerConnection>
-	</scm>
 	<dependencies>
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>

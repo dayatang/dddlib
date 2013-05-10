@@ -10,11 +10,6 @@
 	<packaging>jar</packaging>
 	<name>Dayatang Persistence API implemented by JPA</name>
 	<description>Dayatang Persistence API implemented by JPA.</description>
-	
-	<scm>
-		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/jpa/</connection>
-		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/jpa/</developerConnection>
-	</scm>
 
 	<dependencies>
 		<dependency>

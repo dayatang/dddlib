@@ -11,11 +11,6 @@
 	<name>Dayatang DataSource Monitor Module</name>
 	<description>Dayatang DataSource Monitor Module.</description>
 
-	<scm>
-		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/dsmonitor</connection>
-		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/cache/dsmonitor</developerConnection>
-	</scm>
-
 	<build>
 		<plugins>
 			<plugin>

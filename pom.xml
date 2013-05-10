@@ -72,8 +72,8 @@
 	</ciManagement>
 
 	<scm>
-		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/</connection>
-		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/</developerConnection>
+		<connection>scm:git:https://github.com/dayatang/dddlib.git</connection>
+		<developerConnection>scm:git:https://github.com/dayatang/dddlib.git</developerConnection>
 	</scm>
 
 	<issueManagement>

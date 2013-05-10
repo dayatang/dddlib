@@ -11,11 +11,6 @@
 	<name>Dayatang Datasource for SaaS</name>
 	<description>A data source implement for SaaS, as a proxy, locate the actual backend data souce for a specular tenant. </description>
 
-	<scm>
-		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/dsrouter/</connection>
-		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/dsrouter/</developerConnection>
-	</scm>
-
 	<dependencies>
 		<dependency>
 			<groupId>com.dayatang.commons</groupId>

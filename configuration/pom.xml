@@ -11,11 +11,6 @@
 	<name>Dayatang Configuration</name>
 	<description>Common Configuration.</description>
 
-	<scm>
-		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/configuration/</connection>
-		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/configuration/</developerConnection>
-	</scm>
-
 	<dependencies>
 		<dependency>
 			<groupId>com.dayatang.commons</groupId>

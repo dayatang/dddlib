@@ -11,11 +11,6 @@
 	<name>Test base classes</name>
 	<description>Test base classes.</description>
 
-	<scm>
-		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/test/</connection>
-		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/test/</developerConnection>
-	</scm>
-
 	<dependencies>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>

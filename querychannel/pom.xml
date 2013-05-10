@@ -9,11 +9,6 @@
 	<packaging>jar</packaging>
 	<name>Dayatang Commons QueryChannel Module</name>
 
-	<scm>
-		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/querychannel/</connection>
-		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/querychannel/</developerConnection>
-	</scm>
-
 	<dependencies>
 		<dependency>
 			<groupId>com.dayatang.commons</groupId>

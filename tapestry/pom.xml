@@ -10,11 +10,6 @@
 	<packaging>jar</packaging>
 	<name>Dayatang Common API implemented by Apache Tapestry</name>
 	<description>Common API implemented by Tapestry.</description>
-	
-	<scm>
-		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/tapestry/</connection>
-		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/tapestry/</developerConnection>
-	</scm>
 
 	<dependencies>
 		<dependency>

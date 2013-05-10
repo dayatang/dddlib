@@ -10,11 +10,6 @@
 	<packaging>jar</packaging>
 	<name>Dayatang Persistence API implemented by Hibernate</name>
 	<description>Dayatang Persistence API implemented by Hibernate.</description>
-	
-	<scm>
-		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/hibernate/</connection>
-		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/hibernate/</developerConnection>
-	</scm>
 
 	<dependencies>
 		<dependency>

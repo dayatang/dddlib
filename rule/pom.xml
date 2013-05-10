@@ -8,11 +8,6 @@
 	<artifactId>dayatang-commons-rule</artifactId>
 	<packaging>jar</packaging>
 	<name>Dayatang Commons Rule Module</name>
-	
-	<scm>
-		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/rule/</connection>
-		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/rule/</developerConnection>
-	</scm>
 
 	<build>
 		<resources>

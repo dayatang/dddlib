@@ -9,11 +9,6 @@
 	<artifactId>dayatang-commons-i18n</artifactId>
 	<packaging>jar</packaging>
 	<name>I18N Interface and Implements</name>
-	
-	<scm>
-		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/i18n/</connection>
-		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/i18n/</developerConnection>
-	</scm>
 
 	<dependencies>
 		<dependency>

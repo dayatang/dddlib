@@ -11,11 +11,6 @@
 	<name>Dayatang Common API implemented by Springframework</name>
 	<description>Common API implemented by Spring.</description>
 
-	<scm>
-		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/spring/</connection>
-		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/spring/</developerConnection>
-	</scm>
-
 	<dependencies>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>

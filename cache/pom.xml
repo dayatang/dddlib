@@ -11,10 +11,6 @@
 	<name>Dayatang Cache Module</name>
 	<description>Dayatang Cache Module.</description>
 
-	<scm>
-		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/cache</connection>
-		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/cache</developerConnection>
-	</scm>
 	<build>
 		<plugins>
 			<plugin>

@@ -11,11 +11,6 @@
 	<name>Dayatang Database Utils</name>
 	<description>Database Utils</description>
 
-	<scm>
-		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/db/</connection>
-		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/db/</developerConnection>
-	</scm>
-
 	<dependencies>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>

@@ -10,11 +10,6 @@
 	<packaging>jar</packaging>
 	<name>Dayatang Observer</name>
 	<description> Common Observer.</description>
-	
-	<scm>
-		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/observer/</connection>
-		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/observer/</developerConnection>
-	</scm>
 
 	<dependencies>
 		<dependency>

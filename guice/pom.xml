@@ -10,11 +10,6 @@
 	<packaging>jar</packaging>
 	<name>Dayatang IoC API implemented by Google Guice</name>
 	<description>Implement IoC interface InstanceProvider with Google Guice.</description>
-	
-	<scm>
-		<connection>scm:svn:http://dddlib.googlecode.com/svn/trunk/guice/</connection>
-		<developerConnection>scm:svn:https://dddlib.googlecode.com/svn/trunk/guice/</developerConnection>
-	</scm>
 
 	<dependencies>
 		<dependency>
