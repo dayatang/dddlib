@@ -73,7 +73,7 @@
 
 	<scm>
 		<connection>scm:git:https://github.com/dayatang/dddlib.git</connection>
-		<developerConnection>scm:git:https://github.com/dayatang/dddlib.git</developerConnection>
+		<developerConnection>scm:git:git@github.com:dayatang/dddlib.git</developerConnection>
 	</scm>
 
 	<issueManagement>
