@@ -21,6 +21,8 @@ public class SaasDataSource implements DataSource {
 	private DataSourceRegistry dataSourceRegistry;
 
 	public SaasDataSource(TenantService tenantService, DataSourceRegistry dataSourceRegistry) {
+		Assert.notNull(dataSourceRegistry, "data source registry is null!");
+		Assert.notNull(tenantService, "Tenant service is null!");
 		this.tenantService = tenantService;
 		this.dataSourceRegistry = dataSourceRegistry;
 	}
@@ -67,8 +69,6 @@ public class SaasDataSource implements DataSource {
 	}
 
 	private DataSource getActualDataSource() {
-		Assert.notNull(dataSourceRegistry, "data source registry is null!");
-		Assert.notNull(tenantService, "Tenant service is null!");
 		return dataSourceRegistry.getDataSourceOfTenant(tenantService.getTenant());
 	}
 

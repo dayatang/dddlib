@@ -23,4 +23,11 @@ public interface DataSourceRegistry {
 	 * @param dataSources 租户数据源映射。以租户标识为key，对应数据源为value
 	 */
 	void registerDataSources(Map<String, DataSource> dataSources);
+	
+	/**
+	 * 注册租户数据源
+	 * @param tenant 数据源所属的租户
+	 * @param dataSource 要注册的数据源
+	 */
+	void registerDataSource(String tenant, DataSource dataSource);
 }

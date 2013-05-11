@@ -59,9 +59,9 @@ public class JndiMappingDataSourceRegistryTest {
 	}
 	
 	@Test
-	public void registerDataSourceForTenant() throws Exception {
+	public void registerDataSource() throws Exception {
 		assertFalse(instance.exists(tenant));
-		instance.registerDataSourceForTenant(tenant, dataSource);
+		instance.registerDataSource(tenant, dataSource);
 		assertTrue(instance.exists(tenant));
 		assertSame(dataSource, instance.getDataSourceOfTenant(tenant));
 		verify(context, never()).lookup(jndiPrefix + tenant);
@@ -77,8 +77,8 @@ public class JndiMappingDataSourceRegistryTest {
 	
 	@Test
 	public void releaseAllDataSources() {
-		instance.registerDataSourceForTenant("abc", mock(DataSource.class));
-		instance.registerDataSourceForTenant("xyz", mock(DataSource.class));
+		instance.registerDataSource("abc", mock(DataSource.class));
+		instance.registerDataSource("xyz", mock(DataSource.class));
 		assertEquals(2, instance.size());
 		instance.releaseAllDataSources();
 		assertTrue(instance.size() == 0);

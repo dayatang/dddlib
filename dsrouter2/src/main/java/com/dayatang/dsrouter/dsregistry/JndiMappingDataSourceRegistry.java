@@ -15,14 +15,14 @@ import com.dayatang.utils.Slf4jLogger;
  * @author yyang
  * 
  */
-public class JndiMappingDataSourceRegistry extends AbstractDataSourceRegistry {
+public class JndiMappingDataSourceRegistry extends MapBasedDataSourceRegistry {
 
 	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(JndiMappingDataSourceRegistry.class);
 	private Context context;
 	private String jndiPrefix;
 	private String jndiSuffix;
 
-	public Context getContext() {
+	private Context getContext() {
 		if (context == null) {
 			try {
 				context = new InitialContext();
@@ -50,7 +50,7 @@ public class JndiMappingDataSourceRegistry extends AbstractDataSourceRegistry {
 		DataSource result = null;
 		String dataSourceJndi = StringUtils.defaultString(jndiPrefix) + tenant + StringUtils.defaultString(jndiSuffix);
 		try {
-			result = (DataSource) context.lookup(dataSourceJndi);
+			result = (DataSource) getContext().lookup(dataSourceJndi);
 		} catch (NamingException e) {
 			String message = "Lookup jndi: " + dataSourceJndi + " failed!";
 			LOGGER.error(message, e);

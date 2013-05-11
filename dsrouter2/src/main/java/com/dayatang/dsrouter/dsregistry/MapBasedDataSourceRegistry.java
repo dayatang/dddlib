@@ -10,14 +10,14 @@ import com.dayatang.dsrouter.DataSourceRegistry;
 import com.dayatang.utils.Assert;
 import com.dayatang.utils.Slf4jLogger;
 
-public abstract class AbstractDataSourceRegistry implements DataSourceRegistry {
+public abstract class MapBasedDataSourceRegistry implements DataSourceRegistry {
 
-	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(AbstractDataSourceRegistry.class);
+	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(MapBasedDataSourceRegistry.class);
 	
 	private static Map<String, DataSource> dataSources = new HashMap<String, DataSource>();
 	private static Map<String, Date> lastAccess = new HashMap<String, Date>();
 
-	public AbstractDataSourceRegistry() {
+	public MapBasedDataSourceRegistry() {
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public abstract class AbstractDataSourceRegistry implements DataSourceRegistry {
 		synchronized (this) {
 			if (!exists(tenant)) {
 				result = findOrCreateDataSourceForTenant(tenant);
-				registerDataSourceForTenant(tenant, result);
+				registerDataSource(tenant, result);
 			}
 		}
 		return result;
@@ -43,13 +43,13 @@ public abstract class AbstractDataSourceRegistry implements DataSourceRegistry {
 		lastAccess.put(tenant, accessTime);
 	}
 
-	public synchronized void registerDataSourceForTenant(String tenant, DataSource dataSource) {
+	public synchronized void registerDataSource(String tenant, DataSource dataSource) {
 		dataSources.put(tenant, dataSource);
 	}
 
 	@Override
 	public synchronized void registerDataSources(Map<String, DataSource> dataSources) {
-		AbstractDataSourceRegistry.dataSources.putAll(dataSources);
+		MapBasedDataSourceRegistry.dataSources.putAll(dataSources);
 		
 	}
 
@@ -73,7 +73,7 @@ public abstract class AbstractDataSourceRegistry implements DataSourceRegistry {
 		return dataSources.size();
 	}
 
-	public boolean exists(String tenant) {
+	boolean exists(String tenant) {
 		return dataSources.containsKey(tenant);
 	}
 
@@ -85,6 +85,5 @@ public abstract class AbstractDataSourceRegistry implements DataSourceRegistry {
 	public Date getLastAccessTimeOfTenant(String tenant) {
 		return lastAccess.get(tenant);
 	}
-
 
 }

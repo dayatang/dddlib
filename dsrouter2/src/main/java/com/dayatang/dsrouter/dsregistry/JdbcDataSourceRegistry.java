@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.sql.DataSource;
 
+import com.dayatang.utils.Assert;
 import com.dayatang.utils.Slf4jLogger;
 
 /**
@@ -11,21 +12,20 @@ import com.dayatang.utils.Slf4jLogger;
  * @author yyang
  *
  */
-public class JdbcDataSourceRegistry extends AbstractDataSourceRegistry {
+public class JdbcDataSourceRegistry extends MapBasedDataSourceRegistry {
 
 	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(JdbcDataSourceRegistry.class);
 	
 	private DataSourceCreator dataSourceCreator;
 
-	public JdbcDataSourceRegistry() {
-	}
-
 	public JdbcDataSourceRegistry(DataSourceCreator dataSourceCreator) {
+		Assert.notNull(dataSourceCreator, "Data Source Creator is null!");
 		this.dataSourceCreator = dataSourceCreator;
 	}
 
 	@Override
 	protected DataSource findOrCreateDataSourceForTenant(String tenant) {
+		Assert.notNull(tenant, "Tenant is null!");
 		DataSource result = dataSourceCreator.createDataSourceForTenant(tenant);
 		Date now = new Date();
 		recordLastAccessTimeOfTenant(tenant, now);
