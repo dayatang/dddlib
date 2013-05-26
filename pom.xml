@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.dayatang.commons</groupId>
 	<artifactId>dayatang-commons-project</artifactId>
@@ -155,12 +156,12 @@
 			<dependency>
 				<groupId>javax.validation</groupId>
 				<artifactId>validation-api</artifactId>
-				<version>1.0.0.GA</version>
+				<version>1.1.0.Final</version>
 			</dependency>
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-validator</artifactId>
-				<version>4.3.0.Final</version>
+				<version>4.3.1.Final</version>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
@@ -195,7 +196,7 @@
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
-				<version>4.10</version>
+				<version>4.11</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
@@ -207,7 +208,7 @@
 			<dependency>
 				<groupId>org.dbunit</groupId>
 				<artifactId>dbunit</artifactId>
-				<version>2.4.8</version>
+				<version>2.4.9</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
@@ -221,9 +222,9 @@
 				<version>0.9.1</version>
 			</dependency>
 			<dependency>
-				<groupId>c3p0</groupId>
+				<groupId>com.mchange</groupId>
 				<artifactId>c3p0</artifactId>
-				<version>0.9.1.2</version>
+				<version>0.9.2.1</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-configuration</groupId>
@@ -233,13 +234,15 @@
 			<dependency>
 				<groupId>org.aspectj</groupId>
 				<artifactId>aspectjrt</artifactId>
-				<version>1.7.1</version>
+				<version>1.7.2</version>
 			</dependency>
 			<dependency>
 				<groupId>org.aspectj</groupId>
 				<artifactId>aspectjweaver</artifactId>
-				<version>1.7.1</version>
+				<version>1.7.2</version>
 			</dependency>
+			<!-- 
+			 -->
 			<dependency>
 				<groupId>org.opensymphony.quartz</groupId>
 				<artifactId>quartz</artifactId>
@@ -253,7 +256,7 @@
 			<dependency>
 				<groupId>com.h2database</groupId>
 				<artifactId>h2</artifactId>
-				<version>1.3.168</version>
+				<version>1.3.171</version>
 			</dependency>
 			<dependency>
 				<groupId>org.codehaus.btm</groupId>
@@ -261,9 +264,9 @@
 				<version>2.1.3</version>
 			</dependency>
 			<dependency>
-			    <groupId>org.jboss.logging</groupId>
-			    <artifactId>jboss-logging</artifactId>
-			    <version>3.1.2.GA</version>
+				<groupId>org.jboss.logging</groupId>
+				<artifactId>jboss-logging</artifactId>
+				<version>3.1.3.GA</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -287,7 +290,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>2.5.1</version>
+					<version>3.1</version>
 					<configuration>
 						<source>1.6</source>
 						<target>1.6</target>
@@ -300,7 +303,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-dependency-plugin</artifactId>
-					<version>2.5</version>
+					<version>2.7</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -313,7 +316,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.12.3</version>
+					<version>2.14.1</version>
 					<configuration>
 						<encoding>${project.build.sourceEncoding}</encoding>
 						<charset>${project.build.sourceEncoding}</charset>
@@ -343,7 +346,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-assembly-plugin</artifactId>
-					<version>2.3</version>
+					<version>2.4</version>
 					<configuration>
 						<descriptorRefs>
 							<descriptorRef>jar-with-dependencies</descriptorRef>
@@ -362,7 +365,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
-					<version>3.1</version>
+					<version>3.2</version>
 					<configuration>
 						<locales>zh_CN</locales>
 						<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
@@ -372,7 +375,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-release-plugin</artifactId>
-					<version>2.3.2</version>
+					<version>2.4.1</version>
 					<configuration>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 						<username>${google.scm.username}</username>
@@ -382,7 +385,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-source-plugin</artifactId>
-					<version>2.2</version>
+					<version>2.2.1</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -411,7 +414,7 @@
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-project-info-reports-plugin</artifactId>
-							<version>2.5</version>
+							<version>2.6</version>
 							<configuration>
 								<encoding>${project.build.sourceEncoding}</encoding>
 								<charset>${project.build.sourceEncoding}</charset>
@@ -440,7 +443,7 @@
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-surefire-report-plugin</artifactId>
-							<version>2.12.3</version>
+							<version>2.14.1</version>
 							<configuration>
 								<encoding>${project.build.sourceEncoding}</encoding>
 								<charset>${project.build.sourceEncoding}</charset>
@@ -454,7 +457,7 @@
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-pmd-plugin</artifactId>
-							<version>2.7.1</version>
+							<version>3.0.1</version>
 							<configuration>
 								<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
 								<targetJdk>1.6</targetJdk>
@@ -472,7 +475,7 @@
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-checkstyle-plugin</artifactId>
-							<version>2.9.1</version>
+							<version>2.10</version>
 							<configuration>
 								<configLocation>config/sun_checks.xml</configLocation>
 								<encoding>${project.build.sourceEncoding}</encoding>
@@ -481,7 +484,7 @@
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-changes-plugin</artifactId>
-							<version>2.8</version>
+							<version>2.9</version>
 							<configuration>
 								<tracUser>${trac.username}</tracUser>
 								<tracPassword>${trac.password}</tracPassword>
@@ -515,7 +518,7 @@
 						<plugin>
 							<groupId>org.codehaus.mojo</groupId>
 							<artifactId>cobertura-maven-plugin</artifactId>
-							<version>2.5.1</version>
+							<version>2.5.2</version>
 							<configuration>
 								<encoding>${project.build.sourceEncoding}</encoding>
 							</configuration>
@@ -523,7 +526,7 @@
 						<plugin>
 							<groupId>org.codehaus.mojo</groupId>
 							<artifactId>clirr-maven-plugin</artifactId>
-							<version>2.4</version>
+							<version>2.5</version>
 							<configuration>
 								<minSeverity>info</minSeverity>
 							</configuration>
@@ -536,7 +539,7 @@
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
 				<artifactId>wagon-webdav-jackrabbit</artifactId>
-				<version>2.2</version>
+				<version>2.4</version>
 			</extension>
 		</extensions>
 
@@ -556,9 +559,9 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<slf4j.version>1.7.1</slf4j.version>
-		<spring.version>3.2.1.RELEASE</spring.version>
-		<tapestry.version>5.3.6</tapestry.version>
+		<slf4j.version>1.7.5</slf4j.version>
+		<spring.version>3.2.2.RELEASE</spring.version>
+		<tapestry.version>5.3.7</tapestry.version>
 		<hibernate.version>4.1.8.Final</hibernate.version>
 		<!-- Database settings, default to H2 database -->
 		<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
@@ -566,7 +569,7 @@
 		<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
 		<jdbc.groupId>com.h2database</jdbc.groupId>
 		<jdbc.artifactId>h2</jdbc.artifactId>
-		<jdbc.version>1.3.168</jdbc.version>
+		<jdbc.version>1.3.171</jdbc.version>
 		<jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
 		<jdbc.url><![CDATA[jdbc:h2:mem:testdb]]></jdbc.url>
 		<jdbc.username>sa</jdbc.username>
