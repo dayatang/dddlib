@@ -18,6 +18,9 @@ public class JdbcConfiguration {
 	private String extraUrlString;
 
 
+	public JdbcConfiguration() {
+	}
+
 	public JdbcConfiguration(Configuration configuration) {
 		Assert.notNull(configuration);
 		driverClassName = configuration.getString(Constants.JDBC_DRIVER_CLASS_NAME);
