@@ -1,8 +1,5 @@
 package com.dayatang.dsrouter.dscreator;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.sql.DataSource;
 
 import org.logicalcobwebs.proxool.ProxoolDataSource;
@@ -16,24 +13,19 @@ public class ProxoolDataSourceCreator extends AbstractDataSourceCreator {
 	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(ProxoolDataSourceCreator.class);
 
 	@Override
-	protected DataSource createDataSource() {
+	public DataSource createDataSourceForTenant(String tenant) {
 		try {
-			return new ProxoolDataSource();
+			ProxoolDataSource result = new ProxoolDataSource();
+			fillProperties(result);
+			result.setDriver(getDsConfiguration().getString(Constants.JDBC_DRIVER_CLASS_NAME));
+			result.setDriverUrl(getUrl(tenant));
+			result.setUser(getUsername(tenant, getDsConfiguration().getString(Constants.JDBC_USERNAME)));
+			result.setPassword(getDsConfiguration().getString(Constants.JDBC_PASSWORD));
+			return result;
 		} catch (Exception e) {
 			String message = "Create Proxool data source failure.";
 			LOGGER.error(message, e);
 			throw new DataSourceCreationException(message, e);
 		}
 	}
-
-	@Override
-	protected Map<String, String> getStandardPropMappings() {
-		Map<String, String> results = new HashMap<String, String>();
-		results.put(Constants.JDBC_DRIVER_CLASS_NAME, "driver");
-		results.put(Constants.JDBC_URL, "driverUrl");
-		results.put(Constants.JDBC_USERNAME, "user");
-		results.put(Constants.JDBC_PASSWORD, "password");
-		return results;
-	}
-
 }

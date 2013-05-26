@@ -42,6 +42,8 @@ public class SaasDataSourceIntegrationTest {
 		assertEquals("China Mobile", getDataFromDb());
 		switchTenant("xyz");
 		assertEquals("China Unicom", getDataFromDb());
+		switchTenant("abc");
+		assertEquals("China Mobile", getDataFromDb());
 	}
 
 	private void switchTenant(String tenant) {
