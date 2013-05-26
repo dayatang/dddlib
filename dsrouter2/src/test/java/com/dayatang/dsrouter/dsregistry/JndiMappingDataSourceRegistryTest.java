@@ -71,7 +71,7 @@ public class JndiMappingDataSourceRegistryTest {
 	public void releaseDataSourceOfTenant() {
 		assertSame(dataSource, instance.getDataSourceOfTenant(tenant));
 		assertTrue(instance.exists(tenant));
-		instance.releaseDataSourceOfTenant(tenant);
+		instance.unregisterDataSource(tenant);
 		assertFalse(instance.exists(tenant));
 	}
 	

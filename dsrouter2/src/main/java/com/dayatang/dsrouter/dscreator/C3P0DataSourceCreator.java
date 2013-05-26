@@ -1,13 +1,17 @@
 package com.dayatang.dsrouter.dscreator;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.beanutils.BeanUtils;
+
 import com.dayatang.dsrouter.Constants;
 import com.dayatang.dsrouter.DataSourceCreationException;
-import com.dayatang.configuration.Configuration;
 import com.dayatang.utils.Slf4jLogger;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
@@ -15,22 +19,24 @@ public class C3P0DataSourceCreator extends AbstractDataSourceCreator {
 
 	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(C3P0DataSourceCreator.class);
 
-	public C3P0DataSourceCreator(JdbcUrlTranslator urlTranslator, Configuration configuration) {
-		super(urlTranslator, configuration);
-	}
-
-	public C3P0DataSourceCreator(JdbcUrlTranslator urlTranslator) {
-		super(urlTranslator);
-	}
-
 	@Override
 	protected DataSource createDataSource() {
+		ComboPooledDataSource result = null;
 		try {
-			return new ComboPooledDataSource();
+			result = new ComboPooledDataSource();
+			fillProperties(result);
+			return result;
 		} catch (Exception e) {
 			String message = "Create C3P0 data source failure.";
 			LOGGER.error(message, e);
 			throw new DataSourceCreationException(message, e);
+		}
+	}
+
+	protected void fillProperties(DataSource dataSource) throws IllegalAccessException, InvocationTargetException {
+		Properties dsProperties = getDsConfiguration().getProperties();
+		for (Entry<Object, Object> entry : dsProperties.entrySet()) {
+			BeanUtils.setProperty(dataSource, entry.getKey().toString(), entry.getValue());
 		}
 	}
 

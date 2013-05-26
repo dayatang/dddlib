@@ -45,8 +45,11 @@ public class JndiMappingDataSourceRegistry extends MapBasedDataSourceRegistry {
 		this.jndiSuffix = jndiSuffix;
 	}
 
+	/**
+	 * 根据租户名称，拼装上相应的前缀和后缀作为JNDI名称，从应用服务器上获取已部署的数据源。
+	 */
 	@Override
-	protected DataSource findOrCreateDataSourceForTenant(String tenant) {
+	public DataSource findOrCreateDataSourceForTenant(String tenant) {
 		DataSource result = null;
 		String dataSourceJndi = StringUtils.defaultString(jndiPrefix) + tenant + StringUtils.defaultString(jndiSuffix);
 		try {

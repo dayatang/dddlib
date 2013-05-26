@@ -16,7 +16,6 @@ public abstract class MapBasedDataSourceRegistry implements DataSourceRegistry {
 	
 	private static Map<String, DataSource> dataSources = new HashMap<String, DataSource>();
 	private static Map<String, Date> lastAccess = new HashMap<String, Date>();
-
 	public MapBasedDataSourceRegistry() {
 	}
 
@@ -53,7 +52,8 @@ public abstract class MapBasedDataSourceRegistry implements DataSourceRegistry {
 		
 	}
 
-	public synchronized void releaseDataSourceOfTenant(String tenant) {
+	@Override
+	public synchronized void unregisterDataSource(String tenant) {
 		DataSource dataSource = dataSources.remove(tenant);
 		if (dataSource != null) {
 			dataSource = null;
@@ -62,18 +62,20 @@ public abstract class MapBasedDataSourceRegistry implements DataSourceRegistry {
 		lastAccess.remove(tenant);
 	}
 
-	//Clear/release all cached DataSource.
+	@Override
 	public synchronized void releaseAllDataSources() {
 		dataSources.clear();
 		lastAccess.clear();
 		LOGGER.debug("All tenant datasource have been released!");
 	}
 
+	@Override
 	public int size() {
 		return dataSources.size();
 	}
 
-	boolean exists(String tenant) {
+	@Override
+	public boolean exists(String tenant) {
 		return dataSources.containsKey(tenant);
 	}
 
@@ -82,8 +84,10 @@ public abstract class MapBasedDataSourceRegistry implements DataSourceRegistry {
 	 * @param tenant
 	 * @return
 	 */
+	@Override
 	public Date getLastAccessTimeOfTenant(String tenant) {
 		return lastAccess.get(tenant);
 	}
+
 
 }

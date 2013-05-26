@@ -9,21 +9,11 @@ import org.logicalcobwebs.proxool.ProxoolDataSource;
 
 import com.dayatang.dsrouter.Constants;
 import com.dayatang.dsrouter.DataSourceCreationException;
-import com.dayatang.configuration.Configuration;
 import com.dayatang.utils.Slf4jLogger;
 
 public class ProxoolDataSourceCreator extends AbstractDataSourceCreator {
 
 	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(ProxoolDataSourceCreator.class);
-
-
-	public ProxoolDataSourceCreator(JdbcUrlTranslator urlTranslator, Configuration configuration) {
-		super(urlTranslator, configuration);
-	}
-
-	public ProxoolDataSourceCreator(JdbcUrlTranslator urlTranslator) {
-		super(urlTranslator);
-	}
 
 	@Override
 	protected DataSource createDataSource() {

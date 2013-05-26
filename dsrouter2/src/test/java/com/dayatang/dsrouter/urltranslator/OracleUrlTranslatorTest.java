@@ -9,17 +9,19 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.dayatang.dsrouter.dscreator.TenantDbMappingStrategy;
+
 
 public class OracleUrlTranslatorTest {
 	
 	private OracleUrlTranslator instance;
-	private DbMappingStrategy strategy;
+	private TenantDbMappingStrategy strategy;
 	private Properties properties = new Properties();
 	private String tenant = "abc";
 
 	@Before
 	public void setUp() throws Exception {
-		strategy = mock(DbMappingStrategy.class);
+		strategy = mock(TenantDbMappingStrategy.class);
 		instance = new OracleUrlTranslator(strategy);
 		when(strategy.getHost(tenant, properties)).thenReturn("localhost");
 		when(strategy.getPort(tenant, properties)).thenReturn("1521");

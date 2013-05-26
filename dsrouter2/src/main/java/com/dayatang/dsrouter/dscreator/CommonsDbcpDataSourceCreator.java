@@ -9,20 +9,11 @@ import org.apache.commons.dbcp.BasicDataSource;
 
 import com.dayatang.dsrouter.Constants;
 import com.dayatang.dsrouter.DataSourceCreationException;
-import com.dayatang.configuration.Configuration;
 import com.dayatang.utils.Slf4jLogger;
 
 public class CommonsDbcpDataSourceCreator extends AbstractDataSourceCreator {
 
 	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(CommonsDbcpDataSourceCreator.class);
-
-	public CommonsDbcpDataSourceCreator(JdbcUrlTranslator urlTranslator, Configuration configuration) {
-		super(urlTranslator, configuration);
-	}
-
-	public CommonsDbcpDataSourceCreator(JdbcUrlTranslator urlTranslator) {
-		super(urlTranslator);
-	}
 
 	@Override
 	protected DataSource createDataSource() {

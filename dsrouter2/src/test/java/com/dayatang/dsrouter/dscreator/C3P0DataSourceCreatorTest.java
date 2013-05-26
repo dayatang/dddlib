@@ -20,14 +20,14 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 public class C3P0DataSourceCreatorTest {
 
 	private AbstractDataSourceCreator instance;
-	private JdbcUrlTranslator urlTranslator; 
+	private DbType urlTranslator; 
 	private Configuration configuration = new ConfigurationFactory().fromClasspath(Constants.DB_CONF_FILE);
 	private ComboPooledDataSource dataSource;
 	
 	@Before
 	public void setUp() throws Exception {
-		urlTranslator = mock(JdbcUrlTranslator.class);
-		instance = new C3P0DataSourceCreator(urlTranslator, configuration);
+		urlTranslator = mock(DbType.class);
+		instance = new C3P0DataSourceCreator();
 		dataSource = new ComboPooledDataSource();
 		instance.setDataSource(dataSource);
 	}

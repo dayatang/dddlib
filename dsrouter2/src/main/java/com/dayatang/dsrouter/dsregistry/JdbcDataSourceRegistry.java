@@ -18,15 +18,23 @@ public class JdbcDataSourceRegistry extends MapBasedDataSourceRegistry {
 	
 	private DataSourceCreator dataSourceCreator;
 
-	public JdbcDataSourceRegistry(DataSourceCreator dataSourceCreator) {
+	public DataSourceCreator getDataSourceCreator() {
 		Assert.notNull(dataSourceCreator, "Data Source Creator is null!");
+		return dataSourceCreator;
+	}
+
+	public void setDataSourceCreator(DataSourceCreator dataSourceCreator) {
+		this.dataSourceCreator = dataSourceCreator;
+	}
+
+	public JdbcDataSourceRegistry(DataSourceCreator dataSourceCreator) {
 		this.dataSourceCreator = dataSourceCreator;
 	}
 
 	@Override
 	protected DataSource findOrCreateDataSourceForTenant(String tenant) {
 		Assert.notNull(tenant, "Tenant is null!");
-		DataSource result = dataSourceCreator.createDataSourceForTenant(tenant);
+		DataSource result = getDataSourceCreator().createDataSourceForTenant(tenant);
 		Date now = new Date();
 		recordLastAccessTimeOfTenant(tenant, now);
 		LOGGER.debug("Create data source for tenant '{}' at {}", tenant, now);
