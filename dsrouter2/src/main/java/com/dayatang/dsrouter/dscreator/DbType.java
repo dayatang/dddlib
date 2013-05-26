@@ -36,7 +36,22 @@ public enum DbType {
 			}
 			return extraUrlString.startsWith("?") ? result + extraUrlString : result + "?" + extraUrlString;
 		}
-	};
+	},
+	
+	DERBY {
+		@Override
+		public String getUrl(JdbcConfiguration jdbcConfiguration) {
+			String result = String.format("jdbc:derby://%s/%s", jdbcConfiguration.getHost(),
+					jdbcConfiguration.getDbname());
+			String extraUrlString = jdbcConfiguration.getExtraUrlString();
+			if (StringUtils.isBlank(extraUrlString)) {
+				return result;
+			}
+			return extraUrlString.startsWith(";") ? result + extraUrlString : result + ";" + extraUrlString;
+		}
+	},
+
+	;
 
 	public static DbType of(String value) {
 		for (DbType each : DbType.values()) {
