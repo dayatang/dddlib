@@ -19,7 +19,7 @@ public class C3P0DataSourceCreator extends AbstractDataSourceCreator {
 			fillProperties(result);
 			result.setDriverClass(getDsConfiguration().getString(Constants.JDBC_DRIVER_CLASS_NAME));
 			result.setJdbcUrl(getUrl(tenant));
-			result.setUser(getUsername(tenant, getDsConfiguration().getString(Constants.JDBC_USERNAME)));
+			result.setUser(getUsername(tenant));
 			result.setPassword(getDsConfiguration().getString(Constants.JDBC_PASSWORD));
 			return result;
 		} catch (Exception e) {

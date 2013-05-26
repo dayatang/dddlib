@@ -19,7 +19,7 @@ public class ProxoolDataSourceCreator extends AbstractDataSourceCreator {
 			fillProperties(result);
 			result.setDriver(getDsConfiguration().getString(Constants.JDBC_DRIVER_CLASS_NAME));
 			result.setDriverUrl(getUrl(tenant));
-			result.setUser(getUsername(tenant, getDsConfiguration().getString(Constants.JDBC_USERNAME)));
+			result.setUser(getUsername(tenant));
 			result.setPassword(getDsConfiguration().getString(Constants.JDBC_PASSWORD));
 			return result;
 		} catch (Exception e) {

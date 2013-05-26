@@ -19,7 +19,7 @@ public class CommonsDbcpDataSourceCreator extends AbstractDataSourceCreator {
 			fillProperties(result);
 			result.setDriverClassName(getDsConfiguration().getString(Constants.JDBC_DRIVER_CLASS_NAME));
 			result.setUrl(getUrl(tenant));
-			result.setUsername(getUsername(tenant, getDsConfiguration().getString(Constants.JDBC_USERNAME)));
+			result.setUsername(getUsername(tenant));
 			result.setPassword(getDsConfiguration().getString(Constants.JDBC_PASSWORD));
 			return result;
 		} catch (Exception e) {

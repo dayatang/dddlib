@@ -51,8 +51,8 @@ public abstract class AbstractDataSourceCreator implements DataSourceCreator {
 		}
 	}
 
-	protected String getUsername(String tenant, String defaultValue) {
-		return mappingStrategy.getSchema(tenant, defaultValue, tenantDbMapping);
+	protected String getUsername(String tenant) {
+		return mappingStrategy.getSchema(tenant, getDsConfiguration().getString(Constants.JDBC_USERNAME), tenantDbMapping);
 	}
 
 	protected String getUrl(String tenant) {
