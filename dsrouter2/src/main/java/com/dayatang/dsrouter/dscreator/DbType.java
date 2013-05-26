@@ -3,13 +3,12 @@ package com.dayatang.dsrouter.dscreator;
 import org.apache.commons.lang3.StringUtils;
 
 public enum DbType {
-	
-	MYSQL {
 
+	MYSQL {
 		@Override
 		public String getUrl(JdbcConfiguration jdbcConfiguration) {
-			String result =  String.format("jdbc:mysql://%s:%s/%s", 
-					jdbcConfiguration.getHost(), jdbcConfiguration.getPort(), jdbcConfiguration.getDbname());
+			String result = String.format("jdbc:mysql://%s:%s/%s", jdbcConfiguration.getHost(),
+					jdbcConfiguration.getPort(), jdbcConfiguration.getDbname());
 			String extraUrlString = jdbcConfiguration.getExtraUrlString();
 			if (StringUtils.isBlank(extraUrlString)) {
 				return result;
@@ -17,18 +16,20 @@ public enum DbType {
 			return extraUrlString.startsWith("?") ? result + extraUrlString : result + "?" + extraUrlString;
 		}
 	},
+	
 	ORACLE {
 		@Override
 		public String getUrl(JdbcConfiguration jdbcConfiguration) {
-			return String.format("jdbc:oracle:thin:@%s:%s:%s", 
-					jdbcConfiguration.getHost(), jdbcConfiguration.getPort(), jdbcConfiguration.getInstance());
+			return String.format("jdbc:oracle:thin:@%s:%s:%s", jdbcConfiguration.getHost(),
+					jdbcConfiguration.getPort(), jdbcConfiguration.getInstance());
 		}
 	},
+	
 	POSTGRESQL {
 		@Override
 		public String getUrl(JdbcConfiguration jdbcConfiguration) {
-			String result =  String.format("jdbc:postgresql://%s:%s/%s", 
-					jdbcConfiguration.getHost(), jdbcConfiguration.getPort(), jdbcConfiguration.getDbname());
+			String result = String.format("jdbc:postgresql://%s:%s/%s", jdbcConfiguration.getHost(),
+					jdbcConfiguration.getPort(), jdbcConfiguration.getDbname());
 			String extraUrlString = jdbcConfiguration.getExtraUrlString();
 			if (StringUtils.isBlank(extraUrlString)) {
 				return result;
@@ -47,5 +48,5 @@ public enum DbType {
 	}
 
 	public abstract String getUrl(JdbcConfiguration jdbcConfiguration);
-	
+
 }
