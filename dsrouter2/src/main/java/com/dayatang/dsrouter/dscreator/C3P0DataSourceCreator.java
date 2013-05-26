@@ -1,14 +1,9 @@
 package com.dayatang.dsrouter.dscreator;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Properties;
 
 import javax.sql.DataSource;
-
-import org.apache.commons.beanutils.BeanUtils;
 
 import com.dayatang.dsrouter.Constants;
 import com.dayatang.dsrouter.DataSourceCreationException;
@@ -24,19 +19,11 @@ public class C3P0DataSourceCreator extends AbstractDataSourceCreator {
 		ComboPooledDataSource result = null;
 		try {
 			result = new ComboPooledDataSource();
-			fillProperties(result);
 			return result;
 		} catch (Exception e) {
 			String message = "Create C3P0 data source failure.";
 			LOGGER.error(message, e);
 			throw new DataSourceCreationException(message, e);
-		}
-	}
-
-	protected void fillProperties(DataSource dataSource) throws IllegalAccessException, InvocationTargetException {
-		Properties dsProperties = getDsConfiguration().getProperties();
-		for (Entry<Object, Object> entry : dsProperties.entrySet()) {
-			BeanUtils.setProperty(dataSource, entry.getKey().toString(), entry.getValue());
 		}
 	}
 
