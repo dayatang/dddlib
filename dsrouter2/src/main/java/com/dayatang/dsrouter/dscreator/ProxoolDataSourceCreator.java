@@ -5,7 +5,6 @@ import javax.sql.DataSource;
 import org.logicalcobwebs.proxool.ProxoolDataSource;
 
 import com.dayatang.dsrouter.Constants;
-import com.dayatang.dsrouter.DataSourceCreationException;
 import com.dayatang.utils.Slf4jLogger;
 
 public class ProxoolDataSourceCreator extends AbstractDataSourceCreator {

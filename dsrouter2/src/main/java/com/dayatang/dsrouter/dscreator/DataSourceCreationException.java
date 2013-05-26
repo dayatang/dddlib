@@ -1,4 +1,4 @@
-package com.dayatang.dsrouter;
+package com.dayatang.dsrouter.dscreator;
 
 /**
  * 数据源创建异常。
