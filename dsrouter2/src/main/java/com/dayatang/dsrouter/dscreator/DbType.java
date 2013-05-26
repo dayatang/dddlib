@@ -7,7 +7,7 @@ public enum DbType {
 	MYSQL {
 
 		@Override
-		public String getUrl(String tenant, JdbcConfiguration jdbcConfiguration) {
+		public String getUrl(JdbcConfiguration jdbcConfiguration) {
 			String result =  String.format("jdbc:mysql://%s:%s/%s", 
 					jdbcConfiguration.getHost(), jdbcConfiguration.getPort(), jdbcConfiguration.getDbname());
 			String extraUrlString = jdbcConfiguration.getExtraUrlString();
@@ -19,14 +19,14 @@ public enum DbType {
 	},
 	ORACLE {
 		@Override
-		public String getUrl(String tenant, JdbcConfiguration jdbcConfiguration) {
+		public String getUrl(JdbcConfiguration jdbcConfiguration) {
 			return String.format("jdbc:oracle:thin:@%s:%s:%s", 
 					jdbcConfiguration.getHost(), jdbcConfiguration.getPort(), jdbcConfiguration.getInstance());
 		}
 	},
 	POSTGRESQL {
 		@Override
-		public String getUrl(String tenant, JdbcConfiguration jdbcConfiguration) {
+		public String getUrl(JdbcConfiguration jdbcConfiguration) {
 			String result =  String.format("jdbc:postgresql://%s:%s/%s", 
 					jdbcConfiguration.getHost(), jdbcConfiguration.getPort(), jdbcConfiguration.getDbname());
 			String extraUrlString = jdbcConfiguration.getExtraUrlString();
@@ -46,6 +46,6 @@ public enum DbType {
 		throw new IllegalStateException("DB type '" + value + "' not exists!");
 	}
 
-	public abstract String getUrl(String tenant, JdbcConfiguration jdbcConfiguration);
+	public abstract String getUrl(JdbcConfiguration jdbcConfiguration);
 	
 }

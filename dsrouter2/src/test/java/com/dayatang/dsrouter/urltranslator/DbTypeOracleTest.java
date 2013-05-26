@@ -21,6 +21,6 @@ public class DbTypeOracleTest extends AbstractDbTypeTest {
 
 	@Test
 	public void withoutExtraUrlString() {
-		assertEquals("jdbc:oracle:thin:@localhost:3306:XE", instance.getUrl("a", jdbcConfiguration));
+		assertEquals("jdbc:oracle:thin:@localhost:3306:XE", instance.getUrl(jdbcConfiguration));
 	}
 }

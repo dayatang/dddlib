@@ -101,7 +101,7 @@ public abstract class AbstractDataSourceCreator implements DataSourceCreator {
 		jdbcConfiguration.setHost(mappingStrategy.getHost(tenant, jdbcConfiguration.getHost(), tenantDbMapping));
 		jdbcConfiguration.setInstance(mappingStrategy.getInstanceName(tenant, jdbcConfiguration.getInstance(), tenantDbMapping));
 		jdbcConfiguration.setPort(mappingStrategy.getPort(tenant, jdbcConfiguration.getPort(), tenantDbMapping));
-		return dbType.getUrl(tenant, jdbcConfiguration);
+		return dbType.getUrl(jdbcConfiguration);
 	}
 
 	protected abstract Map<String, String> getStandardPropMappings();

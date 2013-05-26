@@ -21,12 +21,12 @@ public class DbTypePostgresqlTest extends AbstractDbTypeTest {
 
 	@Test
 	public void withoutExtraUrlString() {
-		assertEquals("jdbc:postgresql://localhost:3306/test_db", instance.getUrl("a", jdbcConfiguration));
+		assertEquals("jdbc:postgresql://localhost:3306/test_db", instance.getUrl(jdbcConfiguration));
 	}
 
 	@Test
 	public void withExtraUrlString() {
 		jdbcConfiguration.setExtraUrlString("useUnicode=true&encoding=UTF-8");
-		assertEquals("jdbc:postgresql://localhost:3306/test_db?useUnicode=true&encoding=UTF-8", instance.getUrl("a", jdbcConfiguration));
+		assertEquals("jdbc:postgresql://localhost:3306/test_db?useUnicode=true&encoding=UTF-8", instance.getUrl(jdbcConfiguration));
 	}
 }
