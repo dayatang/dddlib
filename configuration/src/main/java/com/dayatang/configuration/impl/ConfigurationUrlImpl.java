@@ -27,7 +27,6 @@ public class ConfigurationUrlImpl extends AbstractConfiguration {
 	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(ConfigurationUrlImpl.class);
 	private PropertiesFileUtils pfu = new PropertiesFileUtils("utf-8");
 	private URL url;
-	private Hashtable<String, String> hTable;	
 	
 	public static ConfigurationUrlImpl fromUrl(final String url) {
 		try {
@@ -50,14 +49,6 @@ public class ConfigurationUrlImpl extends AbstractConfiguration {
 	@Override
 	public Properties getProperties() {
 		return pfu.unRectifyProperties(getHashtable());
-	}
-
-	@Override
-	public Hashtable<String, String> getHashtable() {
-		if (hTable == null) {
-			load();
-		}
-		return hTable;
 	}
 
 	@Override

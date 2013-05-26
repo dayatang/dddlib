@@ -36,7 +36,6 @@ public class ConfigurationFileImpl extends AbstractConfiguration implements Writ
 	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(ConfigurationFileImpl.class);
 	private PropertiesFileUtils pfu = new PropertiesFileUtils("utf-8");
 	private File file;
-	private Hashtable<String, String> hTable;	
 	/**
 	 * 从类路径读入配置文件
 	 * @param fileName
@@ -91,14 +90,6 @@ public class ConfigurationFileImpl extends AbstractConfiguration implements Writ
 			throw new IllegalStateException("File " + file.getName() + " is unreadable!");
 		}
 		load();
-	}
-
-	@Override
-	public Hashtable<String, String> getHashtable() {
-		if (hTable == null) {
-			load();
-		}
-		return hTable;
 	}
 
 	@Override

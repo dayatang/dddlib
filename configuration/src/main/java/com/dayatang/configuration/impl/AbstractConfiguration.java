@@ -14,6 +14,7 @@ public abstract class AbstractConfiguration implements Configuration {
 	private String prefix = "";
 	private static final String DATE_FORMAT_KEY = "DATE_FORMAT";
 	private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
+	protected Hashtable<String, String> hTable;	
 
 	/**
 	 * 激活配置前缀功能
@@ -194,5 +195,11 @@ public abstract class AbstractConfiguration implements Configuration {
 		setString(key, new SimpleDateFormat(dateFormat).format(value));
 	}
 
-	public abstract Hashtable<String, String> getHashtable();
+
+	public Hashtable<String, String> getHashtable() {
+		if (hTable == null) {
+			load();
+		}
+		return hTable;
+	}
 }

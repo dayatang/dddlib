@@ -1,7 +1,6 @@
 package com.dayatang.configuration.impl;
 
 import java.util.Date;
-import java.util.Hashtable;
 import java.util.Map;
 import java.util.Properties;
 
@@ -31,7 +30,6 @@ public class ConfigurationDbImpl extends AbstractConfiguration implements Writab
 	private static final String DEFAULT_TABLE_NAME = "SYS_CONFIG";
 	private static final String DEFAULT_KEY_COLUMN = "KEY_COLUMN";
 	private static final String DEFAULT_VALUE_COLUMN = "VALUE_COLUMN";
-	private Hashtable<String, String> hTable;
 	
 	
 	public ConfigurationDbImpl(DataSource dataSource) {
@@ -40,14 +38,6 @@ public class ConfigurationDbImpl extends AbstractConfiguration implements Writab
 
 	public ConfigurationDbImpl(DataSource dataSource, String tableName, String keyColumn, String valueColumn) {
 		dbUtils = new ConfigurationDbUtils(dataSource, tableName, keyColumn, valueColumn);
-	}
-
-	@Override
-	public Hashtable<String, String> getHashtable() {
-		if (hTable == null) {
-			load();
-		}
-		return hTable;
 	}
 
 	@Override
