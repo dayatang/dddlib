@@ -1,5 +1,5 @@
-
 package com.dayatang.dsrouter.dscreator;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -17,13 +17,13 @@ import com.dayatang.dsrouter.dsregistry.DataSourceCreator;
 import com.dayatang.utils.Slf4jLogger;
 
 public abstract class AbstractDataSourceCreator implements DataSourceCreator {
-	
+
 	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(AbstractDataSourceCreator.class);
 
 	private TenantDbMappingStrategy mappingStrategy;
 	private Configuration dsConfiguration;
 	private Configuration tenantDbMapping;
-	
+
 	private DbType dbType;
 	private DataSource dataSource;
 
@@ -34,23 +34,27 @@ public abstract class AbstractDataSourceCreator implements DataSourceCreator {
 		dbType = DbType.of(dsConfiguration.getString(Constants.DB_TYPE));
 	}
 
-
 	public Configuration getDsConfiguration() {
 		return dsConfiguration;
 	}
 
+	public void setDsConfiguration(Configuration dsConfiguration) {
+		this.dsConfiguration = dsConfiguration;
+	}
 
 	public Configuration getTenantDbMapping() {
 		return tenantDbMapping;
 	}
 
+	public void setTenantDbMapping(Configuration tenantDbMapping) {
+		this.tenantDbMapping = tenantDbMapping;
+	}
 
-	//主要为了可测试性设置
-	public void setDataSource(DataSource dataSource) {
+	// 主要为了可测试性设置
+	void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
-	
-	
+
 	public DataSource createDataSourceForTenant(String tenant) {
 		if (dataSource == null) {
 			dataSource = createDataSource();
@@ -74,18 +78,19 @@ public abstract class AbstractDataSourceCreator implements DataSourceCreator {
 			BeanUtils.setProperty(dataSource, entry.getKey().toString(), entry.getValue());
 		}
 	}
-	
-	private void fillStandardProperties(DataSource dataSource, String tenant) throws IllegalAccessException, InvocationTargetException {
+
+	private void fillStandardProperties(DataSource dataSource, String tenant) throws IllegalAccessException,
+			InvocationTargetException {
 		Map<String, String> standardProperties = getStandardPropMappings();
-		BeanUtils.setProperty(dataSource, standardProperties.get(Constants.JDBC_DRIVER_CLASS_NAME), 
+		BeanUtils.setProperty(dataSource, standardProperties.get(Constants.JDBC_DRIVER_CLASS_NAME),
 				dsConfiguration.getString(Constants.JDBC_DRIVER_CLASS_NAME));
 		BeanUtils.setProperty(dataSource, standardProperties.get(Constants.JDBC_URL), getUrl(tenant));
-		BeanUtils.setProperty(dataSource, standardProperties.get(Constants.JDBC_USERNAME), 
+		BeanUtils.setProperty(dataSource, standardProperties.get(Constants.JDBC_USERNAME),
 				getUsername(tenant, dsConfiguration.getString(Constants.JDBC_USERNAME)));
-		BeanUtils.setProperty(dataSource, standardProperties.get(Constants.JDBC_PASSWORD), 
+		BeanUtils.setProperty(dataSource, standardProperties.get(Constants.JDBC_PASSWORD),
 				dsConfiguration.getString(Constants.JDBC_PASSWORD));
 	}
-	
+
 	private String getUsername(String tenant, String defaultValue) {
 		return mappingStrategy.getSchema(tenant, defaultValue, tenantDbMapping);
 	}
@@ -102,7 +107,8 @@ public abstract class AbstractDataSourceCreator implements DataSourceCreator {
 			@SuppressWarnings("unchecked")
 			Map<String, Object> dsProps = BeanUtils.describe(result);
 			for (String key : dsProps.keySet()) {
-				//LOGGER.debug("----------------{}: {}", key, dsProps.get(key));
+				// LOGGER.debug("----------------{}: {}", key,
+				// dsProps.get(key));
 			}
 		} catch (NoSuchMethodException e) {
 			e.printStackTrace();
