@@ -1,8 +1,5 @@
 package com.dayatang.dsrouter.dscreator;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.sql.DataSource;
 
 import com.dayatang.dsrouter.Constants;
@@ -15,26 +12,21 @@ public class C3P0DataSourceCreator extends AbstractDataSourceCreator {
 	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(C3P0DataSourceCreator.class);
 
 	@Override
-	protected DataSource createDataSource() {
+	public DataSource createDataSourceForTenant(String tenant) {
 		ComboPooledDataSource result = null;
 		try {
 			result = new ComboPooledDataSource();
+			fillProperties(result);
+			result.setDriverClass(getDsConfiguration().getString(Constants.JDBC_DRIVER_CLASS_NAME));
+			result.setJdbcUrl(getUrl(tenant));
+			result.setUser(getUsername(tenant, getDsConfiguration().getString(Constants.JDBC_USERNAME)));
+			result.setPassword(getDsConfiguration().getString(Constants.JDBC_PASSWORD));
 			return result;
 		} catch (Exception e) {
 			String message = "Create C3P0 data source failure.";
 			LOGGER.error(message, e);
 			throw new DataSourceCreationException(message, e);
 		}
-	}
-
-	@Override
-	protected Map<String, String> getStandardPropMappings() {
-		Map<String, String> results = new HashMap<String, String>();
-		results.put(Constants.JDBC_DRIVER_CLASS_NAME, "driverClass");
-		results.put(Constants.JDBC_URL, "jdbcUrl");
-		results.put(Constants.JDBC_USERNAME, "user");
-		results.put(Constants.JDBC_PASSWORD, "password");
-		return results;
 	}
 
 }
