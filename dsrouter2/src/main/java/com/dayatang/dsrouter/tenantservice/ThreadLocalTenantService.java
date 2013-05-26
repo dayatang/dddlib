@@ -1,7 +1,5 @@
 package com.dayatang.dsrouter.tenantservice;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.dayatang.dsrouter.TenantService;
 
 /**
@@ -15,11 +13,7 @@ public class ThreadLocalTenantService implements TenantService {
 	 */
 	@Override
 	public String getTenant() {
-		String result = ThreadLocalTenantHolder.getTenant();
-		if (StringUtils.isBlank(result)) {
-			throw new TenantNotSettedException();
-		}
-		return result;
+		return ThreadLocalTenantHolder.getTenant();
 	}
 
 }
