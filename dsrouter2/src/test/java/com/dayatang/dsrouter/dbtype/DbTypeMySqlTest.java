@@ -1,4 +1,4 @@
-package com.dayatang.dsrouter.urltranslator;
+package com.dayatang.dsrouter.dbtype;
 
 import static org.junit.Assert.*;
 

@@ -20,7 +20,7 @@
 	    <constructor-arg index="1" ref="dsConfiguration"/>
 	</bean>
 	
-	<bean id="urlTranslator" class="com.dayatang.dsrouter.urltranslator.MySqlUrlTranslator">
+	<bean id="urlTranslator" class="com.dayatang.dsrouter.dbtype.MySqlUrlTranslator">
 	    <constructor-arg ref="mappingStrategy"/>
 	</bean>
 		
