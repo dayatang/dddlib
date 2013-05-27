@@ -21,28 +21,39 @@ public abstract class MapBasedDataSourceRegistry implements DataSourceRegistry {
 
 	@Override
 	public DataSource getDataSourceOfTenant(String tenant) {
-		Assert.notNull(tenant, "Tenant is null!");
+		Assert.notBlank(tenant, "Tenant is null or blank!");
 		recordLastAccessTimeOfTenant(tenant, new Date());
 		DataSource result = dataSources.get(tenant);
 		if (result != null) {
 			return result;
 		}
 		synchronized (this) {
-			if (!exists(tenant)) {
+			if (!existsDataSourceOfTenant(tenant)) {
 				result = findOrCreateDataSourceForTenant(tenant);
-				registerDataSource(tenant, result);
+				registerDataSourceForTenant(tenant, result);
 			}
 		}
 		return result;
 	}
 
+    /**
+     * 为租户查找或创建对应的数据源（由子类决定是查找还是创建）。
+     * @param tenant
+     * @return
+     */
 	protected abstract DataSource findOrCreateDataSourceForTenant(String tenant);
 
+    /**
+     * 记录租户对数据源的最后访问时间
+     * @param tenant 租户
+     * @param accessTime 访问时间
+     */
 	protected void recordLastAccessTimeOfTenant(String tenant, Date accessTime) {
 		lastAccess.put(tenant, accessTime);
 	}
 
-	public synchronized void registerDataSource(String tenant, DataSource dataSource) {
+    @Override
+	public synchronized void registerDataSourceForTenant(String tenant, DataSource dataSource) {
 		dataSources.put(tenant, dataSource);
 	}
 
@@ -53,7 +64,7 @@ public abstract class MapBasedDataSourceRegistry implements DataSourceRegistry {
 	}
 
 	@Override
-	public synchronized void unregisterDataSource(String tenant) {
+	public synchronized void unregisterDataSourceOfTenant(String tenant) {
 		DataSource dataSource = dataSources.remove(tenant);
 		if (dataSource != null) {
 			dataSource = null;
@@ -75,7 +86,7 @@ public abstract class MapBasedDataSourceRegistry implements DataSourceRegistry {
 	}
 
 	@Override
-	public boolean exists(String tenant) {
+	public boolean existsDataSourceOfTenant(String tenant) {
 		return dataSources.containsKey(tenant);
 	}
 

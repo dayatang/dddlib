@@ -33,7 +33,7 @@ public class JdbcDataSourceRegistry extends MapBasedDataSourceRegistry {
 
 	@Override
 	protected DataSource findOrCreateDataSourceForTenant(String tenant) {
-		Assert.notNull(tenant, "Tenant is null!");
+		Assert.notBlank(tenant, "Tenant is null or blank!");
 		DataSource result = getDataSourceCreator().createDataSourceForTenant(tenant);
 		Date now = new Date();
 		recordLastAccessTimeOfTenant(tenant, now);

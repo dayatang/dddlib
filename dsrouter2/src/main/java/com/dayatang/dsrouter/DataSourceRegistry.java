@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 /**
- * 租户数据源注册表
+ * 租户数据源注册表，为每个租户注册专用的数据源
  * @author yyang
  *
  */
@@ -24,10 +24,10 @@ public interface DataSourceRegistry {
 	 * @param tenant 数据源所属的租户
 	 * @param dataSource 要注册的数据源
 	 */
-	void registerDataSource(String tenant, DataSource dataSource);
+	void registerDataSourceForTenant(String tenant, DataSource dataSource);
 
 	/**
-	 * 给租户指定数据源
+	 * 批量注册租户数据源
 	 * @param dataSources 租户数据源映射。以租户标识为key，对应数据源为value
 	 */
 	void registerDataSources(Map<String, DataSource> dataSources);
@@ -36,7 +36,7 @@ public interface DataSourceRegistry {
 	 * 从注册表中去除指定租户对应的数据源
 	 * @param tenant
 	 */
-	void unregisterDataSource(String tenant);
+	void unregisterDataSourceOfTenant(String tenant);
 	
 	/**
 	 * Clear/release all cached DataSource.
@@ -44,7 +44,7 @@ public interface DataSourceRegistry {
 	void releaseAllDataSources();
 	
 	/**
-	 * 租户最后访问时间
+	 * 租户最后访问数据源的时间
 	 * @param tenant
 	 * @return
 	 */
@@ -57,10 +57,10 @@ public interface DataSourceRegistry {
 	int size();
 	
 	/**
-	 * 判断指定租户对应的数据源是否已经存在
+	 * 判断是否已经为指定租户注册数据源
 	 * @param tenant
 	 * @return
 	 */
-	boolean exists(String tenant);
+	boolean existsDataSourceOfTenant(String tenant);
 	
 }

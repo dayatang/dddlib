@@ -70,6 +70,6 @@ public enum TenantDbMappingStrategy {
 				return each;
 			}
 		}
-		throw new IllegalStateException("Tenant DB mapping strategy '" + value + "' not exists!");
+		throw new IllegalStateException("Tenant DB mapping strategy '" + value + "' not existsDataSourceOfTenant!");
 	}
 }

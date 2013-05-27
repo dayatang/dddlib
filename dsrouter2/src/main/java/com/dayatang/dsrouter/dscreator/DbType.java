@@ -59,7 +59,7 @@ public enum DbType {
 				return each;
 			}
 		}
-		throw new IllegalStateException("DB type '" + value + "' not exists!");
+		throw new IllegalStateException("DB type '" + value + "' not existsDataSourceOfTenant!");
 	}
 
 	public abstract String getUrl(JdbcConfiguration jdbcConfiguration);

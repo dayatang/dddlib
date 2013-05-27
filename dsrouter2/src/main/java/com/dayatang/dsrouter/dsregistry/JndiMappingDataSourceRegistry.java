@@ -46,7 +46,7 @@ public class JndiMappingDataSourceRegistry extends MapBasedDataSourceRegistry {
 	}
 
 	/**
-	 * 根据租户名称，拼装上相应的前缀和后缀作为JNDI名称，从应用服务器上获取已部署的数据源。
+	 * 根据租户名称，拼装上相应的前缀和后缀作为数据源JNDI名称，从应用服务器上获取已部署的数据源。
 	 */
 	@Override
 	public DataSource findOrCreateDataSourceForTenant(String tenant) {
