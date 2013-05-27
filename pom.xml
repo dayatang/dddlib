@@ -461,12 +461,6 @@
 							<configuration>
 								<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
 								<targetJdk>1.6</targetJdk>
-								<rulesets>
-									<ruleset>/rulesets/basic.xml</ruleset>
-									<ruleset>/rulesets/imports.xml</ruleset>
-									<ruleset>/rulesets/unusedcode.xml</ruleset>
-									<ruleset>/rulesets/controversial.xml</ruleset>
-								</rulesets>
 								<format>xml</format>
 								<linkXref>true</linkXref>
 								<minimumTokens>100</minimumTokens>
