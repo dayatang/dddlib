@@ -59,9 +59,9 @@ public class JdbcDataSourceRegistryTest {
 	
 	@Test
 	public void registerDataSource() {
-		assertFalse(instance.exists(tenant));
-		instance.registerDataSource(tenant, dataSource);
-		assertTrue(instance.exists(tenant));
+		assertFalse(instance.existsDataSourceOfTenant(tenant));
+		instance.registerDataSourceForTenant(tenant, dataSource);
+		assertTrue(instance.existsDataSourceOfTenant(tenant));
 		assertSame(dataSource, instance.getDataSourceOfTenant(tenant));
 		verify(dataSourceCreator, never()).createDataSourceForTenant(tenant);
 	}
@@ -69,15 +69,15 @@ public class JdbcDataSourceRegistryTest {
 	@Test
 	public void releaseDataSourceOfTenant() {
 		assertSame(dataSource, instance.getDataSourceOfTenant(tenant));
-		assertTrue(instance.exists(tenant));
-		instance.unregisterDataSource(tenant);
-		assertFalse(instance.exists(tenant));
+		assertTrue(instance.existsDataSourceOfTenant(tenant));
+		instance.unregisterDataSourceOfTenant(tenant);
+		assertFalse(instance.existsDataSourceOfTenant(tenant));
 	}
 	
 	@Test
 	public void releaseAllDataSources() {
-		instance.registerDataSource("abc", mock(DataSource.class));
-		instance.registerDataSource("xyz", mock(DataSource.class));
+		instance.registerDataSourceForTenant("abc", mock(DataSource.class));
+		instance.registerDataSourceForTenant("xyz", mock(DataSource.class));
 		assertEquals(2, instance.size());
 		instance.releaseAllDataSources();
 		assertTrue(instance.size() == 0);
