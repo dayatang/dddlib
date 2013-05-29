@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.dayatang.commons</groupId>
 		<artifactId>dayatang-commons-project</artifactId>
-		<version>3.6</version>
+		<version>3.7-SNAPSHOT</version>
 	</parent>
 	<artifactId>dayatang-commons-excel</artifactId>
 	<packaging>jar</packaging>

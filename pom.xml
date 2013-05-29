@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.dayatang.commons</groupId>
 	<artifactId>dayatang-commons-project</artifactId>
-	<version>3.6</version>
+	<version>3.7-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Dayatang Commons Project</name>
 	<url>http://www.dayatang.com/projects/dddlib</url>
@@ -74,7 +74,7 @@
 	<scm>
 		<connection>scm:git:https://github.com/dayatang/dddlib.git</connection>
 		<developerConnection>scm:git:git@github.com:dayatang/dddlib.git</developerConnection>
-	  <tag>dayatang-commons-project-3.6</tag>
+	  <tag>HEAD</tag>
   </scm>
 
 	<issueManagement>
