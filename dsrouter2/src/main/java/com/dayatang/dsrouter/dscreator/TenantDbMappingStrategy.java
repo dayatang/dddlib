@@ -12,14 +12,14 @@ public enum TenantDbMappingStrategy {
 	SCHEMA {
 		@Override
 		public String getSchema(String tenant, String defaultValue, Configuration mappings) {
-			return mappings.getString(tenant);
+			return mappings.getString(tenant, defaultValue);
 		}
 	},
 	
 	DBNAME {
 		@Override
 		public String getDbName(String tenant, String defaultValue, Configuration mappings) {
-			return mappings.getString(tenant);
+			return mappings.getString(tenant, defaultValue);
 		}
 	},
 	
