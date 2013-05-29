@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.dayatang.commons</groupId>
 		<artifactId>dayatang-commons-project</artifactId>
-		<version>3.6-SNAPSHOT</version>
+		<version>3.6</version>
 	</parent>
 	<artifactId>dayatang-commons-domain</artifactId>
 	<packaging>jar</packaging>
