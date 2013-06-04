@@ -74,6 +74,10 @@ public class SaasDataSource implements DataSource {
 
 	//For JDK 7 compatability
 	public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+		Double jdkVersion = Double.valueOf(System.getProperty("java.specification.version"));
+		if (jdkVersion > 1.6) {
+			return getActualDataSource().getParentLogger();
+		}
 		return null;
 	}
 	

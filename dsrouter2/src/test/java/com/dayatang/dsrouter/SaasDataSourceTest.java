@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
@@ -78,6 +79,19 @@ public class SaasDataSourceTest {
 		String result = "abcddddd";
 		when(actualDataSource.unwrap(String.class)).thenReturn(result);
 		assertSame(result, instance.unwrap(String.class));
+	}
+
+	@Test
+	public void testGetParentLogger() throws SQLException {
+		Double jdkVersion = Double.valueOf(System.getProperty("java.specification.version"));
+		if (jdkVersion > 1.6) {
+			System.out.println("1.7");
+			Logger logger = mock(Logger.class);
+			when(actualDataSource.getParentLogger()).thenReturn(logger);
+			assertSame(logger, instance.getParentLogger());
+		} else {
+			assertNull(instance.getParentLogger());
+		}
 	}
 
 	@Test
