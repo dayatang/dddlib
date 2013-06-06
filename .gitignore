@@ -7,7 +7,6 @@
 .settings
 .project
 .classpath
-.gitignore
 .tlog
 .log
 /target
