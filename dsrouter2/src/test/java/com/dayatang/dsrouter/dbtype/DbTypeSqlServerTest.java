@@ -8,11 +8,11 @@ import org.junit.Test;
 
 import com.dayatang.dsrouter.dscreator.DbType;
 
-public class DbTypeOracleTest extends AbstractDbTypeTest {
+public class DbTypeSqlServerTest extends AbstractDbTypeTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		instance = DbType.ORACLE;
+		instance = DbType.SQLSERVER;
 	}
 
 	@After
@@ -21,6 +21,6 @@ public class DbTypeOracleTest extends AbstractDbTypeTest {
 
 	@Test
 	public void getUrl() {
-		assertEquals("jdbc:oracle:thin:@localhost:3306:XE", instance.getUrl(jdbcConfiguration));
+		assertEquals("jdbc:jtds:sqlserver://localhost:3306/test_db", instance.getUrl(jdbcConfiguration));
 	}
 }

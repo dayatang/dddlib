@@ -17,14 +17,6 @@ public enum DbType {
 		}
 	},
 	
-	ORACLE {
-		@Override
-		public String getUrl(JdbcConfiguration jdbcConfiguration) {
-			return String.format("jdbc:oracle:thin:@%s:%s:%s", jdbcConfiguration.getHost(),
-					jdbcConfiguration.getPort(), jdbcConfiguration.getInstance());
-		}
-	},
-	
 	POSTGRESQL {
 		@Override
 		public String getUrl(JdbcConfiguration jdbcConfiguration) {
@@ -38,20 +30,29 @@ public enum DbType {
 		}
 	},
 	
-	DERBY {
+	ORACLE {
 		@Override
 		public String getUrl(JdbcConfiguration jdbcConfiguration) {
-			String result = String.format("jdbc:derby://%s/%s", jdbcConfiguration.getHost(),
-					jdbcConfiguration.getDbname());
-			String extraUrlString = jdbcConfiguration.getExtraUrlString();
-			if (StringUtils.isBlank(extraUrlString)) {
-				return result;
-			}
-			return extraUrlString.startsWith(";") ? result + extraUrlString : result + ";" + extraUrlString;
+			return String.format("jdbc:oracle:thin:@%s:%s:%s", jdbcConfiguration.getHost(),
+					jdbcConfiguration.getPort(), jdbcConfiguration.getInstance());
 		}
 	},
-
-	;
+	
+	DB2 {
+		@Override
+		public String getUrl(JdbcConfiguration jdbcConfiguration) {
+			return String.format("jdbc:db2://%s:%s/%s", jdbcConfiguration.getHost(),
+					jdbcConfiguration.getPort(), jdbcConfiguration.getDbname());
+		}
+	},
+	
+	SQLSERVER {
+		@Override
+		public String getUrl(JdbcConfiguration jdbcConfiguration) {
+			return String.format("jdbc:jtds:sqlserver://%s:%s/%s", jdbcConfiguration.getHost(),
+					jdbcConfiguration.getPort(), jdbcConfiguration.getDbname());
+		}
+	};
 
 	public static DbType of(String value) {
 		for (DbType each : DbType.values()) {
