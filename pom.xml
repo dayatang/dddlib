@@ -554,9 +554,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<slf4j.version>1.7.5</slf4j.version>
-		<spring.version>3.2.2.RELEASE</spring.version>
+		<spring.version>3.2.3.RELEASE</spring.version>
 		<tapestry.version>5.3.7</tapestry.version>
-		<hibernate.version>4.1.8.Final</hibernate.version>
+		<hibernate.version>4.2.2.Final</hibernate.version>
 		<!-- Database settings, default to H2 database -->
 		<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
 		<dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
