@@ -2,8 +2,8 @@ package com.dayatang.dsrouter.builder;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Driver;
+import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 
 import javax.sql.DataSource;
 
@@ -86,13 +86,13 @@ public abstract class AbstractDataSourceBuilder implements DataSourceBuilder {
 		BeanUtils.setProperty(dataSource, getPasswordProperty(), password);
 	}
 
-	private void assembleProps(DataSource dataSource, Properties prop) throws IllegalAccessException, InvocationTargetException {
-		if (prop != null) {
-			Set<Object> propKeySet = prop.keySet();
-			for (Object proKey : propKeySet) {
-				debug("正在为数据源【{}】组装可选属性【{}】=【{}】", new Object[] { dataSource, proKey.toString(), prop.get(proKey) });
-				BeanUtils.setProperty(dataSource, proKey.toString(), prop.get(proKey));
-			}
+	private void assembleProps(DataSource dataSource, Properties properties) throws IllegalAccessException, InvocationTargetException {
+		if (properties == null) {
+			return;
+		}
+		for (Map.Entry<Object, Object> each : properties.entrySet()) {
+			debug("正在为数据源【{}】组装可选属性【{}】=【{}】", new Object[] { dataSource, each.getKey(), each.getValue() });
+			BeanUtils.setProperty(dataSource, (String) each.getKey(), each.getValue());
 		}
 	}
 

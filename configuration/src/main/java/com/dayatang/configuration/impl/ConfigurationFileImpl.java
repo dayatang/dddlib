@@ -10,6 +10,7 @@ import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.util.Date;
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
@@ -151,9 +152,9 @@ public class ConfigurationFileImpl extends AbstractConfiguration implements Writ
 		out.write("#" + new Date().toString());
 		out.newLine();
 		synchronized (this) {
-			for (Object propKey : props.keySet()) {
-				String key = convertString(propKey.toString(), true);
-				String value = convertString((String) props.get(propKey), false);
+			for (Map.Entry<Object, Object> each : props.entrySet()) {
+				String key = convertString((String) each.getKey(), true);
+				String value = convertString((String) each.getValue(), false);
 				out.write(key + "=" + value);
 				out.newLine();
 			}

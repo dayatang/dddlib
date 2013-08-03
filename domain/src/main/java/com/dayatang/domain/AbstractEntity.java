@@ -152,8 +152,8 @@ public abstract class AbstractEntity implements Entity {
 
 	public static <T extends Entity> List<T> findByProperties(Class<T> clazz, Map<String, Object> propValues) {
 		QuerySettings<T> querySettings = QuerySettings.create(clazz);
-		for (String propName : propValues.keySet()) {
-			querySettings.eq(propName, propValues.get(propName));
+		for (Map.Entry<String, Object> each : propValues.entrySet()) {
+			querySettings.eq(each.getKey(), each.getValue());
 		}
 		return getRepository().find(querySettings);
 	}

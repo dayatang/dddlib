@@ -143,8 +143,8 @@ public class EntityUtils {
 			throw new RuntimeException(e);
 		}
 		Map<String, Object> results = new HashMap<String, Object>();
-		for (Object key : props.keySet()) {
-			results.put(key.toString(), props.get(key));
+		for (Map.Entry<Object, Object> each : props.entrySet()) {
+			results.put((String)each.getKey(), each.getValue());
 		}
 		results.remove(CLAZZ_PROP);
 		results.remove(VERSION_PROP);

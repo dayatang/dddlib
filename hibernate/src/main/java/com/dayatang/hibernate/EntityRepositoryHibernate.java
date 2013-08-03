@@ -135,8 +135,8 @@ public class EntityRepositoryHibernate implements EntityRepository {
 	@Override
 	public <T> List<T> find(final String queryString, final Map<String, Object> params, final Class<T> resultClass) {
 		Query query = getSession().createQuery(queryString);
-		for (String key : params.keySet()) {
-			query = query.setParameter(key, params.get(key));
+		for (Map.Entry<String, Object> each : params.entrySet()) {
+			query = query.setParameter(each.getKey(), each.getValue());
 		}
 		return query.list();
 	}
@@ -154,8 +154,8 @@ public class EntityRepositoryHibernate implements EntityRepository {
 	public <T> List<T> findByNamedQuery(final String queryName, final Map<String, Object> params,
 			final Class<T> resultClass) {
 		Query query = getSession().getNamedQuery(queryName);
-		for (String key : params.keySet()) {
-			query = query.setParameter(key, params.get(key));
+		for (Map.Entry<String, Object> each : params.entrySet()) {
+			query = query.setParameter(each.getKey(), each.getValue());
 		}
 		return query.list();
 	}
@@ -190,8 +190,8 @@ public class EntityRepositoryHibernate implements EntityRepository {
 	@Override
 	public <T extends Entity> List<T> findByProperties(Class<T> clazz, Map<String, Object> properties) {
 		QuerySettings<T> querySettings = QuerySettings.create(clazz);
-		for (String propertyName : properties.keySet()) {
-			querySettings = querySettings.eq(propertyName, properties.get(propertyName));
+		for (Map.Entry<String, Object> each : properties.entrySet()) {
+			querySettings = querySettings.eq(each.getKey(), each.getValue());
 		}
 		return find(querySettings);
 	}
@@ -214,8 +214,8 @@ public class EntityRepositoryHibernate implements EntityRepository {
 	@Override
 	public <T> T getSingleResult(final String queryString, final Map<String, Object> params, Class<T> resultClass) {
 		Query query = getSession().createQuery(queryString);
-		for (String key : params.keySet()) {
-			query = query.setParameter(key, params.get(key));
+		for (Map.Entry<String, Object> each : params.entrySet()) {
+			query = query.setParameter(each.getKey(), each.getValue());
 		}
 		return (T) query.uniqueResult();
 	}
@@ -232,8 +232,8 @@ public class EntityRepositoryHibernate implements EntityRepository {
 	@Override
 	public void executeUpdate(final String queryString, final Map<String, Object> params) {
 		Query query = getSession().createQuery(queryString);
-		for (String key : params.keySet()) {
-			query = query.setParameter(key, params.get(key));
+		for (Map.Entry<String, Object> each : params.entrySet()) {
+			query = query.setParameter(each.getKey(), each.getValue());
 		}
 		query.executeUpdate();
 	}

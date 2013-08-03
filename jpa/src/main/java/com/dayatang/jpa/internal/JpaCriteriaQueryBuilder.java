@@ -38,8 +38,8 @@ public class JpaCriteriaQueryBuilder {
 			root.alias(settings.getRootAlias());
 		}
 		Map<String, String> aliases = settings.getAliases();
-		for (String key : aliases.keySet()) {
-			root.get(key).alias(aliases.get(key));
+		for (Map.Entry<String, String> each : aliases.entrySet()) {
+			root.get(each.getKey()).alias(each.getValue());
 		}
 		
 		JpaCriterionConverter converter = new JpaCriterionConverter(builder, root);
