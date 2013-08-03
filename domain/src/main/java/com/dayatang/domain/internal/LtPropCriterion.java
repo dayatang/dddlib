@@ -30,10 +30,12 @@ public class LtPropCriterion implements QueryCriterion {
 
 	@Override
 	public boolean equals(final Object other) {
-		if (this == other)
+		if (this == other) {
 			return true;
-		if (!(other instanceof LtPropCriterion))
+		}
+		if (!(other instanceof LtPropCriterion)) {
 			return false;
+		}
 		LtPropCriterion castOther = (LtPropCriterion) other;
 		return new EqualsBuilder()
 			.append(this.getPropName1(), castOther.getPropName1())

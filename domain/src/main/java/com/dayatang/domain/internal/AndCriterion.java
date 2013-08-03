@@ -16,4 +16,6 @@ public class AndCriterion implements QueryCriterion {
 	public QueryCriterion[] getCriterons() {
 		return criterions;
 	}
+	
+	
 }

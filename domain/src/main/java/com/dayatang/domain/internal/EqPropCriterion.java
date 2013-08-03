@@ -31,10 +31,12 @@ public class EqPropCriterion implements QueryCriterion {
 
 	@Override
 	public boolean equals(final Object other) {
-		if (this == other)
+		if (this == other) {
 			return true;
-		if (!(other instanceof EqPropCriterion))
+		}
+		if (!(other instanceof EqPropCriterion)) {
 			return false;
+		}
 		EqPropCriterion castOther = (EqPropCriterion) other;
 		return new EqualsBuilder()
 			.append(this.getPropName1(), castOther.getPropName1())

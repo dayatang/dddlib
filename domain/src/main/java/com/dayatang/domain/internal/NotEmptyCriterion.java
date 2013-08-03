@@ -25,10 +25,12 @@ public class NotEmptyCriterion implements QueryCriterion {
 
 	@Override
 	public boolean equals(final Object other) {
-		if (this == other)
+		if (this == other) {
 			return true;
-		if (!(other instanceof NotEmptyCriterion))
+		}
+		if (!(other instanceof NotEmptyCriterion)) {
 			return false;
+		}
 		NotEmptyCriterion castOther = (NotEmptyCriterion) other;
 		return new EqualsBuilder()
 			.append(this.getPropName(), castOther.getPropName())

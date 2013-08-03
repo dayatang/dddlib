@@ -30,10 +30,12 @@ public class GtPropCriterion implements QueryCriterion {
 
 	@Override
 	public boolean equals(final Object other) {
-		if (this == other)
+		if (this == other) {
 			return true;
-		if (!(other instanceof GtPropCriterion))
+		}
+		if (!(other instanceof GtPropCriterion)) {
 			return false;
+		}
 		GtPropCriterion castOther = (GtPropCriterion) other;
 		return new EqualsBuilder()
 			.append(this.getPropName1(), castOther.getPropName1())

@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 public class ResourceBundleI18nService extends AbstractI18nService {
@@ -305,7 +306,7 @@ public class ResourceBundleI18nService extends AbstractI18nService {
 	 */
 	@Override
 	public String toString() {
-		return getClass().getName() + ": basenames=" + basenames;
+		return getClass().getName() + ": basenames=" + ArrayUtils.toString(basenames) ;
 	}
 
 }

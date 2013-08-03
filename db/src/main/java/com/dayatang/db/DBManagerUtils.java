@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,10 +21,9 @@ public class DBManagerUtils {
 	public static List<DataObject> getAllTableNames(DBConnection jConn)
 			throws Exception {
 
-		ResultSet rs = null;
 		List<DataObject> result = new ArrayList<DataObject>();
 
-		rs = jConn.queryTables();
+		ResultSet rs = jConn.queryTables();
 		String username = PropertiesUtil.JDBC_USERNAME.toUpperCase();
 		
 		while (rs.next()) {
@@ -44,8 +43,7 @@ public class DBManagerUtils {
 
 			result.add(data);
 		}
-		if(rs != null)
-			rs.close();
+		rs.close();
 		
 		return result;
 	}
@@ -97,15 +95,7 @@ public class DBManagerUtils {
 	 * @return
 	 */
 	public static String getString(List<String> list){
-		String s = "";
-		for(String t:list){
-			s += t + ",";
-		}
-		if(s.endsWith(",")){
-			s = s.substring(0,s.length() - 1);
-		}
-		
-		return s;
+		return StringUtils.join(list, ", ");
 	}
 	
 	/**

@@ -49,10 +49,12 @@ public class NotInCriterion implements QueryCriterion {
 
 	@Override
 	public boolean equals(final Object other) {
-		if (this == other)
+		if (this == other) {
 			return true;
-		if (!(other instanceof NotInCriterion))
+		}
+		if (!(other instanceof NotInCriterion)) {
 			return false;
+		}
 		NotInCriterion castOther = (NotInCriterion) other;
 		return new EqualsBuilder()
 			.append(this.getPropName(), castOther.getPropName())

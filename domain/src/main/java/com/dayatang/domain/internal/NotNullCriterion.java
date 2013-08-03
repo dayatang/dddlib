@@ -25,10 +25,12 @@ public class NotNullCriterion implements QueryCriterion {
 
 	@Override
 	public boolean equals(final Object other) {
-		if (this == other)
+		if (this == other) {
 			return true;
-		if (!(other instanceof NotNullCriterion))
+		}
+		if (!(other instanceof NotNullCriterion)) {
 			return false;
+		}
 		NotNullCriterion castOther = (NotNullCriterion) other;
 		return new EqualsBuilder()
 			.append(this.getPropName(), castOther.getPropName())

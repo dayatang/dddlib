@@ -30,10 +30,12 @@ public class SizeLtCriterion implements QueryCriterion {
 
 	@Override
 	public boolean equals(final Object other) {
-		if (this == other)
+		if (this == other) {
 			return true;
-		if (!(other instanceof SizeLtCriterion))
+		}
+		if (!(other instanceof SizeLtCriterion)) {
 			return false;
+		}
 		SizeLtCriterion castOther = (SizeLtCriterion) other;
 		return new EqualsBuilder().append(this.getPropName(), castOther.getPropName()).append(value, castOther.value)
 				.isEquals();

@@ -82,10 +82,12 @@ public class DictionaryCategory extends AbstractEntity {
 
 	@Override
 	public boolean equals(final Object other) {
-		if (this == other)
+		if (this == other) {
 			return true;
-		if (!(other instanceof DictionaryCategory))
+		}
+		if (!(other instanceof DictionaryCategory)) {
 			return false;
+		}
 		DictionaryCategory castOther = (DictionaryCategory) other;
 		return new EqualsBuilder().append(name, castOther.name).isEquals();
 	}

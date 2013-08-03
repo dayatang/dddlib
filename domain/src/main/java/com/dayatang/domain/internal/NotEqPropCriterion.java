@@ -30,10 +30,12 @@ public class NotEqPropCriterion implements QueryCriterion {
 
 	@Override
 	public boolean equals(final Object other) {
-		if (this == other)
+		if (this == other) {
 			return true;
-		if (!(other instanceof NotEqPropCriterion))
+		}
+		if (!(other instanceof NotEqPropCriterion)) {
 			return false;
+		}
 		NotEqPropCriterion castOther = (NotEqPropCriterion) other;
 		return new EqualsBuilder()
 			.append(this.getPropName1(), castOther.getPropName1())

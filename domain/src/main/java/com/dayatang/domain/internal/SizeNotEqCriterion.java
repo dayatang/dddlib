@@ -30,10 +30,12 @@ public class SizeNotEqCriterion implements QueryCriterion {
 
 	@Override
 	public boolean equals(final Object other) {
-		if (this == other)
+		if (this == other) {
 			return true;
-		if (!(other instanceof SizeNotEqCriterion))
+		}
+		if (!(other instanceof SizeNotEqCriterion)) {
 			return false;
+		}
 		SizeNotEqCriterion castOther = (SizeNotEqCriterion) other;
 		return new EqualsBuilder().append(this.getPropName(), castOther.getPropName()).append(value, castOther.value)
 				.isEquals();

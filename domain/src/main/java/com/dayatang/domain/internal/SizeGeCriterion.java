@@ -32,10 +32,12 @@ public class SizeGeCriterion implements QueryCriterion {
 
 	@Override
 	public boolean equals(final Object other) {
-		if (this == other)
+		if (this == other) {
 			return true;
-		if (!(other instanceof SizeGeCriterion))
+		}
+		if (!(other instanceof SizeGeCriterion)) {
 			return false;
+		}
 		SizeGeCriterion castOther = (SizeGeCriterion) other;
 		return new EqualsBuilder()
 			.append(this.getPropName(), castOther.getPropName())

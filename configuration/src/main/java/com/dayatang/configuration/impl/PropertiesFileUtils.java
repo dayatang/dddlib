@@ -58,9 +58,8 @@ public class PropertiesFileUtils {
 			return raw;
 		}
 		String ret = raw;
-		byte[] bytes = new byte[0];
 		try {
-			bytes = raw.getBytes(ISO_8859_1);
+			byte[] bytes = raw.getBytes(ISO_8859_1);
 			ret = new String(bytes, encoding);
 		} catch (UnsupportedEncodingException e) {
 			throw new RuntimeException("Unsupport Encoding:" + encoding, e);
@@ -76,9 +75,8 @@ public class PropertiesFileUtils {
 			return validStr;
 		}
 		String ret = validStr;
-		byte[] bytes = new byte[0];
 		try {
-			bytes = validStr.getBytes(encoding);
+			byte[] bytes = validStr.getBytes(encoding);
 			ret = new String(bytes, ISO_8859_1);
 		} catch (UnsupportedEncodingException e) {
 			throw new RuntimeException("Unsupport Encoding:" + encoding, e);

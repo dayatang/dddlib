@@ -32,10 +32,12 @@ public class EqCriterion implements QueryCriterion {
 
 	@Override
 	public boolean equals(final Object other) {
-		if (this == other)
+		if (this == other) {
 			return true;
-		if (!(other instanceof EqCriterion))
+		}
+		if (!(other instanceof EqCriterion)) {
 			return false;
+		}
 		EqCriterion castOther = (EqCriterion) other;
 		return new EqualsBuilder()
 			.append(this.getPropName(), castOther.getPropName())
