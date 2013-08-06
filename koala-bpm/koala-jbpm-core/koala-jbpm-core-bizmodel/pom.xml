@@ -9,7 +9,7 @@
 		<version>2.0.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>koala-jbpm-core-bizmodel</artifactId>
-	<name>jbpmCore-bizmodel</name>
+	<name>koala-jbpm-core-bizmodel</name>
 	<packaging>jar</packaging>
 	<url>http://maven.apache.org</url>
 	<properties>
