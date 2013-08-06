@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XmlParse>
+
+	<property name="description">moduleType</property>
+
+	<VelocityDirObject>
+		<property name="express">$Module.moduleType=='infra'</property>
+		<property name="vmDir">vm/base/infra/</property>
+		<property name="pathDir">${Project.path}/${Project.appName}/${Module.moduleName}/
+		</property>
+	</VelocityDirObject>
+
+
+
+	<VelocityDirObject>
+		<property name="express">$Module.moduleType=='war'</property>
+		<property name="vmDir">vm/base/war/</property>
+		<property name="pathDir">${Project.path}/${Project.appName}/${Module.moduleName}/
+		</property>
+	</VelocityDirObject>
+	
+	<VelocityFileObject>
+		<property name="vm">vm/other/koala-spring-servlet.xml</property>
+		<property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/koala-spring-servlet.xml</property>
+	</VelocityFileObject>
+
+	<VelocityFileObject>
+		<property name="express"><![CDATA[$Module.moduleType=='war' && $Project.mvcProtocol=='Struts2MVC']]></property>
+		<property name="vm">vm/other/struts.xml</property>
+		<property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/struts.xml
+		</property>
+	</VelocityFileObject>
+
+	<VelocityDirObject>
+		<property name="express"><![CDATA[$Module.moduleType=='war' && $Project.mvcProtocol=='Struts2MVC']]></property>
+		<property name="vmDir">vm/module/struts2/struts2-base</property>
+		<property name="pathDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/java/${Module.basePackagePath}/action/
+		</property>
+	</VelocityDirObject>
+	<VelocityDirObject>
+		<property name="vmDir">vm/oth/conf/</property>
+		<property name="pathDir">${Project.path}/${Project.appName}/${Project.appName}-conf/
+		</property>
+	</VelocityDirObject>
+
+	<VelocityDirObject>
+		<property name="express">$Project.mvcProtocol=='Struts2MVC'</property>
+		<property name="vmDir">vm/base/conf/</property>
+		<property name="pathDir">${Project.path}/${Project.appName}/${Project.appName}-conf/
+		</property>
+	</VelocityDirObject>
+
+	<VelocityDirObject>
+		<property name="express">$Module.moduleType=='bizModel'</property>
+		<property name="vmDir">vm/base/bizModel/</property>
+		<property name="pathDir">${Project.path}/${Project.appName}/${Module.moduleName}/
+		</property>
+	</VelocityDirObject>
+
+	<CopyFiles>
+		<property name="express"><![CDATA[$Project.dbProtocol=='JPA' && $Module.moduleType=='bizModel' || $Module.moduleType=='applicationImpl')]]></property>
+		<property name="srcDir">vm/other/sql/Account-jpa.xml.vm</property>
+		<property name="destDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/mappings/Account-jpa.xml.vm
+		</property>
+	</CopyFiles>
+
+	<CopyFiles>
+		<property name="express"><![CDATA[$Project.dbProtocol=='Mybatis' && ($Module.moduleType=='bizModel' || $Module.moduleType=='applicationImpl')]]></property>
+		<property name="srcDir">vm/other/sql/Account-mybatis.xml.vm</property>
+		<property name="destDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/mappings/Account-mybatis.xml.vm
+		</property>
+	</CopyFiles>
+
+	<CopyFiles>
+		<property name="express">$Module.moduleType=='war'</property>
+		<property name="srcDir">vm/other/webapp/</property>
+		<property name="destDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/webapp/
+		</property>
+	</CopyFiles>
+
+	<VelocityDirObject>
+		<property name="express">$Module.moduleType=='applicationImpl'
+		</property>
+		<property name="vmDir">vm/base/applicationImpl/</property>
+		<property name="pathDir">${Project.path}/${Project.appName}/${Module.moduleName}/
+		</property>
+	</VelocityDirObject>
+
+	<!-- <VelocityFileObject> <property name="express">$Module.moduleType=='applicationImpl' 
+		</property> <property name="vm">vm/other/impl/FossEntityRepositoryJpa.java.vm 
+		</property> <property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/java/${Project.groupPackage}/${Project.packageName}/${Module.moduleType}/util/FossEntityRepositoryJpa.java 
+		</property> </VelocityFileObject> <VelocityFileObject> <property name="express">$Module.moduleType=='applicationImpl' 
+		</property> <property name="vm">vm/other/impl/FossQueryChannelServiceJpa.java.vm 
+		</property> <property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/java/${Project.groupPackage}/${Project.packageName}/${Module.moduleType}/util/FossQueryChannelServiceJpa.java 
+		</property> </VelocityFileObject> -->
+
+</XmlParse>

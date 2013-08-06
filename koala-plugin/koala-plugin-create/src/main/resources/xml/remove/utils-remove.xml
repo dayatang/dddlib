@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ModuleRemove>
+	<!-- 指定此功能的名称 -->
+	<property name="funType">struts2</property>
+	<property name="files">
+		<value>src/test/java/org/openkoala/utils/sample/ArrayUtilsTest.java</value>
+		<value>src/test/java/org/openkoala/utils/sample/BeanUtilsTest.java</value>
+		<value>src/test/java/org/openkoala/utils/sample/CollectionUtilsTest.java</value>
+		<value>src/test/java/org/openkoala/utils/sample/ConfigurationDbImplTest.java</value>
+		<value>src/test/java/org/openkoala/utils/sample/ConfigurationFileImplTest.java</value>
+		<value>src/test/java/org/openkoala/utils/sample/DateRangeTest.java</value>
+		<value>src/test/java/org/openkoala/utils/sample/DateUtilsTest.java</value>
+		<value>src/test/java/org/openkoala/utils/sample/IntRangeTest.java</value>
+		<value>src/test/java/org/openkoala/utils/sample/Item.java</value>
+		<value>src/test/java/org/openkoala/utils/sample/Slf4jLoggerTest.java</value>
+		<value>src/test/resources/conf.properties</value>
+		<value>src/test/resources/jdbc.properties</value>
+		<value>src/test/resources/log4j.properties</value>
+	</property>
+</ModuleRemove>

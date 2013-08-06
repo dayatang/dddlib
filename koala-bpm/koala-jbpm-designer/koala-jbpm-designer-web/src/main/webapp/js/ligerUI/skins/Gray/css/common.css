@@ -1,0 +1,23 @@
+﻿/* 按钮 */
+.l-button{line-height:25px;height:25px;background:url('../images/ui/button1.gif') repeat-x; position:relative; margin-top:8px; margin-bottom:8px;color:#2C69A2; width:120px; cursor:pointer; border:none; color:#2C69A2; border-left:1px solid #BFCFE1; border-right:1px solid #BFCFE1;border-bottom:1px solid #BFCFE1;}
+.l-button-l,.l-button-r{ width:2px;height:25px;background:url('../images/ui/button1.gif') no-repeat; position:absolute; }
+.l-button-l{ left:0px; background-position:0px -25px;}
+.l-button-r{ right:0px;background-position:0px -50px;}
+.l-button-icon{ position:absolute; left:7px; top:6px;}
+.l-button img{ width:16px; height:16px;}
+.l-button span{ display:block; margin-left:30px; } 
+ 
+ .l-buttonnoicon span{ margin-left:8px; } 
+ 
+ 
+.l-button2,.l-button2 .l-button-l,.l-button2 .l-button-r{background-image:url('../images/ui/button2.gif'); line-height:23px; height:23px; color:#333;}
+.l-button2 .l-button-icon{   top:4px;}
+.l-button2 .l-button-l,.l-button2 .l-button-r{ background-position:0px -23px;}
+
+
+
+.l-button-over, .l-button:hover {
+background:#E4EDF4 url(../images/ui/button-over.gif) repeat-x top;
+border: none; border-left:1px solid #BFCFE1; border-right:1px solid #BFCFE1;border-bottom:1px solid #BFCFE1;
+}
+ 

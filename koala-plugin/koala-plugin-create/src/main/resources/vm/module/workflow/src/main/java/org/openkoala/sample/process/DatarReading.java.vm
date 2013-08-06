@@ -1,0 +1,29 @@
+package org.openkoala.sample.process;
+
+public class DatarReading {
+	
+	
+	private String reading;
+	private int value;
+	
+	
+	public DatarReading(String reading, int value){
+		this.reading = reading;
+		this.value = value;
+	}
+	
+	public String getReading() {
+		return reading;
+	}
+	public void setReading(String reading) {
+		this.reading = reading;
+	}
+	public int getValue() {
+		return value;
+	}
+	public void setValue(int value) {
+		this.value = value;
+	}
+
+}
+

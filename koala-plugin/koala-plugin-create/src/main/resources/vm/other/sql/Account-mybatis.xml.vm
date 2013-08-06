@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper  
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"  
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">  
+<!-- 务必配置正确namespace 就是所映射的接口类-->  
+<mapper namespace="me.lingen.demo.core.Account">
+
+    <!-- 默认，支持仓储的save方法所必须的 -->
+    <insert id="insert" parameterType="Account">
+       insert into ACCOUNT(id,accountId,name,money) values (#{id},#{accountId},#{name},#{money})
+    </insert>
+    
+    <!-- 默认，支持仓储的save方法所必须的 -->
+    <update id="update" parameterType="Account">
+      update ACCOUNT set accountId = #{accountId},name=#{name},money=#{money} where id = #{id}
+    </update>
+    
+    <!-- 默认，支持仓储的remove方法所必须的 -->
+    <delete id="remove" parameterType="Account">
+      delete ACCOUNT where ID = #{id}
+    </delete>
+    
+    <!-- 默认，支持仓储的get,load方法所必须的 -->
+    <select id="get" resultMap="AccountMap" parameterType="long">
+      select * from ACCOUNT where id = #{id}
+    </select>
+    
+    <!-- 默认，支持仓储的getAll方法所必须的 -->
+    <select id="getAll" resultMap="AccountMap">
+      select * from ACCOUNT
+    </select>
+    
+    <!-- 非默认，自定义查询,根据名称来查询帐号 -->
+    <select id="getAccountByName" resultMap="AccountMap" parameterType="string">
+      select * from Account where name = #{params[0]}
+    </select>
+    
+    <select id="queryAcccountById" resultMap="AccountMap" parameterType="map">
+      select * from Account where id = #{params[0]}
+    </select>
+    
+    
+
+<resultMap id="AccountMap" type="Account" >
+    <result column="id" property="id"/>
+	<result column="accountId" property="accountId"/>
+	<result column="name" property="name"/>
+	<result column="money" property="money"/>
+</resultMap>
+   
+</mapper>   

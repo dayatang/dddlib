@@ -1,0 +1,48 @@
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:tx="http://www.springframework.org/schema/tx"  
+    xmlns:jaxws="http://cxf.apache.org/jaxws"  
+    xmlns:cxf="http://cxf.apache.org/core"  
+    xmlns:wsa="http://cxf.apache.org/ws/addressing"  
+    xsi:schemaLocation="     
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.1.xsd  
+     http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd  
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd     
+    http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">  
+    <import resource="classpath:META-INF/cxf/cxf.xml" />  
+    <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />  
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />  
+      
+	<cxf:bus>
+		<cxf:features>
+			<!--日志拦截功能，用于监控soap内容，开发后可以删除 -->
+			<cxf:logging />
+			<wsa:addressing />
+		</cxf:features>
+	</cxf:bus>
+
+
+	<bean id="authorizationInterceptor" class="org.openkoala.koala.web.cxf.interceptor.AuthorizationInterceptor">
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="defaultUser" value="admin" />
+		<property name="defaultPassword" value="admin" />
+	</bean>
+	
+#foreach ( $interface in $WebServiceDeploy.interfaces)
+  #if ($interface)
+  	<bean id="${interface.simpleName}" class="${interface.implAppName}"></bean>
+	
+	<jaxws:endpoint id="${interface.simpleName}Service" implementor="#${interface.simpleName}" address="/${WebServiceDeploy.version}/${interface.simpleName}" publish="true">
+		<jaxws:inInterceptors>
+			<ref bean="authorizationInterceptor" />
+			<bean class="org.openkoala.koala.web.cxf.interceptor.IpInterceptor" />
+		</jaxws:inInterceptors>
+		<jaxws:features>
+			<bean class="org.apache.cxf.transport.common.gzip.GZIPFeature">
+				<property name="threshold" value="1" />
+			</bean>
+		</jaxws:features>
+	</jaxws:endpoint>
+  #end
+#end
+</beans>

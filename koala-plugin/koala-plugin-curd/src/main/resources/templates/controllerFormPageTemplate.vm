@@ -1,0 +1,167 @@
+#set($entityName = $pageParams.entityModel.name)
+#set($voName  = ${entityName.substring(0, 1).toLowerCase()} + ${entityName.substring(1)} + "VO")
+#set($base_url = $pageParams.entityModel.lastPackageName + "-" + $entityName +"-")
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@ include file="/pages/common/header.jsp"%>
+<script type="text/javascript">
+#if ($pageParams.isAddForm == false)	
+var id = "${param.id}";
+#end
+$(function (){
+autoResize();
+#if ($pageParams.isAddForm == false)
+loadData();
+#end
+#foreach( $view in $pageParams.formWidgets) 
+#if ($view.widgetType == 'date')
+$("#${view.express}ID").ligerDateEditor();//加载日期选择器
+#elseif ($view.widgetType == 'queryDropdown')
+//下拉框
+$('#${view.express}ID').koalaDropdown({
+	dropdownStyle:"${view.dropdownStyle}",
+	valueFieldId:"${view.express}HiddenID",
+	beanName:"${view.className}",
+	beanFields:"${view.beanFields}",
+#if ($view.filterParams && $view.filterParams != '')
+    filter:encodeURIComponent("${view.filterParams}"),
+#end
+#if ($view.cascadeViewList.size() > 0)
+	cascadeFieldIds:"${view.cascadeNames}",
+#end
+#if ($view.parentId && $view.parentId != '')
+    parentId:"${view.parentId}"
+#end
+  });
+#end
+#end
+});
+
+#if ($pageParams.isAddForm == false)
+function loadData(){
+ if(id == '')return;
+ Koala.ajax({
+		type : 'POST',
+		url: '<%=contextPath %>/${entityName}/get/' + id + '.koala',
+		dataType:'json',
+		success: function(json){
+			if(json && json.data){
+			 json = json.data;
+			 var elm;
+			 for(var index in json){
+				 elm = document.getElementById(index + "ID");
+				 if(elm){
+					 if("SELECT" == elm.nodeName){
+						 $(elm).find("option[value='"+json[index]+"']").attr("selected","selected");
+					 }else{
+						 $(elm).val(json[index]);
+					 }
+				 }
+			 }
+			}
+		}
+	});		
+}
+#end
+
+function saveDataAction(){
+#if ($pageParams.isAddForm)
+	var url = '<%=contextPath %>/${entityName}/add.koala';
+#else
+	var url = '<%=contextPath %>/${entityName}/update.koala?id='+id;	
+#end
+   //form validate
+   if(!Validator.Validate(document.getElementById("dataForm"),3))return;
+   Koala.ajax({
+		type : 'POST',
+		url: url,
+		dataType:'json',
+		data:$("#dataForm").serialize(),
+		success: function(json){
+			if(json && json.result){
+			 alert(json.result);
+			 parent.gridManager.loadData();
+			 parent._dialog.close();
+			}
+		}
+	});
+}
+
+function autoResize(){
+	var _form = $("#form_table");
+	var width = 550;
+	var height = _form.height() + 100;
+	if(_form.hasClass('form4column')){
+		width = 760;
+	}else if(_form.hasClass('form2column')){
+		width = 550;
+	}
+	if(height<240)height = 240;
+	try {
+		$(parent.document).find("div.l-dialog-body:last").height(height).width(width);
+		$(parent.document).find('div.l-dialog-content:last').height(height-5);
+	} catch (e) {}
+}
+</script>
+</head>
+<body>
+<div class="form_body">
+  	<form id="dataForm" name="dataForm">
+	  	<table id="form_table" border="0" cellpadding="0" cellspacing="0" class="form2column">
+#foreach( $view in $pageParams.formWidgets) 
+#if(${view.express} !='id')
+	           <tr>
+	  			<td class="label">${view.name}:</td>
+	  			<td>
+#if($view.type.indexOf("oolean") > 0)	 
+	           <select name="${view.express}AsString" ${view.validateAttrs} id="${view.express}AsStringID" class="select-common">
+	           	   <option value="">Select...</option>
+	           	   <option value="1">是</option>
+	           	   <option value="0">否</option>
+	           	</select> 				
+#elseif($view.widgetType == 'text')
+               <input name="${view.express}" class="input-common" type="text" ${view.validateAttrs} id="${view.express}ID" />
+#elseif ($view.widgetType == 'date')
+                <input name="${view.express}" class="input-common" type="text" id="${view.express}ID" />
+#elseif ($view.widgetType == 'textArea')
+                <textarea class="input-commonarea" id="${view.express}ID" name="${view.express}" ${view.validateAttrs} ></textarea>
+#elseif ($view.widgetType == 'staticDropdown')
+                <select name="${view.express}" ${view.validateAttrs} id="${view.express}ID" class="select-common">
+	           	   <option value="">Select...</option>
+#foreach($opt in $view.valueMap.entrySet())
+	               <option value="$opt.key">$opt.value</option>
+#end 
+	           	</select> 
+#elseif ($view.widgetType == 'queryDropdown')
+                <table cellspacing="0" cellpadding="0"  border="0">
+                 <tr>
+                  <td>
+                <input class="input-common" type="text" id="${view.express}ID" />
+                <input name="${view.express}" type="hidden" id="${view.express}HiddenID" ${view.validateAttrs} />
+                </td>
+#foreach( $cascadeView in $view.cascadeViewList) 
+	            <td>${cascadeView.name}:</td>
+                <td><input class="input-common" type="text" id="${cascadeView.express}ID" /></td>
+#end              
+                </tr>
+                </table>
+#end
+#if ($view.required)<span class="red12">*</span>#end
+	  			</td>
+	  			</tr>
+#end
+#end 
+	  </table>
+	  <div class="form_button">
+        <input id="searchButton" type="button" class="btn-normal" onclick="saveDataAction()" value="保存" />
+	  	 &nbsp;&nbsp;
+	  	<input type="reset" class="btn-normal" value="重置" />
+     </div>
+  	</form>
+</div>
+</body>
+</html>

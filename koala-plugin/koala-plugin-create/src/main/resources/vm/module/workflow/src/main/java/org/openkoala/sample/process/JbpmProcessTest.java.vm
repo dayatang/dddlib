@@ -1,0 +1,48 @@
+package org.openkoala.sample.process;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.drools.KnowledgeBase;
+import org.drools.builder.KnowledgeBuilder;
+import org.drools.builder.KnowledgeBuilderFactory;
+import org.drools.builder.ResourceType;
+import org.drools.io.ResourceFactory;
+import org.drools.runtime.StatefulKnowledgeSession;
+import org.drools.runtime.process.ProcessInstance;
+import org.drools.runtime.process.WorkItem;
+
+public class JbpmProcessTest {
+	public static final void main(String[] args) { 
+		try {
+		    
+		    KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
+			kbuilder.add(ResourceFactory.newClassPathResource("downguest.bpmn"), ResourceType.BPMN2);
+			
+		    KnowledgeBase kbase = kbuilder.newKnowledgeBase();
+			StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
+			JbpmWorkItemHandler workItemHandler = new JbpmWorkItemHandler();
+			ksession.getWorkItemManager().registerWorkItemHandler("Human Task", workItemHandler);
+			ksession.startProcess("com.sample.downguest");
+			ksession.getWorkItemManager().registerWorkItemHandler("Human Task", workItemHandler);
+			WorkItem workItem = workItemHandler.getWorkItem();
+			Map<String, Object> results = new HashMap<String, Object>();
+	        results.put("ActorId", "mary");
+			workItemHandler.completeWorkItem(workItem,results);
+			ksession.getWorkItemManager().registerWorkItemHandler("Human Task", workItemHandler);
+			workItem = workItemHandler.getWorkItem();
+	        workItemHandler.completeWorkItem(workItem,null);
+		} catch (Throwable t) {
+            t.printStackTrace();
+
+        }
+	}
+	private static KnowledgeBase readKnowledgeBase(String bpmnName) throws Exception {
+        KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
+        kbuilder.add(ResourceFactory.newClassPathResource(bpmnName), ResourceType.BPMN2);
+        return kbuilder.newKnowledgeBase();
+    }
+	private static StatefulKnowledgeSession restoreSession(StatefulKnowledgeSession ksession, boolean b) {
+		return ksession;
+	}
+}

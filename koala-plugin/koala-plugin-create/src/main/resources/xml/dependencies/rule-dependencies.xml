@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dependencies>
+	<dependency>
+		<groupId>com.dayatang.commons</groupId>
+		<artifactId>dayatang-commons-rule</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>jsr94</groupId>
+		<artifactId>jsr94</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.drools</groupId>
+		<artifactId>drools-jsr94</artifactId>
+		<scope>test</scope>
+	</dependency>
+</dependencies>

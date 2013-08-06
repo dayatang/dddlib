@@ -1,0 +1,9 @@
+date.format=yyyy-M-d
+#2002-05-11
+birthday=1021046400000
+size=15
+closed=true
+org.dayatang.finished=true
+salary=12.5
+name=张三
+com.dayatang.emp.size=500

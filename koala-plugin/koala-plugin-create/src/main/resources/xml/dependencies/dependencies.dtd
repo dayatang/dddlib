@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT dependencies (dependency+)>
+<!ELEMENT dependency (groupId, artifactId, version, exclusions?)>
+<!ELEMENT groupId (#PCDATA)>
+<!ELEMENT artifactId (#PCDATA)>
+<!ELEMENT version (#PCDATA)>
+<!ELEMENT exclusions (exclusion+)>
+<!ELEMENT exclusion (groupId, artifactId)>

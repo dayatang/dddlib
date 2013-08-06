@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+
+	<!-- all application configure should configure in this file -->
+    <context:property-placeholder location="classpath*:ws-client.properties" />
+    
+#foreach ($Application in $Applications )
+	<jaxrs:client id="${Application.applicationName}" address="${${Application.applicationName}.ws.url}" serviceClass="${Application.fullApplicationName}">
+		<jaxrs:outInterceptors>
+			<bean class="org.openkoala.koala.client.ws.HttpHeaderInterceptor">
+				<property name="username">
+					<list>
+						<value>${username}</value>
+					</list>
+				</property>
+				<property name="password">
+					<list>
+						<value>${password}</value>
+					</list>
+				</property>
+			</bean>
+		</jaxrs:outInterceptors>
+		<jaxrs:features>
+			<bean class="org.apache.cxf.transport.common.gzip.GZIPFeature">
+				<property name="threshold" value="1" />
+			</bean>
+		</jaxrs:features>
+	</jaxrs:client>
+#end
+
+</beans>

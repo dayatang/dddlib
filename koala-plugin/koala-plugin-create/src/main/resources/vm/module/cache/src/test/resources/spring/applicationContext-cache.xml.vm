@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+            http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+            http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- MemCached缓存实现配置 -->
+	<bean id="memcached" class="com.dayatang.cache.memcached.MemCachedBasedCache" >
+		<!-- 服务器列表 -->
+		<property name="servers">
+			<list>
+				<value>localhost:11211</value>
+			</list>
+		</property>
+		<!-- 初始连接数 -->
+		<property name="initConn" value="3" />
+		<!-- 最小连接数 -->
+		<property name="minConn" value="3" />
+		<!-- 最大连接数 -->
+		<property name="maxConn" value="5" />
+	</bean>
+
+
+</beans>

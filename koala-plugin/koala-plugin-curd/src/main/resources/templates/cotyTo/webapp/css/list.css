@@ -1,0 +1,41 @@
+@charset "utf-8";
+/*2分栏样式*/
+.form-2column{width:100%;clear:both;}
+.form-2column th{height:26px;vertical-align: middle;text-align:right;font-weight:normal;cursor:default;background:#F5F5F5;}
+.form-2column td{padding:1px 8px 1px 8px;*padding:0px 8px 0px 8px;height:26px;word-break:break-all;word-wrap:break-word;}
+.form-4column td label{margin-left:5px	width:15px;display:inline;}
+.form-2column td label{margin-left:5px width:15px;}
+.form-2column td img, .form-4column td img, .form-6column td img{cursor:pointer;margin-left:5px;}
+/*2列表单适用*/
+.form-2column th, .form-4column th{width:140px;}
+
+.info-box{
+  background-color:#F9F9F9;
+  border:1px #E6E6E6 solid;
+  width:700px;
+  height:auto;
+  margin-left:0;
+  line-height:45px;
+  margin-top:5px;
+  clear:right;
+}
+
+.info-box .label{
+  float:left;
+  background:#F5F5F5;
+  text-align:right;
+  width:100px;
+  border-right:1px #E6E6E6 solid;
+  border-left:1px #E6E6E6 solid;
+  border-bottom:1px #D6D6D6 solid;
+}
+
+.info-box .content{
+  float:left;
+  text-align:left;
+  width:220px;
+  padding-left:5px;
+  border-bottom:1px #D6D6D6 dashed;
+}
+
+.grid{ width:750px}

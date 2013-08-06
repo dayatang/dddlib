@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ModuleRemove>
+	<!-- 指定此功能的名称 -->
+	<property name="funType">process</property>
+	<property name="files">
+		<value>src/main/java/org/openkoala/sample/job/ClearJob.java</value>
+		<value>src/main/java/org/openkoala/sample/job/ForceUpdatePageJob.java</value>
+		<value>src/main/java/org/openkoala/sample/job/ForceUpdatePageStatefulJob.java</value>
+		<value>src/main/java/org/openkoala/sample/job/Job.java</value>
+		<value>src/main/java/org/openkoala/sample/job/PureJobOne.java</value>
+		<value>src/main/java/org/openkoala/sample/job/PureJobProductor.java</value>
+		<value>src/main/java/org/openkoala/sample/job/PureJobTwo.java</value>
+		<value>src/main/java/org/quartz/examples/example1/HelloJob.java</value>
+		<value>src/main/java/org/quartz/examples/example1/SimpleExample.java</value>
+		<value>src/main/java/org/quartz/examples/example10/PlugInExample.java</value>
+		<value>src/main/java/org/quartz/examples/example10/SimpleJob.java</value>
+		<value>src/main/java/org/quartz/examples/example11/LoadExample.java</value>
+		<value>src/main/java/org/quartz/examples/example11/SimpleJob.java</value>
+		<value>src/main/java/org/quartz/examples/example12/RemoteClientExample.java</value>
+		<value>src/main/java/org/quartz/examples/example12/RemoteServerExample.java</value>
+		<value>src/main/java/org/quartz/examples/example12/SimpleJob.java</value>
+		<value>src/main/java/org/quartz/examples/example13/ClusterExample.java</value>
+		<value>src/main/java/org/quartz/examples/example13/SimpleRecoveryJob.java</value>
+		<value>src/main/java/org/quartz/examples/example13/SimpleRecoveryStatefulJob.java</value>
+		<value>src/main/java/org/quartz/examples/example14/PriorityExample.java</value>
+		<value>src/main/java/org/quartz/examples/example14/TriggerEchoJob.java</value>
+		<value>src/main/java/org/quartz/examples/example15/ClusterExample.java</value>
+		<value>src/main/java/org/quartz/examples/example15/SimpleRecoveryJob.java</value>
+		<value>src/main/java/org/quartz/examples/example15/SimpleRecoveryStatefulJob.java</value>
+		<value>src/main/java/org/quartz/examples/example2/SimpleJob.java</value>
+		<value>src/main/java/org/quartz/examples/example2/SimpleTriggerExample.java</value>
+		<value>src/main/java/org/quartz/examples/example3/CronTriggerExample.java</value>
+		<value>src/main/java/org/quartz/examples/example3/SimpleJob.java</value>
+		<value>src/main/java/org/quartz/examples/example4/ColorJob.java</value>
+		<value>src/main/java/org/quartz/examples/example4/JobStateExample.java</value>
+		<value>src/main/java/org/quartz/examples/example5/MisfireExample.java</value>
+		<value>src/main/java/org/quartz/examples/example5/StatefulDumbJob.java</value>
+		<value>src/main/java/org/quartz/examples/example6/BadJob1.java</value>
+		<value>src/main/java/org/quartz/examples/example6/BadJob2.java</value>
+		<value>src/main/java/org/quartz/examples/example6/JobExceptionExample.java</value>
+		<value>src/main/java/org/quartz/examples/example7/DumbInterruptableJob.java</value>
+		<value>src/main/java/org/quartz/examples/example7/InterruptExample.java</value>
+		<value>src/main/java/org/quartz/examples/example8/CalendarExample.java</value>
+		<value>src/main/java/org/quartz/examples/example8/SimpleJob.java</value>
+		<value>src/main/java/org/quartz/examples/example9/Job1Listener.java</value>
+		<value>src/main/java/org/quartz/examples/example9/ListenerExample.java</value>
+		<value>src/main/java/org/quartz/examples/example9/SimpleJob1.java</value>
+		<value>src/main/java/org/quartz/examples/example9/SimpleJob2.java</value>
+		<value>src/main/resources/example13_instance1.properties</value>
+		<value>src/main/resources/example13_instance2.properties</value>
+		<value>src/main/resources/log4j.xml</value>
+		<value>src/main/resources/quartz.properties</value>
+		<value>src/main/resources/quartz_cluster_one.properties</value>
+		<value>src/main/resources/quartz_cluster_two.properties</value>
+		<value>src/main/resources/quartz_priority.properties</value>
+		<value>src/tables_mysql_innodb.sql</value>
+		<value>src/tables_oracle.sql</value>
+	</property>
+</ModuleRemove>		

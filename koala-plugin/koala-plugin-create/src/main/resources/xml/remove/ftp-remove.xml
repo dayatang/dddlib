@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ModuleRemove>
+	<!-- 指定此功能的名称 -->
+	<property name="funType">ftp</property>
+	<property name="files">
+		<value>src/test/java/org/openkoala/koala/ftp/FtpTest.java</value>
+		<value>src/test/resources/ftp.properties</value>
+	</property>
+</ModuleRemove>

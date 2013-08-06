@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.openkoala</groupId>
+		<artifactId>koala-project</artifactId>
+		<version>2.0.0-SNAPSHOT</version>
+	</parent>
+	<groupId>org.openkoala.security</groupId>
+	<artifactId>koala-security</artifactId>
+	<packaging>pom</packaging>
+	<name>koala-security</name>
+	<description />
+	<modules>
+		<module>koala-security-core</module>
+		<module>koala-security-infra</module>
+		<module>koala-security-application</module>
+		<module>koala-security-auth</module>
+		<module>koala-security-authJdbcImpl</module>
+		<module>koala-security-authEJBImpl</module>
+		<module>koala-security-applicationImpl</module>
+		<module>koala-security-ss3Adapter</module>
+		<module>koala-security-ks-jbpm-adapter</module>
+		<module>koala-security-web-mvc</module>
+	</modules>
+	
+</project>

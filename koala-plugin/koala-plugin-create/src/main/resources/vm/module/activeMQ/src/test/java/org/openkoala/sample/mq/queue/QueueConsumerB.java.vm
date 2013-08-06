@@ -1,0 +1,64 @@
+package org.openkoala.sample.mq.queue;
+
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.MessageConsumer;
+import javax.jms.Session;
+
+import org.apache.activemq.ActiveMQConnectionFactory;
+
+public class QueueConsumerB {
+
+	private static String brokerURL = "failover:(tcp://localhost:61616,tcp://localhost:61616)?maxReconnectAttempts=-1";
+	private static transient ConnectionFactory factory;
+	private transient Connection connection;
+	private transient Session session;
+
+	public QueueConsumerB() throws JMSException {
+		factory = new ActiveMQConnectionFactory(brokerURL);
+		connection = factory.createConnection();
+		connection.start();
+		session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+	}
+
+	public void close() throws JMSException {
+		if (connection != null) {
+			connection.close();
+		}
+	}
+
+	public Session getSession() {
+		return session;
+	}
+
+	public static void main(String[] args) throws JMSException {
+
+		executorPoolExecutor.submit(new Runnable() {
+			
+			public void run() {
+				try {
+					QueueConsumerB consumer = new QueueConsumerB();
+					Destination destination = consumer.getSession()
+							.createQueue("QUEUE.chencao");
+					MessageConsumer messageConsumer = consumer.getSession()
+							.createConsumer(destination);
+					messageConsumer.setMessageListener(new Listener());
+				} catch (JMSException ex) {
+					ex.printStackTrace();
+				}
+
+			}
+		}); 
+
+	}
+
+	private static ThreadPoolExecutor executorPoolExecutor = new ThreadPoolExecutor(
+			1, 1, 0, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
+
+}

@@ -1,0 +1,11 @@
+db.jdbc.driver=${db.jdbcDriver}
+db.jdbc.connection.url=${db.connectionURL}
+db.jdbc.username=${db.username}
+db.jdbc.password=${db.password}
+db.jdbc.dialect=${hibernate.dialect}
+hibernate.hbm2ddl.auto=${hibernate.hbm2ddl.auto}
+hibernate.show_sql=${hibernate.show_sql}
+db.Type=${db.Type}
+generateDdl=${db.generateDdl}
+maximumConnectionCount=200
+minimumConnectionCount=20

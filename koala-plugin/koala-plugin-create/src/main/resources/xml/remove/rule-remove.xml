@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ModuleRemove>
+	<!-- 指定此功能的名称 -->
+	<property name="funType">rule</property>
+	<property name="files">
+		<value>src/test/java/com/openkoala/rule/sample/examples/HelloWorld.java</value>
+		<value>src/test/java/com/openkoala/rule/sample/examples/Helper.java</value>
+		<value>src/test/java/com/openkoala/rule/sample/examples/JSR94Test.java</value>
+		<value>src/test/java/com/openkoala/rule/sample/examples/Person.java</value>
+		<value>src/test/java/com/openkoala/rule/sample/rule/RuleTest.java</value>
+		<value>src/test/java/com/openkoala/rule/sample/time/Foo.java</value>
+		<value>src/test/java/com/openkoala/rule/sample/time/FooTest.java</value>
+		<value>src/test/java/com/openkoala/rule/sample/time/Temp.java</value>
+		<value>src/test/java/com/openkoala/rule/sample/DayatangRuleTest.java</value>
+		<value>src/test/java/com/openkoala/rule/sample/DroolsTest.java</value>
+		<value>src/test/java/com/openkoala/rule/sample/JSR94Test.java</value>
+		<value>src/test/java/com/openkoala/rule/sample/StatefulRuleTemplateTest.java</value>
+		<value>src/test/java/com/openkoala/rule/sample/StatelessRuleTemplateTest.java</value>
+		<value>src/test/resources/rule/example.drl</value>
+		<value>src/test/resources/rule/Foo.drl</value>
+		<value>src/test/resources/rule/HelloWorld.drl</value>
+		<value>src/test/resources/rule/Person.drl</value>
+		<value>src/test/resources/log4j.xml.vm</value>
+		<value>src/test/resources/Person.drl</value>
+	</property>
+</ModuleRemove>

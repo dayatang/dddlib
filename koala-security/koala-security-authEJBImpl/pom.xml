@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.openkoala.security</groupId>
+		<artifactId>koala-security</artifactId>
+		<version>2.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>koala-security-authEJBImpl</artifactId>
+	<name>koala-security-authEJBImpl</name>
+	<dependencies>
+		<dependency>
+			<groupId>org.openkoala.security</groupId>
+			<artifactId>koala-security-auth</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<!-- 加入EJB的支持 -->
+		<dependency>
+			<groupId>javax.ejb</groupId>
+			<artifactId>ejb-api</artifactId>
+		</dependency>
+
+		<!-- 解决JBOSS4 EJB部署需要Hibernate的问题 -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>commons-dbutils</groupId>
+			<artifactId>commons-dbutils</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>

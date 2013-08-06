@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ModuleUpdate>
+	<!-- 指定要更新的项目的存储路径 -->
+	<property name="projectPath">E:/tmp/demo2</property>
+	<!-- 为哪个模块新增或删除功能 -->
+	<property name="moduleName">web</property>
+	<!-- 新增哪些功能 -->
+	<property name="add">
+		<value>sample</value>
+	</property>
+	
+	<property name="delete">
+		<value>jsf</value>
+	</property>
+	
+</ModuleUpdate>

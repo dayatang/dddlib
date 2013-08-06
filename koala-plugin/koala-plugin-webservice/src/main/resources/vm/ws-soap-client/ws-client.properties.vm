@@ -1,0 +1,5 @@
+#foreach ($Application in $Applications )
+${Application.applicationName}.ws.url=http://localhost:8080/${Project.name}-WS/webservice/v1/${Application.applicationName}/
+#end
+username=admin
+password=admin

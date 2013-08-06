@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT project (property*, module+)>
+<!ELEMENT property (#PCDATA | value)*>
+<!ELEMENT module (property+)>
+<!ELEMENT value (#PCDATA)>
+<!ATTLIST property name CDATA #REQUIRED>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<XmlParse>
+	<!-- 指定此功能的名称 -->
+	<property name="description">Object</property>
+	
+	<!-- 渲染此功能需要生成的模板 -->
+	<VelocityFileObject>
+      <property name="vm">vm/base/project.pom.xml.vm</property>
+      <property name="path">${Project.path}/${Project.appName}/pom.xml</property>
+    </VelocityFileObject>
+    
+    <VelocityDirObject>
+        <property name="express">$Project.dbProtocol=='JPA'</property>
+		<property name="vmDir">vm/base/conf/</property>
+		<property name="pathDir">${Project.path}/${Project.appName}/${Project.appName}-conf/</property>
+	</VelocityDirObject>
+	
+	 <VelocityDirObject>
+        <property name="express">$Project.dbProtocol=='Mybatis'</property>
+		<property name="vmDir">vm/base/conf-mybatis/</property>
+		<property name="pathDir">${Project.path}/${Project.appName}/${Project.appName}-conf/</property>
+	</VelocityDirObject>
+	
+	
+	
+</XmlParse>

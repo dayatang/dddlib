@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.openkoala.gqc</groupId>
+		<artifactId>koala-gqc</artifactId>
+		<version>2.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>koala-gqc-applicationImpl</artifactId>
+	<name>koala-gqc-applicationImpl</name>
+	<packaging>jar</packaging>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.type>applicationImpl</project.type>
+		<base.package>org.openkoala.gqc.application.impl</base.package>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openkoala.gqc</groupId>
+			<artifactId>koala-gqc-infra</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openkoala.gqc</groupId>
+			<artifactId>koala-gqc-core</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openkoala.gqc</groupId>
+			<artifactId>koala-gqc-application</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openkoala.gqc</groupId>
+			<artifactId>koala-gqc-conf</artifactId>
+			<version>${project.parent.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openkoala.koalacommons</groupId>
+			<artifactId>koala-commons-ui-surpport</artifactId>
+		</dependency>
+		<!-- 加入对查询通道的依赖 -->
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-querychannel</artifactId>
+		</dependency>
+		<!-- 加入对dayatang的DB的支持 -->
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-db</artifactId>
+		</dependency>
+		<!-- 加入对dayatang的spring的实现 -->
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-spring</artifactId>
+		</dependency>
+		<!-- 加入对dayatang的hibernate的实现 -->
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-hibernate</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>proxool</groupId>
+			<artifactId>proxool</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>proxool</groupId>
+			<artifactId>proxool-cglib</artifactId>
+		</dependency>
+		<!-- 加入对测试的支持包 -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- 加入Spring对JPA的支持 -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+		<!-- 加入Spring对JPA的支持 -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>proxool</groupId>
+			<artifactId>proxool</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openkoala.koalacommons</groupId>
+			<artifactId>koala-commons-support</artifactId>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins></plugins>
+	</build>
+</project>

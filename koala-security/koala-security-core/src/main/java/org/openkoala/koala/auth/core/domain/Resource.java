@@ -1,0 +1,315 @@
+package org.openkoala.koala.auth.core.domain;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import com.dayatang.utils.DateUtils;
+
+/**
+ * 资源的父类
+ * 
+ * @author lingen
+ * 
+ */
+@Entity
+@Table(name = "KS_RESOURCE")
+public class Resource extends Party {
+
+	private static final long serialVersionUID = 7184025731035256920L;
+
+	/** 是否有效 **/
+	@Column(name = "ISVALID")
+	private boolean isValid;
+
+	/** 资源标识 **/
+	@Column(name = "IDENTIFIER", length = 100, nullable = false)
+	private String identifier;
+
+	/** 资源级别 **/
+	@Column(name = "[LEVEL]")
+	private String level;
+
+	/** 资源图标 **/
+	@Column(name = "MENU_ICON", length = 100)
+	private String menuIcon;
+
+	@Column(name = "DESCRIPTION", length = 100)
+	private String desc;
+
+	/** 角色资源授权关系 **/
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "resource")
+	private Set<IdentityResourceAuthorization> authorizations = new HashSet<IdentityResourceAuthorization>();
+
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+	public Set<IdentityResourceAuthorization> getAuthorizations() {
+		return authorizations;
+	}
+
+	public void setAuthorizations(Set<IdentityResourceAuthorization> authorizations) {
+		this.authorizations = authorizations;
+	}
+
+	public boolean isValid() {
+		return isValid;
+	}
+
+	public void setValid(boolean isValid) {
+		this.isValid = isValid;
+	}
+
+	public String getMenuIcon() {
+		return menuIcon;
+	}
+
+	public void setMenuIcon(String menuIcon) {
+		this.menuIcon = menuIcon;
+	}
+
+	public void disableResource() {
+		this.isValid = false;
+		this.save();
+	}
+
+	public void enableResource() {
+		this.isValid = true;
+		this.save();
+	}
+
+	public void assignRole(Role role) {
+		IdentityResourceAuthorization idres = new IdentityResourceAuthorization();
+		idres.save();
+	}
+
+	public static List<Resource> findResourceByRole(Long roleId) {
+		Object[] params = new Object[] { roleId, new Date() };
+		return Resource.findByNamedQuery("findResourceByRole", params, Resource.class);
+	}
+
+	public static List<Resource> findChildByParent(Long parentId) {
+		if (parentId == null) {
+			Object[] params = new Object[] { "1", new Date() };
+			return Resource.findByNamedQuery("findTopLevelResource", params, Resource.class);
+		} 
+		Object[] params = new Object[] { parentId, new Date() };
+		return Resource.findByNamedQuery("findChildByParent", params, Resource.class);
+	}
+
+	public static List<Resource> findChildByParentAndUser(Long parentId, String userAccount) {
+		Object[] params = null;
+		if (parentId == null) {
+			if (userAccount.equals("")) {
+				params = new Object[] { "1", new Date() };
+				return Resource.findByNamedQuery("findTopLevelResource", params, Resource.class);
+			} else {
+				params = new Object[] { userAccount, new Date(), new Date() };
+				return Resource.findByNamedQuery("findTopLevelResourceByUser", params, Resource.class);
+			}
+		} else {
+			if (userAccount.equals("")) {
+				params = new Object[] { parentId, new Date() };
+				return Resource.findByNamedQuery("findChildByParent", params, Resource.class);
+			} else {
+				params = new Object[] { parentId, userAccount, new Date(), new Date() };
+				return Resource.findByNamedQuery("findChildByParentAndUser", params, Resource.class);
+			}
+		}
+	}
+
+	public void removeResource() {
+		removeResourceLineAssignment();
+		removeIdentityResourceAuthorization();
+		removeResourceTypeAssignment();
+		this.setAbolishDate(new Date());
+	}
+
+	/**
+	 * 删除与资源类型的关系 
+	 */
+	private void removeResourceTypeAssignment() {
+		ResourceTypeAssignment.findByResource(this.getId()).setAbolishDate(new Date());
+	}
+
+	/**
+	 * 删除授权关系
+	 */
+	private void removeIdentityResourceAuthorization() {
+		for (IdentityResourceAuthorization authorization : IdentityResourceAuthorization //
+				.findAllRelaitionByResource(this.getId())) {
+			authorization.setAbolishDate(new Date());
+		}
+	}
+
+	/**
+	 * 删除垂直关系
+	 */
+	private void removeResourceLineAssignment() {
+		for (ResourceLineAssignment assignment : ResourceLineAssignment.findRelationByResource(this.getId())) {
+			assignment.setAbolishDate(new Date());
+			if (assignment.getChild() != null && assignment.getChild().getAbolishDate().after(new Date())) {
+				assignment.getChild().setAbolishDate(new Date());
+			}
+		}
+	}
+
+	public void assignParent(Resource parent) {
+		ResourceLineAssignment resLineAssignment = new ResourceLineAssignment();
+		resLineAssignment.setCreateDate(new Date());
+		resLineAssignment.setAbolishDate(DateUtils.MAX_DATE);
+		resLineAssignment.setScheduledAbolishDate(new Date());
+		resLineAssignment.setParent(parent);
+		resLineAssignment.setChild(this);
+		resLineAssignment.save();
+	}
+
+	public void assignChild(Resource child) {
+		ResourceLineAssignment resLineAssignment = new ResourceLineAssignment();
+		resLineAssignment.setCreateDate(new Date());
+		resLineAssignment.setScheduledAbolishDate(new Date());
+		resLineAssignment.setAbolishDate(DateUtils.MAX_DATE);
+		resLineAssignment.setParent(this);
+		resLineAssignment.setChild(child);
+		resLineAssignment.save();
+	}
+
+	public static List<Role> findRoleByResource(String url) {
+		Object[] params = new Object[] { url };
+		return Resource.findByNamedQuery("findRoleByResource", params, Role.class);
+	}
+
+	public static boolean hasPrivilegeByRole(Long resId, Long roleId) {
+		Object[] params = new Object[] { resId, roleId, new Date() };
+		List<IdentityResourceAuthorization> ls = Resource.findByNamedQuery("queryPrivilegeByRole", params,
+				IdentityResourceAuthorization.class);
+		return ls.size() > 0;
+	}
+
+	public static boolean hasPrivilegeByUser(String resUrl, String userAccount) {
+		Object[] params = new Object[] { resUrl, userAccount };
+		List<IdentityResourceAuthorization> ls = Resource.findByNamedQuery("queryPrivilegeByUser", params,
+				IdentityResourceAuthorization.class);
+		return ls.size() > 0;
+	}
+
+	public static boolean hasChildByParent(Long parentId) {
+		Object[] params = new Object[] { parentId };
+		return !Resource.findByNamedQuery("hasChildByParent", params, Resource.class).isEmpty();
+	}
+
+	/**
+	 * 是否是菜单资源
+	 * 
+	 * @param resource
+	 * @return
+	 */
+	public static boolean isMenu(Resource resource) {
+		List<Resource> resources = Resource.findByNamedQuery("findResourceById", new Object[] { "KOALA_MENU", //
+				"KOALA_DIRETORY", resource.getId() }, Resource.class);
+		if (resources != null && resources.size() > 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static Resource newResource(String name,String identifier,String level,String menuIcon){
+	    
+	    Resource resource  = null;
+	    List<Resource> resources = Resource.getRepository().find("select r from Resource r where r.name = ? " + //
+	    		"and r.identifier = ?", new Object[]{name,identifier}, Resource.class);
+	    if(resources!=null && resources.size()>0){
+	        resource = resources.get(0);
+	    }
+	    
+	    if(resource == null){
+	        resource = new Resource();
+		    resource.setName(name);
+		    resource.setDesc(name);
+		    resource.setCreateDate(new Date());
+		    resource.setIdentifier(identifier);
+		    resource.setLevel(level);
+		    resource.setMenuIcon(menuIcon);
+		    resource.setValid(true);
+	    resource.setAbolishDate(DateUtils.MAX_DATE);
+	    }
+	    return resource;
+	}
+
+	/**
+	 * 资源名称是否已经存在
+	 * 
+	 * @return
+	 */
+	public boolean isNameExist() {
+		return !Resource.findByNamedQuery("isResouceNameExist", new Object[] { getName(), new Date() }, Resource.class)
+				.isEmpty();
+	}
+	
+	public static void removeAll(){
+		String sql = "DELETE FROM Resource";
+		Resource.getRepository().executeUpdate(sql, new Object[]{});
+	}
+
+	/**
+	 * 资源标识是否已经存在
+	 * 
+	 * @return
+	 */
+	public boolean isIdentifierExist() {
+		return !Resource.findByNamedQuery("isResourceIdentifierExist", new Object[] { getIdentifier(), new Date() },
+				Resource.class).isEmpty();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((identifier == null) ? 0 : identifier.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Resource other = (Resource) obj;
+		if (identifier == null) {
+			if (other.identifier != null)
+				return false;
+		} else if (!identifier.equals(other.identifier))
+			return false;
+		return true;
+	}
+
+}

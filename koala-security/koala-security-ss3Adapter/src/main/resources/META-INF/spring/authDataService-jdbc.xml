@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<context:property-placeholder location="classpath*:security-db.properties" ignore-unresolvable="true"/>
+	<context:property-placeholder location="classpath*:security-sql.properties" ignore-unresolvable="true"/>
+	<bean id="JdbcSecurityConfig" 
+		class="org.openkoala.koala.auth.impl.jdbc.JdbcSecurityConfig">
+		<property name="queryUser">
+			<value>${security.db.jdbc.queryUser}</value>
+		</property>
+		<property name="queryAllAuth">
+			<value>${security.db.jdbc.queryAllAuth}</value>
+		</property>
+		<property name="queryUserAuth">
+			<value>${security.db.jdbc.queryUserAuth}</value>
+		</property>
+		<property name="queryResAuth">
+			<value>${security.db.jdbc.queryResAuth}</value>
+		</property>
+		<property name="queryAllRes">
+			<value>${security.db.jdbc.queryAllRes}</value>
+		</property>
+		<property name="dbdriver">
+			<value>${security.db.jdbc.driver}</value>
+		</property>
+		<property name="dburl">
+			<value>${security.db.jdbc.connection.url}</value>
+		</property>
+		<property name="dbuser">
+			<value>${security.db.jdbc.username}</value>
+		</property>
+		<property name="dbpassword">
+			<value>${security.db.jdbc.password}</value>
+		</property>
+		<property name="useAdmain">
+			<value>${security.db.jdbc.useAdmin}</value>
+		</property>
+		<property name="adminAccount">
+			<value>${security.db.jdbc.adminAccount}</value>
+		</property>
+		<property name="adminPass">
+			<value>${security.db.jdbc.adminPass}</value>
+		</property>
+		<property name="adminRealName">
+			<value>${security.db.jdbc.adminRealName}</value>
+		</property>
+	</bean>
+	<bean id="authDataService" class="org.openkoala.koala.auth.impl.jdbc.JDBCAuthDataService">
+		<property name="config" ref="JdbcSecurityConfig" />
+	</bean>
+</beans>

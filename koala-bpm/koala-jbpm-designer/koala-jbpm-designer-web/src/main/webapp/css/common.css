@@ -1,0 +1,72 @@
+﻿/* 通用 */
+#pageloading{position:absolute; left:0px; top:0px; background:#FFFFFF url('../images/loading.gif') no-repeat center center; width:100%; height:100%; _height:800px; z-index:99999; }
+body{font-family: "微软雅黑", "宋体", Arial, sans-serif; font-size: 12px; }
+*{ margin:0; padding:0;}
+a{  color:#333; cursor:pointer;} 
+span.star{ color:Red; line-height:25px;}
+a:hover{text-decoration:underline;}
+p{ line-height:26px;}
+p,span,b,div{ text-align:left;}
+p.p1{line-height:32px;}
+.l-clear{ clear:both;} 
+ul,li{ list-style:none;} 
+.invalid{ color:#FF1010; margin-top:6px; margin-left:4px;}
+.jloading{ position:absolute; right:0; top:0; padding:4px; color:White; background:#6287AC; z-index:99999; border-left:1px solid #53779D; border-bottom:1px solid #53779D;filter:alpha(opacity=70);opacity:0.70;}
+
+.chk-icon{ background:url(../ligerUI/skins/Aqua/images/controls/checkbox.gif) 0px 0px; height:13px; line-height:13px; width:13px; margin:4px 20px; display:block; cursor:pointer;}
+.chk-icon-selected{ background-position:0px -13px;}
+     
+     
+.selhistory{ margin-right:2px;}
+/* 按钮 */
+.button{line-height:25px;height:25px;background:url('../images/ui/button1.gif') repeat-x; position:relative;margin-bottom:8px;color:#2C69A2; width:120px; cursor:pointer;margin-top: 0px;}
+.button-l,.button-r{ width:2px;height:25px;background:url('../images/ui/button1.gif') no-repeat; position:absolute; }
+.button-l{ left:0px; background-position:0px -25px;}
+.button-r{ right:0px;background-position:0px -50px;}
+.button-icon{ position:absolute; left:7px; top:6px;}
+.button img{ width:16px; height:16px;}
+.button span{ display:block; margin-left:30px;text-align: center; } 
+.buttonnoicon span{ margin-left:4px; } 
+ 
+ 
+.button2,.button2 .button-l,.button2 .button-r{background-image:url('../images/ui/button2.gif'); line-height:23px; height:23px; color:#333;}
+.button2 .button-icon{   top:4px;}
+.button2 .button-l,.button2 .button-r{ background-position:0px -23px; width:1px;}
+ 
+ #btn1container{ margin-right:4px;} 
+
+.form-bar{height:30px; line-height:30px; background:#EAEAEA;border-top:1px solid #C6C6C6; overflow:hidden; margin-bottom:0px; position:fixed; bottom:0; left:0; width:100%; padding-top:5px; text-align:right;}
+/* ie6 */
+.form-bar{_position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));}
+
+.form-bar-inner{ margin-right:20px;}
+.form-bar .l-dialog-btn{ }
+
+
+
+.l-tree .l-tree-icon-none img {border: 0 none;height: 16px;width: 16px; top:2px; margin-top:2px; margin-left:2px;}
+
+.l-grid-row-cell-inner img{ width:16px; height:16px; margin:3px;}
+
+
+ 
+ 
+.iconlist{ width:400px;padding:10px;}
+.iconlist li{ border:1px solid #FFFFFF; float:left; display:block; padding:2px; cursor:pointer; }
+.iconlist li.over{border:1px solid #516B9F;}
+.iconlist li img{ height:16px; height:16px;} 
+
+/* 一条线 导航线 */
+.navline{ height:1px; line-height:1px; width:100%;border-bottom:1px solid #f5f5f5; background-color:#D9D9D9;width:99%; }
+
+
+/* 搜索框 */
+.searchtitle{ padding-left:28px; position:relative;}
+.searchtitle img{ width:22px; height:22px; position:absolute; left:0; top:0;}
+.searchtitle span{ font-size:14px; font-weight:bold;}
+.searchtitle .togglebtn{ position:absolute; top:6px; right:15px; background:url(../images/ui/toggle.gif) no-repeat 0px 0px; height:10px; width:9px; cursor:pointer;}
+
+.searchtitle .togglebtn-down{ background-position:0px -10px;}
+
+
+.l-textarea{ width:99%; margin:0px; height:80px;}

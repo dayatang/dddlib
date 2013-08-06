@@ -1,0 +1,17 @@
+ 
+/* ���� */ 
+.l-topmenu{ margin:0; padding:0; height:24px; line-height:24px; background:#1B3160 url('../images/index/top.jpg') repeat-x bottom;  position:relative; border-top:1px solid #7C96AF; border-bottom:2px solid #4E7194;}
+.l-topmenu-index{ margin:0; padding:0; height:32px; line-height:32px; background:#0000  repeat-x bottom;  position:relative; border-top:1px solid #7C96AF; border-bottom:2px solid #4E7194;}
+.l-topmenu-logo{ color:#070A0C;  padding-left:30px; background:url('../images/index/topicon.gif') no-repeat 10px 4px;}
+.l-topmenu-welcome{  position:absolute; height:24px; right:30px; top:0px;color:#070A0C;}
+.l-topmenu-welcome a{ color:#070A0C; text-decoration:underline}
+.l-topmenu-username{ color:#070A0C; font-weight:bold;} 
+
+
+/* �˵��б� */
+.menulist{ margin-left:2px; margin-right:2px; margin-top:2px;text-align:left; color:#000;}
+.menulist li{ height:24px; line-height:24px; padding-left:24px; display:block; position:relative; cursor:pointer; text-align:left;}
+.menulist li img{ position:absolute; left:4px; top:4px; width:16px; height:16px;}
+.menulist li.over{ background:url('../images/index/menuitem.gif') repeat-x 0px 0px;}
+.menulist li.over .menuitem-l{background:url('../images/index/menuitem.gif') repeat-x 0px -24px; width:2px; height:24px; position:absolute; left:0; top:0;}
+.menulist li.over .menuitem-r{background:url('../images/index/menuitem.gif') repeat-x -1px -24px; width:2px; height:24px; position:absolute; right:0; top:0;}

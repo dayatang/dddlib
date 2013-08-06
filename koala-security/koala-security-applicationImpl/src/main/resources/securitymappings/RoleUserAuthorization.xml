@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd"
+	version="1.0">
+
+	<named-query name="findAuthorizationByUser">
+		<query>
+			select rua from RoleUserAuthorization rua where rua.user=? 
+			and rua.abolishDate>?
+		</query>
+	</named-query>
+	
+	<named-query name="findUserAuthorizationByRole">
+		<query>
+			select auth from RoleUserAuthorization auth
+			join auth.role role where role.id=? and auth.abolishDate>?
+		</query>
+	</named-query>
+	
+</entity-mappings>

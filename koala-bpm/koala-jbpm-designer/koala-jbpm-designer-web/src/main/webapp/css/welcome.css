@@ -1,0 +1,31 @@
+﻿/* 欢迎页 - 带按钮的段落 */
+.withicon{ display:block; position:relative; margin-top:4px; margin-bottom:4px;}
+.withicon .icon{ position:absolute; left:7px; top:6px; width:20px; height:20px;}
+.withicon span{ line-height:32px; margin-left:33px; display:block;}
+.withicon img{width:20px; height:20px;}
+
+/* 欢迎页 - 导航条 */
+.navbar{line-height:33px;height:33px;background:url('../images/index/navbar.gif') repeat-x; width:99%; position:relative; margin-top:8px; margin-bottom:8px;}
+.navbar-l,.navbar-r{ width:2px;height:33px;background:url('../images/index/navbar.gif') no-repeat; position:absolute; }
+.navbar-l{ left:0px; background-position:0px -33px;}
+.navbar-r{ right:0px;background-position:0px -66px;}
+.navbar-icon{ position:absolute; left:7px; top:6px;}
+.navbar img{ width:20px; height:20px;}
+.navbar-inner{ margin-left:30px;}
+.navbar a{ color:#3186C8;}
+
+
+
+
+/* 欢迎页 - 快捷按钮 (图片+文字) */
+.links{ display:block; position:relative; margin-top:4px; margin-bottom:4px;}
+.link{ float:left;position:relative; width:60px; height:70px; margin-left:10px; text-align:center;border:1px solid #FFFFFF; cursor:pointer; }
+.link img{ display:block; margin:5px auto; width:32px; height:32px;}
+
+.linkover{ border:1px solid #d3d3d3; background:#f1f1f1;}
+
+
+.link .close{ position:absolute; top:1px; right:1px; display:none; width:11px; height:11px; background:white;border:1px solid #f1f1f1;background: url(../ligerUI/skins/Gray/images/layout/icon-close.gif);
+}
+.linkover .close{ display:block;}
+.link .closeover{ border:1px solid #d3d3d3;background:url(../ligerUI/skins/Gray/images/layout/icon-close-over.gif);}

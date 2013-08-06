@@ -1,0 +1,21 @@
+declare Message 
+ @role ( event ) 
+end 
+rule "Hello" 
+ dialect "mvel" 
+        when 
+                m : Message( status == Message.HELLO, myMessage : message ) 
+        then 
+                System.out.println( "Hello added" ); 
+end 
+rule "After5" 
+ dialect "mvel" 
+        when 
+                m : Message( status == Message.HELLO, myMessage : message ) 
+                not( Message( status == Message.GOODBYE , this after [0s,5s] m ))
+        then 
+                System.out.println( "After5 then start" ); 
+                m.status=$m.status; 
+                System.out.println( "After5 then stop" ); 
+                retract(m); 
+end 

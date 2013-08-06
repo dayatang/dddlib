@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.openkoala.koala.jbpm.designer</groupId>
+		<artifactId>koala-jbpm-designer</artifactId>
+		<version>2.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>koala-jbpm-designer-applicationImpl</artifactId>
+	<name>koala-jbpm-designer-applicationImpl</name>
+	<packaging>jar</packaging>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.type>applicationImpl</project.type>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openkoala.koala.jbpm.designer</groupId>
+			<artifactId>koala-jbpm-designer-application</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openkoala.koala.jbpm.designer</groupId>
+			<artifactId>koala-jbpm-designer-bizmodel</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openkoala.koala.jbpm.designer</groupId>
+			<artifactId>koala-jbpm-designer-infra</artifactId>
+			<version>2.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openkoala.koalacommons</groupId>
+			<artifactId>koala-commons-ui-surpport</artifactId>
+		</dependency>
+		<!-- 加入对查询通道的依赖 -->
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-querychannel</artifactId>
+		</dependency>
+		<!-- 加入对dayatang的DB的支持 -->
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-db</artifactId>
+		</dependency>
+		<!-- 加入对dayatang的spring的实现 -->
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-spring</artifactId>
+		</dependency>
+		<!-- 加入对dayatang的hibernate的实现 -->
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-hibernate</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>proxool</groupId>
+			<artifactId>proxool</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>proxool</groupId>
+			<artifactId>proxool-cglib</artifactId>
+		</dependency>
+		<!-- 加入对测试的支持包 -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- 加入Spring对JPA的支持 -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+		<!-- 加入dom4j的支持 -->
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+		</resources>
+	</build>
+</project>

@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>$Project.groupId</groupId>
+	    <artifactId>${Project.artifactId}-EJB</artifactId>
+	    <version>$Project.version</version>
+	</parent>
+	<groupId>$Project.groupId</groupId>
+	<artifactId>${Project.name}-ear</artifactId>
+	<version>$Project.version</version>
+	
+	<packaging>ear</packaging>
+	
+	<name>ear</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.type>ear</project.type>
+	</properties>
+	<dependencies>
+
+#foreach ($dependency in $Dependencys )
+  
+  <dependency>
+			<groupId>$dependency.groupId</groupId>
+	        <artifactId>${dependency.artifactId}-EJB</artifactId>
+	        <version>$dependency.version</version>
+			<type>ejb</type>
+ </dependency>
+#end
+
+#if ($hasSecurity_IMPL)
+	
+	<dependency>
+		<groupId>org.openkoala.security</groupId>
+	    <artifactId>koala-security-applicationImpl</artifactId>
+	    <version>2.0.0-SNAPSHOT</version>
+		<type>ejb</type>
+	</dependency>
+#end
+	
+#if ($hasSecurity_CORE)	
+	 <dependency>
+		<groupId>org.openkoala.security</groupId>
+		<artifactId>koala-security-authEJBImpl</artifactId>
+		<version>2.0.0-SNAPSHOT</version>
+		<type>ejb</type>
+	 </dependency>
+#end
+
+#if ($hasMonitorModule)
+
+  <dependency> 
+            <groupId>org.openkoala.monitor</groupId>  
+            <artifactId>koala-jmonitor-applicationImpl</artifactId>  
+            <version>2.0.0-SNAPSHOT</version>
+            <type>ejb</type>
+  </dependency>  
+   
+#end
+
+#if ($hasQueryModule)
+  <dependency> 
+            <groupId>org.openkoala.gqc</groupId>  
+            <artifactId>koala-gqc-applicationImpl</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <type>ejb</type>
+  </dependency>  
+#end
+
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

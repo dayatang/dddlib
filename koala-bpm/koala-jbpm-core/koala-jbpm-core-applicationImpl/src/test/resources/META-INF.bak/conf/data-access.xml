@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	default-autowire="byName">
+        <bean id="dataSource" class="bitronix.tm.resource.jdbc.PoolingDataSource" init-method="init" destroy-method="close">
+	    <property name="className" value="bitronix.tm.resource.jdbc.lrc.LrcXADataSource"/>
+	    <property name="uniqueName" value="jdbc/jbpm-ds"/>
+	    <property name="maxPoolSize" value="20" />
+	    <property name="minPoolSize" value="5" />
+	    <property name="allowLocalTransactions" value="true"/>
+	     <property name="driverProperties">
+	        <props>
+	            <prop key="driverClassName">com.mysql.jdbc.Driver</prop>
+	            <prop key="user">root</prop>
+ 				<prop key="password">8uhb</prop>
+ 				<prop key="url">jdbc:mysql://localhost:3306/workflow</prop>
+	        </props>
+	    </property>
+	</bean>
+</beans>

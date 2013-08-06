@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<XmlParse>
+	<!-- 指定此功能的名称 -->
+	<property name="description">funType</property>
+	
+	<!-- 渲染此功能需要生成的模板 -->
+	<VelocityDirObject>
+		<property name="vmDir">vm/module/ftp/</property>
+		<property name="pathDir">${Project.path}/${Project.appName}/${Module.moduleName}/</property>
+	</VelocityDirObject>
+	
+</XmlParse>

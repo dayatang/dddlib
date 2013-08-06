@@ -1,0 +1,254 @@
+#set($entityName = $pageParams.entityModel.name)
+#set($voName  = ${entityName.substring(0, 1).toLowerCase()} + ${entityName.substring(1)} + "DTO")
+#set($base_url = $pageParams.entityModel.lastPackageName + "-" + $entityName +"-")
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%@ include file="/pages/common/header.jsp"%>
+<script type="text/javascript">
+var gridManager;
+var _dialog;
+$(function (){
+	PageLoader.initSearchPanel();
+	gridManager = PageLoader.initGridPanel();
+});
+
+PageLoader = {
+ //
+ initSearchPanel:function(){
+#if($pageParams.queryModel)
+#foreach( $view in $pageParams.queryModel.views) 
+#if ($view.widgetType == 'date')
+ $("input[id^='${view.express}ID_']").ligerDateEditor();//加载日期选择器
+#elseif ($view.widgetType == 'queryDropdown')
+//下拉框
+ $('#${view.express}ID').koalaDropdown({
+	dropdownStyle:"${view.dropdownStyle}",
+	valueFieldId:"${view.express}HiddenID",
+	beanName:"${view.className}",
+	beanFields:"${view.beanFields}",
+#if ($view.filterParams && $view.filterParams != '')
+    filter:encodeURIComponent("${view.filterParams}"),
+#end
+#if ($view.parentId && $view.parentId != '')
+    parentId:"${view.parentId}"
+#end
+  });
+#end
+#end
+#end
+ },	
+ initGridPanel:function(){
+	 var g = $("#maingrid").ligerGrid({
+         checkbox:true,
+         pageSize:10,
+         height:"400px",
+         rowHeight: 28,//行默认的高度
+         headerRowHeight: 30,//表头行的高度
+         onToNext:next,//条件查询方法
+         columns: [
+#foreach( $view in $pageParams.listModel.views) 
+#if($view.type.indexOf("oolean") > 0)
+         { display: '${view.name}', name: '${view.express}AsString',editor: { type: 'text' },render:function(rowdata, rowindex, value){
+        	  var icon = value == "1" ? "true.gif" : "false.gif";
+        	  return "<img src='<%=contextPath %>/images/icons/16x16/"+icon+"' />";
+          }},   
+#elseif ($view.viewType=="ReadOnlyView")
+          { display: '${view.name}', name: '${view.express}',editor: { type: 'text' }},   
+#elseif ($view.viewType=="RelativeReadOnlyView")
+         { display: '${view.name}', name: '${view.relative}${view.express.substring(0,1).toUpperCase()}${view.express.substring(1)}',editor: { type: 'text' }},   
+#end            
+#end
+        { display: '操作', isSort: false, width: 120, render: function (rowdata, rowindex, value)
+            {
+                var h = "<a href='javascript:openDetailsPage(" + rowdata.id + ")'>查看</a> ";
+                return h;
+            }
+        }
+        ], 
+        enabledEdit: false, clickToEdit: false, isScroll: false,  
+        url:"<%=contextPath %>/${base_url}pageJson.action",
+        width: '100%',
+        toolbar: { items: [
+            { id: "add", text: '增加', click: itemclick, icon: 'add' },
+	        { line: true },
+	        { id: "modify", text: '修改', click: itemclick, icon: 'modify' },
+            { line: true },
+	        { id: "remove", text: '删除', click: itemclick, icon: 'delete' }
+        ]
+        }
+    });
+	 g.toggleCol("id",false);//隐藏id列
+	 return g;
+ }
+}
+
+
+//查询方法
+function searchAction(){
+     //form validate
+   if(!Validator.Validate(document.getElementById("searchForm"),3))return;
+	var param=$("#searchForm").serialize();
+	gridManager.loadServerData(param);/*执行服务器查询*/
+}
+
+/*分页条件查询参数*/
+function next(){
+	gridManager.setOptions({
+        parms: [
+#if($pageParams.queryModel)
+#foreach( $view in $pageParams.queryModel.views) 
+	   {name:"${voName}.${view.express}",value: $("#${view.express}ID").val()},
+#end
+#end
+       {}
+        ]
+    });
+}
+
+function itemclick(item)
+{
+	switch (item.id) {
+		case "add":
+			openFormDialog(false);
+	        break;
+		case "modify":
+			openFormDialog(true);
+	        break;
+		case "remove":
+			deleteAction();
+	        break;
+	}
+}
+
+
+function openDetailsPage(id){
+	var url = "${entityName}-view.jsp?id="+id;
+	_dialog = jQuery.ligerDialog.open({
+  	    title: '查看',
+  	    url:url,
+  	    isResize: true,
+  	    width: 850, 
+  	    height: 500, 
+  	    isHidden: false
+      });
+}
+
+function openFormDialog(edit){
+	var url = "${entityName}-add.jsp";
+	if(edit){
+		var newRow = gridManager.getSelected();
+	     if (!newRow) { alert('请选择行'); return; }
+	     var i = 0;
+	     $.each(gridManager.getCheckedRows(), function(index, element) {
+			  i++;
+		  });
+	     if(i>1){
+	    	 alert('请只选择一行'); return;
+	     }
+	     id = newRow.id;
+	     url = "${entityName}-update.jsp?id=" + newRow.id;
+	}
+	_dialog = jQuery.ligerDialog.open({
+  	    title: edit ? '编辑' : '新增',
+  	    url:url,
+  	    isResize: true, width: 550, height: 550, isHidden: false
+      });
+}
+
+/*删除行*/
+function deleteAction()
+{ 
+    var newRow = gridManager.getSelected();
+    if (!newRow) { alert('请选择行'); return; }
+    
+    var removeData = '';
+	  $.each(gridManager.getCheckedRows(), function(index, element) {
+		  removeData = removeData + element.id + ',';
+	  });
+	  removeData = removeData.substr(0, removeData.length - 1) ;
+    var data = [{ name: 'ids', value: removeData }];
+	 Koala.ajax({
+ 		async:true,
+ 		type : "POST",
+ 		url: "<%=contextPath %>/${base_url}delete.action",
+ 		data:data,
+ 		dataType:'json',
+ 		success: function(data, textStatus){
+  			 gridManager.deleteSelectedRow();
+  			 gridManager.loadData();
+ 		}
+ 		});
+}
+
+</script>
+</head>
+<body>
+<div style="width:98%;height:100%;padding-left: 5px;">
+<!-- search form -->
+<form name="searchForm" id="searchForm" target="_self">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+<table width="800" border="0" style="margin:5px">
+#if($pageParams.queryModel)
+#set($count=0)
+#foreach( $view in $pageParams.queryModel.views) 
+#set($count=$count+1)
+#if($count % 3 == 1)
+ <tr height="25px">
+#end
+  <td width="12%">${view.name}:</td>
+#if($view.type.indexOf("oolean") > 0)	 
+	           <td width="22%"><select name="${voName}.${view.express}AsString" ${view.validateAttrs} class="select-common">
+	           	   <option value="">Select...</option>
+	           	   <option value="1">是</option>
+	           	   <option value="0">否</option>
+	           	</select> </td>
+#elseif($view.widgetType == 'text')
+  <td width="22%"><input name="${voName}.${view.express}" class="input-common" type="text" id="${view.express}ID" ${view.validateAttrs} /></td>
+#elseif ($view.widgetType == 'date')
+  <td colspan="3">
+  	 <table border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><input type="text" name="${voName}.${view.express}" id="${view.express}ID_start" ${view.validateAttrs}></td>
+        <td width="15px">&nbsp;-&nbsp;</td>
+        <td><input type="text" name="${voName}.${view.express}End" id="${view.express}ID_end" ${view.validateAttrs}></td>
+      </tr>
+    </table>
+  	</td>
+#elseif ($view.widgetType == 'staticDropdown')
+  <td width="22%">
+    <select name="${voName}.${view.express}" ${view.validateAttrs} id="${view.express}ID" class="select-common">
+	  <option value="">Select...</option>
+#foreach($opt in $view.valueMap.entrySet())
+	  <option value="$opt.key">$opt.value</option>
+#end 
+	</select> 
+  </td>
+#elseif ($view.widgetType == 'queryDropdown')
+  <td width="22%">
+  	 <input class="input-common" type="text" id="${view.express}ID" />
+     <input name="${voName}.${view.express}" type="hidden" id="${voName}.${view.express}" ${view.validateAttrs} />
+  </td>
+#end
+#if($count % 3 == 0)
+ </tr>
+#end
+#end
+</tr>
+#end
+</table>	
+</td>
+    <td><input id="searchButton" type="button" class="btn-normal" onclick="searchAction()" value="查询" /></td>
+  </tr>
+</table>	
+</form>
+<!-- grid -->
+<div id="maingrid"></div> 
+</div>
+</body>
+</html>

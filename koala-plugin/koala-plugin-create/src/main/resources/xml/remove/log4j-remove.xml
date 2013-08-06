@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ModuleRemove>
+	<!-- 指定此功能的名称 -->
+	<property name="funType">log4j</property>
+	<property name="files">
+		<value>log4j.xml.vm</value>
+	</property>
+</ModuleRemove>

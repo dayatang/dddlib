@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XmlParse>
+	<XmlAdd>
+		<property name="xmlFile">${ProjectPath}/src/main/resources/META-INF/spring/root.xml</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
+		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
+		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:META-INF/spring/spring-ejb.xml']]]></property>
+		<property name="xmlContent">
+         <![CDATA[
+    <?xml version="1.0" encoding="UTF-8"?>
+    <root>
+	  <import resource="classpath*:META-INF/spring/spring-ejb.xml"/>
+	</root>
+         ]]>
+		</property>
+	</XmlAdd>
+      
+      
+	<!-- 适配JBOSS -->
+	<XmlAdd>
+		<property name="xmlFile">${ProjectPath}/pom.xml</property>
+		<property name="uri">http://maven.apache.org/POM/4.0.0</property>
+		<property name="parentSearch"><![CDATA[/xmlns:project/xmlns:dependencies]]></property>
+		<property name="selfSearch"><![CDATA[/xmlns:project/xmlns:dependencies/xmlns:dependency[xmlns:groupId='org.openkoala.koala' and xmlns:artifactId='jnpserver']]]></property>
+		<property name="xmlContent">
+         <![CDATA[
+    <?xml version="1.0" encoding="UTF-8"?>
+    <root>
+ <dependency>  
+     <groupId>org.openkoala.koala.local</groupId>  
+     <artifactId>jnpserver</artifactId>  
+     <version>1.0.0</version>
+ </dependency>  
+	</root>
+         ]]>
+		</property>
+	</XmlAdd>
+	
+	<XmlRemove>
+		<property name="xmlFile">${ProjectPath}/src/main/resources/META-INF/spring/root.xml</property>
+		<property name="uri">http://www.springframework.org/schema/beans</property>
+		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
+		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:META-INF/spring/authDataService-jdbc.xml']]]></property>
+	</XmlRemove>
+	
+	<XmlRemove>
+		<property name="xmlFile">${ConfigPath}/src/main/resources/META-INF/spring/root.xml</property>
+		<property name="uri">http://www.springframework.org/schema/beans</property>
+		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
+		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath:META-INF/spring/db-context.xml']]]></property>
+	</XmlRemove>
+
+	
+</XmlParse>
