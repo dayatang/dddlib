@@ -1,7 +1,6 @@
 /.settings
 /target
-/.DS_Store
-/target
+/.project
 /.classpath
 /.DS_Store
-/.project
+/.gitignore.bak
