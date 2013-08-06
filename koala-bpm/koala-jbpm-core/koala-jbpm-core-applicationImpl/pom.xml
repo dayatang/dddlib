@@ -126,10 +126,6 @@
 		<!-- 加入Spring对JPA的支持 -->
 
 		<dependency>
-			<groupId>${db.groupId}</groupId>
-			<artifactId>${db.artifactId}</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.openkoala.jbpm.core</groupId>
 			<artifactId>koala-jbpm-core-adapterApplicationImpl</artifactId>
 			<version>${project.parent.version}</version>
