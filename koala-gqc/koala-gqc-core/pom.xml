@@ -40,7 +40,7 @@
 		<dependency>
 			<groupId>org.openkoala.gqc</groupId>
 			<artifactId>koala-gqc-conf</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.parent.version}</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
