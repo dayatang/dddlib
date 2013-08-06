@@ -24,17 +24,17 @@
 		<dependency>
 			<groupId>org.openkoala.koala.jbpm.designer</groupId>
 			<artifactId>koala-jbpm-designer-application</artifactId>
-			<version>2.0.0-SNAPSHOT</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openkoala.koala.jbpm.designer</groupId>
 			<artifactId>koala-jbpm-designer-bizmodel</artifactId>
-			<version>2.0.0-SNAPSHOT</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openkoala.koala.jbpm.designer</groupId>
 			<artifactId>koala-jbpm-designer-infra</artifactId>
-			<version>2.0.0-SNAPSHOT</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
