@@ -428,21 +428,4 @@ public class ProxyStatement extends Trace implements Statement {
 		return false;
 	}
 
-    //For JDK 7 compatability
-    public void closeOnCompletion() throws SQLException {
-        Double jdkVersion = Double.valueOf(System.getProperty("java.specification.version"));
-        if (jdkVersion > 1.6) {
-            _stmt.closeOnCompletion();
-        }
-    }
-
-    //For JDK 7 compatability
-    public boolean isCloseOnCompletion() throws SQLException {
-        Double jdkVersion = Double.valueOf(System.getProperty("java.specification.version"));
-        if (jdkVersion > 1.6) {
-            return _stmt.isCloseOnCompletion();
-        }
-        return true;
-    }
-
 }
