@@ -1,0 +1,117 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.openkoala.monitor</groupId>
+		<artifactId>koala-jmonitor</artifactId>
+		<version>2.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>koala-jmonitor-applicationImpl</artifactId>
+	<name>koala-jmonitor-applicationImpl</name>
+
+	<properties>
+		<local.repository.path>file://${project.basedir}/../../lib/</local.repository.path>
+		<project.type>applicationImpl</project.type>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.openkoala.monitor</groupId>
+			<artifactId>koala-jmonitor-application</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openkoala.monitor</groupId>
+			<artifactId>koala-jmonitor-domain</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openkoala.monitor</groupId>
+			<artifactId>koala-jmonitor-core</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-db</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-spring</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-hibernate</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-querychannel</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.3.168</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openkoala.koalacommons</groupId>
+			<artifactId>koala-commons-i18n</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openkoala.koalacommons</groupId>
+			<artifactId>koala-commons-exception</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openkoala.koalacommons</groupId>
+			<artifactId>koala-commons-support</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+		</dependency>
+
+		<!-- test -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openkoala.koalacommons</groupId>
+			<artifactId>koala-commons-support</artifactId>
+		</dependency>
+	</dependencies>
+</project>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
+              http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="monitor">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <non-jta-data-source>km_dataSource</non-jta-data-source>	
+        <!-- security -->
+		<mapping-file>securitymappings/Resource.xml</mapping-file>
+		<mapping-file>securitymappings/ResourceType.xml</mapping-file>
+		<mapping-file>securitymappings/IdentityResourceAuthorization.xml</mapping-file>
+		<mapping-file>securitymappings/ResourceLineAssignment.xml</mapping-file>
+		<mapping-file>securitymappings/ResourceTypeAssignment.xml</mapping-file>
+		<mapping-file>securitymappings/Role.xml</mapping-file>
+		<mapping-file>securitymappings/RoleUserAuthorization.xml</mapping-file>
+		<mapping-file>securitymappings/User.xml</mapping-file>
+		<class>org.openkoala.koala.auth.core.domain.Party</class>
+		<class>org.openkoala.koala.auth.core.domain.TimeIntervalEntity</class>
+		<class>org.openkoala.koala.auth.core.domain.Identity</class>
+		<class>org.openkoala.koala.auth.core.domain.Role</class>
+		<class>org.openkoala.koala.auth.core.domain.User</class>
+		<class>org.openkoala.koala.auth.core.domain.Resource</class>
+		<class>org.openkoala.koala.auth.core.domain.Accountability</class>
+		<class>org.openkoala.koala.auth.core.domain.IdentityResourceAuthorization</class>
+		<class>org.openkoala.koala.auth.core.domain.RoleUserAuthorization</class>
+		<class>org.openkoala.koala.auth.core.domain.ResourceLineAssignment</class>
+		<class>org.openkoala.koala.auth.core.domain.ResourceType</class>
+		<class>org.openkoala.koala.auth.core.domain.ResourceTypeAssignment</class>
+		
+		<!-- monitor -->
+        <class>org.openkoala.koala.monitor.domain.HttpDetails</class>
+        <class>org.openkoala.koala.monitor.domain.JdbcConnDetails</class>
+        <class>org.openkoala.koala.monitor.domain.JdbcDetails</class>
+        <class>org.openkoala.koala.monitor.domain.JdbcStatementDetails</class>
+        <class>org.openkoala.koala.monitor.domain.MainStat</class>
+        <class>org.openkoala.koala.monitor.domain.MethodDetails</class>
+        <class>org.openkoala.koala.monitor.domain.MonitorNode</class>
+        <class>org.openkoala.koala.config.domain.SchedulerConfg</class>
+	</persistence-unit>	
+</persistence>
