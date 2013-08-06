@@ -327,24 +327,6 @@
 						<version>${spring.version}</version>
 					</dependency>
 
-					<dependency>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-core</artifactId>
-						<version>${spring.version}</version>
-					</dependency>
-
-					<dependency>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-web</artifactId>
-						<version>${spring.version}</version>
-					</dependency>
-
-					<dependency>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-context</artifactId>
-						<version>${spring.version}</version>
-					</dependency>
-
 					<!-- 加入Spring对JPA的支持 -->
 					<dependency>
 						<groupId>org.springframework.data</groupId>
@@ -451,13 +433,6 @@
 						<artifactId>koala-commons-support</artifactId>
 						<version>${framework.version}</version>
 					</dependency>
-
-					<dependency>
-						<groupId>commons-collections</groupId>
-						<artifactId>commons-collections</artifactId>
-						<version>3.2</version>
-						<scope>provided</scope>
-					</dependency>
 					<dependency>
 						<groupId>commons-lang</groupId>
 						<artifactId>commons-lang</artifactId>
@@ -486,31 +461,6 @@
 						<version>2.5.6.SEC01</version>
 					</dependency>
 					<dependency>
-						<groupId>org.aspectj</groupId>
-						<artifactId>aspectjrt</artifactId>
-						<version>1.6.12</version>
-					</dependency>
-					<dependency>
-						<groupId>org.aspectj</groupId>
-						<artifactId>aspectjweaver</artifactId>
-						<version>1.6.12</version>
-					</dependency>
-					<dependency>
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-api</artifactId>
-						<version>1.5.8</version>
-					</dependency>
-					<dependency>
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-log4j12</artifactId>
-						<version>1.5.8</version>
-					</dependency>
-					<dependency>
-						<groupId>javassist</groupId>
-						<artifactId>javassist</artifactId>
-						<version>3.9.0.GA</version>
-					</dependency>
-					<dependency>
 						<groupId>org.quartz-scheduler</groupId>
 						<artifactId>quartz</artifactId>
 						<version>2.1.3</version>
@@ -534,11 +484,6 @@
 					<dependency>
 						<groupId>javax.faces</groupId>
 						<artifactId>jsf-impl</artifactId>
-						<version>1.2</version>
-					</dependency>
-					<dependency>
-						<groupId>jstl</groupId>
-						<artifactId>jstl</artifactId>
 						<version>1.2</version>
 					</dependency>
 					<dependency>
@@ -703,12 +648,6 @@
 						<version>${spring.security.version}</version>
 					</dependency>
 
-					<dependency>
-						<groupId>org.springframework.security</groupId>
-						<artifactId>spring-security-acl</artifactId>
-						<version>${spring.security.version}</version>
-					</dependency>
-
 					<!-- aspectJ -->
 					<dependency>
 						<groupId>org.aspectj</groupId>
@@ -790,6 +729,7 @@
 			</testResource>
 		</testResources>
 
+                <pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -800,6 +740,28 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
+			<!-- 要将源码放上去，需要加入这个插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+                                <version>2.2.1</version>
+				<configuration>
+					<attach>true</attach>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+                    
+                </pluginManagement>
+                    
+		<plugins>
 			<!-- 要将源码放上去，需要加入这个插件 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
