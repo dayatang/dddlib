@@ -829,4 +829,8 @@
             <url>http://115.28.0.46:8081/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
+    <scm>
+    	<connection>https://github.com/openkoala/Koala.git</connection>
+    	<developerConnection>https://github.com/openkoala/Koala.git</developerConnection>
+    </scm>
 </project>
