@@ -272,7 +272,7 @@ public class CURDFileCreateAnalysis {
 			EntityViewUI entityUI, EntityModel entity, List<NewFile> newFiles,
 			List<MavenProject> applicationProjects) {
 		DTONewFile dtoNewFile = new DTONewFile(getDtoClassName(entity), applicationProjects,NewFileType.DTO, project, entity);
-        dtoNewFile.setFieldMap(getVoParams(entityUI));
+        dtoNewFile.setFieldMap(getVoParams(entityUI, dtoNewFile.getRelativeTypes()));
         newFiles.add(dtoNewFile);
 	}
 
@@ -294,7 +294,7 @@ public class CURDFileCreateAnalysis {
         return relations;
     }
     
-    private static Map<String,String> getVoParams(EntityViewUI entityUI){
+    private static Map<String,String> getVoParams(EntityViewUI entityUI, List<String> relativeTypes){
         Map<String,String> params = new HashMap<String,String>();
         QueryModel queryModel  = entityUI.getQueryModel();
         for(UIWidget view:queryModel.getViews()){
@@ -303,10 +303,11 @@ public class CURDFileCreateAnalysis {
         }
         ListModel listModel = entityUI.getListModel();
         for(UIWidget view:listModel.getViews()){
-            if(view instanceof RelativeReadOnlyView){
+            if (view instanceof RelativeReadOnlyView){
                 RelativeReadOnlyView relativeView = (RelativeReadOnlyView)view;
-                params.put(relativeView.getRelative()+relativeView.getExpress().substring(0,1).toUpperCase()+relativeView.getExpress().substring(1), relativeView.getType());
-            }else{
+                params.put(relativeView.getRelative() + relativeView.getExpress().substring(0,1).toUpperCase() + relativeView.getExpress().substring(1), relativeView.getType());
+                relativeTypes.add(relativeView.getRelative() + relativeView.getExpress().substring(0,1).toUpperCase() + relativeView.getExpress().substring(1));
+            } else {
                 UIWidget widget = (UIWidget)view;
                 params.put(widget.getExpress(), widget.getType());
             }
