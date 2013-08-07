@@ -110,14 +110,14 @@
 						id : "add",
 						text : '分配角色',
 						click : toolbarBtnItemClick,
-						img : "/images/icons/toolbar/add.png"
+						img : rootPath + "/images/icons/toolbar/add.png"
 					}, {
 						line : true
 					}, {
 						id : "remove",
 						text : '删除',
 						click : toolbarBtnItemClick,
-						img : "/images/icons/toolbar/page_delete.gif"
+						img : rootPath + "/images/icons/toolbar/page_delete.gif"
 					} ]
 				};
 			} else {
@@ -126,35 +126,35 @@
 						id : "add",
 						text : '增加',
 						click : toolbarBtnItemClick,
-						img : "/images/icons/toolbar/add.png"
+						img : rootPath + "/images/icons/toolbar/add.png"
 					}, {
 						line : true
 					}, {
 						id : "modify",
 						text : '修改',
 						click : toolbarBtnItemClick,
-						img : "/images/icons/toolbar/page_edit.gif"
+						img : rootPath + "/images/icons/toolbar/page_edit.gif"
 					}, {
 						line : true
 					}, {
 						id : "remove",
 						text : '删除',
 						click : toolbarBtnItemClick,
-						img : "/images/icons/toolbar/page_delete.gif"
+						img : rootPath + "/images/icons/toolbar/page_delete.gif"
 					}, {
 						line : true
 					}, {
 						id : "user",
 						text : '用户',
 						click : toolbarBtnItemClick,
-						img : "/images/icons/toolbar/page_edit.gif"
+						img : rootPath + "/images/icons/toolbar/page_edit.gif"
 					}, {
 						line : true
 					}, {
 						id : "menuResource",
 						text : '资源授权',
 						click : toolbarBtnItemClick,
-						img : "/images/icons/toolbar/page_edit.gif"
+						img : rootPath + "/images/icons/toolbar/page_edit.gif"
 					} ]
 				};
 			}
@@ -311,7 +311,7 @@
 			if (manager != null) {
 				manager.clear();
 			}
-			$.getJSON('/auth/Menu/findMenuTreeSelectItemByRole.koala?time=' + new Date().getTime() + '&roleId='+ selectedRow.id, function(menus) {
+			$.getJSON(rootPath + '/auth/Menu/findMenuTreeSelectItemByRole.koala?time=' + new Date().getTime() + '&roleId='+ selectedRow.id, function(menus) {
 				var menuDialog = $.ligerDialog.open({
 					width : 400,
 					// 获取所有菜单数据

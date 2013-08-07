@@ -16,6 +16,7 @@
 package org.openkoala.koala.deploy.curd.module.pojo;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -67,7 +68,19 @@ public class DTONewFile extends NewFile {
     
     private EntityModel entityModel;
     
-    /**
+    private List<String> relativeTypes = new ArrayList<String>();
+    
+    public List<String> getRelativeTypes() {
+		return relativeTypes;
+	}
+
+
+	public void setRelativeTypes(List<String> relativeTypes) {
+		this.relativeTypes = relativeTypes;
+	}
+
+
+	/**
      * @param name
      * @param projects
      * @param type
@@ -220,7 +233,7 @@ public class DTONewFile extends NewFile {
 	public EntityModel getEntityModel() {
 		return entityModel;
 	}
-    
+	
 }
 
 

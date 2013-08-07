@@ -19,6 +19,7 @@
     </modules>
 
     <properties>
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <dayatang.commons.version>3.5</dayatang.commons.version>
         <struts2.version>2.3.4</struts2.version>
         <spring.version>3.1.2.RELEASE</spring.version>
@@ -499,11 +500,6 @@
                 <version>2.2.10.Final</version>
             </dependency>
             <dependency>
-                <groupId>org.mvel</groupId>
-                <artifactId>mvel2</artifactId>
-                <version>2.0.12</version>
-            </dependency>
-            <dependency>
                 <groupId>org.antlr</groupId>
                 <artifactId>antlr-runtime</artifactId>
                 <version>3.1.1</version>
@@ -512,36 +508,6 @@
                 <groupId>antlr</groupId>
                 <artifactId>antlr</artifactId>
                 <version>2.7.6</version>
-            </dependency>
-            <dependency>
-                <groupId>org.drools</groupId>
-                <artifactId>drools-compiler</artifactId>
-                <version>5.2.0.M1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.drools</groupId>
-                <artifactId>drools-core</artifactId>
-                <version>5.2.0.M1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.drools</groupId>
-                <artifactId>drools-api</artifactId>
-                <version>5.2.0.M1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jbpm</groupId>
-                <artifactId>jbpm-flow</artifactId>
-                <version>5.0.0</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jbpm</groupId>
-                <artifactId>jbpm-bpmn2</artifactId>
-                <version>5.0.0</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jbpm</groupId>
-                <artifactId>jbpm-flow-builder</artifactId>
-                <version>5.0.0</version>
             </dependency>
             <dependency>
                 <groupId>commons-collections</groupId>

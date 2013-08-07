@@ -19,8 +19,6 @@ import com.dayatang.querychannel.service.QueryChannelService;
 import ${dtoClass.packageName}.*;
 import ${applicationClass.packageName}${package.substring(${package.lastIndexOf(".")})}.${applicationClass.name};
 import ${entity.className.substring(0, ${entity.className.lastIndexOf(".")})}.*;
-import org.apache.commons.beanutils.BeanUtils;
-import org.openkoala.exception.extend.ApplicationException;
 
 @Named
 @Transactional
@@ -31,46 +29,16 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
 	
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ${currntVO} get${domainClass}(Long id) {
-	#set($jpql = "select _${variableName} from ${domainClass} _${variableName}")
-	#set($where = "where")
-	#foreach(${relation} in ${applicationImplClass.relations})
-	#set($relationModel = ${relation.relationModel})
-	#set($relationType = ${relationModel.type})
-	#set($entityName = ${relationModel.entityModel.name})
-	#set($relationName = ${relation.name.substring(0, 1).toUpperCase()} + ${relation.name.substring(1)})
-	#if(${relationType} == "ManyToOne" || ${relationType} == "OneToOne")
-	#set($joinClause = $joinClause + " left join _${variableName}.${relation.name} ")
-	#end
-	#end
-	
-	   	String jpql = "${jpql} $!{joinClause} ${where} _${variableName}.id=?";
-	   	${domainClass} $variableName = (${domainClass}) queryChannel.querySingleResult(jpql, new Object[] { id });
-	   	
-	   	if (${variableName} == null) {
-	   		throw new ApplicationException("entity not exist", "This entity is not exist, id:" + id);
-	   	}
-	   	
+		${domainClass} $variableName = ${domainClass}.load(${domainClass}.class, id);
 		${currntVO} ${currntVOVariable} = new ${currntVO}();
 		${currntVOVariable}.domain2Dto(${variableName});
-		#foreach($view in ${applicationImplClass.entityViewUI.viewModel.views})
-		   #set($property = ${view.relative.substring(0, 1).toUpperCase()} + ${view.relative.substring(1)})
-		   #set($express = ${view.express.substring(0, 1).toUpperCase()} + ${view.express.substring(1)})
-		#if($view.viewType == "RelativeReadOnlyView")
-		
-		if(${variableName}.get$property() != null) {	 	
-			${currntVOVariable}.set$property$express(${variableName}.get$property().get$express());
-		}
-		#end
-		#end
-		
 		${currntVOVariable}.setId(${variableName}.getId());
-		
 		return ${currntVOVariable};
 	}
 	
 	public ${currntVO} save${domainClass}(${currntVO} ${currntVOVariable}) {
 		${domainClass} ${variableName} = new ${domainClass}();
-		${currntVOVariable}.domain2Dto(${variableName});
+		${currntVOVariable}.dto2Domain(${variableName});
 		${variableName}.save();
 		${currntVOVariable}.setId(${variableName}.getId());
 		return ${currntVOVariable};
@@ -108,74 +76,59 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
 	public Page<${currntVO}> pageQuery${domainClass}(${currntVO} queryVo, int currentPage, int pageSize) {
 		List<${currntVO}> result = new ArrayList<${currntVO}>();
 		List<Object> conditionVals = new ArrayList<Object>();
-		#set($jpql = "select _${variableName} from ${domainClass} _${variableName} ")
-		#foreach(${relation} in ${applicationClass.relations})
-		#set($relationModel = ${relation.relationModel})
-		#set($relationType = ${relationModel.type})
-		#set($entityName = ${relationModel.entityModel.name})
-		#set($relationName = ${relation.name.substring(0, 1).toUpperCase()} + ${relation.name.substring(1)})
-		#if(${relationType} == "ManyToOne" || ${relationType} == "OneToOne")
-		#set($joinClause = $joinClause +  " left join _${variableName}.${relation.name} ")
-		#end
-		
-		#end
-		
+#set($jpql = "select _${variableName} from ${domainClass} _${variableName} ")
+#foreach(${relation} in ${applicationClass.relations})
+#set($relationModel = ${relation.relationModel})
+#set($relationType = ${relationModel.type})
+#set($entityName = ${relationModel.entityModel.name})
+#set($relationName = ${relation.name.substring(0, 1).toUpperCase()} + ${relation.name.substring(1)})
+#if(${relationType} == "ManyToOne" || ${relationType} == "OneToOne")
+#set($joinClause = $joinClause +  " left join _${variableName}.${relation.name} ")
+#end
+#end
 	   	StringBuilder jpql = new StringBuilder("${jpql} $!{joinClause} where 1=1 ");
-	   	#foreach($field in ${entity.fields})
-	   	#set($propertyName = ${field.name.substring(0, 1).toUpperCase()} + ${field.name.substring(1)})
-	   	#if(${dtoClass.isNumberType(${field.type})} && ${field.name} != "id")
-	   		
-	   	if (queryVo.get${propertyName}() != 0) {
-	   		jpql.append(" and _${variableName}.${field.name}=?");
-	   		conditionVals.add(queryVo.get${propertyName}());
-	   	}	
-	   	#end
-	   	#if(${dtoClass.isWrapperType(${field.type})} && ${field.name} != "id")
-	   		
+#foreach($field in ${entity.fields})
+#set($propertyName = ${field.name.substring(0, 1).toUpperCase()} + ${field.name.substring(1)})
+#if(${dtoClass.isPrimitiveType(${field.type})} && ${field.name} != "id")
 	   	if (queryVo.get${propertyName}() != null) {
 	   		jpql.append(" and _${variableName}.${field.name}=?");
 	   		conditionVals.add(queryVo.get${propertyName}());
 	   	}	
-	   	#end	
-	   	#if(${dtoClass.isBooleanType(${field.type})})
-	   	
+#end
+	
+#if(${dtoClass.isBooleanType(${field.type})})
 	   	if (queryVo.get${propertyName}() != null) {
 		   	jpql.append(" and _${variableName}.${field.name} is ?");
 		   	conditionVals.add(queryVo.get${propertyName}());
 	   	}	
-	   	#end
-	   	#if(${dtoClass.isStringType(${field.type})})
-	   		
+#end
+#if(${dtoClass.isStringType(${field.type})})
 	   	if (queryVo.get${propertyName}() != null && !"".equals(queryVo.get${propertyName}())) {
 	   		jpql.append(" and _${variableName}.${field.name} like ?");
 	   		conditionVals.add(MessageFormat.format("%{0}%", queryVo.get${propertyName}()));
 	   	}		
-	   	#end	
-	   	#if(${dtoClass.isDateType(${field.type})})
-	   		
+#end	
+#if(${dtoClass.isDateType(${field.type})})
 	   	if (queryVo.get${propertyName}() != null) {
 	   		jpql.append(" and _${variableName}.${field.name} between ? and ? ");
 	   		conditionVals.add(queryVo.get${propertyName}());
 	   		conditionVals.add(queryVo.get${propertyName}End());
 	   	}	
-	   	#end	
-	   	#end
-
+#end	
+#end
         Page<${domainClass}> pages = queryChannel.queryPagedResultByPageNo(jpql.toString(), conditionVals.toArray(), currentPage, pageSize);
         for (${domainClass} ${variableName} : pages.getResult()) {
             ${currntVO} ${currntVOVariable} = new ${currntVO}();
             ${currntVOVariable}.domain2Dto(${variableName});
-            #foreach($view in ${applicationImplClass.entityViewUI.listModel.views})
-			   #set($property = ${view.relative.substring(0, 1).toUpperCase()} + ${view.relative.substring(1)})
-			   #set($express = ${view.express.substring(0, 1).toUpperCase()} + ${view.express.substring(1)})
-			#if(${view.viewType} == "RelativeReadOnlyView")
-			
+#foreach($view in ${applicationImplClass.entityViewUI.listModel.views})
+   #set($property = ${view.relative.substring(0, 1).toUpperCase()} + ${view.relative.substring(1)})
+   #set($express = ${view.express.substring(0, 1).toUpperCase()} + ${view.express.substring(1)})
+#if(${view.viewType} == "RelativeReadOnlyView")
 			if(${variableName}.get$property() != null) {	
 				${currntVOVariable}.set$property$express(${variableName}.get$property().get$express());
 			}
-			#end
-			#end
-			
+#end
+#end
             result.add(${currntVOVariable});
         }
         return new Page<${currntVO}>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), result);
@@ -187,7 +140,6 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
 #set($entityName = ${relationModel.entityModel.name})
 #set($relationName = ${relation.name.substring(0, 1).toUpperCase()} + ${relation.name.substring(1)})
 #if(${relationType} == "ManyToOne" || ${relationType} == "OneToOne")
-	
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ${entityName}DTO find${relationName}By${domainClass}(Long id) {
 		String jpql = "select e from ${domainClass} o right join o.${relation.name} e where o.id=?";
@@ -209,9 +161,9 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
         for (${entityName} entity : pages.getResult()) {
             ${entityName}DTO dto = new ${entityName}DTO();
             if (result != null) {
-            	dto.domain2Dto(result);
+            	dto.domain2Dto(entity);
             }
-            result.add(vo);
+            result.add(dto);
         }
         return new Page<${entityName}DTO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), result);
 	}		
