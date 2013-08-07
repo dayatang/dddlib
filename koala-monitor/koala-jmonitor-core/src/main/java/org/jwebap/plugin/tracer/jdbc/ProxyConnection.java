@@ -403,42 +403,22 @@ public class ProxyConnection implements Connection {
 
     //For JDK 7 compatability
     public void setSchema(String schema) throws SQLException {
-        Double jdkVersion = Double.valueOf(System.getProperty("java.specification.version"));
-        if (jdkVersion > 1.6) {
-            _delegate.setSchema(schema);
-        }
     }
 
     //For JDK 7 compatability
     public String getSchema() throws SQLException {
-        Double jdkVersion = Double.valueOf(System.getProperty("java.specification.version"));
-        if (jdkVersion > 1.6) {
-            return _delegate.getSchema();
-        }
         return null;
     }
 
     //For JDK 7 compatability
     public void abort(Executor executor) throws SQLException {
-        Double jdkVersion = Double.valueOf(System.getProperty("java.specification.version"));
-        if (jdkVersion > 1.6) {
-            _delegate.abort(executor);
-        }
     }
 
     //For JDK 7 compatability
     public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
-        Double jdkVersion = Double.valueOf(System.getProperty("java.specification.version"));
-        if (jdkVersion > 1.6) {
-            _delegate.setNetworkTimeout(executor, milliseconds);
-        }
     }
 
     public int getNetworkTimeout() throws SQLException {
-        Double jdkVersion = Double.valueOf(System.getProperty("java.specification.version"));
-        if (jdkVersion > 1.6) {
-            return _delegate.getNetworkTimeout();
-        }
         return 0;
     }
 }
