@@ -18,7 +18,6 @@
 		<module>koala-jmonitor-mina</module>
 		<module>koala-jmonitor-core</module>
 		<module>koala-jmonitor-model</module>
-		<module>koala-jmonitor-web-mvc</module>
 	</modules>
 
 	<issueManagement>
