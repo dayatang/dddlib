@@ -62,7 +62,7 @@ function loadLeftMenu() {
              	});
              	
              	tree.bind("select", function(node) {
-             		var url = node.data.identifier;
+             		var url = "${pageContext.request.contextPath}/" + node.data.identifier;
              		var text = node.data.text;
              		var tabid = $(node.target).attr("tabid");
              		if (!url) {

@@ -846,7 +846,8 @@
         }
     };
 
-})(jQuery);﻿/**
+})(jQuery);
+/**
 * jQuery ligerUI 1.1.9
 * 
 * http://ligerui.com
