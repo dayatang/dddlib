@@ -2,14 +2,18 @@ package org.openkoala.koala.monitor.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class BaseDetailsVo {
 
 	// 堆栈信息
 	private String stackTracesDetails;
 
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date beginTime;
 	private String beginTimeStr;
 
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date endTime;
 	private String endTimeStr;
 
