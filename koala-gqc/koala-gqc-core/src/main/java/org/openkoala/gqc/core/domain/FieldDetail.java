@@ -54,5 +54,31 @@ public class FieldDetail implements ValueObject, Comparable<FieldDetail> {
 	public int compareTo(FieldDetail other) {
 		return getFieldName().compareTo(other.getFieldName());
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((fieldName == null) ? 0 : fieldName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FieldDetail other = (FieldDetail) obj;
+		if (fieldName == null) {
+			if (other.fieldName != null)
+				return false;
+		} else if (!fieldName.equals(other.fieldName))
+			return false;
+		return true;
+	}
 	
 }

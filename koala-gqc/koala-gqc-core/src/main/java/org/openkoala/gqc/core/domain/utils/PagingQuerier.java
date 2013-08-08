@@ -85,7 +85,9 @@ public class PagingQuerier extends Querier {
             DbUtils.closeQuietly(conn);
         }
 		
-		
+		if (result == null) {
+			return 0;
+		}
 		return result.longValue();
 	}
 	

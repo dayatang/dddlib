@@ -25,10 +25,30 @@
 <link href="${pageContext.request.contextPath}/css/auth-common.css" rel="stylesheet" type="text/css" /> 
 
 <script type="text/javascript">
-var rootPath = "";
+var rootPath = "${pageContext.request.contextPath}";
 $(function(){
    	$("*[ligertipid]").live('click',function(){
    		$(this).ligerHideTip();
    	});
+   	$(".l-dialog-tc .l-dialog-close").live('click',function(){
+      $("*[ligertipid]").each(function(){
+  	  	  $(this).ligerHideTip();
+  	  });
+    });
 });
+
+/**
+ * 按回车键时，触发登录按钮
+ */
+function keyDown(e){
+	//这样写是为了兼容FireFox和IE，因为IE的onkeydown在FF中不起作用
+	var ev =window.event||e; 
+ 	//按回车键
+  	if (ev.keyCode==13) {
+   		ev.returnValue=false;
+   		ev.cancel = true;
+   		var sub =  document.getElementById("btnSubmit");
+  		sub.click();
+  	} 
+}
 </script>
