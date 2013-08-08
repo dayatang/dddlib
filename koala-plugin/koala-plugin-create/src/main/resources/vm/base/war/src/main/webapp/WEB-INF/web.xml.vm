@@ -50,11 +50,6 @@
 <!-- monitor config end -->
 #end
 
-#if ($Module.monitor)
-     <listener>
-		<listener-class>org.openkoala.koala.monitor.context.KoalaMonitorListener</listener-class>
-	</listener>
-#end
 
 	<!-- Spring Listener -->
 	<context-param>
