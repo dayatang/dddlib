@@ -25,7 +25,7 @@
 <link href="${pageContext.request.contextPath}/css/auth-common.css" rel="stylesheet" type="text/css" /> 
 
 <script type="text/javascript">
-var rootPath = "";
+var rootPath = "${pageContext.request.contextPath}";
 $(function(){
    	$("*[ligertipid]").live('click',function(){
    		$(this).ligerHideTip();
