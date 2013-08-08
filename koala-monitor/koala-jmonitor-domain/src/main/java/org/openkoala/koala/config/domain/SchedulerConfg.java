@@ -150,7 +150,6 @@ public class SchedulerConfg extends KmBaseLegacyEntity{
 
 	@Override
 	public boolean existed() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -168,13 +167,29 @@ public class SchedulerConfg extends KmBaseLegacyEntity{
 
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return 0;
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((triggerName == null) ? 0 : triggerName.hashCode());
+		return result;
 	}
 
 	@Override
-	public boolean equals(Object arg0) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SchedulerConfg other = (SchedulerConfg) obj;
+		if (triggerName == null) {
+			if (other.triggerName != null)
+				return false;
+		} else if (!triggerName.equals(other.triggerName))
+			return false;
+		return true;
 	}
+
+	
 }
