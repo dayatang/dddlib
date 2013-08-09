@@ -69,6 +69,12 @@
             <version>${project.parent.version}</version>
             <type>ejb</type>
   </dependency>  
+  <dependency> 
+            <groupId>org.openkoala.gqc</groupId>  
+            <artifactId>koala-gqc-conf</artifactId>
+            <version>${project.parent.version}</version>
+            <type>ejb</type>
+  </dependency>  
 #end
 
 
