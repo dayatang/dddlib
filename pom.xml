@@ -682,23 +682,19 @@
 	
     </dependencyManagement>
     <build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-		<testResources>
-			<testResource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</testResource>
-			<testResource>
-				<directory>src/test/resources</directory>
-				<filtering>true</filtering>
-			</testResource>
-		</testResources>
-	
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -797,8 +793,8 @@
             <id>koala-snapshots</id>
             <name>koala-snapshots</name>
             <url>http://115.28.0.46:8081/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository
-    </distributionManagement>
+        </snapshotRepository>
+   </distributionManagement>
 	
     <scm>
     	<connection>https://github.com/openkoala/Koala.git</connection>

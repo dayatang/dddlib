@@ -21,6 +21,7 @@ import javax.persistence.Transient;
 import org.openkoala.gqc.core.domain.utils.PagingQuerier;
 import org.openkoala.gqc.core.domain.utils.QueryAllQuerier;
 
+import com.dayatang.domain.AbstractEntity;
 import com.dayatang.domain.QuerySettings;
 import com.dayatang.querychannel.support.Page;
 
@@ -72,7 +73,7 @@ public class GeneralQuery extends GeneralQueryEntity {
 	 */
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "GQ_PRE_QUERY_CONDITIONS", joinColumns = @JoinColumn(name = "GQ_ID"))
-	@OrderColumn(name = "ORDER_COLUMN")
+	@OrderColumn(name = "fieldName")
 	private List<PreQueryCondition> preQueryConditions = new ArrayList<PreQueryCondition>();
 	
 	/**
@@ -80,7 +81,7 @@ public class GeneralQuery extends GeneralQueryEntity {
 	 */
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "GQ_DYNAMIC_QUERIES", joinColumns = @JoinColumn(name = "GQ_ID"))
-	@OrderColumn(name = "ORDER_COLUMN")
+	@OrderColumn(name = "fieldName")
 	private List<DynamicQueryCondition> dynamicQueryConditions = new ArrayList<DynamicQueryCondition>();
 	
 	/**
@@ -88,7 +89,7 @@ public class GeneralQuery extends GeneralQueryEntity {
 	 */
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "GQ_FIELD_DETAILS", joinColumns = @JoinColumn(name = "GQ_ID"))
-	@OrderColumn(name = "ORDER_COLUMN")
+	@OrderColumn(name = "fieldName")
 	private List<FieldDetail> fieldDetails = new ArrayList<FieldDetail>();
 	
 	/**

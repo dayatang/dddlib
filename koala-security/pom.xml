@@ -23,5 +23,5 @@
 		<module>koala-security-ss3Adapter</module>
 		<module>koala-security-ks-jbpm-adapter</module>
 	</modules>
-
+	
 </project>

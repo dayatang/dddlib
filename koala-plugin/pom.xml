@@ -20,20 +20,4 @@
 		<module>koala-plugin-curd</module>
 		<module>koala-plugin-db2entity</module>
 	</modules>
-	
-	<build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>false</filtering>
-			</resource>
-		</resources>
-		<testResources>
-			<testResource>
-				<directory>src/test/resources</directory>
-				<filtering>false</filtering>
-			</testResource>
-		</testResources>
-	</build>
-	
 </project>
