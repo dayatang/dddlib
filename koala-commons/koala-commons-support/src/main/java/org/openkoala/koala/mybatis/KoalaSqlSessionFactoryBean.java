@@ -581,7 +581,7 @@ public class KoalaSqlSessionFactoryBean implements
 				if(Entity.class.isAssignableFrom(c)){
 					configuration.getTypeAliasRegistry().registerAlias(c);
 				}
-				if(c.getSimpleName().toUpperCase().endsWith("DTO")){
+				if(c.getSimpleName().endsWith("VO")){
 					configuration.getTypeAliasRegistry().registerAlias(c);
 				}
 			} catch (ClassNotFoundException e) {
