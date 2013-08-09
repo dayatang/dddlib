@@ -35,9 +35,6 @@ public class GeneralQueryController {
     @Autowired
     private GqcApplication gqcApplication;
     
-    //Json对象
-    private Map<String, Object> dataMap;
-	
 	/**
 	 * 分页查询通用查询列表
 	 * @param page
@@ -47,7 +44,8 @@ public class GeneralQueryController {
 	@ResponseBody
     @RequestMapping("/pageJson")
 	public Map<String,Object> pageJson(int page, int pagesize, String queryName) {
-        this.initMap();
+		//Json对象
+		Map<String, Object> dataMap = new HashMap<String, Object>();
         
         Page<GeneralQuery> all = null;
         if (queryName != null && !queryName.isEmpty()) {
@@ -72,8 +70,10 @@ public class GeneralQueryController {
     @ResponseBody
     @RequestMapping("/add")
     public Map<String,Object> add(GeneralQuery generalQuery) {
-        try {
-            this.initMap();
+		//Json对象
+		Map<String, Object> dataMap = null;
+		try {
+			dataMap = new HashMap<String, Object>();
             generalQuery.setCreateDate(new Date());
             gqcApplication.saveEntity(generalQuery);
             dataMap.put("result", "success");
@@ -87,14 +87,8 @@ public class GeneralQueryController {
     @RequestMapping("/getById")
     public String getById(HttpServletRequest request, Long id) {
         try {
-            this.initMap();
             //查询出该实体
             GeneralQuery generalQuery = gqcApplication.getById(id);
-//            GeneralQueryVo generalQueryVo = new GeneralQueryVo(generalQuery.getId(), generalQuery.getDataSource().getDataSourceId(), 
-//                    generalQuery.getQueryName(), generalQuery.getTableName(), generalQuery.getDescription(), generalQuery.getCreateDate());
-//            generalQueryVo.setFieldDetails(generalQuery.getFieldDetails());
-//            generalQueryVo.setPreQueryConditions(generalQuery.getPreQueryConditions());
-//            generalQueryVo.setDynamicQueryConditions(generalQuery.getDynamicQueryConditions());
 
             //表中所有列，供查询条件选择
             Map<String, Integer> tableMapLeftDiv = dataSourceApplication.findAllColumn(
@@ -121,8 +115,10 @@ public class GeneralQueryController {
     @ResponseBody
     @RequestMapping("/update")
     public Map<String,Object> update(GeneralQuery generalQuery) {
-        try {
-            this.initMap();
+		//Json对象
+		Map<String, Object> dataMap = null;
+		try {
+			dataMap = new HashMap<String, Object>();
             generalQuery.setCreateDate(new Date());
             gqcApplication.updateEntity(generalQuery);
             dataMap.put("result", "success");
@@ -136,8 +132,10 @@ public class GeneralQueryController {
     @ResponseBody
     @RequestMapping("/findAllDataSource")
     public Map<String,Object> findAllDataSource() {
-        try {
-            this.initMap();
+		//Json对象
+		Map<String, Object> dataMap = null;
+		try {
+			dataMap = new HashMap<String, Object>();
             
             List<DataSourceVO> list = dataSourceApplication.findAllDataSource();
             dataMap.put("dataSourceList", list);
@@ -157,7 +155,8 @@ public class GeneralQueryController {
     @ResponseBody
     @RequestMapping("/delete")
 	public Map<String,Object> delete(String ids) {
-        this.initMap();
+		//Json对象
+		Map<String, Object> dataMap = new HashMap<String, Object>();
         
         if(ids != null){
             String[] idArrs = ids.split(",");
@@ -179,8 +178,10 @@ public class GeneralQueryController {
     @ResponseBody
     @RequestMapping("/findAllTable")
     public Map<String,Object> findAllTable(Long id) {
-        try {
-            this.initMap();
+		//Json对象
+		Map<String, Object> dataMap = null;
+		try {
+			dataMap = new HashMap<String, Object>();
             
             List<String> tableList = dataSourceApplication.findAllTable(id);
             dataMap.put("tableList", tableList);
@@ -202,8 +203,10 @@ public class GeneralQueryController {
     @ResponseBody
     @RequestMapping("/findAllColumn")
     public Map<String,Object> findAllColumn(Long id, String tableName) {
-        try {
-            this.initMap();
+		//Json对象
+		Map<String, Object> dataMap = null;
+		try {
+			dataMap = new HashMap<String, Object>();
             
             Map<String, Integer> tableMap = dataSourceApplication.findAllColumn(id, tableName);
             dataMap.put("tableMap", tableMap);
@@ -215,14 +218,6 @@ public class GeneralQueryController {
         return dataMap;
     }
     
-    /**
-     * 创建Json对象
-     */
-    private void initMap(){
-        dataMap = new HashMap<String, Object>();
-    }
-    
-
     private void removeTableMapLeftDiv(GeneralQuery generalQuery, Map<String, Integer> tableMapLeftDiv){
         //把已被选择了的列从列池中去除
         List<PreQueryCondition> list = generalQuery.getPreQueryConditions();

@@ -26,9 +26,6 @@ public class DataSourceController{
 	@Autowired
 	private DataSourceApplication dataSourceApplication;
 	
-	//Json对象
-	private Map<String, Object> dataMap;
-	
 	/**
 	 * 增加数据源
 	 * @param dataSourceVO
@@ -37,8 +34,10 @@ public class DataSourceController{
 	@ResponseBody
 	@RequestMapping("/add")
 	public Map<String,Object> add(DataSourceVO dataSourceVO) {
+		//Json对象
+		Map<String, Object> dataMap = null;
 		try {
-		    this.initMap();
+			dataMap = new HashMap<String, Object>();
 		    
             String errorMsg = dataSourceApplication.saveDataSource(dataSourceVO);
             if(errorMsg == null){
@@ -62,7 +61,8 @@ public class DataSourceController{
 	@ResponseBody
     @RequestMapping("/update")
 	public Map<String,Object> update(DataSourceVO dataSourceVO) {
-        this.initMap();
+		//Json对象
+		Map<String, Object> dataMap = new HashMap<String, Object>();
         
 		dataSourceApplication.updateDataSource(dataSourceVO);
 		dataMap.put("result", "success");
@@ -78,7 +78,8 @@ public class DataSourceController{
 	@ResponseBody
     @RequestMapping("/pageJson")
 	public Map<String,Object> pageJson(int page, int pagesize) {
-        this.initMap();
+		//Json对象
+		Map<String, Object> dataMap = new HashMap<String, Object>();
         
         Page<DataSourceVO> all = dataSourceApplication.pageQueryDataSource(new DataSourceVO(), page, pagesize);
         dataMap.put("Rows", all.getResult());
@@ -96,7 +97,8 @@ public class DataSourceController{
     @ResponseBody
     @RequestMapping("/delete")
 	public Map<String,Object> delete(String ids) {
-        this.initMap();
+		//Json对象
+		Map<String, Object> dataMap = new HashMap<String, Object>();
         
         if(ids != null){
             String[] idArrs = ids.split(",");
@@ -119,7 +121,8 @@ public class DataSourceController{
     @ResponseBody
     @RequestMapping("/get/{id}")
 	public Map<String,Object> get(@PathVariable("id") Long id) {
-        this.initMap();
+		//Json对象
+		Map<String, Object> dataMap = new HashMap<String, Object>();
         
 		dataMap.put("data", dataSourceApplication.getDataSource(id));
 		return dataMap;
@@ -133,7 +136,8 @@ public class DataSourceController{
     @ResponseBody
     @RequestMapping("/checkDataSourceById")
     public Map<String,Object> checkDataSourceById(Long id) {
-        this.initMap();
+		//Json对象
+		Map<String, Object> dataMap = new HashMap<String, Object>();
         
         boolean result = dataSourceApplication.testConnection(id);
         if(result){
@@ -153,7 +157,8 @@ public class DataSourceController{
     @ResponseBody
     @RequestMapping("/checkDataSource")
     public Map<String,Object> checkDataSource(DataSource dataSource) {
-        this.initMap();
+		//Json对象
+		Map<String, Object> dataMap = new HashMap<String, Object>();
         
         if (dataSource.getDataSourceType().equals(DataSourceType.SYSTEM_DATA_SOURCE)) {
         	try {
@@ -173,11 +178,4 @@ public class DataSourceController{
         return dataMap;
     }
     
-    /**
-     * 创建Json对象
-     */
-    private void initMap(){
-        dataMap = new HashMap<String, Object>();
-    }
-	
 }
