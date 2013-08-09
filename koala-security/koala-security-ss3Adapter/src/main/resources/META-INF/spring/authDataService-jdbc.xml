@@ -51,7 +51,7 @@
 			<value>${security.db.jdbc.adminRealName}</value>
 		</property>
 	</bean>
-	<bean id="authDataService" class="org.openkoala.koala.auth.impl.jdbc.JDBCAuthDataService">
+	<bean id="authDataService" class="org.openkoala.koala.auth.impl.jdbc.JDBCAuthDataService" init-method="initSecurityManager">
 		<property name="config" ref="JdbcSecurityConfig" />
 	</bean>
 </beans>
