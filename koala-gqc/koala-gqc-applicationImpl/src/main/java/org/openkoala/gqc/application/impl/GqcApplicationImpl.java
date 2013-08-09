@@ -14,7 +14,6 @@ import org.openkoala.gqc.core.domain.GeneralQuery;
 import org.openkoala.gqc.core.domain.GeneralQueryEntity;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dayatang.domain.AbstractEntity;
 import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.service.QueryChannelService;
 import com.dayatang.querychannel.support.Page;
@@ -27,10 +26,6 @@ import com.dayatang.querychannel.support.Page;
 public class GqcApplicationImpl implements GqcApplication {
 
 	private static QueryChannelService queryChannel;
-
-	public <T extends GeneralQueryEntity> T getEntity(Class<T> clazz, Long id) {
-		return AbstractEntity.get(clazz, id);
-	}
 	
 	private static QueryChannelService getQueryChannelService() {
 		if (queryChannel == null) {
