@@ -14,8 +14,6 @@ import org.openkoala.koala.auth.UserDetails;
  */
 public class JDBCAuthDataService implements AuthDataService {
 
-	private JdbcSecurityConfig config;
-	
 	private SecurityManager securityManager;
 	
 	public List<String> getAttributes(String res) {
@@ -34,15 +32,8 @@ public class JDBCAuthDataService implements AuthDataService {
 		return securityManager.getAllReourceAndRoles();
 	}
 
-	public void setConfig(JdbcSecurityConfig config) {
-		this.config = config;
+	public void setSecurityManager(SecurityManager securityManager) {
+		this.securityManager = securityManager;
 	}
-	
-	/**
-	 * 初始化SecurityManagerImpl
-	 */
-	public void initSecurityManager() {
-		securityManager = new SecurityManagerImpl(config);
-	}
-	
+
 }
