@@ -20,7 +20,6 @@
 		<module>koala-jbpm-core-applicationImpl</module>
 		<module>koala-jbpm-core-adapterApplication</module>
 		<module>koala-jbpm-core-adapterApplicationImpl</module>
-		<module>koala-jbpm-core-war</module>
 	</modules>
 
 </project>
