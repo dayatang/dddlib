@@ -19,7 +19,9 @@
 		<module>koala-gqc-application</module>
 		<module>koala-gqc-applicationImpl</module>
 		<module>koala-gqc-controller</module>
+		<module>koala-gqc-web</module>
 	</modules>
 
+	
 
 </project>

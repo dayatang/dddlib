@@ -2,10 +2,13 @@ package org.openkoala.gqc.controller.generalquery;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.openkoala.gqc.application.GqcApplication;
 import org.openkoala.gqc.core.domain.DynamicQueryCondition;
 import org.openkoala.gqc.core.domain.GeneralQuery;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +26,9 @@ import com.dayatang.querychannel.support.Page;
 @Controller
 public class QueryController {
 
+    @Autowired
+	private GqcApplication gqcApplication;
+	
 	/**
 	 * 生成查询页面
 	 * 
@@ -32,7 +38,7 @@ public class QueryController {
 	 */
 	@RequestMapping("/query/{id}")
 	public String queryPage(@PathVariable Long id, ModelMap modelMap) {
-		GeneralQuery generalQuery = GeneralQuery.get(GeneralQuery.class, id);
+		GeneralQuery generalQuery = gqcApplication.getEntity(GeneralQuery.class, id);
 		modelMap.addAttribute("gq", generalQuery);
 		modelMap.addAttribute("gqId", id);
 		return "query";
@@ -51,7 +57,7 @@ public class QueryController {
 	@RequestMapping("/search/{id}")
 	public Map<String, Object> search(@PathVariable Long id, @RequestParam int page,
 			@RequestParam int pagesize, HttpServletRequest request) {
-		GeneralQuery generalQuery = GeneralQuery.get(GeneralQuery.class, id);
+		GeneralQuery generalQuery = gqcApplication.getEntity(GeneralQuery.class, id);
 		Map<String, Object> result = new HashMap<String, Object>();
 		Map<String, Object[]> params = request.getParameterMap();
 		String startValueTag = "Start@";
