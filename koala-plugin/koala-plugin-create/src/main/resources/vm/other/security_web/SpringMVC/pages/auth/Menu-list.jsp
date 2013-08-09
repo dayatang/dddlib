@@ -59,34 +59,34 @@
 				id : "add",
 				text : '增加',
 				click : toolbarBtnItemClick,
-				img : "/images/icons/toolbar/add.png"
+				img : rootPath + "/images/icons/toolbar/add.png"
 			}, {
 				line : true
 			}, {
 				id : "modify",
 				text : '修改',
 				click : toolbarBtnItemClick,
-				img : "/images/icons/toolbar/page_edit.gif"
+				img : rootPath + "/images/icons/toolbar/page_edit.gif"
 			}, {
 				line : true
 			}, {
 				id : "remove",
 				text : '删除',
 				click : toolbarBtnItemClick,
-				img : "/images/icons/toolbar/page_delete.gif"
+				img : rootPath + "/images/icons/toolbar/page_delete.gif"
 			}, {
 				line : true
 			}, {
 				id : "up",
 				text : "上移",
-				img : "/images/icons/16x16/up.gif",
+				img : rootPath + "/images/icons/16x16/up.gif",
 				click : up
 			}, {
 				line : true
 			}, {
 				id : "down",
 				text : "下移",
-				img : "/images/icons/16x16/down.gif",
+				img : rootPath + "/images/icons/16x16/down.gif",
 				click : down
 			} ]
 		};
@@ -124,7 +124,7 @@
 				name : "icon",
 				align : "center",
 				render : function(row) {
-					return "<img src='" + row.icon + "'/>";
+					return "<img src='${pageContext.request.contextPath}/" + row.icon + "'/>";
 				}
 			}, {
 				display : "菜单描述",
@@ -276,7 +276,7 @@
 		function initValue() {
 			$("#name").val("");
 			$("#identifier").val("");
-			$("#menuIcon").attr("src", "/images/icons/menu/attibutes.gif");
+			$("#menuIcon").attr("src", rootPath + "/images/icons/menu/attibutes.gif");
 			$("#menuIcon").attr("alt", "图片为空");
 			$("#resDesc").val("");
 			$("#menuType option[value='']").attr("selected", true);
@@ -394,7 +394,7 @@
 			var content = [];
 			var dialog;
 			for ( var i = 0; i < icons.length; i++) {
-				content.push("<img src='/" + icons[i] + "' />");
+				content.push("<img src='" + rootPath + "/" + icons[i] + "' />");
 			}
 			var imgs = $(content.join(""));
 			$("#iconBtn").click(function() {

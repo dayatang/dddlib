@@ -14,30 +14,26 @@ import org.openkoala.koala.auth.UserDetails;
  */
 public class JDBCAuthDataService implements AuthDataService {
 
-	private JdbcSecurityConfig config;
+	private SecurityManager securityManager;
 	
 	public List<String> getAttributes(String res) {
-		return getSecurityManager().getAllReourceAndRoles().get(res);
+		return securityManager.getAllReourceAndRoles().get(res);
 	}
 
 	public UserDetails loadUserByUseraccount(String userAccount) {
-		return getSecurityManager().getUser(userAccount);
+		return securityManager.getUser(userAccount);
 	}
 
 	public List<String> getUserRoles(String userAccount) {
-		return getSecurityManager().getUserRoles(userAccount);
+		return securityManager.getUserRoles(userAccount);
 	}
 
 	public Map<String, List<String>> getAllReourceAndRoles() {
-		return getSecurityManager().getAllReourceAndRoles();
+		return securityManager.getAllReourceAndRoles();
 	}
 
-	public void setConfig(JdbcSecurityConfig config) {
-		this.config = config;
-	}
-	
-	private SecurityManager getSecurityManager() {
-		return SecurityManagerFactory.getSecurityManager(config);
+	public void setSecurityManager(SecurityManager securityManager) {
+		this.securityManager = securityManager;
 	}
 
 }

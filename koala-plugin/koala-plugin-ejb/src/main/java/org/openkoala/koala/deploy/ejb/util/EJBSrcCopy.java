@@ -335,9 +335,9 @@ public class EJBSrcCopy {
 		// 第一步，删除WAR中对权限子系统，监控子系统，查询子系统的实现依赖，要换成EJB依赖实现
 		String pom = war.getPath() + "/pom.xml";
 		Document pomDocument = DocumentUtil.readDocument(pom);
-		PomXmlWriter.removeDependencies("org.openkoala.koala",
+		PomXmlWriter.removeDependencies("org.openkoala.security",
 				"koala-security-applicationImpl", pomDocument);
-		PomXmlWriter.removeDependencies("org.openkoala.koala",
+		PomXmlWriter.removeDependencies("org.openkoala.security",
 				"koala-security-authJdbcImpl", pomDocument);
 		PomXmlWriter.removeDependencies("org.openkoala.gqc",
 				"koala-gqc-applicationImpl", pomDocument);

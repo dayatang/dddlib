@@ -86,7 +86,7 @@ public class EJBDeployCreate implements Serializable {
 			for(MavenProject child:warProject.getChilds()){
 				if(child.getType().equals(ModuleType.War)){
 					String warsrc = child.getPath()+"/target/"+child.getName()+"-EJB-WAR-"+child.getVersion()+".war";
-					String newWar = project.getPath().substring(0,project.getPath().lastIndexOf(project.getName()+"-EJB"))+project.getName()+"-EJB.war";
+					String newWar = project.getPath().substring(0,project.getPath().lastIndexOf(project.getName()+"-EJB"))+child.getName()+"-EJB.war";
 					FileCopyAction.copyFile(warsrc,newWar);
 				}
 			}

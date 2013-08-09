@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.openkoala.jbpm.core</groupId>
 		<artifactId>koala-jbpm-core</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>2.0.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>koala-jbpm-core-applicationImpl</artifactId>
 	<name>koala-jbpm-core-applicationImpl</name>
@@ -37,22 +37,22 @@
 		<dependency>
 			<groupId>org.openkoala.jbpm.core</groupId>
 			<artifactId>koala-jbpm-core-application</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openkoala.koalacommons</groupId>
 			<artifactId>koala-commons-exception</artifactId>
-			<version>2.0.0-SNAPSHOT</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openkoala.jbpm.core</groupId>
 			<artifactId>koala-jbpm-core-bizmodel</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openkoala.jbpm.core</groupId>
 			<artifactId>koala-jbpm-core-infra</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -126,13 +126,9 @@
 		<!-- 加入Spring对JPA的支持 -->
 
 		<dependency>
-			<groupId>${db.groupId}</groupId>
-			<artifactId>${db.artifactId}</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.openkoala.jbpm.core</groupId>
 			<artifactId>koala-jbpm-core-adapterApplicationImpl</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 	</dependencies>
 	<build>

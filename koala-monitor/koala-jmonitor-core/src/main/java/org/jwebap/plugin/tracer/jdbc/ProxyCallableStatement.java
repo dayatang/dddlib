@@ -502,4 +502,23 @@ public class ProxyCallableStatement extends ProxyPreparedStatement
 	}
 
 /* JDBC_3_ANT_KEY_END */
+
+    //For JDK 7 compatability
+    public void closeOnCompletion() throws SQLException {
+    }
+
+    //For JDK 7 compatability
+    public boolean isCloseOnCompletion() throws SQLException {
+        return true;
+    }
+
+    //For JDK 7 compatability
+    public <T> T getObject(int parameterIndex, Class<T> type) throws SQLException {
+        return null;
+    }
+
+    //For JDK 7 compatability
+    public <T> T getObject(String parameterName, Class<T> type) throws SQLException {
+        return null;
+    }
 }

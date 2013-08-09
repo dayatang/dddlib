@@ -3,6 +3,8 @@ package org.jwebap.plugin.tracer.jdbc;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 
@@ -62,6 +64,21 @@ public class ProxyDataSource implements DataSource {
 		delegate.setLoginTimeout(arg0);
 	}
 
+	@Override
+	public <T> T unwrap(Class<T> iface) throws SQLException {
+		return delegate.unwrap(iface);
+	}
+
+	@Override
+	public boolean isWrapperFor(Class<?> iface) throws SQLException {
+		return delegate.isWrapperFor(iface);
+	}
+
+	//For JDK 7 compatability
+	public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+		return null;
+	}
+
 	/**
 	 * 得到连接代理
 	 * 
@@ -73,17 +90,5 @@ public class ProxyDataSource implements DataSource {
 			return new ProxyConnection(container, conn,outterDataSource, listeners);
 		}
 		return conn;
-	}
-
-	@Override
-	public <T> T unwrap(Class<T> iface) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean isWrapperFor(Class<?> iface) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }

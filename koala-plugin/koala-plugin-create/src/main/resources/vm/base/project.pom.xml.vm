@@ -375,12 +375,12 @@
 			<dependency>
 				<groupId>org.quartz-scheduler</groupId>
 				<artifactId>quartz</artifactId>
-				<version>1.8.3</version>
+				<version>2.2.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.quartz-scheduler</groupId>
 				<artifactId>quartz-jboss</artifactId>
-				<version>1.8.3</version>
+				<version>2.1.7</version>
 			</dependency>
 
 			<dependency>
@@ -665,11 +665,6 @@
 		</testResources>
 		
 		<plugins>
-			<plugin>
-				<groupId>org.openkoala.koala.plugin.codecheccker</groupId>
-				<artifactId>koala-codechecker-plugin</artifactId>
-				<version>1.0-SNAPSHOT</version>
-			</plugin>
 		</plugins>
 		
 	</build>

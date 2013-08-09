@@ -313,5 +313,10 @@ public class FossEntityRepositoryJpa implements EntityRepository {
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
+	
+	
+	public void clear() {
+		
+	}
 
 }

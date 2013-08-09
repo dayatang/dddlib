@@ -18,12 +18,6 @@ import org.openkoala.koala.springmvc.JsonDateSerializer;
 
 public class ${dtoClass.name} implements Serializable {
 
-	/**
-	*	#foreach (${field} in ${dtoClass.entityModel.fields})
-			==========================================${field}
-	 	#end
-	*/
-
 	private Long id;
 
 #foreach($entry in ${dtoClass.fieldMap.entrySet()})
@@ -143,16 +137,20 @@ public class ${dtoClass.name} implements Serializable {
 	
 	public void domain2Dto(${domainClass} ${variableName}) {
 		this.setId(${variableName}.getId());
-#foreach(${field} in ${dtoClass.entityModel.fields})
-		#set($property = ${entry.key.substring(0, 1).toUpperCase()} + ${entry.key.substring(1)})
+#foreach($entry in ${dtoClass.fieldMap.entrySet()})
+#if (${dtoClass.relativeTypes.contains(${entry.key})} == false)
+#set($property = ${entry.key.substring(0, 1).toUpperCase()} + ${entry.key.substring(1)})
 		this.set${property}(${variableName}.get${property}());
+#end
 #end
 	}
 	
 	public void dto2Domain(${domainClass} ${variableName}) {
 #foreach($entry in ${dtoClass.fieldMap.entrySet()})
-		#set($property = ${entry.key.substring(0, 1).toUpperCase()} + ${entry.key.substring(1)})
+#if (${dtoClass.relativeTypes.contains(${entry.key})} == false)
+#set($property = ${entry.key.substring(0, 1).toUpperCase()} + ${entry.key.substring(1)})
 		${variableName}.set${property}(this.get${property}());
+#end
 #end
 	}
 

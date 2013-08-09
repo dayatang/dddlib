@@ -22,7 +22,6 @@
 		<module>koala-security-applicationImpl</module>
 		<module>koala-security-ss3Adapter</module>
 		<module>koala-security-ks-jbpm-adapter</module>
-		<module>koala-security-web-mvc</module>
 	</modules>
 	
 </project>
