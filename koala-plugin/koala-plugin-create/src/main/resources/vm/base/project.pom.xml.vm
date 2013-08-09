@@ -375,12 +375,12 @@
 			<dependency>
 				<groupId>org.quartz-scheduler</groupId>
 				<artifactId>quartz</artifactId>
-				<version>2.2.0</version>
+				<version>1.8.3</version>
 			</dependency>
 			<dependency>
 				<groupId>org.quartz-scheduler</groupId>
 				<artifactId>quartz-jboss</artifactId>
-				<version>2.1.7</version>
+				<version>1.8.3</version>
 			</dependency>
 
 			<dependency>
