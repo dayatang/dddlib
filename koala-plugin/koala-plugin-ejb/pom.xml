@@ -54,8 +54,8 @@
 	</dependencies>
 	<build>
 		<plugins>
-		<!--<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
+	<!--<plugin>
+			 <artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
 					<appendAssemblyId>false</appendAssemblyId>
 					<descriptorRefs>
@@ -76,7 +76,8 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin> 	 -->
+			</plugin> 
+		 -->	
 		</plugins>
 	</build>
 </project>
