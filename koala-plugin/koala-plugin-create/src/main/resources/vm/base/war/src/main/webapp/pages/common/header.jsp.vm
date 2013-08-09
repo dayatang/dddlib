@@ -3,6 +3,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 #end
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+#if ($Project.mvcProtocol=="SpringMVC")	
+<%@ taglib prefix="ss3" uri="http://www.springframework.org/security/tags" %>
+#end
 <%
  String contextPath = request.getContextPath();
 %>
