@@ -233,9 +233,13 @@ public class Project implements Serializable {
 	 */
 	public List<String> getScanPackages(){
 		List<String> packages = new ArrayList<String>();
-		packages.add(groupId + "."+artifactId+".*");
+//		packages.add(groupId + "."+artifactId+".*");
 		if(module != null){
 			for (Module mod : module) {
+				if (mod.getModuleType().equals("bizModel")) {
+					packages.add(mod.getBasePackage());
+				}
+				
 				if(mod.getSecurity() != null){
 					packages.add("org.openkoala.koala.auth.core.*");
 				}
