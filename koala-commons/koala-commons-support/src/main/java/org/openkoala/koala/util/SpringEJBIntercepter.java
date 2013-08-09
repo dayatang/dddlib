@@ -90,6 +90,9 @@ public class SpringEJBIntercepter {
 				}
 				return o;
 			}
+			else{
+				throw new Exception("Can not find the impl for:"+interfaceClass);
+			}
 		} catch (Exception e) {
 			ex = e;
 		}
