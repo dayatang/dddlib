@@ -34,14 +34,14 @@ public class JBPMProcessEventListener implements ProcessEventListener {
 	}
 
 	public void afterProcessStarted(ProcessStartedEvent event) {
-//		RuleFlowProcessInstance in = (RuleFlowProcessInstance)event.getProcessInstance();
-//		ProcessInstanceLog instanceLog = JPAProcessInstanceDbLog.findProcessInstance(in.getId());
-//		ProcessInstanceExpandLog instanceExpandLog = new ProcessInstanceExpandLog();
-//		instanceExpandLog.setProcessName(in.getProcessName());
-//		instanceExpandLog.setState(in.getState());
-//		instanceExpandLog.setInstanceLogId(instanceLog.getId());
-//		instanceExpandLog.setProcessData(XmlParseUtil.paramsToXml(in.getVariables()));
-//		instanceExpandLog.save();
+		RuleFlowProcessInstance in = (RuleFlowProcessInstance)event.getProcessInstance();
+		ProcessInstanceLog instanceLog = JPAProcessInstanceDbLog.findProcessInstance(in.getId());
+		ProcessInstanceExpandLog instanceExpandLog = new ProcessInstanceExpandLog();
+		instanceExpandLog.setProcessName(in.getProcessName());
+		instanceExpandLog.setState(in.getState());
+		instanceExpandLog.setInstanceLogId(in.getId());
+		instanceExpandLog.setProcessData(XmlParseUtil.paramsToXml(in.getVariables()));
+		instanceExpandLog.save();
 	}
 
 	public void beforeProcessCompleted(ProcessCompletedEvent event) {
@@ -57,16 +57,16 @@ public class JBPMProcessEventListener implements ProcessEventListener {
 	}
 
 	public void afterProcessCompleted(ProcessCompletedEvent event) {
-//		Map<String,Object> params = new HashMap<String,Object>();
-//		RuleFlowProcessInstance in = (RuleFlowProcessInstance)event.getProcessInstance();
-//		ProcessInstanceLog instanceLog = JPAProcessInstanceDbLog.findProcessInstance(in.getId());
-//		if(instanceLog!=null)params.put("instanceLogId", instanceLog.getId());
-//		ProcessInstanceExpandLog instanceExpandLog = ProcessInstanceExpandLog.find(params);
-//		if(instanceExpandLog!=null){
-//			instanceExpandLog.setState(in.getState());
-//			instanceExpandLog.setProcessData(XmlParseUtil.paramsToXml(in.getVariables()));
-//			instanceExpandLog.save();
-//		}
+		Map<String,Object> params = new HashMap<String,Object>();
+		RuleFlowProcessInstance in = (RuleFlowProcessInstance)event.getProcessInstance();
+		ProcessInstanceLog instanceLog = JPAProcessInstanceDbLog.findProcessInstance(in.getId());
+		if(instanceLog!=null)params.put("instanceLogId", instanceLog.getId());
+		ProcessInstanceExpandLog instanceExpandLog = ProcessInstanceExpandLog.find(params);
+		if(instanceExpandLog!=null){
+			instanceExpandLog.setState(in.getState());
+			instanceExpandLog.setProcessData(XmlParseUtil.paramsToXml(in.getVariables()));
+			instanceExpandLog.save();
+		}
 
 	}
 	

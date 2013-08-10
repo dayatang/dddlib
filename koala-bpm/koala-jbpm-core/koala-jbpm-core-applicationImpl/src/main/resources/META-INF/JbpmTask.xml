@@ -11,6 +11,7 @@
 			exlog.instanceLogId = log.id and exlog.state = 1
 		</query>
 	</named-query>
+	
 	<!-- 获取所有错误的流程 -->
 	<named-query name="GetErrorTasks">
 		<query>
