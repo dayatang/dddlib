@@ -279,5 +279,7 @@ public interface JBPMApplication {
 	 */
 	@Deprecated
 	public List<ProcessInstanceVO> queryAllProcess(String processId);
+	
+	
 
 }
