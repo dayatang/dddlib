@@ -13,8 +13,10 @@ import org.apache.ftpserver.usermanager.PropertiesUserManagerFactory;
 import org.apache.ftpserver.usermanager.impl.BaseUser;
 import org.apache.ftpserver.usermanager.impl.WritePermission;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openkoala.koala.ftp.FTPFacotry;
 import org.openkoala.koala.ftp.exception.FtpException;
@@ -29,15 +31,15 @@ import org.openkoala.koala.ftp.util.FtpUtil;
 public class FTPTest {
 
 	
-	private FtpUtil ftpUtil;
+	private static FtpUtil ftpUtil;
 
 	
-	private FtpServer server;
+	private static FtpServer server;
 	/**
 	 * 初始化一个嵌入式的FTP Server
 	 */
-	@Before
-	public void createEmbeddingFtp() {
+	@BeforeClass
+	public static void createEmbeddingFtp() {
 		try {
 			FtpServerFactory serverFactory = new FtpServerFactory();
 			ListenerFactory factory = new ListenerFactory();
@@ -69,8 +71,8 @@ public class FTPTest {
 		ftpUtil = FTPFacotry.getFtpUtil("ftp.properties");
 	}
 	
-	@After
-	public void close(){
+	@AfterClass
+	public static void close(){
 		server.stop();
 	}
 	

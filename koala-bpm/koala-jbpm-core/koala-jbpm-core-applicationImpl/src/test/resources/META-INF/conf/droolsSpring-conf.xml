@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:drools="http://drools.org/schema/drools-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://drools.org/schema/drools-spring http://drools.org/schema/drools-spring-1.5.0.xsd"
+    default-autowire="byName">
+	<drools:kbase id="kbase"/>
+	<!-- 配置人工流程服务 -->
+	<bean id="systemEventListener" class="org.drools.SystemEventListenerFactory"  factory-method="getSystemEventListener" />
+	<bean id="internalTaskService" class="org.jbpm.task.service.TaskService">
+         <property name="systemEventListener" ref="systemEventListener" />
+	</bean>
+	<bean id="htTxManager"	class="org.drools.container.spring.beans.persistence.HumanTaskSpringTransactionManager">
+		<constructor-arg ref="transactionManager" />
+	</bean>
+	<bean id="springTaskSessionFactory"	 class="org.jbpm.task.service.persistence.TaskSessionSpringFactoryImpl" init-method="initialize" depends-on="internalTaskService">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+		<property name="transactionManager" ref="htTxManager" />
+		<property name="useJTA" value="true" />
+		<property name="taskService" ref="internalTaskService" />
+	</bean>
+	<bean id="localTaskService" class="org.jbpm.task.service.local.LocalTaskService" depends-on="internalTaskService">
+		<constructor-arg ref="internalTaskService" />
+	</bean>
+	
+	<bean id="humanTaskHandler" class="org.openkoala.jbpm.applicationImpl.util.KoalaWSHumanTaskHandler" init-method="connect" depends-on="ksession">
+		<constructor-arg ref="ksession" />
+		<constructor-arg ref="localTaskService" />
+	</bean>
+	
+	<!-- 创建会话 -->
+	<drools:ksession id="ksession" type="stateful" kbase="kbase">
+		<drools:configuration>
+			<drools:jpa-persistence>
+				<drools:transaction-manager ref="transactionManager" />
+				<drools:entity-manager-factory ref="entityManagerFactory" />
+			</drools:jpa-persistence>
+		</drools:configuration>
+	</drools:ksession>
+	
+	<bean id="jbpmSupport" class="org.openkoala.jbpm.applicationImpl.util.JbpmSupport" init-method="initialize"/>
+</beans>

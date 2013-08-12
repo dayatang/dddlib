@@ -14,6 +14,8 @@ public class ProcessInstanceVO implements Serializable {
 
 	private String processId;//流程ID名称
 	
+	private int versionNum;//当前流程的版本号
+	
 	private long processInstanceId;//流程实例ID
 	
 	private String processName;//流程名称
@@ -121,6 +123,14 @@ public class ProcessInstanceVO implements Serializable {
 		this.data = data;
 	}
 	
+	public int getVersionNum() {
+		return versionNum;
+	}
+
+	public void setVersionNum(int versionNum) {
+		this.versionNum = versionNum;
+	}
+
 	/**
 	* 字符串转换为Timestamp
 	* @param dateStr
