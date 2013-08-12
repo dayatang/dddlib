@@ -252,13 +252,23 @@ public class ServerStatusVo extends NetTransObject{
 	public static class CpuInfoVo extends NetTransObject{
 		private static final long serialVersionUID = 1L;
 		
+		private String id;
 		private int totalMHz;
 		private String vendor;
 		private String model;
 		private long cacheSize;
-		private String used;//使用率
 		private String idle;//空闲率
+		private String used;//使用率（格式化的值）
+		private double usedOrigVal;//使用率（原始的值）
 		
+
+		public String getId() {
+			return id;
+		}
+
+		public void setId(String id) {
+			this.id = id;
+		}
 
 		public int getTotalMHz() {
 			return totalMHz;
@@ -308,6 +318,14 @@ public class ServerStatusVo extends NetTransObject{
 			this.idle = idle;
 		}
 
+		public double getUsedOrigVal() {
+			return usedOrigVal;
+		}
+
+		public void setUsedOrigVal(double usedOrigVal) {
+			this.usedOrigVal = usedOrigVal;
+		}
+		
 	}
 	
 	/**

@@ -19,13 +19,12 @@ import java.io.FileInputStream;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.Vector;
 
 import org.jwebap.core.RuntimeContext;
-import org.jwebap.util.ConnectionChecker;
+import org.openkoala.koala.monitor.jwebap.TaskDef;
 import org.openkoala.koala.monitor.jwebap.ThirdPartyServiceDef;
+import org.openkoala.koala.monitor.support.ConnectionChecker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,9 +43,11 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
  * 修改记录： <br />
  * 修 改 者    修改日期     文件版本   修改说明	
  */
-public class ServiceConnectionCheckTask implements MonitorTask{
+public class ServiceConnectionCheckTask extends BaseMonitorTask{
 
 	private static final Logger LOG = LoggerFactory.getLogger(ServiceConnectionCheckTask.class);
+	
+	public final static String TASK_KEY = "CHECK-CONNECTION"; 
 	
 	//上一次检测时间
 	private static Date lastCheckTime = new Date();
@@ -54,15 +55,12 @@ public class ServiceConnectionCheckTask implements MonitorTask{
 	//上一次检查不正常服务
 	private static List<String> badSevices = new Vector<String>();
 	
-	private long taskPeriod;
 	private List<ThirdPartyServiceDef> serviceList;
 	
-	private Timer checkTimer;
 	
-	
-	public ServiceConnectionCheckTask(String taskResource,int taskPeriod){
-		initServiceList(taskResource);
-		this.taskPeriod = taskPeriod * 1000 * 1000;//分 -->毫秒
+	public ServiceConnectionCheckTask(TaskDef taskDef){
+		initServiceList(taskDef.getTaskResource());
+		this.taskPeriod = taskDef.getPeriod() * 1000 * 1000;//分 -->毫秒
 	}
 	
 	public static Date getLastCheckTime() {
@@ -110,30 +108,6 @@ public class ServiceConnectionCheckTask implements MonitorTask{
 	}
 	
 	
-	private void doCheck() {
-		badSevices.clear();
-		boolean isConnect = false;
-		//
-		for (ThirdPartyServiceDef serviceDef : serviceList) {
-			isConnect = new ConnectionChecker().isConnect(serviceDef);
-			if( !isConnect ){
-			    badSevices.add(serviceDef.getTarget());
-			}
-		}
-		
-		lastCheckTime = new Date();
-	}
-	
-	public void startup(){
-		if(serviceList == null || serviceList.isEmpty())return;
-		checkTimer = new Timer();
-		checkTimer.schedule(new TimerTask() {
-			@Override
-			public void run() {
-				doCheck();
-			}
-		}, 60*1000, taskPeriod);
-	}
 
 	@Override
 	public void stop() {
@@ -145,6 +119,26 @@ public class ServiceConnectionCheckTask implements MonitorTask{
 	public void refresh() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	protected boolean initConfigOK() {
+		return serviceList != null && !serviceList.isEmpty();
+	}
+
+	@Override
+	protected void doTask() {
+		badSevices.clear();
+		boolean isConnect = false;
+		//
+		for (ThirdPartyServiceDef serviceDef : serviceList) {
+			isConnect = ConnectionChecker.isConnect(serviceDef);
+			if( !isConnect ){
+			    badSevices.add(serviceDef.getTarget());
+			}
+		}
+		
+		lastCheckTime = new Date();
 	}
 	
 

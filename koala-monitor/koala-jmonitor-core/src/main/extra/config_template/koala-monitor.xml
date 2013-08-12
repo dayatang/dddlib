@@ -83,6 +83,17 @@
        -->
       <taskResource>/WEB-INF/monitor/ServiceList.xml</taskResource>
     </task>
+    <task>
+      <type>SERVERSTATUS-COLLECT</type>
+      <name>服务器状态收集任务</name>
+      <!-- 执行间隔 单位：分钟 -->
+      <period>15</period>
+      <active>true</active>
+      <properties>
+        <!--需要收集内容 -->
+        <prop key="collectTypes" value="CPU;DISK;MEMORY;NETWORK"/>
+       </properties>
+    </task>
   </tasks>
   <!-- 监控数据处理策略-->
   <dataPolicy>

@@ -297,6 +297,25 @@ public class KoalaDateUtils {
 		return DateUtils.addDays(DateUtils.truncate(DateUtils
 				.addMonths(date, 1), Calendar.MONTH), -1);
 	}
+	
+	/**
+	 * 比较两个时间相差多少分钟
+	 * */
+	public static long getDiffMinutes(Date d1, Date d2) {
+		long between = Math.abs((d2.getTime() - d1.getTime()) / 1000);
+		long min = between / 60;// 转换为分
+		return min;
+	}
+
+
+	/**
+	 * 比较两个时间相差多少天
+	 * */
+	public static long getDiffDay(Date d1, Date d2) {
+		long between = Math.abs((d2.getTime() - d1.getTime()) / 1000);
+		long day = between / 60 / 60 / 24;
+		return (long) Math.floor(day);
+	}
 
 	public static void main(String[] args) {
 		System.out.println(parseDate("2013-09"));

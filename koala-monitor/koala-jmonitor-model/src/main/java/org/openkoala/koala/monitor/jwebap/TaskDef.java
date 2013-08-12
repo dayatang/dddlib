@@ -16,6 +16,8 @@
 package org.openkoala.koala.monitor.jwebap;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 功能描述：<br />
@@ -44,7 +46,9 @@ public class TaskDef implements Serializable {
 	
 	private int period;//执行间隔
 	
-	private String taskResource;//
+	private String taskResource;//引用配置文件
+	//属性
+	private Map<String, String> properties=new HashMap<String, String>();
 
 	public String getType() {
 		return type;
@@ -84,6 +88,14 @@ public class TaskDef implements Serializable {
 
 	public void setTaskResource(String taskResource) {
 		this.taskResource = taskResource;
+	}
+
+	public Map<String, String> getProperties() {
+		return properties;
+	}
+
+	public void setProperties(Map<String, String> properties) {
+		this.properties = properties;
 	}
 
 }

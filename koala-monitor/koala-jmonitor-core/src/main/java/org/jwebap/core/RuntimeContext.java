@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.jwebap.cfg.persist.PersistManager;
 import org.jwebap.plugin.task.MonitorTask;
+import org.jwebap.plugin.task.ServerStatusCollectorTask;
 import org.jwebap.plugin.task.ServiceConnectionCheckTask;
 import org.jwebap.plugin.tracer.SwapDataCache;
 import org.jwebap.plugin.tracer.http.HttpComponent;
@@ -171,10 +172,15 @@ public class RuntimeContext implements Context {
 	private void registerTask(TaskDef taskdef){
 		try {
 			if(!taskdef.isActive())return;
-			if("CHECK-CONNECTION".equals(taskdef.getType())){
-				MonitorTask task = new ServiceConnectionCheckTask(taskdef.getTaskResource(), taskdef.getPeriod());
+			if(ServiceConnectionCheckTask.TASK_KEY.equals(taskdef.getType())){
+				MonitorTask task = new ServiceConnectionCheckTask(taskdef);
 				task.startup();
-				_monitorTasks.put("CHECK-CONNECTION", task);
+				_monitorTasks.put(taskdef.getType(), task);
+				LOG.info("[{}][{}]启动 OK",taskdef.getName(),taskdef.getType());
+			}else if(ServerStatusCollectorTask.TASK_KEY.equals(taskdef.getType())){
+				MonitorTask task = new ServerStatusCollectorTask(taskdef);
+				task.startup();
+				_monitorTasks.put(taskdef.getType(), task);
 				LOG.info("[{}][{}]启动 OK",taskdef.getName(),taskdef.getType());
 			}
 		} catch (Exception e) {

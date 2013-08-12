@@ -126,9 +126,11 @@ public class ServerStatusCollector {
 	        for (int i = 0; i < infos.length; i++) {
 	        	CpuPerc perc = cpuList[i];
 				CpuInfoVo cpuInfo = new CpuInfoVo();
+				cpuInfo.setId(infos[i].hashCode() + "");
 				cpuInfo.setCacheSize(infos[i].getCacheSize());
 				cpuInfo.setModel(infos[i].getModel());
 				cpuInfo.setUsed(CpuPerc.format(perc.getCombined()));
+				cpuInfo.setUsedOrigVal(perc.getCombined());
 				cpuInfo.setIdle(CpuPerc.format(perc.getIdle()));
 				cpuInfo.setTotalMHz(infos[i].getMhz());
 				cpuInfo.setVendor(infos[i].getVendor());

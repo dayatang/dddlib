@@ -62,6 +62,9 @@ public class FTPFacotry {
 			port = Integer.parseInt(prop.getProperty("ftp.port"));
 			encoding = prop.getProperty("ftp.encoding");
 			tmpDir = prop.getProperty("ftp.tmpDir");
+			if(tmpDir==null || "".equals(tmpDir)){
+				
+			}
 			try{retryCount = Integer.parseInt(prop.getProperty("ftp.retry.count"));}catch(Exception e){retryCount = 3;}
 			mode = prop.getProperty("ftp.mode");
 			if(tmpDir!=null)initTmpDir();
@@ -81,39 +84,5 @@ public class FTPFacotry {
 		//创建临时目录
 		File tmpDirFile = new File(tmpDir);
 		if(!tmpDirFile.exists())tmpDirFile.mkdirs();
-	}
-	
-	public static void main(String args[]){ 
-		long begin = System.currentTimeMillis();
-		FtpUtil ftpUtil = FTPFacotry.getFtpUtil("ftp.properties");
-		try {
-			//ftpUtil.deleteFile("/SL通讯录.xls");
-			//ftpUtil.updateFile("/", new File("d:/你好.txt"));
-			//ftpUtil.updateFile("/", new File("d:/你好.txt"), "a.txt");
-			//ftpUtil.updateDirFiles(new File("d:/upload"), "/", "upload");
-			//System.out.println(ftpUtil.isDirectory("/a.txt"));
-			//System.out.println(ftpUtil.isFile("/a.txt"));
-			//System.out.println(ftpUtil.isFileExists("/b.txt"));
-			//System.out.println(ftpUtil.makeDirectory("/a/b/c/d"));
-			//System.out.println(ftpUtil.listDirectory("/"));
-			//System.out.println(ftpUtil.listFiles("/"));
-//			List<FTPFile> files = ftpUtil.listFTPFiles("/");
-//			for(FTPFile file:files){
-//				System.out.println(file.getName()+":"+file.isDirectory()+":"+file.getSize()+":");
-//			}
-			//ftpUtil.renameFTPFile("/a/b", "/a/c");
-			//ftpUtil.updateZipFile("/", new File("d:/Archive.zip"), "dre");
-			//System.out.println(ftpUtil.downLoadFile("/", "a.txt"));
-			//ftpUtil.downLoadFile("/", filename);
-			//System.out.println(ftpUtil.isFile("/News"));
-			//ftpUtil.listFTPFiles("/");
-			//File file = new File("e:/文件不存在.jpg");
-			//System.out.println(file.lastModified());
-			System.out.println(ftpUtil.downLoadFile("/", "文件不存在.jpg","e:/"));
-		} catch (FtpException e) {
-			e.printStackTrace();
-		}finally{
-		}
-		System.out.println(System.currentTimeMillis()-begin);
 	}
 }
