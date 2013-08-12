@@ -43,7 +43,6 @@ public class FTPTest {
 			ListenerFactory factory = new ListenerFactory();
 			// set the port of the listener
 			factory.setPort(21);
-
 			// replace the default listener
 			serverFactory.addListener("default", factory.createListener());
 			PropertiesUserManagerFactory userManagerFactory = new PropertiesUserManagerFactory();
