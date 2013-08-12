@@ -12,7 +12,7 @@
 	<artifactId>koala-commons</artifactId>
 	<packaging>pom</packaging>
 	<name>koala-commons</name>
-	<description />
+	<description>Koala的commons项目，提供一些辅助支持</description>
 	<modules>
 		<module>koala-commons-ftp</module>
 		<module>koala-commons-i18n</module>
