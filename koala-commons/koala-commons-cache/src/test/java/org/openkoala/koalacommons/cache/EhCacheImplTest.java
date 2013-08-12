@@ -11,7 +11,7 @@ import com.dayatang.utils.Assert;
  * @author lingen lingen.liu@gmail.com
  *
  */
-public class TestEhCacheImpl {
+public class EhCacheImplTest {
 
 	
 	/**
