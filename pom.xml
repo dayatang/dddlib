@@ -103,7 +103,7 @@
                 <hibernate.show_sql>true</hibernate.show_sql>
                 <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
                 <db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
-                <db.connectionURL>jdbc:h2:~/db/jbpm-core</db.connectionURL>
+                <db.connectionURL>jdbc:h2:~/db/jbpm-core;MVCC=true</db.connectionURL>
                 <db.username>sa</db.username>
                 <db.password />
                 <db.Type>h2</db.Type>
@@ -283,6 +283,12 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+			
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
                 <version>${spring.version}</version>
             </dependency>
 
