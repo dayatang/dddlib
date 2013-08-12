@@ -9,7 +9,7 @@
 		</layout>
 	</appender>
 
-	<category name="org.openkoala.koala">
+	<category name="org.openkoala">
 		<priority value="debug" />
 	</category>
 
