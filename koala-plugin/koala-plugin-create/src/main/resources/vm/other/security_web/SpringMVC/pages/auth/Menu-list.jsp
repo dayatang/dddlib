@@ -124,7 +124,7 @@
 				name : "icon",
 				align : "center",
 				render : function(row) {
-					return "<img src='" + row.icon + "'/>";
+					return "<img src='${pageContext.request.contextPath}/" + row.icon + "'/>";
 				}
 			}, {
 				display : "菜单描述",

@@ -29,30 +29,14 @@ public class SecurityManagerImpl implements SecurityManager {
 	
 	private JdbcSecurityConfig config;
 	
-	private String username;
-	
-	private String password;
-	
-	private String url;
-	
-	private String driverClass;
-	
-	public SecurityManagerImpl(JdbcSecurityConfig config) {
-		this.config = config;
-		this.username = config.getDbuser();
-		this.password = config.getDbpassword();
-		this.url = config.getDburl();
-		this.driverClass = config.getDbdriver();
-	}
-	
 	/**
 	 * 获取数据库连接
 	 * @return
 	 */
 	private Connection getConnection() {
-		DbUtils.loadDriver(driverClass);
+		DbUtils.loadDriver(config.getDbdriver());
 		try {
-			return DriverManager.getConnection(url, username, password);
+			return DriverManager.getConnection(config.getDburl(), config.getDbuser(), config.getDbpassword());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -198,6 +182,10 @@ public class SecurityManagerImpl implements SecurityManager {
 	 */
 	private boolean isSuper(String userAccount) {
 		return config.getUseAdmain().equals("true") && config.getAdminAccount().equals(userAccount);
+	}
+
+	public void setConfig(JdbcSecurityConfig config) {
+		this.config = config;
 	}
 	
 }

@@ -35,7 +35,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.transaction.annotation.Transactional;
 
-@Transactional
+
 public class JbpmSupport {
 	
 	private static final Logger logger = LoggerFactory.getLogger(JbpmSupport.class);
@@ -56,7 +56,7 @@ public class JbpmSupport {
 	private JBPMTaskService jbpmTaskService;
 	
 
-	private KnowledgeBuilder  kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
+	private KnowledgeBuilder  kbuilder;
 
 	
 	private static Map<String, Integer> activeProcessMap = new HashMap<String, Integer>();
@@ -83,6 +83,7 @@ public class JbpmSupport {
 		ksession.addEventListener(new JBPMProcessEventListener());
 		new JPAWorkingMemoryDbLogger(ksession);//引入流程历史记录接口
 		JPAProcessInstanceDbLog.setEnvironment(ksession.getEnvironment());//引入流程历史记录的ksesson
+		
 		initActiveProcess();
 		initVariables();
 	}
