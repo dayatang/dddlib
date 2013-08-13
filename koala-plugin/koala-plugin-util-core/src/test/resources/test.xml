@@ -1,0 +1,7 @@
+<person>
+	<name>test-name</name>
+	<telephones>
+		<telephone>123456</telephone>
+		<telephone>234567</telephone>
+	</telephones>
+</person>
