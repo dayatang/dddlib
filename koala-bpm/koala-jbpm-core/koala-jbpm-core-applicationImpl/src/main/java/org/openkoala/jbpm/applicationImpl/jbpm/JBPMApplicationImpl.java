@@ -390,7 +390,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			String user, String params, String data) {
 		// 更新流程级的参数
 		Map<String, Object> proceeParams = XmlParseUtil.xmlToPrams(params);
-		proceeParams.put("KJ_user", user);
+		proceeParams.put("KJ_USER", user);
 		RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
 				.getProcessInstance(processInstanceId);
 		Set<String> keys = proceeParams.keySet();

@@ -27,7 +27,7 @@ public class JBPMProcessEventListener implements ProcessEventListener {
 		log.setComment("流程启动");
 		log.setCreateDate(new Date());
 		log.setNodeName("启动");
-		log.setUser((String)in.getVariable("KJ_user"));
+		log.setUser((String)in.getVariable("KJ_USER"));
 		log.setProcessInstanceId(event.getProcessInstance().getId());
 		log.setProcessData(XmlParseUtil.paramsToXml(in.getVariables()));
 		log.save();
