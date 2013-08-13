@@ -75,8 +75,7 @@ public class JBPMApplicationImplService extends Service {
 	}
 
 	public JBPMApplicationImplService(URL url) {
-		super(url, new QName(
-				"http://jbpm.applicationImpl.jbpm.openkoala.org/",
+		super(url, new QName("http://jbpm.applicationImpl.jbpm.openkoala.org/",
 				"JBPMApplicationImplService"));
 	}
 

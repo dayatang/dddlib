@@ -92,7 +92,7 @@ public class FtpUtilImpl implements FtpUtil {
 	}
 	
 	public File downLoadFile(String path, String filename) throws FtpException {
-		if(tmpDir==null)tmpDir = System.getProperty("java.io.tmpdir");
+		if(tmpDir==null || "".equals(tmpDir))tmpDir = System.getProperty("java.io.tmpdir");
 		return downLoadFile(path,filename,this.tmpDir);
 	}
 
@@ -250,7 +250,8 @@ public class FtpUtilImpl implements FtpUtil {
 			}
 			ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
 			fis = new FileInputStream(file);
-			ftpClient.storeFile(file.getName(), fis);
+			boolean upload = ftpClient.storeFile(file.getName(), fis);
+			System.out.println(upload);
 			ftpClient.setFileType(FTP.ASCII_FILE_TYPE);
 		}catch (IOException e) {
 			e.printStackTrace();
@@ -536,6 +537,9 @@ public class FtpUtilImpl implements FtpUtil {
 	}
 	
 	public void initTmpDir(String path){
+		if(path==null){
+			path = System.getProperty("java.io.tmpdir");
+		}
 		if(new File(path).exists()==false){
 			new File(path).mkdirs();
 		}
