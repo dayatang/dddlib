@@ -20,7 +20,7 @@
 	</VelocityDirObject>
 	
 	<VelocityFileObject>
-	    <property name="express"><![CDATA[$Module.moduleType=='war' && $Project.mvcProtocol=='SpringMVC']]></property>
+	    <property name="express"><![CDATA[$Module.moduleType=='war' || $Module.security || $Module.monitor || $Module.generalQuery ]]></property>
 		<property name="vm">vm/other/koala-spring-servlet.xml</property>
 		<property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/koala-spring-servlet.xml</property>
 	</VelocityFileObject>
