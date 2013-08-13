@@ -52,7 +52,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 
 /**
- * 功能描述：mina数据同步服务端<br />
+ * 功能描述：远程数据策略mina服务端处理类<br />
  * 
  * 创建日期：2013-5-21 下午3:57:11 <br />
  * 

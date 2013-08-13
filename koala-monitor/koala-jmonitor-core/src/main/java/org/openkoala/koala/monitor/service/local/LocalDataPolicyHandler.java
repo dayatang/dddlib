@@ -29,9 +29,9 @@ import org.openkoala.koala.config.service.BaseSchedulerBean;
 import org.openkoala.koala.monitor.domain.MonitorNode;
 import org.openkoala.koala.monitor.domain.MonitorNode.MonitorComponent;
 import org.openkoala.koala.monitor.jwebap.ComponentDef;
+import org.openkoala.koala.monitor.jwebap.HttpRequestTrace.ActiveUser;
 import org.openkoala.koala.monitor.jwebap.NodeDef;
 import org.openkoala.koala.monitor.jwebap.Trace;
-import org.openkoala.koala.monitor.jwebap.HttpRequestTrace.ActiveUser;
 import org.openkoala.koala.monitor.model.GeneralMonitorStatusVo;
 import org.openkoala.koala.monitor.model.JdbcPoolStatusVo;
 import org.openkoala.koala.monitor.model.ServerStatusVo;
@@ -92,7 +92,6 @@ public class LocalDataPolicyHandler extends BaseSchedulerBean implements DataPol
 				}
 			});
 		} catch (Exception e) {
-			e.printStackTrace();
 			LOG.warn("数据同步服务启动失败["+e.getMessage() + "]");
 		}
 		
@@ -118,8 +117,10 @@ public class LocalDataPolicyHandler extends BaseSchedulerBean implements DataPol
 			Iterator<List<Trace>> iterator = traces.values().iterator();
 			while(iterator.hasNext()){
 				boolean saveOk = saveMonitorData(iterator.next());
-				if(saveOk)iterator.remove();
-				count++;
+				if(saveOk){
+					iterator.remove();
+					count++;
+				}
 			}
 		} catch (Exception e) {
 			LOG.error("保存数据失败",e);
@@ -127,7 +128,7 @@ public class LocalDataPolicyHandler extends BaseSchedulerBean implements DataPol
 			MonitorNode.refreshNodeLastActiveTime();
 			//未同步成功的
 			if(traces.size()>0)RuntimeContext.getContext().getDataCache().pushAll(traces);
-			if(LOG.isDebugEnabled())LOG.debug("=====完成同步监控数据========");
+			if(LOG.isDebugEnabled())LOG.debug("=====完成同步监控数据,写入记录：{}========",count);
 		}
 	}
 
