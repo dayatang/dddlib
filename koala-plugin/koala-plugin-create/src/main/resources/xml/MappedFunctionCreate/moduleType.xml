@@ -20,6 +20,7 @@
 	</VelocityDirObject>
 	
 	<VelocityFileObject>
+	    <property name="express"><![CDATA[$Module.moduleType=='war' && $Project.mvcProtocol=='SpringMVC']]></property>
 		<property name="vm">vm/other/koala-spring-servlet.xml</property>
 		<property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/koala-spring-servlet.xml</property>
 	</VelocityFileObject>
@@ -27,8 +28,7 @@
 	<VelocityFileObject>
 		<property name="express"><![CDATA[$Module.moduleType=='war' && $Project.mvcProtocol=='Struts2MVC']]></property>
 		<property name="vm">vm/other/struts.xml</property>
-		<property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/struts.xml
-		</property>
+		<property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/struts.xml</property>
 	</VelocityFileObject>
 
 	<VelocityDirObject>
