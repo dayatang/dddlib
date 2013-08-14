@@ -6,7 +6,7 @@
 		<artifactId>dayatang-commons-project</artifactId>
 		<version>3.7-SNAPSHOT</version>
 	</parent>
-	<artifactId>dayatang-commons-datasource4saas</artifactId>
+	<artifactId>dayatang-commons-ds4saas</artifactId>
 	<packaging>jar</packaging>
 	<name>Dayatang Datasource for SaaS</name>
 	<description>A data source implement for SaaS, as a proxy, locate the actual backend data souce for a specular tenant. </description>
