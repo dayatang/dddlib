@@ -88,7 +88,7 @@ public class SaasDataSourceTest {
 	}
 
 	@Test
-	public void testGetConnectionStringString() throws SQLException {
+	public void testGetConnectionWithUsernameAndPassword() throws SQLException {
 		String username = "zhangsan";
 		String password = "pwd";
 		Connection result = mock(Connection.class);

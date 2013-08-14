@@ -1,96 +1,23 @@
 package com.dayatang.dsrouter.dsregistry;
 
 import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
-
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 import javax.naming.Context;
-import javax.sql.DataSource;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import com.dayatang.dsrouter.DataSourceRegistry;
 
-public class JndiMappingDataSourceRegistryTest {
+public class JndiMappingDataSourceRegistryTest extends AbstractDataSourceRegistryTest {
 	
-	private JndiMappingDataSourceRegistry instance;
-	private Context context;
-	private DataSource dataSource;
-	private DataSource dataSource2;
-	private String tenant = "abc";
-	private String tenant2 = "xyz";
 	private String jndiPrefix = "jdbc/iexam/";
 
-	@Before
-	public void setUp() throws Exception {
-		context = mock(Context.class);
-		instance = new JndiMappingDataSourceRegistry();
-		instance.setContext(context);
-		instance.setJndiPrefix(jndiPrefix);
-		dataSource = mock(DataSource.class);
-		dataSource2 = mock(DataSource.class);
+	@Override
+	protected DataSourceRegistry getInstanceToBeTested() throws Exception {
+		Context context = mock(Context.class);
+		JndiMappingDataSourceRegistry result = new JndiMappingDataSourceRegistry();
+		result.setContext(context);
+		result.setJndiPrefix(jndiPrefix);
 		when(context.lookup(jndiPrefix + tenant)).thenReturn(dataSource);
 		when(context.lookup(jndiPrefix + tenant2)).thenReturn(dataSource2);
-		instance.releaseAllDataSources();
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		instance.releaseAllDataSources();
-	}
-
-	@Test
-	public void getDataSourceOfTenant() throws Exception {
-		assertSame(dataSource, instance.getDataSourceOfTenant(tenant));
-		verify(context).lookup(jndiPrefix + tenant);
-		assertSame(dataSource2, instance.getDataSourceOfTenant(tenant2));
-		verify(context).lookup(jndiPrefix + tenant2);
-		reset(context);
-		assertSame(dataSource, instance.getDataSourceOfTenant(tenant));
-		verify(context, never()).lookup(jndiPrefix + tenant);
-		assertSame(dataSource2, instance.getDataSourceOfTenant(tenant2));
-		verify(context, never()).lookup(jndiPrefix + tenant2);
-		assertSame(dataSource, instance.getDataSourceOfTenant(tenant));
-		assertEquals(2, instance.size());
-		instance.releaseAllDataSources();
-		assertEquals(0, instance.size());
-	}
-	
-	@Test
-	public void registerDataSource() throws Exception {
-		assertFalse(instance.existsDataSourceOfTenant(tenant));
-		instance.registerDataSourceForTenant(tenant, dataSource);
-		assertTrue(instance.existsDataSourceOfTenant(tenant));
-		assertSame(dataSource, instance.getDataSourceOfTenant(tenant));
-		verify(context, never()).lookup(jndiPrefix + tenant);
-	}
-	
-	@Test
-	public void releaseDataSourceOfTenant() {
-		assertSame(dataSource, instance.getDataSourceOfTenant(tenant));
-		assertTrue(instance.existsDataSourceOfTenant(tenant));
-		instance.unregisterDataSourceOfTenant(tenant);
-		assertFalse(instance.existsDataSourceOfTenant(tenant));
-	}
-	
-	@Test
-	public void releaseAllDataSources() {
-		instance.registerDataSourceForTenant("abc", mock(DataSource.class));
-		instance.registerDataSourceForTenant("xyz", mock(DataSource.class));
-		assertEquals(2, instance.size());
-		instance.releaseAllDataSources();
-		assertTrue(instance.size() == 0);
-	}
-	
-	@Test
-	public void getLastAccessTimeOfTenant() throws InterruptedException {
-		assertNull(instance.getLastAccessTimeOfTenant(tenant));
-		assertSame(dataSource, instance.getDataSourceOfTenant(tenant));
-		Date lastAccess = instance.getLastAccessTimeOfTenant(tenant);
-		assertTrue(System.currentTimeMillis() - lastAccess.getTime() < 100);
-		TimeUnit.SECONDS.sleep(2);
-		assertTrue(System.currentTimeMillis() - lastAccess.getTime() > 1000);
+		return result;
 	}
 }
