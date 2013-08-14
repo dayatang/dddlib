@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * 仓储访问接口。用于存取和查询数据库中的各种类型的实体。
  * 
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  * 
  */
 @SuppressWarnings("deprecation")

@@ -15,7 +15,7 @@ import com.dayatang.datasource4saas.dsregistry.DataSourceCreator;
 
 /**
  * 抽象数据源创建器实现
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public abstract class AbstractDataSourceCreator implements DataSourceCreator {

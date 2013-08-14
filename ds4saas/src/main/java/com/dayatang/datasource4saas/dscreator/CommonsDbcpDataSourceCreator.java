@@ -8,7 +8,7 @@ import com.dayatang.utils.Slf4jLogger;
 
 /**
  * 基于Apache Commons DBCP连接池的数据源创建器
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public class CommonsDbcpDataSourceCreator extends AbstractDataSourceCreator {

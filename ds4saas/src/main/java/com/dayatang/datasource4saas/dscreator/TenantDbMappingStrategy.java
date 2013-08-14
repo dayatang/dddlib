@@ -5,7 +5,7 @@ import com.dayatang.configuration.Configuration;
 /**
  * 租户数据库映射策略。
  * 
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  * 
  */
 public enum TenantDbMappingStrategy {

@@ -34,7 +34,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
  * DBUnit实用工具类。用于的在数据库和XML数据文件之间的相互输入输出。
  * XML数据文件只支持FlatXml格式，则数据库中的每行数据表示为一个XML元素，
  * 每个列成为该元素的一个属性。
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public class DbUnitUtils {

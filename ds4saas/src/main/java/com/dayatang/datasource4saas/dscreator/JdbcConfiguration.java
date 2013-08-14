@@ -7,7 +7,7 @@ import com.dayatang.utils.Assert;
 
 /**
  * 根据数据库类型、映射策略、JDBC配置、租户数据库映射等信息，为特定租户指定JBDC Url和Schema
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public class JdbcConfiguration {

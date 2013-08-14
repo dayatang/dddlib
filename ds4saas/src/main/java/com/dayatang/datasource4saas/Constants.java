@@ -2,7 +2,7 @@ package com.dayatang.datasource4saas;
 
 /**
  * 系统常量定义
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public interface Constants {

@@ -21,7 +21,7 @@ import com.dayatang.utils.Slf4jLogger;
  * <P>配置文件的格式符合标准的java属性文件格式，采用UTF8的编码方式，支持中文，不需native2ascii。</P>
  * <P>注意：为了避免日期格式的转换等复杂问题，日期是转化为long类型的数据保存的（采用date.getTime()方法）。</P>
  * 
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  */
 public class ConfigurationUrlImpl extends AbstractConfiguration {
 	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(ConfigurationUrlImpl.class);

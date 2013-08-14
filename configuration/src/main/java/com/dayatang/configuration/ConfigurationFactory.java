@@ -11,7 +11,7 @@ import com.dayatang.configuration.impl.ConfigurationUrlImpl;
 
 /**
  * 数据库工厂，用于隐藏配置类的具体实现
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public class ConfigurationFactory {

@@ -22,7 +22,7 @@ import com.dayatang.domain.InstanceProvider;
  * jar的方式直接替换底层实现。
  * 该方法的缺点包括：（1）JDK6以上才支持；（2）要求每个实现类都要有一个无参构造函数；（3）没有其他IoC框架那样的
  * Singleton等范围定义；
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public class Jdk6InstanceProvider implements InstanceProvider {

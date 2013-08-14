@@ -17,7 +17,7 @@ import com.dayatang.InstanceProviderNotFoundException;
  * 序来说，最佳的初始化位置是在main()函数里面；对于单元测试，最佳的初始 化位置是setUp()方法内部。
  * 
  * 
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  * 
  */
 public class InstanceFactory {

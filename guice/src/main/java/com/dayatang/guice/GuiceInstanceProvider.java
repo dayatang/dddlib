@@ -11,7 +11,7 @@ import com.google.inject.name.Names;
 /**
  * 实例提供者接口的Google Guice实现。
  * 
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  * 
  */
 public class GuiceInstanceProvider implements InstanceProvider {

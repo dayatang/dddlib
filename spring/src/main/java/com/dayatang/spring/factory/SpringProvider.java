@@ -8,7 +8,7 @@ import com.dayatang.domain.InstanceProvider;
 
 /**
  * {@link Deprecated} 因命名不恰当，请改用SpringInstanceProvider。
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 @Deprecated

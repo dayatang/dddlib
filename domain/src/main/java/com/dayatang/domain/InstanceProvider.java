@@ -5,7 +5,7 @@ package com.dayatang.domain;
  * 实例提供者接口。该接口封装了IoC工厂的具体实现。它抽象
  * 出IoC工厂的基本能力：提供某种指定类型（接口/类）的一个
  * 实例。
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public interface InstanceProvider {

@@ -2,7 +2,7 @@ package com.dayatang.datasource4saas.dscreator;
 
 /**
  * 数据源创建异常。
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public class DataSourceCreationException extends RuntimeException {

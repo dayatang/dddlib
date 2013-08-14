@@ -42,7 +42,7 @@ import com.dayatang.domain.internal.StartsWithTextCriterion;
 /**
  * 一个工具类,用于将QueryCriterion转换成Hibernate的Criterion
  * 
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  * 
  */
 @SuppressWarnings({ "unchecked", "rawtypes" })

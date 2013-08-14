@@ -2,7 +2,7 @@ package com.dayatang;
 
 /**
  * JDBC属性的key
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public interface JdbcConstants {

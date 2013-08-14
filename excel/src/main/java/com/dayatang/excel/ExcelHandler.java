@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Excel读写类
  * 
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  * 
  */
 public class ExcelHandler {

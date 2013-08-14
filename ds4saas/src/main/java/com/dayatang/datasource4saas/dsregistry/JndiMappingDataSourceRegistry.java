@@ -12,7 +12,7 @@ import com.dayatang.utils.Slf4jLogger;
 /**
  * 数据源注册表实现，将租户数据源映射到JNDI
  * 
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  * 
  */
 public class JndiMappingDataSourceRegistry extends MapBasedDataSourceRegistry {

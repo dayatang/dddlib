@@ -35,7 +35,7 @@ import com.dayatang.domain.internal.StartsWithTextCriterion;
 
 /**
  * 一个工具类，作为各种查询条件的工厂
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public class Criterions {

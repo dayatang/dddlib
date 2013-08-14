@@ -9,7 +9,7 @@ import org.apache.commons.lang3.time.DateUtils;
 
 /**
  * 日期范围类。包括左右边界值。忽略时间部分。
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public class DateRange implements Serializable{

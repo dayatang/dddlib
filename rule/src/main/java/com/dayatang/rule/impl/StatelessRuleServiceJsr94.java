@@ -11,7 +11,7 @@ import com.dayatang.rule.StatelessRuleTemplate;
 /**
  * 无状态规则服务的实现类，用JSR94实现。
  * 
- * @author yyang <a href="mailto:gdyangyu@gmail.com">杨宇</a>
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>) <a href="mailto:gdyangyu@gmail.com">杨宇</a>
  * 
  */
 @SuppressWarnings("rawtypes")

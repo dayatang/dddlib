@@ -10,7 +10,7 @@ import bitronix.tm.TransactionManagerServices;
 
 /**
  * 通过开源JTA实现库BTM创建数据源并绑定到JNDI.
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public class BtmUtils {

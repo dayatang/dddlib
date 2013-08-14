@@ -9,7 +9,7 @@ import com.dayatang.domain.InstanceProvider;
 /**
  * 实例提供者接口的Spring实现。
  * SpringProvider内部通过Spring IoC的ApplicationContext实现对象创建。
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public class SpringInstanceProvider implements InstanceProvider {

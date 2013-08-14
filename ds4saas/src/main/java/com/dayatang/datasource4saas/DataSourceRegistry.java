@@ -7,7 +7,7 @@ import javax.sql.DataSource;
 
 /**
  * 租户数据源注册表，为每个租户注册专用的数据源
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public interface DataSourceRegistry {

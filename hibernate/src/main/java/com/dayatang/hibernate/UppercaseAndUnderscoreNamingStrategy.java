@@ -6,7 +6,7 @@ import org.hibernate.internal.util.StringHelper;
 
 /**
  * Hibernate映射命名策略类。将表名和列名设定为大写字母形式，如果表名或列名由多个单词组成，单词之间用下划线隔开。
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public class UppercaseAndUnderscoreNamingStrategy implements NamingStrategy {

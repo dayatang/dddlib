@@ -10,7 +10,7 @@ import com.google.inject.name.Names;
 
 /**
  * 因命名不恰当，请改用GuiceInstanceProvider。
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  * 
  */
 @Deprecated

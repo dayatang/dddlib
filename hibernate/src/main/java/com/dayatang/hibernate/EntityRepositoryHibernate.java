@@ -25,7 +25,7 @@ import com.dayatang.hibernate.internal.QueryTranslator;
 /**
  * 通用仓储接口的Hibernate实现。
  * 
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  * 
  */
 @SuppressWarnings({"unchecked", "deprecation"})

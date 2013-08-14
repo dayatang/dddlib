@@ -4,7 +4,7 @@ import javax.sql.DataSource;
 
 /**
  * 数据源创建器接口。用于为特定租户创建专有的数据源。
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public interface DataSourceCreator {

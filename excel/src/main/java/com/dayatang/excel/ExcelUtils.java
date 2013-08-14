@@ -8,7 +8,7 @@ import com.dayatang.utils.Assert;
 
 /**
  * Excel工具类
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public class ExcelUtils {

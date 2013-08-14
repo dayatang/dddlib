@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
  * 建立这个类的目的，一是消除了客户代码自行创建StatelessRuleSession的必要性
  * ，二是为了防止客户代码执行规则之后忘记释放StatelessRuleSession。
  * 
- * @author yyang <a href="mailto:gdyangyu@gmail.com">杨宇</a>
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>) <a href="mailto:gdyangyu@gmail.com">杨宇</a>
  * 
  */
 @SuppressWarnings("rawtypes")

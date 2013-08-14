@@ -7,7 +7,7 @@ import com.dayatang.domain.InstanceProvider;
 
 /**
  * 因命名不恰当，请改用TapestryInstanceProvider。
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 @Deprecated

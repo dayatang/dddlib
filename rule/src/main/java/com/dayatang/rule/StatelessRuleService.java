@@ -12,7 +12,7 @@ import java.util.Map;
  * 无状态规则服务接口，
  * 
  * @author cchen <a href="mailto:chencao0524@gmail.com">陈操</a>
- * @author yyang <a href="mailto:gdyangyu@gmail.com">杨宇</a>
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>) <a href="mailto:gdyangyu@gmail.com">杨宇</a>
  * 
  * @version $LastChangedRevision$ $LastChangedBy$ $LastChangedDate$
  * 

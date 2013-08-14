@@ -4,7 +4,7 @@ import com.dayatang.utils.Assert;
 
 /**
  * Excel工作表范围，代表指定工作表中的一个矩形区域
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public class ExcelRange {

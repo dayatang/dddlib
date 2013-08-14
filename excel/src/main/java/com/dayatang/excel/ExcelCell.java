@@ -4,7 +4,7 @@ import com.dayatang.utils.Assert;
 
 /**
  * Excel单元格
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public class ExcelCell {

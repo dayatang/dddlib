@@ -27,7 +27,7 @@ import com.dayatang.jpa.internal.JpaCriteriaQueryBuilder;
 /**
  * 通用仓储接口的JPA实现。
  * 
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  * 
  */
 @SuppressWarnings({"unchecked", "deprecation"})

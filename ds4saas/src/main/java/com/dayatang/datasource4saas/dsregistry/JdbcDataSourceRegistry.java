@@ -9,7 +9,7 @@ import com.dayatang.utils.Slf4jLogger;
 
 /**
  * 当还没有对应于指定的租户的数据源时，即时创建一个。
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public class JdbcDataSourceRegistry extends MapBasedDataSourceRegistry {

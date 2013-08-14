@@ -7,7 +7,7 @@ import com.dayatang.domain.InstanceProvider;
 
 /**
  * IoC实例提供者接口InstanceProvider的TapestryIoC实现。
- * @author yyang
+ * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
 public class TapestryInstanceProvider implements InstanceProvider {
