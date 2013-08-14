@@ -599,7 +599,7 @@
 		<module>dsmonitor</module>
 		<module>querychannel</module>
 		<module>dsrouter</module>
-		<module>dsrouter2</module>
+		<module>ds4saas</module>
 		<module>configuration</module>
 	</modules>
 </project>
