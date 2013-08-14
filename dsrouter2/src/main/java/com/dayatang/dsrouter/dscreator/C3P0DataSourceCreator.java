@@ -5,6 +5,11 @@ import javax.sql.DataSource;
 import com.dayatang.utils.Slf4jLogger;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
+/**
+ * 基于C3P0连接池的数据源创建器
+ * @author yyang
+ *
+ */
 public class C3P0DataSourceCreator extends AbstractDataSourceCreator {
 
 	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(C3P0DataSourceCreator.class);

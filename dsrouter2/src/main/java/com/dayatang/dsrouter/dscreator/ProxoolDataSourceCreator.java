@@ -6,6 +6,11 @@ import org.logicalcobwebs.proxool.ProxoolDataSource;
 
 import com.dayatang.utils.Slf4jLogger;
 
+/**
+ * 基于Proxool连接池的数据源创建器
+ * @author yyang
+ *
+ */
 public class ProxoolDataSourceCreator extends AbstractDataSourceCreator {
 
 	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(ProxoolDataSourceCreator.class);

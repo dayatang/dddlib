@@ -5,7 +5,11 @@ import com.dayatang.configuration.ConfigurationFactory;
 import com.dayatang.dsrouter.Constants;
 import com.dayatang.utils.Assert;
 
-
+/**
+ * 根据数据库类型、映射策略、JDBC配置、租户数据库映射等信息，为特定租户指定JBDC Url和Schema
+ * @author yyang
+ *
+ */
 public class JdbcConfiguration {
 	private String tenant;
 	private Configuration dbTenantMappings;
@@ -20,11 +24,22 @@ public class JdbcConfiguration {
 	private String password;
 	private String extraUrlString;
 
+	/**
+	 * 生成特定租户的配置。从类路径下的ds-config.properties读取数据库类型、租户数据库映射策略和JDBC属性，从
+	 * 类路径下的tenant-db-mappings.properties读取租户与数据库属性的映射。
+	 * @param tenant 租户ID
+	 */
 	public JdbcConfiguration(String tenant) {
 		this(tenant, new ConfigurationFactory().fromClasspath(Constants.DB_CONF_FILE), 
 				new ConfigurationFactory().fromClasspath(Constants.DB_MAPPING_FILE));
 	}
 
+	/**
+	 * 
+	 * @param tenant 租户ID
+	 * @param dsConfiguration 数据库类型、租户数据库映射策略和JDBC属性配置
+	 * @param dbTenantMappings 租户与数据库属性的映射。
+	 */
 	public JdbcConfiguration(String tenant, Configuration dsConfiguration, Configuration dbTenantMappings) {
 		Assert.notNull(dsConfiguration);
 		Assert.notNull(dbTenantMappings);

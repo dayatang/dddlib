@@ -6,6 +6,11 @@ import org.apache.commons.dbcp.BasicDataSource;
 
 import com.dayatang.utils.Slf4jLogger;
 
+/**
+ * 基于Apache Commons DBCP连接池的数据源创建器
+ * @author yyang
+ *
+ */
 public class CommonsDbcpDataSourceCreator extends AbstractDataSourceCreator {
 
 	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(CommonsDbcpDataSourceCreator.class);
