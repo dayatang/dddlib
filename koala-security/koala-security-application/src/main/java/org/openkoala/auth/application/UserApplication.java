@@ -83,7 +83,7 @@ public interface UserApplication {
     /**
      * 重置用户密码
      */
-    void passwordReset();
+    void resetPassword();
 
     /**
      * 废除角色

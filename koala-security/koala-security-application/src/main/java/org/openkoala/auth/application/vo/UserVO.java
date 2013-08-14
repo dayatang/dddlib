@@ -1,6 +1,9 @@
 package org.openkoala.auth.application.vo;
 
 import java.io.Serializable;
+import java.util.Date;
+import org.openkoala.koala.auth.core.domain.User;
+import com.dayatang.utils.DateUtils;
 
 public class UserVO extends IdentityVO implements Serializable {
 	/**
@@ -13,6 +16,15 @@ public class UserVO extends IdentityVO implements Serializable {
 	private String userDesc;
 	private String lastModifyTime;
 	private boolean valid;
+	
+	public UserVO(Long id, String name, int sortOrder, String userAccount, String userDesc, boolean valid) {
+		this.setId(id);
+		this.setName(name);
+		this.setSortOrder(sortOrder);
+		this.setUserAccount(userAccount);
+		this.setUserDesc(userDesc);
+		this.setValid(valid);
+	}
 
 	public String getLastModifyTime() {
 		return lastModifyTime;
@@ -66,13 +78,32 @@ public class UserVO extends IdentityVO implements Serializable {
 
 	}
 
-	public UserVO(Long id, String name, int sortOrder, String userAccount, String userDesc, boolean valid) {
-		this.setId(id);
-		this.setName(name);
-		this.setSortOrder(sortOrder);
-		this.setUserAccount(userAccount);
-		this.setUserDesc(userDesc);
-		this.setValid(valid);
+	public void domain2Vo(User user) {
+        this.setId(user.getId());
+        this.setLastLoginTime(user.getLastLoginTime() == null ? "" : user.getLastLoginTime().toString());
+        this.setUserAccount(user.getUserAccount());
+        this.setUserPassword(user.getUserPassword());
+        this.setUserDesc(user.getUserDesc());
+        this.setAbolishDate(user.getAbolishDate() == null ? "" : user.getAbolishDate().toString());
+        this.setCreateDate(user.getCreateDate() == null ? "" : user.getCreateDate().toString());
+        this.setCreateOwner(user.getCreateOwner());
+        this.setName(user.getName());
+        this.setSerialNumber(user.getSerialNumber());
+        this.setSortOrder(user.getSortOrder());
+        this.setValid(user.isValid());
 	}
-
+	
+	public void vo2Domain(User user) {
+		user.setAbolishDate(DateUtils.MAX_DATE);
+        user.setCreateDate(new Date());
+        user.setUserAccount(this.getUserAccount());
+        user.setUserPassword(this.getUserPassword());
+        user.setUserDesc(this.getUserDesc());
+        user.setCreateOwner(this.getCreateOwner());
+        user.setName(this.getName());
+        user.setSerialNumber(this.getSerialNumber());
+        user.setSortOrder(this.getSortOrder());
+        user.setValid(this.isValid());
+	}
+	
 }

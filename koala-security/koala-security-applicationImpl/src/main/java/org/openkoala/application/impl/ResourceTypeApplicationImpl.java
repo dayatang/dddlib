@@ -44,6 +44,7 @@ public class ResourceTypeApplicationImpl extends BaseImpl implements ResourceTyp
 			resourceType.setSerialNumber("0");
 			resourceType.setSortOrder(0);
 			resourceType.save();
+			resourceTypeVO.setId(String.valueOf(resourceType.getId()));
 		}
 	}
 

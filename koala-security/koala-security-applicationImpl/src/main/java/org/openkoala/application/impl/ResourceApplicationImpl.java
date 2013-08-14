@@ -31,6 +31,7 @@ import com.dayatang.utils.DateUtils;
 @Stateless(name = "ResourceApplication")
 @Remote
 public class ResourceApplicationImpl extends BaseImpl implements ResourceApplication {
+	
     public static ResourceVO domainObject2Vo(Resource resource) {
         ResourceVO treeVO = new ResourceVO();
         treeVO.setId(resource.getId() == null ? null : resource.getId());
@@ -177,8 +178,7 @@ public class ResourceApplicationImpl extends BaseImpl implements ResourceApplica
         resourceTypeAssignment.setCreateDate(new Date());
         resourceTypeAssignment.setAbolishDate(DateUtils.MAX_DATE);
         resourceTypeAssignment.setResource(resource);
-        resourceTypeAssignment
-                .setResourceType(ResourceType.load(ResourceType.class, Long.valueOf(resourceVO.getTypeId())));
+        resourceTypeAssignment.setResourceType(ResourceType.load(ResourceType.class, Long.valueOf(resourceVO.getTypeId())));
         resourceTypeAssignment.save();
     }
 
@@ -203,18 +203,6 @@ public class ResourceApplicationImpl extends BaseImpl implements ResourceApplica
     public void removeResource(long id) {
     	Resource resource = Resource.load(Resource.class, id);
     	resource.removeResource();
-    }
-
-    /**
-     * 该资源是否已经被授权
-     * @param resource
-     * @return 
-     */
-    private boolean hasAuthorizations(Resource resource) {
-        if (resource.getAuthorizations() != null && resource.getAuthorizations().size() > 0) {
-            return true;
-        }
-        return false;
     }
 
     public List<ResourceVO> findAllResource() {
@@ -287,11 +275,6 @@ public class ResourceApplicationImpl extends BaseImpl implements ResourceApplica
     public void initResource(String type) {
         String menuIcon = "images/icons/other/node.png";
         
-//        ResourceLineAssignment.removeAll();
-//        Resource.removeAll();
-//        ResourceType.removeAll();
-//        
-//        
         Resource resourceManager = null;
         Resource resource = null;
         Resource menuResource = null;

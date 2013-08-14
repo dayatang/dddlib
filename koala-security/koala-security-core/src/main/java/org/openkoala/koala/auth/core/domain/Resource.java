@@ -104,46 +104,63 @@ public class Resource extends Party {
 		this.save();
 	}
 
+	/**
+	 * 为资源分配角色
+	 * @param role
+	 */
 	public void assignRole(Role role) {
 		IdentityResourceAuthorization idres = new IdentityResourceAuthorization();
 		idres.save();
 	}
 
+	/**
+	 * 根据角色ID查找资源
+	 * @param roleId
+	 * @return
+	 */
 	public static List<Resource> findResourceByRole(Long roleId) {
-		Object[] params = new Object[] { roleId, new Date() };
-		return Resource.findByNamedQuery("findResourceByRole", params, Resource.class);
+		return Resource.findByNamedQuery("findResourceByRole", new Object[] { roleId, new Date() }, Resource.class);
 	}
 
+	/**
+	 * 根据父资源ID查找子资源
+	 * @param parentId
+	 * @return
+	 */
 	public static List<Resource> findChildByParent(Long parentId) {
 		if (parentId == null) {
-			Object[] params = new Object[] { "1", new Date() };
-			return Resource.findByNamedQuery("findTopLevelResource", params, Resource.class);
+			return Resource.findByNamedQuery("findTopLevelResource", new Object[] { "1", new Date() }, Resource.class);
 		} 
-		Object[] params = new Object[] { parentId, new Date() };
-		return Resource.findByNamedQuery("findChildByParent", params, Resource.class);
+		return Resource.findByNamedQuery("findChildByParent", new Object[] { parentId, new Date() }, Resource.class);
 	}
 
+	/**
+	 * 根据父资源ID和用户账号查找子资源
+	 * @param parentId
+	 * @param userAccount
+	 * @return
+	 */
 	public static List<Resource> findChildByParentAndUser(Long parentId, String userAccount) {
-		Object[] params = null;
 		if (parentId == null) {
-			if (userAccount.equals("")) {
-				params = new Object[] { "1", new Date() };
-				return Resource.findByNamedQuery("findTopLevelResource", params, Resource.class);
-			} else {
-				params = new Object[] { userAccount, new Date(), new Date() };
-				return Resource.findByNamedQuery("findTopLevelResourceByUser", params, Resource.class);
+			if ("".equals(userAccount)) {
+				return Resource.findByNamedQuery("findTopLevelResource", //
+						new Object[] { "1", new Date() }, Resource.class);
 			}
+			return Resource.findByNamedQuery("findTopLevelResourceByUser", //
+					new Object[] { userAccount, new Date(), new Date() }, Resource.class);
 		} else {
-			if (userAccount.equals("")) {
-				params = new Object[] { parentId, new Date() };
-				return Resource.findByNamedQuery("findChildByParent", params, Resource.class);
-			} else {
-				params = new Object[] { parentId, userAccount, new Date(), new Date() };
-				return Resource.findByNamedQuery("findChildByParentAndUser", params, Resource.class);
-			}
+			if ("".equals(userAccount)) {
+				return Resource.findByNamedQuery("findChildByParent",  //
+						new Object[] { parentId, new Date() }, Resource.class);
+			} 
+			return Resource.findByNamedQuery("findChildByParentAndUser", //
+					new Object[] { parentId, userAccount, new Date(), new Date() }, Resource.class);
 		}
 	}
 
+	/**
+	 * 删除资源
+	 */
 	public void removeResource() {
 		removeResourceLineAssignment();
 		removeIdentityResourceAuthorization();
@@ -180,6 +197,10 @@ public class Resource extends Party {
 		}
 	}
 
+	/**
+	 * 为资源分配父资源
+	 * @param parent
+	 */
 	public void assignParent(Resource parent) {
 		ResourceLineAssignment resLineAssignment = new ResourceLineAssignment();
 		resLineAssignment.setCreateDate(new Date());
@@ -190,6 +211,10 @@ public class Resource extends Party {
 		resLineAssignment.save();
 	}
 
+	/**
+	 * 为资源分配子资源
+	 * @param child
+	 */
 	public void assignChild(Resource child) {
 		ResourceLineAssignment resLineAssignment = new ResourceLineAssignment();
 		resLineAssignment.setCreateDate(new Date());
@@ -200,28 +225,42 @@ public class Resource extends Party {
 		resLineAssignment.save();
 	}
 
-	public static List<Role> findRoleByResource(String url) {
-		Object[] params = new Object[] { url };
-		return Resource.findByNamedQuery("findRoleByResource", params, Role.class);
+	/**
+	 * 根据资源标识符查找角色
+	 * @param identifier
+	 * @return
+	 */
+	public static List<Role> findRoleByResource(String identifier) {
+		return Resource.findByNamedQuery("findRoleByResource", new Object[] { identifier }, Role.class);
 	}
 
 	public static boolean hasPrivilegeByRole(Long resId, Long roleId) {
-		Object[] params = new Object[] { resId, roleId, new Date() };
-		List<IdentityResourceAuthorization> ls = Resource.findByNamedQuery("queryPrivilegeByRole", params,
+		List<IdentityResourceAuthorization> ls = Resource.findByNamedQuery("queryPrivilegeByRole", //
+				new Object[] { resId, roleId, new Date() }, //
 				IdentityResourceAuthorization.class);
 		return ls.size() > 0;
 	}
 
-	public static boolean hasPrivilegeByUser(String resUrl, String userAccount) {
-		Object[] params = new Object[] { resUrl, userAccount };
-		List<IdentityResourceAuthorization> ls = Resource.findByNamedQuery("queryPrivilegeByUser", params,
+	/**
+	 * 判断用户是否有权限
+	 * @param identifier
+	 * @param userAccount
+	 * @return
+	 */
+	public static boolean hasPrivilegeByUser(String identifier, String userAccount) {
+		List<IdentityResourceAuthorization> ls = Resource.findByNamedQuery("queryPrivilegeByUser", //
+				new Object[] { identifier, userAccount }, //
 				IdentityResourceAuthorization.class);
 		return ls.size() > 0;
 	}
 
+	/**
+	 * 判断一个资源是否有子资源
+	 * @param parentId
+	 * @return
+	 */
 	public static boolean hasChildByParent(Long parentId) {
-		Object[] params = new Object[] { parentId };
-		return !Resource.findByNamedQuery("hasChildByParent", params, Resource.class).isEmpty();
+		return !Resource.findByNamedQuery("hasChildByParent", new Object[] { parentId }, Resource.class).isEmpty();
 	}
 
 	/**
@@ -240,7 +279,6 @@ public class Resource extends Party {
 	}
 	
 	public static Resource newResource(String name,String identifier,String level,String menuIcon){
-	    
 	    Resource resource  = null;
 	    List<Resource> resources = Resource.getRepository().find("select r from Resource r where r.name = ? " + //
 	    		"and r.identifier = ?", new Object[]{name,identifier}, Resource.class);
