@@ -21,6 +21,6 @@ public class DbTypeDb2Test extends AbstractDbTypeTest {
 
 	@Test
 	public void getUrl() {
-		assertEquals("jdbc:db2://localhost:3306/test_db", instance.getUrl(jdbcConfiguration));
+		assertEquals("jdbc:db2://localhost:3306/ABC", instance.getUrl(jdbcConfiguration));
 	}
 }

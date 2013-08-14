@@ -26,8 +26,8 @@ public class C3P0DataSourceCreatorTest {
 
 	@Test
 	public void createDataSourceForTenant() throws Exception {
-		String tenant = "abcd";
-		String url = "jdbc:mysql://localhost:3306/test_db?useUnicode=true&characterEncoding=utf-8";
+		String tenant = "abc";
+		String url = "jdbc:mysql://localhost:3306/db_abc?useUnicode=true&characterEncoding=utf-8";
 		DataSource result = instance.createDataSourceForTenant(tenant);
 		//assertSame(dataSource, result);
 		assertEquals("com.mysql.jdbc.Driver", BeanUtils.getProperty(result, "driverClass"));

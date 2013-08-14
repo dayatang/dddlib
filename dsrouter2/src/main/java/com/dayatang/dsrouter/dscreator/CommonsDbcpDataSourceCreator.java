@@ -4,7 +4,6 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
 
-import com.dayatang.dsrouter.Constants;
 import com.dayatang.utils.Slf4jLogger;
 
 public class CommonsDbcpDataSourceCreator extends AbstractDataSourceCreator {
@@ -16,10 +15,11 @@ public class CommonsDbcpDataSourceCreator extends AbstractDataSourceCreator {
 		try {
 			BasicDataSource result = new BasicDataSource();
 			fillProperties(result);
-			result.setDriverClassName(getDsConfiguration().getString(Constants.JDBC_DRIVER_CLASS_NAME));
-			result.setUrl(getUrl(tenant));
-			result.setUsername(getUsername(tenant));
-			result.setPassword(getDsConfiguration().getString(Constants.JDBC_PASSWORD));
+			JdbcConfiguration jdbcConfiguration = getJdbcConfiguration(tenant);
+			result.setDriverClassName(jdbcConfiguration.getDriverClassName());
+			result.setUrl(jdbcConfiguration.getUrl());
+			result.setUsername(jdbcConfiguration.getUsername());
+			result.setPassword(jdbcConfiguration.getPassword());
 			return result;
 		} catch (Exception e) {
 			String message = "Create Commons DBCP data source failure.";

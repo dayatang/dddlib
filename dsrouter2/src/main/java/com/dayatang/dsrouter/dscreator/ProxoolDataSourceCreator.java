@@ -4,7 +4,6 @@ import javax.sql.DataSource;
 
 import org.logicalcobwebs.proxool.ProxoolDataSource;
 
-import com.dayatang.dsrouter.Constants;
 import com.dayatang.utils.Slf4jLogger;
 
 public class ProxoolDataSourceCreator extends AbstractDataSourceCreator {
@@ -16,10 +15,11 @@ public class ProxoolDataSourceCreator extends AbstractDataSourceCreator {
 		try {
 			ProxoolDataSource result = new ProxoolDataSource();
 			fillProperties(result);
-			result.setDriver(getDsConfiguration().getString(Constants.JDBC_DRIVER_CLASS_NAME));
-			result.setDriverUrl(getUrl(tenant));
-			result.setUser(getUsername(tenant));
-			result.setPassword(getDsConfiguration().getString(Constants.JDBC_PASSWORD));
+			JdbcConfiguration jdbcConfiguration = getJdbcConfiguration(tenant);
+			result.setDriver(jdbcConfiguration.getDriverClassName());
+			result.setDriverUrl(jdbcConfiguration.getUrl());
+			result.setUser(jdbcConfiguration.getUsername());
+			result.setPassword(jdbcConfiguration.getPassword());
 			return result;
 		} catch (Exception e) {
 			String message = "Create Proxool data source failure.";

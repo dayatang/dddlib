@@ -18,7 +18,7 @@ public interface Constants {
 	static final String DB_MAPPING_FILE = "/tenant-db-mapping.properties";
 	
 	/**
-	 * 租户数据库映射策略
+	 * 数据库类型
 	 */
 	static final String DB_TYPE = "db.type";
 	

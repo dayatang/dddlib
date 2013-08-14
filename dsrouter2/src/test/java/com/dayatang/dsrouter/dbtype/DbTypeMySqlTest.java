@@ -6,7 +6,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.dayatang.dsrouter.Constants;
 import com.dayatang.dsrouter.dscreator.DbType;
+import com.dayatang.dsrouter.dscreator.JdbcConfiguration;
 
 public class DbTypeMySqlTest extends AbstractDbTypeTest {
 	
@@ -21,12 +23,13 @@ public class DbTypeMySqlTest extends AbstractDbTypeTest {
 
 	@Test
 	public void getUrl() {
-		assertEquals("jdbc:mysql://localhost:3306/test_db", instance.getUrl(jdbcConfiguration));
+		assertEquals("jdbc:mysql://localhost:3306/ABC", instance.getUrl(jdbcConfiguration));
 	}
 
 	@Test
 	public void getUrlWithExtraUrlString() {
-		jdbcConfiguration.setExtraUrlString("useUnicode=true&encoding=UTF-8");
-		assertEquals("jdbc:mysql://localhost:3306/test_db?useUnicode=true&encoding=UTF-8", instance.getUrl(jdbcConfiguration));
+		dsConfiguration.setString(Constants.JDBC_EXTRA_URL_STRING, "useUnicode=true&encoding=UTF-8");
+		jdbcConfiguration = new JdbcConfiguration(tenant, dsConfiguration, dbTenantMappings);
+		assertEquals("jdbc:mysql://localhost:3306/ABC?useUnicode=true&encoding=UTF-8", instance.getUrl(jdbcConfiguration));
 	}
 }

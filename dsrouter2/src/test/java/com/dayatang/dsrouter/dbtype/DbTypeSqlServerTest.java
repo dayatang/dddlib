@@ -21,6 +21,6 @@ public class DbTypeSqlServerTest extends AbstractDbTypeTest {
 
 	@Test
 	public void getUrl() {
-		assertEquals("jdbc:jtds:sqlserver://localhost:3306/test_db", instance.getUrl(jdbcConfiguration));
+		assertEquals("jdbc:jtds:sqlserver://localhost:3306/ABC", instance.getUrl(jdbcConfiguration));
 	}
 }
