@@ -12,8 +12,6 @@ public abstract class PureSpringTestCase {
 
 	private static final Logger logger = LoggerFactory.getLogger(PureSpringTestCase.class);
 
-	protected static boolean alreadyInit = false;
-
 	private SpringInstanceProvider provider;
 
 	protected String[] springXmlPath() {
@@ -22,14 +20,17 @@ public abstract class PureSpringTestCase {
 
 	@Before
 	public void setup() {
-		if (!alreadyInit) {
-			if (logger.isDebugEnabled()) {
-				logger.debug("初始化Spring上下文。");
-			}
-			provider = new SpringInstanceProvider(springXmlPath());
-			InstanceFactory.setInstanceProvider(provider);
-			alreadyInit = true;
+		if (!(InstanceFactory.isInitialized())) {
+			initIoc();
 		}
+	}
+
+	private void initIoc() {
+		if (logger.isDebugEnabled()) {
+			logger.debug("初始化Spring上下文。");
+		}
+		provider = new SpringInstanceProvider(springXmlPath());
+		InstanceFactory.setInstanceProvider(provider);
 	}
 
 	@After
