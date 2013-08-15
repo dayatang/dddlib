@@ -1,14 +1,20 @@
 package org.openkoala.auth.application.vo;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.openkoala.koala.auth.core.domain.Resource;
+
+import com.dayatang.utils.DateUtils;
+
 public class ResourceVO extends PartyVO implements Serializable {
-	/**
-     * 
-     */
+
 	private static final long serialVersionUID = 1248753171821130218L;
+
 	private String identifier;
 	private String level;
 	private String icon;
@@ -27,15 +33,13 @@ public class ResourceVO extends PartyVO implements Serializable {
 	public ResourceVO() {
 
 	}
-	
+
 	public ResourceVO(String identifier, String typeId, String name, String desc) {
 		this.identifier = identifier;
 		this.typeId = typeId;
 		this.name = name;
 		this.desc = desc;
 	}
-
-
 
 	public boolean isIschecked() {
 		return ischecked;
@@ -147,6 +151,39 @@ public class ResourceVO extends PartyVO implements Serializable {
 
 	public void setMenuType(String menuType) {
 		this.menuType = menuType;
+	}
+
+	public void domain2Vo(Resource resource) {
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		this.setId(resource.getId());
+		this.setDesc(resource.getDesc());
+		this.setVersion(resource.getVersion());
+		this.setIcon(resource.getMenuIcon());
+		this.setLevel(resource.getLevel() == null ? "1" : resource.getLevel().toString());
+		this.setIdentifier(resource.getIdentifier());
+		this.setIsvalid(resource.isValid());
+		this.setName(resource.getName());
+		this.setText(resource.getName());
+		this.setSortOrder(resource.getSortOrder());
+		this.setSerialNumber(resource.getSerialNumber());
+		this.setAbolishDate(formatter.format(resource.getAbolishDate()));
+		this.setCreateDate(formatter.format(resource.getCreateDate()));
+	}
+
+	public void vo2Domain(Resource resource) {
+		resource.setId(this.getId());
+		resource.setVersion(this.getVersion());
+		resource.setMenuIcon(this.getIcon());
+		resource.setName(this.getName());
+		resource.setLevel(this.getLevel());
+		resource.setName(this.getName());
+		resource.setIdentifier(this.getIdentifier());
+		resource.setDesc(this.getDesc());
+		resource.setValid(true);
+		resource.setAbolishDate(DateUtils.MAX_DATE);
+		resource.setCreateDate(new Date());
+		resource.setSerialNumber(this.getSerialNumber() == "" ? "0" : this.getSerialNumber());
+		resource.setSortOrder(this.getSortOrder());
 	}
 
 }

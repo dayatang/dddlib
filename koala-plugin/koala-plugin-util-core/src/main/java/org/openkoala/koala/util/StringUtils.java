@@ -24,11 +24,14 @@ public class StringUtils {
 		String result = name.toLowerCase();
 		String[] specialCharacters = new String[]{"-", "_"};
 		for (String specialCharacter : specialCharacters) {
-				int index = result.indexOf(specialCharacter);
-				while(index!=-1){
-					result  = result.substring(0,index)+result.substring(index+1,index+2).toUpperCase()+result.substring(index+2);
-					index = result.indexOf(specialCharacter);
+			int index = result.indexOf(specialCharacter);
+			while(index!=-1){
+				if (index == result.length() - 1) {
+					break;
 				}
+				result  = result.substring(0,index)+result.substring(index+1,index+2).toUpperCase()+result.substring(index+2);
+				index = result.indexOf(specialCharacter);
+			}
 		}
 		result = result.replaceAll("[^a-zA-Z]", "");
 		result = result.substring(0,1).toUpperCase()+result.substring(1);
@@ -39,11 +42,14 @@ public class StringUtils {
 		String result = name.toLowerCase();
 		String[] specialCharacters = new String[]{"-", "_"};
 		for (String specialCharacter : specialCharacters) {
-				int index = result.indexOf(specialCharacter);
-				while(index!=-1){
-					result  = result.substring(0,index)+result.substring(index+1,index+2).toUpperCase()+result.substring(index+2);
-					index = result.indexOf(specialCharacter);
+			int index = result.indexOf(specialCharacter);
+			while(index!=-1){
+				if (index == result.length() - 1) {
+					break;
 				}
+				result  = result.substring(0,index)+result.substring(index+1,index+2).toUpperCase()+result.substring(index+2);
+				index = result.indexOf(specialCharacter);
+			}
 		}
 		result = result.replaceAll("[^a-zA-Z]", "");
 		result = result.substring(0,1).toLowerCase()+result.substring(1);

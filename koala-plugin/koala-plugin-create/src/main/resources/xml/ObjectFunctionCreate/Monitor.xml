@@ -5,27 +5,27 @@
 	<property name="description">Koala-Monitor</property>
 
 	<CopyFiles>
-	    <property name="express">$Monitor.installType=='all'</property>
+		<property name="express">$Monitor.installType=='all'</property>
 		<property name="srcDir">vm/other/monitor/web_common/</property>
 		<property name="destDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/webapp/
 		</property>
 	</CopyFiles>
-	
+
 	<CopyFiles>
-	    <property name="express">$Monitor.installType=='all'</property>
+		<property name="express">$Monitor.installType=='all'</property>
 		<property name="srcDir">vm/other/monitor/web_springmvc/</property>
 		<property name="destDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/webapp/
 		</property>
 	</CopyFiles>
 
-    <VelocityDirObject>
+	<VelocityDirObject>
 		<property name="vmDir">vm/other/monitor/config/monitor/</property>
 		<property name="pathDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/monitor/
 		</property>
 	</VelocityDirObject>
-	
+
 	<VelocityDirObject>
-	    <property name="express">$Monitor.installType=='all'</property>
+		<property name="express">$Monitor.installType=='all'</property>
 		<property name="vmDir">vm/other/monitor/action/SpringMVC/</property>
 		<property name="pathDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/java/${Module.basePackagePath}/controller/monitor/
 		</property>
@@ -51,11 +51,11 @@
          ]]>
 		</property>
 	</XmlAdd>
-	
-	
+
+
 	<!-- 集成式部署，需要依赖application用于前端数据管理 -->
 	<XmlAdd>
-	    <property name="express">$Monitor.installType=='all'</property>
+		<property name="express">$Monitor.installType=='all'</property>
 		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/pom.xml
 		</property>
 		<property name="uri">http://maven.apache.org/POM/4.0.0</property>
@@ -79,11 +79,15 @@
          ]]>
 		</property>
 	</XmlAdd>
-	
+
 	<XmlAdd>
-	    <property name="express">$Monitor.installType=='all' and  $Project.dbProtocol!='JPA'</property>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml</property>
-		<property name="uri">http://www.springframework.org/schema/beans</property>
+		<property name="express">$Monitor.installType=='all' and
+			$Project.dbProtocol!='JPA'
+		</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml
+		</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
 		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:META-INF/spring/integrated/standard/root.xml']]]></property>
 		<property name="xmlContent">
@@ -95,11 +99,15 @@
          ]]>
 		</property>
 	</XmlAdd>
-	
+
 	<XmlAdd>
-	    <property name="express">$Monitor.installType=='all' and  $Project.dbProtocol=='JPA'</property>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml</property>
-		<property name="uri">http://www.springframework.org/schema/beans</property>
+		<property name="express">$Monitor.installType=='all' and
+			$Project.dbProtocol=='JPA'
+		</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml
+		</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
 		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:META-INF/spring/integrated/share/root.xml']]]></property>
 		<property name="xmlContent">
@@ -112,16 +120,24 @@
 		</property>
 	</XmlAdd>
 
-    <VelocityFileObject>
-	    <property name="express">$Monitor.installType=='all' and $Project.dbProtocol=='Mybatis'</property>
-		<property name="vm">vm/base/conf-mybatis/src/main/resources/META-INF/spring/JPA-persistence-context.xml</property>
-		<property name="path">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/JPA-persistence-context.xml</property>
+	<VelocityFileObject>
+		<property name="express">$Monitor.installType=='all' and
+			$Project.dbProtocol=='Mybatis'
+		</property>
+		<property name="vm">vm/base/conf-mybatis/src/main/resources/META-INF/spring/JPA-persistence-context.xml
+		</property>
+		<property name="path">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/JPA-persistence-context.xml
+		</property>
 	</VelocityFileObject>
-	
+
 	<XmlAdd>
-	    <property name="express">$Monitor.installType=='all' and $Project.dbProtocol=='Mybatis'</property>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/test/resources/META-INF/spring/db-context.xml</property>
-		<property name="uri">http://www.springframework.org/schema/beans</property>
+		<property name="express">$Monitor.installType=='all' and
+			$Project.dbProtocol=='Mybatis'
+		</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/test/resources/META-INF/spring/db-context.xml
+		</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
 		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath:META-INF/spring/JPA-persistence-context.xml']]]></property>
 		<property name="xmlContent">
@@ -133,5 +149,5 @@
          ]]>
 		</property>
 	</XmlAdd>
-	
+
 </XmlParse>

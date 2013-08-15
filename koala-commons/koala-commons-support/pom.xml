@@ -83,21 +83,7 @@
 			<artifactId>jboss-vfs</artifactId>
 			<version>3.1.0.Final</version>
 		</dependency>
-
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.openkoala.security</groupId>
-			<artifactId>koala-security-application</artifactId>
-			<version>${project.parent.version}</version>
-			<scope>provided</scope>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
