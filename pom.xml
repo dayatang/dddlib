@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.dayatang.commons</groupId>
 	<artifactId>dayatang-commons-project</artifactId>
@@ -72,15 +73,19 @@
 	</ciManagement>
 
 	<scm>
-		<connection>scm:git:https://github.com/dayatang/dddlib.git</connection>
+		<connection>scm:git:git://github.com/dayatang/dddlib.git</connection>
 		<developerConnection>scm:git:git@github.com:dayatang/dddlib.git</developerConnection>
-	  <tag>HEAD</tag>
-  </scm>
+		<url>http://github.com/dayatang/dddlib/tree/master</url>
+	</scm>
 
+	<issueManagement> <system>trac</system> <url>http://www.dayatang.com/trac/dddlib</url> 
+		</issueManagement>
+	<!-- 
 	<issueManagement>
-		<system>trac</system>
-		<url>http://www.dayatang.com/trac/dddlib</url>
+		<system>github</system>
+		<url>https://github.com/dayatang/dddlib/issues</url>
 	</issueManagement>
+	 -->
 
 	<distributionManagement>
 		<repository>
@@ -98,6 +103,8 @@
 			<name>Dayatang site</name>
 			<url>dav:http://www.dayatang.com/projects/dddlib</url>
 		</site>
+		<!-- <site> <id>github-project-site</id> <url>gitsite:git@github.com/dayatang/dddlib</url> 
+			</site> -->
 	</distributionManagement>
 
 	<repositories>
@@ -241,8 +248,7 @@
 				<artifactId>aspectjweaver</artifactId>
 				<version>1.7.2</version>
 			</dependency>
-			<!-- 
-			 -->
+			<!-- -->
 			<dependency>
 				<groupId>org.opensymphony.quartz</groupId>
 				<artifactId>quartz</artifactId>
@@ -303,7 +309,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-dependency-plugin</artifactId>
-					<version>2.7</version>
+					<version>2.8</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -316,7 +322,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.14.1</version>
+					<version>2.15</version>
 					<configuration>
 						<encoding>${project.build.sourceEncoding}</encoding>
 						<charset>${project.build.sourceEncoding}</charset>
@@ -359,13 +365,13 @@
 				<plugin>
 					<groupId>org.apache.felix</groupId>
 					<artifactId>maven-bundle-plugin</artifactId>
-					<version>2.3.7</version>
+					<version>2.4.0</version>
 					<extensions>true</extensions>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
-					<version>3.2</version>
+					<version>3.3</version>
 					<configuration>
 						<locales>zh_CN</locales>
 						<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
@@ -378,8 +384,6 @@
 					<version>2.4.1</version>
 					<configuration>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
-						<username>${google.scm.username}</username>
-						<password>${google.scm.password}</password>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -414,7 +418,7 @@
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-project-info-reports-plugin</artifactId>
-							<version>2.6</version>
+							<version>2.7</version>
 							<configuration>
 								<encoding>${project.build.sourceEncoding}</encoding>
 								<charset>${project.build.sourceEncoding}</charset>
@@ -423,7 +427,7 @@
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-javadoc-plugin</artifactId>
-							<version>2.9</version>
+							<version>2.9.1</version>
 							<configuration>
 								<encoding>${project.build.sourceEncoding}</encoding>
 								<charset>${project.build.sourceEncoding}</charset>
@@ -443,7 +447,7 @@
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-surefire-report-plugin</artifactId>
-							<version>2.14.1</version>
+							<version>2.15</version>
 							<configuration>
 								<encoding>${project.build.sourceEncoding}</encoding>
 								<charset>${project.build.sourceEncoding}</charset>
@@ -491,8 +495,7 @@
 							<artifactId>maven-changelog-plugin</artifactId>
 							<version>2.2</version>
 							<configuration>
-								<username>${google.scm.username}</username>
-								<password>${google.scm.password}</password>
+								<passphrase>${passphase}</passphrase>
 								<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 							</configuration>
 						</plugin>
@@ -531,6 +534,21 @@
 		</plugins>
 		<extensions>
 			<extension>
+				<groupId>org.apache.maven.scm</groupId>
+				<artifactId>maven-scm-provider-gitexe</artifactId>
+				<version>1.8.1</version>
+			</extension>
+			<extension>
+				<groupId>org.apache.maven.scm</groupId>
+				<artifactId>maven-scm-manager-plexus</artifactId>
+				<version>1.8.1</version>
+			</extension>
+			<extension>
+				<groupId>org.kathrynhuxtable.maven.wagon</groupId>
+				<artifactId>wagon-gitsite</artifactId>
+				<version>0.3.1</version>
+			</extension>
+			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
 				<artifactId>wagon-webdav-jackrabbit</artifactId>
 				<version>2.4</version>
@@ -554,16 +572,16 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<slf4j.version>1.7.5</slf4j.version>
-		<spring.version>3.2.3.RELEASE</spring.version>
+		<spring.version>3.2.4.RELEASE</spring.version>
 		<tapestry.version>5.3.7</tapestry.version>
-		<hibernate.version>4.2.2.Final</hibernate.version>
+		<hibernate.version>4.2.3.Final</hibernate.version>
 		<!-- Database settings, default to H2 database -->
 		<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
 		<dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
 		<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
 		<jdbc.groupId>com.h2database</jdbc.groupId>
 		<jdbc.artifactId>h2</jdbc.artifactId>
-		<jdbc.version>1.3.171</jdbc.version>
+		<jdbc.version>1.3.173</jdbc.version>
 		<jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
 		<jdbc.url><![CDATA[jdbc:h2:mem:testdb]]></jdbc.url>
 		<jdbc.username>sa</jdbc.username>
