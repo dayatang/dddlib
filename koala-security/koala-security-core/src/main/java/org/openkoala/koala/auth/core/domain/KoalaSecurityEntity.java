@@ -23,6 +23,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
+
 import com.dayatang.domain.Entity;
 import com.dayatang.domain.EntityRepository;
 import com.dayatang.domain.InstanceFactory;
@@ -142,6 +143,24 @@ public abstract class KoalaSecurityEntity implements Entity {
 
 
     @Override
+	public boolean existed() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean notExisted() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean existed(String propertyName, Object propertyValue) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
     public abstract int hashCode();
 
     @Override

@@ -3,12 +3,10 @@ package org.openkoala.application.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 import javax.interceptor.Interceptors;
-
 import org.openkoala.exception.extend.ApplicationException;
 import org.openkoala.auth.application.UserApplication;
 import org.openkoala.auth.application.vo.QueryConditionVO;
@@ -17,11 +15,8 @@ import org.openkoala.auth.application.vo.UserVO;
 import org.openkoala.koala.auth.core.domain.Role;
 import org.openkoala.koala.auth.core.domain.RoleUserAuthorization;
 import org.openkoala.koala.auth.core.domain.User;
-import org.openkoala.util.DateFormatUtils;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.dayatang.querychannel.support.Page;
-import com.dayatang.utils.DateUtils;
 
 @Named("userApplication")
 @Transactional(value="transactionManager_security")
@@ -32,35 +27,14 @@ public class UserApplicationImpl extends BaseImpl implements UserApplication {
 
     public UserVO getUser(Long userId) {
         User user = User.get(User.class, userId);
-        UserVO usvo = new UserVO();
-        usvo.setId(user.getId());
-        usvo.setLastLoginTime(user.getLastLoginTime() == null ? "" : user.getLastLoginTime().toString());
-        usvo.setUserAccount(user.getUserAccount());
-        usvo.setUserPassword(user.getUserPassword());
-        usvo.setUserDesc(user.getUserDesc());
-        usvo.setAbolishDate(user.getAbolishDate() == null ? "" : user.getAbolishDate().toString());
-        usvo.setCreateDate(user.getCreateDate() == null ? "" : user.getCreateDate().toString());
-        usvo.setCreateOwner(user.getCreateOwner());
-        usvo.setName(user.getName());
-        usvo.setSerialNumber(user.getSerialNumber());
-        usvo.setSortOrder(user.getSortOrder());
-        usvo.setValid(user.isValid());
-        return usvo;
+        UserVO userVO = new UserVO();
+        userVO.domain2Vo(user);
+        return userVO;
     }
 
     public UserVO saveUser(UserVO userVO) {
 		User user = new User();
-		user.setLastLoginTime(userVO.getLastLoginTime() == null ? null : DateFormatUtils.parse(userVO.getLastLoginTime()));
-		user.setAbolishDate(DateUtils.MAX_DATE);
-        user.setCreateDate(new Date());
-        user.setUserAccount(userVO.getUserAccount());
-        user.setUserPassword(userVO.getUserPassword());
-        user.setUserDesc(userVO.getUserDesc());
-        user.setCreateOwner(userVO.getCreateOwner());
-        user.setName(userVO.getName());
-        user.setSerialNumber(userVO.getSerialNumber());
-        user.setSortOrder(userVO.getSortOrder());
-        user.setValid(userVO.isValid());
+		userVO.vo2Domain(user);
         // 检查用户账号是否已经存在
         if (user.isAccountExist()) {
         	throw new ApplicationException("userAccount.exist", null);
@@ -90,57 +64,32 @@ public class UserApplicationImpl extends BaseImpl implements UserApplication {
     public void removeUser(Long userId) {
         User user = User.load(User.class, userId);
         user.setAbolishDate(new Date());
-        for (RoleUserAuthorization authorization : user.getRoles()) {
-        	authorization.setAbolishDate(new Date());
+        for (RoleUserAuthorization each : user.getRoles()) {
+        	each.setAbolishDate(new Date());
         }
     }
 
     public List<UserVO> findAllUser() {
-        List<UserVO> list = new ArrayList<UserVO>();
-        List<User> all = User.findAll(User.class);
-        for (User user : all) {
-            UserVO usvo = new UserVO();
-            usvo.setId(user.getId());
-            usvo.setVersion(user.getVersion());
-            usvo.setLastLoginTime(user.getLastLoginTime() == null ? null : user.getLastLoginTime().toString());
-            usvo.setUserAccount(user.getUserAccount());
-            usvo.setUserPassword(user.getUserPassword());
-            usvo.setUserDesc(user.getUserDesc());
-            usvo.setAbolishDate(user.getAbolishDate() == null ? null : user.getAbolishDate().toString());
-            usvo.setCreateDate(user.getCreateDate() == null ? null : user.getCreateDate().toString());
-            usvo.setCreateOwner(user.getCreateOwner());
-            usvo.setName(user.getName());
-            usvo.setSerialNumber(user.getSerialNumber());
-            usvo.setSortOrder(user.getSortOrder());
-            usvo.setValid(user.isValid());
-            list.add(usvo);
+        List<UserVO> results = new ArrayList<UserVO>();
+        List<User> users = User.findAll(User.class);
+        for (User each : users) {
+            UserVO userVO = new UserVO();
+            userVO.domain2Vo(each);
+            results.add(userVO);
         }
-        return list;
+        return results;
     }
 
     public Page<UserVO> pageQueryUser(int currentPage, int pageSize) {
-        List<UserVO> result = new ArrayList<UserVO>();
+        List<UserVO> results = new ArrayList<UserVO>();
         Page<User> pages = queryChannel().queryPagedResultByPageNo("select m from User m where m.abolishDate>?", //
         		new Object[] { new Date() }, currentPage, pageSize);
-        for (User user : pages.getResult()) {
-            UserVO usvo = new UserVO();
-            usvo.setId(user.getId());
-            usvo.setVersion(user.getVersion());
-            usvo.setLastLoginTime(user.getLastLoginTime() == null ? null : user.getLastLoginTime().toString());
-            usvo.setUserAccount(user.getUserAccount());
-            usvo.setUserPassword(user.getUserPassword());
-            usvo.setLastModifyTime(user.getLastModifyTime() == null ? null : user.getLastModifyTime().toString());
-            usvo.setUserDesc(user.getUserDesc());
-            usvo.setAbolishDate(user.getAbolishDate().toString());
-            usvo.setCreateDate(user.getCreateDate().toString());
-            usvo.setCreateOwner(user.getCreateOwner());
-            usvo.setName(user.getName());
-            usvo.setSerialNumber(user.getSerialNumber());
-            usvo.setSortOrder(user.getSortOrder());
-            usvo.setValid(user.isValid());
-            result.add(usvo);
+        for (User each : pages.getResult()) {
+            UserVO userVO = new UserVO();
+            userVO.domain2Vo(each);
+            results.add(userVO);
         }
-        return new Page<UserVO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), result);
+        return new Page<UserVO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), results);
     }
 
     public UserVO findByUserAccount(String userAccount) {
@@ -148,21 +97,9 @@ public class UserApplicationImpl extends BaseImpl implements UserApplication {
         if (user == null) {
         	return null;
         }
-        UserVO usvo = new UserVO();
-        usvo.setId(user.getId());
-        usvo.setVersion(user.getVersion());
-        usvo.setLastLoginTime(user.getLastLoginTime() == null ? null : user.getLastLoginTime().toString());
-        usvo.setUserAccount(user.getUserAccount());
-        usvo.setUserPassword(user.getUserPassword());
-        usvo.setUserDesc(user.getUserDesc());
-        usvo.setAbolishDate(user.getAbolishDate() == null ? null : user.getAbolishDate().toString());
-        usvo.setCreateDate(user.getCreateDate() == null ? null : user.getCreateDate().toString());
-        usvo.setCreateOwner(user.getCreateOwner());
-        usvo.setName(user.getName());
-        usvo.setSerialNumber(user.getSerialNumber());
-        usvo.setSortOrder(user.getSortOrder());
-        usvo.setValid(user.isValid());
-        return usvo;
+        UserVO userVO = new UserVO();
+        userVO.domain2Vo(user);
+        return userVO;
     }
 
     public void assignRole(UserVO userVO, RoleVO roleVO) {
@@ -170,79 +107,57 @@ public class UserApplicationImpl extends BaseImpl implements UserApplication {
         us.setId(Long.valueOf(userVO.getId()));
         Role role = new Role();
         role.setId(Long.valueOf(roleVO.getId()));
-        us.AssignRole(role);
+        us.assignRole(role);
     }
 
     public void assignRole(UserVO userVO, List<RoleVO> roleVOs) {
-        for (RoleVO rv : roleVOs) {
-            assignRole(userVO, rv);
+        for (RoleVO each : roleVOs) {
+            assignRole(userVO, each);
         }
     }
 
-    public void passwordReset() {
+    public void resetPassword() {
         User us = new User();
-        us.passwordReset();
+        us.resetPassword();
     }
 
     public void abolishRole(UserVO userVO, List<RoleVO> roles) {
-        for (RoleVO roleVO : roles) {
+        for (RoleVO each : roles) {
             User user = User.get(User.class, userVO.getId());
-            Role role = Role.get(Role.class, roleVO.getId());
+            Role role = Role.get(Role.class, each.getId());
             user.abolishRole(role);
         }
     }
 
     public Page<RoleVO> pageQueryNotAssignRoleByUser(int currentPage, int pageSize, UserVO userVO) {
-        List<RoleVO> result = new ArrayList<RoleVO>();
-        Page<Role> pages = queryChannel().queryPagedResultByPageNo(
-//        		"select role from Role role where role.id not in" +
-//        		"(select m.id from Role m,User r,RoleUserAuthorization t where m.id=t.role.id and r.id=t.user.id" +
-//        		" and r.id=?1)", new Object[] { userVO.getId() }, 
-//        		currentPage, pageSize);
-	        "select role from Role role where role.id not in" +
-	        "(select role from RoleUserAuthorization rau join rau.role role join rau.user user where user.id=? " +
-	        "and rau.abolishDate>?) and role.abolishDate>?", 
+        List<RoleVO> results = new ArrayList<RoleVO>();
+        
+        Page<Role> pages = queryChannel().queryPagedResultByPageNo( //
+	        "select role from Role role where role.id not in" + //
+	        "(select role from RoleUserAuthorization rau join " + //
+	        "rau.role role join rau.user user where user.id=? " + //
+	        "and rau.abolishDate>?) and role.abolishDate>?",  //
 	        new Object[] { userVO.getId(), new Date(), new Date() }, 
-        currentPage, pageSize);
-        for (Role role : pages.getResult()) {
+	        currentPage, pageSize);
+        
+        for (Role each : pages.getResult()) {
             RoleVO roleVO = new RoleVO();
-            roleVO.setAbolishDate(DateFormatUtils.format(role.getAbolishDate()));
-            roleVO.setCreateDate(DateFormatUtils.format(role.getCreateDate()));
-            roleVO.setCreateOwner(role.getCreateOwner());
-            roleVO.setId(role.getId());
-            roleVO.setName(role.getName());
-            roleVO.setSerialNumber(role.getSerialNumber());
-            roleVO.setSortOrder(role.getSortOrder());
-            roleVO.setRoleDesc(role.getRoleDesc());
-            roleVO.setValid(role.isValid());
-            roleVO.setVersion(role.getVersion());
-            result.add(roleVO);
+            roleVO.domain2Vo(each);
+            results.add(roleVO);
         }
-        return new Page<RoleVO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), result);
+        
+        return new Page<RoleVO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), results);
     }
 
     public Page<UserVO> pageQueryUserCustom(int currentPage, int pageSize, QueryConditionVO query) {
-        List<UserVO> result = new ArrayList<UserVO>();
+        List<UserVO> results = new ArrayList<UserVO>();
         Page<User> pages = queryChannel().queryPagedResultByPageNo(genQueryCondition(query), //
         		new Object[] { new Date() }, currentPage, pageSize);
-        for (User user : pages.getResult()) {
-            UserVO usvo = new UserVO();
-            usvo.setId(user.getId());
-            usvo.setVersion(user.getVersion());
-            usvo.setLastLoginTime(user.getLastLoginTime() == null ? null : user.getLastLoginTime().toString());
-            usvo.setUserAccount(user.getUserAccount());
-            usvo.setUserPassword(user.getUserPassword());
-            usvo.setLastModifyTime(user.getLastModifyTime() == null ? null : user.getLastModifyTime().toString());
-            usvo.setUserDesc(user.getUserDesc());
-            usvo.setAbolishDate(user.getAbolishDate().toString());
-            usvo.setCreateDate(user.getCreateDate().toString());
-            usvo.setCreateOwner(user.getCreateOwner());
-            usvo.setName(user.getName());
-            usvo.setSerialNumber(user.getSerialNumber());
-            usvo.setSortOrder(user.getSortOrder());
-            usvo.setValid(user.isValid());
-            result.add(usvo);
+        for (User each : pages.getResult()) {
+            UserVO userVO = new UserVO();
+            userVO.domain2Vo(each);
+            results.add(userVO);
         }
-        return new Page<UserVO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), result);
+        return new Page<UserVO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), results);
     }
 }

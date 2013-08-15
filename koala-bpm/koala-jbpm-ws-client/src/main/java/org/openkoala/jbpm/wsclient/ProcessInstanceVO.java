@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="processInstanceId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="processName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="status" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="versionNum" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -43,7 +44,8 @@ import javax.xml.bind.annotation.XmlType;
     "processId",
     "processInstanceId",
     "processName",
-    "status"
+    "status",
+    "versionNum"
 })
 public class ProcessInstanceVO {
 
@@ -56,6 +58,7 @@ public class ProcessInstanceVO {
     protected long processInstanceId;
     protected String processName;
     protected int status;
+    protected int versionNum;
 
     /**
      * Gets the value of the createDate property.
@@ -247,6 +250,22 @@ public class ProcessInstanceVO {
      */
     public void setStatus(int value) {
         this.status = value;
+    }
+
+    /**
+     * Gets the value of the versionNum property.
+     * 
+     */
+    public int getVersionNum() {
+        return versionNum;
+    }
+
+    /**
+     * Sets the value of the versionNum property.
+     * 
+     */
+    public void setVersionNum(int value) {
+        this.versionNum = value;
     }
 
 }

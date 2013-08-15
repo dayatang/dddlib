@@ -20,7 +20,6 @@ import java.util.Map;
 
 import org.openkoala.koala.monitor.model.CountVo;
 import org.openkoala.koala.monitor.model.HttpDetailsVo;
-import org.openkoala.koala.monitor.model.JdbcDetailsVo;
 import org.openkoala.koala.monitor.model.JdbcStatementDetailsVo;
 import org.openkoala.koala.monitor.model.MainStatVo;
 import org.openkoala.koala.monitor.model.MethodDetailsVo;
@@ -103,14 +102,6 @@ public interface MonitorDataManageApplication {
 	 */
 	Page<MethodDetailsVo> pageGetMethodMonitorDetails(int currentPage, int pageSize, MethodDetailsVo methodDetailsVo);
 	
-	/**
-	 * 获取jdbc监控明细列表
-	 * @param currentPage 第几页
-	 * @param pageSize 每页大小
-	 * @param jdbcDetailsVo 参数封装成bean
-	 * @return
-	 */
-	Page<JdbcDetailsVo> pageGetJdbcMonitorDetails(int currentPage, int pageSize, JdbcDetailsVo jdbcDetailsVo);
 	
 	/**
 	 * 获取sql监控明细列表

@@ -40,10 +40,15 @@
 		</dependency>
 
 		<dependency>
+			<groupId>proxool</groupId>
+			<artifactId>proxool-cglib</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 		</dependency>
-		
+
 		<!-- 加入Spring对JPA的支持 -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
@@ -58,8 +63,18 @@
 			<artifactId>validation-api</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>1.9.5</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

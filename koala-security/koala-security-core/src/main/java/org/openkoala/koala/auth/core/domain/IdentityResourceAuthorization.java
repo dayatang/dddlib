@@ -19,6 +19,10 @@ import javax.persistence.Table;
 @Table(name = "KS_IDENTITY_RESOURCE_AUTH")
 public class IdentityResourceAuthorization extends Accountability {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5527620335383954438L;
 	
 	@ManyToOne
 	@JoinColumn(name = "IDENTITY_ID", nullable = false)
@@ -54,11 +58,9 @@ public class IdentityResourceAuthorization extends Accountability {
 	}
 
 	/**
-	 * 
+	 * 查找所有资源和角色
+	 * @return
 	 */
-	private static final long serialVersionUID = -5527620335383954438L;
-	
-	
 	public static List<IdentityResourceAuthorization> findAllReourcesAndRoles(){
 	    List<IdentityResourceAuthorization> resourceRoleList = IdentityResourceAuthorization.getRepository().findAll(IdentityResourceAuthorization.class);
 	    return resourceRoleList;

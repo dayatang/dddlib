@@ -81,6 +81,7 @@ import com.dayatang.querychannel.support.Page;
 @Named("jbpmApplication")
 @Transactional(value="transactionManager")
 @SuppressWarnings({ "unchecked", "unused" })
+@org.apache.cxf.interceptor.InInterceptors (interceptors = {"org.apache.cxf.transport.common.gzip.GZIPInInterceptor" })
 public class JBPMApplicationImpl implements JBPMApplication {
 
 	private static final Logger logger = LoggerFactory
@@ -330,10 +331,11 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		return dones;
 	}
 
-	public long startProcess(String processName, String paramsString) {
+	public long startProcess(String processName, String creater,String paramsString) {
 		// 读取Global级的变量
 		Map<String, Object> params = new HashMap<String, Object>();
 		Map<String, Object> globalMap = getJbpmSupport().getGlobalVariable();
+		globalMap.put("KJ_USER", creater);
 		Set<String> keys = globalMap.keySet();
 		for (String key : keys) {
 			params.put(key, globalMap.get(key));
@@ -388,6 +390,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			String user, String params, String data) {
 		// 更新流程级的参数
 		Map<String, Object> proceeParams = XmlParseUtil.xmlToPrams(params);
+		proceeParams.put("KJ_USER", user);
 		RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
 				.getProcessInstance(processInstanceId);
 		Set<String> keys = proceeParams.keySet();
@@ -761,7 +764,9 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		vo.setCreateDate(df.format(log.getStart()));
 		// vo.setCreater((String)in.getVariable("_process_creater"));
 		// vo.setParentProcessInstanceId(log.getParentProcessInstanceId());
-		vo.setProcessId(log.getProcessId());
+		String processVersionId = log.getProcessId();
+		vo.setProcessId(processVersionId.substring(0,processVersionId.lastIndexOf("@")));
+		vo.setVersionNum(Integer.parseInt(processVersionId.substring(processVersionId.lastIndexOf("@")+1)));
 		vo.setProcessInstanceId(log.getProcessInstanceId());
 		try {
 			vo.setProcessName(in.getProcessName());

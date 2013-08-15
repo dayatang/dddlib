@@ -42,7 +42,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 功能描述：<br />
+ * 功能描述：远程数据策略mina客户端处理类<br />
  * 
  * 创建日期：2013-5-30 上午10:17:26 <br />
  * 

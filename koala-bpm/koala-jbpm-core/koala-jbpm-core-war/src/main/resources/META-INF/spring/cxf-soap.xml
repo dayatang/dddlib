@@ -1,16 +1,18 @@
 <?xml  version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-xmlns:context="http://www.springframework.org/schema/context"
-xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
-xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
-xmlns:util="http://www.springframework.org/schema/util" xmlns:jaxws="http://cxf.apache.org/jaxws"
-xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:cxf="http://cxf.apache.org/core" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
 http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
-http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd 
+http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
 http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
 
@@ -19,9 +21,23 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 	<import resource="classpath*:META-INF/cxf/cxf.xml" />
 	<import resource="classpath*:META-INF/cxf/cxf-extension-jaxrs-binding.xml" />
 	<import resource="classpath*:META-INF/cxf/cxf-servlet.xml" />
-	
-	<bean id="jbpmApplication" class="org.openkoala.jbpm.applicationImpl.jbpm.JBPMApplicationImpl" />
-	
+
+	<bean id="GZIPInInterceptor" class="org.apache.cxf.transport.common.gzip.GZIPInInterceptor" />
+	<bean id="compressGZIPFeature" class="org.apache.cxf.transport.common.gzip.GZIPFeature" />
+	<cxf:bus>
+		<cxf:inInterceptors>
+			<ref bean="GZIPInInterceptor" />
+		</cxf:inInterceptors>
+		<cxf:features>
+			<ref bean="compressGZIPFeature" />
+			<cxf:logging />
+		</cxf:features>
+	</cxf:bus>
+
+
+	<bean id="jbpmApplication"
+		class="org.openkoala.jbpm.applicationImpl.jbpm.JBPMApplicationImpl" />
+
 	<!-- JAX-WS Service Endpoint -->
 	<jaxws:endpoint id="jbpmService" implementor="#jbpmApplication"
 		address="/jbpmService" />

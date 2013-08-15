@@ -15,37 +15,96 @@
  */
 package org.openkoala.koala.monitor;
 
+import java.net.URL;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 
-import org.openkoala.koala.util.KoalaBaseSpringTestCase;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.openkoala.koala.monitor.application.MonitorDataManageApplication;
+import org.jwebap.startup.Startup;
 import org.openkoala.koala.monitor.application.MonitorNodeManageApplication;
-
-import com.dayatang.utils.Assert;
+import org.openkoala.koala.monitor.domain.MonitorNode;
+import org.openkoala.koala.monitor.model.GeneralMonitorStatusVo;
+import org.openkoala.koala.monitor.model.JdbcPoolStatusVo;
+import org.openkoala.koala.monitor.model.MonitorNodeVo;
+import org.openkoala.koala.monitor.model.ServerStatusVo;
+import org.openkoala.koala.util.KoalaBaseSpringTestCase;
 
 /**
  * 功能描述：<br />
- *  
- * 创建日期：2013-6-26 下午4:45:04  <br />   
+ * 
+ * 创建日期：2013-6-26 下午4:45:04 <br />
  * 
  * 版权信息：Copyright (c) 2013 Koala All Rights Reserved<br />
  * 
- * 作    者：<a href="mailto:vakinge@gmail.com">vakin jiang</a><br />
+ * 作 者：<a href="mailto:vakinge@gmail.com">vakin jiang</a><br />
  * 
  * 修改记录： <br />
- * 修 改 者    修改日期     文件版本   修改说明	
+ * 修 改 者 修改日期 文件版本 修改说明
  */
 public class MonitorNodeManageApplicationTest extends KoalaBaseSpringTestCase {
 
 	@Inject
-	private MonitorNodeManageApplication monitorNodeManageApplication;
-	
-	@Inject
-	private MonitorDataManageApplication monitorDataManageApplication;
-	
-	@Test
-	public void testGetGeneralMonitorStatus(){
-		monitorDataManageApplication.getJdbcConnTimeStat("ccccc", 100);
+	private MonitorNodeManageApplication application;
+
+	@BeforeClass
+	public static void beforeTest() {
+		// 启动监控context
+		String configPath = "META-INF/monitor/koala-monitor.xml";
+		URL url = Thread.currentThread().getContextClassLoader().getResource(configPath);
+		configPath = url.getFile();
+		Map<String, String> serverInfos = new HashMap<String, String>();
+		Startup.startup(configPath, serverInfos);
 	}
+
+	@AfterClass
+	public static void afterTest() {
+		//MonitorNode node = MonitorNode.get(MonitorNode.class, "junit-test");
+		//node.inactive();
+	}
+
+	@Test
+	public void testGetAllNodes() {
+		List<MonitorNodeVo> nodes = application.getAllNodes();
+		org.junit.Assert.assertTrue(nodes.size() > 0);
+
+	}
+
+	@Test
+	public void testQueryNode() {
+		MonitorNodeVo node = application.queryNode("junit-test");
+		org.junit.Assert.assertNotNull(node);
+
+	}
+
+	@Test
+	public void testUpdateNode() {
+		application.updateNode(new MonitorNodeVo());
+	}
+
+	@Test
+	public void testGetNodeServerStatus() {
+		ServerStatusVo status = application.getNodeServerStatus("junit-test");
+		org.junit.Assert.assertNotNull(status);
+	}
+
+	@Test
+	public void testGetGeneralMonitorStatus() {
+		GeneralMonitorStatusVo status = application
+				.getGeneralMonitorStatus("junit-test");
+		org.junit.Assert.assertNotNull(status);
+	}
+
+	@Ignore
+	@Test
+	public void testGetJdbcPoolStatus() {
+		Map<String, JdbcPoolStatusVo> status = application.getJdbcPoolStatus("junit-test");
+		org.junit.Assert.assertNotNull(status);
+	}
+
 }

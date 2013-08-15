@@ -65,7 +65,7 @@ public abstract class Identity extends Party {
 		return null;
 	}
 
-	public List<IdentityResourceAuthorization> getAuthorizations() {
+	public List<IdentityResourceAuthorization> getIdentityResourceAuthorizations() {
 		return authorizations;
 	}
 

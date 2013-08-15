@@ -132,6 +132,7 @@ public interface JBPMApplication {
 
     /**
      * 
+     * @param arg2
      * @param arg1
      * @param arg0
      * @return
@@ -145,7 +146,9 @@ public interface JBPMApplication {
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0,
         @WebParam(name = "arg1", targetNamespace = "")
-        String arg1);
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2);
 
     /**
      * 

@@ -26,6 +26,7 @@ import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.filter.codec.serialization.ObjectSerializationCodecFactory;
+import org.apache.mina.filter.logging.LoggingFilter;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import org.openkoala.koala.monitor.datasync.base.ClientRequestListener;
 import org.openkoala.koala.monitor.remote.Commond;
@@ -52,8 +53,9 @@ public class DatasyncServer extends IoHandlerAdapter{
 	private int port;
 	
 	private final Map<String, IoSession> sessions = new ConcurrentHashMap<String, IoSession>();
+	
+	public DatasyncServer() {}
 
-	private boolean runNormal = false;
 	/**
 	 * @param listener
 	 * @param port
@@ -61,10 +63,6 @@ public class DatasyncServer extends IoHandlerAdapter{
 	public DatasyncServer(int port,ClientRequestListener listener) {
 		this.listener = listener;
 		this.port = port;
-	}
-	
-	public boolean isRunNormal() {
-		return runNormal;
 	}
 
 	@Override
@@ -96,9 +94,12 @@ public class DatasyncServer extends IoHandlerAdapter{
 
 	public void startup() {
 		try {
+			if(port<=0){
+				throw new RuntimeException("监控同步服务MINA服务端端口配置错误");
+			}
 			IoAcceptor acceptor = new NioSocketAcceptor();
-			// acceptor.getFilterChain().addLast( "logger", new LoggingFilter()
-			// );
+			  acceptor.getFilterChain().addLast( "logger", new LoggingFilter()
+			);
 			ObjectSerializationCodecFactory factory = new ObjectSerializationCodecFactory();
 			factory.setDecoderMaxObjectSize(1048576 * 10);
 			acceptor.getFilterChain().addLast("codec",new ProtocolCodecFilter(factory));
@@ -107,9 +108,8 @@ public class DatasyncServer extends IoHandlerAdapter{
 			acceptor.getSessionConfig().setIdleTime(IdleStatus.BOTH_IDLE, 120);
 			acceptor.bind(new InetSocketAddress(port));
 			LOG.info("监控同步服务服务端启动,端口："+port);
-			runNormal = true;
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
 

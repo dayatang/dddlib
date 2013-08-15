@@ -61,6 +61,11 @@ public class CommondConst {
 	public static final String GET_GENERAL_STATUS = "get-generalstatus";
 	
 	/**
+	 * 获取24小时服务器状态信息
+	 */
+	public static final String GET_SERVER_STATUS_24H = "GET_SERVER_STATUS_24H ";
+	
+	/**
 	 * 获取数据库连接池状态命令
 	 */
 	public static final String GET_JDBC_POOL_STATUS = "get-jdbcpoolstatus";
