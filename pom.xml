@@ -71,21 +71,20 @@
 			</notifier>
 		</notifiers>
 	</ciManagement>
-
-	<scm>
-		<connection>scm:git:git://github.com/dayatang/dddlib.git</connection>
-		<developerConnection>scm:git:git@github.com:dayatang/dddlib.git</developerConnection>
-		<url>http://github.com/dayatang/dddlib/tree/master</url>
-	</scm>
+        <scm>
+            <connection>scm:git:git://github.com/dayatang/dddlib.git</connection>
+            <developerConnection>scm:git:git@github.com:dayatang/dddlib.git</developerConnection>
+            <url>http://github.com/dayatang/dddlib/tree/master</url>
+        </scm>
 
 	<issueManagement> <system>trac</system> <url>http://www.dayatang.com/trac/dddlib</url> 
 		</issueManagement>
-	<!-- 
+        <!--
 	<issueManagement>
 		<system>github</system>
 		<url>https://github.com/dayatang/dddlib/issues</url>
 	</issueManagement>
-	 -->
+	-->
 
 	<distributionManagement>
 		<repository>
