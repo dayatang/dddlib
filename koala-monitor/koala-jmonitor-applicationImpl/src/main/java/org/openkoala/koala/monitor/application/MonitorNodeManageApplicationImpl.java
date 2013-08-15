@@ -25,7 +25,6 @@ import java.util.Set;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.interceptor.Interceptors;
 
@@ -33,7 +32,6 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.openkoala.exception.base.BaseException;
 import org.openkoala.koala.commons.KoalaDateUtils;
-import org.openkoala.koala.monitor.application.MonitorNodeManageApplication;
 import org.openkoala.koala.monitor.domain.MonitorNode;
 import org.openkoala.koala.monitor.domain.MonitorNode.MonitorComponent;
 import org.openkoala.koala.monitor.jwebap.ComponentDef;

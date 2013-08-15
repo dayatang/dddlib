@@ -24,21 +24,21 @@
 			<groupId>com.dayatang.commons</groupId>
 			<artifactId>dayatang-commons-domain</artifactId>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>org.quartz-scheduler</groupId>
-			<artifactId>quartz</artifactId>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
 			<optional>true</optional>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
+			<artifactId>spring-jdbc</artifactId>
 			<optional>true</optional>
 		</dependency>
 

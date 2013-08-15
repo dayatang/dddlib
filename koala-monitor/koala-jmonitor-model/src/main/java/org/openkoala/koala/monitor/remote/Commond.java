@@ -46,8 +46,8 @@ public class Commond implements Serializable{
 	
 	private Map<String, String> headers;
 	
-	//数据传输形式：XML & MAP
-	private String dataXML;//
+	//数据传输形式：Json & MAP
+	private String dataJson;//
 	private Map<String, List<NetTransObject>> datas;
 	
 	/**
@@ -59,13 +59,15 @@ public class Commond implements Serializable{
 		addHeader(CommondConst.CMD_ID, UUID.randomUUID().toString().replaceAll("\\-", ""));
 	}
 	
-	public String getDataXML() {
-		return dataXML;
+	public String getDataJson() {
+		return dataJson;
 	}
 
-	public void setDataXML(String dataXML) {
-		this.dataXML = dataXML;
+	public void setDataJson(String dataJson) {
+		this.dataJson = dataJson;
 	}
+
+
 
 	public String getCommondText() {
 		return commondText;

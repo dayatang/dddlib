@@ -15,4 +15,6 @@
 		<property name="cronExpression" value="0 0/2 * * * ?" />
 	</bean>
 	
+	<!-- 监控数据处理服务 -->
+	<bean id="monitorDataService" class="org.openkoala.koala.monitor.service.MonitorDataServiceImpl" />
 </beans>

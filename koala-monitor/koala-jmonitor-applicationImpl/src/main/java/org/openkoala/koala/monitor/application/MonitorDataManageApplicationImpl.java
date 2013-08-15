@@ -26,25 +26,21 @@ import java.util.TreeMap;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.interceptor.Interceptors;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.openkoala.koala.commons.KoalaBeanUtils;
-import org.openkoala.koala.monitor.application.MonitorDataManageApplication;
 import org.openkoala.koala.monitor.common.Constant;
 import org.openkoala.koala.monitor.common.KoalaDateUtils;
 import org.openkoala.koala.monitor.domain.HttpDetails;
-import org.openkoala.koala.monitor.domain.JdbcDetails;
 import org.openkoala.koala.monitor.domain.JdbcStatementDetails;
 import org.openkoala.koala.monitor.domain.MethodDetails;
 import org.openkoala.koala.monitor.domain.MonitorNode;
 import org.openkoala.koala.monitor.domain.MonitorNode.MonitorComponent;
 import org.openkoala.koala.monitor.model.CountVo;
 import org.openkoala.koala.monitor.model.HttpDetailsVo;
-import org.openkoala.koala.monitor.model.JdbcDetailsVo;
 import org.openkoala.koala.monitor.model.JdbcStatementDetailsVo;
 import org.openkoala.koala.monitor.model.MainStatVo;
 import org.openkoala.koala.monitor.model.MethodDetailsVo;
@@ -226,22 +222,6 @@ private QueryChannelService queryChannel;
 		return new Page<MethodDetailsVo>(currentPage, pageEntity.getTotalCount(), pageSize, list);
 	}
 
-	@Override
-	public final Page<JdbcDetailsVo> pageGetJdbcMonitorDetails(int currentPage,
-			int pageSize, JdbcDetailsVo jdbcDetailsVo) {
-		String queryStr = "from JdbcDetails where nodeId = ? and beginTime>=? and beginTime<? order by " 
-				+ jdbcDetailsVo.getSortname() + " " + jdbcDetailsVo.getSortorder();
-		Object[] params = new Object[]{jdbcDetailsVo.getSystem(), jdbcDetailsVo.getBeginTime(), 
-				jdbcDetailsVo.getEndTime()};
-		Page<JdbcDetails> pageEntity = getQueryChannelService().queryPagedResultByPageNo(queryStr, params, currentPage, pageSize);
-		
-		List<JdbcDetailsVo> list = KoalaBeanUtils.getNewList(pageEntity.getResult(), JdbcDetailsVo.class);
-		
-		//添加耗时字段
-//		this.addTimeConsumeForJdbc(list);
-		
-		return new Page<JdbcDetailsVo>(currentPage, pageEntity.getTotalCount(), pageSize, list);
-	}
 	
 	@Override
 	public final Page<JdbcStatementDetailsVo> getSqlsMonitorDetails(int currentPage, int pageSize, JdbcStatementDetailsVo jdbcStatementDetailsVo) {
@@ -260,15 +240,14 @@ private QueryChannelService queryChannel;
 	@Override
 	public final List<String> getStackTracesDetails(String monitorType, String detailsId){
 		String queryStr = null;
-		if(Constant.MONITOR_TYPE_HTTP.equals(monitorType)){
-			queryStr = " SELECT stack_details FROM k_m_http_details where ID = ? ";
-		}else if(Constant.MONITOR_TYPE_METHOD.equals(monitorType)){
-			queryStr = " SELECT stack_details FROM k_m_method_details where ID = ? ";
+		if(Constant.MONITOR_TYPE_METHOD.equals(monitorType)){
+			queryStr = " SELECT stackTracesDetails FROM MethodDetails where ID = ? ";
 		}else{
-			queryStr = " SELECT stack_details FROM k_m_jdbc_details where ID = ? ";
+			throw new RuntimeException("not surpport monitorType:"+monitorType);
 		}
-		String stackTracesAll = getJdbcTemplate().queryForObject(queryStr, new Object[]{Long.parseLong(detailsId)}, String.class);
-		return this.splitStringToList(stackTracesAll);
+
+		String result = getQueryChannelService().querySingleResult(queryStr, new Object[]{Long.parseLong(detailsId)});
+		return this.splitStringToList(result);
 	}
 	
 	/**
@@ -341,6 +320,8 @@ private QueryChannelService queryChannel;
 	@Override
 	public Map<Integer, Integer> getJdbcConnTimeStat(String nodeId,
 			long timeoutLimit) {
+		
+		timeoutLimit = timeoutLimit * 1000;//to 毫秒
 		if(timeoutLimit < 0){
 			Set<MonitorComponent> conponents = MonitorNode.getAllNodesCache().get(nodeId).getConponents();
 			for (MonitorComponent com : conponents) {
@@ -354,7 +335,7 @@ private QueryChannelService queryChannel;
 		Date now = new Date();
 		Date before24h = DateUtils.addHours(now, -24);
 		String sql = "select m.hour, count(*) from K_M_JDBC_CONN_DETAILS c left join k_m_main_stat m on c.TRACE_ID = m.TRACE_ID and m.fk_node_id=? and (m.begin_time between ? and ?) and TIME_CONSUME>? group by m.hour order by m.hour";
-		Object[] params = new Object[]{nodeId,before24h,now,timeoutLimit * 1000};
+		Object[] params = new Object[]{nodeId,before24h,now,timeoutLimit};
 		
 		getJdbcTemplate().query(sql, params,new ResultSetExtractor<Object>() {
 			@Override
