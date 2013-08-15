@@ -18,6 +18,9 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.openkoala.gqc.core.domain.DataSource;
+import org.openkoala.gqc.core.domain.DataSourceType;
+
+import com.dayatang.domain.InstanceFactory;
 
 /**
  * 抽象查询器
@@ -72,19 +75,19 @@ public abstract class Querier {
 	 */
 	public List<Map<String, Object>> query() {
 		List<Map<String, Object>> results = null;
-		
-		Connection conn = null;
-        String url = dataSource.getConnectUrl();
-        String jdbcDriver = dataSource.getJdbcDriver();
-        String user = dataSource.getUsername();
-        String password = dataSource.getPassword();
-
-        DbUtils.loadDriver(jdbcDriver);
+		Connection connection = null;
+        
         try {
-            conn = DriverManager.getConnection(url, user, password);
+    		if (dataSource.getDataSourceType().equals(DataSourceType.SYSTEM_DATA_SOURCE)) {
+    		    javax.sql.DataSource systemDataSource = InstanceFactory.getInstance(javax.sql.DataSource.class, dataSource.getDataSourceId());
+                connection = systemDataSource.getConnection();
+    		} else {
+    			DbUtils.loadDriver(dataSource.getJdbcDriver());
+    			connection = DriverManager.getConnection(dataSource.getConnectUrl(), dataSource.getUsername(), dataSource.getPassword());
+    		}
+            
             QueryRunner queryRunner = new QueryRunner();
-            results = (List<Map<String, Object>>) queryRunner.query(conn, generateQuerySql(), new ResultSetHandler<List<Map<String, Object>>>() {
-
+            results = (List<Map<String, Object>>) queryRunner.query(connection, generateQuerySql(), new ResultSetHandler<List<Map<String, Object>>>() {
 				public List<Map<String, Object>> handle(ResultSet rs)
 						throws SQLException {
 					List<Map<String, Object>> result = new ArrayList<Map<String,Object>>();
@@ -104,12 +107,13 @@ public abstract class Querier {
 					}
 					return result;
 				}
-            	
             });
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DbUtils.closeQuietly(conn);
+        	if (dataSource.getDataSourceType().equals(DataSourceType.CUSTOM_DATA_SOURCE)) {
+        		DbUtils.closeQuietly(connection);
+        	}
         }
         
         return results;
