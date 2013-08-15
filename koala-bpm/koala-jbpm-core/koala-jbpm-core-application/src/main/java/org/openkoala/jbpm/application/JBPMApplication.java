@@ -33,7 +33,7 @@ public interface JBPMApplication {
 	 * </params>
 	 * @return
 	 */
-	public long startProcess(String processName,String params);
+	public long startProcess(String processName,String creater,String params);
 
 	
 	/**
@@ -279,5 +279,7 @@ public interface JBPMApplication {
 	 */
 	@Deprecated
 	public List<ProcessInstanceVO> queryAllProcess(String processId);
+	
+	
 
 }

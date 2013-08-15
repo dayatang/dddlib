@@ -50,9 +50,9 @@ public class EhCacheImpl implements com.dayatang.cache.Cache  {
 		}
 	}
 	
-	public EhCacheImpl()
-	{
-		
+	
+	public EhCacheImpl(String name){
+		cache = CacheManager.getInstance().getCache(name);
 	}
 	
 	public EhCacheImpl(String name, int maxElementsInMemory, boolean overflowToDisk, boolean eternal, long timeToLiveSeconds, long timeToIdleSeconds)
