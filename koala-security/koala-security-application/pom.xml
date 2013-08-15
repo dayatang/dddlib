@@ -39,6 +39,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>
+			<groupId>org.openkoala.security</groupId>
+			<artifactId>koala-security-core</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins></plugins>

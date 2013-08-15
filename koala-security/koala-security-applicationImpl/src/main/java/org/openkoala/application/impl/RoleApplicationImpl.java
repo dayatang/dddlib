@@ -3,12 +3,10 @@ package org.openkoala.application.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 import javax.interceptor.Interceptors;
-
 import org.openkoala.exception.extend.ApplicationException;
 import org.openkoala.auth.application.RoleApplication;
 import org.openkoala.auth.application.vo.QueryConditionVO;
@@ -20,12 +18,9 @@ import org.openkoala.koala.auth.core.domain.Resource;
 import org.openkoala.koala.auth.core.domain.Role;
 import org.openkoala.koala.auth.core.domain.RoleUserAuthorization;
 import org.openkoala.koala.auth.core.domain.User;
-import org.openkoala.util.DateFormatUtils;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.dayatang.dsrouter.context.memory.ContextHolder;
 import com.dayatang.querychannel.support.Page;
-import com.dayatang.utils.DateUtils;
 
 @Named("roleApplication")
 @Transactional(value="transactionManager_security")
@@ -37,15 +32,7 @@ public class RoleApplicationImpl extends BaseImpl implements RoleApplication {
 	public RoleVO getRole(Long roleId) {
 		Role role = Role.get(Role.class, roleId);
 		RoleVO roleVO = new RoleVO();
-		roleVO.setAbolishDate(role.getAbolishDate().toString());
-		roleVO.setCreateDate(role.getCreateDate().toString());
-		roleVO.setCreateOwner(role.getCreateOwner());
-		roleVO.setId(role.getId());
-		roleVO.setName(role.getName());
-		roleVO.setRoleDesc(role.getRoleDesc());
-		roleVO.setSerialNumber(role.getSerialNumber());
-		roleVO.setSortOrder(role.getSortOrder());
-		roleVO.setValid(role.isValid());
+		roleVO.domain2Vo(role);
 		return roleVO;
 	}
 
@@ -53,14 +40,7 @@ public class RoleApplicationImpl extends BaseImpl implements RoleApplication {
 		String cx = ContextHolder.getContextType();
 		ContextHolder.setContextType("security");
 		Role role = new Role();
-		role.setAbolishDate(DateUtils.MAX_DATE);
-		role.setCreateDate(new Date());
-		role.setCreateOwner(roleVO.getCreateOwner());
-		role.setName(roleVO.getName());
-		role.setRoleDesc(roleVO.getRoleDesc());
-		role.setSerialNumber(roleVO.getSerialNumber());
-		role.setSortOrder(roleVO.getSortOrder());
-		role.setValid(roleVO.isValid());
+		roleVO.vo2Domain(role);
 		isRoleExist(role);
 		role.save();
 		roleVO.setId(role.getId());
@@ -97,8 +77,8 @@ public class RoleApplicationImpl extends BaseImpl implements RoleApplication {
 	 * @param role
 	 */
 	private void removeResourceAuthorizations(Role role) {
-		for (IdentityResourceAuthorization authorization : role.getAuthorizations()) {
-			authorization.setAbolishDate(new Date());
+		for (IdentityResourceAuthorization each : role.getIdentityResourceAuthorizations()) {
+			each.setAbolishDate(new Date());
 		}
 	}
 
@@ -107,39 +87,29 @@ public class RoleApplicationImpl extends BaseImpl implements RoleApplication {
 	 * @param role
 	 */
 	private void removeUserAuthorizations(Role role) {
-		for (RoleUserAuthorization authorization : role.getUsers()) {
+		for (RoleUserAuthorization authorization : role.getRoleUserAuthorizations()) {
 			authorization.setAbolishDate(new Date());
 		}
 	}
 
 	public List<RoleVO> findAllRole() {
-		List<RoleVO> list = new ArrayList<RoleVO>();
-		{
-			List<Role> all = Role.findAll(Role.class);
-			for (Role role : all) {
-				RoleVO roleVO = new RoleVO();
-				roleVO.setAbolishDate(role.getAbolishDate().toString());
-				roleVO.setCreateDate(role.getCreateDate().toString());
-				roleVO.setCreateOwner(role.getCreateOwner());
-				roleVO.setId(role.getId());
-				roleVO.setName(role.getName());
-				roleVO.setRoleDesc(role.getRoleDesc());
-				roleVO.setSerialNumber(role.getSerialNumber());
-				roleVO.setSortOrder(role.getSortOrder());
-				roleVO.setValid(role.isValid());
-				list.add(roleVO);
-			}
+		List<RoleVO> results = new ArrayList<RoleVO>();
+		List<Role> roles = Role.findAll(Role.class);
+		for (Role each : roles) {
+			RoleVO roleVO = new RoleVO();
+			roleVO.domain2Vo(each);
+			results.add(roleVO);
 		}
-		return list;
+		return results;
 	}
 
 	public List<ResourceVO> findResourceByRole(RoleVO roleVO) {
-		List<ResourceVO> result = new ArrayList<ResourceVO>();
-		List<Resource> queryResult = Resource.findResourceByRole(roleVO.getId());
-		for (Resource res : queryResult) {
-			result.add(ResourceApplicationImpl.domainObject2Vo(res));
+		List<ResourceVO> results = new ArrayList<ResourceVO>();
+		List<Resource> resources = Resource.findResourceByRole(roleVO.getId());
+		for (Resource each : resources) {
+			results.add(ResourceApplicationImpl.domainObject2Vo(each));
 		}
-		return result;
+		return results;
 	}
 
 	public List<UserVO> findUserByRole(RoleVO roleVO) {
@@ -168,25 +138,16 @@ public class RoleApplicationImpl extends BaseImpl implements RoleApplication {
 	}
 
 	public Page<RoleVO> pageQueryRole(int currentPage, int pageSize) {
-		List<RoleVO> result = new ArrayList<RoleVO>();
+		List<RoleVO> results = new ArrayList<RoleVO>();
 		Page<Role> pages = queryChannel().queryPagedResultByPageNo("select m from Role m where m.abolishDate>?", //
 				new Object[] { new Date() }, //
 				currentPage, pageSize);
-		for (Role role : pages.getResult()) {
+		for (Role each : pages.getResult()) {
 			RoleVO roleVO = new RoleVO();
-			roleVO.setAbolishDate(role.getAbolishDate().toString());
-			roleVO.setCreateDate(role.getCreateDate().toString());
-			roleVO.setCreateOwner(role.getCreateOwner());
-			roleVO.setId(role.getId());
-			roleVO.setName(role.getName());
-			roleVO.setRoleDesc(role.getRoleDesc());
-			roleVO.setSerialNumber(role.getSerialNumber());
-			roleVO.setSortOrder(role.getSortOrder());
-			roleVO.setVersion(role.getVersion());
-			roleVO.setValid(role.isValid());
-			result.add(roleVO);
+			roleVO.domain2Vo(each);
+			results.add(roleVO);
 		}
-		return new Page<RoleVO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), result);
+		return new Page<RoleVO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), results);
 	}
 
 	public Page<RoleVO> pageQueryByRoleCustom(int currentPage, int pageSize, QueryConditionVO query) {
@@ -195,16 +156,7 @@ public class RoleApplicationImpl extends BaseImpl implements RoleApplication {
 				currentPage, pageSize);
 		for (Role role : pages.getResult()) {
 			RoleVO roleVO = new RoleVO();
-			roleVO.setAbolishDate(role.getAbolishDate().toString());
-			roleVO.setCreateDate(role.getCreateDate().toString());
-			roleVO.setCreateOwner(role.getCreateOwner());
-			roleVO.setId(role.getId());
-			roleVO.setName(role.getName());
-			roleVO.setRoleDesc(role.getRoleDesc());
-			roleVO.setSerialNumber(role.getSerialNumber());
-			roleVO.setSortOrder(role.getSortOrder());
-			roleVO.setVersion(role.getVersion());
-			roleVO.setValid(role.isValid());
+			roleVO.domain2Vo(role);
 			result.add(roleVO);
 		}
 		return new Page<RoleVO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), result);
@@ -283,23 +235,14 @@ public class RoleApplicationImpl extends BaseImpl implements RoleApplication {
 	}
 
 	public List<RoleVO> findRoleByUserAccount(String userAccount) {
-		List<RoleVO> list = new ArrayList<RoleVO>();
-		List<Role> all = Role.findRoleByUserAccount(userAccount);
-		for (Role role : all) {
+		List<RoleVO> results = new ArrayList<RoleVO>();
+		List<Role> roles = Role.findRoleByUserAccount(userAccount);
+		for (Role each : roles) {
 			RoleVO roleVO = new RoleVO();
-			roleVO.setAbolishDate(role.getAbolishDate().toString());
-			roleVO.setCreateDate(role.getCreateDate().toString());
-			roleVO.setCreateOwner(role.getCreateOwner());
-			roleVO.setId(role.getId());
-			roleVO.setName(role.getName());
-			roleVO.setRoleDesc(role.getRoleDesc());
-			roleVO.setSerialNumber(role.getSerialNumber());
-			roleVO.setSortOrder(role.getSortOrder());
-			roleVO.setVersion(role.getVersion());
-			roleVO.setValid(role.isValid());
-			list.add(roleVO);
+			roleVO.domain2Vo(each);
+			results.add(roleVO);
 		}
-		return list;
+		return results;
 	}
 
 	public Page<UserVO> pageQueryNotAssignUserByRole(int currentPage, int pageSize, RoleVO roleVO) {
@@ -311,21 +254,7 @@ public class RoleApplicationImpl extends BaseImpl implements RoleApplication {
 				new Object[] { roleVO.getId(), new Date(), new Date() }, currentPage, pageSize);
 		for (User user : pages.getResult()) {
 			UserVO userVO = new UserVO();
-			userVO.setAbolishDate(DateFormatUtils.format(user.getAbolishDate()));
-			userVO.setCreateDate(DateFormatUtils.format(user.getCreateDate()));
-			userVO.setCreateOwner(user.getCreateOwner());
-			userVO.setId(user.getId());
-			userVO.setLastLoginTime(user.getLastLoginTime() == null ? "" : DateFormatUtils.format(user
-					.getLastLoginTime()));
-			userVO.setLastModifyTime(user.getLastModifyTime() == null ? "" : DateFormatUtils.format(user
-					.getLastModifyTime()));
-			userVO.setName(user.getName());
-			userVO.setSerialNumber(user.getSerialNumber());
-			userVO.setSortOrder(user.getSortOrder());
-			userVO.setUserAccount(user.getUserAccount());
-			userVO.setUserDesc(user.getUserDesc());
-			userVO.setValid(user.isValid());
-			userVO.setVersion(user.getVersion());
+			userVO.domain2Vo(user);
 			result.add(userVO);
 		}
 		return new Page<UserVO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), result);

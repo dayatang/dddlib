@@ -46,6 +46,19 @@ public class User extends Identity {
 
 	@Column(name = "LAST_MODIFY_TIME")
 	private Date lastModifyTime;
+	
+	public User() {
+		
+	}
+	
+	public User(String name, String account, String password, String desc) {
+		this.setCreateDate(new Date());
+		this.setAbolishDate(DateUtils.MAX_DATE);
+		this.setName(name);
+		this.userAccount = account;
+		this.userPassword = password;
+		this.userDesc = desc;
+	}
 
 	public Set<RoleUserAuthorization> getRoles() {
 		return new HashSet<RoleUserAuthorization>(RoleUserAuthorization.findAuthorizationByUser(this));
@@ -131,24 +144,21 @@ public class User extends Identity {
 		}
 	}
 
-	public void AssignRole(Role role) {
-		RoleUserAuthorization roleUserAssignment = new RoleUserAuthorization();
-		roleUserAssignment.setAbolishDate(DateUtils.MAX_DATE);
-		roleUserAssignment.setCreateDate(new Date());
-		roleUserAssignment.setScheduledAbolishDate(new Date());
-		roleUserAssignment.setRole(role);
-		roleUserAssignment.setUser(this);
-		roleUserAssignment.save();
+	/**
+	 * 为用户分配单个角色 
+	 * @param role
+	 */
+	public void assignRole(Role role) {
+		saveRoleUser(role);
 	}
 
-	public void AssignRole(List<Role> roles) {
+	/**
+	 * 为用户分配多个角色 
+	 * @param roles
+	 */
+	public void assignRole(List<Role> roles) {
 		for (Role role : roles) {
-			RoleUserAuthorization roleUserAssignment = new RoleUserAuthorization();
-			roleUserAssignment.setAbolishDate(new Date());
-			roleUserAssignment.setCreateDate(new Date());
-			roleUserAssignment.setRole(role);
-			roleUserAssignment.setUser(this);
-			roleUserAssignment.save();
+			assignRole(role);
 		}
 	}
 	
@@ -171,9 +181,23 @@ public class User extends Identity {
 
 	}
 	
-	public void passwordReset() {
+	public void resetPassword() {
 		this.setUserPassword("abcd");
 		this.save();
 	}
 
+	/**
+	 * 保存角色与用户的关系
+	 * @param role
+	 */
+	private void saveRoleUser(Role role) {
+		RoleUserAuthorization roleUserAssignment = new RoleUserAuthorization();
+		roleUserAssignment.setAbolishDate(DateUtils.MAX_DATE);
+		roleUserAssignment.setCreateDate(new Date());
+		roleUserAssignment.setScheduledAbolishDate(new Date());
+		roleUserAssignment.setRole(role);
+		roleUserAssignment.setUser(this);
+		roleUserAssignment.save();
+	}
+	
 }

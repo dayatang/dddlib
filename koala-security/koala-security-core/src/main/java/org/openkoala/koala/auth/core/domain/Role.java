@@ -2,14 +2,10 @@ package org.openkoala.koala.auth.core.domain;
 
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-
 import com.dayatang.utils.DateUtils;
 
 /**
@@ -26,17 +22,6 @@ public class Role extends Identity {
 
 	@Column(name = "ROLE_DESC")
 	private String roleDesc;
-	//
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
-	private List<RoleUserAuthorization> roleUsers;
-
-	public List<RoleUserAuthorization> getRoleUsers() {
-		return roleUsers;
-	}
-
-	public void setRoleUsers(List<RoleUserAuthorization> roleUsers) {
-		this.roleUsers = roleUsers;
-	}
 
 	public String getRoleDesc() {
 		return roleDesc;
@@ -45,19 +30,22 @@ public class Role extends Identity {
 	public void setRoleDesc(String roleDesc) {
 		this.roleDesc = roleDesc;
 	}
-
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	public Role() {
+		
+	}
+	
+	public Role(String name, String desc) {
+		this.setAbolishDate(DateUtils.MAX_DATE);
+		this.setCreateDate(new Date());
+		this.setName(name);
+		this.roleDesc = desc;
 	}
 
-	@Override
-	public boolean equals(Object other) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+	/**
+	 * 为角色分配用户
+	 * @param user
+	 */
 	public void assignUser(User user) {
 		RoleUserAuthorization roleUserAssignment = new RoleUserAuthorization();
 		roleUserAssignment.setCreateDate(new Date());
@@ -67,26 +55,38 @@ public class Role extends Identity {
 		roleUserAssignment.save();
 	}
 
-	public void assignResource(Resource res) {
+	/**
+	 * 为角色分配资源
+	 * @param resource
+	 */
+	public void assignResource(Resource resource) {
 		IdentityResourceAuthorization idres = new IdentityResourceAuthorization();
 		idres.setIdentity(this);
-		idres.setResource(res);
+		idres.setResource(resource);
 		idres.setAbolishDate(DateUtils.MAX_DATE);
 		idres.setCreateDate(new Date());
 		idres.setScheduledAbolishDate(new Date());
 		idres.save();
 	}
 
-	public void abolishResource(Resource res) {
+	/**
+	 * 废除角色所关联的资源
+	 * @param resource
+	 */
+	public void abolishResource(Resource resource) {
 		List<IdentityResourceAuthorization> authorizations = IdentityResourceAuthorization.getRepository().find( //
 				"select m from IdentityResourceAuthorization m where m.identity.id=? and " //
-				+ "m.resource.id=? and m.abolishDate>?", new Object[] { this.getId(), res.getId(), new Date() }, //
+				+ "m.resource.id=? and m.abolishDate>?", new Object[] { this.getId(), resource.getId(), new Date() }, //
 				IdentityResourceAuthorization.class);
 		for (IdentityResourceAuthorization authorization : authorizations) {
 			authorization.setAbolishDate(new Date());
 		}
 	}
 
+	/**
+	 * 废除角色所关联的用户
+	 * @param user
+	 */
 	public void abolishUser(User user) {
 		List<RoleUserAuthorization> authorizations = RoleUserAuthorization.getRepository().find( //
 				"select m from RoleUserAuthorization m where m.user.id=? and m.role.id=? and m.abolishDate>?", //
@@ -97,14 +97,22 @@ public class Role extends Identity {
 		}
 	}
 	
+	/**
+	 * 根据角色名称查找角色
+	 * @param roleName
+	 * @return
+	 */
 	public static Role findRoleByName(String roleName){
-		Object[] params = new Object[] { roleName, new Date() };
-		return getRepository().findByNamedQuery("findRoleByName", params, Role.class).get(0);
+		return getRepository().findByNamedQuery("findRoleByName", new Object[] { roleName, new Date() }, Role.class).get(0);
 	}
 
+	/**
+	 * 查找用户所拥有的角色
+	 * @param userAccount
+	 * @return
+	 */
 	public static List<Role> findRoleByUserAccount(String userAccount) {
-		Object[] params = new Object[] { userAccount, new Date() };
-		return findByNamedQuery("findRoleByUserAccount", params, Role.class);
+		return findByNamedQuery("findRoleByUserAccount", new Object[] { userAccount, new Date() }, Role.class);
 	}
 
 	/**
@@ -116,12 +124,44 @@ public class Role extends Identity {
 		return !findByNamedQuery("isRoleExist", new Object[] { getName(), new Date() }, Role.class).isEmpty();
 	}
 	
-	public List<IdentityResourceAuthorization> getAuthorizations() {
+	/**
+	 * 获取角色的资源授权
+	 */
+	public List<IdentityResourceAuthorization> getIdentityResourceAuthorizations() {
 		return IdentityResourceAuthorization.findAuthorizationByRole(getId());
 	}
 	
-	public List<RoleUserAuthorization> getUsers() {
+	/**
+	 * 获取用户角色的授权
+	 * @return
+	 */
+	public List<RoleUserAuthorization> getRoleUserAuthorizations() {
 		return RoleUserAuthorization.findUserAuthorizationByRole(getId());
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Role other = (Role) obj;
+		if (getName() == null) {
+			if (other.getName() != null)
+				return false;
+		} else if (!getName().equals(other.getName()))
+			return false;
+		return true;
 	}
 
 }
