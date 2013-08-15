@@ -7,11 +7,11 @@
 		<version>2.0.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>koala-security-ss3Adapter</artifactId>
-	<name>koala-security-ss3Adapter</name>  
-    <packaging>jar</packaging> 
+	<name>koala-security-ss3Adapter</name>
+	<packaging>jar</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.type>jar</project.type>		
+		<project.type>jar</project.type>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -28,7 +28,6 @@
 			<groupId>com.dayatang.commons</groupId>
 			<artifactId>dayatang-commons-cache</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>proxool</groupId>
 			<artifactId>proxool</artifactId>
@@ -56,7 +55,7 @@
 			<version>1.2</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- 加入对spring security 支持 -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>

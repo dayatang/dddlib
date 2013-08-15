@@ -82,17 +82,20 @@ public class MonitorNodeManageApplicationTest extends KoalaBaseSpringTestCase {
 
 	}
 
+	@Ignore
 	@Test
 	public void testUpdateNode() {
 		application.updateNode(new MonitorNodeVo());
 	}
 
+	@Ignore
 	@Test
 	public void testGetNodeServerStatus() {
 		ServerStatusVo status = application.getNodeServerStatus("junit-test");
 		org.junit.Assert.assertNotNull(status);
 	}
 
+	@Ignore
 	@Test
 	public void testGetGeneralMonitorStatus() {
 		GeneralMonitorStatusVo status = application

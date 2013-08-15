@@ -34,51 +34,16 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 	@Inject
 	private ResourceApplication resourceApplication;
 
-	public static ResourceVO domainObject2Vo(Resource ne) {
-		ResourceVO vo = new ResourceVO();
-		vo.setId(ne.getId());
-		vo.setDesc(ne.getDesc());
-		vo.setVersion(ne.getVersion());
-		vo.setIcon(ne.getMenuIcon());
-		vo.setLevel(ne.getLevel() == null ? "1" : ne.getLevel().toString());
-		vo.setIdentifier(ne.getIdentifier());
-		vo.setIsvalid(ne.isValid());
-		vo.setName(ne.getName());
-		vo.setText(ne.getName());
-		vo.setSortOrder(ne.getSortOrder());
-		vo.setSerialNumber(ne.getSerialNumber());
-		vo.setAbolishDate(DateFormatUtils.format(ne.getAbolishDate()));
-		vo.setCreateDate(DateFormatUtils.format(ne.getCreateDate()));
-		ResourceTypeAssignment assignment = ResourceTypeAssignment.findByResource(ne.getId());
-		if (assignment != null) {
-			vo.setMenuType(String.valueOf(assignment.getResourceType().getId()));
-		}
-		return vo;
-	}
-
-	public static Resource vo2DomainObject(ResourceVO vo) {
-		Resource result = new Resource();
-		result.setId(vo.getId());
-		result.setVersion(vo.getVersion());
-		result.setMenuIcon(vo.getIcon());
-		result.setName(vo.getName());
-		result.setLevel(vo.getLevel());
-		result.setName(vo.getName());
-		result.setIdentifier(vo.getIdentifier());
-		result.setDesc(vo.getDesc());
-		result.setValid(true);
-		result.setAbolishDate(DateUtils.MAX_DATE);
-		result.setCreateDate(new Date());
-		result.setSerialNumber(vo.getSerialNumber() == "" ? "0" : vo.getSerialNumber());
-		result.setSortOrder(vo.getSortOrder());
-		return result;
-	}
-
 	public static Page<ResourceVO> BasePageQuery(String query, Object[] params, int currentPage, int pageSize) {
 		List<ResourceVO> result = new ArrayList<ResourceVO>();
 		Page<Resource> pages = queryChannel().queryPagedResultByPageNo(query, params, currentPage, pageSize);
 		for (Resource resource : pages.getResult()) {
-			ResourceVO resourceVO = domainObject2Vo(resource);
+			ResourceVO resourceVO = new ResourceVO();
+			resourceVO.domain2Vo(resource);
+			ResourceTypeAssignment assignment = ResourceTypeAssignment.findByResource(resource.getId());
+			if (assignment != null) {
+				resourceVO.setMenuType(String.valueOf(assignment.getResourceType().getId()));
+			}
 			result.add(resourceVO);
 		}
 		return new Page<ResourceVO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), result);
@@ -86,7 +51,13 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 
 	public ResourceVO getMenu(Long menuId) {
 		Resource resource = Resource.load(Resource.class, menuId);
-		return domainObject2Vo(resource);
+		ResourceVO resourceVO = new ResourceVO();
+		resourceVO.domain2Vo(resource);
+		ResourceTypeAssignment assignment = ResourceTypeAssignment.findByResource(resource.getId());
+		if (assignment != null) {
+			resourceVO.setMenuType(String.valueOf(assignment.getResourceType().getId()));
+		}
+		return resourceVO;
 	}
 
 	public ResourceVO saveMenu(ResourceVO vo) {
@@ -103,7 +74,8 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 		vo.setLevel("1");
 		vo.setSerialNumber("0");
 		vo.setSortOrder(0);
-		Resource resource = vo2DomainObject(vo);
+		Resource resource = new Resource();
+		vo.vo2Domain(resource);
 		resource.save();
 		saveResourceTypeAssignment(vo, resource);
 		vo.setId(resource.getId());
@@ -138,7 +110,12 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 		List<ResourceVO> list = new ArrayList<ResourceVO>();
 		List<Resource> all = Resource.findAll(Resource.class);
 		for (Resource menu : all) {
-			ResourceVO resourceVO = domainObject2Vo(menu);
+			ResourceVO resourceVO = new ResourceVO();
+			resourceVO.domain2Vo(menu);
+			ResourceTypeAssignment assignment = ResourceTypeAssignment.findByResource(menu.getId());
+			if (assignment != null) {
+				resourceVO.setMenuType(String.valueOf(assignment.getResourceType().getId()));
+			}
 			list.add(resourceVO);
 		}
 		return list;
@@ -167,7 +144,12 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 		List<Resource> topMenus = Resource.findChildByParentAndUser(null, userAccount);
 		for (Resource res : topMenus) {
 			if (Resource.isMenu(res)) {
-				ResourceVO treeVO = domainObject2Vo(res);
+				ResourceVO treeVO = new ResourceVO();
+				treeVO.domain2Vo(res);
+				ResourceTypeAssignment assignment = ResourceTypeAssignment.findByResource(res.getId());
+				if (assignment != null) {
+					treeVO.setMenuType(String.valueOf(assignment.getResourceType().getId()));
+				}
 				treeVOs.add(treeVO);
 			}
 		}
@@ -179,7 +161,12 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 		List<Resource> topMenus = Resource.findChildByParentAndUser(null, userAccount);
 		for (Resource res : topMenus) {
 			if (Resource.isMenu(res)) {
-				ResourceVO treeVO = domainObject2Vo(res);
+				ResourceVO treeVO = new ResourceVO();
+				treeVO.domain2Vo(res);
+				ResourceTypeAssignment assignment = ResourceTypeAssignment.findByResource(res.getId());
+				if (assignment != null) {
+					treeVO.setMenuType(String.valueOf(assignment.getResourceType().getId()));
+				}
 				treeVOs.add(treeVO);
 				innerFindMenuByParentAndUser(treeVO, userAccount);
 			}
@@ -192,7 +179,12 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 		List<Resource> childs = Resource.findChildByParent(parent.getId());
 		for (Resource child : childs) {
 			if (Resource.isMenu(child)) {
-				ResourceVO treeds = domainObject2Vo(child);
+				ResourceVO treeds = new ResourceVO();
+				treeds.domain2Vo(child);
+				ResourceTypeAssignment assignment = ResourceTypeAssignment.findByResource(child.getId());
+				if (assignment != null) {
+					treeds.setMenuType(String.valueOf(assignment.getResourceType().getId()));
+				}
 				treeds.setIschecked(Resource.hasPrivilegeByRole(child.getId(), roleVO.getId()));
 				result.add(treeds);
 			}
@@ -204,7 +196,12 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 		List<ResourceVO> treeVOs = new ArrayList<ResourceVO>();
 		List<Resource> topMenus = Resource.findChildByParent(null);
 		for (Resource res : topMenus) {
-			ResourceVO treeVO = domainObject2Vo(res);
+			ResourceVO treeVO = new ResourceVO();
+			treeVO.domain2Vo(res);
+			ResourceTypeAssignment assignment = ResourceTypeAssignment.findByResource(res.getId());
+			if (assignment != null) {
+				treeVO.setMenuType(String.valueOf(assignment.getResourceType().getId()));
+			}
 			treeVO.setIschecked(Resource.hasPrivilegeByRole(res.getId(), roleVO.getId()));
 			treeVOs.add(treeVO);
 			innerFindMenuByParent(treeVO, roleVO);
@@ -217,7 +214,12 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 		List<Resource> topMenus = Resource.findChildByParent(null);
 		for (Resource res : topMenus) {
 			if (Resource.isMenu(res)) {
-				ResourceVO treeVO = domainObject2Vo(res);
+				ResourceVO treeVO = new ResourceVO();
+				treeVO.domain2Vo(res);
+				ResourceTypeAssignment assignment = ResourceTypeAssignment.findByResource(res.getId());
+				if (assignment != null) {
+					treeVO.setMenuType(String.valueOf(assignment.getResourceType().getId()));
+				}
 				treeVOs.add(treeVO);
 				innerFindMenuByParent(treeVO, null);
 			}
@@ -231,7 +233,12 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 				.findChildByParentAndUser(menuVO == null ? null : menuVO.getId(), userAccount);
 		for (Resource menu : topMenus) {
 			if (Resource.isMenu(menu)) {
-				ResourceVO treeVO = domainObject2Vo(menu);
+				ResourceVO treeVO = new ResourceVO();
+				treeVO.domain2Vo(menu);
+				ResourceTypeAssignment assignment = ResourceTypeAssignment.findByResource(menu.getId());
+				if (assignment != null) {
+					treeVO.setMenuType(String.valueOf(assignment.getResourceType().getId()));
+				}
 				treeVOs.add(treeVO);
 				innerFindMenuByParentAndUser(treeVO, userAccount);
 			}
@@ -245,7 +252,12 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 				.findChildByParentAndUser(menuVO == null ? null : menuVO.getId(), userAccount);
 		for (Resource menu : topMenus) {
 			if (Resource.isMenu(menu)) {
-				ResourceVO treeVO = domainObject2Vo(menu);
+				ResourceVO treeVO = new ResourceVO();
+				treeVO.domain2Vo(menu);
+				ResourceTypeAssignment assignment = ResourceTypeAssignment.findByResource(menu.getId());
+				if (assignment != null) {
+					treeVO.setMenuType(String.valueOf(assignment.getResourceType().getId()));
+				}
 				treeVOs.add(treeVO);
 			}
 		}
@@ -256,7 +268,12 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 		List<ResourceVO> childs = new ArrayList<ResourceVO>();
 		List<Resource> menus = Resource.findChildByParent(Long.valueOf(parent.getId()));
 		for (Resource res : menus) {
-			ResourceVO treeVO = domainObject2Vo(res);
+			ResourceVO treeVO = new ResourceVO();
+			treeVO.domain2Vo(res);
+			ResourceTypeAssignment assignment = ResourceTypeAssignment.findByResource(res.getId());
+			if (assignment != null) {
+				treeVO.setMenuType(String.valueOf(assignment.getResourceType().getId()));
+			}
 			if (roleVO != null) {
 				treeVO.setIschecked(Resource.hasPrivilegeByRole(res.getId(), roleVO.getId()));
 			}
@@ -272,7 +289,12 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 		menus = Resource.findChildByParentAndUser(Long.valueOf(parent.getId()), userAccount);
 		for (Resource menu : menus) {
 			if (Resource.isMenu(menu)) {
-				ResourceVO treeVO = domainObject2Vo(menu);
+				ResourceVO treeVO = new ResourceVO();
+				treeVO.domain2Vo(menu);
+				ResourceTypeAssignment assignment = ResourceTypeAssignment.findByResource(menu.getId());
+				if (assignment != null) {
+					treeVO.setMenuType(String.valueOf(assignment.getResourceType().getId()));
+				}
 				childs.add(treeVO);
 				parent.setChildren(childs);
 				innerFindMenuByParentAndUser(treeVO, userAccount);
