@@ -5,9 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ResourceVO extends PartyVO implements Serializable {
-	/**
-     * 
-     */
+
+	
 	private static final long serialVersionUID = 1248753171821130218L;
 	private String identifier;
 	private String level;
