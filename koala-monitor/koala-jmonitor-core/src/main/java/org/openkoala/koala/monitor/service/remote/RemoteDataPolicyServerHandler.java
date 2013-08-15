@@ -30,11 +30,11 @@ import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 
 import org.apache.mina.core.session.IoSession;
-import org.openkoala.koala.config.service.BaseSchedulerBean;
 import org.openkoala.koala.monitor.datasync.base.ClientRequestListener;
 import org.openkoala.koala.monitor.datasync.server.DatasyncServer;
 import org.openkoala.koala.monitor.domain.MonitorNode;
 import org.openkoala.koala.monitor.domain.MonitorNode.MonitorComponent;
+import org.openkoala.koala.monitor.extend.BaseSchedulerBean;
 import org.openkoala.koala.monitor.jwebap.ComponentDef;
 import org.openkoala.koala.monitor.jwebap.NetTransObject;
 import org.openkoala.koala.monitor.jwebap.NodeDef;
@@ -118,7 +118,12 @@ public class RemoteDataPolicyServerHandler extends BaseSchedulerBean implements 
 			}
 		});
     	
-    	minaServer.startup();
+    	try {
+			minaServer.startup();
+		} catch (Exception e) {
+			minaServer = null;
+			LOG.error("监控同步服务MINA服务端未能正常启动",e);
+		}
     }	
 	
 
@@ -194,7 +199,7 @@ public class RemoteDataPolicyServerHandler extends BaseSchedulerBean implements 
 	
 	}
 	
-	public void stopMinaServer() {
+	private void stopMinaServer() {
 		try {
 			for (IoSession session : minaServer.getSessions().values()) {
 				if (session.isConnected()) {
@@ -225,7 +230,7 @@ public class RemoteDataPolicyServerHandler extends BaseSchedulerBean implements 
 
 	@Override
 	public void doJob() throws Exception {
-		if(!minaServer.isRunNormal()){
+		if(minaServer == null){
 			LOG.warn("MINA 服务端未正常运行");
 			return;
 		}
@@ -319,7 +324,7 @@ public class RemoteDataPolicyServerHandler extends BaseSchedulerBean implements 
 	 * @return
 	 */
 	private Commond sendCommonWaitReply(String clientId,Commond commond){
-		if(!minaServer.isRunNormal()){
+		if(minaServer == null){
 			LOG.warn("MINA 服务端未正常运行");
 			throw new RuntimeException("MINA 服务端未正常运行");
 		}
@@ -344,4 +349,11 @@ public class RemoteDataPolicyServerHandler extends BaseSchedulerBean implements 
 		throw new RuntimeException("获取响应数据失败");
 	}
 
+	public void setMonitorDataService(MonitorDataService monitorDataService) {
+		this.monitorDataService = monitorDataService;
+	}
+
+	public void setMinaServer(DatasyncServer minaServer) {
+		this.minaServer = minaServer;
+	}
 }

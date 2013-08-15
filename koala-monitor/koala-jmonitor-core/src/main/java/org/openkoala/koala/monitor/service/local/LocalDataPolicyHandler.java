@@ -25,9 +25,9 @@ import javax.inject.Inject;
 
 import org.jwebap.core.RuntimeContext;
 import org.jwebap.plugin.task.ServiceConnectionCheckTask;
-import org.openkoala.koala.config.service.BaseSchedulerBean;
 import org.openkoala.koala.monitor.domain.MonitorNode;
 import org.openkoala.koala.monitor.domain.MonitorNode.MonitorComponent;
+import org.openkoala.koala.monitor.extend.BaseSchedulerBean;
 import org.openkoala.koala.monitor.jwebap.ComponentDef;
 import org.openkoala.koala.monitor.jwebap.HttpRequestTrace.ActiveUser;
 import org.openkoala.koala.monitor.jwebap.NodeDef;
