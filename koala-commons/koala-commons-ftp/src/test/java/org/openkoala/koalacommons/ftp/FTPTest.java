@@ -57,7 +57,6 @@ public class FTPTest {
 			user.setEnabled(true);
 			user.setName("andy");
 			user.setPassword("andy");
-			System.out.println(System.getProperty("java.io.tmpdir"));
 			user.setHomeDirectory(System.getProperty("java.io.tmpdir"));
 			user.setAuthorities(auths);
 			um.save(user);
