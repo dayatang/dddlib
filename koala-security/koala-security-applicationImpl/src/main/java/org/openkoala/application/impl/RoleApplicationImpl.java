@@ -123,7 +123,9 @@ public class RoleApplicationImpl extends BaseImpl implements RoleApplication {
 		List<ResourceVO> result = new ArrayList<ResourceVO>();
 		List<Resource> queryResult = Resource.findResourceByRole(roleVO.getId());
 		for (Resource res : queryResult) {
-			result.add(MenuApplicationImpl.domainObject2Vo(res));
+			ResourceVO resourceVO = new ResourceVO();
+			resourceVO.domain2Vo(res);
+			result.add(resourceVO);
 		}
 		return result;
 	}
@@ -132,7 +134,9 @@ public class RoleApplicationImpl extends BaseImpl implements RoleApplication {
 		List<ResourceVO> result = new ArrayList<ResourceVO>();
 		List<Resource> queryResult = Resource.findResourceByRole(roleVO.getId());
 		for (Resource res : queryResult) {
-			result.add(MenuApplicationImpl.domainObject2Vo(res));
+			ResourceVO resourceVO = new ResourceVO();
+			resourceVO.domain2Vo(res);
+			result.add(resourceVO);
 		}
 		return result;
 	}

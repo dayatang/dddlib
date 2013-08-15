@@ -32,6 +32,18 @@ public class ResourceTypeApplicationImplTest extends KoalaBaseSpringTestCase {
 	@Before
 	public void setUp() {
 		resourceTypeVO = new ResourceTypeVO();
+		resourceTypeVO.setName("KOALA_MENU");
+		resourceTypeVO.setText("KOALA_MENU");
+		resourceTypeApplication.save(resourceTypeVO);
+		assertNotNull(resourceTypeVO.getId());
+		
+		resourceTypeVO = new ResourceTypeVO();
+		resourceTypeVO.setName("KOALA_DIRETORY");
+		resourceTypeVO.setText("KOALA_DIRETORY");
+		resourceTypeApplication.save(resourceTypeVO);
+		assertNotNull(resourceTypeVO.getId());
+		
+		resourceTypeVO = new ResourceTypeVO();
 		resourceTypeVO.setName("test");
 		resourceTypeVO.setText("test");
 		resourceTypeApplication.save(resourceTypeVO);
