@@ -15,6 +15,7 @@
  */
 package org.openkoala.koala.monitor.support;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,8 +56,10 @@ public class ServerStatusCollector {
 	private static long initTime;
 	static{
 		initTime = System.currentTimeMillis();
+		resetClasspath();
 		Sigar sigar = null;
 		try {
+			
 			sigar = new Sigar();
 			FileSystem fslist[] = sigar.getFileSystemList();
 			FileSystemUsage usage = null;
@@ -70,6 +73,15 @@ public class ServerStatusCollector {
 			if(sigar != null)sigar.close();
 		}
 	}
+	
+	/**，
+	 * 重新设置CLASSPATH,加入sigar，以支持dll,so等文件的加入与读取
+	 */
+	private static void resetClasspath(){
+		String libPath = System.getProperty("java.library.path");
+		String classpath = ServerStatusCollector.class.getResource("/").getPath();
+		System.setProperty("java.library.path",classpath+File.separator+"sigar"+File.pathSeparator+libPath);
+	}
 	/**
 	 * 获取服务器状态信息
 	 * @return
@@ -79,6 +91,7 @@ public class ServerStatusCollector {
 
     	Sigar sigar = null;
 		try {
+			
 			getServerBaseInfo(status);
 			
             sigar = new Sigar();
@@ -87,7 +100,7 @@ public class ServerStatusCollector {
             getServerMemoryInfo(sigar, status);
 			
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}finally{
 			if(sigar == null)status.setSigarInitError(true);
 			if(sigar != null)sigar.close();
@@ -231,6 +244,7 @@ public class ServerStatusCollector {
     }
     
     public static void main(String[] args) {
+    	resetClasspath();
 			ServerStatusVo status = new ServerStatusVo();
 	    	Sigar sigar = null;
 			try {

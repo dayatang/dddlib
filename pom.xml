@@ -699,6 +699,11 @@
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
+				<excludes>
+				       <exclude>**/*.dll</exclude>
+					   <exclude>**/*.so</exclude>
+					   <exclude>**/*.dylib</exclude>
+				</excludes>
 			</resource>
 		</resources>
 		<testResources>
