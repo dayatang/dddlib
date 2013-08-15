@@ -29,11 +29,6 @@
 			<artifactId>dayatang-commons-cache</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
 			<groupId>proxool</groupId>
 			<artifactId>proxool</artifactId>
 		</dependency>
