@@ -22,7 +22,7 @@ import com.dayatang.domain.QuerySettings;
  *
  */
 @MappedSuperclass
-public abstract class TimeIntervalEntity extends AbstractEntity {
+public abstract class TimeIntervalEntity extends KoalaSecurityEntity {
 
 	private static final long serialVersionUID = 858481853210607590L;
 
@@ -83,12 +83,6 @@ public abstract class TimeIntervalEntity extends AbstractEntity {
 //		super.validate();
 	}
 
-	public static EntityRepository getRepository() {
-		if (repository == null) {
-			repository = InstanceFactory.getInstance(EntityRepository.class,"repository_ss");
-		}
-		return repository;
-	}
 	/**
 	 * 在指定的日期废除HR实体。
 	 * @param abolishDate
