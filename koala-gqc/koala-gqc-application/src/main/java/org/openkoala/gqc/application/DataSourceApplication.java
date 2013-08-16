@@ -8,6 +8,10 @@ import org.openkoala.gqc.vo.DataSourceVO;
 
 import com.dayatang.querychannel.support.Page;
 
+/**
+ * 数据源应用层接口，处理数据源的增删改查
+ *
+ */
 public interface DataSourceApplication {
 
 	/**

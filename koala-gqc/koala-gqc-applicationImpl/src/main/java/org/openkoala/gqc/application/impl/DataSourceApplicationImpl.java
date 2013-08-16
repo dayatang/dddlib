@@ -24,6 +24,11 @@ import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.service.QueryChannelService;
 import com.dayatang.querychannel.support.Page;
 
+/**
+ * 数据源应用层实现，处理数据源的增删改查
+ * @author lambo
+ *
+ */
 @Named
 @Transactional(value="transactionManager_gqc")
 @Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
