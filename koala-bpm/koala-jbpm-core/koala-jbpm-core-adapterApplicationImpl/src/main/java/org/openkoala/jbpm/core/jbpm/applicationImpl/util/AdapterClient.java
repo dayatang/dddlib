@@ -60,10 +60,10 @@ public class AdapterClient {
 						(String) message);
 			} else if (message instanceof Map) {
 				Map<String, Object> result = (Map<String, Object>) message;
-				Set<String> keys = result.keySet();
-				for (String key : result.keySet()) {
-					context.getNodeInstance().setVariable(key,
-							result.get(key));
+				Set<Map.Entry<String, Object>> entrySet = result.entrySet();
+				for(Map.Entry<String, Object> entry:entrySet){
+					context.getNodeInstance().setVariable(entry.getKey(),
+							entry.getValue());
 				}
 			} else {
 				throw new UnsupportedOperationException(

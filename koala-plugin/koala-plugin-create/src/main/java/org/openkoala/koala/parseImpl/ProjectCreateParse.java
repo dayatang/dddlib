@@ -30,6 +30,7 @@ public class ProjectCreateParse {
 	private static List<String> baseType = new ArrayList<String>();
 	
 	static{
+		logger.info("INIT BASE TYPE");
 		baseType.add("boolean");
 		baseType.add("byte");
 		baseType.add("char");

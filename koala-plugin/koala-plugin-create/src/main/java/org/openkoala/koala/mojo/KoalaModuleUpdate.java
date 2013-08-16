@@ -22,7 +22,7 @@ public class KoalaModuleUpdate {
 	 */
 	public void updateModule(ModuleUpdate moduleUpdate) throws Exception{
 		logger.info("更新项目功能");
-		String projectPath = moduleUpdate.getProjectPath();
+		//String projectPath = moduleUpdate.getProjectPath();
 		ModuleUpdateParse update = new ModuleUpdateParse(moduleUpdate);
 		update.parse();
 	}

@@ -49,6 +49,7 @@ public class EJBSrcCopy {
 	 * @throws CloneNotSupportedException
 	 */
 	public static MavenProject copySrc(EJBDeploy ejbDeploy) {
+		logger.info("COPY SRC");
 		MavenProject project = ejbDeploy.getProject();
 		MavenProject destProject = project.clone();
 		String path = project.getPath() + "/target/" + project.getName() + EJB
@@ -190,7 +191,7 @@ public class EJBSrcCopy {
 			}
 
 			// 第三步，生成EJB子项目
-			Map params = new HashMap();
+			Map<String,Object> params = new HashMap<String,Object>();
 			params.put("Project", project);
 			params.put("Dependencys", earDepens);
 			params.putAll(hasSecurityModule);
@@ -409,10 +410,10 @@ public class EJBSrcCopy {
 			throws IOException {
 
 		// 第三步：添加spring-ejb.xml以及spring-ejb.properties的EJB配置文件
-		Map params = new HashMap();
+		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("ProjectPath", war.getPath());
 		params.put("ConfigPath", conf.getPath());
-		VelocityContext context = VelocityUtil.getVelocityContext(params);
+		VelocityUtil.getVelocityContext(params);
 	}
 
 }

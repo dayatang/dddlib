@@ -30,9 +30,10 @@ public class JBPMHandlerAdapter extends IoHandlerAdapter {
 			this.context.getNodeInstance().setVariable("_TMP_"+adapter.getName()+"_RESULT", (String)message);
 		}else if(message instanceof Map){
 			Map<String,Object> result = (Map<String,Object>)message;
-			Set<String> keys = result.keySet();
-			for(String key:result.keySet()){
-				this.context.getNodeInstance().setVariable(key, result.get(key));
+			Set<Map.Entry<String, Object>> entrySet = result.entrySet();
+			for(Map.Entry<String, Object> entry:entrySet){
+				context.getNodeInstance().setVariable(entry.getKey(),
+						entry.getValue());
 			}
 		}else{
 			throw new UnsupportedOperationException("只支持返回MAP,String,Void结果");
