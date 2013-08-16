@@ -53,10 +53,10 @@ public class XmlParseUtil {
 		if(paramsMap==null || paramsMap.size()==0)return "";
 		Document document = DocumentHelper.createDocument();
 		Element root = document.addElement("params");
-		Set<String> keys = paramsMap.keySet();
-		for(String key:keys){
-			String value = paramsMap.get(key).toString();
-			Element param = root.addElement(key);
+		Set<Map.Entry<String, Object>> entrySet = paramsMap.entrySet();
+		for(Map.Entry<String, Object> entry:entrySet){
+			String value = entry.getValue().toString();
+			Element param = root.addElement(entry.getKey());
 			param.setText(value);
 		}
 		return document.asXML();

@@ -1,5 +1,6 @@
 package org.openkoala.gqc.core.domain;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -7,34 +8,136 @@ import static org.junit.Assert.assertTrue;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.openkoala.gqc.core.domain.utils.SystemDataSourceNotExistException;
 import org.openkoala.koala.util.KoalaBaseSpringTestCase;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import com.dayatang.domain.EntityRepository;
-
+/**
+ * 
+ * @author lambo
+ *
+ */
 @TransactionConfiguration(transactionManager = "transactionManager_gqc",defaultRollback = true) 
 public class DataSourceTest extends KoalaBaseSpringTestCase{
 	
-	@Mock
-	private EntityRepository repository;
-	
+	/**
+	 * 数据源实例
+	 */
+	private DataSource dataSource;
+
+	/**
+	 * 初始化数据源实例
+	 * @throws Exception
+	 */
 	@Before
-	public void beforeTest(){
-		MockitoAnnotations.initMocks(this);
-		DataSource.setRepository(repository);
-	}
-	
-	@After
-	public void afterTest(){
-		DataSource.setRepository(null);
+	public void setUp() throws Exception {
+		dataSource = initSystemDataSourceAndDataSourceIdNotExist();
 	}
 
+	/**
+	 * 销毁数据源实例
+	 * @throws Exception
+	 */
+	@After
+	public void tearDown() throws Exception {
+		dataSource = null;
+	}
+
+	/**
+	 * 测试
+	 */
+	@Test
+	public void testIsNew() {
+		boolean isNew = dataSource.isNew();
+		assertTrue("应该是未入库的！",isNew);
+	}
+
+	/**
+	 * 测试
+	 */
+	@Test
+	public void testNotExisted() {
+		boolean notExisted = dataSource.notExisted();
+		assertTrue("应该是未入库的！",notExisted);
+	}
+
+	/**
+	 * 测试
+	 */
+	@Test
+	public void testSave() {
+		this.save();
+	}
+
+	/**
+	 * 测试
+	 */
+	@Test
+	public void testRemove() {
+		this.save();
+		this.remove();
+	}
+
+	/**
+	 * 测试
+	 */
+	@Test
+	public void testExists() {
+		Boolean existed = dataSource.existed();
+		assertTrue("应该是未入库的！",!existed);
+	}
+
+	/**
+	 * 测试
+	 */
+	@Test
+	public void testGet() {
+		Boolean notExisted = dataSource.notExisted();
+		assertTrue("应该是未入库的！",notExisted);
+	}
+
+	/**
+	 * 测试
+	 */
+	@Test
+	public void testGetUnmodified() {
+		this.save();
+		DataSource dataSourceBean = DataSource.getUnmodified(DataSource.class, dataSource);
+		assertNotNull(dataSourceBean);
+	}
+
+	/**
+	 * 测试
+	 */
+	@Test
+	public void testLoad() {
+		this.save();
+		
+		DataSource dataSourceBean = DataSource.load(DataSource.class, dataSource.getId());
+
+		assertEquals(dataSource.getId(), dataSourceBean.getId());
+	}
+
+	/**
+	 * 测试
+	 */
+	@Test
+	public void testFindAll() {
+		this.save();
+		
+		List<DataSource> list = DataSource.findAll(DataSource.class);
+		
+		assertEquals(1,list.size());
+	}
+	
+	/**
+	 * 测试
+	 */
 	@Test
 	public void testGetSystemDataSource() {
 		//不存在的系统数据源
@@ -61,75 +164,77 @@ public class DataSourceTest extends KoalaBaseSpringTestCase{
 		}
 	}
 
+	/**
+	 * 测试
+	 */
 	@Test
 	public void testTestConnection() {
-		try {
-			boolean result = false;
-			try {
-				//系统数据源，数据源id不存在
-				DataSource dataSource = initSystemDataSourceAndDataSourceIdNotExist();
-				result = dataSource.testConnection();
-				
-				assertFalse(true);
-			} catch (Exception e) {
-				assertTrue(!result);
-			}
-			
-			//系统数据源，数据源id存在
-			DataSource dataSource2 = initSystemDataSourceAndDataSourceIdExist();
-			boolean result2 = dataSource2.testConnection();
-			assertTrue(result2);
-			
-			//自定义数据源，不能连接
-			DataSource dataSource3 = initCustomDataSourceCannotConnect();
-			boolean result3 = dataSource3.testConnection();
-			assertTrue(!result3);
-			
-			//自定义数据源，能连接
-			DataSource dataSource4 = initCustomDataSourceCanConnect();
-			boolean result4 = dataSource4.testConnection();
-			assertTrue(result4);
-			
-		} catch (Exception e) {
-			assertFalse(true);
-		}
+		//系统数据源，数据源id存在
+		DataSource dataSource = initSystemDataSourceAndDataSourceIdExist();
+		boolean result = dataSource.testConnection();
+		assertTrue(result);
 		
-	}
-
-	@Test
-	public void testGenerateConnection() {
-		try {
-			Connection connection = null;
-			try {
-				//系统数据源，数据源id不存在
-				DataSource dataSource = initSystemDataSourceAndDataSourceIdNotExist();
-				connection = dataSource.generateConnection();
-				
-				assertFalse(true);
-			} catch (Exception e) {
-				assertNull(connection);
-			}
-			
-			//系统数据源，数据源id存在
-			DataSource dataSource2 = initSystemDataSourceAndDataSourceIdExist();
-			Connection connection2 = dataSource2.generateConnection();
-			assertNotNull(connection2);
-			
-			//自定义数据源，不能连接
-			DataSource dataSource3 = initCustomDataSourceCannotConnect();
-			Connection connection3 = dataSource3.generateConnection();
-			assertNull(connection3);
-			
-			//自定义数据源，能连接
-			DataSource dataSource4 = initCustomDataSourceCanConnect();
-			Connection connection4 = dataSource4.generateConnection();
-			assertNotNull(connection4);
-			
-		} catch (Exception e) {
-			assertFalse(true);
-		}
+		//自定义数据源，能连接
+		DataSource dataSource2 = initCustomDataSourceCanConnect();
+		boolean result2 = dataSource2.testConnection();
+		assertTrue(result2);
 	}
 	
+	/**
+	 * 测试系统数据源id不存在
+	 */
+	@Test(expected = SystemDataSourceNotExistException.class)
+	public void testConnectionSystemDataSourceNotExist() {
+		DataSource dataSource = initSystemDataSourceAndDataSourceIdNotExist();
+		dataSource.testConnection();
+	}
+	
+	/**
+	 * 测试系统数据源id不存在
+	 */
+	@Test(expected = RuntimeException.class)
+	public void testConnectionCustomDataSourceNotExist() {
+		DataSource dataSource = initCustomDataSourceCannotConnect();
+		dataSource.testConnection();
+	}
+
+	/**
+	 * 测试
+	 */
+	@Test
+	public void testGenerateConnection() {
+		//系统数据源，数据源id存在
+		DataSource dataSource2 = initSystemDataSourceAndDataSourceIdExist();
+		Connection connection2 = dataSource2.generateConnection();
+		assertNotNull(connection2);
+		
+		//自定义数据源，能连接
+		DataSource dataSource4 = initCustomDataSourceCanConnect();
+		Connection connection4 = dataSource4.generateConnection();
+		assertNotNull(connection4);
+	}
+	
+	/**
+	 * 测试系统数据源id不存在
+	 */
+	@Test(expected = SystemDataSourceNotExistException.class)
+	public void testGenerateConnectionSystemDataSourceNotExist() {
+		DataSource dataSource = initSystemDataSourceAndDataSourceIdNotExist();
+		dataSource.generateConnection();
+	}
+	
+	/**
+	 * 测试系统数据源id不存在
+	 */
+	@Test(expected = RuntimeException.class)
+	public void testGenerateConnectionCustomDataSourceNotExist() {
+		DataSource dataSource = initCustomDataSourceCannotConnect();
+		dataSource.generateConnection();
+	}
+	
+	/**
+	 * 测试
+	 */
 	@Test
 	public void testExisted(){
 		DataSource dataSource = new DataSource();
@@ -189,6 +294,24 @@ public class DataSourceTest extends KoalaBaseSpringTestCase{
 		dataSource.setPassword("");
 
 		return dataSource;
+	}
+	
+	/**
+	 * 保存
+	 */
+	private void save(){
+		dataSource.save();
+		boolean existed = dataSource.existed();
+		assertTrue(existed);
+	}
+	
+	/**
+	 * 删除
+	 */
+	private void remove(){
+		dataSource.remove();
+		boolean notExisted = dataSource.notExisted();
+		assertTrue(notExisted);
 	}
 
 }

@@ -67,7 +67,8 @@ public class PackageVO {
 	}
 
 	public void setChildren(String[] children) {
-		this.children = children;
+		this.children = new String[children.length];
+		System.arraycopy(children, 0, this.children, 0, children.length);
 	}
 
 	public String getType() {

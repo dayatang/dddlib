@@ -20,7 +20,7 @@ public class I18nTest {
 	
 	@Test
 	public void testUsI18n(){
-		String value = I18NManager.getMessage("name","en_US");
+		String value = I18NManager.getMessage("name","en");
 		Assert.assertTrue("Koala".equals(value));
 	}
 }

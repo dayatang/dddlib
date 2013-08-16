@@ -29,7 +29,10 @@ public class JdbcDriverInjectHandle implements MethodInjectHandler {
 	public JdbcDriverInjectHandle(TraceLiftcycleManager container,
 			ConnectionEventListener[] listeners) {
 		_container = container;
-		_listeners = listeners;
+		
+		_listeners =new ConnectionEventListener[listeners.length];
+		System.arraycopy(listeners, 0, _listeners, 0, listeners.length);
+		
 	}
 
 	public Object invoke(Object target, Method method, Method methodProxy,

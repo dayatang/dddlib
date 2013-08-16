@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 
-import com.dayatang.domain.AbstractEntity;
 import com.dayatang.domain.Entity;
 import com.dayatang.domain.EntityRepository;
 import com.dayatang.domain.InstanceFactory;

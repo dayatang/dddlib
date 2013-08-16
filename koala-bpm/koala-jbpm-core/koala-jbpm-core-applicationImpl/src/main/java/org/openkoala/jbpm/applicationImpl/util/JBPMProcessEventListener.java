@@ -35,7 +35,7 @@ public class JBPMProcessEventListener implements ProcessEventListener {
 
 	public void afterProcessStarted(ProcessStartedEvent event) {
 		RuleFlowProcessInstance in = (RuleFlowProcessInstance)event.getProcessInstance();
-		ProcessInstanceLog instanceLog = JPAProcessInstanceDbLog.findProcessInstance(in.getId());
+		//ProcessInstanceLog instanceLog = JPAProcessInstanceDbLog.findProcessInstance(in.getId());
 		ProcessInstanceExpandLog instanceExpandLog = new ProcessInstanceExpandLog();
 		instanceExpandLog.setProcessName(in.getProcessName());
 		instanceExpandLog.setState(in.getState());

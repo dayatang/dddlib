@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,8 +15,10 @@ import java.util.Map;
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
-import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.openkoala.gqc.core.domain.DataSource;
+import org.openkoala.gqc.core.domain.DataSourceType;
+
+import com.dayatang.domain.InstanceFactory;
 
 /**
  * 抽象查询器
@@ -72,19 +73,12 @@ public abstract class Querier {
 	 */
 	public List<Map<String, Object>> query() {
 		List<Map<String, Object>> results = null;
-		
-		Connection conn = null;
-        String url = dataSource.getConnectUrl();
-        String jdbcDriver = dataSource.getJdbcDriver();
-        String user = dataSource.getUsername();
-        String password = dataSource.getPassword();
-
-        DbUtils.loadDriver(jdbcDriver);
+		Connection connection = null;
+        
         try {
-            conn = DriverManager.getConnection(url, user, password);
+        	connection = getConnection();
             QueryRunner queryRunner = new QueryRunner();
-            results = (List<Map<String, Object>>) queryRunner.query(conn, generateQuerySql(), new ResultSetHandler<List<Map<String, Object>>>() {
-
+            results = (List<Map<String, Object>>) queryRunner.query(connection, generateQuerySql(), new ResultSetHandler<List<Map<String, Object>>>() {
 				public List<Map<String, Object>> handle(ResultSet rs)
 						throws SQLException {
 					List<Map<String, Object>> result = new ArrayList<Map<String,Object>>();
@@ -104,14 +98,39 @@ public abstract class Querier {
 					}
 					return result;
 				}
-            	
             });
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DbUtils.closeQuietly(conn);
+        	closeConnection(connection);
         }
         
         return results;
+	}
+	
+	final Connection getConnection() throws SQLException {
+		Connection result = null;
+		
+		if (dataSource.getDataSourceType().equals(DataSourceType.SYSTEM_DATA_SOURCE)) {
+		    try {
+				javax.sql.DataSource systemDataSource = InstanceFactory
+						.getInstance(javax.sql.DataSource.class,
+								dataSource.getDataSourceId());
+				result = systemDataSource.getConnection();
+			} catch (Exception e) {
+				throw new SystemDataSourceNotExistException("系统数据源不存在！",e);
+			}
+		} else {
+			DbUtils.loadDriver(dataSource.getJdbcDriver());
+			result = DriverManager.getConnection(dataSource.getConnectUrl(), dataSource.getUsername(), dataSource.getPassword());
+		}
+		
+		return result;
+	}
+	
+	final void closeConnection(Connection connection) {
+		if (dataSource.getDataSourceType().equals(DataSourceType.CUSTOM_DATA_SOURCE)) {
+    		DbUtils.closeQuietly(connection);
+    	}
 	}
 }

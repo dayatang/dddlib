@@ -49,7 +49,7 @@ public class CURDDefaultUIView {
     public static EntityViewUI getDefaultEntityViewUI(EntityModel entity){
         EntityViewUI ui = new EntityViewUI(entity);
         
-        List<PKFieldModel> idFieldModels = entity.getIDFieldModel();
+        //List<PKFieldModel> idFieldModels = entity.getIDFieldModel();
         List<PersistenceFieldModel> persistenceFieldModels=entity.getPersistenceFieldModel();
         
         //生成查询UI，查询UI仅针对本身实体，不针对级联实体进行查询

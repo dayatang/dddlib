@@ -96,6 +96,12 @@ public class DatabaseUtils {
 		return null;
 	}
 	
+	/**
+	 * 获取数据库元数据
+	 * @param conn
+	 * @return
+	 * @throws SQLException
+	 */
 	private static DatabaseMetaData getDatabaseMetaData(Connection conn) throws SQLException {
 		return conn.getMetaData();
 	}

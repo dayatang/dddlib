@@ -91,22 +91,24 @@ public class GunvorApplicationImpl implements GunvorApplication {
 				if(assertResult==null)continue;
 				SAXReader assertReader = new SAXReader();
 				Document assertDocument = assertReader.read(new ByteArrayInputStream(assertResult.toString().getBytes("UTF-8")));
-				Element assertRoot = assertDocument.getRootElement();
-				Element metadata = assertRoot.element("metadata");
-				System.out.println(metadata.elementText("title"));
-				if ("bpmn2".equals(metadata.elementText("format")) || "bpmn".equals(metadata.elementText("format"))) {
-					Bpmn2 bpmn = new Bpmn2();
-					bpmn.setCreated(metadata.elementText("created"));
-					bpmn.setCreatedby(metadata.elementText("createdBy"));
-					bpmn.setDescription(assertRoot.elementText("description"));
-					bpmn.setFormat(metadata.elementText("format"));
-					bpmn.setText(metadata.elementText("title"));
-					bpmn.setPkgname(packageName);
-					bpmn.setUuid(metadata.elementText("uuid"));
-					bpmn.setVersion(assertRoot.elementText("version"));
-					bpmn.setSource(assertRoot.elementText("sourceLink"));
-					bpmn.setPackageName(packageName);
-					bpmn2.add(bpmn);
+				if(assertDocument!=null){
+					Element assertRoot = assertDocument.getRootElement();
+					Element metadata = assertRoot.element("metadata");
+					System.out.println(metadata.elementText("title"));
+					if ("bpmn2".equals(metadata.elementText("format")) || "bpmn".equals(metadata.elementText("format"))) {
+						Bpmn2 bpmn = new Bpmn2();
+						bpmn.setCreated(metadata.elementText("created"));
+						bpmn.setCreatedby(metadata.elementText("createdBy"));
+						bpmn.setDescription(assertRoot.elementText("description"));
+						bpmn.setFormat(metadata.elementText("format"));
+						bpmn.setText(metadata.elementText("title"));
+						bpmn.setPkgname(packageName);
+						bpmn.setUuid(metadata.elementText("uuid"));
+						bpmn.setVersion(assertRoot.elementText("version"));
+						bpmn.setSource(assertRoot.elementText("sourceLink"));
+						bpmn.setPackageName(packageName);
+						bpmn2.add(bpmn);
+					}
 				}
 			}
 		} catch (Exception e) {
@@ -220,17 +222,12 @@ public class GunvorApplicationImpl implements GunvorApplication {
 		// String xml =
 		// "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><package><description>The default rule package</description><title>demo</title></package>";
 		InputStream inputString = null;
-		try {
-			inputString = new ByteArrayInputStream(xmlContent.getBytes("UTF-8"));
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		byte[] data;
 
 		HttpURLConnection connection = null;
 		URL url;
 		try {
+			inputString = new ByteArrayInputStream(xmlContent.getBytes("UTF-8"));
 			data = new byte[inputString.available()];
 			inputString.read(data);
 			url = new URL(urlString);

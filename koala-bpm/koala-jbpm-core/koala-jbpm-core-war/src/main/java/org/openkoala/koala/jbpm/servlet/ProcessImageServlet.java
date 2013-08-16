@@ -30,6 +30,7 @@ public class ProcessImageServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		ServletOutputStream op = response.getOutputStream();
 		try {
 			response.setContentType(CONTENT_TYPE);
 			String processId = request
@@ -44,12 +45,14 @@ public class ProcessImageServlet extends HttpServlet {
 			}
 			
 			response.setContentLength(bytes.length);
-			ServletOutputStream op = response.getOutputStream();
 			op.write(bytes);
 			op.flush();
-			op.close();
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			if(op!=null){
+				op.close();
+			}
 		}
 	}
 
