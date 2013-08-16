@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.dayatang.querychannel.support.Page;
 
 /**
@@ -26,6 +27,9 @@ import com.dayatang.querychannel.support.Page;
 @Controller
 public class QueryController {
 
+	/**
+	 * 查询通道应用层接口实例
+	 */
     @Autowired
 	private GqcApplication gqcApplication;
 	
@@ -53,6 +57,7 @@ public class QueryController {
 	 * @param request
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping("/search/{id}")
 	public Map<String, Object> search(@PathVariable Long id, @RequestParam int page,

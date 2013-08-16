@@ -302,6 +302,11 @@ public class GeneralQuery extends GeneralQueryEntity {
 		return result.toString();
 	}
 	
+	/**
+	 * 通过字段名称查询动态查询条件
+	 * @param fieldName
+	 * @return
+	 */
 	public DynamicQueryCondition getDynamicQueryConditionByFieldName(String fieldName) {
 		for (DynamicQueryCondition dynamicQueryCondition : dynamicQueryConditions) {
 			if (dynamicQueryCondition.getFieldName().equals(fieldName)) {

@@ -679,6 +679,7 @@
           <nonFilteredFileExtensions>
             <nonFilteredFileExtension>dll</nonFilteredFileExtension>
             <nonFilteredFileExtension>so</nonFilteredFileExtension>
+            <nonFilteredFileExtension>dylib</nonFilteredFileExtension>
           </nonFilteredFileExtensions>
         </configuration>
       </plugin>
