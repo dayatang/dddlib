@@ -17,6 +17,13 @@
 		<property name="destDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/webapp/
 		</property>
 	</CopyFiles>
+	
+	<CopyFiles>
+		<property name="express">$Monitor.installType=='all'</property>
+		<property name="srcDir">vm/other/monitor/sigar/</property>
+		<property name="destDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/sigar/
+		</property>
+	</CopyFiles>
 
 	<VelocityDirObject>
 		<property name="vmDir">vm/other/monitor/config/monitor/</property>
