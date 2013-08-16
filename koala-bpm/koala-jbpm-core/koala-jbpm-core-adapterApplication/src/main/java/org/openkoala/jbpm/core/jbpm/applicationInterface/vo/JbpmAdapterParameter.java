@@ -17,7 +17,9 @@ public class JbpmAdapterParameter  implements Serializable{
 			List<String> strings) {
 		super();
 		this.name = name;
-		this.params = params;
+		this.params = new byte[params.length];
+		System.arraycopy(params, 0, this.params, 0, params.length);
+		
 		this.strings = strings;
 	}
 
@@ -31,7 +33,8 @@ public class JbpmAdapterParameter  implements Serializable{
 	}
 
 	public void setParams(byte[] params) {
-		this.params = params;
+		this.params = new byte[params.length];
+		System.arraycopy(params, 0, this.params, 0, params.length);
 	}
 	
 	public String getName() {

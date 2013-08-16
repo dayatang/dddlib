@@ -38,7 +38,9 @@ public class Type {
 
 		this.superName = superName;
 
-		this.interfaces = interfaces;
+		this.interfaces = new String[]{};
+		
+		System.arraycopy(interfaces, 0, this.interfaces, 0, interfaces.length);
 	}
 	
 	public byte[] getByteCode() {
@@ -46,7 +48,8 @@ public class Type {
 	}
 
 	public void setByteCode(byte[] byteCode) {
-		this.byteCode = byteCode;
+		this.byteCode = new byte[]{};
+		System.arraycopy(byteCode, 0, this.byteCode, 0, byteCode.length);
 	}
 	
 	int getAccess() {
@@ -62,7 +65,8 @@ public class Type {
 	}
 
 	void setInterfaces(String[] interfaces) {
-		this.interfaces = interfaces;
+		this.interfaces = new String[]{};
+		System.arraycopy(interfaces, 0, this.interfaces, 0, interfaces.length);
 	}
 
 	String getName() {

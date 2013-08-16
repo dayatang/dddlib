@@ -52,12 +52,12 @@ public class JdbcPoolStatusCollector {
 	//连接池状态
 	private Map<DataSource, Map<String, JdbcConnStatusVo>> connPoolStats= new HashMap<DataSource, Map<String, JdbcConnStatusVo>>();
 	
-	private static JdbcPoolStatusCollector instance;
+	private static JdbcPoolStatusCollector instance = new JdbcPoolStatusCollector();
 	
 	private JdbcPoolStatusCollector() {}
 	
 
-	public static JdbcPoolStatusCollector getInstance() {
+	public static synchronized JdbcPoolStatusCollector getInstance() {
 		if(instance == null)instance = new JdbcPoolStatusCollector();
 		return instance;
 	}

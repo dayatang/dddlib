@@ -97,7 +97,8 @@ public class KoalaProcessInfoVO implements Serializable {
 	}
 
 	public void setData(byte[] data) {
-		this.data = data;
+		this.data = new byte[data.length];
+		System.arraycopy(data, 0, this.data, 0, data.length);
 	}
 
 }
