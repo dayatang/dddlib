@@ -170,10 +170,14 @@ public class UserAction extends ActionSupport {
 		int limit = Integer.parseInt(this.pagesize);
 		initSearchCondition();
 		Page<UserVO> all = userApplication.pageQueryUserCustom(start, limit, search);
-		dataMap.put("Rows", all.getResult());
-		dataMap.put("start", start * limit - limit);
-		dataMap.put("limit", limit);
-		dataMap.put("Total", all.getTotalCount());
+		if(all!=null)
+		{
+			dataMap.put("Rows", all.getResult());
+			dataMap.put("start", start * limit - limit);
+			dataMap.put("limit", limit);
+			dataMap.put("Total", all.getTotalCount());
+		}
+		
 		return "JSON";
 	}
 

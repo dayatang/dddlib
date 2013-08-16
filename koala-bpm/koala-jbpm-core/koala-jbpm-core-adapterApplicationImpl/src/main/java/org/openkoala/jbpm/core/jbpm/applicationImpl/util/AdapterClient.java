@@ -74,8 +74,10 @@ public class AdapterClient {
 			e.printStackTrace();
 			throw e;
 		} finally {
-			session.close(true);
-			session.getService().dispose();
+			if(session!=null){
+				session.close(true);
+				session.getService().dispose();
+			}
 		}
 	}
 
