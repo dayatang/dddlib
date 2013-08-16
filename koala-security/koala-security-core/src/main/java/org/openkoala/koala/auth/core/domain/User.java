@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -12,10 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.NoResultException;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.openkoala.koala.auth.core.domain.infra.jpa.UserRepository;
-
-import com.dayatang.domain.InstanceFactory;
 import com.dayatang.utils.DateUtils;
 
 /**
@@ -60,6 +55,10 @@ public class User extends Identity {
 		this.userDesc = desc;
 	}
 
+	/**
+	 * 获取用户所拥有的角色
+	 * @return
+	 */
 	public Set<RoleUserAuthorization> getRoles() {
 		return new HashSet<RoleUserAuthorization>(RoleUserAuthorization.findAuthorizationByUser(this));
 	}
@@ -129,11 +128,6 @@ public class User extends Identity {
 		return true;
 	}
 
-	/* 定义领域接口 */
-	static UserRepository getUserRepository() {
-		return InstanceFactory.getInstance(UserRepository.class);
-	}
-
 	public static User findByUserAccount(String userAccount) {
 		try {
 			return User.getRepository().getSingleResult(
@@ -170,6 +164,10 @@ public class User extends Identity {
 		return !findByNamedQuery("isAccountExist", new Object[] { getUserAccount(), new Date() }, User.class).isEmpty();
 	}
 
+	/**
+	 * 废除用户所拥有的角色
+	 * @param role
+	 */
 	public void abolishRole(Role role) {
 		List<RoleUserAuthorization> authorizations = RoleUserAuthorization.getRepository().find( //
 				"select m from RoleUserAuthorization m where m.user.id=? and " //
@@ -181,6 +179,9 @@ public class User extends Identity {
 
 	}
 	
+	/**
+	 * 重置密码
+	 */
 	public void resetPassword() {
 		this.setUserPassword("abcd");
 		this.save();

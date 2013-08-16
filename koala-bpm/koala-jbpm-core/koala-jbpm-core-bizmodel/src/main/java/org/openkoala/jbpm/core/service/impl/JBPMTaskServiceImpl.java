@@ -190,6 +190,7 @@ public class JBPMTaskServiceImpl implements JBPMTaskService {
 	                .setParameter("processInstanceId", processInstanceId).getSingleResult();
 	        } catch (NoResultException e) {
 	        	return null;
+	        } finally {
 	        }
 	    }
 	    

@@ -52,14 +52,20 @@ import com.sdicons.json.mapper.MapperException;
 
 
 /**
- * 
+ * 类    名：KoalaUISurpport.java
+ *   
  * 功能描述：UI组件数据访问支持	
  *  
  * 创建日期：2013-1-23上午10:53:21     
  * 
+ * 版本信息：v1.0
+ * 
  * 版权信息：Copyright (c) 2011 openkoala All Rights Reserved
  * 
  * 作    者：vakinge(chiang.www@gmail.com)
+ * 
+ * 修改记录： 
+ * 修 改 者    修改日期     文件版本   修改说明	
  */
 
 public class KoalaUISurpport extends HttpServlet {
@@ -96,9 +102,7 @@ public class KoalaUISurpport extends HttpServlet {
             }else if("tree".equals(ui_type)){
                 buildTree(request,response);
             }
-        } catch (Exception e) {
-        	e.printStackTrace();
-        }
+        } catch (Exception e) {}
        
     }
 
@@ -123,7 +127,7 @@ public class KoalaUISurpport extends HttpServlet {
             if(!json.startsWith("["))json = "["+json+"]";
             writeJSON(response,json);
         } catch (Exception e) {
-        	e.printStackTrace();
+            // TODO: handle exception
         }
     }
 
@@ -147,11 +151,9 @@ public class KoalaUISurpport extends HttpServlet {
                 json = JSONMapper.toJSON(options).render(false);
             }else if("tree".equals(dropdownStyle)){
                 buildTree(request, response);
-            
-            }
-//            else if("table".equals(dropdownStyle)){
-//                
-//            } 
+            }else if("table".equals(dropdownStyle)){
+                
+            } 
             //
             writeJSON(response,json);
             
@@ -171,7 +173,6 @@ public class KoalaUISurpport extends HttpServlet {
         try {
             writeObject(response,json, "text/x-json;charset=UTF-8"); 
         } catch (Exception e) {
-        	e.printStackTrace();
         }
         
     }

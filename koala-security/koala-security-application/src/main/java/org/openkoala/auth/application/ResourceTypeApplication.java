@@ -59,5 +59,9 @@ public interface ResourceTypeApplication {
 	 */
 	List<ResourceTypeVO> findResourceType();
 	
+	/**
+	 * 查找菜单类型
+	 * @return
+	 */
 	List<ResourceTypeVO> findMenuType();
 }

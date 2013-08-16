@@ -32,9 +32,8 @@ import org.springframework.beans.factory.annotation.Value;
 
 @Named("gunvorApplication")
 public class GunvorApplicationImpl implements GunvorApplication {
-
-	private static final Logger logger = LoggerFactory
-			.getLogger(GunvorApplicationImpl.class);
+	
+	private static final Logger logger = LoggerFactory.getLogger(GunvorApplicationImpl.class);
 
 	@Value("${gunvor.server.url}")
 	private String gunvorServerUrl;
@@ -42,32 +41,26 @@ public class GunvorApplicationImpl implements GunvorApplication {
 	private String gunvorServerUser;
 	@Value("${gunvor.server.pwd}")
 	private String gunvorServerPwd;
-
+	
+	
 	public void publichJBPM(String packageName, String name, String wsdl) {
 		try {
 			Bpmn2 bpmn = this.getBpmn2(packageName, name);
 			URL url = new URL(wsdl);
-			JBPMApplication application = new JBPMApplicationImplService(url)
-					.getJBPMApplicationImplPort();
+			JBPMApplication application = new JBPMApplicationImplService(url).getJBPMApplicationImplPort();
 			String source = getConnectionString(bpmn.getSource());
 			SAXReader reader = new SAXReader();
-			ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(
-					source.toString().getBytes("UTF-8"));
+			ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(source.toString().getBytes("UTF-8"));
 			Document document = reader.read(byteArrayInputStream);
 			Element root = document.getRootElement();
 			Element process = root.element("process");
 			String processId = process.attributeValue("id");
-			Element bpmnPlane = root.element("BPMNDiagram")
-					.element("BPMNPlane");
-			bpmnPlane.addAttribute("bpmnElement",
-					processId + "@" + bpmn.getVersion());
+			Element bpmnPlane = root.element("BPMNDiagram").element("BPMNPlane");
+			bpmnPlane.addAttribute("bpmnElement", processId + "@" + bpmn.getVersion());
 			process.addAttribute("id", processId + "@" + bpmn.getVersion());
-			String pngURL = gunvorServerUrl + "/rest/packages/" + packageName
-					+ "/assets/" + processId + "-image/binary";
+			String pngURL = gunvorServerUrl + "/rest/packages/" + packageName + "/assets/" + processId + "-image/binary";
 			byte[] pngByte = this.getPng(pngURL);
-			application.addProcess(packageName, processId,
-					Integer.parseInt(bpmn.getVersion()), document.asXML(),
-					pngByte, true);
+			application.addProcess(packageName,processId, Integer.parseInt(bpmn.getVersion()), document.asXML(), pngByte,true);
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
@@ -80,11 +73,9 @@ public class GunvorApplicationImpl implements GunvorApplication {
 	public List<Bpmn2> getBpmn2s(String packageName) {
 		List<Bpmn2> bpmn2 = new ArrayList<Bpmn2>();
 		try {
-			String result = getConnectionString(gunvorServerUrl
-					+ "/rest/packages/" + packageName);
+			String result = getConnectionString(gunvorServerUrl + "/rest/packages/" + packageName);
 			SAXReader reader = new SAXReader();
-			ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(
-					result.toString().getBytes("UTF-8"));
+			ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(result.toString().getBytes("UTF-8"));
 			Document document = reader.read(byteArrayInputStream);
 			Element root = document.getRootElement();
 
@@ -92,28 +83,23 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			for (Element ass : asserts) {
 				String assertUrl = ass.getTextTrim();
 				String assertResult = null;
-				try {
-					assertResult = getConnectionString(assertUrl);
-				} catch (Exception e) {
+				try{
+				assertResult = getConnectionString(assertUrl);
+				}catch(Exception e){
 					continue;
 				}
-				if (assertResult == null)
-					continue;
+				if(assertResult==null)continue;
 				SAXReader assertReader = new SAXReader();
-				Document assertDocument = assertReader
-						.read(new ByteArrayInputStream(assertResult.toString()
-								.getBytes("UTF-8")));
-				if (assertDocument != null) {
+				Document assertDocument = assertReader.read(new ByteArrayInputStream(assertResult.toString().getBytes("UTF-8")));
+				if(assertDocument!=null){
 					Element assertRoot = assertDocument.getRootElement();
 					Element metadata = assertRoot.element("metadata");
 					System.out.println(metadata.elementText("title"));
-					if ("bpmn2".equals(metadata.elementText("format"))
-							|| "bpmn".equals(metadata.elementText("format"))) {
+					if ("bpmn2".equals(metadata.elementText("format")) || "bpmn".equals(metadata.elementText("format"))) {
 						Bpmn2 bpmn = new Bpmn2();
 						bpmn.setCreated(metadata.elementText("created"));
 						bpmn.setCreatedby(metadata.elementText("createdBy"));
-						bpmn.setDescription(assertRoot
-								.elementText("description"));
+						bpmn.setDescription(assertRoot.elementText("description"));
 						bpmn.setFormat(metadata.elementText("format"));
 						bpmn.setText(metadata.elementText("title"));
 						bpmn.setPkgname(packageName);
@@ -131,8 +117,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 		return bpmn2;
 	}
 
-	private Bpmn2 getBpmn2(String packageName, String name)
-			throws DocumentException {
+	private Bpmn2 getBpmn2(String packageName, String name) throws DocumentException {
 		String bmnName = null;
 		try {
 			bmnName = URLEncoder.encode(name, "UTF-8");
@@ -140,14 +125,12 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String assertUrl = gunvorServerUrl + "/rest/packages/" + packageName
-				+ "/assets/" + bmnName;
+		String assertUrl = gunvorServerUrl + "/rest/packages/" + packageName + "/assets/" + bmnName;
 		String assertResult = getConnectionString(assertUrl);
 		SAXReader assertReader = new SAXReader();
 		Document assertDocument = null;
 		try {
-			assertDocument = assertReader.read(new ByteArrayInputStream(
-					assertResult.toString().getBytes("UTF-8")));
+			assertDocument = assertReader.read(new ByteArrayInputStream(assertResult.toString().getBytes("UTF-8")));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -171,13 +154,12 @@ public class GunvorApplicationImpl implements GunvorApplication {
 	public void deleteBpmn(String packageName, String bpmnName) {
 		// /packages/{packageName}
 		String deleteBpmnName = null;
-		try {
+		try { 
 			deleteBpmnName = URLEncoder.encode(bpmnName, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		String url = gunvorServerUrl + "/rest/packages/" + packageName
-				+ "/assets/" + deleteBpmnName;
+		String url = gunvorServerUrl + "/rest/packages/" + packageName + "/assets/" + deleteBpmnName;
 		deleteConnectionString(url);
 	}
 
@@ -190,12 +172,10 @@ public class GunvorApplicationImpl implements GunvorApplication {
 		InputStream is = null;
 		try {
 			List<PackageVO> packages = new ArrayList<PackageVO>();
-			String stringBuilder = getConnectionString(gunvorServerUrl
-					+ "/rest/packages");
+			String stringBuilder = getConnectionString(gunvorServerUrl + "/rest/packages");
 
 			SAXReader reader = new SAXReader();
-			ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(
-					stringBuilder.toString().getBytes("UTF-8"));
+			ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(stringBuilder.toString().getBytes("UTF-8"));
 			Document document = reader.read(byteArrayInputStream);
 			Element root = document.getRootElement();
 			List<Element> packageElements = root.elements("package");// .element("package");
@@ -211,30 +191,26 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			e.printStackTrace();
 			return null;
 		} finally {
-			try {
-				if (is != null)
+			if (is != null) {
+				try {
 					is.close();
-			} catch (IOException e) {
+				} catch (IOException e) {
+				}
 			}
+			;
 		}
 	}
 
 	public void createPackage(String packageName, String description) {
-		String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><package><description>"
-				+ description
-				+ "</description><title>"
-				+ packageName
-				+ "</title></package>";
+		String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><package><description>" + description + "</description><title>" + packageName + "</title></package>";
 		postConnectionString(gunvorServerUrl + "/rest/packages", xml);
 
 	}
 
 	public void createBpmn2(String packageName, String name, String description) {
 		String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><entry xmlns=\"http://purl.org/atom/ns#\"><description></description><name>AB</name><categoryName></categoryName><format>bpmn2</format></entry>";
-		postConnectionString(gunvorServerUrl + "/rest/packages/" + packageName
-				+ "/assets", xml);
-		// String urlString
-		// =gunvorServerUrl+"/org.drools.guvnor.Guvnor/standaloneEditorServlet?packageName="
+		postConnectionString(gunvorServerUrl + "/rest/packages/" + packageName + "/assets", xml);
+		// String urlString =gunvorServerUrl+"/org.drools.guvnor.Guvnor/standaloneEditorServlet?packageName="
 		// + packageName + "&categoryName=mycategory" +
 		// "&createNewAsset=true&description="+ description + "&assetName=" +
 		// name + "&assetFormat=bpmn" +"&client=oryx";
@@ -261,20 +237,13 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			connection = (HttpURLConnection) url.openConnection();
 
 			connection.setRequestMethod("POST");
-			connection
-					.setRequestProperty(
-							"User-Agent",
-							"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16");
-			connection
-					.setRequestProperty("Accept",
-							"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+			connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16");
+			connection.setRequestProperty("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
 			connection.setRequestProperty("Accept-Language", "en-us,en;q=0.5");
 			connection.setRequestProperty("Accept-Encoding", "gzip,deflate");
 			connection.setRequestProperty("charset", "UTF-8");
-			connection.setRequestProperty("Content-Type",
-					"application/xml; charset=UTF-8");
-			connection.setRequestProperty("Content-Length",
-					String.valueOf(bb.length));
+			connection.setRequestProperty("Content-Type", "application/xml; charset=UTF-8");
+			connection.setRequestProperty("Content-Length", String.valueOf(bb.length));
 			connection.setDoOutput(true);
 			connection.setDoInput(true);
 			connection.setUseCaches(false);
@@ -283,15 +252,13 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			applyAuth(connection);
 			connection.connect();
 
-			DataOutputStream out = new DataOutputStream(
-					connection.getOutputStream());
+			DataOutputStream out = new DataOutputStream(connection.getOutputStream());
 			out.writeBytes(str); // 写入请求的字符串
 			out.flush();
 			out.close();
 			System.out.println(connection.getContent());
 			if (connection.getResponseCode() != 200) {
-				throw new RuntimeException("Parse URL Error:"
-						+ connection.getResponseMessage());
+				throw new RuntimeException("Parse URL Error:" + connection.getResponseMessage());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -310,13 +277,8 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			connection = (HttpURLConnection) url.openConnection();
 
 			connection.setRequestMethod("DELETE");
-			connection
-					.setRequestProperty(
-							"User-Agent",
-							"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16");
-			connection
-					.setRequestProperty("Accept",
-							"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+			connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16");
+			connection.setRequestProperty("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
 			connection.setRequestProperty("Accept-Language", "en-us,en;q=0.5");
 			connection.setRequestProperty("Accept-Encoding", "gzip,deflate");
 			connection.setRequestProperty("charset", "UTF-8");
@@ -325,8 +287,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			connection.connect();
 			System.out.println(connection.getContent());
 			if (connection.getResponseCode() != 200) {
-				throw new RuntimeException("Parse URL Error:"
-						+ connection.getResponseMessage());
+				throw new RuntimeException("Parse URL Error:" + connection.getResponseMessage());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -346,13 +307,8 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			connection = (HttpURLConnection) url.openConnection();
 
 			connection.setRequestMethod("GET");
-			connection
-					.setRequestProperty(
-							"User-Agent",
-							"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16");
-			connection
-					.setRequestProperty("Accept",
-							"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+			connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16");
+			connection.setRequestProperty("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
 			connection.setRequestProperty("Accept-Language", "en-us,en;q=0.5");
 			connection.setRequestProperty("Accept-Encoding", "gzip,deflate");
 			connection.setRequestProperty("charset", "UTF-8");
@@ -362,8 +318,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 
 			InputStream inputStream = connection.getInputStream();
 			if (connection.getResponseCode() != 200) {
-				throw new RuntimeException("Parse URL Error:"
-						+ connection.getResponseMessage());
+				throw new RuntimeException("Parse URL Error:" + connection.getResponseMessage());
 			}
 			ByteArrayOutputStream swapStream = new ByteArrayOutputStream();
 			byte[] buff = new byte[100]; // buff用于存放循环读取的临时数据
@@ -391,13 +346,8 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			connection = (HttpURLConnection) url.openConnection();
 
 			connection.setRequestMethod("GET");
-			connection
-					.setRequestProperty(
-							"User-Agent",
-							"Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16");
-			connection
-					.setRequestProperty("Accept",
-							"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+			connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16");
+			connection.setRequestProperty("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
 			connection.setRequestProperty("Accept-Language", "en-us,en;q=0.5");
 			connection.setRequestProperty("Accept-Encoding", "gzip,deflate");
 			connection.setRequestProperty("charset", "UTF-8");
@@ -405,8 +355,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			applyAuth(connection);
 			connection.connect();
 
-			BufferedReader sreader = new BufferedReader(new InputStreamReader(
-					connection.getInputStream(), "UTF-8"));
+			BufferedReader sreader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
 
 			StringBuilder stringBuilder = new StringBuilder();
 
@@ -431,14 +380,12 @@ public class GunvorApplicationImpl implements GunvorApplication {
 		sun.misc.BASE64Encoder enc = new sun.misc.BASE64Encoder();
 		String userpassword = gunvorServerUser + ":" + gunvorServerPwd;
 		String encodedAuthorization = enc.encode(userpassword.getBytes());
-		connection.setRequestProperty("Authorization", "Basic "
-				+ encodedAuthorization);
+		connection.setRequestProperty("Authorization", "Basic " + encodedAuthorization);
 	}
 
 	public void main(String args[]) throws UnsupportedEncodingException {
 		GunvorApplicationImpl impl = new GunvorApplicationImpl();
-		String process = impl.getConnectionString(gunvorServerUrl
-				+ "/rest/packages");
+		String process = impl.getConnectionString(gunvorServerUrl + "/rest/packages");
 		System.out.println(process.toString());
 	}
 

@@ -78,7 +78,8 @@ public class KoalaWSHumanTaskHandler implements WorkItemHandler {
 	    	if (!initialized) {
 		        if (client == null) {
 		            throw new IllegalStateException("You must set the client to the work item to work");
-		        }else{
+		        }
+		        if (client != null) {
 		            boolean connected = client.connect(ipAddress, port);
 		            if (!connected) {
 		                throw new IllegalArgumentException("Could not connect task client");

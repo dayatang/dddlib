@@ -104,6 +104,10 @@ public interface ResourceApplication {
      */
     ResourceVO saveAndAssignParent(ResourceVO resourceVO, ResourceVO parent);
     
-    public void initResource(String type);
+    /**
+     * 初始化资源
+     * @param type
+     */
+    void initResource(String type);
     
 }

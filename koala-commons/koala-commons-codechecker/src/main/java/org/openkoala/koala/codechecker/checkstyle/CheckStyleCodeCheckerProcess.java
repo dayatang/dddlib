@@ -34,5 +34,16 @@ public class CheckStyleCodeCheckerProcess implements CodeCheckerProcess {
 		}
 		return listener.getCodeCheckerVos();
 	}
+	
+	public static void main(String args[]){
+		String path = "F:/Project/foss-project/src/plugin/KoalaCodeChecker/src/org/openkoala/koala/codechecker/checkstyle/CheckStyleCodeCheckerProcess.java";
+		CheckStyleCodeCheckerProcess check = new CheckStyleCodeCheckerProcess();
+		check.process(path);
+		try{
+			
+		}finally{
+			
+		}
+	}
 
 }

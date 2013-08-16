@@ -49,10 +49,6 @@ public class XML2ObjectUtil {
 	
 	private static Map<String,String> classes;
 
-	static{
-		classes = PackageScanUtil.scan();
-	}
-	
 	private XML2ObjectUtil() {
 	}
 
@@ -68,7 +64,7 @@ public class XML2ObjectUtil {
 	 * @throws Exception
 	 */
 	public Object processParse(String xmlPath) throws Exception {
-		
+		if(classes==null)classes = PackageScanUtil.scan();
 //		InputStream in = getInputStreamFromClassLoader(xmlPath.substring(xmlPath.indexOf("xml"));
 //		InputStreamReader sr = new InputStreamReader(in,"UTF-8"); 
 		Document document = DocumentUtil.readDocument(xmlPath);

@@ -149,14 +149,12 @@ public class KoalaAssignInfo  extends AbstractEntity{
 	public String getRelativeProcess(){
 		if(this.jbpmNames==null)return null;
 		else{
-			StringBuffer value = new StringBuffer();
+			String value = "";
 			for(int i=0;i<this.jbpmNames.size();i++){
-				value.append("jbpmNames.get(i).getProcessId()");
-				if(i!=this.jbpmNames.size()-1){
-					value.append(";");
-				}
+				value = value + jbpmNames.get(i).getProcessId();
+				if(i!=this.jbpmNames.size()-1)value = value + ";";
 			}
-			return value.toString();
+			return value;
 		}
 	}
 

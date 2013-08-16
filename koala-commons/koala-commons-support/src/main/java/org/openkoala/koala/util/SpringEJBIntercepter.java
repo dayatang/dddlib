@@ -94,8 +94,37 @@ public class SpringEJBIntercepter {
 				throw new Exception("Can not find the impl for:"+interfaceClass);
 			}
 		} catch (Exception e) {
-			throw e;
+			ex = e;
 		}
+		
+//		for (Annotation a : targetClass.getAnnotations()) {
+//			if (a instanceof Remote) {
+//				Class<?>[] value = ((Remote) a).value();
+//				for (Class<?> c : value) {
+//					try {
+//						if (InstanceFactory.getInstance(c) != null) {
+//							Object target = serviceName != null
+//									&& serviceName.length() > 0 ? InstanceFactory
+//									.getInstance(c, serviceName)
+//									: InstanceFactory.getInstance(c);
+//							Method method = getMethod(c, context.getMethod());
+//							Object o = method.invoke(target, context
+//									.getParameters());
+//							{//cache
+//								cacheMap.put(key, new CacheClass(c, method));
+//							}
+//							return o;
+//						}
+//					} catch (Exception e) {
+//						ex = e;
+//					}
+//				}
+//			}
+//		}
+		if (ex != null) {
+			throw ex;
+		}
+		return null;
 	}
 
 	private Method getMethod(Class<?> clazz, Method method) throws Exception {
