@@ -5,9 +5,13 @@ import java.util.Set;
 import org.openkoala.gqc.core.domain.GeneralQuery;
 import org.openkoala.gqc.core.domain.GeneralQueryEntity;
 
-import com.dayatang.domain.AbstractEntity;
 import com.dayatang.querychannel.support.Page;
 
+/**
+ * 
+ * 通用查询器应用层接口，提供增删改查功能
+ *
+ */
 public interface GqcApplication {
 
 	/**

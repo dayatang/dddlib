@@ -19,6 +19,10 @@ import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.service.QueryChannelService;
 import com.dayatang.querychannel.support.Page;
 
+/**
+ * 通用查询器应用层实现，提供增删改查功能
+ *
+ */
 @Named
 @Transactional(value="transactionManager_gqc")
 @Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
