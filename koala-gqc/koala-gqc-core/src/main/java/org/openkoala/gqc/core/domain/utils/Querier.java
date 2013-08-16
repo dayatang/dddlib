@@ -112,8 +112,14 @@ public abstract class Querier {
 		Connection result = null;
 		
 		if (dataSource.getDataSourceType().equals(DataSourceType.SYSTEM_DATA_SOURCE)) {
-		    javax.sql.DataSource systemDataSource = InstanceFactory.getInstance(javax.sql.DataSource.class, dataSource.getDataSourceId());
-		    result = systemDataSource.getConnection();
+		    try {
+				javax.sql.DataSource systemDataSource = InstanceFactory
+						.getInstance(javax.sql.DataSource.class,
+								dataSource.getDataSourceId());
+				result = systemDataSource.getConnection();
+			} catch (Exception e) {
+				throw new SystemDataSourceNotExistException("系统数据源不存在！",e);
+			}
 		} else {
 			DbUtils.loadDriver(dataSource.getJdbcDriver());
 			result = DriverManager.getConnection(dataSource.getConnectUrl(), dataSource.getUsername(), dataSource.getPassword());

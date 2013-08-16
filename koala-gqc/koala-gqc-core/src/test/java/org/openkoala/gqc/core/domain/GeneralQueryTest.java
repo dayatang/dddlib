@@ -15,27 +15,40 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import com.dayatang.querychannel.support.Page;
 
+/**
+ * 
+ * @author lambo
+ *
+ */
 @TransactionConfiguration(transactionManager = "transactionManager_gqc",defaultRollback = true)
 public class GeneralQueryTest extends KoalaBaseSpringTestCase{
 
-//	@Mock
-//	private static EntityRepository repository;
-//	
+	/**
+	 * 实例
+	 */
 	private GeneralQuery generalQuery;
 	
+	/**
+	 * 初始化实例
+	 * @throws Exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		generalQuery = createAndInitGeneralQuery();
-//		MockitoAnnotations.initMocks(this);
-//		GeneralQuery.setRepository(repository);
 	}
 
+	/**
+	 * 销毁实例
+	 * @throws Exception
+	 */
 	@After
 	public void tearDown() throws Exception {
-//		GeneralQuery.setRepository(null);
 		generalQuery = null;
 	}
 	
+	/**
+	 * 测试
+	 */
 	@Test
 	public void testQuery() {
 		List<Map<String, Object>> list = generalQuery.query();
@@ -54,18 +67,27 @@ public class GeneralQueryTest extends KoalaBaseSpringTestCase{
 //		generalQuery.getDataSource().remove();
 	}
 
+	/**
+	 * 测试
+	 */
 	@Test
 	public void testPagingQuery() {
 		List<Map<String, Object>> list = generalQuery.pagingQuery(1, 10);
 		assertTrue("查询结果总记录应该为空！", list.isEmpty());
 	}
 
+	/**
+	 * 测试
+	 */
 	@Test
 	public void testPagingQueryPage() {
 		Page<Map<String, Object>> page = generalQuery.pagingQueryPage(1, 10);
 		assertTrue(page.getResult().isEmpty());
 	}
 
+	/**
+	 * 测试
+	 */
 	@Test
 	public void testFindByQueryName() {
 		GeneralQuery generalQueryBean = GeneralQuery.findByQueryName("test");
@@ -84,53 +106,79 @@ public class GeneralQueryTest extends KoalaBaseSpringTestCase{
 		generalQuery.getDataSource().remove();
 	}
 
+	/**
+	 * 测试
+	 */
 	@Test
 	public void testGetQuerySql() {
 		String jpql = generalQuery.getQuerySql();
 		assertNotNull("sql不应该为空！", jpql);
 	}
 
+	/**
+	 * 测试
+	 */
 	@Test
 	public void testGetVisiblePreQueryConditions() {
 		List<PreQueryCondition> results = generalQuery.getVisiblePreQueryConditions();
 		assertEquals("静态查询条件结果集应该为0！", 0, results.size());
 	}
 
+	/**
+	 * 测试
+	 */
 	@Test
 	public void testGetDynamicQueryConditionByFieldName() {
 		DynamicQueryCondition dynamicQueryCondition = generalQuery.getDynamicQueryConditionByFieldName("abc");
 		assertNull("动态查询条件应该为空！", dynamicQueryCondition);
 	}
 
-	@Test
+	/**
+	 * 测试
+	 */
 	public void testIsNew() {
 		Boolean isNew = generalQuery.isNew();
 		assertTrue("应该是未入库的！",isNew);
 	}
 
+	/**
+	 * 测试
+	 */
 	@Test
 	public void testExisted() {
 		Boolean existed = generalQuery.existed();
 		assertTrue("应该是未入库的！",!existed);
 	}
 
+	/**
+	 * 测试
+	 */
 	@Test
 	public void testNotExisted() {
 		Boolean notExisted = generalQuery.notExisted();
 		assertTrue("应该是未入库的！",notExisted);
 	}
 
+	/**
+	 * 测试
+	 */
 	@Test
 	public void testSave() {
 		this.save();
 	}
 	
+	/**
+	 * 测试
+	 */
 	@Test
 	public void testRemove() {
 		this.save();
 		this.remove();
 	}
 
+	/**
+	 * 测试
+	 */
 	@Test
 	public void testGet() {
 		this.save();
@@ -138,6 +186,9 @@ public class GeneralQueryTest extends KoalaBaseSpringTestCase{
 		assertEquals(generalQuery.getId(), generalQueryBean.getId());
 	}
 
+	/**
+	 * 测试
+	 */
 	@Test
 	public void testGetUnmodified() {
 		this.save();
@@ -146,6 +197,9 @@ public class GeneralQueryTest extends KoalaBaseSpringTestCase{
 		assertNotNull(generalQueryBean);
 	}
 
+	/**
+	 * 测试
+	 */
 	@Test
 	public void testLoad() {
 		this.save();
@@ -155,6 +209,9 @@ public class GeneralQueryTest extends KoalaBaseSpringTestCase{
 		assertEquals(generalQuery.getId(), generalQueryBean.getId());
 	}
 
+	/**
+	 * 测试
+	 */
 	@Test
 	public void testFindAll() {
 		this.save();
@@ -164,6 +221,9 @@ public class GeneralQueryTest extends KoalaBaseSpringTestCase{
 		assertEquals(1,list.size());
 	}
 	
+	/**
+	 * 保存
+	 */
 	private void save(){
 		generalQuery.getDataSource().save();
 		generalQuery.save();
@@ -175,6 +235,9 @@ public class GeneralQueryTest extends KoalaBaseSpringTestCase{
 		
 	}
 	
+	/**
+	 * 删除
+	 */
 	private void remove(){
 		generalQuery.remove();
 		
@@ -187,6 +250,10 @@ public class GeneralQueryTest extends KoalaBaseSpringTestCase{
 //		generalQuery.getDataSource().remove();
 	}
 	
+	/**
+	 * 创建GeneralQuery实例
+	 * @return
+	 */
 	private GeneralQuery createAndInitGeneralQuery(){
 		GeneralQuery generalQuery = new GeneralQuery();
 		
@@ -201,6 +268,10 @@ public class GeneralQueryTest extends KoalaBaseSpringTestCase{
 		return generalQuery;
 	}
 	
+	/**
+	 * 创建DataSource实例
+	 * @return
+	 */
 	private DataSource createAndInitDataSource(){
 		DataSource dataSource = new DataSource();
 		dataSource.setDataSourceType(DataSourceType.SYSTEM_DATA_SOURCE);
@@ -208,6 +279,10 @@ public class GeneralQueryTest extends KoalaBaseSpringTestCase{
 		return dataSource;
 	}
 	
+	/**
+	 * 创建PreQueryCondition集合
+	 * @return
+	 */
 	private List<PreQueryCondition> createPreQueryConditions(){
 		List<PreQueryCondition> preQueryConditions = new ArrayList<PreQueryCondition>();
 		
@@ -221,6 +296,10 @@ public class GeneralQueryTest extends KoalaBaseSpringTestCase{
 		return preQueryConditions;
 	}
 	
+	/**
+	 * 创建FieldDetail集合
+	 * @return
+	 */
 	private List<FieldDetail> createFieldDetails(){
 		List<FieldDetail> fieldDetails = new ArrayList<FieldDetail>();
 		
