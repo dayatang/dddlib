@@ -25,7 +25,7 @@ public class JBPMHandlerAdapter extends IoHandlerAdapter {
 	public void messageReceived(final IoSession session, final Object message)
 			throws Exception {
 		if(message == null){
-			
+			return;
 		}else if(message instanceof String){
 			this.context.getNodeInstance().setVariable("_TMP_"+adapter.getName()+"_RESULT", (String)message);
 		}else if(message instanceof Map){

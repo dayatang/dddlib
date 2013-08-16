@@ -62,9 +62,6 @@ public class FTPFacotry {
 			port = Integer.parseInt(prop.getProperty("ftp.port"));
 			encoding = prop.getProperty("ftp.encoding");
 			tmpDir = prop.getProperty("ftp.tmpDir");
-			if(tmpDir==null || "".equals(tmpDir)){
-				
-			}
 			try{retryCount = Integer.parseInt(prop.getProperty("ftp.retry.count"));}catch(Exception e){retryCount = 3;}
 			mode = prop.getProperty("ftp.mode");
 			if(tmpDir!=null)initTmpDir();

@@ -53,7 +53,7 @@ public class AdapterClient {
 			Object message = readFuture.getMessage();
 
 			if (message == null) {
-
+				return;
 			} else if (message instanceof String) {
 				context.getNodeInstance().setVariable(
 						"_TMP_" + adapter.getName() + "_RESULT",
