@@ -650,6 +650,8 @@
 
 	</dependencyManagement>
 	
+	
+	
 	<build>
 	  <resources>
 			<resource>
@@ -666,6 +668,22 @@
 		
 		<plugins>
 		</plugins>
+		
+		 <pluginManagement>
+            <plugins>
+			<!--支持src/main/resouces下的二进制文件复制-->
+			 <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <nonFilteredFileExtensions>
+            <nonFilteredFileExtension>dll</nonFilteredFileExtension>
+            <nonFilteredFileExtension>so</nonFilteredFileExtension>
+          </nonFilteredFileExtensions>
+        </configuration>
+      </plugin>
+      </plugins>
+      </pluginManagement>
 		
 	</build>
 

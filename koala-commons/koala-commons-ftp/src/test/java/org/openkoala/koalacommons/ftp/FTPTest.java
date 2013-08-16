@@ -44,7 +44,8 @@ public class FTPTest {
 			FtpServerFactory serverFactory = new FtpServerFactory();
 			ListenerFactory factory = new ListenerFactory();
 			// set the port of the listener
-			factory.setPort(21);
+	
+			factory.setPort(2021);
 			// replace the default listener
 			serverFactory.addListener("default", factory.createListener());
 			PropertiesUserManagerFactory userManagerFactory = new PropertiesUserManagerFactory();
@@ -57,7 +58,6 @@ public class FTPTest {
 			user.setEnabled(true);
 			user.setName("andy");
 			user.setPassword("andy");
-			System.out.println(System.getProperty("java.io.tmpdir"));
 			user.setHomeDirectory(System.getProperty("java.io.tmpdir"));
 			user.setAuthorities(auths);
 			um.save(user);
