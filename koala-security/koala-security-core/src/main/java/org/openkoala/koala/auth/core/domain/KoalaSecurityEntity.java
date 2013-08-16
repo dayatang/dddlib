@@ -102,6 +102,10 @@ public abstract class KoalaSecurityEntity implements Entity {
 
     private static EntityRepository repository;
 
+    /**
+     * 获取仓储
+     * @return
+     */
     public static EntityRepository getRepository() {
         if (repository == null) {
             repository = InstanceFactory.getInstance(EntityRepository.class,"repository_ss");
@@ -109,34 +113,73 @@ public abstract class KoalaSecurityEntity implements Entity {
         return repository;
     }
 
+    /**
+     * 设置仓储
+     * @param repository
+     */
     public static void setRepository(EntityRepository repository) {
         KoalaSecurityEntity.repository = repository;
     }
 
+    /**
+     * 保存实体
+     */
     public void save() {
         getRepository().save(this);
     }
 
+    /**
+     * 删除实体
+     */
     public void remove() {
         getRepository().remove(this);
     }
 
+    /**
+     * 判断一个实体是否已经存在
+     * @param clazz
+     * @param id
+     * @return
+     */
     public static <T extends Entity> boolean exists(Class<T> clazz, Serializable id) {
         return getRepository().exists(clazz, id);
     }
 
+    /**
+     * 获取一个实体
+     * @param clazz
+     * @param id
+     * @return
+     */
     public static <T extends Entity> T get(Class<T> clazz, Serializable id) {
         return getRepository().get(clazz, id);
     }
 
+    /**
+     * 获取未修改的实体
+     * @param clazz
+     * @param entity
+     * @return
+     */
     public static <T extends Entity> T getUnmodified(Class<T> clazz, T entity) {
         return getRepository().getUnmodified(clazz, entity);
     }
 
+    /**
+     * 加载一个实体
+     * @param clazz
+     * @param id
+     * @return
+     */
     public static <T extends Entity> T load(Class<T> clazz, Serializable id) {
         return getRepository().load(clazz, id);
     }
 
+    /**
+     * 获取所有的实体
+     * @param clazz
+     * @return
+     */
     public static <T extends Entity> List<T> findAll(Class<T> clazz) {
         return getRepository().find(QuerySettings.create(clazz));
     }

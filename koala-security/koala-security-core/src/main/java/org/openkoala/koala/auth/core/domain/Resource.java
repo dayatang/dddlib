@@ -39,6 +39,7 @@ public class Resource extends Party {
 	@Column(name = "MENU_ICON", length = 100)
 	private String menuIcon;
 
+	/** 资源描述 **/
 	@Column(name = "DESCRIPTION", length = 100)
 	private String desc;
 
@@ -234,11 +235,17 @@ public class Resource extends Party {
 		return Resource.findByNamedQuery("findRoleByResource", new Object[] { identifier }, Role.class);
 	}
 
+	/**
+	 * 判断一个角色是否有权限访问某一个资源
+	 * @param resId
+	 * @param roleId
+	 * @return
+	 */
 	public static boolean hasPrivilegeByRole(Long resId, Long roleId) {
 		List<IdentityResourceAuthorization> ls = Resource.findByNamedQuery("queryPrivilegeByRole", //
 				new Object[] { resId, roleId, new Date() }, //
 				IdentityResourceAuthorization.class);
-		return ls.size() > 0;
+		return !ls.isEmpty();
 	}
 
 	/**
@@ -251,7 +258,7 @@ public class Resource extends Party {
 		List<IdentityResourceAuthorization> ls = Resource.findByNamedQuery("queryPrivilegeByUser", //
 				new Object[] { identifier, userAccount }, //
 				IdentityResourceAuthorization.class);
-		return ls.size() > 0;
+		return !ls.isEmpty();
 	}
 
 	/**
@@ -278,15 +285,23 @@ public class Resource extends Party {
 		return false;
 	}
 	
-	public static Resource newResource(String name,String identifier,String level,String menuIcon){
+	/**
+	 * 创建资源
+	 * @param name			资源名称
+	 * @param identifier	资源标识
+	 * @param level			级别
+	 * @param menuIcon		菜单图标
+	 * @return
+	 */
+	public static Resource newResource(String name, String identifier, String level, String menuIcon) {
 	    Resource resource  = null;
 	    List<Resource> resources = Resource.getRepository().find("select r from Resource r where r.name = ? " + //
 	    		"and r.identifier = ?", new Object[]{name,identifier}, Resource.class);
-	    if(resources!=null && resources.size()>0){
+	    if (resources!=null && resources.size()>0){
 	        resource = resources.get(0);
 	    }
 	    
-	    if(resource == null){
+	    if (resource == null) {
 	        resource = new Resource();
 		    resource.setName(name);
 		    resource.setDesc(name);
@@ -295,7 +310,7 @@ public class Resource extends Party {
 		    resource.setLevel(level);
 		    resource.setMenuIcon(menuIcon);
 		    resource.setValid(true);
-	    resource.setAbolishDate(DateUtils.MAX_DATE);
+		    resource.setAbolishDate(DateUtils.MAX_DATE);
 	    }
 	    return resource;
 	}
@@ -310,6 +325,9 @@ public class Resource extends Party {
 				.isEmpty();
 	}
 	
+	/**
+	 * 删除所有资源
+	 */
 	public static void removeAll(){
 		String sql = "DELETE FROM Resource";
 		Resource.getRepository().executeUpdate(sql, new Object[]{});
