@@ -34,9 +34,15 @@ import com.dayatang.querychannel.support.Page;
 @RequestMapping("/generalquery")
 public class GeneralQueryController {
 
+	/**
+	 * 数据源应用层接口实例
+	 */
     @Autowired
     private DataSourceApplication dataSourceApplication;
     
+    /**
+     * 查询通道应用层接口实例
+     */
     @Autowired
     private GqcApplication gqcApplication;
     
@@ -72,6 +78,11 @@ public class GeneralQueryController {
 		return dataMap;
 	}
     
+	/**
+	 * 新增
+	 * @param generalQuery
+	 * @return
+	 */
     @ResponseBody
     @RequestMapping("/add")
     public Map<String,Object> add(GeneralQuery generalQuery) {
@@ -89,6 +100,12 @@ public class GeneralQueryController {
         return dataMap;
     }
     
+    /**
+     * 通过主键查询
+     * @param request
+     * @param id
+     * @return
+     */
     @RequestMapping("/getById")
     public String getById(HttpServletRequest request, Long id) {
         try {
@@ -122,6 +139,11 @@ public class GeneralQueryController {
         return "generalquery/Generalquery-update";
     }
     
+    /**
+     * 更新
+     * @param generalQuery
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/update")
     public Map<String,Object> update(GeneralQuery generalQuery) {
@@ -139,6 +161,10 @@ public class GeneralQueryController {
         return dataMap;
     }
     
+    /**
+     * 查询所有数据源
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/findAllDataSource")
     public Map<String,Object> findAllDataSource() {
@@ -228,6 +254,11 @@ public class GeneralQueryController {
         return dataMap;
     }
     
+    /**
+     * 从条件列池中移除已经在静态/动态条件中的列
+     * @param generalQuery
+     * @param tableMapLeftDiv
+     */
     private void removeTableMapLeftDiv(GeneralQuery generalQuery, Map<String, Integer> tableMapLeftDiv){
         //把已被选择了的列从列池中去除
         List<PreQueryCondition> list = generalQuery.getPreQueryConditions();
@@ -250,6 +281,11 @@ public class GeneralQueryController {
         }
     }
     
+    /**
+     * 从显示列池中移除已经用作显示的列
+     * @param generalQuery
+     * @param tableMapRightDiv
+     */
     private void removeTableMapRightDiv(GeneralQuery generalQuery, Map<String, Integer> tableMapRightDiv){
         //把已被选择了的列从列池中去除
         List<FieldDetail> list3 = generalQuery.getFieldDetails();
@@ -260,25 +296,56 @@ public class GeneralQueryController {
         }
     }
 	
-	
+	/**
+	 * 封装GeneralQueryVo实例
+	 * @author lambo
+	 *
+	 */
 	class GeneralQueryVo {
 		
+		/**
+		 * 主键id
+		 */
 		private Long id;
 		
+		/**
+		 * 数据源id
+		 */
 		private String dataSourceId;
-		
+
+		/**
+		 * 查询器名称
+		 */
 		private String queryName;
-		
+
+		/**
+		 * 表名
+		 */
 		private String tableName;
-		
+
+		/**
+		 * 描述
+		 */
 		private String description;
-		
+
+		/**
+		 * 创建时间
+		 */
 		private Date createDate;
-		
+
+		/**
+		 * 静态查询条件
+		 */
 		private List<PreQueryCondition> preQueryConditions = new ArrayList<PreQueryCondition>();
-		
+
+		/**
+		 * 动态查询条件
+		 */
 		private List<DynamicQueryCondition> dynamicQueryConditions = new ArrayList<DynamicQueryCondition>();
-		
+
+		/**
+		 * 显示列
+		 */
 		private List<FieldDetail> fieldDetails = new ArrayList<FieldDetail>();
 
 		GeneralQueryVo(Long id, String dataSourceId, String queryName, String tableName, String description, Date createDate) {
@@ -289,7 +356,6 @@ public class GeneralQueryController {
 			this.description = description;
 			this.createDate = createDate;
 		}
-
 
 		public Long getId() {
 			return id;
