@@ -105,15 +105,6 @@ public class JbpmProcessAction extends BaseAction{
 	}
 	
 	
-	public String queryProcessByProcessId(){
-		Page<ProcessInstanceVO> all = null;//this.jbpmApplication.queryAllProcess(processId)
-		dataMap.put("Rows", all.getResult());
-		dataMap.put("start", page * pagesize - pagesize);
-		dataMap.put("limit", pagesize);
-		dataMap.put("Total", all.getTotalCount());
-		return "JSON";
-	}
-	
 	public String queryProcessByPackage(){
 		List<String> processes = jbpmApplication.getProcessByPackage(packageName);
 		dataMap.put("processes", processes);

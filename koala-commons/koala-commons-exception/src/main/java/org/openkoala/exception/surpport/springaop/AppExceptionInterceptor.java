@@ -60,8 +60,6 @@ public class AppExceptionInterceptor {
         } catch (Exception e) {
             logger.error("Method["+target.getName() + "." + method.getName()+"]",e);
             throw new BaseException(e);
-        }finally{
-        	
         }
         return o;
     }

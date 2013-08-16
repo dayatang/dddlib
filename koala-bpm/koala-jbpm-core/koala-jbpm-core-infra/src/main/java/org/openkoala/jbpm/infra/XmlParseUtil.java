@@ -81,19 +81,19 @@ public class XmlParseUtil {
 				String key = element.getName();
 				String value = element.getTextTrim();
 				Object val = value;
-				if("int".equals(element.attribute("type"))){
+				if("int".equals(element.attribute("type").getValue())){
 					val = Integer.parseInt(value);
 				}
-				if("long".equals(element.attribute("type"))){
+				if("long".equals(element.attribute("type").getValue())){
 					val = Long.parseLong(value);
 				}
-				if("float".equals(element.attribute("type"))){
+				if("float".equals(element.attribute("type").getValue())){
 					val = Float.parseFloat(value);
 				}
-				if("double".equals(element.attribute("type"))){
+				if("double".equals(element.attribute("type").getValue())){
 					val = Double.parseDouble(value);
 				}
-				if("boolean".equals(element.attribute("type"))){
+				if("boolean".equals(element.attribute("type").getValue())){
 					val = Boolean.valueOf(value);
 				}
 				params.put(key, val);

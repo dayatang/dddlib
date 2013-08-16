@@ -104,8 +104,5 @@ public class ZipAndUnzip {
         }
     }
     
-    public static void main(String args[]) throws IOException{
-    	ZipAndUnzip zip = new ZipAndUnzip();
-    	zip.unZip(new File("C:\\users\\lingen.liu\\Documents\\test.zip"), "d:\\");
-    }
+    
 }

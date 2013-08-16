@@ -15,7 +15,7 @@ public class DBClassLoaderUtil {
 	
     private String jarPath;
     
-    private static URLClassLoader classloader;
+    private URLClassLoader classloader;
     
 	private DBClassLoaderUtil(String jarPath){
 		this.jarPath = jarPath;

@@ -9,13 +9,24 @@ import org.codehaus.jackson.JsonProcessingException;
 import org.codehaus.jackson.map.JsonSerializer;
 import org.codehaus.jackson.map.SerializerProvider;
 
+/**
+ * 
+ * 
+ * @description SpringMVC对时间的序列化支持
+ *  
+ * @date：      2013-8-16   
+ * 
+ * @version    Copyright (c) 2013 Koala All Rights Reserved
+ * 
+ * @author     lingen.liu  <a href=mailto:lingen.liu@gmail.com">lingen.liu@gmail.com</a>
+ */
 public class JsonTimestampSerializer extends JsonSerializer<Date> {
-
-	private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     @Override
     public void serialize(Date date, JsonGenerator gen, SerializerProvider provider)
             throws IOException, JsonProcessingException {
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
         String formattedDate = dateFormat.format(date);
 
