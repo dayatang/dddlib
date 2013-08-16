@@ -2,7 +2,6 @@ package org.openkoala.gqc.core.domain.utils;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import org.apache.commons.dbutils.DbUtils;
@@ -47,16 +46,14 @@ public class PagingQuerier extends Querier {
 	@Override
 	public String generateQuerySql() {
 		String result = null;
-		DataSource dataSource = getDataSource();
-		Connection conn = null;
-        DbUtils.loadDriver(dataSource.getJdbcDriver());
+		Connection connection = null;
         try {
-            conn = DriverManager.getConnection(dataSource.getConnectUrl(), dataSource.getUsername(), dataSource.getPassword());
-            result = generatePagingQuerySql(conn.getMetaData());
+        	connection = getConnection();
+            result = generatePagingQuerySql(connection.getMetaData());
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DbUtils.closeQuietly(conn);
+        	closeConnection(connection);
         }
 		return result;
 	}
@@ -67,22 +64,16 @@ public class PagingQuerier extends Querier {
 	 */
 	public long getTotalCount() {
 		Number result = null;
-		
-		Connection conn = null;
-        String url = getDataSource().getConnectUrl();
-        String jdbcDriver = getDataSource().getJdbcDriver();
-        String user = getDataSource().getUsername();
-        String password = getDataSource().getPassword();
+		Connection connection = null;
 
-        DbUtils.loadDriver(jdbcDriver);
         try {
-            conn = DriverManager.getConnection(url, user, password);
+            connection = getConnection();
             QueryRunner queryRunner = new QueryRunner();
-            result = queryRunner.query(conn, generateQueryTotalCountSql(), new ScalarHandler<Number>());
+            result = queryRunner.query(connection, generateQueryTotalCountSql(), new ScalarHandler<Number>());
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            DbUtils.closeQuietly(conn);
+            DbUtils.closeQuietly(connection);
         }
 		
 		if (result == null) {

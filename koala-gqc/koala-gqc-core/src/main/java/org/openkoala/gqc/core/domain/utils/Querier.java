@@ -76,14 +76,7 @@ public abstract class Querier {
 		Connection connection = null;
         
         try {
-    		if (dataSource.getDataSourceType().equals(DataSourceType.SYSTEM_DATA_SOURCE)) {
-    		    javax.sql.DataSource systemDataSource = InstanceFactory.getInstance(javax.sql.DataSource.class, dataSource.getDataSourceId());
-                connection = systemDataSource.getConnection();
-    		} else {
-    			DbUtils.loadDriver(dataSource.getJdbcDriver());
-    			connection = DriverManager.getConnection(dataSource.getConnectUrl(), dataSource.getUsername(), dataSource.getPassword());
-    		}
-            
+        	connection = getConnection();
             QueryRunner queryRunner = new QueryRunner();
             results = (List<Map<String, Object>>) queryRunner.query(connection, generateQuerySql(), new ResultSetHandler<List<Map<String, Object>>>() {
 				public List<Map<String, Object>> handle(ResultSet rs)
@@ -109,11 +102,29 @@ public abstract class Querier {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-        	if (dataSource.getDataSourceType().equals(DataSourceType.CUSTOM_DATA_SOURCE)) {
-        		DbUtils.closeQuietly(connection);
-        	}
+        	closeConnection(connection);
         }
         
         return results;
+	}
+	
+	final Connection getConnection() throws SQLException {
+		Connection result = null;
+		
+		if (dataSource.getDataSourceType().equals(DataSourceType.SYSTEM_DATA_SOURCE)) {
+		    javax.sql.DataSource systemDataSource = InstanceFactory.getInstance(javax.sql.DataSource.class, dataSource.getDataSourceId());
+		    result = systemDataSource.getConnection();
+		} else {
+			DbUtils.loadDriver(dataSource.getJdbcDriver());
+			result = DriverManager.getConnection(dataSource.getConnectUrl(), dataSource.getUsername(), dataSource.getPassword());
+		}
+		
+		return result;
+	}
+	
+	final void closeConnection(Connection connection) {
+		if (dataSource.getDataSourceType().equals(DataSourceType.CUSTOM_DATA_SOURCE)) {
+    		DbUtils.closeQuietly(connection);
+    	}
 	}
 }

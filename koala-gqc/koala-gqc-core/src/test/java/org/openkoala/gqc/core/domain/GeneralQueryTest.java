@@ -42,13 +42,13 @@ public class GeneralQueryTest extends KoalaBaseSpringTestCase{
 	@Test
 	public void testQuery() {
 		List<Map<String, Object>> list = generalQuery.query();
-		assertNull("查询结果总记录应该为空！", list);
+		assertTrue("查询结果总记录应该为空！", list.isEmpty());
 		
 //		generalQuery.getDataSource().save();
-//		
 //		generalQuery.save();
+		
 //		list = generalQuery.query();
-//		assertEquals("查询结果总记录应该为1！", 1, list.size());
+//		assertEquals("查询结果总记录应该为1！", 0, list.size());
 //		
 //		generalQuery.remove();
 //		list = generalQuery.query();
@@ -60,13 +60,13 @@ public class GeneralQueryTest extends KoalaBaseSpringTestCase{
 	@Test
 	public void testPagingQuery() {
 		List<Map<String, Object>> list = generalQuery.pagingQuery(1, 10);
-		assertNull("查询结果总记录应该为空！", list);
+		assertTrue("查询结果总记录应该为空！", list.isEmpty());
 	}
 
 	@Test
 	public void testPagingQueryPage() {
 		Page<Map<String, Object>> page = generalQuery.pagingQueryPage(1, 10);
-		assertNull("查询结果总记录应该为空！", page.getResult());
+		assertTrue(page.getResult().isEmpty());
 	}
 
 	@Test
@@ -215,9 +215,9 @@ public class GeneralQueryTest extends KoalaBaseSpringTestCase{
 		List<PreQueryCondition> preQueryConditions = new ArrayList<PreQueryCondition>();
 		
 		PreQueryCondition preQueryCondition = new PreQueryCondition();
-		preQueryCondition.setFieldName("dataSource");
+		preQueryCondition.setFieldName("QUERY_NAME");
 		preQueryCondition.setQueryOperation(QueryOperation.EQ);
-		preQueryCondition.setValue("_none");
+		preQueryCondition.setValue("test");
 		
 		preQueryConditions.add(preQueryCondition);
 		
@@ -228,7 +228,7 @@ public class GeneralQueryTest extends KoalaBaseSpringTestCase{
 		List<FieldDetail> fieldDetails = new ArrayList<FieldDetail>();
 		
 		FieldDetail fieldDetail = new FieldDetail();
-		fieldDetail.setFieldName("dataSource");
+		fieldDetail.setFieldName("DATA_SOURCE_ID");
 		fieldDetail.setLabel("数据源");
 		
 		fieldDetails.add(fieldDetail);
