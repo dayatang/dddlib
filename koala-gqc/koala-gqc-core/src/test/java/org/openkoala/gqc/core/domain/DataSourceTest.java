@@ -1,40 +1,105 @@
 package org.openkoala.gqc.core.domain;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.openkoala.koala.util.KoalaBaseSpringTestCase;
 import org.springframework.test.context.transaction.TransactionConfiguration;
-
-import com.dayatang.domain.EntityRepository;
 
 @TransactionConfiguration(transactionManager = "transactionManager_gqc",defaultRollback = true) 
 public class DataSourceTest extends KoalaBaseSpringTestCase{
 	
-	@Mock
-	private EntityRepository repository;
-	
+	/**
+	 * 数据源实例
+	 */
+	private DataSource dataSource;
+
+	/**
+	 * 初始化数据源实例
+	 * @throws Exception
+	 */
 	@Before
-	public void beforeTest(){
-		MockitoAnnotations.initMocks(this);
-		DataSource.setRepository(repository);
-	}
-	
-	@After
-	public void afterTest(){
-		DataSource.setRepository(null);
+	public void setUp() throws Exception {
+		dataSource = initSystemDataSourceAndDataSourceIdNotExist();
 	}
 
+	/**
+	 * 销毁数据源实例
+	 * @throws Exception
+	 */
+	@After
+	public void tearDown() throws Exception {
+		dataSource = null;
+	}
+
+	@Test
+	public void testIsNew() {
+		boolean isNew = dataSource.isNew();
+		assertTrue("应该是未入库的！",isNew);
+	}
+
+	@Test
+	public void testNotExisted() {
+		boolean notExisted = dataSource.notExisted();
+		assertTrue("应该是未入库的！",notExisted);
+	}
+
+	@Test
+	public void testSave() {
+		this.save();
+	}
+
+	@Test
+	public void testRemove() {
+		this.save();
+		this.remove();
+	}
+
+	@Test
+	public void testExists() {
+		Boolean existed = dataSource.existed();
+		assertTrue("应该是未入库的！",!existed);
+	}
+
+	@Test
+	public void testGet() {
+		Boolean notExisted = dataSource.notExisted();
+		assertTrue("应该是未入库的！",notExisted);
+	}
+
+	@Test
+	public void testGetUnmodified() {
+		this.save();
+		DataSource dataSourceBean = DataSource.getUnmodified(DataSource.class, dataSource);
+		assertNotNull(dataSourceBean);
+	}
+
+	@Test
+	public void testLoad() {
+		this.save();
+		
+		DataSource dataSourceBean = DataSource.load(DataSource.class, dataSource.getId());
+
+		assertEquals(dataSource.getId(), dataSourceBean.getId());
+	}
+
+	@Test
+	public void testFindAll() {
+		this.save();
+		
+		List<DataSource> list = DataSource.findAll(DataSource.class);
+		
+		assertEquals(1,list.size());
+	}
+	
 	@Test
 	public void testGetSystemDataSource() {
 		//不存在的系统数据源
@@ -189,6 +254,18 @@ public class DataSourceTest extends KoalaBaseSpringTestCase{
 		dataSource.setPassword("");
 
 		return dataSource;
+	}
+	
+	private void save(){
+		dataSource.save();
+		boolean existed = dataSource.existed();
+		assertTrue(existed);
+	}
+	
+	private void remove(){
+		dataSource.remove();
+		boolean notExisted = dataSource.notExisted();
+		assertNull(notExisted);
 	}
 
 }

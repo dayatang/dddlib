@@ -10,12 +10,9 @@ import java.util.Map;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.openkoala.koala.util.KoalaBaseSpringTestCase;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import com.dayatang.domain.EntityRepository;
 import com.dayatang.querychannel.support.Page;
 
 @TransactionConfiguration(transactionManager = "transactionManager_gqc",defaultRollback = true)
@@ -24,7 +21,7 @@ public class GeneralQueryTest extends KoalaBaseSpringTestCase{
 //	@Mock
 //	private static EntityRepository repository;
 //	
-	private static GeneralQuery generalQuery;
+	private GeneralQuery generalQuery;
 	
 	@Before
 	public void setUp() throws Exception {

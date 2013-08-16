@@ -26,17 +26,24 @@ import com.dayatang.querychannel.support.Page;
 @Remote
 public class GqcApplicationImpl implements GqcApplication {
 
+	/**
+	 * 查询通道
+	 */
 	private static QueryChannelService queryChannel;
 
-	public <T extends GeneralQueryEntity> T getEntity(Class<T> clazz, Long id) {
-		return AbstractEntity.get(clazz, id);
-	}
-	
+	/**
+	 * 获取查询通道实例
+	 * @return
+	 */
 	private static QueryChannelService getQueryChannelService() {
 		if (queryChannel == null) {
 			queryChannel = InstanceFactory.getInstance(QueryChannelService.class, "queryChannel_gqc");
 		}
 		return queryChannel;
+	}
+	
+	public <T extends GeneralQueryEntity> T getEntity(Class<T> clazz, Long id) {
+		return AbstractEntity.get(clazz, id);
 	}
 	
 	public void saveEntity(GeneralQueryEntity entity) {
