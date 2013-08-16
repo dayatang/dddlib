@@ -208,9 +208,9 @@ public class VelocityUtil {
 	 */
 	public static VelocityContext getVelocityContext(Map<String,Object> maps){
 		VelocityContext context = new VelocityContext();
-		Set<String> keys = maps.keySet();
-		for (String key : keys) {
-			context.put(key, maps.get(key));
+		Set<Map.Entry<String, Object>> entrySet = maps.entrySet();
+		for(Map.Entry<String, Object> entry:entrySet){
+			context.put(entry.getKey(), entry.getValue());
 		}
 		return context;
 	}

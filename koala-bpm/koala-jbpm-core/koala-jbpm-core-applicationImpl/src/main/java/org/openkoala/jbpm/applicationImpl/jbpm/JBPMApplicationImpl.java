@@ -336,9 +336,9 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		Map<String, Object> params = new HashMap<String, Object>();
 		Map<String, Object> globalMap = getJbpmSupport().getGlobalVariable();
 		globalMap.put("KJ_USER", creater);
-		Set<String> keys = globalMap.keySet();
-		for (String key : keys) {
-			params.put(key, globalMap.get(key));
+		Set<Map.Entry<String, Object>> keyEntrySet = globalMap.entrySet();
+		for(Map.Entry<String, Object> entry:keyEntrySet){
+			params.put(entry.getKey(), entry.getValue());
 		}
 		String activeProcessName = getJbpmSupport().getActiveProcess(processName);
 
@@ -350,17 +350,17 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		Map<String, Object> packageVariaMap = getJbpmSupport().getPackageVariable(
 				process.getPackageName());
 		// 读取PACKAGE级的变量
-		keys = packageVariaMap.keySet();
-		for (String key : keys) {
-			params.put(key, packageVariaMap.get(key));
+		Set<Map.Entry<String, Object>> entrySet = packageVariaMap.entrySet();
+		for(Map.Entry<String, Object> entry:entrySet){
+			params.put(entry.getKey(), entry.getValue());
 		}
 
 		Map<String, Object> processVariableMap = getJbpmSupport()
 				.getProcessVariable(processName);
 		// 读取Process级的变
-		keys = processVariableMap.keySet();
-		for (String key : keys) {
-			params.put(key, processVariableMap.get(key));
+		Set<Map.Entry<String, Object>> processVariableMapEntrySet = processVariableMap.entrySet();
+		for(Map.Entry<String, Object> entry:processVariableMapEntrySet){
+			params.put(entry.getKey(), entry.getValue());
 		}
 
 		Map<String, Object> userParams = XmlParseUtil.xmlToPrams(paramsString);
@@ -393,9 +393,9 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		proceeParams.put("KJ_USER", user);
 		RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
 				.getProcessInstance(processInstanceId);
-		Set<String> keys = proceeParams.keySet();
-		for (String key : keys) {
-			in.setVariable(key, proceeParams.get(key));
+		Set<Map.Entry<String, Object>> entrySet = proceeParams.entrySet();
+		for(Map.Entry<String, Object> entry:entrySet){
+			in.setVariable(entry.getKey(), entry.getValue());
 		}
 		Task task = getJbpmSupport().getTask(taskId);
 		// 更新TASK参数

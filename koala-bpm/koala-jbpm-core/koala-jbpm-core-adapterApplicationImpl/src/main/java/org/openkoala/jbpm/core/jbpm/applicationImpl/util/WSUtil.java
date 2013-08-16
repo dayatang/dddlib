@@ -27,9 +27,9 @@ public class WSUtil {
 		for (Object value : returns) {
 			String returnValue = (String) value;
 			Map<String, Object> params = XmlParseUtil.xmlToPrams(returnValue);
-			Set<String> keys = params.keySet();
-			for (String key : keys) {
-				in.setVariable(key, params.get(key));
+			Set<Map.Entry<String, Object>> entrySet = params.entrySet();
+			for(Map.Entry<String, Object> entry:entrySet){
+				in.setVariable(entry.getKey(), entry.getValue());
 			}
 		}
 	}
