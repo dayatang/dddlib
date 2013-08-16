@@ -31,8 +31,15 @@ import com.dayatang.querychannel.support.Page;
 @Remote
 public class DataSourceApplicationImpl implements DataSourceApplication {
 
+	/**
+	 * 查询通道
+	 */
 	private static QueryChannelService queryChannel;
 
+	/**
+	 * 获取查询通道实例
+	 * @return
+	 */
 	private static QueryChannelService getQueryChannelService() {
 		if (queryChannel == null) {
 			queryChannel = InstanceFactory.getInstance(QueryChannelService.class, "queryChannel_gqc");
@@ -255,7 +262,7 @@ public class DataSourceApplicationImpl implements DataSourceApplication {
 		return new Page<DataSourceVO>(pages.getCurrentPageNo(), pages.getTotalCount(),
 				pages.getPageSize(), result);
 	}
-
+	
 	/**
 	 * 测试数据源连接
 	 * 

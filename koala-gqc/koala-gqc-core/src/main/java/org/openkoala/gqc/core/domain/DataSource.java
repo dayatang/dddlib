@@ -3,7 +3,6 @@ package org.openkoala.gqc.core.domain;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,8 +11,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 import org.apache.commons.dbutils.DbUtils;
+import org.openkoala.gqc.core.domain.utils.SystemDataSourceNotExistException;
 
-import com.dayatang.domain.AbstractEntity;
 import com.dayatang.domain.InstanceFactory;
 
 /**
@@ -157,7 +156,14 @@ public class DataSource extends GeneralQueryEntity {
         Connection connection = null;
 		
 		if (dataSourceType.equals(DataSourceType.SYSTEM_DATA_SOURCE)) {
-		    javax.sql.DataSource dataSource = InstanceFactory.getInstance(javax.sql.DataSource.class, dataSourceId);
+		    javax.sql.DataSource dataSource = null;
+			try {
+				dataSource = InstanceFactory.getInstance(
+						javax.sql.DataSource.class, dataSourceId);
+			} catch (Exception e) {
+				throw new SystemDataSourceNotExistException("系统数据源不存在！",e);
+			}
+			
 		    try {
                 connection = dataSource.getConnection();
                 if (connection != null) {
@@ -165,7 +171,7 @@ public class DataSource extends GeneralQueryEntity {
                     connection.close();
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+            	throw new RuntimeException("获取系统数据源连接失败！",e);
             }
 		    
 		    return result;
@@ -178,7 +184,7 @@ public class DataSource extends GeneralQueryEntity {
             	result = true;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+        	throw new RuntimeException("获取自定义数据源连接失败！",e);
         } finally {
             DbUtils.closeQuietly(connection);
         }
@@ -194,18 +200,24 @@ public class DataSource extends GeneralQueryEntity {
         Connection connection = null;
         
         if (dataSourceType.equals(DataSourceType.SYSTEM_DATA_SOURCE)) {
-            javax.sql.DataSource dataSource = InstanceFactory.getInstance(javax.sql.DataSource.class, dataSourceId);
+            javax.sql.DataSource dataSource;
+			try {
+				dataSource = InstanceFactory.getInstance(
+						javax.sql.DataSource.class, dataSourceId);
+			} catch (Exception e) {
+				throw new SystemDataSourceNotExistException("系统数据源不存在！",e);
+			}
             try {
                 connection = dataSource.getConnection();
             } catch (SQLException e) {
-                e.printStackTrace();
+            	throw new RuntimeException("获取系统数据源连接失败！",e);
             }
         }else{
             DbUtils.loadDriver(jdbcDriver);
             try {
                 connection = DriverManager.getConnection(connectUrl, username, password);
             } catch (SQLException e) {
-                e.printStackTrace();
+            	throw new RuntimeException("获取自定义数据源连接失败！",e);
             }
         }
         

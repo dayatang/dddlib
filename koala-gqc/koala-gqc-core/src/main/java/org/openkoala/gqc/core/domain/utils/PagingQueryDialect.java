@@ -45,6 +45,10 @@ public abstract class PagingQueryDialect {
 		this.pagesize = pagesize;
 	}
 	
+	/**
+	 * 获得一个分页查询方言的实例
+	 * @return
+	 */
 	abstract public String generatePagingQueryStatement();
 	
 }
