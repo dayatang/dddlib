@@ -68,6 +68,7 @@ public class MonitorNodeManageApplicationTest extends KoalaBaseSpringTestCase {
 		//node.inactive();
 	}
 
+	@Ignore
 	@Test
 	public void testGetAllNodes() {
 		List<MonitorNodeVo> nodes = application.getAllNodes();
