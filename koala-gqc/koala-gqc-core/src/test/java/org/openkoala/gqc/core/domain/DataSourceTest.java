@@ -1,10 +1,6 @@
 package org.openkoala.gqc.core.domain;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,7 +9,8 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openkoala.gqc.core.domain.utils.SystemDataSourceNotExistException;
+import org.junit.internal.runners.statements.Fail;
+import org.openkoala.gqc.core.exception.SystemDataSourceNotExistException;
 import org.openkoala.koala.util.KoalaBaseSpringTestCase;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
@@ -156,10 +153,15 @@ public class DataSourceTest extends KoalaBaseSpringTestCase{
 				assertNull(dataSourceNotExist);
 			}
 			
-			DataSource dataSourceExist = DataSource.getSystemDataSource(systemDataSourceIdExist);
+			DataSource dataSourceExist = null;
+			try {
+				dataSourceExist = DataSource.getSystemDataSource(systemDataSourceIdExist);
+			} catch (Exception e) {
+				fail("获取存在的系统数据源失败！");
+			}
 			assertNotNull(dataSourceExist);
 			
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			assertFalse(true);
 		}
 	}

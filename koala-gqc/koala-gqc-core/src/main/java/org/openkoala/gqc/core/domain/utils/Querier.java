@@ -17,6 +17,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.openkoala.gqc.core.domain.DataSource;
 import org.openkoala.gqc.core.domain.DataSourceType;
+import org.openkoala.gqc.core.exception.SystemDataSourceNotExistException;
 
 import com.dayatang.domain.InstanceFactory;
 

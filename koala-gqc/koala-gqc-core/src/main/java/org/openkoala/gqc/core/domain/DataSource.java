@@ -11,7 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 import org.apache.commons.dbutils.DbUtils;
-import org.openkoala.gqc.core.domain.utils.SystemDataSourceNotExistException;
+import org.openkoala.gqc.core.exception.SystemDataSourceNotExistException;
 
 import com.dayatang.domain.InstanceFactory;
 
@@ -130,18 +130,27 @@ public class DataSource extends GeneralQueryEntity {
 	 * @return
 	 * @throws SQLException 
 	 */
-	public static DataSource getSystemDataSource(String dataSourceId) throws SQLException {
+	public static DataSource getSystemDataSource(String dataSourceId) throws Exception {
 		DataSource result = null;
-		javax.sql.DataSource dataSource = InstanceFactory.getInstance(javax.sql.DataSource.class, dataSourceId);
-		
-		if (dataSource != null) {
-            Connection conn = dataSource.getConnection();
-		    result = new DataSource();
-		    result.setDataSourceId(dataSourceId);
-		    result.setDataSourceType(DataSourceType.SYSTEM_DATA_SOURCE);
-			result.setConnectUrl(conn.getMetaData().getURL());
-			result.setUsername(conn.getMetaData().getUserName());
-			conn.close();
+		Connection conn = null;
+		try {
+			javax.sql.DataSource dataSource = InstanceFactory.getInstance(javax.sql.DataSource.class, dataSourceId);
+			
+			if (dataSource != null) {
+			    conn = dataSource.getConnection();
+			    result = new DataSource();
+			    result.setDataSourceId(dataSourceId);
+			    result.setDataSourceType(DataSourceType.SYSTEM_DATA_SOURCE);
+				result.setConnectUrl(conn.getMetaData().getURL());
+				result.setUsername(conn.getMetaData().getUserName());
+			}
+		} catch (Exception e) {
+			//e.printStackTrace();
+			throw new RuntimeException("获取系统数据源失败！",e);
+		}finally{
+			if(conn != null){
+				conn.close();
+			}
 		}
 		
 		return result;
@@ -168,7 +177,8 @@ public class DataSource extends GeneralQueryEntity {
                 connection = dataSource.getConnection();
                 if (connection != null) {
                     result = true;
-                    connection.close();
+                    //系统数据源连接不能手动关闭，事务会把该连接放回到连接池中
+                    //connection.close();
                 }
             } catch (SQLException e) {
             	throw new RuntimeException("获取系统数据源连接失败！",e);
@@ -241,28 +251,37 @@ public class DataSource extends GeneralQueryEntity {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj){
 			return true;
-		if (obj == null)
+		}
+		if (obj == null){
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()){
 			return false;
+		}
 		DataSource other = (DataSource) obj;
 		if (connectUrl == null) {
-			if (other.connectUrl != null)
+			if (other.connectUrl != null){
 				return false;
-		} else if (!connectUrl.equals(other.connectUrl))
+			}
+		} else if (!connectUrl.equals(other.connectUrl)){
 			return false;
+		}
 		if (dataSourceDescription == null) {
-			if (other.dataSourceDescription != null)
+			if (other.dataSourceDescription != null){
 				return false;
-		} else if (!dataSourceDescription.equals(other.dataSourceDescription))
+			}
+		} else if (!dataSourceDescription.equals(other.dataSourceDescription)){
 			return false;
+		}
 		if (dataSourceId == null) {
-			if (other.dataSourceId != null)
+			if (other.dataSourceId != null){
 				return false;
-		} else if (!dataSourceId.equals(other.dataSourceId))
+			}
+		} else if (!dataSourceId.equals(other.dataSourceId)){
 			return false;
+		}
 		return true;
 	}
 

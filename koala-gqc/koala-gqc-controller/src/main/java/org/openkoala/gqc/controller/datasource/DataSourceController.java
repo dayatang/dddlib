@@ -171,7 +171,7 @@ public class DataSourceController{
         if (dataSource.getDataSourceType().equals(DataSourceType.SYSTEM_DATA_SOURCE)) {
         	try {
 				dataSource = DataSource.getSystemDataSource(dataSource.getDataSourceId());
-			} catch (SQLException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
         }

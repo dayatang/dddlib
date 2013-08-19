@@ -15,6 +15,7 @@ import org.openkoala.gqc.core.domain.FieldDetail;
 import org.openkoala.gqc.core.domain.GeneralQuery;
 import org.openkoala.gqc.core.domain.PreQueryCondition;
 import org.openkoala.gqc.core.domain.QueryOperation;
+import org.openkoala.gqc.core.exception.SystemDataSourceNotExistException;
 import org.openkoala.koala.util.KoalaBaseSpringTestCase;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
