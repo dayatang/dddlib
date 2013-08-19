@@ -94,14 +94,12 @@ public class GeneralQuery extends GeneralQueryEntity {
 	/**
 	 * 查询所有查询器
 	 */
-	@Transient
-	private QueryAllQuerier queryAllQuerier;
+	private transient QueryAllQuerier queryAllQuerier;
 	
 	/**
 	 * 分页查询查询器
 	 */
-	@Transient
-	private PagingQuerier pagingQuerier;
+	private transient PagingQuerier pagingQuerier;
 	
 	public GeneralQuery() {
 		
@@ -142,9 +140,9 @@ public class GeneralQuery extends GeneralQueryEntity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+ 
 	public Date getCreateDate() {
-		return createDate;
+		return new Date(createDate.getTime());
 	}
 
 	public void setCreateDate(Date createDate) {
@@ -339,38 +337,51 @@ public class GeneralQuery extends GeneralQueryEntity {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj){
 			return true;
-		if (obj == null)
+		}
+		if (obj == null){
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()){
 			return false;
+		}
 		GeneralQuery other = (GeneralQuery) obj;
 		if (dynamicQueryConditions == null) {
-			if (other.dynamicQueryConditions != null)
+			if (other.dynamicQueryConditions != null){
 				return false;
-		} else if (!dynamicQueryConditions.equals(other.dynamicQueryConditions))
+			}
+		} else if (!dynamicQueryConditions.equals(other.dynamicQueryConditions)){
 			return false;
+		}
 		if (fieldDetails == null) {
-			if (other.fieldDetails != null)
+			if (other.fieldDetails != null){
 				return false;
-		} else if (!fieldDetails.equals(other.fieldDetails))
+			}
+		} else if (!fieldDetails.equals(other.fieldDetails)){
 			return false;
+		}
 		if (preQueryConditions == null) {
-			if (other.preQueryConditions != null)
+			if (other.preQueryConditions != null){
 				return false;
-		} else if (!preQueryConditions.equals(other.preQueryConditions))
+			}
+		} else if (!preQueryConditions.equals(other.preQueryConditions)){
 			return false;
+		}
 		if (tableName == null) {
-			if (other.tableName != null)
+			if (other.tableName != null){
 				return false;
-		} else if (!tableName.equals(other.tableName))
+			}
+		} else if (!tableName.equals(other.tableName)){
 			return false;
+		}
 		if (queryName == null) {
-			if (other.queryName != null)
+			if (other.queryName != null){
 				return false;
-		} else if (!queryName.equals(other.queryName))
+			}
+		} else if (!queryName.equals(other.queryName)){
 			return false;
+		}
 		return true;
 	}
 

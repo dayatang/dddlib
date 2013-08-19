@@ -109,6 +109,7 @@ public class I18NManager {
 	 * @return
 	 */
 	public static String getMessage(String key) {
+	
 		return getMessage(key, null);
 	}
 	

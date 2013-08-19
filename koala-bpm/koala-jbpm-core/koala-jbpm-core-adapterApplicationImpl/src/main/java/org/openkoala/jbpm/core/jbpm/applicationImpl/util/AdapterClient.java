@@ -53,17 +53,17 @@ public class AdapterClient {
 			Object message = readFuture.getMessage();
 
 			if (message == null) {
-
+				return;
 			} else if (message instanceof String) {
 				context.getNodeInstance().setVariable(
 						"_TMP_" + adapter.getName() + "_RESULT",
 						(String) message);
 			} else if (message instanceof Map) {
 				Map<String, Object> result = (Map<String, Object>) message;
-				Set<String> keys = result.keySet();
-				for (String key : result.keySet()) {
-					context.getNodeInstance().setVariable(key,
-							result.get(key));
+				Set<Map.Entry<String, Object>> entrySet = result.entrySet();
+				for(Map.Entry<String, Object> entry:entrySet){
+					context.getNodeInstance().setVariable(entry.getKey(),
+							entry.getValue());
 				}
 			} else {
 				throw new UnsupportedOperationException(
@@ -74,8 +74,10 @@ public class AdapterClient {
 			e.printStackTrace();
 			throw e;
 		} finally {
-			session.close(true);
-			session.getService().dispose();
+			if(session!=null){
+				session.close(true);
+				session.getService().dispose();
+			}
 		}
 	}
 

@@ -25,7 +25,7 @@ import org.openkoala.koala.widget.Project;
 public class ProjectQueryUtil {
 	
 	
-	private static final String POM_XMLS = "http://maven.apache.org/POM/4.0.0";
+	//private static final String POM_XMLS = "http://maven.apache.org/POM/4.0.0";
 	
 	
 	/**
@@ -156,12 +156,6 @@ public class ProjectQueryUtil {
 		}
 		project.setModule(moduleList);
 		return project;
-	}
-	
-	public static void main(String args[]) throws Exception{
-		ProjectQueryUtil util  = new ProjectQueryUtil();
-		Project project = util.getProject("E:\\tmp\\demo2\\core");
-		System.out.println("E:\\tmp\\demo2\\core".replaceAll("\\\\", "/"));
 	}
 	
 }

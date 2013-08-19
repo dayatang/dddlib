@@ -44,6 +44,11 @@ public class ResourceTypeAssignment extends Accountability {
         this.resourceType = resourceType;
     }
 
+    /**
+     * 根据资源ID查找资源与资源类型的关系
+     * @param resourceId
+     * @return
+     */
     public static ResourceTypeAssignment findByResource(long resourceId) {
     	List<ResourceTypeAssignment> assignments = findByNamedQuery("findByResource", // 
     			new Object[] {resourceId, new Date() }, //
@@ -54,6 +59,12 @@ public class ResourceTypeAssignment extends Accountability {
         return assignments.get(0);
     }
 
+    /**
+     * 创建资源与资源类型的对应关系 
+     * @param resource			资源
+     * @param resourceType		资源类型
+     * @return
+     */
     public static ResourceTypeAssignment newResourceTypeAssignment(Resource resource, ResourceType resourceType) {
         ResourceTypeAssignment assign = null;
         List<ResourceTypeAssignment> resources = Resource.getRepository().find(

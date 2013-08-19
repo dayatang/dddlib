@@ -32,7 +32,8 @@ public class ProxyDataSource implements DataSource {
 	public ProxyDataSource(TraceLiftcycleManager container,
 			DataSource delegate,DataSource outterDataSource, ConnectionEventListener[] listeners) {
 		this.container = container;
-		this.listeners = listeners;
+		this.listeners = new ConnectionEventListener[]{};
+		System.arraycopy(listeners, 0, this.listeners, 0, listeners.length);
 		this.delegate = delegate;
 		this.outterDataSource = outterDataSource;
 	}

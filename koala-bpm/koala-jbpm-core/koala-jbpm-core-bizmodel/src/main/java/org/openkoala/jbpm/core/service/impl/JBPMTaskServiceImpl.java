@@ -3,6 +3,7 @@ package org.openkoala.jbpm.core.service.impl;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -112,8 +113,9 @@ public class JBPMTaskServiceImpl implements JBPMTaskService {
 	
 	public KoalaProcessInfo getKoalaProcessInfo(Map<String,Object> params) {
 		QuerySettings<KoalaProcessInfo> qSetting = QuerySettings.create(KoalaProcessInfo.class);
-		for(String prop:params.keySet()){
-			qSetting.eq(prop,params.get(prop));
+		Set<Map.Entry<String, Object>> entrySet = params.entrySet();
+		for(Map.Entry<String, Object> entry:entrySet){
+			qSetting.eq(entry.getKey(),entry.getValue());
 		}
 		return KoalaProcessInfo.findKoalaProcessInfo(qSetting);
 	}

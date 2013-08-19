@@ -162,7 +162,8 @@ public class SpringEJBIntercepter {
 			ClassLoader cl = null;
 			try {
 				cl = Thread.currentThread().getContextClassLoader();
-			} catch (Throwable localThrowable) {
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 			if (cl == null) {
 				cl = SpringEJBIntercepter.class.getClassLoader();

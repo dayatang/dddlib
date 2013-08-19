@@ -17,6 +17,7 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.koala.ftp.FTPFacotry;
 import org.openkoala.koala.ftp.exception.FtpException;
@@ -80,6 +81,7 @@ public class FTPTest {
 	 * 上传一个文件
 	 * @throws FtpException
 	 */
+	@Ignore
 	@Test
 	public void testUploadFile() throws FtpException{
 		String proFilePath = null;
@@ -168,6 +170,7 @@ public class FTPTest {
 	 * 
 	 * @throws FtpException
 	 */
+	@Ignore
 	@Test
 	public void testRenameFTPFile() throws FtpException {
 		Assert.assertTrue(ftpUtil.renameFTPFile("/test.txt", "/test1.txt"));
@@ -176,6 +179,7 @@ public class FTPTest {
 	/**
 	 * 删除FTP上的一个文件
 	 */
+	@Ignore
 	@Test
 	public void testDeleteFile() throws FtpException {
 		Assert.assertTrue(ftpUtil.deleteFile("/test1.txt"));

@@ -40,6 +40,10 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 
 	private AuthDataService provider;
 
+	/**
+	 * 获取资源缓存
+	 * @return
+	 */
 	private Cache getResourceCache() {
 		if (resourceCache == null) {
 			resourceCache = InstanceFactory.getInstance(Cache.class, "resource_cache");
@@ -47,6 +51,10 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 		return resourceCache;
 	}
 
+	/**
+	 * 获取用户缓存
+	 * @return
+	 */
 	private Cache getUserCache() {
 		if (userCache == null) {
 			userCache = InstanceFactory.getInstance(Cache.class, "user_cache");
@@ -54,6 +62,12 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 		return userCache;
 	}
 
+	/**
+	 * 根据用户账号获取资源授权信息
+	 * @param userAccount
+	 * @param res
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public boolean getResAuthByUseraccount(String userAccount, String res) {
 		List<String> grantRoles = null;
@@ -106,14 +120,14 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 	 * 根据请求的url从集合中查询出所需权限
 	 */
 	@SuppressWarnings("unchecked")
-	public Collection<ConfigAttribute> getAttributes(Object arg0) throws IllegalArgumentException {
+	public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
 		try {
 			loadResource();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		String url = ((FilterInvocation) arg0).getRequestUrl();
+		String url = ((FilterInvocation) object).getRequestUrl();
 		int position = url.indexOf("?");
 		if (-1 != position) {
 			url = url.substring(0, position);
