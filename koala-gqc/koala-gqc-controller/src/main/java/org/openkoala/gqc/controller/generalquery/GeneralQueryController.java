@@ -94,7 +94,9 @@ public class GeneralQueryController {
             gqcApplication.saveEntity(generalQuery);
             dataMap.put("result", "success");
         } catch (Exception e) {
-            dataMap.put("result", "保存失败！");
+        	if(dataMap != null){
+                dataMap.put("result", "保存失败！");
+        	}
         }
         
         return dataMap;
@@ -132,7 +134,7 @@ public class GeneralQueryController {
             request.setAttribute("tableMapLeftDiv", tableMapLeftDiv);
             request.setAttribute("tableMapRightDiv", tableMapRightDiv);
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             request.setAttribute("error", "获取信息失败!");
         }
         
@@ -155,7 +157,9 @@ public class GeneralQueryController {
             gqcApplication.updateEntity(generalQuery);
             dataMap.put("result", "success");
         } catch (Exception e) {
-            dataMap.put("result", "保存失败！");
+        	if(dataMap != null){
+                dataMap.put("result", "保存失败！");
+        	}
         }
         
         return dataMap;
@@ -176,8 +180,9 @@ public class GeneralQueryController {
             List<DataSourceVO> list = dataSourceApplication.findAllDataSource();
             dataMap.put("dataSourceList", list);
         } catch (Exception e) {
-            e.printStackTrace();
-            dataMap.put("result", "获取数据源列表失败！");
+        	if(dataMap != null){
+                dataMap.put("result", "获取数据源列表失败！");
+        	}
         }
         
         return dataMap;
@@ -247,8 +252,9 @@ public class GeneralQueryController {
             Map<String, Integer> tableMap = dataSourceApplication.findAllColumn(id, tableName);
             dataMap.put("tableMap", tableMap);
         } catch (Exception e) {
-            e.printStackTrace();
-            dataMap.put("result", "获取列失败！");
+        	if(dataMap != null){
+                dataMap.put("result", "获取列失败！");
+        	}
         }
         
         return dataMap;

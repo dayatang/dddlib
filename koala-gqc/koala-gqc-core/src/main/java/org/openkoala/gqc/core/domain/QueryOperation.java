@@ -16,6 +16,9 @@ public enum QueryOperation {
 	IN("in"),
 	BETWEEN("between");
 	
+	/**
+	 * 操作
+	 */
 	private String operator;
 	
 	private QueryOperation(String operator) {

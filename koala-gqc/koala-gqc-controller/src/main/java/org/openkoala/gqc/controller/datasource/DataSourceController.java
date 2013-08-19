@@ -54,8 +54,9 @@ public class DataSourceController{
                 dataMap.put("result", errorMsg);
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            dataMap.put("result", "保存失败！");
+        	if(dataMap != null){
+                dataMap.put("result", "保存失败！");
+        	}
         }
         
 		return dataMap;
@@ -172,7 +173,7 @@ public class DataSourceController{
         	try {
 				dataSource = DataSource.getSystemDataSource(dataSource.getDataSourceId());
 			} catch (Exception e) {
-				e.printStackTrace();
+				//
 			}
         }
         
