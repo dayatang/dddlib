@@ -19,7 +19,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Map;
 
-import org.openkoala.koala.monitor.jwebap.Trace;
+import org.openkoala.koala.monitor.def.Trace;
 
 /**
  * CallableStatement代理，用于监控调用轨迹

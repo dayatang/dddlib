@@ -1,4 +1,4 @@
-package org.openkoala.koala.monitor.jwebap;
+package org.openkoala.koala.monitor.def;
 
 
 

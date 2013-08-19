@@ -25,8 +25,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openkoala.koala.monitor.core.TraceContainer;
 import org.openkoala.koala.monitor.core.TraceLiftcycleManager;
-import org.openkoala.koala.monitor.jwebap.JdbcConnTrace;
-import org.openkoala.koala.monitor.jwebap.Trace;
+import org.openkoala.koala.monitor.def.JdbcConnTrace;
+import org.openkoala.koala.monitor.def.Trace;
 import org.openkoala.koala.monitor.support.JdbcPoolStatusCollector;
 
 /**

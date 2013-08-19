@@ -16,6 +16,7 @@
 package org.openkoala.koala.monitor.service.remote;
 
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -32,13 +33,12 @@ import javax.inject.Inject;
 import org.apache.mina.core.session.IoSession;
 import org.openkoala.koala.monitor.datasync.base.ClientRequestListener;
 import org.openkoala.koala.monitor.datasync.server.DatasyncServer;
+import org.openkoala.koala.monitor.def.ComponentDef;
+import org.openkoala.koala.monitor.def.NodeDef;
+import org.openkoala.koala.monitor.def.Trace;
 import org.openkoala.koala.monitor.domain.MonitorNode;
 import org.openkoala.koala.monitor.domain.MonitorNode.MonitorComponent;
 import org.openkoala.koala.monitor.extend.BaseSchedulerBean;
-import org.openkoala.koala.monitor.jwebap.ComponentDef;
-import org.openkoala.koala.monitor.jwebap.NetTransObject;
-import org.openkoala.koala.monitor.jwebap.NodeDef;
-import org.openkoala.koala.monitor.jwebap.Trace;
 import org.openkoala.koala.monitor.model.GeneralMonitorStatusVo;
 import org.openkoala.koala.monitor.model.JdbcPoolStatusVo;
 import org.openkoala.koala.monitor.model.ServerStatusVo;
@@ -164,7 +164,7 @@ public class RemoteDataPolicyServerHandler extends BaseSchedulerBean implements 
 	 */
 	private void registerMonitorNode(IoSession session, Commond cmd,String clientKey){
 
-		Map<String, List<NetTransObject>> datas = cmd.getDatas();
+		Map<String, List<Serializable>> datas = cmd.getDatas();
 		NodeDef clientNodeDef = (NodeDef) datas.get(CommondConst.DEFAULT_DATA).get(0);
 		if(MonitorNode.getAllNodesCache().containsKey(clientNodeDef.getId())){
 			LOG.warn("系统标识符[{}]已经存在",clientNodeDef.getId());
@@ -262,13 +262,13 @@ public class RemoteDataPolicyServerHandler extends BaseSchedulerBean implements 
 	private void processMonitorDatas(String clientId ,Commond cmdResult){
 
 		int count = 0;
-		Map<String, List<NetTransObject>> datas = cmdResult.getDatas();
-		Iterator<List<NetTransObject>> its = datas.values().iterator();
+		Map<String, List<Serializable>> datas = cmdResult.getDatas();
+		Iterator<List<Serializable>> its = datas.values().iterator();
 		List<Trace> tempTrace = new ArrayList<Trace>();
 		while(its.hasNext()){
 			tempTrace.clear();
-			List<NetTransObject> next = its.next();
-			for (NetTransObject o : next) {
+			List<Serializable> next = its.next();
+			for (Serializable o : next) {
 				tempTrace.add((Trace)o);
 				count++;
 			}
@@ -309,7 +309,7 @@ public class RemoteDataPolicyServerHandler extends BaseSchedulerBean implements 
 		Commond result = sendCommonWaitReply(nodeId, commond);
 		
 		Map<String, JdbcPoolStatusVo> map = new HashMap<String, JdbcPoolStatusVo>();
-		Map<String, List<NetTransObject>> datas = result.getDatas();
+		Map<String, List<Serializable>> datas = result.getDatas();
 		for (String key : datas.keySet()) {
 			map.put(key, (JdbcPoolStatusVo)datas.get(key).get(0));
 		}

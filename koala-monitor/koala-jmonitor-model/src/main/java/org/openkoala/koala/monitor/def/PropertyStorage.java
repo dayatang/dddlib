@@ -1,5 +1,6 @@
-package org.openkoala.koala.monitor.jwebap;
+package org.openkoala.koala.monitor.def;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -11,7 +12,7 @@ import java.util.Set;
  * @since Jwebap 0.6
  * @date  2008-10-6
  */
-public class PropertyStorage extends NetTransObject implements PropertyMap{
+public class PropertyStorage implements Serializable, PropertyMap{
 	/**
 	 * 
 	 */

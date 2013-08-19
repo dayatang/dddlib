@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.SQLWarning;
 import java.sql.Statement;
 
-import org.openkoala.koala.monitor.jwebap.Trace;
+import org.openkoala.koala.monitor.def.Trace;
 
 /**
  * 检测SQL执行轨迹的Statement代理类

@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.openkoala.koala.monitor.jwebap;
+package org.openkoala.koala.monitor.def;
 
 import java.io.Serializable;
 import java.util.HashMap;

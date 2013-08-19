@@ -13,8 +13,9 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.openkoala.koala.monitor.jwebap;
+package org.openkoala.koala.monitor.def;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ import java.util.Map;
  * 修改记录： <br />
  * 修 改 者    修改日期     文件版本   修改说明
  */
-public class DataPolicyDef extends NetTransObject{
+public class DataPolicyDef implements Serializable{
 
 	private static final long serialVersionUID = -642419276624131531L;
 

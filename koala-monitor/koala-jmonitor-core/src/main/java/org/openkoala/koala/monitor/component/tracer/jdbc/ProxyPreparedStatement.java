@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.sql.SQLXML;
 import java.util.Calendar;
 
-import org.openkoala.koala.monitor.jwebap.Trace;
+import org.openkoala.koala.monitor.def.Trace;
 
 /**
  * 用于检测SQL执行轨迹的PreparedStatement代理类

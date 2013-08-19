@@ -3,8 +3,8 @@ package org.openkoala.koala.monitor.component.analyser;
 import org.openkoala.koala.monitor.component.tracer.http.HttpComponent;
 import org.openkoala.koala.monitor.core.Analyser;
 import org.openkoala.koala.monitor.core.RuntimeContext;
-import org.openkoala.koala.monitor.jwebap.HttpRequestTrace;
-import org.openkoala.koala.monitor.jwebap.Trace;
+import org.openkoala.koala.monitor.def.HttpRequestTrace;
+import org.openkoala.koala.monitor.def.Trace;
 /**
  * 
  * 功能描述：会话分析统计处理器<br />

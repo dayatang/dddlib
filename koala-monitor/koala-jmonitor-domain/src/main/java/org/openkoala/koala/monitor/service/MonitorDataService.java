@@ -18,7 +18,7 @@ package org.openkoala.koala.monitor.service;
 import java.util.Date;
 import java.util.List;
 
-import org.openkoala.koala.monitor.jwebap.Trace;
+import org.openkoala.koala.monitor.def.Trace;
 import org.openkoala.koala.monitor.model.CountVo;
 import org.openkoala.koala.monitor.model.HttpDetailsVo;
 

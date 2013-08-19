@@ -9,16 +9,16 @@ import java.util.Map;
 import org.openkoala.koala.monitor.component.task.MonitorTask;
 import org.openkoala.koala.monitor.component.task.ServerStatusCollectorTask;
 import org.openkoala.koala.monitor.component.task.ServiceConnectionCheckTask;
-import org.openkoala.koala.monitor.component.tracer.SwapDataCache;
+import org.openkoala.koala.monitor.component.tracer.CacheDataPool;
 import org.openkoala.koala.monitor.component.tracer.http.HttpComponent;
 import org.openkoala.koala.monitor.component.tracer.jdbc.JdbcComponent;
 import org.openkoala.koala.monitor.component.tracer.method.MethodComponent;
 import org.openkoala.koala.monitor.config.PersistManager;
+import org.openkoala.koala.monitor.def.ComponentDef;
+import org.openkoala.koala.monitor.def.DataPolicyDef;
+import org.openkoala.koala.monitor.def.NodeDef;
+import org.openkoala.koala.monitor.def.TaskDef;
 import org.openkoala.koala.monitor.exception.ContextInitialException;
-import org.openkoala.koala.monitor.jwebap.ComponentDef;
-import org.openkoala.koala.monitor.jwebap.DataPolicyDef;
-import org.openkoala.koala.monitor.jwebap.NodeDef;
-import org.openkoala.koala.monitor.jwebap.TaskDef;
 import org.openkoala.koala.monitor.service.remote.RemoteDataPolicyClientHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +48,7 @@ public class RuntimeContext implements Context {
 	private PersistManager _jwebapDefManager=null;
 	
 	//监控数据缓存
-	private SwapDataCache dataCache;
+	private CacheDataPool dataCache;
 
 	private Map<String, String> serverInfos;
 	
@@ -58,7 +58,7 @@ public class RuntimeContext implements Context {
 		_container = container;
 		_config=config;
 		_jwebapDefManager=defManager;
-		dataCache = new SwapDataCache(_config.getMaxCacheSize(), _config.getCacheExpireTime());
+		dataCache = new CacheDataPool(_config.getMaxCacheSize(), _config.getCacheExpireTime());
 		LOG.info("当前监控配置为：\n"+config.toString());
 	}
 	
@@ -77,7 +77,7 @@ public class RuntimeContext implements Context {
 	}
 	
 
-	public SwapDataCache getDataCache() {
+	public CacheDataPool getDataCache() {
 		return dataCache;
 	}
 

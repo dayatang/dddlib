@@ -1,6 +1,6 @@
 package org.openkoala.koala.monitor.core;
 
-import org.openkoala.koala.monitor.jwebap.PropertyMap;
+import org.openkoala.koala.monitor.def.PropertyMap;
 
 /**
  * Component Plug-in初始化上下文

@@ -1,6 +1,6 @@
 package org.openkoala.koala.monitor.core;
 
-import org.openkoala.koala.monitor.jwebap.Trace;
+import org.openkoala.koala.monitor.def.Trace;
 
 
 /**

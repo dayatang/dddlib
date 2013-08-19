@@ -10,8 +10,8 @@ import org.openkoala.koala.monitor.component.tracer.method.MethodComponent;
 import org.openkoala.koala.monitor.core.Analyser;
 import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.core.TraceContainer;
-import org.openkoala.koala.monitor.jwebap.MethodTrace;
-import org.openkoala.koala.monitor.jwebap.Trace;
+import org.openkoala.koala.monitor.def.MethodTrace;
+import org.openkoala.koala.monitor.def.Trace;
 /**
  * 
  * 功能描述：通用分析器（耗时、超时等）<br />

@@ -15,14 +15,13 @@
  */
 package org.openkoala.koala.monitor.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.openkoala.koala.monitor.jwebap.NetTransObject;
 
 /**
  * 功能描述：综合监控状态信息<br />
@@ -36,7 +35,7 @@ import org.openkoala.koala.monitor.jwebap.NetTransObject;
  * 修改记录： <br />
  * 修 改 者    修改日期     文件版本   修改说明	
  */
-public class GeneralMonitorStatusVo extends NetTransObject {
+public class GeneralMonitorStatusVo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	

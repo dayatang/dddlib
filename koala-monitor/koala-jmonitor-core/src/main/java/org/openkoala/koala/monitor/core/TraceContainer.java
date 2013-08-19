@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.openkoala.koala.monitor.jwebap.CombineMethodTrace;
-import org.openkoala.koala.monitor.jwebap.MethodTrace;
-import org.openkoala.koala.monitor.jwebap.Trace;
+import org.openkoala.koala.monitor.def.CombineMethodTrace;
+import org.openkoala.koala.monitor.def.MethodTrace;
+import org.openkoala.koala.monitor.def.Trace;
 
 /**
  * 

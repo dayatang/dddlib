@@ -15,11 +15,10 @@
  */
 package org.openkoala.koala.monitor.model;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import org.openkoala.koala.monitor.jwebap.NetTransObject;
 
 /**
  * 功能描述：JDBC connection 状态<br />
@@ -33,7 +32,7 @@ import org.openkoala.koala.monitor.jwebap.NetTransObject;
  * 修改记录： <br />
  * 修 改 者    修改日期     文件版本   修改说明	
  */
-public class JdbcConnStatusVo extends NetTransObject{
+public class JdbcConnStatusVo implements Serializable{
 	
 	private static final long serialVersionUID = -9132629815724297395L;
 	

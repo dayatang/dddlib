@@ -1,5 +1,6 @@
-package org.openkoala.koala.monitor.jwebap;
+package org.openkoala.koala.monitor.def;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +29,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
  * @since Jwebap 0.5
  * @date 2007-04-11
  */
-public class Trace extends NetTransObject implements Comparable<Trace>{
+public class Trace implements Serializable, Comparable<Trace>{
 	
 	private static final long serialVersionUID = 1L;
 

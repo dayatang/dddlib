@@ -22,8 +22,8 @@ import java.util.List;
 import java.util.Vector;
 
 import org.openkoala.koala.monitor.core.RuntimeContext;
-import org.openkoala.koala.monitor.jwebap.TaskDef;
-import org.openkoala.koala.monitor.jwebap.ThirdPartyServiceDef;
+import org.openkoala.koala.monitor.def.TaskDef;
+import org.openkoala.koala.monitor.def.ServiceDef;
 import org.openkoala.koala.monitor.support.ConnectionChecker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +55,7 @@ public class ServiceConnectionCheckTask extends BaseMonitorTask{
 	//上一次检查不正常服务
 	private static List<String> badSevices = new Vector<String>();
 	
-	private List<ThirdPartyServiceDef> serviceList;
+	private List<ServiceDef> serviceList;
 	
 	
 	public ServiceConnectionCheckTask(TaskDef taskDef){
@@ -98,10 +98,10 @@ public class ServiceConnectionCheckTask extends BaseMonitorTask{
 				taskResource = rootPath + taskResource;
 			}
 			XStream xStream  = new XStream( new  DomDriver("utf-8"));
-			xStream.alias( "service" , ThirdPartyServiceDef.class ); 
+			xStream.alias( "service" , ServiceDef.class ); 
 			xStream.alias( "services" , List.class ); 
 			FileInputStream inputStream = new FileInputStream(taskResource);
-			serviceList = (List<ThirdPartyServiceDef>)xStream.fromXML(inputStream);
+			serviceList = (List<ServiceDef>)xStream.fromXML(inputStream);
 		} catch (Exception e) {
 			LOG.warn("解析监控第三方服务列表失败");
 		}
@@ -131,7 +131,7 @@ public class ServiceConnectionCheckTask extends BaseMonitorTask{
 		badSevices.clear();
 		boolean isConnect = false;
 		//
-		for (ThirdPartyServiceDef serviceDef : serviceList) {
+		for (ServiceDef serviceDef : serviceList) {
 			isConnect = ConnectionChecker.isConnect(serviceDef);
 			if( !isConnect ){
 			    badSevices.add(serviceDef.getTarget());

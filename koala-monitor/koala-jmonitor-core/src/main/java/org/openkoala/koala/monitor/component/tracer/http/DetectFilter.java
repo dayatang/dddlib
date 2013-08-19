@@ -21,8 +21,8 @@ import org.apache.commons.logging.LogFactory;
 import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.core.TraceContainer;
 import org.openkoala.koala.monitor.core.TraceLiftcycleManager;
-import org.openkoala.koala.monitor.jwebap.ComponentDef;
-import org.openkoala.koala.monitor.jwebap.HttpRequestTrace;
+import org.openkoala.koala.monitor.def.ComponentDef;
+import org.openkoala.koala.monitor.def.HttpRequestTrace;
 
 /**
  * 监控组件过滤器

@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.openkoala.koala.monitor.jwebap.TaskDef;
+import org.openkoala.koala.monitor.def.TaskDef;
 import org.openkoala.koala.monitor.model.ChartDataModel;
 import org.openkoala.koala.monitor.model.ServerStatusVo;
 import org.openkoala.koala.monitor.model.ServerStatusVo.CpuInfoVo;

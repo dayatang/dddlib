@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.openkoala.koala.monitor.jwebap;
+package org.openkoala.koala.monitor.def;
 
 import java.io.Serializable;
 
@@ -29,7 +29,7 @@ import java.io.Serializable;
  * 修改记录： <br />
  * 修 改 者    修改日期     文件版本   修改说明	
  */
-public class ThirdPartyServiceDef implements Serializable {
+public class ServiceDef implements Serializable {
     private static final long serialVersionUID = 2529015256850094188L;
 
     private String type;
@@ -41,6 +41,8 @@ public class ThirdPartyServiceDef implements Serializable {
     private String username;
 
     private String password;
+    
+    private String parameters;
 
     public String getType() {
         return type;
@@ -81,4 +83,13 @@ public class ThirdPartyServiceDef implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+	public String getParameters() {
+		return parameters;
+	}
+
+	public void setParameters(String parameters) {
+		this.parameters = parameters;
+	}
+    
 }

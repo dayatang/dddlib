@@ -15,6 +15,7 @@
  */
 package org.openkoala.koala.monitor.service.remote;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,10 +28,9 @@ import org.openkoala.koala.monitor.component.task.ServiceConnectionCheckTask;
 import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.datasync.base.ServerCommondListener;
 import org.openkoala.koala.monitor.datasync.client.DatasyncClient;
-import org.openkoala.koala.monitor.jwebap.ComponentDef;
-import org.openkoala.koala.monitor.jwebap.HttpRequestTrace.ActiveUser;
-import org.openkoala.koala.monitor.jwebap.NetTransObject;
-import org.openkoala.koala.monitor.jwebap.Trace;
+import org.openkoala.koala.monitor.def.ComponentDef;
+import org.openkoala.koala.monitor.def.HttpRequestTrace.ActiveUser;
+import org.openkoala.koala.monitor.def.Trace;
 import org.openkoala.koala.monitor.model.GeneralMonitorStatusVo;
 import org.openkoala.koala.monitor.model.JdbcPoolStatusVo;
 import org.openkoala.koala.monitor.model.ServerStatusVo;
@@ -217,7 +217,7 @@ public class RemoteDataPolicyClientHandler{
 	 * @param data
 	 * @param e
 	 */
-	private void replyServerCommond(String clientId,String commondId,NetTransObject data,Exception e){
+	private void replyServerCommond(String clientId,String commondId,Serializable data,Exception e){
 		Commond commond = new Commond(CommondConst.REPLY);
 		commond.addHeader(CommondConst.CMD_ID, commondId);
 		commond.addHeader(CommondConst.CLIENT_ID, clientId);

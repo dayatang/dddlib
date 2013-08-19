@@ -1,4 +1,4 @@
-package org.openkoala.koala.monitor.jwebap;
+package org.openkoala.koala.monitor.def;
 
 public class StackTrace extends Trace {
 	private static final long serialVersionUID = 1L;

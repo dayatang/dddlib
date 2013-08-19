@@ -25,12 +25,12 @@ import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.lang.time.DateUtils;
-import org.openkoala.koala.monitor.jwebap.HttpRequestTrace;
-import org.openkoala.koala.monitor.jwebap.Trace;
-import org.openkoala.koala.monitor.jwebap.HttpRequestTrace.ActiveUser;
+import org.openkoala.koala.monitor.def.HttpRequestTrace;
+import org.openkoala.koala.monitor.def.Trace;
+import org.openkoala.koala.monitor.def.HttpRequestTrace.ActiveUser;
 
 /**
- * 功能描述：轨迹交换数据缓存区（用于轨迹收集器与数据处理服务之间）<br />
+ * 功能描述：缓存数据池（用于轨迹收集器与数据处理服务之间）<br />
  *  
  * 创建日期：2013-5-30 上午11:02:34  <br />   
  * 
@@ -41,7 +41,7 @@ import org.openkoala.koala.monitor.jwebap.HttpRequestTrace.ActiveUser;
  * 修改记录： <br />
  * 修 改 者    修改日期     文件版本   修改说明	
  */
-public class SwapDataCache {
+public class CacheDataPool {
 
 	/**
 	 * 	缓存最大记录数
@@ -70,7 +70,7 @@ public class SwapDataCache {
 	 * @param maxCacheSize
 	 * @param expireTime
 	 */
-	public SwapDataCache(int maxCacheSize, int expireTime) {
+	public CacheDataPool(int maxCacheSize, int expireTime) {
 		super();
 		this.maxCacheSize = maxCacheSize;
 		this.expireTime = expireTime;

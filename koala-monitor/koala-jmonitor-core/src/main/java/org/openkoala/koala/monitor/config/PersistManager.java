@@ -5,10 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 
 import org.openkoala.koala.monitor.core.RuntimeContext;
-import org.openkoala.koala.monitor.jwebap.ComponentDef;
-import org.openkoala.koala.monitor.jwebap.DataPolicyDef;
-import org.openkoala.koala.monitor.jwebap.NodeDef;
-import org.openkoala.koala.monitor.jwebap.TaskDef;
+import org.openkoala.koala.monitor.def.ComponentDef;
+import org.openkoala.koala.monitor.def.DataPolicyDef;
+import org.openkoala.koala.monitor.def.NodeDef;
+import org.openkoala.koala.monitor.def.TaskDef;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

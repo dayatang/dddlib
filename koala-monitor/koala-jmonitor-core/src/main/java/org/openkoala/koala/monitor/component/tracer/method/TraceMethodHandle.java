@@ -9,7 +9,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.core.TraceLiftcycleManager;
-import org.openkoala.koala.monitor.jwebap.MethodTrace;
+import org.openkoala.koala.monitor.def.MethodTrace;
 import org.openkoala.koala.monitor.toolkit.asm.MethodInjectHandler;
 
 /**

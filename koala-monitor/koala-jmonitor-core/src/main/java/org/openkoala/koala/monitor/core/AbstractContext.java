@@ -1,7 +1,7 @@
 package org.openkoala.koala.monitor.core;
 
-import org.openkoala.koala.monitor.jwebap.PropertyMap;
-import org.openkoala.koala.monitor.jwebap.PropertyStorage;
+import org.openkoala.koala.monitor.def.PropertyMap;
+import org.openkoala.koala.monitor.def.PropertyStorage;
 
 /**
  * 抽象上下文

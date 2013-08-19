@@ -41,7 +41,7 @@
 
 	<filter>
 		<filter-name>PageDetectFilter</filter-name>
-		<filter-class>org.jwebap.plugin.tracer.http.DetectFilter</filter-class>
+		<filter-class>org.openkoala.koala.monitor.component.tracer.http.DetectFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>PageDetectFilter</filter-name>

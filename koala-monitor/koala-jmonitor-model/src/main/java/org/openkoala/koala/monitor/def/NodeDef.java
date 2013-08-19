@@ -1,10 +1,11 @@
-package org.openkoala.koala.monitor.jwebap;
+package org.openkoala.koala.monitor.def;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class NodeDef extends NetTransObject implements Cloneable{
+public class NodeDef implements Serializable, Cloneable{
 
 	private static final long serialVersionUID = -3451267566331657691L;
 	/**

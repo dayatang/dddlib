@@ -24,7 +24,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.apache.commons.lang.StringUtils;
-import org.openkoala.koala.monitor.jwebap.NetTransObject;
 
 /**
  * 功能描述：同步数据命令<br />
@@ -48,7 +47,7 @@ public class Commond implements Serializable{
 	
 	//数据传输形式：Json & MAP
 	private String dataJson;//
-	private Map<String, List<NetTransObject>> datas;
+	private Map<String, List<Serializable>> datas;
 	
 	/**
 	 * @param commondText
@@ -77,12 +76,12 @@ public class Commond implements Serializable{
 		this.commondText = commondText;
 	}
 
-	public Map<String, List<NetTransObject>> getDatas() {
-		if(datas == null)datas = new HashMap<String, List<NetTransObject>>();
+	public Map<String, List<Serializable>> getDatas() {
+		if(datas == null)datas = new HashMap<String, List<Serializable>>();
 		return datas;
 	}
 
-	public void setDatas(Map<String, List<NetTransObject>> datas) {
+	public void setDatas(Map<String, List<Serializable>> datas) {
 		this.datas = datas;
 	}
 	
@@ -114,10 +113,10 @@ public class Commond implements Serializable{
 	}
 	
 	
-	public Commond addData(String key,NetTransObject data){
-		List<NetTransObject> list = getDatas().get(key);
+	public Commond addData(String key,Serializable data){
+		List<Serializable> list = getDatas().get(key);
 		if(list == null){
-			list = new ArrayList<NetTransObject>();
+			list = new ArrayList<Serializable>();
 			getDatas().put(key, list);
 		}
 		list.add(data);
@@ -133,8 +132,8 @@ public class Commond implements Serializable{
 	 * 获取唯一的数据对象（主要针对数据仅为一个对象的情况）
 	 * @return
 	 */
-	public NetTransObject getSingleData(){
-		Iterator<List<NetTransObject>> iterator = getDatas().values().iterator();
+	public Serializable getSingleData(){
+		Iterator<List<Serializable>> iterator = getDatas().values().iterator();
 		if(iterator.hasNext())return iterator.next().get(0);
 		return null;
 	}

@@ -49,7 +49,7 @@ public class MethodComponent extends AbstractComponent{
 		List<String> classNames=getClassNamePatterns(packages,clazzs);
 		//inject trace
 		injectClass(classNames);
-		log.info("methodcomponent startup.");
+		log.info("method component startup.");
 	}
 	
 	private List<String> getClassNamePatterns(String packages,String clazzs){
@@ -64,7 +64,7 @@ public class MethodComponent extends AbstractComponent{
 			packages=packages.replaceAll("\n\r\t\\s+","");
 			
 			String[] packagePatterns = packages.split(";");
-	    	Collection<String> cls = PackageScanner.scanMatchPackages(packagePatterns);
+	    	Collection<String> cls = new PackageScanner().scanMatchPackages(packagePatterns);
 	    	
 	    	if(cls == null || cls.isEmpty()){
 				log.warn("在包[{}]下未扫描到任何类",packages);

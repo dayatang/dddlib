@@ -14,14 +14,13 @@ public class PackageScanner {
     private ClassLoader classLoader;
     private PatternFactory patternFactory;
 
-    public static Collection<String> scanMatchPackages(String ...packagePatterns){
+    public Collection<String> scanMatchPackages(String ...packagePatterns){
     	Patterns ppatterns = new Patterns(packagePatterns, new String[]{});
     	String[] clonePatterns = packagePatterns.clone();
     	for (int i = 0; i < clonePatterns.length; i++) {
     		clonePatterns[i] = clonePatterns[i].replace(".", "/");
 		}
-    	return new PackageScanner()
-    	           .selectPackages(ppatterns)//
+    	return this.selectPackages(ppatterns)//
     	           .scan();//
     }
 
