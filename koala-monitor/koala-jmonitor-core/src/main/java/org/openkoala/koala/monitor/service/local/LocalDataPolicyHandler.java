@@ -23,8 +23,8 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import org.jwebap.core.RuntimeContext;
-import org.jwebap.plugin.task.ServiceConnectionCheckTask;
+import org.openkoala.koala.monitor.component.task.ServiceConnectionCheckTask;
+import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.domain.MonitorNode;
 import org.openkoala.koala.monitor.domain.MonitorNode.MonitorComponent;
 import org.openkoala.koala.monitor.extend.BaseSchedulerBean;

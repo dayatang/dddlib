@@ -11,9 +11,6 @@ import javax.servlet.ServletContextListener;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jboss.vfs.VirtualFile;
-import org.jwebap.core.RuntimeContext;
-import org.jwebap.startup.Startup;
-import org.jwebap.util.Assert;
 
 
 /**
@@ -40,7 +37,6 @@ public class KoalaMonitorListener implements ServletContextListener {
 		String configPath = servletContext.getInitParameter(CONFIG_PARAM_NAME);
 
 		try {
-			Assert.assertNotNull(configPath,"please make sure your application cantains context-param '"+CONFIG_PARAM_NAME+"' in web.xml .");
 			String path = null;
 			if(configPath.startsWith("classpath")){
 				configPath = configPath.replace("classpath", "").replace("*:", "");
@@ -55,7 +51,6 @@ public class KoalaMonitorListener implements ServletContextListener {
 				path=servletContext.getRealPath(configPath);
 				if(path==null){
 					URL url = servletContext.getResource(configPath);
-					Assert.assertNotNull(url,"jwebap config not found : context-param '"+CONFIG_PARAM_NAME+"'= "+configPath);
 					path = url.getFile();
 				}
 			}
@@ -65,7 +60,7 @@ public class KoalaMonitorListener implements ServletContextListener {
 			serverInfos.put("deployPath", servletContext.getRealPath("/"));
 			//
 			System.out.println("monitor config file:" + path);
-			Startup.startup(path,serverInfos);
+			ContextStartup.startup(path,serverInfos);
 		} catch (Throwable e) {
 			log.warn(e.getMessage());
 			e.printStackTrace();

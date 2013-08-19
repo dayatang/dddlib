@@ -23,14 +23,14 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.jwebap.core.RuntimeContext;
-import org.jwebap.plugin.task.ServiceConnectionCheckTask;
+import org.openkoala.koala.monitor.component.task.ServiceConnectionCheckTask;
+import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.datasync.base.ServerCommondListener;
 import org.openkoala.koala.monitor.datasync.client.DatasyncClient;
 import org.openkoala.koala.monitor.jwebap.ComponentDef;
+import org.openkoala.koala.monitor.jwebap.HttpRequestTrace.ActiveUser;
 import org.openkoala.koala.monitor.jwebap.NetTransObject;
 import org.openkoala.koala.monitor.jwebap.Trace;
-import org.openkoala.koala.monitor.jwebap.HttpRequestTrace.ActiveUser;
 import org.openkoala.koala.monitor.model.GeneralMonitorStatusVo;
 import org.openkoala.koala.monitor.model.JdbcPoolStatusVo;
 import org.openkoala.koala.monitor.model.ServerStatusVo;
