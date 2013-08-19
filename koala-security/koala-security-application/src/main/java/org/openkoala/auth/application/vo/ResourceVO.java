@@ -182,7 +182,7 @@ public class ResourceVO extends PartyVO implements Serializable {
 		resource.setValid(true);
 		resource.setAbolishDate(DateUtils.MAX_DATE);
 		resource.setCreateDate(new Date());
-		resource.setSerialNumber(this.getSerialNumber() == "" ? "0" : this.getSerialNumber());
+		resource.setSerialNumber(this.getSerialNumber() == null || "".equals(this.getSerialNumber()) ? "0" : this.getSerialNumber());
 		resource.setSortOrder(this.getSortOrder());
 	}
 

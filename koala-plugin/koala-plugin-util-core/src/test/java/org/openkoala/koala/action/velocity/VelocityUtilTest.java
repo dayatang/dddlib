@@ -14,6 +14,11 @@ import java.util.Map;
 import org.apache.velocity.VelocityContext;
 import org.junit.Test;
 
+/**
+ * VelocityUtil 测试.
+ * @author xmfang
+ *
+ */
 public class VelocityUtilTest {
 
 	@Test
