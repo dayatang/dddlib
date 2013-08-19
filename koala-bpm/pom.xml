@@ -17,7 +17,8 @@
 	<modules>
 		<module>koala-jbpm-core</module>
 		<module>koala-jbpm-designer</module>
-		<module>koala-jbpm-ws-client</module>
+		<!-- 自动生成的代码，取消掉WS cleint -->
+		<!-- <module>koala-jbpm-ws-client</module> -->
 	</modules>
 	
 </project>

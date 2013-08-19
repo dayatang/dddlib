@@ -12,6 +12,8 @@ package org.openkoala.koala.util;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -126,8 +128,9 @@ public class KoalaEntityRepositoryJpa implements EntityRepository {
 	public <T> List<T> find(final String queryString,
 			final Map<String, Object> params, final Class<T> resultClass) {
 		Query query = getEntityManager().createQuery(queryString);
-		for (String key : params.keySet()) {
-			query = query.setParameter(key, params.get(key));
+		Set<Map.Entry<String, Object>> keyEntrySet =params.entrySet();
+		for (Map.Entry<String, Object> key :keyEntrySet) {
+			query = query.setParameter(key.getKey(), key.getValue());
 		}
 		return query.getResultList();
 	}
@@ -146,8 +149,9 @@ public class KoalaEntityRepositoryJpa implements EntityRepository {
 	public <T> List<T> findByNamedQuery(final String queryName,
 			final Map<String, Object> params, final Class<T> resultClass) {
 		Query query = getEntityManager().createNamedQuery(queryName);
-		for (String key : params.keySet()) {
-			query = query.setParameter(key, params.get(key));
+		Set<Map.Entry<String, Object>> keyEntrySet =params.entrySet();
+		for (Map.Entry<String, Object> key :keyEntrySet) {
+			query = query.setParameter(key.getKey(), key.getValue());
 		}
 		return query.getResultList();
 	}
@@ -198,8 +202,9 @@ public class KoalaEntityRepositoryJpa implements EntityRepository {
 	public <T> T getSingleResult(final String queryString,
 			final Map<String, Object> params, Class<T> resultClass) {
 		Query query = getEntityManager().createQuery(queryString);
-		for (String key : params.keySet()) {
-			query = query.setParameter(key, params.get(key));
+		Set<Map.Entry<String, Object>> keyEntrySet =params.entrySet();
+		for (Map.Entry<String, Object> key :keyEntrySet) {
+			query = query.setParameter(key.getKey(), key.getValue());
 		}
 		return (T) query.getSingleResult();
 	}
@@ -217,8 +222,9 @@ public class KoalaEntityRepositoryJpa implements EntityRepository {
 	public void executeUpdate(final String queryString,
 			final Map<String, Object> params) {
 		Query query = getEntityManager().createQuery(queryString);
-		for (String key : params.keySet()) {
-			query = query.setParameter(key, params.get(key));
+		Set<Map.Entry<String, Object>> keyEntrySet =params.entrySet();
+		for (Map.Entry<String, Object> key :keyEntrySet) {
+			query = query.setParameter(key.getKey(), key.getValue());
 		}
 		query.executeUpdate();
 	}

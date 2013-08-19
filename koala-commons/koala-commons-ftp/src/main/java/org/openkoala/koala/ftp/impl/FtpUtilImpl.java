@@ -340,8 +340,7 @@ public class FtpUtilImpl implements FtpUtil {
 	public void uploadDirFiles(File file,String path,String dirName) throws FtpException{
 		FTPClient ftpClient = connectFtpClient();
 		try{ftpClient.cwd("/");}catch(IOException e){this.connectFtpClient();}
-		String  sep=System.getProperty("file.separator"); 
-		String remoteDir = path + "/" + dirName;
+		String remoteDir = path + File.separator + dirName;
 		this.makeDirectory(remoteDir);
 		File[] files = file.listFiles();
 		for(File uploadFile:files){
@@ -468,23 +467,6 @@ public class FtpUtilImpl implements FtpUtil {
 		return dir;
 	}
 	
-	
-	private void clearTmpDir(String path){
-		Calendar currentDay = Calendar.getInstance();
-		currentDay.set(currentDay.get(Calendar.YEAR), currentDay.get(Calendar.MONTH), currentDay.get(Calendar.DAY_OF_MONTH), 0, 0);
-		File oldFile = new File(path);
-		if(!oldFile.exists()){
-			oldFile.mkdir();
-		}
-		File oldFileList[] = oldFile.listFiles();
-		if(null != oldFileList){
-			for(int s=0;s<oldFileList.length;s++){
-				if(oldFileList[s].isFile() && oldFileList[s].lastModified()<=currentDay.getTimeInMillis()){
-					oldFileList[s].delete();
-				}
-			}
-		}
-	}
 	/**
 	 * 是否是文件
 	 * @param path

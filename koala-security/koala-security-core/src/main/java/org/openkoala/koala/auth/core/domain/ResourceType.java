@@ -39,15 +39,22 @@ public class ResourceType extends Party {
 				ResourceType.class);
 	}
 
+	/**
+	 * 创建资源类型
+	 * @param name	资源类型名称
+	 * @return
+	 */
 	public static ResourceType newResourceType(String name){
 	    
 	    ResourceType type  = null;
         List<ResourceType> resources = Resource.getRepository().find("select r from ResourceType r where r.name=?", // 
         		new Object[]{name}, ResourceType.class);
-        if(resources!=null && resources.size() > 0) {
+        
+        if (resources != null && resources.size() > 0) {
             type = resources.get(0);
         }
-        if(type == null){
+        
+        if (type == null) {
 	      type = new ResourceType();
 	      type.setName(name);
 	      type.setCreateDate(new Date());
@@ -56,13 +63,19 @@ public class ResourceType extends Party {
 	    return type;
 	}
 	
+	/**
+	 * 根据资源类型ID获取资源类型与资源的关系
+	 * @return
+	 */
 	public List<ResourceTypeAssignment> getResources() {
 		return ResourceTypeAssignment.findResourceByType(getId());
 	}
 	
+	/**
+	 * 删除所有资源类型
+	 */
 	public static void removeAll(){
-		String sql = "DELETE FROM ResourceType";
-		ResourceType.getRepository().executeUpdate(sql, new Object[]{});
+		ResourceType.getRepository().executeUpdate("DELETE FROM ResourceType", new Object[]{});
 	}
 	
 	@Override

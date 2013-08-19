@@ -170,8 +170,10 @@ public class PackageScanner {
          * @param excludes The patterns to exclude
          */
         public Patterns(String[] includes, String[] excludes) {
-            this.origIncludes = includes;
-            this.origExcludes = excludes;
+            this.origIncludes = new String[]{};
+            System.arraycopy(includes, 0, origIncludes, 0, includes.length);
+            this.origExcludes = new String[]{};
+            System.arraycopy(excludes, 0, origExcludes, 0, excludes.length);
         }
 
         void setPatternFactory(PatternFactory factory) {

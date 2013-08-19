@@ -182,7 +182,7 @@ public class JbpmAction {
 		PublishURLVO urlVo = null;
 		URL url = null;
 		try {
-			urlVo = publishURLApplication.getPublishURL(new Long(id));
+			urlVo = publishURLApplication.getPublishURL(Long.valueOf(id));
 			url = new URL(urlVo.getUrl());
 		} catch (Exception e) {
 			e.printStackTrace();
