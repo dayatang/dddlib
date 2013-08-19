@@ -7,6 +7,10 @@ package org.openkoala.gqc.core.domain.utils;
  */
 public class PagingQueryDialectResolver {
 	
+	private PagingQueryDialectResolver() {
+		
+	}
+	
 	/**
 	 * 根据数据库名称获得一个对应的分页查询方言的实例
 	 * @param databaseName
@@ -34,13 +38,13 @@ public class PagingQueryDialectResolver {
 			return new DB2PagingQueryDialect();
 		}
 
-//		if ( "Sybase SQL Server".equals( databaseName ) || "Adaptive Server Enterprise".equals( databaseName ) ) {
-//			return new SybaseASE15Dialect();
-//		}
-//
-//		if ( databaseName.startsWith( "Adaptive Server Anywhere" ) ) {
-//			return new SybaseAnywhereDialect();
-//		}
+		/*if ( "Sybase SQL Server".equals( databaseName ) || "Adaptive Server Enterprise".equals( databaseName ) ) {
+			return new SybaseASE15Dialect();
+		}
+
+		if ( databaseName.startsWith( "Adaptive Server Anywhere" ) ) {
+			return new SybaseAnywhereDialect();
+		}*/
 
 		return null;
 		

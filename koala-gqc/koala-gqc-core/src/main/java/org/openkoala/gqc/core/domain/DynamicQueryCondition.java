@@ -34,20 +34,17 @@ public class DynamicQueryCondition extends QueryCondition {
 	/**
 	 * 查询值
 	 */
-	@Transient
-	private String value;
+	private transient String value;
 	
 	/**
 	 * 查询开始值，用于区间查询
 	 */
-	@Transient
-	private String startValue;
+	private transient String startValue;
 	
 	/**
 	 * 查询值结束值，用于区间查询
 	 */
-	@Transient
-	private String endValue;
+	private transient String endValue;
 	
 	public DynamicQueryCondition() {
 		
@@ -154,18 +151,23 @@ public class DynamicQueryCondition extends QueryCondition {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj){
 			return true;
-		if (obj == null)
+		}
+		if (obj == null){
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()){
 			return false;
+		}
 		DynamicQueryCondition other = (DynamicQueryCondition) obj;
 		if (getFieldName() == null) {
-			if (other.getFieldName() != null)
+			if (other.getFieldName() != null){
 				return false;
-		} else if (!getFieldName().equals(other.getFieldName()))
+			}
+		} else if (!getFieldName().equals(other.getFieldName())){
 			return false;
+		}
 		return true;
 	}
 	

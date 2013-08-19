@@ -15,6 +15,11 @@ import org.openkoala.gqc.core.domain.DataSource;
  *
  */
 public class PagingQuerier extends Querier {
+	
+	/**
+	 * 初始默认大小
+	 */
+	private final int DEFAULT_PAGE_SIZE = 10;
 
 	/**
 	 * 分页查询开始值
@@ -24,7 +29,7 @@ public class PagingQuerier extends Querier {
 	/**
 	 * 分页查询每页查询数
 	 */
-	private int pagesize = 10;
+	private int pagesize = DEFAULT_PAGE_SIZE;
 	
 	public int getFirstRow() {
 		return firstRow;
@@ -51,7 +56,7 @@ public class PagingQuerier extends Querier {
         	connection = getConnection();
             result = generatePagingQuerySql(connection.getMetaData());
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         } finally {
         	closeConnection(connection);
         }
@@ -71,7 +76,7 @@ public class PagingQuerier extends Querier {
             QueryRunner queryRunner = new QueryRunner();
             result = queryRunner.query(connection, generateQueryTotalCountSql(), new ScalarHandler<Number>());
         } catch (SQLException e) {
-            e.printStackTrace();
+        	throw new RuntimeException(e);
         } finally {
             DbUtils.closeQuietly(connection);
         }
@@ -103,17 +108,17 @@ public class PagingQuerier extends Querier {
 		return result;
 	}
 	
-//	private String generatePagingQuerySql(DatabaseMetaData databaseMetaData) {
-//		StandardDialectResolver standardDialectResolver = new StandardDialectResolver();
-//		Dialect dialect = standardDialectResolver.resolveDialect(databaseMetaData);
-//		
-//		RowSelection selection = new RowSelection();
-//		selection.setFetchSize(pagesize);
-//		selection.setFirstRow(firstRow);
-//		selection.setMaxRows(pagesize);
-//		
-//		LimitHandler limitHandler = dialect.buildLimitHandler(generateNormalQuerySql(), selection);
-//		return limitHandler.getProcessedSql();
-//	}
+	/*private String generatePagingQuerySql(DatabaseMetaData databaseMetaData) {
+		StandardDialectResolver standardDialectResolver = new StandardDialectResolver();
+		Dialect dialect = standardDialectResolver.resolveDialect(databaseMetaData);
+		
+		RowSelection selection = new RowSelection();
+		selection.setFetchSize(pagesize);
+		selection.setFirstRow(firstRow);
+		selection.setMaxRows(pagesize);
+		
+		LimitHandler limitHandler = dialect.buildLimitHandler(generateNormalQuerySql(), selection);
+		return limitHandler.getProcessedSql();
+	}*/
 	
 }

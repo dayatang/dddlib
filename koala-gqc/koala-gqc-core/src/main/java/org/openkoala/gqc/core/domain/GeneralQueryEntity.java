@@ -78,12 +78,10 @@ public abstract class GeneralQueryEntity implements Entity {
 		this.version = version;
 	}
 
-
 	public boolean isNew() {
 		return id == null || id.intValue() == 0;
 	}
 
-	
 	public boolean existed() {
 		if (isNew()) {
 			return false;
@@ -91,11 +89,9 @@ public abstract class GeneralQueryEntity implements Entity {
 		return getRepository().exists(getClass(), id);
 	}
 
-	
 	public boolean notExisted() {
 		return ! existed();
 	}
-	
 	
 	public boolean existed(String propertyName, Object propertyValue) {
 		List<?> entities = getRepository().find(QuerySettings.create(getClass()).eq(propertyName, propertyValue)); 
