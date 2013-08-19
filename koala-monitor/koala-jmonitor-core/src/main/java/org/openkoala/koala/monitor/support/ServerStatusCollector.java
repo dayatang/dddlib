@@ -31,7 +31,7 @@ import org.hyperic.sigar.NetInterfaceConfig;
 import org.hyperic.sigar.NetInterfaceStat;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.Swap;
-import org.jwebap.core.RuntimeContext;
+import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.model.ServerStatusVo;
 import org.openkoala.koala.monitor.model.ServerStatusVo.CpuInfoVo;
 import org.openkoala.koala.monitor.model.ServerStatusVo.DiskInfoVo;

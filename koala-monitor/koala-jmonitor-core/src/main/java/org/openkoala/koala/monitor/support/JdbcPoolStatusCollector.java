@@ -27,7 +27,7 @@ import javax.sql.DataSource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jwebap.plugin.analyser.CommonAnalyser;
+import org.openkoala.koala.monitor.component.analyser.CommonAnalyser;
 import org.openkoala.koala.monitor.model.JdbcConnStatusVo;
 import org.openkoala.koala.monitor.model.JdbcPoolStatusVo;
 
