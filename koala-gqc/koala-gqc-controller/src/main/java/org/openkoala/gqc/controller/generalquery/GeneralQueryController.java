@@ -113,11 +113,6 @@ public class GeneralQueryController {
         try {
             //查询出该实体
             GeneralQuery generalQuery = gqcApplication.getById(id);
-//            GeneralQueryVo generalQueryVo = new GeneralQueryVo(generalQuery.getId(), generalQuery.getDataSource().getDataSourceId(), 
-//                    generalQuery.getQueryName(), generalQuery.getTableName(), generalQuery.getDescription(), generalQuery.getCreateDate());
-//            generalQueryVo.setFieldDetails(generalQuery.getFieldDetails());
-//            generalQueryVo.setPreQueryConditions(generalQuery.getPreQueryConditions());
-//            generalQueryVo.setDynamicQueryConditions(generalQuery.getDynamicQueryConditions());
 
             //表中所有列，供查询条件选择
             Map<String, Integer> tableMapLeftDiv = dataSourceApplication.findAllColumn(
@@ -134,7 +129,6 @@ public class GeneralQueryController {
             request.setAttribute("tableMapLeftDiv", tableMapLeftDiv);
             request.setAttribute("tableMapRightDiv", tableMapRightDiv);
         } catch (Exception e) {
-            //e.printStackTrace();
             request.setAttribute("error", "获取信息失败!");
         }
         
