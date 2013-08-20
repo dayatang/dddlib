@@ -10,13 +10,10 @@ package org.openkoala.koala.util;
 import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.net.URL;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.ejb.Remote;
 import javax.inject.Named;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
@@ -156,36 +153,35 @@ public class SpringEJBIntercepter {
 		return props;
 	}
 
-	private static void loadResources() {
-		try {
-			System.out.println("===========loadResources===========");
-			ClassLoader cl = null;
-			try {
-				cl = Thread.currentThread().getContextClassLoader();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			if (cl == null) {
-				cl = SpringEJBIntercepter.class.getClassLoader();
-			}
-			Enumeration<URL> resources = cl.getResources("xtree.vm");
-			while (resources.hasMoreElements()) {
-				URL url = resources.nextElement();
-				System.out.println(url);
-				System.out.println(url.getContent());
-			}
-			System.out.println("===========loadResources===========");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	private static void loadResources() {
+//		try {
+//			System.out.println("===========loadResources===========");
+//			ClassLoader cl = null;
+//			try {
+//				cl = Thread.currentThread().getContextClassLoader();
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//			if (cl == null) {
+//				cl = SpringEJBIntercepter.class.getClassLoader();
+//			}
+//			Enumeration<URL> resources = cl.getResources("xtree.vm");
+//			while (resources.hasMoreElements()) {
+//				URL url = resources.nextElement();
+//				System.out.println(url);
+//				System.out.println(url.getContent());
+//			}
+//			System.out.println("===========loadResources===========");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	private static void initInstanceFactory() {
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@");
 		if (instanceProvider != null) {
 			return;
 		}
-		boolean hasLoad = false;
 		
 		if (instanceProvider==null) {
 			Properties props = loadConfigure();

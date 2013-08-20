@@ -2,16 +2,13 @@ package org.openkoala.koala.deploy.webservice.util;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.openkoala.koala.action.velocity.VelocityUtil;
 import org.openkoala.koala.deploy.webservice.pojo.InterfaceObj;
 import org.openkoala.koala.deploy.webservice.pojo.ValueObj;
 import org.openkoala.koala.deploy.webservice.pojo.WebServiceDeploy;
 import org.openkoala.koala.exception.KoalaException;
-import org.openkoala.koala.pojo.MavenProject;
 
 /**
  * 
@@ -84,7 +81,7 @@ public class WebServiceDeployProcess {
 		}
 	}
 	
-	private static String getPackagePath(String packageName) {
-		return packageName.replaceAll("\\.", "/");
-	}
+//	private static String getPackagePath(String packageName) {
+//		return packageName.replaceAll("\\.", "/");
+//	}
 }

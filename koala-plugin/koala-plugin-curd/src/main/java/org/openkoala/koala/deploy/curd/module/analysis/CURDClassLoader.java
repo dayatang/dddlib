@@ -1,19 +1,11 @@
 package org.openkoala.koala.deploy.curd.module.analysis;
 
 import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Vector;
-import java.util.jar.JarFile;
 
 import org.openkoala.koala.deploy.curd.module.util.ClassLoaderClear;
 import org.openkoala.koala.pojo.MavenProject;
