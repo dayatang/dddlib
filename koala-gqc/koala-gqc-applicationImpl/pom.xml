@@ -41,7 +41,7 @@
 			<groupId>org.openkoala.gqc</groupId>
 			<artifactId>koala-gqc-conf</artifactId>
 			<version>${project.parent.version}</version>
-			<type>test-jar</type>
+			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

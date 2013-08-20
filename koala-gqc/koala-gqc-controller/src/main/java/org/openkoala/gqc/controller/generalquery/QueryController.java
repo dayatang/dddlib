@@ -2,6 +2,8 @@ package org.openkoala.gqc.controller.generalquery;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -68,14 +70,16 @@ public class QueryController {
 		String startValueTag = "Start@";
 		String endValueTag = "End@";
 		
-		for (String key : params.keySet()) {
+		Set<Entry<String,Object[]>> keyValues = params.entrySet();
+		for(Entry<String,Object[]> keyValue: keyValues){
+			String key = keyValue.getKey();
 			if (!"page".equals(key) && !"pagesize".equals(key)) {
 				DynamicQueryCondition dqc = null;
 				if (key.endsWith(startValueTag)) {
 					String fieldName = key.replace(startValueTag, "");
 					dqc = generalQuery.getDynamicQueryConditionByFieldName(fieldName);
 					if (dqc != null) {
-						dqc.setStartValue((String) params.get(key)[0]);
+						dqc.setStartValue((String) keyValue.getValue()[0]);
 					}
 					continue;
 				}
@@ -84,18 +88,18 @@ public class QueryController {
 					String fieldName = key.replace(endValueTag, "");
 					dqc = generalQuery.getDynamicQueryConditionByFieldName(fieldName);
 					if (dqc != null) {
-						dqc.setEndValue((String) params.get(key)[0]);
+						dqc.setEndValue((String) keyValue.getValue()[0]);
 					}
 					continue;
 				}
 				
 				dqc = generalQuery.getDynamicQueryConditionByFieldName(key);
 				if (dqc != null) {
-					dqc.setValue((String) params.get(key)[0]);
+					dqc.setValue((String) keyValue.getValue()[0]);
 				}
 			}
 		}
-
+		
 		Page<Map<String, Object>> data = generalQuery.pagingQueryPage(page, pagesize);
 
 		result.put("Rows", data.getResult());
