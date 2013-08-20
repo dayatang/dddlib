@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 import org.openkoala.koala.util.KoalaBaseSpringTestCase;
@@ -187,28 +188,89 @@ public class ResourceTest extends KoalaBaseSpringTestCase {
 		assertTrue(Resource.findChildByParent(parent.getId()).contains(child));
 	}
 	
+	@Test
 	public void testFindRoleByResource() {
-		//TODO
+		Role role = new Role();
+		role.setName("role-name");
+		role.setRoleDesc("role-desc");
+		role.setValid(true);
+		role.setCreateDate(new Date());
+		role.setAbolishDate(DateUtils.MAX_DATE);
+		role.save();
+		assertNotNull(role.getId());
+		
+		Resource resource = createResource();
+		resource.save();
+		assertNotNull(resource.getId());
+		assertFalse(Resource.hasPrivilegeByRole(resource.getId(), role.getId()));
+		
+		resource.assignRole(role);
+		assertTrue(Resource.hasPrivilegeByRole(resource.getId(), role.getId()));
+		
+		List<Role> roles = Resource.findRoleByResource(resource.getIdentifier());
+		assertTrue(!roles.isEmpty());
+		assertEquals(1, roles.size());
 	}
 	
+	@Test
 	public void testHasPrivilegeByRole() {
-		//TODO
+		Role role = new Role();
+		role.setName("role-name");
+		role.setRoleDesc("role-desc");
+		role.setValid(true);
+		role.setCreateDate(new Date());
+		role.setAbolishDate(DateUtils.MAX_DATE);
+		role.save();
+		assertNotNull(role.getId());
+		
+		Resource resource = createResource();
+		resource.save();
+		assertNotNull(resource.getId());
+		assertFalse(Resource.hasPrivilegeByRole(resource.getId(), role.getId()));
+		
+		resource.assignRole(role);
+		assertTrue(Resource.hasPrivilegeByRole(resource.getId(), role.getId()));
 	}
 	
-	public void testHasPrivilegeByUser() {
-		//TODO
-	}
-	
+	@Test
 	public void testHasChildByParent() {
-		//TODO
+		Resource parent = createResource();
+		parent.setName("parent-name");
+		parent.setIdentifier("parent-identifier");
+		parent.save();
+		
+		Resource child = createResource();
+		child.setName("child-name");
+		child.setIdentifier("child-identifier");
+		child.save();
+		
+		assertFalse(Resource.findChildByParent(parent.getId()).contains(child));
+		
+		child.assignParent(parent);
+		assertTrue(Resource.findChildByParent(parent.getId()).contains(child));
+		
+		assertTrue(Resource.hasChildByParent(parent.getId()));
 	}
 	
+	@Test
 	public void testRemoveAll() {
-		//TODO
+		Resource resource1 = createResource();
+		resource1.save();
+		assertNotNull(resource1.getId());
+		
+		Resource resource2 = createResource();
+		resource2.save();
+		assertNotNull(resource2.getId());
+		
+		Resource.removeAll();
+		
+		List<Resource> resources = Resource.findAll(Resource.class);
+		assertTrue(resources.isEmpty());
 	}
 	
+	@Test
 	public void testIsMenu() {
-		//TODO
+		assertFalse(Resource.isMenu(createResource()));
 	}
 	
 	/**
