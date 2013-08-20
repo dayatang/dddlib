@@ -71,7 +71,9 @@ public class MethodTrace extends StackTrace {
 			StringBuffer details = new StringBuffer();
 			StackTraceElement[] traceElements = traceException.getStackTrace();
 			for (StackTraceElement stackTrace : traceElements) {
-				if(stackTrace.toString().contains("org.openkoala.koala.monitor"))continue;
+				if(stackTrace.toString().contains("org.openkoala.koala.monitor")){
+					continue;
+				}
 				if(stackTrace.toString().trim().startsWith(prefixPkg)){
 					details.append(stackTrace.toString()).append("\n");
 				}
@@ -85,14 +87,14 @@ public class MethodTrace extends StackTrace {
 	private static String method2String(Method m) {
 		try {
 			StringBuffer sb = new StringBuffer();
-			//sb.append(getTypeName(m.getReturnType()) + " ");
-			sb.append(getTypeName(m.getDeclaringClass()) + ".");
-			sb.append(m.getName() + "(");
+			sb.append(getTypeName(m.getDeclaringClass())).append(".");
+			sb.append(m.getName()).append("(");
 			Class[] params = m.getParameterTypes(); // avoid clone
 			for (int j = 0; j < params.length; j++) {
 				sb.append(getTypeName(params[j]));
-				if (j < (params.length - 1))
+				if (j < (params.length - 1)){
 					sb.append(",");
+				}
 			}
 			sb.append(")");
 			return sb.toString().replaceAll("\\s+", "");
@@ -113,18 +115,18 @@ public class MethodTrace extends StackTrace {
 				}
 				StringBuffer sb = new StringBuffer();
 				String name = cl.getName();
-				name = name.substring(name.lastIndexOf(".") + 1);
+				name = name.substring(name.lastIndexOf('.') + 1);
 				sb.append(name);
 				for (int i = 0; i < dimensions; i++) {
 					sb.append("[]");
 				}
 				return sb.toString();
-			} catch (Throwable e) { /* FALLTHRU */
+			} catch (Exception e) { 
+				return "unknow";
 			}
 		}
 		String name = type.getName();
-		return name.substring(name.lastIndexOf(".") + 1);
+		return name.substring(name.lastIndexOf('.') + 1);
 	}
 
-	public static void main(String[] args) {}
 }

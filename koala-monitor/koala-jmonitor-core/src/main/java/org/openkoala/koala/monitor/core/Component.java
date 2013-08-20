@@ -34,6 +34,4 @@ public interface Component {
 	 *
 	 */
 	public ComponentContext getComponentContext();
-	
-	public void setTraceType(String traceType);
 }

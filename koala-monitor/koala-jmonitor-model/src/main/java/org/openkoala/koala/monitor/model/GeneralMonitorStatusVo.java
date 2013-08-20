@@ -45,8 +45,7 @@ public class GeneralMonitorStatusVo implements Serializable {
 	private List<String> abnormalIps = new ArrayList<String>();
 	
 	//服务
-	private List<String> abnormalServices = new ArrayList<String>();
-	private String serviceCheckTime;
+	private String serviceCheckDatas;
 
 
 	private double pageAvgResponseTime;//页面平均响应速度
@@ -80,12 +79,13 @@ public class GeneralMonitorStatusVo implements Serializable {
 		this.abnormalIps = abnormalIps;
 	}
 
-	public List<String> getAbnormalServices() {
-		return abnormalServices;
+
+	public String getServiceCheckDatas() {
+		return serviceCheckDatas;
 	}
 
-	public void setAbnormalServices(List<String> abnormalServices) {
-		this.abnormalServices = abnormalServices;
+	public void setServiceCheckDatas(String serviceCheckDatas) {
+		this.serviceCheckDatas = serviceCheckDatas;
 	}
 
 	public double getPageAvgResponseTime() {
@@ -143,14 +143,6 @@ public class GeneralMonitorStatusVo implements Serializable {
 	public void setServerStatus(ServerStatusVo serverStatus) {
 		this.serverStatus = serverStatus;
 	}
-	
-	public String getServiceCheckTime() {
-		return serviceCheckTime;
-	}
-
-	public void setServiceCheckTime(String serviceCheckTime) {
-		this.serviceCheckTime = serviceCheckTime;
-	}
 
 	/**
 	 * 异常率
@@ -177,7 +169,6 @@ public class GeneralMonitorStatusVo implements Serializable {
 	public Map<String, Object> formatAsMap(){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("activeCount", activeCount);
-		map.put("serviceCheckTime", serviceCheckTime);
 		map.put("pageAvgResponseTime", pageAvgResponseTime);
 		map.put("maxAvgTimePage", maxAvgTimePage);
 		map.put("methodCallCount", methodCallCount);
@@ -188,8 +179,8 @@ public class GeneralMonitorStatusVo implements Serializable {
 		if(abnormalIps != null && abnormalIps.size()>0){
 			map.put("abnormalIps", abnormalIps);
 		}
-		if(abnormalServices != null && abnormalServices.size()>0){
-			map.put("abnormalServices", abnormalServices);
+		if(serviceCheckDatas != null){
+			map.put("serviceCheckDatas", serviceCheckDatas);
 		}
 		if(serverStatus != null){
 			map.put("serverInfo", getServerInfo());

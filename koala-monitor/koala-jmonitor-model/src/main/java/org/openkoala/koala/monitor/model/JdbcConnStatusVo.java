@@ -16,9 +16,9 @@
 package org.openkoala.koala.monitor.model;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.openkoala.koala.monitor.common.KoalaDateUtils;
 
 /**
  * 功能描述：JDBC connection 状态<br />
@@ -35,9 +35,6 @@ import java.util.Date;
 public class JdbcConnStatusVo implements Serializable{
 	
 	private static final long serialVersionUID = -9132629815724297395L;
-	
-	private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	private static final DateFormat TIME_FORMAT = new SimpleDateFormat("HH:mm:ss");
 	
 	private String id;//链接ID
 	private String threadKey;//主线程标识
@@ -71,7 +68,7 @@ public class JdbcConnStatusVo implements Serializable{
 	}
 	public String getFormatCreateTime() {
 		if(createTime == null)return "-";
-		return DATE_FORMAT.format(createTime);
+		return KoalaDateUtils.format(createTime);
 	}
 
 	public boolean isIdle() {
@@ -82,7 +79,7 @@ public class JdbcConnStatusVo implements Serializable{
 	}
 	public String getFormatLastActiveTime() {
 		if(lastActiveTime == null)return "-";
-		return TIME_FORMAT.format(lastActiveTime);
+		return KoalaDateUtils.format(lastActiveTime,"HH:mm:ss");
 	}
 
 	public long getActiveTime() {

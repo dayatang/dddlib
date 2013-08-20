@@ -34,4 +34,10 @@ public interface MonitorTask {
 	public void stop();
 	
 	public void refresh();
+	
+	/**
+	 * 获取实时运行数据（JSON格式封装）
+	 * @return
+	 */
+	public String getDatas();
 }

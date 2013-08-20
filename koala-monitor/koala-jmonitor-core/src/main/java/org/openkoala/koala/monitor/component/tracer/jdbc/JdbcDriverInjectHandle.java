@@ -24,12 +24,8 @@ public class JdbcDriverInjectHandle implements MethodInjectHandler {
 	 */
 	private transient TraceLiftcycleManager _container = null;
 
-	private ConnectionEventListener[] _listeners = null;
-
-	public JdbcDriverInjectHandle(TraceLiftcycleManager container,
-			ConnectionEventListener[] listeners) {
+	public JdbcDriverInjectHandle(TraceLiftcycleManager container) {
 		_container = container;
-		_listeners = listeners;
 	}
 
 	public Object invoke(Object target, Method method, Method methodProxy,
@@ -40,17 +36,15 @@ public class JdbcDriverInjectHandle implements MethodInjectHandler {
 		} catch (InvocationTargetException e) {
 			// 抛出原有异常
 			throw e.getCause();
-		} finally {
-
 		}
 		if (!Modifier.isPrivate(method.getModifiers())
 				&& o instanceof Connection
 				&& !(o instanceof ProxyConnection)) {
-			return new ProxyConnection(_container, (Connection) o,(DataSource)target,_listeners);
+			return new ProxyConnection(_container, (Connection) o,(DataSource)target);
 		} else if (!Modifier.isPrivate(method.getModifiers())
 				&& o instanceof DataSource
 				&& !(o instanceof ProxyDataSource)) {
-			return new ProxyDataSource(_container, (DataSource) o,(DataSource)target,_listeners);
+			return new ProxyDataSource(_container, (DataSource) o,(DataSource)target);
 		} else {
 			return o;
 		}

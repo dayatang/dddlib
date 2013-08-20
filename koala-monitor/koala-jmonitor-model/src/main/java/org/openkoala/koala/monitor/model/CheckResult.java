@@ -15,7 +15,7 @@ public class CheckResult implements Serializable {
 	private boolean success;
 	
 	//服务本身是否可用
-	private boolean unavailable = true;
+	private boolean unavailable = false;
 	
 	private long timeConsuming;//耗时时间（单位：毫秒）
 	

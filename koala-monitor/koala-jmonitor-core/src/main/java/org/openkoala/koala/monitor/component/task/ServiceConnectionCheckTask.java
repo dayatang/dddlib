@@ -18,16 +18,21 @@ package org.openkoala.koala.monitor.component.task;
 import java.io.FileInputStream;
 import java.net.URL;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
+import org.openkoala.koala.monitor.common.KoalaDateUtils;
 import org.openkoala.koala.monitor.core.RuntimeContext;
-import org.openkoala.koala.monitor.def.TaskDef;
 import org.openkoala.koala.monitor.def.ServiceDef;
+import org.openkoala.koala.monitor.def.TaskDef;
+import org.openkoala.koala.monitor.model.CheckResult;
 import org.openkoala.koala.monitor.support.ConnectionChecker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.alibaba.fastjson.JSON;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
@@ -50,10 +55,10 @@ public class ServiceConnectionCheckTask extends BaseMonitorTask{
 	public final static String TASK_KEY = "CHECK-CONNECTION"; 
 	
 	//上一次检测时间
-	private static Date lastCheckTime = new Date();
+	private Date lastCheckTime = new Date();
 	
 	//上一次检查不正常服务
-	private static List<String> badSevices = new Vector<String>();
+	private List<CheckResult> badSevices = new Vector<CheckResult>();
 	
 	private List<ServiceDef> serviceList;
 	
@@ -61,14 +66,6 @@ public class ServiceConnectionCheckTask extends BaseMonitorTask{
 	public ServiceConnectionCheckTask(TaskDef taskDef){
 		initServiceList(taskDef.getTaskResource());
 		this.taskPeriod = taskDef.getPeriod() * 1000 * 1000;//分 -->毫秒
-	}
-	
-	public static Date getLastCheckTime() {
-		return lastCheckTime;
-	}
-
-	public static List<String> getBadSevices() {
-		return badSevices;
 	}
 
 	/**
@@ -129,17 +126,41 @@ public class ServiceConnectionCheckTask extends BaseMonitorTask{
 	@Override
 	protected void doTask() {
 		badSevices.clear();
-		boolean isConnect = false;
 		//
 		for (ServiceDef serviceDef : serviceList) {
-			isConnect = ConnectionChecker.isConnect(serviceDef);
-			if( !isConnect ){
-			    badSevices.add(serviceDef.getTarget());
+			CheckResult result = ConnectionChecker.checkConnectionStatus(serviceDef);
+			if(!result.isSuccess()){
+				badSevices.add(result);
 			}
 		}
 		
 		lastCheckTime = new Date();
 	}
+
+	@Override
+	public String getDatas() {
+		Map<String, Object> datas = new HashMap<String, Object>();
+		datas.put("checkTime", KoalaDateUtils.format(lastCheckTime));
+		datas.put("badSevices", badSevices);
+		return JSON.toJSONString(datas);
+	}
 	
 
+	public static void main(String[] args) {
+		Map<String, Object> datas = new HashMap<String, Object>();
+		datas.put("checkTime", new Date());
+		List<CheckResult> badSevices = new Vector<CheckResult>();
+		CheckResult r = new CheckResult();
+		r.setTimeConsuming(100L);
+		badSevices.add(r);
+		
+		r = new CheckResult();
+		r.setTimeConsuming(200L);
+		r.setDetails("haha");
+		badSevices.add(r);
+		
+		datas.put("badSevices", badSevices);
+		
+		System.out.println(JSON.toJSONString(datas));
+	}
 }
