@@ -5,6 +5,10 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 public class SecurityMD5 {
 
 	private static Md5PasswordEncoder fs = new Md5PasswordEncoder();
+	
+	private SecurityMD5() {
+		
+	}
 
 	public static String encode(String password, String salt) {
 		return fs.encodePassword(password, salt);

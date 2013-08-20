@@ -1,4 +1,4 @@
-package org.openkoala.koala.auth.impl.jdbc;
+package org.openkoala.koala.auth.impl.ejb;
 
 import java.security.MessageDigest;
 

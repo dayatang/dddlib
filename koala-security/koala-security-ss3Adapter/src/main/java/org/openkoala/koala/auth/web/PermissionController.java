@@ -17,7 +17,7 @@ public class PermissionController {
 	}
 
 	public String getMessage(String name) {
-		return "";// I18NManager.getMessage(name);
+		return "";
 	}
 
 	/**

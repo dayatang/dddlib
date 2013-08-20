@@ -56,7 +56,7 @@ public abstract class Identity extends Party {
 		this.save();
 	}
 
-	public void EnableIdentity() {
+	public void enableIdentity() {
 		this.isValid = true;
 		this.save();
 	}

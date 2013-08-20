@@ -16,6 +16,10 @@ public class CacheUtil {
 
 	private static com.dayatang.cache.Cache userCache = null;
 	private static com.dayatang.cache.Cache resourceCache = null;
+	
+	private CacheUtil() {
+		
+	}
 
 	public static AuthDataService getAuthDataService() {
 		if (provider == null) {
