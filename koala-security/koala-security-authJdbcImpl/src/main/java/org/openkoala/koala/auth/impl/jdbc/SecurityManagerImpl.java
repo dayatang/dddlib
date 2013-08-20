@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
@@ -29,6 +30,8 @@ public class SecurityManagerImpl implements SecurityManager {
 	
 	private JdbcSecurityConfig config;
 	
+	private static final Logger LOGGER = Logger.getLogger("SecurityManagerImpl");
+	
 	/**
 	 * 获取数据库连接
 	 * @return
@@ -38,7 +41,7 @@ public class SecurityManagerImpl implements SecurityManager {
 		try {
 			return DriverManager.getConnection(config.getDburl(), config.getDbuser(), config.getDbpassword());
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info("Can not receive connection.");
 		}
 		return null;
 	}
@@ -76,7 +79,7 @@ public class SecurityManagerImpl implements SecurityManager {
 				
 			}, userAccount, new Timestamp(System.currentTimeMillis()));
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		} finally {
 			DbUtils.closeQuietly(conn);
 		}
@@ -102,7 +105,7 @@ public class SecurityManagerImpl implements SecurityManager {
 				}
 			}, new Timestamp(System.currentTimeMillis()));
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		} finally {
 			DbUtils.closeQuietly(conn);
 		}
@@ -129,7 +132,7 @@ public class SecurityManagerImpl implements SecurityManager {
 					}
 				}, new Timestamp(System.currentTimeMillis()));
 			} catch (SQLException e) {
-				e.printStackTrace();
+				LOGGER.info(e.getMessage());
 			} finally {
 				DbUtils.closeQuietly(conn);
 			}
@@ -150,7 +153,7 @@ public class SecurityManagerImpl implements SecurityManager {
 				}
 			}, userAccount, new Timestamp(System.currentTimeMillis()));
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		} finally {
 			DbUtils.closeQuietly(conn);
 		}

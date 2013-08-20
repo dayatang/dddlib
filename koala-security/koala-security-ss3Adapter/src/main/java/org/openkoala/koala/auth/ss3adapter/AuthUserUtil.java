@@ -6,6 +6,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 public class AuthUserUtil {
+	
+	private AuthUserUtil() {
+		
+	}
 
 	/**
 	 * 获取当前登录用户名
@@ -13,19 +17,24 @@ public class AuthUserUtil {
 	 * @return
 	 */
 	public static String getLoginUserName() {
-		if (getAuthentication() == null) {
-			return null;
-		}
-		if (getPrincipal() != null && getPrincipal() instanceof CustomUserDetails) {
+		if (getAuthentication() != null && getPrincipal() != null && getPrincipal() instanceof CustomUserDetails) {
 			return ((CustomUserDetails) getPrincipal()).getUsername();
 		}
 		return null;
 	}
 
+	/**
+	 * 获取登录用户信息
+	 * @return
+	 */
 	private static Object getPrincipal() {
 		return getAuthentication().getPrincipal();
 	}
 
+	/**
+	 * 获取用户授权信息
+	 * @return
+	 */
 	private static Authentication getAuthentication() {
 		return SecurityContextHolder.getContext().getAuthentication();
 	}

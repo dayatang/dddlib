@@ -95,11 +95,17 @@ public class Resource extends Party {
 		this.menuIcon = menuIcon;
 	}
 
+	/**
+	 * 使资源失效
+	 */
 	public void disableResource() {
 		this.isValid = false;
 		this.save();
 	}
 
+	/**
+	 * 使资源有效
+	 */
 	public void enableResource() {
 		this.isValid = true;
 		this.save();
@@ -111,6 +117,11 @@ public class Resource extends Party {
 	 */
 	public void assignRole(Role role) {
 		IdentityResourceAuthorization idres = new IdentityResourceAuthorization();
+		idres.setIdentity(role);
+		idres.setResource(this);
+		idres.setAbolishDate(DateUtils.MAX_DATE);
+		idres.setCreateDate(new Date());
+		idres.setScheduledAbolishDate(new Date());
 		idres.save();
 	}
 
@@ -279,7 +290,7 @@ public class Resource extends Party {
 	public static boolean isMenu(Resource resource) {
 		List<Resource> resources = Resource.findByNamedQuery("findResourceById", new Object[] { "KOALA_MENU", //
 				"KOALA_DIRETORY", resource.getId() }, Resource.class);
-		if (resources != null && resources.size() > 0) {
+		if (resources != null && !resources.isEmpty()) {
 			return true;
 		}
 		return false;
