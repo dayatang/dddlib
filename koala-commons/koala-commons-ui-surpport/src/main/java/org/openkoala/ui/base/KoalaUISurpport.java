@@ -76,10 +76,11 @@ public class KoalaUISurpport extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
     private KoalaUISurpportApplication koalaUISurpportApplication;
-    
 
     public KoalaUISurpportApplication getKoalaUISurpportApplication() {
-        if(koalaUISurpportApplication == null)koalaUISurpportApplication = InstanceFactory.getInstance(KoalaUISurpportApplication.class);
+        if (koalaUISurpportApplication == null) {
+        	koalaUISurpportApplication = InstanceFactory.getInstance(KoalaUISurpportApplication.class);
+        }
         return koalaUISurpportApplication;
     }
 
@@ -90,20 +91,19 @@ public class KoalaUISurpport extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            //设置浏览器不缓存本页
-            //response.addHeader("Pragma", "no-cache");
-           // response.addHeader("Cache-Control", "no-cache");
-           // response.addHeader("Expires", "0");
-            String ui_type = request.getParameter("_type");
-            if(ui_type == null || "".equals(ui_type.trim()))return;
-            if("dropdown".equals(ui_type)){
-                buildDropdown(request,response);
-            }else if("tree".equals(ui_type)){
-                buildTree(request,response);
-            }
-        } catch (Exception e) {}
-       
+        //设置浏览器不缓存本页
+        //response.addHeader("Pragma", "no-cache");
+       // response.addHeader("Cache-Control", "no-cache");
+       // response.addHeader("Expires", "0");
+        String ui_type = request.getParameter("_type");
+        if (ui_type == null || "".equals(ui_type.trim())) {
+        	return;
+        }
+        if ("dropdown".equals(ui_type)) {
+            buildDropdown(request,response);
+        } else if("tree".equals(ui_type)) {
+            buildTree(request,response);
+        }
     }
 
 
@@ -127,7 +127,7 @@ public class KoalaUISurpport extends HttpServlet {
             if(!json.startsWith("["))json = "["+json+"]";
             writeJSON(response,json);
         } catch (Exception e) {
-            // TODO: handle exception
+        	writeJSON(response, "{error}");
         }
     }
 
@@ -146,21 +146,17 @@ public class KoalaUISurpport extends HttpServlet {
             String beanFields = request.getParameter("beanFields");
             String parentId = request.getParameter("parentId");
             String filterParams = request.getParameter("filter");
-            if("list".equals(dropdownStyle)){
-                List<BaseVo> options = getKoalaUISurpportApplication().queryAllOptions(beanName, beanFields,parentId,filterParams);
+            if ("list".equals(dropdownStyle)) {
+                List<BaseVo> options = getKoalaUISurpportApplication().queryAllOptions(beanName, beanFields, parentId, filterParams);
                 json = JSONMapper.toJSON(options).render(false);
-            }else if("tree".equals(dropdownStyle)){
+            } else if ("tree".equals(dropdownStyle)) {
                 buildTree(request, response);
-            }else if("table".equals(dropdownStyle)){
-                
-            } 
-            //
-            writeJSON(response,json);
+            }
             
+            writeJSON(response,json);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
     }
     
     /**
@@ -169,10 +165,11 @@ public class KoalaUISurpport extends HttpServlet {
      * @param jsons
      * @throws IOException 
      */
-    public static  void writeJSON(HttpServletResponse response,String json){
+    public static void writeJSON(HttpServletResponse response,String json){
         try {
             writeObject(response,json, "text/x-json;charset=UTF-8"); 
         } catch (Exception e) {
+        	e.printStackTrace();
         }
         
     }
@@ -190,10 +187,13 @@ public class KoalaUISurpport extends HttpServlet {
             response.setContentType(contentType);
             writer = response.getWriter();
             writer.write(text);
-        }finally{
-            try {writer.close();} catch (Exception e2) {}
+        } finally {
+            try {
+            	writer.close();
+            } catch (Exception e2) {
+            	e2.printStackTrace();
+            }
         }
-        
     }
     
     public static void main(String[] args) {
@@ -204,7 +204,6 @@ public class KoalaUISurpport extends HttpServlet {
             String json = JSONMapper.toJSON(options).render(false);
             System.out.println(json);
         } catch (MapperException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

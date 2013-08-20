@@ -64,7 +64,9 @@ public class XML2ObjectUtil {
 	 * @throws Exception
 	 */
 	public Object processParse(String xmlPath) throws Exception {
-		if(classes==null)classes = PackageScanUtil.scan();
+		if (classes == null) {
+			classes = PackageScanUtil.scan();
+		}
 //		InputStream in = getInputStreamFromClassLoader(xmlPath.substring(xmlPath.indexOf("xml"));
 //		InputStreamReader sr = new InputStreamReader(in,"UTF-8"); 
 		Document document = DocumentUtil.readDocument(xmlPath);
@@ -72,7 +74,7 @@ public class XML2ObjectUtil {
 		String objName = root.getName().substring(0, 1).toUpperCase() + root.getName().substring(1);
 		String className = classes.get(objName);
 		Class rootClass = Class.forName(className);
-		return objectParse(rootClass,root,null);
+		return objectParse(rootClass, root, null);
 	}
 	
 	/**
@@ -124,13 +126,13 @@ public class XML2ObjectUtil {
 				Class classPorperty = Class.forName(className);
 				Object classObj = objectParse(classPorperty, element, obj);
 				
-				property  = property.substring(0,1).toLowerCase() + property.substring(1);
+				property = property.substring(0, 1).toLowerCase() + property.substring(1);
 				Field field = null;
 			    field = getField(classObject,property);
-				if(field==null){
-					property = property+ "s";
+				if (field == null){
+					property = property + "s";
 					propertyObj = propertyObj + "s";
-					field = getField(classObject,property);
+					field = getField(classObject, property);
 				}
 				if (!field.getType().equals(List.class)) {
 					// 如果是单个元素
@@ -139,13 +141,13 @@ public class XML2ObjectUtil {
 					field.set(obj, classObj);
 				} else {
 					// 如果有多个元素，则肯定存储为一个LIST
-					Method getMethod = getMethod(classObject,"get" + propertyObj);
+					Method getMethod = getMethod(classObject, "get" + propertyObj);
 					List values = (List) getMethod.invoke(obj);
 					if(values == null) {
 						values = new ArrayList();
 					}
 					values.add(classObj);
-					Method setMethod = getMethod(classObject,"set" + propertyObj, List.class);
+					Method setMethod = getMethod(classObject, "set" + propertyObj, List.class);
 					setMethod.invoke(obj, values);
 				}
 			}
@@ -176,21 +178,20 @@ public class XML2ObjectUtil {
 	
 	private Field getField(Class classObject,String property) throws SecurityException, NoSuchFieldException{
 		Field field =  null;
-		try{field = classObject.getDeclaredField(property);}catch(NoSuchFieldException e){}
-		while(field==null && classObject.getSuperclass()!=null){
+		field = classObject.getDeclaredField(property);
+		while (field == null && classObject.getSuperclass() != null) {
 			classObject = classObject.getSuperclass();
-			try{field = classObject.getDeclaredField(property);}catch(NoSuchFieldException e){}
+			field = classObject.getDeclaredField(property);
 		}
 		return field;
 	}
 	
 	private Method getMethod(Class classObject,String methodName, Class<?>... parameterTypes) throws SecurityException, NoSuchMethodException{
-		Method method = null;
-		try{method = classObject.getDeclaredMethod(methodName,parameterTypes);}catch(NoSuchMethodException e){}
-		 while(method==null && classObject.getSuperclass()!=null){
-			 classObject = classObject.getSuperclass();
-			 try{method = classObject.getDeclaredMethod(methodName,parameterTypes);}catch(NoSuchMethodException e){}
-		 }
+		Method method = classObject.getDeclaredMethod(methodName, parameterTypes);
+		while(method == null && classObject.getSuperclass() != null) {
+			classObject = classObject.getSuperclass();
+			method = classObject.getDeclaredMethod(methodName, parameterTypes);
+		}
 		return method;
 	}
 	
