@@ -821,7 +821,7 @@
         </snapshotRepository>
     </distributionManagement>
     <scm>
-    	<connection>https://github.com/openkoala/Koala.git</connection>
-    	<developerConnection>https://github.com/openkoala/Koala.git</developerConnection>
+    	<connection>scm:git:http://git.oschina.net/openkoala/koala.git</connection>
+    	<developerConnection>scm:git:git@git.oschina.net:openkoala/koala.git</developerConnection>
     </scm>
 </project>
