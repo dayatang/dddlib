@@ -24,7 +24,6 @@ package org.openkoala.koala.util;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.net.JarURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -42,7 +41,6 @@ import org.jboss.vfs.VirtualFile;
 import org.springframework.beans.BeanUtils;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.context.weaving.LoadTimeWeaverAware;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.instrument.classloading.LoadTimeWeaver;
 import org.springframework.jdbc.datasource.lookup.SingleDataSourceLookup;

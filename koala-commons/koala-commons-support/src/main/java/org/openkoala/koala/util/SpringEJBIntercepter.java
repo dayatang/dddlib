@@ -10,13 +10,10 @@ package org.openkoala.koala.util;
 import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.net.URL;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.ejb.Remote;
 import javax.inject.Named;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
@@ -137,7 +134,6 @@ public class SpringEJBIntercepter {
 		if (instanceProvider != null) {
 			return;
 		}
-		boolean hasLoad = false;
 		
 		if (instanceProvider==null) {
 			Properties props = loadConfigure();

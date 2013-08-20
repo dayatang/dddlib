@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
 /**
- * SpringMVC异常解析器
+ * SpringMVC异常解析器.
  * 
  * @author zyb
  * @since 2013-6-5 下午4:03:26
@@ -44,7 +44,7 @@ public class ExceptionResolver extends SimpleMappingExceptionResolver {
 	}
 
 	/**
-	 * 向页面输出JSON数据
+	 * 向页面输出JSON数据.
 	 * @param response	response对象
 	 * @param key		JSON中的键
 	 * @param value		JSON中的值
@@ -67,7 +67,7 @@ public class ExceptionResolver extends SimpleMappingExceptionResolver {
 	}
 
 	/**
-	 * 是否是异步请求
+	 * 是否是异步请求.
 	 * 
 	 * @param request
 	 * @return

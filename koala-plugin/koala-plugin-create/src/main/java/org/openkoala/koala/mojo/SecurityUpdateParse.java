@@ -1,18 +1,13 @@
 package org.openkoala.koala.mojo;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.velocity.VelocityContext;
 import org.dom4j.Document;
 import org.openkoala.koala.action.XmlParseUtil;
 import org.openkoala.koala.action.velocity.VelocityUtil;
 import org.openkoala.koala.action.xml.DocumentUtil;
-import org.openkoala.koala.action.xml.PomXmlWriter;
 import org.openkoala.koala.action.xml.WebXmlUtil;
 import org.openkoala.koala.exception.KoalaException;
 import org.openkoala.koala.parseImpl.ProjectCreateParse;

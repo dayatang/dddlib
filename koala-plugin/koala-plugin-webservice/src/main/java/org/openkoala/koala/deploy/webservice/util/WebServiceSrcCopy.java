@@ -14,7 +14,6 @@ import org.openkoala.koala.action.velocity.VelocityUtil;
 import org.openkoala.koala.action.xml.DocumentUtil;
 import org.openkoala.koala.action.xml.PomXmlWriter;
 import org.openkoala.koala.exception.KoalaException;
-import org.openkoala.koala.maven.MavenExcuter;
 import org.openkoala.koala.maven.MavenFileFilter;
 import org.openkoala.koala.pojo.Dependency;
 import org.openkoala.koala.pojo.MavenProject;
