@@ -97,30 +97,6 @@ public class SpringEJBIntercepter {
 			ex = e;
 		}
 		
-//		for (Annotation a : targetClass.getAnnotations()) {
-//			if (a instanceof Remote) {
-//				Class<?>[] value = ((Remote) a).value();
-//				for (Class<?> c : value) {
-//					try {
-//						if (InstanceFactory.getInstance(c) != null) {
-//							Object target = serviceName != null
-//									&& serviceName.length() > 0 ? InstanceFactory
-//									.getInstance(c, serviceName)
-//									: InstanceFactory.getInstance(c);
-//							Method method = getMethod(c, context.getMethod());
-//							Object o = method.invoke(target, context
-//									.getParameters());
-//							{//cache
-//								cacheMap.put(key, new CacheClass(c, method));
-//							}
-//							return o;
-//						}
-//					} catch (Exception e) {
-//						ex = e;
-//					}
-//				}
-//			}
-//		}
 		if (ex != null) {
 			throw ex;
 		}
@@ -154,30 +130,6 @@ public class SpringEJBIntercepter {
 			}
 		}
 		return props;
-	}
-
-	private static void loadResources() {
-		try {
-			System.out.println("===========loadResources===========");
-			ClassLoader cl = null;
-			try {
-				cl = Thread.currentThread().getContextClassLoader();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			if (cl == null) {
-				cl = SpringEJBIntercepter.class.getClassLoader();
-			}
-			Enumeration<URL> resources = cl.getResources("xtree.vm");
-			while (resources.hasMoreElements()) {
-				URL url = resources.nextElement();
-				System.out.println(url);
-				System.out.println(url.getContent());
-			}
-			System.out.println("===========loadResources===========");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	private static void initInstanceFactory() {

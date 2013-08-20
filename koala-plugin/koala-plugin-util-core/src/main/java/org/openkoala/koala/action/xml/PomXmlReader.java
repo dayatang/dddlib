@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.openkoala.koala.exception.JavaDoException;
 import org.openkoala.koala.java.JavaManagerUtil;
 import org.openkoala.koala.pojo.Dependency;
 import org.openkoala.koala.pojo.MavenProject;
-import org.openkoala.koala.pojo.SrcMainJava;
 
 /**
  * 更新POM.xml的辅助类，提供删除一个dependency,新增一个dependency的功能
@@ -21,10 +19,6 @@ import org.openkoala.koala.pojo.SrcMainJava;
 public class PomXmlReader {
 
 	public static final String POM_XMLS = "http://maven.apache.org/POM/4.0.0";
-	
-	private static final String DEPENDENCIES_XPATH = "/xmlns:project/xmlns:dependencies";
-	
-	private static final String MODULES_XPAH="/xmlns:project/xmlns:modules";
 	
 	/**
 	 * 查询一个POM.XML中的properties配置

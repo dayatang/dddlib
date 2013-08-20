@@ -14,9 +14,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Named;
-
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -26,15 +24,11 @@ import org.openkoala.jbpm.wsclient.JBPMApplicationImplService;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.GunvorApplication;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.vo.Bpmn2;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.vo.PackageVO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 
 @Named("gunvorApplication")
 public class GunvorApplicationImpl implements GunvorApplication {
 	
-	private static final Logger logger = LoggerFactory.getLogger(GunvorApplicationImpl.class);
-
 	@Value("${gunvor.server.url}")
 	private String gunvorServerUrl;
 	@Value("${gunvor.server.user}")
@@ -50,7 +44,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			JBPMApplication application = new JBPMApplicationImplService(url).getJBPMApplicationImplPort();
 			String source = getConnectionString(bpmn.getSource());
 			SAXReader reader = new SAXReader();
-			ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(source.toString().getBytes("UTF-8"));
+			ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(source.getBytes("UTF-8"));
 			Document document = reader.read(byteArrayInputStream);
 			Element root = document.getRootElement();
 			Element process = root.element("process");

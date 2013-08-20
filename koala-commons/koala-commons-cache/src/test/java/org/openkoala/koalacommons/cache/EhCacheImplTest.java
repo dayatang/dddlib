@@ -1,12 +1,9 @@
 package org.openkoala.koalacommons.cache;
 
 import java.util.Map;
-
-import org.junit.Before;
 import org.junit.Test;
 import org.openkoala.framework.cache.EhCacheImpl;
 import org.openkoala.framework.cache.exception.UnExistsedCacheNameException;
-
 import com.dayatang.cache.Cache;
 import com.dayatang.utils.Assert;
 

@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
-
-import org.openkoala.koala.ftp.exception.FtpException;
 import org.openkoala.koala.ftp.impl.FtpUtilImpl;
 import org.openkoala.koala.ftp.util.FtpUtil;
 
@@ -41,13 +39,6 @@ public class FTPFacotry {
 		return ftpUtil;
 	}
 	
-	private static FtpUtil getFtpUtil(String serverIp,int port,String username,String password,String encoding) {
-		FtpUtilImpl ftpUtil = new FtpUtilImpl(serverIp, port, username, password,encoding,3,"PORT");
-		ftpUtil.initTmpDir(tmpDir);
-		//ftpUtil.initMaxPoolSize(maxPoolSize);
-		return ftpUtil;
-	}
-
 	private static void initConfig(String properties) {
 		String proFilePath = null;
 		InputStream in = null;
