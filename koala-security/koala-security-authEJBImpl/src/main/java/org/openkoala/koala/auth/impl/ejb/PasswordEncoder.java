@@ -9,7 +9,9 @@ import java.security.MessageDigest;
  */
 public class PasswordEncoder {
 
-	private final static String[] hexDigits = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+	private static final String ENCODING_UTF8 = "utf-8";
+
+	private static final String[] hexDigits = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 			"a", "b", "c", "d", "e", "f" };
 
 	private Object salt;
@@ -30,7 +32,7 @@ public class PasswordEncoder {
 		try {
 			MessageDigest md = MessageDigest.getInstance(algorithm);
 			// 加密后的字符串
-			result = byteArrayToHexString(md.digest(mergePasswordAndSalt(rawPass).getBytes("utf-8")));
+			result = byteArrayToHexString(md.digest(mergePasswordAndSalt(rawPass).getBytes(ENCODING_UTF8)));
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -61,9 +63,8 @@ public class PasswordEncoder {
 
 		if ((salt == null) || "".equals(salt)) {
 			return password;
-		} else {
-			return password + "{" + salt.toString() + "}";
 		}
+		return password + "{" + salt.toString() + "}";
 	}
 
 	/**
