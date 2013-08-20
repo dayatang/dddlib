@@ -106,7 +106,7 @@ public class DetectFilter implements Filter {
 					}
 				}
 			}
-		} catch (Throwable t) {
+		} catch (Exception e) {
 		}
 		return false;
 	}
@@ -124,7 +124,7 @@ public class DetectFilter implements Filter {
 			try {
 				getContainer().activateTrace(HttpComponent.TRACE_TYPE,pageTrace);
 				
-			} catch (Throwable e) {
+			} catch (Exception e) {
 				log.warn(e.getMessage());
 			}
 			filterChain.doFilter(request, response);
@@ -133,7 +133,7 @@ public class DetectFilter implements Filter {
 				getContainer().inactivateTrace(HttpComponent.TRACE_TYPE,pageTrace);
 				TraceContainer.clearThreadKey();
 				
-			} catch (Throwable e) {
+			} catch (Exception e) {
 				log.warn(e.getMessage());
 			}
 		}

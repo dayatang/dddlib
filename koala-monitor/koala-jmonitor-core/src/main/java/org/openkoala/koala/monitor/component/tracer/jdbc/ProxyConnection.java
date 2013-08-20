@@ -45,8 +45,7 @@ public class ProxyConnection implements Connection {
     private JdbcConnTrace trace;
 
     public ProxyConnection(TraceLiftcycleManager container,
-            Connection delegate, DataSource dataSource,
-            ConnectionEventListener[] listeners) {
+            Connection delegate, DataSource dataSource) {
         _delegate = delegate;
         _dataSource = dataSource;
         _container = container;

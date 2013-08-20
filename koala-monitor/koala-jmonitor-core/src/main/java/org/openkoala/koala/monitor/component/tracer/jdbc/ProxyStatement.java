@@ -41,7 +41,7 @@ public class ProxyStatement extends Trace implements Statement {
 		} catch (SQLException e) {
 			throw e;
 		} finally {
-			child.inActive();
+			if(child != null)child.inActive();
 		}
 		return rs;
 	}
@@ -58,8 +58,7 @@ public class ProxyStatement extends Trace implements Statement {
 		} catch (SQLException e) {
 			throw e;
 		} finally {
-
-			child.inActive();
+			if(child != null)child.inActive();
 		}
 		return tag;
 	}
@@ -76,7 +75,7 @@ public class ProxyStatement extends Trace implements Statement {
 		} catch (SQLException e) {
 			throw e;
 		} finally {
-			child.inActive();
+			if(child != null)child.inActive();
 		}
 		return tag;
 	}

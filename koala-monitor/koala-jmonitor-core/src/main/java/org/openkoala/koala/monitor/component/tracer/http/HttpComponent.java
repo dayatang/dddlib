@@ -21,10 +21,6 @@ public class HttpComponent extends AbstractComponent {
 	private ComponentContext componentContext = null;
 	public static String TRACE_TYPE = "HTTP";
 
-	public void setTraceType(String traceType) {
-		TRACE_TYPE = traceType;
-	}
-
 	public void startup(ComponentContext context) {
 		componentContext = context;
 		TraceLiftcycleManager container = componentContext.getContainer();

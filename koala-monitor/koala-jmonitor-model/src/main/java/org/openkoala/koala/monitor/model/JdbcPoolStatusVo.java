@@ -16,11 +16,11 @@
 package org.openkoala.koala.monitor.model;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.openkoala.koala.monitor.common.KoalaDateUtils;
 
 /**
  * 功能描述：JDBC连接池状态<br />
@@ -38,7 +38,6 @@ public class JdbcPoolStatusVo implements Serializable{
 
 	private static final long serialVersionUID = 2323195613726740830L;
 	
-	private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private String poolAlias;//线程池别名
 	private String provider;//提供者
 	private Date startTime;//开始服务时间
@@ -66,7 +65,7 @@ public class JdbcPoolStatusVo implements Serializable{
 
 	public String getStartTime() {
 		if(startTime == null)return null;
-		return DATE_FORMAT.format(startTime);
+		return KoalaDateUtils.format(startTime);
 	}
 	
 	
@@ -76,7 +75,7 @@ public class JdbcPoolStatusVo implements Serializable{
 
 	public String getSnapshotTime() {
 		if(snapshotTime == null)return null;
-		return DATE_FORMAT.format(snapshotTime);
+		return KoalaDateUtils.format(snapshotTime);
 	}
 	public void setSnapshotTime(Date snapshotTime) {
 		this.snapshotTime = snapshotTime;

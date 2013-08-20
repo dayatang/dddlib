@@ -61,7 +61,7 @@ public class KoalaMonitorListener implements ServletContextListener {
 			//
 			System.out.println("monitor config file:" + path);
 			ContextStartup.startup(path,serverInfos);
-		} catch (Throwable e) {
+		} catch (Exception e) {
 			log.warn(e.getMessage());
 			e.printStackTrace();
 		}

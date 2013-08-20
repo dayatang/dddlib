@@ -137,6 +137,8 @@ public class MonitorDataServiceImpl implements MonitorDataService {
 		}else if(Constant.UNIT_DAY.equals(statUnit)){
 			sql = "select m.day, count(*) from k_m_http_details h left join k_m_main_stat m on h.TRACE_ID = m.TRACE_ID and m.fk_node_id=? and (m.begin_time between ? and ?) group by m.day order by m.day";
 			endDt = KoalaDateUtils.getLastDateOfMonth(beginDt);
+		}else{
+			throw new RuntimeException("参数错误");
 		}
 		
 		final Map<Integer, String> tmpMap = new HashMap<Integer, String>();

@@ -16,14 +16,15 @@
 package org.openkoala.koala.monitor.service.remote;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.openkoala.koala.monitor.component.task.MonitorTask;
 import org.openkoala.koala.monitor.component.task.ServiceConnectionCheckTask;
 import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.datasync.base.ServerCommondListener;
@@ -69,7 +70,7 @@ public class RemoteDataPolicyClientHandler{
 	 */
 	public RemoteDataPolicyClientHandler() {}
 	
-	public void startup(RuntimeContext context) {
+	public synchronized void startup(RuntimeContext context) {
 		this.context = context;
 		Map<String, String> props = context.getNodeDef().getDataPolicy().getProperties();
 		String host = props.get("host");
@@ -196,9 +197,13 @@ public class RemoteDataPolicyClientHandler{
 				Commond commond = new Commond(CommondConst.REPLY);
 				commond.addHeader(CommondConst.CMD_ID, command.getCommondID());
 				commond.addHeader(CommondConst.CLIENT_ID, clientId);
-				for (String key : status.keySet()) {
-					commond.addData(key, status.get(key));
+				
+				Iterator<Entry<String, JdbcPoolStatusVo>> iterator = status.entrySet().iterator();
+				while(iterator.hasNext()){
+					Entry<String, JdbcPoolStatusVo> entry = iterator.next();
+					commond.addData(entry.getKey(), entry.getValue());
 				}
+				
 				sendDataToServer(commond);
 			}
 			if(LOG.isDebugEnabled())LOG.debug("完成响应指令:"+commandText);
@@ -240,9 +245,10 @@ public class RemoteDataPolicyClientHandler{
 		//服务器状态
 		vo.setServerStatus(ServerStatusCollector.getServerAllStatus());
 		//第三方服务
-		vo.setAbnormalServices(ServiceConnectionCheckTask.getBadSevices());
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		vo.setServiceCheckTime(dateFormat.format(ServiceConnectionCheckTask.getLastCheckTime()));
+		MonitorTask task = RuntimeContext.getContext().getMonitorTask(ServiceConnectionCheckTask.TASK_KEY);
+			if(task != null){
+			  vo.setServiceCheckDatas(task.getDatas());
+		    }
 		return vo;
 	}
 }

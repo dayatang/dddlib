@@ -101,7 +101,7 @@ public class JdbcPoolStatusCollector {
 	/**
 	 * 注册数据源
 	 */
-	public void registerDataSource(DataSource ds) {
+	public synchronized void registerDataSource(DataSource ds) {
 		if(collectors.containsKey(ds))return;
 		Class<?> clazz = null;
 		try {

@@ -23,12 +23,13 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+import org.openkoala.koala.monitor.component.task.MonitorTask;
 import org.openkoala.koala.monitor.component.task.ServiceConnectionCheckTask;
 import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.def.ComponentDef;
+import org.openkoala.koala.monitor.def.HttpRequestTrace.ActiveUser;
 import org.openkoala.koala.monitor.def.NodeDef;
 import org.openkoala.koala.monitor.def.Trace;
-import org.openkoala.koala.monitor.def.HttpRequestTrace.ActiveUser;
 import org.openkoala.koala.monitor.domain.MonitorNode;
 import org.openkoala.koala.monitor.domain.MonitorNode.MonitorComponent;
 import org.openkoala.koala.monitor.extend.BaseSchedulerBean;
@@ -173,8 +174,10 @@ public class LocalDataPolicyHandler extends BaseSchedulerBean implements DataPol
 		//服务器状态
 		vo.setServerStatus(ServerStatusCollector.getServerAllStatus());
 		//第三方服务
-		vo.setAbnormalServices(ServiceConnectionCheckTask.getBadSevices());
-		vo.setServiceCheckTime(DATE_FORMAT.format(ServiceConnectionCheckTask.getLastCheckTime()));
+		MonitorTask task = RuntimeContext.getContext().getMonitorTask(ServiceConnectionCheckTask.TASK_KEY);
+		if(task != null){
+			vo.setServiceCheckDatas(task.getDatas());
+		}
 		return vo;
 	}
 
