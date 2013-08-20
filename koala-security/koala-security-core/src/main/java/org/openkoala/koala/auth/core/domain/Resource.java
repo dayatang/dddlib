@@ -290,7 +290,7 @@ public class Resource extends Party {
 	public static boolean isMenu(Resource resource) {
 		List<Resource> resources = Resource.findByNamedQuery("findResourceById", new Object[] { "KOALA_MENU", //
 				"KOALA_DIRETORY", resource.getId() }, Resource.class);
-		if (resources != null && resources.size() > 0) {
+		if (resources != null && !resources.isEmpty()) {
 			return true;
 		}
 		return false;
