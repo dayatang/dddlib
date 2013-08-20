@@ -5,6 +5,7 @@ package org.openkoala.koala.auth.core.domain;
 
 import static org.junit.Assert.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.Test;
@@ -46,6 +47,171 @@ public class ResourceTest extends KoalaBaseSpringTestCase {
 	}
 
 	/**
+	 * Test method for {@link org.openkoala.koala.auth.core.domain.Resource#disableResource()}.
+	 */
+	@Test
+	public void testDisableResource() {
+		Resource resource = createResource();
+		resource.save();
+		
+		resource.disableResource();
+		assertFalse(Resource.get(Resource.class, resource.getId()).isValid());
+	}
+
+	/**
+	 * Test method for {@link org.openkoala.koala.auth.core.domain.Resource#enableResource()}.
+	 */
+	@Test
+	public void testEnableResource() {
+		Resource resource = createResource();
+		resource.save();
+		
+		resource.enableResource();
+		assertTrue(Resource.get(Resource.class, resource.getId()).isValid());
+	}
+	
+	/**
+	 * Test method for {@link org.openkoala.koala.auth.core.domain.Resource#assignRole()}.
+	 * Test method for {@link org.openkoala.koala.auth.core.domain.Resource#findResourceByRole()}.
+	 */
+	@Test
+	public void testAssignRoleAndFindResourceByRole() {
+		Role role = new Role("role-name", "role-description");
+		role.save();
+		
+		Resource resource = createResource();
+		resource.save();
+		assertFalse(Resource.findResourceByRole(role.getId()).contains(resource));
+		
+		resource.assignRole(role);
+		assertTrue(Resource.findResourceByRole(role.getId()).contains(resource));
+	}
+	
+	/**
+	 * Test method for {@link org.openkoala.koala.auth.core.domain.Resource#assignChild()}.
+	 * Test method for {@link org.openkoala.koala.auth.core.domain.Resource#findChildByParent()}.
+	 */
+	@Test
+	public void testAssignChildAndFindChildByParent() {
+		Resource parent = createResource();
+		parent.setName("parent-name");
+		parent.setIdentifier("parent-identifier");
+		parent.save();
+		
+		Resource child = createResource();
+		child.setName("child-name");
+		child.setIdentifier("child-identifier");
+		child.save();
+		
+		assertFalse(Resource.findChildByParent(parent.getId()).contains(child));
+		
+		parent.assignChild(child);
+		assertTrue(Resource.findChildByParent(parent.getId()).contains(child));
+	}
+
+	/**
+	 * Test method for {@link org.openkoala.koala.auth.core.domain.Resource#findChildByParentAndUser()}.
+	 */
+	@Test
+	public void testFindChildByParentAndUser() {
+		User user = new User("user-name", "user-account", "user-password", "user-desription");
+		user.save();
+		Role role = new Role("role-name", "role-description");
+		role.save();
+		role.assignUser(user);
+		
+		Resource parent = createResource();
+		parent.setName("parent-name");
+		parent.setIdentifier("parent-identifier");
+		parent.save();
+		
+		Resource child = createResource();
+		child.setName("child-name");
+		child.setIdentifier("child-identifier");
+		child.save();
+		
+		parent.assignChild(child);
+		assertFalse(Resource.findChildByParentAndUser(parent.getId(), "user-account").contains(child));
+		
+		parent.assignRole(role);
+		child.assignRole(role);
+		assertTrue(Resource.findChildByParentAndUser(parent.getId(), "user-account").contains(child));
+	}
+	
+	/**
+	 * Test method for {@link org.openkoala.koala.auth.core.domain.Resource#removeResource()}.
+	 */
+	@Test
+	public void testRemoveResource() {
+		Resource resource = createResource();
+		resource.save();
+		ResourceType resourceType = new ResourceType();
+		resourceType.setName("resource-type-name");
+		resourceType.setCreateDate(new Date());
+		resourceType.setAbolishDate(DateUtils.MAX_DATE);
+		resourceType.save();
+		
+		ResourceTypeAssignment resourceTypeAssignment = new ResourceTypeAssignment();
+		resourceTypeAssignment.setResource(resource);
+		resourceTypeAssignment.setResourceType(resourceType);
+		resourceTypeAssignment.setCreateDate(new Date());
+		resourceTypeAssignment.setAbolishDate(DateUtils.MAX_DATE);
+		resourceTypeAssignment.save();
+		
+		assertEquals(resource, Resource.get(Resource.class, resource.getId()));
+		
+		resource.removeResource();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		assertEquals(dateFormat.format(new Date()), 
+				dateFormat.format(Resource.get(Resource.class, resource.getId()).getAbolishDate()));
+	}
+	
+	/**
+	 * Test method for {@link org.openkoala.koala.auth.core.domain.Resource#assignParent()}.
+	 */
+	@Test
+	public void testAssignParent() {
+		Resource parent = createResource();
+		parent.setName("parent-name");
+		parent.setIdentifier("parent-identifier");
+		parent.save();
+		
+		Resource child = createResource();
+		child.setName("child-name");
+		child.setIdentifier("child-identifier");
+		child.save();
+		
+		assertFalse(Resource.findChildByParent(parent.getId()).contains(child));
+		
+		child.assignParent(parent);
+		assertTrue(Resource.findChildByParent(parent.getId()).contains(child));
+	}
+	
+	public void testFindRoleByResource() {
+		//TODO
+	}
+	
+	public void testHasPrivilegeByRole() {
+		//TODO
+	}
+	
+	public void testHasPrivilegeByUser() {
+		//TODO
+	}
+	
+	public void testHasChildByParent() {
+		//TODO
+	}
+	
+	public void testRemoveAll() {
+		//TODO
+	}
+	
+	public void testIsMenu() {
+		//TODO
+	}
+	
+	/**
 	 * 创建资源
 	 * @return
 	 */
@@ -57,5 +223,4 @@ public class ResourceTest extends KoalaBaseSpringTestCase {
 		resource.setIdentifier("testIdentifier");
 		return resource;
 	}
-
 }
