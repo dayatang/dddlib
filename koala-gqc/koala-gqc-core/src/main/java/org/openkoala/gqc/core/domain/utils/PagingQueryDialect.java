@@ -7,10 +7,19 @@ package org.openkoala.gqc.core.domain.utils;
  */
 public abstract class PagingQueryDialect {
 	
+	/**
+	 * sql
+	 */
 	private String querySql;
 	
+	/**
+	 * 当前页第一行索引
+	 */
 	private int firstRow;
 	
+	/**
+	 * 每页大小
+	 */
 	private int pagesize;
 	
 	public String getQuerySql() {
@@ -49,6 +58,6 @@ public abstract class PagingQueryDialect {
 	 * 获得一个分页查询方言的实例
 	 * @return
 	 */
-	abstract public String generatePagingQueryStatement();
+	public abstract String generatePagingQueryStatement();
 	
 }

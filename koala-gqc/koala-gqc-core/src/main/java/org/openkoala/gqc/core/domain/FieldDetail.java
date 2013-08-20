@@ -66,18 +66,23 @@ public class FieldDetail implements ValueObject, Comparable<FieldDetail> {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj){
 			return true;
-		if (obj == null)
+		}
+		if (obj == null){
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()){
 			return false;
+		}
 		FieldDetail other = (FieldDetail) obj;
 		if (fieldName == null) {
-			if (other.fieldName != null)
+			if (other.fieldName != null){
 				return false;
-		} else if (!fieldName.equals(other.fieldName))
+			}
+		} else if (!fieldName.equals(other.fieldName)){
 			return false;
+		}
 		return true;
 	}
 	

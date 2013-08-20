@@ -17,7 +17,7 @@ package org.openkoala.koala.monitor.service;
 
 import java.util.Map;
 
-import org.openkoala.koala.monitor.jwebap.ComponentDef;
+import org.openkoala.koala.monitor.def.ComponentDef;
 import org.openkoala.koala.monitor.model.GeneralMonitorStatusVo;
 import org.openkoala.koala.monitor.model.JdbcPoolStatusVo;
 import org.openkoala.koala.monitor.model.ServerStatusVo;

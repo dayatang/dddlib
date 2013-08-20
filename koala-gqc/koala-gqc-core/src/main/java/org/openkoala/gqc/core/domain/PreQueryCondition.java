@@ -106,18 +106,23 @@ public class PreQueryCondition extends QueryCondition {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj){
 			return true;
-		if (obj == null)
+		}
+		if (obj == null){
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()){
 			return false;
+		}
 		PreQueryCondition other = (PreQueryCondition) obj;
 		if (getFieldName() == null) {
-			if (other.getFieldName() != null)
+			if (other.getFieldName() != null){
 				return false;
-		} else if (!getFieldName().equals(other.getFieldName()))
+			}
+		} else if (!getFieldName().equals(other.getFieldName())){
 			return false;
+		}
 		return true;
 	}
 	

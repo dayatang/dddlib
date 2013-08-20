@@ -80,8 +80,7 @@ public abstract class Querier {
         	connection = getConnection();
             QueryRunner queryRunner = new QueryRunner();
             results = (List<Map<String, Object>>) queryRunner.query(connection, generateQuerySql(), new ResultSetHandler<List<Map<String, Object>>>() {
-				public List<Map<String, Object>> handle(ResultSet rs)
-						throws SQLException {
+				public List<Map<String, Object>> handle(ResultSet rs) throws SQLException {
 					List<Map<String, Object>> result = new ArrayList<Map<String,Object>>();
 					while (rs.next()) {
 						ResultSetMetaData resultSetMetaData = rs.getMetaData();
@@ -101,7 +100,7 @@ public abstract class Querier {
 				}
             });
         } catch (SQLException e) {
-            e.printStackTrace();
+        	throw new RuntimeException(e);
         } finally {
         	closeConnection(connection);
         }

@@ -15,11 +15,10 @@
  */
 package org.openkoala.koala.monitor.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.openkoala.koala.monitor.jwebap.NetTransObject;
 
 /**
  * 功能描述：服务器状态<br />
@@ -33,7 +32,7 @@ import org.openkoala.koala.monitor.jwebap.NetTransObject;
  * 修改记录： <br />
  * 修 改 者    修改日期     文件版本   修改说明	
  */
-public class ServerStatusVo extends NetTransObject{
+public class ServerStatusVo implements Serializable{
 
 	private static final long serialVersionUID = -2193532298090031743L;
 	
@@ -249,7 +248,7 @@ public class ServerStatusVo extends NetTransObject{
 	 * 修改记录： <br />
 	 * 修 改 者    修改日期     文件版本   修改说明
 	 */
-	public static class CpuInfoVo extends NetTransObject{
+	public static class CpuInfoVo implements Serializable{
 		private static final long serialVersionUID = 1L;
 		
 		private String id;
@@ -341,7 +340,7 @@ public class ServerStatusVo extends NetTransObject{
 	 * 修改记录： <br />
 	 * 修 改 者    修改日期     文件版本   修改说明
 	 */
-	public static class DiskInfoVo extends NetTransObject{
+	public static class DiskInfoVo implements Serializable{
 		private static final long serialVersionUID = 1L;
 		
 		private String devName;//盘符名称

@@ -6,6 +6,11 @@ package org.openkoala.gqc.core.domain.utils;
  *
  */
 public class DB2PagingQueryDialect extends PagingQueryDialect {
+	
+	/**
+	 * 初始大小
+	 */
+	private final int INIT_SIZE = 200;
 
 	@Override
 	public String generatePagingQueryStatement() {
@@ -16,7 +21,7 @@ public class DB2PagingQueryDialect extends PagingQueryDialect {
 		if ( offset == 0 ) {
 			return sql + " fetch first " + limit + " rows only ";
 		}
-		StringBuilder pagingSelect = new StringBuilder( sql.length() + 200 )
+		StringBuilder pagingSelect = new StringBuilder( sql.length() + INIT_SIZE )
 				.append(
 						" select * from ( select inner2_.*, rownumber() over(order by order of inner2_) as rownumber_ from ( "
 				)

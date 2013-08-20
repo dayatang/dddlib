@@ -1,0 +1,424 @@
+package org.openkoala.koala.monitor.component.tracer.jdbc;
+
+import java.sql.Array;
+import java.sql.Blob;
+import java.sql.CallableStatement;
+import java.sql.Clob;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.NClob;
+import java.sql.PreparedStatement;
+import java.sql.SQLClientInfoException;
+import java.sql.SQLException;
+import java.sql.SQLWarning;
+import java.sql.SQLXML;
+import java.sql.Savepoint;
+import java.sql.Statement;
+import java.sql.Struct;
+import java.util.Map;
+import java.util.Properties;
+import java.util.concurrent.Executor;
+
+import javax.sql.DataSource;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.openkoala.koala.monitor.core.TraceContainer;
+import org.openkoala.koala.monitor.core.TraceLiftcycleManager;
+import org.openkoala.koala.monitor.def.JdbcConnTrace;
+import org.openkoala.koala.monitor.def.Trace;
+import org.openkoala.koala.monitor.support.JdbcPoolStatusCollector;
+
+/**
+ * 提供最基本的连接代理,实现一般的资源释放以及事务管理功能,以及资源跟踪
+ */
+public class ProxyConnection implements Connection {
+
+    private static final Log log = LogFactory.getLog(ProxyConnection.class);
+    private DataSource _dataSource;
+    private Connection _delegate;
+    /**
+     * 运行轨迹容器
+     */
+    private transient TraceLiftcycleManager _container = null;
+    protected boolean _closed = false;
+    private JdbcConnTrace trace;
+
+    public ProxyConnection(TraceLiftcycleManager container,
+            Connection delegate, DataSource dataSource,
+            ConnectionEventListener[] listeners) {
+        _delegate = delegate;
+        _dataSource = dataSource;
+        _container = container;
+
+        String threadKey = TraceContainer.getCurrentThreadKey();
+        // 注册数据源
+        JdbcPoolStatusCollector.getInstance().registerDataSource(_dataSource);
+        // 标记连接激活
+        JdbcPoolStatusCollector.getInstance().refreshConnPoolStatus(_dataSource, _delegate, threadKey, 1);
+        //
+        trace = new JdbcConnTrace();
+        _container.activateTrace(JdbcComponent.TRACE_TYPE, trace);
+    }
+
+    /**
+     * @param delegate
+     * @roseuid 453897940148
+     */
+    public void setDelegate(Connection delegate) {
+        _delegate = delegate;
+    }
+
+    public JdbcConnTrace getTrace() {
+        return trace;
+    }
+
+    /**
+     * 关闭连接，同时关闭轨迹
+     */
+    public void close() throws SQLException {
+        try {
+            passivate();
+
+        } finally {
+            try {
+                if (_delegate != null) {
+                    _delegate.close();
+                }
+                // 注意：当关闭资源时可以不必清空trace但是必须把底层的代理删除
+                // 因为它有可能被当成一个trace保存起来
+                _delegate = null;
+            } catch (Exception e) {
+                trace.setUnrecovered(true);
+            }
+
+        }
+    }
+
+    public boolean isClosed() throws SQLException {
+        // ||_delegate.isClosed()
+        if (_closed) {
+            return true;
+        }
+        return false;
+    }
+
+    protected void checkOpen() throws SQLException {
+        if (isClosed() || _delegate == null) {
+            throw new SQLException("Connection is closed.");
+        }
+    }
+
+    protected void passivate() throws SQLException {
+        try {
+            Trace[] statements = trace.getChildTraces();
+            for (int i = 0; i < statements.length; i++) {
+                try {
+                    Statement set = (Statement) statements[i];
+                    set.close();
+                } catch (Exception e) {
+                    statements[i].setUnrecovered(true);
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            _closed = true;
+            trace.inActive();
+            _container.inactivateTrace(JdbcComponent.TRACE_TYPE, trace);
+            // 标记连接释放
+            JdbcPoolStatusCollector.getInstance().refreshConnPoolStatus(_dataSource, _delegate, trace.getTraceKey(), 0);
+        }
+
+    }
+
+    public Statement createStatement() throws SQLException {
+        checkOpen();
+        return new ProxyStatement(this, _delegate.createStatement());
+    }
+
+    public Statement createStatement(int resultSetType, int resultSetConcurrency)
+            throws SQLException {
+        checkOpen();
+        return new ProxyStatement(this, _delegate.createStatement(
+                resultSetType, resultSetConcurrency));
+    }
+
+    public Statement createStatement(int resultSetType,
+            int resultSetConcurrency, int resultSetHoldability)
+            throws SQLException {
+        checkOpen();
+        return new ProxyStatement(this, _delegate.createStatement(
+                resultSetType, resultSetConcurrency, resultSetHoldability));
+    }
+
+    public PreparedStatement prepareStatement(String sql) throws SQLException {
+        checkOpen();
+        return new ProxyPreparedStatement(this,
+                _delegate.prepareStatement(sql), sql);
+    }
+
+    public PreparedStatement prepareStatement(String sql, int autoGeneratedKeys)
+            throws SQLException {
+        checkOpen();
+        return new ProxyPreparedStatement(this, _delegate.prepareStatement(sql,
+                autoGeneratedKeys), sql);
+    }
+
+    public PreparedStatement prepareStatement(String sql, int resultSetType,
+            int resultSetConcurrency) throws SQLException {
+        checkOpen();
+        return new ProxyPreparedStatement(this, _delegate.prepareStatement(sql,
+                resultSetType, resultSetConcurrency), sql);
+    }
+
+    public PreparedStatement prepareStatement(String sql, int resultSetType,
+            int resultSetConcurrency, int resultSetHoldability)
+            throws SQLException {
+        checkOpen();
+        return new ProxyPreparedStatement(this, _delegate.prepareStatement(sql,
+                resultSetType, resultSetConcurrency, resultSetHoldability), sql);
+    }
+
+    public PreparedStatement prepareStatement(String sql, int[] columnIndexes)
+            throws SQLException {
+        checkOpen();
+        return new ProxyPreparedStatement(this, _delegate.prepareStatement(sql,
+                columnIndexes), sql);
+    }
+
+    public CallableStatement prepareCall(String sql) throws SQLException {
+        checkOpen();
+        return new ProxyCallableStatement(this, _delegate.prepareCall(sql), sql);
+    }
+
+    public CallableStatement prepareCall(String sql, int resultSetType,
+            int resultSetConcurrency) throws SQLException {
+        checkOpen();
+        return new ProxyCallableStatement(this, _delegate.prepareCall(sql,
+                resultSetType, resultSetConcurrency), sql);
+    }
+
+    public CallableStatement prepareCall(String sql, int resultSetType,
+            int resultSetConcurrency, int resultSetHoldability)
+            throws SQLException {
+        checkOpen();
+        return new ProxyCallableStatement(this, _delegate.prepareCall(sql,
+                resultSetType, resultSetConcurrency, resultSetHoldability), sql);
+
+    }
+
+    // ///////////////////////////////////////////////////////////////////////////////////////
+    public int getHoldability() throws SQLException {
+        checkOpen();
+        return _delegate.getHoldability();
+    }
+
+    public int getTransactionIsolation() throws SQLException {
+        checkOpen();
+        return _delegate.getTransactionIsolation();
+    }
+
+    public void clearWarnings() throws SQLException {
+        checkOpen();
+        _delegate.clearWarnings();
+
+    }
+
+    public void commit() throws SQLException {
+        checkOpen();
+        _delegate.commit();
+
+    }
+
+    public void rollback() throws SQLException {
+        checkOpen();
+        _delegate.rollback();
+
+    }
+
+    public boolean getAutoCommit() throws SQLException {
+        checkOpen();
+        return _delegate.getAutoCommit();
+    }
+
+    public boolean isReadOnly() throws SQLException {
+        checkOpen();
+        return _delegate.isReadOnly();
+    }
+
+    public void setHoldability(int holdability) throws SQLException {
+        checkOpen();
+        _delegate.setHoldability(holdability);
+
+    }
+
+    public void setTransactionIsolation(int level) throws SQLException {
+        checkOpen();
+        _delegate.setTransactionIsolation(level);
+
+    }
+
+    public void setAutoCommit(boolean autoCommit) throws SQLException {
+        checkOpen();
+        _delegate.setAutoCommit(autoCommit);
+
+    }
+
+    public void setReadOnly(boolean readOnly) throws SQLException {
+        checkOpen();
+        _delegate.setReadOnly(readOnly);
+    }
+
+    public String getCatalog() throws SQLException {
+        checkOpen();
+        return _delegate.getCatalog();
+    }
+
+    public void setCatalog(String catalog) throws SQLException {
+        checkOpen();
+        _delegate.setCatalog(catalog);
+    }
+
+    public DatabaseMetaData getMetaData() throws SQLException {
+        checkOpen();
+        return _delegate.getMetaData();
+    }
+
+    public SQLWarning getWarnings() throws SQLException {
+        checkOpen();
+        return _delegate.getWarnings();
+    }
+
+    public Savepoint setSavepoint() throws SQLException {
+        checkOpen();
+        return _delegate.setSavepoint();
+    }
+
+    public void releaseSavepoint(Savepoint savepoint) throws SQLException {
+        checkOpen();
+        _delegate.releaseSavepoint(savepoint);
+    }
+
+    public void rollback(Savepoint savepoint) throws SQLException {
+        checkOpen();
+        _delegate.rollback(savepoint);
+
+    }
+
+    public Map<String, Class<?>> getTypeMap() throws SQLException {
+        checkOpen();
+        return _delegate.getTypeMap();
+    }
+
+    public void setTypeMap(java.util.Map<String, Class<?>> map)
+            throws SQLException {
+        checkOpen();
+        _delegate.setTypeMap(map);
+    }
+
+    public String nativeSQL(String sql) throws SQLException {
+        checkOpen();
+        return _delegate.nativeSQL(sql);
+    }
+
+    public Savepoint setSavepoint(String name) throws SQLException {
+        checkOpen();
+        return _delegate.setSavepoint(name);
+    }
+
+    public PreparedStatement prepareStatement(String sql, String[] columnNames)
+            throws SQLException {
+        checkOpen();
+        return _delegate.prepareStatement(sql, columnNames);
+    }
+
+    @Override
+    public <T> T unwrap(Class<T> iface) throws SQLException {
+        return _delegate.unwrap(iface);
+    }
+
+    @Override
+    public boolean isWrapperFor(Class<?> iface) throws SQLException {
+        return _delegate.isWrapperFor(iface);
+    }
+
+    @Override
+    public Clob createClob() throws SQLException {
+        return _delegate.createClob();
+    }
+
+    @Override
+    public Blob createBlob() throws SQLException {
+        return _delegate.createBlob();
+    }
+
+    @Override
+    public NClob createNClob() throws SQLException {
+        return _delegate.createNClob();
+    }
+
+    @Override
+    public SQLXML createSQLXML() throws SQLException {
+        return _delegate.createSQLXML();
+    }
+
+    @Override
+    public boolean isValid(int timeout) throws SQLException {
+        return _delegate.isValid(timeout);
+    }
+
+    @Override
+    public void setClientInfo(String name, String value)
+            throws SQLClientInfoException {
+        _delegate.setClientInfo(name, value);
+    }
+
+    @Override
+    public void setClientInfo(Properties properties)
+            throws SQLClientInfoException {
+        _delegate.setClientInfo(properties);
+    }
+
+    @Override
+    public String getClientInfo(String name) throws SQLException {
+        return _delegate.getClientInfo(name);
+    }
+
+    @Override
+    public Properties getClientInfo() throws SQLException {
+        return _delegate.getClientInfo();
+    }
+
+    @Override
+    public Array createArrayOf(String typeName, Object[] elements)
+            throws SQLException {
+        return _delegate.createArrayOf(typeName, elements);
+    }
+
+    @Override
+    public Struct createStruct(String typeName, Object[] attributes)
+            throws SQLException {
+        return _delegate.createStruct(typeName, attributes);
+    }
+
+    //For JDK 7 compatability
+    public void setSchema(String schema) throws SQLException {
+    }
+
+    //For JDK 7 compatability
+    public String getSchema() throws SQLException {
+        return null;
+    }
+
+    //For JDK 7 compatability
+    public void abort(Executor executor) throws SQLException {
+    }
+
+    //For JDK 7 compatability
+    public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
+    }
+
+    public int getNetworkTimeout() throws SQLException {
+        return 0;
+    }
+}
