@@ -6,9 +6,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class JdbcSecurityConfig {
-	
+
 	private static String queryUser;
 
 	private static String queryUserAuth;
@@ -19,12 +20,6 @@ public class JdbcSecurityConfig {
 
 	private static String queryAllAuth;
 
-	/*
-	 * security.db.jdbc.driver=com.mysql.jdbc.Driver
-	 * security.db.jdbc.connection.
-	 * url=jdbc:mysql://localhost:3306/koala_security
-	 * security.db.jdbc.username=root security.db.jdbc.password=root
-	 */
 	private static String dbdriver;
 
 	private static String dbuser = "";
@@ -40,6 +35,8 @@ public class JdbcSecurityConfig {
 	private static String adminPass = "";
 
 	private static String adminRealName = "";
+	
+	private static final Logger LOGGER = Logger.getLogger("JdbcSecurityConfig"); 
 
 	public String getQueryUser() {
 		return queryUser;
@@ -50,16 +47,13 @@ public class JdbcSecurityConfig {
 			String home = System.getProperty("user.home");
 			Properties p = new Properties();
 			if (new File(home + "/security.properties").exists()) {
-				InputStream in = new BufferedInputStream(new FileInputStream(
-						home + "/security.properties"));
+				InputStream in = new BufferedInputStream(new FileInputStream(home + "/security.properties"));
 				p.load(in);
 			} else {
-				InputStream dbIn = new BufferedInputStream(
-						JdbcSecurityConfig.class.getClassLoader()
-								.getResourceAsStream("META-INF/props/koala-security-db.properties"));
-				InputStream sqlIn = new BufferedInputStream(
-						JdbcSecurityConfig.class.getClassLoader()
-								.getResourceAsStream("META-INF/props/koala-security-sql.properties"));
+				InputStream dbIn = new BufferedInputStream(JdbcSecurityConfig.class.getClassLoader().getResourceAsStream(
+						"META-INF/props/koala-security-db.properties"));
+				InputStream sqlIn = new BufferedInputStream(JdbcSecurityConfig.class.getClassLoader().getResourceAsStream(
+						"META-INF/props/koala-security-sql.properties"));
 				p.load(dbIn);
 				p.load(sqlIn);
 			}
@@ -79,7 +73,7 @@ public class JdbcSecurityConfig {
 			adminRealName = p.getProperty("security.db.jdbc.adminRealName");
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 	}
 

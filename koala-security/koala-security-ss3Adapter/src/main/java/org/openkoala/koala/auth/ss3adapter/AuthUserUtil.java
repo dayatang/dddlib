@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-public class AuthUserUtil {
+public final class AuthUserUtil {
 	
 	private AuthUserUtil() {
 		
@@ -17,7 +17,7 @@ public class AuthUserUtil {
 	 * @return
 	 */
 	public static String getLoginUserName() {
-		if (getAuthentication() != null && getPrincipal() != null && getPrincipal() instanceof CustomUserDetails) {
+		if (getAuthentication() != null && getPrincipal() instanceof CustomUserDetails) {
 			return ((CustomUserDetails) getPrincipal()).getUsername();
 		}
 		return null;
@@ -45,7 +45,7 @@ public class AuthUserUtil {
 	 * @return
 	 */
 	public static CustomUserDetails getLoginUser() {
-		if (getPrincipal() != null && getPrincipal() instanceof CustomUserDetails) {
+		if (getPrincipal() instanceof CustomUserDetails) {
 			return (CustomUserDetails) getPrincipal();
 		}
 		return null;

@@ -1,8 +1,6 @@
 package org.openkoala.koala.auth.web;
 
 import javax.inject.Named;
-
-//import org.openkoala.framework.i18n.I18NManager;
 import org.openkoala.koala.auth.ss3adapter.AuthUserUtil;
 import org.openkoala.koala.auth.ss3adapter.CustomUserDetails;
 import org.openkoala.koala.auth.ss3adapter.SecurityMetadataSource;

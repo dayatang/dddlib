@@ -62,8 +62,7 @@ public class IdentityResourceAuthorization extends Accountability {
 	 * @return
 	 */
 	public static List<IdentityResourceAuthorization> findAllReourcesAndRoles(){
-	    List<IdentityResourceAuthorization> resourceRoleList = IdentityResourceAuthorization.getRepository().findAll(IdentityResourceAuthorization.class);
-	    return resourceRoleList;
+	    return IdentityResourceAuthorization.getRepository().findAll(IdentityResourceAuthorization.class);
 	}
 	
 	/**

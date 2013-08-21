@@ -69,16 +69,6 @@ public abstract class TimeIntervalEntity extends KoalaSecurityEntity {
 
 	
 	public void validate() {
-//		if (createDate == null) {
-//			createDate = new Date();
-//		}
-//		if (abolishDate == null) {
-//			abolishDate = DateUtils.MAX_DATE;
-//		}
-//		if (abolishDate.before(createDate)) {
-//			addValidationException("abolishDate.before.createDate");
-//		}
-//		super.validate();
 	}
 
 	/**

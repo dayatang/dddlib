@@ -4,18 +4,21 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Logger;
 
 /**
  * DateFormat工具类（解决多线程访问出现问题）
  * @author zyb
  * @since 2013-5-7 上午10:27:30
  */
-public class DateFormatUtils {
+public final class DateFormatUtils {
 
 	// 将DateFormat实例放到ThreadLocal中
 	private static final ThreadLocal<Formater> FORMATER_LOCAL = new ThreadLocal<Formater>();
 	
 	private static DateFormatUtils dateFormatUtils;
+	
+	private static final Logger LOGGER = Logger.getLogger("DateFormatUtils");
 	
 	private DateFormatUtils() {
 		
@@ -62,7 +65,7 @@ public class DateFormatUtils {
 		try {
 			return FORMATER_LOCAL.get().getDateFormat().parse(source);
 		} catch (ParseException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 		return null;
 	}
