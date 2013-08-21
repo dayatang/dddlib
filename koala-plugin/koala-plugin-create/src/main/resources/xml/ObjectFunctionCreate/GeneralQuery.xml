@@ -75,7 +75,7 @@
 	
 	<XmlAdd>
 	    <property name="express">$Project.dbProtocol=='Mybatis'</property>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/test/resources/META-INF/spring/db-context.xml</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml</property>
 		<property name="uri">http://www.springframework.org/schema/beans</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
 		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath:META-INF/spring/JPA-persistence-context.xml']]]></property>

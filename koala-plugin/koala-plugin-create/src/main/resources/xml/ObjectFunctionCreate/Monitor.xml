@@ -141,7 +141,7 @@
 		<property name="express">$Monitor.installType=='all' and
 			$Project.dbProtocol=='Mybatis'
 		</property>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/test/resources/META-INF/spring/db-context.xml
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml
 		</property>
 		<property name="uri">http://www.springframework.org/schema/beans
 		</property>
