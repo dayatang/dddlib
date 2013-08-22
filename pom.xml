@@ -8,7 +8,57 @@
     <version>2.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>koala project</name>
+    <url>http://115.28.1.104/projects/koala</url>
     <description />
+    
+    <scm>
+    	<connection>scm:git:http://git.oschina.net/openkoala/koala.git</connection>
+    	<developerConnection>scm:git:git@git.oschina.net:openkoala/koala.git</developerConnection>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>koala-release</id>
+            <name>koala-release</name>
+            <url>http://115.28.0.46:8081/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>koala-snapshots</id>
+            <name>koala-snapshots</name>
+            <url>http://115.28.0.46:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <site>
+        	<id>mvn-site</id>
+        	<name>Maven Project Site</name>
+        	<url>http://115.28.1.104/projects/koala</url>
+        </site>
+    </distributionManagement>
+	
+    <repositories>
+        <repository>
+            <id>koala-snapshots</id>
+            <url>http://115.28.0.46:8081/nexus/content/groups/Koala-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
+            <id>koala-release</id>
+            <url>http://115.28.0.46:8081/nexus/content/groups/Koala-release/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+
     <modules>
         <module>koala-plugin</module>
         <module>koala-commons</module>
@@ -783,45 +833,4 @@
         </plugins>
 		
     </build>
-	
-    <repositories>
-        <repository>
-            <id>koala-snapshots</id>
-            <url>http://115.28.0.46:8081/nexus/content/groups/Koala-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-
-        <repository>
-            <id>koala-release</id>
-            <url>http://115.28.0.46:8081/nexus/content/groups/Koala-release/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
-    <distributionManagement>
-        <repository>
-            <id>koala-release</id>
-            <name>koala-release</name>
-            <url>http://115.28.0.46:8081/nexus/content/repositories/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>koala-snapshots</id>
-            <name>koala-snapshots</name>
-            <url>http://115.28.0.46:8081/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
-    <scm>
-    	<connection>scm:git:http://git.oschina.net/openkoala/koala.git</connection>
-    	<developerConnection>scm:git:git@git.oschina.net:openkoala/koala.git</developerConnection>
-    </scm>
 </project>
