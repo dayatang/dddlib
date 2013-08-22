@@ -30,7 +30,7 @@
         <site>
         	<id>mvn-site</id>
         	<name>Maven Project Site</name>
-        	<url>http://115.28.1.104/projects/koala</url>
+        	<url>dav:http://115.28.1.104/projects/koala</url>
         </site>
     </distributionManagement>
 	
