@@ -110,15 +110,14 @@ function autoResize(){
 function checkConnection(){
 	var url = "<%=contextPath %>/dataSource/checkDataSource.koala";
 	Koala.ajax({
-		//async:true,
-		//type : "POST",
 		url:url,
-		//data:data,
 		data:$("#dataForm").serialize(),
 		dataType:'json',
 		success: function(json){
 			if(json && json.result){
-			 alert(json.result);
+			 	alert(json.result);
+			}else{
+				alert(json.error);
 			}
 		}
 	});

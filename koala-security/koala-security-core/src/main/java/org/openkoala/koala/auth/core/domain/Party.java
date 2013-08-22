@@ -4,12 +4,8 @@
 package org.openkoala.koala.auth.core.domain;
 
 import java.util.Date;
-
-
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-//import javax.validation.constraints.Size;
-
 import com.dayatang.domain.QuerySettings;
 
 /**
@@ -70,14 +66,7 @@ public abstract class Party extends TimeIntervalEntity {
 
 	@Override
 	public void validate() {
-		if (isNew() && existSerialNumber(serialNumber, getCreateDate())) {
-			//addValidationException("serialNumber.existed");
-		}
 		super.validate();
-	}
-
-	private static boolean existSerialNumber(String serialNumber, Date queryDate) {
-		return getBySerialNumber(Party.class, serialNumber, queryDate) != null;
 	}
 
 	/**
