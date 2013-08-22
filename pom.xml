@@ -11,6 +11,66 @@
     <url>http://115.28.1.104/projects/koala</url>
     <description />
     
+    <developers>
+    	<developer>
+    		<id>cchen</id>
+    		<name>Cao Chen</name>
+    		<email>chencao0524@gmail.com</email>
+    		<roles>
+    			<role>Architect</role>
+    		</roles>
+    	</developer>
+    	<developer>
+    		<id>yyang</id>
+    		<name>Yu Yang</name>
+    		<email>gdyangyu@gmail.com</email>
+    		<roles>
+    			<role>Architect</role>
+    			<role>Product Manager</role>
+    		</roles>
+    	</developer>
+    	<developer>
+    		<id>lingen.liu</id>
+    		<name>Lin Liu</name>
+    		<email>lingen.liu@gmail.com</email>
+    		<roles>
+    			<role>Project Manager</role>
+    		</roles>
+    	</developer>
+    	<developer>
+    		<id>yeren</id>
+    		<name>Shibin Li</name>
+    		<email>shibinlambo@gamil.com</email>
+    		<roles>
+    			<role>developer</role>
+    		</roles>
+    	</developer>
+    	<developer>
+    		<id>zyb</id>
+    		<name>Yuanbiao Zhu</name>
+    		<email>zhuyuanbiao2013@gmail.com</email>
+    		<roles>
+    			<role>developer</role>
+    		</roles>
+    	</developer>
+    	<developer>
+    		<id>xmfang</id>
+    		<name>Xinmin Fang</name>
+    		<email>xinmin.fang@gmail.com</email>
+    		<roles>
+    			<role>developer</role>
+    		</roles>
+    	</developer>
+    	<developer>
+    		<id>vakin jiang</id>
+    		<name>Wei Jiang</name>
+    		<email>vakinge@gmail.com</email>
+    		<roles>
+    			<role>developer</role>
+    		</roles>
+    	</developer>
+    </developers>
+    
     <scm>
     	<connection>scm:git:http://git.oschina.net/openkoala/koala.git</connection>
     	<developerConnection>scm:git:git@git.oschina.net:openkoala/koala.git</developerConnection>
