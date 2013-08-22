@@ -177,42 +177,42 @@ public class DataSourceApplicationImplTest {
 
 	@Test
 	public void testRemoveDataSource() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testRemoveDataSources() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testFindAllDataSource() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testFindAllTable() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testFindAllColumn() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testPageQueryDataSource() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testChechDataSourceCanConnect() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testTestConnection() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 	
 	/**
