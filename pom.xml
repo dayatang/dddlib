@@ -501,11 +501,13 @@
                 <artifactId>hibernate-core</artifactId>
                 <version>4.1.7.Final</version>
             </dependency>
+            <!-- 
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-annotations</artifactId>
                 <version>4.1.7.Final</version>
             </dependency>
+             -->
             <dependency>
                 <groupId>hsqldb</groupId>
                 <artifactId>hsqldb</artifactId>
