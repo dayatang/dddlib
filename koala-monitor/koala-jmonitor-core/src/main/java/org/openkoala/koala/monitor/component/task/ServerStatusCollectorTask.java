@@ -33,7 +33,7 @@ import org.openkoala.koala.monitor.support.ServerStatusCollector;
 import com.alibaba.fastjson.JSON;
 
 /**
- * 功能描述：<br />
+ * 功能描述：服务器<br />
  *  
  * 创建日期：2013-8-6 下午2:14:47  <br />   
  * 

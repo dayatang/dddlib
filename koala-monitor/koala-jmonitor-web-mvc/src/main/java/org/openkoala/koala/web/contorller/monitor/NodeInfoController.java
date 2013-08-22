@@ -15,7 +15,6 @@ import org.openkoala.koala.monitor.model.MonitorComponentVo;
 import org.openkoala.koala.monitor.model.MonitorNodeVo;
 import org.openkoala.koala.monitor.model.MonitorWarnInfoVo;
 import org.openkoala.koala.monitor.model.ScheduleConfVo;
-import org.openkoala.koala.monitor.model.ServerStatusVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -102,33 +101,18 @@ public class NodeInfoController {
      * @throws Exception 
      */
 	@ResponseBody
-	@RequestMapping("/generalStatus")
-    public Map<String, Object> generalStatus(HttpServletRequest request,String nodeId) throws Exception{
-    	Map<String, Object> dataMap = new HashMap<String,Object>();
+	@RequestMapping("/nodeStatus")
+    public Map<String, Object> nodeStatus(HttpServletRequest request,String nodeId) throws Exception{
     	if(StringUtils.isBlank(nodeId)){
     		throw new RuntimeException("参数不能为空");
     	}
     	GeneralMonitorStatusVo monitorStatus = monitorNodeManageApplication.getGeneralMonitorStatus(nodeId);
-    	//放入Session
-    	request.getSession().setAttribute("SERVER_STA_CACHE",monitorStatus.getServerStatus());
-    	
-    	dataMap.put("monitorStatus", monitorStatus.formatAsMap());
+    	Map<String, Object> dataMap;
+    	dataMap = monitorStatus.formatAsMap();
+    	if(dataMap == null)dataMap = new HashMap<String,Object>();
     	return dataMap;
     }
     
-    /**
-     * 获取服务器状态
-     * @return
-     */
-	@ResponseBody
-	@RequestMapping("/getServerStatus")
-    public Map<String, Object> getServerStatus(HttpServletRequest request,String nodeId){
-    	Map<String, Object> dataMap = new HashMap<String,Object>();
-    	ServerStatusVo status = (ServerStatusVo) request.getSession().getAttribute("SERVER_STA_CACHE");
-    	if(status == null)status = monitorNodeManageApplication.getNodeServerStatus(nodeId);
-    	dataMap.put("data", status);
-    	return dataMap;
-    }
     
     /**
      * 查询所有预警信息
@@ -168,6 +152,5 @@ public class NodeInfoController {
     	serviceMonitorApplication.updateScheduleConf(conf);
     	return dataMap;
     }
-    
     
 }

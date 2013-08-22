@@ -24,6 +24,7 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import org.openkoala.koala.monitor.component.task.MonitorTask;
+import org.openkoala.koala.monitor.component.task.ServerStatusCollectorTask;
 import org.openkoala.koala.monitor.component.task.ServiceConnectionCheckTask;
 import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.def.ComponentDef;
@@ -172,9 +173,12 @@ public class LocalDataPolicyHandler extends BaseSchedulerBean implements DataPol
 		}
 		vo.setActiveCount(users.size());
 		//服务器状态
-		vo.setServerStatus(ServerStatusCollector.getServerAllStatus());
+		MonitorTask task = RuntimeContext.getContext().getMonitorTask(ServerStatusCollectorTask.TASK_KEY);
+		if(task != null){
+			vo.setServerStatusDatas(task.getDatas());
+		}
 		//第三方服务
-		MonitorTask task = RuntimeContext.getContext().getMonitorTask(ServiceConnectionCheckTask.TASK_KEY);
+		task = RuntimeContext.getContext().getMonitorTask(ServiceConnectionCheckTask.TASK_KEY);
 		if(task != null){
 			vo.setServiceCheckDatas(task.getDatas());
 		}
