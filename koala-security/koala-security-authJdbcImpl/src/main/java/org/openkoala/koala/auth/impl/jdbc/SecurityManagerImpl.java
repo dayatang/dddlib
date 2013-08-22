@@ -116,16 +116,12 @@ public class SecurityManagerImpl implements SecurityManager {
 		if (userAccount.equals(config.getAdminAccount())) {
 			try {
 				return getQueryRunner().query(conn, config.getQueryAllAuth(), new ResultSetHandler<List<String>>() {
-					@SuppressWarnings({ "serial", "unchecked" })
 					public List<String> handle(final ResultSet rs) throws SQLException {
+						List<String> results = new ArrayList<String>();
 						while (rs.next()) {
-							return new ArrayList<String>() {
-								{
-									add(rs.getString("ROLE_NAME"));
-								}
-							};
+							results.add(rs.getString("ROLE_NAME"));
 						}
-						return Collections.EMPTY_LIST;
+						return results;
 					}
 				}, new Timestamp(System.currentTimeMillis()));
 			} catch (SQLException e) {
@@ -137,16 +133,12 @@ public class SecurityManagerImpl implements SecurityManager {
 		
 		try {
 			return getQueryRunner().query(conn, config.getQueryUserAuth(), new ResultSetHandler<List<String>>() {
-				@SuppressWarnings({ "serial", "unchecked" })
 				public List<String> handle(final ResultSet rs) throws SQLException {
+					List<String> results = new ArrayList<String>();
 					while (rs.next()) {
-						return new ArrayList<String>() {
-							{
-								add(rs.getString(1));
-							}
-						};
+						results.add(rs.getString("ROLE_NAME"));
 					}
-					return Collections.EMPTY_LIST;
+					return results;
 				}
 			}, userAccount, new Timestamp(System.currentTimeMillis()));
 		} catch (SQLException e) {

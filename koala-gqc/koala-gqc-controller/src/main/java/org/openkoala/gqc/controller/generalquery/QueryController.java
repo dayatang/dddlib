@@ -1,5 +1,6 @@
 package org.openkoala.gqc.controller.generalquery;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.dayatang.querychannel.support.Page;
 
 /**
@@ -70,7 +72,7 @@ public class QueryController {
 					String fieldName = key.replace(startValueTag, "");
 					dqc = generalQuery.getDynamicQueryConditionByFieldName(fieldName);
 					if (dqc != null) {
-						dqc.setStartValue((String) params.get(key)[0]);
+						dqc.setStartValue(getParamValue(params, key));
 					}
 					continue;
 				}
@@ -79,14 +81,14 @@ public class QueryController {
 					String fieldName = key.replace(endValueTag, "");
 					dqc = generalQuery.getDynamicQueryConditionByFieldName(fieldName);
 					if (dqc != null) {
-						dqc.setEndValue((String) params.get(key)[0]);
+						dqc.setEndValue(getParamValue(params, key));
 					}
 					continue;
 				}
 				
 				dqc = generalQuery.getDynamicQueryConditionByFieldName(key);
 				if (dqc != null) {
-					dqc.setValue((String) params.get(key)[0]);
+					dqc.setValue(getParamValue(params, key));
 				}
 			}
 		}
@@ -98,6 +100,10 @@ public class QueryController {
 		result.put("limit", pagesize);
 		result.put("Total", data.getTotalCount());
 		return result;
+	}
+
+	private String getParamValue(Map<String, Object[]> params, String key) {
+		return (String) params.get(key)[0];
 	}
 
 }

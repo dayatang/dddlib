@@ -1,5 +1,6 @@
 package org.openkoala.gqc.controller.generalquery;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -75,6 +76,17 @@ public class GeneralQueryController {
         try {
             this.initMap();
             generalQuery.setCreateDate(new Date());
+            for (PreQueryCondition preQueryCondition : generalQuery.getPreQueryConditions()) {
+            	if ("${username}".equals(preQueryCondition.getValue())) {
+            		try {
+						Class<?> clazz = Class.forName("org.openkoala.koala.auth.ss3adapter.AuthUserUtil");
+						Method method = clazz.getMethod("getLoginUserName");
+						preQueryCondition.setValue((String) method.invoke(null));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+            	}
+            }
             gqcApplication.saveEntity(generalQuery);
             dataMap.put("result", "success");
         } catch (Exception e) {
