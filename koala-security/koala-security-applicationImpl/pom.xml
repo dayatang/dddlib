@@ -18,10 +18,6 @@
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>com.dayatang.commons</groupId>
-			<artifactId>dayatang-commons-querychannel</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.openkoala.security</groupId>
 			<artifactId>koala-security-core</artifactId>
 			<version>${project.parent.version}</version>
