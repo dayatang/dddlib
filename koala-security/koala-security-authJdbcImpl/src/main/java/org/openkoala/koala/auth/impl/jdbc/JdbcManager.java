@@ -6,12 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.logging.Logger;
 
 public class JdbcManager {
 	private JdbcSecurityConfig secConfig;
 	private String url;
 	private Connection con;
-	PreparedStatement stmt;
+	private PreparedStatement stmt;
+	
+	private static final Logger LOGGER = Logger.getLogger("JdbcManager");
 
 	public JdbcManager(JdbcSecurityConfig secConfig) {
 		this.secConfig = secConfig;
@@ -20,9 +23,9 @@ public class JdbcManager {
 			Class.forName(secConfig.getDbdriver());
 			con = DriverManager.getConnection(this.url, secConfig.getDbuser(), secConfig.getDbpassword());
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 	}
 
@@ -33,7 +36,7 @@ public class JdbcManager {
 			stmt.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
 			return stmt.executeQuery();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 		return null;
 	}
@@ -44,7 +47,7 @@ public class JdbcManager {
 			stmt.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
 			return stmt.executeQuery();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 		return null;
 	}
@@ -56,7 +59,7 @@ public class JdbcManager {
 			stmt.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
 			return stmt.executeQuery();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 		return null;
 	}
@@ -67,7 +70,7 @@ public class JdbcManager {
 			stmt.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
 			return stmt.executeQuery();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 		return null;
 	}
@@ -79,7 +82,7 @@ public class JdbcManager {
 			stmt.setString(2, res);
 			return stmt.executeQuery();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 		return null;
 	}
@@ -91,7 +94,7 @@ public class JdbcManager {
 			stmt.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
 			return stmt.executeQuery();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 		return null;
 	}
@@ -113,7 +116,7 @@ public class JdbcManager {
 		try {
 			rs = stmt.executeQuery(sql);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 		return rs;
 	}
@@ -122,7 +125,7 @@ public class JdbcManager {
 		try {
 			return stmt.executeUpdate(sql) > 0 ? true : false;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 		return false;
 	}
@@ -133,7 +136,7 @@ public class JdbcManager {
 			con.close();
 			secConfig = null;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 	}
 

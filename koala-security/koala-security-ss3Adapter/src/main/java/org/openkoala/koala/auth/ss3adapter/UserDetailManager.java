@@ -2,7 +2,8 @@ package org.openkoala.koala.auth.ss3adapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.logging.LogFactory;
+import java.util.logging.Logger;
+
 import org.openkoala.koala.auth.AuthDataService;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
@@ -10,6 +11,7 @@ import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import com.dayatang.cache.Cache;
 import com.dayatang.domain.InstanceFactory;
 
@@ -22,11 +24,12 @@ import com.dayatang.domain.InstanceFactory;
  */
 // @Component("userDetailManager")
 public class UserDetailManager implements UserDetailsService {
-	org.apache.commons.logging.Log log = LogFactory.getLog(UserDetailManager.class);
 
 	private AuthDataService provider;
 
 	private Cache cache;
+	
+	private static final Logger LOGGER = Logger.getLogger("UserDetailManager");
 
 	private Cache getCache() {
 		if (cache == null) {
@@ -39,32 +42,26 @@ public class UserDetailManager implements UserDetailsService {
 	 * 根据用户名取得及权限等信息
 	 */
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
-//		if (!getCache().isKeyInCache(username)) {
-			org.openkoala.koala.auth.UserDetails user = null;
-			try {
-				user = provider.loadUserByUseraccount(username);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			if (user == null) {
-				throw new UsernameNotFoundException("用户名不存在!");
-			}
-			List<GrantedAuthority> gAuthoritys = new ArrayList<GrantedAuthority>();
-			for (String role : user.getAuthorities()) {
-				GrantedAuthorityImpl gai = new GrantedAuthorityImpl(role);
-				gAuthoritys.add(gai);
-			}
+		org.openkoala.koala.auth.UserDetails user = null;
+		try {
+			user = provider.loadUserByUseraccount(username);
+		} catch (Exception e) {
+			LOGGER.info(e.getMessage());
+		}
+		if (user == null) {
+			throw new UsernameNotFoundException("用户名不存在!");
+		}
+		List<GrantedAuthority> gAuthoritys = new ArrayList<GrantedAuthority>();
+		for (String role : user.getAuthorities()) {
+			GrantedAuthorityImpl gai = new GrantedAuthorityImpl(role);
+			gAuthoritys.add(gai);
+		}
 
-			CustomUserDetails result = new CustomUserDetails(user.getPassword(), user.getUseraccount(), user
-					.isAccountNonExpired(), user.isAccountNonLocked(), user.isCredentialsNonExpired(),
-					user.isEnabled(), gAuthoritys);
-			result.setSuper(user.isSuper());
-			getCache().put(username, result);
-			return result;
-//
-//		}
-//		
-//		return (CustomUserDetails) getCache().get(username);
+		CustomUserDetails result = new CustomUserDetails(user.getPassword(), user.getUseraccount(), user.isAccountNonExpired(),
+				user.isAccountNonLocked(), user.isCredentialsNonExpired(), user.isEnabled(), gAuthoritys);
+		result.setSuper(user.isSuper());
+		getCache().put(username, result);
+		return result;
 	}
 
 	public AuthDataService getProvider() {

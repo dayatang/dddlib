@@ -11,8 +11,10 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+
 import com.dayatang.domain.QuerySettings;
 import com.dayatang.utils.DateUtils;
 
@@ -24,11 +26,16 @@ import com.dayatang.utils.DateUtils;
  */
 @MappedSuperclass
 public abstract class Accountability extends TimeIntervalEntity {
-
+	
 	private static final long serialVersionUID = -4407018237346614465L;
 
+	private static final String ABOLISH_DATE = "abolishDate";
 
+	private static final String CREATE_DATE = "createDate";
 
+	private static final String RESPONSIBLE = "responsible";
+
+	private static final String COMMISSIONER = "commissioner";
 
 	@Column(name = "scheduled_abolish_date")
 	@Temporal(TemporalType.DATE)
@@ -42,8 +49,6 @@ public abstract class Accountability extends TimeIntervalEntity {
 
 	public Accountability(Date createDate) {
 		super(createDate);
-//		this.commissioner = commissioner;
-//		this.responsible = responsible;
 	}
 
 	public Accountability(Date createDate, Date scheduledAbolishDate) {
@@ -52,8 +57,6 @@ public abstract class Accountability extends TimeIntervalEntity {
 			this.scheduledAbolishDate = scheduledAbolishDate;
 		}
 	}
-
-
 
 	public Date getScheduledAbolishDate() {
 		return scheduledAbolishDate;
@@ -111,10 +114,10 @@ public abstract class Accountability extends TimeIntervalEntity {
 	 */
 	public static <T extends Accountability> T get(Class<T> entityClass, Party commissioner, Party responsible, Date queryDate) {
 		QuerySettings<T> settings = QuerySettings.create(entityClass)
-				.eq("commissioner", commissioner)
-				.eq("responsible", responsible)
-				.le("createDate", queryDate)
-				.gt("abolishDate", queryDate);
+				.eq(COMMISSIONER, commissioner)
+				.eq(RESPONSIBLE, responsible)
+				.le(CREATE_DATE, queryDate)
+				.gt(ABOLISH_DATE, queryDate);
 		List<T> results =  getRepository().find(settings);
 		return results.isEmpty() ? null : results.get(0);
 	}
@@ -127,8 +130,8 @@ public abstract class Accountability extends TimeIntervalEntity {
 	 */
 	public static <T extends Accountability> List<T> findAccountabilities(Class<T> entityClass, Date queryDate) {
 		return getRepository().find(QuerySettings.create(entityClass)
-				.le("createDate", queryDate)
-				.gt("abolishDate", queryDate));
+				.le(CREATE_DATE, queryDate)
+				.gt(ABOLISH_DATE, queryDate));
 	}
 	
 	/**
@@ -140,8 +143,8 @@ public abstract class Accountability extends TimeIntervalEntity {
 	 */
 	public static <T extends Accountability> List<T> findByCommissioner(Class<T> entityClass, Party commissioner) {
 		return getRepository().find(QuerySettings.create(entityClass)
-				.eq("commissioner", commissioner)
-				.asc("createDate"));
+				.eq(COMMISSIONER, commissioner)
+				.asc(CREATE_DATE));
 	}
 	
 	/**
@@ -154,9 +157,9 @@ public abstract class Accountability extends TimeIntervalEntity {
 	 */
 	public static <T extends Accountability> List<T> findByCommissioner(Class<T> entityClass, Party commissioner, Date queryDate) {
 		return getRepository().find(QuerySettings.create(entityClass)
-				.eq("commissioner", commissioner)
-				.le("createDate", queryDate)
-				.gt("abolishDate", queryDate));
+				.eq(COMMISSIONER, commissioner)
+				.le(CREATE_DATE, queryDate)
+				.gt(ABOLISH_DATE, queryDate));
 	}
 	
 	/**
@@ -172,9 +175,9 @@ public abstract class Accountability extends TimeIntervalEntity {
 			return new ArrayList<T>();
 		}
 		return getRepository().find(QuerySettings.create(entityClass)
-				.in("commissioner", commissioners)
-				.le("createDate", queryDate)
-				.gt("abolishDate", queryDate));
+				.in(COMMISSIONER, commissioners)
+				.le(CREATE_DATE, queryDate)
+				.gt(ABOLISH_DATE, queryDate));
 	}
 	
 	/**
@@ -186,8 +189,8 @@ public abstract class Accountability extends TimeIntervalEntity {
 	 */
 	public static <T extends Accountability> List<T> findByResponsible(Class<T> entityClass, Party responsible) {
 		return getRepository().find(QuerySettings.create(entityClass)
-				.eq("responsible", responsible)
-				.asc("createDate"));
+				.eq(RESPONSIBLE, responsible)
+				.asc(CREATE_DATE));
 	}
 	
 	/**
@@ -200,9 +203,9 @@ public abstract class Accountability extends TimeIntervalEntity {
 	 */
 	public static <T extends Accountability> List<T> findByResponsible(Class<T> entityClass, Party responsible, Date queryDate) {
 		return getRepository().find(QuerySettings.create(entityClass)
-				.eq("responsible", responsible)
-				.le("createDate", queryDate)
-				.gt("abolishDate", queryDate));
+				.eq(RESPONSIBLE, responsible)
+				.le(CREATE_DATE, queryDate)
+				.gt(ABOLISH_DATE, queryDate));
 	}
 	
 	/**
@@ -218,9 +221,9 @@ public abstract class Accountability extends TimeIntervalEntity {
 			return new ArrayList<T>();
 		}
 		return getRepository().find(QuerySettings.create(entityClass)
-				.in("responsible", responsibles)
-				.le("createDate", queryDate)
-				.gt("abolishDate", queryDate));
+				.in(RESPONSIBLE, responsibles)
+				.le(CREATE_DATE, queryDate)
+				.gt(ABOLISH_DATE, queryDate));
 	}
 
 	/**

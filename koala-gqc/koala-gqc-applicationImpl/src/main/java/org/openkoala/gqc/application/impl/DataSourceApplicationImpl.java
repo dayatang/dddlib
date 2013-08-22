@@ -26,7 +26,6 @@ import com.dayatang.querychannel.support.Page;
 
 /**
  * 数据源应用层实现，处理数据源的增删改查
- * @author lambo
  *
  */
 @Named
@@ -40,6 +39,11 @@ public class DataSourceApplicationImpl implements DataSourceApplication {
 	 * 查询通道
 	 */
 	private static QueryChannelService queryChannel;
+	
+	/**
+	 * 锁对象
+	 */
+	private static byte[] lock = new byte[0];
 
 	/**
 	 * 获取查询通道实例
@@ -47,30 +51,40 @@ public class DataSourceApplicationImpl implements DataSourceApplication {
 	 */
 	private static QueryChannelService getQueryChannelService() {
 		if (queryChannel == null) {
-			queryChannel = InstanceFactory.getInstance(QueryChannelService.class, "queryChannel_gqc");
+			synchronized (lock) {
+				if (queryChannel == null) {
+					queryChannel = InstanceFactory.getInstance(QueryChannelService.class, "queryChannel_gqc");
+				}
+			}
 		}
 		return queryChannel;
 	}
+	
+	void setQueryChannelService(QueryChannelService queryChannel){
+		DataSourceApplicationImpl.queryChannel = queryChannel;
+	}
 
-	public DataSourceVO getDataSource(Long id) {
-
-		String jpql = "select _dataSource from DataSource _dataSource  where _dataSource.id=?";
-		DataSource dataSource = (DataSource) getQueryChannelService().querySingleResult(jpql,
-				new Object[] { id });
-		DataSourceVO dataSourceVO = new DataSourceVO();
-		// 将domain转成VO
+	public DataSourceVO getDataSourceVoById(Long id) {
 		try {
-			BeanUtils.copyProperties(dataSourceVO, dataSource);
-			dataSourceVO.setDataSourceTypeDesc(dataSourceVO.getDataSourceType().getDescription());
+//			String jpql = " select _dataSource from DataSource _dataSource  where _dataSource.id = ? ";
+//			DataSource dataSource = (DataSource) getQueryChannelService().querySingleResult(jpql,
+//					new Object[] { id });
+			DataSource dataSource = DataSource.get(DataSource.class, id);
+			DataSourceVO dataSourceVO = new DataSourceVO();
+			// 将domain转成VO
+			try {
+				BeanUtils.copyProperties(dataSourceVO, dataSource);
+				dataSourceVO.setDataSourceTypeDesc(dataSourceVO.getDataSourceType().getDescription());
+			} catch (Exception e) {
+			}
+			return dataSourceVO;
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new RuntimeException("查询数据源失败！", e);
 		}
-
-		return dataSourceVO;
 	}
 
 	public DataSourceVO getDataSourceVoByDataSourceId(String dataSourceId) {
-		String jpql = "select _dataSource from DataSource _dataSource  where _dataSource.dataSourceId=?";
+		String jpql = " select _dataSource from DataSource _dataSource  where _dataSource.dataSourceId = ? ";
 		try {
 			DataSource dataSource = (DataSource) getQueryChannelService().querySingleResult(jpql,
 					new Object[] { dataSourceId });
@@ -80,11 +94,12 @@ public class DataSourceApplicationImpl implements DataSourceApplication {
 				dataSourceVO.setDataSourceTypeDesc(dataSourceVO.getDataSourceType()
 						.getDescription());
 				return dataSourceVO;
+			}else{
+				return null;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new RuntimeException("查询指定数据源失败！", e);
 		}
-		return null;
 	}
 
 	public String saveDataSource(DataSourceVO dataSourceVO) {
@@ -103,23 +118,22 @@ public class DataSourceApplicationImpl implements DataSourceApplication {
 					dataSource = DataSource.getSystemDataSource(dataSourceVO.getDataSourceId());
 					dataSource.setConnectUrl(dataSource.getConnectUrl().split(";")[0]);
 				} catch (Exception e) {
-					return "该系统数据源ID不存在";
+					return e.getMessage();
 				}
 				
 				try {
                     dataSource.save();
                     return null;
                 } catch (Exception e) {
-                    return "保存失败";
+                    return "新增失败";
                 }
 			}
 
 			BeanUtils.copyProperties(dataSource, dataSourceVO);
 			dataSource.save();
+			
 			return null;
-
 		} catch (Exception e) {
-			e.printStackTrace();
 			return "保存失败";
 		}
 	}
@@ -130,12 +144,16 @@ public class DataSourceApplicationImpl implements DataSourceApplication {
 		try {
 			BeanUtils.copyProperties(dataSource, dataSourceVO);
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new RuntimeException("更新数据源失败！", e);
 		}
 	}
 
 	public void removeDataSource(Long id) {
-		this.removeDataSources(new Long[] { id });
+		try {
+			this.removeDataSources(new Long[] { id });
+		} catch (Exception e) {
+			throw new RuntimeException("删除数据源失败！", e);
+		}
 	}
 
 	public void removeDataSources(Long[] ids) {
@@ -146,19 +164,22 @@ public class DataSourceApplicationImpl implements DataSourceApplication {
 	}
 
 	public List<DataSourceVO> findAllDataSource() {
-		List<DataSourceVO> list = new ArrayList<DataSourceVO>();
-		List<DataSource> all = DataSource.findAll(DataSource.class);
-		for (DataSource dataSource : all) {
-			DataSourceVO dataSourceVO = new DataSourceVO();
-			// 将domain转成VO
-			try {
-				BeanUtils.copyProperties(dataSourceVO, dataSource);
-			} catch (Exception e) {
-				e.printStackTrace();
+		try {
+			List<DataSourceVO> list = new ArrayList<DataSourceVO>();
+			List<DataSource> all = DataSource.findAll(DataSource.class);
+			for (DataSource dataSource : all) {
+				DataSourceVO dataSourceVO = new DataSourceVO();
+				// 将domain转成VO
+				try {
+					BeanUtils.copyProperties(dataSourceVO, dataSource);
+				} catch (Exception e) {
+				}
+				list.add(dataSourceVO);
 			}
-			list.add(dataSourceVO);
+			return list;
+		} catch (Exception e) {
+			throw new RuntimeException("查询数据源列表失败！", e);
 		}
-		return list;
 	}
 
 	public List<String> findAllTable(Long id) {
@@ -193,7 +214,7 @@ public class DataSourceApplicationImpl implements DataSourceApplication {
 			
 			return tableMap;
 		} catch (Exception e) {
-			throw new RuntimeException("查询所有列失败",e);
+			throw new RuntimeException("查询所有列失败", e);
 		}finally{
 			if(conn != null){
 				try {
@@ -207,65 +228,82 @@ public class DataSourceApplicationImpl implements DataSourceApplication {
 	
 	public Page<DataSourceVO> pageQueryDataSource(DataSourceVO queryVo, int currentPage,
 			int pageSize) {
-		List<DataSourceVO> result = new ArrayList<DataSourceVO>();
-		List<Object> conditionVals = new ArrayList<Object>();
+		try {
+			List<DataSourceVO> result = new ArrayList<DataSourceVO>();
+			List<Object> conditionVals = new ArrayList<Object>();
 
-		StringBuilder jpql = new StringBuilder(
-				"select _dataSource from DataSource _dataSource   where 1=1 ");
+			StringBuilder jpql = new StringBuilder(
+					"select _dataSource from DataSource _dataSource   where 1=1 ");
 
-		if (queryVo.getDataSourceId() != null && !"".equals(queryVo.getDataSourceId())) {
-			jpql.append(" and _dataSource.dataSourceId like ?");
-			conditionVals.add(MessageFormat.format("%{0}%", queryVo.getDataSourceId()));
-		}
-
-		if (queryVo.getDataSourceDescription() != null
-				&& !"".equals(queryVo.getDataSourceDescription())) {
-			jpql.append(" and _dataSource.dataSourceDescription like ?");
-			conditionVals.add(MessageFormat.format("%{0}%", queryVo.getDataSourceDescription()));
-		}
-
-		if (queryVo.getConnectUrl() != null && !"".equals(queryVo.getConnectUrl())) {
-			jpql.append(" and _dataSource.connectUrl like ?");
-			conditionVals.add(MessageFormat.format("%{0}%", queryVo.getConnectUrl()));
-		}
-
-		if (queryVo.getJdbcDriver() != null && !"".equals(queryVo.getJdbcDriver())) {
-			jpql.append(" and _dataSource.jdbcDriver like ?");
-			conditionVals.add(MessageFormat.format("%{0}%", queryVo.getJdbcDriver()));
-		}
-
-		if (queryVo.getDriverUri() != null && !"".equals(queryVo.getDriverUri())) {
-			jpql.append(" and _dataSource.driverUri like ?");
-			conditionVals.add(MessageFormat.format("%{0}%", queryVo.getDriverUri()));
-		}
-
-		if (queryVo.getUsername() != null && !"".equals(queryVo.getUsername())) {
-			jpql.append(" and _dataSource.username like ?");
-			conditionVals.add(MessageFormat.format("%{0}%", queryVo.getUsername()));
-		}
-
-		if (queryVo.getPassword() != null && !"".equals(queryVo.getPassword())) {
-			jpql.append(" and _dataSource.password like ?");
-			conditionVals.add(MessageFormat.format("%{0}%", queryVo.getPassword()));
-		}
-
-		Page<DataSource> pages = getQueryChannelService().queryPagedResultByPageNo(jpql.toString(),
-				conditionVals.toArray(), currentPage, pageSize);
-		for (DataSource dataSource : pages.getResult()) {
-			DataSourceVO dataSourceVO = new DataSourceVO();
-			// 将domain转成VO
-			try {
-				BeanUtils.copyProperties(dataSourceVO, dataSource);
-			} catch (Exception e) {
-				e.printStackTrace();
+			if (queryVo.getDataSourceId() != null && !"".equals(queryVo.getDataSourceId())) {
+				jpql.append(" and _dataSource.dataSourceId like ?");
+				conditionVals.add(MessageFormat.format("%{0}%", queryVo.getDataSourceId()));
 			}
 
-			dataSourceVO.setDataSourceTypeDesc(dataSourceVO.getDataSourceType().getDescription());
+			if (queryVo.getDataSourceDescription() != null
+					&& !"".equals(queryVo.getDataSourceDescription())) {
+				jpql.append(" and _dataSource.dataSourceDescription like ?");
+				conditionVals.add(MessageFormat.format("%{0}%", queryVo.getDataSourceDescription()));
+			}
 
-			result.add(dataSourceVO);
+			if (queryVo.getConnectUrl() != null && !"".equals(queryVo.getConnectUrl())) {
+				jpql.append(" and _dataSource.connectUrl like ?");
+				conditionVals.add(MessageFormat.format("%{0}%", queryVo.getConnectUrl()));
+			}
+
+			if (queryVo.getJdbcDriver() != null && !"".equals(queryVo.getJdbcDriver())) {
+				jpql.append(" and _dataSource.jdbcDriver like ?");
+				conditionVals.add(MessageFormat.format("%{0}%", queryVo.getJdbcDriver()));
+			}
+
+			if (queryVo.getDriverUri() != null && !"".equals(queryVo.getDriverUri())) {
+				jpql.append(" and _dataSource.driverUri like ?");
+				conditionVals.add(MessageFormat.format("%{0}%", queryVo.getDriverUri()));
+			}
+
+			if (queryVo.getUsername() != null && !"".equals(queryVo.getUsername())) {
+				jpql.append(" and _dataSource.username like ?");
+				conditionVals.add(MessageFormat.format("%{0}%", queryVo.getUsername()));
+			}
+
+			if (queryVo.getPassword() != null && !"".equals(queryVo.getPassword())) {
+				jpql.append(" and _dataSource.password like ?");
+				conditionVals.add(MessageFormat.format("%{0}%", queryVo.getPassword()));
+			}
+
+			Page<DataSource> pages = getQueryChannelService().queryPagedResultByPageNo(jpql.toString(),
+					conditionVals.toArray(), currentPage, pageSize);
+			for (DataSource dataSource : pages.getResult()) {
+				DataSourceVO dataSourceVO = new DataSourceVO();
+				// 将domain转成VO
+				try {
+					BeanUtils.copyProperties(dataSourceVO, dataSource);
+				} catch (Exception e) {
+				}
+
+				dataSourceVO.setDataSourceTypeDesc(dataSourceVO.getDataSourceType().getDescription());
+
+				result.add(dataSourceVO);
+			}
+			
+			return new Page<DataSourceVO>(pages.getCurrentPageNo(), pages.getTotalCount(),
+					pages.getPageSize(), result);
+		} catch (Exception e) {
+			throw new RuntimeException("查询数据源列表失败！", e);
 		}
-		return new Page<DataSourceVO>(pages.getCurrentPageNo(), pages.getTotalCount(),
-				pages.getPageSize(), result);
+	}
+	
+	public boolean chechDataSourceCanConnect(DataSource dataSource) {
+		try {
+			//页面传递的是系统数据源的话，实际上只传递了dataSourceId，需要从数据库把详细的dataSource查出来
+			if (dataSource.getDataSourceType().equals(DataSourceType.SYSTEM_DATA_SOURCE)) {
+				dataSource = DataSource.getSystemDataSource(dataSource.getDataSourceId());
+  	        }
+			
+			return dataSource.testConnection();
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
 	/**
@@ -274,14 +312,13 @@ public class DataSourceApplicationImpl implements DataSourceApplication {
 	 * @return
 	 */
 	public boolean testConnection(Long id) {
-		DataSourceVO dataSourceVO = this.getDataSource(id);
+		DataSourceVO dataSourceVO = this.getDataSourceVoById(id);
 		// 将domain转成VO
 		try {
 			DataSource dataSource = new DataSource();
 			BeanUtils.copyProperties(dataSource, dataSourceVO);
 			return dataSource.testConnection();
 		} catch (Exception e) {
-//			e.printStackTrace();
 			return false;
 		}
 	}
@@ -292,7 +329,7 @@ public class DataSourceApplicationImpl implements DataSourceApplication {
 	 * @param conn
 	 * @throws SQLException
 	 */
-	private void closeConnection(DataSource dataSource, Connection conn) throws SQLException{
+	private void closeConnection(DataSource dataSource, Connection conn) throws SQLException {
 		if(!DataSourceType.SYSTEM_DATA_SOURCE.equals(dataSource.getDataSourceType())){
 			conn.close();
 		}

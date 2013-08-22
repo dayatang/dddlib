@@ -25,18 +25,20 @@ function loadData(){
 		dataType:'json',
 		success: function(json){
 			if(json && json.data){
-			 json = json.data;
-			 var elm;
-			 for(var index in json){
-				 elm = document.getElementById(index + "ID");
-				 if(elm){
-					 if("SELECT" == elm.nodeName){
-						 $(elm).find("option[value='"+json[index]+"']").attr("selected","selected");
-					 }else{
-						 $(elm).val(json[index]);
+				 json = json.data;
+				 var elm;
+				 for(var index in json){
+					 elm = document.getElementById(index + "ID");
+					 if(elm){
+						 if("SELECT" == elm.nodeName){
+							 $(elm).find("option[value='"+json[index]+"']").attr("selected","selected");
+						 }else{
+							 $(elm).val(json[index]);
+						 }
 					 }
 				 }
-			 }
+			}else{
+				alert(json.error);
 			}
 		}
 	});		
@@ -57,9 +59,11 @@ function saveDataAction(){
 		data:$("#dataForm").serialize(),
 		success: function(json){
 			if(json && json.result){
-			 alert(json.result);
-			 parent.gridManager.loadData();
-			 parent._dialog.close();
+				 alert(json.result);
+				 if(json.result == "success"){
+					 parent.gridManager.loadData();
+					 parent._dialog.close();
+				 }
 			}
 		}
 	});

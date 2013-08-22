@@ -10,7 +10,7 @@ import com.dayatang.domain.InstanceFactory;
  * @author zyb <a href="mailto:zhuyuanbiao2013@gmail.com">zhuyuanbiao2013@gmail.com</a>
  * @since Aug 16, 2013 9:55:29 AM
  */
-public class CacheUtil {
+public final class CacheUtil {
 
 	private static AuthDataService provider;
 

@@ -5,7 +5,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.apache.commons.logging.LogFactory;
+import java.util.logging.Logger;
+
 import org.openkoala.koala.auth.AuthDataService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.access.ConfigAttribute;
@@ -30,7 +31,6 @@ import com.dayatang.domain.InstanceFactory;
  */
 // @Component("securityMetadataSource")
 public class SecurityMetadataSource implements FilterInvocationSecurityMetadataSource, InitializingBean {
-	org.apache.commons.logging.Log log = LogFactory.getLog(SecurityMetadataSource.class);
 
 	private UrlMatcher urlMatcher = new AntUrlPathMatcher();
 
@@ -39,6 +39,8 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 	private Cache userCache;
 
 	private AuthDataService provider;
+	
+	private static final Logger LOGGER = Logger.getLogger("SecurityMetadataSource");
 
 	/**
 	 * 获取资源缓存
@@ -93,7 +95,7 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 	 * 
 	 * @throws Exception
 	 */
-	private void loadResource() throws Exception {
+	private void loadResource() {
 		// 查询出所有资源
 		if (resourceCache == null) {
 			Map<String, List<String>> allRes = provider.getAllReourceAndRoles();
@@ -107,7 +109,7 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 	/**
 	 * 构造方法中建立请求url(key)与权限(value)的关系集合
 	 */
-	public void afterPropertiesSet() throws Exception {
+	public void afterPropertiesSet() {
 
 	}
 
@@ -124,17 +126,17 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 		try {
 			loadResource();
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 
 		String url = ((FilterInvocation) object).getRequestUrl();
-		int position = url.indexOf("?");
+		int position = url.indexOf('?');
 		if (-1 != position) {
 			url = url.substring(0, position);
 		}
 
-		if (getResourceCache().isKeyInCache(url.substring(url.indexOf("/") + 1))) {
-			List<String> roles = (List<String>)getResourceCache().get(url.substring(url.indexOf("/") + 1));
+		if (getResourceCache().isKeyInCache(url.substring(url.indexOf('/') + 1))) {
+			List<String> roles = (List<String>)getResourceCache().get(url.substring(url.indexOf('/') + 1));
 			Collection<ConfigAttribute> attris = new ArrayList<ConfigAttribute>();
 			for (final String role : roles){
 				attris.add(new ConfigAttribute(){
