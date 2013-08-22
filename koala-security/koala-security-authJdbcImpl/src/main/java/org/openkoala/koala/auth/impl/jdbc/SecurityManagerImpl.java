@@ -2,20 +2,17 @@ package org.openkoala.koala.auth.impl.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import org.apache.commons.dbutils.DbUtils;
-import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.ResultSetHandler;
+import java.util.logging.Logger;
 import org.openkoala.koala.auth.UserDetails;
 import org.openkoala.koala.auth.vo.JdbcCustomUserDetails;
 
@@ -29,16 +26,18 @@ public class SecurityManagerImpl implements SecurityManager {
 	
 	private JdbcSecurityConfig config;
 	
+	private static final Logger LOGGER = Logger.getLogger("SecurityManagerImpl");
+	
 	/**
 	 * 获取数据库连接
 	 * @return
 	 */
 	private Connection getConnection() {
-		DbUtils.loadDriver(config.getDbdriver());
 		try {
+			Class.forName(config.getDbdriver());
 			return DriverManager.getConnection(config.getDburl(), config.getDbuser(), config.getDbpassword());
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.info(e.getMessage());
 		}
 		return null;
 	}
@@ -54,57 +53,65 @@ public class SecurityManagerImpl implements SecurityManager {
 		}
 		
 		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		
 		try {
-			return getQueryRunner().query(conn, config.getQueryUser(), new ResultSetHandler<UserDetails>() {
-
-				public UserDetails handle(ResultSet rs) throws SQLException {
-					if (rs.next()) {
-						return getUserDetails( //
-								rs.getString("USERACCOUNT"), //
-								rs.getString("PASSWORD"), //
-								rs.getString("DESCRIPTION"), //
-								rs.getString("EMAIL"), 
-								rs.getString("REAL_NAME"), //
-								getUserRoles(rs.getString("USERACCOUNT")), //
-								false, //
-								rs.getBoolean("isvalid")
-						);
-					}
-					return null;
-				}
-				
-			}, userAccount, new Timestamp(System.currentTimeMillis()));
+			
+			pstmt = conn.prepareStatement(config.getQueryUser());
+			pstmt.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
+			
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return getUserDetails( //
+						rs.getString("USERACCOUNT"), //
+						rs.getString("PASSWORD"), //
+						rs.getString("DESCRIPTION"), //
+						rs.getString("EMAIL"), 
+						rs.getString("REAL_NAME"), //
+						getUserRoles(rs.getString("USERACCOUNT")), //
+						false, //
+						rs.getBoolean("isvalid")
+				);
+			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		} finally {
-			DbUtils.closeQuietly(conn);
+			closeResultSet(rs);
+			closeStatement(pstmt);
+			closeConnection(conn);
 		}
 		return null;
 	}
 
 	public Map<String, List<String>> getAllReourceAndRoles() {
 		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
-			return getQueryRunner().query(conn, config.getQueryResAuth(), new ResultSetHandler<Map<String, List<String>>>() {
-				public Map<String, List<String>> handle(ResultSet rs) throws SQLException {
-					Map<String, List<String>> result = new HashMap<String, List<String>>();
-					while (rs.next()) {
-						Set<String> roles = new HashSet<String>();
-						roles.add(rs.getString("role_name"));
-						if (result.containsKey(rs.getString("identifier"))) {
-							result.get(rs.getString("identifier")).addAll(roles);
-						} else {
-							result.put(rs.getString("identifier"), new ArrayList<String>(roles));
-						}
-					}
-					return result;
+			pstmt = conn.prepareStatement(config.getQueryResAuth());
+			pstmt.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
+			
+			rs = pstmt.executeQuery();
+			
+			Map<String, List<String>> result = new HashMap<String, List<String>>();
+			
+			while (rs.next()) {
+				Set<String> roles = new HashSet<String>();
+				roles.add(rs.getString("role_name"));
+				if (result.containsKey(rs.getString("identifier"))) {
+					result.get(rs.getString("identifier")).addAll(roles);
+				} else {
+					result.put(rs.getString("identifier"), new ArrayList<String>(roles));
 				}
-			}, new Timestamp(System.currentTimeMillis()));
+			}
+			return result;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		} finally {
-			DbUtils.closeQuietly(conn);
+			closeResultSet(rs);
+			closeStatement(pstmt);
+			closeConnection(conn);
 		}
 		return null;
 	}
@@ -113,38 +120,50 @@ public class SecurityManagerImpl implements SecurityManager {
 	public List<String> getUserRoles(String userAccount) {
 		Connection conn = getConnection();
 		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
 		if (userAccount.equals(config.getAdminAccount())) {
 			try {
-				return getQueryRunner().query(conn, config.getQueryAllAuth(), new ResultSetHandler<List<String>>() {
-					public List<String> handle(final ResultSet rs) throws SQLException {
-						List<String> results = new ArrayList<String>();
-						while (rs.next()) {
-							results.add(rs.getString("ROLE_NAME"));
-						}
-						return results;
-					}
-				}, new Timestamp(System.currentTimeMillis()));
+				pstmt = conn.prepareStatement(config.getQueryAllAuth());
+				pstmt.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
+				rs = pstmt.executeQuery();
+				
+				List<String> results = new ArrayList<String>();
+				
+				while (rs.next()) {
+					results.add(rs.getString("ROLE_NAME"));
+				}
+				
+				return results;
 			} catch (SQLException e) {
-				e.printStackTrace();
+				LOGGER.info(e.getMessage());
 			} finally {
-				DbUtils.closeQuietly(conn);
+				closeResultSet(rs);
+				closeStatement(pstmt);
+				closeConnection(conn);
 			}
 		}
 		
 		try {
-			return getQueryRunner().query(conn, config.getQueryUserAuth(), new ResultSetHandler<List<String>>() {
-				public List<String> handle(final ResultSet rs) throws SQLException {
-					List<String> results = new ArrayList<String>();
-					while (rs.next()) {
-						results.add(rs.getString("ROLE_NAME"));
-					}
-					return results;
-				}
-			}, userAccount, new Timestamp(System.currentTimeMillis()));
+			pstmt = conn.prepareStatement(config.getQueryUserAuth());
+			pstmt.setString(1, userAccount);
+			pstmt.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
+			rs = pstmt.executeQuery();
+			
+			List<String> results = new ArrayList<String>();
+			
+			while (rs.next()) {
+				results.add(rs.getString("ROLE_NAME"));
+			}
+			
+			return results;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		} finally {
-			DbUtils.closeQuietly(conn);
+			closeResultSet(rs);
+			closeStatement(pstmt);
+			closeConnection(conn);
 		}
 		return null;
 	}
@@ -163,10 +182,6 @@ public class SecurityManagerImpl implements SecurityManager {
 		return userDetails;
 	}
 
-	private QueryRunner getQueryRunner() {
-		return new QueryRunner();
-	}
-	
 	/**
 	 * 是否超级用户
 	 * @param userAccount
@@ -178,6 +193,36 @@ public class SecurityManagerImpl implements SecurityManager {
 
 	public void setConfig(JdbcSecurityConfig config) {
 		this.config = config;
+	}
+	
+	private void closeConnection(Connection conn) {
+		if (conn != null) {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				LOGGER.info(e.getMessage());
+			}
+		}
+	}
+
+	private void closeStatement(PreparedStatement pstmt) {
+		if (pstmt != null) {
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				LOGGER.info(e.getMessage());
+			}
+		}
+	}
+
+	private void closeResultSet(ResultSet rs) {
+		if (rs != null) {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				LOGGER.info(e.getMessage());
+			}
+		}
 	}
 	
 }
