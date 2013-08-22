@@ -11,6 +11,26 @@
     <url>http://115.28.1.104/projects/koala</url>
     <description />
     
+    <developers>
+    	<developer>
+    		<id>yyang</id>
+    		<name>Yu Yang</name>
+    		<email>gdyangyu@gmail.com</email>
+    		<roles>
+    			<role>Architect</role>
+    			<role>Product Manager</role>
+    		</roles>
+    	</developer>
+    	<developer>
+    		<id>lingen.liu</id>
+    		<name>Lin Liu</name>
+    		<email>lingen.liu@gmail.com</email>
+    		<roles>
+    			<role>Project Manager</role>
+    		</roles>
+    	</developer>
+    </developers>
+    
     <scm>
     	<connection>scm:git:http://git.oschina.net/openkoala/koala.git</connection>
     	<developerConnection>scm:git:git@git.oschina.net:openkoala/koala.git</developerConnection>
