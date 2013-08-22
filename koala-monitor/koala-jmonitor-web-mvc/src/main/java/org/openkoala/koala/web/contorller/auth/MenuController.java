@@ -9,16 +9,15 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.validation.Valid;
+import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts2.ServletActionContext;
 import org.openkoala.auth.application.MenuApplication;
 import org.openkoala.auth.application.ResourceTypeApplication;
 import org.openkoala.auth.application.vo.ResourceVO;
+import org.openkoala.auth.application.vo.RoleVO;
 import org.openkoala.koala.auth.ss3adapter.AuthUserUtil;
 import org.openkoala.koala.auth.ss3adapter.CustomUserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -148,10 +147,10 @@ public class MenuController {
 	 */
 	@ResponseBody
 	@RequestMapping("/getIconNames")
-	public Map<String,Object> getIconNames() {
+	public Map<String,Object> getIconNames(HttpServletRequest request) {
 		Map<String, Object> dataMap = new HashMap<String,Object>();
 		Collection<String> filenames = new ArrayList<String>();
-		String realPath = ServletActionContext.getServletContext().getRealPath("/images/icons/menu");
+		String realPath = request.getSession().getServletContext().getRealPath("/images/icons/menu");
 		File iconFiles = new File(realPath);
 		File[] acceptFiles = getAcceptFiles(iconFiles);
 		for (File iconFile : acceptFiles) {
@@ -173,6 +172,17 @@ public class MenuController {
 		} else {
 			all = this.menuApplication.findAllMenuByUser(AuthUserUtil.getLoginUserName());
 		}
+		dataMap.put("data", all);
+		return dataMap;
+	}
+
+	@ResponseBody
+	@RequestMapping("/findMenuTreeSelectItemByRole")
+	public Map<String,Object> findMenuTreeSelectItemByRole(Long roleId) {
+		Map<String, Object> dataMap = new HashMap<String,Object>();
+		RoleVO roleVO = new RoleVO();
+		roleVO.setId(roleId);
+		List<ResourceVO> all = this.menuApplication.findAllTreeSelectItemByRole(roleVO);
 		dataMap.put("data", all);
 		return dataMap;
 	}

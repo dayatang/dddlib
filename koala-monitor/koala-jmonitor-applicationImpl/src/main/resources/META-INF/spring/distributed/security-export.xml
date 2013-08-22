@@ -39,17 +39,7 @@
 		<property name="entityManagerFactory" ref="km_entityManagerFactory" />
 	</bean>
 	
-	<!--拦截器事务 -->
-    <tx:advice id="ss_txAdvice" transaction-manager="transactionManager_security">
-		<tx:attributes>
-			<tx:method name="*" propagation="REQUIRED" />
-		</tx:attributes>
-	</tx:advice>
-	<aop:config>
-		<aop:pointcut id="ss_pointcut"
-			expression="execution(* org.openkoala.application.impl.*ApplicationImpl.*(..))" />
-		<aop:advisor advice-ref="ss_txAdvice" pointcut-ref="ss_pointcut" />
-	</aop:config>
+	<tx:annotation-driven transaction-manager="transactionManager_security" />
 	
 	<jpa:repositories base-package="org.openkoala.koala"
 		entity-manager-factory-ref="km_entityManagerFactory"
