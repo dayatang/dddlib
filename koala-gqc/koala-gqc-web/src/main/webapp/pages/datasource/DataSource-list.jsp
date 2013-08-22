@@ -36,8 +36,6 @@ PageLoader = {
           { display: 'password', name: 'password',editor: { type: 'text' }},   
           { display: '操作', isSort: false, width: 100, render: function (rowdata, rowindex, value)
             {
-                //var h = "<a href='javascript:openDetailsPage(" + rowdata.id + ")'><font color='blue'>测试连接</font></a> ";
-                //return h;
                 var button = "<input type='button' class='btn-normal' style='height:25px;' onclick='openDetailsPage(" + rowdata.id + ")' value='测试连接'/>";
                 return button;
             } 
@@ -59,7 +57,7 @@ PageLoader = {
 	 g.toggleCol("id",false);//隐藏id列
 	 return g;
  }
-}
+};
 
 
 //查询方法
@@ -107,14 +105,13 @@ function itemclick(item)
 function openDetailsPage(id){
 	var url = "<%=contextPath %>/dataSource/checkDataSourceById.koala?id="+id;
 	Koala.ajax({
-		//async:true,
-		//type : "POST",
 		url:url,
-		//data:data,
 		dataType:'json',
 		success: function(json){
 			if(json && json.result){
-			 alert(json.result);
+			 	alert(json.result);
+			}else{
+				alert(json.error);
 			}
 		}
 	});
@@ -181,11 +178,17 @@ function deleteAction()
  		url: "<%=contextPath %>/dataSource/delete.koala",
  		data:data,
  		dataType:'json',
- 		success: function(data, textStatus){
-  			 gridManager.deleteSelectedRow();
-  			 gridManager.loadData();
+ 		success: function(json){
+			if(json && json.result){
+				 if(json.result == "success"){
+		  			 gridManager.deleteSelectedRow();
+		  			 gridManager.loadData();
+				 }else{
+					 alert(json.result);
+				 }
+			}
  		}
- 		});
+ 	});
 }
 
 </script>
