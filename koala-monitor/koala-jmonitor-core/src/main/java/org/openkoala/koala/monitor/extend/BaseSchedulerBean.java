@@ -15,8 +15,6 @@
  */
 package org.openkoala.koala.monitor.extend;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
@@ -58,8 +56,6 @@ import com.dayatang.domain.InstanceFactory;
 public abstract class BaseSchedulerBean {
     private static final Logger logger = LoggerFactory.getLogger(BaseSchedulerBean.class);
 
-    protected static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    
     protected String triggerName;//
 
     protected String schedulerName;//

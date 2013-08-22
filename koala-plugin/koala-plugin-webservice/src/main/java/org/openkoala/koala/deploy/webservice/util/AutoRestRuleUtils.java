@@ -214,11 +214,9 @@ public class AutoRestRuleUtils {
 	public static String generateUriPathByParameType(ParamType paramType, MethodDeclaration method) {
 		String result = method.getName() + "/";
 		List<Parameter> parameters = method.getParameters();
-		if (parameters != null) {
-			if (paramType == ParamType.PATH_PARAM) {
-				for (Parameter parameter : parameters) {
-					result = result + "{" + parameter.getId().getName() + "}/";
-				}
+		if (parameters != null && paramType == ParamType.PATH_PARAM) {
+			for (Parameter parameter : parameters) {
+				result = result + "{" + parameter.getId().getName() + "}/";
 			}
 		}
 		

@@ -53,22 +53,22 @@ public class ServerStatusCollectorTask extends BaseMonitorTask {
 	public final static String MEM_INFO = "MEMORY";
 	public final static String NET_INFO = "NETWORK";
 	
-	private static int checkCountEveryHour = 0;//每小时检测次数
+	private int checkCountEveryHour = 0;//每小时检测次数
 	
-	private static List<String> collectTypes = new ArrayList<String>();
+	private List<String> collectTypes = new ArrayList<String>();
 	
 	//每小时内存使用汇总情况
-	private static List<Double> memUsageEveryHour = null;
+	private List<Double> memUsageEveryHour = null;
 	
 	//每小时CPU使用汇总情况（多块）
-	private static Map<String, List<Double>> cpuUsageEveryHour = null;
+	private Map<String, List<Double>> cpuUsageEveryHour = null;
 	
 	//磁盘使用汇总情况（多块）<磁盘名,<总容量，已使用量，读速率，写速率>>
-	private static Map<String, List<Double>> diskUsageEveryHour = null;
-	
+	private Map<String, List<Double>> diskUsageEveryHour = null;
+
 	public ServerStatusCollectorTask(TaskDef taskDef) {
 		String options = taskDef.getProperties().get("collectTypes");
-		this.taskPeriod = taskDef.getPeriod() * 1000 * 1000;//分 -->毫秒
+		this.taskPeriod = (long)taskDef.getPeriod() * 1000L * 1000L;//分 -->毫秒
 		if(options == null)return;
 		String[] optArray = options.split(";");
 		for (String opt : optArray) {
@@ -146,7 +146,7 @@ public class ServerStatusCollectorTask extends BaseMonitorTask {
 	 * 获取服务器状态信息
 	 * @return
 	 */
-	public static Map<String, List<ChartDataModel>> getServerStatusInfos(){
+	public Map<String, List<ChartDataModel>> getServerStatusInfos(){
 		int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
 		List<ChartDataModel> tmpList = null;
 		ChartDataModel model = null;
@@ -187,28 +187,25 @@ public class ServerStatusCollectorTask extends BaseMonitorTask {
 		return map;
 	}
 	
-	/**
-	 * 获取服务器信息JSON格式
-	 * @return
-	 */
-	public static String getServerStatusInfosAsJson(){
-		return JSON.toJSONString(getServerStatusInfos());
-	}
 	
-	private static void initDatas(){
+	/**
+	 * 初始化数据
+	 */
+	private void initDatas(){
 		memUsageEveryHour = new ArrayList<Double>();
 		for (Double i = 0d; i < 24; i++) {
 			memUsageEveryHour.add(i);
 		}
-		
 		cpuUsageEveryHour = new HashMap<String, List<Double>>();
 		diskUsageEveryHour = new HashMap<String, List<Double>>();
 	}
 	
-	public static void main(String[] args) {
-		System.out.println(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
-
-        double xx = 23.45666+ 22.5;
-        System.out.println((double)111111);
+	/**
+	 * 获取服务器信息JSON格式
+	 * @return
+	 */
+	public String getDatas(){
+		return JSON.toJSONString(getServerStatusInfos());
 	}
+	
 }

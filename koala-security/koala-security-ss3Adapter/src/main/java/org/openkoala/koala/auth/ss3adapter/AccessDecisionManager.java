@@ -21,8 +21,6 @@ import com.dayatang.domain.InstanceFactory;
 // @Component("accessDecisionManager")
 public class AccessDecisionManager implements org.springframework.security.access.AccessDecisionManager {
 
-	// org.apache.commons.logging.Log log =
-	// LogFactory.getLog(AccessDecisionManager.class);
 	/**
 	 * authentication用户认证后 存有用户的所有权限 configAttributes访问所需要的权限 若无权则抛出异常
 	 */

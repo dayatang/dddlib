@@ -270,4 +270,13 @@ public class RuntimeContext implements Context {
 		if(def == null)return false;
 		return def.isActive();
 	}
+	
+	/**
+	 * 获取指定监控任务
+	 * @param taskKey
+	 * @return
+	 */
+	public MonitorTask getMonitorTask(String taskKey) {
+		return _monitorTasks.get(taskKey);
+	}
 }

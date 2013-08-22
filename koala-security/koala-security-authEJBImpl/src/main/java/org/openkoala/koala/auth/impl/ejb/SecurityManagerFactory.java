@@ -6,7 +6,11 @@ package org.openkoala.koala.auth.impl.ejb;
  * 2013-7-2 上午11:53:26
  *
  */
-public class SecurityManagerFactory {
+public final class SecurityManagerFactory {
+	
+	private SecurityManagerFactory() {
+		
+	}
 
 	/**
 	 * 获取SecurityManager的实例

@@ -24,69 +24,70 @@ public class ZipAndUnzip {
      */  
     private void unZip(File file,String outputDir) throws IOException {
         org.apache.tools.zip.ZipFile zipFile = null; 
-        try {  
+        try {
             zipFile = new org.apache.tools.zip.ZipFile(file.getPath());
             
             createDirectory(outputDir,null);//创建输出目录  
        
             Enumeration<?> enums = zipFile.getEntries();  
               
-            while(enums.hasMoreElements()){  
+            while (enums.hasMoreElements()) {
                   
                 ZipEntry entry = (ZipEntry) enums.nextElement();  
                 System.out.println(zipFile.getEncoding());
                 System.out.println("解压." +  entry.getName());  
                   
-                if(entry.isDirectory()){//是目录  
+                if (entry.isDirectory()) {//是目录  
                       
-                    createDirectory(outputDir,entry.getName());//创建空目录  
+                    createDirectory(outputDir, entry.getName());//创建空目录  
                       
-                }else{//是文件  
+                } else {//是文件  
                       
                     File tmpFile = new File(outputDir + "/" + entry.getName());  
                       
-                    createDirectory(tmpFile.getParent() + "/",null);//创建输出目录  
+                    createDirectory(tmpFile.getParent() + "/", null);//创建输出目录  
                       
                     InputStream in = null;  
                       
                     OutputStream out = null; 
                     try{  
-                        in = zipFile.getInputStream(entry);;  
+                        in = zipFile.getInputStream(entry);
                         out = new FileOutputStream(tmpFile);  
                           
                         int length = 0;  
                           
                         byte[] b = new byte[2048];  
                           
-                        while((length = in.read(b)) != -1){  
+                        while ((length = in.read(b)) != -1) {  
                             out.write(b, 0, length);  
-                        }  
+                        }
                       
-                    }catch(IOException ex){  
+                    } catch (IOException ex) {  
                         throw ex;  
-                    }finally{  
-                        if(in!=null)  
-                            in.close();  
-                        if(out!=null)  
-                            out.close();  
+                    } finally {  
+                        if(in!=null) {
+                        	in.close();  
+                        }
+                        if(out!=null) {
+                        	out.close();  
+                        }
                     }  
                       
                 }  
                   
             }  
-              
-        } catch (IOException e) {  
-            throw new IOException("解压缩文件出现异常");  
-        } finally{  
-            try{  
-                if(zipFile != null){  
-                    zipFile.close();  
-                }  
-            }catch(IOException ex){  
-                throw new IOException("关闭zipFile出现异常");  
-            }  
+        } catch (IOException e) {
+            throw new IOException("解压缩文件出现异常");
+        } finally {
+            try {
+                if (zipFile != null) {
+                    zipFile.close();
+                }
+            } catch (IOException ex) {
+                throw new IOException("关闭zipFile出现异常");
+            }
         }
-    }  
+    }
     
     /** 
      * 构建目录 
@@ -95,12 +96,11 @@ public class ZipAndUnzip {
      */  
     public void createDirectory(String outputDir,String subDir){
         File file = new File(outputDir);
-        if(!(subDir == null || subDir.trim().equals(""))){//子目录不为空  
-              
+        if (!(subDir == null || subDir.trim().equals(""))) {//子目录不为空  
             file = new File(outputDir + "/" + subDir);  
         }  
-        if(!file.exists()){
-            file.mkdirs();  
+        if (!file.exists()) {
+            file.mkdirs();
         }
     }
 }

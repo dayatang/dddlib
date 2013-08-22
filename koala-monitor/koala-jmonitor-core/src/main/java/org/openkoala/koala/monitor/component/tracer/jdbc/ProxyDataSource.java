@@ -22,17 +22,14 @@ public class ProxyDataSource implements DataSource {
 	private DataSource outterDataSource;//最外层的
 	private DataSource delegate;
 
-	private ConnectionEventListener[] listeners;
-
 	/**
 	 * 运行轨迹容器
 	 */
 	private transient TraceLiftcycleManager container = null;
 
 	public ProxyDataSource(TraceLiftcycleManager container,
-			DataSource delegate,DataSource outterDataSource, ConnectionEventListener[] listeners) {
+			DataSource delegate,DataSource outterDataSource) {
 		this.container = container;
-		this.listeners = listeners;
 		this.delegate = delegate;
 		this.outterDataSource = outterDataSource;
 	}
@@ -87,7 +84,7 @@ public class ProxyDataSource implements DataSource {
 	 */
 	private Connection getProxy(Connection conn) {
 		if (!(conn instanceof ProxyConnection)) {
-			return new ProxyConnection(container, conn,outterDataSource, listeners);
+			return new ProxyConnection(container, conn,outterDataSource);
 		}
 		return conn;
 	}

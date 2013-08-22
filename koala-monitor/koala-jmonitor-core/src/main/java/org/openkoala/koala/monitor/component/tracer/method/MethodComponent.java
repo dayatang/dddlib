@@ -31,10 +31,6 @@ public class MethodComponent extends AbstractComponent{
 	
     public static String TRACE_TYPE = "METHOD";
 	
-	public void setTraceType(String traceType){
-		TRACE_TYPE = traceType;
-	}
-	
 	/**
 	 * 启动
 	 */

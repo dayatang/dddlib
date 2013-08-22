@@ -109,9 +109,11 @@ public class Trace implements Serializable, Comparable<Trace>{
 	 * 
 	 * @param trace
 	 */
-	public synchronized void addChild(Trace trace) {
+	public void addChild(Trace trace) {
 		if(this.traces == null)this.traces = new ArrayList<Trace>();
-		this.traces.add(trace);
+		synchronized (traces) {
+			this.traces.add(trace);
+		}
 	}
 
 
@@ -128,11 +130,13 @@ public class Trace implements Serializable, Comparable<Trace>{
 	 */
 	public Trace[] getChildTraces() {
 		Trace[] ts = null;
-		if(traces != null){
-			ts = new Trace[traces.size()];
-			traces.toArray(ts);
-		}else{
-			ts = new Trace[0];
+		synchronized (traces) {
+			if(traces != null){
+				ts = new Trace[traces.size()];
+				traces.toArray(ts);
+			}else{
+				ts = new Trace[0];
+			}
 		}
 		return ts;
 	}

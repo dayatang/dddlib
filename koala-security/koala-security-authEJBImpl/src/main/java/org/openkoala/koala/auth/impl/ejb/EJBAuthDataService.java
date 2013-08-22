@@ -23,6 +23,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -52,6 +53,8 @@ import org.openkoala.koala.auth.vo.JdbcCustomUserDetails;
 public class EJBAuthDataService implements AuthDataService {
    
     private JdbcSecurityConfig config = new JdbcSecurityConfig();
+    
+    private static final Logger LOGGER = Logger.getLogger("EJBAuthDataService");
 
     /**
      * 根据用户名，查询出用户
@@ -84,14 +87,14 @@ public class EJBAuthDataService implements AuthDataService {
                 }
                 return sd;
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.info(e.getMessage());
                 return null;
             } finally {
                 try {
                     rs.close();
                     dbmanager.destroy();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    LOGGER.info(e.getMessage());
                 }
             }
         }
@@ -119,14 +122,14 @@ public class EJBAuthDataService implements AuthDataService {
                     ls.add(roleName);
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.info(e.getMessage());
                 return null;
             } finally {
                 try {
                     rs.close();
                     dbmanager.destroy();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    LOGGER.info(e.getMessage());
                 }
             }
             return ls;
@@ -138,14 +141,14 @@ public class EJBAuthDataService implements AuthDataService {
                     ls.add(roleName);
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.info(e.getMessage());
                 return null;
             } finally {
                 try {
                     rs.close();
                     dbmanager.destroy();
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    LOGGER.info(e.getMessage());
                 }
             }
             return ls;
@@ -171,7 +174,7 @@ public class EJBAuthDataService implements AuthDataService {
 				}
 			}
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.info(e.getMessage());
             return null;
         }finally
         {
@@ -179,7 +182,7 @@ public class EJBAuthDataService implements AuthDataService {
                 rs.close();
                 resManager.destroy();
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.info(e.getMessage());
             }
         }
         return result;
@@ -200,7 +203,7 @@ public class EJBAuthDataService implements AuthDataService {
                 atts.add(roleName);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.info(e.getMessage());
             return null;
         }finally
         {
@@ -208,7 +211,7 @@ public class EJBAuthDataService implements AuthDataService {
                 rs.close();
                 dbmanager.destroy();
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.info(e.getMessage());
             }
         }
         return atts;

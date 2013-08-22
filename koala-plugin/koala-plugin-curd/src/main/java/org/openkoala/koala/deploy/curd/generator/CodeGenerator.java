@@ -58,7 +58,7 @@ public class CodeGenerator {
     		newFile.process();
     	}
     	//更新配置文件
-    	CURDConfigUpdate.UpdateDBConfig(entityViewUI.getEntityModel(), project);
+    	CURDConfigUpdate.updateDBConfig(entityViewUI.getEntityModel(), project);
     }
     
     /**
@@ -86,7 +86,7 @@ public class CodeGenerator {
             newFile.process();
         }
         //更新配置文件
-        CURDConfigUpdate.UpdateDBConfig(entityViewUI.getEntityModel(), project);
+        CURDConfigUpdate.updateDBConfig(entityViewUI.getEntityModel(), project);
         
         //MavenExcuter.runMaven(project.getPath());
     }

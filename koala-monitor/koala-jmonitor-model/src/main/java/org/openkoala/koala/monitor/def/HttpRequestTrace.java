@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -58,18 +59,23 @@ public class HttpRequestTrace extends Trace   {
 		}
 		
 		Map map = request.getParameterMap();
-		Iterator it = map.keySet().iterator();
-		while(it.hasNext()){
-			Object key = it.next();
+		
+		Iterator iterator = map.entrySet().iterator();
+		while(iterator.hasNext()){
+			Map.Entry e = (Entry) iterator.next();
+
+			String key = e.getKey().toString();
 			//一些无意义的字段不记录
 			if ("timestamp".equals(key))continue;
-			sb.append(key.toString()).append("=");
-			Object[] vals = (Object[]) map.get(key);
+			sb.append(key).append("=");
+			Object[] vals = (Object[]) e.getValue();
+			
 			for (int i = 0; i < vals.length; i++) {
 				sb.append(vals[i].toString().length()>50 ? vals[i].toString().substring(0,48).concat("...") : vals[i].toString());
 				if(i < vals.length - 1)sb.append(",");
 			}
 			sb.append("&");
+		
 		}
 		if(sb.length()>0){
 			sb.deleteCharAt(sb.length() - 1);

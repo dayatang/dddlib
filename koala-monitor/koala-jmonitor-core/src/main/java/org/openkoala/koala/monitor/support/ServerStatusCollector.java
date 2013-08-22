@@ -205,8 +205,8 @@ public class ServerStatusCollector {
 						long timePeriod = (System.currentTimeMillis() - initTime)/1000;
 						long origRead = Long.parseLong(val.split("\\|")[0]);
 						long origWrite = Long.parseLong(val.split("\\|")[1]);
-						disk.setDiskReadRate((usage.getDiskReadBytes() - origRead)/timePeriod);
-						disk.setDiskWriteRate((usage.getDiskWriteBytes() - origWrite)/timePeriod);
+						disk.setDiskReadRate((double)(usage.getDiskReadBytes() - origRead)/timePeriod);
+						disk.setDiskWriteRate((double)(usage.getDiskWriteBytes() - origWrite)/timePeriod);
 					}
 					
 					status.getDiskInfos().add(disk);
@@ -244,7 +244,7 @@ public class ServerStatusCollector {
     }
     
     public static void main(String[] args) {
-    	resetClasspath();
+    	/*resetClasspath();
 			ServerStatusVo status = new ServerStatusVo();
 	    	Sigar sigar = null;
 			try {
@@ -254,6 +254,9 @@ public class ServerStatusCollector {
 	            System.out.println(status);
 		} catch (Exception e) {
 			// TODO: handle exception
-		}
+		}*/
+    	
+    	double d = (double)(1879455-43456)/3467;
+    	System.out.println(d);
 	}
 }

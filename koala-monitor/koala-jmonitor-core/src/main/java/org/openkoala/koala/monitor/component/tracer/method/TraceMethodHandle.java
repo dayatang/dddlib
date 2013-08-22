@@ -48,7 +48,7 @@ public class TraceMethodHandle implements MethodInjectHandler {
 					getContainer().activateTrace(MethodComponent.TRACE_TYPE,trace);
 				}
 				
-			} catch (Throwable e) {
+			} catch (Exception e) {
 				doTrace = false;
 				//log.warn(e.getMessage());
 			}
@@ -66,7 +66,7 @@ public class TraceMethodHandle implements MethodInjectHandler {
 			if(doTrace){
 				try {
 					getContainer().inactivateTrace(MethodComponent.TRACE_TYPE,trace);
-				} catch (Throwable e) {
+				} catch (Exception e) {
 					log.warn("["+method.getName() + "]监控代码未正常结束");
 				}
 			}

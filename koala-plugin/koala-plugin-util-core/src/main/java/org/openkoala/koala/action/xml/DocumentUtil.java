@@ -37,6 +37,9 @@ public class DocumentUtil {
 	
 	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(DocumentUtil.class);
 
+	private DocumentUtil() {
+	}
+	
 	/**
 	 * 将一个修改后的Document写入到指定的XMLPATH中去
 	 * 
@@ -55,7 +58,7 @@ public class DocumentUtil {
 			// 设置缩进空格数
 			format.setIndentSize(4);
 			writer = new XMLWriter(new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(xmlPath),ENCODING)), format);
+					new FileOutputStream(xmlPath), ENCODING)), format);
 			writer.write(document);
 			writer.flush();
 		} catch (IOException e) {
@@ -110,10 +113,10 @@ public class DocumentUtil {
 							break;
 						}
 					}
-					InputStreamReader sr = new InputStreamReader(in,ENCODING); 
+					InputStreamReader sr = new InputStreamReader(in, ENCODING); 
 					return reader.read(sr);
 				} catch (Exception e) {
-					logger.error(xmlPath+":解析出错");
+					logger.error(xmlPath + ":解析出错");
 					e.printStackTrace();
 				}
 			}
@@ -123,7 +126,7 @@ public class DocumentUtil {
 		}
 
 		if (!file.exists()) {
-			throw new KoalaException("文件不存在:"+xmlPath);
+			throw new KoalaException("文件不存在:" + xmlPath);
 		}
 
 		try {

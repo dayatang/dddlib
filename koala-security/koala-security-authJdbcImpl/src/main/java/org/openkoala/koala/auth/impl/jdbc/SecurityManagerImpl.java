@@ -6,13 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
+import java.util.logging.Logger;
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
@@ -29,6 +28,8 @@ public class SecurityManagerImpl implements SecurityManager {
 	
 	private JdbcSecurityConfig config;
 	
+	private static final Logger LOGGER = Logger.getLogger("SecurityManagerImpl");
+	
 	/**
 	 * 获取数据库连接
 	 * @return
@@ -38,7 +39,7 @@ public class SecurityManagerImpl implements SecurityManager {
 		try {
 			return DriverManager.getConnection(config.getDburl(), config.getDbuser(), config.getDbpassword());
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info("Can not receive connection.");
 		}
 		return null;
 	}
@@ -76,7 +77,7 @@ public class SecurityManagerImpl implements SecurityManager {
 				
 			}, userAccount, new Timestamp(System.currentTimeMillis()));
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		} finally {
 			DbUtils.closeQuietly(conn);
 		}
@@ -102,7 +103,7 @@ public class SecurityManagerImpl implements SecurityManager {
 				}
 			}, new Timestamp(System.currentTimeMillis()));
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		} finally {
 			DbUtils.closeQuietly(conn);
 		}
@@ -116,20 +117,16 @@ public class SecurityManagerImpl implements SecurityManager {
 		if (userAccount.equals(config.getAdminAccount())) {
 			try {
 				return getQueryRunner().query(conn, config.getQueryAllAuth(), new ResultSetHandler<List<String>>() {
-					@SuppressWarnings({ "serial", "unchecked" })
 					public List<String> handle(final ResultSet rs) throws SQLException {
+						List<String> results = new ArrayList<String>();
 						while (rs.next()) {
-							return new ArrayList<String>() {
-								{
-									add(rs.getString("ROLE_NAME"));
-								}
-							};
+							results.add(rs.getString("ROLE_NAME"));
 						}
-						return Collections.EMPTY_LIST;
+						return results;
 					}
 				}, new Timestamp(System.currentTimeMillis()));
 			} catch (SQLException e) {
-				e.printStackTrace();
+				LOGGER.info(e.getMessage());
 			} finally {
 				DbUtils.closeQuietly(conn);
 			}
@@ -137,20 +134,16 @@ public class SecurityManagerImpl implements SecurityManager {
 		
 		try {
 			return getQueryRunner().query(conn, config.getQueryUserAuth(), new ResultSetHandler<List<String>>() {
-				@SuppressWarnings({ "serial", "unchecked" })
 				public List<String> handle(final ResultSet rs) throws SQLException {
+					List<String> results = new ArrayList<String>();
 					while (rs.next()) {
-						return new ArrayList<String>() {
-							{
-								add(rs.getString(1));
-							}
-						};
+						results.add(rs.getString(1));
 					}
-					return Collections.EMPTY_LIST;
+					return results;
 				}
 			}, userAccount, new Timestamp(System.currentTimeMillis()));
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		} finally {
 			DbUtils.closeQuietly(conn);
 		}

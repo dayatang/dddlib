@@ -144,7 +144,7 @@ public class MonitorWarnInfo extends KmBaseEntity {
 		if (getClass() != obj.getClass())
 			return false;
 		MonitorWarnInfo other = (MonitorWarnInfo) obj;
-		if (getId() != other.getId())
+		if (getId().equals(other.getId()))
 			return false;
 		return true;
 	}

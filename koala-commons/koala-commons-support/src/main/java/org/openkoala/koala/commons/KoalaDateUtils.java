@@ -61,8 +61,9 @@ public class KoalaDateUtils {
 	 */
 	public static Date parseDate(String dateStr) {
 		SimpleDateFormat format = null;
-		if (StringUtils.isBlank(dateStr))
+		if (StringUtils.isBlank(dateStr)) {
 			return null;
+		}
 
 		String _dateStr = dateStr.trim();
 		try {
@@ -117,8 +118,9 @@ public class KoalaDateUtils {
 	public static Date parseDate(String dateStr, String pattern) {
 		try {
 			SimpleDateFormat format = null;
-			if (StringUtils.isBlank(dateStr))
+			if (StringUtils.isBlank(dateStr)) {
 				return null;
+			}
 
 			if (StringUtils.isNotBlank(pattern)) {
 				format = new SimpleDateFormat(pattern);
@@ -187,7 +189,7 @@ public class KoalaDateUtils {
         SimpleDateFormat format = new SimpleDateFormat("ddMMMyy", Locale.ENGLISH);
         return format.format(date).toUpperCase();
     }
-    
+
 	 /**
      * 格式化日期格式为：ddMMMyy<br>
      * generate by: vakin jiang
@@ -264,7 +266,7 @@ public class KoalaDateUtils {
 	 * @return
 	 */
 	public static Date currentGMTTime() {
-		return DateUtils.addHours(Calendar.getInstance(Locale.CHINA).getTime(),-8);
+		return DateUtils.addHours(Calendar.getInstance(Locale.CHINA).getTime(), -8);
 	}
 
 }

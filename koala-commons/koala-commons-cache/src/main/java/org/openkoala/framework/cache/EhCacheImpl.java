@@ -24,11 +24,6 @@ public class EhCacheImpl implements com.dayatang.cache.Cache  {
 	private net.sf.ehcache.Cache cache;
 	
 	/**
-	 * cahce的名称
-	 */
-	private String name;
-
-	/**
 	 * 从缓存中获取一个KEY值
 	 */
 	public Object get(String key) {
@@ -106,7 +101,6 @@ public class EhCacheImpl implements com.dayatang.cache.Cache  {
 	public EhCacheImpl(String name, int maxElementsInMemory, boolean overflowToDisk, boolean eternal, long timeToLiveSeconds, long timeToIdleSeconds)
 	{
 		if (!CacheManager.getInstance().cacheExists(name)) {
-			this.name = name;
 			cache = new Cache(name, maxElementsInMemory, overflowToDisk, eternal,
 					timeToLiveSeconds, timeToIdleSeconds);
 			CacheManager.getInstance().addCache(cache);

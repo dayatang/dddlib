@@ -34,10 +34,6 @@ public class JdbcComponent extends AbstractComponent {
 	
     public static String TRACE_TYPE = "JDBC";
 	
-	public void setTraceType(String traceType){
-		TRACE_TYPE = traceType;
-	}
-
 	public void startup(ComponentContext context) {
 		componentContext = context;
 		
@@ -73,13 +69,11 @@ public class JdbcComponent extends AbstractComponent {
 			try {
 				TraceLiftcycleManager container = componentContext.getContainer();
 
-
 				// inject jdbcdriver to delegate connection from local pool or
 				// remote pool.
-				enhancer.createClass(className, new JdbcDriverInjectHandle(
-						container, null), true);
+				enhancer.createClass(className, new JdbcDriverInjectHandle(container), true);
 
-			} catch (Throwable e) {
+			} catch (Exception e) {
 				log.warn("对数据库驱动：" + className + "的监听部署失败，不过这并不影响系统的运行。错误原因：\n["
 						+ e.getClass().getName() + "-->"+ e.getMessage() + "]");
 
