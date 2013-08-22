@@ -110,8 +110,8 @@
 	</servlet-mapping>
 
 	<welcome-file-list>
-	    <welcome-file>index.koala</welcome-file>
-		<welcome-file>/login.jsp</welcome-file>
+	    <welcome-file>/index.koala</welcome-file>
+		<welcome-file>/login.koala</welcome-file>
 	</welcome-file-list>
 
 

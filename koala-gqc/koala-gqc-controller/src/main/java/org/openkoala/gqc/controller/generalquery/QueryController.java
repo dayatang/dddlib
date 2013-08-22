@@ -1,14 +1,20 @@
 package org.openkoala.gqc.controller.generalquery;
 
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.openkoala.gqc.application.GqcApplication;
+import org.openkoala.gqc.controller.expression.CurrentTimeEvaluator;
+import org.openkoala.gqc.controller.expression.ExpEvaluator;
+import org.openkoala.gqc.controller.expression.UserNameEvaluator;
 import org.openkoala.gqc.core.domain.DynamicQueryCondition;
 import org.openkoala.gqc.core.domain.GeneralQuery;
+import org.openkoala.gqc.core.domain.PreQueryCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -65,6 +71,22 @@ public class QueryController {
 		String startValueTag = "Start@";
 		String endValueTag = "End@";
 		
+		for (PreQueryCondition preQueryCondition : generalQuery.getPreQueryConditions()) {
+			String expression = preQueryCondition.getValue();
+			if (expression.contains("#{") && expression.contains("}")) {
+				expression = expression.substring(expression.indexOf("#{") + 2, expression.lastIndexOf("}"));
+				if ("username".equals(expression)) {
+					ExpEvaluator evaluator = new UserNameEvaluator();
+					preQueryCondition.setValue((String) evaluator.eval("username"));
+				}
+				
+				if ("now".equals(expression)) {
+					ExpEvaluator evaluator = new CurrentTimeEvaluator();
+					preQueryCondition.setValue(new SimpleDateFormat("yyyy-MM-dd").format((Date) evaluator.eval("now")));
+				}
+			}
+		}
+		
 		for (String key : params.keySet()) {
 			if (!"page".equals(key) && !"pagesize".equals(key)) {
 				DynamicQueryCondition dqc = null;
@@ -92,7 +114,7 @@ public class QueryController {
 				}
 			}
 		}
-
+		
 		Page<Map<String, Object>> data = generalQuery.pagingQueryPage(page, pagesize);
 
 		result.put("Rows", data.getResult());
