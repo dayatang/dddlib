@@ -7,6 +7,10 @@ public class SpringIocUtils {
 
 	private static final ThreadLocal<SpringInstanceProvider> providerHolder = new ThreadLocal<SpringInstanceProvider>();
 
+	private SpringIocUtils() {
+		super();
+	}
+
 	public static void initInstanceProvider(Class<?>... annotatedClasses) {
 		InstanceFactory.setInstanceProvider(getInstanceProvider(annotatedClasses));
 	}

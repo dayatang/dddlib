@@ -131,8 +131,7 @@ public class QueryChannelServiceHibernate implements QueryChannelService {
 				strInCount = strMayBeWithAs;
 			}
 
-			// 除去()，因为HQL不支持 select count(distinct (...))，但支持select
-			// count(distinct ...)
+			// 除去()，因为HQL不支持 select count(distinct (...))，但支持select count(distinct ...)
 			strInCount = strInCount.replace("(", " ");
 			strInCount = strInCount.replace(")", " ");
 
@@ -277,6 +276,6 @@ public class QueryChannelServiceHibernate implements QueryChannelService {
 
 	@Override
 	public <T extends Entity> Page<T> queryPagedByQuerySettings(QuerySettings<T> settings, int currentPage, int pageSize) {
-		throw new RuntimeException("还没有实现。");
+		throw new UnsupportedOperationException("还没有实现。");
 	}
 }

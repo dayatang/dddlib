@@ -110,13 +110,11 @@ public abstract class AbstractI18nService extends I18nServiceSupport
 	 * @see #setUseCodeAsDefaultMessage
 	 */
 	protected String getMessageInternal(String code, Object[] args,
-			Locale locale) {
+			Locale theLocale) {
 		if (code == null) {
 			return null;
 		}
-		if (locale == null) {
-			locale = Locale.getDefault();
-		}
+		Locale locale = theLocale == null ? Locale.getDefault() : theLocale;
 		Object[] argsToUse = args;
 
 		if (!isAlwaysUseMessageFormat()

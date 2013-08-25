@@ -80,8 +80,4 @@ public class BeanUtils {
 		return results;
 	}
 
-	private BeanUtils(Object target) {
-	}
-
-
 }

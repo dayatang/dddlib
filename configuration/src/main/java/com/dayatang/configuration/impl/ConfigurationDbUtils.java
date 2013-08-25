@@ -9,6 +9,7 @@ import java.util.Set;
 
 import javax.sql.DataSource;
 
+import com.dayatang.configuration.ConfigurationException;
 import com.dayatang.utils.Slf4jLogger;
 
 public class ConfigurationDbUtils {
@@ -74,14 +75,14 @@ public class ConfigurationDbUtils {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-			throw new RuntimeException(e);
+			throw new ConfigurationException(e);
 		} finally {
 			if (rs != null) {
 				try {
 					rs.close();
 				} catch (SQLException e) {
 					LOGGER.error("Could not close Resultset!");
-					throw new RuntimeException(e);
+					throw new ConfigurationException(e);
 				}
 			}
 			if (queryStmt != null) {
@@ -89,7 +90,7 @@ public class ConfigurationDbUtils {
 					queryStmt.close();
 				} catch (SQLException e) {
 					LOGGER.error("Could not close query statement!");
-					throw new RuntimeException(e);
+					throw new ConfigurationException(e);
 				}
 			}
 			if (updateStmt != null) {
@@ -97,7 +98,7 @@ public class ConfigurationDbUtils {
 					updateStmt.close();
 				} catch (SQLException e) {
 					LOGGER.error("Could not close update statement!");
-					throw new RuntimeException(e);
+					throw new ConfigurationException(e);
 				}
 			}
 			if (insertStmt != null) {
@@ -105,7 +106,7 @@ public class ConfigurationDbUtils {
 					insertStmt.close();
 				} catch (SQLException e) {
 					LOGGER.error("Could not close insert statement!");
-					throw new RuntimeException(e);
+					throw new ConfigurationException(e);
 				}
 			}
 			if (connection != null) {
@@ -113,7 +114,7 @@ public class ConfigurationDbUtils {
 					connection.close();
 				} catch (SQLException e) {
 					LOGGER.error("Could not close connection!");
-					throw new RuntimeException(e);
+					throw new ConfigurationException(e);
 				}
 			}
 		}
@@ -134,14 +135,14 @@ public class ConfigurationDbUtils {
 			}
 			return results;
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			throw new ConfigurationException(e);
 		} finally {
 			if (rs != null) {
 				try {
 					rs.close();
 				} catch (SQLException e) {
 					LOGGER.error("Could not close Resultset!");
-					throw new RuntimeException(e);
+					throw new ConfigurationException(e);
 				}
 			}
 			if (stmt != null) {
@@ -149,7 +150,7 @@ public class ConfigurationDbUtils {
 					stmt.close();
 				} catch (SQLException e) {
 					LOGGER.error("Could not close query statement!");
-					throw new RuntimeException(e);
+					throw new ConfigurationException(e);
 				}
 			}
 			if (connection != null) {
@@ -157,7 +158,7 @@ public class ConfigurationDbUtils {
 					connection.close();
 				} catch (SQLException e) {
 					LOGGER.error("Could not close connection!");
-					throw new RuntimeException(e);
+					throw new ConfigurationException(e);
 				}
 			}
 		}
@@ -171,14 +172,14 @@ public class ConfigurationDbUtils {
 			stmt = connection.prepareStatement(sql);
 			return stmt.executeUpdate();
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			throw new ConfigurationException(e);
 		} finally {
 			if (stmt != null) {
 				try {
 					stmt.close();
 				} catch (SQLException e) {
 					LOGGER.error("Could not close query statement!");
-					throw new RuntimeException(e);
+					throw new ConfigurationException(e);
 				}
 			}
 			if (connection != null) {
@@ -186,7 +187,7 @@ public class ConfigurationDbUtils {
 					connection.close();
 				} catch (SQLException e) {
 					LOGGER.error("Could not close connection!");
-					throw new RuntimeException(e);
+					throw new ConfigurationException(e);
 				}
 			}
 		}

@@ -15,6 +15,10 @@ import org.apache.commons.lang3.StringUtils;
  */
 @SuppressWarnings("rawtypes")
 public class Assert {
+	private Assert() {
+		super();
+	}
+
 	/**
 	 * Assert a boolean expression, throwing
 	 * <code>IllegalArgumentException</code> if the test result is

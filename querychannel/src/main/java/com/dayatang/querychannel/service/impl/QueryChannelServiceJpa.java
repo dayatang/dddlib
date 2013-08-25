@@ -143,8 +143,7 @@ public class QueryChannelServiceJpa implements QueryChannelService {
 				strInCount = strMayBeWithAs;
 			}
 
-			// 除去()，因为hql不支持 select count(distinct (...))，但支持select
-			// count(distinct ...)
+			// 除去()，因为hql不支持 select count(distinct (...))，但支持select count(distinct ...)
 			strInCount = strInCount.replace("(", " ");
 			strInCount = strInCount.replace(")", " ");
 
@@ -240,35 +239,8 @@ public class QueryChannelServiceJpa implements QueryChannelService {
 	public List<Map<String, Object>> queryMapResult(final String queryStr,
 			final Object[] params) {
 
-		throw new RuntimeException("not implemented yet!");
+		throw new UnsupportedOperationException("not implemented yet!");
 
-		// return getJpaTemplate().executeFind(new JpaCallback() {
-		//
-		// public Object doInJpa(EntityManager em) throws PersistenceException {
-		//
-		// Session session = (Session) em.getDelegate();
-
-		// 如果不是托管，pojo
-		// if (!true) {
-		// session = (Session) em.getDelegate();
-		// } else {
-		// // 如果是托管
-		// EntityManagerImpl hibernateImpl = (EntityManagerImpl) em
-		// .getDelegate();
-		// session = hibernateImpl.getSession();
-		// }
-
-		// org.hibernate.Query query = session.createQuery(queryStr);
-		// if (params != null) {
-		// for (int i = 0; i < params.length; i++) {
-		// query.setParameter(i, params[i]);
-		// }
-		// }
-		// query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP).list();
-		//
-		// return query.list();
-		// }
-		// });
 	}
 
 	@Override
@@ -296,21 +268,21 @@ public class QueryChannelServiceJpa implements QueryChannelService {
 	public <T> Page<T> queryPagedResultByNamedQuery(final String queryName,
 			final Object[] params, final long firstRow, final int pageSize) {
 
-		throw new RuntimeException("not implemented yet!");
+		throw new UnsupportedOperationException("not implemented yet!");
 	}
 
 	@Override
 	public <T> Page<T> queryPagedResultByPageNoAndNamedQuery(String queryName,
 			Object[] params, int currentPage, int pageSize) {
 
-		throw new RuntimeException("not implemented yet!");
+		throw new UnsupportedOperationException("not implemented yet!");
 	}
 
 	@Override
 	public Page<Map<String, Object>> queryPagedMapResult(final String queryStr,
 			final Object[] params, int currentPage, final int pageSize) {
 
-		throw new RuntimeException("not implemented yet!");
+		throw new UnsupportedOperationException("not implemented yet!");
 	}
 
 	@Override
@@ -318,12 +290,12 @@ public class QueryChannelServiceJpa implements QueryChannelService {
 			final String queryName, final Object[] params, int currentPage,
 			final int pageSize) {
 
-		throw new RuntimeException("not implemented yet!");
+		throw new UnsupportedOperationException("not implemented yet!");
 	}
 
 	@Override
 	public <T extends Entity> Page<T> queryPagedByQuerySettings(
 			QuerySettings<T> settings, int currentPage, int pageSize) {
-		throw new RuntimeException("not implemented yet!");
+		throw new UnsupportedOperationException("not implemented yet!");
 	}
 }

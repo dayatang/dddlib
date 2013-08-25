@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Hashtable;
 import java.util.Properties;
 
+import com.dayatang.configuration.ConfigurationException;
 import com.dayatang.utils.Slf4jLogger;
 
 /**
@@ -62,13 +63,13 @@ public class ConfigurationUrlImpl extends AbstractConfiguration {
 			hTable = pfu.rectifyProperties(props);
 			LOGGER.debug("Load configuration from {} at {}", url, new Date());
 		} catch (IOException e) {
-			throw new RuntimeException("Cannot load config file: " + url, e);
+			throw new ConfigurationException("Cannot load config file: " + url, e);
 		} finally {
 			if (in != null) {
 				try {
 					in.close();
 				} catch (IOException e) {
-					throw new RuntimeException("Cannot close input stream.", e);
+					throw new ConfigurationException("Cannot close input stream.", e);
 				}
 			}
 		}

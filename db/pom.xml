@@ -14,12 +14,12 @@
 	<dependencies>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>dayatang-commons-domain</artifactId>
+			<artifactId>dayatang-commons-utils</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>dayatang-commons-utils</artifactId>
+			<artifactId>dayatang-commons-configuration</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>

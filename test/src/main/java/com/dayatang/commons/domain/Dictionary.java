@@ -185,10 +185,12 @@ public class Dictionary extends AbstractEntity {
 
 	@Override
 	public boolean equals(final Object other) {
-		if (this == other)
+		if (this == other) {
 			return true;
-		if (!(other instanceof Dictionary))
+		}
+		if (!(other instanceof Dictionary)) {
 			return false;
+		}
 		Dictionary that = (Dictionary) other;
 		return new EqualsBuilder().append(code, that.code).append(category, that.getCategory()).isEquals();
 	}

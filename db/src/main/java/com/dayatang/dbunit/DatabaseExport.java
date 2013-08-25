@@ -28,6 +28,10 @@ import com.dayatang.db.PropertiesUtil;
  */
 public class DatabaseExport {
 
+	private DatabaseExport() {
+		super();
+	}
+
 	public static IDatabaseConnection createConnection() throws Exception {
 		// database connection
 		Class.forName(PropertiesUtil.JDBC_DRIVER);

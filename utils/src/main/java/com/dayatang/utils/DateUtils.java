@@ -32,6 +32,10 @@ public class DateUtils {
 	public static final Date MAX_DATE = date(8888, 1, 1);
 	
 
+	private DateUtils() {
+		super();
+	}
+
 	/**
 	 * 根据年月日构建日期对象。注意月份是从1开始计数的，即month为1代表1月份。
 	 * @param year 年

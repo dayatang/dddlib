@@ -1,5 +1,6 @@
 package com.dayatang.db.oracle;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.List;
@@ -88,7 +89,7 @@ public class OracleDBManager extends AbstractDBManager {
 
 		String file = exportFileName(filePath);
 
-		StringBuffer command = getBaseOracleExpSQL(file);
+		StringBuffer command = getBaseOracleExpSQL();
 		command.append(" file=" + file);
 		command.append(" owner=" + username);
 
@@ -119,7 +120,7 @@ public class OracleDBManager extends AbstractDBManager {
 			}
 
 			String file = exportFileName(filePath);
-			StringBuffer command = getBaseOracleExpSQL(file);
+			StringBuffer command = getBaseOracleExpSQL();
 
 			command.append(" tables=(" + tables + ")");
 			command.append(" file=" + file);
@@ -153,7 +154,7 @@ public class OracleDBManager extends AbstractDBManager {
 			}
 
 			String file = exportFileName(filePath);
-			StringBuffer command = getBaseOracleExpSQL(file);
+			StringBuffer command = getBaseOracleExpSQL();
 
 			command.append(" tables=(" + tables + ")");
 			command.append(" file=" + file);
@@ -183,14 +184,11 @@ public class OracleDBManager extends AbstractDBManager {
 		if (filePath.endsWith(".dmp")) {
 			return filePath;
 		}
-
-		if (!filePath.endsWith("/")) {
-			filePath = filePath + "/";
+		String result = filePath;
+		if (!result.endsWith(File.separator)) {
+			result += File.separator;
 		}
-
-		String fileName = DBManagerUtils.generateUniqueName();
-
-		return filePath + fileName + ".dmp";
+		return result + DBManagerUtils.generateUniqueName() + ".dmp";
 	}
 
 	/**
@@ -199,7 +197,7 @@ public class OracleDBManager extends AbstractDBManager {
 	 * @param file
 	 * @return
 	 */
-	private StringBuffer getBaseOracleExpSQL(String file) {
+	private StringBuffer getBaseOracleExpSQL() {
 
 		StringBuffer command = new StringBuffer();
 

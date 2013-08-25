@@ -173,31 +173,6 @@ public class EntityRepositoryJpa implements EntityRepository {
 	@Override
 	public <T extends Entity, E extends T> List<T> findByExample(
 			final E example, final ExampleSettings<T> settings) {
-		// Map<String, Object> propValues = new
-		// EntityUtils(example).getPropValues();
-		// Map<String, Class<?>> propTypes = new
-		// EntityUtils(example).getPropTypes();
-		//
-		// CriteriaBuilder criteriaBuilder =
-		// getEntityManager().getCriteriaBuilder();
-		// CriteriaQuery<E> query = (CriteriaQuery<E>)
-		// criteriaBuilder.createQuery(example.getClass());
-		// Root<E> root = (Root<E>) query.from(example.getClass());
-		// query.distinct(true);
-		// query.select(root);
-		// List<Predicate> predicates = new ArrayList<Predicate>();
-		// for (String prop : propValues.keySet()) {
-		// if (settings.getExcludedProperties().contains(prop)) {
-		// continue;
-		// }
-		// Object value = propValues.get(prop);
-		// if (value != null) {
-		// predicates.add(criteriaBuilder.equal(root.get(prop),
-		// criteriaBuilder.parameter(propTypes.get(prop), value)));
-		// }
-		// }
-		//
-
 		throw new RuntimeException("not implemented yet!");
 	}
 
@@ -348,16 +323,6 @@ public class EntityRepositoryJpa implements EntityRepository {
 				: to);
 		return new DataPage<T>(pageDate, pageIndex, pageSize, resultCount);
 	}
-
-	// private EntityManager getEntityManager() {
-	// try {
-	// return InstanceFactory.getInstance(EntityManager.class);
-	// } catch (IocInstanceNotFoundException e) {
-	// EntityManagerFactory entityManagerFactory =
-	// InstanceFactory.getInstance(EntityManagerFactory.class);
-	// return entityManagerFactory.createEntityManager();
-	// }
-	// }
 
 	@Inject
 	@PersistenceContext

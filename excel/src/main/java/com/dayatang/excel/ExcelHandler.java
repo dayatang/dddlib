@@ -251,7 +251,7 @@ public class ExcelHandler {
 			LOGGER.error(e.getLocalizedMessage());
 			LOGGER.error("Read cell error. Sheet: {}, row: {}, column: {}",
 					new Object[] { cell.getSheet().getSheetName(), cell.getRowIndex(), cell.getColumnIndex() });
-			throw new RuntimeException(e);
+			throw new ExcelException(e);
 		}
 		return null;
 	}
@@ -316,7 +316,7 @@ public class ExcelHandler {
 	private CellStyle getDateStyle(String dateFormat, Workbook workbook) {
 		DataFormat format = workbook.createDataFormat();
 		CellStyle result = workbook.createCellStyle();
-		result.setDataFormat(format.getFormat("yyyy-MM-dd"));
+		result.setDataFormat(format.getFormat(dateFormat));
 		return result;
 	}
 
@@ -324,7 +324,7 @@ public class ExcelHandler {
 		try {
 			workbook.write(out);
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			throw new ExcelException(e);
 		}
 	}
 
@@ -334,7 +334,7 @@ public class ExcelHandler {
 			out = new FileOutputStream(file);
 			workbook.write(out);
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			throw new ExcelException(e);
 		} finally {
 			if (out != null) {
 				try {
