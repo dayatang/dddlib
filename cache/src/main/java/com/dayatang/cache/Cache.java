@@ -21,7 +21,7 @@ public interface Cache {
 	 *            对象的key
 	 * @return 缓存中的对象
 	 */
-	public Object get(String key);
+	 Object get(String key);
 
 	/**
 	 * 根据指定key集合，从缓存中获取对象Map
@@ -30,7 +30,7 @@ public interface Cache {
 	 *            对象的key集合
 	 * @return 缓存中的对象Map
 	 */
-	public Map<String, Object> get(String... keys);
+	 Map<String, Object> get(String... keys);
 
 	/**
 	 * 把对象以key的形式放入缓存（同名key覆盖）
@@ -40,7 +40,7 @@ public interface Cache {
 	 * @param value
 	 *            放入缓存的对象
 	 */
-	public void put(String key, Object value);
+	 void put(String key, Object value);
 
 	/**
 	 * 把对象以key的形式放入缓存（同名key覆盖）
@@ -52,7 +52,7 @@ public interface Cache {
 	 * @param expiry
 	 *            缓存过期日期
 	 */
-	public void put(String key, Object value, Date expiry);
+	 void put(String key, Object value, Date expiry);
 
 	/**
 	 * 把对象以key的形式放入缓存（同名key覆盖）
@@ -64,7 +64,7 @@ public interface Cache {
 	 * @param living
 	 *            缓存存活时间（毫秒）
 	 */
-	public void put(String key, Object value, long living);
+	 void put(String key, Object value, long living);
 
 	/**
 	 * 删除key所对应的缓存，key不存在不报错
@@ -73,7 +73,7 @@ public interface Cache {
 	 *            需要删除缓存对象的key
 	 * @return true=成功，false=失败
 	 */
-	public boolean remove(String key);
+	 boolean remove(String key);
 
 	/**
 	 * 判断key是否已经已存在
@@ -82,5 +82,5 @@ public interface Cache {
 	 *            缓存对象的key
 	 * @return true=存在，false=不存在
 	 */
-	public boolean isKeyInCache(String key);
+	 boolean isKeyInCache(String key);
 }

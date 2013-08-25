@@ -8,6 +8,7 @@ import java.util.Hashtable;
 import org.apache.commons.lang3.StringUtils;
 
 import com.dayatang.configuration.Configuration;
+import com.dayatang.configuration.ConfigurationException;
 import com.dayatang.utils.Assert;
 
 public abstract class AbstractConfiguration implements Configuration {
@@ -171,7 +172,7 @@ public abstract class AbstractConfiguration implements Configuration {
 		try {
 			return StringUtils.isBlank(result) ? defaultValue : new SimpleDateFormat(dateFormat).parse(result);
 		} catch (ParseException e) {
-			throw new RuntimeException("日期解析错误！日期格式是：" + dateFormat + ", 日期：" + result, e);
+			throw new ConfigurationException("日期解析错误！日期格式是：" + dateFormat + ", 日期：" + result, e);
 		}
 	}
 

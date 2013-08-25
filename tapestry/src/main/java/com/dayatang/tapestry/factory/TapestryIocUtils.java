@@ -8,6 +8,10 @@ public class TapestryIocUtils {
 
 	private static final ThreadLocal<TapestryInstanceProvider> tapestryProviderHolder = new ThreadLocal<TapestryInstanceProvider>();
 
+	private TapestryIocUtils() {
+		super();
+	}
+
 	public static void initInstanceProvider(Class<?>... iocModules) {
 		InstanceFactory.setInstanceProvider(getInstanceProvider(iocModules));
 	}

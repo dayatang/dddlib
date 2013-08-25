@@ -37,10 +37,12 @@ public class OrderSetting {
 
 	@Override
 	public boolean equals(final Object other) {
-		if (this == other)
+		if (this == other) {
 			return true;
-		if (!(other instanceof OrderSetting))
+		}
+		if (!(other instanceof OrderSetting)) {
 			return false;
+		}
 		OrderSetting castOther = (OrderSetting) other;
 		return new EqualsBuilder().append(ascending, castOther.ascending)
 				.append(propName, castOther.propName).isEquals();

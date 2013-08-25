@@ -36,6 +36,10 @@ public final class StringPropertyReplacer {
 	private static final int SEEN_DOLLAR = 1;
 	private static final int IN_BRACKET = 2;
 
+	private StringPropertyReplacer() {
+		super();
+	}
+
 	/**
 	 * Go through the input string and replace any occurance of ${p} with the
 	 * System.getProperty(p) value. If there is no such property p defined, then
@@ -193,13 +197,14 @@ public final class StringPropertyReplacer {
 		}
 
 		// No properties
-		if (properties == false)
+		if (properties == false) {
 			return string;
+		}
 
 		// Collect the trailing characters
-		if (start != chars.length)
+		if (start != chars.length) {
 			buffer.append(string.substring(start, chars.length));
-
+		}
 		// Done
 		return buffer.toString();
 	}

@@ -13,6 +13,10 @@ public class DBManagerUtils {
 	
 	public static Logger LOGGER = LoggerFactory.getLogger(DBManagerUtils.class);
 	
+	private DBManagerUtils() {
+		super();
+	}
+
 	/**
 	 * 从数据库中获取所有表的集合
 	 * 
@@ -81,8 +85,9 @@ public class DBManagerUtils {
 	
 	public static void colseRs(ResultSet rs) {
 		try {
-			if(rs != null)
+			if(rs != null) {
 				rs.clearWarnings();
+			}
 		} catch (Exception e) {
 			error("colseRs() ",e);
 		}

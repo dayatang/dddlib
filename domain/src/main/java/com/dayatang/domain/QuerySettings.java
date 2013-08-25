@@ -270,10 +270,12 @@ public class QuerySettings<T> {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public boolean equals(final Object other) {
-		if (this == other)
+		if (this == other) {
 			return true;
-		if (!(other instanceof QuerySettings))
+		}
+		if (!(other instanceof QuerySettings)) {
 			return false;
+		}
 		QuerySettings castOther = (QuerySettings) other;
 		return new EqualsBuilder()
 				.append(entityClass, castOther.entityClass)

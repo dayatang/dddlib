@@ -12,6 +12,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class WorkbookFactory {
 	
+	private WorkbookFactory() {
+		super();
+	}
+
 	public static Workbook createWorkbook(File excelFile) {
 		return createWorkbook(excelFile, Version.of(excelFile.getName()));
 	}
@@ -20,7 +24,7 @@ public class WorkbookFactory {
 		try {
 			return createWorkbook(new FileInputStream(excelFile), version);
 		} catch (FileNotFoundException e) {
-			throw new RuntimeException("File " + excelFile.getPath() + " not exists.", e);
+			throw new ExcelException("File " + excelFile.getPath() + " not exists.", e);
 		}
 	}
 	
@@ -32,7 +36,7 @@ public class WorkbookFactory {
 					return new HSSFWorkbook(in);
 				}
 			} catch (IOException e) {
-				throw new RuntimeException(e);
+				throw new ExcelException(e);
 			}
 	}
 }

@@ -3,11 +3,8 @@
  */
 package com.dayatang.db;
 
-import org.apache.commons.configuration.Configuration;
-import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.PropertiesConfiguration;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.dayatang.configuration.Configuration;
+import com.dayatang.configuration.ConfigurationFactory;
 
 /**
  * 
@@ -18,68 +15,28 @@ import org.slf4j.LoggerFactory;
  */
 public class PropertiesUtil {
 
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(PropertiesUtil.class);
+	private static final String JDBC_CONFIG = "jdbc.properties";
+	private static String JDBC_DRIVER_KEY = "jdbc.driverClassName";
+	private static String JDBC_URL_KEY = "jdbc.url";
+	private static String JDBC_USERNAME_KEY = "jdbc.username";
+	private static String JDBC_PASSWD_KEY = "jdbc.password";
+	private static String JDBC_HOST_NAME_KEY = "jdbc.hostName";
+	private static String JDBC_DATABSE_NAME_KEY = "jdbc.databaseName";
+	private static String INIT_SQL_FILE_KEY = "init.sql.file";
 
-	private static Configuration config = null;
+	private static Configuration configuration = new ConfigurationFactory().fromClasspath(JDBC_CONFIG);
 
-	public static String JDBC_CONFIG = "jdbc.properties";
-
-	public static String JDBC_URL;
-	public static String JDBC_USERNAME;
-	public static String JDBC_PASSWD;
-	public static String JDBC_DRIVER;
+	public static final String JDBC_DRIVER = configuration.getString(JDBC_DRIVER_KEY);
+	public static final String JDBC_URL = configuration.getString(JDBC_URL_KEY);
+	public static final String JDBC_USERNAME = configuration.getString(JDBC_USERNAME_KEY);
+	public static final String JDBC_PASSWD = configuration.getString(JDBC_PASSWD_KEY);
 	
-	public static String JDBC_HOST_NAME;
-	public static String JDBC_DATABSE_NAME;
-	public static String INIT_SQL_FILE;
+	public static final String JDBC_HOST_NAME = configuration.getString(JDBC_HOST_NAME_KEY);
+	public static final String JDBC_DATABSE_NAME = configuration.getString(JDBC_DATABSE_NAME_KEY);
+	public static final String INIT_SQL_FILE = configuration.getString(INIT_SQL_FILE_KEY);
 
-	static {
-		try {
-			config = new PropertiesConfiguration(JDBC_CONFIG);
 
-			JDBC_URL = getProperty("jdbc.url");
-			JDBC_USERNAME = getProperty("jdbc.username");
-			JDBC_PASSWD = getProperty("jdbc.password");
-			
-			JDBC_DRIVER = getProperty("jdbc.driverClassName");
-			JDBC_HOST_NAME = getProperty("jdbc.hostName");
-			JDBC_DATABSE_NAME = getProperty("jdbc.databaseName");
-			INIT_SQL_FILE = getProperty("init.sql.file");
-
-				info("JDBC_DRIVER = {}", PropertiesUtil.JDBC_DRIVER);
-				info("JDBC_URL = {}", PropertiesUtil.JDBC_URL);
-				info("JDBC_USERNAME = {}", PropertiesUtil.JDBC_USERNAME);
-				info("JDBC_PASSWD = {}", PropertiesUtil.JDBC_PASSWD);
-				info("JDBC_HOST_NAME = {}",PropertiesUtil.JDBC_HOST_NAME);
-				info("JDBC_DATABSE_NAME = {}",PropertiesUtil.JDBC_DATABSE_NAME);
-				info("INIT_SQL_FILE = {}", PropertiesUtil.INIT_SQL_FILE);
-
-		} catch (ConfigurationException e) {
-			error("initial properties error!! ",e);	
-			System.exit(1);
-		}
+	private PropertiesUtil() {
+		super();
 	}
-
-	private static String getProperty(String key) {
-		return config.getString(key);
-	}
-
-	public static String getProperty(String file, String key) throws Exception {
-		Configuration config = new PropertiesConfiguration(file);
-		return config.getString(key);
-	}
-
-	private static void info(String message, Object... params) {
-		if (LOGGER.isInfoEnabled()) {
-			LOGGER.info(message, params);
-		}
-	}
-
-	private static void error(String message, Object... params) {
-		if (LOGGER.isErrorEnabled()) {
-			LOGGER.error(message, params);
-		}
-	}
-
 }

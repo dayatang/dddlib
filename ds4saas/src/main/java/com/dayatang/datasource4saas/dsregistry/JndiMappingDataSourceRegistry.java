@@ -27,7 +27,7 @@ public class JndiMappingDataSourceRegistry extends MapBasedDataSourceRegistry {
 			try {
 				context = new InitialContext();
 			} catch (NamingException e) {
-				throw new RuntimeException("Cannot initiate JNDI environment!", e);
+				throw new DataSourceRegistryException("Cannot initiate JNDI environment!", e);
 			}
 		}
 		return context;
@@ -57,10 +57,10 @@ public class JndiMappingDataSourceRegistry extends MapBasedDataSourceRegistry {
 		} catch (NamingException e) {
 			String message = "Lookup jndi: " + dataSourceJndi + " failed!";
 			LOGGER.error(message, e);
-			throw new RuntimeException(message, e);
+			throw new DataSourceRegistryException(message, e);
 		}
 		if (result == null) {
-			throw new RuntimeException("There's no data source prepared for tenant " + tenant);
+			throw new DataSourceRegistryException("There's no data source prepared for tenant " + tenant);
 		}
 		LOGGER.info("Found JNDI " + dataSourceJndi + " for tenant {}", tenant);
 		return result;

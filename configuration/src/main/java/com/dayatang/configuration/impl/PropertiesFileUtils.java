@@ -5,6 +5,8 @@ import java.util.Hashtable;
 import java.util.Map.Entry;
 import java.util.Properties;
 
+import com.dayatang.configuration.ConfigurationException;
+
 /**
  * 解决Java Properties文件的编码问题，避免iso8859-1到utf8的相互转义
  * 
@@ -62,7 +64,7 @@ public class PropertiesFileUtils {
 			byte[] bytes = raw.getBytes(ISO_8859_1);
 			ret = new String(bytes, encoding);
 		} catch (UnsupportedEncodingException e) {
-			throw new RuntimeException("Unsupport Encoding:" + encoding, e);
+			throw new ConfigurationException("Unsupport Encoding:" + encoding, e);
 		}
 		return ret;
 	}
@@ -79,7 +81,7 @@ public class PropertiesFileUtils {
 			byte[] bytes = validStr.getBytes(encoding);
 			ret = new String(bytes, ISO_8859_1);
 		} catch (UnsupportedEncodingException e) {
-			throw new RuntimeException("Unsupport Encoding:" + encoding, e);
+			throw new ConfigurationException("Unsupport Encoding:" + encoding, e);
 		}
 		return ret;
 	}

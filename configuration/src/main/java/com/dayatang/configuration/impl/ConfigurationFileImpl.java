@@ -15,6 +15,7 @@ import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.dayatang.configuration.ConfigurationException;
 import com.dayatang.configuration.WritableConfiguration;
 import com.dayatang.utils.Assert;
 import com.dayatang.utils.Slf4jLogger;
@@ -74,10 +75,10 @@ public class ConfigurationFileImpl extends AbstractConfiguration implements Writ
 	
 	public static ConfigurationFileImpl fromFileSystem(final File file) {
 		if (!file.exists()) {
-			throw new RuntimeException("File " + file.getName() + " not found!");
+			throw new ConfigurationException("File " + file.getName() + " not found!");
 		}
 		if (!file.canRead()) {
-			throw new RuntimeException("File " + file.getName() + " is unreadable!");
+			throw new ConfigurationException("File " + file.getName() + " is unreadable!");
 		}
 		return new ConfigurationFileImpl(file);
 	}
@@ -109,13 +110,13 @@ public class ConfigurationFileImpl extends AbstractConfiguration implements Writ
 			hTable = pfu.rectifyProperties(props);
 			LOGGER.debug("Load configuration from {} at {}", file.getAbsolutePath(), new Date());
 		} catch (IOException e) {
-			throw new RuntimeException("Cannot load config file: " + file, e);
+			throw new ConfigurationException("Cannot load config file: " + file, e);
 		} finally {
 			if (in != null) {
 				try {
 					in.close();
 				} catch (IOException e) {
-					throw new RuntimeException("Cannot close input stream.", e);
+					throw new ConfigurationException("Cannot close input stream.", e);
 				}
 			}
 		}
@@ -132,13 +133,13 @@ public class ConfigurationFileImpl extends AbstractConfiguration implements Writ
 			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), PropertiesFileUtils.ISO_8859_1));
 			store(props, out, "Config file for " + file);
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			throw new ConfigurationException(e);
 		} finally {
 			if (out != null) {
 				try {
 					out.close();
 				} catch (IOException e) {
-					throw new RuntimeException("Cannot close input stream.", e);
+					throw new ConfigurationException("Cannot close input stream.", e);
 				}
 			}
 		}
@@ -186,8 +187,9 @@ public class ConfigurationFileImpl extends AbstractConfiguration implements Writ
 			}
 			switch (aChar) {
 			case ' ':
-				if (x == 0 || escapeSpace)
+				if (x == 0 || escapeSpace) {
 					outBuffer.append('\\');
+				}
 				outBuffer.append(' ');
 				break;
 			case '\t':

@@ -48,9 +48,6 @@ public class JdbcConfiguration {
 		dbType = DbType.of(dsConfiguration.getString(Constants.DB_TYPE));
 		Assert.notNull(dbType);
 		mappingStrategy = TenantDbMappingStrategy.of(dsConfiguration.getString(Constants.TENANT_MAPPING_STRATEGY));
-		if (mappingStrategy == null) {
-			mappingStrategy = TenantDbMappingStrategy.DBNAME;
-		}
 		driverClassName = dsConfiguration.getString(Constants.JDBC_DRIVER_CLASS_NAME);
 		host = dsConfiguration.getString(Constants.JDBC_HOST);
 		port = dsConfiguration.getString(Constants.JDBC_PORT);

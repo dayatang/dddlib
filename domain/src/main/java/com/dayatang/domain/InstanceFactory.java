@@ -24,6 +24,10 @@ public class InstanceFactory {
 
 	private static InstanceProvider instanceProvider;
 
+	private InstanceFactory() {
+		super();
+	}
+
 	/**
 	 * 设置实例提供者。
 	 * 
