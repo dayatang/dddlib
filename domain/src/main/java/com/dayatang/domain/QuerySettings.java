@@ -1,5 +1,6 @@
 package com.dayatang.domain;
 
+import com.dayatang.domain.internal.Criterions;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
