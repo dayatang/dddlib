@@ -1,6 +1,5 @@
 package com.dayatang.domain;
 
-import com.dayatang.domain.internal.Criterions;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -26,8 +25,9 @@ public class QuerySettings<T> {
 	private int firstResult;
 	private int maxResults;
 	private Map<String, String> aliases = new LinkedHashMap<String, String>();
-	private Set<QueryCriterion> criterions = new HashSet<QueryCriterion>();
+	private Set<QueryCriterion> queryCriterions = new HashSet<QueryCriterion>();
 	private List<OrderSetting> orderSettings = new ArrayList<OrderSetting>();
+	private Criterions criterions = Criterions.singleton();
 	
 	public static <T extends Entity> QuerySettings<T> create(Class<T> entityClass) {
 		return new QuerySettings<T>(entityClass);
@@ -62,8 +62,8 @@ public class QuerySettings<T> {
 		return aliases;
 	}
 
-	public Set<QueryCriterion> getCriterions() {
-		return criterions;
+	public Set<QueryCriterion> getQueryCriterions() {
+		return queryCriterions;
 	}
 
 	public int getFirstResult() {
@@ -84,167 +84,167 @@ public class QuerySettings<T> {
 	}
 
 	public QuerySettings<T> eq(String propName, Object value) {
-		addCriterion(Criterions.eq(propName, value));
+		addCriterion(criterions.eq(propName, value));
 		return this;
 	}
 	
 	public QuerySettings<T> notEq(String propName, Object value) {
-		addCriterion(Criterions.notEq(propName, value));
+		addCriterion(criterions.notEq(propName, value));
 		return this;
 	}
 	
 	public QuerySettings<T> ge(String propName, Comparable<?> value) {
-		addCriterion(Criterions.ge(propName, value));
+		addCriterion(criterions.ge(propName, value));
 		return this;
 	}
 	
 	public QuerySettings<T> gt(String propName, Comparable<?> value) {
-		addCriterion(Criterions.gt(propName, value));
+		addCriterion(criterions.gt(propName, value));
 		return this;
 	}
 	
 	public QuerySettings<T> le(String propName, Comparable<?> value) {
-		addCriterion(Criterions.le(propName, value));
+		addCriterion(criterions.le(propName, value));
 		return this;
 	}
 	
 	public QuerySettings<T> lt(String propName, Comparable<?> value) {
-		addCriterion(Criterions.lt(propName, value));
+		addCriterion(criterions.lt(propName, value));
 		return this;
 	}
 	
 	public QuerySettings<T> eqProp(String propName, String otherProp) {
-		addCriterion(Criterions.eqProp(propName, otherProp));
+		addCriterion(criterions.eqProp(propName, otherProp));
 		return this;
 	}
 	
 	public QuerySettings<T> notEqProp(String propName, String otherProp) {
-		addCriterion(Criterions.notEqProp(propName, otherProp));
+		addCriterion(criterions.notEqProp(propName, otherProp));
 		return this;
 	}
 	
 	public QuerySettings<T> gtProp(String propName, String otherProp) {
-		addCriterion(Criterions.gtProp(propName, otherProp));
+		addCriterion(criterions.gtProp(propName, otherProp));
 		return this;
 	}
 	
 	public QuerySettings<T> geProp(String propName, String otherProp) {
-		addCriterion(Criterions.geProp(propName, otherProp));
+		addCriterion(criterions.geProp(propName, otherProp));
 		return this;
 	}
 	
 	public QuerySettings<T> ltProp(String propName, String otherProp) {
-		addCriterion(Criterions.ltProp(propName, otherProp));
+		addCriterion(criterions.ltProp(propName, otherProp));
 		return this;
 	}
 	
 	public QuerySettings<T> leProp(String propName, String otherProp) {
-		addCriterion(Criterions.leProp(propName, otherProp));
+		addCriterion(criterions.leProp(propName, otherProp));
 		return this;
 	}
 	
 	public QuerySettings<T> sizeEq(String propName, int size) {
-		addCriterion(Criterions.sizeEq(propName, size));
+		addCriterion(criterions.sizeEq(propName, size));
 		return this;
 	}
 	
 	public QuerySettings<T> sizeNotEq(String propName, int size) {
-		addCriterion(Criterions.sizeNotEq(propName, size));
+		addCriterion(criterions.sizeNotEq(propName, size));
 		return this;
 	}
 	
 	public QuerySettings<T> sizeGt(String propName, int size) {
-		addCriterion(Criterions.sizeGt(propName, size));
+		addCriterion(criterions.sizeGt(propName, size));
 		return this;
 	}
 	
 	public QuerySettings<T> sizeGe(String propName, int size) {
-		addCriterion(Criterions.sizeGe(propName, size));
+		addCriterion(criterions.sizeGe(propName, size));
 		return this;
 	}
 	
 	public QuerySettings<T> sizeLt(String propName, int size) {
-		addCriterion(Criterions.sizeLt(propName, size));
+		addCriterion(criterions.sizeLt(propName, size));
 		return this;
 	}
 	
 	public QuerySettings<T> sizeLe(String propName, int size) {
-		addCriterion(Criterions.sizeLe(propName, size));
+		addCriterion(criterions.sizeLe(propName, size));
 		return this;
 	}
 
 	public QuerySettings<T> containsText(String propName, String value) {
-		addCriterion(Criterions.containsText(propName, value));
+		addCriterion(criterions.containsText(propName, value));
 		return this;
 	}
 
 	public QuerySettings<T> startsWithText(String propName, String value) {
-		addCriterion(Criterions.startsWithText(propName, value));
+		addCriterion(criterions.startsWithText(propName, value));
 		return this;
 	}
 
 	public QuerySettings<T> in(String propName, Collection<? extends Object> value) {
-		addCriterion(Criterions.in(propName, value));
+		addCriterion(criterions.in(propName, value));
 		return this;
 	}
 
 	public QuerySettings<T> in(String propName, Object[] value) {
-		addCriterion(Criterions.in(propName, value));
+		addCriterion(criterions.in(propName, value));
 		return this;
 	}
 
 	public QuerySettings<T> notIn(String propName, Collection<? extends Object> value) {
-		addCriterion(Criterions.notIn(propName, value));
+		addCriterion(criterions.notIn(propName, value));
 		return this;
 	}
 
 	public QuerySettings<T> notIn(String propName, Object[] value) {
-		addCriterion(Criterions.notIn(propName, value));
+		addCriterion(criterions.notIn(propName, value));
 		return this;
 	}
 
 	public <E extends Object> QuerySettings<T> between(String propName, Comparable<E> from, Comparable<E> to) {
-		addCriterion(Criterions.between(propName, from, to));
+		addCriterion(criterions.between(propName, from, to));
 		return this;
 	}
 	
 	public QuerySettings<T> isNull(String propName) {
-		addCriterion(Criterions.isNull(propName));
+		addCriterion(criterions.isNull(propName));
 		return this;
 	}
 	
 	public QuerySettings<T> notNull(String propName) {
-		addCriterion(Criterions.notNull(propName));
+		addCriterion(criterions.notNull(propName));
 		return this;
 	}
 	
 	public QuerySettings<T> isEmpty(String propName) {
-		addCriterion(Criterions.isEmpty(propName));
+		addCriterion(criterions.isEmpty(propName));
 		return this;
 	}
 	
 	public QuerySettings<T> notEmpty(String propName) {
-		addCriterion(Criterions.notEmpty(propName));
+		addCriterion(criterions.notEmpty(propName));
 		return this;
 	}
 	
 	public QuerySettings<T> not(QueryCriterion criterion) {
-		addCriterion(Criterions.not(criterion));
+		addCriterion(criterions.not(criterion));
 		return this;
 	}
 	
-	public QuerySettings<T> and(QueryCriterion... criterions) {
-		addCriterion(Criterions.and(criterions));
+	public QuerySettings<T> and(QueryCriterion... queryCriterions) {
+		addCriterion(criterions.and(queryCriterions));
 		return this;
 	}
 	
-	public QuerySettings<T> or(QueryCriterion... criterions) {
-		addCriterion(Criterions.or(criterions));
+	public QuerySettings<T> or(QueryCriterion... queryCriterions) {
+		addCriterion(criterions.or(queryCriterions));
 		return this;
 	}
 
 	private void addCriterion(QueryCriterion criterion) {
-		criterions.add(criterion);
+		queryCriterions.add(criterion);
 	}
 
 	public QuerySettings<T> setFirstResult(int firstResult) {
@@ -277,7 +277,7 @@ public class QuerySettings<T> {
 		QuerySettings castOther = (QuerySettings) other;
 		return new EqualsBuilder()
 				.append(entityClass, castOther.entityClass)
-				.append(criterions, castOther.criterions)
+				.append(queryCriterions, castOther.queryCriterions)
 				.append(firstResult, castOther.firstResult)
 				.append(maxResults, castOther.maxResults)
 				.append(orderSettings, castOther.orderSettings)
@@ -288,7 +288,7 @@ public class QuerySettings<T> {
 	public int hashCode() {
 		return new HashCodeBuilder(17, 37)
 				.append(entityClass)
-				.append(criterions)
+				.append(queryCriterions)
 				.append(firstResult)
 				.append(maxResults)
 				.append(orderSettings)
@@ -299,8 +299,8 @@ public class QuerySettings<T> {
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		result.append("Class:").append(entityClass.getSimpleName()).append(SystemUtils.LINE_SEPARATOR);
-		result.append("criterions: [");
-		for (QueryCriterion criteron : criterions) {
+		result.append("queryCriterions: [");
+		for (QueryCriterion criteron : queryCriterions) {
 			result.append(criteron);
 		}
 		result.append("]").append(SystemUtils.LINE_SEPARATOR);

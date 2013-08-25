@@ -44,7 +44,7 @@ public class JpaCriteriaQueryBuilder {
 		
 		JpaCriterionConverter converter = new JpaCriterionConverter(builder, root);
 		List<Predicate> criterions = new ArrayList<Predicate>();
-		for (QueryCriterion criterion : settings.getCriterions()) {
+		for (QueryCriterion criterion : settings.getQueryCriterions()) {
 			Predicate predicate = converter.convert(criterion);
 			if (predicate != null) {
 				criterions.add(predicate);

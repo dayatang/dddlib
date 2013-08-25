@@ -36,7 +36,7 @@ public class QueryTranslator {
 
 	private void prepare() {
 		queryString = "select distinct(o) from " + settings.getEntityClass().getName() + " as o ";
-		queryString += getWhereClause(settings.getCriterions());
+		queryString += getWhereClause(settings.getQueryCriterions());
 		queryString += getOrderClause(settings.getOrderSettings());
 	}
 
@@ -44,7 +44,7 @@ public class QueryTranslator {
 		if (criterions.isEmpty()) {
 			return "";
 		}
-		for (QueryCriterion criterion : settings.getCriterions()) {
+		for (QueryCriterion criterion : settings.getQueryCriterions()) {
 			String aCriteria = processCriterion(criterion);
 			if (StringUtils.isNotBlank(aCriteria)) {
 				criterias.add(aCriteria);

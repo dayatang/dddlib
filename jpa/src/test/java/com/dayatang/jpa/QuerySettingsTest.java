@@ -51,6 +51,8 @@ public class QuerySettingsTest extends AbstractIntegrationTest {
 	private Dictionary female;
 
 	private Dictionary undergraduate;
+	
+	private Criterions criterions = Criterions.singleton();
 
 	@Before
 	public void setUp() {
@@ -388,7 +390,7 @@ public class QuerySettingsTest extends AbstractIntegrationTest {
 
 	@Test
 	public void testAnd() {
-		settings.and(Criterions.eq("code", "01"), Criterions.eq("category", gender));
+		settings.and(criterions.eq("code", "01"), criterions.eq("category", gender));
 		List<Dictionary> results = repository.find(settings);
 		assertTrue(results.contains(male));
 		assertFalse(results.contains(female));
@@ -397,7 +399,7 @@ public class QuerySettingsTest extends AbstractIntegrationTest {
 
 	@Test
 	public void testOr() {
-		settings.or(Criterions.eq("text", "男"), Criterions.eq("sortOrder", 150));
+		settings.or(criterions.eq("text", "男"), criterions.eq("sortOrder", 150));
 		List<Dictionary> results = repository.find(settings);
 		assertTrue(results.contains(male));
 		assertTrue(results.contains(female));
@@ -406,7 +408,7 @@ public class QuerySettingsTest extends AbstractIntegrationTest {
 
 	@Test
 	public void testNot() {
-		settings.not(Criterions.eq("code", "01"));
+		settings.not(criterions.eq("code", "01"));
 		List<Dictionary> results = repository.find(settings);
 		assertFalse(results.contains(male));
 		assertTrue(results.contains(female));
