@@ -22,6 +22,9 @@ public abstract class AbstractDataSourceCreator implements DataSourceCreator {
 
 	private Configuration dsConfiguration;				//数据源配置
 	private Configuration tenantDbMapping;				//租户到数据库链接参数的映射
+	private DbType dbType;
+	private TenantDbMappingStrategy mappingStrategy;
+
 	/**
 	 * 获取数据源配置
 	 * @return
@@ -57,16 +60,44 @@ public abstract class AbstractDataSourceCreator implements DataSourceCreator {
 	}
 
 
+	private TenantDbMappingStrategy getMappingStrategy() {
+		if (mappingStrategy == null) {
+			mappingStrategy = TenantDbMappingStrategy.of(getDsConfiguration().getString(Constants.TENANT_MAPPING_STRATEGY));
+		}
+		return mappingStrategy;
+	}
+
+	public void setMappingStrategy(TenantDbMappingStrategy mappingStrategy) {
+		this.mappingStrategy = mappingStrategy;
+	}
+
+	private DbType getDbType() {
+		if (dbType == null) {
+			dbType = DbType.of(getDsConfiguration().getString(Constants.DB_TYPE));
+		}
+		return dbType;
+	}
+
+	public void setDbType(DbType dbType) {
+		this.dbType = dbType;
+	}
+
 	@Override
 	public DataSource createDataSourceForTenant(String tenant) {
 		DataSource result = createDataSource();
 		fillProperties(result);
-		JdbcConfiguration jdbcConfiguration = getJdbcConfiguration(tenant);
-		setProperty(result, getDriverClassPropName(), jdbcConfiguration.getDriverClassName());
-		setProperty(result, getUrlPropName(), jdbcConfiguration.getUrl());
-		setProperty(result, getUsernamePropName(), jdbcConfiguration.getUsername());
-		setProperty(result, getPasswordPropName(), jdbcConfiguration.getPassword());
+		DbInfo dbInfo = getDbInfo(tenant);
+		setProperty(result, getDriverClassPropName(), getDbType().getDriverClassName());
+		setProperty(result, getUrlPropName(), getDbType().getUrl(dbInfo));
+		setProperty(result, getUsernamePropName(), dbInfo.getUsername());
+		setProperty(result, getPasswordPropName(), dbInfo.getPassword());
 		return result;
+	}
+
+	private DbInfo getDbInfo(String tenant) {
+		DbInfo dbInfo = new DbInfo(getDsConfiguration());
+		getMappingStrategy().process(dbInfo, tenant, getTenantDbMapping());
+		return dbInfo;
 	}
 
 	protected abstract DataSource createDataSource();
@@ -100,9 +131,5 @@ public abstract class AbstractDataSourceCreator implements DataSourceCreator {
 		} catch (InvocationTargetException e) {
 			throw new DataSourceCreationException("Datasource property setting failed", e);
 		}
-	}
-	
-	private JdbcConfiguration getJdbcConfiguration(String tenant) {
-		return new JdbcConfiguration(tenant, getDsConfiguration(), getTenantDbMapping());
 	}
 }
