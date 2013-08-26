@@ -25,10 +25,15 @@ import org.openkoala.koala.util.EclipseUrlParseUtils;
 import org.slf4j.LoggerFactory;
 
 /**
- * 将一个Document更新到xml中，完成修改工作
  * 
- * @author lingen.liu
  * 
+ * @description  将一个Document更新到xml中，完成修改工作
+ *  
+ * @date：        2013-8-26   
+ * 
+ * @version      Copyright (c) 2013 Koala All Rights Reserved
+ *  
+ * @author       lingen.liu  <a href=mailto:lingen.liu@gmail.com">lingen.liu@gmail.com</a>
  */
 public class DocumentUtil {
 

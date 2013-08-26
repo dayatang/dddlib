@@ -3,6 +3,7 @@ package org.openkoala.koala.annotation.parse;
 import java.util.List;
 
 import org.openkoala.koala.action.XmlParse;
+import org.openkoala.koala.action.XmlParseUtil;
 import org.openkoala.koala.action.velocity.VelocityUtil;
 import org.openkoala.koala.parse.XML2ObjectUtil;
 import org.slf4j.Logger;
@@ -25,11 +26,8 @@ public class ParseObjectFunctionCreate extends AbstractXmlParse implements
 
 	public void process() throws Exception {
 		logger.info("解析类对象【" + name + "】");
-		String xmlPath = "xml/ObjectFunctionCreate/" + name
-				+ ".xml";
-		XML2ObjectUtil util = XML2ObjectUtil.getInstance();
-		XmlParse parse = (XmlParse) util.processParse(xmlPath);
-		parse.parse(VelocityUtil.getVelocityContext(params));
+		String xmlPath = "xml/ObjectFunctionCreate/" + name + ".xml";
+		XmlParseUtil.parseXml(xmlPath, params);
 		logger.info("类对象【" + name + "】解析成功");
 	}
 

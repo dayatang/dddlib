@@ -45,7 +45,6 @@ public class EJBDeployClient {
 		}
 		params.put("dependencies", inters);
 		params.put("Applications", deploy.getImpls());
-		XmlParseUtil.parseXmlAction("xml/ejb-deploy.xml",
-				VelocityUtil.getVelocityContext(params));
+		XmlParseUtil.parseXml("xml/ejb-deploy.xml",params);
 	}
 }

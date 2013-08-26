@@ -133,7 +133,7 @@ public class WebServiceSrcCopy {
 		params.put("Project", project);
 		params.put("Dependencys", changesProject);
 //		VelocityUtil.velocityDirParse("vm/ws/war-ws", parentPath+"war-ws", VelocityUtil.getVelocityContext(params));
-		XmlParseUtil.parseXmlAction("xml/ws-security-copy.xml", VelocityUtil.getVelocityContext(params));		
+		XmlParseUtil.parseXml("xml/ws-security-copy.xml",params);
 		return destProject;
 	}
 }

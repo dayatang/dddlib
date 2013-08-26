@@ -54,7 +54,7 @@ public class SecurityUpdateParse implements Serializable {
 		    params.put("Project", project);
 		    params.put("Module", module);
 		    params.put("Security", security);
-		    XmlParseUtil.parseXmlAction("xml/remove/security-remove.xml", VelocityUtil.getVelocityContext(params));
+		    XmlParseUtil.parseXml("xml/remove/security-remove.xml", params);
 		    
 		    
 		    //删除SysInitDB的servlet
