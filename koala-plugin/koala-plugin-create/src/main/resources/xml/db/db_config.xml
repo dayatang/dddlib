@@ -81,25 +81,10 @@
   
   <!-- SQLServer 2008 的配置 -->
   <DBConfigVO>
-    <property name="dbType">SQL_SERVER_2008</property>
+    <property name="dbType">SQL_SERVER</property>
     <property name="hbm2ddl">update</property>
     <property name="showSql">true</property>
     <property name="dialect">org.hibernate.dialect.SQLServer2008Dialect</property>
-    <property name="jdbcDriver">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
-    <property name="connectionURL">jdbc:sqlserver://localhost:1433;databaseName=db_name</property>
-    <property name="username">root</property>
-    <property name="password">root</property>
-    
-    <property name="dbGroupId">com.microsoft.sqlserver</property>
-    <property name="dbArtifactId">sqljdbc4</property>
-  </DBConfigVO>
-  
-    <!-- SQLServer 2005 的配置 -->
-  <DBConfigVO>
-    <property name="dbType">SQL_SERVER_2008</property>
-    <property name="hbm2ddl">update</property>
-    <property name="showSql">true</property>
-    <property name="dialect">org.hibernate.dialect.SQLServer2005Dialect</property>
     <property name="jdbcDriver">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
     <property name="connectionURL">jdbc:sqlserver://localhost:1433;databaseName=db_name</property>
     <property name="username">root</property>
