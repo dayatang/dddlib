@@ -19,8 +19,22 @@ public class DbTypeOracleTest extends AbstractDbTypeTest {
 	public void tearDown() throws Exception {
 	}
 
+
 	@Test
-	public void getUrl() {
-		assertEquals("jdbc:oracle:thin:@localhost:3306:XE", instance.getUrl(jdbcConfiguration));
+	public void getDriverClaaaName() {
+		assertEquals("oracle.jdbc.OracleDriver", instance.getDriverClassName());
+	}
+
+	@Test
+	public void getUrlWithoutExtraString() {
+		assertEquals("jdbc:oracle:thin:@localhost:3306:XE", instance.getUrl(host, port, dbname, dbInstance, username, null));
+	}
+
+	@Test
+	public void getUrlWithExtraString() {
+		assertEquals("jdbc:oracle:thin:@localhost:3306:XE?useUnicode=true&characterEncoding=utf-8", 
+				instance.getUrl(host, port, dbname, dbInstance, username, extraUrlString));
+		assertEquals("jdbc:oracle:thin:@localhost:3306:XE?useUnicode=true&characterEncoding=utf-8", 
+				instance.getUrl(host, port, dbname, dbInstance, username, "?" + extraUrlString));
 	}
 }

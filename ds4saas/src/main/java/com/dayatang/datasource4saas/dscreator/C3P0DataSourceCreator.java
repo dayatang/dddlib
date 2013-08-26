@@ -2,7 +2,6 @@ package com.dayatang.datasource4saas.dscreator;
 
 import javax.sql.DataSource;
 
-import com.dayatang.utils.Slf4jLogger;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 /**
@@ -12,24 +11,29 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
  */
 public class C3P0DataSourceCreator extends AbstractDataSourceCreator {
 
-	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(C3P0DataSourceCreator.class);
+	@Override
+	protected DataSource createDataSource() {
+		return new ComboPooledDataSource();
+	}
 
 	@Override
-	public DataSource createDataSourceForTenant(String tenant) {
-		try {
-			ComboPooledDataSource result = new ComboPooledDataSource();
-			fillProperties(result);
-			JdbcConfiguration jdbcConfiguration = getJdbcConfiguration(tenant);
-			result.setDriverClass(jdbcConfiguration.getDriverClassName());
-			result.setJdbcUrl(jdbcConfiguration.getUrl());
-			result.setUser(jdbcConfiguration.getUsername());
-			result.setPassword(jdbcConfiguration.getPassword());
-			return result;
-		} catch (Exception e) {
-			String message = "Create C3P0 data source failure.";
-			LOGGER.error(message, e);
-			throw new DataSourceCreationException(message, e);
-		}
+	protected String getDriverClassPropName() {
+		return "driverClass";
+	}
+
+	@Override
+	protected String getUrlPropName() {
+		return "jdbcUrl";
+	}
+
+	@Override
+	protected String getUsernamePropName() {
+		return "user";
+	}
+
+	@Override
+	protected String getPasswordPropName() {
+		return "password";
 	}
 
 }

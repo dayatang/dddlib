@@ -4,8 +4,6 @@ import javax.sql.DataSource;
 
 import org.logicalcobwebs.proxool.ProxoolDataSource;
 
-import com.dayatang.utils.Slf4jLogger;
-
 /**
  * 基于Proxool连接池的数据源创建器
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
@@ -13,23 +11,28 @@ import com.dayatang.utils.Slf4jLogger;
  */
 public class ProxoolDataSourceCreator extends AbstractDataSourceCreator {
 
-	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(ProxoolDataSourceCreator.class);
+	@Override
+	protected DataSource createDataSource() {
+		return new ProxoolDataSource();
+	}
 
 	@Override
-	public DataSource createDataSourceForTenant(String tenant) {
-		try {
-			ProxoolDataSource result = new ProxoolDataSource();
-			fillProperties(result);
-			JdbcConfiguration jdbcConfiguration = getJdbcConfiguration(tenant);
-			result.setDriver(jdbcConfiguration.getDriverClassName());
-			result.setDriverUrl(jdbcConfiguration.getUrl());
-			result.setUser(jdbcConfiguration.getUsername());
-			result.setPassword(jdbcConfiguration.getPassword());
-			return result;
-		} catch (Exception e) {
-			String message = "Create Proxool data source failure.";
-			LOGGER.error(message, e);
-			throw new DataSourceCreationException(message, e);
-		}
+	protected String getDriverClassPropName() {
+		return "driver";
+	}
+
+	@Override
+	protected String getUrlPropName() {
+		return "driverUrl";
+	}
+
+	@Override
+	protected String getUsernamePropName() {
+		return "user";
+	}
+
+	@Override
+	protected String getPasswordPropName() {
+		return "password";
 	}
 }

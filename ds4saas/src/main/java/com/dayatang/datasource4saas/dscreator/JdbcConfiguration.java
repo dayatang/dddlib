@@ -6,7 +6,8 @@ import com.dayatang.datasource4saas.Constants;
 import com.dayatang.utils.Assert;
 
 /**
- * 根据数据库类型、映射策略、JDBC配置、租户数据库映射等信息，为特定租户指定JBDC Url和Schema
+ * 根据数据库类型、映射策略、JDBC配置、租户数据库映射等信息，为特定租户提供JDBC四个基本属性：
+ * 驱动程序类、URL，用户名，口令，其中URL和用户名可能是经过租户映射转换而得来的。
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
@@ -64,28 +65,28 @@ public class JdbcConfiguration {
 		this.mappingStrategy = mappingStrategy;
 	}
 	
-	public String getHost() {
+	private String getHost() {
 		if (mappingStrategy == TenantDbMappingStrategy.HOST) {
 			return dbTenantMappings.getString(tenant);
 		}
 		return host;
 	}
 
-	public String getPort() {
+	private String getPort() {
 		if (mappingStrategy == TenantDbMappingStrategy.PORT) {
 			return dbTenantMappings.getString(tenant);
 		}
 		return port;
 	}
 
-	public String getDbname() {
+	private String getDbname() {
 		if (mappingStrategy == TenantDbMappingStrategy.DBNAME) {
 			return dbTenantMappings.getString(tenant);
 		}
 		return dbname;
 	}
 
-	public String getInstance() {
+	private String getInstance() {
 		if (mappingStrategy == TenantDbMappingStrategy.INSTANCE) {
 			return dbTenantMappings.getString(tenant);
 		}
@@ -103,15 +104,11 @@ public class JdbcConfiguration {
 		return password;
 	}
 
-	public String getExtraUrlString() {
-		return extraUrlString;
+	public String getDriverClassName() {
+		return dbType.getDriverClassName();
 	}
 
 	public String getUrl() {
-		return dbType.getUrl(this);
-	}
-
-	public String getDriverClassName() {
-		return dbType.getDriverClassName();
+		return dbType.getUrl(getHost(), getPort(), getDbname(), getInstance(), getUsername(), extraUrlString);
 	}
 }

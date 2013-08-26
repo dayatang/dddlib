@@ -26,7 +26,7 @@ public abstract class AbstractDataSourceCreator implements DataSourceCreator {
 	 * 获取数据源配置
 	 * @return
 	 */
-	public Configuration getDsConfiguration() {
+	private Configuration getDsConfiguration() {
 		if (dsConfiguration == null) {
 			dsConfiguration = new ConfigurationFactory().fromClasspath(Constants.DB_CONF_FILE);
 		}
@@ -41,7 +41,7 @@ public abstract class AbstractDataSourceCreator implements DataSourceCreator {
 		this.dsConfiguration = dsConfiguration;
 	}
 
-	public Configuration getTenantDbMapping() {
+	private Configuration getTenantDbMapping() {
 		if (tenantDbMapping == null) {
 			tenantDbMapping = new ConfigurationFactory().fromClasspath(Constants.DB_MAPPING_FILE);
 		}
@@ -56,20 +56,53 @@ public abstract class AbstractDataSourceCreator implements DataSourceCreator {
 		this.tenantDbMapping = tenantDbMapping;
 	}
 
+
+	@Override
+	public DataSource createDataSourceForTenant(String tenant) {
+		DataSource result = createDataSource();
+		fillProperties(result);
+		JdbcConfiguration jdbcConfiguration = getJdbcConfiguration(tenant);
+		setProperty(result, getDriverClassPropName(), jdbcConfiguration.getDriverClassName());
+		setProperty(result, getUrlPropName(), jdbcConfiguration.getUrl());
+		setProperty(result, getUsernamePropName(), jdbcConfiguration.getUsername());
+		setProperty(result, getPasswordPropName(), jdbcConfiguration.getPassword());
+		return result;
+	}
+
+	protected abstract DataSource createDataSource();
+	
+	protected abstract String getDriverClassPropName();
+	
+	protected abstract String getUrlPropName();
+	
+	protected abstract String getUsernamePropName();
+	
+	protected abstract String getPasswordPropName();
+
 	/**
 	 * 填充数据库连接池特定的数据源配置。
 	 * @param dataSource
 	 * @throws IllegalAccessException
 	 * @throws InvocationTargetException
 	 */
-	protected void fillProperties(DataSource dataSource) throws IllegalAccessException, InvocationTargetException {
+	private void fillProperties(DataSource dataSource) {
 		Properties dsProperties = getDsConfiguration().getProperties();
 		for (Entry<Object, Object> entry : dsProperties.entrySet()) {
-			BeanUtils.setProperty(dataSource, entry.getKey().toString(), entry.getValue());
+			setProperty(dataSource, entry.getKey().toString(), entry.getValue());
+		}
+	}
+
+	private void setProperty(Object obj, String propName, Object propValue) {
+		try {
+			BeanUtils.setProperty(obj, propName, propValue);
+		} catch (IllegalAccessException e) {
+			throw new DataSourceCreationException("Datasource property setting failed", e);
+		} catch (InvocationTargetException e) {
+			throw new DataSourceCreationException("Datasource property setting failed", e);
 		}
 	}
 	
-	protected JdbcConfiguration getJdbcConfiguration(String tenant) {
+	private JdbcConfiguration getJdbcConfiguration(String tenant) {
 		return new JdbcConfiguration(tenant, getDsConfiguration(), getTenantDbMapping());
 	}
 }
