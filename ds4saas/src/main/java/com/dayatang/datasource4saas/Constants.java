@@ -28,11 +28,6 @@ public interface Constants {
 	String TENANT_MAPPING_STRATEGY = "tenant.mapping.strategy";
 	
 	/**
-	 * JDBC驱动类名
-	 */
-	String JDBC_DRIVER_CLASS_NAME = "jdbc.driverClassName";
-	
-	/**
 	 * JDBC URL
 	 */
 	String JDBC_URL = "jdbc.url";
@@ -51,11 +46,6 @@ public interface Constants {
 	 * 数据库实例
 	 */
 	String JDBC_INSTANCE = "jdbc.instance";
-	
-	/**
-	 * 数据库SCHEMA
-	 */
-	String JDBC_SCHEMA = "jdbc.schema";
 	
 	/**
 	 * 数据库名字

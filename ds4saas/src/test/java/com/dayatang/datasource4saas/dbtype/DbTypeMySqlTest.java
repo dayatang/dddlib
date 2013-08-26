@@ -27,15 +27,15 @@ public class DbTypeMySqlTest extends AbstractDbTypeTest {
 
 	@Test
 	public void getUrlWithoutExtraString() {
-		assertEquals("jdbc:mysql://localhost:3306/test_db", instance.getUrl(host, port, dbname, dbInstance, username, null));
+		assertEquals("jdbc:mysql://localhost:3306/test_db", instance.getUrl(dbInfo));
 	}
 
 	@Test
 	public void getUrlWithExtraString() {
-		assertEquals("jdbc:mysql://localhost:3306/test_db?useUnicode=true&characterEncoding=utf-8", 
-				instance.getUrl(host, port, dbname, dbInstance, username, extraUrlString));
-		assertEquals("jdbc:mysql://localhost:3306/test_db?useUnicode=true&characterEncoding=utf-8", 
-				instance.getUrl(host, port, dbname, dbInstance, username, "?" + extraUrlString));
+		dbInfo.setExtraUrlString("useUnicode=true&characterEncoding=utf-8");
+		assertEquals("jdbc:mysql://localhost:3306/test_db?useUnicode=true&characterEncoding=utf-8", instance.getUrl(dbInfo));
+		dbInfo.setExtraUrlString("?useUnicode=true&characterEncoding=utf-8");
+		assertEquals("jdbc:mysql://localhost:3306/test_db?useUnicode=true&characterEncoding=utf-8", instance.getUrl(dbInfo));
 	}
 
 }

@@ -9,6 +9,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.dayatang.configuration.Configuration;
+import com.dayatang.configuration.impl.SimpleConfiguration;
+import com.dayatang.datasource4saas.Constants;
 import com.dayatang.datasource4saas.dscreator.C3P0DataSourceCreator;
 
 
@@ -19,6 +22,34 @@ public class C3P0DataSourceCreatorTest {
 	@Before
 	public void setUp() throws Exception {
 		instance = new C3P0DataSourceCreator();
+		DbType dbType = DbType.MYSQL;
+		TenantDbMappingStrategy mappingStrategy = TenantDbMappingStrategy.DBNAME;
+		Configuration dsConfiguration = createDsConfiguration();
+		Configuration tenantDbMappings = createDbMappings();
+		instance.setDbType(dbType);
+		instance.setMappingStrategy(mappingStrategy);
+		instance.setDsConfiguration(dsConfiguration);
+		instance.setTenantDbMapping(tenantDbMappings);
+		
+	}
+
+	private Configuration createDsConfiguration() {
+		Configuration result = new SimpleConfiguration();
+		result.setString(Constants.JDBC_HOST, "localhost");
+		result.setString(Constants.JDBC_PORT, "3306");
+		result.setString(Constants.JDBC_DB_NAME, "test_db");
+		result.setString(Constants.JDBC_INSTANCE, "XE");
+		result.setString(Constants.JDBC_EXTRA_URL_STRING, "useUnicode=true&characterEncoding=utf-8");
+		result.setString(Constants.JDBC_USERNAME, "root");
+		result.setString(Constants.JDBC_PASSWORD, "1234");
+		return result;
+	}
+
+	private Configuration createDbMappings() {
+		Configuration result = new SimpleConfiguration();
+		result.setString("abc", "DB_ABC");
+		result.setString("xyz", "DB_XYZ");
+		return result;
 	}
 
 	@After
