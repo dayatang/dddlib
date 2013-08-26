@@ -15,6 +15,11 @@ public enum DbType {
 			}
 			return extraUrlString.startsWith("?") ? result + extraUrlString : result + "?" + extraUrlString;
 		}
+
+		@Override
+		public String getDriverClassName() {
+			return "com.mysql.jdbc.Driver";
+		}
 	},
 	
 	POSTGRESQL {
@@ -28,6 +33,11 @@ public enum DbType {
 			}
 			return extraUrlString.startsWith("?") ? result + extraUrlString : result + "?" + extraUrlString;
 		}
+
+		@Override
+		public String getDriverClassName() {
+			return "org.postgresql.Driver";
+		}
 	},
 	
 	ORACLE {
@@ -35,6 +45,11 @@ public enum DbType {
 		public String getUrl(JdbcConfiguration jdbcConfiguration) {
 			return String.format("jdbc:oracle:thin:@%s:%s:%s", jdbcConfiguration.getHost(),
 					jdbcConfiguration.getPort(), jdbcConfiguration.getInstance());
+		}
+
+		@Override
+		public String getDriverClassName() {
+			return "oracle.jdbc.OracleDriver";
 		}
 	},
 	
@@ -44,6 +59,11 @@ public enum DbType {
 			return String.format("jdbc:db2://%s:%s/%s", jdbcConfiguration.getHost(),
 					jdbcConfiguration.getPort(), jdbcConfiguration.getDbname());
 		}
+
+		@Override
+		public String getDriverClassName() {
+			return "com.ibm.db2.jcc.DB2Driver";
+		}
 	},
 	
 	SQLSERVER {
@@ -51,6 +71,11 @@ public enum DbType {
 		public String getUrl(JdbcConfiguration jdbcConfiguration) {
 			return String.format("jdbc:jtds:sqlserver://%s:%s/%s", jdbcConfiguration.getHost(),
 					jdbcConfiguration.getPort(), jdbcConfiguration.getDbname());
+		}
+
+		@Override
+		public String getDriverClassName() {
+			return "net.sourceforge.jtds.jdbc.Driver";
 		}
 	};
 
@@ -64,5 +89,7 @@ public enum DbType {
 	}
 
 	public abstract String getUrl(JdbcConfiguration jdbcConfiguration);
+	
+	public abstract String getDriverClassName();
 
 }

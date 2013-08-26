@@ -15,7 +15,6 @@ public class JdbcConfiguration {
 	private Configuration dbTenantMappings;
 	private DbType dbType;
 	private TenantDbMappingStrategy mappingStrategy;
-	private String driverClassName;
 	private String host;
 	private String port;
 	private String dbname;
@@ -48,7 +47,6 @@ public class JdbcConfiguration {
 		dbType = DbType.of(dsConfiguration.getString(Constants.DB_TYPE));
 		Assert.notNull(dbType);
 		mappingStrategy = TenantDbMappingStrategy.of(dsConfiguration.getString(Constants.TENANT_MAPPING_STRATEGY));
-		driverClassName = dsConfiguration.getString(Constants.JDBC_DRIVER_CLASS_NAME);
 		host = dsConfiguration.getString(Constants.JDBC_HOST);
 		port = dsConfiguration.getString(Constants.JDBC_PORT);
 		dbname = dsConfiguration.getString(Constants.JDBC_DB_NAME);
@@ -66,10 +64,6 @@ public class JdbcConfiguration {
 		this.mappingStrategy = mappingStrategy;
 	}
 	
-	public String getDriverClassName() {
-		return driverClassName;
-	}
-
 	public String getHost() {
 		if (mappingStrategy == TenantDbMappingStrategy.HOST) {
 			return dbTenantMappings.getString(tenant);
@@ -115,5 +109,9 @@ public class JdbcConfiguration {
 
 	public String getUrl() {
 		return dbType.getUrl(this);
+	}
+
+	public String getDriverClassName() {
+		return dbType.getDriverClassName();
 	}
 }
