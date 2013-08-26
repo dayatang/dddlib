@@ -57,29 +57,16 @@ public class ProxoolDataSourceCreatorTest {
 
 	@Test
 	public void createDataSourceForTenantByMysqlAndDbname() throws Exception {
-		instance.setDbType(DbType.MYSQL);
-		instance.setMappingStrategy(TenantDbMappingStrategy.DBNAME);
-		String url = "jdbc:mysql://localhost:3306/DB_ABC?useUnicode=true&characterEncoding=utf-8";
+		instance.setDbType(DbType.SQLSERVER);
+		instance.setMappingStrategy(TenantDbMappingStrategy.SCHEMA);
+		String url = "jdbc:jtds:sqlserver://localhost:3306/test_db?useUnicode=true&characterEncoding=utf-8";
 		DataSource result = instance.createDataSourceForTenant(tenant);
 		assertThat(result, instanceOf(ProxoolDataSource.class));
-		assertEquals("com.mysql.jdbc.Driver", BeanUtils.getProperty(result, "driver"));
+		assertEquals("net.sourceforge.jtds.jdbc.Driver", BeanUtils.getProperty(result, "driver"));
 		assertEquals(url, BeanUtils.getProperty(result, "driverUrl"));
-		assertEquals("root", BeanUtils.getProperty(result, "user"));
+		assertEquals("DB_ABC", BeanUtils.getProperty(result, "user"));
 		assertEquals("1234", BeanUtils.getProperty(result, "password"));
 		assertEquals("15", BeanUtils.getProperty(result, "maximumConnectionCount"));		
 	}
 
-	@Test
-	public void createDataSourceForTenantByPostgresAndPort() throws Exception {
-		instance.setDbType(DbType.POSTGRESQL);
-		instance.setMappingStrategy(TenantDbMappingStrategy.PORT);
-		String url = "jdbc:postgresql://localhost:DB_ABC/test_db?useUnicode=true&characterEncoding=utf-8";
-		DataSource result = instance.createDataSourceForTenant(tenant);
-		assertThat(result, instanceOf(ProxoolDataSource.class));
-		assertEquals("org.postgresql.Driver", BeanUtils.getProperty(result, "driver"));
-		assertEquals(url, BeanUtils.getProperty(result, "driverUrl"));
-		assertEquals("root", BeanUtils.getProperty(result, "user"));
-		assertEquals("1234", BeanUtils.getProperty(result, "password"));
-		assertEquals("15", BeanUtils.getProperty(result, "maximumConnectionCount"));		
-	}
 }

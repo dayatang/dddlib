@@ -57,12 +57,12 @@ public class CommonsDbcpDataSourceCreatorTest {
 
 	@Test
 	public void createDataSourceForTenantByMysqlAndDbname() throws Exception {
-		instance.setDbType(DbType.MYSQL);
-		instance.setMappingStrategy(TenantDbMappingStrategy.DBNAME);
-		String url = "jdbc:mysql://localhost:3306/DB_ABC?useUnicode=true&characterEncoding=utf-8";
+		instance.setDbType(DbType.ORACLE);
+		instance.setMappingStrategy(TenantDbMappingStrategy.INSTANCE);
+		String url = "jdbc:oracle:thin:@localhost:3306:DB_ABC?useUnicode=true&characterEncoding=utf-8";
 		DataSource result = instance.createDataSourceForTenant(tenant);
 		assertThat(result, instanceOf(BasicDataSource.class));
-		assertEquals("com.mysql.jdbc.Driver", BeanUtils.getProperty(result, "driverClassName"));
+		assertEquals("oracle.jdbc.OracleDriver", BeanUtils.getProperty(result, "driverClassName"));
 		assertEquals(url, BeanUtils.getProperty(result, "url"));
 		assertEquals("root", BeanUtils.getProperty(result, "username"));
 		assertEquals("1234", BeanUtils.getProperty(result, "password"));
@@ -71,12 +71,12 @@ public class CommonsDbcpDataSourceCreatorTest {
 
 	@Test
 	public void createDataSourceForTenantByPostgresAndPort() throws Exception {
-		instance.setDbType(DbType.POSTGRESQL);
-		instance.setMappingStrategy(TenantDbMappingStrategy.PORT);
-		String url = "jdbc:postgresql://localhost:DB_ABC/test_db?useUnicode=true&characterEncoding=utf-8";
+		instance.setDbType(DbType.DB2);
+		instance.setMappingStrategy(TenantDbMappingStrategy.HOST);
+		String url = "jdbc:db2://DB_ABC:3306/test_db?useUnicode=true&characterEncoding=utf-8";
 		DataSource result = instance.createDataSourceForTenant(tenant);
 		assertThat(result, instanceOf(BasicDataSource.class));
-		assertEquals("org.postgresql.Driver", BeanUtils.getProperty(result, "driverClassName"));
+		assertEquals("com.ibm.db2.jcc.DB2Driver", BeanUtils.getProperty(result, "driverClassName"));
 		assertEquals(url, BeanUtils.getProperty(result, "url"));
 		assertEquals("root", BeanUtils.getProperty(result, "username"));
 		assertEquals("1234", BeanUtils.getProperty(result, "password"));
