@@ -40,9 +40,7 @@ public class ProxoolDataSourceCreatorTest {
 		result.setString(Constants.JDBC_EXTRA_URL_STRING, "useUnicode=true&characterEncoding=utf-8");
 		result.setString(Constants.JDBC_USERNAME, "root");
 		result.setString(Constants.JDBC_PASSWORD, "1234");
-		result.setInt("minPoolSize", 5);
-		result.setInt("maxPoolSize", 30);
-		result.setInt("initialPoolSize", 10);
+		result.setInt("maximumConnectionCount", 15);
 		return result;
 	}
 
@@ -68,6 +66,7 @@ public class ProxoolDataSourceCreatorTest {
 		assertEquals(url, BeanUtils.getProperty(result, "driverUrl"));
 		assertEquals("root", BeanUtils.getProperty(result, "user"));
 		assertEquals("1234", BeanUtils.getProperty(result, "password"));
+		assertEquals("15", BeanUtils.getProperty(result, "maximumConnectionCount"));		
 	}
 
 	@Test
@@ -81,5 +80,6 @@ public class ProxoolDataSourceCreatorTest {
 		assertEquals(url, BeanUtils.getProperty(result, "driverUrl"));
 		assertEquals("root", BeanUtils.getProperty(result, "user"));
 		assertEquals("1234", BeanUtils.getProperty(result, "password"));
+		assertEquals("15", BeanUtils.getProperty(result, "maximumConnectionCount"));		
 	}
 }

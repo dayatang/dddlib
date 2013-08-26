@@ -40,9 +40,7 @@ public class CommonsDbcpDataSourceCreatorTest {
 		result.setString(Constants.JDBC_EXTRA_URL_STRING, "useUnicode=true&characterEncoding=utf-8");
 		result.setString(Constants.JDBC_USERNAME, "root");
 		result.setString(Constants.JDBC_PASSWORD, "1234");
-		result.setInt("minPoolSize", 5);
-		result.setInt("maxPoolSize", 30);
-		result.setInt("initialPoolSize", 10);
+		result.setInt("initialSize", 100);
 		return result;
 	}
 
@@ -68,6 +66,7 @@ public class CommonsDbcpDataSourceCreatorTest {
 		assertEquals(url, BeanUtils.getProperty(result, "url"));
 		assertEquals("root", BeanUtils.getProperty(result, "username"));
 		assertEquals("1234", BeanUtils.getProperty(result, "password"));
+		assertEquals("100", BeanUtils.getProperty(result, "initialSize"));
 	}
 
 	@Test
@@ -81,5 +80,6 @@ public class CommonsDbcpDataSourceCreatorTest {
 		assertEquals(url, BeanUtils.getProperty(result, "url"));
 		assertEquals("root", BeanUtils.getProperty(result, "username"));
 		assertEquals("1234", BeanUtils.getProperty(result, "password"));
+		assertEquals("100", BeanUtils.getProperty(result, "initialSize"));
 	}
 }
