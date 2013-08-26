@@ -8,8 +8,9 @@ package org.openkoala.gqc.core.domain.utils;
 public class OraclePagingQueryDialect extends PagingQueryDialect {
 
 	@Override
-	public String generatePagingQueryStatement() {
-		String sql = getQuerySql();
+	public SqlStatmentMode generatePagingQueryStatement() {
+		SqlStatmentMode result = getQuerySql();
+		String sql = result.getStatment();
 		sql = sql.trim();
 
 		StringBuilder pagingSelect = new StringBuilder( sql.length()+100 );
@@ -17,7 +18,8 @@ public class OraclePagingQueryDialect extends PagingQueryDialect {
 		pagingSelect.append(sql);
 		pagingSelect.append(" ) row_ ) where rownum_ <= " + (getFirstRow() + getPagesize()) + " and rownum_ > " + getFirstRow());
 
-		return pagingSelect.toString();
+		result.setStatment(pagingSelect.toString());
+		return result;
 	}
 
 

@@ -16,10 +16,10 @@ import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 import org.openkoala.gqc.core.domain.utils.PagingQuerier;
 import org.openkoala.gqc.core.domain.utils.QueryAllQuerier;
+import org.openkoala.gqc.core.domain.utils.SqlStatmentMode;
 
 import com.dayatang.domain.QuerySettings;
 import com.dayatang.querychannel.support.Page;
@@ -94,14 +94,12 @@ public class GeneralQuery extends GeneralQueryEntity {
 	/**
 	 * 查询所有查询器
 	 */
-	@Transient
-	private QueryAllQuerier queryAllQuerier;
+	private transient QueryAllQuerier queryAllQuerier;
 	
 	/**
 	 * 分页查询查询器
 	 */
-	@Transient
-	private PagingQuerier pagingQuerier;
+	private transient PagingQuerier pagingQuerier;
 	
 	public GeneralQuery() {
 		
@@ -142,9 +140,9 @@ public class GeneralQuery extends GeneralQueryEntity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+ 
 	public Date getCreateDate() {
-		return createDate;
+		return new Date(createDate.getTime());
 	}
 
 	public void setCreateDate(Date createDate) {
@@ -237,7 +235,7 @@ public class GeneralQuery extends GeneralQueryEntity {
 	 * 生成查询SQL语句
 	 * @return
 	 */
-	public String getQuerySql() {
+	public SqlStatmentMode getQuerySql() {
 		return generateCommonQuerySql();
 	}
 	
@@ -255,20 +253,14 @@ public class GeneralQuery extends GeneralQueryEntity {
 		return results;
 	}
 	
-	private String generateCommonQuerySql() {
-		StringBuilder result = new StringBuilder(generatePreQuerySql());
-		result.append(generateDynamicQueryConditionStatement());
+	private SqlStatmentMode generateCommonQuerySql() {
+		SqlStatmentMode result = new SqlStatmentMode();
+		result.setStatment(generateSelectPrefixStatement());
 		
-		return result.toString();
-	}
-	
-	private String generatePreQuerySql() {
-		StringBuilder result = new StringBuilder();
-		result.append(generateSelectPrefixStatement());
-		result.append(" from " + tableName + " where 1=1");
-		result.append(generatePreQueryConditionStatement());
-
-		return result.toString();
+		addPreQueryConditionStatement(result);
+		addDynamicQueryConditionStatement(result);
+		
+		return result;
 	}
 	
 	private String generateSelectPrefixStatement() {
@@ -279,29 +271,40 @@ public class GeneralQuery extends GeneralQueryEntity {
 			result.append(fieldDetail.getFieldName() + ",");
 		}
 		result.deleteCharAt(result.length() - 1);
+		result.append(" from " + tableName);
+		
+		if (!preQueryConditions.isEmpty() || !dynamicQueryConditions.isEmpty()) {
+			result.append(" where 1=1");
+		}
 
 		return result.toString();
 	}
 	
-	private String generatePreQueryConditionStatement() {
-		return generateConditionStatement(preQueryConditions);
+	private void addPreQueryConditionStatement(SqlStatmentMode sqlStatmentMode) {
+		generateConditionStatement(preQueryConditions, sqlStatmentMode);
 	}
 	
-	private String generateDynamicQueryConditionStatement() {
-		return generateConditionStatement(dynamicQueryConditions);
+	private void addDynamicQueryConditionStatement(SqlStatmentMode sqlStatmentMode) {
+		generateConditionStatement(dynamicQueryConditions, sqlStatmentMode);
 	}
 	
-	private <T extends QueryCondition> String generateConditionStatement(List<T> queryConditions) {
+	private <T extends QueryCondition> void generateConditionStatement(List<T> queryConditions, SqlStatmentMode sqlStatmentMode) {
 		if (queryConditions.isEmpty()) {
-			return "";
+			return;
 		}
-		StringBuilder result = new StringBuilder();
+		
 		for (T queryCondition : queryConditions) {
-			result.append(queryCondition.generateConditionStatment());
+			SqlStatmentMode conditionSqlStatment = queryCondition.generateConditionStatment();
+			sqlStatmentMode.setStatment(sqlStatmentMode.getStatment() + conditionSqlStatment.getStatment());
+			sqlStatmentMode.addValues(conditionSqlStatment.getValues());
 		}
-		return result.toString();
 	}
 	
+	/**
+	 * 通过字段名称查询动态查询条件
+	 * @param fieldName
+	 * @return
+	 */
 	public DynamicQueryCondition getDynamicQueryConditionByFieldName(String fieldName) {
 		for (DynamicQueryCondition dynamicQueryCondition : dynamicQueryConditions) {
 			if (dynamicQueryCondition.getFieldName().equals(fieldName)) {
@@ -334,38 +337,51 @@ public class GeneralQuery extends GeneralQueryEntity {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj){
 			return true;
-		if (obj == null)
+		}
+		if (obj == null){
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()){
 			return false;
+		}
 		GeneralQuery other = (GeneralQuery) obj;
 		if (dynamicQueryConditions == null) {
-			if (other.dynamicQueryConditions != null)
+			if (other.dynamicQueryConditions != null){
 				return false;
-		} else if (!dynamicQueryConditions.equals(other.dynamicQueryConditions))
+			}
+		} else if (!dynamicQueryConditions.equals(other.dynamicQueryConditions)){
 			return false;
+		}
 		if (fieldDetails == null) {
-			if (other.fieldDetails != null)
+			if (other.fieldDetails != null){
 				return false;
-		} else if (!fieldDetails.equals(other.fieldDetails))
+			}
+		} else if (!fieldDetails.equals(other.fieldDetails)){
 			return false;
+		}
 		if (preQueryConditions == null) {
-			if (other.preQueryConditions != null)
+			if (other.preQueryConditions != null){
 				return false;
-		} else if (!preQueryConditions.equals(other.preQueryConditions))
+			}
+		} else if (!preQueryConditions.equals(other.preQueryConditions)){
 			return false;
+		}
 		if (tableName == null) {
-			if (other.tableName != null)
+			if (other.tableName != null){
 				return false;
-		} else if (!tableName.equals(other.tableName))
+			}
+		} else if (!tableName.equals(other.tableName)){
 			return false;
+		}
 		if (queryName == null) {
-			if (other.queryName != null)
+			if (other.queryName != null){
 				return false;
-		} else if (!queryName.equals(other.queryName))
+			}
+		} else if (!queryName.equals(other.queryName)){
 			return false;
+		}
 		return true;
 	}
 

@@ -8,11 +8,14 @@ package org.openkoala.gqc.core.domain.utils;
 public class SqlServerPagingQueryDialect extends PagingQueryDialect {
 
 	@Override
-	public String generatePagingQueryStatement() {
-		return new StringBuilder( getQuerySql().length() + 8 )
-				.append( getQuerySql() )
-				.insert( getAfterSelectInsertPoint( getQuerySql() ), " top " + getPagesize() )
-				.toString();
+	public SqlStatmentMode generatePagingQueryStatement() {
+		SqlStatmentMode result = getQuerySql();
+		String statment = result.getStatment();
+		result.setStatment( new StringBuilder( statment.length() + 8 )
+				.append( statment )
+				.insert( getAfterSelectInsertPoint( statment ), " top " + getPagesize() )
+				.toString() );
+		return result;
 	}
 
 	private int getAfterSelectInsertPoint(String sql) {

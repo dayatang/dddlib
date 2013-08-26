@@ -7,17 +7,17 @@ package org.openkoala.gqc.core.domain.utils;
  */
 public abstract class PagingQueryDialect {
 	
-	private String querySql;
+	private SqlStatmentMode querySql;
 	
 	private int firstRow;
 	
 	private int pagesize;
 	
-	public String getQuerySql() {
+	public SqlStatmentMode getQuerySql() {
 		return querySql;
 	}
 
-	public void setQuerySql(String querySql) {
+	public void setQuerySql(SqlStatmentMode querySql) {
 		this.querySql = querySql;
 	}
 
@@ -39,12 +39,12 @@ public abstract class PagingQueryDialect {
 
 	public PagingQueryDialect() {}
 	
-	public PagingQueryDialect(String querySql, int firstRow, int pagesize) {
+	public PagingQueryDialect(SqlStatmentMode querySql, int firstRow, int pagesize) {
 		this.querySql = querySql;
 		this.firstRow = firstRow;
 		this.pagesize = pagesize;
 	}
 	
-	abstract public String generatePagingQueryStatement();
+	abstract public SqlStatmentMode generatePagingQueryStatement();
 	
 }

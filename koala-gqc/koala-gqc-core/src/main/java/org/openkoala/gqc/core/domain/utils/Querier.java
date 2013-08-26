@@ -30,18 +30,18 @@ public abstract class Querier {
 	/**
 	 * 查询SQL语句
 	 */
-	private String querySql;
+	private SqlStatmentMode querySql;
 	
 	/**
 	 * 数据源
 	 */
 	private DataSource dataSource;
 
-	public String getQuerySql() {
+	public SqlStatmentMode getQuerySql() {
 		return querySql;
 	}
 
-	public void setQuerySql(String querySql) {
+	public void setQuerySql(SqlStatmentMode querySql) {
 		this.querySql = querySql;
 	}
 
@@ -55,7 +55,7 @@ public abstract class Querier {
 
 	public Querier(){}
 	
-	Querier(String querySql, DataSource dataSource) {
+	Querier(SqlStatmentMode querySql, DataSource dataSource) {
 		this.querySql = querySql;
 		this.dataSource = dataSource;
 	}
@@ -64,7 +64,7 @@ public abstract class Querier {
 	 * 生成查询SQL语句
 	 * @return
 	 */
-	public abstract String generateQuerySql();
+	public abstract SqlStatmentMode generateQuerySql();
 
 	/**
 	 * 查询
@@ -74,31 +74,19 @@ public abstract class Querier {
 	public List<Map<String, Object>> query() {
 		List<Map<String, Object>> results = null;
 		Connection connection = null;
-        
+		SqlStatmentMode sqlStatment = generateQuerySql();
+		
         try {
         	connection = getConnection();
             QueryRunner queryRunner = new QueryRunner();
-            results = (List<Map<String, Object>>) queryRunner.query(connection, generateQuerySql(), new ResultSetHandler<List<Map<String, Object>>>() {
-				public List<Map<String, Object>> handle(ResultSet rs)
-						throws SQLException {
-					List<Map<String, Object>> result = new ArrayList<Map<String,Object>>();
-					while (rs.next()) {
-						ResultSetMetaData resultSetMetaData = rs.getMetaData();
-						Map<String, Object> map = new HashMap<String, Object>();
-						for (int i = 0; i < resultSetMetaData.getColumnCount(); i++) {
-							if (rs.getObject(i + 1) instanceof java.sql.Date) {
-								map.put(resultSetMetaData.getColumnName(i + 1), new SimpleDateFormat("yyyy-MM-dd").format(rs.getDate(i + 1)));
-							} else if (rs.getObject(i + 1) instanceof Timestamp) {
-								map.put(resultSetMetaData.getColumnName(i + 1), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rs.getTimestamp(i + 1)));
-							} else {
-								map.put(resultSetMetaData.getColumnName(i + 1), rs.getObject(i + 1));
-							}
-						}
-						result.add(map);
-					}
-					return result;
-				}
-            });
+            List<Object> parameters = sqlStatment.getValues();
+            ResultSetHandler<List<Map<String, Object>>> resultSetHandler = new FormatDateResultSetHandler();
+            
+            if (parameters.isEmpty()) {
+            	results = (List<Map<String, Object>>) queryRunner.query(connection, sqlStatment.getStatment(), resultSetHandler);
+            } else {
+            	results = (List<Map<String, Object>>) queryRunner.query(connection, sqlStatment.getStatment(), resultSetHandler, parameters.toArray());
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -126,5 +114,27 @@ public abstract class Querier {
 		if (dataSource.getDataSourceType().equals(DataSourceType.CUSTOM_DATA_SOURCE)) {
     		DbUtils.closeQuietly(connection);
     	}
+	}
+	
+	private class FormatDateResultSetHandler implements ResultSetHandler<List<Map<String, Object>>> {
+		public List<Map<String, Object>> handle(ResultSet rs)
+				throws SQLException {
+			List<Map<String, Object>> result = new ArrayList<Map<String,Object>>();
+			while (rs.next()) {
+				ResultSetMetaData resultSetMetaData = rs.getMetaData();
+				Map<String, Object> map = new HashMap<String, Object>();
+				for (int i = 0; i < resultSetMetaData.getColumnCount(); i++) {
+					if (rs.getObject(i + 1) instanceof java.sql.Date) {
+						map.put(resultSetMetaData.getColumnName(i + 1), new SimpleDateFormat("yyyy-MM-dd").format(rs.getDate(i + 1)));
+					} else if (rs.getObject(i + 1) instanceof Timestamp) {
+						map.put(resultSetMetaData.getColumnName(i + 1), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(rs.getTimestamp(i + 1)));
+					} else {
+						map.put(resultSetMetaData.getColumnName(i + 1), rs.getObject(i + 1));
+					}
+				}
+				result.add(map);
+			}
+			return result;
+		}
 	}
 }

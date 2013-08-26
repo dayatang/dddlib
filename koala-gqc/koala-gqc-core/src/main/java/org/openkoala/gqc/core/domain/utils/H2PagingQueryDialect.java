@@ -8,11 +8,14 @@ package org.openkoala.gqc.core.domain.utils;
 public class H2PagingQueryDialect extends PagingQueryDialect {
 
 	@Override
-	public String generatePagingQueryStatement() {
-		return new StringBuilder( getQuerySql().length() + 20 )
-		.append( getQuerySql() )
-		.append( " limit " + getPagesize() + " offset " + getFirstRow() )
-		.toString();
+	public SqlStatmentMode generatePagingQueryStatement() {
+		SqlStatmentMode result = getQuerySql();
+		result.setStatment(new StringBuilder( result.getStatment().length() + 20 )
+			.append( result.getStatment() )
+			.append( " limit " + getPagesize() + " offset " + getFirstRow() )
+			.toString());
+		
+		return result;
 	}
 
 }

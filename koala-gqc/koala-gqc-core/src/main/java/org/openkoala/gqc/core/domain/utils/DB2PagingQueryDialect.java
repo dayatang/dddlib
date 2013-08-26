@@ -8,14 +8,17 @@ package org.openkoala.gqc.core.domain.utils;
 public class DB2PagingQueryDialect extends PagingQueryDialect {
 
 	@Override
-	public String generatePagingQueryStatement() {
+	public SqlStatmentMode generatePagingQueryStatement() {
 		int offset = getFirstRow();
 		int limit = getPagesize();
-		String sql = getQuerySql();
+		SqlStatmentMode result = getQuerySql();
 		
 		if ( offset == 0 ) {
-			return sql + " fetch first " + limit + " rows only";
+			result.setStatment(result.getStatment() + " fetch first " + limit + " rows only");
+			return result;
 		}
+		
+		String sql = result.getStatment();
 		StringBuilder pagingSelect = new StringBuilder( sql.length() + 200 )
 				.append(
 						"select * from ( select inner2_.*, rownumber() over(order by order of inner2_) as rownumber_ from ( "
@@ -26,7 +29,9 @@ public class DB2PagingQueryDialect extends PagingQueryDialect {
 				.append( " rows only ) as inner2_ ) as inner1_ where rownumber_ > " )
 				.append( offset )
 				.append( " order by rownumber_" );
-		return pagingSelect.toString();
+		result.setStatment(pagingSelect.toString());
+		
+		return result;
 	}
 
 }

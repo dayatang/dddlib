@@ -9,12 +9,12 @@ import org.openkoala.gqc.core.domain.DataSource;
  */
 public class QueryAllQuerier extends Querier {
 
-	public QueryAllQuerier(String querySql, DataSource dataSource) {
+	public QueryAllQuerier(SqlStatmentMode querySql, DataSource dataSource) {
 		super(querySql, dataSource);
 	}
 
 	@Override
-	public String generateQuerySql() {
+	public SqlStatmentMode generateQuerySql() {
 		return getQuerySql();
 	}
 

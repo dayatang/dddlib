@@ -6,6 +6,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
+import org.openkoala.gqc.core.domain.utils.SqlStatmentMode;
+
 import com.dayatang.domain.ValueObject;
 
 /**
@@ -69,5 +71,5 @@ public abstract class QueryCondition implements ValueObject, Comparable<QueryCon
 	 * 生成条件语句
 	 * @return
 	 */
-	abstract public String generateConditionStatment();
+	abstract public SqlStatmentMode generateConditionStatment();
 }
