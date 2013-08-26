@@ -1,5 +1,6 @@
 package com.dayatang.datasource4saas.dscreator;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import javax.sql.DataSource;
@@ -13,6 +14,7 @@ import com.dayatang.configuration.Configuration;
 import com.dayatang.configuration.impl.SimpleConfiguration;
 import com.dayatang.datasource4saas.Constants;
 import com.dayatang.datasource4saas.dscreator.C3P0DataSourceCreator;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 
 public class C3P0DataSourceCreatorTest {
@@ -64,6 +66,7 @@ public class C3P0DataSourceCreatorTest {
 		String tenant = "abc";
 		String url = "jdbc:mysql://localhost:3306/DB_ABC?useUnicode=true&characterEncoding=utf-8";
 		DataSource result = instance.createDataSourceForTenant(tenant);
+		assertThat(result, instanceOf(ComboPooledDataSource.class));
 		assertEquals("com.mysql.jdbc.Driver", BeanUtils.getProperty(result, "driverClass"));
 		assertEquals(url, BeanUtils.getProperty(result, "jdbcUrl"));
 		assertEquals("5", BeanUtils.getProperty(result, "minPoolSize"));
