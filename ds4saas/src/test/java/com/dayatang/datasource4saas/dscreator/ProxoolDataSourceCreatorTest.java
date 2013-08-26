@@ -9,22 +9,21 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.logicalcobwebs.proxool.ProxoolDataSource;
 
 import com.dayatang.configuration.Configuration;
 import com.dayatang.configuration.impl.SimpleConfiguration;
 import com.dayatang.datasource4saas.Constants;
-import com.dayatang.datasource4saas.dscreator.C3P0DataSourceCreator;
-import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 
-public class C3P0DataSourceCreatorTest {
+public class ProxoolDataSourceCreatorTest {
 
-	private C3P0DataSourceCreator instance;
+	private ProxoolDataSourceCreator instance;
 	private String tenant = "abc";
 	
 	@Before
 	public void setUp() throws Exception {
-		instance = new C3P0DataSourceCreator();
+		instance = new ProxoolDataSourceCreator();
 		Configuration dsConfiguration = createDsConfiguration();
 		Configuration tenantDbMappings = createDbMappings();
 		instance.setDsConfiguration(dsConfiguration);
@@ -64,14 +63,11 @@ public class C3P0DataSourceCreatorTest {
 		instance.setMappingStrategy(TenantDbMappingStrategy.DBNAME);
 		String url = "jdbc:mysql://localhost:3306/DB_ABC?useUnicode=true&characterEncoding=utf-8";
 		DataSource result = instance.createDataSourceForTenant(tenant);
-		assertThat(result, instanceOf(ComboPooledDataSource.class));
-		assertEquals("com.mysql.jdbc.Driver", BeanUtils.getProperty(result, "driverClass"));
-		assertEquals(url, BeanUtils.getProperty(result, "jdbcUrl"));
+		assertThat(result, instanceOf(ProxoolDataSource.class));
+		assertEquals("com.mysql.jdbc.Driver", BeanUtils.getProperty(result, "driver"));
+		assertEquals(url, BeanUtils.getProperty(result, "driverUrl"));
 		assertEquals("root", BeanUtils.getProperty(result, "user"));
 		assertEquals("1234", BeanUtils.getProperty(result, "password"));
-		assertEquals("5", BeanUtils.getProperty(result, "minPoolSize"));
-		assertEquals("30", BeanUtils.getProperty(result, "maxPoolSize"));
-		assertEquals("10", BeanUtils.getProperty(result, "initialPoolSize"));
 	}
 
 	@Test
@@ -80,13 +76,10 @@ public class C3P0DataSourceCreatorTest {
 		instance.setMappingStrategy(TenantDbMappingStrategy.PORT);
 		String url = "jdbc:postgresql://localhost:DB_ABC/test_db?useUnicode=true&characterEncoding=utf-8";
 		DataSource result = instance.createDataSourceForTenant(tenant);
-		assertThat(result, instanceOf(ComboPooledDataSource.class));
-		assertEquals("org.postgresql.Driver", BeanUtils.getProperty(result, "driverClass"));
-		assertEquals(url, BeanUtils.getProperty(result, "jdbcUrl"));
+		assertThat(result, instanceOf(ProxoolDataSource.class));
+		assertEquals("org.postgresql.Driver", BeanUtils.getProperty(result, "driver"));
+		assertEquals(url, BeanUtils.getProperty(result, "driverUrl"));
 		assertEquals("root", BeanUtils.getProperty(result, "user"));
 		assertEquals("1234", BeanUtils.getProperty(result, "password"));
-		assertEquals("5", BeanUtils.getProperty(result, "minPoolSize"));
-		assertEquals("30", BeanUtils.getProperty(result, "maxPoolSize"));
-		assertEquals("10", BeanUtils.getProperty(result, "initialPoolSize"));
 	}
 }
