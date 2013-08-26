@@ -64,28 +64,28 @@ public class JdbcConfiguration {
 		this.mappingStrategy = mappingStrategy;
 	}
 	
-	public String getHost() {
+	private String getHost() {
 		if (mappingStrategy == TenantDbMappingStrategy.HOST) {
 			return dbTenantMappings.getString(tenant);
 		}
 		return host;
 	}
 
-	public String getPort() {
+	private String getPort() {
 		if (mappingStrategy == TenantDbMappingStrategy.PORT) {
 			return dbTenantMappings.getString(tenant);
 		}
 		return port;
 	}
 
-	public String getDbname() {
+	private String getDbname() {
 		if (mappingStrategy == TenantDbMappingStrategy.DBNAME) {
 			return dbTenantMappings.getString(tenant);
 		}
 		return dbname;
 	}
 
-	public String getInstance() {
+	private String getInstance() {
 		if (mappingStrategy == TenantDbMappingStrategy.INSTANCE) {
 			return dbTenantMappings.getString(tenant);
 		}
@@ -103,15 +103,11 @@ public class JdbcConfiguration {
 		return password;
 	}
 
-	public String getExtraUrlString() {
-		return extraUrlString;
+	public String getDriverClassName() {
+		return dbType.getDriverClassName();
 	}
 
 	public String getUrl() {
-		return dbType.getUrl(this);
-	}
-
-	public String getDriverClassName() {
-		return dbType.getDriverClassName();
+		return dbType.getUrl(getHost(), getPort(), getDbname(), getInstance(), getUsername(), extraUrlString);
 	}
 }

@@ -5,77 +5,79 @@ import org.apache.commons.lang3.StringUtils;
 public enum DbType {
 
 	MYSQL {
-		@Override
-		public String getUrl(JdbcConfiguration jdbcConfiguration) {
-			String result = String.format("jdbc:mysql://%s:%s/%s", jdbcConfiguration.getHost(),
-					jdbcConfiguration.getPort(), jdbcConfiguration.getDbname());
-			String extraUrlString = jdbcConfiguration.getExtraUrlString();
-			if (StringUtils.isBlank(extraUrlString)) {
-				return result;
-			}
-			return extraUrlString.startsWith("?") ? result + extraUrlString : result + "?" + extraUrlString;
-		}
 
+		
 		@Override
 		public String getDriverClassName() {
 			return "com.mysql.jdbc.Driver";
 		}
+
+		@Override
+		public String getUrl(String host, String port, String dbname,
+				String instance, String username, String extraUrlString) {
+			String result = String.format("jdbc:mysql://%s:%s/%s", host, port, dbname);
+			return addExtraUrlStringIfExists(result, extraUrlString);
+		}
+
 	},
 	
 	POSTGRESQL {
-		@Override
-		public String getUrl(JdbcConfiguration jdbcConfiguration) {
-			String result = String.format("jdbc:postgresql://%s:%s/%s", jdbcConfiguration.getHost(),
-					jdbcConfiguration.getPort(), jdbcConfiguration.getDbname());
-			String extraUrlString = jdbcConfiguration.getExtraUrlString();
-			if (StringUtils.isBlank(extraUrlString)) {
-				return result;
-			}
-			return extraUrlString.startsWith("?") ? result + extraUrlString : result + "?" + extraUrlString;
-		}
 
 		@Override
 		public String getDriverClassName() {
 			return "org.postgresql.Driver";
 		}
+
+		@Override
+		public String getUrl(String host, String port, String dbname,
+				String instance, String username, String extraUrlString) {
+			String result = String.format("jdbc:postgresql://%s:%s/%s", host, port, dbname);
+			return addExtraUrlStringIfExists(result, extraUrlString);
+		}
 	},
 	
 	ORACLE {
-		@Override
-		public String getUrl(JdbcConfiguration jdbcConfiguration) {
-			return String.format("jdbc:oracle:thin:@%s:%s:%s", jdbcConfiguration.getHost(),
-					jdbcConfiguration.getPort(), jdbcConfiguration.getInstance());
-		}
 
 		@Override
 		public String getDriverClassName() {
 			return "oracle.jdbc.OracleDriver";
 		}
+
+		@Override
+		public String getUrl(String host, String port, String dbname,
+				String instance, String username, String extraUrlString) {
+			String result = String.format("jdbc:oracle:thin:@%s:%s:%s", host, port, instance);
+			return addExtraUrlStringIfExists(result, extraUrlString);
+		}
 	},
 	
 	DB2 {
-		@Override
-		public String getUrl(JdbcConfiguration jdbcConfiguration) {
-			return String.format("jdbc:db2://%s:%s/%s", jdbcConfiguration.getHost(),
-					jdbcConfiguration.getPort(), jdbcConfiguration.getDbname());
-		}
 
 		@Override
 		public String getDriverClassName() {
 			return "com.ibm.db2.jcc.DB2Driver";
 		}
+
+		@Override
+		public String getUrl(String host, String port, String dbname,
+				String instance, String username, String extraUrlString) {
+			String result = String.format("jdbc:db2://%s:%s/%s", host, port, dbname);
+			return addExtraUrlStringIfExists(result, extraUrlString);
+		}
 	},
 	
 	SQLSERVER {
-		@Override
-		public String getUrl(JdbcConfiguration jdbcConfiguration) {
-			return String.format("jdbc:jtds:sqlserver://%s:%s/%s", jdbcConfiguration.getHost(),
-					jdbcConfiguration.getPort(), jdbcConfiguration.getDbname());
-		}
 
 		@Override
 		public String getDriverClassName() {
 			return "net.sourceforge.jtds.jdbc.Driver";
+		}
+
+		@Override
+		public String getUrl(String host, String port, String dbname,
+				String instance, String username, String extraUrlString) {
+			String result = String.format("jdbc:jtds:sqlserver://%s:%s/%s", host, port, dbname);
+			return addExtraUrlStringIfExists(result, extraUrlString);
 		}
 	};
 
@@ -87,9 +89,17 @@ public enum DbType {
 		}
 		throw new IllegalStateException("DB type '" + value + "' not existsDataSourceOfTenant!");
 	}
-
-	public abstract String getUrl(JdbcConfiguration jdbcConfiguration);
 	
 	public abstract String getDriverClassName();
 
+	public  abstract String getUrl(String host, String port, String dbname,
+			String instance, String username, String extraUrlString);
+	
+	protected String addExtraUrlStringIfExists(String url, String extraUrlString) {
+		if (StringUtils.isBlank(extraUrlString)) {
+			return url;
+		}
+		return extraUrlString.startsWith("?") ? url + extraUrlString : url + "?" + extraUrlString;
+		
+	}
 }

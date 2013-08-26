@@ -20,7 +20,20 @@ public class DbTypeSqlServerTest extends AbstractDbTypeTest {
 	}
 
 	@Test
-	public void getUrl() {
-		assertEquals("jdbc:jtds:sqlserver://localhost:3306/ABC", instance.getUrl(jdbcConfiguration));
+	public void getDriverClaaaName() {
+		assertEquals("net.sourceforge.jtds.jdbc.Driver", instance.getDriverClassName());
+	}
+
+	@Test
+	public void getUrlWithoutExtraString() {
+		assertEquals("jdbc:jtds:sqlserver://localhost:3306/test_db", instance.getUrl(host, port, dbname, dbInstance, username, null));
+	}
+
+	@Test
+	public void getUrlWithExtraString() {
+		assertEquals("jdbc:jtds:sqlserver://localhost:3306/test_db?useUnicode=true&characterEncoding=utf-8", 
+				instance.getUrl(host, port, dbname, dbInstance, username, extraUrlString));
+		assertEquals("jdbc:jtds:sqlserver://localhost:3306/test_db?useUnicode=true&characterEncoding=utf-8", 
+				instance.getUrl(host, port, dbname, dbInstance, username, "?" + extraUrlString));
 	}
 }

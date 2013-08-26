@@ -20,7 +20,20 @@ public class DbTypeDb2Test extends AbstractDbTypeTest {
 	}
 
 	@Test
-	public void getUrl() {
-		assertEquals("jdbc:db2://localhost:3306/ABC", instance.getUrl(jdbcConfiguration));
+	public void getDriverClaaaName() {
+		assertEquals("com.ibm.db2.jcc.DB2Driver", instance.getDriverClassName());
+	}
+
+	@Test
+	public void getUrlWithoutExtraString() {
+		assertEquals("jdbc:db2://localhost:3306/test_db", instance.getUrl(host, port, dbname, dbInstance, username, null));
+	}
+
+	@Test
+	public void getUrlWithExtraString() {
+		assertEquals("jdbc:db2://localhost:3306/test_db?useUnicode=true&characterEncoding=utf-8", 
+				instance.getUrl(host, port, dbname, dbInstance, username, extraUrlString));
+		assertEquals("jdbc:db2://localhost:3306/test_db?useUnicode=true&characterEncoding=utf-8", 
+				instance.getUrl(host, port, dbname, dbInstance, username, "?" + extraUrlString));
 	}
 }

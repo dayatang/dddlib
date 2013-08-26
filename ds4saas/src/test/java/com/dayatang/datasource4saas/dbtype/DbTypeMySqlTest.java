@@ -6,9 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dayatang.datasource4saas.Constants;
 import com.dayatang.datasource4saas.dscreator.DbType;
-import com.dayatang.datasource4saas.dscreator.JdbcConfiguration;
 
 public class DbTypeMySqlTest extends AbstractDbTypeTest {
 	
@@ -21,15 +19,23 @@ public class DbTypeMySqlTest extends AbstractDbTypeTest {
 	public void tearDown() throws Exception {
 	}
 
+
 	@Test
-	public void getUrl() {
-		assertEquals("jdbc:mysql://localhost:3306/ABC", instance.getUrl(jdbcConfiguration));
+	public void getDriverClaaaName() {
+		assertEquals("com.mysql.jdbc.Driver", instance.getDriverClassName());
 	}
 
 	@Test
-	public void getUrlWithExtraUrlString() {
-		dsConfiguration.setString(Constants.JDBC_EXTRA_URL_STRING, "useUnicode=true&encoding=UTF-8");
-		jdbcConfiguration = new JdbcConfiguration(tenant, dsConfiguration, dbTenantMappings);
-		assertEquals("jdbc:mysql://localhost:3306/ABC?useUnicode=true&encoding=UTF-8", instance.getUrl(jdbcConfiguration));
+	public void getUrlWithoutExtraString() {
+		assertEquals("jdbc:mysql://localhost:3306/test_db", instance.getUrl(host, port, dbname, dbInstance, username, null));
 	}
+
+	@Test
+	public void getUrlWithExtraString() {
+		assertEquals("jdbc:mysql://localhost:3306/test_db?useUnicode=true&characterEncoding=utf-8", 
+				instance.getUrl(host, port, dbname, dbInstance, username, extraUrlString));
+		assertEquals("jdbc:mysql://localhost:3306/test_db?useUnicode=true&characterEncoding=utf-8", 
+				instance.getUrl(host, port, dbname, dbInstance, username, "?" + extraUrlString));
+	}
+
 }
