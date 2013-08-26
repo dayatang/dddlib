@@ -42,6 +42,9 @@ public class C3P0DataSourceCreatorTest {
 		result.setString(Constants.JDBC_EXTRA_URL_STRING, "useUnicode=true&characterEncoding=utf-8");
 		result.setString(Constants.JDBC_USERNAME, "root");
 		result.setString(Constants.JDBC_PASSWORD, "1234");
+		result.setInt("minPoolSize", 5);
+		result.setInt("maxPoolSize", 30);
+		result.setInt("initialPoolSize", 10);
 		return result;
 	}
 
@@ -59,10 +62,12 @@ public class C3P0DataSourceCreatorTest {
 	@Test
 	public void createDataSourceForTenant() throws Exception {
 		String tenant = "abc";
-		String url = "jdbc:mysql://localhost:3306/db_abc?useUnicode=true&characterEncoding=utf-8";
+		String url = "jdbc:mysql://localhost:3306/DB_ABC?useUnicode=true&characterEncoding=utf-8";
 		DataSource result = instance.createDataSourceForTenant(tenant);
 		assertEquals("com.mysql.jdbc.Driver", BeanUtils.getProperty(result, "driverClass"));
 		assertEquals(url, BeanUtils.getProperty(result, "jdbcUrl"));
 		assertEquals("5", BeanUtils.getProperty(result, "minPoolSize"));
+		assertEquals("30", BeanUtils.getProperty(result, "maxPoolSize"));
+		assertEquals("10", BeanUtils.getProperty(result, "initialPoolSize"));
 	}
 }
