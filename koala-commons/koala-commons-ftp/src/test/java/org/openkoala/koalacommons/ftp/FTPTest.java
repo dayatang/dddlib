@@ -134,7 +134,7 @@ public class FTPTest {
     @Test
     public void testListFiles() throws Exception {
         List<String> files = ftpUtil.listFiles("/");
-        Assert.assertTrue(files.contains("users.properties"));
+        Assert.assertFalse(files.contains("users.properties"));
         files = ftpUtil.listFiles("/dir1");
         Assert.assertTrue(files.contains("users.properties"));
     }
