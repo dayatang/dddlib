@@ -169,9 +169,8 @@ public class FTPTest {
          * 第1个参数：表示FTP服务器上的目录 第2个参数：表示本地文件系统中的一个ZIP文件
          * 第3个参数：表示ZIP文件上传到FTP服务器上的哪个目录
          */
-        String proFilePath = null;
-        proFilePath = FTPFacotry.class.getClassLoader().getResource("").getPath() + "t1.zip";
-        ftpUtil.uploadZipFile("/", new File(proFilePath), "t1");
+        String filePath = getClass().getResource("/t1.zip").getFile();
+        ftpUtil.uploadZipFile("/", new File(filePath), "t1");
     }
 
     /**
