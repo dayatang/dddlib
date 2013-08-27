@@ -3,7 +3,6 @@ package com.dayatang.datasource4saas.dscreator;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +11,6 @@ import com.dayatang.configuration.impl.SimpleConfiguration;
 
 public class TenantDbMappingStrategyTest {
 	
-	private TenantDbMappingStrategy instance;
 	private DbInfo dbInfo;
 	private String tenant = "abc";
 	private Configuration dbTenantMappings;
@@ -38,10 +36,6 @@ public class TenantDbMappingStrategyTest {
 		result.setString("abc", "ABC123");
 		result.setString("xyz", "XYZ123");
 		return result;
-	}
-
-	@After
-	public void tearDown() throws Exception {
 	}
 
 	@Test
