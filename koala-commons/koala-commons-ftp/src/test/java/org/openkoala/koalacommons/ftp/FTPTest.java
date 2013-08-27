@@ -163,6 +163,7 @@ public class FTPTest {
      *
      * @throws FtpException
      */
+    @Ignore
     @Test
     public void testUploadZipFile() throws FtpException {
         /**
