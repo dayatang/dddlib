@@ -155,7 +155,7 @@ public class FTPTest {
      */
     @Test
     public void testDownloadFile() throws FtpException {
-        ftpUtil.downLoadFile("/dir1", "users.properties", System.getProperty("java.io.tmpdir") + "testnew");
+        ftpUtil.downLoadFile("/dir1", "users.properties", System.getProperty("java.io.tmpdir"));
     }
 
     /**
