@@ -13,8 +13,6 @@ import java.net.URL;
 import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-
-import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.io.OutputFormat;
@@ -160,6 +158,11 @@ public class DocumentUtil {
 		return document;
 	}
 
+	/**
+	 * 从指定路径读取XML
+	 * @param src
+	 * @return
+	 */
 	public static Document readDocumentFromString(String src) {
 		SAXReader reader = new SAXReader();
 		reader.setEncoding(ENCODING);

@@ -36,6 +36,11 @@ public class PomXmlReader {
 		return properties;
 	}
 	
+	/**
+	 * 查询一个POM中配置的modules
+	 * @param document
+	 * @return
+	 */
 	public static List<String> queryModules(Document document){
 		List<String> modules = new ArrayList<String>();
 		List<Element> elements = XPathQueryUtil.query(POM_XMLS, "/xmlns:project/xmlns:modules/xmlns:module", document);
@@ -44,6 +49,7 @@ public class PomXmlReader {
 		}
 		return modules;
 	}
+	
 	/**
 	 * 返回一个pom.xml中的依赖
 	 * @param document
@@ -111,10 +117,20 @@ public class PomXmlReader {
 		return isExists("com.dayatang.commons","dayatang-commons-domain",document);
 	}
 	
+	/**
+	 * 通过XML查询一个子项目是否是应用层实现模块
+	 * @param document
+	 * @return
+	 */
 	public static boolean isImpl(Document document){
 		return isExists("com.dayatang.commons","dayatang-commons-querychannel",document);
 	}
 	
+	/**
+	 * 查询一个子项目是否是EAR模块
+	 * @param document
+	 * @return
+	 */
 	public static boolean isEar(Document document){
 		String xPathString = "/xmlns:project/xmlns:build/xmlns:plugins/xmlns:plugin/xmlns:dependency[xmlns:groupId='org.apache.maven.plugins' and xmlns:artifactId='maven-ear-plugin']";
 		List<Element> elements = XPathQueryUtil.query(POM_XMLS, xPathString, document);
@@ -122,6 +138,12 @@ public class PomXmlReader {
 		return false;
 	}
 	
+	/**
+	 * 查询一个子项目是否是接口模块
+	 * @param project
+	 * @return
+	 * @throws JavaDoException
+	 */
 	public static boolean isInterface(MavenProject project) throws JavaDoException{
 		List<String> files = project.getSrcMainJavas();
 		int max = files.size();
@@ -134,7 +156,5 @@ public class PomXmlReader {
 		if(count>(max-count))return true;
 		return false;
 	}
-	
-	private PomXmlReader(){}
 	
 }
