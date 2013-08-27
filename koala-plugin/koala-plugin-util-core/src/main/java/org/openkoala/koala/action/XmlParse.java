@@ -17,9 +17,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 通用XML配置，根据XML配置，对文件进行修改
- * @author lingen
- *
+ * 
+ * 
+ * @description 通用XML解析，根据XML的配置，进行生成或修改
+ *  
+ * @date：      2013-8-26   
+ * 
+ * @version    Copyright (c) 2013 Koala All Rights Reserved
+ * 
+ * @author     lingen.liu  <a href=mailto:lingen.liu@gmail.com">lingen.liu@gmail.com</a>
  */
 public class XmlParse {
 	
@@ -42,7 +48,7 @@ public class XmlParse {
 	
 	protected List<WebXmlUtil> webXmlUtils;
 
-	public final void parse(VelocityContext context)
+	protected final void parse(VelocityContext context)
 			throws Exception {
 	    logger.info("解析XML:"+description);
         

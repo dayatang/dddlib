@@ -5,6 +5,7 @@ import java.util.List;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.openkoala.koala.action.XmlParse;
+import org.openkoala.koala.action.XmlParseUtil;
 import org.openkoala.koala.action.velocity.VelocityUtil;
 import org.openkoala.koala.action.xml.DocumentUtil;
 import org.openkoala.koala.action.xml.PomXmlWriter;
@@ -14,6 +15,17 @@ import org.openkoala.koala.widget.Project;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 
+ * 
+ * @description 项目创建中的list属性的解析
+ *  
+ * @date：      2013-8-26   
+ * 
+ * @version    Copyright (c) 2013 Koala All Rights Reserved
+ * 
+ * @author     lingen.liu  <a href=mailto:lingen.liu@gmail.com">lingen.liu@gmail.com</a>
+ */
 public class ParseListFunctionCreate extends AbstractXmlParse implements Parse {
 
 	private static final Logger logger = LoggerFactory.getLogger(ParseListFunctionCreate.class);
@@ -35,11 +47,9 @@ public class ParseListFunctionCreate extends AbstractXmlParse implements Parse {
 		List<String> values = (List<String>)fieldVal;
 		if(values==null)return;
 		for(String value:values){
-			 logger.info("解析function属性【"+value+"】");
+			  logger.info("解析function属性【"+value+"】");
 			  String xmlPath = "xml/ListFunctionCreate/"+value+".xml";
-			  XML2ObjectUtil util = XML2ObjectUtil.getInstance();
-			  XmlParse parse = (XmlParse)util.processParse(xmlPath);
-			  parse.parse(VelocityUtil.getVelocityContext(params));
+			  XmlParseUtil.parseXml(xmlPath, params);
 			  logger.info("function属性【"+name+"】解析成功");
 		}
 		

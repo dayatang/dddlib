@@ -13,9 +13,15 @@ import org.openkoala.koala.pojo.MavenProject;
 import org.openkoala.koala.pojo.ModuleType;
 
 /**
- * 项目分析工具
- * @author lingen
- *
+ * 
+ * 
+ * @description 项目分析工具
+ *  
+ * @date：      2013-8-26   
+ * 
+ * @version     Copyright (c) 2013 Koala All Rights Reserved
+ * 
+ * @author      lingen.liu  <a href=mailto:lingen.liu@gmail.com">lingen.liu@gmail.com</a>
  */
 public class ProjectParseUtil {
 	

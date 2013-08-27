@@ -15,6 +15,9 @@ import java.util.Properties;
  */
 public class PropertiesUtil {
 
+	/**
+	 * properties所在的路径
+	 */
 	private String propertyPath;
 
 	private PropertiesUtil() {
@@ -22,6 +25,11 @@ public class PropertiesUtil {
 
 	private Properties properties;
 
+	/**
+	 * 工厂方法，根据路径返回一个propertiesUtil实例
+	 * @param path
+	 * @return
+	 */
 	public static PropertiesUtil getInstance(String path) {
 		PropertiesUtil util = new PropertiesUtil();
 		Properties properties = new Properties();
@@ -73,6 +81,9 @@ public class PropertiesUtil {
 		properties.remove(key);
 	}
 
+	/**
+	 * 对修改后的properties进行重建
+	 */
 	public void restore() {
 		OutputStream out = null;
 		try {
@@ -90,13 +101,6 @@ public class PropertiesUtil {
 				e.printStackTrace();
 			}
 		}
-	}
-	
-	public static void main(String args[]){
-		PropertiesUtil util = PropertiesUtil.getInstance("src/main/resources/test.properties");
-		System.out.println(util.getProperty("test"));
-		util.setProperty("1", "1");
-		util.restore();
 	}
 	
 }
