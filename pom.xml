@@ -93,7 +93,12 @@
         	<url>dav:http://115.28.1.104/projects/koala</url>
         </site>
     </distributionManagement>
-	
+
+    <issueManagement>
+        <system>JIRA</system>
+        <url>http://jira.openkoala.org/browse/KOALA</url>
+    </issueManagement>
+    	
     <repositories>
         <repository>
             <id>koala-snapshots</id>
@@ -970,9 +975,9 @@
 							<artifactId>maven-changes-plugin</artifactId>
 							<version>2.9</version>
 							<configuration>
-								<tracUser>${trac.username}</tracUser>
-								<tracPassword>${trac.password}</tracPassword>
-								<query>status!=closed&amp;order=type</query>
+								<jiraDatePattern>yyyy-MM-dd</jiraDatePattern>
+								<jiraUser>${jira.username}</jiraUser>
+								<jiraPassword>${jira.password}</jiraPassword>
 								<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 							</configuration>
 						</plugin>
