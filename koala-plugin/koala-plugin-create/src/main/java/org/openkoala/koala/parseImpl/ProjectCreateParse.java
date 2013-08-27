@@ -87,7 +87,6 @@ public class ProjectCreateParse {
 		for (Annotation annotation : annotations) {
 			ParseAnnotation parseAnnotation = (ParseAnnotation) annotation.annotationType().getAnnotation(ParseAnnotation.class);
 			if (parseAnnotation != null) {
-				
 				Class parseType = parseAnnotation.type();
 				Parse parse = (Parse)parseType.newInstance();
 				parse.initParms(getParams(obj), name, filedVal);

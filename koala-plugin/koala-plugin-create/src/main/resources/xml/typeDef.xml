@@ -89,6 +89,7 @@
     </property>
   </Function>
   
+  <!-- 
   <Function>
     <property name="name">job</property>
 	<property name="description">定时任务</property>
@@ -99,7 +100,8 @@
       <value>applicationImpl</value>
     </property>
   </Function>
-  
+   -->
+   
   <Function>
     <property name="name">activeMQ</property>
 	<property name="description">ActiveMQ</property>

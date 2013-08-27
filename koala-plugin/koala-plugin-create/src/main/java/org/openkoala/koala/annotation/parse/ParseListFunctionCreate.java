@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
  * 
  * @author     lingen.liu  <a href=mailto:lingen.liu@gmail.com">lingen.liu@gmail.com</a>
  */
-public class ParseListFunctionCreate extends AbstractXmlParse implements Parse {
+public class ParseListFunctionCreate implements Parse {
 
 	private static final Logger logger = LoggerFactory.getLogger(ParseListFunctionCreate.class);
 	

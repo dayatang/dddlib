@@ -11,9 +11,9 @@ import org.openkoala.koala.action.xml.DocumentUtil;
 import org.openkoala.koala.action.xml.PomXmlReader;
 import org.openkoala.koala.action.xml.PomXmlWriter;
 import org.openkoala.koala.action.xml.XPathQueryUtil;
-import org.openkoala.koala.createvo.Function;
-import org.openkoala.koala.createvo.TypeDef;
 import org.openkoala.koala.exception.KoalaException;
+import org.openkoala.koala.queryvo.Function;
+import org.openkoala.koala.queryvo.TypeDef;
 import org.openkoala.koala.widget.Module;
 import org.openkoala.koala.widget.Project;
 

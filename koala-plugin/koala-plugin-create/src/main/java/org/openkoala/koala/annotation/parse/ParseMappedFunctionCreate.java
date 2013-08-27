@@ -9,7 +9,7 @@ import org.openkoala.koala.parse.XML2ObjectUtil;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
-public class ParseMappedFunctionCreate extends AbstractXmlParse implements Parse {
+public class ParseMappedFunctionCreate  implements Parse {
 
 //	private static final Logger logger = LoggerFactory.getLogger(ParseMappedFunctionCreate.class);
 	// 参数值，每个Parse都会有的

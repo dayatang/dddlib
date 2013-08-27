@@ -1,4 +1,4 @@
-package org.openkoala.koala.createvo;
+package org.openkoala.koala.queryvo;
 
 import java.io.Serializable;
 import java.util.HashMap;
