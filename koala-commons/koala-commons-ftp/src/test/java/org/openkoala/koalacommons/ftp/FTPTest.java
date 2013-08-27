@@ -86,18 +86,26 @@ public class FTPTest {
     }
 
     private static List<Authority> createAuths() {
-        List<Authority> auths = new ArrayList();
+        List<Authority> auths = new ArrayList<Authority>();
         Authority auth = new WritePermission();
         auths.add(auth);
         return auths;
     }
 
+    /**
+     * 如果ftp服务器/dir1目录中不存在users.properties文件，复制一个到那里。
+     * @throws Exception 
+     */
     @Before
     public void beforeTest() throws Exception {
-        File file = new File(ftpUserDir, "users.properties");
+        File dir = new File(ftpUserDir, "dir1");
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        File file = new File(dir, "users.properties");
         if (!file.exists()) {
             String filePath = FTPTest.class.getResource("/users.properties").getFile();
-            FileUtils.copyFileToDirectory(new File(filePath), new File(ftpUserDir));
+            FileUtils.copyFileToDirectory(new File(filePath), dir);
         }
     }
     
@@ -118,7 +126,7 @@ public class FTPTest {
      */
     @Test
     public void testIsFileExists() throws Exception {
-        Assert.assertTrue("文件不存在！", ftpUtil.isFileExists("users.properties"));
+        Assert.assertTrue("文件不存在！", ftpUtil.isFileExists("dir1/users.properties"));
     }
     /**
      * 输出一个FTP路径下的所有文件名
@@ -126,6 +134,8 @@ public class FTPTest {
     @Test
     public void testListFiles() throws Exception {
         List<String> files = ftpUtil.listFiles("/");
+        Assert.assertTrue(files.contains("users.properties"));
+        files = ftpUtil.listFiles("/dir1");
         Assert.assertTrue(files.contains("users.properties"));
     }
 
@@ -135,7 +145,7 @@ public class FTPTest {
     @Test
     public void testListDiretory() throws Exception {
         List<String> directories = ftpUtil.listDirectory("/");
-        Assert.assertNotNull(directories);
+        Assert.assertTrue(directories.contains("dir1"));
     }
 
     /**
@@ -145,7 +155,7 @@ public class FTPTest {
      */
     @Test
     public void testDownloadFile() throws FtpException {
-        ftpUtil.downLoadFile("/", "test.txt", System.getProperty("java.io.tmpdir") + "testnew");
+        ftpUtil.downLoadFile("/dir1", "users.properties", System.getProperty("java.io.tmpdir") + "testnew");
     }
 
     /**
