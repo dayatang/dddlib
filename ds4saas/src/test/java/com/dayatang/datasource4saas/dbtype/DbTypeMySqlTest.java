@@ -21,7 +21,7 @@ public class DbTypeMySqlTest extends AbstractDbTypeTest {
 
 
 	@Test
-	public void getDriverClaaaName() {
+	public void getDriverClassName() {
 		assertEquals("com.mysql.jdbc.Driver", instance.getDriverClassName());
 	}
 

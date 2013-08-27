@@ -20,7 +20,7 @@ public class DbTypePostgresqlTest extends AbstractDbTypeTest {
 	}
 
 	@Test
-	public void getDriverClaaaName() {
+	public void getDriverClassName() {
 		assertEquals("org.postgresql.Driver", instance.getDriverClassName());
 	}
 

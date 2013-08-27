@@ -20,7 +20,7 @@ public class DbTypeSqlServerTest extends AbstractDbTypeTest {
 	}
 
 	@Test
-	public void getDriverClaaaName() {
+	public void getDriverClassName() {
 		assertEquals("net.sourceforge.jtds.jdbc.Driver", instance.getDriverClassName());
 	}
 

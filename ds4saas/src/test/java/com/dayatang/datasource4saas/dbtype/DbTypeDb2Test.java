@@ -20,7 +20,7 @@ public class DbTypeDb2Test extends AbstractDbTypeTest {
 	}
 
 	@Test
-	public void getDriverClaaaName() {
+	public void getDriverClassName() {
 		assertEquals("com.ibm.db2.jcc.DB2Driver", instance.getDriverClassName());
 	}
 

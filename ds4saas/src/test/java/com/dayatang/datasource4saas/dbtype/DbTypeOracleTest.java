@@ -21,7 +21,7 @@ public class DbTypeOracleTest extends AbstractDbTypeTest {
 
 
 	@Test
-	public void getDriverClaaaName() {
+	public void getDriverClassName() {
 		assertEquals("oracle.jdbc.OracleDriver", instance.getDriverClassName());
 	}
 
