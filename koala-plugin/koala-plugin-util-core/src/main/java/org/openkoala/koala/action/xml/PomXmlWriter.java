@@ -94,7 +94,7 @@ public class PomXmlWriter {
 	public static void addDependencies(String groupId,String artifactId,String version,Document document){
 		Element depenciesElement = XPathQueryUtil.querySingle(POM_XMLS, DEPENDENCIES_XPATH, document);
 		if(depenciesElement==null)return;
-		if(!PomXmlReader.isExists(groupId, artifactId, document)){
+		if(!PomXmlReader.isDependencyExists(groupId, artifactId, document)){
 			Element depency = depenciesElement.addElement("dependency", POM_XMLS);
 			  depency.addElement("groupId",POM_XMLS).setText(groupId);
 			  depency.addElement("artifactId",POM_XMLS).setText(artifactId);
@@ -110,7 +110,7 @@ public class PomXmlWriter {
 	public static void addDependencies(List<Element> elements,Document document){
 		Element depenciesElement = XPathQueryUtil.querySingle(POM_XMLS, DEPENDENCIES_XPATH, document);
 		for(Element elemnet:elements){
-			if(!PomXmlReader.isExists(elemnet.elementText("groupId"), elemnet.elementText("artifactId"), document)){
+			if(!PomXmlReader.isDependencyExists(elemnet.elementText("groupId"), elemnet.elementText("artifactId"), document)){
 			  Element depency = depenciesElement.addElement(elemnet.getName(), POM_XMLS);
 			  depency.addElement("groupId",POM_XMLS).setText(elemnet.elementText("groupId"));
 			  depency.addElement("artifactId",POM_XMLS).setText(elemnet.elementText("artifactId"));

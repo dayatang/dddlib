@@ -100,7 +100,7 @@ public class PomXmlReader {
 	 * @param artifactId
 	 * @return
 	 */
-	public static boolean isExists(String groupId,String artifactId,Document document){
+	public static boolean isDependencyExists(String groupId,String artifactId,Document document){
 		boolean exists =false;
 		String xPathString = "/xmlns:project/xmlns:dependencies/xmlns:dependency[xmlns:groupId='"+groupId+"' and xmlns:artifactId='"+artifactId+"']";
 		List<Element> elements = XPathQueryUtil.query(POM_XMLS, xPathString, document);
@@ -114,7 +114,7 @@ public class PomXmlReader {
 	 * @return
 	 */
 	public static boolean isBizModel(Document document){
-		return isExists("com.dayatang.commons","dayatang-commons-domain",document);
+		return isDependencyExists("com.dayatang.commons","dayatang-commons-domain",document);
 	}
 	
 	/**
@@ -123,7 +123,7 @@ public class PomXmlReader {
 	 * @return
 	 */
 	public static boolean isImpl(Document document){
-		return isExists("com.dayatang.commons","dayatang-commons-querychannel",document);
+		return isDependencyExists("com.dayatang.commons","dayatang-commons-querychannel",document);
 	}
 	
 	/**

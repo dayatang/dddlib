@@ -7,10 +7,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 目录COPY
  * 
- * @author lingen.liu
  * 
+ * @description  文件或目录的复制支持VO
+ *  
+ * @date：      2013-8-27   
+ * 
+ * @version    Copyright (c) 2013 Koala All Rights Reserved
+ * 
+ * @author     lingen.liu  <a href=mailto:lingen.liu@gmail.com">lingen.liu@gmail.com</a>
  */
 public class CopyFiles {
 

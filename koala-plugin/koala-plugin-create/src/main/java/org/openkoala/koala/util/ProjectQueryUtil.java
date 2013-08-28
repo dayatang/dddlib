@@ -137,7 +137,7 @@ public class ProjectQueryUtil {
 			String basePackage = PomXmlReader.queryText("/xmlns:project/xmlns:properties/xmlns:base.package",moduleDocument);
 			module.setBasePackage(basePackage);
 			for(Function function:functions){
-				if(PomXmlReader.isExists(function.getSearchGroupId(), function.getSearchArtifactId(), moduleDocument))
+				if(PomXmlReader.isDependencyExists(function.getSearchGroupId(), function.getSearchArtifactId(), moduleDocument))
 					module.getFunctions().add(function.getName());
 			}
 			moduleList.add(module);
@@ -148,7 +148,7 @@ public class ProjectQueryUtil {
 			String modulePath = path+"/"+module.getModuleName()+"/pom.xml";
 			Document moduleDocument = DocumentUtil.readDocument(modulePath);
 			for(Module depenModule:moduleList){
-				if(PomXmlReader.isExists(project.getGroupId()+"."+project.getAppName(),depenModule.getModuleName(), moduleDocument)){
+				if(PomXmlReader.isDependencyExists(project.getGroupId()+"."+project.getAppName(),depenModule.getModuleName(), moduleDocument)){
 					dependencies.add(depenModule.getModuleName());
 				}
 			}
