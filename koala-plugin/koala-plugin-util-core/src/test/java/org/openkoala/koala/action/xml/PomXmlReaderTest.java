@@ -95,10 +95,14 @@ public class PomXmlReaderTest {
 		Assert.assertEquals(developers.size(), 7);
 	}
 
-	@Ignore
+
 	@Test
-	public void testIsExists() {
-		fail("Not yet implemented");
+	public void testIsDependencyExists() {
+		boolean exists = PomXmlReader.isDependencyExists("com.puppycrawl.tools", "checkstyle", document);
+		Assert.assertTrue(exists);
+		
+		exists = PomXmlReader.isDependencyExists("abc", "checkstyle", document);
+		Assert.assertTrue(!exists);
 	}
 
 	@Ignore

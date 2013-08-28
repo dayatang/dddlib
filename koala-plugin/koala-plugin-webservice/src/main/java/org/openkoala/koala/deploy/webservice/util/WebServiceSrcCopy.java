@@ -107,7 +107,8 @@ public class WebServiceSrcCopy {
 			PomXmlWriter.updatePomParentArtifactId(modulePomXmlDocument, project.getArtifactId()+WS);
 			
 			for(Dependency depen:changes){
-					PomXmlWriter.updateDependency(modulePomXmlDocument, depen, WS);
+				Dependency newDepen = new Dependency(depen.getGroupId(),depen.getArtifactId()+WS,depen.getVersion());
+				PomXmlWriter.updateDependency(modulePomXmlDocument, depen, newDepen);
 			}
 			
 			PomXmlWriter.addDependencies("org.apache.cxf", "cxf-api", "2.6.2", modulePomXmlDocument);
