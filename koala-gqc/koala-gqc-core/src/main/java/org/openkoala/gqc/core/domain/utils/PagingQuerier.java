@@ -3,6 +3,7 @@ package org.openkoala.gqc.core.domain.utils;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
@@ -39,7 +40,7 @@ public class PagingQuerier extends Querier {
 		return pagesize;
 	}
 	
-	public PagingQuerier(String querySql, DataSource dataSource) {
+	public PagingQuerier(SqlStatmentMode querySql, DataSource dataSource) {
 		super(querySql, dataSource);
 	}
 	
@@ -49,8 +50,8 @@ public class PagingQuerier extends Querier {
 	}
 	
 	@Override
-	public String generateQuerySql() {
-		String result = null;
+	public SqlStatmentMode generateQuerySql() {
+		SqlStatmentMode result = new SqlStatmentMode();
 		Connection connection = null;
         try {
         	connection = getConnection();
@@ -74,7 +75,13 @@ public class PagingQuerier extends Querier {
         try {
             connection = getConnection();
             QueryRunner queryRunner = new QueryRunner();
-            result = queryRunner.query(connection, generateQueryTotalCountSql(), new ScalarHandler<Number>());
+            
+            List<Object> parameters = getQuerySql().getValues();
+            if (parameters.isEmpty()) {
+            	result = queryRunner.query(connection, generateQueryTotalCountSql(), new ScalarHandler<Number>());
+            } else {
+            	result = queryRunner.query(connection, generateQueryTotalCountSql(), new ScalarHandler<Number>(), getQuerySql().getValues().toArray());
+            }
         } catch (SQLException e) {
         	throw new RuntimeException(e);
         } finally {
@@ -87,7 +94,7 @@ public class PagingQuerier extends Querier {
 		return result.longValue();
 	}
 	
-	private String generatePagingQuerySql(DatabaseMetaData databaseMetaData) throws SQLException {
+	private SqlStatmentMode generatePagingQuerySql(DatabaseMetaData databaseMetaData) throws SQLException {
 		String databaseName = databaseMetaData.getDatabaseProductName();
 		PagingQueryDialect pagingQueryDialect = PagingQueryDialectResolver.getPagingQuerierInstance(databaseName);
 		
@@ -103,7 +110,8 @@ public class PagingQuerier extends Querier {
 	}
 	
 	private String generateQueryTotalCountSql() {
-		String result = getQuerySql().substring(getQuerySql().indexOf("from"), getQuerySql().length());
+		String statment = getQuerySql().getStatment();
+		String result = statment.substring(statment.indexOf("from"), statment.length());
 		result = "select count(*) " + result;
 		return result;
 	}

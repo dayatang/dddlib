@@ -149,6 +149,7 @@
         <db.username>sa</db.username>
         <db.password></db.password>
         <db.Type>H2</db.Type>
+        <db.generateDdl>true</db.generateDdl>
         <generateDdl>true</generateDdl>
 
         <!--test DB Config-->
@@ -259,7 +260,7 @@
                 <db.username>sa</db.username>
                 <db.password></db.password>
                 <db.Type>H2</db.Type>
-                <generateDdl>true</generateDdl>
+                <db.generateDdl>true</db.generateDdl>
             </properties>
         </profile>
 				

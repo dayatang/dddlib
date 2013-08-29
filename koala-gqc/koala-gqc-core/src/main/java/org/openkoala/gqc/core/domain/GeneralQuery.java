@@ -19,6 +19,7 @@ import javax.persistence.TemporalType;
 
 import org.openkoala.gqc.core.domain.utils.PagingQuerier;
 import org.openkoala.gqc.core.domain.utils.QueryAllQuerier;
+import org.openkoala.gqc.core.domain.utils.SqlStatmentMode;
 
 import com.dayatang.domain.QuerySettings;
 import com.dayatang.querychannel.support.Page;
@@ -230,11 +231,12 @@ public class GeneralQuery extends GeneralQueryEntity {
 		return getRepository().getSingleResult(QuerySettings.create(GeneralQuery.class).containsText("queryName", queryName));
 	}
 	
+	
 	/**
 	 * 生成查询SQL语句
 	 * @return
 	 */
-	public String getQuerySql() {
+	public SqlStatmentMode getQuerySql() {
 		return generateCommonQuerySql();
 	}
 	
@@ -252,20 +254,14 @@ public class GeneralQuery extends GeneralQueryEntity {
 		return results;
 	}
 	
-	private String generateCommonQuerySql() {
-		StringBuilder result = new StringBuilder(generatePreQuerySql());
-		result.append(generateDynamicQueryConditionStatement());
+	private SqlStatmentMode generateCommonQuerySql() {
+		SqlStatmentMode result = new SqlStatmentMode();
+		result.setStatment(generateSelectPrefixStatement());
 		
-		return result.toString();
-	}
-	
-	private String generatePreQuerySql() {
-		StringBuilder result = new StringBuilder();
-		result.append(generateSelectPrefixStatement());
-		result.append(" from " + tableName + " where 1=1");
-		result.append(generatePreQueryConditionStatement());
-
-		return result.toString();
+		addPreQueryConditionStatement(result);
+		addDynamicQueryConditionStatement(result);
+		
+		return result;
 	}
 	
 	private String generateSelectPrefixStatement() {
@@ -276,27 +272,33 @@ public class GeneralQuery extends GeneralQueryEntity {
 			result.append(fieldDetail.getFieldName() + ",");
 		}
 		result.deleteCharAt(result.length() - 1);
+		result.append(" from " + tableName);
+		
+		if (!preQueryConditions.isEmpty() || !dynamicQueryConditions.isEmpty()) {
+			result.append(" where 1=1");
+		}
 
 		return result.toString();
 	}
 	
-	private String generatePreQueryConditionStatement() {
-		return generateConditionStatement(preQueryConditions);
+	private void addPreQueryConditionStatement(SqlStatmentMode sqlStatmentMode) {
+		generateConditionStatement(preQueryConditions, sqlStatmentMode);
 	}
 	
-	private String generateDynamicQueryConditionStatement() {
-		return generateConditionStatement(dynamicQueryConditions);
+	private void addDynamicQueryConditionStatement(SqlStatmentMode sqlStatmentMode) {
+		generateConditionStatement(dynamicQueryConditions, sqlStatmentMode);
 	}
 	
-	private <T extends QueryCondition> String generateConditionStatement(List<T> queryConditions) {
+	private <T extends QueryCondition> void generateConditionStatement(List<T> queryConditions, SqlStatmentMode sqlStatmentMode) {
 		if (queryConditions.isEmpty()) {
-			return "";
+			return;
 		}
-		StringBuilder result = new StringBuilder();
+		
 		for (T queryCondition : queryConditions) {
-			result.append(queryCondition.generateConditionStatment());
+			SqlStatmentMode conditionSqlStatment = queryCondition.generateConditionStatment();
+			sqlStatmentMode.setStatment(sqlStatmentMode.getStatment() + conditionSqlStatment.getStatment());
+			sqlStatmentMode.addValues(conditionSqlStatment.getValues());
 		}
-		return result.toString();
 	}
 	
 	/**

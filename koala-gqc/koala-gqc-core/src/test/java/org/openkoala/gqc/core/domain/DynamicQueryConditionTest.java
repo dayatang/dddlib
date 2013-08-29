@@ -2,6 +2,9 @@ package org.openkoala.gqc.core.domain;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,12 +44,21 @@ public class DynamicQueryConditionTest{
 	 */
 	@Test
 	public void testGenerateConditionStatment() {
-		String queryCondition = dynamicQueryCondition.generateConditionStatment();
-		assertEquals(" and name like '%test%'", queryCondition);
+		String queryCondition = dynamicQueryCondition.generateConditionStatment().getStatment();
+		assertEquals(" and name like ?", queryCondition);
+		
+		List<Object> values = new ArrayList<Object>();
+		values.add("%test%");
+		assertEquals(values, dynamicQueryCondition.generateConditionStatment().getValues());
 		
 		dynamicQueryCondition = this.createAndInitDynamicQueryConditionTwoValues();
-		queryCondition = dynamicQueryCondition.generateConditionStatment();
-		assertEquals(" and age between '18' and '30'", queryCondition);
+		queryCondition = dynamicQueryCondition.generateConditionStatment().getStatment();
+		assertEquals(" and age between ? and ?", queryCondition);
+		
+		values = new ArrayList<Object>();
+		values.add("18");
+		values.add("30");
+		assertEquals(values, dynamicQueryCondition.generateConditionStatment().getValues());
 	}
 	
 	/**

@@ -2,6 +2,9 @@ package org.openkoala.gqc.core.domain;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,12 +44,21 @@ public class PreQueryConditionTest{
 	 */
 	@Test
 	public void testGenerateConditionStatment() {
-		String queryCondition = preQueryCondition.generateConditionStatment();
-		assertEquals(" and name like '%test%'", queryCondition);
+		String queryCondition = preQueryCondition.generateConditionStatment().getStatment();
+		assertEquals(" and name like ?", queryCondition);
+		
+		List<Object> values = new ArrayList<Object>();
+		values.add("%test%");
+		assertEquals(values, preQueryCondition.generateConditionStatment().getValues());
 		
 		preQueryCondition = this.createAndInitPreQueryConditionTwoValues();
-		queryCondition = preQueryCondition.generateConditionStatment();
-		assertEquals(" and age between '18' and '30'", queryCondition);
+		queryCondition = preQueryCondition.generateConditionStatment().getStatment();
+		assertEquals(" and age between ? and ?", queryCondition);
+		
+		values = new ArrayList<Object>();
+		values.add("18");
+		values.add("30");
+		assertEquals(values, preQueryCondition.generateConditionStatment().getValues());
 	}
 	
 	/**
