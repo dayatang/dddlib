@@ -42,7 +42,7 @@ public class MySqlPagingQueryDialectTest {
 	@Test
 	public void testGeneratePagingQueryStatement() {
 		String sqlExpected = "select * from DATA_SOURCES LIMIT 0,10";
-		String sql = mySqlPagingQueryDialect.generatePagingQueryStatement();
+		String sql = mySqlPagingQueryDialect.generatePagingQueryStatement().getStatment();
 		assertEquals(sqlExpected, sql);
 	}
 
@@ -52,10 +52,12 @@ public class MySqlPagingQueryDialectTest {
 	 * @return
 	 */
 	private MySqlPagingQueryDialect createAndInitMySqlPagingQueryDialect(){
+		SqlStatmentMode sqlStatmentMode = new SqlStatmentMode();
+		sqlStatmentMode.setStatment("select * from DATA_SOURCES");
 		MySqlPagingQueryDialect mySqlPagingQueryDialect = new MySqlPagingQueryDialect();
 		mySqlPagingQueryDialect.setFirstRow(0);
 		mySqlPagingQueryDialect.setPagesize(10);
-		mySqlPagingQueryDialect.setQuerySql("select * from DATA_SOURCES");
+		mySqlPagingQueryDialect.setQuerySql(sqlStatmentMode);
 		return mySqlPagingQueryDialect;
 	}
 

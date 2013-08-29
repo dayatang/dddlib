@@ -10,7 +10,7 @@ public abstract class PagingQueryDialect {
 	/**
 	 * sql
 	 */
-	private String querySql;
+	private SqlStatmentMode querySql;
 	
 	/**
 	 * 当前页第一行索引
@@ -22,11 +22,11 @@ public abstract class PagingQueryDialect {
 	 */
 	private int pagesize;
 	
-	public String getQuerySql() {
+	public SqlStatmentMode getQuerySql() {
 		return querySql;
 	}
 
-	public void setQuerySql(String querySql) {
+	public void setQuerySql(SqlStatmentMode querySql) {
 		this.querySql = querySql;
 	}
 
@@ -48,7 +48,7 @@ public abstract class PagingQueryDialect {
 
 	public PagingQueryDialect() {}
 	
-	public PagingQueryDialect(String querySql, int firstRow, int pagesize) {
+	public PagingQueryDialect(SqlStatmentMode querySql, int firstRow, int pagesize) {
 		this.querySql = querySql;
 		this.firstRow = firstRow;
 		this.pagesize = pagesize;
@@ -58,6 +58,6 @@ public abstract class PagingQueryDialect {
 	 * 获得一个分页查询方言的实例
 	 * @return
 	 */
-	public abstract String generatePagingQueryStatement();
+	public abstract SqlStatmentMode generatePagingQueryStatement();
 	
 }

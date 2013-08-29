@@ -8,12 +8,15 @@ package org.openkoala.gqc.core.domain.utils;
 public class MySqlPagingQueryDialect extends PagingQueryDialect {
 
 	@Override
-	public String generatePagingQueryStatement() {
-		StringBuilder result = new StringBuilder();
-		result.append(getQuerySql());
-		result.append(" LIMIT " + getFirstRow() + "," + getPagesize());
+	public SqlStatmentMode generatePagingQueryStatement() {
+		SqlStatmentMode result = getQuerySql();
 		
-		return result.toString();
+		result.setStatment(new StringBuilder()
+			.append(getQuerySql().getStatment())
+			.append(" LIMIT " + getFirstRow() + "," + getPagesize())
+			.toString());
+		
+		return result;
 	}
 
 }

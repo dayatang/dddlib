@@ -6,6 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Transient;
+
+import org.openkoala.gqc.core.domain.utils.SqlStatmentMode;
 
 /**
  * 功能描述：动态查询条件	
@@ -33,17 +36,20 @@ public class DynamicQueryCondition extends QueryCondition {
 	/**
 	 * 查询值
 	 */
-	private transient String value;
+	@Transient
+	private String value;
 	
 	/**
 	 * 查询开始值，用于区间查询
 	 */
-	private transient String startValue;
+	@Transient
+	private String startValue;
 	
 	/**
 	 * 查询值结束值，用于区间查询
 	 */
-	private transient String endValue;
+	@Transient
+	private String endValue;
 	
 	public DynamicQueryCondition() {
 		
@@ -121,23 +127,28 @@ public class DynamicQueryCondition extends QueryCondition {
 	}
 
 	@Override
-	public String generateConditionStatment() {
-    	StringBuilder result = new StringBuilder();
-    	
-		if ((value != null && !value.isEmpty())
-				|| (startValue != null && !startValue.isEmpty() && endValue != null && !endValue.isEmpty())) {
-			result.append(" and " + getFieldName() + " ");
-			result.append(getQueryOperation().getOperator() + " ");
+	public SqlStatmentMode generateConditionStatment() {
+		SqlStatmentMode result = new SqlStatmentMode();
+    	StringBuilder statment = new StringBuilder("");
+		
+		if ((value != null && !value.isEmpty()) || (startValue != null && !startValue.isEmpty() && endValue != null && !endValue.isEmpty())) {
+			statment.append(" and " + getFieldName() + " ");
+			statment.append(getQueryOperation().getOperator() + " ");
 			if (getQueryOperation().equals(QueryOperation.LIKE)) {
-				result.append("'%" + value + "%'");
+				statment.append("?");
+				result.addValue("%" + value + "%");
 			} else if (getQueryOperation().equals(QueryOperation.BETWEEN)) {
-				result.append("'" + startValue + "' and '" + endValue + "'");
+				statment.append("? and ?");
+				result.addValue(startValue);
+				result.addValue(endValue);
 			} else {
-				result.append("'" + value + "'");
+				statment.append("?");
+				result.addValue(value);
 			}
 		}
 		
-    	return result.toString();
+		result.setStatment(statment.toString());
+    	return result;
 	}
 
 	@Override
