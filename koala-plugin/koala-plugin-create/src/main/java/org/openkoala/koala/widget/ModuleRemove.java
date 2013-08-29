@@ -1,4 +1,4 @@
-package org.openkoala.koala.createvo;
+package org.openkoala.koala.widget;
 
 import java.io.Serializable;
 import java.util.List;

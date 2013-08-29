@@ -37,9 +37,9 @@ public class KoalaModuleUpdate {
 		updateModule(update);
 	}
 	
-	public static void main(String args[]) throws Exception{
-		String xmlPath = "xml/project-update.xml";
-		KoalaModuleUpdate update = new KoalaModuleUpdate();
-		update.updateModule(xmlPath);
-	}
+//	public static void main(String args[]) throws Exception{
+//		String xmlPath = "xml/project-update.xml";
+//		KoalaModuleUpdate update = new KoalaModuleUpdate();
+//		update.updateModule(xmlPath);
+//	}
 }

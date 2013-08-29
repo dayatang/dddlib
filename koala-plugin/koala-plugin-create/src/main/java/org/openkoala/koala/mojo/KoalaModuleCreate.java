@@ -32,26 +32,26 @@ public class KoalaModuleCreate{
 		createModule(moduleAdd);
 	}
 	
-	public static void main(String args[]) throws Exception{
-//		String path = "project-add.xml";
-//		KoalaModuleCreate create = new KoalaModuleCreate();
-//		create.createModule(path);
-		
-		KoalaModuleCreate moduleCreate = new KoalaModuleCreate();
-
-		Module module = new Module();
-		module.setModuleName("infra2");
-		module.setModuleType("infra");
-
-		ModuleAdd moduleAdd = new ModuleAdd();
-		moduleAdd.setProjectPath("E:/tmp/demo2");
-
-		moduleAdd.setModule(module);
-
-		try {
-			moduleCreate.createModule(moduleAdd);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	public static void main(String args[]) throws Exception{
+////		String path = "project-add.xml";
+////		KoalaModuleCreate create = new KoalaModuleCreate();
+////		create.createModule(path);
+//		
+//		KoalaModuleCreate moduleCreate = new KoalaModuleCreate();
+//
+//		Module module = new Module();
+//		module.setModuleName("infra2");
+//		module.setModuleType("infra");
+//
+//		ModuleAdd moduleAdd = new ModuleAdd();
+//		moduleAdd.setProjectPath("E:/tmp/demo2");
+//
+//		moduleAdd.setModule(module);
+//
+//		try {
+//			moduleCreate.createModule(moduleAdd);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 }

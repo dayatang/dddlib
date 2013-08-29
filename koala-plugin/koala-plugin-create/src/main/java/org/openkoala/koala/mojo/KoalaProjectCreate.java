@@ -47,9 +47,9 @@ public class KoalaProjectCreate {
 		parse.parse(project);
 	}
 	
-	public static void main(String args[]) throws Exception{
-		String xmlPath = "xml/project.xml";
-		KoalaProjectCreate create = new KoalaProjectCreate();
-		create.createProject(xmlPath);
-	}
+//	public static void main(String args[]) throws Exception{
+//		String xmlPath = "xml/project.xml";
+//		KoalaProjectCreate create = new KoalaProjectCreate();
+//		create.createProject(xmlPath);
+//	}
 }

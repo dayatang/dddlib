@@ -11,6 +11,7 @@
     <url>http://115.28.1.104/projects/koala</url>
     <description />
     
+    
     <developers>
     	<developer>
     		<id>cchen</id>
@@ -93,12 +94,7 @@
         	<url>dav:http://115.28.1.104/projects/koala</url>
         </site>
     </distributionManagement>
-
-    <issueManagement>
-        <system>JIRA</system>
-        <url>http://jira.openkoala.org/browse/KOALA</url>
-    </issueManagement>
-    	
+	
     <repositories>
         <repository>
             <id>koala-snapshots</id>
@@ -154,7 +150,6 @@
         <db.username>sa</db.username>
         <db.password></db.password>
         <db.Type>H2</db.Type>
-        <db.generateDdl>true</db.generateDdl>
         <generateDdl>true</generateDdl>
 
         <!--test DB Config-->
@@ -265,7 +260,7 @@
                 <db.username>sa</db.username>
                 <db.password></db.password>
                 <db.Type>H2</db.Type>
-                <db.generateDdl>true</db.generateDdl>
+                <generateDdl>true</generateDdl>
             </properties>
         </profile>
 				
@@ -288,6 +283,23 @@
         </profile>
 				
     </profiles>
+    
+    <dependencies>
+
+		<dependency>
+			<groupId>com.puppycrawl.tools</groupId>
+			<artifactId>checkstyle</artifactId>
+			<version>5.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sourceforge.pmd</groupId>
+			<artifactId>pmd</artifactId>
+			<version>5.0.4</version>
+		</dependency>
+
+
+	</dependencies>
 
     <dependencyManagement>
 
@@ -976,9 +988,9 @@
 							<artifactId>maven-changes-plugin</artifactId>
 							<version>2.9</version>
 							<configuration>
-								<jiraDatePattern>yyyy-MM-dd</jiraDatePattern>
-								<jiraUser>${jira.username}</jiraUser>
-								<jiraPassword>${jira.password}</jiraPassword>
+								<tracUser>${trac.username}</tracUser>
+								<tracPassword>${trac.password}</tracPassword>
+								<query>status!=closed&amp;order=type</query>
 								<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 							</configuration>
 						</plugin>

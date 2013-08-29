@@ -11,9 +11,9 @@ import org.openkoala.koala.action.xml.DocumentUtil;
 import org.openkoala.koala.action.xml.PomXmlReader;
 import org.openkoala.koala.action.xml.PomXmlWriter;
 import org.openkoala.koala.action.xml.XPathQueryUtil;
-import org.openkoala.koala.createvo.Function;
-import org.openkoala.koala.createvo.TypeDef;
 import org.openkoala.koala.exception.KoalaException;
+import org.openkoala.koala.queryvo.Function;
+import org.openkoala.koala.queryvo.TypeDef;
 import org.openkoala.koala.widget.Module;
 import org.openkoala.koala.widget.Project;
 
@@ -137,7 +137,7 @@ public class ProjectQueryUtil {
 			String basePackage = PomXmlReader.queryText("/xmlns:project/xmlns:properties/xmlns:base.package",moduleDocument);
 			module.setBasePackage(basePackage);
 			for(Function function:functions){
-				if(PomXmlReader.isExists(function.getSearchGroupId(), function.getSearchArtifactId(), moduleDocument))
+				if(PomXmlReader.isDependencyExists(function.getSearchGroupId(), function.getSearchArtifactId(), moduleDocument))
 					module.getFunctions().add(function.getName());
 			}
 			moduleList.add(module);
@@ -148,7 +148,7 @@ public class ProjectQueryUtil {
 			String modulePath = path+"/"+module.getModuleName()+"/pom.xml";
 			Document moduleDocument = DocumentUtil.readDocument(modulePath);
 			for(Module depenModule:moduleList){
-				if(PomXmlReader.isExists(project.getGroupId()+"."+project.getAppName(),depenModule.getModuleName(), moduleDocument)){
+				if(PomXmlReader.isDependencyExists(project.getGroupId()+"."+project.getAppName(),depenModule.getModuleName(), moduleDocument)){
 					dependencies.add(depenModule.getModuleName());
 				}
 			}

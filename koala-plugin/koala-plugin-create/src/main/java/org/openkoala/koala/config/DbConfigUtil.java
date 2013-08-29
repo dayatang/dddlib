@@ -37,11 +37,5 @@ public class DbConfigUtil {
 	public void setDBConfigVOs(List<DBConfigVO> dBConfigVOs) {
 		this.dBConfigVOs = dBConfigVOs;
 	}
-
-
-
-	public static void main(String args[]) throws Exception{
-		System.out.println(DbConfigUtil.getDBConfig());
-	}
 	
 }

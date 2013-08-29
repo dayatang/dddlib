@@ -1,32 +1,23 @@
 package org.openkoala.koala.actionvo;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.JarURLConnection;
-import java.net.URL;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 import org.apache.velocity.VelocityContext;
 import org.openkoala.koala.action.file.FileCopyAction;
 import org.openkoala.koala.action.velocity.VelocityUtil;
-import org.openkoala.koala.util.EclipseUrlParseUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 目录COPY
  * 
- * @author lingen.liu
  * 
+ * @description  文件或目录的复制支持VO
+ *  
+ * @date：      2013-8-27   
+ * 
+ * @version    Copyright (c) 2013 Koala All Rights Reserved
+ * 
+ * @author     lingen.liu  <a href=mailto:lingen.liu@gmail.com">lingen.liu@gmail.com</a>
  */
 public class CopyFiles {
-
-	private static final int BUFFER_SIZE = 1024;
 
 	private static final Logger logger = LoggerFactory.getLogger(CopyFiles.class);
 

@@ -93,12 +93,7 @@
         	<url>dav:http://115.28.1.104/projects/koala</url>
         </site>
     </distributionManagement>
-
-    <issueManagement>
-        <system>JIRA</system>
-        <url>http://jira.openkoala.org/browse/KOALA</url>
-    </issueManagement>
-    	
+	
     <repositories>
         <repository>
             <id>koala-snapshots</id>
@@ -154,7 +149,6 @@
         <db.username>sa</db.username>
         <db.password></db.password>
         <db.Type>H2</db.Type>
-        <db.generateDdl>true</db.generateDdl>
         <generateDdl>true</generateDdl>
 
         <!--test DB Config-->
@@ -265,7 +259,7 @@
                 <db.username>sa</db.username>
                 <db.password></db.password>
                 <db.Type>H2</db.Type>
-                <db.generateDdl>true</db.generateDdl>
+                <generateDdl>true</generateDdl>
             </properties>
         </profile>
 				
@@ -976,9 +970,9 @@
 							<artifactId>maven-changes-plugin</artifactId>
 							<version>2.9</version>
 							<configuration>
-								<jiraDatePattern>yyyy-MM-dd</jiraDatePattern>
-								<jiraUser>${jira.username}</jiraUser>
-								<jiraPassword>${jira.password}</jiraPassword>
+								<tracUser>${trac.username}</tracUser>
+								<tracPassword>${trac.password}</tracPassword>
+								<query>status!=closed&amp;order=type</query>
 								<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 							</configuration>
 						</plugin>

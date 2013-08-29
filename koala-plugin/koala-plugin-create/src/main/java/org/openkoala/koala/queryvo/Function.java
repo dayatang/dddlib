@@ -1,4 +1,4 @@
-package org.openkoala.koala.createvo;
+package org.openkoala.koala.queryvo;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,6 +9,11 @@ import java.util.List;
  */
 public class Function implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6047935596615860230L;
+
 	private String name;
 	
 	private String searchGroupId;
