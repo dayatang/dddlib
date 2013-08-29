@@ -41,19 +41,19 @@ public class DB2PagingQueryDialectTest {
 	 */
 	@Test
 	public void testGeneratePagingQueryStatement() {
-		String sqlExpected = "select * from DATA_SOURCES fetch first 10 rows only ";
-		String sql = db2PagingQueryDialect.generatePagingQueryStatement();
+		String sqlExpected = "select * from DATA_SOURCES fetch first 10 rows only";
+		String sql = db2PagingQueryDialect.generatePagingQueryStatement().getStatment();
 		assertEquals(sqlExpected, sql);
 		
 		db2PagingQueryDialect = this.createAndInitDB2PagingQueryDialect(20);
-		String sqlExpected2 = " select * from ( select inner2_.*, rownumber() over(order by order of inner2_) as rownumber_ from ( "
+		String sqlExpected2 = "select * from ( select inner2_.*, rownumber() over(order by order of inner2_) as rownumber_ from ( "
 				+ "select * from DATA_SOURCES"
 				+ " fetch first "
 				+ 10
 				+ " rows only ) as inner2_ ) as inner1_ where rownumber_ > "
 				+ 20
-				+ " order by rownumber_ ";
-		String sql2 = db2PagingQueryDialect.generatePagingQueryStatement();
+				+ " order by rownumber_";
+		String sql2 = db2PagingQueryDialect.generatePagingQueryStatement().getStatment();
 		assertEquals(sqlExpected2, sql2);
 	}
 	
@@ -63,10 +63,12 @@ public class DB2PagingQueryDialectTest {
 	 * @return
 	 */
 	private DB2PagingQueryDialect createAndInitDB2PagingQueryDialect(int firstRow){
+		SqlStatmentMode sqlStatmentMode = new SqlStatmentMode();
+		sqlStatmentMode.setStatment("select * from DATA_SOURCES");
 		DB2PagingQueryDialect db2PagingQueryDialect = new DB2PagingQueryDialect();
 		db2PagingQueryDialect.setFirstRow(firstRow);
 		db2PagingQueryDialect.setPagesize(10);
-		db2PagingQueryDialect.setQuerySql("select * from DATA_SOURCES");
+		db2PagingQueryDialect.setQuerySql(sqlStatmentMode);
 		return db2PagingQueryDialect;
 	}
 
