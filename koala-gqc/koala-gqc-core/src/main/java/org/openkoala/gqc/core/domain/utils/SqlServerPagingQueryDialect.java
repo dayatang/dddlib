@@ -10,7 +10,7 @@ public class SqlServerPagingQueryDialect extends PagingQueryDialect {
 	/**
 	 * 初始大小
 	 */
-	private final int INIT_SIZE = 8;
+	private final int INIT_FITTED_VALUE = 8;
 	
 	/**
 	 * select distinct索引位置
@@ -23,11 +23,14 @@ public class SqlServerPagingQueryDialect extends PagingQueryDialect {
 	private final int INDEX_WITHOUT_DISTINCT = 6;
 
 	@Override
-	public String generatePagingQueryStatement() {
-		return new StringBuilder( getQuerySql().length() + INIT_SIZE )
-				.append( getQuerySql() )
-				.insert( getAfterSelectInsertPoint( getQuerySql() ), " top " + getPagesize() )
-				.toString();
+	public SqlStatmentMode generatePagingQueryStatement() {
+		SqlStatmentMode result = getQuerySql();
+		String statment = result.getStatment();
+		result.setStatment( new StringBuilder( statment.length() + INIT_FITTED_VALUE )
+				.append( statment )
+				.insert( getAfterSelectInsertPoint( statment ), " top " + getPagesize() )
+				.toString() );
+		return result;
 	}
 
 	private int getAfterSelectInsertPoint(String sql) {

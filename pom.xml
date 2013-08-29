@@ -147,7 +147,7 @@
         <cxf.version>2.2.3</cxf.version>
 		<fastjson.version>1.1.17</fastjson.version>
 		<mina.version>2.0.7</mina.version>
-				
+		<jsp.api.version>2.1</jsp.api.version>
     </properties>
 	   
     <profiles>
@@ -182,6 +182,7 @@
             </properties>
         </profile>
 		
+
     </profiles>
 
     <dependencyManagement>
@@ -739,6 +740,13 @@
 				<groupId>commons-beanutils</groupId>
 				<artifactId>commons-beanutils</artifactId>
 				<version>1.8.3</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>${jsp.api.version}</version>
+				<scope>provided</scope>
 			</dependency>
 
         </dependencies>

@@ -51,12 +51,12 @@ public class SqlServerPagingQueryDialectTest {
 	@Test
 	public void testGeneratePagingQueryStatement() {
 		String sqlExpected = "select top 10 * from DATA_SOURCES";
-		String sql = sqlServerPagingQueryDialect.generatePagingQueryStatement();
+		String sql = sqlServerPagingQueryDialect.generatePagingQueryStatement().getStatment();
 		assertEquals(sqlExpected, sql);
 		
 		sqlServerPagingQueryDialect = this.createAndInitSqlServerPagingQueryDialect(sql2);
 		String sqlExpected2 = "select distinct top 10 * from DATA_SOURCES";
-		String sql2 = sqlServerPagingQueryDialect.generatePagingQueryStatement();
+		String sql2 = sqlServerPagingQueryDialect.generatePagingQueryStatement().getStatment();
 		assertEquals(sqlExpected2, sql2);
 	}
 
@@ -66,10 +66,12 @@ public class SqlServerPagingQueryDialectTest {
 	 * @return
 	 */
 	private SqlServerPagingQueryDialect createAndInitSqlServerPagingQueryDialect(String sql){
+		SqlStatmentMode sqlStatmentMode = new SqlStatmentMode();
+		sqlStatmentMode.setStatment(sql);
 		SqlServerPagingQueryDialect sqlServerPagingQueryDialect = new SqlServerPagingQueryDialect();
 		sqlServerPagingQueryDialect.setFirstRow(0);
 		sqlServerPagingQueryDialect.setPagesize(10);
-		sqlServerPagingQueryDialect.setQuerySql(sql);
+		sqlServerPagingQueryDialect.setQuerySql(sqlStatmentMode);
 		return sqlServerPagingQueryDialect;
 	}
 

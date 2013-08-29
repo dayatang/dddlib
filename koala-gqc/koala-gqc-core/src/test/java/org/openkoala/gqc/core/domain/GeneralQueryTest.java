@@ -114,7 +114,7 @@ public class GeneralQueryTest extends KoalaBaseSpringTestCase{
 	 */
 	@Test
 	public void testGetQuerySql() {
-		String jpql = generalQuery.getQuerySql();
+		String jpql = generalQuery.getQuerySql().getStatment();
 		assertNotNull("sql不应该为空！", jpql);
 	}
 

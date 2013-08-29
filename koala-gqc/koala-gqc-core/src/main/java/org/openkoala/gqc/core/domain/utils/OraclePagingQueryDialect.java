@@ -10,19 +10,21 @@ public class OraclePagingQueryDialect extends PagingQueryDialect {
 	/**
 	 * 初始大小
 	 */
-	private final int INIT_SIZE = 100;
+	private final int INIT_FITTED_VALUE = 100;
 
 	@Override
-	public String generatePagingQueryStatement() {
-		String sql = getQuerySql();
+	public SqlStatmentMode generatePagingQueryStatement() {
+		SqlStatmentMode result = getQuerySql();
+		String sql = result.getStatment();
 		sql = sql.trim();
 
-		StringBuilder pagingSelect = new StringBuilder( sql.length() + INIT_SIZE );
+		StringBuilder pagingSelect = new StringBuilder( sql.length() + INIT_FITTED_VALUE );
 		pagingSelect.append("select * from ( select row_.*, rownum rownum_ from ( ");
 		pagingSelect.append(sql);
 		pagingSelect.append(" ) row_ ) where rownum_ <= " + (getFirstRow() + getPagesize()) + " and rownum_ > " + getFirstRow());
 
-		return pagingSelect.toString();
+		result.setStatment(pagingSelect.toString());
+		return result;
 	}
 
 
