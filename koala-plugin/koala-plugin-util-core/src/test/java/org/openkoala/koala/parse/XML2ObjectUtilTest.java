@@ -30,7 +30,7 @@ public class XML2ObjectUtilTest {
 
 	@Test
 	public void testProcessParse() throws Exception {
-		XmlAdd xmlAdd = (XmlAdd)XML2ObjectUtil.getInstance().processParse("project.xml");
+		XmlAdd xmlAdd = (XmlAdd)XML2ObjectUtil.getInstance().processParse("xmladd.xml");
 	    Assert.assertEquals(xmlAdd.getExpress(), "$Project.dbProtocol=='JPA'");
 	}
 
