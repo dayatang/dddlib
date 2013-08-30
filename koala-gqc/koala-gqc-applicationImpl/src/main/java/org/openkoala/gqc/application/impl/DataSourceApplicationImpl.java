@@ -233,7 +233,7 @@ public class DataSourceApplicationImpl implements DataSourceApplication {
 			List<Object> conditionVals = new ArrayList<Object>();
 
 			StringBuilder jpql = new StringBuilder(
-					"select _dataSource from DataSource _dataSource   where 1=1 ");
+					" select _dataSource from DataSource _dataSource where 1=1 ");
 
 			if (queryVo.getDataSourceId() != null && !"".equals(queryVo.getDataSourceId())) {
 				jpql.append(" and _dataSource.dataSourceId like ?");
