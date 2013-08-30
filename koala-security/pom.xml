@@ -22,6 +22,29 @@
 		<module>koala-security-applicationImpl</module>
 		<module>koala-security-ss3Adapter</module>
 		<module>koala-security-ks-jbpm-adapter</module>
+		<module>koala-security-web-mvc</module>
 	</modules>
+	
+	<profiles>
+	
+        <profile>
+            <id>security</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+                <hibernate.show_sql>true</hibernate.show_sql>
+                <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+                <db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
+                <db.connectionURL>jdbc:h2:~/db/security</db.connectionURL>
+                <db.username>sa</db.username>
+                <db.password></db.password>
+                <db.Type>H2</db.Type>
+                <generateDdl>true</generateDdl>
+            </properties>
+        </profile>
+        
+	</profiles>
 
 </project>

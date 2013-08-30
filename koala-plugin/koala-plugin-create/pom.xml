@@ -34,7 +34,6 @@
 		<dependency>
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
-			<version>1.6.1</version>
 		</dependency>
 
 		<!-- 加入XPATH的依赖 -->
@@ -53,17 +52,14 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.6.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.1</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.8.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -74,7 +70,6 @@
 		<dependency>
 			<groupId>proxool</groupId>
 			<artifactId>proxool</artifactId>
-			<version>0.9.1</version>
 		</dependency>
 	</dependencies>
 	<build>

@@ -23,4 +23,26 @@
 		<module>koala-jbpm-core-war</module>
 	</modules>
 
+	<profiles>
+		<profile>
+			<id>jbpmcore</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<hibernate.show_sql>true</hibernate.show_sql>
+				<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+				<db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
+				<db.connectionURL>jdbc:h2:~/db/jbpm-core;MVCC=true</db.connectionURL>
+				<db.username>sa</db.username>
+				<db.password />
+				<db.Type>h2</db.Type>
+				<db.groupId>com.h2database</db.groupId>
+				<db.artifactId>h2</db.artifactId>
+				<jbpm.wsdl.localtion>http://localhost:8180/jbpmService</jbpm.wsdl.localtion>
+			</properties>
+		</profile>
+	</profiles>
+
 </project>

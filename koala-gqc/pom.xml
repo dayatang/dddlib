@@ -22,6 +22,26 @@
 		<module>koala-gqc-web</module>
 	</modules>
 
+	<profiles>
+		<profile>
+			<id>gqc</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<hibernate.show_sql>true</hibernate.show_sql>
+				<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+				<db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
+				<db.connectionURL>jdbc:h2:~/db/gqc</db.connectionURL>
+				<db.username>sa</db.username>
+				<db.password></db.password>
+				<db.Type>H2</db.Type>
+				<generateDdl>true</generateDdl>
+			</properties>
+		</profile>
+	</profiles>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.mockito</groupId>
@@ -29,19 +49,19 @@
 			<version>1.8.5</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>  
-		    <groupId>org.powermock</groupId>  
-		    <artifactId>powermock-api-mockito</artifactId>  
-		    <version>1.4.10</version>  
-		    <scope>test</scope>  
-		</dependency>  
-		  
-		<dependency>  
-		    <groupId>org.powermock</groupId>  
-		    <artifactId>powermock-module-junit4</artifactId>  
-		    <version>1.4.10</version>  
-		    <scope>test</scope>  
-		</dependency>  
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+			<version>1.4.10</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<version>1.4.10</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 </project>
