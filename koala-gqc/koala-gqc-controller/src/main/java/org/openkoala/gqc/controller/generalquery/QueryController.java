@@ -44,7 +44,7 @@ public class QueryController {
 	 */
 	@RequestMapping("/query/{id}")
 	public String queryPage(@PathVariable Long id, ModelMap modelMap) {
-		GeneralQuery generalQuery = gqcApplication.getEntity(GeneralQuery.class, id);
+		GeneralQuery generalQuery = gqcApplication.getById(id);
 		modelMap.addAttribute("gq", generalQuery);
 		modelMap.addAttribute("gqId", id);
 		return "query";
@@ -64,7 +64,7 @@ public class QueryController {
 	@RequestMapping("/search/{id}")
 	public Map<String, Object> search(@PathVariable Long id, @RequestParam int page,
 			@RequestParam int pagesize, HttpServletRequest request) {
-		GeneralQuery generalQuery = gqcApplication.getEntity(GeneralQuery.class, id);
+		GeneralQuery generalQuery = gqcApplication.getById(id);
 		Map<String, Object> result = new HashMap<String, Object>();
 		Map<String, Object[]> params = request.getParameterMap();
 		String startValueTag = "Start@";

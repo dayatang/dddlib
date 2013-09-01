@@ -89,7 +89,7 @@ public interface DataSourceApplication {
 	 * @param dataSource
 	 * @return
 	 */
-	public boolean chechDataSourceCanConnect(DataSource dataSource);
+	public boolean checkDataSourceCanConnect(DataSource dataSource);
 	
 	/**
 	 * 测试数据源连接

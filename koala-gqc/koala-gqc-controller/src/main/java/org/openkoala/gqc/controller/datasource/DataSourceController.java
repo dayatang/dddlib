@@ -205,7 +205,7 @@ public class DataSourceController{
   		try {
   			dataMap = new HashMap<String, Object>();
   			
-  	        boolean result = dataSourceApplication.chechDataSourceCanConnect(dataSource);
+  	        boolean result = dataSourceApplication.checkDataSourceCanConnect(dataSource);
   	        if(result){
   	            dataMap.put("result", "该数据源可用");
   	        }else{

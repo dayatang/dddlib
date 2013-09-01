@@ -233,7 +233,7 @@ public class DataSourceApplicationImpl implements DataSourceApplication {
 			List<Object> conditionVals = new ArrayList<Object>();
 
 			StringBuilder jpql = new StringBuilder(
-					"select _dataSource from DataSource _dataSource   where 1=1 ");
+					" select _dataSource from DataSource _dataSource where 1=1 ");
 
 			if (queryVo.getDataSourceId() != null && !"".equals(queryVo.getDataSourceId())) {
 				jpql.append(" and _dataSource.dataSourceId like ?");
@@ -293,7 +293,7 @@ public class DataSourceApplicationImpl implements DataSourceApplication {
 		}
 	}
 	
-	public boolean chechDataSourceCanConnect(DataSource dataSource) {
+	public boolean checkDataSourceCanConnect(DataSource dataSource) {
 		try {
 			//页面传递的是系统数据源的话，实际上只传递了dataSourceId，需要从数据库把详细的dataSource查出来
 			if (dataSource.getDataSourceType().equals(DataSourceType.SYSTEM_DATA_SOURCE)) {

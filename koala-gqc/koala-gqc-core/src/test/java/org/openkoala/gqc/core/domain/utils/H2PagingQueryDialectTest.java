@@ -42,7 +42,7 @@ public class H2PagingQueryDialectTest {
 	@Test
 	public void testGeneratePagingQueryStatement() {
 		String sqlExpected = "select * from DATA_SOURCES limit 10 offset 0";
-		String sql = h2PagingQueryDialect.generatePagingQueryStatement();
+		String sql = h2PagingQueryDialect.generatePagingQueryStatement().getStatment();
 		assertEquals(sqlExpected, sql);
 	}
 
@@ -52,10 +52,12 @@ public class H2PagingQueryDialectTest {
 	 * @return
 	 */
 	private H2PagingQueryDialect createAndInitH2PagingQueryDialect(){
+		SqlStatmentMode sqlStatmentMode = new SqlStatmentMode();
+		sqlStatmentMode.setStatment("select * from DATA_SOURCES");
 		H2PagingQueryDialect h2PagingQueryDialect = new H2PagingQueryDialect();
 		h2PagingQueryDialect.setFirstRow(0);
 		h2PagingQueryDialect.setPagesize(10);
-		h2PagingQueryDialect.setQuerySql("select * from DATA_SOURCES");
+		h2PagingQueryDialect.setQuerySql(sqlStatmentMode);
 		return h2PagingQueryDialect;
 	}
 
