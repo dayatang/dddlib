@@ -102,7 +102,7 @@
     <repositories>
         <repository>
             <id>koala-snapshots</id>
-            <url>http://115.28.0.46:8081/nexus/content/groups/Koala-snapshots/</url>
+            <url>http://nexus.openkoala.org/nexus/content/groups/Koala-snapshots/</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -113,7 +113,7 @@
 
         <repository>
             <id>koala-release</id>
-            <url>http://115.28.0.46:8081/nexus/content/groups/Koala-release/</url>
+            <url>http://nexus.openkoala.org/nexus/content/groups/Koala-release/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -748,6 +748,15 @@
 				<version>${jsp.api.version}</version>
 				<scope>provided</scope>
 			</dependency>
+<<<<<<< HEAD
+=======
+			
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>4.2.5</version>
+			</dependency>
+>>>>>>> 0c80a5054d127c6dd0cbaa8aa38bb58e0f320f4a
 
         </dependencies>
 	
