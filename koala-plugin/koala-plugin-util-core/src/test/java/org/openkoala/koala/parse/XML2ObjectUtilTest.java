@@ -1,7 +1,6 @@
 package org.openkoala.koala.parse;
 
 import static org.junit.Assert.*;
-import junit.framework.Assert;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -30,12 +29,8 @@ public class XML2ObjectUtilTest {
 
 	@Test
 	public void testProcessParse() throws Exception {
-<<<<<<< HEAD
-		XmlAdd xmlAdd = (XmlAdd)XML2ObjectUtil.getInstance().processParse("project.xml");
-=======
 		XmlAdd xmlAdd = (XmlAdd)XML2ObjectUtil.getInstance().processParse("xmladd.xml");
->>>>>>> 0c80a5054d127c6dd0cbaa8aa38bb58e0f320f4a
-	    Assert.assertEquals(xmlAdd.getExpress(), "$Project.dbProtocol=='JPA'");
+	    assertEquals(xmlAdd.getExpress(), "$Project.dbProtocol=='JPA'");
 	}
 
 }
