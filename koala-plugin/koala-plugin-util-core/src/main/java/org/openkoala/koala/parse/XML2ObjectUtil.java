@@ -41,17 +41,16 @@ public class XML2ObjectUtil {
 
 	// property标签
 	private static final String PROPERTY_ELEMENT = "property";
-	
-	//ELEMENT标签
+
+	// ELEMENT标签
 	private static final String DOM4J_ELEMENT = "ELEMENT";
 
 	private static XML2ObjectUtil xmlW2ObjectUtil = new XML2ObjectUtil();
-	
-	private static Map<String,String> classes;
+
+	private static Map<String, String> classes;
 
 	private XML2ObjectUtil() {
 	}
-
 
 	public static XML2ObjectUtil getInstance() {
 		return new XML2ObjectUtil();
@@ -64,19 +63,23 @@ public class XML2ObjectUtil {
 	 * @throws Exception
 	 */
 	public Object processParse(String xmlPath) throws Exception {
-		if(classes==null)classes = PackageScanUtil.scan();
-//		InputStream in = getInputStreamFromClassLoader(xmlPath.substring(xmlPath.indexOf("xml"));
-//		InputStreamReader sr = new InputStreamReader(in,"UTF-8"); 
+		if (classes == null) {
+			classes = PackageScanUtil.scan();
+		}
+		// InputStream in =
+		// getInputStreamFromClassLoader(xmlPath.substring(xmlPath.indexOf("xml"));
+		// InputStreamReader sr = new InputStreamReader(in,"UTF-8");
 		Document document = DocumentUtil.readDocument(xmlPath);
 		Element root = document.getRootElement();
 		String objName = root.getName().substring(0, 1).toUpperCase() + root.getName().substring(1);
 		String className = classes.get(objName);
 		Class rootClass = Class.forName(className);
-		return objectParse(rootClass,root,null);
+		return objectParse(rootClass, root, null);
 	}
-	
+
 	/**
 	 * 从当前类加载器中获取输入流
+	 * 
 	 * @param xmlPath
 	 * @return
 	 */
@@ -90,19 +93,18 @@ public class XML2ObjectUtil {
 	 * @param classObject
 	 * @param element
 	 */
-	private Object objectParse(Class classObject, Element root, Object parent)
-			throws Exception {
+	private Object objectParse(Class classObject, Element root, Object parent) throws Exception {
 		Constructor<?> constructor = classObject.getDeclaredConstructor(); // 获取类中不带参数的构造方法
 		constructor.setAccessible(true); // 将private的构造方法设置成可以访问的
 		Object obj = constructor.newInstance();
-		
+
 		List<Element> elements = root.elements();
 		for (Element element : elements) {
 			if (PROPERTY_ELEMENT.equals(element.getName().toLowerCase())) {
 				String value = element.getText().trim();
 
 				String property = element.attributeValue(NAME_ATTR);
-				Field field = getField(classObject,property);
+				Field field = getField(classObject, property);
 				field.setAccessible(true);// 压制Java对访问修饰符的检查
 
 				// 处理属性是集合的情况
@@ -123,29 +125,29 @@ public class XML2ObjectUtil {
 				String className = classes.get(propertyObj);
 				Class classPorperty = Class.forName(className);
 				Object classObj = objectParse(classPorperty, element, obj);
-				
-				property  = property.substring(0,1).toLowerCase() + property.substring(1);
+
+				property = property.substring(0, 1).toLowerCase() + property.substring(1);
 				Field field = null;
-			    field = getField(classObject,property);
-				if(field==null){
-					property = property+ "s";
+				field = getField(classObject, property);
+				if (field == null) {
+					property = property + "s";
 					propertyObj = propertyObj + "s";
-					field = getField(classObject,property);
+					field = getField(classObject, property);
 				}
 				if (!field.getType().equals(List.class)) {
 					// 如果是单个元素
-					
+
 					field.setAccessible(true);
 					field.set(obj, classObj);
 				} else {
 					// 如果有多个元素，则肯定存储为一个LIST
-					Method getMethod = getMethod(classObject,"get" + propertyObj);
+					Method getMethod = getMethod(classObject, "get" + propertyObj);
 					List values = (List) getMethod.invoke(obj);
-					if(values == null) {
+					if (values == null) {
 						values = new ArrayList();
 					}
 					values.add(classObj);
-					Method setMethod = getMethod(classObject,"set" + propertyObj, List.class);
+					Method setMethod = getMethod(classObject, "set" + propertyObj, List.class);
 					setMethod.invoke(obj, values);
 				}
 			}
@@ -161,8 +163,7 @@ public class XML2ObjectUtil {
 	 * @param value
 	 * @throws Exception
 	 */
-	private void setValue(Object obj, Field field, Object value)
-			throws Exception {
+	private void setValue(Object obj, Field field, Object value) throws Exception {
 		String type = field.getType().getSimpleName();
 		String val = (String) value;
 		if (type.equals("String")) {
@@ -173,25 +174,29 @@ public class XML2ObjectUtil {
 			throw new Exception("UnSupported Field Type");
 		}
 	}
-	
-	private Field getField(Class classObject,String property) throws SecurityException, NoSuchFieldException{
-		Field field =  null;
-		try{field = classObject.getDeclaredField(property);}catch(NoSuchFieldException e){}
-		while(field==null && classObject.getSuperclass()!=null){
-			classObject = classObject.getSuperclass();
-			try{field = classObject.getDeclaredField(property);}catch(NoSuchFieldException e){}
+
+	private Field getField(Class classObject, String property) throws SecurityException, NoSuchFieldException {
+		Field field = null;
+		try {
+			field = classObject.getDeclaredField(property);
+			while (field == null && classObject.getSuperclass() != null) {
+				classObject = classObject.getSuperclass();
+				field = classObject.getDeclaredField(property);
+			}
+		} catch (java.lang.NoSuchFieldException e) {
+			
 		}
 		return field;
 	}
-	
-	private Method getMethod(Class classObject,String methodName, Class<?>... parameterTypes) throws SecurityException, NoSuchMethodException{
-		Method method = null;
-		try{method = classObject.getDeclaredMethod(methodName,parameterTypes);}catch(NoSuchMethodException e){}
-		 while(method==null && classObject.getSuperclass()!=null){
-			 classObject = classObject.getSuperclass();
-			 try{method = classObject.getDeclaredMethod(methodName,parameterTypes);}catch(NoSuchMethodException e){}
-		 }
+
+	private Method getMethod(Class classObject, String methodName, Class<?>... parameterTypes) throws SecurityException,
+			NoSuchMethodException {
+		Method method = classObject.getDeclaredMethod(methodName, parameterTypes);
+		while (method == null && classObject.getSuperclass() != null) {
+			classObject = classObject.getSuperclass();
+			method = classObject.getDeclaredMethod(methodName, parameterTypes);
+		}
 		return method;
 	}
-	
+
 }

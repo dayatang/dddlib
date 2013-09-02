@@ -396,8 +396,7 @@ public class EJBSrcCopy {
 						war.getPath()+ "/src/main/resources/META-INF/props/spring-ejb.properties");
 
 		// 第四步,在root.xml中加入spring-ejb.xml的配置
-		XmlParseUtil
-				.parseXmlAction("vm/ejb/war-ejb-spring-update.xml", context);
+		XmlParseUtil.parseXml("vm/ejb/war-ejb-spring-update.xml", params);
 	}
 
 	/**

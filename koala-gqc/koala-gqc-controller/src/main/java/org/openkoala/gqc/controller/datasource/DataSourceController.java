@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.openkoala.gqc.application.DataSourceApplication;
 import org.openkoala.gqc.core.domain.DataSource;
-import org.openkoala.gqc.core.domain.DataSourceType;
 import org.openkoala.gqc.vo.DataSourceVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,7 +53,7 @@ public class DataSourceController{
             }
         } catch (Exception e) {
         	if(dataMap != null){
-                dataMap.put("result", "保存失败！");
+                dataMap.put("result", "新增失败！");
         	}
         }
         
@@ -70,10 +69,18 @@ public class DataSourceController{
     @RequestMapping("/update")
 	public Map<String,Object> update(DataSourceVO dataSourceVO) {
 		//Json对象
-		Map<String, Object> dataMap = new HashMap<String, Object>();
-        
-		dataSourceApplication.updateDataSource(dataSourceVO);
-		dataMap.put("result", "success");
+		Map<String, Object> dataMap = null;
+		try {
+			dataMap = new HashMap<String, Object>();
+			
+			dataSourceApplication.updateDataSource(dataSourceVO);
+			
+			dataMap.put("result", "success");
+		} catch (Exception e) {
+        	if(dataMap != null){
+                dataMap.put("result", "保存失败！");
+        	}
+		}
 		return dataMap;
 	}
 	
@@ -87,13 +94,21 @@ public class DataSourceController{
     @RequestMapping("/pageJson")
 	public Map<String,Object> pageJson(int page, int pagesize) {
 		//Json对象
-		Map<String, Object> dataMap = new HashMap<String, Object>();
-        
-        Page<DataSourceVO> all = dataSourceApplication.pageQueryDataSource(new DataSourceVO(), page, pagesize);
-        dataMap.put("Rows", all.getResult());
-        dataMap.put("start", page * pagesize - pagesize);
-        dataMap.put("limit", pagesize);
-        dataMap.put("Total", all.getTotalCount());
+		Map<String, Object> dataMap = null;
+		try {
+			dataMap = new HashMap<String, Object>();
+			
+			Page<DataSourceVO> all = dataSourceApplication.pageQueryDataSource(new DataSourceVO(), page, pagesize);
+			
+	        dataMap.put("Rows", all.getResult());
+	        dataMap.put("start", page * pagesize - pagesize);
+	        dataMap.put("limit", pagesize);
+	        dataMap.put("Total", all.getTotalCount());
+		} catch (Exception e) {
+        	if(dataMap != null){
+                dataMap.put("result", "查询数据源列表失败！");
+        	}
+		}
 		return dataMap;
 	}
 
@@ -106,18 +121,25 @@ public class DataSourceController{
     @RequestMapping("/delete")
 	public Map<String,Object> delete(String ids) {
 		//Json对象
-		Map<String, Object> dataMap = new HashMap<String, Object>();
-        
-        if(ids != null){
-            String[] idArrs = ids.split(",");
-            Long[] idsLong = new Long[idArrs.length];
-            for (int i = 0; i < idArrs.length; i ++) {
-                idsLong[i] = Long.parseLong(idArrs[i]);
-            }
-            dataSourceApplication.removeDataSources(idsLong);
-        }
-        
-		dataMap.put("result", "success");
+		Map<String, Object> dataMap = null;
+		try {
+			dataMap = new HashMap<String, Object>();
+			
+			if(ids != null){
+	            String[] idArrs = ids.split(",");
+	            Long[] idsLong = new Long[idArrs.length];
+	            for (int i = 0; i < idArrs.length; i ++) {
+	                idsLong[i] = Long.parseLong(idArrs[i]);
+	            }
+	            dataSourceApplication.removeDataSources(idsLong);
+	        }
+	        
+			dataMap.put("result", "success");
+		} catch (Exception e) {
+        	if(dataMap != null){
+                dataMap.put("result", "删除失败！");
+        	}
+		}
 		return dataMap;
 	}
 	
@@ -130,9 +152,16 @@ public class DataSourceController{
     @RequestMapping("/get/{id}")
 	public Map<String,Object> get(@PathVariable("id") Long id) {
 		//Json对象
-		Map<String, Object> dataMap = new HashMap<String, Object>();
-        
-		dataMap.put("data", dataSourceApplication.getDataSource(id));
+		Map<String, Object> dataMap = null;
+		try {
+			dataMap = new HashMap<String, Object>();
+			
+			dataMap.put("data", dataSourceApplication.getDataSourceVoById(id));
+		} catch (Exception e) {
+        	if(dataMap != null){
+                dataMap.put("error", "查询指定数据源失败！");
+        	}
+		}
 		return dataMap;
 	}
     
@@ -144,17 +173,23 @@ public class DataSourceController{
     @ResponseBody
     @RequestMapping("/checkDataSourceById")
     public Map<String,Object> checkDataSourceById(Long id) {
-		//Json对象
-		Map<String, Object> dataMap = new HashMap<String, Object>();
-        
-        boolean result = dataSourceApplication.testConnection(id);
-        if(result){
-            dataMap.put("result", "该数据源可用");
-        }else{
-            dataMap.put("result", "该数据源不可用");
-        }
-        
-        return dataMap;
+        //Json对象
+		Map<String, Object> dataMap = null;
+		try {
+			dataMap = new HashMap<String, Object>();
+			
+			boolean result = dataSourceApplication.testConnection(id);
+	        if(result){
+	            dataMap.put("result", "该数据源可用");
+	        }else{
+	            dataMap.put("result", "该数据源不可用");
+	        }
+		} catch (Exception e) {
+	      	if(dataMap != null){
+	              dataMap.put("error", "检测数据源是否可用失败！");
+	      	}
+		}
+		return dataMap;
     }
     
     /**
@@ -165,25 +200,23 @@ public class DataSourceController{
     @ResponseBody
     @RequestMapping("/checkDataSource")
     public Map<String,Object> checkDataSource(DataSource dataSource) {
-		//Json对象
-		Map<String, Object> dataMap = new HashMap<String, Object>();
-        
-        if (dataSource.getDataSourceType().equals(DataSourceType.SYSTEM_DATA_SOURCE)) {
-        	try {
-				dataSource = DataSource.getSystemDataSource(dataSource.getDataSourceId());
-			} catch (Exception e) {
-				//
-			}
-        }
-        
-        boolean result = dataSource.testConnection();
-        if(result){
-            dataMap.put("result", "该数据源可用");
-        }else{
-            dataMap.put("result", "该数据源不可用");
-        }
-        
-        return dataMap;
+        //Json对象
+  		Map<String, Object> dataMap = null;
+  		try {
+  			dataMap = new HashMap<String, Object>();
+  			
+  	        boolean result = dataSourceApplication.checkDataSourceCanConnect(dataSource);
+  	        if(result){
+  	            dataMap.put("result", "该数据源可用");
+  	        }else{
+  	            dataMap.put("result", "该数据源不可用");
+  	        }
+  		} catch (Exception e) {
+  	      	if(dataMap != null){
+  	              dataMap.put("error", "检测数据源是否可用失败！");
+  	      	}
+  		}
+  		return dataMap;
     }
     
 }

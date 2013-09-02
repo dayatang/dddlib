@@ -42,7 +42,7 @@ public class OraclePagingQueryDialectTest {
 	@Test
 	public void testGeneratePagingQueryStatement() {
 		String sqlExpected = "select * from ( select row_.*, rownum rownum_ from ( select * from DATA_SOURCES ) row_ ) where rownum_ <= 10 and rownum_ > 0";
-		String sql = oraclePagingQueryDialect.generatePagingQueryStatement();
+		String sql = oraclePagingQueryDialect.generatePagingQueryStatement().getStatment();
 		assertEquals(sqlExpected, sql);
 	}
 
@@ -52,10 +52,12 @@ public class OraclePagingQueryDialectTest {
 	 * @return
 	 */
 	private OraclePagingQueryDialect createAndInitOraclePagingQueryDialect(){
+		SqlStatmentMode sqlStatmentMode = new SqlStatmentMode();
+		sqlStatmentMode.setStatment("select * from DATA_SOURCES");
 		OraclePagingQueryDialect oraclePagingQueryDialect = new OraclePagingQueryDialect();
 		oraclePagingQueryDialect.setFirstRow(0);
 		oraclePagingQueryDialect.setPagesize(10);
-		oraclePagingQueryDialect.setQuerySql("select * from DATA_SOURCES");
+		oraclePagingQueryDialect.setQuerySql(sqlStatmentMode);
 		return oraclePagingQueryDialect;
 	}
 

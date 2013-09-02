@@ -14,7 +14,6 @@ import org.openkoala.koala.action.velocity.VelocityUtil;
 import org.openkoala.koala.action.xml.DocumentUtil;
 import org.openkoala.koala.action.xml.PomXmlWriter;
 import org.openkoala.koala.exception.KoalaException;
-import org.openkoala.koala.maven.MavenExcuter;
 import org.openkoala.koala.maven.MavenFileFilter;
 import org.openkoala.koala.pojo.Dependency;
 import org.openkoala.koala.pojo.MavenProject;
@@ -108,7 +107,8 @@ public class WebServiceSrcCopy {
 			PomXmlWriter.updatePomParentArtifactId(modulePomXmlDocument, project.getArtifactId()+WS);
 			
 			for(Dependency depen:changes){
-					PomXmlWriter.updateDependency(modulePomXmlDocument, depen, WS);
+				Dependency newDepen = new Dependency(depen.getGroupId(),depen.getArtifactId()+WS,depen.getVersion());
+				PomXmlWriter.updateDependency(modulePomXmlDocument, depen, newDepen);
 			}
 			
 			PomXmlWriter.addDependencies("org.apache.cxf", "cxf-api", "2.6.2", modulePomXmlDocument);
@@ -134,7 +134,7 @@ public class WebServiceSrcCopy {
 		params.put("Project", project);
 		params.put("Dependencys", changesProject);
 //		VelocityUtil.velocityDirParse("vm/ws/war-ws", parentPath+"war-ws", VelocityUtil.getVelocityContext(params));
-		XmlParseUtil.parseXmlAction("xml/ws-security-copy.xml", VelocityUtil.getVelocityContext(params));		
+		XmlParseUtil.parseXml("xml/ws-security-copy.xml",params);
 		return destProject;
 	}
 }

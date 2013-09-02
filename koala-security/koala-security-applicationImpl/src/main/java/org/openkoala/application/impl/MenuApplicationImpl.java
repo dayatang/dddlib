@@ -34,7 +34,7 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 	@Inject
 	private ResourceApplication resourceApplication;
 
-	public static Page<ResourceVO> BasePageQuery(String query, Object[] params, int currentPage, int pageSize) {
+	public static Page<ResourceVO> basePageQuery(String query, Object[] params, int currentPage, int pageSize) {
 		List<ResourceVO> result = new ArrayList<ResourceVO>();
 		Page<Resource> pages = queryChannel().queryPagedResultByPageNo(query, params, currentPage, pageSize);
 		for (Resource resource : pages.getResult()) {
@@ -122,15 +122,15 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 	}
 
 	public Page<ResourceVO> pageQueryMenu(int currentPage, int pageSize) {
-		return BasePageQuery("select m from Resource m order by m.id", new Object[0], currentPage, pageSize);
+		return basePageQuery("select m from Resource m order by m.id", new Object[0], currentPage, pageSize);
 	}
 
 	public void assign(ResourceVO parentVO, ResourceVO childVO) {
 		Resource parent = new Resource();
-		parent.setId(Long.valueOf(parentVO.getId()));
+		parent.setId(parentVO.getId());
 		Resource child = Resource.load(Resource.class, childVO.getId());
 		child.setLevel(String.valueOf(Integer.parseInt(parentVO.getLevel()) + 1));
-		child.setId(Long.valueOf(childVO.getId()));
+		child.setId(childVO.getId());
 		parent.assignChild(child);
 	}
 	
@@ -266,7 +266,7 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 
 	private void innerFindMenuByParent(ResourceVO parent, RoleVO roleVO) {
 		List<ResourceVO> childs = new ArrayList<ResourceVO>();
-		List<Resource> menus = Resource.findChildByParent(Long.valueOf(parent.getId()));
+		List<Resource> menus = Resource.findChildByParent(parent.getId());
 		for (Resource res : menus) {
 			ResourceVO treeVO = new ResourceVO();
 			treeVO.domain2Vo(res);
@@ -286,7 +286,7 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 	private void innerFindMenuByParentAndUser(ResourceVO parent, String userAccount) {
 		List<ResourceVO> childs = new ArrayList<ResourceVO>();
 		List<Resource> menus = null;
-		menus = Resource.findChildByParentAndUser(Long.valueOf(parent.getId()), userAccount);
+		menus = Resource.findChildByParentAndUser(parent.getId(), userAccount);
 		for (Resource menu : menus) {
 			if (Resource.isMenu(menu)) {
 				ResourceVO treeVO = new ResourceVO();

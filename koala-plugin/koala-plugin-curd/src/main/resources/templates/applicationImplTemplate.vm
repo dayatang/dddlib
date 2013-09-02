@@ -165,7 +165,7 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
             }
             result.add(dto);
         }
-        return new Page<${entityName}DTO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), result);
+        return new Page<${entityName}DTO>(Page.getStartOfPage(currentPage, pageSize), pages.getTotalCount(), pages.getPageSize(), result);
 	}		
 #end
 #end

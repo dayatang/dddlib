@@ -58,10 +58,8 @@ public class AppExceptionInterceptor {
         try {
             o = point.proceed();
         } catch (Exception e) {
-            logger.error("Method["+target.getName() + "." + method.getName()+"]",e);
+            logger.error("Method["+target.getName() + "." + method.getName() + "]", e);
             throw new BaseException(e);
-        }finally{
-        	
         }
         return o;
     }

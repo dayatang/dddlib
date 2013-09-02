@@ -52,7 +52,7 @@ public class CURDConfigUpdate {
      * @param entityModel
      * @param project
      */
-    public static void UpdateDBConfig(EntityModel entityModel, MavenProject project){
+    public static void updateDBConfig(EntityModel entityModel, MavenProject project){
         //找到JPA的DB配置文件
         List<MavenProject> impProjects =  project.getImplProjects();
         String jpaPersistencePath =null;

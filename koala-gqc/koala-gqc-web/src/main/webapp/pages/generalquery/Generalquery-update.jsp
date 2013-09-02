@@ -288,11 +288,11 @@ function saveDataAction(){
 		data:$("#dataForm").serialize(),
 		success: function(json){
 			if(json && json.result){
-			 alert(json.result);
-			 parent.gridManager.loadData();
-			 if(json.result == "success"){
-				 parent._dialog.close();
-			 }
+				 alert(json.result);
+				 if(json.result == "success"){
+					 parent.gridManager.loadData();
+					 parent._dialog.close();
+				 }
 			}
 		}
 	});

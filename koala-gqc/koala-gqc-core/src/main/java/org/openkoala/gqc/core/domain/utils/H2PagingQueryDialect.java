@@ -10,14 +10,17 @@ public class H2PagingQueryDialect extends PagingQueryDialect {
 	/**
 	 * 初始大小
 	 */
-	private final int INIT_SIZE = 20;
+	private final int INIT_FITTED_VALUE = 20;
 
 	@Override
-	public String generatePagingQueryStatement() {
-		return new StringBuilder( getQuerySql().length() + INIT_SIZE )
-		.append( getQuerySql() )
-		.append( " limit " + getPagesize() + " offset " + getFirstRow() )
-		.toString();
+	public SqlStatmentMode generatePagingQueryStatement() {
+		SqlStatmentMode result = getQuerySql();
+		result.setStatment(new StringBuilder( result.getStatment().length() + INIT_FITTED_VALUE )
+			.append( result.getStatment() )
+			.append( " limit " + getPagesize() + " offset " + getFirstRow() )
+			.toString());
+		
+		return result;
 	}
 
 }

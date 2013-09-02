@@ -44,9 +44,9 @@ public class WebServiceDeployClient {
 		params.put("Applications", deploy.getInterfaces());
 		
 		if (isRestFull) {
-			XmlParseUtil.parseXmlAction("xml/ws-deploy.xml", VelocityUtil.getVelocityContext(params));
+			XmlParseUtil.parseXml("xml/ws-deploy.xml", params);
 		} else {
-			XmlParseUtil.parseXmlAction("xml/ws-soap-deploy.xml", VelocityUtil.getVelocityContext(params));
+			XmlParseUtil.parseXml("xml/ws-soap-deploy.xml", params);
 		}
 	}
 }

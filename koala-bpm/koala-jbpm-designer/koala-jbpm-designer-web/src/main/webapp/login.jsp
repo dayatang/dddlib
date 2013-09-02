@@ -129,13 +129,28 @@ function login(){
 	$('#loginFormId').submit();
 }
 
+/**
+ * 按回车键时，触发登录按钮
+ */
+function keyDown(e){
+	//这样写是为了兼容FireFox和IE，因为IE的onkeydown在FF中不起作用
+	var ev =window.event||e; 
+ 	//按回车键
+  	if (ev.keyCode==13) {
+   		ev.returnValue=false;
+   		ev.cancel = true;
+   		var sub =  document.getElementById("btnSubmit");
+  		sub.click();
+  	} 
+}
+
 </script>
 </head>
 <body>
 	<div class="head"></div>
 	<div class="logo">
 		<img src="images/background/logo.gif" />
-		<div>Koala-流程设计平台</div>
+		<div>Koala流程设计平台</div>
 	</div>
 	<div class="login_con">
 		<div class="login_con_L">
@@ -146,9 +161,9 @@ function login(){
 				<h3>登录</h3>
 				<ul>
 					<li>用户名：<input type="text" name="j_username" id="j_username"/></li>
-					<li>密&nbsp;&nbsp;码：<input type="password" name="j_password" id="j_password" /></li>
+					<li>密&nbsp;&nbsp;码：<input type="password" name="j_password" id="j_password"   onkeydown="keyDown(event)"/></li>
 				</ul>
-				<div class="login_bnt" onclick="javascript:login()"></div>
+				<div class="login_bnt" id="btnSubmit" onclick="javascript:login()"></div>
 			</FORM>
 		</div>
 	</div>

@@ -1,5 +1,15 @@
 package org.openkoala.koala.util;
 
+/**
+ * 
+ * @description 字符处理的一些辅助
+ *  
+ * @date：      2013-8-26   
+ * 
+ * @version    Copyright (c) 2013 Koala All Rights Reserved
+ * 
+ * @author     lingen.liu  <a href=mailto:lingen.liu@gmail.com">lingen.liu@gmail.com</a>
+ */
 public class StringUtils {
 
 	public static String handleSpecialCharactersInName(String name) {

@@ -4,6 +4,7 @@ package org.openkoala.gqc.application;
 import java.util.List;
 import java.util.Map;
 
+import org.openkoala.gqc.core.domain.DataSource;
 import org.openkoala.gqc.vo.DataSourceVO;
 
 import com.dayatang.querychannel.support.Page;
@@ -19,7 +20,7 @@ public interface DataSourceApplication {
 	 * @param id 主键id
 	 * @return
 	 */
-	public DataSourceVO getDataSource(Long id);
+	public DataSourceVO getDataSourceVoById(Long id);
 	
 	/**
 	 * 查询数据源
@@ -82,6 +83,13 @@ public interface DataSourceApplication {
 	 * @return
 	 */
 	public Page<DataSourceVO> pageQueryDataSource(DataSourceVO dataSource, int currentPage, int pageSize);
+	
+	/**
+	 * 检测数据源是否可用
+	 * @param dataSource
+	 * @return
+	 */
+	public boolean checkDataSourceCanConnect(DataSource dataSource);
 	
 	/**
 	 * 测试数据源连接

@@ -175,9 +175,4 @@ public class DBConfigService {
 		writer.update(TEST_DB_ARTIFACTID, dbConfig.getDbArtifactId());
 		writer.saveUpdate();
 	}
-
-	public static void main(String args[]) throws KoalaException {
-		String projectPath = "G:/project/foss-project/src/KoalaSecurity";
-		System.out.println(DBConfigService.queryDBConfig(projectPath));
-	}
 }

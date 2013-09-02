@@ -29,10 +29,7 @@ import com.thoughtworks.xstream.io.HierarchicalStreamReader;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
 import com.thoughtworks.xstream.mapper.Mapper;
 
-/**
- * @author fuliang
- * 
- */
+
 public class MapEntryConverter extends AbstractCollectionConverter {
 
     /**
