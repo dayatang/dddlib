@@ -116,11 +116,11 @@ public abstract class BaseSchedulerBean {
     public void checkConExpr(String latestConExpr) {
         try {
             //check cronExpr valid
-        	//TODO 升级到quart到2，修正其写法，需要测试
         	CronTriggerImpl trigger = (CronTriggerImpl) getScheduler().getTrigger(new TriggerKey(triggerName, Scheduler.DEFAULT_GROUP));
             String originConExpression = trigger.getCronExpression();
             //判断任务时间是否更新过
             if (!originConExpression.equalsIgnoreCase(latestConExpr)) {
+            	logger.info("reset ConExpression[{}] To [{}] ",originConExpression,latestConExpr);
                 trigger.setCronExpression(latestConExpr);
                 getScheduler().rescheduleJob(new TriggerKey(triggerName, Scheduler.DEFAULT_GROUP), trigger);
             }

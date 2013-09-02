@@ -30,7 +30,7 @@
 		<property name="targetMethod" value="execute" />
 		<property name="concurrent" value="true" />
 	</bean>
-	<bean id="dataPolicyTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	<bean id="dataPolicyTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="dataPolicySchedulerFactory" />
 		<property name="cronExpression" value="0 0/2 * * * ?" />
 	</bean> 
