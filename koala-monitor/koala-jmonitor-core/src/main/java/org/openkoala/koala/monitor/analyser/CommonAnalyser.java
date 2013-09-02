@@ -1,17 +1,22 @@
-package org.openkoala.koala.monitor.component.analyser;
+package org.openkoala.koala.monitor.analyser;
 
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.openkoala.koala.monitor.component.tracer.http.HttpComponent;
-import org.openkoala.koala.monitor.component.tracer.method.MethodComponent;
+import org.openkoala.koala.monitor.component.http.HttpComponent;
+import org.openkoala.koala.monitor.component.method.MethodComponent;
 import org.openkoala.koala.monitor.core.Analyser;
 import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.core.TraceContainer;
 import org.openkoala.koala.monitor.def.MethodTrace;
 import org.openkoala.koala.monitor.def.Trace;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 /**
  * 
  * 功能描述：通用分析器（耗时、超时等）<br />
@@ -27,40 +32,44 @@ import org.openkoala.koala.monitor.def.Trace;
  */
 public class CommonAnalyser implements Analyser{
 	
+	private static final Logger LOG = LoggerFactory.getLogger(CommonAnalyser.class);
+
+	
 	protected String traceType;
 
 	private List<Trace> traces;
+	
+	private Timer checkTimer;
 	
 	//每个主线程调用的第一个方法集合
 	private static Map<String, String> methodEnpoints = new ConcurrentHashMap<String, String>();
 
 	public CommonAnalyser(String traceType) {
 		this.traceType = traceType;
-		this.traces = new ArrayList<Trace>();
+		this.traces = new Vector<Trace>();
+		
+		checkTimer = new Timer();
+		
+		checkTimer.schedule(new TimerTask() {
+			
+			@Override
+			public void run() {
+				checkTimeoutTrace();
+			}
+		}, getTraceTimeout());
 	}
 	
+	
+	
 	public void activeProcess(Trace trace) {
-		synchronized (traces) {
-			//处理超时trace
-			for (Trace _trace : traces) {
-				if(System.currentTimeMillis() - _trace.getCreatedTime()>getTraceTimeout()){
-					_trace.setTimeout(true);
-					_trace.inActive();
-					methodEnpoints.remove(trace.getThreadId());
-					RuntimeContext.getContext().getContainer().inactivateTrace(traceType, _trace);
-				}else{
-					break;
-				}
-			}
-			
-			traces.add(trace);
-			//记录入口方法
-			if(MethodComponent.TRACE_TYPE.equals(trace.getTraceType())){
-				if(!methodEnpoints.containsKey(trace.getTraceKey())){
-					methodEnpoints.put(trace.getTraceKey(), ((MethodTrace)trace).getMethod());
-				}
+		traces.add(trace);
+		//记录入口方法
+		if(MethodComponent.TRACE_TYPE.equals(trace.getTraceType())){
+			if(!methodEnpoints.containsKey(trace.getThreadKey())){
+				methodEnpoints.put(trace.getThreadKey(), ((MethodTrace)trace).getMethod());
 			}
 		}
+	
 	}
 
 	public void inactiveProcess(Trace trace) {
@@ -76,13 +85,11 @@ public class CommonAnalyser implements Analyser{
 		}else{
 			trace.inActive();
 		}
-		synchronized (traces) {
-			traces.remove(trace);
-		}
+		traces.remove(trace);
 		
 		//http请求结束 释放
 		if(HttpComponent.TRACE_TYPE.equals(trace.getTraceType())){
-			methodEnpoints.remove(trace.getThreadId());
+			methodEnpoints.remove(trace.getThreadKey());
 			TraceContainer.clearThreadKey();
 		}
 	}
@@ -124,5 +131,28 @@ public class CommonAnalyser implements Analyser{
 
 	public static void removeTraceEndpointMethod(String traceKey){
 		methodEnpoints.remove(traceKey);
+	}
+	
+	/**
+	 * 检查超时trace
+	 */
+	private void checkTimeoutTrace() {
+		try {
+			Iterator<Trace> iterator = traces.iterator();
+			while (iterator.hasNext()) {
+				Trace trace = iterator.next();
+				if (System.currentTimeMillis() - trace.getCreatedTime() > getTraceTimeout()) {
+					trace.setTimeout(true);
+					trace.inActive();
+					methodEnpoints.remove(trace.getThreadKey());
+					RuntimeContext.getContext().getContainer().inactivateTrace(traceType, trace);
+				} else {
+					break;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			LOG.warn("处理超时trace发生错误:{}", e.getMessage());
+		}
 	}
 }

@@ -1,11 +1,14 @@
 package org.openkoala.koala.monitor.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class BaseDetailsVo {
+public class BaseDetailsVo implements Serializable{
 
+	private static final long serialVersionUID = 1903901794375326136L;
+	private String threadKey;
 	// 堆栈信息
 	private String stackTracesDetails;
 
@@ -100,4 +103,13 @@ public class BaseDetailsVo {
 		this.sortorder = sortorder;
 	}
 
+	public String getThreadKey() {
+		return threadKey;
+	}
+
+	public void setThreadKey(String threadKey) {
+		this.threadKey = threadKey;
+	}
+
+	
 }

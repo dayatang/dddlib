@@ -1,5 +1,7 @@
 package org.openkoala.koala.monitor.core;
 
+import java.util.Map;
+
 /**
  * 上下文接口
  * <p>
@@ -15,4 +17,10 @@ package org.openkoala.koala.monitor.core;
 public interface Context {
 
 	public Context getParent();
+	
+	public void initProperties(Map<String, String> properties);
+	
+	public void addProperty(String propName,String propValue);
+	
+	public String getProperty(String propName);
 }

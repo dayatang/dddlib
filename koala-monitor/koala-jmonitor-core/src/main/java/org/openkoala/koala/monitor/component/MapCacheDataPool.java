@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.openkoala.koala.monitor.component.tracer;
+package org.openkoala.koala.monitor.component;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,12 +25,13 @@ import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.lang.time.DateUtils;
+import org.openkoala.koala.monitor.core.CacheDataPool;
 import org.openkoala.koala.monitor.def.HttpRequestTrace;
 import org.openkoala.koala.monitor.def.Trace;
 import org.openkoala.koala.monitor.def.HttpRequestTrace.ActiveUser;
 
 /**
- * 功能描述：缓存数据池（用于轨迹收集器与数据处理服务之间）<br />
+ * 功能描述：基于map缓存数据池<br />
  *  
  * 创建日期：2013-5-30 上午11:02:34  <br />   
  * 
@@ -41,7 +42,7 @@ import org.openkoala.koala.monitor.def.HttpRequestTrace.ActiveUser;
  * 修改记录： <br />
  * 修 改 者    修改日期     文件版本   修改说明	
  */
-public class CacheDataPool {
+public class MapCacheDataPool implements CacheDataPool{
 
 	/**
 	 * 	缓存最大记录数
@@ -70,7 +71,7 @@ public class CacheDataPool {
 	 * @param maxCacheSize
 	 * @param expireTime
 	 */
-	public CacheDataPool(int maxCacheSize, int expireTime) {
+	public MapCacheDataPool(int maxCacheSize, int expireTime) {
 		super();
 		this.maxCacheSize = maxCacheSize;
 		this.expireTime = expireTime;
@@ -117,10 +118,10 @@ public class CacheDataPool {
     		clearExpireTrace();
     	}
     	
-    	List<Trace> list = cache.get(trace.getThreadId());
+    	List<Trace> list = cache.get(trace.getThreadKey());
     	if(list == null){
     		list = new ArrayList<Trace>();
-    		cache.put(trace.getThreadId(), list);
+    		cache.put(trace.getThreadKey(), list);
     	}
     	list.add(trace);
     }

@@ -1,4 +1,4 @@
-package org.openkoala.koala.monitor.component.tracer.http;
+package org.openkoala.koala.monitor.component.http;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -24,12 +24,7 @@ import org.openkoala.koala.monitor.core.TraceLiftcycleManager;
 import org.openkoala.koala.monitor.def.ComponentDef;
 import org.openkoala.koala.monitor.def.HttpRequestTrace;
 
-/**
- * 监控组件过滤器
- * @author 俞立德
- *
- * 2007-4-5
- */
+
 public class DetectFilter implements Filter {
 
 	private static Log log = LogFactory.getLog(DetectFilter.class);

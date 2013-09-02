@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.openkoala.koala.monitor.component.task;
+package org.openkoala.koala.monitor.task;
 
 import java.io.FileInputStream;
 import java.net.URL;

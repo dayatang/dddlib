@@ -23,7 +23,7 @@
 
 	<issueManagement>
 		<system>jira</system>
-		<url>http://58.215.177.99:9000/browse/PUBKOALA</url>
+		<url>http://jira.openkoala.org/browse/PUBKOALA</url>
 	</issueManagement>
 
 	<scm>
@@ -1109,7 +1109,7 @@
 	<repositories>
 		<repository>
 			<id>koala-snapshots</id>
-			<url>http://115.28.0.46:8081/nexus/content/groups/Koala-snapshots/</url>
+			<url>http://nexus.openkoala.org/nexus/content/groups/Koala-snapshots/</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
@@ -1120,7 +1120,7 @@
 
 		<repository>
 			<id>koala-release</id>
-			<url>http://115.28.0.46:8081/nexus/content/groups/Koala-release/</url>
+			<url>http://nexus.openkoala.org/nexus/content/groups/Koala-release/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -1135,12 +1135,12 @@
 		<repository>
 			<id>koala-release</id>
 			<name>koala-release</name>
-			<url>http://115.28.0.46:8081/nexus/content/repositories/releases/</url>
+			<url>http://nexus.openkoala.org/nexus/content/repositories/releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>koala-snapshots</id>
 			<name>koala-snapshots</name>
-			<url>http://115.28.0.46:8081/nexus/content/repositories/snapshots/</url>
+			<url>http://nexus.openkoala.org/nexus/content/repositories/snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 

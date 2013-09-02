@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.openkoala.koala.monitor.component.task;
+package org.openkoala.koala.monitor.core;
 
 /**
  * 功能描述：<br />

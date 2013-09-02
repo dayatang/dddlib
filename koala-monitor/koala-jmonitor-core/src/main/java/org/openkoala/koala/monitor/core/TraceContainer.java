@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.openkoala.koala.monitor.component.method.MethodComponent;
 import org.openkoala.koala.monitor.def.CombineMethodTrace;
 import org.openkoala.koala.monitor.def.MethodTrace;
 import org.openkoala.koala.monitor.def.Trace;
@@ -40,7 +41,7 @@ public class TraceContainer implements TraceLiftcycleManager{
 			Iterator<Analyser> it=as.iterator();
 			while(it.hasNext()){
 				Analyser analyser=it.next();
-				if(trace.isIgnore())continue;
+				if(trace == null)continue;
 				doEvent(analyser,trace);
 			}
 		}
@@ -55,8 +56,8 @@ public class TraceContainer implements TraceLiftcycleManager{
 		
 		if(!RuntimeContext.componentIsActive(traceType))return;
 		//设置线程标识
-		if(trace.getThreadId() == null){
-			trace.setThreadId(getCurrentThreadKey());
+		if(trace.getThreadKey() == null){
+			trace.setThreadKey(getCurrentThreadKey());
 		}
 		trace.setTraceType(traceType);
 		
@@ -70,6 +71,7 @@ public class TraceContainer implements TraceLiftcycleManager{
 
 	public void inactivateTrace(String traceType,Trace trace) {
 		
+		if(trace == null)return;
 		if(!RuntimeContext.componentIsActive(traceType))return;
 		
 		DoProcess process=new DoProcess(){
@@ -78,22 +80,21 @@ public class TraceContainer implements TraceLiftcycleManager{
 			}		
 		};
 		process.doProcess(traceType,trace);	
-		
-		//跳过忽略
-		if(trace.isIgnore())return;
+
 		//放入交换数据缓存区
-		
-		//
-		if(trace instanceof MethodTrace){
+		if(MethodComponent.TRACE_TYPE.equals(trace.getTraceType())){
 			CombineMethodTrace combineMethodTrace = new CombineMethodTrace();
 			combineMethodTrace.combineTraceInfo((MethodTrace)trace);
 			RuntimeContext.getContext().getDataCache().push(combineMethodTrace);
 		}else{
-			RuntimeContext.getContext().getDataCache().push(trace);
+			//放入clone对象
+			RuntimeContext.getContext().getDataCache().push(trace.clone());
 		}
 		
-		//标记为忽略
-		trace.setIgnore(true);
+		//销毁
+		trace.destroy();
+		destoryTrace(traceType, trace);
+		trace = null;
 	}
 
 

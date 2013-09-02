@@ -13,15 +13,14 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.openkoala.koala.monitor.component.task;
+package org.openkoala.koala.monitor.component;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import org.openkoala.koala.monitor.core.Component;
 
 /**
  * 功能描述：<br />
  *  
- * 创建日期：2013-8-7 上午8:58:32  <br />   
+ * 创建日期：2013-5-31 上午10:29:01  <br />   
  * 
  * 版权信息：Copyright (c) 2013 Koala All Rights Reserved<br />
  * 
@@ -30,26 +29,6 @@ import java.util.TimerTask;
  * 修改记录： <br />
  * 修 改 者    修改日期     文件版本   修改说明	
  */
-public abstract class BaseMonitorTask implements MonitorTask {
+public abstract class AbstractComponent implements Component {
 
-    protected long taskPeriod;
-	
-    protected Timer checkTimer;
-    
-    @Override
-	public void startup() {
-		if(!initConfigOK())return;
-		checkTimer = new Timer();
-		checkTimer.schedule(new TimerTask() {
-			@Override
-			public void run() {
-				doTask();
-			}
-		},60 * 1000, taskPeriod);
-		
-	}
-    
-    protected abstract boolean initConfigOK();
-    
-    protected abstract void doTask();
 }

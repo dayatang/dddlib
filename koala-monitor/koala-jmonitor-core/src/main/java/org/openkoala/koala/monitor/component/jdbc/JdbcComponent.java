@@ -1,10 +1,10 @@
-package org.openkoala.koala.monitor.component.tracer.jdbc;
+package org.openkoala.koala.monitor.component.jdbc;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openkoala.koala.monitor.component.analyser.CommonAnalyser;
-import org.openkoala.koala.monitor.component.analyser.SessionFilterAnalyser;
-import org.openkoala.koala.monitor.component.tracer.AbstractComponent;
+import org.openkoala.koala.monitor.analyser.CommonAnalyser;
+import org.openkoala.koala.monitor.analyser.SessionFilterAnalyser;
+import org.openkoala.koala.monitor.component.AbstractComponent;
 import org.openkoala.koala.monitor.core.ComponentContext;
 import org.openkoala.koala.monitor.core.TraceLiftcycleManager;
 import org.openkoala.koala.monitor.toolkit.asm.ClassEnhancer;

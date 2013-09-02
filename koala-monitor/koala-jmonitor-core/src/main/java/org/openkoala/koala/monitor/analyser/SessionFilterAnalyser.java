@@ -1,6 +1,6 @@
-package org.openkoala.koala.monitor.component.analyser;
+package org.openkoala.koala.monitor.analyser;
 
-import org.openkoala.koala.monitor.component.tracer.http.HttpComponent;
+import org.openkoala.koala.monitor.component.http.HttpComponent;
 import org.openkoala.koala.monitor.core.Analyser;
 import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.def.HttpRequestTrace;

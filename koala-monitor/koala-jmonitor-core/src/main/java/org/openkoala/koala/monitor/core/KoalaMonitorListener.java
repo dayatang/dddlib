@@ -1,4 +1,4 @@
-package org.openkoala.koala.monitor.context;
+package org.openkoala.koala.monitor.core;
 
 import java.net.URL;
 import java.util.HashMap;

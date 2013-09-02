@@ -1,4 +1,4 @@
-package org.openkoala.koala.monitor.component.tracer.method;
+package org.openkoala.koala.monitor.component.method;
 
 
 import java.lang.reflect.InvocationTargetException;

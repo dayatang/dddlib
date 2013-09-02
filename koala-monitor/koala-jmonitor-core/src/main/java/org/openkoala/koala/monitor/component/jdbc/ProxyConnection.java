@@ -1,4 +1,4 @@
-package org.openkoala.koala.monitor.component.tracer.jdbc;
+package org.openkoala.koala.monitor.component.jdbc;
 
 import java.sql.Array;
 import java.sql.Blob;
@@ -125,7 +125,7 @@ public class ProxyConnection implements Connection {
             trace.inActive();
             _container.inactivateTrace(JdbcComponent.TRACE_TYPE, trace);
             // 标记连接释放
-            JdbcPoolStatusCollector.getInstance().refreshConnPoolStatus(_dataSource, _delegate, trace.getTraceKey(), 0);
+            JdbcPoolStatusCollector.getInstance().refreshConnPoolStatus(_dataSource, _delegate, trace.getThreadKey(), 0);
         }
 
     }

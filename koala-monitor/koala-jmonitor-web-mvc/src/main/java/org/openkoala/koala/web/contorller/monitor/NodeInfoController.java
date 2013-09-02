@@ -101,8 +101,8 @@ public class NodeInfoController {
      * @throws Exception 
      */
 	@ResponseBody
-	@RequestMapping("/nodeStatus")
-    public Map<String, Object> nodeStatus(HttpServletRequest request,String nodeId) throws Exception{
+	@RequestMapping("/serverSummryInfo")
+    public Map<String, Object> serverSummryInfo(HttpServletRequest request,String nodeId) throws Exception{
     	if(StringUtils.isBlank(nodeId)){
     		throw new RuntimeException("参数不能为空");
     	}

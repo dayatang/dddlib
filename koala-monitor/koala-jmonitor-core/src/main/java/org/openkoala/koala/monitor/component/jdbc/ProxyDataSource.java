@@ -1,4 +1,4 @@
-package org.openkoala.koala.monitor.component.tracer.jdbc;
+package org.openkoala.koala.monitor.component.jdbc;
 
 import java.io.PrintWriter;
 import java.sql.Connection;

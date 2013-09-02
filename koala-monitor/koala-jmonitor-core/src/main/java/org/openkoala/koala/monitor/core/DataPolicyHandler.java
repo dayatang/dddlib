@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.openkoala.koala.monitor.service;
+package org.openkoala.koala.monitor.core;
 
 import java.util.Map;
 

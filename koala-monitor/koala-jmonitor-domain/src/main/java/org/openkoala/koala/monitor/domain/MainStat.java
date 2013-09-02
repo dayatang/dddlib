@@ -48,8 +48,8 @@ public class MainStat extends KmBaseLegacyEntity {
 	private static final long serialVersionUID = -4332257257969974945L;
 
 	@Id
-	@Column(name="TRACE_ID")
-	private String traceId;
+	@Column(name="THREAD_KEY")
+	protected String threadKey;
 	
 	@ManyToOne(targetEntity = MonitorNode.class)
 	@JoinColumn(name="FK_NODE_ID")
@@ -90,15 +90,16 @@ public class MainStat extends KmBaseLegacyEntity {
 		
 	}
 	
-	public String getTraceId() {
-		return traceId;
+	public String getThreadKey() {
+		return threadKey;
 	}
-	public void setTraceId(String traceId) {
-		this.traceId = traceId;
+
+	public void setThreadKey(String threadKey) {
+		this.threadKey = threadKey;
 	}
 
 	public String getId() {
-		return getTraceId();
+		return getThreadKey();
 	}
 	
 
@@ -160,7 +161,7 @@ public class MainStat extends KmBaseLegacyEntity {
 
 	@Override
 	public boolean existed() {
-		return getRepository().exists(MainStat.class, traceId);
+		return getRepository().exists(MainStat.class, getThreadKey());
 	}
 
 	@Override
@@ -181,7 +182,7 @@ public class MainStat extends KmBaseLegacyEntity {
 		int result = 1;
 		result = prime * result
 				+ ((belongNode == null) ? 0 : belongNode.hashCode());
-		result = prime * result + ((traceId == null) ? 0 : traceId.hashCode());
+		result = prime * result + ((threadKey == null) ? 0 : threadKey.hashCode());
 		return result;
 	}
 
@@ -199,10 +200,10 @@ public class MainStat extends KmBaseLegacyEntity {
 				return false;
 		} else if (!belongNode.equals(other.belongNode))
 			return false;
-		if (traceId == null) {
-			if (other.traceId != null)
+		if (threadKey == null) {
+			if (other.threadKey != null)
 				return false;
-		} else if (!traceId.equals(other.traceId))
+		} else if (!threadKey.equals(other.threadKey))
 			return false;
 		return true;
 	}

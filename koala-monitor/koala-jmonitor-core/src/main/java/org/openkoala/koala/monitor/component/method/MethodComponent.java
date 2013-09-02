@@ -1,4 +1,4 @@
-package org.openkoala.koala.monitor.component.tracer.method;
+package org.openkoala.koala.monitor.component.method;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -7,8 +7,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.openkoala.koala.monitor.component.analyser.CommonAnalyser;
-import org.openkoala.koala.monitor.component.tracer.AbstractComponent;
+import org.openkoala.koala.monitor.analyser.CommonAnalyser;
+import org.openkoala.koala.monitor.component.AbstractComponent;
 import org.openkoala.koala.monitor.core.ComponentContext;
 import org.openkoala.koala.monitor.core.TraceLiftcycleManager;
 import org.openkoala.koala.monitor.toolkit.asm.ClassEnhancer;

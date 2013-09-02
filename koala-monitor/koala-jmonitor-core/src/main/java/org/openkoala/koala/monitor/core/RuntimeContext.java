@@ -6,13 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.openkoala.koala.monitor.component.task.MonitorTask;
-import org.openkoala.koala.monitor.component.task.ServerStatusCollectorTask;
-import org.openkoala.koala.monitor.component.task.ServiceConnectionCheckTask;
-import org.openkoala.koala.monitor.component.tracer.CacheDataPool;
-import org.openkoala.koala.monitor.component.tracer.http.HttpComponent;
-import org.openkoala.koala.monitor.component.tracer.jdbc.JdbcComponent;
-import org.openkoala.koala.monitor.component.tracer.method.MethodComponent;
+import org.openkoala.koala.monitor.component.MapCacheDataPool;
 import org.openkoala.koala.monitor.config.PersistManager;
 import org.openkoala.koala.monitor.def.ComponentDef;
 import org.openkoala.koala.monitor.def.DataPolicyDef;
@@ -20,17 +14,25 @@ import org.openkoala.koala.monitor.def.NodeDef;
 import org.openkoala.koala.monitor.def.TaskDef;
 import org.openkoala.koala.monitor.exception.ContextInitialException;
 import org.openkoala.koala.monitor.service.remote.RemoteDataPolicyClientHandler;
+import org.openkoala.koala.monitor.task.ServerStatusCollectorTask;
+import org.openkoala.koala.monitor.task.ServiceConnectionCheckTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 监控组件上下文根,代表一个jwebap实例
  * 
- * @author leadyu
- * @since Jwebap 0.5
- * @date Aug 7, 2007
+ * 功能描述：监控上下文<br />
+ *  
+ * 创建日期：2013-6-25 上午11:29:51  <br />   
+ * 
+ * 版权信息：Copyright (c) 2013 Koala All Rights Reserved<br />
+ * 
+ * 作    者：<a href="mailto:vakinge@gmail.com">vakin jiang</a><br />
+ * 
+ * 修改记录： <br />
+ * 修 改 者    修改日期     文件版本   修改说明
  */
-public class RuntimeContext implements Context {
+public class RuntimeContext extends AbstractContext {
 
 	private static final Logger LOG = LoggerFactory.getLogger(RuntimeContext.class);
 	
@@ -45,20 +47,18 @@ public class RuntimeContext implements Context {
 	private Map<String,MonitorTask> _monitorTasks = null;
 	
 
-	private PersistManager _jwebapDefManager=null;
+	private PersistManager _defManager=null;
 	
 	//监控数据缓存
 	private CacheDataPool dataCache;
 
-	private Map<String, String> serverInfos;
-	
 	private RuntimeContext(NodeDef config,TraceLiftcycleManager container,PersistManager defManager) {
 		_components = new HashMap<String,Component>();
 		_monitorTasks = new HashMap<String, MonitorTask>();
 		_container = container;
 		_config=config;
-		_jwebapDefManager=defManager;
-		dataCache = new CacheDataPool(_config.getMaxCacheSize(), _config.getCacheExpireTime());
+		_defManager=defManager;
+		dataCache = new MapCacheDataPool(_config.getMaxCacheSize(), _config.getCacheExpireTime());
 		LOG.info("当前监控配置为：\n"+config.toString());
 	}
 	
@@ -93,16 +93,16 @@ public class RuntimeContext implements Context {
 	 * 返回jwebap配置管理器
 	 * @return
 	 */
-	public PersistManager getJwebapDefManager(){
-		return _jwebapDefManager;
+	public PersistManager getDefManager(){
+		return _defManager;
 	}
 	
 	public String getServerName() {
-		return serverInfos == null ? null : serverInfos.get("serverName");
+		return getProperty("serverName");
 	}
 
 	public String getDeployPath() {
-		return serverInfos == null ? null : serverInfos.get("deployPath");
+		return getProperty("deployPath");
 	}
 	
 	public void startup(){
@@ -140,15 +140,7 @@ public class RuntimeContext implements Context {
 	 */
 	private void registerComponent(String type, ComponentDef def){
         try {
-        	Component component = null;
-    		if(HttpComponent.TRACE_TYPE.equals(type)){
-    			component = new HttpComponent();
-    		}else if(MethodComponent.TRACE_TYPE.equals(type)){
-    			component = new MethodComponent();
-    		}else if(JdbcComponent.TRACE_TYPE.equals(type)){
-    			component = new JdbcComponent();
-    		}
-    		
+        	Component component = ComponentFactory.getInstance(type);
     		if(component == null){
     			LOG.warn("[{}][{}]无匹配插件，跳过",def.getName(),type);
     			return ;
@@ -158,7 +150,7 @@ public class RuntimeContext implements Context {
     		component.startup(context);
     		_components.put(type, component);
     		context.setComponent(component);
-    		context.putProperties(def.getProperties());
+    		context.initProperties(def.getProperties());
 		} catch (Exception e) {
 			e.printStackTrace();
 			LOG.warn("[{}][{}]插件启动失败",def.getName(),type);
@@ -210,7 +202,7 @@ public class RuntimeContext implements Context {
 	 * 注册服务器容器信息
 	 */
 	public void registerServerInfos(Map<String, String> serverInfos){
-		this.serverInfos = serverInfos;
+		initProperties(serverInfos);
 	}
 
 	public Component getComponent(String name) {

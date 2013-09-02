@@ -23,9 +23,8 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import org.openkoala.koala.monitor.component.task.MonitorTask;
-import org.openkoala.koala.monitor.component.task.ServerStatusCollectorTask;
-import org.openkoala.koala.monitor.component.task.ServiceConnectionCheckTask;
+import org.openkoala.koala.monitor.core.DataPolicyHandler;
+import org.openkoala.koala.monitor.core.MonitorTask;
 import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.def.ComponentDef;
 import org.openkoala.koala.monitor.def.HttpRequestTrace.ActiveUser;
@@ -37,10 +36,11 @@ import org.openkoala.koala.monitor.extend.BaseSchedulerBean;
 import org.openkoala.koala.monitor.model.GeneralMonitorStatusVo;
 import org.openkoala.koala.monitor.model.JdbcPoolStatusVo;
 import org.openkoala.koala.monitor.model.ServerStatusVo;
-import org.openkoala.koala.monitor.service.DataPolicyHandler;
 import org.openkoala.koala.monitor.service.MonitorDataService;
 import org.openkoala.koala.monitor.support.JdbcPoolStatusCollector;
 import org.openkoala.koala.monitor.support.ServerStatusCollector;
+import org.openkoala.koala.monitor.task.ServerStatusCollectorTask;
+import org.openkoala.koala.monitor.task.ServiceConnectionCheckTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.TransactionStatus;
@@ -150,7 +150,7 @@ public class LocalDataPolicyHandler extends BaseSchedulerBean implements DataPol
 
 	@Override
 	public void updateComponentConfig(String clientId,ComponentDef comp) {
-		RuntimeContext.getContext().getJwebapDefManager().updateComponentConfig(comp);
+		RuntimeContext.getContext().getDefManager().updateComponentConfig(comp);
 	}
 
 	@Override

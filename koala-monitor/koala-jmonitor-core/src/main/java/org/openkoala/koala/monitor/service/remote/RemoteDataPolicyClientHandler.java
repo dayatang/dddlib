@@ -24,9 +24,7 @@ import java.util.Map.Entry;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.openkoala.koala.monitor.component.task.MonitorTask;
-import org.openkoala.koala.monitor.component.task.ServerStatusCollectorTask;
-import org.openkoala.koala.monitor.component.task.ServiceConnectionCheckTask;
+import org.openkoala.koala.monitor.core.MonitorTask;
 import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.datasync.base.ServerCommondListener;
 import org.openkoala.koala.monitor.datasync.client.DatasyncClient;
@@ -40,6 +38,8 @@ import org.openkoala.koala.monitor.remote.Commond;
 import org.openkoala.koala.monitor.remote.CommondConst;
 import org.openkoala.koala.monitor.support.JdbcPoolStatusCollector;
 import org.openkoala.koala.monitor.support.ServerStatusCollector;
+import org.openkoala.koala.monitor.task.ServerStatusCollectorTask;
+import org.openkoala.koala.monitor.task.ServiceConnectionCheckTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -199,7 +199,7 @@ public class RemoteDataPolicyClientHandler {
 
 			} else if (CommondConst.UPDATE_CONFIG.equals(commandText)) {
 				ComponentDef comp = (ComponentDef) command.getSingleData();
-				RuntimeContext.getContext().getJwebapDefManager()
+				RuntimeContext.getContext().getDefManager()
 						.updateComponentConfig(comp);
 				replyServerCommond(clientId, command.getCommondID(), null, null);
 
