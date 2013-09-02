@@ -1,7 +1,5 @@
-/.settings
-/target
-/.DS_Store
-/.project
-/koala-plugin/koala-plugin-util-core/.project
-/koala-plugin/koala-plugin-util-core/.classpath
-/koala-plugin/koala-plugin-util-core/.project
+**/.DS_Store
+**/.settings
+**/.project
+**/.classpath
+**/target
