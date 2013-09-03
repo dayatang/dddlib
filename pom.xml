@@ -94,10 +94,17 @@
         </site>
     </distributionManagement>
 
+
+	<issueManagement>
+		<system>Trac</system>
+		<url>http://115.28.1.104/trac/koala</url>
+	</issueManagement>
+	<!-- 
     <issueManagement>
         <system>JIRA</system>
         <url>http://jira.openkoala.org/browse/KOALA</url>
     </issueManagement>
+	 -->
     	
     <repositories>
         <repository>
@@ -918,9 +925,9 @@
 							<artifactId>maven-changes-plugin</artifactId>
 							<version>2.9</version>
 							<configuration>
-								<jiraDatePattern>yyyy-MM-dd</jiraDatePattern>
-								<jiraUser>${jira.username}</jiraUser>
-								<jiraPassword>${jira.password}</jiraPassword>
+								<tracUser>${trac.username}</tracUser>
+								<tracPassword>${trac.password}</tracPassword>
+								<query>status!=closed&amp;order=type</query>
 								<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 							</configuration>
 						</plugin>
