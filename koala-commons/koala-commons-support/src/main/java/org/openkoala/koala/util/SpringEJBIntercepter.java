@@ -15,8 +15,6 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-
-import javax.ejb.Remote;
 import javax.inject.Named;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
@@ -32,7 +30,7 @@ import com.dayatang.spring.factory.SpringProvider;
 
 /**
  * EJB拦截器，用于返回SpringBean的调用，
- * 用法，在EJB上添加@javax.interceptor.Interceptors(com.csair.gme.application.impl.SpringEJBIntercepter.class)
+ * 用法，在EJB上添加@javax.interceptor.Interceptors(org.openkoala.koala.util.SpringEJBIntercepter.class)
  * @author <a href="mailto:iffiff1@hotmail.com">Tyler Chen</a> 
  * @since 2011-9-8
  */
