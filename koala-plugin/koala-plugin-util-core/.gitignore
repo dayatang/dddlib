@@ -1,4 +1,11 @@
 /.settings
+<<<<<<< HEAD
+/target
+/.classpath
+/.project
+**/.DS_Store
+**/*.log
+=======
 
 /target
 
@@ -7,3 +14,4 @@
 /.project
 
 /.DS_Store
+>>>>>>> 0c80a5054d127c6dd0cbaa8aa38bb58e0f320f4a
