@@ -366,6 +366,9 @@ public class FtpUtilImpl implements FtpUtil {
 		String remoteDir = path + File.separator + dirName;
 		this.makeDirectory(remoteDir);
 		File[] files = file.listFiles();
+		if (files == null) {
+			return;
+		}
 		for (File uploadFile:files) {
 			if (uploadFile.isDirectory()) {
 				uploadDirFiles(uploadFile, remoteDir, uploadFile.getName());
