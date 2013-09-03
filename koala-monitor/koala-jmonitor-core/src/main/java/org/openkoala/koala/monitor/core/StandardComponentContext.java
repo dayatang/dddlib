@@ -36,8 +36,4 @@ public class StandardComponentContext extends AbstractContext implements Compone
 	public TraceLiftcycleManager getContainer() {
 		return _container;
 	}
-
-	
-
-
 }

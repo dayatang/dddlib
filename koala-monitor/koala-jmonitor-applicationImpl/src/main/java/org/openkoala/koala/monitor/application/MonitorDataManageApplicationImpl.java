@@ -185,9 +185,9 @@ private QueryChannelService queryChannel;
 		List<Object> params = new ArrayList<Object>();
 		
 		if(methodDetailsVo != null){
-			if(StringUtils.isNotBlank(methodDetailsVo.getTraceId())){
-				jpql.append(" and m.traceKey = ?");
-				params.add(methodDetailsVo.getTraceId());
+			if(StringUtils.isNotBlank(methodDetailsVo.getThreadKey())){
+				jpql.append(" and m.threadKey = ?");
+				params.add(methodDetailsVo.getThreadKey());
 			}
 			if(StringUtils.isNotBlank(methodDetailsVo.getSystem())){
 				jpql.append(" and m.nodeId = ?");
@@ -227,7 +227,7 @@ private QueryChannelService queryChannel;
 	public final Page<JdbcStatementDetailsVo> getSqlsMonitorDetails(int currentPage, int pageSize, JdbcStatementDetailsVo jdbcStatementDetailsVo) {
 
 		String queryStr = " select a from JdbcStatementDetails a where a.jdbcConn.id in (select b.id from JdbcConnDetails b " +
-				" where b.traceKey=(select c.traceKey from MethodDetails c where c.id=?)) order by " +
+				" where b.threadKey=(select c.threadKey from MethodDetails c where c.id=?)) order by " +
 				jdbcStatementDetailsVo.getSortname() + " " + jdbcStatementDetailsVo.getSortorder();
 		
 		Page<JdbcStatementDetails> pageEntity = getQueryChannelService().queryPagedResultByPageNo(
@@ -334,7 +334,7 @@ private QueryChannelService queryChannel;
 		final Map<Integer, Integer> result = new TreeMap<Integer, Integer>();
 		Date now = new Date();
 		Date before24h = DateUtils.addHours(now, -24);
-		String sql = "select m.hour, count(*) from K_M_JDBC_CONN_DETAILS c left join k_m_main_stat m on c.TRACE_ID = m.TRACE_ID and m.fk_node_id=? and (m.begin_time between ? and ?) and TIME_CONSUME>? group by m.hour order by m.hour";
+		String sql = "select m.hour, count(*) from K_M_JDBC_CONN_DETAILS c left join k_m_main_stat m on c.THREAD_KEY = m.THREAD_KEY and m.fk_node_id=? and (m.begin_time between ? and ?) and TIME_CONSUME>? group by m.hour order by m.hour";
 		Object[] params = new Object[]{nodeId,before24h,now,timeoutLimit};
 		
 		getJdbcTemplate().query(sql, params,new ResultSetExtractor<Object>() {

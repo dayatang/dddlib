@@ -41,6 +41,8 @@ import org.openkoala.koala.monitor.domain.MainStat;
 import org.openkoala.koala.monitor.domain.MethodDetails;
 import org.openkoala.koala.monitor.model.CountVo;
 import org.openkoala.koala.monitor.model.HttpDetailsVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -63,6 +65,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(value="km_transactionManager")
 public class MonitorDataServiceImpl implements MonitorDataService {
 	
+	private static final Logger LOG = LoggerFactory.getLogger(MonitorDataServiceImpl.class);
 	@Inject
 	@Qualifier(value="km_jdbcTemplate")
 	private JdbcTemplate jdbcTemplate;
@@ -78,7 +81,7 @@ public class MonitorDataServiceImpl implements MonitorDataService {
 		}
 		
 		MainStat main = new MainStat(clientId,new Date(traces.get(0).getCreatedTime()));
-		main.setTraceId(traces.get(0).getThreadId());
+		main.setThreadKey(traces.get(0).getThreadKey());
 		long endTime = traces.get(0).getCreatedTime();
 		for (Trace trace : traces) {
 			try {
@@ -117,7 +120,7 @@ public class MonitorDataServiceImpl implements MonitorDataService {
 					conn.save();
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
+				LOG.error("保存监控数据错误", e);
 			}
 		}
 		main.setEndTime(new Date(endTime));
@@ -132,10 +135,10 @@ public class MonitorDataServiceImpl implements MonitorDataService {
 		Date beginDt = KoalaDateUtils.getDayBegin(beginTime);
 		Date endDt = null;
 		if(Constant.UNIT_HOUR.equals(statUnit)){
-			sql = "select m.hour, count(*) from k_m_http_details h left join k_m_main_stat m on h.TRACE_ID = m.TRACE_ID and m.fk_node_id=? and (m.begin_time between ? and ?) group by m.hour order by m.hour";
+			sql = "select m.hour, count(*) from k_m_http_details h left join k_m_main_stat m on h.THREAD_KEY = m.THREAD_KEY and m.fk_node_id=? and (m.begin_time between ? and ?) group by m.hour order by m.hour";
 			endDt = KoalaDateUtils.getDayEnd(beginDt);
 		}else if(Constant.UNIT_DAY.equals(statUnit)){
-			sql = "select m.day, count(*) from k_m_http_details h left join k_m_main_stat m on h.TRACE_ID = m.TRACE_ID and m.fk_node_id=? and (m.begin_time between ? and ?) group by m.day order by m.day";
+			sql = "select m.day, count(*) from k_m_http_details h left join k_m_main_stat m on h.THREAD_KEY = m.THREAD_KEY and m.fk_node_id=? and (m.begin_time between ? and ?) group by m.day order by m.day";
 			endDt = KoalaDateUtils.getLastDateOfMonth(beginDt);
 		}else{
 			throw new RuntimeException("参数错误");
@@ -180,7 +183,7 @@ public class MonitorDataServiceImpl implements MonitorDataService {
 	
 	@Override
 	public final List<HttpDetailsVo> pageGetHttpMonitorDetails(int start, int pageSize, HttpDetailsVo httpDetailsVo) {
-		String sql = " select uri,ip,parameters,begin_time,end_time from k_m_http_details where trace_id in(select m.trace_id from k_m_main_stat m where m.fk_node_id=? and m.begin_time>=? and m.begin_time<?) ";
+		String sql = " select uri,ip,parameters,begin_time,end_time from k_m_http_details where THREAD_KEY in(select m.THREAD_KEY from k_m_main_stat m where m.fk_node_id=? and m.begin_time>=? and m.begin_time<?) ";
 		return jdbcTemplate.query(sql, 
 				new Object[]{httpDetailsVo.getSystem(), httpDetailsVo.getBeginTime(), httpDetailsVo.getEndTime()}, 
 				new RowMapper<HttpDetailsVo>(){

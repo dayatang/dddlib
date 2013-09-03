@@ -27,7 +27,7 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.koala.monitor.application.MonitorNodeManageApplication;
-import org.openkoala.koala.monitor.context.ContextStartup;
+import org.openkoala.koala.monitor.core.ContextStartup;
 import org.openkoala.koala.monitor.model.GeneralMonitorStatusVo;
 import org.openkoala.koala.monitor.model.JdbcPoolStatusVo;
 import org.openkoala.koala.monitor.model.MonitorNodeVo;

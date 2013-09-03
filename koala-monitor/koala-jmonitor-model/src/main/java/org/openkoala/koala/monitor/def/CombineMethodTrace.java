@@ -41,11 +41,10 @@ public class CombineMethodTrace extends Trace {
 	public CombineMethodTrace(){}
 
 	public void combineTraceInfo(MethodTrace origTrace) {
-		this.ignore = origTrace.isIgnore();
 		this.createdTime = origTrace.createdTime;
 		this.inActiveTime = origTrace.inActiveTime;
-		this.threadId = origTrace.threadId;
-		this.traceId = origTrace.traceId;
+		this.threadKey = origTrace.threadKey;
+		this.innerKey = origTrace.innerKey;
 		this.method = origTrace.getMethod();
 		this.successed = origTrace.isSuccessed();
 		this.stackTracesDetails = origTrace.getStackTracesDetails();

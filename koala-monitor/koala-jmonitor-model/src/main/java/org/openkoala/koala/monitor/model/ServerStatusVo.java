@@ -55,14 +55,10 @@ public class ServerStatusVo implements Serializable{
 	private long usedSwap;
 	private long freeSwap;
 	
-	private String cpuUsage;//CPU使用率
-	
 	
 	private List<CpuInfoVo> cpuInfos = new ArrayList<CpuInfoVo>();
 	
 	private List<DiskInfoVo> diskInfos = new ArrayList<DiskInfoVo>();
-	
-	private boolean sigarInitError;
 	
 	
 	public String getJavaServer() {
@@ -209,23 +205,6 @@ public class ServerStatusVo implements Serializable{
 	public void setDiskInfos(List<DiskInfoVo> diskInfos) {
 		this.diskInfos = diskInfos;
 	}
-
-	public boolean isSigarInitError() {
-		return sigarInitError;
-	}
-
-	public void setSigarInitError(boolean sigarInitError) {
-		this.sigarInitError = sigarInitError;
-	}
-	
-
-	public String getCpuUsage() {
-		return cpuUsage;
-	}
-
-	public void setCpuUsage(String cpuUsage) {
-		this.cpuUsage = cpuUsage;
-	}
 	
 	/**
 	 * 内存使用率
@@ -251,24 +230,30 @@ public class ServerStatusVo implements Serializable{
 	public static class CpuInfoVo implements Serializable{
 		private static final long serialVersionUID = 1L;
 		
-		private String id;
 		private int totalMHz;
 		private String vendor;
 		private String model;
 		private long cacheSize;
-		private String idle;//空闲率
-		private String used;//使用率（格式化的值）
-		private double usedOrigVal;//使用率（原始的值）
+		private double idle;//空闲率
+		private double used;//使用率
+		private int coreCount;//核数
+
+		/**
+		 * 空闲率百分比值
+		 * @return
+		 */
+		public double getIdlePercent() {
+			return new BigDecimal(idle*100/coreCount).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		}
+
+		/**
+		 * 使用率百分比值
+		 * @return
+		 */
+		public double getUsedPercent() {
+			return new BigDecimal(used*100/coreCount).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+		}
 		
-
-		public String getId() {
-			return id;
-		}
-
-		public void setId(String id) {
-			this.id = id;
-		}
-
 		public int getTotalMHz() {
 			return totalMHz;
 		}
@@ -286,7 +271,7 @@ public class ServerStatusVo implements Serializable{
 		}
 
 		public String getModel() {
-			return model;
+			return model + "（X" + coreCount + ")";
 		}
 
 		public void setModel(String model) {
@@ -301,30 +286,29 @@ public class ServerStatusVo implements Serializable{
 			this.cacheSize = cacheSize;
 		}
 
-		public String getUsed() {
+		public double getUsed() {
 			return used;
 		}
 
-		public void setUsed(String used) {
+		public void setUsed(double used) {
 			this.used = used;
 		}
 
-		public String getIdle() {
+		public double getIdle() {
 			return idle;
 		}
 
-		public void setIdle(String idle) {
+		public void setIdle(double idle) {
 			this.idle = idle;
 		}
 
-		public double getUsedOrigVal() {
-			return usedOrigVal;
+		public int getCoreCount() {
+			return coreCount;
 		}
 
-		public void setUsedOrigVal(double usedOrigVal) {
-			this.usedOrigVal = usedOrigVal;
+		public void setCoreCount(int coreCount) {
+			this.coreCount = coreCount;
 		}
-		
 	}
 	
 	/**
@@ -417,6 +401,8 @@ public class ServerStatusVo implements Serializable{
 		public void setDiskWriteRate(double diskWriteRate) {
 			this.diskWriteRate = diskWriteRate;
 		}
+		
+		
 		
 	}
 }

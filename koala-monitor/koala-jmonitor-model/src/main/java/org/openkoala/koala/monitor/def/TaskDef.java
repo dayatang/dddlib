@@ -48,7 +48,7 @@ public class TaskDef implements Serializable {
 	
 	private String taskResource;//引用配置文件
 	//属性
-	private Map<String, String> properties=new HashMap<String, String>();
+	private Map<String, String> properties;
 
 	public String getType() {
 		return type;
@@ -91,6 +91,7 @@ public class TaskDef implements Serializable {
 	}
 
 	public Map<String, String> getProperties() {
+		if(properties == null)properties=new HashMap<String, String>();
 		return properties;
 	}
 

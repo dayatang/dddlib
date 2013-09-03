@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
-import org.apache.struts2.ServletActionContext;
 import org.openkoala.auth.application.RoleApplication;
 import org.openkoala.auth.application.UserApplication;
 import org.openkoala.auth.application.vo.QueryConditionVO;
@@ -19,6 +19,7 @@ import org.openkoala.koala.auth.ss3adapter.SecurityMD5;
 import org.openkoala.koala.auth.ss3adapter.ehcache.CacheUtil;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -62,13 +63,13 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping("/login")
-	public Map<String, Object> login(ParamsPojo params) {
+	public Map<String, Object> login(ParamsPojo params,HttpServletRequest request) {
 		UserVO userVO = params.getUserVO();
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		if (userVO.getUserAccount().equals("admin") && //
 				userVO.getUserPassword().equals("1")) {
 			dataMap.put("result", "success");
-			ServletActionContext.getRequest().getSession() //
+			request.getSession() //
 					.setAttribute("username", userVO.getUserAccount());
 		} else {
 			dataMap.put("result", "fail");
@@ -82,7 +83,8 @@ public class UserController {
 	}
 
 	@RequestMapping("/list")
-	public String list() {
+	public String list(Long roleId, ModelMap modelMap) {
+		modelMap.addAttribute("roleId", roleId);
 		return "auth/User-list";
 	}
 

@@ -36,7 +36,7 @@ public class MainStatVo implements Serializable {
 
 	private static final long serialVersionUID = -4332257257969974945L;
 
-	private String traceId;
+	private String threadKey;
 
 	private String principal;//
 
@@ -64,17 +64,17 @@ public class MainStatVo implements Serializable {
 	private List<JdbcDetailsVo> jdbcDetails = new ArrayList<JdbcDetailsVo>();
 
 	private List<MethodDetailsVo> methodDetails = new ArrayList<MethodDetailsVo>();
-
-	public String getTraceId() {
-		return traceId;
+  
+	public String getThreadKey() {
+		return threadKey;
 	}
 
-	public void setTraceId(String traceId) {
-		this.traceId = traceId;
+	public void setThreadKey(String threadKey) {
+		this.threadKey = threadKey;
 	}
 
 	public String getId() {
-		return getTraceId();
+		return getThreadKey();
 	}
 
 	public String getUnit() {

@@ -17,7 +17,6 @@ package org.openkoala.koala.monitor.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -59,7 +58,7 @@ public class GeneralMonitorStatusVo implements Serializable {
     
 	private String maxAvgTimeMethod;//平均耗时最长方法
 	
-	private ServerStatusVo serverStatus;
+	private String serverStatusDatas;
 	
 
 
@@ -136,12 +135,17 @@ public class GeneralMonitorStatusVo implements Serializable {
 		this.maxAvgTimeMethod = maxAvgTimeMethod;
 	}
 
-	public ServerStatusVo getServerStatus() {
-		return serverStatus;
+
+	public String getServerStatusDatas() {
+		return serverStatusDatas;
+	}
+	
+	public String getServerStatus() {
+		return serverStatusDatas;
 	}
 
-	public void setServerStatus(ServerStatusVo serverStatus) {
-		this.serverStatus = serverStatus;
+	public void setServerStatusDatas(String serverStatusDatas) {
+		this.serverStatusDatas = serverStatusDatas;
 	}
 
 	/**
@@ -152,19 +156,7 @@ public class GeneralMonitorStatusVo implements Serializable {
 		if(methodExceptionCount == 0)return "0%";
 		return new BigDecimal(methodExceptionCount * 100 / methodCallCount).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue() + "%" ; 
 	}
-	
-	
-	public Map<String, String> getServerInfo(){
-		Map<String, String> map = new HashMap<String, String>();
-		
-		if(serverStatus != null){
-			map.put("cpu", MessageFormat.format("使用率:{0}", serverStatus.getCpuUsage()));
-			map.put("mem", MessageFormat.format("使用率:{0},空闲：{1} MB", serverStatus.getMemUsage(),serverStatus.getFreeMem()));
-			
-		}
-		
-		return map;
-	}
+
 	
 	public Map<String, Object> formatAsMap(){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -182,8 +174,8 @@ public class GeneralMonitorStatusVo implements Serializable {
 		if(serviceCheckDatas != null){
 			map.put("serviceCheckDatas", serviceCheckDatas);
 		}
-		if(serverStatus != null){
-			map.put("serverInfo", getServerInfo());
+		if(serverStatusDatas != null){
+			map.put("serverInfo", serverStatusDatas);
 		}
 		return map;
 		

@@ -29,13 +29,14 @@ import org.apache.commons.lang.builder.ToStringStyle;
  * @since Jwebap 0.5
  * @date 2007-04-11
  */
-public class Trace implements Serializable, Comparable<Trace>{
+public class Trace implements Serializable, Comparable<Trace>,Cloneable{
 	
 	private static final long serialVersionUID = 1L;
 
-	protected String traceId;
+	//trace 标识
+	protected String innerKey;
 	//同一个线程该值相同）
-	protected String threadId;//线程ID
+	protected String threadKey;//线程ID
 	
 	protected String traceType;
 
@@ -58,8 +59,6 @@ public class Trace implements Serializable, Comparable<Trace>{
 	 * 父轨迹
 	 */
 	protected Trace parent;
-
-	protected boolean ignore;//标记已经忽略
 	
 	protected boolean timeout;//标记为超时
 	
@@ -83,26 +82,9 @@ public class Trace implements Serializable, Comparable<Trace>{
 			parent.addChild(this);
 		this.parent = parent;
 		createdTime = System.currentTimeMillis();
-		traceId = UUID.randomUUID().toString().replaceAll("\\-", "");
+		innerKey = UUID.randomUUID().toString().replaceAll("\\-", "");
 	}
 	
-
-	public String getTraceId() {
-		return traceId;
-	}
-
-	public void setTraceId(String traceId) {
-		this.traceId = traceId;
-	}
-
-
-	public String getThreadId() {
-		return threadId;
-	}
-
-	public void setThreadId(String threadId) {
-		this.threadId = threadId;
-	}
 
 	/**
 	 * 增加子轨迹
@@ -130,13 +112,11 @@ public class Trace implements Serializable, Comparable<Trace>{
 	 */
 	public Trace[] getChildTraces() {
 		Trace[] ts = null;
-		synchronized (traces) {
-			if(traces != null){
-				ts = new Trace[traces.size()];
-				traces.toArray(ts);
-			}else{
-				ts = new Trace[0];
-			}
+		if(traces != null){
+			ts = new Trace[traces.size()];
+			traces.toArray(ts);
+		}else{
+			ts = new Trace[0];
 		}
 		return ts;
 	}
@@ -193,7 +173,6 @@ public class Trace implements Serializable, Comparable<Trace>{
 			Trace trace = children[i];
 			trace.destroy();
 		}
-		ignore = true;
 	}
 
 	/**
@@ -220,6 +199,22 @@ public class Trace implements Serializable, Comparable<Trace>{
 		return createdTime;
 	}
 	
+	public String getInnerKey() {
+		return innerKey;
+	}
+
+	public void setInnerKey(String innerKey) {
+		this.innerKey = innerKey;
+	}
+
+	public String getThreadKey() {
+		return threadKey;
+	}
+
+	public void setThreadKey(String threadKey) {
+		this.threadKey = threadKey;
+	}
+
 	public String getTraceType() {
 		return traceType;
 	}
@@ -227,10 +222,7 @@ public class Trace implements Serializable, Comparable<Trace>{
 	public void setTraceType(String traceType) {
 		this.traceType = traceType;
 	}
-	
-	public String getTraceKey() {
-		return threadId;
-	}
+
 	
 	public Date getBeginTime() {
 		return new Date(getCreatedTime());
@@ -249,21 +241,12 @@ public class Trace implements Serializable, Comparable<Trace>{
 	public void setTimeout(boolean timeout) {
 		this.timeout = timeout;
 	}
-	
-
-	public boolean isIgnore() {
-		return ignore;
-	}
-
-	public void setIgnore(boolean ignore) {
-		this.ignore = ignore;
-	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((traceId == null) ? 0 : traceId.hashCode());
+		result = prime * result + ((innerKey == null) ? 0 : innerKey.hashCode());
 		return result;
 	}
 	
@@ -285,10 +268,10 @@ public class Trace implements Serializable, Comparable<Trace>{
 		if (getClass() != obj.getClass())
 			return false;
 		Trace other = (Trace) obj;
-		if (traceId == null) {
-			if (other.traceId != null)
+		if (innerKey == null) {
+			if (other.innerKey != null)
 				return false;
-		} else if (!traceId.equals(other.traceId))
+		} else if (!innerKey.equals(other.innerKey))
 			return false;
 		return true;
 	}
@@ -303,5 +286,12 @@ public class Trace implements Serializable, Comparable<Trace>{
 		return (int)(this.createdTime - o.getCreatedTime());
 	}
 	
+	public Trace clone(){
+		try {
+			return (Trace) super.clone();
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
+	}
 	
 }

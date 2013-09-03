@@ -116,7 +116,7 @@ public class PersistManager {
 		if(origDef != null){
 			origDef.setActive(def.isActive());
 			origDef.putProperties(def.getProperties());
-			RuntimeContext.getContext().getComponentContext(def.getType()).putProperties(def.getProperties());
+			RuntimeContext.getContext().getComponentContext(def.getType()).initProperties(def.getProperties());
 			NodeDef rootDef = RuntimeContext.getContext().getNodeDef();
 			try {
 				save(rootDef);

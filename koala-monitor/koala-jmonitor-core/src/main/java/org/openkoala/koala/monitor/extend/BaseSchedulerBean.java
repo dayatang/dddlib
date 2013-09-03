@@ -30,8 +30,6 @@ import org.quartz.impl.triggers.CronTriggerImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.scheduling.quartz.CronTriggerBean;
-import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionCallback;
@@ -118,11 +116,11 @@ public abstract class BaseSchedulerBean {
     public void checkConExpr(String latestConExpr) {
         try {
             //check cronExpr valid
-        	//TODO 升级到quart到2，修正其写法，需要测试
         	CronTriggerImpl trigger = (CronTriggerImpl) getScheduler().getTrigger(new TriggerKey(triggerName, Scheduler.DEFAULT_GROUP));
             String originConExpression = trigger.getCronExpression();
             //判断任务时间是否更新过
             if (!originConExpression.equalsIgnoreCase(latestConExpr)) {
+            	logger.info("reset ConExpression[{}] To [{}] ",originConExpression,latestConExpr);
                 trigger.setCronExpression(latestConExpr);
                 getScheduler().rescheduleJob(new TriggerKey(triggerName, Scheduler.DEFAULT_GROUP), trigger);
             }

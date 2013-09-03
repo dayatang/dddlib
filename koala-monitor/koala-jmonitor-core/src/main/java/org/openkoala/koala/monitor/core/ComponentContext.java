@@ -1,6 +1,5 @@
 package org.openkoala.koala.monitor.core;
 
-import org.openkoala.koala.monitor.def.PropertyMap;
 
 /**
  * Component Plug-in初始化上下文
@@ -16,7 +15,7 @@ import org.openkoala.koala.monitor.def.PropertyMap;
  * @see org.openkoala.koala.monitor.config.PropertyMap
  * @see org.openkoala.koala.monitor.core.TraceLiftcycleManager
  */
-public interface ComponentContext extends PropertyMap,Context{
+public interface ComponentContext extends Context{
 	
 	/**
 	 * 获取轨迹容器
