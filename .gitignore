@@ -1,14 +1,15 @@
+**/.DS_Store
+**/.settings
+**/.project
+**/.classpath
+**/target
+**/*.log
+**/*.tlog
+.idea
 *.class
 
 # Package Files #
 *.jar
 *.war
 *.ear
-.settings
-.project
-.classpath
-.tlog
-.log
-/target
-.idea
-**/.DS_Store
+
