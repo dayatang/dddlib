@@ -855,6 +855,9 @@
 				<artifactId>maven-site-plugin</artifactId>
 				<version>3.3</version>
 				<configuration>
+					<locales>zh_CN</locales>
+					<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+					<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 					<reportPlugins>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
