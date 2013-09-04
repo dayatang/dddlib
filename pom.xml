@@ -80,12 +80,12 @@
         <repository>
             <id>koala-release</id>
             <name>koala-release</name>
-            <url>http://115.28.0.46:8081/nexus/content/repositories/releases/</url>
+            <url>http://www.openkoala.org:8081/nexus/content/repositories/releases/</url>
         </repository>
         <snapshotRepository>
             <id>koala-snapshots</id>
             <name>koala-snapshots</name>
-            <url>http://115.28.0.46:8081/nexus/content/repositories/snapshots/</url>
+            <url>http://www.openkoala.org:8081/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
         <site>
         	<id>mvn-site</id>
@@ -94,10 +94,17 @@
         </site>
     </distributionManagement>
 
+
+	<issueManagement>
+		<system>Trac</system>
+		<url>http://115.28.1.104/trac/koala</url>
+	</issueManagement>
+	<!-- 
     <issueManagement>
         <system>JIRA</system>
         <url>http://jira.openkoala.org/browse/KOALA</url>
     </issueManagement>
+	 -->
     	
     <repositories>
         <repository>
@@ -848,6 +855,9 @@
 				<artifactId>maven-site-plugin</artifactId>
 				<version>3.3</version>
 				<configuration>
+					<locales>zh_CN</locales>
+					<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+					<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 					<reportPlugins>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -918,9 +928,9 @@
 							<artifactId>maven-changes-plugin</artifactId>
 							<version>2.9</version>
 							<configuration>
-								<jiraDatePattern>yyyy-MM-dd</jiraDatePattern>
-								<jiraUser>${jira.username}</jiraUser>
-								<jiraPassword>${jira.password}</jiraPassword>
+								<tracUser>${trac.username}</tracUser>
+								<tracPassword>${trac.password}</tracPassword>
+								<query>status!=closed&amp;order=type</query>
 								<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 							</configuration>
 						</plugin>
