@@ -67,11 +67,6 @@ public class DataSourceApplicationImplTest {
 	
 	private DataSourceVO dataSourceVO;
 	
-//	private long idExist = 2L;
-//	private long idNotExist = 100L;
-//	
-//	private String dataSourceIdNotExist = "notInDb";
-	
 	private final String jpqlForDataSourceId = " select _dataSource from DataSource _dataSource  where _dataSource.dataSourceId = ? ";
 	private final String jpqlForPage = " select _dataSource from DataSource _dataSource where 1=1 ";
 	
@@ -202,13 +197,19 @@ public class DataSourceApplicationImplTest {
 	}
 
 	@Test
-	public void testChechDataSourceCanConnect() {
-		//fail("Not yet implemented");
+	public void testCheckDataSourceCanConnect() {
+		this.mockGetOneDbRecordOfSystemDataSourceExistById();
+		this.mockSqlDataSourceInstance();
+		assertTrue(instance.checkDataSourceCanConnect(dataSource));
+		this.closeSqlDataSourceConnection();
 	}
 
 	@Test
 	public void testTestConnection() {
-		//fail("Not yet implemented");
+		this.mockGetOneDbRecordOfSystemDataSourceExistById();
+		this.mockSqlDataSourceInstance();
+		assertTrue(instance.testConnection(dataSource.getId()));
+		this.closeSqlDataSourceConnection();
 	}
 	
 	/**
