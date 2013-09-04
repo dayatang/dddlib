@@ -94,7 +94,7 @@
 	  </servlet-mapping>
     #end
     
-
+   #if ($Module.security)
     <servlet>
 		<servlet-name>DBInit</servlet-name>
 		<servlet-class>org.openkoala.koala.dbinit.SecurityDBInit</servlet-class>
@@ -108,7 +108,7 @@
 		<servlet-name>DBInit</servlet-name>
 		<url-pattern>/dbinit</url-pattern>
 	</servlet-mapping>
-    
+   #end
 
     <servlet>
 		<servlet-name>koalaUISurpport</servlet-name>

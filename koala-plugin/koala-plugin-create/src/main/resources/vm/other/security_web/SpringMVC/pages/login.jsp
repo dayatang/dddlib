@@ -36,9 +36,10 @@ body {
 }
 
 .logo img {
-	height: 90px;
-	width: 200px;
+	height: 59px;
+	width: 94px;
 	overflow: hidden;
+	margin-top:20px;
 	float: left;
 }
 
@@ -149,7 +150,7 @@ function keyDown(e){
 <body>
 	<div class="head"></div>
 	<div class="logo">
-		<img src="images/background/logo.gif" />
+		<img src="images/background/koala.png" />
 		<div>Koala系统</div>
 	</div>
 	<div class="login_con">
