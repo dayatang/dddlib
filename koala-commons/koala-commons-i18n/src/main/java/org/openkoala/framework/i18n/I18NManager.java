@@ -21,8 +21,9 @@ public class I18NManager {
 	
 	// 国际资源文件存放路径
 	private static final String I18N_PATH = "/i18n";
-	
-	// 用于保存basename
+    private static final Locale DEFAULT_LOCALE = Locale.CHINA;
+
+    // 用于保存basename
 	private static Set<String> basename = new HashSet<String>();
 
 	private static ResourceBundleI18nServiceImpl resourceBundleI18nServiceImpl;
@@ -81,19 +82,24 @@ public class I18NManager {
 	 */
 	public static String getMessage(String key, String locale) {
 		initResourceBundleI18nServiceImpl();
+
 		resourceBundleI18nServiceImpl.setBasenames(basename.toArray(new String[basename.size()]));
 		I18nServiceAccessor accessor = resourceBundleI18nServiceImpl.getAccessor();
+
 		// 如果没有指定locale属性，就用默认的Locale
-		if ("".equals(locale) || locale == null) {
-			String message = null;
+		if (locale == null || "".equals(locale)) {
+			String message;
+
 			try {
-				message = accessor.getMessage(key);
+				message = accessor.getMessage(key, DEFAULT_LOCALE);
 			} catch (NoSuchMessageException e) {
 				// 如果key在资源文件中不存在，就直接把key作为默认值返回
 				return accessor.getMessage(key, key);
 			}
+
 			return message;
 		}
+
 		return accessor.getMessage(key, new Locale(locale));
 	}
 
