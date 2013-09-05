@@ -59,7 +59,8 @@ public class SecurityManagerImpl implements SecurityManager {
 		try {
 			
 			pstmt = conn.prepareStatement(config.getQueryUser());
-			pstmt.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
+			pstmt.setString(1, userAccount);
+			pstmt.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
 			
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
