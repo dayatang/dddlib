@@ -13,14 +13,14 @@ import org.openkoala.framework.i18n.I18NManager;
 public class I18nTest {
 
 	@Test
-	public void testI18n(){
+	public void shouldUsingDefaultLocale(){
 		String value = I18NManager.getMessage("name");
-		Assert.assertTrue(value.equals("考拉"));
+        Assert.assertTrue("should using default(zh_CN) locale", value.equals("考拉"));
 	}
 	
 	@Test
-	public void testUsI18n(){
+	public void shouldUsingENLocale(){
 		String value = I18NManager.getMessage("name","en");
-		Assert.assertTrue("Koala".equals(value));
+		Assert.assertTrue("should using en locale", "Koala".equals(value));
 	}
 }
