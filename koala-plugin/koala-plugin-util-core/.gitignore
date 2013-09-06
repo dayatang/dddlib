@@ -1,6 +1,6 @@
-**/.DS_Store
-**/.settings
-**/.project
-**/.classpath
-**/target
-**/*.log
+/.settings
+/target
+/.classpath
+/.project
+/.DS_Store
+/*.log
