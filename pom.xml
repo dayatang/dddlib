@@ -834,6 +834,7 @@
 					<artifactId>maven-release-plugin</artifactId>
 					<version>2.4.1</version>
 					<configuration>
+						<allowTimestampedSnapshots>true</allowTimestampedSnapshots>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 					</configuration>
 				</plugin>
