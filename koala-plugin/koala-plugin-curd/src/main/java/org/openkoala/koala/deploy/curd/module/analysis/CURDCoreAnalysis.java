@@ -4,6 +4,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -205,7 +206,7 @@ public class CURDCoreAnalysis {
          else if(fieldType.equals(FieldType.OneToMany)){
              RelationFieldModel fieldModel = new RelationFieldModel(field.getName(),field.getType().getName());
              RelationModel relation = new OneToManyRelationModel();
-             ParameterizedTypeImpl type =(ParameterizedTypeImpl) field.getGenericType();
+             ParameterizedType type =(ParameterizedType) field.getGenericType();
              Class actual = (Class)type.getActualTypeArguments()[0];
              EntityModel fieldEntity = analysisField(actual.getName());
              relation.setEntityModel(fieldEntity);
