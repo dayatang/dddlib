@@ -836,7 +836,6 @@
 					<configuration>
 						<allowTimestampedSnapshots>true</allowTimestampedSnapshots>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
-						<username>git</username>
 					</configuration>
 				</plugin>
                 </plugins>
