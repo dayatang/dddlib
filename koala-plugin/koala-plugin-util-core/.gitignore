@@ -3,4 +3,4 @@ target
 .classpath
 .project
 .DS_Store
-*.log
+velocity.log
