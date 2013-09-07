@@ -191,84 +191,121 @@
 	<dependencyManagement>
 
 		<dependencies>
-
+			<!-- Java规范 -->
+			<dependency>
+				<groupId>javax.persistence</groupId>
+				<artifactId>persistence-api</artifactId>
+				<version>2.0</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>1.0.0.GA</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.ejb</groupId>
+				<artifactId>ejb-api</artifactId>
+				<version>3.0</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.transaction</groupId>
+				<artifactId>jta</artifactId>
+				<version>1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>2.5</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.2</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.1</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.faces</groupId>
+				<artifactId>jsf-impl</artifactId>
+				<version>1.2</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.ws.rs</groupId>
+				<artifactId>jsr311-api</artifactId>
+				<version>1.0</version>
+			</dependency>
+			<!-- dddlib -->
 			<dependency>
 				<groupId>com.dayatang.commons</groupId>
 				<artifactId>dayatang-commons-utils</artifactId>
 				<version>${dayatang.commons.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.dayatang.commons</groupId>
 				<artifactId>dayatang-commons-domain</artifactId>
 				<version>${dayatang.commons.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.dayatang.commons</groupId>
 				<artifactId>dayatang-commons-db</artifactId>
 				<version>${dayatang.commons.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.dayatang.commons</groupId>
 				<artifactId>dayatang-commons-spring</artifactId>
 				<version>${dayatang.commons.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.dayatang.commons</groupId>
 				<artifactId>dayatang-commons-hibernate</artifactId>
 				<version>${dayatang.commons.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.dayatang.commons</groupId>
 				<artifactId>dayatang-commons-querychannel</artifactId>
 				<version>${dayatang.commons.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.dayatang.commons</groupId>
 				<artifactId>dayatang-commons-spring-test</artifactId>
 				<version>${dayatang.commons.version}</version>
 				<scope>test</scope>
 			</dependency>
-
 			<dependency>
 				<groupId>com.dayatang.commons</groupId>
 				<artifactId>dayatang-commons-jpa</artifactId>
 				<version>${dayatang.commons.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.dayatang.commons</groupId>
 				<artifactId>dayatang-commons-cache</artifactId>
 				<version>${dayatang.commons.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.dayatang.commons</groupId>
 				<artifactId>dayatang-commons-dsrouter</artifactId>
 				<version>${dayatang.commons.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.dayatang.commons</groupId>
 				<artifactId>dayatang-commons-excel</artifactId>
 				<version>${dayatang.commons.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.dayatang.commons</groupId>
 				<artifactId>dayatang-commons-i18n</artifactId>
 				<version>${dayatang.commons.version}</version>
 			</dependency>
-
 			<dependency>
 				<groupId>com.dayatang.commons</groupId>
 				<artifactId>dayatang-commons-rule</artifactId>
-				<version>3.1-SNAPSHOT</version>
+				<version>${dayatang.commons.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
@@ -423,18 +460,6 @@
 				<artifactId>slf4j-log4j12</artifactId>
 				<version>1.6.1</version>
 			</dependency>
-
-			<dependency>
-				<groupId>javax.ejb</groupId>
-				<artifactId>ejb-api</artifactId>
-				<version>3.0</version>
-			</dependency>
-
-			<dependency>
-				<groupId>javax.transaction</groupId>
-				<artifactId>jta</artifactId>
-				<version>1.1</version>
-			</dependency>
 			<dependency>
 				<groupId>commons-lang</groupId>
 				<artifactId>commons-lang</artifactId>
@@ -480,11 +505,6 @@
 			<dependency>
 				<groupId>com.sun.faces</groupId>
 				<artifactId>jsf-api</artifactId>
-				<version>1.2</version>
-			</dependency>
-			<dependency>
-				<groupId>javax.faces</groupId>
-				<artifactId>jsf-impl</artifactId>
 				<version>1.2</version>
 			</dependency>
 
@@ -560,36 +580,6 @@
 				<groupId>proxool</groupId>
 				<artifactId>proxool</artifactId>
 				<version>0.9.1</version>
-			</dependency>
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>servlet-api</artifactId>
-				<version>2.5</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>jstl</artifactId>
-				<version>1.2</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>javax.servlet.jsp</groupId>
-				<artifactId>jsp-api</artifactId>
-				<version>2.1</version>
-				<scope>provided</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>javax.persistence</groupId>
-				<artifactId>persistence-api</artifactId>
-				<version>2.0</version>
-			</dependency>
-
-			<dependency>
-				<groupId>javax.validation</groupId>
-				<artifactId>validation-api</artifactId>
-				<version>1.0.0.GA</version>
 			</dependency>
 
 			<!-- 加入对spring security 支持 -->
@@ -681,11 +671,6 @@
 				<groupId>wsdl4j</groupId>
 				<artifactId>wsdl4j</artifactId>
 				<version>1.6.3</version>
-			</dependency>
-			<dependency>
-				<groupId>javax.ws.rs</groupId>
-				<artifactId>jsr311-api</artifactId>
-				<version>1.0</version>
 			</dependency>
 
 			<dependency>
@@ -897,6 +882,18 @@
 				<groupId>org.sonatype.aether</groupId>
 				<artifactId>aether-connector-file</artifactId>
 				<version>${aether.connector.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.puppycrawl.tools</groupId>
+				<artifactId>checkstyle</artifactId>
+				<version>5.6</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd</artifactId>
+				<version>5.0.4</version>
 			</dependency>
 		</dependencies>
 
