@@ -116,7 +116,4 @@
 			<artifactId>koala-commons-support</artifactId>
 		</dependency>
 	</dependencies>
-	<build>
-		<plugins />
-	</build>
 </project>
