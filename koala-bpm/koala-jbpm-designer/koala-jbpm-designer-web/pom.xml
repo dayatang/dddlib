@@ -48,6 +48,7 @@
         <dependency> 
             <groupId>org.openkoala.koalacommons</groupId>  
             <artifactId>koala-commons-ui-surpport</artifactId> 
+	        <version>${project.parent.version}</version>
         </dependency>  
         <dependency> 
             <groupId>javax.servlet</groupId>  
@@ -56,7 +57,6 @@
         <dependency> 
             <groupId>javax.servlet.jsp</groupId>  
             <artifactId>jsp-api</artifactId>  
-            <version>2.1</version>  
             <scope>provided</scope> 
         </dependency>  
         <dependency> 
@@ -106,7 +106,7 @@
         <dependency> 
             <groupId>org.openkoala.koalacommons</groupId>
             <artifactId>koala-commons-cache</artifactId> 
-            <version>${project.parent.version}</version> 
+	        <version>${project.parent.version}</version>
         </dependency>  
         <dependency> 
             <groupId>org.openkoala.security</groupId>  

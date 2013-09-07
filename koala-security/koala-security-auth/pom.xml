@@ -8,9 +8,4 @@
 	<artifactId>koala-security-auth</artifactId>
 	<name>koala-security-auth</name>
 	<packaging>jar</packaging>
-
-	<properties>
-	</properties>
-	<dependencies>
-	</dependencies>
 </project>

@@ -9,22 +9,16 @@
 	<name>koala-commons-cache</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.type>jar</project.type>
-		<memcached.version>2.6.3</memcached.version>
-		<ehcache.version>2.0.1</ehcache.version>
-		<dayatang.commons.version>3.3</dayatang.commons.version>
 	</properties>
 	<dependencies>
 		<!-- Ehcache -->
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache-core</artifactId>
-			<version>${ehcache.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.dayatang.commons</groupId>
 			<artifactId>dayatang-commons-cache</artifactId>
-			<version>${dayatang.commons.version}</version>
 		</dependency>
 		
 		<dependency>
@@ -33,30 +27,4 @@
 		     <scope>test</scope>
 		</dependency>
 	</dependencies>
-	<repositories>
-		<repository>
-			<id>dayatang-releases</id>
-			<url>http://www.dayatang.com/nexus/content/groups/public-release/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>dayatang-snapshots</id>
-			<url>http://www.dayatang.com/nexus/content/groups/public-snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>jboss public</id>
-			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
-		</repository>	
-</repositories>
 </project>

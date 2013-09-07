@@ -47,7 +47,7 @@
         <dependency> 
             <groupId>org.openkoala.koalacommons</groupId>  
             <artifactId>koala-commons-exception</artifactId>  
-            <version>${project.parent.version}</version> 
+			<version>${project.parent.version}</version>
         </dependency>  
         <dependency> 
             <groupId>proxool</groupId>  
@@ -59,7 +59,4 @@
         	<version>${project.parent.version}</version>
         </dependency>
     </dependencies>  
-    <build> 
-        <plugins /> 
-    </build> 
 </project>

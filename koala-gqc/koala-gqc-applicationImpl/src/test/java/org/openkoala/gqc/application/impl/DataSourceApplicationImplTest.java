@@ -1,13 +1,8 @@
 package org.openkoala.gqc.application.impl;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.mockito.Mockito.when;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -21,7 +16,6 @@ import org.hamcrest.core.IsNull;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.internal.matchers.StringContains;
 import org.junit.runner.RunWith;
 import org.logicalcobwebs.proxool.ProxoolDataSource;
 import org.mockito.Mock;
@@ -461,7 +455,7 @@ public class DataSourceApplicationImplTest {
 	private void assertSystemDataSourceNotExistInSystem(){
 		dataSourceVO = turnToDataSourceVO();
 		PowerMockito.when(InstanceFactory.getInstance(javax.sql.DataSource.class, dataSource.getDataSourceId())).thenThrow(new IocException());
-		assertThat(instance.saveDataSource(dataSourceVO), StringContains.containsString("系统数据源不存在"));
+		assertThat(instance.saveDataSource(dataSourceVO), containsString("系统数据源不存在"));
 	}
 	
 	private void assertSaveSystemDataSourceSuccess(){

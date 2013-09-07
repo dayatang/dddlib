@@ -26,7 +26,4 @@
             <artifactId>proxool</artifactId> 
         </dependency> 
     </dependencies>  
-    <build> 
-        <plugins /> 
-    </build> 
 </project>
