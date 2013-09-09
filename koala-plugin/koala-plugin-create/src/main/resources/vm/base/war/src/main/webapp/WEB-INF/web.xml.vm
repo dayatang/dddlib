@@ -31,17 +31,17 @@
 #if ($Module.monitor)
 	<!-- monitor config begin-->
      <listener>
-		<listener-class>org.openkoala.koala.monitor.context.KoalaMonitorListener</listener-class>
+		<listener-class>org.openkoala.koala.monitor.core.KoalaMonitorListener</listener-class>
 	</listener>
 	
 	<context-param>
 		<param-name>monitor-config</param-name>
-		<param-value>classpath*:monitor/koala-monitor.xml</param-value>
+		<param-value>monitor/koala-monitor.xml</param-value>
 	</context-param>
 
 	<filter>
 		<filter-name>PageDetectFilter</filter-name>
-		<filter-class>org.openkoala.koala.monitor.component.tracer.http.DetectFilter</filter-class>
+		<filter-class>org.openkoala.koala.monitor.component.http.DetectFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>PageDetectFilter</filter-name>

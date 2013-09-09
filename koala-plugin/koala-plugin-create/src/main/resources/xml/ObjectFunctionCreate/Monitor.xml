@@ -26,7 +26,7 @@
 
 	<VelocityDirObject>
 		<property name="vmDir">vm/other/monitor/config/monitor/</property>
-		<property name="pathDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/monitor/
+		<property name="pathDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/webapp/WEB-INF/monitor/
 		</property>
 	</VelocityDirObject>
 
