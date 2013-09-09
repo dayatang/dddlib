@@ -15,6 +15,7 @@ import japa.parser.ast.expr.NormalAnnotationExpr;
 import japa.parser.ast.expr.SingleMemberAnnotationExpr;
 import japa.parser.ast.expr.StringLiteralExpr;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,8 @@ public class InterfaceObjUtil {
 		String javasrc = interfaceObj.getQualifiedName();
 		CompilationUnit cu;
 		try {
-			cu = JavaParser.parse(javasrc);
+			File file = new File(javasrc);
+			cu = JavaParser.parse(file);
 			cu.getImports().add(new ImportDeclaration(new NameExpr("javax.ws.rs.*"),false,false));
 			cu.getImports().add(new ImportDeclaration(new NameExpr("javax.ws.rs.core.*"),false,false));
 			cu.getImports().add(new ImportDeclaration(new NameExpr("javax.ws.rs.ext.*"),false,false));
@@ -63,13 +65,13 @@ public class InterfaceObjUtil {
 				
 				RestWebServiceMethod webServiceMethod=null;
 				for(WebServiceMethod webMethod : webMethods){
-					if(webMethod.getName().equals(method.description())){
+					if(webMethod.getName().equals(JavaManagerUtil.methodDescription(method))){
 						webServiceMethod = (RestWebServiceMethod) webMethod;
 						break;
 					}
 				}
 				
-				if(!selectedMethod.contains(method.description())) {
+				if(!selectedMethod.contains(JavaManagerUtil.methodDescription(method))) {
 					continue;
 				}
 				
@@ -113,14 +115,14 @@ public class InterfaceObjUtil {
 	
 	private static void addHttpMethodAnnotation(MethodDeclaration method, 
 			RestWebServiceMethod restWebServiceMethod, AnnotationExpr httpMethodAnnotation) {
-		if(method.containsAnnotation(restWebServiceMethod.getType().getAnnotationString()) == false) {
+		if(JavaManagerUtil.containsAnnotation(method, restWebServiceMethod.getType().getAnnotationString()) == false) {
 			method.getAnnotations().add(httpMethodAnnotation);
 		}
 	}
 	
 	private static void addPahtUriAnnotation(MethodDeclaration method, RestWebServiceMethod restWebServiceMethod) {
 		AnnotationExpr pathAnnotation = new SingleMemberAnnotationExpr(new NameExpr("Path"), new StringLiteralExpr(restWebServiceMethod.getUriPath()));
-		if(method.containsAnnotation("Path") == false) {
+		if(JavaManagerUtil.containsAnnotation(method,"Path")== false) {
 			method.getAnnotations().add(pathAnnotation);
 		}
 	}
@@ -164,12 +166,12 @@ public class InterfaceObjUtil {
 		
 		if (isProduces) {
 			AnnotationExpr producesAnnotation = new SingleMemberAnnotationExpr(new NameExpr("Produces"),new ArrayInitializerExpr(values));
-			if(method.containsAnnotation("Produces") == false) {
+			if(JavaManagerUtil.containsAnnotation(method,"Produces") == false) {
 				method.getAnnotations().add(producesAnnotation);
 			}
 		} else {
 			AnnotationExpr consumesAnnotation = new SingleMemberAnnotationExpr(new NameExpr("Consumes"),new ArrayInitializerExpr(values));
-			if(method.containsAnnotation("Consumes") == false) {
+			if(JavaManagerUtil.containsAnnotation(method,"Consumes") == false) {
 				method.getAnnotations().add(consumesAnnotation);
 			}
 		}
@@ -185,7 +187,8 @@ public class InterfaceObjUtil {
 		String javasrc = interfaceObj.getQualifiedName();
 		CompilationUnit compilationUnit;
 		try {
-			compilationUnit = JavaParser.parse(javasrc);
+			File file = new File(javasrc);
+			compilationUnit = JavaParser.parse(file);
 			ClassOrInterfaceDeclaration coi = JavaManagerUtil.getClassOrInterfaceDeclaration(compilationUnit);
 			
 			List<MethodDeclaration> methods = JavaManagerUtil.getMethodDeclaration(compilationUnit);
@@ -198,7 +201,7 @@ public class InterfaceObjUtil {
 			
 				
 			AnnotationExpr webServiceAnnotation = new SingleMemberAnnotationExpr(new NameExpr("WebService"), new NameExpr(""));
-			if(coi.containsAnnotation("WebService") == false) {
+			if(JavaManagerUtil.containsAnnotation(coi,"WebService") == false) {
 				coi.getAnnotations().add(webServiceAnnotation);
 			}
 			

@@ -8,7 +8,9 @@ import japa.parser.JavaParser;
 import japa.parser.ParseException;
 import japa.parser.ast.CompilationUnit;
 import japa.parser.ast.ImportDeclaration;
+import japa.parser.ast.body.BodyDeclaration;
 import japa.parser.ast.body.ClassOrInterfaceDeclaration;
+import japa.parser.ast.body.MethodDeclaration;
 import japa.parser.ast.expr.AnnotationExpr;
 import japa.parser.ast.expr.NameExpr;
 import japa.parser.ast.expr.NormalAnnotationExpr;
@@ -43,7 +45,8 @@ public class InterfaceCopyUtil {
 	public static void selfInterface(String javasrc){
 	    CompilationUnit cu = null;
         try {
-            cu = JavaParser.parse(javasrc);
+        	File file = new File(javasrc);
+            cu = JavaParser.parse(file);
             ClassOrInterfaceDeclaration coi = JavaManagerUtil.getClassOrInterfaceDeclaration(cu);
             if(coi.isInterface()==false)throw new InterfaceCopyException("指定的类不是接口");
             
@@ -70,7 +73,8 @@ public class InterfaceCopyUtil {
 	public static void localInterfaceCreate(String javasrc,LocalInterface local) throws KoalaException{
 		if(local!=null && local.getMethods()==null)return;
 		try {
-			CompilationUnit cu = JavaParser.parse(javasrc);
+			File file = new File(javasrc);
+			CompilationUnit cu = JavaParser.parse(file);
 			ClassOrInterfaceDeclaration coi = JavaManagerUtil.getClassOrInterfaceDeclaration(cu);
 			if(coi.isInterface()==false)throw new InterfaceCopyException("指定的类不是接口");
 			//修改名称
@@ -84,7 +88,9 @@ public class InterfaceCopyUtil {
 				//过滤方法
 				List<String> methods = JavaManagerUtil.getJavaMethods(cu);
 				for(String method:methods){
-					if(!local.getMethods().contains(method))coi.removeMethod(method);
+					if(!local.getMethods().contains(method)){
+						removeMethod(coi,method);
+					}
 				}
 			}
 			
@@ -118,7 +124,8 @@ public class InterfaceCopyUtil {
 	public static void remoteIntrefaceCreate(String javasrc,RemoteInterface remote) throws KoalaException{
 		if(remote!=null && remote.getMethods()==null)return;
 		try {
-			CompilationUnit cu = JavaParser.parse(javasrc);
+			File file = new File(javasrc);
+			CompilationUnit cu = JavaParser.parse(file);
 			ClassOrInterfaceDeclaration coi = JavaManagerUtil.getClassOrInterfaceDeclaration(cu);
 			if(coi.isInterface()==false)throw new InterfaceCopyException("指定的类不是接口");
 			//修改名称
@@ -135,7 +142,9 @@ public class InterfaceCopyUtil {
 				//过滤方法
 				List<String> methods = JavaManagerUtil.getJavaMethods(cu);
 				for(String method:methods){
-					if(!remote.getMethods().contains(method))coi.removeMethod(method);
+					if(!remote.getMethods().contains(method)){
+						removeMethod(coi,method);
+					}
 				}
 			}
 			File srcFile = new File(javasrc);
@@ -149,4 +158,19 @@ public class InterfaceCopyUtil {
 			throw new InterfaceCopyException(e.getMessage());
 		}
 	}
+	
+	 public static void removeMethod(ClassOrInterfaceDeclaration coi,String method) {
+	    	BodyDeclaration remove = null;
+			for (BodyDeclaration type : coi.getMembers()) {
+				if(type instanceof MethodDeclaration){
+					MethodDeclaration me = (MethodDeclaration)type;
+					if(JavaManagerUtil.methodDescription(me).equals(method)){
+						remove = type;
+						break;
+					}
+				}
+			}
+			if(remove!=null)coi.getMembers().remove(remove);
+	}
+	 
 }
