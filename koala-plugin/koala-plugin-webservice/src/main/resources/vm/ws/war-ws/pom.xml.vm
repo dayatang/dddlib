@@ -57,17 +57,17 @@
 		<dependency>
 			<groupId>org.openkoala.koala</groupId>
 			<artifactId>wsSecurity-applicationImpl</artifactId>
-			<version>2.0.0-SNAPSHOT</version>
+			<version>${koala.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openkoala.koala</groupId>
 			<artifactId>wsSecurity-authJdbcImpl</artifactId>
-			<version>2.0.0-SNAPSHOT</version>
+			<version>${koala.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openkoala.koala</groupId>
 			<artifactId>wsSecurity-ss3Adapter</artifactId>
-			<version>2.0.0-SNAPSHOT</version>
+			<version>${koala.version}</version>
 		</dependency>
 		
 			<dependency>

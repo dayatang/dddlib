@@ -363,6 +363,7 @@ public class EJBSrcCopy {
 		params.put("ConfigPath", parent.getConfigProjects().get(0).getPath());
 		params.put("impls", ejbDeploy.getImpls());
 		params.put("deployConfig", ejbDeploy.getDeployConfig());
+		params.put("koalaversion", parent.getProperties().get("koala.version"));
 
 		params.put("ProjectVersion", parent.getVersion());
 		

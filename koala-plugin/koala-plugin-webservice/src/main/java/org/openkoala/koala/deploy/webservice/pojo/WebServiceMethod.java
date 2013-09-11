@@ -1,5 +1,7 @@
 package org.openkoala.koala.deploy.webservice.pojo;
 
+import org.openkoala.koala.java.JavaManagerUtil;
+
 import japa.parser.ast.body.MethodDeclaration;
 
 /**
@@ -15,7 +17,7 @@ public class WebServiceMethod {
 
 	public WebServiceMethod(MethodDeclaration method) {
 		this.method = method;
-		this.name = method.description();
+		this.name = JavaManagerUtil.methodDescription(method);
 	}
 
 	public String getName() {

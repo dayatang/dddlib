@@ -50,6 +50,7 @@ public class EhCacheImplTest {
 		cache.put("KEY1", "Koala Project");
 		Assert.isTrue("Koala Project".equals(cache.get("KEY1")));
 		Assert.isNull(cache.get("KEY2"));
+		cache.remove("KEY1");
 	}
 	
 	/**
@@ -65,6 +66,9 @@ public class EhCacheImplTest {
 		Assert.isTrue(result.size()==4);
 		Assert.isTrue(result.get("KEY1").equals("ABC"));
 		Assert.isNull(result.get("KEY3"));
+		cache.remove("KEY1");
+		cache.remove("KEY2");
+		cache.remove("KEY4");
 	}
 	
 	

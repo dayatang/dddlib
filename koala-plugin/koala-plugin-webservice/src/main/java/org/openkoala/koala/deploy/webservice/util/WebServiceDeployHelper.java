@@ -5,6 +5,7 @@ import japa.parser.ParseException;
 import japa.parser.ast.CompilationUnit;
 import japa.parser.ast.body.MethodDeclaration;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -98,7 +99,8 @@ public class WebServiceDeployHelper {
 			CompilationUnit cu;
 			try {
 				logger.info(inter);
-				cu = JavaParser.parse(inter);
+				File file = new File(inter);
+				cu = JavaParser.parse(file);
 				List<String> vos = JavaManagerUtil.getClassVO(cu);
 				System.out.println("VOS:" + vos);
 				for (String vo : vos) {

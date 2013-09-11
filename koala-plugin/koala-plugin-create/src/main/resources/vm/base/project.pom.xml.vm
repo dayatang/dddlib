@@ -24,8 +24,9 @@
 		<struts2.version>2.3.15.1</struts2.version>
 		<spring.version>3.1.2.RELEASE</spring.version>
 		<spring.security.version>3.0.8.RELEASE</spring.security.version>
-		<koalaSecurity.version>2.0.0-SNAPSHOT</koalaSecurity.version>
-		<koala.framework.version>2.0.0-SNAPSHOT</koala.framework.version>
+		<koalaSecurity.version>2.0.1-SNAPSHOT</koalaSecurity.version>
+		<koala.framework.version>2.0.1-SNAPSHOT</koala.framework.version>
+		<koala.version>2.0.1-SNAPSHOT</koala.version>
 		
 		<!--DB实现以及MVC模型的实现支持，不要修改这两个值-->
 		<dbProtocol>${Project.dbProtocol}</dbProtocol>

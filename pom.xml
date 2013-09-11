@@ -1,724 +1,705 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>org.openkoala</groupId>
-    <artifactId>koala-project</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>koala project</name>
-    <url>http://115.28.1.104/projects/koala</url>
-    <description />
-    
-    <developers>
-    	<developer>
-    		<id>cchen</id>
-    		<name>Cao Chen</name>
-    		<email>chencao0524@gmail.com</email>
-    		<roles>
-    			<role>Architect</role>
-    		</roles>
-    	</developer>
-    	<developer>
-    		<id>yyang</id>
-    		<name>Yu Yang</name>
-    		<email>gdyangyu@gmail.com</email>
-    		<roles>
-    			<role>Architect</role>
-    			<role>Product Manager</role>
-    		</roles>
-    	</developer>
-    	<developer>
-    		<id>lingen.liu</id>
-    		<name>Lin Liu</name>
-    		<email>lingen.liu@gmail.com</email>
-    		<roles>
-    			<role>Project Manager</role>
-    		</roles>
-    	</developer>
-    	<developer>
-    		<id>yeren</id>
-    		<name>Shibin Li</name>
-    		<email>shibinlambo@gamil.com</email>
-    		<roles>
-    			<role>developer</role>
-    		</roles>
-    	</developer>
-    	<developer>
-    		<id>zyb</id>
-    		<name>Yuanbiao Zhu</name>
-    		<email>zhuyuanbiao2013@gmail.com</email>
-    		<roles>
-    			<role>developer</role>
-    		</roles>
-    	</developer>
-    	<developer>
-    		<id>xmfang</id>
-    		<name>Xinmin Fang</name>
-    		<email>xinmin.fang@gmail.com</email>
-    		<roles>
-    			<role>developer</role>
-    		</roles>
-    	</developer>
-    	<developer>
-    		<id>vakin jiang</id>
-    		<name>Wei Jiang</name>
-    		<email>vakinge@gmail.com</email>
-    		<roles>
-    			<role>developer</role>
-    		</roles>
-    	</developer>
-    </developers>
-    
-    <scm>
-    	<connection>scm:git:http://git.oschina.net/openkoala/koala.git</connection>
-    	<developerConnection>scm:git:git@git.oschina.net:openkoala/koala.git</developerConnection>
-    </scm>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.openkoala</groupId>
+	<artifactId>koala-project</artifactId>
+	<version>2.1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>koala project</name>
+	<url>http://115.28.1.104/projects/koala</url>
+	<description />
+	
+	<developers>
+		<developer>
+			<id>cchen</id>
+			<name>Cao Chen</name>
+			<email>chencao0524@gmail.com</email>
+			<roles>
+				<role>Architect</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>yyang</id>
+			<name>Yu Yang</name>
+			<email>gdyangyu@gmail.com</email>
+			<roles>
+				<role>Architect</role>
+				<role>Product Manager</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>lingen.liu</id>
+			<name>Lin Liu</name>
+			<email>lingen.liu@gmail.com</email>
+			<roles>
+				<role>Project Manager</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>yeren</id>
+			<name>Shibin Li</name>
+			<email>shibinlambo@gamil.com</email>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>zyb</id>
+			<name>Yuanbiao Zhu</name>
+			<email>zhuyuanbiao2013@gmail.com</email>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>xmfang</id>
+			<name>Xinmin Fang</name>
+			<email>xinmin.fang@gmail.com</email>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>vakin jiang</id>
+			<name>Wei Jiang</name>
+			<email>vakinge@gmail.com</email>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
 
-    <distributionManagement>
-        <repository>
-            <id>koala-release</id>
-            <name>koala-release</name>
-            <url>http://115.28.0.46:8081/nexus/content/repositories/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>koala-snapshots</id>
-            <name>koala-snapshots</name>
-            <url>http://115.28.0.46:8081/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
-        <site>
-        	<id>mvn-site</id>
-        	<name>Maven Project Site</name>
-        	<url>dav:http://115.28.1.104/projects/koala</url>
-        </site>
-    </distributionManagement>
+	<scm>
+		<connection>scm:git:http://git.oschina.net/openkoala/koala.git</connection>
+		<developerConnection>scm:git:git@git.oschina.net:openkoala/koala.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
 
-    <issueManagement>
-        <system>JIRA</system>
-        <url>http://jira.openkoala.org/browse/KOALA</url>
-    </issueManagement>
-    	
-    <repositories>
-        <repository>
-            <id>koala-snapshots</id>
-            <url>http://nexus.openkoala.org/nexus/content/groups/Koala-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-
-        <repository>
-            <id>koala-release</id>
-            <url>http://nexus.openkoala.org/nexus/content/groups/Koala-release/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+	<distributionManagement>
+		<repository>
+			<id>koala-release</id>
+			<name>koala-release</name>
+			<url>http://www.openkoala.org:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>koala-snapshots</id>
+			<name>koala-snapshots</name>
+			<url>http://www.openkoala.org:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+		<site>
+			<id>mvn-site</id>
+			<name>Maven Project Site</name>
+			<url>dav:http://115.28.1.104/projects/koala</url>
+		</site>
+	</distributionManagement>
 
 
-    <modules>
-        <module>koala-plugin</module>
-        <module>koala-commons</module>
-        <module>koala-security</module>
-        <module>koala-bpm</module>
-        <module>koala-gqc</module>
-        <module>koala-monitor</module>
-    </modules>
+	<issueManagement>
+		<system>Trac</system>
+		<url>http://115.28.1.104/trac/koala</url>
+	</issueManagement>
+	<!-- <issueManagement> <system>JIRA</system> <url>http://jira.openkoala.org/browse/KOALA</url> 
+		</issueManagement> -->
 
-    <properties>
-	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <dayatang.commons.version>3.5</dayatang.commons.version>
-        <struts2.version>2.3.4</struts2.version>
-        <spring.version>3.1.2.RELEASE</spring.version>
-        <spring.security.version>3.0.8.RELEASE</spring.security.version>
-        <aspectj.version>1.6.12</aspectj.version>
-        <framework.version>2.0.0-SNAPSHOT</framework.version>
-				
-        <drools.version>5.3.1.BRMS</drools.version>
-        <jbpm.version>5.3.1.BRMS</jbpm.version>
-        <cxf.version>2.2.3</cxf.version>
+	<repositories>
+		<repository>
+			<id>koala-snapshots</id>
+			<url>http://nexus.openkoala.org/nexus/content/groups/Koala-snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>koala-release</id>
+			<url>http://nexus.openkoala.org/nexus/content/groups/Koala-release/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+
+	<modules>
+		<module>koala-plugin</module>
+		<module>koala-commons</module>
+		<module>koala-security</module>
+		<module>koala-bpm</module>
+		<module>koala-gqc</module>
+		<module>koala-monitor</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<dayatang.commons.version>3.5</dayatang.commons.version>
+		<struts2.version>2.3.15.1</struts2.version>
+		<spring.version>3.1.3.RELEASE</spring.version>
+		<spring.security.version>3.0.8.RELEASE</spring.security.version>
+		<aspectj.version>1.6.12</aspectj.version>
+		<drools.version>5.3.1.BRMS</drools.version>
+		<jbpm.version>5.3.1.BRMS</jbpm.version>
+		<cxf.version>2.6.2</cxf.version>
 		<fastjson.version>1.1.17</fastjson.version>
 		<mina.version>2.0.7</mina.version>
-		<jsp.api.version>2.1</jsp.api.version>
-    </properties>
-	   
-    <profiles>
-        <profile>
-            <id>default</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
-                <hibernate.show_sql>true</hibernate.show_sql>
-                <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
-                <db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
-                <db.connectionURL>jdbc:h2:~/db/koala</db.connectionURL>
-                <db.username>sa</db.username>
-                <db.password></db.password>
-                <db.Type>H2</db.Type>
-                <generateDdl>true</generateDdl>
-				
-			    <!--test DB Config-->
-			        <test.hibernate.hbm2ddl.auto>update</test.hibernate.hbm2ddl.auto>
-			        <test.hibernate.show_sql>true</test.hibernate.show_sql>
-			        <test.hibernate.dialect>org.hibernate.dialect.H2Dialect</test.hibernate.dialect>
-			        <test.db.jdbcDriver>org.h2.Driver</test.db.jdbcDriver>
-			        <test.db.connectionURL>jdbc:h2:~/db/test</test.db.connectionURL>
-			        <test.db.username>sa</test.db.username>
-			        <test.db.password></test.db.password>
-			        <test.db.Type>H2</test.db.Type>
-			        <test.db.generateDdl>true</test.db.generateDdl>
-			        <test.db.groupId>com.h2database</test.db.groupId>
-			        <test.db.artifactId>h2</test.db.artifactId>
-            </properties>
-        </profile>
-		
+		<tomcat.version>6.0.35</tomcat.version>
+		<aether.connector.version>1.13.1</aether.connector.version>
+		<koala.version>2.1.0-SNAPSHOT</koala.version>
+	</properties>
 
-    </profiles>
+	<profiles>
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<hibernate.show_sql>true</hibernate.show_sql>
+				<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+				<db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
+				<db.connectionURL>jdbc:h2:~/db/koala</db.connectionURL>
+				<db.username>sa</db.username>
+				<db.password />
+				<db.Type>H2</db.Type>
+				<generateDdl>true</generateDdl>
 
-    <dependencyManagement>
+				<!--test DB Config -->
+				<test.hibernate.hbm2ddl.auto>update</test.hibernate.hbm2ddl.auto>
+				<test.hibernate.show_sql>true</test.hibernate.show_sql>
+				<test.hibernate.dialect>org.hibernate.dialect.H2Dialect</test.hibernate.dialect>
+				<test.db.jdbcDriver>org.h2.Driver</test.db.jdbcDriver>
+				<test.db.connectionURL>jdbc:h2:~/db/test</test.db.connectionURL>
+				<test.db.username>sa</test.db.username>
+				<test.db.password />
+				<test.db.Type>H2</test.db.Type>
+				<test.db.generateDdl>true</test.db.generateDdl>
+				<test.db.groupId>com.h2database</test.db.groupId>
+				<test.db.artifactId>h2</test.db.artifactId>
+			</properties>
+		</profile>
 
-        <dependencies>
 
-            <dependency>
-                <groupId>org.openkoala.koalacommons</groupId>
-                <artifactId>koala-commons-exception</artifactId>
-                <version>2.0.0-SNAPSHOT</version>
-            </dependency>
+	</profiles>
 
-            <dependency>
-                <groupId>com.dayatang.commons</groupId>
-                <artifactId>dayatang-commons-utils</artifactId>
-                <version>${dayatang.commons.version}</version>
-            </dependency>
+	<dependencyManagement>
 
-            <dependency>
-                <groupId>com.dayatang.commons</groupId>
-                <artifactId>dayatang-commons-domain</artifactId>
-                <version>${dayatang.commons.version}</version>
-            </dependency>
+		<dependencies>
+			<!-- Java规范 -->
+			<dependency>
+				<groupId>javax.persistence</groupId>
+				<artifactId>persistence-api</artifactId>
+				<version>2.0</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.validation</groupId>
+				<artifactId>validation-api</artifactId>
+				<version>1.0.0.GA</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.ejb</groupId>
+				<artifactId>ejb-api</artifactId>
+				<version>3.0</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.transaction</groupId>
+				<artifactId>jta</artifactId>
+				<version>1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>2.5</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.2</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.1</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.faces</groupId>
+				<artifactId>jsf-impl</artifactId>
+				<version>1.2</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.ws.rs</groupId>
+				<artifactId>jsr311-api</artifactId>
+				<version>1.0</version>
+			</dependency>
+			<!-- Apache commons -->
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>2.6</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>1.4</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-dbutils</groupId>
+				<artifactId>commons-dbutils</artifactId>
+				<version>1.5</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>3.2.1</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>1.8.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>1.3.2</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-net</groupId>
+				<artifactId>commons-net</artifactId>
+				<version>2.2</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.4</version>
+			</dependency>
+			<!-- dddlib -->
+			<dependency>
+				<groupId>com.dayatang.commons</groupId>
+				<artifactId>dayatang-commons-utils</artifactId>
+				<version>${dayatang.commons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.dayatang.commons</groupId>
+				<artifactId>dayatang-commons-domain</artifactId>
+				<version>${dayatang.commons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.dayatang.commons</groupId>
+				<artifactId>dayatang-commons-db</artifactId>
+				<version>${dayatang.commons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.dayatang.commons</groupId>
+				<artifactId>dayatang-commons-spring</artifactId>
+				<version>${dayatang.commons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.dayatang.commons</groupId>
+				<artifactId>dayatang-commons-hibernate</artifactId>
+				<version>${dayatang.commons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.dayatang.commons</groupId>
+				<artifactId>dayatang-commons-querychannel</artifactId>
+				<version>${dayatang.commons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.dayatang.commons</groupId>
+				<artifactId>dayatang-commons-spring-test</artifactId>
+				<version>${dayatang.commons.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.dayatang.commons</groupId>
+				<artifactId>dayatang-commons-jpa</artifactId>
+				<version>${dayatang.commons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.dayatang.commons</groupId>
+				<artifactId>dayatang-commons-cache</artifactId>
+				<version>${dayatang.commons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.dayatang.commons</groupId>
+				<artifactId>dayatang-commons-dsrouter</artifactId>
+				<version>${dayatang.commons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.dayatang.commons</groupId>
+				<artifactId>dayatang-commons-excel</artifactId>
+				<version>${dayatang.commons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.dayatang.commons</groupId>
+				<artifactId>dayatang-commons-i18n</artifactId>
+				<version>${dayatang.commons.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.dayatang.commons</groupId>
+				<artifactId>dayatang-commons-rule</artifactId>
+				<version>${dayatang.commons.version}</version>
+			</dependency>
+			<!-- Springframework -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-expression</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
 
-            <dependency>
-                <groupId>com.dayatang.commons</groupId>
-                <artifactId>dayatang-commons-db</artifactId>
-                <version>${dayatang.commons.version}</version>
-            </dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
 
-            <dependency>
-                <groupId>com.dayatang.commons</groupId>
-                <artifactId>dayatang-commons-spring</artifactId>
-                <version>${dayatang.commons.version}</version>
-            </dependency>
+			<!-- 加入对spring security 支持 -->
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-core</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-taglibs</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
 
-            <dependency>
-                <groupId>com.dayatang.commons</groupId>
-                <artifactId>dayatang-commons-hibernate</artifactId>
-                <version>${dayatang.commons.version}</version>
-            </dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-acl</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<!-- 加入Spring对JPA的支持 -->
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>1.1.2.RELEASE</version>
+			</dependency>
 
-            <dependency>
-                <groupId>com.dayatang.commons</groupId>
-                <artifactId>dayatang-commons-querychannel</artifactId>
-                <version>${dayatang.commons.version}</version>
-            </dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>4.1.7.Final</version>
+			</dependency>
 
-            <dependency>
-                <groupId>com.dayatang.commons</groupId>
-                <artifactId>dayatang-commons-spring-test</artifactId>
-                <version>${dayatang.commons.version}</version>
-                <scope>test</scope>
-            </dependency>
+			<dependency>
+				<groupId>proxool</groupId>
+				<artifactId>proxool-cglib</artifactId>
+				<version>0.9.1</version>
+			</dependency>
 
-            <dependency>
-                <groupId>com.dayatang.commons</groupId>
-                <artifactId>dayatang-commons-jpa</artifactId>
-                <version>${dayatang.commons.version}</version>
-            </dependency>
+			<dependency>
+				<groupId>c3p0</groupId>
+				<artifactId>c3p0</artifactId>
+				<version>0.9.1.2</version>
+			</dependency>
 
-            <dependency>
-                <groupId>com.dayatang.commons</groupId>
-                <artifactId>dayatang-commons-cache</artifactId>
-                <version>${dayatang.commons.version}</version>
-            </dependency>
 
-            <dependency>
-                <groupId>com.dayatang.commons</groupId>
-                <artifactId>dayatang-commons-dsrouter</artifactId>
-                <version>${dayatang.commons.version}</version>
-            </dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>4.3.0.Final</version>
+			</dependency>
 
-            <dependency>
-                <groupId>com.dayatang.commons</groupId>
-                <artifactId>dayatang-commons-excel</artifactId>
-                <version>${dayatang.commons.version}</version>
-            </dependency>
 
-            <dependency>
-                <groupId>com.dayatang.commons</groupId>
-                <artifactId>dayatang-commons-i18n</artifactId>
-                <version>${dayatang.commons.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.dayatang.commons</groupId>
-                <artifactId>dayatang-commons-rule</artifactId>
-                <version>3.1-SNAPSHOT</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-orm</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-expression</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-jdbc</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-			
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context-support</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-aop</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-tx</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-beans</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-core</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-webmvc</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-web</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-test</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <!-- 加入Spring对JPA的支持 -->
-            <dependency>
-                <groupId>org.springframework.data</groupId>
-                <artifactId>spring-data-jpa</artifactId>
-                <version>1.1.2.RELEASE</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-entitymanager</artifactId>
-                <version>4.1.7.Final</version>
-            </dependency>
-
-            <dependency>
-                <groupId>proxool</groupId>
-                <artifactId>proxool-cglib</artifactId>
-                <version>0.9.1</version>
-            </dependency>
-
-            <dependency>
-                <groupId>c3p0</groupId>
-                <artifactId>c3p0</artifactId>
-                <version>0.9.1.2</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-dbutils</groupId>
-                <artifactId>commons-dbutils</artifactId>
-                <version>1.5</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>4.3.0.Final</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-dbcp</groupId>
-                <artifactId>commons-dbcp</artifactId>
-                <version>1.4</version>
-            </dependency>
-
-            <!-- 加入Struts2的支持 -->
-            <dependency>
-                <groupId>org.apache.struts</groupId>
-                <artifactId>struts2-core</artifactId>
-                <version>${struts2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.struts</groupId>
-                <artifactId>struts2-spring-plugin</artifactId>
-                <version>${struts2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.struts</groupId>
-                <artifactId>struts2-json-plugin</artifactId>
-                <version>${struts2.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.struts</groupId>
-                <artifactId>struts2-convention-plugin</artifactId>
-                <version>${struts2.version}</version>
-            </dependency>
+			<!-- 加入Struts2的支持 -->
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-core</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-spring-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-json-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-convention-plugin</artifactId>
+				<version>${struts2.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>com.ibm.icu</groupId>
 				<artifactId>icu4j</artifactId>
 				<version>4.8.1.1</version>
 			</dependency>
-            
-
-            <dependency>
-                <groupId>jstl</groupId>
-                <artifactId>jstl</artifactId>
-                <version>1.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>1.6.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
-                <version>1.6.1</version>
-            </dependency>
-
-            <dependency>
-                <groupId>javax.ejb</groupId>
-                <artifactId>ejb-api</artifactId>
-                <version>3.0</version>
-            </dependency>
 
 
-            <dependency>
-                <groupId>org.openkoala.koalacommons</groupId>
-                <artifactId>koala-commons-ftp</artifactId>
-                <version>${framework.version}</version>
-            </dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.6.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>1.6.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>4.1.7.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-annotations</artifactId>
+				<version>3.5.6-Final</version>
+			</dependency>
+			<dependency>
+				<groupId>hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>1.8.0.7</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz</artifactId>
+				<version>2.1.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.quartz-scheduler</groupId>
+				<artifactId>quartz-jboss</artifactId>
+				<version />
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>5.1.21</version>
+			</dependency>
 
-            <dependency>
-                <groupId>org.openkoala.koalacommons</groupId>
-                <artifactId>koala-commons-i18n</artifactId>
-                <version>${framework.version}</version>
-            </dependency>
+			<dependency>
+				<groupId>com.sun.faces</groupId>
+				<artifactId>jsf-api</artifactId>
+				<version>1.2</version>
+			</dependency>
 
-            <dependency>
-                <groupId>org.openkoala.koalacommons</groupId>
-                <artifactId>koala-commons-support</artifactId>
-                <version>${framework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-lang</groupId>
-                <artifactId>commons-lang</artifactId>
-                <version>2.6</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-core</artifactId>
-                <version>4.1.7.Final</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-annotations</artifactId>
-                <version>3.5.6-Final</version>
-            </dependency>
-            <dependency>
-                <groupId>hsqldb</groupId>
-                <artifactId>hsqldb</artifactId>
-                <version>1.8.0.7</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring</artifactId>
-                <version>2.5.6.SEC01</version>
-            </dependency>
-            <dependency>
-                <groupId>org.quartz-scheduler</groupId>
-                <artifactId>quartz</artifactId>
-                <version>2.1.3</version>
-            </dependency>
-            <dependency>
-                <groupId>org.quartz-scheduler</groupId>
-                <artifactId>quartz-jboss</artifactId>
-                <version></version>
-            </dependency>
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>5.1.21</version>
-            </dependency>
+			<dependency>
+				<groupId>org.hornetq</groupId>
+				<artifactId>hornetq-core</artifactId>
+				<version>2.2.10.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>org.antlr</groupId>
+				<artifactId>antlr-runtime</artifactId>
+				<version>3.1.1</version>
+			</dependency>
 
-            <dependency>
-                <groupId>com.sun.faces</groupId>
-                <artifactId>jsf-api</artifactId>
-                <version>1.2</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.faces</groupId>
-                <artifactId>jsf-impl</artifactId>
-                <version>1.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.geronimo.specs</groupId>
-                <artifactId>geronimo-servlet_2.5_spec</artifactId>
-                <version>1.2</version>
-                <scope>provided</scope>
-            </dependency>
+			<dependency>
+				<groupId>dom4j</groupId>
+				<artifactId>dom4j</artifactId>
+				<version>1.6.1</version>
+			</dependency>
 
-            <dependency>
-                <groupId>org.hornetq</groupId>
-                <artifactId>hornetq-core</artifactId>
-                <version>2.2.10.Final</version>
-            </dependency>
-            <dependency>
-                <groupId>org.antlr</groupId>
-                <artifactId>antlr-runtime</artifactId>
-                <version>3.1.1</version>
-            </dependency>
-            <dependency>
-                <groupId>antlr</groupId>
-                <artifactId>antlr</artifactId>
-                <version>2.7.6</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-collections</groupId>
-                <artifactId>commons-collections</artifactId>
-                <version>3.2.1</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-logging</groupId>
-                <artifactId>commons-logging</artifactId>
-                <version>1.1.1</version>
-            </dependency>
+			<dependency>
+				<groupId>javassist</groupId>
+				<artifactId>javassist</artifactId>
+				<version>3.12.1.GA</version>
+			</dependency>
 
-            <dependency>
-                <groupId>dom4j</groupId>
-                <artifactId>dom4j</artifactId>
-                <version>1.6.1</version>
-            </dependency>
+			<dependency>
+				<groupId>jsr94</groupId>
+				<artifactId>jsr94</artifactId>
+				<version>1.1</version>
+			</dependency>
 
-            <dependency>
-                <groupId>javassist</groupId>
-                <artifactId>javassist</artifactId>
-                <version>3.12.1.GA</version>
-            </dependency>
+			<dependency>
+				<groupId>org.drools</groupId>
+				<artifactId>drools-jsr94</artifactId>
+				<version>5.4.0.Final</version>
+				<scope>test</scope>
+			</dependency>
 
-            <dependency>
-                <groupId>jsr94</groupId>
-                <artifactId>jsr94</artifactId>
-                <version>1.1</version>
-            </dependency>
+			<dependency>
+				<groupId>org.drools</groupId>
+				<artifactId>knowledge-api</artifactId>
+				<version>${drools.version}</version>
+			</dependency>
 
-            <dependency>
-                <groupId>org.drools</groupId>
-                <artifactId>drools-jsr94</artifactId>
-                <version>5.4.0.Final</version>
-                <scope>test</scope>
-            </dependency>
+			<dependency>
+				<groupId>org.mvel</groupId>
+				<artifactId>mvel2</artifactId>
+				<version>2.1.3.Final</version>
+			</dependency>
 
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.8.1</version>
-            </dependency>
-            <dependency>
-                <groupId>proxool</groupId>
-                <artifactId>proxool</artifactId>
-                <version>0.9.1</version>
-            </dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.11</version>
+			</dependency>
+			<dependency>
+				<groupId>proxool</groupId>
+				<artifactId>proxool</artifactId>
+				<version>0.9.1</version>
+			</dependency>
 
-            <dependency>
-                <groupId>org.openkoala.koalacommons</groupId>
-                <artifactId>koala-commons-cache</artifactId>
-                <version>${framework.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.openkoala.koalacommons</groupId>
-                <artifactId>koala-commons-ui-surpport</artifactId>
-                <version>${framework.version}</version>
-            </dependency>
+			<!-- aspectJ -->
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>${aspectj.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjtools</artifactId>
+				<version>${aspectj.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${aspectj.version}</version>
+			</dependency>
 
-            <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>servlet-api</artifactId>
-                <version>2.5</version>
-                <scope>provided</scope>
-            </dependency>
+			<dependency>
+				<groupId>ojdbc</groupId>
+				<artifactId>ojdbc</artifactId>
+				<version>14</version>
+			</dependency>
+			<dependency>
+				<groupId>com.ibm</groupId>
+				<artifactId>db2jcc4</artifactId>
+				<version>4.7.112</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sourceforge.jtds</groupId>
+				<artifactId>jtds</artifactId>
+				<version>1.2.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-api</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-core</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-transports-http</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-jaxws</artifactId>
+				<version>${cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>wsdl4j</groupId>
+				<artifactId>wsdl4j</artifactId>
+				<version>1.6.3</version>
+			</dependency>
 
-            <dependency>
-                <groupId>javax.persistence</groupId>
-                <artifactId>persistence-api</artifactId>
-                <version>2.0</version>
-            </dependency>
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>1.3.168</version>
+			</dependency>
 
-            <dependency>
-                <groupId>javax.validation</groupId>
-                <artifactId>validation-api</artifactId>
-                <version>1.0.0.GA</version>
-            </dependency>
-
-            <!-- 加入对spring security 支持 -->
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-core</artifactId>
-                <version>${spring.security.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-web</artifactId>
-                <version>${spring.security.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-config</artifactId>
-                <version>${spring.security.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-taglibs</artifactId>
-                <version>${spring.security.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.security</groupId>
-                <artifactId>spring-security-acl</artifactId>
-                <version>${spring.security.version}</version>
-            </dependency>
-
-            <!-- aspectJ -->
-            <dependency>
-                <groupId>org.aspectj</groupId>
-                <artifactId>aspectjrt</artifactId>
-                <version>${aspectj.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.aspectj</groupId>
-                <artifactId>aspectjtools</artifactId>
-                <version>${aspectj.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.aspectj</groupId>
-                <artifactId>aspectjweaver</artifactId>
-                <version>${aspectj.version}</version>
-            </dependency>
-					
-            <dependency>
-                <groupId>ojdbc</groupId>
-                <artifactId>ojdbc</artifactId>
-                <version>14</version>
-            </dependency>
-            <dependency>
-                <groupId>com.ibm</groupId>
-                <artifactId>db2jcc4</artifactId>
-                <version>4.7.112</version>
-            </dependency>
-            <dependency>
-                <groupId>net.sourceforge.jtds</groupId>
-                <artifactId>jtds</artifactId>
-                <version>1.2.4</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-api</artifactId>
-                <version>2.6.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-transports-http</artifactId>
-                <version>2.6.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.cxf</groupId>
-                <artifactId>cxf-rt-frontend-jaxrs</artifactId>
-                <version>2.6.2</version>
-            </dependency>
-            <dependency>
-                <groupId>wsdl4j</groupId>
-                <artifactId>wsdl4j</artifactId>
-                <version>1.6.2</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.ws.rs</groupId>
-                <artifactId>jsr311-api</artifactId>
-                <version>1.0</version>
-            </dependency>
-					
-            <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <version>1.3.168</version>
-            </dependency>
-            
 			<dependency>
 				<groupId>org.mockito</groupId>
 				<artifactId>mockito-core</artifactId>
 				<version>1.9.5</version>
 				<scope>test</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>fastjson</artifactId>
 				<version>${fastjson.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.thoughtworks.xstream</groupId>
 				<artifactId>xstream</artifactId>
 				<version>1.4.4</version>
 			</dependency>
-			
+
 			<!-- mina -->
 			<dependency>
 				<groupId>org.apache.mina</groupId>
@@ -735,29 +716,178 @@
 				<artifactId>mina-integration-spring</artifactId>
 				<version>${mina.version}</version>
 			</dependency>
-			
-			<dependency>
-				<groupId>commons-beanutils</groupId>
-				<artifactId>commons-beanutils</artifactId>
-				<version>1.8.3</version>
-			</dependency>
-			
-			<dependency>
-				<groupId>javax.servlet.jsp</groupId>
-				<artifactId>jsp-api</artifactId>
-				<version>${jsp.api.version}</version>
-				<scope>provided</scope>
-			</dependency>
+
+
 			<dependency>
 				<groupId>org.apache.httpcomponents</groupId>
 				<artifactId>httpclient</artifactId>
 				<version>4.2.5</version>
 			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-core-asl</artifactId>
+				<version>1.9.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version>1.9.0</version>
+			</dependency>
+			<dependency>
+				<groupId>net.sf.ehcache</groupId>
+				<artifactId>ehcache-core</artifactId>
+				<version>2.0.1</version>
+			</dependency>
+			<dependency>
+				<groupId>jaxen</groupId>
+				<artifactId>jaxen</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ant</groupId>
+				<artifactId>ant</artifactId>
+				<version>1.7.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ftpserver</groupId>
+				<artifactId>ftplet-api</artifactId>
+				<version>1.0.6</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ftpserver</groupId>
+				<artifactId>ftpserver-core</artifactId>
+				<version>1.0.6</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.tomcat</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>${tomcat.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.velocity</groupId>
+				<artifactId>velocity</artifactId>
+				<version>1.7</version>
+			</dependency>
+			<dependency>
+				<groupId>org.freemarker</groupId>
+				<artifactId>freemarker</artifactId>
+				<version>2.3.20</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version>3.1.1</version>
+			</dependency>
 
-        </dependencies>
-	
-    </dependencyManagement>
-    <build>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss</groupId>
+				<artifactId>jboss-vfs</artifactId>
+				<version>3.1.0.Final</version>
+			</dependency>
+
+			<dependency>
+				<groupId>joda-time</groupId>
+				<artifactId>joda-time</artifactId>
+				<version>2.2</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.sdicons.jsontools</groupId>
+				<artifactId>jsontools-core</artifactId>
+				<version>1.7</version>
+			</dependency>
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-api-mockito</artifactId>
+				<version>1.5.1</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-module-junit4</artifactId>
+				<version>1.5.1</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib</artifactId>
+				<version>2.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.btm</groupId>
+				<artifactId>btm</artifactId>
+				<version>2.1.3</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.janino</groupId>
+				<artifactId>janino</artifactId>
+				<version>2.5.16</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hyperic</groupId>
+				<artifactId>sigar</artifactId>
+				<version>1.6.5.132</version>
+			</dependency>
+			<dependency>
+				<groupId>asm</groupId>
+				<artifactId>asm-all</artifactId>
+				<version>2.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-embedder</artifactId>
+				<version>3.0.5</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.sonatype.aether</groupId>
+				<artifactId>aether-connector-asynchttpclient</artifactId>
+				<version>${aether.connector.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.sonatype.aether</groupId>
+				<artifactId>aether-connector-wagon</artifactId>
+				<version>${aether.connector.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.sonatype.aether</groupId>
+				<artifactId>aether-connector-file</artifactId>
+				<version>${aether.connector.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.puppycrawl.tools</groupId>
+				<artifactId>checkstyle</artifactId>
+				<version>5.6</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.sourceforge.pmd</groupId>
+				<artifactId>pmd</artifactId>
+				<version>5.0.4</version>
+			</dependency>
+			
+			<dependency>
+						<groupId>com.google.code.javaparser</groupId>
+						<artifactId>javaparser</artifactId>
+						<version>1.0.9</version>
+		    </dependency>
+					
+		</dependencies>
+
+	</dependencyManagement>
+	<build>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -770,84 +900,107 @@
 				<filtering>true</filtering>
 			</testResource>
 		</testResources>
-	
-        <pluginManagement>
-            <plugins>
-			<!--支持src/main/resouces下的二进制文件复制-->
-			 <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <configuration>
-          <nonFilteredFileExtensions>
-            <nonFilteredFileExtension>dll</nonFilteredFileExtension>
-            <nonFilteredFileExtension>so</nonFilteredFileExtension>
-			<nonFilteredFileExtension>dylib</nonFilteredFileExtension>
-          </nonFilteredFileExtensions>
-        </configuration>
-      </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <source>1.6</source>
-                        <target>1.6</target>
-                        <encoding>UTF-8</encoding>
-                    </configuration>
-                </plugin>
-                <!-- 要将源码放上去，需要加入这个插件 -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>2.2.1</version>
-                    <configuration>
-                        <attach>true</attach>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <phase>compile</phase>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin> 
-                    <groupId>org.mortbay.jetty</groupId>  
-                    <artifactId>jetty-maven-plugin</artifactId>
-                    <version>8.1.12.v20130726</version>  
-                    <configuration> 
-                        <scanIntervalSeconds>10</scanIntervalSeconds>  
-                        <webApp> 
-                            <contextPath>/</contextPath> 
-                        </webApp> 
-                    </configuration> 
-                </plugin> 
-            </plugins>
-                    
-        </pluginManagement>
-                    
-        <plugins>
-            <!-- 要将源码放上去，需要加入这个插件 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <configuration>
-                    <attach>true</attach>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>2.4</version>
+					<configuration>
+						<classesDirectory>target/classes/</classesDirectory>
+						<archive>
+							<addMavenDescriptor>false</addMavenDescriptor>
+						</archive>
+					</configuration>
+				</plugin>
+				<!--支持src/main/resouces下的二进制文件复制 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<configuration>
+						<nonFilteredFileExtensions>
+							<nonFilteredFileExtension>dll</nonFilteredFileExtension>
+							<nonFilteredFileExtension>so</nonFilteredFileExtension>
+							<nonFilteredFileExtension>dylib</nonFilteredFileExtension>
+						</nonFilteredFileExtensions>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+				<!-- 要将源码放上去，需要加入这个插件 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>2.2.1</version>
+					<configuration>
+						<attach>true</attach>
+					</configuration>
+					<executions>
+						<execution>
+							<phase>compile</phase>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.mortbay.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>8.1.12.v20130726</version>
+					<configuration>
+						<scanIntervalSeconds>10</scanIntervalSeconds>
+						<webApp>
+							<contextPath>/</contextPath>
+						</webApp>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.4.1</version>
+					<configuration>
+						<allowTimestampedSnapshots>true</allowTimestampedSnapshots>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+					</configuration>
+				</plugin>
+			</plugins>
+
+		</pluginManagement>
+
+		<plugins>
+			<!-- 要将源码放上去，需要加入这个插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<configuration>
+					<attach>true</attach>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
 				<version>3.3</version>
 				<configuration>
+					<locales>zh_CN</locales>
+					<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+					<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 					<reportPlugins>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -918,9 +1071,9 @@
 							<artifactId>maven-changes-plugin</artifactId>
 							<version>2.9</version>
 							<configuration>
-								<jiraDatePattern>yyyy-MM-dd</jiraDatePattern>
-								<jiraUser>${jira.username}</jiraUser>
-								<jiraPassword>${jira.password}</jiraPassword>
+								<tracUser>${trac.username}</tracUser>
+								<tracPassword>${trac.password}</tracPassword>
+								<query>status!=closed&amp;order=type</query>
 								<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 							</configuration>
 						</plugin>
@@ -965,7 +1118,7 @@
 					</reportPlugins>
 				</configuration>
 			</plugin>
-        </plugins>
+		</plugins>
 		<extensions>
 			<extension>
 				<groupId>org.apache.maven.scm</groupId>
@@ -988,6 +1141,6 @@
 				<version>2.4</version>
 			</extension>
 		</extensions>
-		
-    </build>
+
+	</build>
 </project>

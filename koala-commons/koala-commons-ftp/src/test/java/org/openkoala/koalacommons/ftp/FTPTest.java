@@ -3,8 +3,8 @@ package org.openkoala.koalacommons.ftp;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.io.FileUtils;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.ftpserver.FtpServer;
 import org.apache.ftpserver.FtpServerFactory;
 import org.apache.ftpserver.ftplet.Authority;
@@ -33,13 +33,15 @@ public class FTPTest {
 
     private static FtpUtil ftpUtil;
     private static FtpServer server;
-    private static String ftpUserDir = System.getProperty("java.io.tmpdir");
+    
+    //Ftp根目录
+    private static String ftpFsRoot = System.getProperty("java.io.tmpdir");
 
     /**
      * 初始化一个嵌入式的FTP Server
      */
     @BeforeClass
-    public static void createEmbeddingFtp() throws Exception {
+    public static void init() throws Exception {
         // create and start the server
         server = createFtpServer();
         server.start();
@@ -80,7 +82,7 @@ public class FTPTest {
         user.setEnabled(true);
         user.setName("andy");
         user.setPassword("andy");
-        user.setHomeDirectory(ftpUserDir);
+        user.setHomeDirectory(ftpFsRoot);
         user.setAuthorities(createAuths());
         return user;
     }
@@ -98,15 +100,16 @@ public class FTPTest {
      */
     @Before
     public void beforeTest() throws Exception {
-        File dir = new File(ftpUserDir, "dir1");
+        File dir = new File(ftpFsRoot, "dir1");
         if (!dir.exists()) {
             dir.mkdirs();
         }
         File file = new File(dir, "users.properties");
-        if (!file.exists()) {
-            String filePath = FTPTest.class.getResource("/users.properties").getFile();
-            FileUtils.copyFileToDirectory(new File(filePath), dir);
+        if (file.exists() && !file.delete()) {
+        	throw new RuntimeException("无法删除文件" + file);
         }
+        String filePath = FTPTest.class.getResource("/users.properties").getFile();
+        FileUtils.copyFileToDirectory(new File(filePath), dir);
     }
     
     /**
@@ -155,8 +158,15 @@ public class FTPTest {
      */
     @Test
     public void testDownloadFile() throws FtpException {
-    	System.out.println(System.getProperty("java.io.tmpdir"));
-        ftpUtil.downLoadFile("/dir1", "users.properties", System.getProperty("java.io.tmpdir"));
+    	String userDir = System.getProperty("user.dir");
+    	String localDir = new File(userDir, "target").getAbsolutePath();
+        File file = new File(localDir, "users.properties");
+        if (file.exists() && !file.delete()) {
+        	throw new RuntimeException("无法删除文件" + file);
+        }
+        ftpUtil.downLoadFile("/dir1", "users.properties", localDir);
+        file = new File(new File(localDir, "dir1"), "users.properties");
+        Assert.assertTrue(file.exists());
     }
 
     /**
@@ -164,15 +174,19 @@ public class FTPTest {
      *
      * @throws FtpException
      */
-    @Ignore
     @Test
     public void testUploadZipFile() throws FtpException {
         /**
-         * 第1个参数：表示FTP服务器上的目录 第2个参数：表示本地文件系统中的一个ZIP文件
+         * 第1个参数：表示FTP服务器上的目录 
+         * 第2个参数：表示本地文件系统中的一个ZIP文件
          * 第3个参数：表示ZIP文件上传到FTP服务器上的哪个目录
          */
+        System.out.println(ftpFsRoot);
         String filePath = getClass().getResource("/t1.zip").getFile();
-        ftpUtil.uploadZipFile("/", new File(filePath), "t1");
+        ftpUtil.uploadZipFile("/dir1", new File(filePath), "t1");
+        File file = new File(new File(ftpFsRoot, "/dir1"), "t1");
+        Assert.assertTrue(file.exists());
+        Assert.assertTrue(ftpUtil.isDirectory("dir1/t1"));
     }
 
     /**
@@ -217,7 +231,7 @@ public class FTPTest {
 
     private void uploadFile(String dir, String filePath) throws FtpException, RuntimeException {
         String fileShortName = new File(filePath).getName();
-        File file = new File(ftpUserDir, fileShortName);
+        File file = new File(ftpFsRoot, fileShortName);
         if (file.exists()) {
             if (!file.delete()) {
                 throw new RuntimeException("Cannot delete file: " + file);
