@@ -27,6 +27,7 @@
 			<param-value>classpath:koala-spring-servlet.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
+    </servlet>
 	<!-- ss3过滤器链  -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
