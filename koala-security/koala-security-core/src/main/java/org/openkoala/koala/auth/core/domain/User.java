@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -12,9 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.NoResultException;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.openkoala.koala.auth.core.domain.infra.jpa.UserRepository;
-
 import com.dayatang.domain.InstanceFactory;
 import com.dayatang.utils.DateUtils;
 
@@ -127,11 +123,6 @@ public class User extends Identity {
 		} else if (!getName().equals(other.getName()))
 			return false;
 		return true;
-	}
-
-	/* 定义领域接口 */
-	static UserRepository getUserRepository() {
-		return InstanceFactory.getInstance(UserRepository.class);
 	}
 
 	public static User findByUserAccount(String userAccount) {
