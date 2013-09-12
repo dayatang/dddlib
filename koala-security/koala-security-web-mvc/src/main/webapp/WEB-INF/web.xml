@@ -17,8 +17,13 @@
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>
-	
-	<!-- ss3过滤器链  -->
+	<!-- 
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	 -->
+	<!-- ss3过滤器链 -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -28,35 +33,16 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	<servlet>
-		<servlet-name>spring</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:koala-spring-servlet.xml</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>spring</servlet-name>
-		<url-pattern>*.koala</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>DBInit</servlet-name>
-		<servlet-class>org.openkoala.koala.dbinit.SecurityDBInit</servlet-class>
-		<init-param>
-			<param-name>type</param-name>
-			<param-value>SpringMVC</param-value>
-		</init-param>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>DBInit</servlet-name>
-		<url-pattern>/dbinit</url-pattern>
-	</servlet-mapping>
-
+	<!-- 加入struts2的支持 -->
+	<filter>
+		<filter-name>action2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>action2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<!-- Spring Listener -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -77,8 +63,9 @@
 	</error-page>
 
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
-
+	
+	
 	<distributable />
 </web-app>

@@ -36,7 +36,7 @@
     <property name="dbType">ORACLE</property>
     <property name="hbm2ddl">update</property>
     <property name="showSql">true</property>
-    <property name="dialect">org.hibernate.dialect.OracleDialect</property>
+    <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
     <property name="jdbcDriver">oracle.jdbc.OracleDriver</property>
     <property name="connectionURL">jdbc:oracle:thin:@localhost:1521:oa</property>
     <property name="username">root</property>

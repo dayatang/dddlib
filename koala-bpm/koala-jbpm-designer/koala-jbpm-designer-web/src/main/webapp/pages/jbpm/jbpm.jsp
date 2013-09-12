@@ -3,7 +3,6 @@
 <%
     String gunvorServerUrl = org.openkoala.koala.jbpm.util.EnvConfigHelper.getInstance().getProperty("gunvor.server.url");
 %>
-
 <head>
 	<title>流程管理</title>
 </head>
@@ -161,13 +160,14 @@
     			alert("新增成功");
     			var data = [ { text: packageName,children:[],type:'package'}] ;
     			manager.append(actionNode.target, data);
+    			newPackage.hidden();
+    			
     		}
 	   });
     });
     
     $('#addPackageCancel').click(function(){
     	newPackage.hidden();
-    	
     });
     
     

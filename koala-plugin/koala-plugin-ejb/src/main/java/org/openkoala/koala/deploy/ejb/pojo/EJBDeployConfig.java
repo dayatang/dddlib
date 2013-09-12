@@ -30,6 +30,8 @@ public class EJBDeployConfig implements Serializable {
 	
 	private static final String PARAM_SERVER="-Dserver";
 	
+	private static final String PARAM_PROFILE="-Dprofile";
+	
 	public static EJBDeployConfig getEJBDeployConfig(String args[]){
 		
 		if(args.length==0){
@@ -46,10 +48,13 @@ public class EJBDeployConfig implements Serializable {
 			if(arg.startsWith(PARAM_PORT)){
 				config.port = arg.substring(arg.indexOf(PARAM_PORT)+PARAM_PORT.length()+1);
 			}
-			//当前不支持此参数，只支持JBOSS_EAP_4服务器
-//			if(arg.startsWith(PARAM_SERVER)){
-//				config.server = arg.substring(arg.indexOf(PARAM_SERVER)+PARAM_SERVER.length()+1);
-//			}
+			//当前不支持此参数，只支持JBOSS_EAP_4,JBOSS_EAL_6,JBOSS_AS_7服务器
+			if(arg.startsWith(PARAM_SERVER)){
+				config.server = arg.substring(arg.indexOf(PARAM_SERVER)+PARAM_SERVER.length()+1);
+			}
+			if(arg.startsWith(PARAM_PROFILE)){
+				config.profile = arg.substring(arg.indexOf(PARAM_PROFILE)+PARAM_PROFILE.length()+1);
+			}
 		}
 		return config;
 	}
@@ -76,6 +81,7 @@ public class EJBDeployConfig implements Serializable {
 	
 	private String filePath;
 	
+	private String profile;
 	
 	public EJBDeployConfig() {
 		super();
@@ -119,5 +125,15 @@ public class EJBDeployConfig implements Serializable {
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+	
+	
 	
 }

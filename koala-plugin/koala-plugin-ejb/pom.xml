@@ -54,7 +54,7 @@
 	</dependencies>
 	<build>
 		<plugins>
-		<!--	<plugin>
+			<!-- <plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
 					<appendAssemblyId>false</appendAssemblyId>
