@@ -18,4 +18,19 @@
         <rtexprvalue>false</rtexprvalue>
     </attribute>
   </tag>
+  
+  <tag>
+  	<name>authorize</name>
+  	<tag-class>org.openkoala.koala.auth.web.AuthorizeTag</tag-class>
+  	<body-content>scriptless</body-content>
+  	<attribute>
+  		<name>ifAllGranted</name>
+  	</attribute>
+  	<attribute>
+  		<name>ifAnyGranted</name>
+  	</attribute>
+  	<attribute>
+  		<name>ifNotGranted</name>
+  	</attribute>
+  </tag>
 </taglib>

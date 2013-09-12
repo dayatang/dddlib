@@ -9,6 +9,7 @@ import javax.servlet.jsp.tagext.TagSupport;
  * @since 2013-02-25 14:41
  *
  */
+@Deprecated
 public class PermissionTag extends TagSupport {
 	
 	private static final long serialVersionUID = -4667702276984898787L;
