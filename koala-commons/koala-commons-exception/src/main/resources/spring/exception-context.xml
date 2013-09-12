@@ -13,7 +13,7 @@
 	default-autowire="byName">
 	
 	<!--AOP -->
-	<bean id="appExceptionInterceptor" class="org.openkoala.exception.surpport.springaop.AppExceptionInterceptor" />
+	<bean id="appExceptionInterceptor" class="org.openkoala.exception.support.springaop.AppExceptionInterceptor" />
     <aop:config>
         <aop:aspect ref="appExceptionInterceptor">
             <aop:pointcut id="ex-pointcut" expression="execution(* com.openkoala.examine.application.*AppalicationImpl.*(..))" />

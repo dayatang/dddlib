@@ -1,5 +1,5 @@
 /**
- * @(#)KoalaUISurpportApplication.java
+ * @(#)KoalaUISupportApplication.java
  * 
  * Copyright csair.All rights reserved.
  * This software is the XXX system. 
@@ -38,7 +38,7 @@ import org.openkoala.ui.base.datamodel.BaseVo;
 import org.openkoala.ui.base.datamodel.TreeNodeVo;
 
 /**
- * 类    名：KoalaUISurpportApplication.java
+ * 类    名：KoalaUISupportApplication.java
  *   
  * 功能描述：具体功能做描述。	
  *  
@@ -54,7 +54,7 @@ import org.openkoala.ui.base.datamodel.TreeNodeVo;
  * 修 改 者    修改日期     文件版本   修改说明	
  */
 
-public interface KoalaUISurpportApplication {
+public interface KoalaUISupportApplication {
 
     /**
      * 查询所有下拉框选择项

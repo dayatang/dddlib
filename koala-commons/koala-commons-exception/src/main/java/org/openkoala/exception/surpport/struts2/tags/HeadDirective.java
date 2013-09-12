@@ -1,4 +1,4 @@
-package org.openkoala.exception.surpport.struts2.tags;
+package org.openkoala.exception.support.struts2.tags;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

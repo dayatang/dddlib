@@ -133,7 +133,7 @@ public class ServerStatusCollectorTask extends BaseMonitorTask {
 		ServerStatusVo status = ServerStatusCollector.getServerAllStatus();
 		if (status == null){
 			checkTimer.cancel();
-			nodataTip = "not sigar plugin surpport!";
+			nodataTip = "not sigar plugin support!";
 			return;
 		}
 		// 内存 转换为百分百值

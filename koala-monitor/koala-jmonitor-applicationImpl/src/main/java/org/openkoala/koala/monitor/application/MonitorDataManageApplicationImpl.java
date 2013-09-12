@@ -243,7 +243,7 @@ private QueryChannelService queryChannel;
 		if(Constant.MONITOR_TYPE_METHOD.equals(monitorType)){
 			queryStr = " SELECT stackTracesDetails FROM MethodDetails where ID = ? ";
 		}else{
-			throw new RuntimeException("not surpport monitorType:"+monitorType);
+			throw new RuntimeException("not support monitorType:"+monitorType);
 		}
 
 		String result = getQueryChannelService().querySingleResult(queryStr, new Object[]{Long.parseLong(detailsId)});

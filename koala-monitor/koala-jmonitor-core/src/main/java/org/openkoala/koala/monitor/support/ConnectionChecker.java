@@ -61,7 +61,7 @@ public class ConnectionChecker {
         }else if(SERVICE_TYPE_DATABSSE.equalsIgnoreCase(service.getType())){
         	return checkDatabase(service);
         }
-        throw new RuntimeException("not surpport");
+        throw new RuntimeException("not support");
 	}
 	
     /**

@@ -16,7 +16,7 @@
     createListSelect:function($origElement,options){
     	var params = serializeJSON(options);
     	$.ajax({
-            url : "/koalaUISurpport?_type=dropdown&"+params,
+            url : "/koalaUISupport?_type=dropdown&"+params,
             datatype:"json",
             cache:true,
             complete:function(response){
@@ -35,7 +35,7 @@
  	     selectBoxHeight: 200, 
  	     valueField: 'text', 
  	     treeLeafOnly: false,
- 	     tree: { url: '/koalaUISurpport?_type=dropdown&'+params}
+ 	     tree: { url: '/koalaUISupport?_type=dropdown&'+params}
  	   }); 
  	 },
  	//创建表格下拉框
@@ -88,7 +88,7 @@
   //下拉框事件
   function cascadeSelectEvent(options,cascadeFieldId,parentVal){
 	  var params = serializeJSON(options,'parentId');
-	  var url = "/koalaUISurpport?_type=dropdown&"+params + "&parentId="+parentVal;
+	  var url = "/koalaUISupport?_type=dropdown&"+params + "&parentId="+parentVal;
 	  $.ajax({
           url : url,
           datatype:"json",
@@ -138,11 +138,11 @@
     	$origElement.ligerTree({ 
     		checkbox:_options.checkbox,
             nodeWidth: _options.nodeWidth || 100,
-            url: '/koalaUISurpport?_type=tree&'+params,
+            url: '/koalaUISupport?_type=tree&'+params,
             onSuccess:function(){},
             onClick:function(node){
             	if($origElement.ligerGetTreeManager().hasChildren(node))return;
-            	var url = '/koalaUISurpport?_type=tree&' + params + '&parentId='+ node.data.id;
+            	var url = '/koalaUISupport?_type=tree&' + params + '&parentId='+ node.data.id;
             	$origElement.ligerGetTreeManager().loadData(node.target, url);
             }
         });
