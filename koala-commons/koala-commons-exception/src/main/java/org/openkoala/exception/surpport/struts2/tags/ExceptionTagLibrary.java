@@ -1,4 +1,4 @@
-package org.openkoala.exception.surpport.struts2.tags;
+package org.openkoala.exception.support.struts2.tags;
 
 import java.util.Arrays;
 import java.util.List;

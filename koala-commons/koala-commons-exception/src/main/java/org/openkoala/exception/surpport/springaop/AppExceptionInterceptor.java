@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.openkoala.exception.surpport.springaop;
+package org.openkoala.exception.support.springaop;
 
 import java.lang.reflect.Method;
 

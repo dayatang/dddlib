@@ -1,12 +1,12 @@
 /**
- * @(#)KoalaUISurpport.java
+ * @(#)KoalaUISupport.java
  * 
  * Copyright csair.All rights reserved.
  * This software is the XXX system. 
  *
  * @Version: 1.0
  * @JDK: jdk jdk1.6.0_10
- * @Module: ui-surpport
+ * @Module: ui-support
  */ 
  /*- 				History
  **********************************************
@@ -44,7 +44,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.openkoala.ui.base.datamodel.BaseVo;
 import org.openkoala.ui.base.datamodel.TreeNodeVo;
-import org.openkoala.ui.service.KoalaUISurpportApplication;
+import org.openkoala.ui.service.KoalaUISupportApplication;
 
 import com.dayatang.domain.InstanceFactory;
 import com.sdicons.json.mapper.JSONMapper;
@@ -52,7 +52,7 @@ import com.sdicons.json.mapper.MapperException;
 
 
 /**
- * 类    名：KoalaUISurpport.java
+ * 类    名：KoalaUISupport.java
  *   
  * 功能描述：UI组件数据访问支持	
  *  
@@ -68,20 +68,20 @@ import com.sdicons.json.mapper.MapperException;
  * 修 改 者    修改日期     文件版本   修改说明	
  */
 
-public class KoalaUISurpport extends HttpServlet {
+public class KoalaUISupport extends HttpServlet {
 
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
     
-    private KoalaUISurpportApplication koalaUISurpportApplication;
+    private KoalaUISupportApplication koalaUISupportApplication;
 
-    public KoalaUISurpportApplication getKoalaUISurpportApplication() {
-        if (koalaUISurpportApplication == null) {
-        	koalaUISurpportApplication = InstanceFactory.getInstance(KoalaUISurpportApplication.class);
+    public KoalaUISupportApplication getKoalaUISupportApplication() {
+        if (koalaUISupportApplication == null) {
+        	koalaUISupportApplication = InstanceFactory.getInstance(KoalaUISupportApplication.class);
         }
-        return koalaUISurpportApplication;
+        return koalaUISupportApplication;
     }
 
     @Override
@@ -120,7 +120,7 @@ public class KoalaUISurpport extends HttpServlet {
             //是否延时加载子节点
             boolean lazy = Boolean.parseBoolean(request.getParameter("lazy"));
             String filterParams = request.getParameter("filter");
-            TreeNodeVo treeNodeVo = getKoalaUISurpportApplication().queryTreeNodes(beanName, beanFields,parentId,filterParams,lazy);
+            TreeNodeVo treeNodeVo = getKoalaUISupportApplication().queryTreeNodes(beanName, beanFields,parentId,filterParams,lazy);
             
             String json = JSONMapper.toJSON(treeNodeVo.getChildren()).render(false);
             
@@ -147,7 +147,7 @@ public class KoalaUISurpport extends HttpServlet {
             String parentId = request.getParameter("parentId");
             String filterParams = request.getParameter("filter");
             if ("list".equals(dropdownStyle)) {
-                List<BaseVo> options = getKoalaUISurpportApplication().queryAllOptions(beanName, beanFields, parentId, filterParams);
+                List<BaseVo> options = getKoalaUISupportApplication().queryAllOptions(beanName, beanFields, parentId, filterParams);
                 json = JSONMapper.toJSON(options).render(false);
             } else if ("tree".equals(dropdownStyle)) {
                 buildTree(request, response);

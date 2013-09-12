@@ -103,7 +103,7 @@ public class KoalaDateUtils {
 					format = new SimpleDateFormat("yyyyMMddHHmmss");
 				}
 			}else{
-				throw new RuntimeException("Not Surpport Date String format!");
+				throw new RuntimeException("Not Support Date String format!");
 			}
 
 			Date date = format.parse(_dateStr);

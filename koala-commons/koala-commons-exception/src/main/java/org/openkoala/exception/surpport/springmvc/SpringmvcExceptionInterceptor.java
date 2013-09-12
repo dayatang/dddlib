@@ -1,4 +1,4 @@
-package org.openkoala.exception.surpport.springmvc;
+package org.openkoala.exception.support.springmvc;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

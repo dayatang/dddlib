@@ -1,5 +1,5 @@
 /**
- * @(#)KoalaUISurpportApplicationImpl.java
+ * @(#)KoalaUISupportApplicationImpl.java
  * 
  * Copyright csair.All rights reserved.
  * This software is the XXX system. 
@@ -45,7 +45,7 @@ import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.service.QueryChannelService;
 
 /**
- * 类    名：KoalaUISurpportApplicationImpl.java
+ * 类    名：KoalaUISupportApplicationImpl.java
  *   
  * 功能描述：具体功能做描述。    
  *  
@@ -61,7 +61,7 @@ import com.dayatang.querychannel.service.QueryChannelService;
  * 修 改 者    修改日期     文件版本   修改说明    
  */
 //@Named
-public class KoalaUISurpportApplicationImpl implements KoalaUISurpportApplication{
+public class KoalaUISupportApplicationImpl implements KoalaUISupportApplication{
 
     private static QueryChannelService queryChannelService;
 	

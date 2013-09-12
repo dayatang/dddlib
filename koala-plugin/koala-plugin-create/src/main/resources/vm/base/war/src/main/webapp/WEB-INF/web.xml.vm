@@ -111,13 +111,13 @@
     
 
     <servlet>
-		<servlet-name>koalaUISurpport</servlet-name>
-		<servlet-class>org.openkoala.ui.base.KoalaUISurpport</servlet-class>
+		<servlet-name>koalaUISupport</servlet-name>
+		<servlet-class>org.openkoala.ui.base.KoalaUISupport</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>koalaUISurpport</servlet-name>
-		<url-pattern>/koalaUISurpport</url-pattern>
+		<servlet-name>koalaUISupport</servlet-name>
+		<url-pattern>/koalaUISupport</url-pattern>
 	</servlet-mapping>
 	
 	<error-page>

@@ -1,4 +1,4 @@
-package org.openkoala.exception.surpport.struts2;
+package org.openkoala.exception.support.struts2;
 
 import java.util.List;
 
