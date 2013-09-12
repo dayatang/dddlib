@@ -106,7 +106,7 @@
 		
 		<dependency>
          <groupId>org.openkoala.koalacommons</groupId>
-         <artifactId>koala-commons-ui-surpport</artifactId>
+         <artifactId>koala-commons-ui-support</artifactId>
        </dependency>
 		
 		<!-- 加入对查询通道的依赖 -->
@@ -209,7 +209,7 @@
 		
 	   <dependency>
          <groupId>org.openkoala.koalacommons</groupId>
-         <artifactId>koala-commons-ui-surpport</artifactId>
+         <artifactId>koala-commons-ui-support</artifactId>
        </dependency>
        
          <dependency>

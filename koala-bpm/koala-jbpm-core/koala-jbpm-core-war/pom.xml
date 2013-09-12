@@ -65,7 +65,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.openkoala.koalacommons</groupId>
-			<artifactId>koala-commons-ui-surpport</artifactId>
+			<artifactId>koala-commons-ui-support</artifactId>
 	        <version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
