@@ -3,25 +3,38 @@ package org.openkoala.opencis.jira.service.impl;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Properties;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openkoala.opencis.jira.service.JiraProjectInfo;
 import org.openkoala.opencis.jira.service.JiraRoleInfo;
 import org.openkoala.opencis.jira.service.JiraUserInfo;
 
+/**
+ * 如果不能访问jira服务端，则不测试，抛出警告
+ * @author lambo
+ *
+ */
 public class JiraOperateServiceImplTest {
 
 	private JiraOperateServiceImpl jiraOperateService = new JiraOperateServiceImpl();
 	private JiraProjectInfo projectInfo;
 	private JiraUserInfo userInfo;
 	private JiraRoleInfo roleInfo;
+	
 	/**管理员登陆信息**/
-	private String serverAddress = "http://localhost:8080";
-	private String adminUserName = "lishibin";
-	private String adminPassword = "87809237";
+	private static InputStream inputFile = 
+			new JiraOperateServiceImplTest().getClass().getResourceAsStream("/loginToJiraConfig.properties");
+	private static String serverAddress;// = "http://localhost:8080"
+	private static String adminUserName;// = "lishibin"
+	private static String adminPassword;// = "87809237"
 	/**针对创建项目**/
 	private String projectKey = "KEYTESt";
 	private String projectName = "projectUnitTest";
@@ -35,6 +48,20 @@ public class JiraOperateServiceImplTest {
 	/**针对创建角色**/
 	private String roleName = "roleName";
 	private String typeDesc = "角色描述";
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws IOException{
+		Properties p = new Properties();
+		p.load(inputFile);
+		serverAddress = p.getProperty("serverAddress");
+		adminUserName = p.getProperty("adminUserName");
+		adminPassword = p.getProperty("adminPassword");
+	}
+	
+	@AfterClass
+	public static void tearDownAfterClass() throws IOException{
+		inputFile.close();
+	}
 
 	@Before
 	public void setUp() throws Exception {

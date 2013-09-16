@@ -1,5 +1,11 @@
 package org.openkoala.opencis.jira.service;
 
+import org.apache.commons.lang.StringUtils;
+import org.openkoala.opencis.jira.service.impl.ProjectKeyBlankException;
+import org.openkoala.opencis.jira.service.impl.ProjectKeyLengthNotBetweenTwoAndTenCharacterLettersException;
+import org.openkoala.opencis.jira.service.impl.ProjectKeyNotAllCharacterLettersException;
+import org.openkoala.opencis.jira.service.impl.ProjectLeadBlankException;
+
 public class JiraProjectInfo extends JiraLoginInfo{
 	private static final long serialVersionUID = -2012309131315178162L;
 
@@ -59,6 +65,43 @@ public class JiraProjectInfo extends JiraLoginInfo{
 		this.projectName = projectName;
 		this.projectLead = projectLead;
 		this.desc = desc;
+	}
+	
+	/**
+	 * 检查登陆信息和项目信息是否为空
+	 */
+	@Override
+	public boolean checkNotBlank() {
+		super.checkNotBlank();
+		if(StringUtils.isBlank(projectKey)){//StringUtils.isBlank(str)
+			throw new ProjectKeyBlankException("project key不能为空！");
+		}
+		
+		projectKey = checkProjectKeyAndTurnToUppercase();
+		
+		if(StringUtils.isBlank(projectLead)){
+			throw new ProjectLeadBlankException("项目负责人不能为空！");
+		}
+		return true;
+	}
+	
+	/**
+	 * 检查project key 必须都是英文字母，且必须都大写（由代码负责转换），且必须至少2个字母
+	 * @param projectKey
+	 */
+	private String checkProjectKeyAndTurnToUppercase(){
+		if(projectKey.length() < 2 || projectKey.length() > 10){
+			throw new ProjectKeyLengthNotBetweenTwoAndTenCharacterLettersException(
+					"project key '" + projectKey + "' 长度必须为2-10个英文字母！");
+		}
+		for(int i=0; i<projectKey.length(); i++){
+			char c = projectKey.charAt(i);
+			if(!((c>=65 && c<=90) || (c>=97 && c<=120))){
+				throw new ProjectKeyNotAllCharacterLettersException(
+						"project key '" + projectKey + "' 必须都是英文字母！");
+			}
+		}
+		return projectKey.toUpperCase();
 	}
 
 	public String getProjectKey() {

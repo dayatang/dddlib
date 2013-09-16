@@ -1,5 +1,10 @@
 package org.openkoala.opencis.jira.service;
 
+import org.apache.commons.lang.StringUtils;
+import org.openkoala.opencis.jira.service.impl.UserEmailBlankException;
+import org.openkoala.opencis.jira.service.impl.UserFullNameBlankException;
+import org.openkoala.opencis.jira.service.impl.UserNameBlankException;
+
 /**
  * 待创建的用户信息
  * 
@@ -65,6 +70,27 @@ public class JiraUserInfo extends JiraLoginInfo {
 		this.password = password;
 		this.fullName = fullName;
 		this.email = email;
+	}
+	
+	/**
+	 * 检查登陆信息和用户信息是否为空
+	 */
+	@Override
+	public boolean checkNotBlank() {
+		super.checkNotBlank();
+		if(StringUtils.isBlank(userName)){
+			throw new UserNameBlankException("用户名不能为空！");
+		}
+		if(StringUtils.isBlank(password)){
+			password = userName;
+		}
+		if(StringUtils.isBlank(fullName)){
+			throw new UserFullNameBlankException("用户全名不能为空！");
+		}
+		if(StringUtils.isBlank(email)){
+			throw new UserEmailBlankException("用户邮箱不能为空！");
+		}
+		return true;
 	}
 
 	public String getUserName() {

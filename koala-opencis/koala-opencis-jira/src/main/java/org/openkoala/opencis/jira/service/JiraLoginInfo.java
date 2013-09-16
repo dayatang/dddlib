@@ -2,6 +2,11 @@ package org.openkoala.opencis.jira.service;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang.StringUtils;
+import org.openkoala.opencis.jira.service.impl.AdminPasswordBlankException;
+import org.openkoala.opencis.jira.service.impl.AdminUserNameBlankException;
+import org.openkoala.opencis.jira.service.impl.ServerAddressBlankException;
+
 public class JiraLoginInfo implements Serializable {
 	private static final long serialVersionUID = -3313144886863753222L;
 
@@ -28,6 +33,24 @@ public class JiraLoginInfo implements Serializable {
 		this.serverAddress = serverAddress;
 		this.adminUserName = adminUserName;
 		this.adminPassword = adminPassword;
+	}
+	
+	/**
+	 * 检查登陆信息是否为空
+	 * @param loginInfo
+	 * @return
+	 */
+	public boolean checkNotBlank(){
+		if(StringUtils.isBlank(serverAddress)){
+			throw new ServerAddressBlankException("服务器地址不能为空！");
+		}
+		if(StringUtils.isBlank(adminUserName)){
+			throw new AdminUserNameBlankException("管理员登陆账号不能为空！");
+		}
+		if(StringUtils.isBlank(adminPassword)){
+			throw new AdminPasswordBlankException("管理员登陆密码不能为空！");
+		}
+		return true;
 	}
 
 	public String getServerAddress() {
