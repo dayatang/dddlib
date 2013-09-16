@@ -8,7 +8,7 @@
 	<version>2.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>koala project</name>
-	<url>http://115.28.1.104/projects/koala</url>
+	<url>http://dev.foreveross.com/projects/koala</url>
 	<description />
 	
 	<developers>
@@ -91,14 +91,14 @@
 		<site>
 			<id>mvn-site</id>
 			<name>Maven Project Site</name>
-			<url>dav:http://115.28.1.104/projects/koala</url>
+			<url>dav:http://dev.foreveross.com/projects/koala</url>
 		</site>
 	</distributionManagement>
 
 
 	<issueManagement>
 		<system>Trac</system>
-		<url>http://115.28.1.104/trac/koala</url>
+		<url>http://dev.foreveross.com/trac/koala</url>
 	</issueManagement>
 	<!-- <issueManagement> <system>JIRA</system> <url>http://jira.openkoala.org/browse/KOALA</url> 
 		</issueManagement> -->
