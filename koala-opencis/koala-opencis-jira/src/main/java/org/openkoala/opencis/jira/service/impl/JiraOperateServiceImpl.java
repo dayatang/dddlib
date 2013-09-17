@@ -40,36 +40,36 @@ public class JiraOperateServiceImpl implements JiraOperateService {
 			throw new ProjectExistException("项目已经存在！");
 		}
 		
-		boolean userExist = this.checkUserExist(projectInfo.getProjectLead());
-		if( !userExist ){
+		boolean userExisted = this.checkUserExistence(projectInfo.getProjectLead());
+		if( !userExisted ){
 			throw new UserNotExistException("用户 '" + projectInfo.getProjectLead() + "' 不存在！");
 		}
 		
 		this.createProject(projectInfo);
 	}
 	
-	public void createUserToJira(JiraUserInfo userInfo) {
+	public void createUserToJiraIfNecessary(JiraUserInfo userInfo) {
 		userInfo.checkNotBlank();
 		this.loginToJira(userInfo);
 		
-		boolean userExist = this.checkUserExist(userInfo.getUserName());
-		if(userExist){//用户存在，则不创建，忽略
-			throw new UserExistException("用户 '" + userInfo.getUserName() + "' 已经存在！");
+		//用户存在，则不创建，忽略
+		boolean userExisted = this.checkUserExistence(userInfo.getUserName());
+		if( !userExisted ){
+			//throw new UserExistException("用户 '" + userInfo.getUserName() + "' 已经存在！");
+			this.createUser(userInfo);
 		}
-		
-		this.createUser(userInfo);
 	}
 
 	public void createRoleToJira(JiraRoleInfo roleInfo) {
 		roleInfo.checkNotBlank();
 		this.loginToJira(roleInfo);
 		
+		//角色存在，则不创建，忽略
 		boolean roleExist = this.checkRoleExist(roleInfo);
-		if(roleExist){//角色存在，则不创建，忽略
-			throw new RoleExistException("角色 '" + roleInfo.getRoleName() + "' 已经存在！");
+		if( !roleExist ){
+			//throw new RoleExistException("角色 '" + roleInfo.getRoleName() + "' 已经存在！");
+			this.createRole(roleInfo);
 		}
-		
-		this.createRole(roleInfo);
 	}
 	
 	//assign..
@@ -143,8 +143,8 @@ public class JiraOperateServiceImpl implements JiraOperateService {
 			throw new ProjectNotExistException("项目不存在！");
 		}
 		
-		boolean userExist = this.checkUserExist(userInfo.getUserName());
-		if( !userExist ){
+		boolean userExisted = this.checkUserExistence(userInfo.getUserName());
+		if( !userExisted ){
 			throw new UserNotExistException("用户 '" + userInfo.getUserName() + "' 不存在");
 		}
 		
@@ -433,7 +433,7 @@ public class JiraOperateServiceImpl implements JiraOperateService {
 	 * @param userName
 	 * @return
 	 */
-	private boolean checkUserExist(String userName){
+	private boolean checkUserExistence(String userName){
 		RemoteUser remoteUser = null;
 		try {
 			remoteUser = jiraService.getUser(token, userName);
