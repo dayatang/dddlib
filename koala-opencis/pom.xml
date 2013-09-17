@@ -19,5 +19,6 @@
     <module>koala-opencis-jekins</module>
     <module>koala-opencis-hudson</module>
     <module>koala-opencis-sonar</module>
+    <module>koala-opencis-api</module>
   </modules>
 </project>
