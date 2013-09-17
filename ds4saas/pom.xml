@@ -88,8 +88,8 @@
 				<configuration>
 					<driver>${jdbc.driverClassName}</driver>
 					<url>${jdbc.url}</url>
-					<username>${jdbc.username}</username>
-					<password>${jdbc.password}</password>
+					<username>${mysql.username}</username>
+					<password>${mysql.password}</password>
 				</configuration>
 				<executions>
 					<execution>
