@@ -158,7 +158,7 @@ public class JiraOperateServiceImplTest {
 	@Test
 	public void projectKeyExist(){
 		this.packagingProjectCanBeCreatedWithoutDesc();
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 		jiraOperateService.createProjectToJira(projectInfo);
 		
 		try {
@@ -178,7 +178,7 @@ public class JiraOperateServiceImplTest {
 	
 	@Test
 	public void projectNameExist(){
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 		
 		this.packagingProjectCanBeCreatedWithoutDesc();
 		jiraOperateService.createProjectToJira(projectInfo);
@@ -209,7 +209,7 @@ public class JiraOperateServiceImplTest {
 	
 	@Test
 	public void testcreateProjectToJira() {
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 		
 		this.packagingProjectCanBeCreatedWithoutDesc();
 		jiraOperateService.createProjectToJira(projectInfo);
@@ -228,36 +228,36 @@ public class JiraOperateServiceImplTest {
 	@Test(expected = UserNameBlankException.class)
 	public void userNameBlank(){
 		this.packagingUserNameBlank();
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 	}
 	
 	@Test(expected = UserFullNameBlankException.class)
 	public void fullNameBlank(){
 		this.packagingFullNameBlank();
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 	}
 	
 	@Test(expected = UserEmailBlankException.class)
 	public void emailBlank(){
 		this.packagingEmailBlank();
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 	}
 	
 	@Test(expected = UserExistException.class)
 	public void checkUserExist() {
 		this.packagingUserInfoExist();
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 	}
 	
 	@Test
-	public void testcreateUserToJira() {
+	public void testcreateUserToJiraIfNecessary() {
 		this.packagingUserInfoNotExistWithoutPwd();
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 		jiraOperateService.removeUser(userInfo);
 		assertTrue("应该能成功创建没有提供密码的用户！", true);
 		
 		this.packagingUserInfoNotExistWithPwd();
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 		jiraOperateService.removeUser(userInfo);
 		assertTrue("应该能成功创建提供密码的用户！", true);
 	}
@@ -299,7 +299,7 @@ public class JiraOperateServiceImplTest {
 	
 	@Test
 	public void addProjectRoleToUserButProjectNotExist(){
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 		jiraOperateService.createRoleToJira(roleInfo);
 		
 		try {
@@ -318,7 +318,7 @@ public class JiraOperateServiceImplTest {
 	
 	@Test
 	public void addProjectRoleToUserButRoleNotExist(){
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 		jiraOperateService.createProjectToJira(projectInfo);
 		
 		try {
@@ -357,7 +357,7 @@ public class JiraOperateServiceImplTest {
 	
 	@Test
 	public void testAddProjectRoleToUser(){
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 		jiraOperateService.createProjectToJira(projectInfo);
 		jiraOperateService.createRoleToJira(roleInfo);
 		

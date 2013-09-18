@@ -19,7 +19,7 @@ public interface JiraOperateService {
 	 * 创建用户（若未输入密码，则密码默认等于用户名）
 	 * @param userInfo
 	 */
-	void createUserToJira(JiraUserInfo userInfo);
+	void createUserToJiraIfNecessary(JiraUserInfo userInfo);
 	
 	/**
 	 * 创建角色
