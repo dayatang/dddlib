@@ -1,12 +1,12 @@
 package org.openkoala.opencis.trac;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.trac.api.TracProject;
+import org.openkoala.opencis.trac.api.TestTracProject;
 
 public class TracAppTest {
 
@@ -14,7 +14,7 @@ public class TracAppTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		project = new TracProject();
+		project = new TestTracProject();
 	}
 
 	@After
