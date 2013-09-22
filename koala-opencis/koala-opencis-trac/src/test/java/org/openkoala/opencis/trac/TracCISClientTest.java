@@ -81,7 +81,26 @@ public class TracCISClientTest {
 
 	@Test
 	public void testCreateRoleIfNessceary() {
-		fail("Not yet implemented");
+		Session session = null;
+		String createUserCommand = "trac-admin " + project.getProjectPath() + " permission add zjh2 TRAC_ADMIN"; 
+		System.out.println(createUserCommand);
+		try {
+			conn.connect();
+			boolean isAuthenticated = conn.authenticateWithPassword("root", "password");
+//			Assert.assertFalse(isAuthenticated);
+			if (isAuthenticated == false){
+				throw new IOException("Authentication failed.");
+			}
+			session = conn.openSession();
+			session.execCommand(createUserCommand);
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
 	}
 
 	@Test
