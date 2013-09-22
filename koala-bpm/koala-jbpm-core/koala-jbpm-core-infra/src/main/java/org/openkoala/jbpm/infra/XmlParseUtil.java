@@ -53,11 +53,26 @@ public class XmlParseUtil {
 		if(paramsMap==null || paramsMap.size()==0)return "";
 		Document document = DocumentHelper.createDocument();
 		Element root = document.addElement("params");
-		Set<Map.Entry<String, Object>> entrySet = paramsMap.entrySet();
-		for(Map.Entry<String, Object> entry:entrySet){
-			String value = entry.getValue().toString();
-			Element param = root.addElement(entry.getKey());
-			param.setText(value);
+		Set<String> keys = paramsMap.keySet();
+		for(String key:keys){
+			Object value = paramsMap.get(key);
+			Element param = root.addElement(key);
+			if(value instanceof Integer){
+				param.addAttribute("type", "int");
+			}
+			if(value instanceof Long){
+				param.addAttribute("type", "long");
+			}
+			if(value instanceof Float){
+				param.addAttribute("type", "float");
+			}
+			if(value instanceof Double){
+				param.addAttribute("type", "double");
+			}
+			if(value instanceof Boolean){
+				param.addAttribute("type", "boolean");
+			}
+			param.setText(value.toString());
 		}
 		return document.asXML();
 	}
@@ -81,20 +96,22 @@ public class XmlParseUtil {
 				String key = element.getName();
 				String value = element.getTextTrim();
 				Object val = value;
-				if("int".equals(element.attribute("type").getValue())){
-					val = Integer.parseInt(value);
-				}
-				if("long".equals(element.attribute("type").getValue())){
-					val = Long.parseLong(value);
-				}
-				if("float".equals(element.attribute("type").getValue())){
-					val = Float.parseFloat(value);
-				}
-				if("double".equals(element.attribute("type").getValue())){
-					val = Double.parseDouble(value);
-				}
-				if("boolean".equals(element.attribute("type").getValue())){
-					val = Boolean.valueOf(value);
+				if(element.attribute("type")!=null){
+					if("int".equals(element.attribute("type").getText().toLowerCase())){
+						val = Integer.parseInt(value);
+					}
+					if("long".equals(element.attribute("type").getText().toLowerCase())){
+						val = Long.parseLong(value);
+					}
+					if("float".equals(element.attribute("type").getText().toLowerCase())){
+						val = Float.parseFloat(value);
+					}
+					if("double".equals(element.attribute("type").getText().toLowerCase())){
+						val = Double.parseDouble(value);
+					}
+					if("boolean".equals(element.attribute("type").getText().toLowerCase())){
+						val = Boolean.valueOf(value);
+					}
 				}
 				params.put(key, val);
 			}
@@ -104,16 +121,6 @@ public class XmlParseUtil {
 			e.printStackTrace();
 		}
 		return params;
-	}
-	
-	public static void main(String args[]){
-		String xml = "<params><creater>lingen</creater><isOpen>true</isOpen></params>";
-		System.out.println(XmlParseUtil.xmlToPrams(xml));
-		
-		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("creter", "lingen");
-		params.put("you", "aaa");
-		System.out.println(XmlParseUtil.paramsToXml(params));
 	}
 	
 }

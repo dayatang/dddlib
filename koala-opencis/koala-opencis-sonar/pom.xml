@@ -21,5 +21,14 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.openkoala.opencis</groupId>
+			<artifactId>koala-opencis-api</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
 	</dependencies>
+
+
 </project>
