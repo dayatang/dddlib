@@ -1,17 +1,18 @@
 package org.openkoala.opencis.trac.api;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 
-public class TracProject implements Project {
+public class TestTracProject implements Project {
 
 	@Override
 	public String getArtifactId() {
 		// TODO Auto-generated method stub
-		return "org.foss";
+		return "testProject";
 	}
 
 	@Override
@@ -23,7 +24,7 @@ public class TracProject implements Project {
 	@Override
 	public String getProjectPath() {
 		// TODO Auto-generated method stub
-		return "/usr/share/trac/projects";
+		return "/usr/share/trac/projects/" + this.getArtifactId();
 	}
 
 	@Override
