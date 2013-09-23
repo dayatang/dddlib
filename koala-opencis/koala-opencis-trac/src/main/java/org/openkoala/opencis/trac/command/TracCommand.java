@@ -19,11 +19,11 @@ public abstract class TracCommand implements Command {
 	
 	protected Project project = null;
 	
-	private String host;
+	protected String host;
 	
-	private String userName;
+	protected String userName;
 	
-	private String password;
+	protected String password;
 	
 	public TracCommand() {
 		// TODO Auto-generated constructor stub
@@ -47,7 +47,7 @@ public abstract class TracCommand implements Command {
 		Session session = null;
 		try {
 			connection.connect();
-			boolean isAuthenticated = connection.authenticateWithPassword("root", "password");
+			boolean isAuthenticated = connection.authenticateWithPassword(userName, password);
 			if (isAuthenticated == false){
 				throw new IOException("Authentication failed.");
 			}

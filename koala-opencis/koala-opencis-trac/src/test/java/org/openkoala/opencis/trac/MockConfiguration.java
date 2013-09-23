@@ -1,12 +1,23 @@
 package org.openkoala.opencis.trac;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import com.dayatang.configuration.Configuration;
 
 public class MockConfiguration implements Configuration {
 
+	private Map<String,String> map = null;
+	
+	public MockConfiguration() {
+		// TODO Auto-generated constructor stub
+		map = new HashMap<String, String>();
+		map.put("HOST", "10.108.1.134");
+		map.put("USER", "root");
+		map.put("PASSWORD", "password");
+	}
 	@Override
 	public boolean getBoolean(String arg0) {
 		// TODO Auto-generated method stub
@@ -74,9 +85,9 @@ public class MockConfiguration implements Configuration {
 	}
 
 	@Override
-	public String getString(String arg0) {
+	public String getString(String key) {
 		// TODO Auto-generated method stub
-		return null;
+		return map.get(key);
 	}
 
 	@Override
