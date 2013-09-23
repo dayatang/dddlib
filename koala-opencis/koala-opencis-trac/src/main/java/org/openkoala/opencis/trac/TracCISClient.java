@@ -15,8 +15,8 @@ import com.trilead.ssh2.Connection;
  */
 public class TracCISClient implements CISClient {
 
-	/**SSH的连接*/
-	private Connection connection = null;
+//	/**SSH的连接*/
+//	private Connection connection = null;
 	
 	@Override
 	public void createProject(Project project) {
@@ -27,12 +27,12 @@ public class TracCISClient implements CISClient {
 	}
 
 	@Override
-	public void createUserIfNecessary(Developer developer) {
+	public void createUserIfNecessary(Project project,Developer developer) {
 		//Trac在创建用户时就已经指派了角色了，所以，这里不需要执行了 
 	}
 
 	@Override
-	public void createRoleIfNessceary(String roleName) {
+	public void createRoleIfNessceary(Project project,String roleName) {
 		// TODO Auto-generated method stub
 		//使用java SSH来创建角色
 		//1、读取project的配置信息，包括该角色(用户组)默认的权限
@@ -40,7 +40,7 @@ public class TracCISClient implements CISClient {
 	}
 
 	@Override
-	public void assignUserToRole(String usrId, String role) {
+	public void assignUserToRole(Project project,String usrId, String role) {
 		//使用java SSH来分配用户到某个角色，如果是连续分配，个人认为不应该关闭Connection，直到循环完毕才close
 		//1、读取project的配置信息
 		//2、用命令CommandExecutor来执行TracAssignUserToRoleCommand子类
