@@ -4,6 +4,7 @@ import org.openkoala.opencis.api.CISClient;
 import org.openkoala.opencis.api.CommandExecutor;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.trac.command.TracAssignUserToRoleCommand;
 import org.openkoala.opencis.trac.command.TracCommand;
 import org.openkoala.opencis.trac.command.TracCreateProjectCommand;
 import org.openkoala.opencis.trac.command.TracCreateRoleCommand;
@@ -63,6 +64,8 @@ public class TracCISClient implements CISClient {
 		//使用java SSH来分配用户到某个角色，如果是连续分配，个人认为不应该关闭Connection，直到循环完毕才close
 		//1、读取project的配置信息
 		//2、用命令CommandExecutor来执行TracAssignUserToRoleCommand子类
+		TracCommand command = new TracAssignUserToRoleCommand(usrId, role, configuration, project);
+		executor.executeSync(command);
 	}
 
 	@Override
