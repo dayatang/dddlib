@@ -3,25 +3,38 @@ package org.openkoala.opencis.jira.service.impl;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Properties;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openkoala.opencis.jira.service.JiraProjectInfo;
 import org.openkoala.opencis.jira.service.JiraRoleInfo;
 import org.openkoala.opencis.jira.service.JiraUserInfo;
 
+/**
+ * 如果不能访问jira服务端，则不测试，抛出警告
+ * @author lambo
+ *
+ */
 public class JiraOperateServiceImplTest {
 
 	private JiraOperateServiceImpl jiraOperateService = new JiraOperateServiceImpl();
 	private JiraProjectInfo projectInfo;
 	private JiraUserInfo userInfo;
 	private JiraRoleInfo roleInfo;
+	
 	/**管理员登陆信息**/
-	private String serverAddress = "http://localhost:8080";
-	private String adminUserName = "lishibin";
-	private String adminPassword = "87809237";
+	private static InputStream inputFile = 
+			new JiraOperateServiceImplTest().getClass().getResourceAsStream("/loginToJiraConfig.properties");
+	private static String serverAddress;// = "http://localhost:8080"
+	private static String adminUserName;// = "lishibin"
+	private static String adminPassword;// = "87809237"
 	/**针对创建项目**/
 	private String projectKey = "KEYTESt";
 	private String projectName = "projectUnitTest";
@@ -35,6 +48,20 @@ public class JiraOperateServiceImplTest {
 	/**针对创建角色**/
 	private String roleName = "roleName";
 	private String typeDesc = "角色描述";
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws IOException{
+		Properties p = new Properties();
+		p.load(inputFile);
+		serverAddress = p.getProperty("serverAddress");
+		adminUserName = p.getProperty("adminUserName");
+		adminPassword = p.getProperty("adminPassword");
+	}
+	
+	@AfterClass
+	public static void tearDownAfterClass() throws IOException{
+		inputFile.close();
+	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -131,7 +158,7 @@ public class JiraOperateServiceImplTest {
 	@Test
 	public void projectKeyExist(){
 		this.packagingProjectCanBeCreatedWithoutDesc();
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 		jiraOperateService.createProjectToJira(projectInfo);
 		
 		try {
@@ -151,7 +178,7 @@ public class JiraOperateServiceImplTest {
 	
 	@Test
 	public void projectNameExist(){
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 		
 		this.packagingProjectCanBeCreatedWithoutDesc();
 		jiraOperateService.createProjectToJira(projectInfo);
@@ -182,7 +209,7 @@ public class JiraOperateServiceImplTest {
 	
 	@Test
 	public void testcreateProjectToJira() {
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 		
 		this.packagingProjectCanBeCreatedWithoutDesc();
 		jiraOperateService.createProjectToJira(projectInfo);
@@ -201,36 +228,36 @@ public class JiraOperateServiceImplTest {
 	@Test(expected = UserNameBlankException.class)
 	public void userNameBlank(){
 		this.packagingUserNameBlank();
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 	}
 	
 	@Test(expected = UserFullNameBlankException.class)
 	public void fullNameBlank(){
 		this.packagingFullNameBlank();
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 	}
 	
 	@Test(expected = UserEmailBlankException.class)
 	public void emailBlank(){
 		this.packagingEmailBlank();
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 	}
 	
 	@Test(expected = UserExistException.class)
 	public void checkUserExist() {
 		this.packagingUserInfoExist();
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 	}
 	
 	@Test
-	public void testcreateUserToJira() {
+	public void testcreateUserToJiraIfNecessary() {
 		this.packagingUserInfoNotExistWithoutPwd();
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 		jiraOperateService.removeUser(userInfo);
 		assertTrue("应该能成功创建没有提供密码的用户！", true);
 		
 		this.packagingUserInfoNotExistWithPwd();
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 		jiraOperateService.removeUser(userInfo);
 		assertTrue("应该能成功创建提供密码的用户！", true);
 	}
@@ -272,7 +299,7 @@ public class JiraOperateServiceImplTest {
 	
 	@Test
 	public void addProjectRoleToUserButProjectNotExist(){
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 		jiraOperateService.createRoleToJira(roleInfo);
 		
 		try {
@@ -291,7 +318,7 @@ public class JiraOperateServiceImplTest {
 	
 	@Test
 	public void addProjectRoleToUserButRoleNotExist(){
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 		jiraOperateService.createProjectToJira(projectInfo);
 		
 		try {
@@ -330,7 +357,7 @@ public class JiraOperateServiceImplTest {
 	
 	@Test
 	public void testAddProjectRoleToUser(){
-		jiraOperateService.createUserToJira(userInfo);
+		jiraOperateService.createUserToJiraIfNecessary(userInfo);
 		jiraOperateService.createProjectToJira(projectInfo);
 		jiraOperateService.createRoleToJira(roleInfo);
 		

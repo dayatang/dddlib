@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.xml.rpc.ServiceException;
 
-import org.openkoala.opencis.jira.common.StringManager;
 import org.openkoala.opencis.jira.service.JiraOperateService;
 import org.openkoala.opencis.jira.service.JiraLoginInfo;
 import org.openkoala.opencis.jira.service.JiraProjectInfo;
@@ -33,52 +32,54 @@ public class JiraOperateServiceImpl implements JiraOperateService {
 	private String token;
 
 	public void createProjectToJira(JiraProjectInfo projectInfo) {
-		this.checkProjectNotBlank(projectInfo);
+		projectInfo.checkNotBlank();
 		this.loginToJira(projectInfo);
 		
-		boolean projectExist = this.checkProjectExist(projectInfo);
-		if(projectExist){
+		boolean projectExisted = this.checkProjectExistence(projectInfo);
+		if(projectExisted){
 			throw new ProjectExistException("项目已经存在！");
 		}
 		
-		boolean userExist = this.checkUserExist(projectInfo.getProjectLead());
-		if( !userExist ){
+		boolean userExisted = this.checkUserExistence(projectInfo.getProjectLead());
+		if( !userExisted ){
 			throw new UserNotExistException("用户 '" + projectInfo.getProjectLead() + "' 不存在！");
 		}
 		
 		this.createProject(projectInfo);
 	}
 	
-	public void createUserToJira(JiraUserInfo userInfo) {
-		this.checkUserNotBlank(userInfo);
+	public void createUserToJiraIfNecessary(JiraUserInfo userInfo) {
+		userInfo.checkNotBlank();
 		this.loginToJira(userInfo);
 		
-		boolean userExist = this.checkUserExist(userInfo.getUserName());
-		if(userExist){
-			throw new UserExistException("用户 '" + userInfo.getUserName() + "' 已经存在！");
+		//用户存在，则不创建，忽略
+		boolean userExisted = this.checkUserExistence(userInfo.getUserName());
+		if( !userExisted ){
+			//throw new UserExistException("用户 '" + userInfo.getUserName() + "' 已经存在！");
+			this.createUser(userInfo);
 		}
-		
-		this.createUser(userInfo);
 	}
 
 	public void createRoleToJira(JiraRoleInfo roleInfo) {
-		this.checkRoleNotBlank(roleInfo);
+		roleInfo.checkNotBlank();
 		this.loginToJira(roleInfo);
 		
+		//角色存在，则不创建，忽略
 		boolean roleExist = this.checkRoleExist(roleInfo);
-		if(roleExist){
-			throw new RoleExistException("角色 '" + roleInfo.getRoleName() + "' 已经存在！");
+		if( !roleExist ){
+			//throw new RoleExistException("角色 '" + roleInfo.getRoleName() + "' 已经存在！");
+			this.createRole(roleInfo);
 		}
-		
-		this.createRole(roleInfo);
 	}
 	
+	//assign..
 	public void addProjectRoleToUser(JiraProjectInfo projectInfo, JiraUserInfo userInfo, JiraRoleInfo roleInfo) {
 		this.loginToJira(projectInfo);
 		this.checkProjectRoleUserAllExist(projectInfo, userInfo, roleInfo);
 		this.addProjectRoleToUser(projectInfo.getProjectKey(), userInfo.getUserName(), roleInfo.getRoleName());
 	}
 	
+	//Set
 	public List<String> getAllRoleNamesFromJira(JiraLoginInfo loginInfo) {
 		this.loginToJira(loginInfo);
 		RemoteProjectRole[] remoteProjectRoleArray = this.getAllRoles();
@@ -137,13 +138,13 @@ public class JiraOperateServiceImpl implements JiraOperateService {
 	 * @return
 	 */
 	private boolean checkProjectRoleUserAllExist(JiraProjectInfo projectInfo, JiraUserInfo userInfo, JiraRoleInfo roleInfo){
-		boolean projectExist = this.checkProjectExist(projectInfo);
-		if( !projectExist ){
+		boolean projectExisted = this.checkProjectExistence(projectInfo);
+		if( !projectExisted ){
 			throw new ProjectNotExistException("项目不存在！");
 		}
 		
-		boolean userExist = this.checkUserExist(userInfo.getUserName());
-		if( !userExist ){
+		boolean userExisted = this.checkUserExistence(userInfo.getUserName());
+		if( !userExisted ){
 			throw new UserNotExistException("用户 '" + userInfo.getUserName() + "' 不存在");
 		}
 		
@@ -159,7 +160,7 @@ public class JiraOperateServiceImpl implements JiraOperateService {
 	 * 通过project key获取JIRA对应的项目信息（含有项目id）
 	 * @param projectKey
 	 * @return
-	 */
+	 *///getRemoteProject
 	private RemoteProject getRemoteProjectId(String projectKey){
 		RemoteProject remoteProject = null;
 		try {
@@ -260,11 +261,11 @@ public class JiraOperateServiceImpl implements JiraOperateService {
 	 * @param projectInfo
 	 * @return
 	 */
-	private boolean checkProjectNotBlank(JiraProjectInfo projectInfo){
+	/*private boolean checkProjectNotBlank(JiraProjectInfo projectInfo){
 		
-		this.checkLoginInfoNotBlank(projectInfo);
+		projectInfo.checkNotBlank();
 		
-		if(StringManager.isEmpty(projectInfo.getProjectKey())){
+		if(StringManager.isEmpty(projectInfo.getProjectKey())){//StringUtils.isBlank(str)
 			throw new ProjectKeyBlankException("project key不能为空！");
 		}
 		
@@ -274,14 +275,14 @@ public class JiraOperateServiceImpl implements JiraOperateService {
 			throw new ProjectLeadBlankException("项目负责人不能为空！");
 		}
 		return true;
-	}
+	}*/
 	
 	/**
 	 * 检查用户信息是否为空（若未输入密码，则密码默认等于用户名）
 	 * @param userInfo
 	 * @return
 	 */
-	private boolean checkUserNotBlank(JiraUserInfo userInfo){
+	/*private boolean checkUserNotBlank(JiraUserInfo userInfo){
 		
 		this.checkLoginInfoNotBlank(userInfo);
 		
@@ -298,27 +299,27 @@ public class JiraOperateServiceImpl implements JiraOperateService {
 			throw new UserEmailBlankException("用户邮箱不能为空！");
 		}
 		return true;
-	}
+	}*/
 	
 	/**
 	 * 检查角色信息是否为空
 	 * @param roleInfo
 	 * @return
 	 */
-	private boolean checkRoleNotBlank(JiraRoleInfo roleInfo){
-		this.checkLoginInfoNotBlank(roleInfo);
+	/*private boolean checkRoleNotBlank(JiraRoleInfo roleInfo){
+		roleInfo.checkNotBlank();
 		if(StringManager.isEmpty(roleInfo.getRoleName())){
 			throw new RoleNameBlankException("角色名称不能为空！");
 		}
 		return true;
-	}
+	}*/
 	
 	/**
 	 * 检查登陆信息是否为空
 	 * @param loginInfo
 	 * @return
 	 */
-	private boolean checkLoginInfoNotBlank(JiraLoginInfo loginInfo){
+	/*private boolean checkLoginInfoNotBlank(JiraLoginInfo loginInfo){
 		if(StringManager.isEmpty(loginInfo.getServerAddress())){
 			throw new ServerAddressBlankException("服务器地址不能为空！");
 		}
@@ -329,13 +330,13 @@ public class JiraOperateServiceImpl implements JiraOperateService {
 			throw new AdminPasswordBlankException("管理员登陆密码不能为空！");
 		}
 		return true;
-	}
+	}*/
 	
 	/**
 	 * 检查project key 必须都是英文字母，且必须都大写（由代码负责转换），且必须至少2个字母
 	 * @param projectKey
 	 */
-	private String checkProjectKeyAndTurnToUppercase(String projectKey){
+	/*private String checkProjectKeyAndTurnToUppercase(String projectKey){
 		if(projectKey.length() < 2 || projectKey.length() > 10){
 			throw new ProjectKeyLengthNotBetweenTwoAndTenCharacterLettersException(
 					"project key '" + projectKey + "' 长度必须为2-10个英文字母！");
@@ -348,7 +349,7 @@ public class JiraOperateServiceImpl implements JiraOperateService {
 			}
 		}
 		return projectKey.toUpperCase();
-	}
+	}*/
 	
 	/**
 	 * 登陆到JIRA服务器
@@ -386,7 +387,7 @@ public class JiraOperateServiceImpl implements JiraOperateService {
 	 * @param projectInfo
 	 * @return
 	 */
-	private boolean checkProjectExist(JiraProjectInfo projectInfo){
+	private boolean checkProjectExistence(JiraProjectInfo projectInfo){
 		RemoteProject[] remoteProjectArray = this.getAllProjects(projectInfo.getAdminUserName());
 		if(remoteProjectArray== null || remoteProjectArray.length==0){
 			return false;
@@ -432,7 +433,7 @@ public class JiraOperateServiceImpl implements JiraOperateService {
 	 * @param userName
 	 * @return
 	 */
-	private boolean checkUserExist(String userName){
+	private boolean checkUserExistence(String userName){
 		RemoteUser remoteUser = null;
 		try {
 			remoteUser = jiraService.getUser(token, userName);
@@ -480,8 +481,7 @@ public class JiraOperateServiceImpl implements JiraOperateService {
 	private void createUser(JiraUserInfo userInfo){
 		try {
 			jiraService.createUser(token, userInfo.getUserName(), 
-					StringManager.isEmpty(userInfo.getPassword())?userInfo.getUserName():userInfo.getPassword(),
-							userInfo.getFullName(), userInfo.getEmail());
+					userInfo.getPassword(),userInfo.getFullName(), userInfo.getEmail());
 		} catch (RemotePermissionException e) {
 			throw new UserPermissionNotEnoughException("该账号 '" + userInfo.getUserName() + "' 没有权限创建用户！");
 		} catch (Exception e) {

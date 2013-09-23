@@ -135,10 +135,10 @@ public class MonitorDataServiceImpl implements MonitorDataService {
 		Date beginDt = KoalaDateUtils.getDayBegin(beginTime);
 		Date endDt = null;
 		if(Constant.UNIT_HOUR.equals(statUnit)){
-			sql = "select m.hour, count(*) from k_m_http_details h left join k_m_main_stat m on h.THREAD_KEY = m.THREAD_KEY and m.fk_node_id=? and (m.begin_time between ? and ?) group by m.hour order by m.hour";
+			sql = "select m.HOUR, count(*) from K_M_HTTP_DETAILS h left join K_M_MAIN_STAT m on h.THREAD_KEY = m.THREAD_KEY and m.FK_NODE_ID=? and (m.BEGIN_TIME between ? and ?) group by m.HOUR order by m.HOUR";
 			endDt = KoalaDateUtils.getDayEnd(beginDt);
 		}else if(Constant.UNIT_DAY.equals(statUnit)){
-			sql = "select m.day, count(*) from k_m_http_details h left join k_m_main_stat m on h.THREAD_KEY = m.THREAD_KEY and m.fk_node_id=? and (m.begin_time between ? and ?) group by m.day order by m.day";
+			sql = "select m.DAY, count(*) from K_M_HTTP_DETAILS h left join K_M_MAIN_STAT m on h.THREAD_KEY = m.THREAD_KEY and m.FK_NODE_ID=? and (m.BEGIN_TIME between ? and ?) group by m.DAY order by m.DAY";
 			endDt = KoalaDateUtils.getLastDateOfMonth(beginDt);
 		}else{
 			throw new RuntimeException("参数错误");
@@ -183,7 +183,7 @@ public class MonitorDataServiceImpl implements MonitorDataService {
 	
 	@Override
 	public final List<HttpDetailsVo> pageGetHttpMonitorDetails(int start, int pageSize, HttpDetailsVo httpDetailsVo) {
-		String sql = " select uri,ip,parameters,begin_time,end_time from k_m_http_details where THREAD_KEY in(select m.THREAD_KEY from k_m_main_stat m where m.fk_node_id=? and m.begin_time>=? and m.begin_time<?) ";
+		String sql = " select URI,IP,PARAMETERS,BEGIN_TIME,END_TIME from K_M_HTTP_DETAILS where THREAD_KEY in(select m.THREAD_KEY from K_M_MAIN_STAT m where m.FK_NODE_ID=? and m.BEGIN_TIME>=? and m.BEGIN_TIME<?) ";
 		return jdbcTemplate.query(sql, 
 				new Object[]{httpDetailsVo.getSystem(), httpDetailsVo.getBeginTime(), httpDetailsVo.getEndTime()}, 
 				new RowMapper<HttpDetailsVo>(){
@@ -191,11 +191,11 @@ public class MonitorDataServiceImpl implements MonitorDataService {
 			public HttpDetailsVo mapRow(ResultSet rs, int index)
 					throws SQLException {
 				HttpDetailsVo httpDetailsVo = new HttpDetailsVo();
-				httpDetailsVo.setUri(rs.getString("uri"));
-				httpDetailsVo.setIp(rs.getString("ip"));
-				httpDetailsVo.setParameters(rs.getString("parameters"));
-				httpDetailsVo.setBeginTime(rs.getDate("begin_time"));
-				httpDetailsVo.setEndTime(rs.getDate("end_time"));
+				httpDetailsVo.setUri(rs.getString("URI"));
+				httpDetailsVo.setIp(rs.getString("IP"));
+				httpDetailsVo.setParameters(rs.getString("PARAMETERS"));
+				httpDetailsVo.setBeginTime(rs.getDate("BEGIN_TIME"));
+				httpDetailsVo.setEndTime(rs.getDate("END_TIME"));
 				return httpDetailsVo;
 			}
 		});

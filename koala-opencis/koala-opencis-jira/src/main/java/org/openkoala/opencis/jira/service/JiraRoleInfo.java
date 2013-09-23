@@ -1,5 +1,8 @@
 package org.openkoala.opencis.jira.service;
 
+import org.apache.commons.lang.StringUtils;
+import org.openkoala.opencis.jira.service.impl.RoleNameBlankException;
+
 public class JiraRoleInfo extends JiraLoginInfo {
 	private static final long serialVersionUID = 1660394632346975308L;
 
@@ -32,6 +35,18 @@ public class JiraRoleInfo extends JiraLoginInfo {
 		this.roleName = roleName;
 		this.permission = permission;
 		this.typeDesc = typeDesc;
+	}
+	
+	/**
+	 * 检查登陆信息和角色信息是否为空
+	 */
+	@Override
+	public boolean checkNotBlank() {
+		super.checkNotBlank();
+		if(StringUtils.isBlank(roleName)){
+			throw new RoleNameBlankException("角色名称不能为空！");
+		}
+		return true;
 	}
 
 	public String getRoleName() {
