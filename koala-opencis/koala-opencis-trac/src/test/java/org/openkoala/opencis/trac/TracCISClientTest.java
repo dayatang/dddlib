@@ -10,7 +10,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.trac.api.TestTracProject;
 
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.Session;
