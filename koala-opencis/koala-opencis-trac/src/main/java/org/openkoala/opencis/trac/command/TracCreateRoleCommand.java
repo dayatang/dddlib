@@ -4,6 +4,11 @@ import org.openkoala.opencis.api.Project;
 
 import com.dayatang.configuration.Configuration;
 
+/**
+ * Trac创建角色，赋予某个配置的默认权限
+ * @author 赵健华
+ * 2013-9-23 下午8:52:51
+ */
 public class TracCreateRoleCommand extends TracCommand{
 
 	private String roleName;
