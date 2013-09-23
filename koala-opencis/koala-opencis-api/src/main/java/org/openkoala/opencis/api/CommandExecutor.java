@@ -32,6 +32,7 @@ public class CommandExecutor {
 	 * @return
 	 */
 	public Object executeSync(Command command){
+		command.execute();
 		return null;
 	}
 	

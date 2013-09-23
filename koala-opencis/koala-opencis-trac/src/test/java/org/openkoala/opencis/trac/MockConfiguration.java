@@ -17,6 +17,7 @@ public class MockConfiguration implements Configuration {
 		map.put("HOST", "10.108.1.134");
 		map.put("USER", "root");
 		map.put("PASSWORD", "password");
+		map.put("PERMISSION", "TRAC_ADMIN");
 	}
 	@Override
 	public boolean getBoolean(String arg0) {

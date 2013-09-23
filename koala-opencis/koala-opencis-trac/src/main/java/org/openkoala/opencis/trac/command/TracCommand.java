@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.openkoala.opencis.api.Command;
 import org.openkoala.opencis.api.Project;
 
+import com.dayatang.configuration.Configuration;
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.Session;
 
@@ -30,10 +31,10 @@ public abstract class TracCommand implements Command {
 		
 	}
 
-	public TracCommand(String host, String userName, String password,Project project) {
-		this.host = host;
-		this.userName = userName;
-		this.password = password;
+	public TracCommand(Configuration configuration,Project project) {
+		this.host = configuration.getString("HOST");
+		this.userName = configuration.getString("USER");
+		this.password = configuration.getString("PASSWORD");
 		this.project = project;
 		connection = new Connection(host);
 	}

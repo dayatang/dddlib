@@ -6,6 +6,7 @@ import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.trac.command.TracCommand;
 import org.openkoala.opencis.trac.command.TracCreateProjectCommand;
+import org.openkoala.opencis.trac.command.TracCreateRoleCommand;
 
 import com.dayatang.configuration.Configuration;
 
@@ -36,11 +37,9 @@ public class TracCISClient implements CISClient {
 		//使用java SSH来创建项目
 		//1、从project获取对应的配置信息
 		//2、用命令CommandExecutor来执行TracCreateProjecCommand子类
-		String host = configuration.getString("HOST");
-		String user = configuration.getString("USER");
-		String password = configuration.getString("PASSWORD");
+		
 		//初始化命令
-		TracCommand command = new TracCreateProjectCommand(host,user,password,project);
+		TracCommand command = new TracCreateProjectCommand(configuration,project);
 		executor.executeSync(command);
 	}
 
@@ -55,6 +54,8 @@ public class TracCISClient implements CISClient {
 		//使用java SSH来创建角色
 		//1、读取project的配置信息，包括该角色(用户组)默认的权限
 		//2、用命令CommandExecutor来执行TracCreateRoleCommand子类
+		TracCommand command = new TracCreateRoleCommand(configuration, roleName, project);
+		executor.executeSync(command);
 	}
 
 	@Override

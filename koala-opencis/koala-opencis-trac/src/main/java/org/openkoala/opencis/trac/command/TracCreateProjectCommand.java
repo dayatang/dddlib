@@ -2,6 +2,8 @@ package org.openkoala.opencis.trac.command;
 
 import org.openkoala.opencis.api.Project;
 
+import com.dayatang.configuration.Configuration;
+
 /**
  * Trac创建项目命令类
  * @author 赵健华
@@ -13,8 +15,8 @@ public class TracCreateProjectCommand extends TracCommand {
 		
 	}
 	
-	public TracCreateProjectCommand(String host, String userName, String password, Project project) {
-		super(host, userName, password, project);
+	public TracCreateProjectCommand(Configuration configuration, Project project) {
+		super(configuration, project);
 	}
 
 	@Override
