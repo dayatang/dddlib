@@ -1,4 +1,4 @@
-package org.openkoala.opencis.trac.api;
+package org.openkoala.opencis.trac;
 
 import java.util.ArrayList;
 import java.util.List;

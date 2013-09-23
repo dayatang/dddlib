@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openkoala.opencis.api.Developer;
+import org.openkoala.opencis.trac.TracProject;
 
 public class TestTracProject extends TracProject {
 
