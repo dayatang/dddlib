@@ -1,4 +1,4 @@
-package org.openkoala.opencis.trac.api;
+package org.openkoala.opencis.trac;
 
 import org.openkoala.opencis.api.CISClient;
 import org.openkoala.opencis.api.Developer;
