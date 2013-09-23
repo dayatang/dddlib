@@ -4,15 +4,20 @@ import org.openkoala.opencis.api.CISClient;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 
+import com.trilead.ssh2.Connection;
+
 /**
  * Trac的CISClient实现类<br>
- * Trac其实没有角色的概念，只内置了一些默认权限，用户组就是所谓的角色<br>
+ * Trac其实没有角色的概念，只内置了一些默认权限，用户组就是所谓的角色。<br>
  * 创建用户时，需要把用户跟角色(用户组)挂钩
  * @author 赵健华
  * 2013-9-22 上午10:10:26
  */
 public class TracCISClient implements CISClient {
 
+	/**SSH的连接*/
+	private Connection connection = null;
+	
 	@Override
 	public void createProject(Project project) {
 		//使用java SSH来创建项目
