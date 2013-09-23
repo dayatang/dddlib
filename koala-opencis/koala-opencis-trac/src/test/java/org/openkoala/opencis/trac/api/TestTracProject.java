@@ -1,13 +1,11 @@
 package org.openkoala.opencis.trac.api;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.openkoala.opencis.api.Developer;
-import org.openkoala.opencis.api.Project;
 
-public class TestTracProject implements Project {
+public class TestTracProject extends TracProject {
 
 	@Override
 	public String getArtifactId() {

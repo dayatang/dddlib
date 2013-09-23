@@ -23,6 +23,8 @@ public class TracProject implements Project {
 		// TODO Auto-generated constructor stub
 		configuration = new ConfigurationFactory().fromClasspath("");
 	}
+	
+	
 	@Override
 	public String getArtifactId() {
 		// TODO Auto-generated method stub
