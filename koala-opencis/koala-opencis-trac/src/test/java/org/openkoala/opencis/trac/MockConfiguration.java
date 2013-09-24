@@ -14,7 +14,8 @@ public class MockConfiguration implements Configuration {
 	public MockConfiguration() {
 		// TODO Auto-generated constructor stub
 		map = new HashMap<String, String>();
-		map.put("HOST", "10.108.1.134");
+//		map.put("HOST", "10.108.1.134");
+		map.put("HOST", "192.168.88.2");
 		map.put("USER", "root");
 		map.put("PASSWORD", "password");
 		map.put("PERMISSION", "TRAC_ADMIN");
