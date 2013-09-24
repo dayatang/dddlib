@@ -7,29 +7,52 @@ import java.util.List;
  * @author lingen
  *
  */
-public interface Project {
+public class Project {
 
-	/**
-	 *  返回项目的artifactId
-	 * @return
-	 */
-	public String getArtifactId();
+	private String artifactId;
 	
-	/**
-	 * 返回项目的名称
-	 * @return
-	 */
-	public String getProjectName();
+	private String projectName;
 	
-	/**
-	 * 返回项目的路径
-	 * @return
-	 */
-	public String getProjectPath();
+	private String projectPath;
 	
-	/**
-	 * 返回项目的开发者列表
-	 * @return
-	 */
-	public List<Developer> getProjectDeveloper();
+	private List<Developer> projectDeveloper;
+
+	public String getArtifactId() {
+		return artifactId;
+	}
+
+	public void setArtifactId(String artifactId) {
+		this.artifactId = artifactId;
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
+	public String getProjectPath() {
+		return projectPath;
+	}
+
+	public void setProjectPath(String projectPath) {
+		this.projectPath = projectPath;
+	}
+
+	public List<Developer> getProjectDeveloper() {
+		return projectDeveloper;
+	}
+
+	public void setProjectDeveloper(List<Developer> projectDeveloper) {
+		this.projectDeveloper = projectDeveloper;
+	}
+
+	@Override
+	public String toString() {
+		return "Project [artifactId=" + artifactId + ", projectName="
+				+ projectName + ", projectPath=" + projectPath
+				+ ", projectDeveloper=" + projectDeveloper + "]";
+	}
 }
