@@ -41,9 +41,10 @@ public abstract class TracCommand implements Command {
 	
 	/**
 	 * 模板方法
+	 * @throws Exception 
 	 */
 	@Override
-	public final void execute() {
+	public final void execute() throws Exception {
 		// TODO Auto-generated method stub
 		Session session = null;
 		try {
@@ -57,6 +58,7 @@ public abstract class TracCommand implements Command {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new Exception("无法执行命令：" + getCommand());
 		}finally{
 			session.close();
 			connection.close();

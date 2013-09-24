@@ -31,17 +31,28 @@ public class CommandExecutor {
 	 * @param command
 	 * @return
 	 */
-	public Object executeSync(Command command){
-		command.execute();
-		return null;
+	public boolean executeSync(Command command){
+		try {
+			command.execute();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+		
 	}
 	
 	/**
 	 * 批量异步执行命令
 	 */
-	public void executeBatch(){
-		for(Command command:commands){
-			command.execute();
+	public boolean executeBatch(){
+		try {
+			for(Command command:commands){
+				command.execute();
+			}
+			return true;
+		} catch (Exception e) {
+			return false;
 		}
+		
 	}
 }

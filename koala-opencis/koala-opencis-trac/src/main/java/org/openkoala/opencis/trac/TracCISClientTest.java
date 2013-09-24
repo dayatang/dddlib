@@ -1,6 +1,6 @@
 package org.openkoala.opencis.trac;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -31,11 +31,13 @@ public class TracCISClientTest {
 	@Test(expected=java.lang.Exception.class)
 	public void testCreateProject() {
 		client.createProject(project);
+		
 	}
 
 	@Test
 	public void testCreateRoleIfNessceary() {
 		client.createRoleIfNessceary(project, "developer");
+		
 	}
 
 	@Test

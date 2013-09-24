@@ -27,7 +27,7 @@ public class TestTracProject extends Project {
 	}
 
 	@Override
-	public List<Developer> getProjectDeveloper() {
+	public List<Developer> getDevelopers() {
 		// TODO Auto-generated method stub
 		//新增一个角色
 		List<String> roles = new ArrayList<String>();
