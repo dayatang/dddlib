@@ -3,8 +3,10 @@ package org.openkoala.opencis.trac;
 import static org.junit.Assert.fail;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Categories.ExcludeCategory;
 import org.openkoala.opencis.api.Project;
 
 import com.dayatang.configuration.Configuration;
@@ -26,7 +28,7 @@ public class TracCISClientTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
+	@Test(expected=java.lang.Exception.class)
 	public void testCreateProject() {
 		client.createProject(project);
 	}
