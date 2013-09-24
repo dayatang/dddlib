@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<maven2-moduleset>
+  <actions/>
+  <description></description>
+  <project-properties class="java.util.concurrent.ConcurrentHashMap">
+    <entry>
+      <string>blockBuildWhenDownstreamBuilding</string>
+      <boolean-property>
+        <originalValue class="boolean">false</originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </boolean-property>
+    </entry>
+    <entry>
+      <string>org-jvnet-hudson-plugins-mavendepsupdate-MavenDependencyUpdateTrigger</string>
+      <trigger-property>
+        <propertyOverridden>false</propertyOverridden>
+      </trigger-property>
+    </entry>
+    <entry>
+      <string>org-hudsonci-plugins-snapshotmonitor-WatchedDependenciesProperty</string>
+      <base-property>
+        <propertyOverridden>false</propertyOverridden>
+      </base-property>
+    </entry>
+    <entry>
+      <string>logRotator</string>
+      <log-rotator-property>
+        <propertyOverridden>false</propertyOverridden>
+      </log-rotator-property>
+    </entry>
+    <entry>
+      <string>blockBuildWhenUpstreamBuilding</string>
+      <boolean-property>
+        <originalValue class="boolean">false</originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </boolean-property>
+    </entry>
+    <entry>
+      <string>scmCheckoutRetryCount</string>
+      <integer-property>
+        <propertyOverridden>false</propertyOverridden>
+      </integer-property>
+    </entry>
+    <entry>
+      <string>cleanWorkspaceRequired</string>
+      <boolean-property>
+        <originalValue class="boolean">false</originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </boolean-property>
+    </entry>
+    <entry>
+      <string>parametersDefinitionProperties</string>
+      <copy-write-list-property>
+        <originalValue class="hudson.util.CopyOnWriteList"/>
+        <propertyOverridden>false</propertyOverridden>
+      </copy-write-list-property>
+    </entry>
+    <entry>
+      <string>quietPeriod</string>
+      <integer-property>
+        <propertyOverridden>false</propertyOverridden>
+      </integer-property>
+    </entry>
+    <entry>
+      <string>hudson-triggers-SCMTrigger</string>
+      <trigger-property>
+        <propertyOverridden>false</propertyOverridden>
+      </trigger-property>
+    </entry>
+    <entry>
+      <string>jdk</string>
+      <string-property>
+        <propertyOverridden>false</propertyOverridden>
+      </string-property>
+    </entry>
+    <entry>
+      <string>concurrentBuild</string>
+      <boolean-property>
+        <originalValue class="boolean">false</originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </boolean-property>
+    </entry>
+    <entry>
+      <string>appointedNode</string>
+      <base-property>
+        <propertyOverridden>false</propertyOverridden>
+      </base-property>
+    </entry>
+    <entry>
+      <string>scm</string>
+      <scm-property>
+        <originalValue class="hudson.plugins.filesystem_scm.FSSCM">
+          <path>D:\JavaDev\workspace\koala-test\demo</path>
+          <clearWorkspace>false</clearWorkspace>
+          <filterEnabled>false</filterEnabled>
+          <includeFilter>false</includeFilter>
+          <filters/>
+        </originalValue>
+        <propertyOverridden>false</propertyOverridden>
+      </scm-property>
+    </entry>
+    <entry>
+      <string>hudson-triggers-TimerTrigger</string>
+      <trigger-property>
+        <propertyOverridden>false</propertyOverridden>
+      </trigger-property>
+    </entry>
+  </project-properties>
+  <keepDependencies>false</keepDependencies>
+  <creationTime>1380006286625</creationTime>
+  <properties/>
+  <cascadingChildrenNames class="java.util.concurrent.CopyOnWriteArraySet"/>
+  <cascading-job-properties class="java.util.concurrent.CopyOnWriteArraySet">
+    <string>org-hudsonci-plugins-snapshotmonitor-WatchedDependenciesProperty</string>
+  </cascading-job-properties>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>false</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <cleanWorkspaceRequired>false</cleanWorkspaceRequired>
+  <aggregatorStyleBuild>true</aggregatorStyleBuild>
+  <incrementalBuild>false</incrementalBuild>
+  <usePrivateRepository>false</usePrivateRepository>
+  <ignoreUpstremChanges>false</ignoreUpstremChanges>
+  <archivingDisabled>false</archivingDisabled>
+  <resolveDependencies>false</resolveDependencies>
+  <processPlugins>false</processPlugins>
+  <mavenValidationLevel>-1</mavenValidationLevel>
+  <reporters/>
+  <publishers/>
+  <buildWrappers/>
+</maven2-moduleset>
