@@ -16,8 +16,6 @@ import com.trilead.ssh2.Session;
  */
 public abstract class TracCommand implements Command {
 
-	protected Connection connection = null;
-	
 	protected Project project = null;
 	
 	protected String host;
@@ -36,7 +34,7 @@ public abstract class TracCommand implements Command {
 		this.userName = configuration.getString("USER");
 		this.password = configuration.getString("PASSWORD");
 		this.project = project;
-		connection = new Connection(host);
+		
 	}
 	
 	/**
@@ -46,7 +44,9 @@ public abstract class TracCommand implements Command {
 	@Override
 	public final void execute() throws Exception {
 		// TODO Auto-generated method stub
+		Connection connection = null;
 		Session session = null;
+		connection = new Connection(host);
 		try {
 			connection.connect();
 			boolean isAuthenticated = connection.authenticateWithPassword(userName, password);
