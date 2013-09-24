@@ -41,10 +41,10 @@ public class TracCISClient implements CISClient {
 		//使用java SSH来创建项目
 		//1、先检测项目是否存在，如果存在则不需要创建
 		//2、用命令CommandExecutor来执行TracCreateProjecCommand子类
-		
 		//初始化命令
 		TracCommand command = new TracCreateProjectCommand(configuration,project);
-		executor.executeSync(command);
+		success = executor.executeSync(command);
+		
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class TracCISClient implements CISClient {
 		//1、读取project的配置信息，包括该角色(用户组)默认的权限
 		//2、用命令CommandExecutor来执行TracCreateRoleCommand子类
 		TracCommand command = new TracCreateRoleCommand(configuration, roleName, project);
-		executor.executeSync(command);
+		success = executor.executeSync(command);
 	}
 
 	@Override
@@ -68,12 +68,20 @@ public class TracCISClient implements CISClient {
 		//1、读取project的配置信息
 		//2、用命令CommandExecutor来执行TracAssignUserToRoleCommand子类
 		TracCommand command = new TracAssignUserToRoleCommand(usrId, role, configuration, project);
-		executor.executeSync(command);
+		success = executor.executeSync(command);
 	}
 
 	@Override
 	public boolean canConnect() {
 		return false;
+	}
+
+	public boolean isSuccess() {
+		return success;
+	}
+
+	public void setSuccess(boolean success) {
+		this.success = success;
 	}
 
 }

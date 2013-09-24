@@ -28,21 +28,22 @@ public class TracCISClientTest {
 	public void tearDown() throws Exception {
 	}
 
-	@Test(expected=java.lang.Exception.class)
+//	@Test
 	public void testCreateProject() {
 		client.createProject(project);
-		
+		assertTrue(client.isSuccess());
 	}
 
-	@Test
+//	@Test
 	public void testCreateRoleIfNessceary() {
 		client.createRoleIfNessceary(project, "developer");
-		
+		assertTrue(client.isSuccess());
 	}
 
 	@Test
 	public void testAssignUserToRole() {
 		client.assignUserToRole(project, "zjh", "developer");
+		assertTrue(client.isSuccess());
 	}
 
 }
