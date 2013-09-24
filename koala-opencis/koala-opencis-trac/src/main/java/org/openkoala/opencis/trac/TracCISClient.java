@@ -25,6 +25,9 @@ public class TracCISClient implements CISClient {
 	
 	private CommandExecutor executor = new CommandExecutor();
 	
+	/**执行结果*/
+	private boolean success = false;
+	
 	public TracCISClient() {
 		// TODO Auto-generated constructor stub
 	}
@@ -36,7 +39,7 @@ public class TracCISClient implements CISClient {
 	@Override
 	public void createProject(Project project) {
 		//使用java SSH来创建项目
-		//1、从project获取对应的配置信息
+		//1、先检测项目是否存在，如果存在则不需要创建
 		//2、用命令CommandExecutor来执行TracCreateProjecCommand子类
 		
 		//初始化命令
