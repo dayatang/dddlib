@@ -1,6 +1,7 @@
 package org.openkoala.opencis.api;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 项目相关属性的接口
@@ -15,7 +16,9 @@ public class Project {
 	
 	private String projectPath;
 	
-	private List<Developer> projectDeveloper;
+	private List<Developer> developers;
+	
+	private Map<String, Object> nodeElements;
 
 	public String getArtifactId() {
 		return artifactId;
@@ -41,18 +44,26 @@ public class Project {
 		this.projectPath = projectPath;
 	}
 
-	public List<Developer> getProjectDeveloper() {
-		return projectDeveloper;
+	public List<Developer> getDevelopers() {
+		return developers;
 	}
 
-	public void setProjectDeveloper(List<Developer> projectDeveloper) {
-		this.projectDeveloper = projectDeveloper;
+	public void setDevelopers(List<Developer> developers) {
+		this.developers = developers;
+	}
+	
+	public Map<String, Object> getNodeElements() {
+		return nodeElements;
+	}
+
+	public void setNodeElements(Map<String, Object> nodeElements) {
+		this.nodeElements = nodeElements;
 	}
 
 	@Override
 	public String toString() {
 		return "Project [artifactId=" + artifactId + ", projectName="
 				+ projectName + ", projectPath=" + projectPath
-				+ ", projectDeveloper=" + projectDeveloper + "]";
+				+ ", projectDeveloper=" + developers + "]";
 	}
 }
