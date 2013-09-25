@@ -49,6 +49,21 @@ public class QueryController {
 		modelMap.addAttribute("gqId", id);
 		return "query";
 	}
+	
+	/**
+	 * 生成查询页面
+	 * 
+	 * @param id
+	 * @param modelMap
+	 * @return
+	 */
+    @ResponseBody
+	@RequestMapping("/preview/{id}")
+	public Map<String, Object> preview(@PathVariable Long id) {
+    	Map<String, Object> dataMap = new HashMap<String, Object>();
+		dataMap.put("generalQuery", gqcApplication.getById(id));
+		return dataMap;
+	}
 
 	/**
 	 * 分页查询数据
