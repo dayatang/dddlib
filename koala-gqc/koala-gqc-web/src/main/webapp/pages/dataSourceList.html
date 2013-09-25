@@ -1,0 +1,38 @@
+<div id="dataSourceGrid"></div>
+<script src="js/dataSource.js"></script>
+<script>
+$(function(){
+    var cols = [
+        {title:'数据源ID', name:'dataSourceId', width: '180'},
+        { title:'类型', name:'dataSourceTypeDesc' , width: '120'},
+        { title:'JdbcDriver', name:'jdbcDriver' , width: '200'},
+        { title:'Url', name:'connectUrl' , width: '350'},
+        { title:'UserName', name:'username', width: '120'},
+        { title:'Password', name:'password' , width: '120'},
+        { title:'描述', name:'dataSourceDescription', width: '250'},
+        { title:'操作', name:'operate' , width: '120', render: function(item, name, index){
+            return '<a href="#" onclick="dataSource().testConnectionById('+item.id+')"><span class="glyphicon glyphicon-transfer"></span>测试连接</a>';
+        }}
+    ];
+    $('#dataSourceGrid').grid({
+        identity: 'id',
+        columns: cols,
+        isShowButtons: true,
+        url: 'dataSource/pageJson.koala'
+    }).on({
+        'add': function(){
+            dataSource().add( $(this));
+        },
+        'modify': function(event, index){
+            dataSource().modify(index, $(this));
+         },
+        'delete': function(event, indexs, callback){
+            var $this = $(this);
+            $this.confirm({
+                content: '确定要删除所选记录吗?',
+                callBack: function(){ dataSource().del(indexs, $this);}
+            });
+        }
+    });
+})
+</script>
