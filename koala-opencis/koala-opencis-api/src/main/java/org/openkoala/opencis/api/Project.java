@@ -1,35 +1,69 @@
 package org.openkoala.opencis.api;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 项目相关属性的接口
  * @author lingen
  *
  */
-public interface Project {
+public class Project {
 
-	/**
-	 *  返回项目的artifactId
-	 * @return
-	 */
-	public String getArtifactId();
+	private String artifactId;
 	
-	/**
-	 * 返回项目的名称
-	 * @return
-	 */
-	public String getProjectName();
+	private String projectName;
 	
-	/**
-	 * 返回项目的路径
-	 * @return
-	 */
-	public String getProjectPath();
+	private String projectPath;
 	
-	/**
-	 * 返回项目的开发者列表
-	 * @return
-	 */
-	public List<Developer> getProjectDeveloper();
+	private List<Developer> developers;
+	
+	private Map<String, Object> nodeElements;
+
+	public String getArtifactId() {
+		return artifactId;
+	}
+
+	public void setArtifactId(String artifactId) {
+		this.artifactId = artifactId;
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
+	public String getProjectPath() {
+		return projectPath;
+	}
+
+	public void setProjectPath(String projectPath) {
+		this.projectPath = projectPath;
+	}
+
+	public List<Developer> getDevelopers() {
+		return developers;
+	}
+
+	public void setDevelopers(List<Developer> developers) {
+		this.developers = developers;
+	}
+	
+	public Map<String, Object> getNodeElements() {
+		return nodeElements;
+	}
+
+	public void setNodeElements(Map<String, Object> nodeElements) {
+		this.nodeElements = nodeElements;
+	}
+
+	@Override
+	public String toString() {
+		return "Project [artifactId=" + artifactId + ", projectName="
+				+ projectName + ", projectPath=" + projectPath
+				+ ", projectDeveloper=" + developers + "]";
+	}
 }

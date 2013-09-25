@@ -17,20 +17,20 @@ public interface CISClient {
 	 * 在CIS某个工具中创建一个用户，如果此用户不存在的话
 	 * @param developer
 	 */
-	public void createUserIfNecessary(Developer developer);
+	public void createUserIfNecessary(Project project,Developer developer);
 	
 	/**
 	 * 在 CIS 某个工具中创建一个角色，如果此角色不存在
 	 * @param roleName
 	 */
-	public void createRoleIfNessceary(String roleName);
+	public void createRoleIfNessceary(Project project,String roleName);
 	
 	/**
 	 * 在 CIS 某个工具中将角色同某个用户关联
 	 * @param usrId
 	 * @param role
 	 */
-	public void assignUserToRole(String usrId,String role);
+	public void assignUserToRole(Project project,String usrId,String role);
 	
 	/**
 	 * 检测指定工具是否可连接

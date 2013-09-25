@@ -108,31 +108,28 @@ public class GeneralQueryController {
      * @param id
      * @return
      */
+    @ResponseBody
     @RequestMapping("/getById")
-    public String getById(HttpServletRequest request, Long id) {
-        try {
-            //查询出该实体
-            GeneralQuery generalQuery = gqcApplication.getById(id);
+    public Map<String, Object> getById(Long id) {
+    	System.out.println(id);
+        //查询出该实体
+    	GeneralQuery generalQuery = gqcApplication.getById(id);
 
-            //表中所有列，供查询条件选择
-            Map<String, Integer> tableMapLeftDiv = dataSourceApplication.findAllColumn(
+        //表中所有列，供查询条件选择
+        Map<String, Integer> queryConditionColumns = dataSourceApplication.findAllColumn(
                     generalQuery.getDataSource().getId(), generalQuery.getTableName());
             
-            //表中所有列，供显示列选择
-            Map<String, Integer> tableMapRightDiv = getCloneMap(tableMapLeftDiv);
+        //表中所有列，供显示列选择
+        Map<String, Integer> showColumns = getCloneMap(queryConditionColumns);
             
-            //把已被选择了的列从列池中去除
-            this.removeTableMapLeftDiv(generalQuery, tableMapLeftDiv);
-            this.removeTableMapRightDiv(generalQuery, tableMapRightDiv);
-
-            request.setAttribute("data", generalQuery);
-            request.setAttribute("tableMapLeftDiv", tableMapLeftDiv);
-            request.setAttribute("tableMapRightDiv", tableMapRightDiv);
-        } catch (Exception e) {
-            request.setAttribute("error", "获取信息失败!");
-        }
-        
-        return "generalquery/Generalquery-update";
+       //把已被选择了的列从列池中去除
+       this.removeTableMapLeftDiv(generalQuery, queryConditionColumns);
+       this.removeTableMapRightDiv(generalQuery, showColumns);
+       Map<String, Object> dataMap = new HashMap<String, Object>();
+       dataMap.put("generalQuery", generalQuery);
+       dataMap.put("queryConditionColumns", queryConditionColumns);
+       dataMap.put("showColumns", showColumns);
+       return dataMap;
     }
     
     /**

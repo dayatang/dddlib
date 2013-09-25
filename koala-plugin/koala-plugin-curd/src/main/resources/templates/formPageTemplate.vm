@@ -10,7 +10,7 @@
 <%@ include file="/pages/common/header.jsp"%>
 <script type="text/javascript">
 #if ($pageParams.isAddForm == false)	
-var id = "<s:property value="#parameters['id']"/>";
+var ${dtoClass.entityModel.singleIDFieldModel.name} = "<s:property value="#parameters['id']"/>";
 #end
 $(function (){
 autoResize();
@@ -43,10 +43,10 @@ $('#${view.express}ID').koalaDropdown({
 
 #if ($pageParams.isAddForm == false)
 function loadData(){
- if(id == '')return;
+ if(${dtoClass.entityModel.singleIDFieldModel.name} == '')return;
  Koala.ajax({
 		type : 'POST',
-		url: '<%=contextPath %>/${base_url}get.action?${voName}.id='+id,
+		url: '<%=contextPath %>/${base_url}get.action?${voName}.${dtoClass.entityModel.singleIDFieldModel.name}='+${dtoClass.entityModel.singleIDFieldModel.name},
 		dataType:'json',
 		success: function(json){
 			if(json && json.data){
@@ -72,7 +72,7 @@ function saveDataAction(){
 #if ($pageParams.isAddForm)
 	var url = '<%=contextPath %>/${base_url}add.action';
 #else
-	var url = '<%=contextPath %>/${base_url}update.action?${voName}.id='+id;	
+	var url = '<%=contextPath %>/${base_url}update.action?${voName}.${dtoClass.entityModel.singleIDFieldModel.name}='+${dtoClass.entityModel.singleIDFieldModel.name};	
 #end
    //form validate
    if(!Validator.Validate(document.getElementById("dataForm"),3))return;
