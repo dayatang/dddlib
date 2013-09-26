@@ -7,6 +7,13 @@
 	<listener>
 		<listener-class>com.dayatang.spring.webapp.DayatangContextLoaderListener</listener-class>
 	</listener>
+	
+	<listener> 
+       <listener-class> 
+         org.springframework.security.web.session.HttpSessionEventPublisher 
+       </listener-class> 
+    </listener> 
+	
 
 	<!-- Character Filter -->
 	<filter>

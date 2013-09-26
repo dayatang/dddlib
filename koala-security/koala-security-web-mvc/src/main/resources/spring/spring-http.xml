@@ -31,6 +31,14 @@
 		<!--  <s:session-management session-fixation-protection="none">
 			<concurrency-control />
 		</s:session-management>  -->
+		
+			<s:session-management invalid-session-url="/login.action?login_error=2"
+				session-fixation-protection="none">
+			<!-- 每个用户在同一时间最多只能一个会话,如果希望阻止后面的这次登录的话，可以设置属性 error-if-maximum-exceeded的值为 
+				true。这样的话，后面的这次登录就会出错。只有当之前的会话失效之后，用户才能再次登录 -->
+			<s:concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
+		</s:session-management>
+		
 		<s:intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY" />
 		<s:session-management invalid-session-url="/login.koala" />
 		<!-- 过滤器，不能修改 -->
