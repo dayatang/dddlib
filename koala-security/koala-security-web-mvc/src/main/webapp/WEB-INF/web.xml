@@ -35,21 +35,7 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
-	<servlet>
-		<servlet-name>spring</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:koala-spring-servlet.xml</param-value>
-		</init-param>
-		
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>spring</servlet-name>
-		<url-pattern>*.koala</url-pattern>
-	</servlet-mapping>
+	
 
 	<servlet>
 		<servlet-name>DBInit</servlet-name>
