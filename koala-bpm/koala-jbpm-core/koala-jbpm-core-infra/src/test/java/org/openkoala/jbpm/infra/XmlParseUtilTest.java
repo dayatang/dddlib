@@ -1,7 +1,5 @@
 package org.openkoala.jbpm.infra;
 
-import static org.junit.Assert.*;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

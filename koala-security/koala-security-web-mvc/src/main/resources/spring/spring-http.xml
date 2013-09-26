@@ -31,6 +31,10 @@
 		<!--  <s:session-management session-fixation-protection="none">
 			<concurrency-control />
 		</s:session-management>  -->
+		  <s:session-management>  
+            <s:concurrency-control error-if-maximum-exceeded="true" max-sessions="1" />  
+        </s:session-management>  
+        
 		<s:intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY" />
 		<s:session-management invalid-session-url="/login.koala" />
 		<!-- 过滤器，不能修改 -->
