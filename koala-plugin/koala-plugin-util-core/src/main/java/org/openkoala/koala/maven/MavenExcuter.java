@@ -15,7 +15,6 @@ public class MavenExcuter {
 	public static void runMaven(String path) throws KoalaException {
 		runMaven(path, null);
 	}
-	
 
 	public static void runMaven(String path, String profile)
 			throws KoalaException {
