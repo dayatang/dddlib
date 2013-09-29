@@ -3,9 +3,8 @@ package org.openkoala.koala.ftp;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Properties;
-
-import org.openkoala.koala.ftp.exception.FtpException;
 import org.openkoala.koala.ftp.impl.FtpUtilImpl;
 import org.openkoala.koala.ftp.util.FtpUtil;
 
@@ -49,12 +48,11 @@ public class FTPFacotry {
 	}
 
 	private static void initConfig(String properties) {
-		String proFilePath = null;
 		InputStream in = null;
 		try {
-			proFilePath  = FTPFacotry.class.getClassLoader().getResource("").getPath() + properties;
+			URL propertyFileURL = Thread.currentThread().getContextClassLoader().getResource(properties);
 			Properties prop = new Properties(); 
-			in =new FileInputStream(new File(proFilePath));
+			in = propertyFileURL.openStream();
 			prop.load(in);
 			username = prop.getProperty("ftp.username");
 			password = prop.getProperty("ftp.password");
@@ -70,7 +68,7 @@ public class FTPFacotry {
 			if(tmpDir!=null)initTmpDir();
 		} catch (Exception e) {
 			System.out.println("===Properties Error======");
-			System.out.println(proFilePath);
+			System.out.println(properties);
 			e.printStackTrace();
 		}finally{
 		  try{
