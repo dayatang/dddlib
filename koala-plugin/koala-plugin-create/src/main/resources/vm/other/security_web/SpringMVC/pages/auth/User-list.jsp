@@ -623,10 +623,10 @@
 				checkbox : true,
 				parms : [ {
 					name : "userNameForSearch",
-					value : $("#userNameForSearch").val().trim()
+					value : $("#userNameForSearch").val()
 				}, {
 					name : "userAccountForSearch",
-					value : $("#userAccountForSearch").val().trim()
+					value : $("#userAccountForSearch").val()
 				} ]
 			});
 		});

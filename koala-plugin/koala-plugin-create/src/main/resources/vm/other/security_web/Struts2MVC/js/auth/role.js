@@ -503,7 +503,7 @@ $(function() {
 			rownumbers : true,
 			parms : [ {
 				name : "roleNameForSearch",
-				value : $("#roleNameForSearch").val().trim()
+				value : $("#roleNameForSearch").val()
 			} ],
 			width : '98%',
 			height : '100%',
@@ -543,7 +543,7 @@ $(function() {
 				value : userAccount
 			}, {
 				name : "roleNameForSearch",
-				value : $("#dialogRoleNameForSearch").val().trim()
+				value : $("#dialogRoleNameForSearch").val()
 			} ],
 			sortName : 'id',
 			width : 450,
