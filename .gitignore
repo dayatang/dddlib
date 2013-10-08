@@ -1,10 +1,10 @@
-**/.DS_Store
-**/.settings
-**/.project
-**/.classpath
-**/target
-**/*.log
-**/*.tlog
+.DS_Store
+.settings
+.project
+.classpath
+target
+*.log
+*.tlog
 .idea
 *.class
 
@@ -12,4 +12,5 @@
 *.jar
 *.war
 *.ear
+*.iml
 
