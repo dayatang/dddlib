@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.dayatang.commons</groupId>
 		<artifactId>dayatang-commons-project</artifactId>
-		<version>3.7-SNAPSHOT</version>
+		<version>4.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>dayatang-commons-ds4saas</artifactId>
 	<packaging>jar</packaging>
@@ -88,8 +88,8 @@
 				<configuration>
 					<driver>${jdbc.driverClassName}</driver>
 					<url>${jdbc.url}</url>
-					<username>${jdbc.username}</username>
-					<password>${jdbc.password}</password>
+					<username>${mysql.username}</username>
+					<password>${mysql.password}</password>
 				</configuration>
 				<executions>
 					<execution>
@@ -141,7 +141,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
+										<ignore />
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
