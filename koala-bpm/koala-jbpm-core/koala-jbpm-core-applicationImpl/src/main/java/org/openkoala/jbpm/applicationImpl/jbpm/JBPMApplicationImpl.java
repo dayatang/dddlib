@@ -322,10 +322,13 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			}
 			todo.setProcessData(log.getProcessData());
 			todo.setProcessInstanceId(processId);
-			todo.setProcessId(processLog.getProcessId());
-			// TODO 存进去，关于流程名称
-			todo.setProcessName(processLog.getProcessId());
-			todo.setCreateDate(df.format(processLog.getStart()));
+			if(processLog!=null){
+				todo.setProcessId(processLog.getProcessId());
+				// TODO 存进去，关于流程名称
+				todo.setProcessName(processLog.getProcessId());
+				todo.setCreateDate(df.format(processLog.getStart()));
+			}
+			
 			dones.add(todo);
 		}
 		return dones;
