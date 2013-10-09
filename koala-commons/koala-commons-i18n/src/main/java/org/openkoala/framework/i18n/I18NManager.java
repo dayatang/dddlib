@@ -19,6 +19,7 @@ import com.dayatang.i18n.support.I18nServiceAccessor;
  */
 public class I18NManager {
 	
+	
 	// 国际资源文件存放路径
 	private static final String I18N_PATH = "/i18n";
 	

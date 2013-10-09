@@ -9,6 +9,7 @@
    <input type="hidden" id="MenuNo" value="MemberManageUser" />
   <div id="maingrid"></div> 
   
+  
   <div id="editUrl" style="display: none;">
 	  <form id="form">
 	  	<table class="form2column">

@@ -10,6 +10,7 @@ var tab = null;
 var accordion = null;
 //tabid计数器，保证tabid不会重复
 var tabidcounter = 0;
+
 $(function() {
 	// 布局
 	$("#main-content").ligerLayout({
