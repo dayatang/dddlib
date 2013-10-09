@@ -45,11 +45,13 @@ public class I18NManager {
 			handleBasename(file, "i18n");
 		}
 		//TODO WEB下需要使用/i18n，但普通应用下得使用i18n这种方式，具体原因待查找
+		/*
 		url = Thread.currentThread().getContextClassLoader().getResource("i18n");
 		if (url != null) {
 			File file = new File(url.getFile());
 			handleBasename(file, "i18n");
 		}
+		*/
 	}
 	
 	/**
