@@ -13,8 +13,8 @@
     <url>http://maven.apache.org</url>  
     <properties> 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
-        <project.type>war</project.type>  
-        <base.package>org.openkoala.gqc.web</base.package> 
+        <project.type>war</project.type>
+        <base.package>org.openkoala.gqc.web</base.package>
     </properties>  
     <dependencies> 
         <dependency> 

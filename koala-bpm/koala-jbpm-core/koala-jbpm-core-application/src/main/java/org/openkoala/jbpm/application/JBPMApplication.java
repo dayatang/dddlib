@@ -280,6 +280,21 @@ public interface JBPMApplication {
 	@Deprecated
 	public List<ProcessInstanceVO> queryAllProcess(String processId);
 	
+	/**
+	 * 退回功能，当前节点用户可进行退回
+	 * @param processInstanceId
+	 * @param userId
+	 * @param userId
+	 */
+	public void roolBack(long processInstanceId,long taskId,String userId);
+	
+	/**
+	 * 取回功能，如果下一步的人员未进行任何操作，前一步的用户可以主动取回这个任务，重新决策
+	 * @param TaskId
+	 * @param userId
+	 */
+	public void fetchBack(long processInstanceId,long taskId,String userId);
+	
 	
 
 }

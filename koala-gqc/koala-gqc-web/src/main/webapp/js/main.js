@@ -12,9 +12,15 @@ $(function(){
 			sidebar.css('height', 'auto');
 			return;
 		}
-
+	})
+	/**
+	 * 根据内容改变高度
+	 */
+	var changeHeight = function(){
+		var windowWidth = $window.width();
+		var sidebar = $('.g-sidec');
 		var sidebarHeight = sidebar.outerHeight();
-		var headerHeight = $('#header').outerHeight();
+		var headerHeight = $('.g-head').outerHeight();
 		var windowHeight = $window.height();
 		var bodyHeight = $(document).height();
 		if(bodyHeight >  windowHeight){
@@ -23,7 +29,7 @@ $(function(){
 		var footHeight = $('#footer').outerHeight();
 		var height =  windowHeight - headerHeight - footHeight;
 		sidebarHeight < height && sidebar.css('height', height);
-	})
+	}
 	/*
 	 加载DIV内容
 	 */
@@ -36,7 +42,7 @@ $(function(){
 			}).fail(function(){
 				throw new Error('加载失败')
 			}).always(function(){
-				$window.trigger('resize');
+				changeHeight();
 			})
 	}
 	loadContent($('#home'), 'pages/welcome.html');
@@ -134,22 +140,6 @@ $(function(){
 				}
 			});
 	}
-	/*
-	 菜单收缩
-	 */
-	$('.g-sidec [data-toggle="collapse"]').on('click', function(){
-		var $this = $(this);
-		var $menu = $this.parent();
-		if (!$menu.hasClass('opened')) {
-			$menu.removeClass('closed').addClass('opened');
-			$this.find('span:last').removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-up');
-		} else {
-			$menu.removeClass('opened').addClass('closed');
-			$this.find('span:last').removeClass('glyphicon-chevron-up').addClass('glyphicon-chevron-down');
-		}
-
-	})
-
 	/*
 	 修改密码
 	 */

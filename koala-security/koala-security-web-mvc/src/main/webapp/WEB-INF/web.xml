@@ -17,8 +17,18 @@
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>
+
+	<servlet>
+		<servlet-name>jcaptcha</servlet-name>
+		<servlet-class>com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet</servlet-class>
+	</servlet>
 	
-	<!-- ss3过滤器链  -->
+	<servlet-mapping>
+		<servlet-name>jcaptcha</servlet-name>
+		<url-pattern>/jcaptcha.jpg</url-pattern>
+	</servlet-mapping>
+
+	<!-- ss3过滤器链 -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

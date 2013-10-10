@@ -91,6 +91,7 @@ public class JBPMProcessEventListener implements ProcessEventListener {
 			log.setComment((String)event.getNodeInstance().getVariable("comment"));
 			log.setCreateDate(new Date());
 			log.setNodeName(event.getNodeInstance().getNodeName());
+			log.setNodeId(event.getNodeInstance().getNodeId());
 			log.setResult((String)event.getNodeInstance().getVariable("result"));
 			log.setUser((String)event.getNodeInstance().getVariable("KJ_USER"));
 			log.setProcessInstanceId(event.getProcessInstance().getId());

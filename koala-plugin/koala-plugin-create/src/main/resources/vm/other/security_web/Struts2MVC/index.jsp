@@ -10,6 +10,7 @@ var tab = null;
 var accordion = null;
 //tabid计数器，保证tabid不会重复
 var tabidcounter = 0;
+
 $(function() {
 	// 布局
 	$("#main-content").ligerLayout({
@@ -49,13 +50,13 @@ $(function() {
 function loadLeftMenu() {
 	 var $leftmenu = $("#leftmenu");
 	 //加载栏目
-     $.getJSON('${pageContext.request.contextPath}/auth/Menu/findTopMenuByUser.koala', function (menus)
+     $.getJSON('${pageContext.request.contextPath}/auth/Menu/findTopMenuByUser.koala?time=' + new Date().getTime(), function (menus)
      {
          $(menus.data).each(function (i, menu)
          {
         	 $leftmenu.append('<div id="main_'+menu.id+'" title="' + menu.name + '" class="l-scroll"><ul id="sub_'+menu.id+'"></ul></div>');
         	 //加载栏目菜单
-        	 $.getJSON('${pageContext.request.contextPath}/auth/Menu/findAllSubMenuByParent.koala?resVO.id=' + menu.id, function(submenu) {
+        	 $.getJSON('${pageContext.request.contextPath}/auth/Menu/findAllSubMenuByParent.koala?resVO.id=' + menu.id + "&time=" + new Date().getTime(), function(submenu) {
              	var tree = $("#sub_"+menu.id).ligerTree({
              		data:submenu.data,
              		checkbox:false

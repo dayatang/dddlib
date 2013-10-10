@@ -1,6 +1,7 @@
 package org.openkoala.jbpm.core;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
@@ -22,6 +23,8 @@ public class HistoryLog extends AbstractEntity {
 	private Date createDate;//日期
 	
 	private String nodeName;//步骤名称
+	
+	private long nodeId;
 	
 	private String result;//审批结果
 	
@@ -98,6 +101,14 @@ public class HistoryLog extends AbstractEntity {
 		this.taskData = taskData;
 	}
 
+	public long getNodeId() {
+		return nodeId;
+	}
+
+	public void setNodeId(long nodeId) {
+		this.nodeId = nodeId;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -105,10 +116,17 @@ public class HistoryLog extends AbstractEntity {
 		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
 		result = prime * result
 				+ ((createDate == null) ? 0 : createDate.hashCode());
+		result = prime * result + (int) (nodeId ^ (nodeId >>> 32));
 		result = prime * result
 				+ ((nodeName == null) ? 0 : nodeName.hashCode());
 		result = prime * result
+				+ ((processData == null) ? 0 : processData.hashCode());
+		result = prime * result
+				+ (int) (processInstanceId ^ (processInstanceId >>> 32));
+		result = prime * result
 				+ ((this.result == null) ? 0 : this.result.hashCode());
+		result = prime * result
+				+ ((taskData == null) ? 0 : taskData.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
@@ -132,15 +150,29 @@ public class HistoryLog extends AbstractEntity {
 				return false;
 		} else if (!createDate.equals(other.createDate))
 			return false;
+		if (nodeId != other.nodeId)
+			return false;
 		if (nodeName == null) {
 			if (other.nodeName != null)
 				return false;
 		} else if (!nodeName.equals(other.nodeName))
 			return false;
+		if (processData == null) {
+			if (other.processData != null)
+				return false;
+		} else if (!processData.equals(other.processData))
+			return false;
+		if (processInstanceId != other.processInstanceId)
+			return false;
 		if (result == null) {
 			if (other.result != null)
 				return false;
 		} else if (!result.equals(other.result))
+			return false;
+		if (taskData == null) {
+			if (other.taskData != null)
+				return false;
+		} else if (!taskData.equals(other.taskData))
 			return false;
 		if (user == null) {
 			if (other.user != null)
@@ -152,8 +184,27 @@ public class HistoryLog extends AbstractEntity {
 
 	@Override
 	public String toString() {
-		return "HistoryLog [user=" + user + ", createDate=" + createDate
-				+ ", nodeName=" + nodeName + ", result=" + result
-				+ ", comment=" + comment + "]";
+		return "HistoryLog [processInstanceId=" + processInstanceId + ", user="
+				+ user + ", createDate=" + createDate + ", nodeName="
+				+ nodeName + ", nodeId=" + nodeId + ", result=" + result
+				+ ", comment=" + comment + ", processData=" + processData
+				+ ", taskData=" + taskData + "]";
 	}
+	
+	
+	/**
+	 * 查询一个流程的最后一个待办人及使用者
+	 * @param processInstanceId
+	 * @return
+	 */
+	public static HistoryLog queryLastActivedNodeId(long processInstanceId){
+		String jpql = "from HistoryLog where processInstanceId = ? order by id desc";
+		List<HistoryLog> historys = HistoryLog.getRepository().find(jpql, new Object[]{processInstanceId}, HistoryLog.class);
+		if(historys==null){
+			return null;
+		}
+		return historys.get(0);
+	}
+
+	
 }

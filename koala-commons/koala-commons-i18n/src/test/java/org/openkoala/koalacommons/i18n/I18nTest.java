@@ -2,6 +2,7 @@ package org.openkoala.koalacommons.i18n;
 
 import junit.framework.Assert;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.framework.i18n.I18NManager;
 
@@ -10,6 +11,7 @@ import org.openkoala.framework.i18n.I18NManager;
  * @author lingen
  *
  */
+@Ignore
 public class I18nTest {
 
 	@Test

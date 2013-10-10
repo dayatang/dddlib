@@ -53,8 +53,8 @@ public class KoalaProcessInfo extends AbstractEntity{
 		this.processName = porcessName;
 		this.versionNum = version;
 		this.data = xmlData.getBytes();
-		this.png = new byte[]{};
-		System.arraycopy(png, 0, this.png, 0, png.length);
+		this.png = new byte[png.length];
+		System.arraycopy(png, 0, this.png, 0,png.length);
 	}
 	
 	public String getProcessName() {
@@ -90,7 +90,7 @@ public class KoalaProcessInfo extends AbstractEntity{
 	}
 
 	public void setData(byte[] data) {
-		this.data = new byte[]{};
+		this.data = new byte[data.length];
 		System.arraycopy(data, 0, this.data, 0, data.length);
 	}
 
@@ -176,7 +176,7 @@ public class KoalaProcessInfo extends AbstractEntity{
 	}
 
 	public void setPng(byte[] png) {
-		this.png = new byte[]{};
+		this.png = new byte[png.length];
 		System.arraycopy(png, 0, this.png, 0, png.length);
 	}
 

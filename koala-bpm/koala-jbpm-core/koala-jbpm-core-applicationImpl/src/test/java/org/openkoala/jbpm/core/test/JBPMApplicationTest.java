@@ -6,11 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import junit.framework.Assert;
-
 import org.apache.commons.io.FileUtils;
+import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openkoala.jbpm.application.JBPMApplication;
 import org.openkoala.jbpm.application.vo.HistoryLogVo;
@@ -86,6 +84,54 @@ public class JBPMApplicationTest extends KoalaBaseSpringTestCase {
 		List<ProcessVO> processes = getJBPMApplication().getProcesses();
 		Assert.assertTrue(processes.size() == 1);
 
+	}
+	
+	/**
+	 * 测试回退一个流程
+	 */
+	@Test
+	public void testRoolBack(){
+		long i = getJBPMApplication()
+				.startProcess("defaultPackage.Trade","aaa",null);
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("approveStatus", "1");
+		getJBPMApplication().completeTask(1l, 1l, "fhjl",
+				XmlParseUtil.paramsToXml(data), null);
+
+		getJBPMApplication().roolBack(i, 0, "fwzy");
+		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fhjl");
+		Assert.assertTrue(tasks.size()==1);
+	}
+	
+	@Test
+	public void testFetchBack(){
+		long i = getJBPMApplication()
+				.startProcess("defaultPackage.Trade","aaa",null);
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("approveStatus", "1");
+		getJBPMApplication().completeTask(1l, 1l, "fhjl",
+				XmlParseUtil.paramsToXml(data), null);
+
+		getJBPMApplication().fetchBack(1l, 0l, "fhjl");
+		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fhjl");
+		Assert.assertTrue(tasks.size()==1);
+	}
+	
+	/**
+	 * 测试回退一个流程
+	 */
+	@Test
+	public void testRoolBack2(){
+		long i = getJBPMApplication()
+				.startProcess("defaultPackage.Trade","aaa",null);
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("approveStatus", "1");
+		getJBPMApplication().completeTask(1l, 1l, "fhjl",
+				XmlParseUtil.paramsToXml(data), null);
+
+		getJBPMApplication().roolBack(i, 0, "fwzy");
+		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fhjl");
+		Assert.assertTrue(tasks.size()==1);
 	}
 
 	/**

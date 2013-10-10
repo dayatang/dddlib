@@ -6,7 +6,7 @@ import java.util.Map;
 import com.opensymphony.xwork2.ActionSupport;
 import javax.inject.Inject;
 
-import org.openkoala.koala.jbpm.designer.application.core.PublishURLApplication;
+import org.openkoala.koala.jbpm.designer.application.core.BpmDesignerApplication;
 import org.openkoala.koala.jbpm.designer.application.vo.PublishURLVO;
 
 
@@ -24,7 +24,7 @@ public class PublishURLAction extends ActionSupport {
 	private Map<String, Object> dataMap = new HashMap<String, Object>();
 		
 	@Inject
-	private PublishURLApplication publishURLApplication;
+	private BpmDesignerApplication publishURLApplication;
 	
 	private int page;
 	

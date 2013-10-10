@@ -32,7 +32,6 @@ import org.openkoala.opencis.git.GitCISProjectException;
 import org.openkoala.opencis.git.GitCISUserException;
 import org.openkoala.opencis.git.NoGitlabHostException;
 import org.openkoala.opencis.git.NoTokenException;
-import org.openkoala.opencis.git.NotGitCISProjectException;
 import org.openkoala.opencis.git.NullOrEmptyProjectNameException;
 import org.openkoala.opencis.git.NullProjectException;
 import org.openkoala.opencis.git.ProjectPathIsNullOrEmptyException;
@@ -109,21 +108,17 @@ public class GitlabCISClient implements CISClient {
 		if (StringUtils.isBlank(project.getProjectName())) {
 			throw new NullOrEmptyProjectNameException("Project name is null or empty!");
 		}
-		if (!(project instanceof GitCISProject)) {
-			throw new NotGitCISProjectException("project is not a GitCISProject!");
-		}
 		
-		GitCISProject theProject = (GitCISProject) project;
-		createProjectInGitLab(theProject);
-		addProjectTeamMember(theProject);
-		pushProjectToGitLab(theProject);
+		createProjectInGitLab(project);
+		addProjectTeamMember(project);
+		pushProjectToGitLab(project);
 	}
 
 	/**
 	 * 在gitlab中创建项目.
 	 * @param project
 	 */
-	private void createProjectInGitLab(GitCISProject project) {
+	private void createProjectInGitLab(Project project) {
 		try {
 			gitlabProject = gitlabHTTPRequestor.method("POST")
 				.with("name", project.getProjectName()).with("description", project.getDescription()).with("public", true)
@@ -140,13 +135,13 @@ public class GitlabCISClient implements CISClient {
 	 * 分配Gitlab用户到所创建的项目中，用户如果不存在则创建之.
 	 * @param project
 	 */
-	private void addProjectTeamMember(GitCISProject project) {
+	private void addProjectTeamMember(Project project) {
 		GitlabProject thegitGitlabProject = new GitlabProject();
 		if (gitlabProject == null) {
 			throw new NullProjectException("the created gitlab project is null!");
 		}
-		for (Developer developer : project.getProjectDeveloper()) {
-			createUserIfNecessary(developer);
+		for (Developer developer : project.getDevelopers()) {
+			createUserIfNecessary(project, developer);
 			Integer userId = getUserIdByUsername(developer.getId());
 			if (userId == null) {
 				continue;
@@ -180,7 +175,7 @@ public class GitlabCISClient implements CISClient {
 	 * 推送项目到Gitlab中.
 	 * @param project
 	 */
-	private void pushProjectToGitLab(GitCISProject project) {
+	private void pushProjectToGitLab(Project project) {
 		Repository repository = null;
 		InitCommand init = new InitCommand();
 		
@@ -243,7 +238,7 @@ public class GitlabCISClient implements CISClient {
 	}
 
 	@Override
-	public void createUserIfNecessary(Developer developer) {
+	public void createUserIfNecessary(Project project, Developer developer) {
 		if (isUserExist(developer.getId())) {
 			return;
 		}
@@ -284,18 +279,18 @@ public class GitlabCISClient implements CISClient {
 	}
 	
 	@Override
-	public void createRoleIfNessceary(String roleName) {
-		
-	}
-
-	@Override
-	public void assignUserToRole(String usrId, String role) {
-		
-	}
-
-	@Override
 	public boolean canConnect() {
 		return false;
+	}
+
+	@Override
+	public void createRoleIfNessceary(Project project, String roleName) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void assignUserToRole(Project project, String usrId, String role) {
+		// TODO Auto-generated method stub
 	}
 	
 }

@@ -20,13 +20,14 @@
 		this.sortName = null;
 		this.sortOrder = null;
 		this._initLayout();
+		this._initButtons();
 		this._initHead();
 		this._initOptions();
 		this._initEvents();
 		if(this.options.autoLoad){
-			var that = this
+			var self = this
 			setTimeout(function(){
-				that._loadData();
+				self._loadData();
 			},0)
 		}
 	}
@@ -34,7 +35,7 @@
 		loadingText: '正在载入...', //数据载入时的提示文字
 		noDataText: '没有数据',    //没有数据时的提示文字
 		isShowIndexCol: true, //是否显示索引列
-		isShowButtons: false,
+		isShowButtons: true,
 		autoLoad: true, //是否表格准备好时加载数据
 		method: 'POST', //请求数据方式
 		identity: 'id', //主键
@@ -48,9 +49,6 @@
 		_initLayout: function(){
 			this.table = $(Grid.DEFAULTS.TEMPLATE).appendTo(this.$element);
 			this.buttons = this.$element.find('.buttons');
-			this.addBtn = this.$element.find('[data-role="add"]');
-			this.modifyBtn = this.$element.find('[data-role="modify"]');
-			this.deleteBtn = this.$element.find('[data-role="delete"]');
 			this.searchContainer = this.$element.find('.search');
 			this.condition = this.searchContainer.find('[data-role="condition"]');
 			this.totalRecord = this.$element.find('[data-role="total-record"]');
@@ -67,8 +65,24 @@
 			!this.options.isShowButtons && this.buttons.hide();
 			this.colResizePointer = this.table.find('.colResizePointer')
 		},
+		_initButtons: function(){
+			var self = this;
+			var buttons = self.options.buttons;
+			if(buttons && buttons.length > 0){
+				 for(var i= 0,j=buttons.length; i<j; i++){
+					 var action = buttons[i].action;
+					  $(buttons[i].content).appendTo(self.buttons).on('click', {action: action}, function(e){
+						  e.stopPropagation();
+						  e.preventDefault();
+						  self.$element.trigger(e.data.action, {data:self.selectedRowsIndex()})
+					  });
+				 }
+			}else{
+				self.options.isShowButtons = false;
+			}
+		},
 		_initHead: function(){
-			var that = this;
+			var self = this;
 			var columns = this.options.columns;
 			if(!columns || columns.length == 0){
 				$('body').message({
@@ -105,7 +119,6 @@
 				titleHtml.push('</th>');
 			}
 			if(totalColumnWidth > this.$element.width()){
-				//this.gridTableHead.css({'width': totalColumnWidth});
 				this.gridTableHeadTable.css('width', totalColumnWidth);
 				this.gridTableBodyTable.css('width', totalColumnWidth);
 			}
@@ -113,13 +126,13 @@
 			this.gridTableHeadTable.find('[data-role="selectAll"]').on('click',function() {
 				if(this.checked){
 					$(this).parent().addClass('checked');
-					that.gridTableBodyTable.find('.checker').find('input:checkbox').each(function(){
+					self.gridTableBodyTable.find('.checker').find('input:checkbox').each(function(){
 						this.checked = false;
 						$(this).click();
 					})
 				}else{
 					$(this).parent().removeClass('checked');
-					that.gridTableBodyTable.find('.checker').find('input:checkbox').each(function(){
+					self.gridTableBodyTable.find('.checker').find('input:checkbox').each(function(){
 						this.checked = true;
 						$(this).click();
 					})
@@ -129,32 +142,32 @@
 			sorts.on('click', function(e){
 				e.stopPropagation();
 				var $this = $(this);
-				that.sortName = $this.attr('sortName');
+				self.sortName = $this.attr('sortName');
 				if($this.hasClass('sorting-asc')){
 					sorts.removeClass('sorting-asc').removeClass('sorting-desc').find('span').remove();
 					$this.removeClass('sorting-asc').addClass('sorting-desc')
 					$this.find('span').remove().end().append($('<span class="glyphicon glyphicon-arrow-down"></span>'))
-					that.sortOrder = 'desc';
+					self.sortOrder = 'desc';
 				}else{
 					sorts.removeClass('sorting-asc').removeClass('sorting-desc').find('span').remove();
 					$this.removeClass('sorting-desc').addClass('sorting-asc')
 					$this.find('span').remove().end().append($('<span class="glyphicon glyphicon-arrow-up"></span>'));
-					that.sortOrder = 'asc';
+					self.sortOrder = 'asc';
 				}
-				that._loadData();
+				self._loadData();
 			})
 			this.gridTableHeadTable.find('.colResize').on('mousedown', function(e){
 				e.stopPropagation();
 				var $this = $(this);
 				var start = e.pageX;
-				var left = that.gridTableHead.offset().left;
-				that.colResizePointer.css({'height': that.gridBody.height(), 'left': e.pageX - that.gridTableBody.scrollLeft() - left}).show();
-				that.grid.css({'-moz-user-select': 'none', 'cursor': 'move'}).on({
+				var left = self.gridTableHead.offset().left;
+				self.colResizePointer.css({'height': self.gridBody.height(), 'left': e.pageX - self.gridTableBody.scrollLeft() - left}).show();
+				self.grid.css({'-moz-user-select': 'none', 'cursor': 'move'}).on({
 					'selectstart': function (){
 						return false;
 					},
 					'mousemove': function(e){
-						that.colResizePointer.css({'left': e.pageX - that.gridTableBody.scrollLeft() - left}).show();
+						self.colResizePointer.css({'left': e.pageX - self.gridTableBody.scrollLeft() - left}).show();
 					},
 					'mouseup': function(e){
 						var end = e.pageX;
@@ -162,16 +175,16 @@
 						var width = parseFloat($th.attr('width')) + end - start;
 						$th.attr('width', width);
 						var index = $th.attr('index');
-						that.gridTableBodyTable.find('td[index="'+index+'"]').attr('width', width);
+						self.gridTableBodyTable.find('td[index="'+index+'"]').attr('width', width);
 						$(this).css({'-moz-user-select': '-moz-all', 'cursor': 'default'}).off('selectstart').off('mouseup').off('mousemove');
-						that.colResizePointer.hide();
-						that.options.columns[index].width = width;
+						self.colResizePointer.hide();
+						self.options.columns[index].width = width;
 					}
 				})
 			})
 		},
 		_initOptions: function(){
-			var that = this;
+			var self = this;
 			//每页记录数
 			this.pageSizeSelect.select({
 				contents: [
@@ -183,14 +196,14 @@
 				]
 			});
 			this.pageSizeSelect.setValue(this.options.pageSize).on('change', function(){
-				that.pageSize = $(this).getValue();
-				that.pageNo = Grid.DEFAULTS.pageNo;
-				that._loadData();
+				self.pageSize = $(this).getValue();
+				self.pageNo = Grid.DEFAULTS.pageNo;
+				self._loadData();
 			});
-			if(that.options.querys && that.options.querys.length>0){
+			if(self.options.querys && self.options.querys.length>0){
 				this.condition.select({
 					title: '选择条件',
-					contents: that.options.querys
+					contents: self.options.querys
 				});
 			}else{
 				this.searchContainer.hide();
@@ -198,71 +211,38 @@
 			}
 		},
 		_initEvents: function(){
-			var that = this;
-			this.addBtn.on('click', function(){
-				that.$element.trigger('add');
-			});
-			this.modifyBtn.on('click', function(){
-				var length =  that.selectedRowsIndex().length;
-				if(length == 0){
-					that.$element.message({
-						type: 'warning',
-						content: '请选择一条记录进行修改'
-					})
-					return;
-				}
-				if(length > 1){
-					that.$element.message({
-						type: 'warning',
-						content: '只能选择一条记录进行修改'
-					})
-					return;
-				}
-				that.$element.trigger('modify', that.selectedRowsIndex()[0]);
-			});
-			this.deleteBtn.on('click', function(){
-				var length =  that.selectedRowsIndex().length;
-				if(length == 0){
-					that.$element.message({
-						type: 'warning',
-						content: '请选择要删除的记录'
-					})
-					return;
-				}
-				var index = that.selectedRowsIndex();
-				that.$element.trigger('delete', index.join(','));
-			});
+			var self = this;
 			this.gridTableBody.on('scroll', function(){
-				that.gridTableHead.css('left', -$(this).scrollLeft());
+				self.gridTableHead.css('left', -$(this).scrollLeft());
 			});
 			this.searchContainer.find('button[data-role="searchBtn"]').on('click', function(){
-				var condition = that.condition.getValue();
+				var condition = self.condition.getValue();
 				if(!condition){
-					that.$element.message({
+					self.$element.message({
 						type: 'warning',
 						content: '请选择查询条件'
 					})
 					return;
 				}
-				var value =  that.searchContainer.find('input[data-role="searchValue"]').val().replace(/(^\s*)|(\s*$)/g, "");
-				that.searchCondition[condition] =  value;
-				that._loadData();
+				var value =  self.searchContainer.find('input[data-role="searchValue"]').val().replace(/(^\s*)|(\s*$)/g, "");
+				self.searchCondition[condition] =  value;
+				self._loadData();
 			});
 		},
 		/*
 		 *加载数据
 		 */
 		_loadData: function(){
-			var that = this;
+			var self = this;
 			var params = {};
-			params.pagesize = that.pageSize;
-			params.page = that.pageNo;
-			for(var prop in that.searchCondition){
-				params[prop] = that.searchCondition[prop];
+			params.pagesize = self.pageSize;
+			params.page = self.pageNo;
+			for(var prop in self.searchCondition){
+				params[prop] = self.searchCondition[prop];
 			}
-			if(that.sortName && that.sortOrder){
-				params.sortname = that.sortName;
-				params.sortorder = that.sortOrder
+			if(self.sortName && self.sortOrder){
+				params.sortname = self.sortName;
+				params.sortorder = self.sortOrder
 			}
 			$.ajax({
 				type: this.options.method,
@@ -270,12 +250,22 @@
 				data: params,
 				dataType: 'json'
 			}).done(function(result){
-					that.startRecord.text(result.start);
-					that.endRecord.text(result.start + result.limit);
-					that.totalRecord.text(result.Total);
-					that._initPageNo(result.Total)
-					that.items = result.Rows;
-					that.renderRows()
+					self.startRecord.text(result.start);
+					self.endRecord.text(result.start + result.limit);
+					self.totalRecord.text(result.Total);
+					self._initPageNo(result.Total)
+					self.items = result.Rows;
+					if(result.Rows.length == 0){
+						$('body').message({
+							type: 'info',
+							content: '没有数据'
+						});
+						self.gridTableBodyTable.empty();
+						self.gridTableBody.append($('<div data-role="noData" style="font-size:16px ; padding: 20px; width:'+self.gridTableBodyTable.width()+'px;">'+self.options.noDataText+'</div>'));
+					}else{
+						self.gridTableBody.find('[data-role="noData"]').remove();
+						self.renderRows()
+					}
 				}).fail(function(result){
 
 				})
@@ -284,8 +274,8 @@
 		 * 初始化分页
 		 */
 		_initPageNo: function(totalRecord){
-			var that = this;
-			var pageSize = that.pageSizeSelect.getValue();
+			var self = this;
+			var pageSize = self.pageSizeSelect.getValue();
 			this.totalPage = Math.floor(totalRecord / pageSize);
 			if(totalRecord % pageSize != 0){
 				this.totalPage ++;
@@ -294,68 +284,68 @@
 				this.pages.hide();
 				return;
 			}
-			var pagination = that.pages.find('ul.pagination');
+			var pagination = self.pages.find('ul.pagination');
 			var pageHtml = new Array();
 			pageHtml.push('<li data-role="firstPage"><a href="#">&laquo;</a></li>');
 			pageHtml.push('<li data-role="prev"><a href="#">&lsaquo;</a></li>');
-			if((that.pageNo-1) % that.showPage == 0){
-				that.pageNo != 1 && pageHtml.push('<li><a href="#">...</a></li>');
-				for(var i=that.pageNo; i<=that.totalPage && i<(that.pageNo+that.showPage); i++){
+			if((self.pageNo-1) % self.showPage == 0){
+				self.pageNo != 1 && pageHtml.push('<li><a href="#">...</a></li>');
+				for(var i=self.pageNo; i<=self.totalPage && i<(self.pageNo+self.showPage); i++){
 					pageHtml.push('<li data-value="'+i+'" data-role="pageNo"><a href="#">'+i+'</a></li>');
 				}
-				(that.pageNo + that.showPage) < that.totalPage && pageHtml.push('<li><a href="#">...</a></li>');
+				(self.pageNo + self.showPage) < self.totalPage && pageHtml.push('<li><a href="#">...</a></li>');
 			}else{
-				var start = Math.floor((that.pageNo-1)/that.showPage)*that.showPage+1;
+				var start = Math.floor((self.pageNo-1)/self.showPage)*self.showPage+1;
 				start != 1 && pageHtml.push('<li><a href="#">...</a></li>');
-				for(var i=start; i<=that.totalPage && i<(start+that.showPage); i++){
+				for(var i=start; i<=self.totalPage && i<(start+self.showPage); i++){
 					pageHtml.push('<li data-value="'+i+'" data-role="pageNo"><a href="#">'+i+'</a></li>');
 				}
-				(start + that.showPage) < that.totalPage && pageHtml.push('<li><a href="#">...</a></li>');
+				(start + self.showPage) < self.totalPage && pageHtml.push('<li><a href="#">...</a></li>');
 			}
 			pageHtml.push('<li data-role="next"><a href="#">&rsaquo;</a></li>');
 			pageHtml.push('<li data-role="lastPage" ><a href="#">&raquo;</a></li>');
 			pagination.html(pageHtml.join('')).find('li[data-role="pageNo"]').on('click', function(){
-				that.pageNo = $(this).data('value');
-				that._loadData();
-			}).end().find('li[data-value="'+that.pageNo+'"]').addClass('active');
+				self.pageNo = $(this).data('value');
+				self._loadData();
+			}).end().find('li[data-value="'+self.pageNo+'"]').addClass('active');
 			var prevBtn =  pagination.find('li[data-role="prev"]').on('click', function(){
 				if($(this).hasClass('disabled')){
 					return;
 				}
-				that.pageNo-- ;
-				that.pageOperateStatus = 'prev';
-				that._loadData();
+				self.pageNo-- ;
+				self.pageOperateStatus = 'prev';
+				self._loadData();
 			});
 			var nextBtn =  pagination.find('li[data-role="next"]').on('click', function(){
 				if($(this).hasClass('disabled')){
 					return;
 				}
-				that.pageNo++ ;
-				that.pageOperateStatus = 'next';
-				that._loadData();
+				self.pageNo++ ;
+				self.pageOperateStatus = 'next';
+				self._loadData();
 			});
 			var firstPageBtn =  pagination.find('li[data-role="firstPage"]').on('click', function(){
 				if($(this).hasClass('disabled')){
 					return;
 				}
-				that.pageNo = 1;
-				that._loadData();
+				self.pageNo = 1;
+				self._loadData();
 			});
 			var lastPageBtn =  pagination.find('li[data-role="lastPage"]').on('click', function(){
 				if($(this).hasClass('disabled')){
 					return;
 				}
-				that.pageNo = that.totalPage;
-				that._loadData();
+				self.pageNo = self.totalPage;
+				self._loadData();
 			});
-			that.pageNo == 1 && prevBtn.addClass('disabled') && firstPageBtn.addClass('disabled');
-			that.pageNo == that.totalPage && nextBtn.addClass('disabled') && lastPageBtn.addClass('disabled');
+			self.pageNo == 1 && prevBtn.addClass('disabled') && firstPageBtn.addClass('disabled');
+			self.pageNo == self.totalPage && nextBtn.addClass('disabled') && lastPageBtn.addClass('disabled');
 		},
 		/*
 		 * 渲染数据
 		 */
 		renderRows: function(){
-			var that = this;
+			var self = this;
 			var items = this.items;
 			var trHtmls = new Array();
 			for(var i= 0,j=items.length; i<j; i++){
@@ -392,10 +382,10 @@
 				}else{
 					$this.parent().removeClass('checked').closest('tr').removeClass('success')
 				}
-				if(that.selectedRowsIndex().length == indexCheckboxs.length){
-					that.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked','checked').parent().addClass('checked');
+				if(self.selectedRowsIndex().length == indexCheckboxs.length){
+					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked','checked').parent().addClass('checked');
 				}else{
-					that.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked','').parent().removeClass('checked');
+					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked','').parent().removeClass('checked');
 				}
 			});
 			this.gridTableBodyTable.find('tr').on('click', function(){
@@ -406,10 +396,10 @@
 		 *返回选择行数据的数组。
 		 */
 		selectedRows: function(){
-			var that = this;
+			var self = this;
 			var selectItems = new Array();
 			this.gridTableBodyTable.find('.checker').find('input:checkbox:checked').each(function(){
-				selectItems.push(that.items[$(this).val()]);
+				selectItems.push(self.items[$(this).val()]);
 			})
 			return  selectItems;
 		},
@@ -417,7 +407,7 @@
 		 *返回选择行索引的数组。
 		 */
 		selectedRowsIndex: function(){
-			var that = this;
+			var self = this;
 			var selectIndexs = new Array();
 			this.gridTableBodyTable.find('.checker').find('input:checkbox:checked').each(function(){
 				selectIndexs.push($(this).val());
@@ -441,7 +431,7 @@
 			this._loadData();
 		}
 	}
-	Grid.DEFAULTS.TEMPLATE = '<div class="table-responsive"><table class="table table-responsive table-bordered grid"><thead><tr><th><div class="btn-group buttons"><button type="button" class="btn btn-primary" data-role="add"><span class="glyphicon glyphicon-plus"></span>&nbsp;新增</button><button type="button" class="btn btn-primary" data-role="modify"><span class="glyphicon glyphicon-edit"></span>&nbsp;修改</button><button type="button" class="btn btn-primary" data-role="delete"><span class="glyphicon glyphicon-remove"></span>&nbsp;刪除</button></div><div class="search"><div class="btn-group select " data-role="condition"></div><div class="input-group" style="width:180px;"><input type="text" class="input-medium form-control" placeholder="Search" data-role="searchValue"><div class="input-group-btn"><button type="button" class="btn btn-default" data-role="searchBtn"><span class="glyphicon glyphicon-search"></span></button></div></div></div></th></tr></thead><tbody><tr><td><div class="colResizePointer"></div><div class="grid-body"><div class="grid-table-head"><table class="table table-bordered"></table></div><div class="grid-table-body"><table class="table table-responsive table-bordered table-hover table-striped"></table></div></div></td></tr></tbody><tfoot><tr><td><div class="records">显示:<span data-role="start-record"></span>-<span data-role="end-record"></span>, 共<span data-role="total-record"></span>条记录。&nbsp;每页显示:<div class="btn-group select " data-role="pageSizeSelect"></div>条</div><div><div class="btn-group pages"><ul class="pagination"></ul></div></div></td></tr></tfoot></table></div>';
+	Grid.DEFAULTS.TEMPLATE = '<div class="table-responsive"><table class="table table-responsive table-bordered grid"><thead><tr><th><div class="btn-group buttons"></div><div class="search"><div class="btn-group select " data-role="condition"></div><div class="input-group" style="width:180px;"><input type="text" class="input-medium form-control" placeholder="Search" data-role="searchValue"><div class="input-group-btn"><button type="button" class="btn btn-default" data-role="searchBtn"><span class="glyphicon glyphicon-search"></span></button></div></div></div></th></tr></thead><tbody><tr><td><div class="colResizePointer"></div><div class="grid-body"><div class="grid-table-head"><table class="table table-bordered"></table></div><div class="grid-table-body"><table class="table table-responsive table-bordered table-hover table-striped"></table></div></div></td></tr></tbody><tfoot><tr><td><div class="records">显示:<span data-role="start-record"></span>-<span data-role="end-record"></span>, 共<span data-role="total-record"></span>条记录。&nbsp;每页显示:<div class="btn-group select " data-role="pageSizeSelect"></div>条</div><div><div class="btn-group pages"><ul class="pagination"></ul></div></div></td></tr></tfoot></table></div>';
 	var old = $.fn.grid;
 	$.fn.grid = function(option){
 		return this.each(function(){
@@ -463,9 +453,10 @@
 	}
 }(window.jQuery)
 
+
 /*
- 消息提示组件
- */
+消息提示组件
+*/
 +function($){
 	"use strict";
 	var Message = function(container, options){
@@ -479,23 +470,25 @@
 		type: 'info'
 	}
 	Message.prototype.init = function(){
-		var that = this;
+		var self = this;
+		$('.message').remove();
 		this.content = this.$element.find('[data-toggle="content"]').html(this.options.content);
 		switch(this.options.type){
 			case 'success':
-				this.content.before($('<span class="glyphicon glyphicon-info-sign" style="margin-right: 20px;"/>'));
+				this.content.before($('<span class="glyphicon glyphicon-info-sign" style="margin-right: 10px;"/>'));
 				this.$element.addClass('alert-success');
 				break;
 			case 'info':
-				this.content.before($('<span class="glyphicon glyphicon-info-sign" style="margin-right: 20px;"/>'));
+				this.content.before($('<span class="glyphicon glyphicon-info-sign" style="margin-right: 10px;"/>'));
+				this.$element.addClass('alert-info');
 				break;
 			case 'warning':
-				this.content.before($('<span class="glyphicon glyphicon-warning-sign" style="margin-right: 20px;"/>'));
+				this.content.before($('<span class="glyphicon glyphicon-warning-sign" style="margin-right: 10px;"/>'));
 				this.$element.addClass('alert-warning');
 				break;
 			case 'error':
-				this.content.before($('<span class="glyphicon glyphicon-exclamation-sign" style="margin-right: 20px;"/>'));
-				this.$element.addClass('alert-error');
+				this.content.before($('<span class="glyphicon glyphicon-exclamation-sign" style="margin-right: 10px;"/>'));
+				this.$element.addClass('alert-danger');
 				break;
 		}
 		var left = ($(window).width()-this.$element.width())/2.2;
@@ -504,12 +497,12 @@
 			.css({'position': 'fixed', 'left': left + 'px', 'top': top + 'px'})
 			.fadeIn();
 		setTimeout(function(){
-			that.$element.fadeOut(1000, function(){
+			self.$element.fadeOut(1000, function(){
 				$(this).remove();
 			})
 		}, this.options.delay)
 	}
-	Message.DEFAULTS.TEMPLATE = '<div class="alert" style="width: auto;min-width: 200px;max-width: 500px; padding: 8px;text-align: center;z-index: 20000;">' +
+	Message.DEFAULTS.TEMPLATE = '<div class="alert message" style="width: auto;min-width: 120px;max-width: 300px; padding: 8px;text-align: left;z-index: 20000;">' +
 		'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
 		'<span data-toggle="content"></span>&nbsp;&nbsp;</div>';
 	var old = $.fn.message;
@@ -542,13 +535,10 @@
 		this.modal = this.$element.modal({
 			keyboard: false
 		});
-		console.info(this.modal.find('.modal-dialog').width())
-		console.info(this.modal.find('.modal-dialog').height())
-		this.modal.find('.modal-dialog').message();
 		this.oldPwd = this.$element.find('#oldPassword');
 		this.newPwd = this.$element.find('#newPassword') ;
 		this.confirmPwd = this.$element.find('#confirmPassword');
-		var that = this;
+		var self = this;
 		this.oldPwd.on('blur.koala.modifyPassowrd', $.proxy(this.blur, this, this.oldPwd));
 		this.newPwd.on('blur.koala.modifyPassowrd', $.proxy(this.blur, this, this.newPwd));
 		this.confirmPwd.on('blur.koala.modifyPassowrd', $.proxy(this.blur, this, this.confirmPwd));
@@ -734,9 +724,9 @@
 			return self.$element;
 		},
 		clickItem: function($item){
-			var that = this;
+			var self = this;
 			var value = $item.data('value');
-			if(!value || !this.$value.length || this.$value.val() == value){
+			if(!value || this.$value.val() == value){
 				return this.$element;
 			}
 			//this.$items.find('li').removeClass('active');
@@ -765,8 +755,8 @@
 	Select.DEFAULTS.TEMPLATE = '<button type="button" class="btn btn-default" data-toggle="item">' +
 		'</button><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' +
 		'<span class="caret"></span>' +
-		'<input type="hidden" data-toggle="value">' +
 		'</button>' +
+		'<input type="hidden" data-toggle="value"/>' +
 		'<ul class="dropdown-menu" role="menu"></ul>';
 	$.fn.getValue = function(){
 		return $(this).data('koala.select').getValue();
@@ -813,7 +803,7 @@
 
 	}
 	Confirm.prototype.init = function(){
-		var that = this;
+		var self = this;
 		this.$element.modal({
 			keyboard: false
 		})
@@ -821,9 +811,9 @@
 			.css({'padding-top': window.screen.height/5})
 			.find('[data-role="confirm-content"]').html(this.options.content);
 		this.$element.find('[data-role="confirmBtn"]').on('click', function(){
-			if(typeof that.options.callBack == 'function'){
-				that.options.callBack();
-				that.$element.modal('hide');
+			if(typeof self.options.callBack == 'function'){
+				self.options.callBack();
+				self.$element.modal('hide');
 			}
 		})
 	}

@@ -1,9 +1,7 @@
 package org.openkoala.opencis.trac.command;
 
-import java.io.IOException;
-
-import org.openkoala.opencis.api.Command;
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.api.SSHCommand;
 
 import com.dayatang.configuration.Configuration;
 import com.trilead.ssh2.Connection;
@@ -14,21 +12,13 @@ import com.trilead.ssh2.Session;
  * @author 赵健华
  * 2013-9-23 下午7:10:32
  */
-public abstract class TracCommand implements Command {
-
-	protected Project project = null;
-	
-	protected String host;
-	
-	protected String userName;
-	
-	protected String password;
+public abstract class TracCommand extends SSHCommand {
 	
 	public TracCommand() {
 		// TODO Auto-generated constructor stub
-		
+		super();
 	}
-
+	
 	public TracCommand(Configuration configuration,Project project) {
 		this.host = configuration.getString("HOST");
 		this.userName = configuration.getString("USER");
@@ -37,33 +27,9 @@ public abstract class TracCommand implements Command {
 		
 	}
 	
-	/**
-	 * 模板方法
-	 * @throws Exception 
-	 */
 	@Override
-	public final void execute() throws Exception {
+	public void doWork(Connection connection, Session session) {
 		// TODO Auto-generated method stub
-		Connection connection = null;
-		Session session = null;
-		connection = new Connection(host);
-		try {
-			connection.connect();
-			boolean isAuthenticated = connection.authenticateWithPassword(userName, password);
-			if (isAuthenticated == false){
-				throw new IOException("Authentication failed.");
-			}
-			session = connection.openSession();
-			session.execCommand(getCommand());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw new Exception("无法执行命令：" + getCommand());
-		}finally{
-			session.close();
-			connection.close();
-		}
+		
 	}
-	
-	public abstract String getCommand();
 }

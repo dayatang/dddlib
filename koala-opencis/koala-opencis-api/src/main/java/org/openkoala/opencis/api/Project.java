@@ -16,6 +16,8 @@ public class Project {
 	
 	private String projectPath;
 	
+	private String description;
+	
 	private List<Developer> developers;
 	
 	private Map<String, Object> nodeElements;
@@ -46,6 +48,14 @@ public class Project {
 
 	public List<Developer> getDevelopers() {
 		return developers;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public void setDevelopers(List<Developer> developers) {

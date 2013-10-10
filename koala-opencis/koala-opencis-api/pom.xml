@@ -20,5 +20,17 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    
+	<dependency>
+		<groupId>com.trilead</groupId>
+		<artifactId>trilead-ssh2</artifactId>
+		<version>1.0.0-build217</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>com.dayatang.commons</groupId>
+		<artifactId>dayatang-commons-configuration</artifactId>
+		<version>3.6</version>
+	</dependency>
   </dependencies>
 </project>

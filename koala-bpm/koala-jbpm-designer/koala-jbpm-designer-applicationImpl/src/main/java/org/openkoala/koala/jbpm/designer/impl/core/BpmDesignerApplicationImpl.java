@@ -10,13 +10,13 @@ import com.dayatang.querychannel.support.Page;
 import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.service.QueryChannelService;
 import org.openkoala.koala.jbpm.designer.application.vo.*;
-import org.openkoala.koala.jbpm.designer.application.core.PublishURLApplication;
+import org.openkoala.koala.jbpm.designer.application.core.BpmDesignerApplication;
 import org.openkoala.koala.jbpm.jbpmDesigner.core.*;
 import org.apache.commons.beanutils.BeanUtils;
 
 @Named
 @Transactional
-public class PublishURLApplicationImpl implements PublishURLApplication {
+public class BpmDesignerApplicationImpl implements BpmDesignerApplication {
 
 	private static QueryChannelService queryChannel;
 	

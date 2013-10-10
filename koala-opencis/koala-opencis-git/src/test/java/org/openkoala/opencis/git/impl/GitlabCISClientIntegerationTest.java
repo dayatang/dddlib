@@ -13,16 +13,19 @@ import org.gitlab.api.GitlabAPI;
 import org.gitlab.api.http.GitlabHTTPRequestor;
 import org.gitlab.api.models.GitlabProject;
 import org.gitlab.api.models.GitlabUser;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.opencis.api.CISClient;
 import org.openkoala.opencis.api.Developer;
+import org.openkoala.opencis.api.Project;
 
+@Ignore
 public class GitlabCISClientIntegerationTest {
 
 	@SuppressWarnings("unchecked")
 	@Test
 	public void testCreateProject() throws IOException {
-		GitCISProject project = getProjectForTest();
+		Project project = getProjectForTest();
 		GitlabConfiguration configuration = getConfigurationForTest();
 		
 		GitlabAPI gitlabAPI = GitlabAPI.connect(configuration.getGitHostURL(), configuration.getToken());
@@ -45,7 +48,7 @@ public class GitlabCISClientIntegerationTest {
 		return results;
 	}
 	
-	private GitCISProject getProjectForTest() {
+	private Project getProjectForTest() {
 		List<Developer> developers = new ArrayList<Developer>();
 		Developer developer1 = new Developer();
 		developer1.setId("testuser1");
@@ -65,12 +68,12 @@ public class GitlabCISClientIntegerationTest {
 		developer3.setName("test-user3");
 		developers.add(developer3);
 
-		GitCISProject result = new GitCISProject();
-		result.setArtifactId("projectForTest");
+		Project result = new Project();
+		result.setArtifactId("projectfortest");
 		result.setDescription("This project is for test");
-		result.setProjectName("projectForTest");
-		result.setProjectDeveloper(developers);
-		result.setProjectPath("E:\\temp\\temp\\projectForTest");
+		result.setProjectName("projectfortest");
+		result.setDevelopers(developers);
+		result.setProjectPath("E:\\temp\\temp\\projectfortest");
 		
 		return result;
 	}
@@ -80,7 +83,7 @@ public class GitlabCISClientIntegerationTest {
 		result.setAdminUsername("xinminfang");
 		result.setAdminPassword("xmfang");
 		result.setAdminEmail("xinmin.fang@gmail.com");
-		result.setGitHostURL("http://192.168.100.122");
+		result.setGitHostURL("http://10.108.1.102");
 		result.setToken("Hroq8x5zFZasydzFXEvC");
 		return result;
 	}
@@ -97,13 +100,13 @@ public class GitlabCISClientIntegerationTest {
 		assertFalse(getCurrentGitlabUserAccounts(configuration).contains(developer.getId()));
 		
 		CISClient cisClient = new GitlabCISClient(configuration);
-		cisClient.createUserIfNecessary(developer);
+		cisClient.createUserIfNecessary(null, developer);
 		
 		List<String> userAccounts = getCurrentGitlabUserAccounts(configuration);
 		assertTrue(userAccounts.contains(developer.getId()));
 		assertTrue(onlyContainsOne(userAccounts, developer.getId()));
 		
-		cisClient.createUserIfNecessary(developer);
+		cisClient.createUserIfNecessary(null, developer);
 		assertTrue(onlyContainsOne(userAccounts, developer.getId()));
 	}
 	
