@@ -13,12 +13,9 @@ import java.util.List;
  */
 public class DBClassLoaderUtil {
 	
-    private String jarPath;
-    
     private static URLClassLoader classloader;
     
 	private DBClassLoaderUtil(String jarPath){
-		this.jarPath = jarPath;
 		List<URL> urlList = new ArrayList<URL>();
 		try {
 			urlList.add(new URL("file:" + jarPath));

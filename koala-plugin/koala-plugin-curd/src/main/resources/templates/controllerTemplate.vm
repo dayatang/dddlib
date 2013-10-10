@@ -57,12 +57,19 @@ public class ${controllerClass.name} {
 	
 	@ResponseBody
 	@RequestMapping("/delete")
-	public Map<String, Object> delete(@RequestParam String ids) {
+	public Map<String, Object> delete(@RequestParam String ${dtoClass.entityModel.singleIDFieldModel.name}s) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		String[] value = ids.split(",");
-        Long[] idArrs = new Long[value.length];
+		String[] value = ${dtoClass.entityModel.singleIDFieldModel.name}s.split(",");
+        ${dtoClass.entityModel.singleIDFieldModel.simpleType}[] idArrs = new ${dtoClass.entityModel.singleIDFieldModel.simpleType}[value.length];
         for (int i = 0; i < value.length; i ++) {
-        	idArrs[i] = Long.parseLong(value[i]);
+        	
+        	#if(${dtoClass.entityModel.singleIDFieldModel.simpleType} == "String")
+				idArrs[i] = value[i];
+			#end
+        	#if(${dtoClass.entityModel.singleIDFieldModel.simpleType} == "Long")
+				idArrs[i] = Long.parseLong(value[i]);
+			#end
+        	
         }
         ${applicationName}.remove${domainClass}s(idArrs);
 		result.put("result", "success");
@@ -70,10 +77,10 @@ public class ${controllerClass.name} {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/get/{id}")
-	public Map<String, Object> get(@PathVariable long id) {
+	@RequestMapping("/get/{${dtoClass.entityModel.singleIDFieldModel.name}}")
+	public Map<String, Object> get(@PathVariable ${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name}) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("data", ${applicationName}.get${domainClass}(id));
+		result.put("data", ${applicationName}.get${domainClass}(${dtoClass.entityModel.singleIDFieldModel.name}));
 		return result;
 	}
 	
@@ -84,20 +91,20 @@ public class ${controllerClass.name} {
 #set($relationName = ${relation.name.substring(0, 1).toUpperCase()} + ${relation.name.substring(1)})
 #if(${relationType} == "ManyToOne" || ${relationType} == "OneToOne")
 	@ResponseBody
-	@RequestMapping("/find${relationName}By${domainClass}/{id}")
-	public Map<String, Object> find${relationName}By${domainClass}(@PathVariable Long id) {
+	@RequestMapping("/find${relationName}By${domainClass}/{${dtoClass.entityModel.singleIDFieldModel.name}}")
+	public Map<String, Object> find${relationName}By${domainClass}(@PathVariable ${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name}) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("data", ${applicationName}.find${relationName}By${domainClass}(id));
+		result.put("data", ${applicationName}.find${relationName}By${domainClass}(${dtoClass.entityModel.singleIDFieldModel.name}));
 		return result;
 	}
 #end
 
 #if(${relationType} == "OneToMany" || ${relationType} == "ManyToMany")
 	@ResponseBody
-	@RequestMapping("/find${relationName}By${domainClass}/{id}")
-	public Map<String, Object> find${relationName}By${domainClass}(@PathVariable Long id, @RequestParam int page, @RequestParam int pagesize) {
+	@RequestMapping("/find${relationName}By${domainClass}/{${dtoClass.entityModel.singleIDFieldModel.name}}")
+	public Map<String, Object> find${relationName}By${domainClass}(@PathVariable ${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name}, @RequestParam int page, @RequestParam int pagesize) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		Page<${entityName}DTO> all = ${applicationName}.find${relationName}By${domainClass}(id, page, pagesize);
+		Page<${entityName}DTO> all = ${applicationName}.find${relationName}By${domainClass}(${dtoClass.entityModel.singleIDFieldModel.name}, page, pagesize);
 		result.put("Rows", all.getResult());
 		result.put("start", page * pagesize - pagesize);
 		result.put("limit", pagesize);

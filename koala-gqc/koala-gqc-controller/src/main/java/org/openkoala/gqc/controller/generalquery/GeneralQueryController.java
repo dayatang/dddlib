@@ -1,6 +1,5 @@
 package org.openkoala.gqc.controller.generalquery;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -26,19 +25,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dayatang.querychannel.support.Page;
 
+/**
+ * 
+ * 通用查询控制层
+ *
+ */
 @Controller
 @RequestMapping("/generalquery")
 public class GeneralQueryController {
 
+	/**
+	 * 数据源应用层接口实例
+	 */
     @Autowired
     private DataSourceApplication dataSourceApplication;
     
+    /**
+     * 查询通道应用层接口实例
+     */
     @Autowired
     private GqcApplication gqcApplication;
     
-    //Json对象
-    private Map<String, Object> dataMap;
-	
 	/**
 	 * 分页查询通用查询列表
 	 * @param page
@@ -48,7 +55,8 @@ public class GeneralQueryController {
 	@ResponseBody
     @RequestMapping("/pageJson")
 	public Map<String,Object> pageJson(int page, int pagesize, String queryName) {
-        this.initMap();
+		//Json对象
+	    Map<String, Object> dataMap = new HashMap<String, Object>();
         
         Page<GeneralQuery> all = null;
         if (queryName != null && !queryName.isEmpty()) {
@@ -70,81 +78,102 @@ public class GeneralQueryController {
 		return dataMap;
 	}
     
+	/**
+	 * 新增
+	 * @param generalQuery
+	 * @return
+	 */
     @ResponseBody
     @RequestMapping("/add")
     public Map<String,Object> add(GeneralQuery generalQuery) {
+    	//Json对象
+	    Map<String, Object> dataMap = null;
         try {
-            this.initMap();
+        	dataMap = new HashMap<String, Object>();
             generalQuery.setCreateDate(new Date());
             gqcApplication.saveEntity(generalQuery);
             dataMap.put("result", "success");
         } catch (Exception e) {
-            dataMap.put("result", "保存失败！");
+        	if(dataMap != null){
+                dataMap.put("result", "保存失败！");
+        	}
         }
         
         return dataMap;
     }
     
+    /**
+     * 通过主键查询
+     * @param request
+     * @param id
+     * @return
+     */
+    @ResponseBody
     @RequestMapping("/getById")
-    public String getById(HttpServletRequest request, Long id) {
-        try {
-            this.initMap();
-            //查询出该实体
-            GeneralQuery generalQuery = gqcApplication.getById(id);
-//            GeneralQueryVo generalQueryVo = new GeneralQueryVo(generalQuery.getId(), generalQuery.getDataSource().getDataSourceId(), 
-//                    generalQuery.getQueryName(), generalQuery.getTableName(), generalQuery.getDescription(), generalQuery.getCreateDate());
-//            generalQueryVo.setFieldDetails(generalQuery.getFieldDetails());
-//            generalQueryVo.setPreQueryConditions(generalQuery.getPreQueryConditions());
-//            generalQueryVo.setDynamicQueryConditions(generalQuery.getDynamicQueryConditions());
+    public Map<String, Object> getById(Long id) {
+    	System.out.println(id);
+        //查询出该实体
+    	GeneralQuery generalQuery = gqcApplication.getById(id);
 
-            //表中所有列，供查询条件选择
-            Map<String, Integer> tableMapLeftDiv = dataSourceApplication.findAllColumn(
+        //表中所有列，供查询条件选择
+        Map<String, Integer> queryConditionColumns = dataSourceApplication.findAllColumn(
                     generalQuery.getDataSource().getId(), generalQuery.getTableName());
             
-            //表中所有列，供显示列选择
-            Map<String, Integer> tableMapRightDiv = getCloneMap(tableMapLeftDiv);
+        //表中所有列，供显示列选择
+        Map<String, Integer> showColumns = getCloneMap(queryConditionColumns);
             
-            //把已被选择了的列从列池中去除
-            this.removeTableMapLeftDiv(generalQuery, tableMapLeftDiv);
-            this.removeTableMapRightDiv(generalQuery, tableMapRightDiv);
-
-            request.setAttribute("data", generalQuery);
-            request.setAttribute("tableMapLeftDiv", tableMapLeftDiv);
-            request.setAttribute("tableMapRightDiv", tableMapRightDiv);
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("error", "获取信息失败!");
-        }
-        
-        return "generalquery/Generalquery-update";
+       //把已被选择了的列从列池中去除
+       this.removeTableMapLeftDiv(generalQuery, queryConditionColumns);
+       this.removeTableMapRightDiv(generalQuery, showColumns);
+       Map<String, Object> dataMap = new HashMap<String, Object>();
+       dataMap.put("generalQuery", generalQuery);
+       dataMap.put("queryConditionColumns", queryConditionColumns);
+       dataMap.put("showColumns", showColumns);
+       return dataMap;
     }
     
+    /**
+     * 更新
+     * @param generalQuery
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/update")
     public Map<String,Object> update(GeneralQuery generalQuery) {
+    	//Json对象
+	    Map<String, Object> dataMap = null;
         try {
-            this.initMap();
+        	dataMap = new HashMap<String, Object>();
             generalQuery.setCreateDate(new Date());
             gqcApplication.updateEntity(generalQuery);
             dataMap.put("result", "success");
         } catch (Exception e) {
-            dataMap.put("result", "保存失败！");
+        	if(dataMap != null){
+                dataMap.put("result", "保存失败！");
+        	}
         }
         
         return dataMap;
     }
     
+    /**
+     * 查询所有数据源
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/findAllDataSource")
     public Map<String,Object> findAllDataSource() {
+    	//Json对象
+	    Map<String, Object> dataMap = null;
         try {
-            this.initMap();
+        	dataMap = new HashMap<String, Object>();
             
             List<DataSourceVO> list = dataSourceApplication.findAllDataSource();
             dataMap.put("dataSourceList", list);
         } catch (Exception e) {
-            e.printStackTrace();
-            dataMap.put("result", "获取数据源列表失败！");
+        	if(dataMap != null){
+                dataMap.put("result", "获取数据源列表失败！");
+        	}
         }
         
         return dataMap;
@@ -158,7 +187,8 @@ public class GeneralQueryController {
     @ResponseBody
     @RequestMapping("/delete")
 	public Map<String,Object> delete(String ids) {
-        this.initMap();
+    	//Json对象
+	    Map<String, Object> dataMap = new HashMap<String, Object>();
         
         if(ids != null){
             String[] idArrs = ids.split(",");
@@ -180,8 +210,10 @@ public class GeneralQueryController {
     @ResponseBody
     @RequestMapping("/findAllTable")
     public Map<String,Object> findAllTable(Long id) {
+    	//Json对象
+	    Map<String, Object> dataMap = null;
         try {
-            this.initMap();
+        	dataMap = new HashMap<String, Object>();
             
             List<String> tableList = dataSourceApplication.findAllTable(id);
             dataMap.put("tableList", tableList);
@@ -203,27 +235,27 @@ public class GeneralQueryController {
     @ResponseBody
     @RequestMapping("/findAllColumn")
     public Map<String,Object> findAllColumn(Long id, String tableName) {
+    	//Json对象
+	    Map<String, Object> dataMap = null;
         try {
-            this.initMap();
+        	dataMap = new HashMap<String, Object>();
             
             Map<String, Integer> tableMap = dataSourceApplication.findAllColumn(id, tableName);
             dataMap.put("tableMap", tableMap);
         } catch (Exception e) {
-            e.printStackTrace();
-            dataMap.put("result", "获取列失败！");
+        	if(dataMap != null){
+                dataMap.put("result", "获取列失败！");
+        	}
         }
         
         return dataMap;
     }
     
     /**
-     * 创建Json对象
+     * 从条件列池中移除已经在静态/动态条件中的列
+     * @param generalQuery
+     * @param tableMapLeftDiv
      */
-    private void initMap(){
-        dataMap = new HashMap<String, Object>();
-    }
-    
-
     private void removeTableMapLeftDiv(GeneralQuery generalQuery, Map<String, Integer> tableMapLeftDiv){
         //把已被选择了的列从列池中去除
         List<PreQueryCondition> list = generalQuery.getPreQueryConditions();
@@ -246,6 +278,11 @@ public class GeneralQueryController {
         }
     }
     
+    /**
+     * 从显示列池中移除已经用作显示的列
+     * @param generalQuery
+     * @param tableMapRightDiv
+     */
     private void removeTableMapRightDiv(GeneralQuery generalQuery, Map<String, Integer> tableMapRightDiv){
         //把已被选择了的列从列池中去除
         List<FieldDetail> list3 = generalQuery.getFieldDetails();
@@ -256,25 +293,56 @@ public class GeneralQueryController {
         }
     }
 	
-	
+	/**
+	 * 封装GeneralQueryVo实例
+	 * @author lambo
+	 *
+	 */
 	class GeneralQueryVo {
 		
+		/**
+		 * 主键id
+		 */
 		private Long id;
 		
+		/**
+		 * 数据源id
+		 */
 		private String dataSourceId;
-		
+
+		/**
+		 * 查询器名称
+		 */
 		private String queryName;
-		
+
+		/**
+		 * 表名
+		 */
 		private String tableName;
-		
+
+		/**
+		 * 描述
+		 */
 		private String description;
-		
+
+		/**
+		 * 创建时间
+		 */
 		private Date createDate;
-		
+
+		/**
+		 * 静态查询条件
+		 */
 		private List<PreQueryCondition> preQueryConditions = new ArrayList<PreQueryCondition>();
-		
+
+		/**
+		 * 动态查询条件
+		 */
 		private List<DynamicQueryCondition> dynamicQueryConditions = new ArrayList<DynamicQueryCondition>();
-		
+
+		/**
+		 * 显示列
+		 */
 		private List<FieldDetail> fieldDetails = new ArrayList<FieldDetail>();
 
 		GeneralQueryVo(Long id, String dataSourceId, String queryName, String tableName, String description, Date createDate) {
@@ -285,7 +353,6 @@ public class GeneralQueryController {
 			this.description = description;
 			this.createDate = createDate;
 		}
-
 
 		public Long getId() {
 			return id;

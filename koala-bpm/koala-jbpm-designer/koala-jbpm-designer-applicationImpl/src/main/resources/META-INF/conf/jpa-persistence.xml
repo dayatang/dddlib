@@ -4,7 +4,7 @@
     <persistence-unit name="default"> 
         <class>org.openkoala.koala.jbpm.jbpmDesigner.core.PublishURL</class>  
         <properties> 
-            <property name="hibernate.dialect" value="${db.jdbc.dialect}"/>  
+            <property name="hibernate.dialect" value="${hibernate.dialect}"/>  
             <property name="hibernate.hbm2ddl.auto" value="${hibernate.hbm2ddl.auto}"/>  
             <property name="hibernate.archive.autodetection" value="class"/>  
             <property name="hibernate.show_sql" value="true"/>

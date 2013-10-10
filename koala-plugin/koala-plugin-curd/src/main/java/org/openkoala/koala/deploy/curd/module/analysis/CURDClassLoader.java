@@ -1,19 +1,11 @@
 package org.openkoala.koala.deploy.curd.module.analysis;
 
 import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Vector;
-import java.util.jar.JarFile;
 
 import org.openkoala.koala.deploy.curd.module.util.ClassLoaderClear;
 import org.openkoala.koala.pojo.MavenProject;
@@ -23,25 +15,19 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 
- * 类    名：CURDClassLoader.java
- *   
- * 功能描述：类加载器，加载选中项目中的WEB项目中的所有类，以便进行下一步分析
+ * 
+ * @description 类加载器，加载选中项目中的WEB项目中的所有类，以便进行下一步分析
  *  
- * 创建日期：2013-1-21下午2:49:41     
+ * @date：      2013-8-16   
  * 
- * 版本信息：
+ * @version    Copyright (c) 2013 Koala All Rights Reserved
  * 
- * 版权信息：Copyright (c) 2013 Koala All Rights Reserved
- * 
- * 作    者：lingen(lingen.liu@gmail.com)
- * 
- * 修改记录： 
- * 修 改 者    修改日期     文件版本   修改说明
+ * @author     lingen.liu  <a href=mailto:lingen.liu@gmail.com">lingen.liu@gmail.com</a>
  */
 public class CURDClassLoader {
     private static final Logger logger = LoggerFactory.getLogger(CURDClassLoader.class);
 
-    private static URLClassLoader classloader;
+    private URLClassLoader classloader;
 
     private MavenProject mavenProject;
 

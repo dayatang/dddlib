@@ -51,4 +51,12 @@ public abstract class FieldModel {
         return type;
     }
     
+    public String getNameToFirstLetterUpper() {
+    	return name.substring(0, 1).toUpperCase() + name.substring(1);
+    }
+    
+    public String getSimpleType() {
+    	return type.substring(type.lastIndexOf(".") + 1, type.length());
+    }
+    
 }

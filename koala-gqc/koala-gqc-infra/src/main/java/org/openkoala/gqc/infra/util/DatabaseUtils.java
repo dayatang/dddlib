@@ -41,16 +41,18 @@ public class DatabaseUtils {
 				result.add(rs.getString("TABLE_NAME"));
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			try {
-				rs.close();
+				if(rs != null){
+					rs.close();
+				}
 				if (pstmt != null) {
 					pstmt.close();
 				}
-				conn.close();
+				if(conn != null){
+					conn.close();
+				}
 			} catch (SQLException e) {
-				e.printStackTrace();
 			}
 		}
 		return result;
@@ -71,12 +73,12 @@ public class DatabaseUtils {
 				result.put(rs.getString("COLUMN_NAME"), rs.getInt("DATA_TYPE"));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 		} finally {
 			try {
-				rs.close();
+				if(rs != null){
+					rs.close();
+				}
 			} catch (SQLException e) {
-				e.printStackTrace();
 			}
 		}
 		return result;
@@ -91,11 +93,16 @@ public class DatabaseUtils {
 		try {
 			return getDatabaseMetaData(conn).getDatabaseProductName();
 		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 		return null;
 	}
 	
+	/**
+	 * 获取数据库元数据
+	 * @param conn
+	 * @return
+	 * @throws SQLException
+	 */
 	private static DatabaseMetaData getDatabaseMetaData(Connection conn) throws SQLException {
 		return conn.getMetaData();
 	}

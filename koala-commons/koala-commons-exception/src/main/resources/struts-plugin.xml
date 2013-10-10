@@ -5,14 +5,14 @@
 
 <struts>
    <!--  
-    <bean type="org.apache.struts2.views.TagLibrary" name="ex" class="org.openkoala.exception.surpport.struts2.tags.ExceptionTagLibrary" />
+    <bean type="org.apache.struts2.views.TagLibrary" name="ex" class="org.openkoala.exception.support.struts2.tags.ExceptionTagLibrary" />
    -->
 	<!-- 定义全局package -->
 	<package name="koala-default" extends="json-default">
 		<interceptors>
 			<!-- 异常 -->
 			<interceptor name="processException"
-				class="org.openkoala.exception.surpport.struts2.Struts2ExceptionInterceptor"></interceptor>
+				class="org.openkoala.exception.support.struts2.Struts2ExceptionInterceptor"></interceptor>
 			<!-- 定义默认拦截器栈 -->
 			<interceptor-stack name="koalaDefaultInterceptor">
 				<interceptor-ref name="defaultStack" />

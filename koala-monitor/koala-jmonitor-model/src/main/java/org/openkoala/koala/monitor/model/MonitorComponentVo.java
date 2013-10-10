@@ -19,7 +19,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.openkoala.koala.monitor.jwebap.ComponentDef;
+import org.openkoala.koala.monitor.def.ComponentDef;
 
 /**
  * 功能描述：<br />

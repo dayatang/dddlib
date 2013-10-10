@@ -31,7 +31,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.openkoala.koala.base.KmBaseLegacyEntity;
-import org.openkoala.koala.monitor.jwebap.ComponentDef;
+import org.openkoala.koala.monitor.def.ComponentDef;
 
 /**
  * 功能描述：监控节点<br />

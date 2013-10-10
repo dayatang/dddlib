@@ -10,7 +10,7 @@
 <%@ include file="/pages/common/header.jsp"%>
 <script type="text/javascript">
 #if ($pageParams.isAddForm == false)	
-var id = "${param.id}";
+var ${dtoClass.entityModel.singleIDFieldModel.name} = "${param.id}";
 #end
 $(function (){
 autoResize();
@@ -43,10 +43,10 @@ $('#${view.express}ID').koalaDropdown({
 
 #if ($pageParams.isAddForm == false)
 function loadData(){
- if(id == '')return;
+ if(${dtoClass.entityModel.singleIDFieldModel.name} == '')return;
  Koala.ajax({
 		type : 'POST',
-		url: '<%=contextPath %>/${entityName}/get/' + id + '.koala',
+		url: '<%=contextPath %>/${entityName}/get/' + ${dtoClass.entityModel.singleIDFieldModel.name} + '.koala',
 		dataType:'json',
 		success: function(json){
 			if(json && json.data){
@@ -72,7 +72,7 @@ function saveDataAction(){
 #if ($pageParams.isAddForm)
 	var url = '<%=contextPath %>/${entityName}/add.koala';
 #else
-	var url = '<%=contextPath %>/${entityName}/update.koala?id='+id;	
+	var url = '<%=contextPath %>/${entityName}/update.koala?${dtoClass.entityModel.singleIDFieldModel.name}='+${dtoClass.entityModel.singleIDFieldModel.name};	
 #end
    //form validate
    if(!Validator.Validate(document.getElementById("dataForm"),3))return;

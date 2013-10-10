@@ -10,6 +10,7 @@ import japa.parser.ast.expr.AnnotationExpr;
 import japa.parser.ast.expr.NameExpr;
 import japa.parser.ast.expr.SingleMemberAnnotationExpr;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -31,7 +32,8 @@ public class ImplObjUtil {
 		String javasrc = interfaceObj.getQualifiedImplName();
 		CompilationUnit compilationUnit;
 		try {
-			compilationUnit = JavaParser.parse(javasrc);
+			File file = new File(javasrc);
+			compilationUnit = JavaParser.parse(file);
 			ClassOrInterfaceDeclaration coi = JavaManagerUtil
 					.getClassOrInterfaceDeclaration(compilationUnit);
 
@@ -44,18 +46,18 @@ public class ImplObjUtil {
 			AnnotationExpr webMethodAnnotation = new SingleMemberAnnotationExpr(new NameExpr("WebMethod"),
 					new NameExpr("exclude = true"));
 
-			if (coi.containsAnnotation("WebService") == false) {
+			if (JavaManagerUtil.containsAnnotation(coi, "WebService") == false) {
 				coi.getAnnotations().add(webServiceAnnotation);
 			}
 
 			List<MethodDeclaration> methods = JavaManagerUtil
 					.getMethodDeclaration(compilationUnit);
 			for (MethodDeclaration method : methods) {
-				if (selectedMethods.contains(method.description())) {
+				if (selectedMethods.contains(JavaManagerUtil.methodDescription(method))) {
 					continue;
 				}
 
-				if (method.containsAnnotation("WebMethod") == false) {
+				if (JavaManagerUtil.containsAnnotation(coi, "WebMethod") == false) {
 					method.getAnnotations().add(webMethodAnnotation);
 				}
 			}

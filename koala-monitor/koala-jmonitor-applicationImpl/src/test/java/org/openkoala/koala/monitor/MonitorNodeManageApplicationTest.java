@@ -26,9 +26,8 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.jwebap.startup.Startup;
 import org.openkoala.koala.monitor.application.MonitorNodeManageApplication;
-import org.openkoala.koala.monitor.domain.MonitorNode;
+import org.openkoala.koala.monitor.core.ContextStartup;
 import org.openkoala.koala.monitor.model.GeneralMonitorStatusVo;
 import org.openkoala.koala.monitor.model.JdbcPoolStatusVo;
 import org.openkoala.koala.monitor.model.MonitorNodeVo;
@@ -59,7 +58,7 @@ public class MonitorNodeManageApplicationTest extends KoalaBaseSpringTestCase {
 		URL url = Thread.currentThread().getContextClassLoader().getResource(configPath);
 		configPath = url.getFile();
 		Map<String, String> serverInfos = new HashMap<String, String>();
-		Startup.startup(configPath, serverInfos);
+		ContextStartup.startup(configPath, serverInfos);
 	}
 
 	@AfterClass

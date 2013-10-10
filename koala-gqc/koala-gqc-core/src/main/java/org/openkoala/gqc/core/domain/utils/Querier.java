@@ -17,7 +17,10 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.openkoala.gqc.core.domain.DataSource;
 import org.openkoala.gqc.core.domain.DataSourceType;
+import org.openkoala.gqc.core.exception.SystemDataSourceNotExistException;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 
+import com.dayatang.IocException;
 import com.dayatang.domain.InstanceFactory;
 
 /**
@@ -100,8 +103,14 @@ public abstract class Querier {
 		Connection result = null;
 		
 		if (dataSource.getDataSourceType().equals(DataSourceType.SYSTEM_DATA_SOURCE)) {
-		    javax.sql.DataSource systemDataSource = InstanceFactory.getInstance(javax.sql.DataSource.class, dataSource.getDataSourceId());
-		    result = systemDataSource.getConnection();
+			try {
+				javax.sql.DataSource systemDataSource = InstanceFactory.getInstance(javax.sql.DataSource.class, dataSource.getDataSourceId());
+			    result = systemDataSource.getConnection();
+			} catch (IocException exception) {
+				if (exception.getCause() instanceof NoSuchBeanDefinitionException) {
+					throw new SystemDataSourceNotExistException("系统数据源不存在！", exception);
+				}
+			}
 		} else {
 			DbUtils.loadDriver(dataSource.getJdbcDriver());
 			result = DriverManager.getConnection(dataSource.getConnectUrl(), dataSource.getUsername(), dataSource.getPassword());

@@ -15,6 +15,6 @@
 	<context:component-scan base-package="org.openkoala.koala.jbpm,org.openkoala" />
 	
 	<!--UI SUPPORT-->
-	<bean id="koalaUISurpportApplication" class="org.openkoala.ui.service.KoalaUISurpportApplicationImpl" />
+	<bean id="koalaUISupportApplication" class="org.openkoala.ui.service.KoalaUISupportApplicationImpl" />
 	
 </beans>

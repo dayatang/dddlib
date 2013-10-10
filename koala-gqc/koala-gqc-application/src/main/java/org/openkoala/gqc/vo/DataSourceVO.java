@@ -4,19 +4,42 @@ import java.io.Serializable;
 
 import org.openkoala.gqc.core.domain.DataSourceType;
 
+/**
+ * 
+ * 与展示层交互的数据源对象
+ *
+ */
 public class DataSourceVO implements Serializable {
     private static final long serialVersionUID = -4952281843127855419L;
 
+    /**
+     * 主键id
+     */
     private Long id;
 
+    /**
+     * 用户名
+     */
     private String username;
 
+    /**
+     * url
+     */
     private String connectUrl;
 
+    /**
+     * 密码
+     */
     private String password;
 
+    /**
+     * 驱动uri
+     */
     private String driverUri;
 
+    /**
+     * 数据源描述
+     */
     private String dataSourceDescription;
 
     //（springmvc对枚举类型在页面和后台会分别自动转换为字符串和枚举）
@@ -28,8 +51,14 @@ public class DataSourceVO implements Serializable {
     //类型描述
     private String dataSourceTypeDesc;
 
+    /**
+     * jdbc驱动
+     */
     private String jdbcDriver;
 
+    /**
+     * 数据源id
+     */
     private String dataSourceId;
 
     public void setUsername(String username) {
@@ -122,18 +151,23 @@ public class DataSourceVO implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj){
             return true;
-        if (obj == null)
+        }
+        if (obj == null){
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()){
             return false;
+        }
         DataSourceVO other = (DataSourceVO) obj;
         if (id == null) {
-            if (other.id != null)
+            if (other.id != null){
                 return false;
-        } else if (!id.equals(other.id))
+            }
+        } else if (!id.equals(other.id)){
             return false;
+        }
         return true;
     }
 }

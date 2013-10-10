@@ -15,14 +15,12 @@
  */
 package org.openkoala.koala.monitor.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.openkoala.koala.monitor.jwebap.NetTransObject;
 
 /**
  * 功能描述：综合监控状态信息<br />
@@ -36,7 +34,7 @@ import org.openkoala.koala.monitor.jwebap.NetTransObject;
  * 修改记录： <br />
  * 修 改 者    修改日期     文件版本   修改说明	
  */
-public class GeneralMonitorStatusVo extends NetTransObject {
+public class GeneralMonitorStatusVo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -46,8 +44,7 @@ public class GeneralMonitorStatusVo extends NetTransObject {
 	private List<String> abnormalIps = new ArrayList<String>();
 	
 	//服务
-	private List<String> abnormalServices = new ArrayList<String>();
-	private String serviceCheckTime;
+	private String serviceCheckDatas;
 
 
 	private double pageAvgResponseTime;//页面平均响应速度
@@ -61,7 +58,7 @@ public class GeneralMonitorStatusVo extends NetTransObject {
     
 	private String maxAvgTimeMethod;//平均耗时最长方法
 	
-	private ServerStatusVo serverStatus;
+	private String serverStatusDatas;
 	
 
 
@@ -81,12 +78,13 @@ public class GeneralMonitorStatusVo extends NetTransObject {
 		this.abnormalIps = abnormalIps;
 	}
 
-	public List<String> getAbnormalServices() {
-		return abnormalServices;
+
+	public String getServiceCheckDatas() {
+		return serviceCheckDatas;
 	}
 
-	public void setAbnormalServices(List<String> abnormalServices) {
-		this.abnormalServices = abnormalServices;
+	public void setServiceCheckDatas(String serviceCheckDatas) {
+		this.serviceCheckDatas = serviceCheckDatas;
 	}
 
 	public double getPageAvgResponseTime() {
@@ -137,20 +135,17 @@ public class GeneralMonitorStatusVo extends NetTransObject {
 		this.maxAvgTimeMethod = maxAvgTimeMethod;
 	}
 
-	public ServerStatusVo getServerStatus() {
-		return serverStatus;
-	}
 
-	public void setServerStatus(ServerStatusVo serverStatus) {
-		this.serverStatus = serverStatus;
+	public String getServerStatusDatas() {
+		return serverStatusDatas;
 	}
 	
-	public String getServiceCheckTime() {
-		return serviceCheckTime;
+	public String getServerStatus() {
+		return serverStatusDatas;
 	}
 
-	public void setServiceCheckTime(String serviceCheckTime) {
-		this.serviceCheckTime = serviceCheckTime;
+	public void setServerStatusDatas(String serverStatusDatas) {
+		this.serverStatusDatas = serverStatusDatas;
 	}
 
 	/**
@@ -161,24 +156,11 @@ public class GeneralMonitorStatusVo extends NetTransObject {
 		if(methodExceptionCount == 0)return "0%";
 		return new BigDecimal(methodExceptionCount * 100 / methodCallCount).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue() + "%" ; 
 	}
-	
-	
-	public Map<String, String> getServerInfo(){
-		Map<String, String> map = new HashMap<String, String>();
-		
-		if(serverStatus != null){
-			map.put("cpu", MessageFormat.format("使用率:{0}", serverStatus.getCpuUsage()));
-			map.put("mem", MessageFormat.format("使用率:{0},空闲：{1} MB", serverStatus.getMemUsage(),serverStatus.getFreeMem()));
-			
-		}
-		
-		return map;
-	}
+
 	
 	public Map<String, Object> formatAsMap(){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("activeCount", activeCount);
-		map.put("serviceCheckTime", serviceCheckTime);
 		map.put("pageAvgResponseTime", pageAvgResponseTime);
 		map.put("maxAvgTimePage", maxAvgTimePage);
 		map.put("methodCallCount", methodCallCount);
@@ -189,11 +171,11 @@ public class GeneralMonitorStatusVo extends NetTransObject {
 		if(abnormalIps != null && abnormalIps.size()>0){
 			map.put("abnormalIps", abnormalIps);
 		}
-		if(abnormalServices != null && abnormalServices.size()>0){
-			map.put("abnormalServices", abnormalServices);
+		if(serviceCheckDatas != null){
+			map.put("serviceCheckDatas", serviceCheckDatas);
 		}
-		if(serverStatus != null){
-			map.put("serverInfo", getServerInfo());
+		if(serverStatusDatas != null){
+			map.put("serverInfo", serverStatusDatas);
 		}
 		return map;
 		

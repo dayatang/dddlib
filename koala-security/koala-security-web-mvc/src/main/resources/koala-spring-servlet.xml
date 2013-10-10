@@ -40,15 +40,6 @@
 			</list>
 		</property>
 	</bean>
-	
-	<!-- 自定义异常解析器 -->
-	<bean class="org.openkoala.exception.surpport.springmvc.ExceptionResolver">
-		<property name="exceptionMappings">
-			<props>
-				<prop key="org.foreveross.exception.extend.ApplicationException">error/error.jsp</prop>
-			</props>
-		</property>
-	</bean>
 
 	<!-- 通用视图解析类 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

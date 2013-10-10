@@ -18,7 +18,7 @@ import org.openkoala.koala.springmvc.JsonDateSerializer;
 
 public class ${dtoClass.name} implements Serializable {
 
-	private Long id;
+	private ${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name};
 
 #foreach($entry in ${dtoClass.fieldMap.entrySet()})
 	#if($entry.value.indexOf(".") == -1)
@@ -127,16 +127,17 @@ public class ${dtoClass.name} implements Serializable {
 	}
 #end
 #end
-	public void setId(Long id) {
-		this.id = id;
+
+	public void set${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}(${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name}) {
+		this.${dtoClass.entityModel.singleIDFieldModel.name} = ${dtoClass.entityModel.singleIDFieldModel.name};
 	}
 	
-	public Long getId() {
-		return id;
+	public ${dtoClass.entityModel.singleIDFieldModel.simpleType} get${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}() {
+		return ${dtoClass.entityModel.singleIDFieldModel.name};
 	}
 	
 	public void domain2Dto(${domainClass} ${variableName}) {
-		this.setId(${variableName}.getId());
+		this.set${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}(${variableName}.get${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}());
 #foreach($entry in ${dtoClass.fieldMap.entrySet()})
 #if (${dtoClass.relativeTypes.contains(${entry.key})} == false)
 #set($property = ${entry.key.substring(0, 1).toUpperCase()} + ${entry.key.substring(1)})
@@ -158,7 +159,7 @@ public class ${dtoClass.name} implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((${dtoClass.entityModel.singleIDFieldModel.name} == null) ? 0 : ${dtoClass.entityModel.singleIDFieldModel.name}.hashCode());
 		return result;
 	}
 
@@ -171,10 +172,10 @@ public class ${dtoClass.name} implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		${dtoClass.name} other = (${dtoClass.name}) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (${dtoClass.entityModel.singleIDFieldModel.name} == null) {
+			if (other.${dtoClass.entityModel.singleIDFieldModel.name} != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!${dtoClass.entityModel.singleIDFieldModel.name}.equals(other.${dtoClass.entityModel.singleIDFieldModel.name}))
 			return false;
 		return true;
 	}

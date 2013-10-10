@@ -126,7 +126,7 @@ public class ResourceApplicationImpl extends BaseImpl implements ResourceApplica
 
     public void assign(ResourceVO parentVO, ResourceVO childVO) {
         Resource parent = new Resource();
-        parent.setId(Long.valueOf(parentVO.getId()));
+        parent.setId(parentVO.getId());
         Resource child = Resource.load(Resource.class, childVO.getId());
         child.setLevel(parentVO.getLevel() == null ? "1" : String.valueOf(Integer.parseInt(parentVO.getLevel()) + 1));
         parent.assignChild(child);
@@ -140,7 +140,7 @@ public class ResourceApplicationImpl extends BaseImpl implements ResourceApplica
 
     private void innerFindResourceByParent(ResourceVO parent, RoleVO roleVO) {
         List<ResourceVO> childs = new ArrayList<ResourceVO>();
-        List<Resource> resources = Resource.findChildByParent(Long.valueOf(parent.getId()));
+        List<Resource> resources = Resource.findChildByParent(parent.getId());
         for (Resource res : resources) {
             if (!Resource.isMenu(res)) {
                 ResourceVO treeVO = domainObject2Vo(res);
@@ -237,7 +237,7 @@ public class ResourceApplicationImpl extends BaseImpl implements ResourceApplica
         return list;
     }
 
-    public static Page<ResourceVO> BasePageQuery(String query, Object[] params, int currentPage, int pageSize) {
+    public static Page<ResourceVO> basePageQuery(String query, Object[] params, int currentPage, int pageSize) {
         List<ResourceVO> result = new ArrayList<ResourceVO>();
         Page<Resource> pages = queryChannel().queryPagedResultByPageNo(query, params, currentPage, pageSize);
         for (Resource ne : pages.getResult()) {
@@ -249,7 +249,7 @@ public class ResourceApplicationImpl extends BaseImpl implements ResourceApplica
     }
 
     public Page<ResourceVO> pageQueryNotAssignByRole(int currentPage, int pageSize, RoleVO roleVO) {
-        return BasePageQuery(
+        return basePageQuery(
                 "select k from org.openkoala.koala.auth.core.domain.UrlResource k where k.id "
                         + "not in(select r.id from org.openkoala.koala.auth.core.domain.Role m,"
                         + "org.openkoala.koala.auth.core.domain.UrlResource r,"

@@ -42,8 +42,8 @@ public class BaseMonitorDetails extends KmBaseEntity {
 
 	private static final long serialVersionUID = 8169169675085993313L;
 	
-	@Column(name="TRACE_ID")
-	protected String traceKey;
+	@Column(name="THREAD_KEY")
+	protected String threadKey;
 	
 	@Column(name="NODE_ID")
 	protected String nodeId;
@@ -64,12 +64,12 @@ public class BaseMonitorDetails extends KmBaseEntity {
 		this.nodeId = nodeId;
 	}
 
-	public String getTraceKey() {
-		return traceKey;
+	public String getThreadKey() {
+		return threadKey;
 	}
 
-	public void setTraceKey(String traceKey) {
-		this.traceKey = traceKey;
+	public void setThreadKey(String threadKey) {
+		this.threadKey = threadKey;
 	}
 
 	public Date getBeginTime() {
@@ -95,7 +95,7 @@ public class BaseMonitorDetails extends KmBaseEntity {
 		result = prime * result
 				+ ((beginTime == null) ? 0 : beginTime.hashCode());
 		result = prime * result
-				+ ((traceKey == null) ? 0 : traceKey.hashCode());
+				+ ((threadKey == null) ? 0 : threadKey.hashCode());
 		return result;
 	}
 
@@ -113,10 +113,10 @@ public class BaseMonitorDetails extends KmBaseEntity {
 				return false;
 		} else if (!beginTime.equals(other.beginTime))
 			return false;
-		if (traceKey == null) {
-			if (other.traceKey != null)
+		if (threadKey == null) {
+			if (other.threadKey != null)
 				return false;
-		} else if (!traceKey.equals(other.traceKey))
+		} else if (!threadKey.equals(other.threadKey))
 			return false;
 		return true;
 	}

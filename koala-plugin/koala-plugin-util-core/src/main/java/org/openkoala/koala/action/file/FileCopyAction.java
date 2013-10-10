@@ -20,10 +20,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 提供基于对文件及目录的复制功能
  * 
- * @author lingen
  * 
+ * @description 提供基于对文件及目录的复制功能
+ *  
+ * @date：      2013-8-26   
+ * 
+ * @version    Copyright (c) 2013 Koala All Rights Reserved
+ * 
+ * @author     lingen.liu  <a href=mailto:lingen.liu@gmail.com">lingen.liu@gmail.com</a>
  */
 public class FileCopyAction {
 

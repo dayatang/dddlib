@@ -1,20 +1,15 @@
 package org.openkoala.gqc.controller.generalquery;
 
-import java.lang.reflect.Method;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.openkoala.gqc.application.GqcApplication;
-import org.openkoala.gqc.controller.expression.CurrentTimeEvaluator;
-import org.openkoala.gqc.controller.expression.ExpEvaluator;
-import org.openkoala.gqc.controller.expression.UserNameEvaluator;
 import org.openkoala.gqc.core.domain.DynamicQueryCondition;
 import org.openkoala.gqc.core.domain.GeneralQuery;
-import org.openkoala.gqc.core.domain.PreQueryCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -34,6 +29,9 @@ import com.dayatang.querychannel.support.Page;
 @Controller
 public class QueryController {
 
+	/**
+	 * 查询通道应用层接口实例
+	 */
     @Autowired
 	private GqcApplication gqcApplication;
 	
@@ -46,10 +44,25 @@ public class QueryController {
 	 */
 	@RequestMapping("/query/{id}")
 	public String queryPage(@PathVariable Long id, ModelMap modelMap) {
-		GeneralQuery generalQuery = gqcApplication.getEntity(GeneralQuery.class, id);
+		GeneralQuery generalQuery = gqcApplication.getById(id);
 		modelMap.addAttribute("gq", generalQuery);
 		modelMap.addAttribute("gqId", id);
 		return "query";
+	}
+	
+	/**
+	 * 生成查询页面
+	 * 
+	 * @param id
+	 * @param modelMap
+	 * @return
+	 */
+    @ResponseBody
+	@RequestMapping("/preview/{id}")
+	public Map<String, Object> preview(@PathVariable Long id) {
+    	Map<String, Object> dataMap = new HashMap<String, Object>();
+		dataMap.put("generalQuery", gqcApplication.getById(id));
+		return dataMap;
 	}
 
 	/**
@@ -61,40 +74,27 @@ public class QueryController {
 	 * @param request
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping("/search/{id}")
 	public Map<String, Object> search(@PathVariable Long id, @RequestParam int page,
 			@RequestParam int pagesize, HttpServletRequest request) {
-		GeneralQuery generalQuery = gqcApplication.getEntity(GeneralQuery.class, id);
+		GeneralQuery generalQuery = gqcApplication.getById(id);
 		Map<String, Object> result = new HashMap<String, Object>();
 		Map<String, Object[]> params = request.getParameterMap();
 		String startValueTag = "Start@";
 		String endValueTag = "End@";
 		
-		for (PreQueryCondition preQueryCondition : generalQuery.getPreQueryConditions()) {
-			String expression = preQueryCondition.getValue();
-			if (expression.contains("#{") && expression.contains("}")) {
-				expression = expression.substring(expression.indexOf("#{") + 2, expression.lastIndexOf("}"));
-				if ("username".equals(expression)) {
-					ExpEvaluator evaluator = new UserNameEvaluator();
-					preQueryCondition.setValue((String) evaluator.eval("username"));
-				}
-				
-				if ("now".equals(expression)) {
-					ExpEvaluator evaluator = new CurrentTimeEvaluator();
-					preQueryCondition.setValue(new SimpleDateFormat("yyyy-MM-dd").format((Date) evaluator.eval("now")));
-				}
-			}
-		}
-		
-		for (String key : params.keySet()) {
+		Set<Entry<String,Object[]>> keyValues = params.entrySet();
+		for(Entry<String,Object[]> keyValue: keyValues){
+			String key = keyValue.getKey();
 			if (!"page".equals(key) && !"pagesize".equals(key)) {
 				DynamicQueryCondition dqc = null;
 				if (key.endsWith(startValueTag)) {
 					String fieldName = key.replace(startValueTag, "");
 					dqc = generalQuery.getDynamicQueryConditionByFieldName(fieldName);
 					if (dqc != null) {
-						dqc.setStartValue(getParamValue(params, key));
+						dqc.setStartValue((String) keyValue.getValue()[0]);
 					}
 					continue;
 				}
@@ -103,14 +103,14 @@ public class QueryController {
 					String fieldName = key.replace(endValueTag, "");
 					dqc = generalQuery.getDynamicQueryConditionByFieldName(fieldName);
 					if (dqc != null) {
-						dqc.setEndValue(getParamValue(params, key));
+						dqc.setEndValue((String) keyValue.getValue()[0]);
 					}
 					continue;
 				}
 				
 				dqc = generalQuery.getDynamicQueryConditionByFieldName(key);
 				if (dqc != null) {
-					dqc.setValue(getParamValue(params, key));
+					dqc.setValue((String) keyValue.getValue()[0]);
 				}
 			}
 		}
@@ -122,10 +122,6 @@ public class QueryController {
 		result.put("limit", pagesize);
 		result.put("Total", data.getTotalCount());
 		return result;
-	}
-
-	private String getParamValue(Map<String, Object[]> params, String key) {
-		return (String) params.get(key)[0];
 	}
 
 }

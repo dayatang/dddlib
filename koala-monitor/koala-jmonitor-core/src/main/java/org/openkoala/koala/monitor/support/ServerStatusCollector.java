@@ -31,7 +31,6 @@ import org.hyperic.sigar.NetInterfaceConfig;
 import org.hyperic.sigar.NetInterfaceStat;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.Swap;
-import org.jwebap.core.RuntimeContext;
 import org.openkoala.koala.monitor.model.ServerStatusVo;
 import org.openkoala.koala.monitor.model.ServerStatusVo.CpuInfoVo;
 import org.openkoala.koala.monitor.model.ServerStatusVo.DiskInfoVo;
@@ -100,9 +99,8 @@ public class ServerStatusCollector {
             getServerMemoryInfo(sigar, status);
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			return null;
 		}finally{
-			if(sigar == null)status.setSigarInitError(true);
 			if(sigar != null)sigar.close();
 		}
 
@@ -116,8 +114,8 @@ public class ServerStatusCollector {
 	public static void getServerBaseInfo(ServerStatusVo status){
 		status.setServerTime(DateFormatUtils.format(Calendar.getInstance(), "yyyy-MM-dd HH:mm:ss"));
 		status.setServerName(System.getenv().get("COMPUTERNAME"));
-		status.setJavaServer(RuntimeContext.getContext().getServerName());
-		status.setDeployPath(RuntimeContext.getContext().getDeployPath());
+//		status.setJavaServer(RuntimeContext.getContext().getServerName());
+//		status.setDeployPath(RuntimeContext.getContext().getDeployPath());
 		
 		Runtime rt = Runtime.getRuntime();
 		status.setJvmTotalMem(rt.totalMemory()/(1024*1024));
@@ -135,22 +133,30 @@ public class ServerStatusCollector {
 		try {
 			CpuInfo infos[] = sigar.getCpuInfoList();
 			CpuPerc cpuList[] = sigar.getCpuPercList();
-			double totalUse = 0L;
-	        for (int i = 0; i < infos.length; i++) {
+			
+			//同一型号CPU放一起统一计算
+			Map<String, CpuInfoVo> cpuTypeByModel = new HashMap<String, ServerStatusVo.CpuInfoVo>();
+			CpuInfoVo cpuInfo;
+			for (int i = 0; i < infos.length; i++) {
 	        	CpuPerc perc = cpuList[i];
-				CpuInfoVo cpuInfo = new CpuInfoVo();
-				cpuInfo.setId(infos[i].hashCode() + "");
-				cpuInfo.setCacheSize(infos[i].getCacheSize());
-				cpuInfo.setModel(infos[i].getModel());
-				cpuInfo.setUsed(CpuPerc.format(perc.getCombined()));
-				cpuInfo.setUsedOrigVal(perc.getCombined());
-				cpuInfo.setIdle(CpuPerc.format(perc.getIdle()));
-				cpuInfo.setTotalMHz(infos[i].getMhz());
-				cpuInfo.setVendor(infos[i].getVendor());
-				status.getCpuInfos().add(cpuInfo);
-				totalUse += perc.getCombined();
+	        	if(!cpuTypeByModel.containsKey(infos[i].getModel())){
+	        		cpuInfo = new CpuInfoVo();
+	        		cpuInfo.setCacheSize(infos[i].getCacheSize());
+					cpuInfo.setModel(infos[i].getModel());
+					cpuInfo.setTotalMHz(infos[i].getMhz());
+					cpuInfo.setVendor(infos[i].getVendor());
+					cpuTypeByModel.put(infos[i].getModel(), cpuInfo);
+	        	}else{
+	        		cpuInfo = cpuTypeByModel.get(infos[i].getModel());
+	        	}
+				
+	        	cpuInfo.setUsed(cpuInfo.getUsed() + perc.getCombined());
+	        	cpuInfo.setIdle(cpuInfo.getIdle() + perc.getIdle());
+	        	cpuInfo.setCoreCount(cpuInfo.getCoreCount() + 1);
 			}
-	        status.setCpuUsage(CpuPerc.format(totalUse/status.getCpuInfos().size()));
+			//
+			status.getCpuInfos().addAll(cpuTypeByModel.values());
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -205,8 +211,8 @@ public class ServerStatusCollector {
 						long timePeriod = (System.currentTimeMillis() - initTime)/1000;
 						long origRead = Long.parseLong(val.split("\\|")[0]);
 						long origWrite = Long.parseLong(val.split("\\|")[1]);
-						disk.setDiskReadRate((usage.getDiskReadBytes() - origRead)/timePeriod);
-						disk.setDiskWriteRate((usage.getDiskWriteBytes() - origWrite)/timePeriod);
+						disk.setDiskReadRate((double)(usage.getDiskReadBytes() - origRead)/timePeriod);
+						disk.setDiskWriteRate((double)(usage.getDiskWriteBytes() - origWrite)/timePeriod);
 					}
 					
 					status.getDiskInfos().add(disk);
@@ -244,16 +250,19 @@ public class ServerStatusCollector {
     }
     
     public static void main(String[] args) {
-    	resetClasspath();
 			ServerStatusVo status = new ServerStatusVo();
 	    	Sigar sigar = null;
 			try {
 	            sigar = new Sigar();
 	            getServerCpuInfo(sigar, status);
 	            
-	            System.out.println(status);
+	            CpuInfoVo x = status.getCpuInfos().get(0);
+				System.out.println(x.getIdlePercent());
+				System.out.println(x.getUsedPercent());
+	            
 		} catch (Exception e) {
 			// TODO: handle exception
-		}
+		} 
+
 	}
 }

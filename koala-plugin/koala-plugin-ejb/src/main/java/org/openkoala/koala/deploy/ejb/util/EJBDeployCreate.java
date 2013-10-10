@@ -69,14 +69,14 @@ public class EJBDeployCreate implements Serializable {
 		MavenProject warProject  = null;
 		if(ejbDeploy.isLocal()){
 			warProject =EJBSrcCopy.copySrcWar(ejbDeploy);
-			MavenExcuter.runMaven(warProject.getPath(),ejbDeploy.getDeployConfig().getProfile());
+			MavenExcuter.runMaven(warProject.getPath());
 		}
 		
 		ejbDeploy.setProject(destProject);
 		EJBDeployProcess.process(ejbDeploy);
 		MavenProject project = ejbDeploy.getProject();
 		String newProjectPath = project.getPath();
-		MavenExcuter.runMaven(newProjectPath,ejbDeploy.getDeployConfig().getProfile());
+		MavenExcuter.runMaven(newProjectPath);
 		String ear = project.getPath() + "/ear/target/"+project.getName()+"-ear-"+project.getVersion()+".ear";
 		ear = ear.replaceAll("//", "/");
 		String newEar =  project.getPath().substring(0,project.getPath().lastIndexOf(project.getName()+"-EJB"))+project.getName()+"-EJB.ear";
@@ -86,7 +86,7 @@ public class EJBDeployCreate implements Serializable {
 			for(MavenProject child:warProject.getChilds()){
 				if(child.getType().equals(ModuleType.War)){
 					String warsrc = child.getPath()+"/target/"+child.getName()+"-EJB-WAR-"+child.getVersion()+".war";
-					String newWar = project.getPath().substring(0,project.getPath().lastIndexOf(project.getName()+"-EJB"))+child.getName()+"-EJB.war";
+					String newWar = project.getPath().substring(0,project.getPath().lastIndexOf(project.getName()+"-EJB"))+project.getName()+"-EJB.war";
 					FileCopyAction.copyFile(warsrc,newWar);
 				}
 			}

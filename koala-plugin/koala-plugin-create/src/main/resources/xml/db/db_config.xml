@@ -36,7 +36,7 @@
     <property name="dbType">ORACLE</property>
     <property name="hbm2ddl">update</property>
     <property name="showSql">true</property>
-    <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+    <property name="dialect">org.hibernate.dialect.OracleDialect</property>
     <property name="jdbcDriver">oracle.jdbc.OracleDriver</property>
     <property name="connectionURL">jdbc:oracle:thin:@localhost:1521:oa</property>
     <property name="username">root</property>
@@ -79,19 +79,19 @@
     
   </DBConfigVO>
   
-  <!-- SQLServer 2008 的配置 -->
+  <!-- SQLServer的配置 -->
   <DBConfigVO>
     <property name="dbType">SQL_SERVER</property>
     <property name="hbm2ddl">update</property>
     <property name="showSql">true</property>
-    <property name="dialect">org.hibernate.dialect.SQLServer2008Dialect</property>
-    <property name="jdbcDriver">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
-    <property name="connectionURL">jdbc:sqlserver://localhost:1433;databaseName=db_name</property>
+    <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+    <property name="jdbcDriver">net.sourceforge.jtds.jdbc.Driver</property>
+    <property name="connectionURL">jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=db_name</property>
     <property name="username">root</property>
     <property name="password">root</property>
     
-    <property name="dbGroupId">com.microsoft.sqlserver</property>
-    <property name="dbArtifactId">sqljdbc4</property>
+    <property name="dbGroupId">net.sourceforge.jtds</property>
+    <property name="dbArtifactId">jtds</property>
   </DBConfigVO>
   
 </DbConfigUtil>

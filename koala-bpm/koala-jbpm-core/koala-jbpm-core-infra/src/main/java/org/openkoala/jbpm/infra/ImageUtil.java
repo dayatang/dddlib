@@ -18,13 +18,14 @@ public class ImageUtil {
 	public static String getProcessPictureSrc(String processId,byte[] png,List<Integer> nodes){
 		String path = System.getProperty("java.io.tmpdir").replaceAll("\\\\", "/");
 		if(path.endsWith("/")==false)path=path+"/";
-		String imagePath = path+processId+"";
+		StringBuffer impagePath = new StringBuffer();
+		impagePath.append(path+processId+"");
 		for(int i=0;i<nodes.size();i=i+2){
-			imagePath = imagePath +"_" + nodes.get(i) +"_"+nodes.get(i+1);
+			impagePath.append("_" + nodes.get(i) +"_"+nodes.get(i+1));
 		}
-		imagePath+=".png";
-		if(new File(imagePath).exists()){
-			return new File(imagePath).getAbsolutePath();
+		impagePath.append(".png");
+		if(new File(impagePath.toString()).exists()){
+			return new File(impagePath.toString()).getAbsolutePath();
 		}else{
 			InputStream imagein= null;
 			InputStream imagein2 = null;
@@ -38,19 +39,19 @@ public class ImageUtil {
 	        	System.out.println(image2.getWidth());
 				 g.drawImage(image2,nodes.get(i)-5,nodes.get(i+1)-5,null);
 			}
-	        ImageIO.write(image, "png", new File(imagePath));
+	        ImageIO.write(image, "png", new File(impagePath.toString()));
 			}catch(Exception e){
 				e.printStackTrace();
 			}finally{
 		        try {
-					imagein.close();
-			        imagein2.close();
+					if(imagein!=null)imagein.close();
+			        if(imagein2!=null)imagein2.close();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
 		}
-		return imagePath;
+		return impagePath.toString();
 	}
 	
 	public static byte[] getProcessPictureByte(String processId,byte[] png,List<Integer> nodes){

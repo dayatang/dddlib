@@ -13,8 +13,6 @@ import java.net.URL;
 import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-
-import org.apache.log4j.Logger;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.io.OutputFormat;
@@ -25,10 +23,15 @@ import org.openkoala.koala.util.EclipseUrlParseUtils;
 import org.slf4j.LoggerFactory;
 
 /**
- * 将一个Document更新到xml中，完成修改工作
  * 
- * @author lingen.liu
  * 
+ * @description  将一个Document更新到xml中，完成修改工作
+ *  
+ * @date：        2013-8-26   
+ * 
+ * @version      Copyright (c) 2013 Koala All Rights Reserved
+ *  
+ * @author       lingen.liu  <a href=mailto:lingen.liu@gmail.com">lingen.liu@gmail.com</a>
  */
 public class DocumentUtil {
 
@@ -37,6 +40,9 @@ public class DocumentUtil {
 	
 	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(DocumentUtil.class);
 
+	private DocumentUtil() {
+	}
+	
 	/**
 	 * 将一个修改后的Document写入到指定的XMLPATH中去
 	 * 
@@ -55,7 +61,7 @@ public class DocumentUtil {
 			// 设置缩进空格数
 			format.setIndentSize(4);
 			writer = new XMLWriter(new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(xmlPath),ENCODING)), format);
+					new FileOutputStream(xmlPath), ENCODING)), format);
 			writer.write(document);
 			writer.flush();
 		} catch (IOException e) {
@@ -110,10 +116,10 @@ public class DocumentUtil {
 							break;
 						}
 					}
-					InputStreamReader sr = new InputStreamReader(in,ENCODING); 
+					InputStreamReader sr = new InputStreamReader(in, ENCODING); 
 					return reader.read(sr);
 				} catch (Exception e) {
-					logger.error(xmlPath+":解析出错");
+					logger.error(xmlPath + ":解析出错");
 					e.printStackTrace();
 				}
 			}
@@ -123,7 +129,7 @@ public class DocumentUtil {
 		}
 
 		if (!file.exists()) {
-			throw new KoalaException("文件不存在:"+xmlPath);
+			throw new KoalaException("文件不存在:" + xmlPath);
 		}
 
 		try {
@@ -152,6 +158,11 @@ public class DocumentUtil {
 		return document;
 	}
 
+	/**
+	 * 从指定路径读取XML
+	 * @param src
+	 * @return
+	 */
 	public static Document readDocumentFromString(String src) {
 		SAXReader reader = new SAXReader();
 		reader.setEncoding(ENCODING);

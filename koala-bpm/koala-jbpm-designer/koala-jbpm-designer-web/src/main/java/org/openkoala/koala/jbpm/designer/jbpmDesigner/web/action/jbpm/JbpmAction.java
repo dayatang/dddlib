@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import org.apache.struts2.ServletActionContext;
 import org.openkoala.jbpm.wsclient.JBPMApplicationImplService;
 import org.openkoala.jbpm.wsclient.ProcessVO;
-import org.openkoala.koala.jbpm.designer.application.core.PublishURLApplication;
+import org.openkoala.koala.jbpm.designer.application.core.BpmDesignerApplication;
 import org.openkoala.koala.jbpm.designer.application.vo.PublishURLVO;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.GunvorApplication;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.vo.Bpmn2;
@@ -27,7 +27,7 @@ public class JbpmAction {
 	private GunvorApplication gunvorApplication;
 
 	@Inject
-	private PublishURLApplication publishURLApplication;
+	private BpmDesignerApplication publishURLApplication;
 
 	private List<PackageVO> packages;
 
@@ -182,7 +182,7 @@ public class JbpmAction {
 		PublishURLVO urlVo = null;
 		URL url = null;
 		try {
-			urlVo = publishURLApplication.getPublishURL(new Long(id));
+			urlVo = publishURLApplication.getPublishURL(Long.valueOf(id));
 			url = new URL(urlVo.getUrl());
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -37,7 +37,9 @@ public class KoalaBeanUtils {
      */
     public static void copyProperties(Object from, Object to,boolean ignoreNull) {
         try {
-            if(from == null || to == null)return;
+            if(from == null || to == null) {
+            	return;
+            }
             BeanInfo toBI = Introspector.getBeanInfo(to.getClass());
             PropertyDescriptor[] toPD = toBI.getPropertyDescriptors();
 
@@ -45,8 +47,9 @@ public class KoalaBeanUtils {
             PropertyDescriptor[] fromPD = fromBI.getPropertyDescriptors();
 
             HashMap<String, PropertyDescriptor> fromMap = new HashMap<String, PropertyDescriptor>();
-            for (PropertyDescriptor pd : fromPD)
+            for (PropertyDescriptor pd : fromPD) {
                 fromMap.put(pd.getName(), pd);
+            }
 
             for (PropertyDescriptor toP : toPD) {
 

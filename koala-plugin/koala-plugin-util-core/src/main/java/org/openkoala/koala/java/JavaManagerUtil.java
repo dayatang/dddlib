@@ -11,12 +11,15 @@ import japa.parser.ast.body.MethodDeclaration;
 import japa.parser.ast.body.ModifierSet;
 import japa.parser.ast.body.Parameter;
 import japa.parser.ast.body.TypeDeclaration;
+import japa.parser.ast.body.VariableDeclarator;
+import japa.parser.ast.expr.AnnotationExpr;
 import japa.parser.ast.expr.QualifiedNameExpr;
 import japa.parser.ast.type.ClassOrInterfaceType;
 import japa.parser.ast.type.ReferenceType;
 import japa.parser.ast.type.Type;
 import japa.parser.ast.visitor.VoidVisitorAdapter;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,7 +41,8 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class JavaManagerUtil {
 
-	private static final Logger logger = LoggerFactory.getLogger(JavaManagerUtil.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(JavaManagerUtil.class);
 
 	/**
 	 * 返回一个JAVA类中的所有Field值
@@ -51,7 +55,8 @@ public class JavaManagerUtil {
 			throws KoalaException {
 		List<String> javaProperties = null;
 		try {
-			CompilationUnit cu = JavaParser.parse(javasrc);
+			File file = new File(javasrc);
+			CompilationUnit cu = JavaParser.parse(file);
 			if (cu == null) {
 				return Collections.EMPTY_LIST;
 			}
@@ -62,7 +67,7 @@ public class JavaManagerUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new JavaDoException(e.getMessage());
-		} catch(RuntimeException e){
+		} catch (RuntimeException e) {
 			e.printStackTrace();
 		}
 		return javaProperties;
@@ -81,16 +86,19 @@ public class JavaManagerUtil {
 		logger.info("获取到FieldDeclaration:" + fieldDeclarations);
 		for (FieldDeclaration filed : fieldDeclarations) {
 			logger.info("添加filed:" + filed);
-			javaProperties.addAll(filed.description());
+			javaProperties.addAll(fieldDescription(filed));
 		}
 		return javaProperties;
 	}
+
+	
 
 	public static List<FieldDeclaration> getFieldDeclaration(String javasrc) {
 		CompilationUnit cu;
 		List<FieldDeclaration> fieldDeclarations = new ArrayList<FieldDeclaration>();
 		try {
-			cu = JavaParser.parse(javasrc);
+			File file = new File(javasrc);
+			cu = JavaParser.parse(file);
 			new PropertiesVisitor(fieldDeclarations).visit(cu, null);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -117,7 +125,8 @@ public class JavaManagerUtil {
 			throws JavaDoException {
 		List<String> javaMethods = null;
 		try {
-			CompilationUnit cu = JavaParser.parse(javasrc);
+			File file = new File(javasrc);
+			CompilationUnit cu = JavaParser.parse(file);
 			javaMethods = getJavaMethods(cu);
 		} catch (ParseException e) {
 			throw new JavaDoException(e.getMessage());
@@ -138,7 +147,7 @@ public class JavaManagerUtil {
 		List<MethodDeclaration> methods = new ArrayList<MethodDeclaration>();
 		new MethodsVisitor(methods).visit(cu, null);
 		for (MethodDeclaration method : methods) {
-			javaMethods.add(method.description());
+			javaMethods.add(methodDescription(method));
 		}
 		return javaMethods;
 	}
@@ -153,7 +162,8 @@ public class JavaManagerUtil {
 	public static List<MethodDeclaration> getMethodDeclaration(String javasrc) {
 		CompilationUnit cu = null;
 		try {
-			cu = JavaParser.parse(javasrc);
+			File file = new File(javasrc);
+			cu = JavaParser.parse(file);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -171,7 +181,8 @@ public class JavaManagerUtil {
 	 */
 	public static boolean isInterface(String javasrc) throws JavaDoException {
 		try {
-			CompilationUnit cu = JavaParser.parse(javasrc);
+			File file = new File(javasrc);
+			CompilationUnit cu = JavaParser.parse(file);
 			ClassOrInterfaceDeclaration classJava = getClassOrInterfaceDeclaration(cu);
 			if (classJava.isInterface()) {
 				return true;
@@ -195,12 +206,13 @@ public class JavaManagerUtil {
 			throws JavaDoException {
 		List<String> inters = new ArrayList<String>();
 		try {
-			CompilationUnit cu = JavaParser.parse(javasrc);
+			File file = new File(javasrc);
+			CompilationUnit cu = JavaParser.parse(file);
 			ClassOrInterfaceDeclaration javaClass = getClassOrInterfaceDeclaration(cu);
 			if (javaClass == null) {
 				return Collections.EMPTY_LIST;
 			}
-			
+
 			List<ClassOrInterfaceType> interList = javaClass.getImplements();
 			if (interList == null) {
 				return Collections.EMPTY_LIST;
@@ -276,37 +288,85 @@ public class JavaManagerUtil {
 			}
 		}
 	}
-	
+
 	/**
 	 * 查找一个类中，所包含的所有对象，方法中引用到的
+	 * 
 	 * @param cu
 	 * @return
 	 */
-	public static List<String> getClassVO(CompilationUnit cu){
+	public static List<String> getClassVO(CompilationUnit cu) {
 		List<String> lists = new ArrayList<String>();
-		List<MethodDeclaration> methods = JavaManagerUtil.getMethodDeclaration(cu);
-		for(MethodDeclaration method:methods){
-			if(method.getType() instanceof ReferenceType){
-				ReferenceType type = (ReferenceType)method.getType();
-				if(type.getType() instanceof ClassOrInterfaceType ){
-					ClassOrInterfaceType classType = (ClassOrInterfaceType)type.getType();
-					if(!lists.contains(classType.getName()))lists.add(classType.getName());
-					if(classType.getTypeArgs()!=null){
+		List<MethodDeclaration> methods = JavaManagerUtil
+				.getMethodDeclaration(cu);
+		for (MethodDeclaration method : methods) {
+			if (method.getType() instanceof ReferenceType) {
+				ReferenceType type = (ReferenceType) method.getType();
+				if (type.getType() instanceof ClassOrInterfaceType) {
+					ClassOrInterfaceType classType = (ClassOrInterfaceType) type
+							.getType();
+					if (!lists.contains(classType.getName()))
+						lists.add(classType.getName());
+					if (classType.getTypeArgs() != null) {
 						List<Type> args = classType.getTypeArgs();
-						for(Type arg:args){
-							if(!lists.contains(arg.toString()))lists.add(arg.toString());
+						for (Type arg : args) {
+							if (!lists.contains(arg.toString()))
+								lists.add(arg.toString());
 						}
 					}
 				}
 			}
-			
+
 			List<Parameter> paramters = method.getParameters();
-			if(paramters!=null){
-				for(Parameter parameter:paramters){
-					if(!lists.contains(parameter.getType().toString().trim()))lists.add(parameter.getType().toString().trim());
-				}	
+			if (paramters != null) {
+				for (Parameter parameter : paramters) {
+					if (!lists.contains(parameter.getType().toString().trim()))
+						lists.add(parameter.getType().toString().trim());
+				}
 			}
 		}
 		return lists;
+	}
+	
+	private static List<String> fieldDescription(FieldDeclaration filed) {
+		List<String> fileds = new ArrayList<String>();
+		for (VariableDeclarator vari : filed.getVariables()) {
+			fileds.add(vari.getId().getName() + ":" + filed.getType());
+		}
+		return fileds;
+	}
+	
+	public static String methodDescription(MethodDeclaration method) {
+		StringBuffer methodString = new StringBuffer();
+		methodString.append(method.getName() + "(");
+
+		if (method.getParameters() != null) {
+			List<Parameter> parameters = method.getParameters();
+			for (int i=0;i<parameters.size();i++) {
+				Parameter para = parameters.get(i);
+				if(i!=parameters.size()-1){
+					methodString.append(para.getType()+",");
+				}else{
+					methodString.append(para.getType());
+				}
+			}
+		}
+		methodString.append(")");
+		methodString.append(":"+method.getType());
+		return methodString.toString();
+	}
+	
+	/**
+     * 查询是否包含某个指定名称的Annotation
+     * @param name
+     * @return
+     */
+    public static boolean containsAnnotation(BodyDeclaration body,String name){
+		for(AnnotationExpr annotation:body.getAnnotations()){
+			if(annotation.getName().getName().equals(name)){
+				return true;
+			}
+		}
+		return false;
 	}
 }

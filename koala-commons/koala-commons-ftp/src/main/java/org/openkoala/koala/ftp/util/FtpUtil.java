@@ -18,7 +18,7 @@ public interface FtpUtil {
 	public File downLoadFile(String path,String filename) throws FtpException;
 	
 	/**
-	 * 下载一个文件
+	 * 下载一个文件,保存到{localPath}/{path}/{filename}下面
 	 * @param path
 	 * @param filename
 	 * @return

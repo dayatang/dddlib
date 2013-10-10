@@ -306,7 +306,7 @@ public class MonitorController {
 	private MethodDetailsVo packagingMethodDetailsVo(HttpServletRequest request) {
 		MethodDetailsVo methodDetailsVo = new MethodDetailsVo();
 		methodDetailsVo.setSystem(request.getParameter("nodeId"));
-		methodDetailsVo.setTraceId(request.getParameter("traceKey"));
+		methodDetailsVo.setThreadKey(request.getParameter("traceKey"));
 
 		String timeStart = request.getParameter("timeStart");
 		String timeEnd = request.getParameter("timeEnd");

@@ -44,6 +44,13 @@
 	</VelocityDirObject>
 
 	<VelocityDirObject>
+		<property name="express">$Project.mvcProtocol=='Struts2MVC'</property>
+		<property name="vmDir">vm/base/conf/</property>
+		<property name="pathDir">${Project.path}/${Project.appName}/${Project.appName}-conf/
+		</property>
+	</VelocityDirObject>
+
+	<VelocityDirObject>
 		<property name="express">$Module.moduleType=='bizModel'</property>
 		<property name="vmDir">vm/base/bizModel/</property>
 		<property name="pathDir">${Project.path}/${Project.appName}/${Module.moduleName}/

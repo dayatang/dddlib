@@ -5,7 +5,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.apache.commons.logging.LogFactory;
+import java.util.logging.Logger;
+
 import org.openkoala.koala.auth.AuthDataService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.access.ConfigAttribute;
@@ -30,7 +31,6 @@ import com.dayatang.domain.InstanceFactory;
  */
 // @Component("securityMetadataSource")
 public class SecurityMetadataSource implements FilterInvocationSecurityMetadataSource, InitializingBean {
-	org.apache.commons.logging.Log log = LogFactory.getLog(SecurityMetadataSource.class);
 
 	private UrlMatcher urlMatcher = new AntUrlPathMatcher();
 
@@ -39,7 +39,13 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 	private Cache userCache;
 
 	private AuthDataService provider;
+	
+	private static final Logger LOGGER = Logger.getLogger("SecurityMetadataSource");
 
+	/**
+	 * 获取资源缓存
+	 * @return
+	 */
 	private Cache getResourceCache() {
 		if (resourceCache == null) {
 			resourceCache = InstanceFactory.getInstance(Cache.class, "resource_cache");
@@ -47,6 +53,10 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 		return resourceCache;
 	}
 
+	/**
+	 * 获取用户缓存
+	 * @return
+	 */
 	private Cache getUserCache() {
 		if (userCache == null) {
 			userCache = InstanceFactory.getInstance(Cache.class, "user_cache");
@@ -54,6 +64,12 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 		return userCache;
 	}
 
+	/**
+	 * 根据用户账号获取资源授权信息
+	 * @param userAccount
+	 * @param res
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public boolean getResAuthByUseraccount(String userAccount, String res) {
 		List<String> grantRoles = null;
@@ -79,7 +95,7 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 	 * 
 	 * @throws Exception
 	 */
-	private void loadResource() throws Exception {
+	private void loadResource() {
 		// 查询出所有资源
 		if (resourceCache == null) {
 			Map<String, List<String>> allRes = provider.getAllReourceAndRoles();
@@ -93,7 +109,7 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 	/**
 	 * 构造方法中建立请求url(key)与权限(value)的关系集合
 	 */
-	public void afterPropertiesSet() throws Exception {
+	public void afterPropertiesSet() {
 
 	}
 
@@ -106,21 +122,21 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 	 * 根据请求的url从集合中查询出所需权限
 	 */
 	@SuppressWarnings("unchecked")
-	public Collection<ConfigAttribute> getAttributes(Object arg0) throws IllegalArgumentException {
+	public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
 		try {
 			loadResource();
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.info(e.getMessage());
 		}
 
-		String url = ((FilterInvocation) arg0).getRequestUrl();
-		int position = url.indexOf("?");
+		String url = ((FilterInvocation) object).getRequestUrl();
+		int position = url.indexOf('?');
 		if (-1 != position) {
 			url = url.substring(0, position);
 		}
 
-		if (getResourceCache().isKeyInCache(url.substring(url.indexOf("/") + 1))) {
-			List<String> roles = (List<String>)getResourceCache().get(url.substring(url.indexOf("/") + 1));
+		if (getResourceCache().isKeyInCache(url.substring(url.indexOf('/') + 1))) {
+			List<String> roles = (List<String>)getResourceCache().get(url.substring(url.indexOf('/') + 1));
 			Collection<ConfigAttribute> attris = new ArrayList<ConfigAttribute>();
 			for (final String role : roles){
 				attris.add(new ConfigAttribute(){

@@ -39,6 +39,7 @@ public class Resource extends Party {
 	@Column(name = "MENU_ICON", length = 100)
 	private String menuIcon;
 
+	/** 资源描述 **/
 	@Column(name = "DESCRIPTION", length = 100)
 	private String desc;
 
@@ -94,11 +95,17 @@ public class Resource extends Party {
 		this.menuIcon = menuIcon;
 	}
 
+	/**
+	 * 使资源失效
+	 */
 	public void disableResource() {
 		this.isValid = false;
 		this.save();
 	}
 
+	/**
+	 * 使资源有效
+	 */
 	public void enableResource() {
 		this.isValid = true;
 		this.save();
@@ -110,6 +117,11 @@ public class Resource extends Party {
 	 */
 	public void assignRole(Role role) {
 		IdentityResourceAuthorization idres = new IdentityResourceAuthorization();
+		idres.setIdentity(role);
+		idres.setResource(this);
+		idres.setAbolishDate(DateUtils.MAX_DATE);
+		idres.setCreateDate(new Date());
+		idres.setScheduledAbolishDate(new Date());
 		idres.save();
 	}
 
@@ -234,11 +246,17 @@ public class Resource extends Party {
 		return Resource.findByNamedQuery("findRoleByResource", new Object[] { identifier }, Role.class);
 	}
 
+	/**
+	 * 判断一个角色是否有权限访问某一个资源
+	 * @param resId
+	 * @param roleId
+	 * @return
+	 */
 	public static boolean hasPrivilegeByRole(Long resId, Long roleId) {
 		List<IdentityResourceAuthorization> ls = Resource.findByNamedQuery("queryPrivilegeByRole", //
 				new Object[] { resId, roleId, new Date() }, //
 				IdentityResourceAuthorization.class);
-		return ls.size() > 0;
+		return !ls.isEmpty();
 	}
 
 	/**
@@ -251,7 +269,7 @@ public class Resource extends Party {
 		List<IdentityResourceAuthorization> ls = Resource.findByNamedQuery("queryPrivilegeByUser", //
 				new Object[] { identifier, userAccount }, //
 				IdentityResourceAuthorization.class);
-		return ls.size() > 0;
+		return !ls.isEmpty();
 	}
 
 	/**
@@ -272,21 +290,29 @@ public class Resource extends Party {
 	public static boolean isMenu(Resource resource) {
 		List<Resource> resources = Resource.findByNamedQuery("findResourceById", new Object[] { "KOALA_MENU", //
 				"KOALA_DIRETORY", resource.getId() }, Resource.class);
-		if (resources != null && resources.size() > 0) {
+		if (resources != null && !resources.isEmpty()) {
 			return true;
 		}
 		return false;
 	}
 	
-	public static Resource newResource(String name,String identifier,String level,String menuIcon){
+	/**
+	 * 创建资源
+	 * @param name			资源名称
+	 * @param identifier	资源标识
+	 * @param level			级别
+	 * @param menuIcon		菜单图标
+	 * @return
+	 */
+	public static Resource newResource(String name, String identifier, String level, String menuIcon) {
 	    Resource resource  = null;
 	    List<Resource> resources = Resource.getRepository().find("select r from Resource r where r.name = ? " + //
 	    		"and r.identifier = ?", new Object[]{name,identifier}, Resource.class);
-	    if(resources!=null && resources.size()>0){
+	    if (resources!=null && resources.size()>0){
 	        resource = resources.get(0);
 	    }
 	    
-	    if(resource == null){
+	    if (resource == null) {
 	        resource = new Resource();
 		    resource.setName(name);
 		    resource.setDesc(name);
@@ -295,7 +321,7 @@ public class Resource extends Party {
 		    resource.setLevel(level);
 		    resource.setMenuIcon(menuIcon);
 		    resource.setValid(true);
-	    resource.setAbolishDate(DateUtils.MAX_DATE);
+		    resource.setAbolishDate(DateUtils.MAX_DATE);
 	    }
 	    return resource;
 	}
@@ -310,6 +336,9 @@ public class Resource extends Party {
 				.isEmpty();
 	}
 	
+	/**
+	 * 删除所有资源
+	 */
 	public static void removeAll(){
 		String sql = "DELETE FROM Resource";
 		Resource.getRepository().executeUpdate(sql, new Object[]{});
@@ -335,18 +364,23 @@ public class Resource extends Party {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		Resource other = (Resource) obj;
 		if (identifier == null) {
-			if (other.identifier != null)
+			if (other.identifier != null) {
 				return false;
-		} else if (!identifier.equals(other.identifier))
+			}
+		} else if (!identifier.equals(other.identifier)) {
 			return false;
+		}
 		return true;
 	}
 

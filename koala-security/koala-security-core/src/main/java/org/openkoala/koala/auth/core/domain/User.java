@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.NoResultException;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import com.dayatang.domain.InstanceFactory;
 import com.dayatang.utils.DateUtils;
 
 /**
@@ -56,6 +55,10 @@ public class User extends Identity {
 		this.userDesc = desc;
 	}
 
+	/**
+	 * 获取用户所拥有的角色
+	 * @return
+	 */
 	public Set<RoleUserAuthorization> getRoles() {
 		return new HashSet<RoleUserAuthorization>(RoleUserAuthorization.findAuthorizationByUser(this));
 	}
@@ -110,18 +113,23 @@ public class User extends Identity {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		User other = (User) obj;
 		if (getName() == null) {
-			if (other.getName() != null)
+			if (other.getName() != null) {
 				return false;
-		} else if (!getName().equals(other.getName()))
+			}
+		} else if (!getName().equals(other.getName())) {
 			return false;
+		}
 		return true;
 	}
 
@@ -161,6 +169,10 @@ public class User extends Identity {
 		return !findByNamedQuery("isAccountExist", new Object[] { getUserAccount(), new Date() }, User.class).isEmpty();
 	}
 
+	/**
+	 * 废除用户所拥有的角色
+	 * @param role
+	 */
 	public void abolishRole(Role role) {
 		List<RoleUserAuthorization> authorizations = RoleUserAuthorization.getRepository().find( //
 				"select m from RoleUserAuthorization m where m.user.id=? and " //
@@ -172,6 +184,9 @@ public class User extends Identity {
 
 	}
 	
+	/**
+	 * 重置密码
+	 */
 	public void resetPassword() {
 		this.setUserPassword("abcd");
 		this.save();

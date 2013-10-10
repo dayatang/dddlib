@@ -131,29 +131,9 @@ public class JdbcCustomUserDetails implements UserDetails {
         this.isSuper = isSuper;
     }
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((useraccount == null) ? 0 : useraccount.hashCode());
-		return result;
+    public JdbcCustomUserDetails()
+	{
+		
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		JdbcCustomUserDetails other = (JdbcCustomUserDetails) obj;
-		if (useraccount == null) {
-			if (other.useraccount != null)
-				return false;
-		} else if (!useraccount.equals(other.useraccount))
-			return false;
-		return true;
-	}
-
+	
 }

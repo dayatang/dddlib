@@ -7,9 +7,15 @@ import org.dom4j.Element;
 import org.openkoala.koala.pojo.Dependency;
 
 /**
- * 提供对POM.XML进行修改的功能
- * @author lingen
- *
+ * 
+ * 
+ * @description 提供对POM.XML进行修改的功能
+ *  
+ * @date：      2013-8-28   
+ * 
+ * @version    Copyright (c) 2013 Koala All Rights Reserved
+ * 
+ * @author     lingen.liu  <a href=mailto:lingen.liu@gmail.com">lingen.liu@gmail.com</a>
  */
 public class PomXmlWriter {
 	
@@ -44,14 +50,25 @@ public class PomXmlWriter {
 	 * @param oldDependency
 	 * @param newDependency
 	 */
-	public static void updateDependency(Document document,Dependency oldDependency,String suffer){
+	public static void updateDependency(Document document,Dependency oldDependency,Dependency newDependency){
 		String xPathString = "/xmlns:project/xmlns:dependencies/xmlns:dependency[xmlns:groupId='"+oldDependency.getGroupId()+"' and xmlns:artifactId='"+oldDependency.getArtifactId()+"']";
 		Element element = XPathQueryUtil.querySingle(POM_XMLS,xPathString, document);
-		if(element==null)return;
-		Element artifactId = element.element("artifactId");
-		artifactId.setText(artifactId.getText()+suffer);
+		if(element==null){
+			return;
+		}
+		element.element("artifactId").setText(newDependency.getArtifactId());
+		element.element("groupId").setText(newDependency.getGroupId());
+		element.element("version").setText(newDependency.getVersion());
 	}
 	
+	/**
+	 * 修改POM.XML中的某一依赖，将其改artifactId改为artifactId${suffer}
+	 * 不符合规范的方法，在未来版本中移除
+	 * @param document
+	 * @param oldDependency
+	 * @param suffer
+	 */
+	@Deprecated
 	public static void updateDependencyRemoveScope(Document document,Dependency oldDependency,String suffer){
 		String xPathString = "/xmlns:project/xmlns:dependencies/xmlns:dependency[xmlns:groupId='"+oldDependency.getGroupId()+"' and xmlns:artifactId='"+oldDependency.getArtifactId()+"']";
 		Element element = XPathQueryUtil.querySingle(POM_XMLS,xPathString, document);
@@ -94,7 +111,7 @@ public class PomXmlWriter {
 	public static void addDependencies(String groupId,String artifactId,String version,Document document){
 		Element depenciesElement = XPathQueryUtil.querySingle(POM_XMLS, DEPENDENCIES_XPATH, document);
 		if(depenciesElement==null)return;
-		if(!PomXmlReader.isExists(groupId, artifactId, document)){
+		if(!PomXmlReader.isDependencyExists(groupId, artifactId, document)){
 			Element depency = depenciesElement.addElement("dependency", POM_XMLS);
 			  depency.addElement("groupId",POM_XMLS).setText(groupId);
 			  depency.addElement("artifactId",POM_XMLS).setText(artifactId);
@@ -110,7 +127,7 @@ public class PomXmlWriter {
 	public static void addDependencies(List<Element> elements,Document document){
 		Element depenciesElement = XPathQueryUtil.querySingle(POM_XMLS, DEPENDENCIES_XPATH, document);
 		for(Element elemnet:elements){
-			if(!PomXmlReader.isExists(elemnet.elementText("groupId"), elemnet.elementText("artifactId"), document)){
+			if(!PomXmlReader.isDependencyExists(elemnet.elementText("groupId"), elemnet.elementText("artifactId"), document)){
 			  Element depency = depenciesElement.addElement(elemnet.getName(), POM_XMLS);
 			  depency.addElement("groupId",POM_XMLS).setText(elemnet.elementText("groupId"));
 			  depency.addElement("artifactId",POM_XMLS).setText(elemnet.elementText("artifactId"));

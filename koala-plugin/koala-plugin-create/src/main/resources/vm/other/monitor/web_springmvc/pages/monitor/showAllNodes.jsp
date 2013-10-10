@@ -38,7 +38,7 @@ $(function(){
         	 }
         	 html = html + "</ul></td>";
         	 html = html + "<td>"+node['latestSessionTime'].toString().replace(/T/g,' ')+"</td>";
-        	 html = html + "<td><a class='grayLink' href=\"javascript:openConsole('"+nodeId+"')\">进入控制台</a></td>";
+        	 html = html + "<td><a class='grayLink' href=\"javascript:pageServerSummryInfo('"+nodeId+"')\">进入控制台</a></td>";
         	 html = html + "</tr>";
 		  }
          $("#tbody").html(html);
@@ -144,14 +144,14 @@ function updateSynadataConf(){
 	});
 }
 
-function openConsole(nodeId){
-	var url = "${pageContext.request.contextPath}/pages/monitor/nodeConsole.jsp?nodeId="+nodeId;
+function pageServerSummryInfo(nodeId){
+	var url = "${pageContext.request.contextPath}/pages/monitor/serverSummryInfo.jsp?nodeId="+nodeId;
 	parent.topDialog = parent.$.ligerDialog.open( {
-		height : 550,
+		height : window.screen.availHeight - 150,
 		url : url,
-		width : 850,
+		width : window.screen.availWidth - 50,
 		isHidden : false,
-		title : '监控节点控制台'
+		title : '实时监控信息'
 	});
 }
 

@@ -71,5 +71,5 @@ public abstract class QueryCondition implements ValueObject, Comparable<QueryCon
 	 * 生成条件语句
 	 * @return
 	 */
-	abstract public SqlStatmentMode generateConditionStatment();
+    public abstract SqlStatmentMode generateConditionStatment();
 }

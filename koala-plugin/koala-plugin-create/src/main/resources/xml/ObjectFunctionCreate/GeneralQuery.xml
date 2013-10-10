@@ -22,12 +22,12 @@
     	<dependency> 
             <groupId>org.openkoala.gqc</groupId>  
             <artifactId>koala-gqc-controller</artifactId>  
-            <version>2.0.0-SNAPSHOT</version> 
+            <version>${koala.version}</version> 
         </dependency>
         <dependency> 
             <groupId>org.openkoala.gqc</groupId>  
             <artifactId>koala-gqc-applicationImpl</artifactId>  
-            <version>2.0.0-SNAPSHOT</version> 
+            <version>${koala.version}</version> 
         </dependency>
 	</root>
          ]]>
@@ -75,7 +75,7 @@
 	
 	<XmlAdd>
 	    <property name="express">$Project.dbProtocol=='Mybatis'</property>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/test/resources/META-INF/spring/db-context.xml</property>
 		<property name="uri">http://www.springframework.org/schema/beans</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
 		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath:META-INF/spring/JPA-persistence-context.xml']]]></property>

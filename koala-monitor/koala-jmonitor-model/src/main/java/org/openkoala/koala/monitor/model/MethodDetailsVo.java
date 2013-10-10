@@ -15,7 +15,6 @@
  */
 package org.openkoala.koala.monitor.model;
 
-import java.io.Serializable;
 
 /**
  * 功能描述：<br />
@@ -29,15 +28,13 @@ import java.io.Serializable;
  * 修改记录： <br />
  * 修 改 者 修改日期 文件版本 修改说明
  */
-public class MethodDetailsVo extends BaseDetailsVo implements Serializable {
+public class MethodDetailsVo extends BaseDetailsVo {
 
 	private static final long serialVersionUID = -337605838333057656L;
 
 	private Long id;
 
 	private String method;
-
-	private String traceId;
 
 	private boolean successed;
 
@@ -47,14 +44,6 @@ public class MethodDetailsVo extends BaseDetailsVo implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getTraceId() {
-		return traceId;
-	}
-
-	public void setTraceId(String traceId) {
-		this.traceId = traceId;
 	}
 
 	public String getMethod() {

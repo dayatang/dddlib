@@ -23,22 +23,24 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import org.jwebap.core.RuntimeContext;
-import org.jwebap.plugin.task.ServiceConnectionCheckTask;
+import org.openkoala.koala.monitor.core.DataPolicyHandler;
+import org.openkoala.koala.monitor.core.MonitorTask;
+import org.openkoala.koala.monitor.core.RuntimeContext;
+import org.openkoala.koala.monitor.def.ComponentDef;
+import org.openkoala.koala.monitor.def.HttpRequestTrace.ActiveUser;
+import org.openkoala.koala.monitor.def.NodeDef;
+import org.openkoala.koala.monitor.def.Trace;
 import org.openkoala.koala.monitor.domain.MonitorNode;
 import org.openkoala.koala.monitor.domain.MonitorNode.MonitorComponent;
 import org.openkoala.koala.monitor.extend.BaseSchedulerBean;
-import org.openkoala.koala.monitor.jwebap.ComponentDef;
-import org.openkoala.koala.monitor.jwebap.HttpRequestTrace.ActiveUser;
-import org.openkoala.koala.monitor.jwebap.NodeDef;
-import org.openkoala.koala.monitor.jwebap.Trace;
 import org.openkoala.koala.monitor.model.GeneralMonitorStatusVo;
 import org.openkoala.koala.monitor.model.JdbcPoolStatusVo;
 import org.openkoala.koala.monitor.model.ServerStatusVo;
-import org.openkoala.koala.monitor.service.DataPolicyHandler;
 import org.openkoala.koala.monitor.service.MonitorDataService;
 import org.openkoala.koala.monitor.support.JdbcPoolStatusCollector;
 import org.openkoala.koala.monitor.support.ServerStatusCollector;
+import org.openkoala.koala.monitor.task.ServerStatusCollectorTask;
+import org.openkoala.koala.monitor.task.ServiceConnectionCheckTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.TransactionStatus;
@@ -148,7 +150,7 @@ public class LocalDataPolicyHandler extends BaseSchedulerBean implements DataPol
 
 	@Override
 	public void updateComponentConfig(String clientId,ComponentDef comp) {
-		RuntimeContext.getContext().getJwebapDefManager().updateComponentConfig(comp);
+		RuntimeContext.getContext().getDefManager().updateComponentConfig(comp);
 	}
 
 	@Override
@@ -171,10 +173,15 @@ public class LocalDataPolicyHandler extends BaseSchedulerBean implements DataPol
 		}
 		vo.setActiveCount(users.size());
 		//服务器状态
-		vo.setServerStatus(ServerStatusCollector.getServerAllStatus());
+		MonitorTask task = RuntimeContext.getContext().getMonitorTask(ServerStatusCollectorTask.TASK_KEY);
+		if(task != null){
+			vo.setServerStatusDatas(task.getDatas());
+		}
 		//第三方服务
-		vo.setAbnormalServices(ServiceConnectionCheckTask.getBadSevices());
-		vo.setServiceCheckTime(DATE_FORMAT.format(ServiceConnectionCheckTask.getLastCheckTime()));
+		task = RuntimeContext.getContext().getMonitorTask(ServiceConnectionCheckTask.TASK_KEY);
+		if(task != null){
+			vo.setServiceCheckDatas(task.getDatas());
+		}
 		return vo;
 	}
 

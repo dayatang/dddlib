@@ -4,11 +4,5 @@
 
 <context:property-placeholder location="classpath*:META-INF/props/*.properties"
 		ignore-unresolvable="true" />
-		
-<context:annotation-config />
-<context:component-scan base-package="org.openkoala,${Project.groupId}" >
-   <context:exclude-filter type="annotation"
-			expression="org.springframework.stereotype.Controller" />
-</context:component-scan>
     
 </beans>

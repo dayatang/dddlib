@@ -160,14 +160,13 @@
     			alert("新增成功");
     			var data = [ { text: packageName,children:[],type:'package'}] ;
     			manager.append(actionNode.target, data);
-    			newPackage.hidden();
-    			
     		}
 	   });
     });
     
     $('#addPackageCancel').click(function(){
     	newPackage.hidden();
+    	
     });
     
     

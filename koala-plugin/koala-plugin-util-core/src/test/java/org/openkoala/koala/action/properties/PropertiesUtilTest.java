@@ -10,7 +10,7 @@ import org.junit.Test;
 public class PropertiesUtilTest {
 
 	private PropertiesUtil propertiesUtil;
-	private String tempFile = "src/test/resources/test.properties";
+	private String tempFile = "target/test-classes/test.properties";
 	private String key = "test-key";
 	private String value = "test-value";
 	

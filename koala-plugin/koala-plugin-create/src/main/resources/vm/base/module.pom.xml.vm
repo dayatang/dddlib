@@ -106,7 +106,7 @@
 		
 		<dependency>
          <groupId>org.openkoala.koalacommons</groupId>
-         <artifactId>koala-commons-ui-surpport</artifactId>
+         <artifactId>koala-commons-ui-support</artifactId>
        </dependency>
 		
 		<!-- 加入对查询通道的依赖 -->
@@ -209,7 +209,7 @@
 		
 	   <dependency>
          <groupId>org.openkoala.koalacommons</groupId>
-         <artifactId>koala-commons-ui-surpport</artifactId>
+         <artifactId>koala-commons-ui-support</artifactId>
        </dependency>
        
          <dependency>
@@ -221,6 +221,18 @@
 			<artifactId>jsp-api</artifactId>
 			<version>2.1</version>
 			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
 		</dependency>
 		
 	<dependency> 

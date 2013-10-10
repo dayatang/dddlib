@@ -1,5 +1,6 @@
 package org.openkoala.koala.deploy.ejb.util;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,8 @@ public class ImplCopyUtil {
 	public static void updateImpl(String projectPath,ImplObj impl) throws ImplCopyException{
 		try{
 		  String implPath = projectPath+"/"+impl.getImplModuleName()+"-EJB/src/main/java/"+impl.getName();
-		  CompilationUnit cu = JavaParser.parse(implPath);
+		  File file = new File(implPath);
+		  CompilationUnit cu = JavaParser.parse(file);
 		  ClassOrInterfaceDeclaration coi = JavaManagerUtil.getClassOrInterfaceDeclaration(cu);
 		  if(coi.isInterface())throw new InterfaceCopyException("指定的类不是接实现");
 		  String interfaceName = impl.getInterfaceName().substring(impl.getInterfaceName().lastIndexOf("/")+1,impl.getInterfaceName().lastIndexOf(".java"));
@@ -52,8 +54,8 @@ public class ImplCopyUtil {
 		  interceptorsMembers.add(interceptorsMember);
 		  AnnotationExpr interceptorsAnnotationExpr = new NormalAnnotationExpr(new NameExpr("Interceptors"),interceptorsMembers);
 		  
-		  if(coi.containsAnnotation("Interceptors")==false)coi.getAnnotations().add(interceptorsAnnotationExpr);
-		  if(coi.containsAnnotation("Stateless")==false)coi.getAnnotations().add(statlessAnnotationExpr);
+		  if(JavaManagerUtil.containsAnnotation(coi,"Interceptors")==false)coi.getAnnotations().add(interceptorsAnnotationExpr);
+		  if(JavaManagerUtil.containsAnnotation(coi,"Stateless")==false)coi.getAnnotations().add(statlessAnnotationExpr);
 		  
 		  cu.getImports().add(new ImportDeclaration(new NameExpr("javax.ejb.Stateless"),false,false));
 		  cu.getImports().add(new ImportDeclaration(new NameExpr("javax.interceptor.Interceptors"),false,false));

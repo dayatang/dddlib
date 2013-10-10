@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ include file="/pages/common/header.jsp"%>
 <script type="text/javascript">
-var id = "<s:property value="#parameters['id']"/>";
+var ${dtoClass.entityModel.singleIDFieldModel.name} = "<s:property value="#parameters['id']"/>";
 var manager;
 $(function (){
     load${entityName}Data();
@@ -25,10 +25,10 @@ $(function (){
 });
 
 function load${entityName}Data(){
- if(id == '')return;
+ if(${dtoClass.entityModel.singleIDFieldModel.name} == '')return;
  $.ajax({
 		type : 'POST',
-		url: '<%=contextPath %>/${base_url}get.action?${voName}.id='+id,
+		url: '<%=contextPath %>/${base_url}get.action?${voName}.${dtoClass.entityModel.singleIDFieldModel.name}='+${dtoClass.entityModel.singleIDFieldModel.name},
 		dataType:'json',
 		success: function(json){
 			if(json && json.data){
@@ -54,7 +54,7 @@ function load${tab.relationFieldModel.name}(){
 #if($tab.relationFieldModel.relationModel.typeAsString == 'OneToOne' || $tab.relationFieldModel.relationModel.typeAsString == 'ManyToOne')
   $.ajax({
 		type : 'POST',
-		url: '<%=contextPath %>/${base_url}find${tab.relationFieldModel.name.substring(0, 1).toUpperCase()}${tab.relationFieldModel.name.substring(1)}By${entityName}.action?${voName}.id='+id,
+		url: '<%=contextPath %>/${base_url}find${tab.relationFieldModel.name.substring(0, 1).toUpperCase()}${tab.relationFieldModel.name.substring(1)}By${entityName}.action?${voName}.${dtoClass.entityModel.singleIDFieldModel.name}='+${dtoClass.entityModel.singleIDFieldModel.name},
 		dataType:'json',
 		success: function(json){
 			if(json != null){
@@ -85,7 +85,7 @@ function load${tab.relationFieldModel.name}(){
 #end
        ],
        enabledEdit: false, clickToEdit: false, isScroll: true,  
-       url:'<%=contextPath %>/${base_url}find${tab.relationFieldModel.name.substring(0, 1).toUpperCase()}${tab.relationFieldModel.name.substring(1)}By${entityName}.action?${voName}.id='+id,
+       url:'<%=contextPath %>/${base_url}find${tab.relationFieldModel.name.substring(0, 1).toUpperCase()}${tab.relationFieldModel.name.substring(1)}By${entityName}.action?${voName}.${dtoClass.entityModel.singleIDFieldModel.name}='+${dtoClass.entityModel.singleIDFieldModel.name},
        width: '100%'
    });	
 #end

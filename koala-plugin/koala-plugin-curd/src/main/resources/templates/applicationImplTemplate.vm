@@ -28,11 +28,11 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
 	private QueryChannelService queryChannel;
 	
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ${currntVO} get${domainClass}(Long id) {
-		${domainClass} $variableName = ${domainClass}.load(${domainClass}.class, id);
+	public ${currntVO} get${domainClass}(${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name}) {
+		${domainClass} $variableName = ${domainClass}.load(${domainClass}.class, ${dtoClass.entityModel.singleIDFieldModel.name});
 		${currntVO} ${currntVOVariable} = new ${currntVO}();
 		${currntVOVariable}.domain2Dto(${variableName});
-		${currntVOVariable}.setId(${variableName}.getId());
+		${currntVOVariable}.set${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}(${variableName}.get${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}());
 		return ${currntVOVariable};
 	}
 	
@@ -40,22 +40,22 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
 		${domainClass} ${variableName} = new ${domainClass}();
 		${currntVOVariable}.dto2Domain(${variableName});
 		${variableName}.save();
-		${currntVOVariable}.setId(${variableName}.getId());
+		${currntVOVariable}.set${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}(${variableName}.get${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}());
 		return ${currntVOVariable};
 	}
 	
 	public void update${domainClass}(${currntVO} ${currntVOVariable}) {
-		${domainClass} ${variableName} = ${domainClass}.get(${domainClass}.class, ${currntVOVariable}.getId());
+		${domainClass} ${variableName} = ${domainClass}.get(${domainClass}.class, ${currntVOVariable}.get${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}());
 		${currntVOVariable}.dto2Domain(${variableName});
 	}
 	
-	public void remove${domainClass}(Long id) {
-		this.remove${domainClass}s(new Long[] { id });
+	public void remove${domainClass}(${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name}) {
+		this.remove${domainClass}s(new ${dtoClass.entityModel.singleIDFieldModel.simpleType}[] { ${dtoClass.entityModel.singleIDFieldModel.name} });
 	}
 	
-	public void remove${domainClass}s(Long[] ids) {
-		for (int i = 0; i < ids.length; i++) {
-			${domainClass} ${variableName} = ${domainClass}.load(${domainClass}.class, ids[i]);
+	public void remove${domainClass}s(${dtoClass.entityModel.singleIDFieldModel.simpleType}[] ${dtoClass.entityModel.singleIDFieldModel.name}s) {
+		for (int i = 0; i < ${dtoClass.entityModel.singleIDFieldModel.name}s.length; i++) {
+			${domainClass} ${variableName} = ${domainClass}.load(${domainClass}.class, ${dtoClass.entityModel.singleIDFieldModel.name}s[i]);
 			${variableName}.remove();
 		}
 	}
@@ -131,7 +131,7 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
 #end
             result.add(${currntVOVariable});
         }
-        return new Page<${currntVO}>(Page.getStartOfPage(currentPage, pageSize), pages.getTotalCount(), pages.getPageSize(), result);
+        return new Page<${currntVO}>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), result);
 	}
 	
 #foreach(${relation} in ${applicationClass.relations})
@@ -141,9 +141,9 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
 #set($relationName = ${relation.name.substring(0, 1).toUpperCase()} + ${relation.name.substring(1)})
 #if(${relationType} == "ManyToOne" || ${relationType} == "OneToOne")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public ${entityName}DTO find${relationName}By${domainClass}(Long id) {
-		String jpql = "select e from ${domainClass} o right join o.${relation.name} e where o.id=?";
-		${entityName} result = (${entityName}) queryChannel.querySingleResult(jpql, new Object[] { id });
+	public ${entityName}DTO find${relationName}By${domainClass}(${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name}) {
+		String jpql = "select e from ${domainClass} o right join o.${relation.name} e where o.${dtoClass.entityModel.singleIDFieldModel.name}=?";
+		${entityName} result = (${entityName}) queryChannel.querySingleResult(jpql, new Object[] { ${dtoClass.entityModel.singleIDFieldModel.name} });
 		${entityName}DTO  dto = new ${entityName}DTO();
 		if (result != null) {
 			dto.domain2Dto(result);
@@ -154,10 +154,10 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
 
 #if(${relationType} == "OneToMany" || ${relationType} == "ManyToMany")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Page<${entityName}DTO> find${relationName}By${domainClass}(Long id, int currentPage, int pageSize) {
+	public Page<${entityName}DTO> find${relationName}By${domainClass}(${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name}, int currentPage, int pageSize) {
 		List<${entityName}DTO> result = new ArrayList<${entityName}DTO>();
-		String jpql = "select e from ${domainClass} o right join o.${relation.name} e where o.id=?";
-		Page<${entityName}> pages = queryChannel.queryPagedResultByPageNo(jpql, new Object[] { id }, currentPage, pageSize);
+		String jpql = "select e from ${domainClass} o right join o.${relation.name} e where o.${dtoClass.entityModel.singleIDFieldModel.name}=?";
+		Page<${entityName}> pages = queryChannel.queryPagedResultByPageNo(jpql, new Object[] { ${dtoClass.entityModel.singleIDFieldModel.name} }, currentPage, pageSize);
         for (${entityName} entity : pages.getResult()) {
             ${entityName}DTO dto = new ${entityName}DTO();
             if (result != null) {

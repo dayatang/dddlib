@@ -25,6 +25,7 @@ import org.drools.persistence.info.WorkItemInfo;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.process.NodeInstance;
 import org.drools.runtime.process.ProcessInstance;
+import org.openkoala.exception.extend.KoalaException;
 import org.openkoala.jbpm.application.JBPMApplication;
 import org.openkoala.jbpm.application.KoalaJbpmCoreApplication;
 import org.openkoala.jbpm.application.core.JoinAssignApplication;
@@ -112,6 +113,9 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	}
 
 
+	/**
+	 * 返回指定流程名称的图片
+	 */
 	public byte[] getProcessImage(String processId) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("processId", processId);
@@ -194,8 +198,10 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			}
 			todo.setTaskId(task.getId());
 			todo.setProcessData(processData);
-			todo.setCreateDate(df.format(log.getStart()));
-			// todo.setCreater((String)in.getVariable("_process_creater"));
+			//todo.setCreateDate(df.format(log.getStart()));
+			if(in.getVariable("_process_creater")!=null){
+				todo.setCreater((String)in.getVariable("_process_creater"));
+			}
 			todos.add(todo);
 		}
 		
@@ -336,9 +342,9 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		Map<String, Object> params = new HashMap<String, Object>();
 		Map<String, Object> globalMap = getJbpmSupport().getGlobalVariable();
 		globalMap.put("KJ_USER", creater);
-		Set<String> keys = globalMap.keySet();
-		for (String key : keys) {
-			params.put(key, globalMap.get(key));
+		Set<Map.Entry<String, Object>> keyEntrySet = globalMap.entrySet();
+		for(Map.Entry<String, Object> entry:keyEntrySet){
+			params.put(entry.getKey(), entry.getValue());
 		}
 		String activeProcessName = getJbpmSupport().getActiveProcess(processName);
 
@@ -350,17 +356,17 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		Map<String, Object> packageVariaMap = getJbpmSupport().getPackageVariable(
 				process.getPackageName());
 		// 读取PACKAGE级的变量
-		keys = packageVariaMap.keySet();
-		for (String key : keys) {
-			params.put(key, packageVariaMap.get(key));
+		Set<Map.Entry<String, Object>> entrySet = packageVariaMap.entrySet();
+		for(Map.Entry<String, Object> entry:entrySet){
+			params.put(entry.getKey(), entry.getValue());
 		}
 
 		Map<String, Object> processVariableMap = getJbpmSupport()
 				.getProcessVariable(processName);
 		// 读取Process级的变
-		keys = processVariableMap.keySet();
-		for (String key : keys) {
-			params.put(key, processVariableMap.get(key));
+		Set<Map.Entry<String, Object>> processVariableMapEntrySet = processVariableMap.entrySet();
+		for(Map.Entry<String, Object> entry:processVariableMapEntrySet){
+			params.put(entry.getKey(), entry.getValue());
 		}
 
 		Map<String, Object> userParams = XmlParseUtil.xmlToPrams(paramsString);
@@ -393,9 +399,9 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		proceeParams.put("KJ_USER", user);
 		RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
 				.getProcessInstance(processInstanceId);
-		Set<String> keys = proceeParams.keySet();
-		for (String key : keys) {
-			in.setVariable(key, proceeParams.get(key));
+		Set<Map.Entry<String, Object>> entrySet = proceeParams.entrySet();
+		for(Map.Entry<String, Object> entry:entrySet){
+			in.setVariable(entry.getKey(), entry.getValue());
 		}
 		Task task = getJbpmSupport().getTask(taskId);
 		// 更新TASK参数
@@ -427,6 +433,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		long contentId = getJbpmSupport().getTask(task.getId()).getTaskData()
 				.getDocumentContentId();
 		Content content = jbpmTaskService.getContent(contentId);
+		if(content!=null){
 		byte[] conByte = content.getContent();
 		ByteArrayInputStream bis = new ByteArrayInputStream(conByte);
 		try {
@@ -476,12 +483,13 @@ public class JBPMApplicationImpl implements JBPMApplication {
 				}
 				this.jbpmTaskService.removeTaskUser(taskId, user);
 			}
+			
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-
+		}
 		if (joginAssign == null) {
 			completeTask(task, contentData);
 		}
@@ -531,6 +539,37 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		}
 		return messages;
 	}
+	
+	/**
+	 * 取回功能，如果下一步的人员未进行任何操作，前一步的用户可以主动取回这个任务，重新决策
+	 * @param TaskId
+	 * @param userId
+	 */
+	public void fetchBack(long processInstanceId,long taskId,String userId){
+		//查询流程的上个节点处理人，将流程回复到此节点
+		HistoryLog historyLog = HistoryLog.queryLastActivedNodeId(processInstanceId);
+		assignToNode(processInstanceId,historyLog.getNodeId());
+	}
+	
+	/**
+	 * 退回功能，当前节点用户可进行退回
+	 * @param processInstanceId
+	 * @param userId
+	 * @param userId
+	 */
+	public void roolBack(long processInstanceId,long taskId,String userId){
+		RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
+				.getProcessInstance(processInstanceId);
+		List<String> actives = in.getActiveNodeIds();
+		if(actives.size()>1){
+			throw new RuntimeException("多个任务情况下不支持回退");
+		}
+		HistoryLog historyLog = HistoryLog.queryLastActivedNodeId(processInstanceId);
+		if(historyLog==null || historyLog.getNodeId()==0){
+			throw new RuntimeException("没有上一个人工处理节点，不能回退");
+		}
+		assignToNode(processInstanceId,historyLog.getNodeId());
+	}
 
 	/**
 	 * 将指定的流程转到指定的节点上去
@@ -572,8 +611,10 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		for (WorkItemInfo workItemInfo : workItemInfos) {
 			jbpmTaskService.removeWorkItemInfo(workItemInfo);
 		}
-		if (isSame)
+		if (isSame){
 			return;
+		}
+			
 		HistoryLog log = new HistoryLog();
 		log.setComment("转移到节点:" + human.getNodeName());
 		log.setCreateDate(new Date());

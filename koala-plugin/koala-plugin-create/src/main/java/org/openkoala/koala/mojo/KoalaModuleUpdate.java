@@ -22,7 +22,7 @@ public class KoalaModuleUpdate {
 	 */
 	public void updateModule(ModuleUpdate moduleUpdate) throws Exception{
 		logger.info("更新项目功能");
-		String projectPath = moduleUpdate.getProjectPath();
+		//String projectPath = moduleUpdate.getProjectPath();
 		ModuleUpdateParse update = new ModuleUpdateParse(moduleUpdate);
 		update.parse();
 	}
@@ -37,9 +37,9 @@ public class KoalaModuleUpdate {
 		updateModule(update);
 	}
 	
-	public static void main(String args[]) throws Exception{
-		String xmlPath = "xml/project-update.xml";
-		KoalaModuleUpdate update = new KoalaModuleUpdate();
-		update.updateModule(xmlPath);
-	}
+//	public static void main(String args[]) throws Exception{
+//		String xmlPath = "xml/project-update.xml";
+//		KoalaModuleUpdate update = new KoalaModuleUpdate();
+//		update.updateModule(xmlPath);
+//	}
 }

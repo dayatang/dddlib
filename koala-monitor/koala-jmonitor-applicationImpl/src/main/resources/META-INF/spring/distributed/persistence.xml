@@ -18,7 +18,7 @@
 
 	<!-- Drives transactions using local JPA APIs -->
 	<tx:annotation-driven transaction-manager="km_transactionManager" />
-
+	
 	<bean id="km_transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="km_entityManagerFactory" />
 	</bean>

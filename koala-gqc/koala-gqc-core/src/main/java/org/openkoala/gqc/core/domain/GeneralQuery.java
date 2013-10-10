@@ -231,6 +231,7 @@ public class GeneralQuery extends GeneralQueryEntity {
 		return getRepository().getSingleResult(QuerySettings.create(GeneralQuery.class).containsText("queryName", queryName));
 	}
 	
+	
 	/**
 	 * 生成查询SQL语句
 	 * @return

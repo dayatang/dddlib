@@ -98,8 +98,8 @@ public class HttpDetails extends BaseMonitorDetails {
 	@Override
 	public String toString() {
 		return "HttpDetails [ip=" + ip + ", uri=" + uri + ", principal="
-				+ principal + ", parameters=" + parameters + ", traceKey="
-				+ traceKey + ", beginTime=" + beginTime  + "]";
+				+ principal + ", parameters=" + parameters + ", threadKey="
+				+ threadKey + ", beginTime=" + beginTime  + "]";
 	}
 
 	

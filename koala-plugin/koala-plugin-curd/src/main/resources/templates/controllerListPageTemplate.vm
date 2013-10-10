@@ -64,7 +64,8 @@ PageLoader = {
 #end
         { display: '操作', isSort: false, width: 120, render: function (rowdata, rowindex, value)
             {
-                var h = "<a href='javascript:openDetailsPage(" + rowdata.id + ")'>查看</a> ";
+            	var param = '"' + rowdata.${dtoClass.entityModel.singleIDFieldModel.name} + '"';
+                var h = "<a href='javascript:openDetailsPage(" + param + ")'>查看</a> ";
                 return h;
             }
         }
@@ -81,7 +82,7 @@ PageLoader = {
         ]
         }
     });
-	 g.toggleCol("id",false);//隐藏id列
+	 g.toggleCol("${dtoClass.entityModel.singleIDFieldModel.name}",false);//隐藏id列
 	 return g;
  }
 }
@@ -125,8 +126,8 @@ function itemclick(item)
 }
 
 
-function openDetailsPage(id){
-	var url = "${entityName}-view.jsp?id="+id;
+function openDetailsPage(${dtoClass.entityModel.singleIDFieldModel.name}){
+	var url = "${entityName}-view.jsp?id="+${dtoClass.entityModel.singleIDFieldModel.name};
 	_dialog = jQuery.ligerDialog.open({
   	    title: '查看',
   	    url:url,
@@ -150,7 +151,7 @@ function openFormDialog(edit){
 	    	 alert('请只选择一行'); return;
 	     }
 	     id = newRow.id;
-	     url = "${entityName}-update.jsp?id=" + newRow.id;
+	     url = "${entityName}-update.jsp?id=" + newRow.${dtoClass.entityModel.singleIDFieldModel.name};
 	}
 	_dialog = jQuery.ligerDialog.open({
   	    title: edit ? '编辑' : '新增',
@@ -167,10 +168,10 @@ function deleteAction()
     
     var removeData = '';
 	  $.each(gridManager.getCheckedRows(), function(index, element) {
-		  removeData = removeData + element.id + ',';
+		  removeData = removeData + element.${dtoClass.entityModel.singleIDFieldModel.name} + ',';
 	  });
 	  removeData = removeData.substr(0, removeData.length - 1) ;
-    var data = [{ name: 'ids', value: removeData }];
+    var data = [{ name: '${dtoClass.entityModel.singleIDFieldModel.name}s', value: removeData }];
 	 Koala.ajax({
  		async:true,
  		type : "POST",

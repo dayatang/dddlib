@@ -3,7 +3,6 @@ package org.openkoala.koala.deploy.db2entity;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.Driver;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -123,23 +122,6 @@ public class DB2EntityUtil {
 		List<String> tables = new ArrayList<String>();
 		ResultSet rs = null;
 		DatabaseMetaData metaData = conn.getMetaData();
-		
-		if (metaData.getDatabaseProductName().equalsIgnoreCase("oracle")) {
-			PreparedStatement pstmt = null;
-			try{
-			pstmt  = conn.prepareStatement("select table_name from user_tables");
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				tables.add(rs.getString("TABLE_NAME"));
-			}
-			return tables;
-			}finally{
-				if(pstmt!=null){
-					pstmt.close();
-				}
-			}
-		}
-		
 		rs = metaData.getTables(null, null, null, new String[] { "TABLE" });
 		while (rs.next()) {
 			String tableName = rs.getString("TABLE_NAME");

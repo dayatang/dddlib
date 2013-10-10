@@ -67,8 +67,7 @@ public class KoalaDateUtils {
 		String _dateStr = dateStr.trim();
 		try {
 			if (_dateStr.matches("\\d{1,2}[A-Z]{3}")) {
-				_dateStr = _dateStr
-						+ (Calendar.getInstance().get(Calendar.YEAR) - 2000);
+				_dateStr = _dateStr+ (Calendar.getInstance().get(Calendar.YEAR) - 2000);
 			}
 			// 01OCT12
 			if (_dateStr.matches("\\d{1,2}[A-Z]{3}\\d{2}")) {
@@ -103,6 +102,8 @@ public class KoalaDateUtils {
 				if (_dateStr.matches("\\d{14}")) {
 					format = new SimpleDateFormat("yyyyMMddHHmmss");
 				}
+			}else{
+				throw new RuntimeException("Not Support Date String format!");
 			}
 
 			Date date = format.parse(_dateStr);

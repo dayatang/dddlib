@@ -27,7 +27,7 @@ import javax.sql.DataSource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jwebap.plugin.analyser.CommonAnalyser;
+import org.openkoala.koala.monitor.analyser.CommonAnalyser;
 import org.openkoala.koala.monitor.model.JdbcConnStatusVo;
 import org.openkoala.koala.monitor.model.JdbcPoolStatusVo;
 
@@ -52,12 +52,12 @@ public class JdbcPoolStatusCollector {
 	//连接池状态
 	private Map<DataSource, Map<String, JdbcConnStatusVo>> connPoolStats= new HashMap<DataSource, Map<String, JdbcConnStatusVo>>();
 	
-	private static JdbcPoolStatusCollector instance;
+	private static JdbcPoolStatusCollector instance = new JdbcPoolStatusCollector();
 	
 	private JdbcPoolStatusCollector() {}
 	
 
-	public static JdbcPoolStatusCollector getInstance() {
+	public static synchronized JdbcPoolStatusCollector getInstance() {
 		if(instance == null)instance = new JdbcPoolStatusCollector();
 		return instance;
 	}
@@ -101,7 +101,7 @@ public class JdbcPoolStatusCollector {
 	/**
 	 * 注册数据源
 	 */
-	public void registerDataSource(DataSource ds) {
+	public synchronized void registerDataSource(DataSource ds) {
 		if(collectors.containsKey(ds))return;
 		Class<?> clazz = null;
 		try {

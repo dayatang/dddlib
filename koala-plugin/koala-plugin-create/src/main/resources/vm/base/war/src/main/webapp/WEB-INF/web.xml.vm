@@ -25,23 +25,34 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<servlet>
+		<servlet-name>jcaptcha</servlet-name>
+		<servlet-class>com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>jcaptcha</servlet-name>
+		<url-pattern>/jcaptcha.jpg</url-pattern>
+	</servlet-mapping>
+	
    #end
    
 	
 #if ($Module.monitor)
 	<!-- monitor config begin-->
      <listener>
-		<listener-class>org.openkoala.koala.monitor.context.KoalaMonitorListener</listener-class>
+		<listener-class>org.openkoala.koala.monitor.core.KoalaMonitorListener</listener-class>
 	</listener>
 	
 	<context-param>
 		<param-name>monitor-config</param-name>
-		<param-value>classpath*:monitor/koala-monitor.xml</param-value>
+		<param-value>monitor/koala-monitor.xml</param-value>
 	</context-param>
 
 	<filter>
 		<filter-name>PageDetectFilter</filter-name>
-		<filter-class>org.jwebap.plugin.tracer.http.DetectFilter</filter-class>
+		<filter-class>org.openkoala.koala.monitor.component.http.DetectFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>PageDetectFilter</filter-name>
@@ -94,7 +105,7 @@
 	  </servlet-mapping>
     #end
     
-   #if ($Module.security)
+
     <servlet>
 		<servlet-name>DBInit</servlet-name>
 		<servlet-class>org.openkoala.koala.dbinit.SecurityDBInit</servlet-class>
@@ -108,16 +119,16 @@
 		<servlet-name>DBInit</servlet-name>
 		<url-pattern>/dbinit</url-pattern>
 	</servlet-mapping>
-   #end
+    
 
     <servlet>
-		<servlet-name>koalaUISurpport</servlet-name>
-		<servlet-class>org.openkoala.ui.base.KoalaUISurpport</servlet-class>
+		<servlet-name>koalaUISupport</servlet-name>
+		<servlet-class>org.openkoala.ui.base.KoalaUISupport</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>koalaUISurpport</servlet-name>
-		<url-pattern>/koalaUISurpport</url-pattern>
+		<servlet-name>koalaUISupport</servlet-name>
+		<url-pattern>/koalaUISupport</url-pattern>
 	</servlet-mapping>
 	
 	<error-page>

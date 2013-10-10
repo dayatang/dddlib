@@ -1,5 +1,6 @@
 package org.openkoala.koala.deploy.webservice.util;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,8 @@ public class ValueObjUtil {
 		String javasrc = valueObj.getQualifiedName();
 		CompilationUnit cu;
 		try {
-			cu = JavaParser.parse(javasrc);
+			File file = new File(javasrc);
+			cu = JavaParser.parse(file);
 			ClassOrInterfaceDeclaration coi = JavaManagerUtil.getClassOrInterfaceDeclaration(cu);
 			
 			List<FieldDeclaration> fieldDeclarations = JavaManagerUtil.getFieldDeclaration(cu);

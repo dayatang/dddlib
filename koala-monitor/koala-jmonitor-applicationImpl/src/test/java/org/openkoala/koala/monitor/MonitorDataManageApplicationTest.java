@@ -162,7 +162,7 @@ public class MonitorDataManageApplicationTest extends KoalaBaseSpringTestCase {
 	public void testGetMethodMonitorDetails() {
 
 		MethodDetailsVo methodDetailsVo = new MethodDetailsVo();
-		methodDetailsVo.setTraceId("xxxxx");
+		methodDetailsVo.setThreadKey("xxxxx");
 		methodDetailsVo.setSystem("demo-node");
 		methodDetailsVo.setMethod("add");
 		methodDetailsVo.setBeginTime(KoalaDateUtils.parseDate("2013-08-01"));

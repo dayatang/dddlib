@@ -82,6 +82,10 @@ public class EntityModel {
         return models;
     }
     
+    public PKFieldModel getSingleIDFieldModel() {
+    	return getIDFieldModel().get(0);
+    }
+    
     /**
      * 获取数据库字段Field
      * @return

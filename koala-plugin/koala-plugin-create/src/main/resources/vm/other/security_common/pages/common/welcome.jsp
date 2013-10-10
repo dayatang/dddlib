@@ -125,11 +125,11 @@
 
          <div id="guides">
 	     <ul>
-	     <li><span>访问<a href="http://openkoala.org" target="_blank">Koala主页</a>，获取最新资讯与信息</span></li>
+	     <li><span>访问<a href="http://58.215.177.99:8080/display/koala/Home" target="_blank">Koala主页</a>，获取最新资讯与信息</span></li>
 	     <br/>
-	     <li><span>如何使用Koala，查看<a href="http://openkoala.org/display/KD/Home" target="_blank">在线使用指南</a></span></li>
+	     <li><span>如何使用Koala，查看<a href="http://58.215.177.99:8080/display/koalaDocs/Guides" target="_blank">在线使用指南</a></span></li>
 	     <br/>
-	     <li><span>提交BUG或改进意义，请访问<a href="http://jira.openkoala.org/issues" target="_blank">BUG提交</a></span></li>
+	     <li><span>提交BUG或改进意义，请访问<a href="http://58.215.177.99:9000/browse/PUBKOALA" target="_blank">BUG提交</a></span></li>
 	     </ul>
 	   </div>
 	   

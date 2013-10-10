@@ -104,9 +104,9 @@ public class UserApplicationImpl extends BaseImpl implements UserApplication {
 
     public void assignRole(UserVO userVO, RoleVO roleVO) {
         User us = new User();
-        us.setId(Long.valueOf(userVO.getId()));
+        us.setId(userVO.getId());
         Role role = new Role();
-        role.setId(Long.valueOf(roleVO.getId()));
+        role.setId(roleVO.getId());
         us.assignRole(role);
     }
 

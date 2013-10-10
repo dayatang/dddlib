@@ -49,6 +49,7 @@ public class EJBSrcCopy {
 	 * @throws CloneNotSupportedException
 	 */
 	public static MavenProject copySrc(EJBDeploy ejbDeploy) {
+		logger.info("COPY SRC");
 		MavenProject project = ejbDeploy.getProject();
 		MavenProject destProject = project.clone();
 		String path = project.getPath() + "/target/" + project.getName() + EJB
@@ -190,7 +191,7 @@ public class EJBSrcCopy {
 			}
 
 			// 第三步，生成EJB子项目
-			Map params = new HashMap();
+			Map<String,Object> params = new HashMap<String,Object>();
 			params.put("Project", project);
 			params.put("Dependencys", earDepens);
 			params.putAll(hasSecurityModule);
@@ -362,6 +363,7 @@ public class EJBSrcCopy {
 		params.put("ConfigPath", parent.getConfigProjects().get(0).getPath());
 		params.put("impls", ejbDeploy.getImpls());
 		params.put("deployConfig", ejbDeploy.getDeployConfig());
+		params.put("koalaversion", parent.getProperties().get("koala.version"));
 
 		params.put("ProjectVersion", parent.getVersion());
 		
@@ -395,8 +397,7 @@ public class EJBSrcCopy {
 						war.getPath()+ "/src/main/resources/META-INF/props/spring-ejb.properties");
 
 		// 第四步,在root.xml中加入spring-ejb.xml的配置
-		XmlParseUtil
-				.parseXmlAction("vm/ejb/war-ejb-spring-update.xml", context);
+		XmlParseUtil.parseXml("vm/ejb/war-ejb-spring-update.xml", params);
 	}
 
 	/**
@@ -409,10 +410,10 @@ public class EJBSrcCopy {
 			throws IOException {
 
 		// 第三步：添加spring-ejb.xml以及spring-ejb.properties的EJB配置文件
-		Map params = new HashMap();
+		Map<String,Object> params = new HashMap<String,Object>();
 		params.put("ProjectPath", war.getPath());
 		params.put("ConfigPath", conf.getPath());
-		VelocityContext context = VelocityUtil.getVelocityContext(params);
+		VelocityUtil.getVelocityContext(params);
 	}
 
 }
