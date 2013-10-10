@@ -534,10 +534,10 @@ $(function() {
 			checkbox : true,
 			parms : [ {
 				name : "userNameForSearch",
-				value : $("#userNameForSearch").val().trim()
+				value : $("#userNameForSearch").val()
 			}, {
 				name : "userAccountForSearch",
-				value : $("#userAccountForSearch").val().trim()
+				value : $("#userAccountForSearch").val()
 			} ]
 		});
 	});
@@ -583,10 +583,10 @@ $(function() {
 				value : roleId
 			}, {
 				name : "userNameForSearch",
-				value : $("#dialogUserNameForSearch").val().trim()
+				value : $("#dialogUserNameForSearch").val()
 			}, {
 				name : "userAccountForSearch",
-				value : $("#dialogUserAccountForSearch").val().trim()
+				value : $("#dialogUserAccountForSearch").val()
 			} ]
 		});
 	}

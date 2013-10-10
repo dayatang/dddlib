@@ -131,5 +131,4 @@ public class XmlParseUtil {
 		}
 		return params;
 	}
-
 }

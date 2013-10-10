@@ -9,6 +9,7 @@
    <input type="hidden" id="MenuNo" value="MemberManageUser" />
   <div id="maingrid"></div> 
   
+  
   <div id="editUrl" style="display: none;">
 	  <form id="form">
 	  	<table class="form2column">
@@ -244,6 +245,7 @@
 			$("#resUrl").val(selectedRow.identifier);
 			$("#resDesc").val(selectedRow.desc);
 			$("#resourceType option[value='" + selectedRow.typeId + "']").attr("selected", true);
+			typeId = selectedRow.typeId;
 			var rows = $("#maingrid").ligerGetGridManager().getCheckedRows();
 			$("#parentTR").hide();
 		}
@@ -253,7 +255,6 @@
 			$("#resUrl").val("");
 			$("#resDesc").val("");
 			$("#resourceType option[value='']").attr("selected", true);
-			typeId = "";
 		}
 
 		function saveUrlResource() {
