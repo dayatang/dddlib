@@ -130,9 +130,17 @@ body {
 	}
 	
 	function refreshCode(){
-		
-		$('#checkCode').attr('src',"jcaptcha.jpg");
+		$('#checkCode').attr('src',"jcaptcha.jpg?"+Math.random());
 	}
+	
+	$(function(){
+		$(document).keydown(function(e){
+		  if(e.keyCode == 13)
+            {
+			   $('#loginFormId').submit();
+            }
+         });
+	});
 	
 </script>
 </head>

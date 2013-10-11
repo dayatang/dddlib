@@ -5,7 +5,6 @@ package ${dtoClass.packageName};
 #foreach($import in ${dtoClass.imports})
 import $import;
 #end
-import ${entity.className.substring(0, ${entity.className.lastIndexOf(".")})}.*;
 import java.io.Serializable;
 #if (${project.mvcType} == "SpringMVC")
 
@@ -134,25 +133,6 @@ public class ${dtoClass.name} implements Serializable {
 	
 	public ${dtoClass.entityModel.singleIDFieldModel.simpleType} get${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}() {
 		return ${dtoClass.entityModel.singleIDFieldModel.name};
-	}
-	
-	public void domain2Dto(${domainClass} ${variableName}) {
-		this.set${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}(${variableName}.get${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}());
-#foreach($entry in ${dtoClass.fieldMap.entrySet()})
-#if (${dtoClass.relativeTypes.contains(${entry.key})} == false)
-#set($property = ${entry.key.substring(0, 1).toUpperCase()} + ${entry.key.substring(1)})
-		this.set${property}(${variableName}.get${property}());
-#end
-#end
-	}
-	
-	public void dto2Domain(${domainClass} ${variableName}) {
-#foreach($entry in ${dtoClass.fieldMap.entrySet()})
-#if (${dtoClass.relativeTypes.contains(${entry.key})} == false)
-#set($property = ${entry.key.substring(0, 1).toUpperCase()} + ${entry.key.substring(1)})
-		${variableName}.set${property}(this.get${property}());
-#end
-#end
 	}
 
     @Override

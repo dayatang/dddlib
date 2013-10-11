@@ -66,8 +66,11 @@ public class ${controllerClass.name} {
         	#if(${dtoClass.entityModel.singleIDFieldModel.simpleType} == "String")
 				idArrs[i] = value[i];
 			#end
-        	#if(${dtoClass.entityModel.singleIDFieldModel.simpleType} == "Long")
+        	#if(${dtoClass.entityModel.singleIDFieldModel.simpleType} == "Long" )
 				idArrs[i] = Long.parseLong(value[i]);
+			#end
+			#if(${dtoClass.entityModel.singleIDFieldModel.simpleType} == "Integer" )
+				idArrs[i] = Integer.parseInt(value[i]);
 			#end
         	
         }

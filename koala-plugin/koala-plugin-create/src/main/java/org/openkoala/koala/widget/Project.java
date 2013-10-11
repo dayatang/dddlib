@@ -196,7 +196,6 @@ public class Project implements Serializable {
 		applicationInterface.setModuleName("application");
 		applicationInterface.setProjectName(appName);
 		applicationInterface.setBasePackage(getGroupId() + "." + getPackageName() + ".application");
-		applicationInterface.getDependencies().add("core");
 		getModule().add(applicationInterface);
 		
 		//初始化一个实现层

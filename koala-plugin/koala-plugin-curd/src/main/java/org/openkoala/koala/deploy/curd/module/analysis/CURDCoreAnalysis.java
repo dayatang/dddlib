@@ -4,7 +4,6 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +27,8 @@ import org.openkoala.koala.pojo.ModuleType;
 import org.openkoala.koala.util.ProjectParseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
 /**
  * 
@@ -190,7 +191,10 @@ public class CURDCoreAnalysis {
             entity.getFields().add(fieldModel);
          }
          else  if(fieldType.equals(FieldType.ID)){
-             FieldModel fieldModel = new PKFieldModel(field.getName(),field.getType().getName());
+        	 //将主键的基本类型转换成对应的封装类型
+        	 String type = field.getType().getName();
+        	 type = convertPrimitive(type);
+             FieldModel fieldModel = new PKFieldModel(field.getName(),type);
              entity.getFields().add(fieldModel);
              
          }else if(fieldType.equals(FieldType.EmbeddedId)){
@@ -204,7 +208,7 @@ public class CURDCoreAnalysis {
          else if(fieldType.equals(FieldType.OneToMany)){
              RelationFieldModel fieldModel = new RelationFieldModel(field.getName(),field.getType().getName());
              RelationModel relation = new OneToManyRelationModel();
-             ParameterizedType type =(ParameterizedType) field.getGenericType();
+             ParameterizedTypeImpl type =(ParameterizedTypeImpl) field.getGenericType();
              Class actual = (Class)type.getActualTypeArguments()[0];
              EntityModel fieldEntity = analysisField(actual.getName());
              relation.setEntityModel(fieldEntity);
@@ -230,7 +234,7 @@ public class CURDCoreAnalysis {
          else if(fieldType.equals(FieldType.ManyToMany)){
              RelationFieldModel fieldModel = new RelationFieldModel(field.getName(),field.getType().getName());
              RelationModel relation = new ManyToManyRelationModel();
-             ParameterizedType type =(ParameterizedType) field.getGenericType();
+             ParameterizedTypeImpl type =(ParameterizedTypeImpl) field.getGenericType();
              Class actual = (Class)type.getActualTypeArguments()[0];
              EntityModel fieldEntity = analysisField(actual.getName());
              relation.setEntityModel(fieldEntity);
@@ -242,7 +246,64 @@ public class CURDCoreAnalysis {
              entity.getFields().add(fieldModel);
          }
     }
+    
+    
+    private static final String Byte = "byte";
+    
+    private static final String BYTE = "Byte";
+    
+    private static final String Short = "short";
+    
+    private static final String SHORT = "Short";
+    
+    private static final String Int = "int";
+    
+    private static final String INT = "Integer";
+    
+    private static final String Long =  "long";
+    
+    private static final String LONG = "Long";
+    
+    private static final String Float = "float";
+    
+    private static final String FLOAT = "Float";
+    
+    private static final String Double = "double";
+    
+    private static final String DOUBLE = "Double";
+    
+    private static final String Char = "char";
+    
+    private static final String CHAR = "Character";
+    
     /**
+     * 将基本类型组装成封闭类型
+     * @param type
+     * @return
+     */
+    private String convertPrimitive(String type) {
+    	if(type.equals(Byte)){
+    		return BYTE;
+    	}
+    	if(type.equals(Int)){
+    		return INT;
+    	}
+    	if(type.equals(Long)){
+    		return LONG;
+    	}
+    	if(type.equals(Float)){
+    		return FLOAT;
+    	}
+    	if(type.equals(Double)){
+    		return DOUBLE;
+    	}
+    	if(type.equals(Char)){
+    		return CHAR;
+    	}
+		return type;
+	}
+
+	/**
      * 传入Field或method上的注释，以判断它是属于数据库，关联还是其它类型
      * @param annotations
      * @return

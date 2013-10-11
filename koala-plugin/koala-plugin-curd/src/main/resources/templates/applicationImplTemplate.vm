@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.text.MessageFormat;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.annotation.Propagation;
 import com.dayatang.querychannel.support.Page;
@@ -31,22 +32,36 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
 	public ${currntVO} get${domainClass}(${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name}) {
 		${domainClass} $variableName = ${domainClass}.load(${domainClass}.class, ${dtoClass.entityModel.singleIDFieldModel.name});
 		${currntVO} ${currntVOVariable} = new ${currntVO}();
-		${currntVOVariable}.domain2Dto(${variableName});
-		${currntVOVariable}.set${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}(${variableName}.get${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}());
+		// 将domain转成VO
+		try {
+			BeanUtils.copyProperties(${currntVOVariable}, ${variableName});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		${currntVOVariable}.set${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}((${dtoClass.entityModel.singleIDFieldModel.type})${variableName}.get${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}());
 		return ${currntVOVariable};
 	}
 	
 	public ${currntVO} save${domainClass}(${currntVO} ${currntVOVariable}) {
 		${domainClass} ${variableName} = new ${domainClass}();
-		${currntVOVariable}.dto2Domain(${variableName});
+		try {
+        	BeanUtils.copyProperties(${variableName}, ${currntVOVariable});
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }
 		${variableName}.save();
-		${currntVOVariable}.set${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}(${variableName}.get${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}());
+		${currntVOVariable}.set${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}((${dtoClass.entityModel.singleIDFieldModel.type})${variableName}.get${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}());
 		return ${currntVOVariable};
 	}
 	
 	public void update${domainClass}(${currntVO} ${currntVOVariable}) {
 		${domainClass} ${variableName} = ${domainClass}.get(${domainClass}.class, ${currntVOVariable}.get${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}());
-		${currntVOVariable}.dto2Domain(${variableName});
+		// 设置要更新的值
+		try {
+			BeanUtils.copyProperties(${variableName}, ${currntVOVariable});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void remove${domainClass}(${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name}) {
@@ -66,7 +81,12 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
 		List<${domainClass}> all = ${domainClass}.findAll(${domainClass}.class);
 		for (${domainClass} ${variableName} : all) {
 			${currntVO} ${currntVOVariable} = new ${currntVO}();
-			${currntVOVariable}.domain2Dto(${variableName});
+			// 将domain转成VO
+			try {
+				BeanUtils.copyProperties(${currntVOVariable}, ${variableName});
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			list.add(${currntVOVariable});
 		}
 		return list;
@@ -119,16 +139,23 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
         Page<${domainClass}> pages = queryChannel.queryPagedResultByPageNo(jpql.toString(), conditionVals.toArray(), currentPage, pageSize);
         for (${domainClass} ${variableName} : pages.getResult()) {
             ${currntVO} ${currntVOVariable} = new ${currntVO}();
-            ${currntVOVariable}.domain2Dto(${variableName});
-#foreach($view in ${applicationImplClass.entityViewUI.listModel.views})
-   #set($property = ${view.relative.substring(0, 1).toUpperCase()} + ${view.relative.substring(1)})
-   #set($express = ${view.express.substring(0, 1).toUpperCase()} + ${view.express.substring(1)})
-#if(${view.viewType} == "RelativeReadOnlyView")
-			if(${variableName}.get$property() != null) {	
-				${currntVOVariable}.set$property$express(${variableName}.get$property().get$express());
-			}
-#end
-#end
+            
+             // 将domain转成VO
+            try {
+            	BeanUtils.copyProperties(${currntVOVariable}, ${variableName});
+            } catch (Exception e) {
+            	e.printStackTrace();
+            } 
+            
+      #foreach($view in ${applicationImplClass.entityViewUI.listModel.views})
+        #set($property = ${view.relative.substring(0, 1).toUpperCase()} + ${view.relative.substring(1)})
+        #set($express = ${view.express.substring(0, 1).toUpperCase()} + ${view.express.substring(1)})
+        #if(${view.viewType} == "RelativeReadOnlyView")
+		  if(${variableName}.get$property() != null) {	
+			   ${currntVOVariable}.set$property$express(${variableName}.get$property().get$express());
+		  }
+         #end
+       #end
             result.add(${currntVOVariable});
         }
         return new Page<${currntVO}>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), result);
@@ -146,7 +173,11 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
 		${entityName} result = (${entityName}) queryChannel.querySingleResult(jpql, new Object[] { ${dtoClass.entityModel.singleIDFieldModel.name} });
 		${entityName}DTO  dto = new ${entityName}DTO();
 		if (result != null) {
-			dto.domain2Dto(result);
+			try {
+				BeanUtils.copyProperties(dto, result);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return dto;
 	}
@@ -161,7 +192,11 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
         for (${entityName} entity : pages.getResult()) {
             ${entityName}DTO dto = new ${entityName}DTO();
             if (result != null) {
-            	dto.domain2Dto(entity);
+            	try {
+				BeanUtils.copyProperties(dto, result);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
             }
             result.add(dto);
         }

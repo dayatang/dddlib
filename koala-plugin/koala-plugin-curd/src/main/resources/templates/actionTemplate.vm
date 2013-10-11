@@ -52,11 +52,14 @@ public class ${actionClass.name} extends BaseAction {
             ${dtoClass.entityModel.singleIDFieldModel.simpleType}[] ids = new ${dtoClass.entityModel.singleIDFieldModel.simpleType}[idArrs.length];
             for (int i = 0; i < idArrs.length; i ++) {
             	#if(${dtoClass.entityModel.singleIDFieldModel.simpleType} == "String")
-					ids[i] = idArrs[i];
-				#end
-	        	#if(${dtoClass.entityModel.singleIDFieldModel.simpleType} == "Long")
-					ids[i] = Long.parseLong(idArrs[i]);
-				#end
+				  idArrs[i] = value[i];
+			    #end
+        	    #if(${dtoClass.entityModel.singleIDFieldModel.simpleType} == "Long" )
+				  idArrs[i] = Long.parseLong(value[i]);
+			    #end
+			    #if(${dtoClass.entityModel.singleIDFieldModel.simpleType} == "Integer" )
+				  idArrs[i] = Integer.parseInt(value[i]);
+			    #end
             }
             ${applicationName}.remove${domainClass}s(ids);
         }
