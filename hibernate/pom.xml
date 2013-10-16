@@ -53,6 +53,12 @@
 			<artifactId>javassist</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+        <dependency>
+            <groupId>${jdbc.groupId}</groupId>
+            <artifactId>${jdbc.artifactId}</artifactId>
+            <version>${jdbc.version}</version>
+            <scope>test</scope>
+        </dependency>
 	</dependencies>
 
 	<build>

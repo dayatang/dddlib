@@ -11,7 +11,7 @@
 			<!-- Auto detect annotation model classes -->
 			<property name="hibernate.archive.autodetection" value="class" />
 			<property name="hibernate.hbm2ddl.auto" value="update"/>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+			<property name="hibernate.dialect" value="${hibernate.dialect}"/>
 			<property name="hibernate.jndi.class" value="bitronix.tm.jndi.BitronixInitialContextFactory"/>
 			<property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.BTMTransactionManagerLookup"/>
 			<!-- 

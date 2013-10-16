@@ -13,7 +13,7 @@
         <property name="transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
         <property name="transaction.manager_lookup_class">org.hibernate.transaction.BTMTransactionManagerLookup</property>
  
-        <property name="dialect">org.hibernate.dialect.H2Dialect</property>
+        <property name="dialect">${hibernate.dialect}</property>
         <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
         <property name="show_sql">true</property>
 		<property name="format_sql">true</property>
