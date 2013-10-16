@@ -63,9 +63,4 @@
 			</testResource>
 		</testResources>
 	</build>
-	<properties>
-		<h2.db.dir><![CDATA[./target]]></h2.db.dir>
-		<h2.db.file><![CDATA[test-db]]></h2.db.file>
-		<jdbc.url>jdbc:h2:tcp://localhost/${h2.db.dir}/${h2.db.file}</jdbc.url>
-	</properties>
 </project>

@@ -13,9 +13,7 @@ import com.dayatang.configuration.ConfigurationFactory;
 import com.dayatang.h2.H2Server;
 
 public class AbstractIntegrationTest {
-	
-	private static H2Server h2Server;
-	
+
 	private static BtmUtils btmUtils;
 
 	protected static EntityManagerFactory emf;
@@ -23,8 +21,6 @@ public class AbstractIntegrationTest {
 	@BeforeClass
 	public static void setUpClass() throws Exception {
 		Configuration configuration = new ConfigurationFactory().fromClasspath("/jdbc.properties");
-		h2Server = new H2Server(configuration.getString("h2.db.dir"), configuration.getString("h2.db.file"));
-		h2Server.start();
 		btmUtils = BtmUtils.readConfigurationFromClasspath("/datasources.properties");
 		btmUtils.setupDataSource();
 		emf = Persistence.createEntityManagerFactory("default");
@@ -35,9 +31,8 @@ public class AbstractIntegrationTest {
 		emf.close();
 		btmUtils.closeDataSource();
 		btmUtils = null;
-		h2Server.shutdown();
 		System.out.println("================================================");
-		System.out.println("关闭BTM和H2");
+		System.out.println("关闭BTM");
 	}
 
 	public UserTransaction getTransaction() {

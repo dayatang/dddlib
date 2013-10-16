@@ -39,7 +39,7 @@
 			<artifactId>junit</artifactId>
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
+ 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 		</dependency>
