@@ -714,9 +714,9 @@
                 <db.type>postgresql</db.type>
                 <dbunit.dataTypeFactoryName>org.dbunit.ext.postgresql.PostgresqlDataTypeFactory</dbunit.dataTypeFactoryName>
                 <hibernate.dialect>org.hibernate.dialect.PostgresPlusDialect</hibernate.dialect>
-                <jdbc.groupId>postgresql</jdbc.groupId>
+                <jdbc.groupId>org.postgresql</jdbc.groupId>
                 <jdbc.artifactId>postgresql</jdbc.artifactId>
-                <jdbc.version>9.1-901-1.jdbc4</jdbc.version>
+                <jdbc.version>9.2-1003-jdbc4</jdbc.version>
                 <jdbc.driverClassName>org.postgresql.Driver</jdbc.driverClassName>
                 <jdbc.url><![CDATA[jdbc:postgresql://${db.host}/${db.name}]]></jdbc.url>
                 <jdbc.username>postgres</jdbc.username>
