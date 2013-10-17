@@ -13,8 +13,9 @@
 			<property name="hibernate.hbm2ddl.auto" value="update"/>
 			<property name="hibernate.dialect" value="${hibernate.dialect}"/>
 			<property name="hibernate.jndi.class" value="bitronix.tm.jndi.BitronixInitialContextFactory"/>
-			<property name="hibernate.transaction.manager_lookup_class" value="org.hibernate.transaction.BTMTransactionManagerLookup"/>
-			<!-- 
+	        <property name="hibernate.transaction.factory_class" value="org.hibernate.engine.transaction.internal.jta.JtaTransactionFactory"/>
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.BitronixJtaPlatform"/>
+    		<!--
         	<property name="hibernate.connection.release_mode" value="after_statement"/>
 			<property name="hibernate.transaction.factory_class" value="org.hibernate.transaction.JTATransactionFactory"/>
         	<property name="hibernate.current_session_context_class" value="jta"/>

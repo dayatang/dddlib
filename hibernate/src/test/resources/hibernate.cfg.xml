@@ -10,11 +10,10 @@
         <property name="jndi.class">bitronix.tm.jndi.BitronixInitialContextFactory</property>
         <property name="connection.release_mode">after_statement</property>
         <property name="current_session_context_class">jta</property>
-        <property name="transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</property>
-        <property name="transaction.manager_lookup_class">org.hibernate.transaction.BTMTransactionManagerLookup</property>
- 
+        <property name="transaction.factory_class">org.hibernate.engine.transaction.internal.jta.JtaTransactionFactory</property>
+        <property name="transaction.jta.platform">org.hibernate.service.jta.platform.internal.BitronixJtaPlatform</property>
+        
         <property name="dialect">${hibernate.dialect}</property>
-        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
         <property name="show_sql">true</property>
 		<property name="format_sql">true</property>
 		<property name="hbm2ddl.auto">update</property>
@@ -22,5 +21,4 @@
 		<mapping class="com.dayatang.commons.domain.DictionaryCategory"/>
 		<mapping class="com.dayatang.commons.domain.Dictionary"/>
     </session-factory>
- 
-</hibernate-configuration>
+ </hibernate-configuration>

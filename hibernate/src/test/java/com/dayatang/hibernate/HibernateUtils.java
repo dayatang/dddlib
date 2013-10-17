@@ -8,13 +8,12 @@ import com.dayatang.commons.domain.Dictionary;
 import com.dayatang.commons.domain.DictionaryCategory;
 
 public class HibernateUtils {
-	private static Configuration cfg;
     private static SessionFactory sessionFactory = buildSessionFactory();
 
     @SuppressWarnings("deprecation")
 	private static SessionFactory buildSessionFactory() {
         try {
-        	cfg = new Configuration()
+            Configuration cfg = new Configuration()
         		.addAnnotatedClass(DictionaryCategory.class)
         		.addAnnotatedClass(Dictionary.class)
         		.configure();
