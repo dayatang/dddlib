@@ -157,7 +157,6 @@ public abstract class AbstractEntity implements Entity {
 		}
 		return getRepository().find(querySettings);
 	}
-	
 
 	@Override
 	public abstract int hashCode();

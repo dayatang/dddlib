@@ -250,69 +250,6 @@ public class EntityRepositoryHibernate implements EntityRepository {
 		getSession().clear();
 	}
 
-	@Override
-	public <T extends Entity> DataPage<T> findAll(Class<T> clazz, int pageIndex, int pageSize) {
-		List<T> data = findAll(clazz);
-		int from = (pageIndex - 1) * pageSize;
-		int to = from + pageSize;
-		int resultCount = data.size();
-		List<T> pageDate = data.subList(from, to > resultCount ? resultCount : to);
-		return new DataPage<T>(pageDate, pageIndex, pageSize, resultCount);
-	}
-
-	@Override
-	public <T extends Entity> DataPage<T> find(QuerySettings<T> settings, int pageIndex, int pageSize) {
-		List<T> data = find(settings);
-		int from = (pageIndex - 1) * pageSize;
-		int to = from + pageSize;
-		int resultCount = data.size();
-		List<T> pageDate = data.subList(from, to > resultCount ? resultCount : to);
-		return new DataPage<T>(pageDate, pageIndex, pageSize, resultCount);
-	}
-
-	@Override
-	public <T> DataPage<T> find(String queryString, Object[] params, int pageIndex, int pageSize, Class<T> resultClass) {
-		List<T> data = find(queryString, params, resultClass);
-		int from = (pageIndex - 1) * pageSize;
-		int to = from + pageSize;
-		int resultCount = data.size();
-		List<T> pageDate = data.subList(from, to > resultCount ? resultCount : to);
-		return new DataPage<T>(pageDate, pageIndex, pageSize, resultCount);
-	}
-
-	@Override
-	public <T> DataPage<T> find(String queryString, Map<String, Object> params, int pageIndex, int pageSize,
-			Class<T> resultClass) {
-		List<T> data = find(queryString, params, resultClass);
-		int from = (pageIndex - 1) * pageSize;
-		int to = from + pageSize;
-		int resultCount = data.size();
-		List<T> pageDate = data.subList(from, to > resultCount ? resultCount : to);
-		return new DataPage<T>(pageDate, pageIndex, pageSize, resultCount);
-	}
-
-	@Override
-	public <T> DataPage<T> findByNamedQuery(String queryName, Object[] params, int pageIndex, int pageSize,
-			Class<T> resultClass) {
-		List<T> data = findByNamedQuery(queryName, params, resultClass);
-		int from = (pageIndex - 1) * pageSize;
-		int to = from + pageSize;
-		int resultCount = data.size();
-		List<T> pageDate = data.subList(from, to > resultCount ? resultCount : to);
-		return new DataPage<T>(pageDate, pageIndex, pageSize, resultCount);
-	}
-
-	@Override
-	public <T> DataPage<T> findByNamedQuery(String queryName, Map<String, Object> params, int pageIndex, int pageSize,
-			Class<T> resultClass) {
-		List<T> data = findByNamedQuery(queryName, params, resultClass);
-		int from = (pageIndex - 1) * pageSize;
-		int to = from + pageSize;
-		int resultCount = data.size();
-		List<T> pageDate = data.subList(from, to > resultCount ? resultCount : to);
-		return new DataPage<T>(pageDate, pageIndex, pageSize, resultCount);
-	}
-
     @Override
     public <T extends Entity> com.dayatang.domain.Query<T> createQuery(Class<T> entityClass) {
         return new QueryImpl(this, entityClass);
