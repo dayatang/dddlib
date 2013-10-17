@@ -14,14 +14,18 @@ import com.dayatang.domain.internal.*;
 
 public class QueryTranslator {
 
-	private QuerySettings<?> settings;
+    private Set<QueryCriterion> queryCriterions;
+    private Class<?> entityClass;
+    private List<OrderSetting> orderSettings;
+    int firstResult;
+    int maxResults;
 
 	private String queryString = "";
 
 	private List<String> criterias = new ArrayList<String>();
 	private List<Object> params = new ArrayList<Object>();
 
-	public String getQueryString() {
+    public String getQueryString() {
 		return queryString;
 	}
 
@@ -29,22 +33,35 @@ public class QueryTranslator {
 		return params;
 	}
 
+    public <T extends Entity> QueryTranslator(Query<T> dddQuery) {
+        queryCriterions = dddQuery.getQueryCriterions();
+        entityClass = dddQuery.getEntityClass();
+        orderSettings = dddQuery.getOrderSettings();
+        firstResult = dddQuery.getFirstResult();
+        maxResults = dddQuery.getMaxResults();
+        prepare();
+    }
+
 	public QueryTranslator(QuerySettings<?> settings) {
-		this.settings = settings;
+        queryCriterions = settings.getQueryCriterions();
+        entityClass = settings.getEntityClass();
+        orderSettings = settings.getOrderSettings();
+        firstResult = settings.getFirstResult();
+        maxResults = settings.getMaxResults();
 		prepare();
 	}
 
 	private void prepare() {
-		queryString = "select distinct(o) from " + settings.getEntityClass().getName() + " as o ";
-		queryString += getWhereClause(settings.getQueryCriterions());
-		queryString += getOrderClause(settings.getOrderSettings());
+		queryString = "select distinct(o) from " + entityClass.getName() + " as o ";
+		queryString += getWhereClause(queryCriterions);
+		queryString += getOrderClause(orderSettings);
 	}
 
 	private String getWhereClause(Set<QueryCriterion> criterions) {
 		if (criterions.isEmpty()) {
 			return "";
 		}
-		for (QueryCriterion criterion : settings.getQueryCriterions()) {
+		for (QueryCriterion criterion : queryCriterions) {
 			String aCriteria = processCriterion(criterion);
 			if (StringUtils.isNotBlank(aCriteria)) {
 				criterias.add(aCriteria);

@@ -12,16 +12,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 
+import com.dayatang.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.dayatang.IocInstanceNotFoundException;
-import com.dayatang.domain.DataPage;
-import com.dayatang.domain.Entity;
-import com.dayatang.domain.EntityRepository;
-import com.dayatang.domain.ExampleSettings;
-import com.dayatang.domain.InstanceFactory;
-import com.dayatang.domain.QuerySettings;
 import com.dayatang.jpa.internal.JpaCriteriaQueryBuilder;
 
 /**
@@ -324,7 +319,40 @@ public class EntityRepositoryJpa implements EntityRepository {
 		return new DataPage<T>(pageDate, pageIndex, pageSize, resultCount);
 	}
 
-	@Inject
+    @Override
+    public <T extends Entity> com.dayatang.domain.Query<T> createQuery(Class<T> entityClass) {
+        return new QueryImpl(this, entityClass);
+    }
+
+    @Override
+    public <T extends Entity> List<T> find(com.dayatang.domain.Query<T> dddQuery) {
+        return find(dddQuery, dddQuery.getEntityClass());
+    }
+
+    @Override
+    public <T extends Entity> T getSingleResult(com.dayatang.domain.Query<T> dddQuery) {
+        return getSingleResult(dddQuery, dddQuery.getEntityClass());
+    }
+
+    @Override
+    public <E, T extends Entity> List<E> find(com.dayatang.domain.Query<T> dddQuery, Class<E> resultClass) {
+        CriteriaQuery<T> criteriaQuery = JpaCriteriaQueryBuilder.getInstance()
+                .createCriteriaQuery(dddQuery, getEntityManager());
+        Query query = getEntityManager().createQuery(criteriaQuery);
+        query.setFirstResult(dddQuery.getFirstResult());
+        if (dddQuery.getMaxResults() > 0) {
+            query.setMaxResults(dddQuery.getMaxResults());
+        }
+        return query.getResultList();
+    }
+
+    @Override
+    public <E, T extends Entity> E getSingleResult(com.dayatang.domain.Query<T> query, Class<E> resultClass) {
+        List<E> results = find(query, resultClass);
+        return results.isEmpty() ? null : results.get(0);
+    }
+
+    @Inject
 	@PersistenceContext
 	private EntityManager entityManager;
 

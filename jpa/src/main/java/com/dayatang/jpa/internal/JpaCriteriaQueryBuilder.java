@@ -3,6 +3,7 @@ package com.dayatang.jpa.internal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -28,6 +29,32 @@ public class JpaCriteriaQueryBuilder {
 		}
 		return instance;
 	}
+
+    public final <T extends Entity> CriteriaQuery<T> createCriteriaQuery(
+            com.dayatang.domain.Query dddQuery, EntityManager entityManager) {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(dddQuery.getEntityClass());
+        Root<T> root = query.from(dddQuery.getEntityClass());
+        query.select(root);
+
+        JpaCriterionConverter converter = new JpaCriterionConverter(builder, root);
+        List<Predicate> criterions = new ArrayList<Predicate>();
+        Set<QueryCriterion> x = dddQuery.getQueryCriterions();
+        for (QueryCriterion criterion : x) {
+            Predicate predicate = converter.convert(criterion);
+            if (predicate != null) {
+                criterions.add(predicate);
+            }
+        }
+        if (criterions.size() == 1) {
+            query.where(criterions.get(0));
+        }
+        if (criterions.size() > 1) {
+            query.where(criterions.toArray(new Predicate[0]));
+        }
+        query.orderBy(toOrder(builder, root, dddQuery.getOrderSettings()));
+        return query;
+    }
 
 	public final <T extends Entity> CriteriaQuery<T> createCriteriaQuery(QuerySettings<T> settings, EntityManager entityManager) {
 		CriteriaBuilder builder = entityManager.getCriteriaBuilder();

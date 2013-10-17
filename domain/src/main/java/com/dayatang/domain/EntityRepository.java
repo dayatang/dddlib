@@ -266,4 +266,14 @@ public interface EntityRepository {
 	 * @return 符合查询条件的记录集合
 	 */
 	<T> DataPage<T> findByNamedQuery(String queryName, Map<String, Object> params, int pageIndex, int pageSize, Class<T> resultClass);
+
+    <T extends Entity> Query<T> createQuery(Class<T> entityClass);
+
+    <T extends Entity> List<T> find(Query<T> tQuery);
+
+    <T extends Entity> T getSingleResult(Query<T> tQuery);
+
+    <E, T extends Entity> List<E> find(Query<T> query, Class<E> resultClass);
+
+    <E, T extends Entity> E getSingleResult(Query<T> query, Class<E> resultClass);
 }

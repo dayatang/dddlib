@@ -212,7 +212,8 @@ public class RepositoryJpaTest extends AbstractIntegrationTest {
 		assertFalse(results.contains(undergraduate));
 		assertFalse(results.contains(male));
 	}
-	
+
+
 	
 	@Test
 	public void testGetSingleResultSettings() {
@@ -270,7 +271,14 @@ public class RepositoryJpaTest extends AbstractIntegrationTest {
 			assertEquals(description, dictionary.getDescription());
 		}
 	}
-	
+
+    @Test
+    public void testQuery() {
+        List<Dictionary> results = repository.createQuery(Dictionary.class).eq("category", gender).list(Dictionary.class);
+        assertTrue(results.contains(male));
+        assertFalse(results.contains(undergraduate));
+    }
+
 	@Test
 	public void testFindQueryStringArrayParamsDataPage() {
 		String queryString = "select o from  Dictionary o where o.category = ?";

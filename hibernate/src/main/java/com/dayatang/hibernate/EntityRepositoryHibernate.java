@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import com.dayatang.domain.*;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -14,13 +15,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.dayatang.IocException;
-import com.dayatang.domain.DataPage;
-import com.dayatang.domain.Entity;
-import com.dayatang.domain.EntityRepository;
-import com.dayatang.domain.ExampleSettings;
-import com.dayatang.domain.InstanceFactory;
-import com.dayatang.domain.QuerySettings;
 import com.dayatang.hibernate.internal.QueryTranslator;
+
+import javax.persistence.criteria.CriteriaQuery;
 
 /**
  * 通用仓储接口的Hibernate实现。
@@ -316,7 +313,47 @@ public class EntityRepositoryHibernate implements EntityRepository {
 		return new DataPage<T>(pageDate, pageIndex, pageSize, resultCount);
 	}
 
-	private Session getSession() {
+    @Override
+    public <T extends Entity> com.dayatang.domain.Query<T> createQuery(Class<T> entityClass) {
+        return new QueryImpl(this, entityClass);
+    }
+
+    @Override
+    public <T extends Entity> List<T> find(com.dayatang.domain.Query<T> dddQuery) {
+        return find(dddQuery, dddQuery.getEntityClass());
+    }
+
+    @Override
+    public <T extends Entity> T getSingleResult(com.dayatang.domain.Query<T> dddQuery) {
+        return getSingleResult(dddQuery, dddQuery.getEntityClass());
+    }
+
+    @Override
+    public <E, T extends Entity> List<E> find(com.dayatang.domain.Query<T> dddQuery, Class<E> resultClass) {
+        QueryTranslator translator = new QueryTranslator(dddQuery);
+        String queryString = translator.getQueryString();
+        LOGGER.info("QueryString: '" + queryString + "'");
+        List<Object> params = translator.getParams();
+        LOGGER.info("params: " + StringUtils.join(params, ", "));
+        Query query = getSession().createQuery(queryString);
+        for (int i = 0; i < params.size(); i++) {
+            System.out.println("==================" + i + ": " + params.get(i));
+            query.setParameter(i, params.get(i));
+        }
+        query.setFirstResult(dddQuery.getFirstResult());
+        if (dddQuery.getMaxResults() > 0) {
+            query.setMaxResults(dddQuery.getMaxResults());
+        }
+        return query.list();
+   }
+
+    @Override
+    public <E, T extends Entity> E getSingleResult(com.dayatang.domain.Query<T> dddQuery, Class<E> resultClass) {
+        List<E> results = find(dddQuery, resultClass);
+        return results.isEmpty() ? null : results.get(0);
+    }
+
+    private Session getSession() {
 		try {
 			return InstanceFactory.getInstance(Session.class);
 		} catch (IocException e) {
