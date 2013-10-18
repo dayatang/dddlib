@@ -148,8 +148,8 @@ public interface EntityRepository {
 	/**
 	 * 根据查询设置返回单一结果
 	 * @param <T> 结果类型
-	 * @param settings
-	 * @return
+	 * @param settings 查询设置
+	 * @return 符合查询条件的结果
 	 */
 	<T extends Entity> T getSingleResult(QuerySettings<T> settings);
 	
@@ -193,8 +193,8 @@ public interface EntityRepository {
 	void flush();
 	
 	/**
-	 * 使用数据库中的最新数据更新参数entity的状态
-	 * @param entity
+	 * 使用数据库中的最新数据更新实体的当前状态。实体中的任何已改变但未持久化的属性值将被数据库中的最新值覆盖。
+	 * @param entity 要刷新的实体
 	 */
 	void refresh(Entity entity);
 	
@@ -203,13 +203,47 @@ public interface EntityRepository {
 	 */
 	void clear();
 
+    /**
+     * 创建针对指定实体类的查询
+     * @param entityClass 要查询的实体类
+     * @param <T> 实体的类型
+     * @return 一个查询对象
+     */
     <T extends Entity> Query<T> createQuery(Class<T> entityClass);
 
-    <T extends Entity> List<T> find(Query<T> tQuery);
+    /**
+     * 执行查询，返回符合条件的实体列表
+     * @param query 要执行的查询
+     * @param <T> 实体类型
+     * @return 符合查询条件的实体列表
+     */
+    <T extends Entity> List<T> find(Query<T> query);
 
-    <T extends Entity> T getSingleResult(Query<T> tQuery);
+    /**
+     * 执行查询，返回符合条件的单个实体
+     * @param query 要执行的查询
+     * @param <T> 实体类型
+     * @return 符合查询条件的单个实体
+     */
+    <T extends Entity> T getSingleResult(Query<T> query);
 
+    /**
+     * 执行查询，返回结果列表。适用于结果元素类型不同于查询根实体类型的情况
+     * @param query 要执行的查询
+     * @param resultClass 查询结果的元素所属的类
+     * @param <E> 结果元素的类型
+     * @param <T> 查询根实体的类型
+     * @return 符合查询条件的结果列表
+     */
     <E, T extends Entity> List<E> find(Query<T> query, Class<E> resultClass);
 
+    /**
+     * 执行查询，返回单个结果。适用于结果类型不同于查询根实体类型的情况
+     * @param query 要执行的查询
+     * @param resultClass 查询结果的元素所属的类
+     * @param <E> 结果的类型
+     * @param <T> 查询根实体的类型
+     * @return 符合查询条件的结果
+     */
     <E, T extends Entity> E getSingleResult(Query<T> query, Class<E> resultClass);
 }
