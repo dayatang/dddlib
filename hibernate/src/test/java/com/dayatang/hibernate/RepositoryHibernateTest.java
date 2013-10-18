@@ -30,11 +30,6 @@ import com.dayatang.domain.QuerySettings;
  * @author yang
  */
 public class RepositoryHibernateTest extends AbstractIntegrationTest {
-	
-	
-	private UserTransaction tx;
-
-	private static EntityRepositoryHibernate repository;
 
 	private DictionaryCategory gender;
 
@@ -50,23 +45,13 @@ public class RepositoryHibernateTest extends AbstractIntegrationTest {
 
 	@Before
 	public void setUp() throws Exception {
-		tx = getTransaction();
-		tx.begin();
-		InstanceFactory.bind(SessionFactory.class, sessionFactory);
-		repository = new EntityRepositoryHibernate();
-		AbstractEntity.setRepository(repository);
+        super.setUp();
 		gender = createCategory("gender", 1);
 		education = createCategory("education", 2);
 		male = createDictionary("01", "男", gender, 100, "01");
 		undergraduate = createDictionary("01", "本科", education, 100, "05");
 		graduate = createDictionary("02", "研究生", education, 200, "05");
 		associate = createDictionary("03", "专科", education, 300, "05");
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		tx.rollback();
-		AbstractEntity.setRepository(null);
 	}
 
 	@Test

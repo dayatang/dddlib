@@ -29,12 +29,6 @@ import com.dayatang.domain.QuerySettings;
  */
 public class RepositoryJpaTest extends AbstractIntegrationTest {
 
-	private EntityManager entityManager;
-
-	private EntityRepositoryJpa repository;
-
-	private EntityTransaction tx;
-
 	private DictionaryCategory gender;
 
 	private DictionaryCategory education;
@@ -47,24 +41,12 @@ public class RepositoryJpaTest extends AbstractIntegrationTest {
 
 	@Before
 	public void setUp() {
-		entityManager = emf.createEntityManager();
-		InstanceFactory.bind(EntityManager.class, entityManager);
-		tx = entityManager.getTransaction();
-		tx.begin();
-		repository = new EntityRepositoryJpa();
-		AbstractEntity.setRepository(repository);
+        super.setUp();
 		gender = createCategory("gender", 1);
 		education = createCategory("education", 2);
 		male = createDictionary("01", "男", gender, 100, "01");
 		undergraduate = createDictionary("01", "本科", education, 100, "05");
 		graduate = createDictionary("02", "研究生", education, 200, "05");
-	}
-
-	@After
-	public void tearDown() {
-		tx.rollback();
-		entityManager.close();
-		AbstractEntity.setRepository(null);
 	}
 
 	@Test

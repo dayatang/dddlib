@@ -150,5 +150,22 @@ public abstract class Criterions {
     private static Criterions getInstance() {
     	return ServiceLoader.load(Criterions.class).iterator().next();
     }
-	
+
+    public QueryCriterion isTrue(String propName) {
+        return eq(propName, true);
+    }
+
+    public QueryCriterion isFalse(String propName) {
+        return eq(propName, false);
+    }
+
+    public QueryCriterion isBlank(String propName) {
+        return or(isNull(propName), eq(propName, ""));
+    }
+
+    public QueryCriterion notBlank(String propName) {
+        return and(notNull(propName), notEq(propName, ""));
+    }
+
+
 }

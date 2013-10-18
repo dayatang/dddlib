@@ -33,13 +33,6 @@ import com.dayatang.domain.QuerySettings;
  * @author yang
  */
 public class QuerySettingsTest extends AbstractIntegrationTest {
-
-	private EntityManager entityManager;
-
-	private EntityTransaction tx;
-
-	private EntityRepositoryJpa repository;
-
 	private QuerySettings<Dictionary> settings;
 
 	private DictionaryCategory gender;
@@ -56,26 +49,13 @@ public class QuerySettingsTest extends AbstractIntegrationTest {
 
 	@Before
 	public void setUp() {
-		entityManager = emf.createEntityManager();
-		InstanceFactory.bind(EntityManager.class, entityManager);
-		repository = new EntityRepositoryJpa();
-		AbstractEntity.setRepository(repository);
-		tx = entityManager.getTransaction();
-		tx.begin();
+        super.setUp();
 		settings = QuerySettings.create(Dictionary.class);
 		gender = createCategory("gender", 1);
 		education = createCategory("education", 2);
 		male = createDictionary("01", "男", gender, 100, "01");
 		female = createDictionary("02", "女", gender, 150, "01");
 		undergraduate = createDictionary("01", "本科", education, 200, "05");
-	}
-
-	@After
-	public void tearDown() throws IllegalStateException, SystemException {
-		tx.rollback();
-		entityManager.close();
-		repository = null;
-		AbstractEntity.setRepository(null);
 	}
 
 	@Test

@@ -16,29 +16,13 @@ import com.dayatang.domain.AbstractEntity;
 import com.dayatang.domain.InstanceFactory;
 
 public class TheAbstractEntityTest extends AbstractIntegrationTest {
-	
-	private UserTransaction tx;
-
-	private EntityRepositoryHibernate repository;
 
 	private DictionaryCategory gender;
 
-
-	
 	@Before
 	public void setUp() throws Exception {
-		tx = getTransaction();
-		tx.begin();
-		InstanceFactory.bind(SessionFactory.class, sessionFactory);
-		repository = new EntityRepositoryHibernate();
-		AbstractEntity.setRepository(repository);
+        super.setUp();
 		gender = createCategory("gender", 1);
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		tx.rollback();
-		AbstractEntity.setRepository(null);
 	}
 
 	private DictionaryCategory createCategory(String name, int sortOrder) {

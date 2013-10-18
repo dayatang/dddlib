@@ -42,23 +42,23 @@ public class QueryImpl<T extends Entity> implements Query<T> {
         return this;
     }
 
-    public Query<T> ge(String propName, Comparable<?> value) {
-        addCriterion(criterions.ge(propName, value));
-        return this;
-    }
-
     public Query<T> gt(String propName, Comparable<?> value) {
         addCriterion(criterions.gt(propName, value));
         return this;
     }
 
-    public Query<T> le(String propName, Comparable<?> value) {
-        addCriterion(criterions.le(propName, value));
+    public Query<T> ge(String propName, Comparable<?> value) {
+        addCriterion(criterions.ge(propName, value));
         return this;
     }
 
     public Query<T> lt(String propName, Comparable<?> value) {
         addCriterion(criterions.lt(propName, value));
+        return this;
+    }
+
+    public Query<T> le(String propName, Comparable<?> value) {
+        addCriterion(criterions.le(propName, value));
         return this;
     }
 
@@ -174,6 +174,27 @@ public class QueryImpl<T extends Entity> implements Query<T> {
 
     public Query<T> notEmpty(String propName) {
         addCriterion(criterions.notEmpty(propName));
+        return this;
+    }
+
+
+    public Query<T> isTrue(String propName) {
+        addCriterion(criterions.isTrue(propName));
+        return this;
+    }
+
+    public Query<T> isFalse(String propName) {
+        addCriterion(criterions.isFalse(propName));
+        return this;
+    }
+
+    public Query<T> isBlank(String propName) {
+        addCriterion(criterions.isBlank(propName));
+        return this;
+    }
+
+    public Query<T> notBlank(String propName) {
+        addCriterion(criterions.notBlank(propName));
         return this;
     }
 
