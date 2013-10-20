@@ -203,7 +203,9 @@ public class JBPMApplicationTest extends KoalaBaseSpringTestCase {
 	
 	@Test
 	public void testGetProcessNodesFromPorcessInstnaceId(){
-		List<JBPMNode> nodes = getJBPMApplication().getProcessNodesFromPorcessInstnaceId(1l);
+		long i = getJBPMApplication()
+				.startProcess("defaultPackage.Trade","aaa",null);
+		List<JBPMNode> nodes = getJBPMApplication().getProcessNodesFromPorcessInstnaceId(i);
 		for(JBPMNode node:nodes){
 			logger.debug(node.getName()+":"+node.getId());
 		}

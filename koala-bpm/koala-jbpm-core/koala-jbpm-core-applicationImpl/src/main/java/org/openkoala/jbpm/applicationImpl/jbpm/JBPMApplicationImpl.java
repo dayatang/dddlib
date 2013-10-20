@@ -378,7 +378,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 
 		RuleFlowProcessInstance instance = (RuleFlowProcessInstance) getJbpmSupport()
 				.startProcess(activeProcessName, params);
-
+		System.out.println(getJbpmSupport().getProcessInstance(instance.getId()));
 		return instance.getId();
 	}
 
@@ -667,11 +667,12 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		List<JBPMNode> jbpmNodes = new ArrayList<JBPMNode>();
 		RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
 				.getProcessInstance(processInstanceId);
-		Node[] nodes = in.getNodeContainer().getNodes();
+		System.out.println(in.getProcessName());
+		RuleFlowProcess rule = (RuleFlowProcess) in.getProcess();
+		Node[] nodes = rule.getNodes();
 		for (Node node : nodes) {
 			if (node instanceof HumanTaskNode) {
 				JBPMNode jbpmNode = new JBPMNode(node.getId(), node.getName());
-				HumanTaskNode human = (HumanTaskNode) node;
 				jbpmNodes.add(jbpmNode);
 			}
 		}
