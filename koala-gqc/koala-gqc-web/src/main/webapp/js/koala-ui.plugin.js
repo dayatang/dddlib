@@ -9,7 +9,7 @@
  */
 +function(){
 
-	"use strict"
+	"use strict";
 	var Grid = function(element, options){
 		this.$element = $(element);
 		this.options = options;
@@ -25,25 +25,26 @@
 		this._initOptions();
 		this._initEvents();
 		if(this.options.autoLoad){
-			var self = this
+			var self = this;
 			setTimeout(function(){
 				self._loadData();
-			},0)
+			},0);
 		}
-	}
+	};
 	Grid.DEFAULTS = {
 		loadingText: '正在载入...', //数据载入时的提示文字
 		noDataText: '没有数据',    //没有数据时的提示文字
 		isShowIndexCol: true, //是否显示索引列
 		isShowButtons: true,
 		autoLoad: true, //是否表格准备好时加载数据
+		isShowPages: true, //是否显示分页
 		method: 'POST', //请求数据方式
 		identity: 'id', //主键
 		lockWidth: false,
 		pageSize: 10,
 		pageNo: 1,
 		showPage: 4
-	}
+	};
 	Grid.prototype = {
 		Constructor: Grid,
 		_initLayout: function(){
@@ -51,7 +52,7 @@
 			this.buttons = this.$element.find('.buttons');
 			this.searchContainer = this.$element.find('.search');
 			this.condition = this.searchContainer.find('[data-role="condition"]');
-			this.totalRecord = this.$element.find('[data-role="total-record"]');
+			this.totalRecordHtml = this.$element.find('[data-role="total-record"]');
 			this.startRecord = this.$element.find('[data-role="start-record"]');
 			this.endRecord = this.$element.find('[data-role="end-record"]');
 			this.pages = this.$element.find('.pages');
@@ -63,7 +64,8 @@
 			this.gridTableBodyTable = this.gridTableBody.find('table');
 			this.pageSizeSelect = this.$element.find('[data-role="pageSizeSelect"]');
 			!this.options.isShowButtons && this.buttons.hide();
-			this.colResizePointer = this.table.find('.colResizePointer')
+			!this.options.isShowPages && this.grid.find('tfoot').hide();
+			this.colResizePointer = this.table.find('.colResizePointer');
 		},
 		_initButtons: function(){
 			var self = this;
@@ -74,7 +76,7 @@
 					  $(buttons[i].content).appendTo(self.buttons).on('click', {action: action}, function(e){
 						  e.stopPropagation();
 						  e.preventDefault();
-						  self.$element.trigger(e.data.action, {data:self.selectedRowsIndex()})
+						  self.$element.trigger(e.data.action, {data:self.selectedRowsIndex(), item: self.selectedRows()});
 					  });
 				 }
 			}else{
@@ -88,7 +90,7 @@
 				$('body').message({
 					type: 'warning',
 					content: '没有列数据'
-				})
+				});
 			}
 			var totalColumnWidth = 0;
 			var widthRgExp= /^[1-9]\d*\.?\d*(px){0,1}$/;
@@ -96,6 +98,8 @@
 			titleHtml.push('<tr>');
 			if(this.options.isShowIndexCol){
 				titleHtml.push('<th width="50px;"><div class="checker"><span><input type="checkbox" style="opacity: 0;" data-role="selectAll"></span></div></th>');
+			}else{
+				titleHtml.push('<th width="50px;" style="display:none"><div class="checker"><span><input type="checkbox" style="opacity: 0;" data-role="selectAll"></span></div></th>');
 			}
 			for(var i= 0, j=columns.length; i<j; i++){
 				var column = columns[i];
@@ -118,24 +122,28 @@
 				}
 				titleHtml.push('</th>');
 			}
+			this.gridTableHeadTable.html(titleHtml.join(''));
 			if(totalColumnWidth > this.$element.width()){
 				this.gridTableHeadTable.css('width', totalColumnWidth);
 				this.gridTableBodyTable.css('width', totalColumnWidth);
+			}else{
+				this.gridTableHead.css('width', this.$element.width());
+				this.gridTableHeadTable.find('th:last').css('width', 'auto');
+				this.options.columns[this.options.columns.length-1].width = 'auto';
 			}
-			this.gridTableHeadTable.html(titleHtml.join(''));
 			this.gridTableHeadTable.find('[data-role="selectAll"]').on('click',function() {
 				if(this.checked){
 					$(this).parent().addClass('checked');
 					self.gridTableBodyTable.find('.checker').find('input:checkbox').each(function(){
 						this.checked = false;
 						$(this).click();
-					})
+					});
 				}else{
 					$(this).parent().removeClass('checked');
 					self.gridTableBodyTable.find('.checker').find('input:checkbox').each(function(){
 						this.checked = true;
 						$(this).click();
-					})
+					});
 				}
 			});
 			var sorts = this.gridTableHeadTable.find('.sort');
@@ -145,17 +153,17 @@
 				self.sortName = $this.attr('sortName');
 				if($this.hasClass('sorting-asc')){
 					sorts.removeClass('sorting-asc').removeClass('sorting-desc').find('span').remove();
-					$this.removeClass('sorting-asc').addClass('sorting-desc')
-					$this.find('span').remove().end().append($('<span class="glyphicon glyphicon-arrow-down"></span>'))
+					$this.removeClass('sorting-asc').addClass('sorting-desc');
+					$this.find('span').remove().end().append($('<span class="glyphicon glyphicon-arrow-down"></span>'));
 					self.sortOrder = 'desc';
 				}else{
 					sorts.removeClass('sorting-asc').removeClass('sorting-desc').find('span').remove();
-					$this.removeClass('sorting-desc').addClass('sorting-asc')
+					$this.removeClass('sorting-desc').addClass('sorting-asc');
 					$this.find('span').remove().end().append($('<span class="glyphicon glyphicon-arrow-up"></span>'));
 					self.sortOrder = 'asc';
 				}
 				self._loadData();
-			})
+			});
 			this.gridTableHeadTable.find('.colResize').on('mousedown', function(e){
 				e.stopPropagation();
 				var $this = $(this);
@@ -180,8 +188,8 @@
 						self.colResizePointer.hide();
 						self.options.columns[index].width = width;
 					}
-				})
-			})
+				});
+			});
 		},
 		_initOptions: function(){
 			var self = this;
@@ -218,10 +226,10 @@
 			this.searchContainer.find('button[data-role="searchBtn"]').on('click', function(){
 				var condition = self.condition.getValue();
 				if(!condition){
-					self.$element.message({
+					$('body').message({
 						type: 'warning',
 						content: '请选择查询条件'
-					})
+					});
 					return;
 				}
 				var value =  self.searchContainer.find('input[data-role="searchValue"]').val().replace(/(^\s*)|(\s*$)/g, "");
@@ -242,7 +250,7 @@
 			}
 			if(self.sortName && self.sortOrder){
 				params.sortname = self.sortName;
-				params.sortorder = self.sortOrder
+				params.sortorder = self.sortOrder;
 			}
 			$.ajax({
 				type: this.options.method,
@@ -250,34 +258,39 @@
 				data: params,
 				dataType: 'json'
 			}).done(function(result){
+					if(!result.Rows){
+						$('body').message({
+							type: 'error',
+							content: '查询失败'
+						});
+						return;
+					}
 					self.startRecord.text(result.start);
 					self.endRecord.text(result.start + result.limit);
-					self.totalRecord.text(result.Total);
-					self._initPageNo(result.Total)
+					self.totalRecordHtml.text(result.Total);
+					//self._initPageNo(result.Total)
 					self.items = result.Rows;
+					self.totalRecord = result.Total;
 					if(result.Rows.length == 0){
-						$('body').message({
-							type: 'info',
-							content: '没有数据'
-						});
 						self.gridTableBodyTable.empty();
+						self.gridTableBody.find('[data-role="noData"]').remove();
 						self.gridTableBody.append($('<div data-role="noData" style="font-size:16px ; padding: 20px; width:'+self.gridTableBodyTable.width()+'px;">'+self.options.noDataText+'</div>'));
 					}else{
 						self.gridTableBody.find('[data-role="noData"]').remove();
-						self.renderRows()
+						self.renderRows();
 					}
 				}).fail(function(result){
 
-				})
+				});
 		},
 		/*
 		 * 初始化分页
 		 */
-		_initPageNo: function(totalRecord){
+		_initPageNo: function(){
 			var self = this;
 			var pageSize = self.pageSizeSelect.getValue();
-			this.totalPage = Math.floor(totalRecord / pageSize);
-			if(totalRecord % pageSize != 0){
+			this.totalPage = Math.floor(this.totalRecord / pageSize);
+			if(this.totalRecord % pageSize != 0){
 				this.totalPage ++;
 			}
 			if(this.totalPage == 0){
@@ -353,7 +366,9 @@
 				var trHtml = new Array();
 				trHtml.push('<tr>');
 				if(this.options.isShowIndexCol){
-					trHtml.push('<td width="50px;"><div class="checker"><span><input type="checkbox"  data-role="indexCheckbox" style="opacity: 0;" value="'+item[this.options.identity]+'"></span></div></td>')
+					trHtml.push('<td width="50px;"><div class="checker"><span><input type="checkbox" indexValue="'+i+'" data-role="indexCheckbox" style="opacity: 0;" value="'+item[this.options.identity]+'"></span></div></td>');
+				}else{
+					trHtml.push('<td width="50px;" style="display:none"><div class="checker"><span><input type="checkbox" indexValue="'+i+'" data-role="indexCheckbox" style="opacity: 0;" value="'+item[this.options.identity]+'"></span></div></td>');					
 				}
 				for(var k=0,h=this.options.columns.length; k<h; k++){
 					var column = this.options.columns[k];
@@ -363,7 +378,7 @@
 					}
 					trHtml.push('>');
 					if(column.render){
-						trHtml.push(column.render(item,column.name,i));
+						trHtml.push(column.render(item,column.name,i,k));
 					}else{
 						trHtml.push(item[column.name]);
 					}
@@ -373,24 +388,26 @@
 				trHtmls.push(trHtml.join(''));
 			}
 			this.gridTableBodyTable.html(trHtmls.join(''));
-			var indexCheckboxs = this.gridTableBodyTable.find('[data-role="indexCheckbox"]')
+			var indexCheckboxs = this.gridTableBodyTable.find('[data-role="indexCheckbox"]');
 			indexCheckboxs.on('click',function(e) {
 				e.stopPropagation();
 				var $this = $(this);
 				if(this.checked){
 					$this.parent().addClass('checked').closest('tr').addClass('success');
 				}else{
-					$this.parent().removeClass('checked').closest('tr').removeClass('success')
+					$this.parent().removeClass('checked').closest('tr').removeClass('success');
 				}
 				if(self.selectedRowsIndex().length == indexCheckboxs.length){
 					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked','checked').parent().addClass('checked');
 				}else{
 					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked','').parent().removeClass('checked');
 				}
+				self.$element.trigger('selectedRow', {checked:this.checked, item:self.items[$this.attr('indexValue')]});
 			});
 			this.gridTableBodyTable.find('tr').on('click', function(){
 				$(this).toggleClass('success').find('[data-role="indexCheckbox"]').click();
-			})
+			});
+			self._initPageNo();
 		},
 		/*
 		 *返回选择行数据的数组。
@@ -399,26 +416,57 @@
 			var self = this;
 			var selectItems = new Array();
 			this.gridTableBodyTable.find('.checker').find('input:checkbox:checked').each(function(){
-				selectItems.push(self.items[$(this).val()]);
-			})
+				selectItems.push(self.items[$(this).attr('indexvalue')]);
+			});
 			return  selectItems;
 		},
 		/*
 		 *返回选择行索引的数组。
 		 */
 		selectedRowsIndex: function(){
-			var self = this;
 			var selectIndexs = new Array();
 			this.gridTableBodyTable.find('.checker').find('input:checkbox:checked').each(function(){
 				selectIndexs.push($(this).val());
-			})
+			});
 			return  selectIndexs;
 		},
+		/**
+		 * 新增一行记录
+		 */
+		 insertRow: function(item){
+			var trHtml = new Array();
+			trHtml.push('<tr>');
+			if(this.options.isShowIndexCol){
+				trHtml.push('<td width="50px;"><div class="checker"><span><input type="checkbox" indexValue="'+ this.items.length +'" data-role="indexCheckbox" style="opacity: 0;" value="'+item[this.options.identity]+'"></span></div></td>');
+			}
+			for(var k=0,h=this.options.columns.length; k<h; k++){
+				var column = this.options.columns[k];
+				trHtml.push('<td index="'+k+'" width="'+column.width+'"');
+				if(column.align){
+					trHtml.push(' align="'+column.align+'"');
+				}
+				trHtml.push('>');
+				if(column.render){
+					trHtml.push(column.render(item,column.name,1));
+				}else{
+					trHtml.push(item[column.name]);
+				}
+				trHtml.push('</td>');
+			}
+			trHtml.push('</tr>');
+			this.gridTableBodyTable.append($(trHtml.join('')));
+			this.items.push(item);
+			return this.$element;
+		 },
 		/**
 		 * 刷新表格
 		 */
 		refresh: function(){
 			this.pageNo = Grid.DEFAULTS.pageNo;
+			var selectAll = this.gridTableHeadTable.find('[data-role="selectAll"]');
+			if(selectAll.is(':checked')){
+				selectAll.click();
+			}
 			this._loadData();
 		},
 		/**
@@ -430,8 +478,13 @@
 			}
 			this._loadData();
 		}
-	}
-	Grid.DEFAULTS.TEMPLATE = '<div class="table-responsive"><table class="table table-responsive table-bordered grid"><thead><tr><th><div class="btn-group buttons"></div><div class="search"><div class="btn-group select " data-role="condition"></div><div class="input-group" style="width:180px;"><input type="text" class="input-medium form-control" placeholder="Search" data-role="searchValue"><div class="input-group-btn"><button type="button" class="btn btn-default" data-role="searchBtn"><span class="glyphicon glyphicon-search"></span></button></div></div></div></th></tr></thead><tbody><tr><td><div class="colResizePointer"></div><div class="grid-body"><div class="grid-table-head"><table class="table table-bordered"></table></div><div class="grid-table-body"><table class="table table-responsive table-bordered table-hover table-striped"></table></div></div></td></tr></tbody><tfoot><tr><td><div class="records">显示:<span data-role="start-record"></span>-<span data-role="end-record"></span>, 共<span data-role="total-record"></span>条记录。&nbsp;每页显示:<div class="btn-group select " data-role="pageSizeSelect"></div>条</div><div><div class="btn-group pages"><ul class="pagination"></ul></div></div></td></tr></tfoot></table></div>';
+	};
+	$.fn.insertRow = function(item){
+		if(this.data('koala.grid')){
+			return this.data('koala.grid').insertRow(item);
+		}
+	},
+	Grid.DEFAULTS.TEMPLATE = '<div class="table-responsive"><table class="table table-responsive table-bordered grid"><thead><tr><th><div class="btn-group buttons"></div><div class="search"><div class="btn-group select " data-role="condition"></div><div class="input-group" style="width:180px;"><input type="text" class="input-medium form-control" placeholder="Search" data-role="searchValue"><div class="input-group-btn"><button type="button" class="btn btn-default" data-role="searchBtn"><span class="glyphicon glyphicon-search"></span></button></div></div></div></th></tr></thead><tbody><tr><td><div class="colResizePointer"></div><div class="grid-body"><div class="grid-table-head"><table class="table table-bordered"></table></div><div class="grid-table-body"><table class="table table-responsive table-bordered table-hover table-striped"></table></div></div></td></tr></tbody><tfoot><tr><td><div class="records">显示:<span data-role="start-record">1</span>-<span data-role="end-record">10</span>, 共<span data-role="total-record">0</span>条记录。&nbsp;每页显示:<div class="btn-group select " data-role="pageSizeSelect"></div>条</div><div><div class="btn-group pages"><ul class="pagination"></ul></div></div></td></tr></tfoot></table></div>';
 	var old = $.fn.grid;
 	$.fn.grid = function(option){
 		return this.each(function(){
@@ -444,13 +497,13 @@
 			if(typeof option == 'string'){
 				data[option]();
 			}
-		})
-	}
+		});
+	};
 	$.fn.grid.Constructor = Grid;
 	$.fn.grid.noConflict = function(){
 		$.fn.grid = old;
 		return this;
-	}
+	};
 }(window.jQuery)
 
 
@@ -464,30 +517,30 @@
 		this.$element = $(Message.DEFAULTS.TEMPLATE);
 		this.options = options;
 		this.init();
-	}
+	};
 	Message.DEFAULTS = {
 		delay: 2000,
 		type: 'info'
-	}
+	};
 	Message.prototype.init = function(){
 		var self = this;
 		$('.message').remove();
 		this.content = this.$element.find('[data-toggle="content"]').html(this.options.content);
 		switch(this.options.type){
 			case 'success':
-				this.content.before($('<span class="glyphicon glyphicon-info-sign" style="margin-right: 10px;"/>'));
+				this.content.before($('<span class="glyphicon glyphicon-info-sign" style="margin-right: 10px; font-size:16px;"/>'));
 				this.$element.addClass('alert-success');
 				break;
 			case 'info':
-				this.content.before($('<span class="glyphicon glyphicon-info-sign" style="margin-right: 10px;"/>'));
+				this.content.before($('<span class="glyphicon glyphicon-info-sign" style="margin-right: 10px;font-size:16px;"/>'));
 				this.$element.addClass('alert-info');
 				break;
 			case 'warning':
-				this.content.before($('<span class="glyphicon glyphicon-warning-sign" style="margin-right: 10px;"/>'));
+				this.content.before($('<span class="glyphicon glyphicon-warning-sign" style="margin-right: 10px;font-size:16px;"/>'));
 				this.$element.addClass('alert-warning');
 				break;
 			case 'error':
-				this.content.before($('<span class="glyphicon glyphicon-exclamation-sign" style="margin-right: 10px;"/>'));
+				this.content.before($('<span class="glyphicon glyphicon-exclamation-sign" style="margin-right: 10px;font-size:16px; "/>'));
 				this.$element.addClass('alert-danger');
 				break;
 		}
@@ -499,9 +552,9 @@
 		setTimeout(function(){
 			self.$element.fadeOut(1000, function(){
 				$(this).remove();
-			})
-		}, this.options.delay)
-	}
+			});
+		}, this.options.delay);
+	};
 	Message.DEFAULTS.TEMPLATE = '<div class="alert message" style="width: auto;min-width: 120px;max-width: 300px; padding: 8px;text-align: left;z-index: 20000;">' +
 		'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
 		'<span data-toggle="content"></span>&nbsp;&nbsp;</div>';
@@ -515,13 +568,13 @@
 			if(typeof option == 'string'){
 				data[option]();
 			}
-		})
-	}
+		});
+	};
 	$.fn.message.Constructor = Message;
 	$.fn.message.noConflict = function(){
 		$.fn.message = old;
 		return this;
-	}
+	};
 }(window.jQuery)
 
 /**
@@ -538,15 +591,14 @@
 		this.oldPwd = this.$element.find('#oldPassword');
 		this.newPwd = this.$element.find('#newPassword') ;
 		this.confirmPwd = this.$element.find('#confirmPassword');
-		var self = this;
 		this.oldPwd.on('blur.koala.modifyPassowrd', $.proxy(this.blur, this, this.oldPwd));
 		this.newPwd.on('blur.koala.modifyPassowrd', $.proxy(this.blur, this, this.newPwd));
 		this.confirmPwd.on('blur.koala.modifyPassowrd', $.proxy(this.blur, this, this.confirmPwd));
-		this.$element.find('.modal-footer button[data-toggle="save"]').on('click.koala.modifyPassowrd', $.proxy(this.save, this))
-	}
+		this.$element.find('.modal-footer button[data-toggle="save"]').on('click.koala.modifyPassowrd', $.proxy(this.save, this));
+	};
 	ModifyPassword.DEFAULTS = {
 
-	}
+	};
 	ModifyPassword.prototype.blur = function(obj){
 		if(obj.val().length != 0){
 			if(obj.attr('id') == 'confirmPassword'){
@@ -577,7 +629,7 @@
 					.hide();
 			}
 		}
-	}
+	};
 	ModifyPassword.prototype.save = function(){
 		if(this.isNull(this.oldPwd) || this.isNull(this.newPwd) || this.isNull(this.confirmPwd)){
 			return;
@@ -606,9 +658,9 @@
 
 				}
 			}).fail(function(msg){
-				console.info(msg)
-			})
-	}
+				console.info(msg);
+			});
+	};
 	ModifyPassword.prototype.isNull = function(obj){
 		if(obj.val().length == 0){
 			obj.focus()
@@ -620,7 +672,7 @@
 			return true;
 		}
 		return false;
-	}
+	};
 	ModifyPassword.DEFAULTS.TEMPLATE = '<div class="modal fade" id="modifyPwd">' +
 		'<div class="modal-dialog modify-pwd">' +
 		'<div class="modal-content">' +
@@ -671,13 +723,13 @@
 			} else {
 				$this.data('koala.modifyPassowrd', (data = new ModifyPassword(this, options)));
 			}
-		})
-	}
+		});
+	};
 	$.fn.modifyPassword .Constructor = ModifyPassword;
 	$.fn.modifyPassword .noConflict = function(){
 		$.fn.modifyPassword  = old;
 		return this;
-	}
+	};
 }(window.jQuery)
 
 /*
@@ -690,14 +742,14 @@
 		this.$element = $(element);
 		this.options = options;
 		this.$element.html(Select.DEFAULTS.TEMPLATE);
-		this.$items = this.$element.find('.dropdown-menu')
+		this.$items = this.$element.find('.dropdown-menu');
 		this.$item = this.$element.find('[data-toggle="item"]');
 		this.$value = this.$element.find('[data-toggle="value"]');
 		this.init();
-	}
+	};
 	Select.DEFAULTS = {
 
-	}
+	};
 	Select.prototype = {
 		Constructor: Select,
 		init: function(){
@@ -717,6 +769,9 @@
 				items.push('<li data-value="' + content.value + '"' + (content.selected && 'class="selected"') + '><a href="#">' + content.title + '</a></li>');
 			}
 			self.$items.html(items.join(' '));
+			if(items.length > 5){
+				self.$items.css({'height': '130px', 'overflow-y': 'auto'});
+			}
 			self.$items.find('li').on('click', function(e){
 				e.preventDefault();
 				self.clickItem($(this));
@@ -724,13 +779,10 @@
 			return self.$element;
 		},
 		clickItem: function($item){
-			var self = this;
 			var value = $item.data('value');
 			if(!value || this.$value.val() == value){
 				return this.$element;
 			}
-			//this.$items.find('li').removeClass('active');
-			//$item.addClass('active');
 			this.$item.html($item.find('a:first').html());
 			this.$value.val(value);
 			this.$element.trigger('change').popover('destroy').parent().removeClass('has-error');
@@ -738,6 +790,9 @@
 		},
 		getValue: function(){
 			return this.$value.val();
+		},
+		getItem: function(){
+			return this.$item.html();
 		},
 		selectByValue: function(value){
 			return this.selectBySelector('li[data-value="'+value+'"]');
@@ -749,9 +804,9 @@
 			return this.clickItem(this.$items.find(selector));
 		},
 		setDefaultSelection: function(){
-			return this.selectBySelector('li.selected')
+			return this.selectBySelector('li.selected');
 		}
-	}
+	};
 	Select.DEFAULTS.TEMPLATE = '<button type="button" class="btn btn-default" data-toggle="item">' +
 		'</button><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' +
 		'<span class="caret"></span>' +
@@ -759,14 +814,25 @@
 		'<input type="hidden" data-toggle="value"/>' +
 		'<ul class="dropdown-menu" role="menu"></ul>';
 	$.fn.getValue = function(){
-		return $(this).data('koala.select').getValue();
+		if($(this).data('koala.select')){
+			return $(this).data('koala.select').getValue();
+		}
+	};
+	$.fn.getItem = function(){
+		if($(this).data('koala.select')){
+			return $(this).data('koala.select').getItem();
+		}
 	};
 	$.fn.setValue = function(value){
-		return $(this).data('koala.select').selectByValue(value);
-	}
+		if($(this).data('koala.select')){
+			return $(this).data('koala.select').selectByValue(value);
+		}
+	};
 	$.fn.setSelectItems = function(contents){
-		return $(this).data('koala.select').setItems(contents);
-	}
+		if($(this).data('koala.select')){
+			return $(this).data('koala.select').setItems(contents);
+		}
+	};
 	var old = $.fn.select;
 	$.fn.select = function(option){
 		return this.each(function(){
@@ -780,12 +846,12 @@
 				data[option]();
 			}
 		});
-	}
+	};
 	$.fn.select.Constructor = Select;
 	$.fn.select.noConflict = function(){
 		$.fn.select = old;
 		return this;
-	}
+	};
 }(window.jQuery)
 
 /*
@@ -798,10 +864,10 @@
 		this.$element = $(Confirm.DEFAULTS.TEMPLATE);
 		this.options = options;
 		this.init();
-	}
+	};
 	Confirm.DEFAULTS = {
 
-	}
+	};
 	Confirm.prototype.init = function(){
 		var self = this;
 		this.$element.modal({
@@ -815,8 +881,8 @@
 				self.options.callBack();
 				self.$element.modal('hide');
 			}
-		})
-	}
+		});
+	};
 	Confirm.DEFAULTS.TEMPLATE = '<div class="modal fade"  aria-hidden="false"><div class="modal-dialog" style=" width: 400px;"><div class="modal-content"><div class="modal-header"><button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button><h4 class="modal-title">确认</h4></div><div class="modal-body" style=" padding: 10px 40px;font-size: 16px;color: #c09853;"><span class="glyphicon glyphicon-warning-sign"></span>&nbsp;&nbsp;&nbsp;<span data-role="confirm-content">确定要删除吗?</span></div><div class="modal-footer"><button data-dismiss="modal" class="btn btn-default" type="button">取消</button><button data-role="confirmBtn" class="btn btn-danger" type="button">确定</button></div></div></div></div>';
 	var old = $.fn.confirm;
 	$.fn.confirm = function(option){
@@ -828,13 +894,12 @@
 			if(typeof option == 'string'){
 				data[option]();
 			}
-		})
-	}
+		});
+	};
 	$.fn.confirm.Constructor = Confirm;
 	$.fn.confirm.noConflict = function(){
 		$.fn.confirm = old;
 		return this;
-	}
+	};
 }(window.jQuery)
-
 
