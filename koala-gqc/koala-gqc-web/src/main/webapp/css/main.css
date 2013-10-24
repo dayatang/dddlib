@@ -204,7 +204,7 @@ a {
 }
 .generalQuery .form-inline .form-group .btn-group .queryName {
     display: inline;
-    width: 250px;
+    width: 200px;
 }
 .generalQuery .table {
     border-width: 0;
@@ -281,6 +281,8 @@ a {
 }
 .query-condition  .operation {
     width: 40%;
+    padding-left: 12px;
+    text-align: left !important;
 }
 .staticQuerySelected  .column-name {
     width: 25%;
@@ -349,4 +351,61 @@ a {
     top: 3px;
     margin-left: 5px;
     color: red;
+}
+
+.query {
+    width: 65%;
+    padding: 15px 15px 0;
+}
+.query .query-body {
+    float: left;
+    width: 45%;
+}
+.query .query-body table {
+    margin-bottom: 5px;
+}
+.query .buttons {
+    float: left;
+    left: 15px;
+    position: relative;
+}
+.query .query-body table td {
+    vertical-align: middle!important;
+    border: 0 solid transparent!important;
+    padding: 2px;
+}
+
+.previewQuery .column-name {
+    padding: 0 10px !important;
+    width: 20%;
+}
+.previewQuery .query-condition {
+    padding: 0 10px !important;
+    width: 20%;
+}
+.previewQuery .query-value {
+    width: 60%;
+}
+.previewQuery .query-value > div {
+    float: left;
+    vertical-align: middle;
+}
+.previewQuery .query-value .span {
+    position: relative;
+    padding: 4px;
+}
+.previewQuery input {
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 193px!important;
+}
+.dynamicQueryCondition td {
+    padding: 2px!important;
+}
+.previewGrid {
+    clear: both;
+    padding: 0 15px;
+}
+.previewGrid .grid-table-body {
+    height: 385px;
 }
