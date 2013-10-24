@@ -1,9 +1,3 @@
-/**
- * Created with JetBrains WebStorm.
- * User: wangjianbing
- * Date: 13-9-25
- * KoalaUI组件
- */
 /*
  * 表格组件
  */
@@ -131,18 +125,17 @@
 				this.gridTableHeadTable.find('th:last').css('width', 'auto');
 				this.options.columns[this.options.columns.length-1].width = 'auto';
 			}
-			this.gridTableHeadTable.find('[data-role="selectAll"]').on('click',function() {
+			this.gridTableHeadTable.find('[data-role="selectAll"]').on('click',function(e) {
+				e.stopPropagation();
 				if(this.checked){
 					$(this).parent().addClass('checked');
 					self.gridTableBodyTable.find('.checker').find('input:checkbox').each(function(){
-						this.checked = false;
-						$(this).click();
+						$(this).attr('checked','checked').parent().addClass('checked').closest('tr').addClass('success');						
 					});
 				}else{
-					$(this).parent().removeClass('checked');
+					console.info($(this).parent().removeClass('checked'));
 					self.gridTableBodyTable.find('.checker').find('input:checkbox').each(function(){
-						this.checked = true;
-						$(this).click();
+						$(this).removeAttr('checked').parent().removeClass('checked').closest('tr').removeClass('success');						
 					});
 				}
 			});
@@ -398,14 +391,19 @@
 					$this.parent().removeClass('checked').closest('tr').removeClass('success');
 				}
 				if(self.selectedRowsIndex().length == indexCheckboxs.length){
-					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked','checked').parent().addClass('checked');
+					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked', 'checked').parent().addClass('checked');
 				}else{
-					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked','').parent().removeClass('checked');
+					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked', '').parent().removeClass('checked');
 				}
 				self.$element.trigger('selectedRow', {checked:this.checked, item:self.items[$this.attr('indexValue')]});
 			});
 			this.gridTableBodyTable.find('tr').on('click', function(){
-				$(this).toggleClass('success').find('[data-role="indexCheckbox"]').click();
+				var $this = $(this);
+				if($this.hasClass('success')){
+					$this.removeClass('success').find('[data-role="indexCheckbox"]').removeAttr('checked').parent().removeClass('checked');
+				}else{
+					$this.addClass('success').find('[data-role="indexCheckbox"]').attr('checked', 'checked').parent().addClass('checked');
+				}
 			});
 			self._initPageNo();
 		},
@@ -528,19 +526,19 @@
 		this.content = this.$element.find('[data-toggle="content"]').html(this.options.content);
 		switch(this.options.type){
 			case 'success':
-				this.content.before($('<span class="glyphicon glyphicon-info-sign" style="margin-right: 10px; font-size:16px;"/>'));
+				this.content.before($('<span class="glyphicon glyphicon glyphicon-ok-sign" style="margin-right: 10px; font-size:18px;"/>'));
 				this.$element.addClass('alert-success');
 				break;
 			case 'info':
-				this.content.before($('<span class="glyphicon glyphicon-info-sign" style="margin-right: 10px;font-size:16px;"/>'));
+				this.content.before($('<span class="glyphicon glyphicon-info-sign" style="margin-right: 10px;font-size:18px;"/>'));
 				this.$element.addClass('alert-info');
 				break;
 			case 'warning':
-				this.content.before($('<span class="glyphicon glyphicon-warning-sign" style="margin-right: 10px;font-size:16px;"/>'));
+				this.content.before($('<span class="glyphicon glyphicon glyphicon-warning-sign" style="margin-right: 10px;font-size:18px;"/>'));
 				this.$element.addClass('alert-warning');
 				break;
 			case 'error':
-				this.content.before($('<span class="glyphicon glyphicon-exclamation-sign" style="margin-right: 10px;font-size:16px; "/>'));
+				this.content.before($('<span class="glyphicon glyphicon glyphicon-remove-sign" style="margin-right: 10px;font-size:18px; "/>'));
 				this.$element.addClass('alert-danger');
 				break;
 		}
@@ -556,8 +554,8 @@
 		}, this.options.delay);
 	};
 	Message.DEFAULTS.TEMPLATE = '<div class="alert message" style="width: auto;min-width: 120px;max-width: 300px; padding: 8px;text-align: left;z-index: 20000;">' +
-		'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
-		'<span data-toggle="content"></span>&nbsp;&nbsp;</div>';
+		'<button type="button" class="close" data-dismiss="alert" aria-hidden="true" style="font-size:20px;position:relative;top:1px">&times;</button>' +
+		'<span data-toggle="content" style="position:relative;top:-2px;"></span>&nbsp;&nbsp;</div>';
 	var old = $.fn.message;
 	$.fn.message = function(option){
 		return this.each(function(){
@@ -658,7 +656,7 @@
 
 				}
 			}).fail(function(msg){
-				console.info(msg);
+				
 			});
 	};
 	ModifyPassword.prototype.isNull = function(obj){
