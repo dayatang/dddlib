@@ -18,7 +18,7 @@ public class DynaProcessFormDTO implements Serializable {
 	List<DynaProcessKeyDTO> processKeys;
 
 	public Long getId() {
-		return id;
+		return id == null ? 0 : id;
 	}
 
 	public void setId(Long id) {

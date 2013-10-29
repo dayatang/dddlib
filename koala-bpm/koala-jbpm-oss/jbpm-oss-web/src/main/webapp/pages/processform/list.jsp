@@ -108,6 +108,7 @@
 
 							<tbody id="fieldListBody"></tbody>
 						</table>
+						<input type="hidden"  id="formId"/>
 					</div>
 				</form>
 			</div>

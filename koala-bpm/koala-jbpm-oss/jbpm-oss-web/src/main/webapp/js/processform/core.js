@@ -212,6 +212,7 @@ $(function(){
         });
     	$("button[data-action='save-processForm']").on('click',function(){
     		var form = {};
+    		form.id = $("#formId").val();
     		form.bizName = $("#formName").val();
     		form.bizDescription = $("#formDesc").val();
     		form.templateId = $("#formTemplate").getValue();
@@ -224,7 +225,7 @@ $(function(){
     		if(!Validation.notNull(dialog, $("#formTemplate"), form.templateId , '请选择表单模板')){
         		return;
         	}
-    		if(!Validation.notNull(dialog, $("#associationProcess"), form.processId , '请选择关联流程')){
+    		if(form.id == "" && !Validation.notNull(dialog, $("#associationProcess"), form.processId , '请选择关联流程')){
         		return;
         	}
     		var fields = [];
@@ -295,6 +296,7 @@ $(function(){
     }
     
     function initProcessForm(form){
+    	$("#formId").val(form ? form.id : "" );
     	$("#formName").val(form ? form.bizName : "" );
 		$("#formDesc").val(form ? form.bizDescription : "" );
 		$("#formTemplate").setValue(form?form.templateId:"NULL");

@@ -71,8 +71,19 @@ public class ProcessFormOperApplicationImpl implements
 	public void createDynaProcessForm(DynaProcessFormDTO form) {
 		DynaProcessForm processForm =new DynaProcessForm(form.getProcessId(),form.getBizName());
 		
-		if(DynaProcessForm.queryActiveDynaProcessFormByProcessId(form.getProcessId()) != null){
-			throw new BaseException("form_is_exists", "该流程已经绑定表单");
+		boolean editAct = form.getId() > 0;
+		if(editAct){
+			//修改表单：将原表单置为不可用状态，新增一条记录
+			DynaProcessForm origForm = DynaProcessForm.queryActiveDynaProcessFormById(form.getId());
+			if(origForm == null){
+				throw new BaseException("form_is_notexists", "指定表单不存在");
+			}
+			origForm.setActive(false);
+			origForm.save();
+		}else{
+			if(DynaProcessForm.queryActiveDynaProcessFormByProcessId(form.getProcessId()) != null){
+				throw new BaseException("form_is_exists", "该流程已经绑定表单");
+			}
 		}
 		
 		List<DynaProcessKeyDTO> processKeys = form.getProcessKeys();
@@ -94,10 +105,9 @@ public class ProcessFormOperApplicationImpl implements
 			DynaProcessTemplate template = DynaProcessTemplate.getRepository().get(DynaProcessTemplate.class, form.getTemplateId());
             processForm.setTemplate(template);
 		}
-		processForm.setProcessId(form.getProcessId());
+		//修改表单时不改变绑定流程
+		if(!editAct)processForm.setProcessId(form.getProcessId());
 		processForm.setBizDescription(form.getBizDescription());
-		//该字段暂时全部为true
-		//processForm.setActive("true".equals(form.getActive()));
 		processForm.setActive(true);
 		processForm.save();
 		

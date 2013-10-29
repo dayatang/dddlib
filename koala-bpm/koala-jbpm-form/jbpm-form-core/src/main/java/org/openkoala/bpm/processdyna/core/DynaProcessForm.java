@@ -203,6 +203,25 @@ public class DynaProcessForm extends AbstractEntity {
 		this.setActive(true);
 		super.save();
 	}
+	
+	/**
+	 * 根据ID查询
+	 * 
+	 * @return
+	 */
+	public static DynaProcessForm queryActiveDynaProcessFormById(
+			Long id) {
+		List<DynaProcessForm> results = getRepository()
+				.findByNamedQuery("queryActiveDynaProcessFormById",
+						new Object[] { id }, DynaProcessForm.class);
+		if (results.size() == 0) {
+			return null;
+		} else {
+			return results.get(0);
+		}
+
+	}
+
 
 	/**
 	 * 返回一个流程中当前有效的表单定义，如果没有则返回 NULL
