@@ -37,7 +37,7 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 /**
- * 功能描述：<br />
+ * 功能描述：第三方服务可用性检查任务<br />
  *  
  * 创建日期：2013-7-3 下午4:09:05  <br />   
  * 
@@ -108,13 +108,11 @@ public class ServiceConnectionCheckTask extends BaseMonitorTask{
 
 	@Override
 	public void stop() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void refresh() {
-		// TODO Auto-generated method stub
 		
 	}
 

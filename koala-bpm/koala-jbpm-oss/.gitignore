@@ -1,0 +1,12 @@
+.DS_Store
+.settings
+.project
+.classpath
+target
+.idea
+*.iml
+/KoalaBPM-core/META-INF
+/KoalaBPM-core/*.koala
+/KoalaBPM-core/*.project
+/KoalaBPM-web/target
+/KoalaBPM-web/.web.koala

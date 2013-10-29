@@ -1,0 +1,110 @@
+<style>
+    .processType {
+        margin-top: 15px;
+    }
+    .form-horizontal .form-control {
+        display: inline;
+        width: 210px;
+    }
+    .form-horizontal .time {
+        width: 180px;
+    }
+    .processDetail {
+        min-height: 350px;
+    }
+    .processInitiate-buttons {
+        text-align: center;
+    }
+    .processInitiate-buttons button {
+        margin-right:  20px;
+    }
+</style>
+<form class="form-horizontal" role="form">
+    <div class="row processType">
+        <div class="col-lg-5 form-group">
+            <label class="col-lg-4 control-label">流程类型:</label>
+            <div class="col-lg-8">
+                <div class="btn-group select" id="processType">
+                    <button type="button" class="btn btn-default" data-toggle="item">请假流程</button>
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <span class="caret"></span><input type="hidden" value="10" data-toggle="value">
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li data-value="1"><a href="#">请假流程</a></li>
+                        <li data-value="2"><a href="#">转正流程</a></li>
+                    </ul>
+                </div><span class="required">*</span>
+            </div>
+        </div>
+        <div class="col-lg-7 form-group"></div>
+    </div>
+ </form>
+<form class="form-horizontal processDetail" role="form" id="processDetail">
+        <div class="form-group row">
+            <div class="col-lg-5 form-group">
+                <label class="col-lg-4 control-label">请假人:</label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control" placeholder="请假人"><span class="required">*</span>
+                </div>
+            </div>
+            <div class="col-lg-7 form-group">
+                <label class="col-lg-4 control-label">请假类型:</label>
+                <div class="col-lg-8">
+                    <div title="" data-original-title="" class="btn-group select" data-role="formTemplate">
+                        <button type="button" class="btn btn-default" data-toggle="item">病假</button>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span><input type="hidden" value="1" data-toggle="value">
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li data-value="1"><a href="#">病假</a></li>
+                            <li data-value="1"><a href="#">事假</a></li>
+                            <li data-value="3"><a href="#">调休</a></li>
+                        </ul>
+                     </div><span class="required">*</span>
+                </div>
+            </div>
+       </div>
+    <div class="form-group row">
+        <div class="col-lg-5 form-group">
+            <label class="col-lg-4 control-label">开始日期:</label>
+            <div class="col-lg-8">
+                <div style="width:190px;" data-role="startTime"  class="input-group"><input type="text"  class="form-control time"/><a class="input-group-addon add-on glyphicon glyphicon-time"></a></div>
+            </div>
+        </div>
+        <div class="col-lg-7 form-group">
+            <label class="col-lg-4 control-label">结束日期:</label>
+            <div class="col-lg-8">
+                <div style="width:190px;" data-role="endTime"  class="input-group"><input type="text"  class="form-control time"/><a class="input-group-addon add-on glyphicon glyphicon-time"></a></div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row" >
+        <div class="col-lg-7 form-group">
+            <label class="col-lg-3 control-label">请假原因:</label>
+            <div class="col-lg-9">
+                <textarea class="form-control" rows="3" id="form-description" style="width:100%"></textarea>
+            </div>
+        </div>
+        <div class="col-lg-5 form-group"></div>
+    </div>
+</form>
+
+<div class="row processInitiate-buttons">
+   <button data-dismiss="modal" class="btn btn-default" type="button" role="cancel">取消</button>
+   <button class="btn btn-success" type="button">提交</button>
+</div>
+
+<script>
+    $(function(){
+        $('#processDetail').find('[data-role="startTime"],[data-role="endTime"]').datetimepicker({
+            language: 'zh-CN',
+            pickDate: true,
+            pickTime: true
+        });
+        $('.processInitiate-buttons').find('[role="cancel"]').on('click', function(){
+            $('[href="#startTask"]').find('button').click();
+        })
+    })
+</script>
+
+

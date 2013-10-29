@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.openkoala.bpm</groupId>
+		<artifactId>koala-jbpm-form</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>jbpm-form-infra-impl</artifactId>
+	<name>process-dyna-infra-impl</name>
+	<packaging>jar</packaging>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.type>infra</project.type>
+		<base.package>org.openkoala.bpm.processdyna</base.package>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openkoala.bpm</groupId>
+			<artifactId>jbpm-form-infra</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>proxool</groupId>
+			<artifactId>proxool</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.20</version>
+		</dependency>
+
+		<!-- 加入CONF依赖 -->
+		<dependency>
+			<groupId>org.openkoala.bpm</groupId>
+			<artifactId>jbpm-form-conf</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		
+		<!-- <dependency>
+		   <groupId>org.openkoala.bpm</groupId>  
+           <artifactId>jbpm-form-core</artifactId>  
+           <version>1.0.0-SNAPSHOT</version> 
+           <scope>test</scope> 
+		</dependency> -->
+	</dependencies>
+	<build>
+		<plugins></plugins>
+	</build>
+</project>

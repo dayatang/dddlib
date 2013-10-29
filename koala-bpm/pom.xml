@@ -18,6 +18,8 @@
 		<module>koala-jbpm-designer</module>
 		<!-- 自动生成的代码，取消掉WS cleint -->
 		<module>koala-jbpm-ws-client</module>
+		<module>koala-jbpm-form</module>
+		<module>koala-jbpm-oss</module>
 	</modules>
 	
 </project>

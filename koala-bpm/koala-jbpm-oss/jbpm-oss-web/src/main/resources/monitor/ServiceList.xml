@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services>
+<!-- 服务类型：socket,webservice,ejb,databsse -->
+<!-- 必填参数：type,target -->
+<!-- 可填参数：timeout,username，password -->
+<!--
+<service>
+<type>socket</type>
+<target>127.0.0.1:8000</target>
+<timeout>1000</timeout>
+</service>
+<service>
+<type>webservice</type>
+<target>http://127.0.0.1:8000/webservice</target>
+<timeout>2000</timeout>
+</service>
+<service>
+<type>database</type>
+<target>jdbc:mysql://localhost:3309/opendb</target>
+<username>root</username>
+<password>root</password>
+</service>
+<service>
+<type>ejb</type>
+<target>127.0.0.1:8000</target>
+<timeout>1000</timeout>
+</service>
+ -->
+</services>
