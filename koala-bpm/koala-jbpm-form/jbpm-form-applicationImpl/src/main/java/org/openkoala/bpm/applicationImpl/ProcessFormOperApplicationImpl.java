@@ -117,8 +117,8 @@ public class ProcessFormOperApplicationImpl implements
 	public Page<DynaProcessFormDTO> queryDynaProcessFormsByPage(DynaProcessFormDTO search,int currentPage, int pageSize) {
 		
         List<DynaProcessFormDTO> datas = new ArrayList<DynaProcessFormDTO>();
-		String jpql = "select df from DynaProcessForm df join df.template as dt";
-		Page<DynaProcessForm> page = getQueryChannelService().queryPagedResultByPageNo(jpql, new Object[0], currentPage, pageSize);
+		String jpql = "select df from DynaProcessForm df join df.template as dt where df.active = ?";
+		Page<DynaProcessForm> page = getQueryChannelService().queryPagedResultByPageNo(jpql, new Object[]{true}, currentPage, pageSize);
 		
 		for (DynaProcessForm processForm : page.getResult()) {
 			processForm.setKeys(null);
@@ -164,9 +164,9 @@ public class ProcessFormOperApplicationImpl implements
 		try {
 			List<ProcessVO> processes = getJBPMApplication().getProcesses();
 			if(processes == null)return datas;
-			String jpql = "select df.processId from DynaProcessForm df";
+			String jpql = "select df.processId from DynaProcessForm df where df.active = ?";
 			//已绑定form的流程列表
-			List<String> existsProcessIds = getQueryChannelService().queryResult(jpql, new Object[0]);
+			List<String> existsProcessIds = getQueryChannelService().queryResult(jpql, new Object[]{true});
 			for (ProcessVO process : processes) {
 				//排除已绑定的流程
 				if(existsProcessIds == null || !existsProcessIds.contains(process.getId())){
