@@ -66,7 +66,7 @@
 						title: '操作',
 						width: 'auto',
 						render: function(item, name, rowIndex, columnIndex){
-							return "<a href='${pageContext.request.contextPath}/businessSupport/toHistoryPage.koala?processInstanceId="+item.processInstanceId+"&processId="+item.processId+"&taskId="+item.taskId+"'>查看</a>";
+							return "<a target='_blank' href='${pageContext.request.contextPath}/businessSupport/toHistoryPage.koala?processInstanceId="+item.processInstanceId+"&processId="+item.processId+"&taskId="+item.taskId+"'>查看</a>";
 						}
 					});
 					$("#doneTasksGrid").grid({

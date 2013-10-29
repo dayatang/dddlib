@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -152,7 +153,7 @@
 		                		<tr>
 		                			<td>${history.nodeName }</td>
 		                			<td>${history.user }</td>
-		                			<td>${history.createDateString }</td>
+		                			<td>${fn:substring(history.createDate, 0, 10)} ${fn:substring(history.createDate, 11, 19)}</td>
 		                			<td>${history.result }</td>
 		                			<td>${history.comment }</td>
 		                		</tr>
@@ -181,10 +182,8 @@
 	                </div>
 	            </div>
 	        </div>
-	        <div class="panel-footer">	            
-	            <input type="hidden" name="processInstanceId" value="${taskInstance.processInstanceId }"/>
-	            <input type="hidden" name="taskId" value="${taskInstance.taskId }"/>
-	            <%-- <input type="hidden" name="processId" value="${taskInstance.processId }"/> --%>
+	        <div class="panel-footer">
+	        	<button data-dismiss="modal" class="btn btn-default" type="button" id="cancelBtn" onclick="javascript:window.back();">返回</button>
 	        </div>
 	    </div>
 	</form>
