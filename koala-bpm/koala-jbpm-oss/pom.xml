@@ -40,16 +40,16 @@
 		
 		<!-- DB config -->
 		<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
-		<hibernate.show_sql>true</hibernate.show_sql>
-		<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
-		<db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
-		<db.connectionURL>jdbc:h2:~/db/KoalaBPM</db.connectionURL>
-		<db.username>sa</db.username>
-		<db.password></db.password>
-		<db.Type>H2</db.Type>
-		<db.generateDdl>true</db.generateDdl>
-		<db.groupId>com.h2database</db.groupId>
-		<db.artifactId>h2</db.artifactId>
+		<hibernate.show_sql>false</hibernate.show_sql>
+		<hibernate.dialect>org.hibernate.dialect.MySQL5Dialect</hibernate.dialect>
+		<db.jdbcDriver>com.mysql.jdbc.Driver</db.jdbcDriver>
+		<db.connectionURL>jdbc:mysql://localhost:3306/openkoala?useUnicode=true&amp;characterEncoding=UTF-8</db.connectionURL>
+		<db.username>root</db.username>
+		<db.password>root</db.password>
+		<db.Type>MYSQL</db.Type>
+		<generateDdl>true</generateDdl>
+		<db.groupId>mysql</db.groupId>
+		<db.artifactId>mysql-connector-java</db.artifactId>
 		
 		<!--test DB Config-->
 		<test.hibernate.hbm2ddl.auto>update</test.hibernate.hbm2ddl.auto>

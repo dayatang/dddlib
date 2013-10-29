@@ -80,6 +80,8 @@ public class ProcessFormOperApplicationImpl implements
 			}
 			origForm.setActive(false);
 			origForm.save();
+			//修改表单时不改变绑定流程
+			form.setProcessId(origForm.getProcessId());
 		}else{
 			if(DynaProcessForm.queryActiveDynaProcessFormByProcessId(form.getProcessId()) != null){
 				throw new BaseException("form_is_exists", "该流程已经绑定表单");
@@ -105,8 +107,7 @@ public class ProcessFormOperApplicationImpl implements
 			DynaProcessTemplate template = DynaProcessTemplate.getRepository().get(DynaProcessTemplate.class, form.getTemplateId());
             processForm.setTemplate(template);
 		}
-		//修改表单时不改变绑定流程
-		if(!editAct)processForm.setProcessId(form.getProcessId());
+		processForm.setProcessId(form.getProcessId());
 		processForm.setBizDescription(form.getBizDescription());
 		processForm.setActive(true);
 		processForm.save();
