@@ -1,9 +1,3 @@
-/**
- * Created with JetBrains WebStorm.
- * User: wangjianbing
- * Date: 13-9-25
- * KoalaUI组件
- */
 /*
  * 表格组件
  */
@@ -131,18 +125,17 @@
 				this.gridTableHeadTable.find('th:last').css('width', 'auto');
 				this.options.columns[this.options.columns.length-1].width = 'auto';
 			}
-			this.gridTableHeadTable.find('[data-role="selectAll"]').on('click',function() {
+			this.gridTableHeadTable.find('[data-role="selectAll"]').on('click',function(e) {
+				e.stopPropagation();
 				if(this.checked){
 					$(this).parent().addClass('checked');
 					self.gridTableBodyTable.find('.checker').find('input:checkbox').each(function(){
-						this.checked = false;
-						$(this).click();
+						$(this).attr('checked','checked').parent().addClass('checked').closest('tr').addClass('success');						
 					});
 				}else{
-					$(this).parent().removeClass('checked');
+					console.info($(this).parent().removeClass('checked'));
 					self.gridTableBodyTable.find('.checker').find('input:checkbox').each(function(){
-						this.checked = true;
-						$(this).click();
+						$(this).removeAttr('checked').parent().removeClass('checked').closest('tr').removeClass('success');						
 					});
 				}
 			});
@@ -398,9 +391,9 @@
 					$this.parent().removeClass('checked').closest('tr').removeClass('success');
 				}
 				if(self.selectedRowsIndex().length == indexCheckboxs.length){
-					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked','checked').parent().addClass('checked');
+					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked', 'checked').parent().addClass('checked');
 				}else{
-					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked','').parent().removeClass('checked');
+					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked', '').parent().removeClass('checked');
 				}
 				self.$element.trigger('selectedRow', {checked:this.checked, item:self.items[$this.attr('indexValue')]});
 			});
