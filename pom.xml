@@ -135,6 +135,7 @@
 		<module>koala-bpm</module>
 		<module>koala-gqc</module>
 		<module>koala-monitor</module>
+		<module>koala-organisation</module>
 	</modules>
 
 	<properties>

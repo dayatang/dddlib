@@ -1,0 +1,391 @@
+a, button{
+    outline: none!important;
+}
+.center {
+    text-align: center;
+}
+/*
+头部导航栏
+ */
+.g-head {
+    background-color: #428BCA;
+}
+.g-head .navbar {
+   margin: 0;
+   padding: 0;
+   border-left-width: 0;
+   background-color: #428BCA;
+}
+.g-head .navbar-brand,
+.g-head .navbar-brand:hover,
+.g-head .navbar-brand:focus {
+    color: #FFFFFF;
+    font-size: 1.2em;
+}
+.g-head .navbar-brand img {
+    height: 40px;
+    width: 60px;
+    margin-right: 10px;
+}
+.g-head .btn-group {
+   position: relative;
+   top: 15px;
+}
+.g-head:after, .g-body:after {
+    clear: both;
+}
+/*
+左边菜单栏
+*/
+.g-sidec {
+    position: relative;
+    margin: 0;
+    padding: 0 0 0 1px;
+    min-height: 540px;
+    border-right: 1px solid #DDDDDD;
+    background-color: #ffffff;
+    transition: width 0.4 ease-in-out;
+}
+.first-level-menu {
+    list-style: none;
+}
+.first-level-menu > li > ul {
+    padding-left: 0;
+}
+.first-level-menu > li > a {
+    display: block;
+    padding: 5px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #727272;
+    cursor: pointer;
+    border-bottom: 1px solid #c6c6c6;
+    background-image: -moz-linear-gradient(top, #FFFFFF, #eaeaea);
+    background-image: -webkit-linear-gradient(top, #FFFFFF, #eaeaea);
+    background-image: -o-linear-gradient(top, #FFFFFF, #eaeaea);
+    background-image: -ms-linear-gradient(top, #FFFFFF, #eaeaea);
+    background-image: linear-gradient(top, #FFFFFF, #eaeaea);
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#FFFFFF',endColorStr='#eaeaea', GradientType=0)
+    transition: all 100ms ease 0s;
+}
+.first-level-menu > li > a > i:last-child {
+    float: right;
+    font-size: 12px;
+    position: relative;
+    top: 3px;
+    right: 8px;
+}
+.first-level-menu > li > a > i:first-child {
+    padding-left: 5px;
+    padding-right: 4px;
+}
+.first-level-menu > li {
+    margin-top: 0!important;
+}
+.first-level-menu > li.active > a,
+.first-level-menu > li > a:hover {
+    color: #3774a9;
+    background-color: #f1f1f1;
+}
+.second-level-menu {
+    list-style: none;
+}
+.second-level-menu > li > ul {
+    padding-left: 0;
+}
+.second-level-menu > li > a {
+    border-bottom: 1px dotted #A0BAFF;
+    display: block;
+    font-family: "Helvetica Neue",Arial,sans-serif;
+    font-size: 15px;
+    outline: medium none;
+    padding: 4px 0 5px 40px;
+    position: relative;
+    background-color: #f4f4f4;
+    border-left: 1 dotted #DDDDDD;
+    color: #6e6e6e;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 100ms ease 0s;
+}
+.second-level-menu > li.active  .top-menu.collapsed:after{
+    position: relative;
+    float: right;
+    top: -4px;
+    content: "";
+    right: -12px;
+    width: 2px;
+    height: 32px;
+    background-color: #428BCA;
+}
+.submenu.active:after {
+    position: relative;
+    float: right;
+    top: -32px ;
+    content: "";
+    width: 2px;
+    height: 32px;
+    background-color: #428BCA;
+}
+.second-level-menu > li > a:hover,
+.second-level-menu > li > a:focus,
+.second-level-menu > li.active > a {
+    color: #428BCA;
+    background-color: #fdfdfd;
+}
+.third-level-menu > li > a {
+    border-bottom: 1px dotted #A0BAFF;
+    display: block;
+    font-family: "Helvetica Neue",Arial,sans-serif;
+    font-size: 15px;
+    outline: medium none;
+    padding: 4px 0 5px 60px;
+    position: relative;
+    background-color: #f4f4f4;
+    color: #6e6e6e;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 100ms ease 0s;
+}
+.third-level-menu  > li.active > a {
+    color: #428BCA;
+    background-color: #fdfdfd;
+}
+.top-menu i:last-child {
+    position: relative;
+    float: right;
+    top: 3px;
+    right: 12px;
+    font-size: 12px;
+}
+/*
+内容页
+*/
+.g-mainc {
+    padding-top: 2px;
+}
+.g-mainc:after {
+    clear: both;
+}
+
+.g-mainc > ul > li > a {
+    outline: none;
+    color: #464646;
+    border-color: #DDDDDD;
+    padding: 6px 15px;
+    font-size: 16px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    background-image: -moz-linear-gradient(bottom, #FFFFFF, #f5f5f5);
+    background-image: -webkit-linear-gradient(bottom, #FFFFFF, #f5f5f5);
+    background-image: -o-linear-gradient(bottom, #FFFFFF, #f5f5f5);
+    background-image: -ms-linear-gradient(bottom, #FFFFFF, #f5f5f5);
+    background-image: linear-gradient(bottom, #FFFFFF, #f5f5f5);
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#FFFFFF',endColorStr='#f5f5f5', GradientType=0)
+}
+.g-mainc > ul > li > a:hover, .g-mainc > ul > li > a:focus,
+.g-mainc > ul > li.active > a{
+    color: #3391d8!important;
+    border-bottom-color: #FFFFFF!important;
+    background-image: -moz-linear-gradient(bottom, #FFFFFF, #f9f9f9);
+    background-image: -webkit-linear-gradient(bottom, #FFFFFF, #f9f9f9);
+    background-image: -o-linear-gradient(bottom, #FFFFFF, #f9f9f9);
+    background-image: -ms-linear-gradient(bottom, #FFFFFF, #f9f9f9);
+    background-image: linear-gradient(bottom, #FFFFFF, #f9f9f9);
+}
+.g-mainc > .tab-content {
+    margin-top: 10px;
+}
+.g-mainc > .tab-content > div > .jumbotron {
+    background-color: #ffffff;
+    margin-left:  100px;
+}
+/*
+底部样式
+*/
+.g-foot {
+    clear: both;
+    padding: 10px;
+    border-top: 1px solid #999999;
+    font-size: 1.6em;
+    text-align: center;
+}
+.g-foot > img {
+    position: relative;
+    top: -5px;
+    display: inline-block;
+    padding-left: 5px;
+    height: 40px;
+}
+/*
+修改密码弹出框
+*/
+.modal {
+    overflow-y: auto;
+}
+.modify-pwd {
+    padding-top: 80px;
+}
+.modify-pwd  input {
+    width: 300px;
+}
+.modify-pwd .modal-body {
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-bottom: 10px;
+}
+.modify-pwd .modal-body .help-block {
+    display: none;
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.required {
+    position: relative;
+    top: 4px;
+    margin-left: 3px;
+    color: red;
+}
+
+.form-management .modal-dialog{
+    width:960px;
+    padding-top: 30px;
+}
+.form-management .modal-body ,
+.field-management .modal-body{
+    padding-top: 5px!important;
+    max-height: 430px;
+    overflow-y: auto;
+}
+.form-management .grid-table-body {
+    height: 250px;
+}
+.form-management .panel ,
+.field-management .panel {
+    margin-bottom: 0;
+}
+.form-management .form-group {
+    margin-bottom: 5px;
+}
+
+.field-management .modal-body{
+    max-height: 450px;
+}
+.field-management .modal-dialog {
+    padding-top:  80px;
+    width: 850px;
+}
+.field-management .form-group {
+    margin-bottom: 10px;
+}
+
+.form-management .form-control,
+.field-management .form-control{
+    display: inline;
+    width: 94%;
+}
+
+.employee-management .modal-body{
+    max-height: 450px;
+}
+.employee-management .modal-dialog {
+    padding-top:  80px;
+    width: 750px;
+}
+.employee-management .form-group {
+    margin-bottom: 10px;
+}
+.employee-management .form-control{
+    display: inline;
+    width: 94%;
+}
+
+
+/*
+*  部门
+*/
+.u-tree  {
+    position: relative;
+    float: left;
+    min-height: 540px;
+    width: 25%;
+    border-right: 1px solid #DDDDDD!important;
+}
+.tree-shrink {
+    position: absolute;
+    left: 205px;
+    top: 250px
+}
+.tree-shrink a {
+    cursor: pointer;
+}
+.right-content {
+    float: left;
+    width: 75%;
+    padding: 15px;
+}
+.department-detail {
+    border: 1px solid #DDDDDD!important;
+    margin-bottom: 4px;
+}
+
+/**
+*岗位调整
+*/
+.changePost .selected-post {
+   background-color: #99CC99;
+   color: #ffffff;
+   float: left;
+   margin-right: 10px;
+   margin-top: 2px;
+   padding: 4px 0;
+   min-width: 65px;
+   text-align: center;
+   cursor: pointer;
+}
+.changePost .selected-post a {
+   position: relative;
+   top: -4px;
+   float: right;
+   outline: none;
+   text-decoration: none;
+   cursor: pointer;
+}
+.changePost .principal {
+	background-color: #428BCA;
+	color: #FFFFFF
+}
+.changePost .selected-post a, .changePost .principal a {
+	color: #FFFFFF;
+	font-size: 12px;
+}
+.changePost .modal-body {
+   padding-top: 4px!important;
+   padding-bottom: 0;;
+}
+.changePost .panel {
+   margin-top: 5px;
+   margin-bottom: 0;
+}
+.changePost .panel-body {
+   min-height: 38px;
+   padding: 6px;
+}
+.changePost .tree {
+   padding-top: 30;
+   height: 348px;
+   min-width: 250px;
+   border: 1px solid #DDDDDD;
+}
+.changePost .postGrid {
+   height: 310px;
+   max-width: 640px;
+}
+.changePost .grid-table-body {
+	height:210px;
+}
+.changePost .grid-table-head th,  .changePost .grid-table-body td {
+	text-align: center;
+}
+.changePost .postGrid a {
+	cursor: pointer;
+}

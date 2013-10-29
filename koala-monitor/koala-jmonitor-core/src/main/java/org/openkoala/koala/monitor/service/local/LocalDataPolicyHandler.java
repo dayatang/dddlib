@@ -113,7 +113,6 @@ public class LocalDataPolicyHandler extends BaseSchedulerBean implements DataPol
 	@Override
 	public void doJob() throws Exception {
 		if(LOG.isDebugEnabled())LOG.debug("====开始同步监控数据===");
-		int count = 0;
 		Map<String, List<Trace>> traces = RuntimeContext.getContext().getDataCache().getAllCacheTrace();
 		try {
 			Iterator<List<Trace>> iterator = traces.values().iterator();
@@ -121,7 +120,6 @@ public class LocalDataPolicyHandler extends BaseSchedulerBean implements DataPol
 				boolean saveOk = saveMonitorData(iterator.next());
 				if(saveOk){
 					iterator.remove();
-					count++;
 				}
 			}
 		} catch (Exception e) {
@@ -130,7 +128,7 @@ public class LocalDataPolicyHandler extends BaseSchedulerBean implements DataPol
 			MonitorNode.refreshNodeLastActiveTime();
 			//未同步成功的
 			if(traces.size()>0)RuntimeContext.getContext().getDataCache().pushAll(traces);
-			if(LOG.isDebugEnabled())LOG.debug("=====完成同步监控数据,写入记录：{}========",count);
+			if(LOG.isDebugEnabled())LOG.debug("=====完成同步监控数据========");
 		}
 	}
 
