@@ -5,7 +5,7 @@ a, button{
     text-align: center;
 }
 /*
-澶撮儴瀵艰埅鏍�
+头部导航栏
  */
 .g-head {
     background-color: #428BCA;
@@ -35,7 +35,7 @@ a, button{
     clear: both;
 }
 /*
-宸﹁竟鑿滃崟鏍�
+左边菜单栏
 */
 .g-sidec {
     position: relative;
@@ -159,7 +159,7 @@ a, button{
     font-size: 12px;
 }
 /*
-鍐呭椤�
+内容页
 */
 .g-mainc {
     padding-top: 2px;
@@ -200,7 +200,7 @@ a, button{
     margin-left:  100px;
 }
 /*
-搴曢儴鏍峰紡
+底部样式
 */
 .g-foot {
     clear: both;
@@ -217,7 +217,7 @@ a, button{
     height: 40px;
 }
 /*
-淇敼瀵嗙爜寮瑰嚭妗�
+修改密码弹出框
 */
 .modal {
     overflow-y: auto;
@@ -321,7 +321,7 @@ a, button{
 
 
 /*
-*  閮ㄩ棬
+*  部门
 */
 .u-tree  {
     position: relative;
@@ -349,7 +349,7 @@ a, button{
 }
 
 /**
-*宀椾綅璋冩暣
+*岗位调整
 */
 .changePost .selected-post {
    background-color: #99CC99;
@@ -359,12 +359,13 @@ a, button{
    margin-top: 2px;
    padding: 4px 0;
    min-width: 65px;
+   border-radius: 3px;
    text-align: center;
    cursor: pointer;
 }
 .changePost .selected-post a {
    position: relative;
-   top: -4px;
+   top: -3px;
    float: right;
    outline: none;
    text-decoration: none;
@@ -417,4 +418,3 @@ a, button{
 .preview-form .modal-dialog .control-label {
 	position: relative;
 	top: 4px;
-}
