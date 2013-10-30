@@ -151,7 +151,9 @@ public class JoinAssignVO implements Serializable {
 				}
 			}
 
-			if (success && (this.monitorVal == null || this.monitorVal.equals(key))) {
+			if (success
+					&& (this.monitorVal == null || (this.monitorVal != null && this.monitorVal
+							.equals(key)))) {
 				return key;
 			}
 

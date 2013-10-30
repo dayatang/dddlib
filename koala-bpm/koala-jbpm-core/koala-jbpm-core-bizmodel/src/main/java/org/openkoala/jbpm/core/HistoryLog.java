@@ -15,6 +15,8 @@ public class HistoryLog extends AbstractEntity {
 
 
 	private static final long serialVersionUID = -2409238992583642261L;
+	
+	private String processId;
 
 	private long processInstanceId;
 	
@@ -131,6 +133,14 @@ public class HistoryLog extends AbstractEntity {
 		return result;
 	}
 
+	public String getProcessId() {
+		return processId;
+	}
+
+	public void setProcessId(String processId) {
+		this.processId = processId;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -180,6 +190,11 @@ public class HistoryLog extends AbstractEntity {
 		} else if (!user.equals(other.user))
 			return false;
 		return true;
+	}
+	
+	public void save(){
+		this.processId = this.processId.substring(0,this.processId.indexOf("@"));
+		super.save();
 	}
 
 	@Override

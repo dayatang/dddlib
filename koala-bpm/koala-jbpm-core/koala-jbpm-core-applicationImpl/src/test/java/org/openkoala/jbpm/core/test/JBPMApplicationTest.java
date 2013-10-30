@@ -8,23 +8,24 @@ import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openkoala.jbpm.application.JBPMApplication;
 import org.openkoala.jbpm.application.vo.HistoryLogVo;
 import org.openkoala.jbpm.application.vo.JBPMNode;
 import org.openkoala.jbpm.application.vo.KoalaProcessInfoVO;
+import org.openkoala.jbpm.application.vo.PageTaskVO;
 import org.openkoala.jbpm.application.vo.ProcessInstanceVO;
 import org.openkoala.jbpm.application.vo.ProcessVO;
+import org.openkoala.jbpm.application.vo.TaskChoice;
 import org.openkoala.jbpm.application.vo.TaskVO;
 import org.openkoala.jbpm.infra.XmlParseUtil;
-import org.openkoala.koala.util.KoalaBaseSpringTestCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.support.Page;
+import com.dayatang.spring.factory.SpringInstanceProvider;
 
 /**
  * JBPMApplication的核心测试
@@ -32,16 +33,16 @@ import com.dayatang.querychannel.support.Page;
  * @author lingen
  * 
  */
-@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)
-public class JBPMApplicationTest extends KoalaBaseSpringTestCase {
-	
-	private static Logger logger = LoggerFactory.getLogger(JBPMApplicationTest.class);
+public class JBPMApplicationTest {
 
-	public JBPMApplication jbpmApplication;
+	private static Logger logger = LoggerFactory
+			.getLogger(JBPMApplicationTest.class);
 
-	public boolean init;
+	public static JBPMApplication jbpmApplication;
 
-	public JBPMApplication getJBPMApplication() {
+	public static boolean init;
+
+	public static JBPMApplication getJBPMApplication() {
 		if (jbpmApplication == null) {
 			jbpmApplication = InstanceFactory
 					.getInstance(JBPMApplication.class);
@@ -49,8 +50,11 @@ public class JBPMApplicationTest extends KoalaBaseSpringTestCase {
 		return jbpmApplication;
 	}
 
-	@Before
-	public void publishJbpm() throws IOException {
+	@BeforeClass
+	public static void publishJbpm() throws IOException {
+		InstanceFactory.setInstanceProvider(new SpringInstanceProvider(
+				new String[] { "classpath*:META-INF/spring/root.xml" }));
+
 		if (init == false) {
 			String packageName = "defaultPackage";
 
@@ -85,64 +89,17 @@ public class JBPMApplicationTest extends KoalaBaseSpringTestCase {
 		Assert.assertTrue(processes.size() == 1);
 
 	}
-	
-	/**
-	 * 测试回退一个流程
-	 */
-	@Test
-	public void testRoolBack(){
-		long i = getJBPMApplication()
-				.startProcess("defaultPackage.Trade","aaa",null);
-		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("approveStatus", "1");
-		getJBPMApplication().completeTask(1l, 1l, "fhjl",
-				XmlParseUtil.paramsToXml(data), null);
-
-		getJBPMApplication().roolBack(i, 0, "fwzy");
-		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fhjl");
-		Assert.assertTrue(tasks.size()==1);
-	}
-	
-	@Test
-	public void testFetchBack(){
-		long i = getJBPMApplication()
-				.startProcess("defaultPackage.Trade","aaa",null);
-		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("approveStatus", "1");
-		getJBPMApplication().completeTask(1l, 1l, "fhjl",
-				XmlParseUtil.paramsToXml(data), null);
-
-		getJBPMApplication().fetchBack(1l, 0l, "fhjl");
-		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fhjl");
-		Assert.assertTrue(tasks.size()==1);
-	}
-	
-	/**
-	 * 测试回退一个流程
-	 */
-	@Test
-	public void testRoolBack2(){
-		long i = getJBPMApplication()
-				.startProcess("defaultPackage.Trade","aaa",null);
-		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("approveStatus", "1");
-		getJBPMApplication().completeTask(1l, 1l, "fhjl",
-				XmlParseUtil.paramsToXml(data), null);
-
-		getJBPMApplication().roolBack(i, 0, "fwzy");
-		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fhjl");
-		Assert.assertTrue(tasks.size()==1);
-	}
 
 	/**
 	 * 启动一个流程
 	 */
 	@Test
 	public void testStartProcesses() {
-
-		long i = getJBPMApplication()
-				.startProcess("defaultPackage.Trade","aaa",null);
+		
+		long i = getJBPMApplication().startProcess("defaultPackage.Trade",
+				"aaa", null);
 		Assert.assertTrue(i == 1);
+		getJBPMApplication().removeProcessInstance(i);
 
 	}
 
@@ -151,23 +108,43 @@ public class JBPMApplicationTest extends KoalaBaseSpringTestCase {
 	 */
 	@Test
 	public void testQueryTodoList() {
-
+		
+		long i = getJBPMApplication().startProcess("defaultPackage.Trade", "aaa", null);
 		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fhjl");
 		Assert.assertTrue(tasks.size() > 0);
-
+		//getJBPMApplication().removeProcessInstance(i);
 	}
+	
+	@Test
+	public void testQueryTaskChoice(){
+		long i = getJBPMApplication().startProcess("defaultPackage.Trade", "aaa", null);
+		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fhjl");
+		List<TaskChoice> choices = getJBPMApplication().queryTaskChoice(i, tasks.get(0).getTaskId());
+		Assert.assertNotNull(choices);
+	}
+	
 
 	/**
 	 * 完成某一个任务
 	 */
 	@Test
 	public void testCompleteTask() {
+		testStartProcesses();
+		long i = getJBPMApplication().startProcess("defaultPackage.Trade", "aaa", null);
+
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("approveStatus", "1");
-		getJBPMApplication().completeTask(1l, 1l, "fhjl",
+		
+		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fhjl");
+		
+		
+	
+		getJBPMApplication().completeTask(i, tasks.get(0).getTaskId(), "fhjl",
 				XmlParseUtil.paramsToXml(data), null);
-		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fwzy");
+		tasks = getJBPMApplication().queryTodoList("fwzy");
 		Assert.assertTrue(tasks.size() > 0);
+		
+		getJBPMApplication().removeProcessInstance(i);
 
 	}
 
@@ -176,8 +153,39 @@ public class JBPMApplicationTest extends KoalaBaseSpringTestCase {
 	 */
 	@Test
 	public void testQueryDoenTask() {
-		List<TaskVO> tasks = getJBPMApplication().queryDoenTask("fhjl");
+		long  i = getJBPMApplication().startProcess("defaultPackage.Trade", "aaa", null);
+
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("approveStatus", "1");
+		
+		List<TaskVO> tasks = getJBPMApplication().processQueryTodoListWithGroup("defaultPackage.Trade","fhjl",null);
+
+		getJBPMApplication().completeTask(i, tasks.get(0).getTaskId(), "fhjl",
+				XmlParseUtil.paramsToXml(data), null);
+		tasks = getJBPMApplication().queryDoenTask("fhjl");
 		Assert.assertTrue(tasks.size() > 0);
+		getJBPMApplication().removeProcessInstance(i);
+	}
+	
+	/**
+	 * 某询已办任务
+	 */
+	@Test
+	public void testPageQueryDoenTask() {
+		Map<String,Object> abc  = new HashMap<String,Object>();
+		abc.put("a1", 456);
+		long  i = getJBPMApplication().startProcess("defaultPackage.Trade", "aaa", XmlParseUtil.paramsToXml(abc));
+
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("approveStatus", "1");
+		
+		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fhjl");
+
+		getJBPMApplication().completeTask(i, tasks.get(0).getTaskId(), "fhjl",
+				XmlParseUtil.paramsToXml(data), null);
+		PageTaskVO pages = getJBPMApplication().pageQueryDoneTask("defaultPackage.Trade","fhjl", 1, 10);
+		Assert.assertTrue(pages.getTotalCount()>0);
+		getJBPMApplication().removeProcessInstance(i);
 	}
 
 	/**
@@ -185,8 +193,11 @@ public class JBPMApplicationTest extends KoalaBaseSpringTestCase {
 	 */
 	@Test
 	public void testQueryHistoryLog() {
-		List<HistoryLogVo> vos = getJBPMApplication().queryHistoryLog(1l);
+		long i = getJBPMApplication().startProcess("defaultPackage.Trade",
+				"aaa", null);
+		List<HistoryLogVo> vos = getJBPMApplication().queryHistoryLog(i);
 		Assert.assertTrue(vos.size() > 0);
+		getJBPMApplication().removeProcessInstance(i);
 	}
 
 	/**
@@ -196,88 +207,181 @@ public class JBPMApplicationTest extends KoalaBaseSpringTestCase {
 	public void testGetProcessNodes() {
 		List<JBPMNode> nodes = getJBPMApplication().getProcessNodes(
 				"defaultPackage.Trade");
-		
-		Assert.assertTrue(nodes.size()>0);
-		
+
+		Assert.assertTrue(nodes.size() > 0);
+
 	}
-	
+
 	@Test
-	public void testGetProcessNodesFromPorcessInstnaceId(){
-		long i = getJBPMApplication()
-				.startProcess("defaultPackage.Trade","aaa",null);
-		List<JBPMNode> nodes = getJBPMApplication().getProcessNodesFromPorcessInstnaceId(i);
-		for(JBPMNode node:nodes){
-			logger.debug(node.getName()+":"+node.getId());
+	public void testGetProcessNodesFromPorcessInstnaceId() {
+		long i = getJBPMApplication().startProcess("defaultPackage.Trade",
+				"aaa", null);
+		List<JBPMNode> nodes = getJBPMApplication()
+				.getProcessNodesFromPorcessInstnaceId(i);
+		for (JBPMNode node : nodes) {
+			logger.debug(node.getName() + ":" + node.getId());
 		}
-		Assert.assertTrue(nodes.size()>0);
+		Assert.assertTrue(nodes.size() > 0);
+		getJBPMApplication().removeProcessInstance(i);
 	}
-	
+
 	/**
 	 * 将节点转移到2 分行经理审批上
 	 */
 	@Test
-	public void testAssignToNode(){
-		//[id=2, name=分行经理审批]
-		getJBPMApplication().assignToNode(1l, 2l);
-		testQueryTodoList();
+	public void testAssignToNode() {
+		long i = getJBPMApplication().startProcess("defaultPackage.Trade",
+				"aaa", null);
+		
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("approveStatus", "1");
+		getJBPMApplication().completeTask(i, 1l, "fhjl",
+				XmlParseUtil.paramsToXml(data), null);
+		
+		// [id=2, name=分行经理审批]
+		getJBPMApplication().assignToNode(i, 2l);
+		
+		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fhjl");
+		Assert.assertTrue(tasks.size() > 0);
+		
+		data = new HashMap<String, Object>();
+		data.put("approveStatus", "1");
+		getJBPMApplication().completeTask(i, tasks.get(0).getTaskId(), "fhjl",
+				XmlParseUtil.paramsToXml(data), null);
+		
+		tasks = getJBPMApplication().queryTodoList("fwzy");
+		Assert.assertTrue(tasks.size() > 0);
+//		
+		getJBPMApplication().removeProcessInstance(i);
 	}
-	
+
 	/**
 	 * 查询当前激活的流程
 	 */
 	@Test
-	public void testQueryAllActiveProcess(){
-		List<ProcessInstanceVO> vos = getJBPMApplication().queryAllActiveProcess("defaultPackage.Trade");
-		Assert.assertTrue(vos.size()==1);
+	public void testQueryAllActiveProcess() {
+		long i = getJBPMApplication().startProcess("defaultPackage.Trade",
+				"aaa", null);
+		List<ProcessInstanceVO> vos = getJBPMApplication()
+				.queryAllActiveProcess("defaultPackage.Trade");
+		Assert.assertTrue(vos.size() > 0);
+		getJBPMApplication().removeProcessInstance(i);
 	}
-	
+
 	/**
 	 * 查询一个流程下的所有部署的版本
 	 */
 	@Test
-	public void testGetProcessVersionByProcessId(){
-		 List<KoalaProcessInfoVO> vos = getJBPMApplication().getProcessVersionByProcessId("defaultPackage.Trade");
-		 Assert.assertTrue(vos.size()>0);
+	public void testGetProcessVersionByProcessId() {
+		long i = getJBPMApplication().startProcess("defaultPackage.Trade", "aaa", null);
+		List<KoalaProcessInfoVO> vos = getJBPMApplication()
+				.getProcessVersionByProcessId("defaultPackage.Trade");
+		Assert.assertTrue(vos.size() > 0);
+		getJBPMApplication().removeProcessInstance(i);
 	}
-	
+
 	/**
 	 * 查询正在运行的流程
 	 */
 	@Test
-	public void testQueryRunningProcessInstances(){
-		Page<ProcessInstanceVO> vos = getJBPMApplication().queryRunningProcessInstances("defaultPackage.Trade", "1", 0, 100);
-		Assert.assertTrue(vos.getResult().size()==1);
+	public void testQueryRunningProcessInstances() {
+		long i = getJBPMApplication().startProcess("defaultPackage.Trade", "aaa", null);
+		Page<ProcessInstanceVO> vos = getJBPMApplication()
+				.queryRunningProcessInstances("defaultPackage.Trade", "1", 0,
+						100);
+		Assert.assertTrue(vos.getResult().size() > 0);
+		getJBPMApplication().removeProcessInstance(i);
 	}
-	
+
 	/**
 	 * 查询已经运行完成的流程
 	 */
 	@Test
-	public void testQueryCompleteProcessInstances(){
-		Page<ProcessInstanceVO> vos = getJBPMApplication().queryCompleteProcessInstances("defaultPackage.Trade", "1", 0, 10);
-		Assert.assertTrue(vos.getResult().size()==0);
+	public void testQueryCompleteProcessInstances() {
+		Page<ProcessInstanceVO> vos = getJBPMApplication()
+				.queryCompleteProcessInstances("defaultPackage.Trade", "1", 0,
+						10);
+		Assert.assertTrue(vos.getResult().size() == 0);
 	}
-	
+
 	/**
 	 * 查询一个流程实例
 	 */
 	@Test
-	public void testGetProcessInstance(){
-		ProcessInstanceVO vo = getJBPMApplication().getProcessInstance(1l);
+	public void testGetProcessInstance() {
+		long i = getJBPMApplication().startProcess("defaultPackage.Trade",
+				"aaa", null);
+		ProcessInstanceVO vo = getJBPMApplication().getProcessInstance(i);
 		Assert.assertTrue(vo.getProcessId().equals("defaultPackage.Trade"));
+		getJBPMApplication().removeProcessInstance(i);
 	}
 
 	/**
 	 * 委托代理
 	 */
 	@Test
-	public void testDelegate(){
+	public void testDelegate() {
+		long i = getJBPMApplication().startProcess("defaultPackage.Trade", "aaa", null);
 		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fhjl");
-		for(TaskVO task:tasks){
+		for (TaskVO task : tasks) {
 			getJBPMApplication().delegate(task.getTaskId(), "fhjl", "aaa");
 		}
 		List<TaskVO> aaaTasks = getJBPMApplication().queryTodoList("aaa");
 		Assert.assertTrue(aaaTasks.size() > 0);
-		
+		getJBPMApplication().removeProcessInstance(i);
+
 	}
+
+	/**
+	 * 测试回退一个流程
+	 */
+	@Test
+	public void testRoolBack() {
+		long i = getJBPMApplication().startProcess("defaultPackage.Trade",
+				"aaa", null);
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("approveStatus", "1");
+		getJBPMApplication().completeTask(i, 1l, "fhjl",
+				XmlParseUtil.paramsToXml(data), null);
+
+		getJBPMApplication().roolBack(i, 0, "fwzy");
+		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fhjl");
+		Assert.assertTrue(tasks.size() > 0);
+		getJBPMApplication().removeProcessInstance(i);
+	}
+
+	@Test
+	public void testFetchBack() {
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("approveStatus", "1");
+		long i = getJBPMApplication().startProcess("defaultPackage.Trade", "aaa", null);
+		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fhjl");
+		getJBPMApplication().completeTask(i,  tasks.get(0).getTaskId(), "fhjl",
+				XmlParseUtil.paramsToXml(data), null);
+
+		getJBPMApplication().fetchBack(i, 0l, "fhjl");
+		tasks = getJBPMApplication().queryTodoList("fhjl");
+		Assert.assertTrue(tasks.size() > 0);
+		getJBPMApplication().removeProcessInstance(i);
+	}
+
+	/**
+	 * 测试回退一个流程
+	 */
+	@Test
+	public void testRoolBack2() {
+		long i = getJBPMApplication().startProcess("defaultPackage.Trade",
+				"aaa", null);
+		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fhjl");
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("approveStatus", "1");
+		getJBPMApplication().completeTask(i, tasks.get(0).getTaskId(), "fhjl",
+				XmlParseUtil.paramsToXml(data), null);
+
+		getJBPMApplication().roolBack(i, 0, "fwzy");
+		tasks = getJBPMApplication().queryTodoList("fhjl");
+		Assert.assertTrue(tasks.size() > 0);
+		getJBPMApplication().removeProcessInstance(i);
+	}
+
 }

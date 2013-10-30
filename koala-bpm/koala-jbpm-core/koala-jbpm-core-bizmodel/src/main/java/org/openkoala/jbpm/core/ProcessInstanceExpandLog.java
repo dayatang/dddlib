@@ -1,7 +1,6 @@
 package org.openkoala.jbpm.core;
 
 import java.util.Map;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Lob;
@@ -67,10 +66,9 @@ public class ProcessInstanceExpandLog extends AbstractEntity{
 	
 	public static ProcessInstanceExpandLog find(Map<String,Object> params){
 		QuerySettings<ProcessInstanceExpandLog> qSetting = QuerySettings.create(ProcessInstanceExpandLog.class);
-		Set<Map.Entry<String,Object>> entrySet = params.entrySet();
-		for(Map.Entry<String, Object> entry:entrySet){
-			if(entry.getValue()!=null){
-				qSetting.eq(entry.getKey(), entry.getValue());
+		for(String prop:params.keySet()){
+			if(params.get(prop)!=null){
+				qSetting.eq(prop, params.get(prop));
 			}
 		}
 		return getRepository().getSingleResult(qSetting);
