@@ -123,11 +123,7 @@
 			<artifactId>koala-gqc-applicationImpl</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
-		<dependency>
-		  <groupId>org.openkoala.bpm</groupId>
-		  <artifactId>jbpm-form-infra-impl</artifactId>
-		  <version>${project.parent.version}</version>
-		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>
