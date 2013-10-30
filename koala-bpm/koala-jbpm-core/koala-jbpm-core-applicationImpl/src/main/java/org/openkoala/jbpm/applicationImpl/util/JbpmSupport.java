@@ -1,20 +1,41 @@
 package org.openkoala.jbpm.applicationImpl.util;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.inject.Named;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.NotSupportedException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 
 import org.drools.KnowledgeBase;
+import org.drools.KnowledgeBaseFactory;
 import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderErrors;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
 import org.drools.compiler.PackageBuilder;
-import org.drools.definition.KnowledgePackage;
+import org.drools.container.spring.beans.persistence.DroolsSpringJpaManager;
+import org.drools.container.spring.beans.persistence.DroolsSpringTransactionManager;
 import org.drools.io.impl.ByteArrayResource;
+import org.drools.persistence.PersistenceContextManager;
+import org.drools.persistence.TransactionManager;
+import org.drools.persistence.jpa.JPAKnowledgeService;
+import org.drools.runtime.Environment;
+import org.drools.runtime.EnvironmentName;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.process.ProcessInstance;
 import org.openkoala.jbpm.application.vo.KoalaProcessInfoVO;
@@ -23,10 +44,12 @@ import org.openkoala.jbpm.core.KoalaProcessInfo;
 import org.openkoala.jbpm.core.service.JBPMTaskService;
 import org.jbpm.bpmn2.handler.ServiceTaskHandler;
 import org.jbpm.bpmn2.xml.BPMNSemanticModule;
+import org.jbpm.process.ProcessBaseImpl;
 import org.jbpm.process.audit.JPAProcessInstanceDbLog;
 import org.jbpm.process.audit.JPAWorkingMemoryDbLogger;
 import org.jbpm.process.audit.ProcessInstanceLog;
 import org.jbpm.process.audit.VariableInstanceLog;
+import org.jbpm.ruleflow.instance.RuleFlowProcessInstance;
 import org.jbpm.task.Task;
 import org.jbpm.task.TaskService;
 import org.jbpm.task.query.TaskSummary;
@@ -34,33 +57,39 @@ import org.jbpm.task.service.ContentData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.transaction.support.AbstractPlatformTransactionManager;
+
+import bitronix.tm.TransactionManagerServices;
 
 public class JbpmSupport {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(JbpmSupport.class);
 
-	@Inject
 	private KnowledgeBase kbase;
 
-	@Inject
 	private StatefulKnowledgeSession ksession;
 
 	@Inject
 	private TaskService localTaskService;
 
 	@Inject
-	private KoalaWSHumanTaskHandler humanTaskHandler;
-
-	@Inject
 	private JBPMTaskService jbpmTaskService;
-
-	private KnowledgeBuilder kbuilder;
 
 	private static Map<String, Integer> activeProcessMap = new HashMap<String, Integer>();
 
 	private Map<String, Map<String, Object>> variables = new HashMap<String, Map<String, Object>>();// 全局以及包级别的参数
+
+	private Map<String,List<String>> allProcesses = new HashMap<String,List<String>>();
+	@Autowired @Qualifier("jbpmEM")
+	EntityManager jbpmEM;
+	
+	private TransactionManager transactionManager;
+
+	@Autowired @Qualifier("transactionManager")
+	private AbstractPlatformTransactionManager aptm;
 
 	/**
 	 * <dt>核心就是两个session：
@@ -74,8 +103,46 @@ public class JbpmSupport {
 	 * @throws Exception
 	 */
 	public void initialize() throws Exception {
-		logger.info("Jbpm Support initialize... ... ...");
+		
+		KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
+
+		kbase = kbuilder.newKnowledgeBase();
+		
 		kbuilderAllResurce();// 加载所有流程
+		
+		Environment env = KnowledgeBaseFactory.newEnvironment();
+
+		env.set(EnvironmentName.APP_SCOPED_ENTITY_MANAGER, jbpmEM);
+
+		env.set(EnvironmentName.CMD_SCOPED_ENTITY_MANAGER, jbpmEM);
+
+		env.set("IS_JTA_TRANSACTION", false);
+
+		env.set("IS_SHARED_ENTITY_MANAGER", true);
+
+		transactionManager = new DroolsSpringTransactionManager(aptm);
+
+		env.set(EnvironmentName.TRANSACTION_MANAGER, transactionManager);
+
+		PersistenceContextManager persistenceContextManager = new DroolsSpringJpaManager(
+				env);
+
+		env.set(EnvironmentName.PERSISTENCE_CONTEXT_MANAGER,
+				persistenceContextManager);
+
+		ksession =
+
+		JPAKnowledgeService.newStatefulKnowledgeSession(kbase, null, env);
+		
+		
+
+		logger.info("Jbpm Support initialize... ... ...");
+		this.startTransaction();
+		
+		KoalaWSHumanTaskHandler humanTaskHandler = new KoalaWSHumanTaskHandler(
+				this.localTaskService, ksession);
+		humanTaskHandler.setLocal(true);
+		humanTaskHandler.connect();
 		ksession.getWorkItemManager().registerWorkItemHandler("Human Task",
 				humanTaskHandler);
 		ksession.getWorkItemManager().registerWorkItemHandler("Service Task",
@@ -88,6 +155,19 @@ public class JbpmSupport {
 
 		initActiveProcess();
 		initVariables();
+		this.commitTransaction();
+	}
+
+	public void startTransaction() {
+			transactionManager.begin();
+	}
+
+	public void commitTransaction() {
+		transactionManager.commit(true);
+	}
+
+	public void rollbackTransaction() {
+		transactionManager.rollback(true);
 	}
 
 	public List<TaskSummary> findTaskSummary(String user) {
@@ -133,7 +213,9 @@ public class JbpmSupport {
 	}
 
 	public ProcessInstance getProcessInstance(long processInstanceId) {
-		return ksession.getProcessInstance(processInstanceId);
+		RuleFlowProcessInstance in = (RuleFlowProcessInstance) ksession
+				.getProcessInstance(processInstanceId);
+		return in;
 	}
 
 	public void abortProcessInstance(long processInstanceId) {
@@ -236,13 +318,30 @@ public class JbpmSupport {
 	}
 
 	private void kbuilderAllResurce() throws Exception {
-		
+
 		List<KoalaProcessInfo> processes = jbpmTaskService.getDBResource();
 		for (KoalaProcessInfo process : processes) {
 			KoalaProcessInfoVO info = new KoalaProcessInfoVO();
 			BeanUtils.copyProperties(process, info);
 			addKoalaProcessInfoVO(info);
+			
+			
 		}
+	}
+	
+	private void updateProcessVersion(String processId,int versionNum){
+		List<String> allVersionProcess = null;
+		if(allProcesses.containsKey(processId)){
+			allVersionProcess = allProcesses.get(processId);
+		}else{
+			allVersionProcess = new ArrayList<String>();
+		}
+		allVersionProcess.add(processId+"@"+versionNum);
+		allProcesses.put(processId, allVersionProcess);
+	}
+	
+	public List<String> getAllVersionProcess(String processId){
+		return allProcesses.get(processId);
 	}
 
 	private void addKoalaProcessInfoVO(KoalaProcessInfoVO info)
@@ -260,19 +359,22 @@ public class JbpmSupport {
 			e.printStackTrace();
 			throw e;
 		}
+		
+		updateProcessVersion(info.getProcessName(),info.getVersionNum());
 	}
 
 	private void addProcess(byte[] data) throws Exception {
-		KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
+
+		KnowledgeBuilder kbuilder = KnowledgeBuilderFactory
+				.newKnowledgeBuilder();
 		kbuilder.add(new ByteArrayResource(data), ResourceType.BPMN2);
 		KnowledgeBuilderErrors errors = kbuilder.getErrors();
 
 		if (errors.size() > 0) {
 			throw new Exception(errors.toString());
 		}
-		
+
 		kbase.addKnowledgePackages(kbuilder.getKnowledgePackages());// 刷新
-		
 
 	}
 
@@ -292,6 +394,7 @@ public class JbpmSupport {
 			e.printStackTrace();
 			throw e;
 		}
+		updateProcessVersion(info.getProcessName(),info.getVersionNum());
 	}
 
 }

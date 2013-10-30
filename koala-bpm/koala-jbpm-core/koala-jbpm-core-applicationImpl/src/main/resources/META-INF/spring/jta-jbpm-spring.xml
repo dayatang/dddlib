@@ -5,20 +5,18 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
-		http://drools.org/schema/drools-spring http://drools.org/schema/drools-spring-1.5.0.xsd"
-	default-autowire="byName">
+		http://drools.org/schema/drools-spring http://drools.org/schema/drools-spring-1.5.0.xsd">
 
+	
 	<bean id="dataSource" class="bitronix.tm.resource.jdbc.PoolingDataSource"
 		init-method="init" destroy-method="close">
 		<property name="className"
 			value="bitronix.tm.resource.jdbc.lrc.LrcXADataSource" />
 		<property name="uniqueName" value="jdbc/jbpm-ds" />
-		<property name="maxPoolSize" value="10" />
-		<property name="minPoolSize" value="3" />
-		<property name="allowLocalTransactions" value="true" />
-		<property name="testQuery" value="SELECT 1" />
-		<property name="enableJdbc4ConnectionTest" value="true"></property>
-		<property name="automaticEnlistingEnabled" value="false" />
+		<property name="maxPoolSize" value="50" />
+		<property name="minPoolSize" value="20" />
+		<property name="allowLocalTransactions" value="false" />
+		<property name="testQuery" value="SELECT 1 FROM DUAL" />
 		<property name="driverProperties">
 			<props>
 				<prop key="driverClassName">${db.jdbc.driver}</prop>
@@ -31,25 +29,38 @@
 
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceXmlLocation" value="classpath:META-INF/spring/persistence.xml" />
+		<property name="persistenceUnitName" value="org.jbpm.persistence.local" />
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-
-
+	
 	<bean id="btmConfig" factory-method="getConfiguration"
-		class="bitronix.tm.TransactionManagerServices">
-	</bean>
+		class="bitronix.tm.TransactionManagerServices" />
 
 	<bean id="BitronixTransactionManager" factory-method="getTransactionManager"
-		class="bitronix.tm.TransactionManagerServices" depends-on="btmConfig"
-		destroy-method="shutdown" />
-
+		class="bitronix.tm.TransactionManagerServices" />
 
 	<bean id="transactionManager"
 		class="org.springframework.transaction.jta.JtaTransactionManager">
 		<property name="transactionManager" ref="BitronixTransactionManager" />
 		<property name="userTransaction" ref="BitronixTransactionManager" />
 	</bean>
+	
+
+
+	<jbpm:kbase id="kbase1"/>
+
+
+	<jbpm:ksession id="ksession" type="stateful" kbase="kbase1">
+		<jbpm:configuration>
+			<jbpm:jpa-persistence>
+				<jbpm:transaction-manager ref="transactionManager" />
+				<jbpm:entity-manager-factory ref="entityManagerFactory" />
+			</jbpm:jpa-persistence>
+		</jbpm:configuration>
+	</jbpm:ksession>
+	
+	
+
 
 	<bean id="systemEventListener" class="org.drools.SystemEventListenerFactory"
 		factory-method="getSystemEventListener" />
@@ -63,23 +74,27 @@
 		<constructor-arg ref="transactionManager" />
 	</bean>
 
+
 	<bean id="springTaskSessionFactory"
 		class="org.jbpm.task.service.persistence.TaskSessionSpringFactoryImpl"
 		init-method="initialize" depends-on="internalTaskService">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 		<property name="transactionManager" ref="htTxManager" />
-		<property name="useJTA" value="true" />
+		<property name="useJTA" value="false" />
 		<property name="taskService" ref="internalTaskService" />
 	</bean>
+
 
 	<bean id="localTaskService" class="org.jbpm.task.service.local.LocalTaskService"
 		depends-on="internalTaskService">
 		<constructor-arg ref="internalTaskService" />
 	</bean>
 
-	<bean id="jbpmEM"
-		class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
-		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	<bean id="humanTaskHandler"
+		class="org.openkoala.jbpm.applicationImpl.util.KoalaWSHumanTaskHandler"
+		init-method="connect" depends-on="ksession">
+		<constructor-arg ref="ksession" />
+		<constructor-arg ref="localTaskService" />
 	</bean>
 
 	<bean id="jbpmSupport" class="org.openkoala.jbpm.applicationImpl.util.JbpmSupport"

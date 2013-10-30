@@ -10,7 +10,6 @@ package org.openkoala.jbpm.applicationImpl.util;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -41,8 +40,7 @@ public class FossEntityRepositoryJpa implements EntityRepository {
 			.getLogger(FossEntityRepositoryJpa.class);
 
 	@Inject
-	@PersistenceContext(unitName="org.jbpm.persistence.local")
-	EntityManager entityManager;
+	EntityManager jbpmEM;
 
 	public FossEntityRepositoryJpa() {
 	}
@@ -131,9 +129,8 @@ public class FossEntityRepositoryJpa implements EntityRepository {
 	public <T> List<T> find(final String queryString,
 			final Map<String, Object> params, final Class<T> resultClass) {
 		Query query = getEntityManager().createQuery(queryString);
-		Set<Map.Entry<String, Object>> keyEntrySet =params.entrySet();
-		for (Map.Entry<String, Object> key :keyEntrySet) {
-			query = query.setParameter(key.getKey(), key.getValue());
+		for (String key : params.keySet()) {
+			query = query.setParameter(key, params.get(key));
 		}
 		return query.getResultList();
 	}
@@ -152,9 +149,8 @@ public class FossEntityRepositoryJpa implements EntityRepository {
 	public <T> List<T> findByNamedQuery(final String queryName,
 			final Map<String, Object> params, final Class<T> resultClass) {
 		Query query = getEntityManager().createNamedQuery(queryName);
-		Set<Map.Entry<String, Object>> keyEntrySet =params.entrySet();
-		for (Map.Entry<String, Object> key :keyEntrySet) {
-			query = query.setParameter(key.getKey(), key.getValue());
+		for (String key : params.keySet()) {
+			query = query.setParameter(key, params.get(key));
 		}
 		return query.getResultList();
 	}
@@ -205,9 +201,8 @@ public class FossEntityRepositoryJpa implements EntityRepository {
 	public <T> T getSingleResult(final String queryString,
 			final Map<String, Object> params, Class<T> resultClass) {
 		Query query = getEntityManager().createQuery(queryString);
-		Set<Map.Entry<String, Object>> keyEntrySet =params.entrySet();
-		for (Map.Entry<String, Object> key :keyEntrySet) {
-			query = query.setParameter(key.getKey(), key.getValue());
+		for (String key : params.keySet()) {
+			query = query.setParameter(key, params.get(key));
 		}
 		return (T) query.getSingleResult();
 	}
@@ -225,9 +220,8 @@ public class FossEntityRepositoryJpa implements EntityRepository {
 	public void executeUpdate(final String queryString,
 			final Map<String, Object> params) {
 		Query query = getEntityManager().createQuery(queryString);
-		Set<Map.Entry<String, Object>> keyEntrySet =params.entrySet();
-		for (Map.Entry<String, Object> key :keyEntrySet) {
-			query = query.setParameter(key.getKey(), key.getValue());
+		for (String key : params.keySet()) {
+			query = query.setParameter(key, params.get(key));
 		}
 		query.executeUpdate();
 	}
@@ -316,7 +310,7 @@ public class FossEntityRepositoryJpa implements EntityRepository {
 	}
 
 	public EntityManager getEntityManager() {
-		return entityManager;
+		return jbpmEM;
 	}
 	
 	

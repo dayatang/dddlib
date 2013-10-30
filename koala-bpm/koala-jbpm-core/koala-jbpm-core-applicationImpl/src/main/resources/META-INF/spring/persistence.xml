@@ -3,8 +3,8 @@
 	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
-	<persistence-unit name="org.jbpm.persistence.local"
-		transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="org.jbpm.persistence.jpa"
+		transaction-type="JTA">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<mapping-file>META-INF/JBPMorm-JPA2.xml</mapping-file>
 		<mapping-file>META-INF/Taskorm.xml</mapping-file>
@@ -53,8 +53,9 @@
 			<property name="hibernate.dialect" value="${db.jdbc.dialect}" />
 			<property name="hibernate.max_fetch_depth" value="3" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
-			<!-- <property name="hibernate.transaction.jta.platform"
-				value="org.hibernate.service.jta.platform.internal.BitronixJtaPlatform" /> -->
+			<property name="hibernate.transaction.jta.platform"
+				value="org.hibernate.service.jta.platform.internal.BitronixJtaPlatform" />
+			<property name="hibernate.transaction.factory_class">org.hibernate.engine.transaction.internal.jta.CMTTransactionFactory</property>
 		</properties>
 	</persistence-unit>
 </persistence>

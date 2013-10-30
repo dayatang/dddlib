@@ -10,6 +10,7 @@ import org.drools.event.process.ProcessNodeLeftEvent;
 import org.drools.event.process.ProcessNodeTriggeredEvent;
 import org.drools.event.process.ProcessStartedEvent;
 import org.drools.event.process.ProcessVariableChangedEvent;
+import org.openkoala.jbpm.application.vo.KoalaBPMVariable;
 import org.openkoala.jbpm.core.HistoryLog;
 import org.openkoala.jbpm.core.ProcessInstanceExpandLog;
 import org.openkoala.jbpm.infra.XmlParseUtil;
@@ -21,15 +22,15 @@ import org.jbpm.workflow.instance.node.HumanTaskNodeInstance;
 public class JBPMProcessEventListener implements ProcessEventListener {
 
 	public void beforeProcessStarted(ProcessStartedEvent event) {
-		System.out.println("beforeProcessStarted:"+event.getProcessInstance().getProcessName());
 		RuleFlowProcessInstance in = (RuleFlowProcessInstance)event.getProcessInstance();
 		HistoryLog log = new HistoryLog();
 		log.setComment("流程启动");
 		log.setCreateDate(new Date());
 		log.setNodeName("启动");
-		log.setUser((String)in.getVariable("KJ_USER"));
+		log.setUser((String)in.getVariable(KoalaBPMVariable.CREATE_USER));
 		log.setProcessInstanceId(event.getProcessInstance().getId());
 		log.setProcessData(XmlParseUtil.paramsToXml(in.getVariables()));
+		log.setProcessId(in.getProcessId());
 		log.save();
 	}
 
@@ -45,7 +46,6 @@ public class JBPMProcessEventListener implements ProcessEventListener {
 	}
 
 	public void beforeProcessCompleted(ProcessCompletedEvent event) {
-		System.out.println("afterProcessCompleted:"+event.getProcessInstance().getProcessName());
 		HistoryLog log = new HistoryLog();
 		log.setComment("流程结束");
 		log.setCreateDate(new Date());
@@ -53,6 +53,7 @@ public class JBPMProcessEventListener implements ProcessEventListener {
 		log.setProcessInstanceId(event.getProcessInstance().getId());
 		RuleFlowProcessInstance in = (RuleFlowProcessInstance)event.getProcessInstance();
 		log.setProcessData(XmlParseUtil.paramsToXml(in.getVariables()));
+		log.setProcessId(in.getProcessId());
 		log.save();
 	}
 
@@ -71,31 +72,28 @@ public class JBPMProcessEventListener implements ProcessEventListener {
 	}
 	
 	public void beforeNodeTriggered(ProcessNodeTriggeredEvent event) {
-		System.out.println(event.getNodeInstance().getVariable("Actors"));
 	}
 
 	public void afterNodeTriggered(ProcessNodeTriggeredEvent event) {
-		RuleFlowProcessInstance in = (RuleFlowProcessInstance)event.getProcessInstance();
-		System.out.println(event.getNodeInstance().getVariable("FOR"));
-		System.out.println(in.getVariables());
 	}
 
 	public void beforeNodeLeft(ProcessNodeLeftEvent event) {
 		if(event.getNodeInstance() instanceof HumanTaskNodeInstance){
 			RuleFlowProcessInstance in = (RuleFlowProcessInstance)event.getProcessInstance();
-			if(in.getVariable("REMOVE")!=null && (Boolean)(in.getVariable("REMOVE"))){
-				in.setVariable("REMOVE", false);
+			if(in.getVariable(KoalaBPMVariable.INGORE_LOG)!=null && (Boolean)(in.getVariable(KoalaBPMVariable.INGORE_LOG))){
+				in.setVariable(KoalaBPMVariable.INGORE_LOG, false);
 				return;
 			}
 			HistoryLog log = new HistoryLog();
-			log.setComment((String)event.getNodeInstance().getVariable("comment"));
+			log.setComment((String)event.getNodeInstance().getVariable(KoalaBPMVariable.COMMENT));
 			log.setCreateDate(new Date());
 			log.setNodeName(event.getNodeInstance().getNodeName());
 			log.setNodeId(event.getNodeInstance().getNodeId());
-			log.setResult((String)event.getNodeInstance().getVariable("result"));
-			log.setUser((String)event.getNodeInstance().getVariable("KJ_USER"));
+			log.setResult((String)event.getNodeInstance().getVariable(KoalaBPMVariable.RESULT));
+			log.setUser((String)event.getNodeInstance().getVariable(KoalaBPMVariable.NODE_USER));
 			log.setProcessInstanceId(event.getProcessInstance().getId());
 			log.setProcessData(XmlParseUtil.paramsToXml(in.getVariables()));
+			log.setProcessId(in.getProcessId());
 			log.save();
 		}
 	}
