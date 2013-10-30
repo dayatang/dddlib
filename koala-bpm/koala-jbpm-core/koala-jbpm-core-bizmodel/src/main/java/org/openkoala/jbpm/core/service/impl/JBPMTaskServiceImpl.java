@@ -11,11 +11,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.drools.persistence.info.WorkItemInfo;
-import org.openkoala.jbpm.core.KoalaAssignInfo;
-import org.openkoala.jbpm.core.KoalaJbpmVariable;
-import org.openkoala.jbpm.core.KoalaProcessInfo;
-import org.openkoala.jbpm.core.ProcessInstanceExpandLog;
-import org.openkoala.jbpm.core.service.JBPMTaskService;
 import org.jbpm.persistence.processinstance.ProcessInstanceInfo;
 import org.jbpm.process.audit.NodeInstanceLog;
 import org.jbpm.process.audit.ProcessInstanceLog;
@@ -25,6 +20,11 @@ import org.jbpm.task.Status;
 import org.jbpm.task.Task;
 import org.jbpm.task.User;
 import org.jbpm.task.query.TaskSummary;
+import org.openkoala.jbpm.core.KoalaAssignInfo;
+import org.openkoala.jbpm.core.KoalaJbpmVariable;
+import org.openkoala.jbpm.core.KoalaProcessInfo;
+import org.openkoala.jbpm.core.ProcessInstanceExpandLog;
+import org.openkoala.jbpm.core.service.JBPMTaskService;
 
 import com.dayatang.domain.QuerySettings;
 
@@ -163,7 +163,6 @@ public class JBPMTaskServiceImpl implements JBPMTaskService {
 		return jbpmEM.find(Content.class, contentId);
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<ProcessInstanceLog> findProcessInstances() {
 
 		List<ProcessInstanceLog> result = jbpmEM.createQuery(
@@ -172,7 +171,6 @@ public class JBPMTaskServiceImpl implements JBPMTaskService {
 		return result;
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<ProcessInstanceLog> findProcessInstances(String processId) {
 
 		List<ProcessInstanceLog> result = jbpmEM
@@ -183,7 +181,6 @@ public class JBPMTaskServiceImpl implements JBPMTaskService {
 		return result;
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<ProcessInstanceLog> findActiveProcessInstances(String processId) {
 
 		List<ProcessInstanceLog> result = jbpmEM
@@ -208,7 +205,6 @@ public class JBPMTaskServiceImpl implements JBPMTaskService {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<NodeInstanceLog> findNodeInstances(long processInstanceId) {
 
 		List<NodeInstanceLog> result = jbpmEM
@@ -220,7 +216,6 @@ public class JBPMTaskServiceImpl implements JBPMTaskService {
 		return result;
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<NodeInstanceLog> findNodeInstances(long processInstanceId,
 			String nodeId) {
 
@@ -233,7 +228,6 @@ public class JBPMTaskServiceImpl implements JBPMTaskService {
 		return result;
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<VariableInstanceLog> findVariableInstances(
 			long processInstanceId) {
 
@@ -246,7 +240,6 @@ public class JBPMTaskServiceImpl implements JBPMTaskService {
 		return result;
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<VariableInstanceLog> findVariableInstances(
 			long processInstanceId, String variableId) {
 

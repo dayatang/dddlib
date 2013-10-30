@@ -6,6 +6,12 @@ import java.io.Serializable;
 public class PublishURLVO implements Serializable {
 
 			
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3632898534476369602L;
+
+
 	private Long id;
 	
 				

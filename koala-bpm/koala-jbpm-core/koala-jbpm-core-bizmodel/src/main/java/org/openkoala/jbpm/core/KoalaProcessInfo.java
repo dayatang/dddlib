@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
+
 import com.dayatang.domain.AbstractEntity;
 import com.dayatang.domain.QuerySettings;
 /**

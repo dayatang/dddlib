@@ -21,6 +21,7 @@ public class JBPMHandlerAdapter extends IoHandlerAdapter {
 		this.adapter = adapter;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void messageReceived(final IoSession session, final Object message)
 			throws Exception {

@@ -5,6 +5,13 @@ import java.io.Serializable;
 
 public class KoalaJbpmVariableVO implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7710368419492505035L;
+
+
+
 	private Long id;
 
 		
