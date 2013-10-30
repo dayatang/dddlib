@@ -71,13 +71,22 @@ public interface BusinessSupportApplication {
 	Set<DynaProcessKey> getDynaProcessKeysByProcessId(String processId);
 	
 	/**
-	 *  获取任务实例
+	 *  获取待办任务实例
 	 * @param processId
 	 * @param processInstanceId
 	 * @param taskId
 	 * @return
 	 */
-	FormShowDTO getDynaProcessTaskContent(String processId, long processInstanceId, long taskId);
+	FormShowDTO getDynaProcessTaskContentForVerify(String processId, long processInstanceId, long taskId);
+	
+	/**
+	 *  获取历史任务实例
+	 * @param processId
+	 * @param processInstanceId
+	 * @param taskId
+	 * @return
+	 */
+	FormShowDTO getDynaProcessTaskContentForHistory(String processId, long processInstanceId, long taskId);
 	
 	/**
 	 * 返回流程实例的流程图

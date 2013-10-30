@@ -306,7 +306,19 @@ public class BusinessSupportApplicationImpl implements
 		return DynaProcessForm.queryActiveDynaProcessFormByProcessId(processId).getKeys();
 	}
 
-	public FormShowDTO getDynaProcessTaskContent(String processId,
+	public FormShowDTO getDynaProcessTaskContentForVerify(String processId,
+			long processInstanceId, long taskId){
+		FormShowDTO formShowDTO = getDynaProcessTaskContent(processId,processInstanceId,taskId);
+		formShowDTO.setTaskChoices(getJBPMApplication().queryTaskChoice(processInstanceId,taskId));
+		return formShowDTO;
+	}
+	
+	public FormShowDTO getDynaProcessTaskContentForHistory(String processId,
+			long processInstanceId, long taskId){
+		return getDynaProcessTaskContent(processId,processInstanceId,taskId);
+	}
+	
+	private FormShowDTO getDynaProcessTaskContent(String processId,
 			long processInstanceId, long taskId){
 		FormShowDTO formShowDTO = new FormShowDTO();
 		formShowDTO.setProcessInstanceId(processInstanceId);
@@ -314,7 +326,6 @@ public class BusinessSupportApplicationImpl implements
 		formShowDTO.setHistoryLogs(getJBPMApplication().queryHistoryLog(processInstanceId));
 		///////////////////？？？？？？？？仅测试
 		formShowDTO.setTemplateHtmlCode(findTemplateHtmlCode(processId.split("@")[0], processInstanceId));
-//		formShowDTO.setTaskChoices(getJBPMApplication().queryTaskChoice(processInstanceId,taskId));
 		return formShowDTO;
 	}
 	

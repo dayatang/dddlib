@@ -119,7 +119,7 @@ public class BusinessSupportController {
 	public String toVerifyPage(Model model, String processId, long processInstanceId, long taskId){
 		try {
 			FormShowDTO taskInstance = businessSupportApplication.
-					getDynaProcessTaskContent(processId, processInstanceId, taskId);
+					getDynaProcessTaskContentForVerify(processId, processInstanceId, taskId);
 			model.addAttribute("taskInstance", taskInstance); 
 			return "businesssupport/verifyTask";
 		} catch (Exception e) {
@@ -139,7 +139,7 @@ public class BusinessSupportController {
 	public String toHistoryPage(Model model, String processId, long processInstanceId, long taskId){
 		try {
 			FormShowDTO taskInstance = businessSupportApplication.
-					getDynaProcessTaskContent(processId, processInstanceId, taskId);
+					getDynaProcessTaskContentForHistory(processId, processInstanceId, taskId);
 			model.addAttribute("taskInstance", taskInstance); 
 			
 			return "businesssupport/historyTask";
