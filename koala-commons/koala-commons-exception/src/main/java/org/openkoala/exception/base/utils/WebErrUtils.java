@@ -54,8 +54,7 @@ public class WebErrUtils {
 
     /**
      * 输出json数据到web页面
-     * @param response
-     * @param jsons
+     * @param json
      * @throws IOException 
      */
     public static  void writeJSON(String json){
@@ -79,7 +78,6 @@ public class WebErrUtils {
     /**
      * 直接输出HTML.
      * 
-     * @param response
      * @param text
      * @throws IOException 
      */
