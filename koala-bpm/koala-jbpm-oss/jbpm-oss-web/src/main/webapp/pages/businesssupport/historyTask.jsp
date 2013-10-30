@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,6 +16,11 @@
 	<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/koala-ui.plugin.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/datetimepicker.js' />" ></script>
+	<script type="text/javascript">
+		function colse(){
+			window.close();
+		}
+	</script>
     
 	<style>
 		body {
@@ -100,10 +106,9 @@
 	            <div class="panel panel-default">
 	                <div class="panel-heading">
 	                    <h3 class="panel-title">历史</h3>
-	                    <a class="btn btn-success" target="_blank" href="<c:url value='/businessSupport/viewProcessImage.koala?processInstanceId=${taskInstance.processInstanceId }' />" >查看流程图</a>
 	                </div>
 	                <div class="panel-body">
-	                	<table>
+	                	<table class="table table-responsive table-striped">
 	                		<tr>
 	                			<td>名称</td>
 	                			<td>执行人</td>
@@ -115,15 +120,18 @@
 		                		<tr>
 		                			<td>${history.nodeName }</td>
 		                			<td>${history.user }</td>
-		                			<td>${history.createDateString }</td>
+		                			<td>${fn:substring(history.createDate, 0, 10)} ${fn:substring(history.createDate, 11, 19)}</td>
 		                			<td>${history.result }</td>
 		                			<td>${history.comment }</td>
 		                		</tr>
 		                	</c:forEach>
 	                	</table>
 	                </div>
+	                <div class="panel-footer">
+	                 	<a class="btn btn-info" target="_blank" href="<c:url value='/businessSupport/viewProcessImage.koala?processInstanceId=${taskInstance.processInstanceId }' />" >查看流程图</a>
+	                 </div>
 	            </div>
-	            <div class="panel panel-default">
+	            <%-- <div class="panel panel-default">
 	                <div class="panel-heading">
 	                    <h3 class="panel-title">结果</h3>
 	                </div>
@@ -136,11 +144,10 @@
 	                        <textarea class="form-control" rows="3" name="comment" readonly="readonly" id="form-description">${taskVerifyDTO.comment }</textarea>
 	                    </div>
 	                </div>
-	            </div>
+	            </div> --%>
 	        </div>
 	        <div class="panel-footer">
-	            <button data-dismiss="modal" class="btn btn-default" type="button" id="cancelBtn">取消</button>
-	            
+	            <button data-dismiss="modal" class="btn btn-default" type="button" id="cancelBtn" onclick="colse();">关闭</button>
 	            <input type="hidden" name="processInstanceId" value="${taskInstance.processInstanceId }"/>
 	            <input type="hidden" name="taskId" value="${taskInstance.taskId }"/>
 	            <%-- <input type="hidden" name="processId" value="${taskInstance.processId }"/> --%>

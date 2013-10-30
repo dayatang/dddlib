@@ -278,7 +278,11 @@ public class BusinessSupportApplicationImpl implements
 						ConstantUtil.XML_ELEMENT_NAME_SEPERATOR.length()));
 				column.setKeyName(values[0]);
 				column.setShowOrder(Integer.valueOf(values[1]));
-				column.setKeyValueForShow(values[3]);
+				//该填选项可能没有值
+				if(values.length > 3){
+					column.setKeyValueForShow(values[3]);
+				}
+				
 				columns.add(column);
 			}
 		}
@@ -308,8 +312,9 @@ public class BusinessSupportApplicationImpl implements
 		formShowDTO.setProcessInstanceId(processInstanceId);
 		formShowDTO.setTaskId(taskId);
 		formShowDTO.setHistoryLogs(getJBPMApplication().queryHistoryLog(processInstanceId));
-		formShowDTO.setTemplateHtmlCode(findTemplateHtmlCode(processId, processInstanceId));
-		formShowDTO.setTaskChoices(getJBPMApplication().queryTaskChoice(processInstanceId,taskId));
+		///////////////////？？？？？？？？仅测试
+		formShowDTO.setTemplateHtmlCode(findTemplateHtmlCode(processId.split("@")[0], processInstanceId));
+//		formShowDTO.setTaskChoices(getJBPMApplication().queryTaskChoice(processInstanceId,taskId));
 		return formShowDTO;
 	}
 	
@@ -357,7 +362,8 @@ public class BusinessSupportApplicationImpl implements
 	private Map<String,Object> convertTaskChoiceToMap(String comment, TaskChoice taskChoice){
 		Map<String,Object> paramsMap = new HashMap<String,Object>();
 		paramsMap.put(KoalaBPMVariable.COMMENT, comment);
-		paramsMap.put(KoalaBPMVariable.RESULT, convertToRightType(taskChoice));
+		paramsMap.put(KoalaBPMVariable.RESULT, taskChoice.getName());
+		paramsMap.put(taskChoice.getKey(), convertToRightType(taskChoice));
 		return paramsMap;
 	}
 	
