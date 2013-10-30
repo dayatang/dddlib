@@ -5,10 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.drools.persistence.info.WorkItemInfo;
-import org.openkoala.jbpm.core.KoalaAssignInfo;
-import org.openkoala.jbpm.core.KoalaJbpmVariable;
-import org.openkoala.jbpm.core.KoalaProcessInfo;
-import org.openkoala.jbpm.core.ProcessInstanceExpandLog;
 import org.jbpm.process.audit.NodeInstanceLog;
 import org.jbpm.process.audit.ProcessInstanceLog;
 import org.jbpm.process.audit.VariableInstanceLog;
@@ -16,6 +12,10 @@ import org.jbpm.task.Content;
 import org.jbpm.task.Task;
 import org.jbpm.task.User;
 import org.jbpm.task.query.TaskSummary;
+import org.openkoala.jbpm.core.KoalaAssignInfo;
+import org.openkoala.jbpm.core.KoalaJbpmVariable;
+import org.openkoala.jbpm.core.KoalaProcessInfo;
+import org.openkoala.jbpm.core.ProcessInstanceExpandLog;
 
 /**
  * 

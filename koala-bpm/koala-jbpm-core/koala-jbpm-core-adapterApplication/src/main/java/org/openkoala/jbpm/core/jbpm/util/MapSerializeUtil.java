@@ -27,6 +27,7 @@ public class MapSerializeUtil {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public static Map<String, Object> deserialize(byte[] bytes) {
 		try {
 			ByteArrayInputStream mem_in = new ByteArrayInputStream(bytes);

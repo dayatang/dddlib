@@ -11,8 +11,8 @@ import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.drools.runtime.process.ProcessContext;
-import org.openkoala.jbpm.infra.XmlParseUtil;
 import org.jbpm.ruleflow.instance.RuleFlowProcessInstance;
+import org.openkoala.jbpm.infra.XmlParseUtil;
 
 public class WSUtil {
 	
@@ -42,6 +42,7 @@ public class WSUtil {
 	 * @return
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	public static List<String> invokeUserGroup(String user,String url,String method) throws Exception{
 		JaxWsDynamicClientFactory dcf = JaxWsDynamicClientFactory.newInstance();
 		Client client = dcf.createClient(url);

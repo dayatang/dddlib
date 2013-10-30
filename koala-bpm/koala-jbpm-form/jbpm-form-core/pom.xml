@@ -41,7 +41,7 @@
             <groupId>org.openkoala.bpm</groupId>  
             <artifactId>jbpm-form-conf</artifactId>  
             <version>1.0.0-SNAPSHOT</version>  
-            <type>test-jar</type>  
+            <type>jar</type>  
             <scope>test</scope> 
         </dependency>  
         <!-- 加入Spring对JPA的支持 -->  
