@@ -114,40 +114,66 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	}
 
 	public byte[] getProcessImage(String processId) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("processId", processId);
-		KoalaProcessInfo processInfo = jbpmTaskService
-				.getKoalaProcessInfo(params);
-		return ImageUtil.getProcessPictureByte(processId, processInfo.getPng(),
-				new ArrayList<Integer>());
+		try {
+			this.getJbpmSupport().startTransaction();
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("processId", processId);
+			KoalaProcessInfo processInfo = jbpmTaskService
+					.getKoalaProcessInfo(params);
+			byte[] image = ImageUtil.getProcessPictureByte(processId,
+					processInfo.getPng(), new ArrayList<Integer>());
+			this.getJbpmSupport().commitTransaction();
+			return image;
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+			this.getJbpmSupport().rollbackTransaction();
+			throw e;
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.getJbpmSupport().rollbackTransaction();
+			throw new RuntimeException(e.getCause());
+		}
 	}
 
 	/**
 	 */
 	public byte[] getPorcessImageStream(long processInstanceId) {
-		RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
-				.getProcessInstance(processInstanceId);
-		List<Integer> nodes = new ArrayList<Integer>();
-		String processId = null;
-		if (in != null) {
-			Collection<org.drools.runtime.process.NodeInstance> actives = in
-					.getNodeInstances();
-			processId = in.getProcessId();
-			for (NodeInstance active : actives) {
-				nodes.add((Integer) active.getNode().getMetaData().get("x"));
-				nodes.add((Integer) active.getNode().getMetaData().get("y"));
+		try {
+			this.getJbpmSupport().startTransaction();
+			RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
+					.getProcessInstance(processInstanceId);
+			List<Integer> nodes = new ArrayList<Integer>();
+			String processId = null;
+			if (in != null) {
+				Collection<org.drools.runtime.process.NodeInstance> actives = in
+						.getNodeInstances();
+				processId = in.getProcessId();
+				for (NodeInstance active : actives) {
+					nodes.add((Integer) active.getNode().getMetaData().get("x"));
+					nodes.add((Integer) active.getNode().getMetaData().get("y"));
+				}
+			} else {
+				ProcessInstanceLog log = jbpmTaskService
+						.findProcessInstance(processInstanceId);
+				processId = log.getProcessId();
 			}
-		} else {
-			ProcessInstanceLog log = jbpmTaskService
-					.findProcessInstance(processInstanceId);
-			processId = log.getProcessId();
+			Map<String, Object> params = new HashMap<String, Object>();
+			params.put("processId", processId);
+			KoalaProcessInfo processInfo = jbpmTaskService
+					.getKoalaProcessInfo(params);
+			byte[] image = ImageUtil.getProcessPictureByte(processId,
+					processInfo.getPng(), nodes);
+			this.getJbpmSupport().commitTransaction();
+			return image;
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+			this.getJbpmSupport().rollbackTransaction();
+			throw e;
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.getJbpmSupport().rollbackTransaction();
+			throw new RuntimeException(e.getCause());
 		}
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("processId", processId);
-		KoalaProcessInfo processInfo = jbpmTaskService
-				.getKoalaProcessInfo(params);
-		return ImageUtil.getProcessPictureByte(processId, processInfo.getPng(),
-				nodes);
 	}
 
 	/**
@@ -160,64 +186,64 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	public List<TaskChoice> queryTaskChoice(long processInstanceId, long taskId) {
 		try {
 			this.getJbpmSupport().startTransaction();
-		Task task = getJbpmSupport().getTask(taskId);
-		String taskName = task.getNames().get(0).getText();
+			Task task = getJbpmSupport().getTask(taskId);
+			String taskName = task.getNames().get(0).getText();
 
-		long contentId = task.getTaskData().getDocumentContentId();
-		Map<String, Object> map = this.getContentId(contentId);
+			long contentId = task.getTaskData().getDocumentContentId();
+			Map<String, Object> map = this.getContentId(contentId);
 
-		List<TaskChoice> choiceList = new ArrayList<TaskChoice>();
+			List<TaskChoice> choiceList = new ArrayList<TaskChoice>();
 
-		/*
-		 * KJ_CHOICE_KEY 关键决择KEY CHOICE KJ_CHOICE_TYPE KEY类型 String
-		 * KJ_CHOICE_VALUE 值映射 同意->1;不同意->2;
-		 */
-		if (!map.containsKey("KJ_CHOICE_KEY")) {
-			return null;
-		}
+			/*
+			 * KJ_CHOICE_KEY 关键决择KEY CHOICE KJ_CHOICE_TYPE KEY类型 String
+			 * KJ_CHOICE_VALUE 值映射 同意->1;不同意->2;
+			 */
+			if (!map.containsKey("KJ_CHOICE_KEY")) {
+				return null;
+			}
 
-		RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
-				.getProcessInstance(processInstanceId);
+			RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
+					.getProcessInstance(processInstanceId);
 
-		Collection<org.drools.runtime.process.NodeInstance> actives = in
-				.getNodeInstances();
+			Collection<org.drools.runtime.process.NodeInstance> actives = in
+					.getNodeInstances();
 
-		HumanTaskNodeInstance activeNode = null;
-		for (NodeInstance active : actives) {
-			if (active instanceof HumanTaskNodeInstance) {
-				HumanTaskNodeInstance node = (HumanTaskNodeInstance) active;
-				String nodeName = (String) ((HumanTaskNodeInstance) active)
-						.getHumanTaskNode().getWork().getParameter("TaskName");
-				if (taskName.equals(nodeName)) {
-					activeNode = node;
+			HumanTaskNodeInstance activeNode = null;
+			for (NodeInstance active : actives) {
+				if (active instanceof HumanTaskNodeInstance) {
+					HumanTaskNodeInstance node = (HumanTaskNodeInstance) active;
+					String nodeName = (String) ((HumanTaskNodeInstance) active)
+							.getHumanTaskNode().getWork()
+							.getParameter("TaskName");
+					if (taskName.equals(nodeName)) {
+						activeNode = node;
+					}
 				}
 			}
+
+			String key = (String) map.get("KJ_CHOICE_KEY");
+			String type = (String) map.get("KJ_CHOICE_TYPE");
+			String choiceValue = (String) map.get("KJ_CHOICE_VALUE");
+			String[] values = choiceValue.split(";");
+			for (String value : values) {
+				String[] choices = value.split("->");
+				String name = choices[0];
+				String keyValue = choices[1];
+				TaskChoice choice = new TaskChoice(key, type, name, keyValue);
+				choiceList.add(choice);
+			}
+			this.getJbpmSupport().commitTransaction();
+			return choiceList;
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+			this.getJbpmSupport().rollbackTransaction();
+			throw e;
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.getJbpmSupport().rollbackTransaction();
+			throw new RuntimeException(e.getCause());
 		}
 
-		String key = (String) map.get("KJ_CHOICE_KEY");
-		String type = (String) map.get("KJ_CHOICE_TYPE");
-		String choiceValue = (String) map.get("KJ_CHOICE_VALUE");
-		String[] values = choiceValue.split(";");
-		for (String value : values) {
-			String[] choices = value.split("->");
-			String name = choices[0];
-			String keyValue = choices[1];
-			TaskChoice choice = new TaskChoice(key, type, name, keyValue);
-			choiceList.add(choice);
-		}
-		this.getJbpmSupport().commitTransaction();
-		return choiceList;
-	} catch (RuntimeException e) {
-		e.printStackTrace();
-		this.getJbpmSupport().rollbackTransaction();
-		throw e;
-	} catch (Exception e) {
-		e.printStackTrace();
-		this.getJbpmSupport().rollbackTransaction();
-		throw new RuntimeException(e.getCause());
-	}
-
-		
 	}
 
 	/**
@@ -246,7 +272,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			this.getJbpmSupport().rollbackTransaction();
 			throw new RuntimeException(e.getCause());
 		}
-		
+
 	}
 
 	/**
@@ -359,13 +385,15 @@ public class JBPMApplicationImpl implements JBPMApplication {
 					try {
 						todo.setProcessName(in.getProcessName());
 					} catch (Exception e) {
-						todo.setProcessName(getNoVersionProcessId(in.getProcessId()));
+						todo.setProcessName(getNoVersionProcessId(in
+								.getProcessId()));
 					}
 					todo.setTaskId(task.getId());
 					todo.setProcessData(processData);
 					todo.setCreateDate(df.format(log.getStart()));
 					todo.setAgents("是");
-					todo.setCreater((String)in.getVariable(KoalaBPMVariable.CREATE_USER));
+					todo.setCreater((String) in
+							.getVariable(KoalaBPMVariable.CREATE_USER));
 					todos.add(todo);
 				}
 			}
@@ -422,7 +450,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			todo.setActualOwner(task.getActualOwner().getId());
 			todo.setActualName(task.getName());
 			todo.setProcessInstanceId(processInstanceId);
-			
+
 			todo.setProcessId(getNoVersionProcessId(in.getProcessId()));
 			try {
 				todo.setProcessName(in.getProcessName());
@@ -432,7 +460,8 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			todo.setTaskId(task.getId());
 			todo.setProcessData(processData);
 			todo.setCreateDate(df.format(log.getStart()));
-			todo.setCreater((String)in.getVariable(KoalaBPMVariable.CREATE_USER));
+			todo.setCreater((String) in
+					.getVariable(KoalaBPMVariable.CREATE_USER));
 			todos.add(todo);
 		}
 		return todos;
@@ -793,7 +822,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 
 		HumanTaskNodeInstance human = (HumanTaskNodeInstance) in
 				.getNodeInstance(node);
-		
+
 		// 如果流程当前节点与要激活的节点一样，则不转移
 		boolean isSame = true;
 
@@ -804,12 +833,12 @@ public class JBPMApplicationImpl implements JBPMApplication {
 				isSame = false;
 			}
 		}
-		
+
 		if (isSame)
 			return;
-		
+
 		in.setVariable(KoalaBPMVariable.INGORE_LOG, true);
-		
+
 		for (org.drools.runtime.process.NodeInstance nodeInstance : instances) {
 			org.jbpm.workflow.instance.NodeInstance removeNode = in
 					.getNodeInstance(nodeInstance.getId());
@@ -819,14 +848,14 @@ public class JBPMApplicationImpl implements JBPMApplication {
 						(HumanTaskNodeInstance) removeNode, false);
 			}
 		}
-		
+
 		jbpmTaskService.removeWorkItemInfo(processInstanceId);
-		
+
 		jbpmTaskService.exitedTask(processInstanceId);
-		
+
 		human.trigger(null, "DROOLS_DEFAULT");
 		human.setNodeInstanceContainer(in);
-		
+
 		HistoryLog log = new HistoryLog();
 		log.setComment("转移到节点:" + human.getNodeName());
 		log.setCreateDate(new Date());
@@ -836,7 +865,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		log.setProcessInstanceId(processInstanceId);
 		log.setProcessId(in.getProcessId());
 		log.save();
-		
+
 	}
 
 	private Map<String, Object> parseVar(Map<String, Object> params,
@@ -886,7 +915,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			HistoryLog historyLog = HistoryLog
 					.queryLastActivedNodeId(processInstanceId);
 			assignToNodeCall(processInstanceId, historyLog.getNodeId());
-			
+
 			this.getJbpmSupport().commitTransaction();
 		} catch (RuntimeException e) {
 			e.printStackTrace();
@@ -938,28 +967,29 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			long processInstanceId) {
 		try {
 			this.getJbpmSupport().startTransaction();
-		List<JBPMNode> jbpmNodes = new ArrayList<JBPMNode>();
-		RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
-				.getProcessInstance(processInstanceId);
-		RuleFlowProcess rule = (RuleFlowProcess) in.getProcess();
-		Node[] nodes = rule.getNodes();
-		for (Node node : nodes) {
-			if (node instanceof HumanTaskNode) {
-				JBPMNode jbpmNode = new JBPMNode(node.getId(), node.getName());
-				jbpmNodes.add(jbpmNode);
+			List<JBPMNode> jbpmNodes = new ArrayList<JBPMNode>();
+			RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
+					.getProcessInstance(processInstanceId);
+			RuleFlowProcess rule = (RuleFlowProcess) in.getProcess();
+			Node[] nodes = rule.getNodes();
+			for (Node node : nodes) {
+				if (node instanceof HumanTaskNode) {
+					JBPMNode jbpmNode = new JBPMNode(node.getId(),
+							node.getName());
+					jbpmNodes.add(jbpmNode);
+				}
 			}
+			getJbpmSupport().commitTransaction();
+			return jbpmNodes;
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+			this.getJbpmSupport().rollbackTransaction();
+			throw e;
+		} catch (Exception e) {
+			this.getJbpmSupport().rollbackTransaction();
+			e.printStackTrace();
+			throw new RuntimeException(e.getCause());
 		}
-		getJbpmSupport().commitTransaction();
-		return jbpmNodes;
-			} catch (RuntimeException e) {
-				e.printStackTrace();
-				this.getJbpmSupport().rollbackTransaction();
-				throw e;
-			} catch (Exception e) {
-				this.getJbpmSupport().rollbackTransaction();
-				e.printStackTrace();
-				throw new RuntimeException(e.getCause());
-			}
 	}
 
 	public void repairTask(long taskId) {
@@ -1022,7 +1052,8 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			todo.setTaskId(task.getId());
 			todo.setProcessData(processData);
 			todo.setCreateDate(df.format(log.getStart()));
-			todo.setCreater((String)in.getVariable(KoalaBPMVariable.CREATE_USER));
+			todo.setCreater((String) in
+					.getVariable(KoalaBPMVariable.CREATE_USER));
 			todos.add(todo);
 		}
 		return todos;
@@ -1110,7 +1141,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		ProcessInstanceVO vo = new ProcessInstanceVO();
 		vo.setCreateDate(df.format(log.getStart()));
-		vo.setCreater((String)in.getVariable(KoalaBPMVariable.CREATE_USER));
+		vo.setCreater((String) in.getVariable(KoalaBPMVariable.CREATE_USER));
 		// vo.setParentProcessInstanceId(log.getParentProcessInstanceId());
 		String processVersionId = log.getProcessId();
 		vo.setProcessId(processVersionId.substring(0,
@@ -1487,11 +1518,11 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		}
 		return map;
 	}
-	
-	private String getNoVersionProcessId(String processId){
+
+	private String getNoVersionProcessId(String processId) {
 		int i = processId.lastIndexOf("@");
-		if(i!=-1){
-			return processId.substring(0,i);
+		if (i != -1) {
+			return processId.substring(0, i);
 		}
 		return processId;
 	}

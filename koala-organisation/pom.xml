@@ -39,7 +39,7 @@
 				<db.connectionURL>jdbc:h2:~/db/organisation;MVCC=true</db.connectionURL>
 				<db.username>sa</db.username>
 				<db.password />
-				<db.Type>h2</db.Type>
+				<db.Type>H2</db.Type>
 				<db.groupId>com.h2database</db.groupId>
 				<db.artifactId>h2</db.artifactId>
 			</properties>
