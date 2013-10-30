@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
+
 import com.dayatang.domain.AbstractEntity;
 import com.dayatang.domain.QuerySettings;
 /**
@@ -53,8 +54,7 @@ public class KoalaProcessInfo extends AbstractEntity{
 		this.processName = porcessName;
 		this.versionNum = version;
 		this.data = xmlData.getBytes();
-		this.png = new byte[png.length];
-		System.arraycopy(png, 0, this.png, 0,png.length);
+		this.png = png;
 	}
 	
 	public String getProcessName() {
@@ -90,8 +90,7 @@ public class KoalaProcessInfo extends AbstractEntity{
 	}
 
 	public void setData(byte[] data) {
-		this.data = new byte[data.length];
-		System.arraycopy(data, 0, this.data, 0, data.length);
+		this.data = data;
 	}
 
 	public String getProcessId() {
@@ -176,8 +175,7 @@ public class KoalaProcessInfo extends AbstractEntity{
 	}
 
 	public void setPng(byte[] png) {
-		this.png = new byte[png.length];
-		System.arraycopy(png, 0, this.png, 0, png.length);
+		this.png = png;
 	}
 
 	public boolean isActive() {

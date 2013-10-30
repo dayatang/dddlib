@@ -10,9 +10,9 @@
 	<groupId>org.openkoala.organisation</groupId>
 	<artifactId>koala-organisation</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0-SNAPSHOT</version>
 	<name>Koala Organisation</name>
 	<description>koala组织子系统</description>
+<<<<<<< HEAD
     <modules>
         <module>koala-organisation-core</module>
         <module>koala-organisation-conf</module>
@@ -20,4 +20,40 @@
         <module>koala-organisation-applicationImpl</module>
         <module>koala-organisation-web</module>
     </modules>
+=======
+
+	<modules>
+		<module>koala-organisation-conf</module>
+		<module>koala-organisation-core</module>
+		<module>koala-organisation-application</module>
+		<module>koala-organisation-applicationImpl</module>
+		<module>koala-organisation-web</module>
+	</modules>
+
+	<prerequisites>
+		<maven>3.0</maven>
+	</prerequisites>
+	
+	<profiles>
+		<profile>
+			<id>organisation</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<hibernate.show_sql>true</hibernate.show_sql>
+				<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+				<db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
+				<db.connectionURL>jdbc:h2:~/db/organisation;MVCC=true</db.connectionURL>
+				<db.username>sa</db.username>
+				<db.password />
+				<db.Type>H2</db.Type>
+				<db.groupId>com.h2database</db.groupId>
+				<db.artifactId>h2</db.artifactId>
+			</properties>
+		</profile>
+	</profiles>
+
+>>>>>>> ea96917ff1a0d47e3a2b88360045e6450e0a8aa7
 </project>

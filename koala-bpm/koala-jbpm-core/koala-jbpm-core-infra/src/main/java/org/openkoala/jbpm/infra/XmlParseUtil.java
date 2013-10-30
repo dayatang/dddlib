@@ -28,10 +28,14 @@ public class XmlParseUtil {
 	 * @param xml
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public static List<String> parseListXml(String xml) {
 		SAXReader reader = new SAXReader();
 		Document document = null;
 		List<String> values = new ArrayList<String>();
+		if(xml==null || xml.trim().equals("")){
+			return values;
+		}
 		try {
 			document = reader.read(new ByteArrayInputStream(xml
 					.getBytes("UTF-8")));
@@ -62,6 +66,9 @@ public class XmlParseUtil {
 		Set<String> keys = paramsMap.keySet();
 		for (String key : keys) {
 			Object value = paramsMap.get(key);
+			if(key.startsWith("~KJ")){
+				continue;
+			}
 			Element param = root.addElement(key);
 			if (value instanceof Integer) {
 				param.addAttribute("type", "int");
@@ -86,43 +93,44 @@ public class XmlParseUtil {
 	/**
 	 * 将传入的XML格式，解析成为
 	 * 
-	 * @param xml
+	 * @param content
+	 * @return
+	 */
+	public static Map<String, Object> xmlToPrams(String content) {
+		return xmlToPrams(content, null);
+	}
+	
+	/**
+	 * 将传入的XML内容根据一定的元素名称过滤规则转换成Map
+	 * @param content
+	 * @param filter
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public static Map<String, Object> xmlToPrams(String xml) {
+	public static Map<String, Object> xmlToPrams(String content, ElementFilter filter) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		if (xml == null || xml.equals(""))
+		if (content == null || "".equals(content)) {
 			return params;
+		}
 		SAXReader reader = new SAXReader();
 		Document document = null;
 		try {
-			document = reader.read(new ByteArrayInputStream(xml
-					.getBytes("UTF-8")));
+			document = reader.read(new ByteArrayInputStream(content.getBytes("UTF-8")));
 			Element root = document.getRootElement();
 			List<Element> elements = root.elements();
 			for (Element element : elements) {
 				String key = element.getName();
 				String value = element.getTextTrim();
 				Object val = value;
-				if(element.attribute("type")!=null){
-					if ("int".equals(element.attribute("type").getText())) {
-						val = Integer.parseInt(value);
+				if (filter != null) {
+					if (key.matches(filter.getElementName())) {
+						val = handleTypeAttribute(element, value, val);
+						params.put(key, val);
 					}
-					if ("long".equals(element.attribute("type").getText())) {
-						val = Long.parseLong(value);
-					}
-					if ("float".equals(element.attribute("type").getText())) {
-						val = Float.parseFloat(value);
-					}
-					if ("double".equals(element.attribute("type").getText())) {
-						val = Double.parseDouble(value);
-					}
-					if ("boolean".equals(element.attribute("type").getText())) {
-						val = Boolean.valueOf(value);
-					}
+				} else {
+					val = handleTypeAttribute(element, value, val);
+					params.put(key, val);
 				}
-				params.put(key, val);
 			}
 		} catch (DocumentException e) {
 			e.printStackTrace();
@@ -130,5 +138,26 @@ public class XmlParseUtil {
 			e.printStackTrace();
 		}
 		return params;
+	}
+
+	private static Object handleTypeAttribute(Element element, String value, Object val) {
+		if (element.attribute("type") != null) {
+			if ("int".equals(element.attribute("type").getText())) {
+				val = Integer.parseInt(value);
+			}
+			if ("long".equals(element.attribute("type").getText())) {
+				val = Long.parseLong(value);
+			}
+			if ("float".equals(element.attribute("type").getText())) {
+				val = Float.parseFloat(value);
+			}
+			if ("double".equals(element.attribute("type").getText())) {
+				val = Double.parseDouble(value);
+			}
+			if ("boolean".equals(element.attribute("type").getText())) {
+				val = Boolean.valueOf(value);
+			}
+		}
+		return val;
 	}
 }

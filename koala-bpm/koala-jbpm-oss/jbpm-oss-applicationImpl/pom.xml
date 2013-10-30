@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.openkoala.bpm</groupId>
 		<artifactId>koala-jbpm-oss</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>2.1.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>jbpm-oss-applicationImpl</artifactId>
 	<name>KoalaBPM-applicationImpl</name>
@@ -25,32 +25,28 @@
 		<dependency>
 			<groupId>org.openkoala.bpm</groupId>
 			<artifactId>jbpm-oss-infra</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openkoala.bpm</groupId>
 			<artifactId>jbpm-oss-core</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openkoala.bpm</groupId>
 			<artifactId>jbpm-oss-application</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openkoala.bpm</groupId>
 			<artifactId>jbpm-oss-conf</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.parent.version}</version>
 			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.openkoala.koalacommons</groupId>
-			<artifactId>koala-commons-ui-surpport</artifactId>
 		</dependency>
 		<!-- 加入对查询通道的依赖 -->
 		<dependency>
@@ -115,6 +111,7 @@
 		<dependency>
 			<groupId>org.openkoala.koalacommons</groupId>
 			<artifactId>koala-commons-support</artifactId>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>proxool</groupId>
@@ -131,6 +128,7 @@
 		<dependency>
 			<groupId>org.openkoala.organisation</groupId>
 			<artifactId>koala-organisation-applicationImpl</artifactId>
+			<version>${project.parent.version}</version>
 		</dependency>
 
 		<!-- 依赖流程引擎子系统 

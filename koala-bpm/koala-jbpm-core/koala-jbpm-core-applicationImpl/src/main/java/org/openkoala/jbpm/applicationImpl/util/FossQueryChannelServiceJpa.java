@@ -31,28 +31,14 @@ import com.dayatang.querychannel.support.Page;
 @Named("queryChannel")
 @SuppressWarnings({"unchecked","unused","serial"})
 public class FossQueryChannelServiceJpa implements QueryChannelService {
+	
 	@Inject
-	@PersistenceContext(unitName="org.jbpm.persistence.local")
-	private EntityManager entityManager;
-
-	public FossQueryChannelServiceJpa() {
-	}
-
-	public FossQueryChannelServiceJpa(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
+	EntityManager jbpmEM;
 
 	public EntityManager getEntityManager() {
-		if (entityManager == null) {
-			entityManager = InstanceFactory.getInstance(EntityManager.class);
-		}
-		return entityManager;
+		return jbpmEM;
 	}
-
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
-
+	
 	private Query createQuery(String hql, Object[] params) {
 		Query query = getEntityManager().createQuery(hql);
 		return setParameters(query, params);

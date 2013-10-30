@@ -2,6 +2,7 @@
 package org.openkoala.jbpm.wsclient;
 
 import java.util.List;
+
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -23,6 +24,40 @@ import javax.xml.ws.ResponseWrapper;
 })
 public interface JBPMApplication {
 
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns java.util.List<org.openkoala.jbpm.wsclient.TaskVO>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "queryTodoListWithGroup", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.QueryTodoListWithGroup")
+    @ResponseWrapper(localName = "queryTodoListWithGroupResponse", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.QueryTodoListWithGroupResponse")
+    public List<TaskVO> queryTodoListWithGroup(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1);
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "roolBack", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.RoolBack")
+    @ResponseWrapper(localName = "roolBackResponse", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.RoolBackResponse")
+    public void roolBack(
+        @WebParam(name = "arg0", targetNamespace = "")
+        long arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        long arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2);
 
     /**
      * 
@@ -211,6 +246,23 @@ public interface JBPMApplication {
 
     /**
      * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns java.util.List<org.openkoala.jbpm.wsclient.TaskChoice>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "queryTaskChoice", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.QueryTaskChoice")
+    @ResponseWrapper(localName = "queryTaskChoiceResponse", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.QueryTaskChoiceResponse")
+    public List<TaskChoice> queryTaskChoice(
+        @WebParam(name = "arg0", targetNamespace = "")
+        long arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        long arg1);
+
+    /**
+     * 
      * @param arg0
      */
     @WebMethod
@@ -253,23 +305,23 @@ public interface JBPMApplication {
 
     /**
      * 
-     * @param arg3
      * @param arg2
      * @param arg1
      * @param arg0
+     * @return
+     *     returns java.util.List<org.openkoala.jbpm.wsclient.TaskVO>
      */
     @WebMethod
-    @RequestWrapper(localName = "setProcessVariable", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.SetProcessVariable")
-    @ResponseWrapper(localName = "setProcessVariableResponse", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.SetProcessVariableResponse")
-    public void setProcessVariable(
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "processQueryTodoListWithGroup", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.ProcessQueryTodoListWithGroup")
+    @ResponseWrapper(localName = "processQueryTodoListWithGroupResponse", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.ProcessQueryTodoListWithGroupResponse")
+    public List<TaskVO> processQueryTodoListWithGroup(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0,
         @WebParam(name = "arg1", targetNamespace = "")
         String arg1,
         @WebParam(name = "arg2", targetNamespace = "")
-        String arg2,
-        @WebParam(name = "arg3", targetNamespace = "")
-        String arg3);
+        String arg2);
 
     /**
      * 
@@ -284,49 +336,6 @@ public interface JBPMApplication {
     public List<String> getProcessByPackage(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
-
-    /**
-     * 
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "setGlobalVariable", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.SetGlobalVariable")
-    @ResponseWrapper(localName = "setGlobalVariableResponse", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.SetGlobalVariableResponse")
-    public void setGlobalVariable(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        String arg2);
-
-    /**
-     * 
-     * @param arg5
-     * @param arg4
-     * @param arg3
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "addProcess", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.AddProcess")
-    @ResponseWrapper(localName = "addProcessResponse", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.AddProcessResponse")
-    public void addProcess(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        int arg2,
-        @WebParam(name = "arg3", targetNamespace = "")
-        String arg3,
-        @WebParam(name = "arg4", targetNamespace = "")
-        byte[] arg4,
-        @WebParam(name = "arg5", targetNamespace = "")
-        boolean arg5);
 
     /**
      * 
@@ -388,20 +397,6 @@ public interface JBPMApplication {
      * @param arg0
      */
     @WebMethod
-    @RequestWrapper(localName = "removePackageVariable", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.RemovePackageVariable")
-    @ResponseWrapper(localName = "removePackageVariableResponse", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.RemovePackageVariableResponse")
-    public void removePackageVariable(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
     @RequestWrapper(localName = "assignToNode", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.AssignToNode")
     @ResponseWrapper(localName = "assignToNodeResponse", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.AssignToNodeResponse")
     public void assignToNode(
@@ -412,17 +407,26 @@ public interface JBPMApplication {
 
     /**
      * 
+     * @param arg3
+     * @param arg2
+     * @param arg1
      * @param arg0
      * @return
-     *     returns java.util.List<org.openkoala.jbpm.wsclient.JbpmNode>
+     *     returns org.openkoala.jbpm.wsclient.PageTaskVO
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getProcessNodes", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.GetProcessNodes")
-    @ResponseWrapper(localName = "getProcessNodesResponse", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.GetProcessNodesResponse")
-    public List<JbpmNode> getProcessNodes(
+    @RequestWrapper(localName = "pageQueryDoneTask", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.PageQueryDoneTask")
+    @ResponseWrapper(localName = "pageQueryDoneTaskResponse", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.PageQueryDoneTaskResponse")
+    public PageTaskVO pageQueryDoneTask(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        int arg2,
+        @WebParam(name = "arg3", targetNamespace = "")
+        int arg3);
 
     /**
      * 
@@ -449,6 +453,114 @@ public interface JBPMApplication {
     @RequestWrapper(localName = "queryTodoList", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.QueryTodoList")
     @ResponseWrapper(localName = "queryTodoListResponse", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.QueryTodoListResponse")
     public List<TaskVO> queryTodoList(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
+     * @param arg3
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "setProcessVariable", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.SetProcessVariable")
+    @ResponseWrapper(localName = "setProcessVariableResponse", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.SetProcessVariableResponse")
+    public void setProcessVariable(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2,
+        @WebParam(name = "arg3", targetNamespace = "")
+        String arg3);
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "setGlobalVariable", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.SetGlobalVariable")
+    @ResponseWrapper(localName = "setGlobalVariableResponse", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.SetGlobalVariableResponse")
+    public void setGlobalVariable(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2);
+
+    /**
+     * 
+     * @param arg5
+     * @param arg4
+     * @param arg3
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "addProcess", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.AddProcess")
+    @ResponseWrapper(localName = "addProcessResponse", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.AddProcessResponse")
+    public void addProcess(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        int arg2,
+        @WebParam(name = "arg3", targetNamespace = "")
+        String arg3,
+        @WebParam(name = "arg4", targetNamespace = "")
+        byte[] arg4,
+        @WebParam(name = "arg5", targetNamespace = "")
+        boolean arg5);
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "fetchBack", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.FetchBack")
+    @ResponseWrapper(localName = "fetchBackResponse", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.FetchBackResponse")
+    public void fetchBack(
+        @WebParam(name = "arg0", targetNamespace = "")
+        long arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        long arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "removePackageVariable", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.RemovePackageVariable")
+    @ResponseWrapper(localName = "removePackageVariableResponse", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.RemovePackageVariableResponse")
+    public void removePackageVariable(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<org.openkoala.jbpm.wsclient.JbpmNode>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getProcessNodes", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.GetProcessNodes")
+    @ResponseWrapper(localName = "getProcessNodesResponse", targetNamespace = "http://application.jbpm.openkoala.org/", className = "org.openkoala.jbpm.wsclient.GetProcessNodesResponse")
+    public List<JbpmNode> getProcessNodes(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
 

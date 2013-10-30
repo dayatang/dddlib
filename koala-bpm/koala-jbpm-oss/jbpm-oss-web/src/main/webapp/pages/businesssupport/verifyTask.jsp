@@ -184,6 +184,8 @@
 	        </div>
 	        <div class="panel-footer">
 	        	<button data-dismiss="modal" class="btn btn-default" type="button" id="cancelBtn" onclick="javascript:window.back();">返回</button>
+	        	<input type="hidden" name="processInstanceId" value="${taskInstance.processInstanceId }"/>
+	            <input type="hidden" name="taskId" value="${taskInstance.taskId }"/>
 	        </div>
 	    </div>
 	</form>

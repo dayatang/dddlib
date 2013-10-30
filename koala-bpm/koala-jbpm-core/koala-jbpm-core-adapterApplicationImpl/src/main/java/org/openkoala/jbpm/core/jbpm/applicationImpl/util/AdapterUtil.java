@@ -1,16 +1,13 @@
 package org.openkoala.jbpm.core.jbpm.applicationImpl.util;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.drools.runtime.process.ProcessContext;
+import org.jbpm.ruleflow.instance.RuleFlowProcessInstance;
 import org.openkoala.jbpm.core.jbpm.applicationInterface.vo.JbpmAdapterParameter;
 import org.openkoala.jbpm.core.jbpm.util.MapSerializeUtil;
-import org.jbpm.ruleflow.instance.RuleFlowProcessInstance;
 
 /**
  * 远程方法调用实现类
@@ -30,7 +27,7 @@ public class AdapterUtil {
 	 */
 	public static void invoke(ProcessContext context, String name,
 			String... strings) throws Exception {
-		String type = "voidInvoke";
+//		String type = "voidInvoke";
 		List<String> userParams = parseString(strings);
 		byte[] params = parseByte(context);
 		JbpmAdapterParameter adapter = new JbpmAdapterParameter(name,params,userParams);

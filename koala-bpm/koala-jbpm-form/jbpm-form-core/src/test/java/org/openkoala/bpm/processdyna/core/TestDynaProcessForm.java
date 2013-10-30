@@ -3,6 +3,8 @@ package org.openkoala.bpm.processdyna.core;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.ConstraintViolationException;
+
 import org.junit.Test;
 import org.openkoala.koala.util.KoalaBaseSpringTestCase;
 import org.springframework.util.Assert;
@@ -18,6 +20,12 @@ public class TestDynaProcessForm extends KoalaBaseSpringTestCase{
 	 * 流程ID
 	 */
 	private final String PROCESS_ID = "APPLY";
+	
+	@Test(expected=ConstraintViolationException.class)
+	public void testProcessFormValidation(){
+		DynaProcessForm form =new DynaProcessForm();
+		form.save();
+	}
 	
 	/**
 	 * 测试新增加一个流程的表单自定义，这个新增的表单自定义
