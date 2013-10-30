@@ -28,6 +28,7 @@ public class XmlParseUtil {
 	 * @param xml
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public static List<String> parseListXml(String xml) {
 		SAXReader reader = new SAXReader();
 		Document document = null;

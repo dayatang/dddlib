@@ -4,7 +4,6 @@ import java.net.InetSocketAddress;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.mina.core.future.ConnectFuture;
 import org.apache.mina.core.future.ReadFuture;
 import org.apache.mina.core.service.IoConnector;
 import org.apache.mina.core.session.IoSession;
@@ -12,7 +11,6 @@ import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.filter.codec.serialization.ObjectSerializationCodecFactory;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
 import org.drools.runtime.process.ProcessContext;
-import org.openkoala.jbpm.core.jbpm.applicationImpl.handle.JBPMHandlerAdapter;
 import org.openkoala.jbpm.core.jbpm.applicationInterface.vo.JbpmAdapterParameter;
 
 public class AdapterClient {
@@ -32,6 +30,7 @@ public class AdapterClient {
 		return new AdapterClient(ip, port);
 	}
 
+	@SuppressWarnings("unchecked")
 	public void connectToServer(ProcessContext context,
 			JbpmAdapterParameter adapter) throws Exception {
 		IoSession session = null;

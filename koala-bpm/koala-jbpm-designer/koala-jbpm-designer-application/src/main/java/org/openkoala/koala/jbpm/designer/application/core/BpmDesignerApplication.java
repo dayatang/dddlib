@@ -2,8 +2,10 @@
 package org.openkoala.koala.jbpm.designer.application.core;
 
 import java.util.List;
+
+import org.openkoala.koala.jbpm.designer.application.vo.PublishURLVO;
+
 import com.dayatang.querychannel.support.Page;
-import org.openkoala.koala.jbpm.designer.application.vo.*;
 
 public interface BpmDesignerApplication {
 

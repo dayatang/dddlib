@@ -5,6 +5,13 @@ import java.io.Serializable;
 
 public class KoalaAssignDetailVO implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5050906258596776443L;
+
+
+
 	private Long id;
 
 		
