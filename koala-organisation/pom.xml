@@ -12,15 +12,6 @@
 	<packaging>pom</packaging>
 	<name>Koala Organisation</name>
 	<description>koala组织子系统</description>
-<<<<<<< HEAD
-    <modules>
-        <module>koala-organisation-core</module>
-        <module>koala-organisation-conf</module>
-        <module>koala-organisation-application</module>
-        <module>koala-organisation-applicationImpl</module>
-        <module>koala-organisation-web</module>
-    </modules>
-=======
 
 	<modules>
 		<module>koala-organisation-conf</module>
@@ -30,10 +21,6 @@
 		<module>koala-organisation-web</module>
 	</modules>
 
-	<prerequisites>
-		<maven>3.0</maven>
-	</prerequisites>
-	
 	<profiles>
 		<profile>
 			<id>organisation</id>
@@ -54,6 +41,4 @@
 			</properties>
 		</profile>
 	</profiles>
-
->>>>>>> ea96917ff1a0d47e3a2b88360045e6450e0a8aa7
 </project>
