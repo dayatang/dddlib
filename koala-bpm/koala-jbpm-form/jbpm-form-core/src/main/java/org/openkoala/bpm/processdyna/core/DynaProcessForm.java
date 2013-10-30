@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.openkoala.bpm.processdyna.infra.TemplateContent;
 
@@ -38,12 +39,14 @@ public class DynaProcessForm extends AbstractEntity {
 	 * 关联的流程ID
 	 */
 	@Column(name = "PROCESS_ID")
+	@NotNull
 	private String processId;
 
 	/**
 	 * 业务表单名称
 	 */
 	@Column(name = "BIZ_NAME")
+	@NotNull
 	private String bizName;
 
 	/**

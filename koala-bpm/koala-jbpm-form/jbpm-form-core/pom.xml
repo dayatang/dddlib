@@ -1,64 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">  
-    <modelVersion>4.0.0</modelVersion>  
-    <parent> 
-        <groupId>org.openkoala.bpm</groupId>  
-        <artifactId>koala-jbpm-form</artifactId>  
-        <version>1.0.0-SNAPSHOT</version> 
-    </parent>  
-    <artifactId>jbpm-form-core</artifactId>  
-    <name>process-dyna-core</name>  
-    <packaging>jar</packaging>  
-    <url>http://maven.apache.org</url>  
-    <properties> 
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
-        <project.type>bizModel</project.type>  
-        <base.package>org.openkoala.bpm.processdyna.core</base.package> 
-    </properties>  
-    <dependencies> 
-        <dependency> 
-            <groupId>junit</groupId>  
-            <artifactId>junit</artifactId> 
-        </dependency>  
-        <dependency> 
-            <groupId>org.openkoala.bpm</groupId>  
-            <artifactId>jbpm-form-infra</artifactId>  
-            <version>1.0.0-SNAPSHOT</version> 
-        </dependency>   
-        <dependency> 
-            <groupId>org.openkoala.bpm</groupId>  
-            <artifactId>jbpm-form-infra-impl</artifactId>  
-            <version>1.0.0-SNAPSHOT</version> 
-        </dependency>
-        <!-- 加入对DOMAIN层的依赖 -->  
-        <dependency> 
-            <groupId>com.dayatang.commons</groupId>  
-            <artifactId>dayatang-commons-domain</artifactId> 
-        </dependency>  
-        <!-- 加入CONF依赖 -->  
-        <dependency> 
-            <groupId>org.openkoala.bpm</groupId>  
-            <artifactId>jbpm-form-conf</artifactId>  
-            <version>1.0.0-SNAPSHOT</version>  
-            <type>test-jar</type>  
-            <scope>test</scope> 
-        </dependency>  
-        <!-- 加入Spring对JPA的支持 -->  
-        <dependency> 
-            <groupId>org.springframework.data</groupId>  
-            <artifactId>spring-data-jpa</artifactId> 
-        </dependency>  
-        <dependency> 
-            <groupId>org.openkoala.koalacommons</groupId>  
-            <artifactId>koala-commons-support</artifactId> 
-        </dependency>  
-        <dependency> 
-            <groupId>proxool</groupId>  
-            <artifactId>proxool</artifactId> 
-        </dependency> 
-    </dependencies>  
-    <build> 
-        <plugins></plugins> 
-    </build> 
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.openkoala.bpm</groupId>
+		<artifactId>koala-jbpm-form</artifactId>
+		<version>2.1.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>jbpm-form-core</artifactId>
+	<name>process-dyna-core</name>
+	<packaging>jar</packaging>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.type>bizModel</project.type>
+		<base.package>org.openkoala.bpm.processdyna.core</base.package>
+	</properties>
+	<dependencies>
+
+
+		<!-- 对基础设施层接口的依赖 -->
+		<dependency>
+			<groupId>org.openkoala.bpm</groupId>
+			<artifactId>jbpm-form-infra</artifactId>
+			<version>${project.parent.version}</version> 
+		</dependency>
+
+		<!-- 加入对DOMAIN层的依赖 -->
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-domain</artifactId>
+		</dependency>
+
+		<!-- 对javax的检验框架的依赖 -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
+		<!-- 对接口实现的测试支持，以便进行单元测试 -->
+		<dependency>
+			<groupId>org.openkoala.bpm</groupId>
+			<artifactId>jbpm-form-infra-impl</artifactId>
+			<version>${project.parent.version}</version> 
+			<scope>test</scope>
+		</dependency>
+
+		<!-- 加入CONF的测试依赖 -->
+		<dependency>
+			<groupId>org.openkoala.bpm</groupId>
+			<artifactId>jbpm-form-conf</artifactId>
+			<version>${project.parent.version}</version> 
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- 对Junit单元测试的支持 -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- 对hibernate validator的检验支持 -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+	</dependencies>
+	
+	<build>
+		<plugins></plugins>
+	</build>
+	
 </project>
