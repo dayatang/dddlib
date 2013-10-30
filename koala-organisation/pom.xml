@@ -24,5 +24,26 @@
 	<prerequisites>
 		<maven>3.0</maven>
 	</prerequisites>
+	
+	<profiles>
+		<profile>
+			<id>organisation</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<hibernate.show_sql>true</hibernate.show_sql>
+				<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+				<db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
+				<db.connectionURL>jdbc:h2:~/db/organisation;MVCC=true</db.connectionURL>
+				<db.username>sa</db.username>
+				<db.password />
+				<db.Type>h2</db.Type>
+				<db.groupId>com.h2database</db.groupId>
+				<db.artifactId>h2</db.artifactId>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>
