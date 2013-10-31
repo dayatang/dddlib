@@ -162,6 +162,11 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
+
+                <db.groupId>com.h2database</db.groupId>
+                <db.artifactId>h2</db.artifactId>
+                <db.version>1.3.168</db.version>
+
 				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
 				<hibernate.show_sql>true</hibernate.show_sql>
 				<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>

@@ -8,7 +8,7 @@
         <version>2.1.0-SNAPSHOT</version> 
     </parent>  
     <artifactId>jbpm-form-infra</artifactId>  
-    <name>process-dyna-infra</name>  
+    <name>jbpm-form-infra</name>  
     <packaging>jar</packaging>  
     <url>http://maven.apache.org</url>  
     <properties> 
