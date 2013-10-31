@@ -36,7 +36,7 @@ public class FormMgrController {
 	@RequestMapping("/list")
 	public String listForms(DynaProcessFormDTO search, ModelMap modelMap) {
 		// 初始化表单条件
-		List<ProcessDTO> processes = processFormOperApplication.getActiveProcesses();
+		List<ProcessDTO> processes = processFormOperApplication.getActiveProcesses(null);
 		modelMap.put("processes", processes);
 		List<DynaProcessTemplateDTO> templates = processFormOperApplication.getActiveProcessTemplates();
 		modelMap.put("templates", templates);
@@ -115,6 +115,15 @@ public class FormMgrController {
 	public Map<String, Object> templatePreview(Long formId) {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		dataMap.put("data", businessSupportApplication.packagingHtml(formId));
+		return dataMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/getActiveProcesses", method = { RequestMethod.GET })
+	public Map<String, Object> getActiveProcesses(HttpServletRequest request,String usedId) {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		List<ProcessDTO> processes = processFormOperApplication.getActiveProcesses(new String[]{usedId});
+		dataMap.put("processes", processes);
 		return dataMap;
 	}
 	
