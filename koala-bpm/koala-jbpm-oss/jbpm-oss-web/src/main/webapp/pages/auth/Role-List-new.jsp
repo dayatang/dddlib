@@ -16,7 +16,7 @@
   
   <div id="search" class="searchtitle" style="margin-bottom:5px;">
   	角色名称：<input id="roleNameForSearch" type="text" class="form-control input-sm" style="width:150px; display:inline; margin-right:15px;"/>
-    <input id="searchButton" type="button" class="btn-normal" value="查询" />
+    <input id="roleSearchButton" type="button" class="btn-normal" value="查询" />
   </div>
   
   <div id="roleGrid"></div> 
@@ -534,7 +534,7 @@
 			});
 		}
 		
-		$("#searchButton").click(function() {
+		$("#roleSearchButton").click(function() {
 			search();
 		});
 
