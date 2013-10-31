@@ -166,7 +166,7 @@
 				<hibernate.show_sql>true</hibernate.show_sql>
 				<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
 				<db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
-				<db.connectionURL>jdbc:h2:~/db/koala</db.connectionURL>
+				<db.connectionURL>jdbc:h2:~/db/koala;MVCC=true</db.connectionURL>
 				<db.username>sa</db.username>
 				<db.password />
 				<db.Type>H2</db.Type>
