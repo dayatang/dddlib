@@ -156,7 +156,7 @@
 		<jdbc.host>localhost</jdbc.host>
 		<jdbc.port>3306</jdbc.port>
 		<jdbc.dbname>db</jdbc.dbname>
-		<jdbc.url>jdbc:mysql://${jdbc.host}:${jdbc.port}/?useUnicode=true&amp;characterEncoding=utf-8</jdbc.url>
+		<jdbc.url>jdbc:mysql://${db.host}:3306/?useUnicode=true&amp;characterEncoding=utf-8</jdbc.url>
 		<jdbc.username>${mysql.username}</jdbc.username>
 		<jdbc.password>${mysql.password}</jdbc.password>
 	</properties>
