@@ -69,7 +69,13 @@
 			<artifactId>hibernate-validator</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+        <dependency>
+            <groupId>${db.groupId}</groupId>
+            <artifactId>${db.artifactId}</artifactId>
+            <version>${db.version}</version>
+            <scope>test</scope>
+        </dependency>
+
 	</dependencies>
 	
 	<build>
