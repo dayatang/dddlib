@@ -366,7 +366,7 @@ public class BusinessSupportApplicationImpl implements
 		}
 	}
 	
-	private String convertTaskChoiceToXml(String comment, TaskChoice taskChoice){
+	protected String convertTaskChoiceToXml(String comment, TaskChoice taskChoice){
 		return XmlParseUtil.paramsToXml(convertTaskChoiceToMap(comment, taskChoice));
 	}
 	
