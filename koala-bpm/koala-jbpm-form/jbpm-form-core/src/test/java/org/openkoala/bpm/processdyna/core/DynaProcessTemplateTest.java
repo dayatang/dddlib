@@ -9,7 +9,7 @@ import org.springframework.util.Assert;
  * @author lingen
  *
  */
-public class TestDynaProcessTemplate extends KoalaBaseSpringTestCase{
+public class DynaProcessTemplateTest extends KoalaBaseSpringTestCase{
 	
 	@Test
 	public void testSave(){

@@ -14,7 +14,7 @@ import org.springframework.util.Assert;
  * @author lingen
  *
  */
-public class TestDynaProcessForm extends KoalaBaseSpringTestCase{
+public class DynaProcessFormTest extends KoalaBaseSpringTestCase{
 	
 	/**
 	 * 流程ID

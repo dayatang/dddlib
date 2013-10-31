@@ -12,7 +12,7 @@ import org.openkoala.koala.util.KoalaBaseSpringTestCase;
  * @author lingen
  *
  */
-public class TestDynaProcessValue extends KoalaBaseSpringTestCase {
+public class DynaProcessValueTest extends KoalaBaseSpringTestCase {
 
 	/**
 	 * 测试从流程实例获取业务表单的值
