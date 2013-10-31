@@ -81,8 +81,11 @@ public class DynaProcessFormTest extends KoalaBaseSpringTestCase{
 		Set<DynaProcessKey> keys = new HashSet<DynaProcessKey>();
 		
 		DynaProcessKey apply = new DynaProcessKey("apply_id","申请人",DynaType.Text.name());
+		apply.setShowOrder(1);
 		DynaProcessKey date = new DynaProcessKey("date","申请日期",DynaType.Date.name());
+		date.setShowOrder(2);
 		DynaProcessKey comment = new DynaProcessKey("comment","申请理由",DynaType.TextArea.name());
+		date.setShowOrder(3);
 		
 		keys.add(apply);
 		keys.add(date);
@@ -101,5 +104,5 @@ public class DynaProcessFormTest extends KoalaBaseSpringTestCase{
 		template.setTemplateData("<form class=\"form-horizontal processDetail\" role=\"form\"><#if params??><#assign i=0><#list params?keys as idKey><#if (i+1)%2==1><div class=\"form-group row\"></#if><div class=\"col-lg-5 form-group\"><label class=\"col-lg-4 control-label\">${params[idKey].keyName}:</label><div class=\"col-lg-8\">${params[idKey].widget}</div></div><#if (i+1)%2==0></div></#if><#if (i+1)==size && (i+1)%2==1></div></#if><#assign i=i+1></#list></#if></form>");
 		return template;
 	}
-
+	
 }
