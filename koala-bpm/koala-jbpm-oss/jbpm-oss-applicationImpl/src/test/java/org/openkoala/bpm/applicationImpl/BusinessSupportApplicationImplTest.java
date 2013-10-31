@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.junit.After;
@@ -34,8 +33,6 @@ import org.openkoala.jbpm.wsclient.PageTaskVO;
 import org.openkoala.jbpm.wsclient.ProcessVO;
 import org.openkoala.jbpm.wsclient.TaskChoice;
 import org.openkoala.jbpm.wsclient.TaskVO;
-import org.openkoala.jbpm.wsclient.util.KoalaBPMVariable;
-import org.openkoala.jbpm.wsclient.util.XmlParseUtil;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.dayatang.domain.EntityRepository;
