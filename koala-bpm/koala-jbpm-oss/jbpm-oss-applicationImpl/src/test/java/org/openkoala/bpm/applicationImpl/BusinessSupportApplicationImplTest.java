@@ -9,9 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import junit.framework.Assert;
-
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -186,7 +185,7 @@ public class BusinessSupportApplicationImplTest {
 	}
 
 	@Test
-	public void testGetDynaProcessTaskContent() {
+	public void testGetDynaProcessTaskContentForVerify() {
 		List<HistoryLogVo> historys = new ArrayList<HistoryLogVo>();
 		historys.add(new HistoryLogVo());
 		when(jbpmApplication.queryHistoryLog(processInstanceId)).thenReturn(historys);
@@ -202,7 +201,7 @@ public class BusinessSupportApplicationImplTest {
 		when(repository.findByNamedQuery("queryActiveDynaProcessFormByProcessId",
 						new Object[] { processIdCanFindForm }, DynaProcessForm.class)).thenReturn(list);
 		
-		FormShowDTO formShowDTO = instance.getDynaProcessTaskContent(processIdCanFindForm, processInstanceId, taskId);
+		FormShowDTO formShowDTO = instance.getDynaProcessTaskContentForVerify(processIdCanFindForm, processInstanceId, taskId);
 		Assert.assertEquals(historys.size(), formShowDTO.getHistoryLogs().size());
 		Assert.assertEquals(taskChoices.size(), formShowDTO.getTaskChoices().size());
 	}

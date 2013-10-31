@@ -8,7 +8,7 @@
         <version>2.1.0-SNAPSHOT</version>
     </parent>  
     <artifactId>jbpm-oss-infra</artifactId>  
-    <name>KoalaBPM-infra</name>  
+    <name>jbpm-oss-infra</name>  
     <packaging>jar</packaging>  
     <url>http://maven.apache.org</url>  
     <properties> 
