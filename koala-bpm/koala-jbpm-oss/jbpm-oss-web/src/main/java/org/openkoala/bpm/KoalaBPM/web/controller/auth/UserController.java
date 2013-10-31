@@ -88,6 +88,12 @@ public class UserController {
 		return "auth/User-list";
 	}
 
+	@RequestMapping("/listByUserId")
+	public String listByUserId(Long roleId, ModelMap modelMap) {
+		modelMap.addAttribute("roleId", roleId);
+		return "auth/User-List-new";
+	}
+	
 	@ResponseBody
 	@RequestMapping("/query")
 	public Map<String, Object> query(String page, String pagesize,String userNameForSearch,String userAccountForSearch) {
