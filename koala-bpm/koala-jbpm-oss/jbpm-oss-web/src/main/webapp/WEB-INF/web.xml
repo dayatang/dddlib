@@ -94,7 +94,7 @@
 		<url-pattern>/dbinit</url-pattern>
 	</servlet-mapping>
    
-    <servlet>
+    <!--  <servlet>
 		<servlet-name>koalaUISurpport</servlet-name>
 		<servlet-class>org.openkoala.ui.base.KoalaUISurpport</servlet-class>
 	</servlet>
@@ -102,7 +102,7 @@
 	<servlet-mapping>
 		<servlet-name>koalaUISurpport</servlet-name>
 		<url-pattern>/koalaUISurpport</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping>-->
 	
 	<error-page>
 		<error-code>404</error-code>
