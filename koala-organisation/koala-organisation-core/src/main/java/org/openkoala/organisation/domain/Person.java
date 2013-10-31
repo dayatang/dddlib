@@ -9,6 +9,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.openkoala.organisation.IdNumberIsExistException;
@@ -112,6 +113,9 @@ public class Person extends AbstractEntity {
 	}
 	
 	public void checkIdNumberExist() {
+		if (StringUtils.isBlank(idNumber)) {
+			return;
+		}
 		if (isExistIdNumber(idNumber, new Date())) {
 			throw new IdNumberIsExistException();
 		}

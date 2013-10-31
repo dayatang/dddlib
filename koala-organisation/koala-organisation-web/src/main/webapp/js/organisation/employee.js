@@ -194,7 +194,7 @@ var employee = function(){
 				 contents.push({value: item.id, title: item.name});
 			 }
 			 post.select({
-				title: '选择职位',
+				title: '选择岗位',
 				contents: contents
 			});
 		}).fail(function(data){
@@ -271,10 +271,20 @@ var employee = function(){
 		var data = {};
 		data['person.name'] = name.val();
 		data['person.gender'] = gender.getValue();
-		data['person.idNumber'] = idNumber.val();
-		data['person.mobilePhone'] = mobilePhone.val();
-		data['person.familyPhone'] = familyPhone.val();
-		data['person.email'] = email.val();
+		
+		if (checkNotNull(idNumber.val())) {
+			data['person.idNumber'] = $.trim(idNumber.val());
+		}
+		if (checkNotNull(mobilePhone.val())) {
+			data['person.mobilePhone'] = $.trim(mobilePhone.val());
+		}
+		if (checkNotNull(familyPhone.val())) {
+			data['person.familyPhone'] = $.trim(familyPhone.val());
+		}
+		if (checkNotNull(email.val())) {
+			data['person.email'] = $.trim(email.val());
+		}
+		
 		data.name = name.val();
 		data.sn = sn.val();
 		data.entryDate = entryDate.find('input').val();
@@ -322,6 +332,9 @@ var employee = function(){
 			if(!Validation.notNull(dialog, selectDepartment, departmentInput.val(), '请选择所属机构')){
 				return false;
 			}
+			if(!Validation.notNull(dialog, post, post.getValue(), '请选择任职岗位')){
+				return false;
+			}
 		}
 		if (checkNotNull(email.val())) {
 			if (!Validation.email(dialog, email, email.val(), '请输入正确的email')) {
@@ -353,7 +366,7 @@ var employee = function(){
 	/**
 	 * 检查变量是否不为空  true:不空   false:空
 	 */
-	var checkNotNull = function(item){
+	var checkNotNull = function(item) {
 		//不能为空和空格
 		if(item==null || item=="" || item.replace(/(^\s*)|(\s*$)/g, "")=="" ){
 			return false;
