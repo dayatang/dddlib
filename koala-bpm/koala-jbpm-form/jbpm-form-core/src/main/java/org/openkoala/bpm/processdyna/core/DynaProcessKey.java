@@ -255,7 +255,13 @@ public class DynaProcessKey extends AbstractEntity implements Comparable<DynaPro
 
 	public int compareTo(DynaProcessKey key) {
 		if(this.getShowOrder() == key.getShowOrder()){
-			return 0;
+			if(this.getKeyName().compareTo(key.getKeyName())==0){
+				return 0;
+			}else if(this.getKeyName().compareTo(key.getKeyName())<0){
+				return -1;
+			}else{
+				return 1;
+			}
 		}
 		if(this.getShowOrder() < key.getShowOrder()){
 			return -1;

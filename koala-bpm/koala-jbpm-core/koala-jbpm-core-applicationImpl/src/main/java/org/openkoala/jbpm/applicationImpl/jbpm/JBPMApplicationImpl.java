@@ -92,8 +92,7 @@ import com.dayatang.querychannel.support.Page;
 @org.apache.cxf.interceptor.InInterceptors(interceptors = { "org.apache.cxf.transport.common.gzip.GZIPInInterceptor" })
 public class JBPMApplicationImpl implements JBPMApplication {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(JBPMApplicationImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(JBPMApplicationImpl.class);
 
 	@Inject
 	private QueryChannelService queryChannel;

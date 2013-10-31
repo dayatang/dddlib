@@ -8,7 +8,7 @@
         <version>2.1.0-SNAPSHOT</version> 
     </parent>  
     <artifactId>jbpm-form-applicationImpl</artifactId>  
-    <name>process-dyna-applicationImpl</name>  
+    <name>jbpm-form-applicationImpl</name>  
     <packaging>jar</packaging>  
     <url>http://maven.apache.org</url>  
     <properties> 
