@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.junit.After;
@@ -34,8 +33,6 @@ import org.openkoala.jbpm.wsclient.PageTaskVO;
 import org.openkoala.jbpm.wsclient.ProcessVO;
 import org.openkoala.jbpm.wsclient.TaskChoice;
 import org.openkoala.jbpm.wsclient.TaskVO;
-import org.openkoala.jbpm.wsclient.util.KoalaBPMVariable;
-import org.openkoala.jbpm.wsclient.util.XmlParseUtil;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.dayatang.domain.EntityRepository;
@@ -204,6 +201,23 @@ public class BusinessSupportApplicationImplTest {
 		FormShowDTO formShowDTO = instance.getDynaProcessTaskContentForVerify(processIdCanFindForm, processInstanceId, taskId);
 		Assert.assertEquals(historys.size(), formShowDTO.getHistoryLogs().size());
 		Assert.assertEquals(taskChoices.size(), formShowDTO.getTaskChoices().size());
+	}
+	
+	@Test
+	public void testGetDynaProcessTaskContentForHistory() {
+		List<HistoryLogVo> historys = new ArrayList<HistoryLogVo>();
+		historys.add(new HistoryLogVo());
+		when(jbpmApplication.queryHistoryLog(processInstanceId)).thenReturn(historys);
+		
+		List<DynaProcessForm> list = new ArrayList<DynaProcessForm>();
+		DynaProcessForm dynaProcessForm = new DynaProcessForm();
+		dynaProcessForm.setTemplate(template);
+		list.add(dynaProcessForm);
+		when(repository.findByNamedQuery("queryActiveDynaProcessFormByProcessId",
+						new Object[] { processIdCanFindForm }, DynaProcessForm.class)).thenReturn(list);
+		
+		FormShowDTO formShowDTO = instance.getDynaProcessTaskContentForHistory(processIdCanFindForm, processInstanceId, taskId);
+		Assert.assertEquals(historys.size(), formShowDTO.getHistoryLogs().size());
 	}
 
 	@Test

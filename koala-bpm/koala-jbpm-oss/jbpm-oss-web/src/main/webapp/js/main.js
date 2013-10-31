@@ -144,13 +144,13 @@ $(function(){
 	 切换用户
 	 */
 	self.on('switchUser',function(){
-		window.location.href = "login.html";
+		window.location.href = "login.koala";
 	});
 	/*
 	 注销
 	 */
 	self.on('loginOut',function(){
-		window.location.href = "login.html";
+		window.location.href = "login.koala";
 	});
 	$('#userManager').find('li').on('click', function(){
 		self.trigger($(this).data('target'));

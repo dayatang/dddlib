@@ -44,6 +44,13 @@ public class RoleController {
 		return "auth/Role-list";
 	}
 	
+	@RequestMapping("/listByUserId")
+	public String listByUserId(Long userId, String userAccount, ModelMap modelMap) {
+		modelMap.addAttribute("userId", userId);
+		modelMap.addAttribute("userAccount", userAccount);
+		return "auth/Role-List-new";
+	}
+	
 	@ResponseBody
 	@RequestMapping("/abolishResource")
 	public Map<String, Object> abolishResource(ParamsPojo params,RoleVO roleVO,List<ResourceVO> menus) {

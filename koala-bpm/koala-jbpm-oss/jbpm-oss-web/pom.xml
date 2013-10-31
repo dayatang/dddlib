@@ -130,9 +130,11 @@
 			<artifactId>koala-gqc-applicationImpl</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
-		
-		
-		
+		<dependency>
+			<groupId>${db.groupId}</groupId>
+			<artifactId>${db.artifactId}</artifactId>
+			<version>${db.version}</version>
+		</dependency>
 		
 	</dependencies>
 	<build>
