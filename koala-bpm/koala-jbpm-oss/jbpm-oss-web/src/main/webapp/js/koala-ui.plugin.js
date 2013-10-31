@@ -762,7 +762,7 @@
 				items.push('<li data-value="' + content.value + '"' + (content.selected && 'class="selected"') + '><a href="#">' + content.title + '</a></li>');
 			}
 			self.$items.html(items.join(' '));
-			if(items.length > 5){
+			if(self.$items.find('li').length > 5){
 				self.$items.css({'height': '130px', 'overflow-y': 'auto'});
 			}
 			self.$items.find('li').on('click', function(e){
@@ -825,6 +825,13 @@
 		if($(this).data('koala.select')){
 			return $(this).data('koala.select').setItems(contents);
 		}
+	};
+	$.fn.appendItems = function(contents){
+		return $(this).data('koala.select').setItems(contents);
+	};
+	$.fn.resetItems = function(contents){
+		$(this).data('koala.select').$item.empty();
+		return $(this).data('koala.select').setItems(contents);
 	};
 	var old = $.fn.select;
 	$.fn.select = function(option){

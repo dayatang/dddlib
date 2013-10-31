@@ -31,10 +31,8 @@ $(function(){
 	$("#formTemplate").select({
 		contents : templateSelectOpts
 	});
-
-	$("#associationProcess").select({
-		contents : processSelectOpts
-	});
+    //流程通过AJAX加载选项
+	$("#associationProcess").select();
 
 	$("#valOutputTypes").select({
 		contents : valOutputTypeOpts
@@ -244,7 +242,7 @@ $(function(){
     		form.processKeys = fields;
     		$.ajax({
     			type: "POST",
-    			url: "/processform/create.koala",
+    			url: rootPath+"/processform/create.koala",
     			data: {jsondata:JSON.stringify(form)},
     			success: function(data){
     				if(!data.result){
@@ -266,15 +264,7 @@ $(function(){
     
     
     function previewForm(title,formId){
-//    	$.layer({
-//    		type: 2,
-//    		title: ["表单["+title+"] - 预览", true],
-//    		iframe: {
-//    			src: "${pageContext.request.contextPath}/pages/processform/preview.jsp?formId=" + formId,
-//    		},
-//    		area: ["900px", "400px"],
-//    		offset: ["50%", ""]
-//    	});
+
     	$.get('pages/processform/preview.html')
     	 .done(function(data){
     		 var dialog = $(data);
@@ -296,11 +286,11 @@ $(function(){
     }
     
     function initProcessForm(form){
+    	loadJbpmProcessOpts(form);
     	$("#formId").val(form ? form.id : "" );
     	$("#formName").val(form ? form.bizName : "" );
 		$("#formDesc").val(form ? form.bizDescription : "" );
 		$("#formTemplate").setValue(form?form.templateId:"NULL");
-    	$("#associationProcess").setValue(form?form.processId:"NULL");
     	var active = form ? form.active : 'true';
     	$("input[name='isActivated'][value='"+active+"']").click(); 
     	if(currentRowId == 0){
@@ -380,19 +370,12 @@ $(function(){
     	if(!Validation.checkByRegExp(dialog, $("#fieldName"),'^[A-Za-z]{1}[_A-Za-z0-9]+$', field.keyId , '字段id必填且只能是字母开头的数字或字母组成')){
     		return false;
     	}
-    	/*if(!/^[A-Za-z]{1}[_A-Za-z0-9]+$/.test(field.keyId)){
-    		alert('字段id必填且只能是数字或字母组成');
-    		return false;
-    	}*/
     	
     	if(field.validationType == 'NULL'){
     		field.validationType = '';
     		field.validateRuleText = '无';
     	}
     	if(!Validation.notNull(dialog, $("#formFieldTypes"), field.keyType , '请选择字段控件类型')){
-        	return false;
-        }
-    	if(!Validation.notNull(dialog, $("#validateRules"), field.validationType , '请选择验证规则')){
         	return false;
         }
     	if(field.validationType == 'Regex' && !Validation.notNull(dialog, $("#validateExpr"), $("#validateExpr").val() , '请填写自定义验证规则')){
@@ -442,4 +425,20 @@ $(function(){
     		result.push($(this).val());
     	});
     	return result;
+    }
+    
+    function loadJbpmProcessOpts(form){
+    	var params = form ? {usedId:form.processId} : {};
+    	$.get(rootPath + '/processform/getActiveProcesses.koala',params,function(data){
+    		var opts = [];
+    		if(!form)opts.push({value:'NULL',title:'请选择绑定流程',selected:true});
+    		if(data.processes){
+    			data = data.processes;
+    			for(var index in data){
+    				if(form && form.processId != data[index].processId )continue;
+    				opts.push({value:data[index].processId,title:data[index].processName});
+    			}
+    		}
+    		$("#associationProcess").resetItems(opts).setValue(form ? form.processId : 'NULL');
+    	},'json');
     }

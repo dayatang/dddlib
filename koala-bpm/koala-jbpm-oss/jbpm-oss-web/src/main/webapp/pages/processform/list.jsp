@@ -140,7 +140,7 @@
                         <div class="col-lg-6 form-group">
                             <label class="col-lg-4 control-label">字段名称:</label>
                             <div class="col-lg-8">
-                                 <input type="text" class="form-control" id="fieldDesc" placeholder="字段名称">
+                                 <input type="text" class="form-control" id="fieldDesc" placeholder="字段名称"><span class="required">*</span>
                             </div>
                         </div>
                     </div>
@@ -172,7 +172,7 @@
                         <div class="col-lg-12 form-group">
                             <label for="formName" class="col-lg-2 control-label">验证规则:</label>
                             <div class="col-lg-10 rule">
-                                <div id="validateRules" class="btn-group select"></div><span class="required">*</span>
+                                <div id="validateRules" class="btn-group select"></div>
                                 <input class="validateExpr form-control" type="text" style="display:none;"  id="validateExpr" placeholder="正则表达式"><span style="display:none;" class="required">*</span>
                             </div>
                         </div>
@@ -205,18 +205,13 @@
 </div>
 </div>
 <script>
+   var rootPath = "${pageContext.request.contextPath}";
    var templateSelectOpts = [
             		          {value:'NULL',title:'请选择绑定模板',selected:true},
                               <c:forEach items="${templates}" var="t" varStatus="status">  
                               {value:'${t.id}',title:'${t.templateName}'},
                               </c:forEach>
             		      ];
-    var processSelectOpts = [
-                     		   {value:'NULL',title:'请选择关联流程',selected:true},
-                    		   <c:forEach items="${processes}" var="p">  
-                               {value:'${p.processId}',title:'${p.processName}'},
-                               </c:forEach>
-                    		 ];
     
     var fieldSelectOpts = [
             		          {value:'NULL',title:'请选择字段控件类型',selected:true},
