@@ -2,8 +2,7 @@ package org.openkoala.bpm.processdyna.core;
 
 import java.util.List;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 import org.openkoala.koala.util.KoalaBaseSpringTestCase;
 

@@ -1,6 +1,7 @@
 package org.openkoala.bpm.applicationImpl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Named;
@@ -42,9 +43,9 @@ public class ProcessFormOperApplicationImpl implements
 	
 	
 	
-	private static QueryChannelService queryChannel;
+	private QueryChannelService queryChannel;
 	
-	private static QueryChannelService getQueryChannelService(){
+	private QueryChannelService getQueryChannelService(){
 		if(queryChannel==null){
 			queryChannel = InstanceFactory.getInstance(QueryChannelService.class);
 		}
@@ -158,9 +159,9 @@ public class ProcessFormOperApplicationImpl implements
 		return datas;
 	}
 
-	public List<ProcessDTO> getActiveProcesses() {
+	public List<ProcessDTO> getActiveProcesses(String[] ignoreExcludeIds) {
 		List<ProcessDTO> datas = new ArrayList<ProcessDTO>();
-		
+		List<String> ignoreExcludeIdList = ignoreExcludeIds == null ? new ArrayList<String>() : Arrays.asList(ignoreExcludeIds);
 		try {
 			List<ProcessVO> processes = getJBPMApplication().getProcesses();
 			if(processes == null)return datas;
@@ -168,8 +169,9 @@ public class ProcessFormOperApplicationImpl implements
 			//已绑定form的流程列表
 			List<String> existsProcessIds = getQueryChannelService().queryResult(jpql, new Object[]{true});
 			for (ProcessVO process : processes) {
-				//排除已绑定的流程
-				if(existsProcessIds == null || !existsProcessIds.contains(process.getId())){
+				//排除已绑定的流程和忽略排除列表
+				if(ignoreExcludeIdList.contains(process.getId()) 
+						|| existsProcessIds == null || !existsProcessIds.contains(process.getId())){
 					datas.add(new ProcessDTO(process.getId(), process.getName()));
 				}
 			}

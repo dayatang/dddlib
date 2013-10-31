@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.junit.After;
@@ -34,8 +33,6 @@ import org.openkoala.jbpm.wsclient.PageTaskVO;
 import org.openkoala.jbpm.wsclient.ProcessVO;
 import org.openkoala.jbpm.wsclient.TaskChoice;
 import org.openkoala.jbpm.wsclient.TaskVO;
-import org.openkoala.jbpm.wsclient.util.KoalaBPMVariable;
-import org.openkoala.jbpm.wsclient.util.XmlParseUtil;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.dayatang.domain.EntityRepository;
@@ -205,6 +202,23 @@ public class BusinessSupportApplicationImplTest {
 		Assert.assertEquals(historys.size(), formShowDTO.getHistoryLogs().size());
 		Assert.assertEquals(taskChoices.size(), formShowDTO.getTaskChoices().size());
 	}
+	
+	@Test
+	public void testGetDynaProcessTaskContentForHistory() {
+		List<HistoryLogVo> historys = new ArrayList<HistoryLogVo>();
+		historys.add(new HistoryLogVo());
+		when(jbpmApplication.queryHistoryLog(processInstanceId)).thenReturn(historys);
+		
+		List<DynaProcessForm> list = new ArrayList<DynaProcessForm>();
+		DynaProcessForm dynaProcessForm = new DynaProcessForm();
+		dynaProcessForm.setTemplate(template);
+		list.add(dynaProcessForm);
+		when(repository.findByNamedQuery("queryActiveDynaProcessFormByProcessId",
+						new Object[] { processIdCanFindForm }, DynaProcessForm.class)).thenReturn(list);
+		
+		FormShowDTO formShowDTO = instance.getDynaProcessTaskContentForHistory(processIdCanFindForm, processInstanceId, taskId);
+		Assert.assertEquals(historys.size(), formShowDTO.getHistoryLogs().size());
+	}
 
 	@Test
 	public void testGetPorcessInstanceImageStream() {
@@ -219,7 +233,7 @@ public class BusinessSupportApplicationImplTest {
 	public void testVerifyTask() {
 		TaskVerifyDTO taskVerifyDTO = this.createAndInitTaskVerifyDTO();
 		when(jbpmApplication.completeTask(taskVerifyDTO.getProcessInstanceId(), taskVerifyDTO.getTaskId(),
-				taskVerifyDTO.getUser(), this.turnTaskChoiceToXml(taskVerifyDTO.getComment(),
+				taskVerifyDTO.getUser(), instance.convertTaskChoiceToXml(taskVerifyDTO.getComment(),
 						taskVerifyDTO.getTaskChoice()), null)).thenReturn(true);
 		boolean result = instance.verifyTask(taskVerifyDTO);
 		Assert.assertTrue(result);
@@ -244,32 +258,4 @@ public class BusinessSupportApplicationImplTest {
 		return taskChoice;
 	}
 	
-	private String turnTaskChoiceToXml(String comment, TaskChoice taskChoice){
-		return XmlParseUtil.paramsToXml(this.turnTaskChoiceToMap(comment, taskChoice));
-	}
-	
-	private Map<String,Object> turnTaskChoiceToMap(String comment, TaskChoice taskChoice){
-		Map<String,Object> paramsMap = new HashMap<String,Object>();
-		paramsMap.put(KoalaBPMVariable.COMMENT, comment);
-		paramsMap.put(KoalaBPMVariable.RESULT, this.turnToRightType(taskChoice));
-		return paramsMap;
-	}
-	
-	private Object turnToRightType(TaskChoice taskChoice){
-		Object val = taskChoice.getValue();
-		String valueType = taskChoice.getValueType();
-		if ("int".equalsIgnoreCase(valueType)) {
-			val = Integer.parseInt(taskChoice.getValue());
-		}else if ("long".equalsIgnoreCase(valueType)) {
-			val = Long.parseLong(taskChoice.getValue());
-		}else if ("float".equalsIgnoreCase(valueType)) {
-			val = Float.parseFloat(taskChoice.getValue());
-		}else if ("double".equalsIgnoreCase(valueType)) {
-			val = Double.parseDouble(taskChoice.getValue());
-		}else if ("boolean".equalsIgnoreCase(valueType)) {
-			val = Boolean.valueOf(taskChoice.getValue());
-		}
-		return val;
-	}
-
 }

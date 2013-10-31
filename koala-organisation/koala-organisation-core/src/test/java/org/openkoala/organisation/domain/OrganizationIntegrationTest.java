@@ -33,7 +33,11 @@ public class OrganizationIntegrationTest extends AbstractIntegrationTest {
 	
 	@Before
 	public void subSetup() {
-		company1 = organisationUtils.createCompany("总公司", "JG-XXX", date);
+		if (Organization.getTopOrganization() == null) {
+			company1 = organisationUtils.createTopOrganization("总公司", "JG-XXX", date);
+		} else {
+			company1 = organisationUtils.createCompany("总公司", "JG-XXX", date);
+		}
 		company2 = organisationUtils.createCompany("华南分公司", "JG-XXX2", company1, date);
 		department = organisationUtils.createDepartment("财务部", "JG-XXX3", company2, date);
 	}
@@ -81,12 +85,7 @@ public class OrganizationIntegrationTest extends AbstractIntegrationTest {
 	@Test(expected = TerminateRootOrganizationException.class) 
 	public void testTerminateTopOrganization() {
 		Organization organization = Organization.getTopOrganization();
-		if (organization != null) {
-			organization.terminate(now);
-		} else {
-			company1.createAsTopOrganization();
-			company1.terminate(now);
-		}
+		organization.terminate(now);
 	}
 	
 	@Test(expected = TerminateNotEmptyOrganizationException.class) 
@@ -100,8 +99,7 @@ public class OrganizationIntegrationTest extends AbstractIntegrationTest {
 	
 	@Test
 	public void testTerminate() {
-		company1.terminate(now);
-		assertTrue(!company1.isActive(now));
+		company2.terminate(now);
 		assertTrue(!company2.isActive(now));
 		assertTrue(!department.isActive(now));
 	}
