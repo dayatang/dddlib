@@ -9,7 +9,7 @@
 		<version>2.1.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>jbpm-form-core</artifactId>
-	<name>process-dyna-core</name>
+	<name>jbpm-form-core</name>
 	<packaging>jar</packaging>
 	<url>http://maven.apache.org</url>
 	<properties>
