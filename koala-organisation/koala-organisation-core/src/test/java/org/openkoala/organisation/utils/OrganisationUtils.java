@@ -6,6 +6,13 @@ import org.openkoala.organisation.domain.*;
 
 public class OrganisationUtils {
 	
+	public Company createTopOrganization(String name, String sn, Date date) {
+		Company result = new Company(name, sn);
+		result.setCreateDate(date);
+		result.createAsTopOrganization();
+		return result;
+	}
+	
 	public Company createCompany(String name, String sn, Date date) {
 		Company result = new Company(name, sn);
 		result.setCreateDate(date);
