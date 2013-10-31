@@ -17,7 +17,7 @@
   <div id="search" class="searchtitle" style="margin-bottom:5px;">
   	用户名称：<input id="userNameForSearch" type="text" class="form-control input-sm" style="width:150px; display:inline; margin-right:15px;"/>
   	用户帐号：<input id="userAccountForSearch" type="text" class="form-control input-sm" style="width:150px;display:inline;margin-right:15px;"/>
-    <input id="searchButton" type="button" class="btn-normal" onclick="search()" value="查询" />
+    <input id="userSearchButton" type="button" class="btn-normal" onclick="search()" value="查询" />
   </div>
   
   <div id="userGrid"></div> 
@@ -578,7 +578,7 @@
 		});
 
 		// 查询
-		$("#searchButton").click(function() {
+		$("#userSearchButton").click(function() {
 			grid = $("#userGrid").ligerGrid({
 				columns : [ {
 					display : "用户名称",
