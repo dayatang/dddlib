@@ -45,7 +45,7 @@
 				<test.hibernate.show_sql>true</test.hibernate.show_sql>
 				<test.hibernate.dialect>org.hibernate.dialect.H2Dialect</test.hibernate.dialect>
 				<test.db.jdbcDriver>org.h2.Driver</test.db.jdbcDriver>
-				<test.db.connectionURL>jdbc:h2:mem:jbpm-oss</test.db.connectionURL>
+				<test.db.connectionURL>jdbc:h2:mem:jbpm-oss;MVCC=true</test.db.connectionURL>
 				<test.db.username>sa</test.db.username>
 				<test.db.password />
 				<test.db.Type>H2</test.db.Type>
