@@ -219,7 +219,7 @@ public class BusinessSupportApplicationImplTest {
 	public void testVerifyTask() {
 		TaskVerifyDTO taskVerifyDTO = this.createAndInitTaskVerifyDTO();
 		when(jbpmApplication.completeTask(taskVerifyDTO.getProcessInstanceId(), taskVerifyDTO.getTaskId(),
-				taskVerifyDTO.getUser(), this.turnTaskChoiceToXml(taskVerifyDTO.getComment(),
+				taskVerifyDTO.getUser(), instance.convertTaskChoiceToXml(taskVerifyDTO.getComment(),
 						taskVerifyDTO.getTaskChoice()), null)).thenReturn(true);
 		boolean result = instance.verifyTask(taskVerifyDTO);
 		Assert.assertTrue(result);
@@ -244,32 +244,4 @@ public class BusinessSupportApplicationImplTest {
 		return taskChoice;
 	}
 	
-	private String turnTaskChoiceToXml(String comment, TaskChoice taskChoice){
-		return XmlParseUtil.paramsToXml(this.turnTaskChoiceToMap(comment, taskChoice));
-	}
-	
-	private Map<String,Object> turnTaskChoiceToMap(String comment, TaskChoice taskChoice){
-		Map<String,Object> paramsMap = new HashMap<String,Object>();
-		paramsMap.put(KoalaBPMVariable.COMMENT, comment);
-		paramsMap.put(KoalaBPMVariable.RESULT, this.turnToRightType(taskChoice));
-		return paramsMap;
-	}
-	
-	private Object turnToRightType(TaskChoice taskChoice){
-		Object val = taskChoice.getValue();
-		String valueType = taskChoice.getValueType();
-		if ("int".equalsIgnoreCase(valueType)) {
-			val = Integer.parseInt(taskChoice.getValue());
-		}else if ("long".equalsIgnoreCase(valueType)) {
-			val = Long.parseLong(taskChoice.getValue());
-		}else if ("float".equalsIgnoreCase(valueType)) {
-			val = Float.parseFloat(taskChoice.getValue());
-		}else if ("double".equalsIgnoreCase(valueType)) {
-			val = Double.parseDouble(taskChoice.getValue());
-		}else if ("boolean".equalsIgnoreCase(valueType)) {
-			val = Boolean.valueOf(taskChoice.getValue());
-		}
-		return val;
-	}
-
 }
