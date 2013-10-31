@@ -36,5 +36,10 @@ public interface ProcessFormOperApplication {
 
 	public List<DynaProcessTemplateDTO> getActiveProcessTemplates();
 
-	public List<ProcessDTO> getActiveProcesses();
+	/**
+	 * 获取可用流程
+	 * @param ignoreExcludeIds  忽略排除流程ID列表
+	 * @return
+	 */
+	public List<ProcessDTO> getActiveProcesses(String[] ignoreExcludeIds);
 }

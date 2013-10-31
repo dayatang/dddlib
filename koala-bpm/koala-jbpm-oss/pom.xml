@@ -12,7 +12,7 @@
 	<packaging>pom</packaging>
 	<name>koala-jbpm-oss</name>
 	<description>Koala BPM业务流程支撑系统</description>
-	
+
 	<modules>
 		<module>jbpm-oss-conf</module>
 		<module>jbpm-oss-infra</module>
@@ -21,7 +21,7 @@
 		<module>jbpm-oss-applicationImpl</module>
 		<module>jbpm-oss-web</module>
 	</modules>
-	
+
 	<profiles>
 		<profile>
 			<id>jbpmoss</id>
@@ -31,6 +31,7 @@
 			<properties>
 				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
 				<hibernate.show_sql>true</hibernate.show_sql>
+				<db.generateDdl>true</db.generateDdl>
 				<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
 				<db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
 				<db.connectionURL>jdbc:h2:~/db/jbpm-oss;MVCC=true</db.connectionURL>
@@ -39,7 +40,27 @@
 				<db.Type>H2</db.Type>
 				<db.groupId>com.h2database</db.groupId>
 				<db.artifactId>h2</db.artifactId>
+				<!--test DB Config -->
+				<test.hibernate.hbm2ddl.auto>update</test.hibernate.hbm2ddl.auto>
+				<test.hibernate.show_sql>true</test.hibernate.show_sql>
+				<test.hibernate.dialect>org.hibernate.dialect.H2Dialect</test.hibernate.dialect>
+				<test.db.jdbcDriver>org.h2.Driver</test.db.jdbcDriver>
+				<test.db.connectionURL>jdbc:h2:mem:jbpm-oss</test.db.connectionURL>
+				<test.db.username>sa</test.db.username>
+				<test.db.password />
+				<test.db.Type>H2</test.db.Type>
+				<test.db.generateDdl>true</test.db.generateDdl>
+				<test.db.groupId>com.h2database</test.db.groupId>
+				<test.db.artifactId>h2</test.db.artifactId>
 			</properties>
+
+			<dependencies>
+				<dependency>
+					<groupId>${test.db.groupId}</groupId>
+					<artifactId>${test.db.artifactId}</artifactId>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
 		</profile>
 	</profiles>
 
