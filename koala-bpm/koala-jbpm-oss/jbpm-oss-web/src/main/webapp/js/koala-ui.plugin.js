@@ -398,7 +398,18 @@
 				self.$element.trigger('selectedRow', {checked:this.checked, item:self.items[$this.attr('indexValue')]});
 			});
 			this.gridTableBodyTable.find('tr').on('click', function(){
-				$(this).toggleClass('success').find('[data-role="indexCheckbox"]').click();
+				var $this = $(this);
+				if($this.hasClass('success')){
+					$this.removeClass('success').find('[data-role="indexCheckbox"]').removeAttr('checked').parent().removeClass('checked');
+				}else{
+					$this.addClass('success').find('[data-role="indexCheckbox"]').attr('checked', 'checked').parent().addClass('checked');
+				}
+				self.$element.trigger('selectedRow', {checked:this.checked, item:self.items[$this.attr('indexValue')]});
+				if(self.selectedRowsIndex().length == indexCheckboxs.length){
+					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked', 'checked').parent().addClass('checked');
+				}else{
+					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked', '').parent().removeClass('checked');
+				}
 			});
 			self._initPageNo();
 		},
