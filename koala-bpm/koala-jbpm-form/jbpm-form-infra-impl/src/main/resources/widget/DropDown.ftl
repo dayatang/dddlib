@@ -6,6 +6,7 @@
  <script>
   		$(function(){
 	       	   $('body').one('renderSelect', function(){
+	       	   		console.info(111);
 	       	   		$('.select').select({
 						title: '选择数据',
 						contents: [
