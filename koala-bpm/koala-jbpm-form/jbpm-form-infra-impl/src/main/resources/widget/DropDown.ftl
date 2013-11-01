@@ -15,7 +15,7 @@
 					})
 			   });
 	       	   var interVal = setInterval(function(){
-	       			if($('.radio').find('input').length > 0){
+	       			if($('.select').length > 0){
  				 		$('body').trigger('renderSelect');
  				 		clearInterval(interVal);
  				 	}
