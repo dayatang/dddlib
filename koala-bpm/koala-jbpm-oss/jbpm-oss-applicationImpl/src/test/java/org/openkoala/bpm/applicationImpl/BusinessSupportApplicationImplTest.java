@@ -13,7 +13,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.openkoala.bpm.application.dto.DynaProcessHistoryValueDTO;
@@ -33,12 +32,10 @@ import org.openkoala.jbpm.wsclient.PageTaskVO;
 import org.openkoala.jbpm.wsclient.ProcessVO;
 import org.openkoala.jbpm.wsclient.TaskChoice;
 import org.openkoala.jbpm.wsclient.TaskVO;
-import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.dayatang.domain.EntityRepository;
 import com.dayatang.querychannel.support.Page;
 
-@RunWith(PowerMockRunner.class)
 public class BusinessSupportApplicationImplTest {
 	
 	private BusinessSupportApplicationImpl instance = new BusinessSupportApplicationImpl();
