@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.apache.commons.lang3.StringUtils;
 
 import com.dayatang.domain.AbstractEntity;
 
@@ -151,7 +152,7 @@ public class DynaProcessKey extends AbstractEntity implements Comparable<DynaPro
 	}
 
 	public String getValidationType() {
-		return validationType;
+		return StringUtils.trimToEmpty(validationType);
 	}
 
 	public void setValidationType(String validationType) {
@@ -159,7 +160,7 @@ public class DynaProcessKey extends AbstractEntity implements Comparable<DynaPro
 	}
 
 	public String getValidationExpr() {
-		return validationExpr;
+		return StringUtils.trimToEmpty(validationExpr);
 	}
 
 	public void setValidationExpr(String validationExpr) {
@@ -243,9 +244,12 @@ public class DynaProcessKey extends AbstractEntity implements Comparable<DynaPro
 	public String getWidget() {
 		return "<@" + this.keyType + " keyId=\"" + keyId + "\" keyName=\""
 				+ keyName + "\" keyType=\"" + keyType
-				+ "\" security=\"" + security + "\" value=\"" + keyValueForShow + "\"/>";
+				+ "\" security=\"" + security + "\" value=\"" + keyValueForShow 
+				+ "\" validationType=\"" + getValidationType() 
+				+ "\" validationExpr=\"" + getValidationExpr() + "\" />";
 		
 	}
+	
 
 	@Override
 	public String toString() {

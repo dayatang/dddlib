@@ -82,6 +82,8 @@ public class DynaProcessFormTest extends KoalaBaseSpringTestCase{
 		
 		DynaProcessKey apply = new DynaProcessKey("apply_id","申请人",DynaType.Text.name());
 		apply.setShowOrder(1);
+		apply.setValidationType(ValidateRule.Email.name());
+		//apply.setValidationExpr("/^[\u0391-\uFFE5]+$/");
 		DynaProcessKey date = new DynaProcessKey("date","申请日期",DynaType.Date.name());
 		date.setShowOrder(2);
 		DynaProcessKey comment = new DynaProcessKey("comment","申请理由",DynaType.TextArea.name());

@@ -1,8 +1,8 @@
-<#macro DateTime keyId keyName keyType security value>
+<#macro DateTime keyId keyName keyType security value validationType validationExpr>
   <#--${keyName}:&nbsp;&nbsp;<#t>-->
      <#if security=="W">
        <!-- 日期 -->
-<div style="width:190px;" data-role="date" class="input-group"><input type="text" name="${keyId}" id="${keyId}" value="${value}" class="form-control time"/>
+<div style="width:190px;" data-role="date" class="input-group"><input type="text" name="${keyId}" id="${keyId}" value="${value}" class="form-control time" <#if validationType!="">dataType="${validationType}"</#if> <#if validationExpr!="">validateExpr="${validationExpr}"</#if> />
 <a class="input-group-addon add-on glyphicon glyphicon-time"></a></div>
 <script>
 			$(function(){
