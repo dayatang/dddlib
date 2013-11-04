@@ -217,6 +217,9 @@
 				self.gridTableHead.css('left', -$(this).scrollLeft());
 			});
 			this.searchContainer.find('button[data-role="searchBtn"]').on('click', function(){
+				for(var i=0,j=self.options.querys.length; i<j; i++){
+					delete self.searchCondition[self.options.querys[i].value];
+				}
 				var condition = self.condition.getValue();
 				if(!condition){
 					$('body').message({

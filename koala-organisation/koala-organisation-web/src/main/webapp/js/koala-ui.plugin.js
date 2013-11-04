@@ -217,6 +217,9 @@
 				self.gridTableHead.css('left', -$(this).scrollLeft());
 			});
 			this.searchContainer.find('button[data-role="searchBtn"]').on('click', function(){
+				for(var i=0,j=self.options.querys.length; i<j; i++){
+					delete self.searchCondition[self.options.querys[i].value];
+				}
 				var condition = self.condition.getValue();
 				if(!condition){
 					$('body').message({
@@ -398,7 +401,18 @@
 				self.$element.trigger('selectedRow', {checked:this.checked, item:self.items[$this.attr('indexValue')]});
 			});
 			this.gridTableBodyTable.find('tr').on('click', function(){
-				$(this).toggleClass('success').find('[data-role="indexCheckbox"]').click();
+				var $this = $(this);
+				if($this.hasClass('success')){
+					$this.removeClass('success').find('[data-role="indexCheckbox"]').removeAttr('checked').parent().removeClass('checked');
+				}else{
+					$this.addClass('success').find('[data-role="indexCheckbox"]').attr('checked', 'checked').parent().addClass('checked');
+				}
+				self.$element.trigger('selectedRow', {checked:this.checked, item:self.items[$this.attr('indexValue')]});
+				if(self.selectedRowsIndex().length == indexCheckboxs.length){
+					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked', 'checked').parent().addClass('checked');
+				}else{
+					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked', '').parent().removeClass('checked');
+				}
 			});
 			self._initPageNo();
 		},
@@ -762,7 +776,7 @@
 				items.push('<li data-value="' + content.value + '"' + (content.selected && 'class="selected"') + '><a href="#">' + content.title + '</a></li>');
 			}
 			self.$items.html(items.join(' '));
-			if(items.length > 5){
+			if(self.$items.find('li').length > 5){
 				self.$items.css({'height': '130px', 'overflow-y': 'auto'});
 			}
 			self.$items.find('li').on('click', function(e){
@@ -825,6 +839,13 @@
 		if($(this).data('koala.select')){
 			return $(this).data('koala.select').setItems(contents);
 		}
+	};
+	$.fn.appendItems = function(contents){
+		return $(this).data('koala.select').setItems(contents);
+	};
+	$.fn.resetItems = function(contents){
+		$(this).data('koala.select').$item.empty();
+		return $(this).data('koala.select').setItems(contents);
 	};
 	var old = $.fn.select;
 	$.fn.select = function(option){
