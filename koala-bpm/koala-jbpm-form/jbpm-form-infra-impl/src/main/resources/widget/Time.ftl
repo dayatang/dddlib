@@ -1,4 +1,4 @@
-<#macro Time keyId keyName keyType security value>
+<#macro Time keyId keyName keyType security value validationType validationExpr>
   <#--${keyName}:&nbsp;&nbsp;<#t>-->
      <#if security=="W">
 <div style="width:190px;" data-role="date" class="input-group"><input type="text"  name="${keyId}" id="${keyId}" value="${value}" class="form-control time"/>

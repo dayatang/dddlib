@@ -1,4 +1,4 @@
-<#macro Radio keyId keyName keyType security value>
+<#macro Radio keyId keyName keyType security value validationType validationExpr>
   <#--${keyName}:&nbsp;&nbsp;<#t>-->
      <#if security=="W">
 <div class="radio"><span class="checked"><input type="radio" style="opacity: 0;" checked="true"  name="${keyId}" id="${keyId}" value="${value}"></span></div>

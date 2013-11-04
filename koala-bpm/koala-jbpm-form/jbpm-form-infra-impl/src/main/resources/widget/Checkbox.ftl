@@ -1,4 +1,4 @@
-<#macro Checkbox keyId keyName keyType security value>
+<#macro Checkbox keyId keyName keyType security value validationType validationExpr>
   <#--${keyName}:&nbsp;&nbsp;<#t>-->
      <#if security=="W">
 <div class="checker"><span><input type="checkbox"  name="${keyId}" id="${keyId}" value="${value}" value="0" style="opacity: 0;"></span></div>
