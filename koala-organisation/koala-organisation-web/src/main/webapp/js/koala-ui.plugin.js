@@ -470,7 +470,7 @@
 		 */
 		refresh: function(){
 			this.pageNo = Grid.DEFAULTS.pageNo;
-			this.gridTableHeadTable.find('[data-role="selectAll"]').removeAttr('chekced').parent().removeClass('chekced');
+			this.gridTableHeadTable.find('[data-role="selectAll"]').removeAttr('chekced').parent().removeClass('checked');
 			this._loadData();
 		},
 		/**
