@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,13 +22,12 @@
 			top: 20px;
 		}
 		.processDetail {
-			width: 85%;
+			width: 80%;
 			margin-left: auto;
 			margin-right: auto;
 		}
 		.processInitiate-buttons {
 			text-align: center;
-			margin-top: 25px;
 		}
 		.processInitiate-buttons button {
 			margin-right: 15px;
@@ -51,10 +50,17 @@
 		</script>
 	</c:if>
 	<form class="form-horizontal processDetail" role="form" id="form1" action="/businessSupport/startProcess.koala" method="post">
-		${templatehtmlCode }
-		<div class="row processInitiate-buttons">
-		   <button data-dismiss="modal" class="btn btn-default" type="button" role="cancel" onclick="cancel();">取消</button>
-		   <button class="btn btn-success" type="button" onclick="submit();">提交</button>
+		<div class="panel panel-primary">
+		   <div class="panel-heading">发起流程</div>
+		  <div class="panel-body">
+		    	${templatehtmlCode }
+		  </div>
+		  <div class="panel-footer">
+		  		<div class="processInitiate-buttons">
+				   <button data-dismiss="modal" class="btn btn-default" type="button" role="cancel" onclick="cancel();">取消</button>
+				   <button class="btn btn-success" type="button" onclick="submit();">提交</button>
+				</div>
+		  </div>
 		</div>
 		<%-- <input type="hidden" name="dynaProcessKeysForShow" value="${dynaProcessKeysForShow }" /> --%>
 		<input type="hidden" name="processId" value="${processId }" />

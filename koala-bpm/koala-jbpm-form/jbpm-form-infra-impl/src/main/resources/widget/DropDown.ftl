@@ -6,6 +6,7 @@
  <script>
   		$(function(){
 	       	   $('body').one('renderSelect', function(){
+	       	   		console.info(111);
 	       	   		$('.select').select({
 						title: '选择数据',
 						contents: [
@@ -15,7 +16,7 @@
 					})
 			   });
 	       	   var interVal = setInterval(function(){
-	       			if($('.radio').find('input').length > 0){
+	       			if($('.select').length > 0){
  				 		$('body').trigger('renderSelect');
  				 		clearInterval(interVal);
  				 	}
