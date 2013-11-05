@@ -1,0 +1,95 @@
+<div id="userGrid"></div>
+<script src="js/user.js"></script>
+<script>
+	$(function(){
+		var columns = [ 
+					{
+						title : "用户名称",
+						name : "name",
+						width : 150
+					}, 
+					{
+						title : "用户帐号",
+						name : "userAccount",
+						width : 150
+					}, 
+					{
+						title : "用户描述",
+						name : "userDesc",
+						width : 200
+					}, 
+					{
+						title : "是否有效",
+						name : "valid",
+						width : 100,
+						render : function(item, name, index) {
+							return item[name] == true ? "是" : "否";
+						}
+					}, 
+					{
+						title : "最后登录时间",
+						name : "lastLoginTime",
+						width : 120
+					}, 
+					{
+						title : "最后更改时间",
+						name : "lastModifyTime",
+						width : 100
+					} 
+				];
+		 var buttons = [
+            {content: '<button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus"><span>创建</button>', action: 'add'},
+            {content: '<button class="btn btn-success" type="button"><span class="glyphicon glyphicon-edit"></span>&nbsp;修改</button>', action: 'modify'},
+            {content: '<button class="btn btn-danger" type="button"><span class="glyphicon glyphicon-remove"></span>&nbsp;删除</button>', action: 'delete'},
+            {content: '<button class="btn btn-info" type="button"><span class="glyphicon glyphicon-th-large"></span>&nbsp;分配角色</button>', action: 'roleAssign'}
+        ];
+		$('#userGrid').grid({
+			 identity: 'id',
+             columns: columns,
+             buttons: buttons,
+             querys: [{title: '用户名称', value: 'userNameForSearch'},{title: '用户账号', value: 'userAccountForSearch'}],
+             url: '/auth/User/pageJson.koala'
+        }).on({
+        	'add': function(){
+        		userManager().add($(this));
+        	},
+        	'modify': function(event, data){
+        		var indexs = data.data;
+	            var $this = $(this);
+	            if(indexs.length == 0){
+	                $this.message({
+	                    type: 'warning',
+	                    content: '请选择一条记录进行修改'
+	                })
+	                return;
+	            }
+	            if(indexs.length > 1){
+	                $this.message({
+	                    type: 'warning',
+	                    content: '只能选择一条记录进行修改'
+	                })
+	                return;
+	            }
+				userManager().modify(data.item[0], $(this));
+        	},
+        	'delete': function(event, data){
+        		var indexs = data.data;
+	            var $this = $(this);
+        		if(indexs.length == 0){
+		            $this.message({
+		                   type: 'warning',
+		                    content: '请选择要删除的记录'
+		            })
+		             return;
+	            }
+	            $this.confirm({
+	                content: '确定要删除所选记录吗?',
+	                callBack: function(){userManager().deleteUser(data.item, $this);}
+	            });
+        	},
+        	'roleAssign': function(event, data){
+				console.info(data)
+        	}
+        });
+	})
+</script>
