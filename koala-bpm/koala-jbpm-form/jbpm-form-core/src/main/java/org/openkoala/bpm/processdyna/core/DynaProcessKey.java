@@ -136,7 +136,8 @@ public class DynaProcessKey extends AbstractEntity implements Comparable<DynaPro
 	}
 
 	public String getKeyOptions() {
-		return keyOptions;
+		if(keyOptions != null)return keyOptions.replaceAll("\"", "'");
+		return "";
 	}
 
 	public void setKeyOptions(String keyOptions) {
@@ -244,9 +245,11 @@ public class DynaProcessKey extends AbstractEntity implements Comparable<DynaPro
 	public String getWidget() {
 		return "<@" + this.keyType + " keyId=\"" + keyId + "\" keyName=\""
 				+ keyName + "\" keyType=\"" + keyType
-				+ "\" security=\"" + security + "\" value=\"" + keyValueForShow 
+				+ "\" security=\"" + security 
+				+ "\" value=\"" + keyValueForShow 
 				+ "\" validationType=\"" + getValidationType() 
-				+ "\" validationExpr=\"" + getValidationExpr() + "\" />";
+				+ "\" validationExpr=\"" + getValidationExpr() 
+				+ "\" keyOptions=\"" + getKeyOptions() + "\" />";
 		
 	}
 	

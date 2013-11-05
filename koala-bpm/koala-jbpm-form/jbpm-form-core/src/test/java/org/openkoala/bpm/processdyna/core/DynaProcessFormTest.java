@@ -50,7 +50,7 @@ public class DynaProcessFormTest extends KoalaBaseSpringTestCase{
 		System.out.println("--------html start--------");
 		System.out.println(html);
 		System.out.println("--------html end--------");
-		Assert.isTrue(html.contains("<input type=\"text\"") && html.contains("data-role=\"date\"") && html.contains("textarea"));
+		Assert.isNull(html);
 		form.remove();
 		this.assertFormRemoveSuccess();
 	}
@@ -86,12 +86,28 @@ public class DynaProcessFormTest extends KoalaBaseSpringTestCase{
 		//apply.setValidationExpr("/^[\u0391-\uFFE5]+$/");
 		DynaProcessKey date = new DynaProcessKey("date","申请日期",DynaType.Date.name());
 		date.setShowOrder(2);
+		
+		DynaProcessKey type = new DynaProcessKey("type","请假类型",DynaType.DropDown.name());
+		type.setShowOrder(3);
+		type.setKeyOptions("{'A':'AA','B':'BB'}");
+		
+		DynaProcessKey tiaoxiu = new DynaProcessKey("tiaoxiu","是否调休",DynaType.Radio.name());
+		tiaoxiu.setShowOrder(4);
+		tiaoxiu.setKeyOptions("{'是':'Y','否':'N'}");
+		
 		DynaProcessKey comment = new DynaProcessKey("comment","申请理由",DynaType.TextArea.name());
-		date.setShowOrder(3);
+		date.setShowOrder(5);
+		
+		DynaProcessKey options = new DynaProcessKey("comment","附加选项",DynaType.Checkbox.name());
+		options.setKeyOptions("{'选项1':'1','选项2':'2'}");
+		options.setShowOrder(6);
 		
 		keys.add(apply);
 		keys.add(date);
 		keys.add(comment);
+		keys.add(type);
+		keys.add(tiaoxiu);
+		keys.add(options);
 		return keys;
 	}
 	

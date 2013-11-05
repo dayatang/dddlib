@@ -1,4 +1,4 @@
-<#macro Text keyId keyName keyType security value validationType validationExpr>
+<#macro Text keyId keyName keyType security value validationType validationExpr keyOptions>
   <#--${keyName}:&nbsp;&nbsp;<#t>-->
      <#if security=="W">
        <#-- 文本框  -->
