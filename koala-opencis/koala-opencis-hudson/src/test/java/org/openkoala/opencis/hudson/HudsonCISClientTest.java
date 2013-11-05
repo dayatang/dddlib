@@ -11,6 +11,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openkoala.opencis.api.CISClient;
+import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 
 public class HudsonCISClientTest {
@@ -18,22 +19,37 @@ public class HudsonCISClientTest {
 	private static final String SCM_ADDRESS = "http://git.oschina.net/openkoala/koala.git";
 	
 	private Project project;
-	private CISClient cisClient;
+	private HudsonCISClient cisClient;
 	
-	@Before
-	public void setUp() throws Exception {
-		project = createProject();
-		cisClient = new HudsonCISClient();
-	}
-
-	@After
-	public void tearDown() throws Exception {
-		removeProject();
-	}
+//	@Before
+//	public void setUp() throws Exception {
+//		project = createProject();
+//		cisClient = new HudsonCISClient();
+//	}
+//
+//	@After
+//	public void tearDown() throws Exception {
+//		removeProject();
+//	}
 	
 	@Test
 	public void testCreateProject() {
 		cisClient.createProject(project);
+	}
+	
+	@Test
+	public void testCreateUserAccount() {
+		Developer developer = new Developer();
+		developer.setName("zhangsan");
+		developer.setEmail("zhangsan@gmail.com");
+		cisClient.createUserIfNecessary(null, developer);
+	}
+	
+	@Test
+	public void testCreateRole() {
+		cisClient = new HudsonCISClient();
+		cisClient.authenticate("admin", "admin");
+//		cisClient.createRoleIfNessceary(null, null);
 	}
 	
 	private Project createProject() {
