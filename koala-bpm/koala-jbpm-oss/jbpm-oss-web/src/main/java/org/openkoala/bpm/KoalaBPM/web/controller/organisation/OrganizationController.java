@@ -22,9 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * 
  * 机构管理Controller
- *
+ * @author xmfang
  */
 @Controller
 @RequestMapping("/organization")
@@ -71,14 +70,7 @@ public class OrganizationController extends BaseController {
     public Map<String, Object> createDepartment(Long parentId, String parentType, Department department) {
     	Map<String, Object> dataMap = new HashMap<String, Object>();
     	try {
-    		Organization parent = null;
-        	if (parentType.equals(OrganizationDTO.COMPANY)) {
-        		parent = new Company();
-        	} else {
-        		parent = new Department();
-        	}
-        	
-        	parent.setId(parentId);
+    		Organization parent = getBaseApplication().getEntity(Organization.class, parentId);
         	organizationApplication.createDepartment(parent, department);
         	dataMap.put("result", "success");
     	} catch (SnIsExistException exception) {

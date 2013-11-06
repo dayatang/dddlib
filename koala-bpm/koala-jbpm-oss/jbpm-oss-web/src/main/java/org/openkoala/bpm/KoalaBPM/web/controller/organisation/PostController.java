@@ -65,8 +65,7 @@ public class PostController extends BaseController {
 	public Map<String, Object> createPost(Post post, Long organizationId) {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		try {
-			post.setOrganization(Organization.get(Organization.class, organizationId));
-			post.setCreateDate(new Date());
+			post.setOrganization(getBaseApplication().getEntity(Organization.class, organizationId));
 			getBaseApplication().saveParty(post);
 			dataMap.put("result", "success");
 		} catch (OrganizationHasPrincipalYetException exception) {
@@ -75,6 +74,7 @@ public class PostController extends BaseController {
 			dataMap.put("result", "岗位编码: " + post.getSn() + " 已被使用！");
 		} catch (Exception e) {
 			dataMap.put("result", "保存失败！");
+			e.printStackTrace();
 		}
 		return dataMap;
 	}
@@ -89,13 +89,14 @@ public class PostController extends BaseController {
 	public Map<String, Object> updatePost(Post post, Long organizationId) {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		try {
-			post.setOrganization(Organization.get(Organization.class, organizationId));
+			post.setOrganization(getBaseApplication().getEntity(Organization.class, organizationId));
 			getBaseApplication().updateParty(post);
 			dataMap.put("result", "success");
 		} catch (SnIsExistException exception) {
 			dataMap.put("result", "岗位编码: " + post.getSn() + " 已被使用！");
 		} catch (Exception e) {
 			dataMap.put("result", "修改失败！");
+			e.printStackTrace();
 		}
 		return dataMap;
 	}
@@ -104,14 +105,9 @@ public class PostController extends BaseController {
     @RequestMapping("/query-post-by-org")
 	public Map<String, Object> queryPostsOfOrganization(Long organizationId) {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
-		try {
-			Organization organization = getBaseApplication().getEntity(Organization.class, organizationId);
-			if (organization != null) {
-				dataMap.put("result", organization.getPosts(new Date()));
-			}
-		} catch (Exception e) {
-			dataMap.put("result", "查找岗位失败！");
-			e.printStackTrace();
+		Organization organization = getBaseApplication().getEntity(Organization.class, organizationId);
+		if (organization != null) {
+			dataMap.put("result", organization.getPosts(new Date()));
 		}
 		return dataMap;
 	}
@@ -120,18 +116,13 @@ public class PostController extends BaseController {
     @RequestMapping("/paging-query-post-by-org")
 	public Map<String, Object> pagingQueryPostsOfOrganization(Long organizationId, PostDTO example, int page, int pagesize) {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
-		try {
-			Organization organization = getBaseApplication().getEntity(Organization.class, organizationId);
-			Page<PostDTO> posts = postApplication.pagingQueryPostsOfOrganizatoin(organization, example, page, pagesize);
-			
-			dataMap.put("Rows", posts.getResult());
-			dataMap.put("start", page * pagesize - pagesize);
-			dataMap.put("limit", pagesize);
-			dataMap.put("Total", posts.getTotalCount());
-		} catch (Exception e) {
-			dataMap.put("result", "查找岗位失败！");
-			e.printStackTrace();
-		}
+		Organization organization = getBaseApplication().getEntity(Organization.class, organizationId);
+		Page<PostDTO> posts = postApplication.pagingQueryPostsOfOrganizatoin(organization, example, page, pagesize);
+		
+		dataMap.put("Rows", posts.getResult());
+		dataMap.put("start", page * pagesize - pagesize);
+		dataMap.put("limit", pagesize);
+		dataMap.put("Total", posts.getTotalCount());
 		return dataMap;
 	}
 	
@@ -148,6 +139,7 @@ public class PostController extends BaseController {
 			dataMap.put("data", PostDTO.generateDtoBy(getBaseApplication().getEntity(Post.class, id)));
 		} catch (Exception e) {
 			dataMap.put("error", "查询指定岗位失败！");
+			e.printStackTrace();
 		}
 		return dataMap;
 	}
@@ -166,7 +158,6 @@ public class PostController extends BaseController {
 			dataMap.put("result", "success");
 		} catch (TerminateHasEmployeePostException exception) {
 			dataMap.put("result", "还有员工在此岗位上任职，不能撤销！");
-			exception.printStackTrace();
 		} catch (Exception e) {
 			dataMap.put("result", "撤销员工岗位失败！");
 			e.printStackTrace();
@@ -193,7 +184,6 @@ public class PostController extends BaseController {
 			dataMap.put("result", "success");
 		} catch (TerminateHasEmployeePostException exception) {
 			dataMap.put("result", "还有员工在此岗位上任职，不能撤销！");
-			exception.printStackTrace();
 		} catch (Exception e) {
 			dataMap.put("result", "撤销员工岗位失败！");
 			e.printStackTrace();

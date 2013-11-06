@@ -1,126 +1,126 @@
 package org.openkoala.organisation.application.impl;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.only;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
-import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.junit.runner.RunWith;
+import org.openkoala.organisation.application.OrganizationApplication;
 import org.openkoala.organisation.domain.Company;
+import org.openkoala.organisation.domain.Department;
 import org.openkoala.organisation.domain.Employee;
+import org.openkoala.organisation.domain.EmployeePostHolding;
 import org.openkoala.organisation.domain.Organization;
 import org.openkoala.organisation.domain.OrganizationLineManagement;
-
-import com.dayatang.domain.EntityRepository;
-import com.dayatang.querychannel.service.QueryChannelService;
-import com.dayatang.querychannel.support.Page;
+import org.openkoala.organisation.domain.Person;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 /**
- * 组织机构应用实现层单元测试
- * @author zyb
- * @since Oct 7, 2013 10:38:02 AM
+ * 职务应用接口实现单元测试
+ * @author xmfang
  *
  */
-@Ignore
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({ OrganizationLineManagement.class, EmployeePostHolding.class })
 public class OrganizationApplicationImplTest {
+
+	private OrganizationApplication organizationApplication = new OrganizationApplicationImpl();
 	
-//	@Mock
-//	private EntityRepository repository;
-//	
-//	@Mock
-//	private QueryChannelService queryChannelService;
-//	
-//	private OrganizationApplicationImpl organizationApplication = new OrganizationApplicationImpl();
-//	
-//	private Organization company = new Company("foreveross");
-//	
-//	@Before
-//	public void setUp() {
-//		MockitoAnnotations.initMocks(this);
-//		Organization.setRepository(repository);
-//		organizationApplication.setQueryChannelService(queryChannelService);
-//	}
-//
+	@Test
+	public void testCreateAsTopOrganization() {
+		Company company = mock(Company.class);
+		organizationApplication.createAsTopOrganization(company);
+		verify(company, only()).createAsTopOrganization();
+	}
+	
+	@Test
+	public void testCreateCompany() {
+		Company parent = new Company("总公司", "COM-001");
+		Company company = mock(Company.class);
+		organizationApplication.createCompany(parent, company);
+		verify(company, only()).createUnder(parent);
+	}
+	
+	@Test
+	public void testGetParentOfOrganization() {
+		Date date = new Date();
+		Company parent = new Company("总公司", "COM-001");
+		Department child = new Department("财务部", "DEP-001");
+		
+		PowerMockito.mockStatic(OrganizationLineManagement.class);
+		PowerMockito.when(OrganizationLineManagement.getParentOfOrganization(child, date)).thenReturn(parent);
+		assertEquals(parent, organizationApplication.getParentOfOrganization(child, date));
+	}
+	
+	@Test
+	public void testFindChildrenOfOrganization() {
+		Date date = new Date();
+		Company parent = new Company("总公司", "COM-001");
+		Department child1 = new Department("财务部", "DEP-001");
+		Department child2 = new Department("行政部", "DEP-002");
+		
+		List<Organization> children = new ArrayList<Organization>();
+		children.add(child1);
+		children.add(child2);
+		
+		PowerMockito.mockStatic(OrganizationLineManagement.class);
+		PowerMockito.when(OrganizationLineManagement.findChildrenOfOrganization(parent, date)).thenReturn(children);
+		assertEquals(children, organizationApplication.findChildrenOfOrganization(parent, date));
+	}
+	
+	@Test
+	public void testCreateDepartment() {
+		Company parent = new Company("总公司", "COM-001");
+		Department department = mock(Department.class);
+		
+		organizationApplication.createDepartment(parent, department);
+		verify(department, only()).createUnder(parent);
+	}
+	
+	@Test
+	public void testTerminateEmployeeOrganizationRelation() {
+		Date date = new Date();
+		Person person1 = new Person("张三");
+		Employee employee1 = new Employee(person1, date);
+		
+		Person person2 = new Person("李四");
+		Employee employee2 = new Employee(person2, date);
+		
+		Set<Employee> employees = new HashSet<Employee>();
+		employees.add(employee1);
+		employees.add(employee2);
+		
+		Company company = new Company("总公司", "COM-001");
+		
+		PowerMockito.mockStatic(EmployeePostHolding.class);
+		
+		organizationApplication.terminateEmployeeOrganizationRelation(company, employees);
+		PowerMockito.verifyStatic(only());
+		EmployeePostHolding.terminateEmployeeOrganizationRelation(company, employees);
+	}
+	
 //	@Test
-//	public void testCreateOrganization() {
-//		Organization result = organizationApplication.createCompany(company);
-//		assertThat(result.getName(), is("foreveross"));
-//		verify(repository).save(company);
-//	}
-//	
-//	@Test
-//	public void testGetOrganization() {
-//		when(repository.get(Organization.class, 1L)).thenReturn(company);
-//		assertThat(organizationApplication.getOrganization(1L), is(company));
-//	}
-//	
-//	@Test
-//	public void testAssignChildOrganization() {
-//		Organization child = new Company("abc");
-//		organizationApplication.assignChildOrganization(company, child, new Date());
-//		OrganizationLineManagement organizationLineManagement = new OrganizationLineManagement(company, child, new Date());
-//		verify(repository).save(organizationLineManagement);
-//	}
-//	
-//	@Test
-//	public void testTerminateOrganization() {
-//		organizationApplication.terminateOrganization(company);
-//		verify(repository).save(company);
-//	}
-//	
-//	@Test
-//	@SuppressWarnings({ "unchecked", "rawtypes" })
-//	public void testFindEmployeesByOrganization() {
-//		String jpql = "select holding.responsible from EmployeeOrganizationHolding holding join holding.commissioner commissioner where commissioner.id=?";
-//		List<Employee> data = new ArrayList<Employee>();
-//		data.add(new Employee("zyb"));
-//		Page employees = new Page(1, 1, 10, data);
-//		when(queryChannelService.queryPagedResultByPageNo(jpql, new Object[] { 1L }, 1, 10)).thenReturn(employees);
-//		Page<Employee> result = organizationApplication.findEmployeesByOrganization(1L, 1, 10);
-//		assertEquals(data, result.getResult());
-//	}
-//	
-//	@Test
-//	public void testGetParentOfOrganization() {
+//	public void testAssignChildOrganization() throws Exception {
 //		Date now = new Date();
-//		List<Organization> parents = new ArrayList<Organization>();
-//		parents.add(company);
-//		Map<String, Object> params = new HashMap<String, Object>();
-//		params.put("organization", new Company("AA"));
-//		params.put("date", now);
-//		when(repository.findByNamedQuery("getParentOfOrganization", params, Organization.class)) //
-//			.thenReturn(parents);
-//		Organization parent = organizationApplication.getParentOfOrganization(new Company("AA"), now);
-//		assertEquals(parents.get(0), parent);
-//	}
-//	
-//	@Test
-//	public void testFindChildrenOfOrganization() {
-//		List<Organization> children = new ArrayList<Organization>();
-//		children.add(new Company("AA"));
-//		children.add(new Company("BB"));
+//		Company parent = new Company("总公司", "COM-001");
+//		Department child = new Department("财务部", "DEP-001");
 //		
-//		Date now = new Date();
-//		Map<String, Object> params = new HashMap<String, Object>();
-//		params.put("organization", company);
-//		params.put("date", now);
-//		when(repository.findByNamedQuery("findChildrenOfOrganization", params, Organization.class)) //
-//			.thenReturn(children);
+//		OrganizationLineManagement organizationLineManagement = PowerMockito.mock(OrganizationLineManagement.class);
+//		PowerMockito.whenNew(OrganizationLineManagement.class).withArguments(parent, child, now).thenReturn(organizationLineManagement);
 //		
-//		List<Organization> results = organizationApplication.findChildrenOfOrganization(company, now);
-//		
-//		assertEquals(children, results);
+//		organizationApplication.assignChildOrganization(parent, child, now);
+//		PowerMockito.verifyNew(OrganizationLineManagement.class).withArguments(parent, child, now);
+//		verify(organizationLineManagement, only()).save();
 //	}
 	
 }

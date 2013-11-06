@@ -1,5 +1,7 @@
 package org.openkoala.organisation.application.dto;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.openkoala.organisation.domain.Post;
 
 public class ResponsiblePostDTO {
@@ -64,6 +66,22 @@ public class ResponsiblePostDTO {
 		result.setPostDescription(post.getDescription());
 		
 		return result;
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		if (!(other instanceof ResponsiblePostDTO)) {
+			return false;
+		}
+		ResponsiblePostDTO that = (ResponsiblePostDTO) other;
+		return new EqualsBuilder().append(postId, that.postId)
+				.append(principal, that.principal)
+				.isEquals();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(postId).append(principal).toHashCode();
 	}
 	
 }
