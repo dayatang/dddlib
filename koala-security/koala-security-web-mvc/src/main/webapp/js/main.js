@@ -90,7 +90,7 @@ $(function(){
 	/*
 	 *打开一个Tab
 	 */
-	$.fn.openTab = function(target, title, mark, id){
+	$.fn.openTab = function(target, title, mark, id, param){
 		var mainc =   $('.g-mainc');
 		var tabs = mainc.find('ul.nav');
 		var contents =  mainc.find('div.tab-content');
@@ -104,6 +104,7 @@ $(function(){
 		}
 		var tab = $('<li><a href="#'+mark+'" data-toggle="tab"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><span>'+title+'<span></a></li>');
 		content = $('<div id="'+mark+'" class="tab-pane" data-value="'+id+'"></div>');
+		content.data(param);
 		loadContent(content, target);
 		contents.append(content);
 		var closeBtn = tab.appendTo(tabs).on('click',function(){
@@ -137,7 +138,7 @@ $(function(){
 	 */
 	self.on('modifyPwd',function(){
 		$('body').modifyPassword({
-			service: 'auth-User-updatePassword.action'
+			service: 'auth/User/updatePassword.koala'
 		});
 	});
 	/*

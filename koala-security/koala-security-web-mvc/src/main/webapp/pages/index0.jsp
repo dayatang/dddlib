@@ -5,10 +5,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <title>Koala流程系统</title>
+    <title>Koala权限系统</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
+    <link href="/lib/z-tree/css/zTreeStyle.css"   rel="stylesheet">
     <link href="/css/main.css"   rel="stylesheet">
     <link href="/css/koala.css"   rel="stylesheet">
 </head>
@@ -40,7 +41,7 @@
                 	<a data-toggle="collapse" href="#userRight"><i class="glyphicon glyphicon-user"></i>&nbsp;用户角色管理&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
 	                <ul id="userRight" class="second-level-menu">
 	                    <li class="submenu" data-role="openTab" data-target="pages/auth/user-list.html" data-title="用户管理" data-mark="userList"><a ><i class="glyphicon glyphicon-hand-right"></i>&nbsp;用户管理</a></li>
-	                    <li class="submenu" data-role="openTab" data-target="pages/auth/Role-List-new.jsp" data-title="角色管理" data-mark="roleList"><a ><i class="glyphicon glyphicon-hand-right"></i>&nbsp;角色管理</a></li>
+	                    <li class="submenu" data-role="openTab" data-target="pages/auth/role-list.html" data-title="角色管理" data-mark="roleList"><a ><i class="glyphicon glyphicon-hand-right"></i>&nbsp;角色管理</a></li>
 	                </ul>
 	            </li>
 	        </ul>
@@ -61,6 +62,7 @@
 	<script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/koala-ui.plugin.js' />"></script>	
+	<script type="text/javascript" src="<c:url value='/lib/z-tree/js/jquery.ztree.all-3.5.min.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/main.js' />"></script>
 </body>

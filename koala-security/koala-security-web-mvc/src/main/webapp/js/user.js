@@ -12,7 +12,7 @@ var userManager = function(){
 	 */
 	var add = function(grid){
 		dataGrid = grid;
-		$.get('pages/auth/userTemplate.html').done(function(data){
+		$.get('pages/auth/user-template.html').done(function(data){
 			init(data);
 		});
 	};
@@ -21,7 +21,7 @@ var userManager = function(){
 	 */
 	var modify = function(item, grid){
 		dataGrid = grid;
-		$.get('pages/auth/userTemplate.html').done(function(data){
+		$.get('pages/auth/user-template.html').done(function(data){
 			init(data,item);
 			setData(item);
 		});
@@ -160,9 +160,139 @@ var userManager = function(){
 		data['userVO.valid'] = dialog.find(':radio:checked').val();
 		return data;
 	};
+	/**
+	 * 分配角色
+	 */
+	var assignRole = function(userId, userAccount){
+		$(this).openTab('/pages/auth/role-list.html', 
+			userAccount+'的角色管理', 'roleManager_'+userId, userId, {userId: userId, userAccount:userAccount});
+	};
+	/**
+	 * 分配用户
+	 */
+	var assignUser = function(roleId, grid){
+		$.get('pages/auth/select-user.html').done(function(data){
+			var dialog = $(data);
+			dialog.find('#save').on('click',function(){
+				var indexs = dialog.find('#selectUserGrid').data('koala.grid').selectedRowsIndex();
+				if(indexs.length == 0){
+					$('body').message({
+						type: 'warning',
+						content: '请选择要分配的用户'
+					});
+					return;
+				}
+				var data = {};
+				data['roleVO.id'] = roleId;
+				for(var i=0,j=indexs.length; i<j; i++){
+					data['users['+i+'].id'] = indexs[i];
+				}
+				$.post('auth/Role/assignUsers.koala', data).done(function(data){
+					if(data.result == 'success'){
+						$('body').message({
+							type: 'success',
+							content: '保存成功'
+						});
+						dialog.modal('hide');
+						grid.grid('refresh');
+					}else{
+						$('body').message({
+							type: 'error',
+							content: data.result
+						});
+					}
+				}).fail(function(data){
+					$('body').message({
+						type: 'error',
+						content: '保存失败'
+					});
+				});
+			}).end().modal({
+				keyboard: false
+			}).on({
+					'hidden.bs.modal': function(){
+						$(this).remove();
+					},
+					'shown.bs.modal': function(){
+						initSelectUserGrid(roleId, dialog);
+					},
+					'complete': function(){
+						$('body').message({
+							type: 'success',
+							content: '保存成功'
+						});
+						$(this).modal('hide');
+						dataGrid.grid('refresh');
+					}
+			});
+		});
+	};
+	/**
+	 * 初始化角色选择grid
+	 */
+	var initSelectUserGrid = function(roleId, dialog){
+		var columns = [ 
+					{
+						title : "用户名称",
+						name : "name",
+						width : 150
+					}, 
+					{
+						title : "用户帐号",
+						name : "userAccount",
+						width : 150
+					}, 
+					{
+						title : "是否有效",
+						name : "valid",
+						width : 100,
+						render : function(item, name, index) {
+							return item[name] == true ? "是" : "否";
+						}
+					}
+				];
+		dialog.find('#selectUserGrid').grid({
+			 identity: 'id',
+             columns: columns,
+             querys: [{title: '用户名称', value: 'userNameForSearch'},{title: '用户账号', value: 'userAccountForSearch'}],
+             url: baseUrl+'queryUsersForAssign.koala?roleId='+roleId
+        });
+	};
+	/**
+	 * 从角色下删除用户
+	 */
+	var removeUserForRole = function(roleId, users, grid){
+		var data = {};
+		for(var i=0,j=users.length; i<j; i++){
+			data['users['+i+'].id'] = users[i].id;
+		}
+		data.roleId = roleId;
+		$.post(baseUrl + 'removeUserForRole.koala', data).done(function(data){
+			if(data.result == 'success'){
+				$('body').message({
+					type: 'success',
+					content: '删除成功'
+				});
+				grid.grid('refresh');
+			}else{
+				$('body').message({
+					type: 'error',
+					content: data.result
+				});
+			}
+		}).fail(function(data){
+				$('body').message({
+					type: 'error',
+					content: '删除失败'
+				});
+			});
+	};
 	return {
 		add: add,
 		modify: modify,
-		deleteUser: deleteUser
+		deleteUser: deleteUser,
+		assignRole: assignRole,
+		assignUser: assignUser,
+		removeUserForRole: removeUserForRole
 	};
 };
