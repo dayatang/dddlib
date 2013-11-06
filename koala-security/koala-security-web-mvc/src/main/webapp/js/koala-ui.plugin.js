@@ -691,7 +691,7 @@
 		return false;
 	};
 	ModifyPassword.DEFAULTS.TEMPLATE = '<div class="modal fade" id="modifyPwd">' +
-		'<div class="modal-dialog modify-pwd">' +
+		'<div class="modal-dialog modify-pwd" style="padding-top:80px;">' +
 		'<div class="modal-content">' +
 		'<div class="modal-header">' +
 		'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
