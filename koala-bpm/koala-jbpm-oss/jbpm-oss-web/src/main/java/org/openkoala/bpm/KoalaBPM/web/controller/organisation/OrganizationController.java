@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.openkoala.organisation.SnIsExistException;
+import org.openkoala.organisation.TerminateNotEmptyOrganizationException;
 import org.openkoala.organisation.TerminateRootOrganizationException;
 import org.openkoala.organisation.application.OrganizationApplication;
 import org.openkoala.organisation.application.dto.EmployeeDTO;
@@ -187,6 +188,8 @@ public class OrganizationController extends BaseController {
 			dataMap.put("result", "success");
 		} catch (TerminateRootOrganizationException exception) {
 			dataMap.put("result", "不能撤销根机构！");
+		} catch (TerminateNotEmptyOrganizationException exception) {
+			dataMap.put("result", "该机构下还有员工，不能撤销！");
 		}
 		return dataMap;
 	}
@@ -200,8 +203,13 @@ public class OrganizationController extends BaseController {
     @RequestMapping("/terminate-department")
 	public Map<String, Object> terminateDepartment(Department department) {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
-		getBaseApplication().terminateParty(department);
-		dataMap.put("result", "success");
+		try {
+			getBaseApplication().terminateParty(department);
+			dataMap.put("result", "success");
+		} catch (TerminateNotEmptyOrganizationException exception) {
+			dataMap.put("result", "该机构下还有员工，不能撤销！");
+		}
+		
 		return dataMap;
 	}
 

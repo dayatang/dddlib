@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.openkoala.organisation.SnIsExistException;
+import org.openkoala.organisation.TerminateNotEmptyOrganizationException;
 import org.openkoala.organisation.TerminateRootOrganizationException;
 import org.openkoala.organisation.application.BaseApplication;
 import org.openkoala.organisation.application.OrganizationApplication;
@@ -218,10 +219,24 @@ public class OrganizationControllerTest {
 	}
 	
 	@Test
+	public void testCatchTerminateNotEmptyOrganizationExceptionWhenTerminateCompany() {
+		Company company = new Company("广州分公司", "COM-XXX2");
+		doThrow(new TerminateNotEmptyOrganizationException()).when(baseApplication).terminateParty(company);
+		assertEquals("该机构下还有员工，不能撤销！", organizationController.terminateCompany(company).get("result"));
+	}
+	
+	@Test
 	public void testTerminateDepartment() {
 		Department department = new Department("财务部", "DEP-XXX2");
 		organizationController.terminateDepartment(department);
 		verify(baseApplication, only()).terminateParty(department);
+	}
+	
+	@Test
+	public void testCatchTerminateNotEmptyOrganizationExceptionWhenTerminateDepartment() {
+		Department department = new Department("财务部", "DEP-XXX2");
+		doThrow(new TerminateNotEmptyOrganizationException()).when(baseApplication).terminateParty(department);
+		assertEquals("该机构下还有员工，不能撤销！", organizationController.terminateDepartment(department).get("result"));
 	}
 	
 }
