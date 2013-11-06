@@ -8,10 +8,20 @@ Number:{expression:/^-?(\d+|[1-9]\d*\.\d+|0\.\d*[1-9]\d*|0?\.0+|0)$/,errorMsg:"�
 English:{expression:/^[A-Za-z]+$/,errorMsg:"仅支持英文字符"},
 Chinese:{expression:/^[\u0391-\uFFE5]+$/,errorMsg:"仅支持中文字符"},
 URL:{expression:/^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$/,errorMsg:"URL地址格式不正确"},
+Zip:{expression:/^[1-9]\d{5}$/,errorMsg:"邮政编码格式不正确"},
+QQ:{expression:/^[1-9]\d{4,8}$/,errorMsg:"QQ号码格式不正确"},
+Integer:{expression:/^[-\+]?\d+$/,errorMsg:"仅支持整数"},
+Double:{expression:/^[-\+]?\d+(\.\d+)?$/,errorMsg:"仅支持小数"},
 Regex:{errorMsg:"格式不正确"},
 UnSafe : /^(([A-Z]*|[a-z]*|\d*|[-_\~!@#\$%\^&\*\.\(\)\[\]\{\}<>\?\\\/\'\"]*)|.{0,5})$|\s/,
 IsSafe : function(str){return !this.UnSafe.test(str);},
-SafeString : {expression:"this.IsSafe(value)",errorMsg:"仅支持中文字符"},
+SafeString : {expression:"this.IsSafe(value)",errorMsg:"请不要输入危险字符"},
+Limit : {expression:"this.limit(value.length,getAttribute('min'), getAttribute('max'))",errorMsg:"超出范围"},
+Date : {expression:"this.IsDate(value, getAttribute('min'), getAttribute('format'))",errorMsg:"日期格式不正确"},
+Repeat : {expression: "value == document.getElementsByName(getAttribute('to'))[0].value",errorMsg:"仅支持中文字符"},
+Range : {expression:"getAttribute('min') < value && value < getAttribute('max')",errorMsg:"超出范围"},
+Compare : {expression:"this.compare(value,getAttribute('operator'),getAttribute('to'))",errorMsg:"仅支持中文字符"},
+Group : {expression:"this.MustChecked(getAttribute('name'), getAttribute('min'), getAttribute('max'))",errorMsg:"仅支持中文字符"},
 ErrorItem : [document.forms[0]],
 ErrorMessage : ["以下原因导致提交失败：\t\t\t\t"],
 Validate : function(theForm, mode){
@@ -37,10 +47,8 @@ case "Date" :
 case "Repeat" :
 case "Range" :
 case "Compare" :
-case "Custom" :
 case "Group" : 
 case "Limit" :
-case "LimitB" :
 case "SafeString" :
 if(!eval(validateExpr)) {
 this.AddError(i, errorMsg);
@@ -67,10 +75,9 @@ this.ErrorItem[1].focus();
 break;
 case 3 :
 try{
-//$(this.ErrorItem[1]).addClass('highlight');
-var content = this.ErrorMessage[1].replace(/\d+:/,"&nbsp;");
-$(this.ErrorItem[1]).ligerTip({content: content});
+var content = this.ErrorMessage[1].replace(/\d+:/,"");
 //window.console.log(content);
+$(this.ErrorItem[1]).popover({content: content}).popover('show');
 }
 catch(e){alert(e.description);}
 
@@ -96,11 +103,7 @@ ClearState : function(elem){
 with(elem){
 if(style.color == "red")
 style.color = "";
-var ligertipid = getAttribute("ligertipid"); 
-if(ligertipid && ligertipid != ""){
-	removeAttribute("ligertipid");
-	$(elem).ligerHideTip();
-}
+
 }
 },
 AddError : function(index, str){

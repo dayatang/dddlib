@@ -217,6 +217,9 @@
 				self.gridTableHead.css('left', -$(this).scrollLeft());
 			});
 			this.searchContainer.find('button[data-role="searchBtn"]').on('click', function(){
+				for(var i=0,j=self.options.querys.length; i<j; i++){
+					delete self.searchCondition[self.options.querys[i].value];
+				}
 				var condition = self.condition.getValue();
 				if(!condition){
 					$('body').message({
@@ -404,6 +407,12 @@
 				}else{
 					$this.addClass('success').find('[data-role="indexCheckbox"]').attr('checked', 'checked').parent().addClass('checked');
 				}
+				self.$element.trigger('selectedRow', {checked:this.checked, item:self.items[$this.attr('indexValue')]});
+				if(self.selectedRowsIndex().length == indexCheckboxs.length){
+					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked', 'checked').parent().addClass('checked');
+				}else{
+					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked', '').parent().removeClass('checked');
+				}
 			});
 			self._initPageNo();
 		},
@@ -461,10 +470,7 @@
 		 */
 		refresh: function(){
 			this.pageNo = Grid.DEFAULTS.pageNo;
-			var selectAll = this.gridTableHeadTable.find('[data-role="selectAll"]');
-			if(selectAll.is(':checked')){
-				selectAll.click();
-			}
+			this.gridTableHeadTable.find('[data-role="selectAll"]').removeAttr('chekced').parent().removeClass('checked');
 			this._loadData();
 		},
 		/**
@@ -526,19 +532,19 @@
 		this.content = this.$element.find('[data-toggle="content"]').html(this.options.content);
 		switch(this.options.type){
 			case 'success':
-				this.content.before($('<span class="glyphicon glyphicon glyphicon-ok-sign" style="margin-right: 10px; font-size:18px;"/>'));
+				this.content.before($('<span class="glyphicon glyphicon-info-sign" style="margin-right: 10px; font-size:16px;"/>'));
 				this.$element.addClass('alert-success');
 				break;
 			case 'info':
-				this.content.before($('<span class="glyphicon glyphicon-info-sign" style="margin-right: 10px;font-size:18px;"/>'));
+				this.content.before($('<span class="glyphicon glyphicon-info-sign" style="margin-right: 10px;font-size:16px;"/>'));
 				this.$element.addClass('alert-info');
 				break;
 			case 'warning':
-				this.content.before($('<span class="glyphicon glyphicon glyphicon-warning-sign" style="margin-right: 10px;font-size:18px;"/>'));
+				this.content.before($('<span class="glyphicon glyphicon-warning-sign" style="margin-right: 10px;font-size:16px;"/>'));
 				this.$element.addClass('alert-warning');
 				break;
 			case 'error':
-				this.content.before($('<span class="glyphicon glyphicon glyphicon-remove-sign" style="margin-right: 10px;font-size:18px; "/>'));
+				this.content.before($('<span class="glyphicon glyphicon-exclamation-sign" style="margin-right: 10px;font-size:16px; "/>'));
 				this.$element.addClass('alert-danger');
 				break;
 		}
@@ -554,8 +560,8 @@
 		}, this.options.delay);
 	};
 	Message.DEFAULTS.TEMPLATE = '<div class="alert message" style="width: auto;min-width: 120px;max-width: 300px; padding: 8px;text-align: left;z-index: 20000;">' +
-		'<button type="button" class="close" data-dismiss="alert" aria-hidden="true" style="font-size:20px;position:relative;top:1px">&times;</button>' +
-		'<span data-toggle="content" style="position:relative;top:-2px;"></span>&nbsp;&nbsp;</div>';
+		'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
+		'<span data-toggle="content"></span>&nbsp;&nbsp;</div>';
 	var old = $.fn.message;
 	$.fn.message = function(option){
 		return this.each(function(){
@@ -656,7 +662,7 @@
 
 				}
 			}).fail(function(msg){
-				
+				console.info(msg);
 			});
 	};
 	ModifyPassword.prototype.isNull = function(obj){
@@ -767,7 +773,7 @@
 				items.push('<li data-value="' + content.value + '"' + (content.selected && 'class="selected"') + '><a href="#">' + content.title + '</a></li>');
 			}
 			self.$items.html(items.join(' '));
-			if(items.length > 5){
+			if(self.$items.find('li').length > 5){
 				self.$items.css({'height': '130px', 'overflow-y': 'auto'});
 			}
 			self.$items.find('li').on('click', function(e){
@@ -830,6 +836,13 @@
 		if($(this).data('koala.select')){
 			return $(this).data('koala.select').setItems(contents);
 		}
+	};
+	$.fn.appendItems = function(contents){
+		return $(this).data('koala.select').setItems(contents);
+	};
+	$.fn.resetItems = function(contents){
+		$(this).data('koala.select').$item.empty();
+		return $(this).data('koala.select').setItems(contents);
 	};
 	var old = $.fn.select;
 	$.fn.select = function(option){
