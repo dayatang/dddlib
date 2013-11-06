@@ -6,7 +6,6 @@
 <%@ include file="/pages/common/header.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>欢迎使用Koala</title>
-<link href="css.css" rel="stylesheet" type="text/css" />
 <link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
 <script type="text/javascript" src="<c:url value='/js/jquery/jquery-1.8.3.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
