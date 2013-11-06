@@ -3,13 +3,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@ include file="/pages/common/header.jsp" %>
+<%@ include file="/pages/common/header.jsp"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>欢迎使用Koala</title>
+<link href="css.css" rel="stylesheet" type="text/css" />
 <link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
+<script type="text/javascript" src="<c:url value='/js/jquery/jquery-1.8.3.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/js/koala-ui.plugin.js' />"></script>	
 <style type="text/css">
 @charset "UTF-8";
 /* CSS Document */
-* .* {
+*   .* {
 	margin: 0;
 	padding: 0;
 }
@@ -22,7 +28,7 @@ body {
 .head {
 	height: 30px;
 	width: 100%;
-	background: #428BCA;
+	background: #f2f2f2;
 	padding: 0;
 	margin: 0;
 }
@@ -36,10 +42,9 @@ body {
 }
 
 .logo img {
-	height: 59px;
-	width: 94px;
+	height: 90px;
+	width: 200px;
 	overflow: hidden;
-	margin-top:20px;
 	float: left;
 }
 
@@ -70,88 +75,72 @@ body {
 
 .login_con_R {
 	float: left;
-	width: 360px;
+	width: 376px;
 	height: 332px;
+	border: 1px solid #dce7f4;
 }
 
-.login_con_R .panel-body .input-group {
-	width: 75%;
-	margin-left: auto;
-	margin-right: auto;
+.login_con_R h4 {
+	background: #F2F2F2;
+	line-height: 36px;
+	width: 376px;
+	padding: 0px 6px;
+	border: 1px solid #fff;
+	border-bottom: 1px solid #d4d4d4;
+	margin-top: 0px;
+}
+
+.login_con_R ul {
+	margin-top: 50px;
+	margin-left: 20px;
+}
+
+.login_con_R li {
+	list-style-type: none;
+	line-height: 30px;
+	padding-left: 20px;
+	margin-bottom: 30px;
+}
+.login_con_R li label {
+	padding-right: 15px;
+}
+.login_con_R li input {
+	width: 192px;
+	display: inline;
+}
+
+.login_con_R button {
 	margin-top: 25px;
-} 
-.login_con_R .panel-body .input-group:first-child {
-	margin-top: 35px;
-}
-.login_con_R .panel-body .input-group:last-child {
-	margin-top: 55px;
-}
-.login_con_R .panel-body .input-group span {
-	color: #357EBD;
-}
-.login_con_R .panel-body .input-group  input {
-	height: 38px;
-}
-.login_con_R .panel {
-	margin-bottom: 0;
-	padding-bottom: 0;
-	height: 332px;
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
-}
-.login_con_R .panel .panel-heading {
-	border-top-left-radius: 0;
-}
-.login_con_R .panel .panel-title {
+	margin-left: 28%;
+	width: 210px;
 	text-align: center;
-	font-size: 18px;
 }
-.login_con_R .login-btn {
-	width: 75%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 18%;
-	text-align: center
-}
-.login_con_R .login-btn button {
-	width: 90%;
-}
+
 .login_footer {
 	clear: both;
-	margin-top: 8%;
-	width: 100%;
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
+	line-height: 40px;
+	color: #999;
+	margin: 20px auto;
+	font-size: 12px;
+	width: 300px;
 }
 </style>
 <script type="text/javascript">
-
-function login(){
-	$('#loginFormId').submit();
-}
-
-/**
- * 按回车键时，触发登录按钮
- */
-function keyDown(e){
-	//这样写是为了兼容FireFox和IE，因为IE的onkeydown在FF中不起作用
-	var ev =window.event||e; 
- 	//按回车键
-  	if (ev.keyCode==13) {
-   		ev.returnValue=false;
-   		ev.cancel = true;
-   		var sub =  document.getElementById("btnSubmit");
-  		sub.click();
-  	} 
-}
-
+	function login() {
+		$('#loginFormId').submit();
+	}
+	
+	function refreshCode(){
+		
+		$('#checkCode').attr('src',"jcaptcha.jpg");
+	}
+	
 </script>
 </head>
 <body>
 	<div class="head"></div>
 	<div class="logo">
-		<img src="images/background/koala.png" />
+		<img src="images/background/logo.gif" />
 		<div>Koala系统</div>
 	</div>
 	<div class="login_con">
@@ -160,28 +149,24 @@ function keyDown(e){
 		</div>
 		<div class="login_con_R">
 			<FORM id=loginFormId method=post action="j_spring_security_check">
-				<div class="panel panel-primary">
-			        <div class="panel-heading">
-			          <h3 class="panel-title">登陆</h3>
-			        </div>
-			        <div class="panel-body">
-				          <div class="input-group">
-			                   <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-			                   <input type="text" name="j_username" id="j_username" class="form-control" placeholder="用户名">
-			              </div>
-			              <div class="input-group">
-			                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-			                    <input type="password" name="j_password" id="j_password"   onkeydown="keyDown(event)" class="form-control" placeholder="密码">
-			              </div>
-			              <div class="input-group login-btn">
-						  	<button class="btn btn-primary" id="btnSubmit" onclick="javascript:login()">登陆</button>
-						  </div>
-			        </div>
-		      	</div>
-		   </FORM>
+				<h4>登录</h4>
+				<ul>
+				    <c:if test="${param.login_error == '1' }">
+				     	<script>
+				     		$('body').message({
+								type: 'error',
+								content: '用户名或密码错误!'
+							});
+				     	</script>
+				    </c:if>
+					<li><label class="col-lg-3">用户名:</label><input type="text" name="j_username" id="j_username" class="form-control"/></li>
+					<li><label class="col-lg-3">密&nbsp;&nbsp;&nbsp;码:</label><input type="password" name="j_password" id="j_password" class="form-control"/></li>
+				</ul>
+				<button class="btn btn-primary" onclick="javascript:login()">登陆</button>
+			</FORM>
 		</div>
 	</div>
-	<div class="login_footer"><h3>Koala 版权信息 2013</h3></div>
+	<div class="login_footer">Koala 版权信息 2013</div>
 </body>
 </html>
 </html>
