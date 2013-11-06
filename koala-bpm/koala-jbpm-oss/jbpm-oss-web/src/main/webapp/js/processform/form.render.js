@@ -47,6 +47,12 @@ FormRender = {
        });
    },
    renderDatePicker : function(targetId,format){
-	   
+	   var pickDate = format.indexOf('date')>=0;
+	   var pickTime = format.indexOf('time')>=0;
+	   $("#"+targetId).datetimepicker({
+	       language: 'zh-CN',
+	       pickDate: pickDate,
+	       pickTime: pickTime
+	   	});
    }
 }

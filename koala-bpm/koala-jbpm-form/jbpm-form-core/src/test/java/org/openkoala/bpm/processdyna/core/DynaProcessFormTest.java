@@ -50,7 +50,7 @@ public class DynaProcessFormTest extends KoalaBaseSpringTestCase{
 		System.out.println("--------html start--------");
 		System.out.println(html);
 		System.out.println("--------html end--------");
-		Assert.isNull(html);
+		Assert.notNull(html);
 		form.remove();
 		this.assertFormRemoveSuccess();
 	}
@@ -96,11 +96,11 @@ public class DynaProcessFormTest extends KoalaBaseSpringTestCase{
 		tiaoxiu.setKeyOptions("{'是':'Y','否':'N'}");
 		
 		DynaProcessKey comment = new DynaProcessKey("comment","申请理由",DynaType.TextArea.name());
-		date.setShowOrder(5);
+		comment.setShowOrder(6);
 		
 		DynaProcessKey options = new DynaProcessKey("comment","附加选项",DynaType.Checkbox.name());
 		options.setKeyOptions("{'选项1':'1','选项2':'2'}");
-		options.setShowOrder(6);
+		options.setShowOrder(5);
 		
 		keys.add(apply);
 		keys.add(date);
