@@ -83,5 +83,6 @@
 	<script type="text/javascript" src="<c:url value='/js/tree.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/main.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/processform/form.render.js' />"></script>
 </body>
 </html>
