@@ -145,13 +145,13 @@ public class OrganizationDTO implements Serializable {
 			return false;
 		}
 		OrganizationDTO that = (OrganizationDTO) other;
-		return new EqualsBuilder().append(this.getName(), that.getName())
+		return new EqualsBuilder().append(this.getSn(), that.getSn())
 				.isEquals();
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder().append(getName()).toHashCode();
+		return new HashCodeBuilder().append(getSn()).toHashCode();
 	}
 
 	@Override

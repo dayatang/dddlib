@@ -133,7 +133,6 @@
 						$(this).attr('checked','checked').parent().addClass('checked').closest('tr').addClass('success');						
 					});
 				}else{
-					console.info($(this).parent().removeClass('checked'));
 					self.gridTableBodyTable.find('.checker').find('input:checkbox').each(function(){
 						$(this).removeAttr('checked').parent().removeClass('checked').closest('tr').removeClass('success');						
 					});
@@ -588,9 +587,14 @@
 	"use strict";
 	var ModifyPassword = function(container, option){
 		this.container = $(container);
+		this.options = option;
 		this.$element = $(ModifyPassword.DEFAULTS.TEMPLATE);
-		this.modal = this.$element.modal({
+		this.$element.modal({
 			keyboard: false
+		}).on({
+			'hidden.bs.modal': function(){
+				$(this).remove();
+			}
 		});
 		this.oldPwd = this.$element.find('#oldPassword');
 		this.newPwd = this.$element.find('#newPassword') ;
@@ -635,6 +639,7 @@
 		}
 	};
 	ModifyPassword.prototype.save = function(){
+		var self = this;
 		if(this.isNull(this.oldPwd) || this.isNull(this.newPwd) || this.isNull(this.confirmPwd)){
 			return;
 		}
@@ -648,21 +653,29 @@
 				.show();
 			return;
 		}
-		var data = "oldPassword=" + this.oldPwd.val() + "&userVO.userPassword=" + this.newPwd.val();
+		var data = "oldPassword=" + this.oldPwd.val() + "&userPassword=" + this.newPwd.val();
 		$.ajax({
 			method:"post",
-			url:"auth-User-updatePassword.action",
+			url: this.options.service,
 			data:data
 		}).done(function(msg){
 				if (msg.result == "success") {
-
-				} else if (msg.result == "failure") {
-
+					$('body').message({
+						type: 'success',
+						content: '修改成功'
+					});
+					self.$element.modal('hide');
 				}else{
-
+					$('body').message({
+						type: 'error',
+						content: msg.result
+					});
 				}
 			}).fail(function(msg){
-				console.info(msg);
+				$('body').message({
+						type: 'error',
+						content: '修改失败'
+				});
 			});
 	};
 	ModifyPassword.prototype.isNull = function(obj){
@@ -678,7 +691,7 @@
 		return false;
 	};
 	ModifyPassword.DEFAULTS.TEMPLATE = '<div class="modal fade" id="modifyPwd">' +
-		'<div class="modal-dialog modify-pwd">' +
+		'<div class="modal-dialog modify-pwd" style="padding-top:80px;">' +
 		'<div class="modal-content">' +
 		'<div class="modal-header">' +
 		'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
@@ -722,11 +735,7 @@
 			var $this = $(this);
 			var data = $this.data('koala.modifyPassowrd');
 			var options = $.extend({}, ModifyPassword.DEFAULTS, $this.data(), typeof option == 'object' && option)
-			if (data) {
-				data.modal && data.modal.modal('show');
-			} else {
-				$this.data('koala.modifyPassowrd', (data = new ModifyPassword(this, options)));
-			}
+			$this.data('koala.modifyPassowrd', (data = new ModifyPassword(this, options)));
 		});
 	};
 	$.fn.modifyPassword .Constructor = ModifyPassword;

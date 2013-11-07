@@ -3,8 +3,9 @@ package org.openkoala.organisation.application.impl;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -34,6 +35,7 @@ public class EmployeeApplicationImpl implements EmployeeApplication {
 	@Inject
 	private QueryChannelService queryChannel;
 
+	@Override
 	public Organization getOrganizationOfEmployee(Employee employee, Date date) {
 		return employee.getOrganization(date);
 	}
@@ -171,16 +173,17 @@ public class EmployeeApplicationImpl implements EmployeeApplication {
 	@Override
 	public void transformPost(Employee employee, Set<ResponsiblePostDTO> dots) {
 		List<EmployeePostHolding> existHoldings = EmployeePostHolding.getByEmployee(employee, new Date());
-		List<EmployeePostHolding> existHoldingsAtTransformations = new ArrayList<EmployeePostHolding>();
+		Set<Post> postsForOutgoing = employee.getPosts(new Date());
+		Map<Post, Boolean> postsForAssign = new HashMap<Post, Boolean>();
 		
 		boolean existAccountsability = false;
 		for (ResponsiblePostDTO dto : dots) {
 			Post post = Post.get(Post.class, dto.getPostId());
 			for (EmployeePostHolding ejHolding : existHoldings) {
 				if (ejHolding.getCommissioner().equals(post)) {
+					postsForOutgoing.remove(post);
 					ejHolding.setPrincipal(dto.isPrincipal());
 					ejHolding.save();
-					existHoldingsAtTransformations.add(ejHolding);
 					existAccountsability = true;
 					break;
 				}
@@ -189,14 +192,13 @@ public class EmployeeApplicationImpl implements EmployeeApplication {
 				existAccountsability = false;
 				continue;
 			}
-			employee.assignPost(post, dto.isPrincipal());
+			postsForAssign.put(post, dto.isPrincipal());
 		}
 		
-		existHoldings.removeAll(existHoldingsAtTransformations);
-		Set<Post> postsForOutgoing = new HashSet<Post>();
-		for (EmployeePostHolding holding : existHoldings) {
-			postsForOutgoing.add(holding.getCommissioner());
+		for (Post post : postsForAssign.keySet()) {
+			employee.assignPost(post, postsForAssign.get(post));
 		}
+		
 		employee.outgoingPosts(postsForOutgoing);
 	}
 
