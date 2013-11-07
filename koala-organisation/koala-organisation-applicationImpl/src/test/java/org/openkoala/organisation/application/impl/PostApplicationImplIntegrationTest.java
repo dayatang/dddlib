@@ -57,7 +57,6 @@ public class PostApplicationImplIntegrationTest extends AbstractIntegrationTest 
 		assertEquals(1, postDTOs.size());
 		
 		List<PostDTO> postDTOs2 = postApplication.pagingQueryPosts(new PostDTO(), 1, 10).getResult();
-		assertEquals(2, postDTOs2.size());
 		assertTrue(postDTOs2.contains(PostDTO.generateDtoBy(post1)));
 		assertTrue(postDTOs2.contains(PostDTO.generateDtoBy(post2)));
 	}

@@ -10,7 +10,6 @@ import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.openkoala.organisation.EmployeeMustHaveAtLeastOnePostException;
 import org.openkoala.organisation.HasPrincipalPostYetException;
 import org.openkoala.organisation.IdNumberIsExistException;
 import org.openkoala.organisation.utils.OrganisationUtils;
@@ -117,13 +116,13 @@ public class EmployeeIntegrationTest extends AbstractIntegrationTest {
 		assertTrue(allPosts.contains(post4));
 	}
 	
-	@Test(expected = EmployeeMustHaveAtLeastOnePostException.class)
-	public void testOutgoingAllPosts() {
-		Set<Post> posts = new HashSet<Post>();
-		posts.add(post1);
-		posts.add(post2);
-		employee.outgoingPosts(posts);
-	}
+//	@Test(expected = EmployeeMustHaveAtLeastOnePostException.class)
+//	public void testOutgoingAllPosts() {
+//		Set<Post> posts = new HashSet<Post>();
+//		posts.add(post1);
+//		posts.add(post2);
+//		employee.outgoingPosts(posts);
+//	}
 	
 	@Test
 	public void testOutgoingPosts() {

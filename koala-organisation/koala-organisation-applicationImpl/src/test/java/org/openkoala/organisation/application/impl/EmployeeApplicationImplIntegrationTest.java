@@ -12,6 +12,7 @@ import javax.inject.Inject;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.openkoala.organisation.EmployeeMustHaveAtLeastOnePostException;
 import org.openkoala.organisation.application.EmployeeApplication;
 import org.openkoala.organisation.application.dto.EmployeeDTO;
 import org.openkoala.organisation.application.dto.ResponsiblePostDTO;
@@ -74,7 +75,6 @@ public class EmployeeApplicationImplIntegrationTest extends AbstractIntegrationT
 		assertEquals(1, employeeDTOs.size());
 		
 		List<EmployeeDTO> employeeDTOs2 = employeeApplication.pagingQueryEmployees(new EmployeeDTO(), 1, 10).getResult();
-		assertEquals(2, employeeDTOs2.size());
 		assertTrue(employeeDTOs2.contains(EmployeeDTO.generateDtoBy(employee1)));
 		assertTrue(employeeDTOs2.contains(EmployeeDTO.generateDtoBy(employee2)));
 	}
@@ -118,8 +118,6 @@ public class EmployeeApplicationImplIntegrationTest extends AbstractIntegrationT
 		Employee employee4 = organisationUtils.createEmployee("朱八", "XXXXXX4", "EMP-XXX4", date);
 		
 		List<EmployeeDTO> employeeDTOs = employeeApplication.pagingQueryEmployeesWhoNoPost(new EmployeeDTO(), 1, 10).getResult();
-		assertEquals(2, employeeDTOs.size());
-		
 		assertTrue(employeeDTOs.contains(EmployeeDTO.generateDtoBy(employee3)));
 		assertTrue(employeeDTOs.contains(EmployeeDTO.generateDtoBy(employee4)));
 	}
@@ -144,6 +142,11 @@ public class EmployeeApplicationImplIntegrationTest extends AbstractIntegrationT
 		assertEquals(2, posts.size());
 		assertTrue(posts.contains(post1));
 		assertTrue(posts.contains(post2));
+	}
+	
+	@Test(expected = EmployeeMustHaveAtLeastOnePostException.class)
+	public void testEmployeeMustHaveAtLeastOnePostExceptionWhenTransformPost() {
+		employeeApplication.transformPost(employee2, new HashSet<ResponsiblePostDTO>());
 	}
 	
 	@Test
