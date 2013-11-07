@@ -17,23 +17,50 @@ public interface ProcessFormOperApplication {
 	 */
 	public void createDynaProcessForm(DynaProcessFormDTO form);
 
-	
+	/**
+	 * 分页查询表单列表
+	 * @param search
+	 * @param currentPage
+	 * @param pageSize
+	 * @return
+	 */
 	public Page<DynaProcessFormDTO> queryDynaProcessFormsByPage(DynaProcessFormDTO search,int currentPage, int pageSize);
 
+	/**
+	 * 按ID查询表单
+	 * @param id
+	 * @return
+	 */
 	public DynaProcessFormDTO getDynaProcessFormById(Long id);
 	
+	/**
+	 * 删除表单
+	 * @param ids
+	 */
 	public void deleteDynaProcessFormById(Long[] ids);
 
-	public void publishProcessTemplate(DynaProcessTemplateDTO template);
-
-	public DynaProcessTemplateDTO getDynaProcessTemplate(String templateName);
-
+	/**
+	 * 获取字段控件类型列表
+	 * @return
+	 */
 	public List<SelectOptions> getDataTypeList();
 	
+	/**
+	 * 获取验证规则列表
+	 * @return
+	 */
 	public List<SelectOptions> getValidateRules();
 	
+	/**
+	 * 获取字段值类型列表
+	 * @return
+	 */
 	public List<SelectOptions> getFieldValTypeList();
 
+	/**
+	 * 获取当前所有可用模板
+	 * @return
+	 */
 	public List<DynaProcessTemplateDTO> getActiveProcessTemplates();
 
 	/**

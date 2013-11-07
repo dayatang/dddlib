@@ -2,11 +2,13 @@ package org.openkoala.bpm.KoalaBPM.application.impl;
 
 import javax.inject.Inject;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openkoala.bpm.application.ProcessFormOperApplication;
 import org.openkoala.bpm.application.dto.DynaProcessFormDTO;
 import org.openkoala.bpm.application.dto.DynaProcessKeyDTO;
+import org.openkoala.bpm.processdyna.core.DynaProcessForm;
 import org.openkoala.bpm.processdyna.core.DynaType;
 import org.openkoala.koala.util.KoalaBaseSpringTestCase;
 
@@ -32,7 +34,7 @@ public class TestDynaProcessForm extends KoalaBaseSpringTestCase{
 	}
 	
 	@Test
-	public void testAddNewDynaProcessForm(){
+	public void testProcessFormOperApplication(){
 		DynaProcessFormDTO form = new DynaProcessFormDTO();
 		form.setBizDescription("Test form");
 		form.setBizName("testForm");
@@ -47,6 +49,18 @@ public class TestDynaProcessForm extends KoalaBaseSpringTestCase{
 		form.getProcessKeys().add(comment);
 		
 		application.createDynaProcessForm(form);
+		
+		DynaProcessForm form1 = DynaProcessForm.queryActiveDynaProcessFormByProcessId("APPLY_BPM");
+		Assert.assertNotNull(form1);
+		
+		//修改
+		form.setId(form1.getId());
+		form.setBizDescription("Test form2222");
+		application.createDynaProcessForm(form);
+		
+		//删除
+		application.deleteDynaProcessFormById(new Long[]{form1.getId()});
 	}
+
 
 }

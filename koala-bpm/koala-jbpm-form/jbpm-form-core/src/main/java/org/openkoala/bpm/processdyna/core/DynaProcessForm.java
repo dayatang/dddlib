@@ -1,12 +1,13 @@
 package org.openkoala.bpm.processdyna.core;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -287,7 +288,8 @@ public class DynaProcessForm extends AbstractEntity {
 	private Map<String,DynaProcessKey> getDynaProcessKeys(){
 		Map<String,DynaProcessKey> dynaProcessKeysMap = new TreeMap<String,DynaProcessKey>();
 		//将keys按showOrder升序排序
-		Set<DynaProcessKey> keysSort = new TreeSet<DynaProcessKey>(keys);
+		List<DynaProcessKey> keysSort = new ArrayList<DynaProcessKey>(keys);
+		Collections.sort(keysSort);
 		for(DynaProcessKey key : keysSort){
 			dynaProcessKeysMap.put(key.getKeyId(), key);
 		}
