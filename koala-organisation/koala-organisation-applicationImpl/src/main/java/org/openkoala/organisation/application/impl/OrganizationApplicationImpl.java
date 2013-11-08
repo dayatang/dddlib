@@ -75,7 +75,7 @@ public class OrganizationApplicationImpl implements OrganizationApplication {
 
 	@Override
 	public Department createDepartment(Organization parent, Department department) {
-		department.createUnder(Organization.get(Organization.class, parent.getId()));
+		department.createUnder(parent);
 		return department;
 	}
 

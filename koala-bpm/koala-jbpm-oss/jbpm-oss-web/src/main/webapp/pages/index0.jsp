@@ -12,6 +12,7 @@
     <link href="/css/main.css"   rel="stylesheet">
     <link href="/css/koala.css"   rel="stylesheet">
     <link href="/css/datetimepicker.css"   rel="stylesheet">
+      <link href="/lib/z-tree/css/zTreeStyle.css"   rel="stylesheet">
 </head>
 <body>
 	<div class="g-head">
@@ -48,8 +49,8 @@
 	            <li>
                 <a data-toggle="collapse" href="#userRight"><i class="glyphicon glyphicon-user"></i>&nbsp;用户角色管理&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
 	                <ul id="userRight" class="second-level-menu">
-	                    <li class="submenu" data-role="openTab" data-target="pages/auth/User-List-new.jsp" data-title="用户管理" data-mark="userList"><a ><i class="glyphicon glyphicon-hand-right"></i>&nbsp;用户管理</a></li>
-	                    <li class="submenu" data-role="openTab" data-target="pages/auth/Role-List-new.jsp" data-title="角色管理" data-mark="roleList"><a ><i class="glyphicon glyphicon-hand-right"></i>&nbsp;角色管理</a></li>
+	                    <li class="submenu" data-role="openTab" data-target="pages/auth/user-list.html" data-title="用户管理" data-mark="userList"><a ><i class="glyphicon glyphicon-hand-right"></i>&nbsp;用户管理</a></li>
+	                    <li class="submenu" data-role="openTab" data-target="pages/auth/role-list.html" data-title="角色管理" data-mark="roleList"><a ><i class="glyphicon glyphicon-hand-right"></i>&nbsp;角色管理</a></li>
 	                </ul>
 	            </li>
 	             <li>
@@ -82,6 +83,8 @@
 	<script type="text/javascript" src="<c:url value='/js/datetimepicker.js' />" ></script>
 	<script type="text/javascript" src="<c:url value='/js/tree.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/lib/z-tree/js/jquery.ztree.all-3.5.min.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/main.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/processform/form.render.js' />"></script>
 </body>
 </html>

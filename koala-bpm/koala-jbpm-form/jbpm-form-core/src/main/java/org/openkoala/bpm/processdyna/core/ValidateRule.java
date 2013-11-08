@@ -2,7 +2,7 @@ package org.openkoala.bpm.processdyna.core;
 
 public enum ValidateRule {
 
-    Email("邮箱"), Mobile("手机号"), Number("数字"), English("英文字符"), Regex("自定义规则");
+	English("英文字符"),Chinese("中文字符"),Number("数字"),Email("邮箱"), Mobile("手机号"),Regex("自定义规则");
     private final String text;
 
     public String getText() {

@@ -131,15 +131,6 @@ public class ProcessFormOperApplicationImpl implements
 		return new Page<DynaProcessFormDTO>(start, page.getTotalPageCount(), pageSize, datas);
 	}
 
-
-	public void publishProcessTemplate(DynaProcessTemplateDTO template) {
-		
-	}
-
-	public DynaProcessTemplateDTO getDynaProcessTemplate(String templateName) {
-		return null;
-	}
-
 	public List<SelectOptions> getDataTypeList() {
 		List<SelectOptions> list = new ArrayList<SelectOptions>();
 		for (DynaType e : DynaType.values()) {
@@ -175,13 +166,7 @@ public class ProcessFormOperApplicationImpl implements
 					datas.add(new ProcessDTO(process.getId(), process.getName()));
 				}
 			}
-			//TODO
-			//datas.add(new ProcessDTO("qingjia", "请假"));
-			//datas.add(new ProcessDTO("jiaban", "加班"));
-			//datas.add(new ProcessDTO("yuzhi", "预支"));
 		} catch (Exception e) {
-			// TODO: handle exception
-			//datas.add(new ProcessDTO("qingjia", "请假"));
 			LOG.error("load process list", e);
 		}
 		

@@ -3,6 +3,9 @@ package org.openkoala.organisation.application.dto;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.openkoala.organisation.domain.Employee;
 import org.openkoala.organisation.domain.Gender;
 import org.openkoala.organisation.domain.Organization;
@@ -250,6 +253,26 @@ public class EmployeeDTO {
 		result.setTerminateDate(employee.getTerminateDate());
 		
 		return result;
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		if (!(other instanceof EmployeeDTO)) {
+			return false;
+		}
+		EmployeeDTO that = (EmployeeDTO) other;
+		return new EqualsBuilder().append(this.getSn(), that.getSn())
+				.isEquals();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getSn()).toHashCode();
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append(getName()).build();
 	}
 	
 }

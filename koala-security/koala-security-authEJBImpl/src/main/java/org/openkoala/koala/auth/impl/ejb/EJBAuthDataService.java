@@ -194,26 +194,6 @@ public class EJBAuthDataService implements AuthDataService {
      * @return
      */
     public List<String> getAttributes(String res) {
-        List<String> atts = new ArrayList<String>();
-        JdbcManager dbmanager = new JdbcManager(this.config);
-        ResultSet rs = dbmanager.getResAuth(res);
-        try {
-            while (rs.next()) {
-                String roleName = rs.getString("ROLE_NAME");
-                atts.add(roleName);
-            }
-        } catch (SQLException e) {
-            LOGGER.info(e.getMessage());
-            return null;
-        }finally
-        {
-            try {
-                rs.close();
-                dbmanager.destroy();
-            } catch (SQLException e) {
-                LOGGER.info(e.getMessage());
-            }
-        }
-        return atts;
+    	return getAllReourceAndRoles().get(res);
     }
 }

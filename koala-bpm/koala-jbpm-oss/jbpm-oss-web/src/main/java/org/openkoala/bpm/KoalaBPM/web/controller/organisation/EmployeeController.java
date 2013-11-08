@@ -34,7 +34,7 @@ import com.dayatang.querychannel.support.Page;
  */
 @Controller
 @RequestMapping("/employee")
-public class EmloyeeController extends BaseController {
+public class EmployeeController extends BaseController {
 	
 	@Autowired
 	private EmployeeApplication employeeApplication;

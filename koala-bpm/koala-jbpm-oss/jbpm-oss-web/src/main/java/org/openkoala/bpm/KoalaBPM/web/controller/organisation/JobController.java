@@ -1,7 +1,6 @@
 package org.openkoala.bpm.KoalaBPM.web.controller.organisation;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -57,7 +56,7 @@ public class JobController extends BaseController {
 	 */
 	@ResponseBody
     @RequestMapping("/query-all")
-	public Map<String, Object> QueryAllJobs() {
+	public Map<String, Object> queryAllJobs() {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		dataMap.put("data", getBaseApplication().findAll(Job.class));
 		return dataMap;
@@ -73,7 +72,6 @@ public class JobController extends BaseController {
 	public Map<String, Object> createJob(Job job) {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		try {
-			job.setCreateDate(new Date());
 			getBaseApplication().saveParty(job);
 			dataMap.put("result", "success");
 		} catch (SnIsExistException exception) {
@@ -115,15 +113,8 @@ public class JobController extends BaseController {
     @ResponseBody
     @RequestMapping("/get/{id}")
 	public Map<String,Object> get(@PathVariable("id") Long id) {
-		Map<String, Object> dataMap = null;
-		try {
-			dataMap = new HashMap<String, Object>();
-			dataMap.put("data", getBaseApplication().getEntity(Job.class, id));
-		} catch (Exception e) {
-        	if(dataMap != null){
-                dataMap.put("error", "查询指定职务失败！");
-        	}
-		}
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		dataMap.put("data", getBaseApplication().getEntity(Job.class, id));
 		return dataMap;
 	}
 	
@@ -148,7 +139,7 @@ public class JobController extends BaseController {
 	 */
 	@ResponseBody
     @RequestMapping(value = "/terminateJobs", method = RequestMethod.POST, consumes = "application/json")
-	public Map<String, Object> terminateJob(@RequestBody Job[] jobs) {
+	public Map<String, Object> terminateJobs(@RequestBody Job[] jobs) {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		getBaseApplication().terminateParties(new HashSet<Job>(Arrays.asList(jobs)));
 		dataMap.put("result", "success");

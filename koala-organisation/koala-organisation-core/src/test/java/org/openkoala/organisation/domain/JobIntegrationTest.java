@@ -35,5 +35,4 @@ public class JobIntegrationTest extends AbstractIntegrationTest {
 		job.terminate(new Date());
 	}
 	
-	
 }

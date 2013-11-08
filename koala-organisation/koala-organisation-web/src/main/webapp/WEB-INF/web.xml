@@ -23,6 +23,9 @@
 	<listener>
 		<listener-class>com.dayatang.spring.webapp.DayatangContextLoaderListener</listener-class>
 	</listener>
+	<listener>
+		<listener-class>org.openkoala.organisation.web.context.OrganisationListener</listener-class>
+	</listener>
 	
 	<!-- SpringMVC -->
 	<servlet>

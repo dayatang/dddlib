@@ -2,6 +2,9 @@ package org.openkoala.organisation.application.dto;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.openkoala.organisation.domain.Job;
 import org.openkoala.organisation.domain.Organization;
 import org.openkoala.organisation.domain.Post;
@@ -182,6 +185,26 @@ public class PostDTO {
 		result.setOrganizationName(organization.getName());
 		
 		return result;
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		if (!(other instanceof PostDTO)) {
+			return false;
+		}
+		PostDTO that = (PostDTO) other;
+		return new EqualsBuilder().append(this.getSn(), that.getSn())
+				.isEquals();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder().append(getSn()).toHashCode();
+	}
+
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this).append(getName()).build();
 	}
 	
 }

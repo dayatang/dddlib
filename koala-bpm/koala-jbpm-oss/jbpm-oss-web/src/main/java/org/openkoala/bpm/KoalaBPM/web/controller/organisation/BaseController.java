@@ -26,19 +26,6 @@ public class BaseController {
 		return baseApplication;
 	}
 	
-	/**
-	 * 克隆
-	 * @param map
-	 * @return
-	 */
-	public static Map<String,Integer> getCloneMap(Map<String,Integer> map){
-        Map<String,Integer> mapClone = new HashMap<String,Integer>();
-        for(Entry<String,Integer> e : map.entrySet()){
-            mapClone.put(e.getKey(), e.getValue());
-        }
-        return mapClone;
-    }
-	
 	//数据绑定  
     @InitBinder    
     public void initBinder(WebDataBinder binder) {  

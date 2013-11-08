@@ -90,13 +90,16 @@ public class RoleController {
 
 	@ResponseBody
 	@RequestMapping("/pageJson")
-	public Map<String, Object> pageJson(String page,String pagesize,String userAccount) {
+	public Map<String, Object> pageJson(String page,String pagesize,String userAccount,String roleNameForSearch) {
 		Map<String, Object> dataMap = new HashMap<String,Object>();
 		int start = Integer.parseInt(page);
 		int limit = Integer.parseInt(pagesize);
+		QueryConditionVO search = new QueryConditionVO();
+		initSearchCondition(search,roleNameForSearch);
 		Page<RoleVO> all = null;
 		if (userAccount == null || userAccount.isEmpty()) {
-			all = roleApplication.pageQueryRole(start, limit);
+			//all = roleApplication.pageQueryRole(start, limit);
+			all = roleApplication.pageQueryByRoleCustom(start, limit, search);
 		} else {
 			all = new Page<RoleVO>(start, limit, limit, roleApplication.findRoleByUserAccount(userAccount));
 		}
