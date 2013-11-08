@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openkoala.organisation.EmployeeMustHaveAtLeastOnePostException;
 import org.openkoala.organisation.application.EmployeeApplication;
 import org.openkoala.organisation.application.dto.EmployeeDTO;
 import org.openkoala.organisation.application.dto.ResponsiblePostDTO;
@@ -172,6 +173,10 @@ public class EmployeeApplicationImpl implements EmployeeApplication {
 	
 	@Override
 	public void transformPost(Employee employee, Set<ResponsiblePostDTO> dots) {
+		if (dots.isEmpty()) {
+			throw new EmployeeMustHaveAtLeastOnePostException();
+		}
+		
 		List<EmployeePostHolding> existHoldings = EmployeePostHolding.getByEmployee(employee, new Date());
 		Set<Post> postsForOutgoing = employee.getPosts(new Date());
 		Map<Post, Boolean> postsForAssign = new HashMap<Post, Boolean>();
@@ -195,11 +200,11 @@ public class EmployeeApplicationImpl implements EmployeeApplication {
 			postsForAssign.put(post, dto.isPrincipal());
 		}
 		
+		employee.outgoingPosts(postsForOutgoing);
+		
 		for (Post post : postsForAssign.keySet()) {
 			employee.assignPost(post, postsForAssign.get(post));
 		}
-		
-		employee.outgoingPosts(postsForOutgoing);
 	}
 
 	@Override

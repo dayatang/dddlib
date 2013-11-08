@@ -193,6 +193,7 @@ var employee = function(){
 				 var item = items[i];
 				 contents.push({value: item.id, title: item.name});
 			 }
+			 post.data('koala.select', null);
 			 post.select({
 				title: '选择岗位',
 				contents: contents

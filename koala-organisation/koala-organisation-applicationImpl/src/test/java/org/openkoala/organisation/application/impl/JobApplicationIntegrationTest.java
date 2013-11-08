@@ -43,7 +43,6 @@ public class JobApplicationIntegrationTest extends AbstractIntegrationTest {
 		assertEquals(1, jobs1.size());
 		
 		List<Job> jobs2 = jobApplication.pagingQueryJobs(new Job(), 1, 10).getResult();
-		assertEquals(2, jobs2.size());
 		assertTrue(jobs2.contains(job1));
 		assertTrue(jobs2.contains(job2));
 	}

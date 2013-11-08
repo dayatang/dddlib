@@ -37,6 +37,14 @@
 	<div class="g-body">
 	    <div class="col-lg-2 g-sidec">
 	        <ul class="nav nav-stacked first-level-menu">
+	       		<li>
+                	<a data-toggle="collapse" href="#userRight"><i class="glyphicon glyphicon-user"></i>&nbsp;用户角色管理&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+	                <ul id="userRight" class="second-level-menu">
+	                    <li class="submenu" data-role="openTab" data-target="pages/auth/resource-list.html" data-title="资源管理" data-mark="resourceList"><a ><i class="glyphicon glyphicon-hand-right"></i>&nbsp;资源管理</a></li>
+	                    <li class="submenu" data-role="openTab" data-target="pages/auth/menu-list.html" data-title="菜单管理" data-mark="menuList"><a ><i class="glyphicon glyphicon-hand-right"></i>&nbsp;菜单管理</a></li>
+	                    <li class="submenu" data-role="openTab" data-target="pages/auth/resource-type-list.html" data-title="资源类型管理" data-mark="resourceTypeList"><a ><i class="glyphicon glyphicon-hand-right"></i>&nbsp;资源类型管理</a></li>
+	                </ul>
+	            </li>
 	            <li>
                 	<a data-toggle="collapse" href="#userRight"><i class="glyphicon glyphicon-user"></i>&nbsp;用户角色管理&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
 	                <ul id="userRight" class="second-level-menu">

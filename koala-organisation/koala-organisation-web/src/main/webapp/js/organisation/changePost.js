@@ -16,6 +16,13 @@ var changePost = function(){
 			selectedPost = dialog.find('#selectedPost');
 			loadExistPostList(employeeId);
 			dialog.find('#save').on('click',function(){
+				if(selectedPost.find('.principal').length == 0){
+					$('body').message({
+						type: 'warning',
+						content: '请设置主岗位'
+				 });
+					return;
+				}
 				var items = new Array();
 				for(var prop in selectedItem){
 					items.push(selectedItem[prop]);

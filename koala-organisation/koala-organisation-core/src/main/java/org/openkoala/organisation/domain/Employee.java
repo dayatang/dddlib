@@ -17,7 +17,6 @@ import javax.persistence.TemporalType;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.openkoala.organisation.EmployeeMustHaveAtLeastOnePostException;
 import org.openkoala.organisation.HasPrincipalPostYetException;
 
 /**
@@ -161,10 +160,10 @@ public class Employee extends Party {
 	public void outgoingPosts(Set<Post> posts) {
 		Date now = new Date();
 		
-		Set<Post> currentPosts = new HashSet<Post>(EmployeePostHolding.findPostsOfEmployee(this, now));
-		if (currentPosts.equals(posts)) {
-			throw new EmployeeMustHaveAtLeastOnePostException();
-		}
+//		Set<Post> currentPosts = new HashSet<Post>(EmployeePostHolding.findPostsOfEmployee(this, now));
+//		if (currentPosts.equals(posts)) {
+//			throw new EmployeeMustHaveAtLeastOnePostException();
+//		}
 		
 		for (Post post : posts) {
 			EmployeePostHolding holding = EmployeePostHolding.getByPostAndEmployee(post, this, now);
@@ -193,7 +192,7 @@ public class Employee extends Party {
 			person.checkIdNumberExist();
 		} else {
 			Person thePerson = get(Person.class, person.getId());
-			if (!thePerson.getIdNumber().equals(person.getIdNumber())) {
+			if (thePerson.getIdNumber() != null && !thePerson.getIdNumber().equals(person.getIdNumber())) {
 				person.checkIdNumberExist();
 			}
 		}

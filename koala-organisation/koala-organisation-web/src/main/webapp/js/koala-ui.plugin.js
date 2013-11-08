@@ -133,7 +133,6 @@
 						$(this).attr('checked','checked').parent().addClass('checked').closest('tr').addClass('success');						
 					});
 				}else{
-					console.info($(this).parent().removeClass('checked'));
 					self.gridTableBodyTable.find('.checker').find('input:checkbox').each(function(){
 						$(this).removeAttr('checked').parent().removeClass('checked').closest('tr').removeClass('success');						
 					});
@@ -588,9 +587,14 @@
 	"use strict";
 	var ModifyPassword = function(container, option){
 		this.container = $(container);
+		this.options = option;
 		this.$element = $(ModifyPassword.DEFAULTS.TEMPLATE);
-		this.modal = this.$element.modal({
+		this.$element.modal({
 			keyboard: false
+		}).on({
+			'hidden.bs.modal': function(){
+				$(this).remove();
+			}
 		});
 		this.oldPwd = this.$element.find('#oldPassword');
 		this.newPwd = this.$element.find('#newPassword') ;
@@ -635,50 +639,70 @@
 		}
 	};
 	ModifyPassword.prototype.save = function(){
-		if(this.isNull(this.oldPwd) || this.isNull(this.newPwd) || this.isNull(this.confirmPwd)){
+		var self = this;
+		if(!Validation.notNull(self.$element, this.oldPwd, this.oldPwd.val(), '原始密码不能为空')){
+			return;
+		}
+		if(!Validation.notNull(self.$element, this.newPwd, this.newPwd.val(), '新密码不能为空')){
+			return;
+		}
+		if(!Validation.notNull(self.$element, this.confirmPwd, this.confirmPwd.val(), '确认密码不能为空')){
 			return;
 		}
 		if(this.newPwd.val() != this.confirmPwd.val()){
-			this.confirmPwd.focus()
-				.parent()
-				.addClass('has-error')
-				.end()
-				.next('.help-block')
-				.text('新密码与确认密码不一致!')
-				.show();
+			$('body').message({
+				type: 'error',
+				content: '新密码与确认密码不一致'
+			});
+			console.info(333)
 			return;
 		}
-		var data = "oldPassword=" + this.oldPwd.val() + "&userVO.userPassword=" + this.newPwd.val();
+		var data = "oldPassword=" + this.oldPwd.val() + "&userPassword=" + this.newPwd.val();
 		$.ajax({
 			method:"post",
-			url:"auth-User-updatePassword.action",
+			url: this.options.service,
 			data:data
 		}).done(function(msg){
 				if (msg.result == "success") {
-
-				} else if (msg.result == "failure") {
-
+					$('body').message({
+						type: 'success',
+						content: '修改成功'
+					});
+					self.$element.modal('hide');
 				}else{
-
+					$('body').message({
+						type: 'error',
+						content: msg.result
+					});
 				}
 			}).fail(function(msg){
-				console.info(msg);
+				$('body').message({
+						type: 'error',
+						content: '修改失败'
+				});
 			});
 	};
-	ModifyPassword.prototype.isNull = function(obj){
-		if(obj.val().length == 0){
-			obj.focus()
-				.parent()
-				.addClass('has-error')
-				.end()
-				.next('.help-block')
-				.show();
-			return true;
-		}
-		return false;
+	/**
+	 * 显示提示信息
+	 */
+	ModifyPassword.prototype.showErrorMessage = function($container, $element, content){
+		$element.popover({
+			content: content,
+			trigger: 'manual',
+			container: $container
+		}).popover('show').on({
+				'blur': function(){
+					$element.popover('destroy');
+					$element.parent().removeClass('has-error');
+				},
+				'keydown': function(){
+					$element.popover('destroy');
+					$element.parent().removeClass('has-error');
+				}
+		}).focus().parent().addClass('has-error');
 	};
 	ModifyPassword.DEFAULTS.TEMPLATE = '<div class="modal fade" id="modifyPwd">' +
-		'<div class="modal-dialog modify-pwd">' +
+		'<div class="modal-dialog modify-pwd" style="padding-top:80px;">' +
 		'<div class="modal-content">' +
 		'<div class="modal-header">' +
 		'<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
@@ -690,21 +714,18 @@
 		'<label for="oldPassword" class="col-lg-3 control-label">原始密码:</label>' +
 		'<div class="col-lg-9">' +
 		'<input type="password" class="form-control" id="oldPassword" >' +
-		'<label class="help-block">原始密码不能为空!</label>' +
 		'</div> ' +
 		'</div>  ' +
 		'<div class="form-group">' +
 		'<label for="newPassword" class="col-lg-3 control-label">新密码:</label>' +
 		'<div class="col-lg-9">' +
 		'<input type="password" class="form-control" id="newPassword">' +
-		'<label class="help-block">新密码不能为空!</label>' +
 		'</div> ' +
 		'</div> ' +
 		'<div class="form-group"> ' +
 		'<label for="confirmPassword" class="col-lg-3 control-label">确认密码:</label>' +
 		'<div class="col-lg-9">' +
 		'<input type="password" class="form-control" id="confirmPassword"> ' +
-		'<label class="help-block">确认密码不能为空!</label>' +
 		'</div>' +
 		'</div>' +
 		'</form>' +
@@ -722,11 +743,7 @@
 			var $this = $(this);
 			var data = $this.data('koala.modifyPassowrd');
 			var options = $.extend({}, ModifyPassword.DEFAULTS, $this.data(), typeof option == 'object' && option)
-			if (data) {
-				data.modal && data.modal.modal('show');
-			} else {
-				$this.data('koala.modifyPassowrd', (data = new ModifyPassword(this, options)));
-			}
+			$this.data('koala.modifyPassowrd', (data = new ModifyPassword(this, options)));
 		});
 	};
 	$.fn.modifyPassword .Constructor = ModifyPassword;

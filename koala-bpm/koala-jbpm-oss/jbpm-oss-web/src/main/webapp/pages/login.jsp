@@ -101,6 +101,8 @@ body {
 	margin-bottom: 30px;
 }
 .login_con_R li label {
+  	position: relative;
+    top: 6px;
 	padding-right: 15px;
 }
 .login_con_R li input {

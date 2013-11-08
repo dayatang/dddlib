@@ -186,17 +186,6 @@ var job = function(){
 				}
 		}).focus().parent().addClass('has-error');
 	};
-	/**
-	 * 检查变量是否不为空  true:不空   false:空
-	 */
-	var checkNotNull = function(item){
-		//不能为空和空格
-		if(item==null || item=="" || item.replace(/(^\s*)|(\s*$)/g, "")=="" ){
-			return false;
-		}else{
-			return true;
-		}
-	};
 	return {
 		add: add,
 		modify: modify,

@@ -640,17 +640,21 @@
 	};
 	ModifyPassword.prototype.save = function(){
 		var self = this;
-		if(this.isNull(this.oldPwd) || this.isNull(this.newPwd) || this.isNull(this.confirmPwd)){
+		if(!Validation.notNull(self.$element, this.oldPwd, this.oldPwd.val(), '原始密码不能为空')){
+			return;
+		}
+		if(!Validation.notNull(self.$element, this.newPwd, this.newPwd.val(), '新密码不能为空')){
+			return;
+		}
+		if(!Validation.notNull(self.$element, this.confirmPwd, this.confirmPwd.val(), '确认密码不能为空')){
 			return;
 		}
 		if(this.newPwd.val() != this.confirmPwd.val()){
-			this.confirmPwd.focus()
-				.parent()
-				.addClass('has-error')
-				.end()
-				.next('.help-block')
-				.text('新密码与确认密码不一致!')
-				.show();
+			$('body').message({
+				type: 'error',
+				content: '新密码与确认密码不一致'
+			});
+			console.info(333)
 			return;
 		}
 		var data = "oldPassword=" + this.oldPwd.val() + "&userPassword=" + this.newPwd.val();
@@ -678,17 +682,24 @@
 				});
 			});
 	};
-	ModifyPassword.prototype.isNull = function(obj){
-		if(obj.val().length == 0){
-			obj.focus()
-				.parent()
-				.addClass('has-error')
-				.end()
-				.next('.help-block')
-				.show();
-			return true;
-		}
-		return false;
+	/**
+	 * 显示提示信息
+	 */
+	ModifyPassword.prototype.showErrorMessage = function($container, $element, content){
+		$element.popover({
+			content: content,
+			trigger: 'manual',
+			container: $container
+		}).popover('show').on({
+				'blur': function(){
+					$element.popover('destroy');
+					$element.parent().removeClass('has-error');
+				},
+				'keydown': function(){
+					$element.popover('destroy');
+					$element.parent().removeClass('has-error');
+				}
+		}).focus().parent().addClass('has-error');
 	};
 	ModifyPassword.DEFAULTS.TEMPLATE = '<div class="modal fade" id="modifyPwd">' +
 		'<div class="modal-dialog modify-pwd" style="padding-top:80px;">' +
@@ -703,21 +714,18 @@
 		'<label for="oldPassword" class="col-lg-3 control-label">原始密码:</label>' +
 		'<div class="col-lg-9">' +
 		'<input type="password" class="form-control" id="oldPassword" >' +
-		'<label class="help-block">原始密码不能为空!</label>' +
 		'</div> ' +
 		'</div>  ' +
 		'<div class="form-group">' +
 		'<label for="newPassword" class="col-lg-3 control-label">新密码:</label>' +
 		'<div class="col-lg-9">' +
 		'<input type="password" class="form-control" id="newPassword">' +
-		'<label class="help-block">新密码不能为空!</label>' +
 		'</div> ' +
 		'</div> ' +
 		'<div class="form-group"> ' +
 		'<label for="confirmPassword" class="col-lg-3 control-label">确认密码:</label>' +
 		'<div class="col-lg-9">' +
 		'<input type="password" class="form-control" id="confirmPassword"> ' +
-		'<label class="help-block">确认密码不能为空!</label>' +
 		'</div>' +
 		'</div>' +
 		'</form>' +
