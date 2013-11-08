@@ -136,8 +136,8 @@ public class User extends Identity {
 	public static User findByUserAccount(String userAccount) {
 		try {
 			return User.getRepository().getSingleResult(
-					"select m from org.openkoala.koala.auth.core.domain.User m where m.userAccount=?1",
-					new Object[] { userAccount }, User.class);
+					"select m from org.openkoala.koala.auth.core.domain.User m where m.userAccount=? and m.abolishDate>?",
+					new Object[] { userAccount, new Date() }, User.class);
 		} catch (NoResultException e) {
 			return null;
 		}
