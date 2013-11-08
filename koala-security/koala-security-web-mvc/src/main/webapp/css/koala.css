@@ -115,7 +115,12 @@
     height: 340px;
     overflow: auto;
 }
-
+.grid .grid-tree-space {
+    display:inline; 
+}
+.grid .grid-tree-space span{
+    cursor: pointer;
+}
 /**
 *  提示样式
 */

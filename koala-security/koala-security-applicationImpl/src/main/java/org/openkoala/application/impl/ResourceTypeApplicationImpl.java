@@ -27,7 +27,7 @@ import com.dayatang.utils.DateUtils;
 public class ResourceTypeApplicationImpl extends BaseImpl implements ResourceTypeApplication {
 
 	public boolean isExist(ResourceTypeVO resourceTypeVO) {
-		ResourceType resourceType = queryChannel().querySingleResult("from ResourceType o where o.name=? and o.abolishDate>?", //
+		ResourceType resourceType = queryChannel().querySingleResult("from ResourceType o where o.name=? and o.abolishDate>?",
 				new Object[] { resourceTypeVO.getName(), new Date() });
 		if (resourceType != null) {
 			throw new ApplicationException("resourceType.exist", null);
@@ -71,8 +71,11 @@ public class ResourceTypeApplicationImpl extends BaseImpl implements ResourceTyp
 	}
 
 	public void update(ResourceTypeVO resourceTypeVO) {
+		ResourceType resourceType = ResourceType.load(ResourceType.class, Long.valueOf(resourceTypeVO.getId()));
+		if (resourceType.getName().equals(resourceTypeVO.getName())) {
+			return;
+		}
 		if (!isExist(resourceTypeVO)) {
-			ResourceType resourceType = ResourceType.load(ResourceType.class, Long.valueOf(resourceTypeVO.getId()));
 			resourceType.setName(resourceTypeVO.getName());
 		}
 	}

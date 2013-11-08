@@ -272,7 +272,7 @@
 						self.gridTableBody.append($('<div data-role="noData" style="font-size:16px ; padding: 20px; width:'+self.gridTableBodyTable.width()+'px;">'+self.options.noDataText+'</div>'));
 					}else{
 						self.gridTableBody.find('[data-role="noData"]').remove();
-						self.renderRows();
+						self.renderDatas();
 					}
 				}).fail(function(result){
 
@@ -352,37 +352,9 @@
 		/*
 		 * 渲染数据
 		 */
-		renderRows: function(){
+		renderDatas: function(){
 			var self = this;
-			var items = this.items;
-			var trHtmls = new Array();
-			for(var i= 0,j=items.length; i<j; i++){
-				var item = items[i];
-				var trHtml = new Array();
-				trHtml.push('<tr>');
-				if(this.options.isShowIndexCol){
-					trHtml.push('<td width="50px;"><div class="checker"><span><input type="checkbox" indexValue="'+i+'" data-role="indexCheckbox" style="opacity: 0;" value="'+item[this.options.identity]+'"></span></div></td>');
-				}else{
-					trHtml.push('<td width="50px;" style="display:none"><div class="checker"><span><input type="checkbox" indexValue="'+i+'" data-role="indexCheckbox" style="opacity: 0;" value="'+item[this.options.identity]+'"></span></div></td>');					
-				}
-				for(var k=0,h=this.options.columns.length; k<h; k++){
-					var column = this.options.columns[k];
-					trHtml.push('<td index="'+k+'" width="'+column.width+'"');
-					if(column.align){
-						trHtml.push(' align="'+column.align+'"');
-					}
-					trHtml.push('>');
-					if(column.render){
-						trHtml.push(column.render(item,column.name,i,k));
-					}else{
-						trHtml.push(item[column.name]);
-					}
-					trHtml.push('</td>');
-				}
-				trHtml.push('</tr>');
-				trHtmls.push(trHtml.join(''));
-			}
-			this.gridTableBodyTable.html(trHtmls.join(''));
+			self.renderRows();
 			var indexCheckboxs = this.gridTableBodyTable.find('[data-role="indexCheckbox"]');
 			indexCheckboxs.on('click',function(e) {
 				e.stopPropagation();
@@ -413,7 +385,96 @@
 					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked', '').parent().removeClass('checked');
 				}
 			});
-			self._initPageNo();
+			self.options.isShowPages && self._initPageNo();
+		},
+		/**
+		 * 渲染表格数据
+		 */
+		renderRows: function(){
+			var self = this;
+			if(self.options.tree && self.options.tree.column){
+				self.items = self.initTreeItems(new Array(), self.items);
+			}
+			var items = self.items;
+			var trHtmls = new Array();
+			for(var i= 0,j=items.length; i<j; i++){
+				var item = items[i];
+				var trHtml = new Array();
+				if(self.options.tree && self.options.tree.column){
+					trHtml.push('<tr data-level='+item.level+'>');
+				}else{
+					trHtml.push('<tr>');	
+				}
+				if(this.options.isShowIndexCol){
+					trHtml.push('<td width="50px;"><div class="checker"><span><input type="checkbox" indexValue="'+i+'" data-role="indexCheckbox" style="opacity: 0;" value="'+item[this.options.identity]+'"></span></div></td>');
+				}else{
+					trHtml.push('<td width="50px;" style="display:none"><div class="checker"><span><input type="checkbox" indexValue="'+i+'" data-role="indexCheckbox" style="opacity: 0;" value="'+item[this.options.identity]+'"></span></div></td>');					
+				}
+				for(var k=0,h=this.options.columns.length; k<h; k++){
+					var column = this.options.columns[k];
+					trHtml.push('<td index="'+k+'" width="'+column.width+'"');
+					if(column.align){
+						trHtml.push(' align="'+column.align+'"');
+					}
+					trHtml.push('>');
+					if(self.options.tree && self.options.tree.column 
+						&& self.options.tree.column == column.name){
+						trHtml.push('<div class="grid-tree-space" style="padding-left:'+(parseInt(item.level)-1)*10+'px;"><span data-role="grid-tree-icon" class="glyphicon glyphicon-folder-open open"></span></div>&nbsp;&nbsp;');
+					}
+					if(column.render){
+						trHtml.push(column.render(item,column.name,i,k));
+					}else{
+						trHtml.push(item[column.name]);
+					}
+					trHtml.push('</td>');
+				}
+				trHtml.push('</tr>');
+				trHtmls.push(trHtml.join(''));
+			}
+			this.gridTableBodyTable.html(trHtmls.join(''));
+			if(self.options.tree && self.options.tree.column){
+				this.gridTableBodyTable.find('[data-role="grid-tree-icon"]').on('click', function(e){
+					e.stopPropagation();
+					e.preventDefault();
+					var $this = $(this);
+					var $tr = $this.closest('tr');
+					var level = parseInt($tr.attr('data-level'));
+					var next = $tr.next();
+					while(next.length > 0){
+						if(level < parseInt(next.attr('data-level'))){
+							if($this.hasClass('open')){
+								next.hide();
+								next.find('[data-role="grid-tree-icon"]').removeClass('glyphicon-folder-open').addClass('glyphicon-folder-close');
+							}else{
+								next.show();
+								next.find('[data-role="grid-tree-icon"]').addClass('glyphicon-folder-open').removeClass('glyphicon-folder-close');
+							}
+							next = next.next();
+						}else{
+							break;
+						}
+					}
+					if($this.hasClass('open')){
+						$this.removeClass('open').removeClass('glyphicon-folder-open').addClass('glyphicon-folder-close');
+					}else{
+						$this.addClass('open').addClass('glyphicon-folder-open').removeClass('glyphicon-folder-close');
+					}
+				});
+			}
+		},
+		/**
+		 * 初始化树形数据
+		 */
+		initTreeItems: function(newItems, items){
+			var self = this;
+			for(var i=0,j=items.length; i<j; i++){
+				var item = items[i];
+				newItems.push(item);
+				if(item.children){
+					newItems = self.initTreeItems(newItems, item.children);
+				}
+			}
+			return newItems;
 		},
 		/*
 		 *返回选择行数据的数组。
@@ -425,6 +486,16 @@
 				selectItems.push(self.items[$(this).attr('indexvalue')]);
 			});
 			return  selectItems;
+		},
+		/*
+		 *返回选择行的序号。
+		 */
+		selectedRowsNo: function(){
+			var selectIndexs = new Array();
+			this.gridTableBodyTable.find('.checker').find('input:checkbox:checked').each(function(){
+				selectIndexs.push($(this).attr('indexvalue'));
+			});
+			return  selectIndexs;
 		},
 		/*
 		 *返回选择行索引的数组。
@@ -480,13 +551,25 @@
 				this.searchCondition[prop] = conditions[prop];
 			}
 			this._loadData();
+		},
+		/**
+		 * 上移
+		 * 
+		 */
+		up: function(index){
+
+		},
+		/**
+		 * 下移
+		 * 
+		 */
+		down: function(index){
+
 		}
 	};
-	$.fn.insertRow = function(item){
-		if(this.data('koala.grid')){
-			return this.data('koala.grid').insertRow(item);
-		}
-	},
+	$.fn.getGrid = function(){
+		return $(this).data('koala.grid');
+	};
 	Grid.DEFAULTS.TEMPLATE = '<div class="table-responsive"><table class="table table-responsive table-bordered grid"><thead><tr><th><div class="btn-group buttons"></div><div class="search"><div class="btn-group select " data-role="condition"></div><div class="input-group" style="width:180px;"><input type="text" class="input-medium form-control" placeholder="Search" data-role="searchValue"><div class="input-group-btn"><button type="button" class="btn btn-default" data-role="searchBtn"><span class="glyphicon glyphicon-search"></span></button></div></div></div></th></tr></thead><tbody><tr><td><div class="colResizePointer"></div><div class="grid-body"><div class="grid-table-head"><table class="table table-bordered"></table></div><div class="grid-table-body"><table class="table table-responsive table-bordered table-hover table-striped"></table></div></div></td></tr></tbody><tfoot><tr><td><div class="records">显示:<span data-role="start-record">1</span>-<span data-role="end-record">10</span>, 共<span data-role="total-record">0</span>条记录。&nbsp;每页显示:<div class="btn-group select " data-role="pageSizeSelect"></div>条</div><div><div class="btn-group pages"><ul class="pagination"></ul></div></div></td></tr></tfoot></table></div>';
 	var old = $.fn.grid;
 	$.fn.grid = function(option){
@@ -654,7 +737,6 @@
 				type: 'error',
 				content: '新密码与确认密码不一致'
 			});
-			console.info(333)
 			return;
 		}
 		var data = "oldPassword=" + this.oldPwd.val() + "&userPassword=" + this.newPwd.val();
