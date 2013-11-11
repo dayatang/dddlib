@@ -140,6 +140,22 @@ body {
 		</div>
 		<div class="login_con_R">
 			<h4>登录</h4>
+			 <c:if test="${param.login_error == '1' }">
+				     	<script>
+				     		$('body').message({
+								type: 'error',
+								content: '用户名或密码错误!'
+							});
+				     	</script>
+				    </c:if>
+				    <c:if test="${param.login_error == '2' }">
+				      	<script>
+				     		$('body').message({
+								type: 'error',
+								content: '验证码错误!'
+							});
+				     	</script>
+			</c:if>
 			<FORM id=loginFormId method=post action="j_spring_security_check" class="form-horizontal">
 				<div class="form-group">
 					<label class="col-lg-3">用户名:</label>
