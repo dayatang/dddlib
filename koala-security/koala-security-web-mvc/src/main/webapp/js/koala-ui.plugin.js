@@ -498,6 +498,17 @@
 			return  selectIndexs;
 		},
 		/*
+		 *返回所有行数据。
+		 */
+		selectedAllRows: function(){
+			var self = this;
+			var selectItems = new Array();
+			this.gridTableBodyTable.find('.checker').find('input:checkbox').each(function(){
+				selectItems.push(self.items[$(this).attr('indexvalue')]);
+			});
+			return  selectItems;
+		},
+		/*
 		 *返回选择行索引的数组。
 		 */
 		selectedRowsIndex: function(){
@@ -535,6 +546,9 @@
 			this.items.push(item);
 			return this.$element;
 		 },
+		 getRowByIndex: function(index){
+		 	return this.gridTableBodyTable.find('[indexvalue="'+index+'"]').closest('tr');
+		 },
 		/**
 		 * 刷新表格
 		 */
@@ -557,14 +571,48 @@
 		 * 
 		 */
 		up: function(index){
-
+			var self = this;
+		    if(index == 0){
+				return;
+			}
+			var prevItem = self.items[parseInt(index)-1];		
+			var currentItem = self.items[index];
+			if(self.options.tree && self.options.tree.column){
+				if(parseInt(prevItem.level) < parseInt(currentItem.level)){
+					return;
+				}
+			}
+			var currentRow = self.getRowByIndex(index);
+			var prevRow = currentRow.prev('tr');
+			currentRow.insertBefore(prevRow);
+			currentRow.find('[data-role="indexCheckbox"]').attr('indexvalue', parseInt(index)-1);
+			prevRow.find('[data-role="indexCheckbox"]').attr('indexvalue', index);
+			self.items[parseInt(index)-1] = currentItem;
+			self.items[index] = prevItem;
 		},
 		/**
 		 * 下移
 		 * 
 		 */
 		down: function(index){
-
+			var self = this;
+		    if(index == 0){
+				return;
+			}
+			var nextItem = self.items[parseInt(index)+1];		
+			var currentItem = self.items[index];
+			if(self.options.tree && self.options.tree.column){
+				if(parseInt(currentItem.level) > parseInt(nextItem.level)){
+					return;
+				}
+			}
+			var currentRow = self.getRowByIndex(index);
+			var nextRow = currentRow.next('tr');
+			currentRow.insertAfter(nextRow);
+			currentRow.find('[data-role="indexCheckbox"]').attr('indexvalue', parseInt(index)+1);
+			nextRow.find('[data-role="indexCheckbox"]').attr('indexvalue', index);
+			self.items[parseInt(index)+1] = currentItem;
+			self.items[index] = nextItem;
 		}
 	};
 	$.fn.getGrid = function(){

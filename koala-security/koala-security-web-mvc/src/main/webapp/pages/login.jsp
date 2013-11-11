@@ -3,7 +3,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@ include file="/pages/common/header.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>欢迎使用Koala</title>
 <link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
@@ -91,16 +90,18 @@ body {
 
 .login_con_R ul {
 	margin-top: 20px;
-	margin-left: 20px;
+	margin-left: 15px;
+	padding-left: 40px;
 }
 
 .login_con_R li:first-child {
 	margin-top: 30px;
 }
 .login_con_R li {
+	position: relative;
+	left: -30px;
 	list-style-type: none;
 	line-height: 30px;
-	padding-left: 20px;
 	margin-bottom: 15px;
 }
 .login_con_R li:last-child{
