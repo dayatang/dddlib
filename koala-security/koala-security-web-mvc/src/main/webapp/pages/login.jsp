@@ -128,11 +128,12 @@ body {
 
 .login_footer {
 	clear: both;
-	line-height: 40px;
-	color: #999;
-	margin: 20px auto;
-	font-size: 12px;
+	margin: 8% auto 0;
 	width: 300px;
+	color: inherit;
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 2.14286;
 }
 </style>
 <script type="text/javascript">
