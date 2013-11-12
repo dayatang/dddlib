@@ -264,15 +264,11 @@ $(function(){
     
     
     function previewForm(title,formId){
-
     	$.get('pages/processform/preview.html')
     	 .done(function(data){
     		 var dialog = $(data);
     		 dialog.find('.modal-title').html(title+" - 预览");
-    		 $.get('processform/templatePreview.koala?formId='+formId)
-    		  .done(function(result){
-    			  $(result.data).appendTo(dialog.find('.modal-body'));
-    		  });
+    		 dialog.find('#formIframe').attr("src","/processform/templatePreview.koala?formId="+formId);
     		 dialog.modal({
     			keyboard: false
     		 }).on({
