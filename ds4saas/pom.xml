@@ -153,7 +153,7 @@
 	</build>
 	<properties>
 		<jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
-		<jdbc.host>localhost</jdbc.host>
+		<jdbc.host>${mysql.host}</jdbc.host>
 		<jdbc.port>3306</jdbc.port>
 		<jdbc.dbname>db</jdbc.dbname>
 		<jdbc.url>jdbc:mysql://${db.host}:${jdbc.port}/?useUnicode=true&amp;characterEncoding=utf-8</jdbc.url>

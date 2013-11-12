@@ -596,6 +596,7 @@
 		<hibernate.hbm2ddl.auto>create-drop</hibernate.hbm2ddl.auto>
 		<hibernate.show_sql>true</hibernate.show_sql>
 		<hibernate.format_sql>true</hibernate.format_sql>
+        <mysql.host>localhost</mysql.host>
 		<mysql.username>root</mysql.username>
 		<mysql.password />
 	</properties>
