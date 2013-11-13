@@ -3,7 +3,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@ include file="/pages/common/header.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>欢迎使用Koala</title>
 <link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
@@ -89,47 +88,32 @@ body {
 	margin-top: 0px;
 }
 
-.login_con_R ul {
-	margin-top: 20px;
-	margin-left: 20px;
+.login_con_R  form {
+	padding-top: 7%;
+	padding-left: 7%;
+	padding-right: 7%;
 }
-
-.login_con_R li:first-child {
-	margin-top: 30px;
+.login_con_R  .form-group label {
+	position: relative;
+	top: 4px;
+	padding-right: 1px;
 }
-.login_con_R li {
-	list-style-type: none;
-	line-height: 30px;
-	padding-left: 20px;
-	margin-bottom: 15px;
+.checkCode {
+	height: 50px;
 }
-.login_con_R li:last-child{
-	margin-bottom: 0;
-	text-align: center;
-}
-.login_con_R li label {
-	padding-right: 15px;
-}
-.login_con_R li input {
-	width: 192px;
-	display: inline;
-}
-.login_con_R li img {
-	height: 60px;
-}
-.login_con_R button {
-	margin-left: 25%;
-	width: 210px;
-	text-align: center;
+.btn-login {
+	width: 65%;
+	margin-left: 20%;
 }
 
 .login_footer {
 	clear: both;
-	line-height: 40px;
-	color: #999;
-	margin: 20px auto;
-	font-size: 12px;
+	margin: 8% auto 0;
 	width: 300px;
+	color: inherit;
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 2.14286;
 }
 </style>
 <script type="text/javascript">
@@ -155,8 +139,52 @@ body {
 			<img src="images/background/login_img.gif" />
 		</div>
 		<div class="login_con_R">
-			<FORM id=loginFormId method=post action="j_spring_security_check">
-				<h4>登录</h4>
+			<h4>登录</h4>
+			 <c:if test="${param.login_error == '1' }">
+				     	<script>
+				     		$('body').message({
+								type: 'error',
+								content: '用户名或密码错误!'
+							});
+				     	</script>
+				    </c:if>
+				    <c:if test="${param.login_error == '2' }">
+				      	<script>
+				     		$('body').message({
+								type: 'error',
+								content: '验证码错误!'
+							});
+				     	</script>
+			</c:if>
+			<FORM id=loginFormId method=post action="j_spring_security_check" class="form-horizontal">
+				<div class="form-group">
+					<label class="col-lg-3">用户名:</label>
+					<div class="col-lg-9">
+						<input type="text" name="j_username" id="j_username" class="form-control"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-3">密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
+					<div class="col-lg-9">
+						<input type="password" name="j_password" id="j_password" class="form-control"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-3">验证码:</label>
+					<div class="col-lg-9">
+						<input type="text" name="jcaptcha" value="" class="form-control"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-3"></label>
+					<div class="col-lg-9">
+						<img src="jcaptcha.jpg" id="checkCode" onclick="refreshCode();" class="checkCode"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary btn-login" onclick="javascript:login()">登陆</button>
+				</div>
+				<!--<h4>登录</h4>
 				<ul>
 				    <c:if test="${param.login_error == '1' }">
 				     	<script>
@@ -179,7 +207,7 @@ body {
 					<li><label class="col-lg-3">验证码:</label><input type="text" name="jcaptcha" value="" class="form-control"/></li>
 					<li><img src="jcaptcha.jpg" id="checkCode" onclick="refreshCode();"/></li>
 				</ul>
-				<button class="btn btn-primary" onclick="javascript:login()">登陆</button>
+				<button class="btn btn-primary" onclick="javascript:login()">登陆</button>-->
 			</FORM>
 		</div>
 	</div>

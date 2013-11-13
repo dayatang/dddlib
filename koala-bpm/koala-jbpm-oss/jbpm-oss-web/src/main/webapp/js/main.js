@@ -143,15 +143,15 @@ $(function(){
 	});
 	/*
 	 切换用户
-	 */
+	*/
 	self.on('switchUser',function(){
-		window.location.href = "login.koala";
+		window.location.href = "j_spring_security_logout";
 	});
 	/*
-	 注销
-	 */
+	注销
+	*/
 	self.on('loginOut',function(){
-		window.location.href = "login.koala";
+		window.location.href = "j_spring_security_logout";
 	});
 	$('#userManager').find('li').on('click', function(){
 		self.trigger($(this).data('target'));
