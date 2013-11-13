@@ -338,7 +338,6 @@ $(function(){
     
     function showFieldDropdownOpts(){
     	var innerOffset = $('#formFieldTypes').offset();
-    	//alert(innerOffset.top + '   ' + innerOffset.left);
     	$("#keyOptionsPanel").css("z-index","9999")
 		   .css("top",innerOffset.top - 80)
 		   .css("left",innerOffset.left - 230)
@@ -380,14 +379,26 @@ $(function(){
     	
     	//拼装下拉框选项
     	if(field.keyType == 'DropDown' || field.keyType == 'Checkbox' || field.keyType == 'Radio'){
-    		var optString = "{";
+    		var textArr = [];
+    		var valArr = [];
     		$("#keyOptionsForm input").each(function(index){
-    			var v = '"'+$(this).val()+'"';
-    			optString = optString + v + (index % 2 == 0 ? ':' : ',');
+    			var v = $(this).val();
+    			if(index % 2 == 0){textArr.push(v);}else{valArr.push(v);}
     		});
-    		if(optString.length>1)optString = optString.substr(0,optString.length - 1);
+    		var optString = "{";
+    	    for(var index in textArr){
+    	    	if(textArr[index] !=""  && valArr[index] !=""){
+    	    		optString = optString + '"' + textArr[index] + '":"' + valArr[index] + '",';
+    	    	}
+    	    }
+    	    if(optString.length>1)optString = optString.substr(0,optString.length - 1);
     		optString = optString + "}";
     		field.keyOptions = optString;
+    		if(field.keyOptions == "{}"){
+    			alert("请控件设置默认值");
+    			showFieldDropdownOpts();
+            	return false;
+            }
     	}
     	
     	insertFieldRows(rowId,field);
