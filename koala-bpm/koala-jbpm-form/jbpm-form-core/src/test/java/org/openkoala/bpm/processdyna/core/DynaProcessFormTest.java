@@ -98,7 +98,7 @@ public class DynaProcessFormTest extends KoalaBaseSpringTestCase{
 		DynaProcessKey comment = new DynaProcessKey("comment","申请理由",DynaType.TextArea.name());
 		comment.setShowOrder(6);
 		
-		DynaProcessKey options = new DynaProcessKey("comment","附加选项",DynaType.Checkbox.name());
+		DynaProcessKey options = new DynaProcessKey("options","附加选项",DynaType.Checkbox.name());
 		options.setKeyOptions("{'选项1':'1','选项2':'2'}");
 		options.setShowOrder(5);
 		
@@ -119,7 +119,7 @@ public class DynaProcessFormTest extends KoalaBaseSpringTestCase{
 		DynaProcessTemplate template = new DynaProcessTemplate();
 		template.setTemplateName("two-columns");
 		template.setTemplateDescription("两列模版");
-		template.setTemplateData("<form class=\"form-horizontal processDetail\" role=\"form\"><#if params??><#assign i=0><#list params?keys as idKey><#if (i+1)%2==1><div class=\"form-group row\"></#if><div class=\"col-lg-5 form-group\"><label class=\"col-lg-4 control-label\">${params[idKey].keyName}:</label><div class=\"col-lg-8\">${params[idKey].widget}</div></div><#if (i+1)%2==0></div></#if><#if (i+1)==size && (i+1)%2==1></div></#if><#assign i=i+1></#list></#if></form>");
+		template.setTemplateData("<#if params??><#assign i=0><#list params?keys as idKey><#if (i+1)%2==1><div class=\"form-group row\" style=\"width:760px;\"></#if><label class=\"col-sm-2 control-label\">${params[idKey].keyName}:</label><div class=\"col-sm-3\">${params[idKey].widget}</div><#if (i+1)%2==0></div></#if><#if (i+1)==size && (i+1)%2==1></div></#if><#assign i=i+1></#list></#if>");
 		return template;
 	}
 	

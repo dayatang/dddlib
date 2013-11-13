@@ -20,36 +20,24 @@ FormRender = {
    
    renderRadio : function(targetId,elmName,optsJson){
 	   var radioHtml = "";
-	   var checkedStyle = "checked";
+	   var checkedStyle = " checked";
 	   for(var index in optsJson){
-		   radioHtml = radioHtml + "<div class='radio'><span class='"+checkedStyle+"'><input type='radio' style='opacity: 0;' checked name='"+elmName+"' value='"+optsJson[index]+"'></span></div>";
-		   radioHtml = radioHtml + "<span style='position: relative; top: 8px;'>"+index+"</span>";
-		   radioHtml = radioHtml + "&nbsp;&nbsp;";
+		   radioHtml = radioHtml + "<label class='radio-inline'><input type='radio' name='"+elmName+"' value='"+optsJson[index]+"'"+checkedStyle+">"+index+"</label>";
 		   checkedStyle = "";
 	   }
 	   $("#"+targetId).append(radioHtml);
-	   var  $radios = $('[name="'+elmName+'"]');
-	   $radios.on('click', function(){
-		   $radios.each(function(){
-	          $(this).parent().removeClass('checked');
-	       });
-	       $(this).parent().addClass('checked');
-	    });
    },
    renderCheck : function(targetId,elmName,optsJson){
-	   var radioHtml = "";
+	   var checkboxHtml = "";
 	   for(var index in optsJson){
-		   radioHtml = radioHtml + "<div class='checker'><span><input type='checkbox'  style='opacity: 0;' id='"+elmName+optsJson[index]+"'></span></div>"+index;
-		   radioHtml = radioHtml + "&nbsp;&nbsp;";
+		   checkboxHtml = checkboxHtml + "<label class='checkbox-inline'><input type='checkbox' name='"+elmName+"' value='"+optsJson[index]+"'>"+index+"</label>";
 	   }
-	   $("#"+targetId).append(radioHtml).find(':checkbox').live('click', function(){
-           $(this).parent().toggleClass('checked');
-       });
+	   $("#"+targetId).append(checkboxHtml);
    },
    renderDatePicker : function(targetId,format){
 	   var pickDate = format.indexOf('date')>=0;
 	   var pickTime = format.indexOf('time')>=0;
-	   $("#"+targetId).datetimepicker({
+	   $("#"+targetId).parent().datetimepicker({
 	       language: 'zh-CN',
 	       pickDate: pickDate,
 	       pickTime: pickTime

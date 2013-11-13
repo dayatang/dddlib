@@ -108,12 +108,10 @@ public class FormMgrController {
 		return dataMap;
 	}
 	
-	@ResponseBody
 	@RequestMapping("/templatePreview")
-	public Map<String, Object> templatePreview(Long formId) {
-		Map<String, Object> dataMap = new HashMap<String, Object>();
-		dataMap.put("data", businessSupportApplication.packagingHtml(formId));
-		return dataMap;
+	public String templatePreview(Long formId,ModelMap modelMap) {
+		modelMap.put("htmlContent", businessSupportApplication.packagingHtml(formId));
+		return "/processform/preview";
 	}
 	
 	@ResponseBody

@@ -15,7 +15,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 public class ProcessDynaListener implements ServletContextListener {
 	
-	private final String twoColumnsTemplate = "<#if params??><#assign i=0><#list params?keys as idKey><#if (i+1)%2==1><div class=\"form-group row\"></#if><div class=\"col-lg-6 form-group\"><label class=\"col-lg-4 control-label\">${params[idKey].keyName}:</label><div class=\"col-lg-8\">${params[idKey].widget}</div></div><#if (i+1)%2==0></div></#if><#if (i+1)==size && (i+1)%2==1></div></#if><#assign i=i+1></#list></#if>";
+	private final String twoColumnsTemplate = "<#if params??><#assign i=0><#list params?keys as idKey><#if (i+1)%2==1><div class=\"form-group row\" style=\"width:760px;\"></#if><label class=\"col-sm-2 control-label\">${params[idKey].keyName}:</label><div class=\"col-sm-3\">${params[idKey].widget}</div><#if (i+1)%2==0></div></#if><#if (i+1)==size && (i+1)%2==1></div></#if><#assign i=i+1></#list></#if>";
 	private final String singleColumnTemplate = "";
 
 	public void contextInitialized(ServletContextEvent event) {
