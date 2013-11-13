@@ -251,3 +251,9 @@ a, button{
     width: 94%;
 }
 
+
+.menu-icon {
+    height: 20px;
+    position: relative;
+    top: -2px;
+}
