@@ -98,7 +98,7 @@
 
 	<issueManagement>
 		<system>Trac</system>
-		<url>http://dev.foreveross.com/trac/koala</url>
+		<url>http://trac.foreveross.com/koala</url>
 	</issueManagement>
 	<!-- <issueManagement> <system>JIRA</system> <url>http://jira.openkoala.org/browse/KOALA</url> 
 		</issueManagement> -->
