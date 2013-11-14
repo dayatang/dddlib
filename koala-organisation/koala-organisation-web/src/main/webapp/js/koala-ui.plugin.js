@@ -13,6 +13,7 @@
 		this.searchCondition = {};
 		this.sortName = null;
 		this.sortOrder = null;
+        this.itemsMap = {};
 		this._initLayout();
 		this._initButtons();
 		this._initHead();
@@ -399,9 +400,10 @@
 			var trHtmls = new Array();
 			for(var i= 0,j=items.length; i<j; i++){
 				var item = items[i];
+                self.itemsMap[item.id] = item;
 				var trHtml = new Array();
 				if(self.options.tree && self.options.tree.column){
-					trHtml.push('<tr data-level='+item.level+'>');
+					trHtml.push('<tr data-level='+item.level+' data-children='+self.getChildrenCount(0, item.children)+'>');
 				}else{
 					trHtml.push('<tr>');	
 				}
@@ -433,7 +435,7 @@
 			}
 			this.gridTableBodyTable.html(trHtmls.join(''));
 			if(self.options.tree && self.options.tree.column){
-				this.gridTableBodyTable.find('[data-role="grid-tree-icon"]').on('click', function(e){
+                self.gridTableBodyTable.find('[data-role="grid-tree-icon"]').on('click', function(e){
 					e.stopPropagation();
 					e.preventDefault();
 					var $this = $(this);
@@ -462,6 +464,19 @@
 				});
 			}
 		},
+        /**
+         * 树形表格获取子节点下的所有数量
+         */
+        getChildrenCount: function(count, items){
+            var self = this;
+            count += items.length;
+            $.each(items, function(){
+                if(this.children){
+                    count = self.getChildrenCount(count , this.children);
+                }
+            });
+            return count;
+        },
 		/**
 		 * 初始化树形数据
 		 */
@@ -571,24 +586,50 @@
 		 * 
 		 */
 		up: function(index){
-			var self = this;
-		    if(index == 0){
-				return;
-			}
-			var prevItem = self.items[parseInt(index)-1];		
-			var currentItem = self.items[index];
-			if(self.options.tree && self.options.tree.column){
-				if(parseInt(prevItem.level) < parseInt(currentItem.level)){
-					return;
-				}
-			}
-			var currentRow = self.getRowByIndex(index);
-			var prevRow = currentRow.prev('tr');
-			currentRow.insertBefore(prevRow);
-			currentRow.find('[data-role="indexCheckbox"]').attr('indexvalue', parseInt(index)-1);
-			prevRow.find('[data-role="indexCheckbox"]').attr('indexvalue', index);
-			self.items[parseInt(index)-1] = currentItem;
-			self.items[index] = prevItem;
+            var self = this;
+            if(index == 0){
+                return;
+            }
+            var currentRow = self.getRowByIndex(index);
+            var prevRow = currentRow.prev('tr');
+            var prevItem = self.items[parseInt(index)-1];
+            var currentItem = self.items[index];
+            if(self.options.tree && self.options.tree.column){
+                if(parseInt(currentItem.level) > parseInt(prevItem.level)){
+                    return false;
+                }else{
+                    var tempItem = currentRow.prevAll('[data-level='+currentItem.level+']:first');
+                    if(tempItem.length > 0){
+                        var tempIndex = tempItem.index();
+                        var upLevel = currentRow.prevAll('[data-level='+parseInt(currentItem.level-1)+']:first');
+                        if(upLevel.length > 0){
+                            if(tempIndex < upLevel.index()){
+                                return false;
+                            }
+                        }
+                        prevRow = tempItem;
+                    }
+                }
+            }
+            var childrenCount = parseInt(currentRow.attr('data-children'));
+            var tempCurrentRow = currentRow.next();
+            currentRow.insertBefore(prevRow);
+            if(childrenCount > 0){
+                for(var i= 0; i < childrenCount; i++){
+                    prevRow = currentRow;
+                    currentRow = tempCurrentRow;
+                    tempCurrentRow = currentRow.next();
+                    currentRow.insertAfter(prevRow);
+                }
+            }
+            self.items = new Array();
+            self.gridTableBodyTable.find('tr').each(function(){
+                var $this = $(this);
+                var indexCheckbox = $this.find('[data-role="indexCheckbox"]');
+                indexCheckbox.attr('indexvalue', $this.index());
+                self.items.push(self.itemsMap[indexCheckbox.val()]);
+            });
+            return true;
 		},
 		/**
 		 * 下移
@@ -596,23 +637,53 @@
 		 */
 		down: function(index){
 			var self = this;
-		    if(index == 0){
+		    if(index == self.items.length){
 				return;
 			}
-			var nextItem = self.items[parseInt(index)+1];		
+            var currentRow = self.getRowByIndex(index);
+            var nextRow = currentRow.next('tr');
+            var nextItem = self.items[parseInt(index)+1];
 			var currentItem = self.items[index];
 			if(self.options.tree && self.options.tree.column){
 				if(parseInt(currentItem.level) > parseInt(nextItem.level)){
-					return;
-				}
+                    return false;
+				}else{
+                    var tempItem = currentRow.nextAll('[data-level='+currentItem.level+']:first');
+                    if(tempItem.length > 0){
+                        var tempIndex = tempItem.index();
+                        var upLevel = currentRow.nextAll('[data-level='+parseInt(currentItem.level-1)+']:first');
+                        if(upLevel.length > 0){
+                            if(tempIndex > upLevel.index()){
+                                return false;
+                            }
+                        }
+                        nextRow = tempItem;
+                        var childrenCount = parseInt(tempItem.attr('data-children'));
+                        for(var i= 0; i<childrenCount; i++){
+                            nextRow = nextRow.next();
+                        }
+                    }
+                }
 			}
-			var currentRow = self.getRowByIndex(index);
-			var nextRow = currentRow.next('tr');
-			currentRow.insertAfter(nextRow);
-			currentRow.find('[data-role="indexCheckbox"]').attr('indexvalue', parseInt(index)+1);
-			nextRow.find('[data-role="indexCheckbox"]').attr('indexvalue', index);
-			self.items[parseInt(index)+1] = currentItem;
-			self.items[index] = nextItem;
+            var childrenCount = parseInt(currentRow.attr('data-children'));
+            var tempCurrentRow = currentRow.next();
+            currentRow.insertAfter(nextRow);
+            if(childrenCount > 0){
+                for(var i= 0; i < childrenCount; i++){
+                    nextRow = currentRow;
+                    currentRow = tempCurrentRow;
+                    tempCurrentRow = currentRow.next();
+                    currentRow.insertAfter(nextRow);
+                }
+            }
+            self.items = new Array();
+            self.gridTableBodyTable.find('tr').each(function(){
+                var $this = $(this);
+                var indexCheckbox = $this.find('[data-role="indexCheckbox"]');
+                indexCheckbox.attr('indexvalue', $this.index());
+                self.items.push(self.itemsMap[indexCheckbox.val()]);
+            });
+            return true;
 		}
 	};
 	$.fn.getGrid = function(){

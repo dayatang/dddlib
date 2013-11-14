@@ -285,29 +285,28 @@ public class ResourceApplicationImpl extends BaseImpl implements ResourceApplica
         Resource roleManager = null;
         ResourceType koalaMenu = null;
         ResourceType koalaDirectory = null;
-        
         if("StrutsMVC".equals(type)){
             
              resourceManager = Resource.newResource("资源", "resource", "1", menuIcon);
-             resource = Resource.newResource("资源管理", "auth-Resource-list.action", "2", menuIcon);
-             menuResource = Resource.newResource("菜单管理", "auth-Menu-list.action", "2", menuIcon);
-             typeResource = Resource.newResource("资源类型管理", "auth-ResourceType-list.action", "2", menuIcon);
+             resource = Resource.newResource("资源管理", "pages/auth/resource-list.html", "2", menuIcon);
+             menuResource = Resource.newResource("菜单管理", "pages/auth/menu-list.html", "2", menuIcon);
+             typeResource = Resource.newResource("资源类型管理", "pages/auth/resource-type-list.html", "2", menuIcon);
              userRoleResource = Resource.newResource("用户角色管理", "userole", "1", menuIcon);
             
-             userManager = Resource.newResource("用户管理", "auth-User-list.action", "2", menuIcon);
-             roleManager = Resource.newResource("角色管理", "auth-Role-list.action", "2", menuIcon);
+             userManager = Resource.newResource("用户管理", "pages/auth/user-list.html", "2", menuIcon);
+             roleManager = Resource.newResource("角色管理", "pages/auth/role-list.html", "2", menuIcon);
              koalaMenu = ResourceType.newResourceType("KOALA_MENU");
              koalaDirectory = ResourceType.newResourceType("KOALA_DIRETORY");
         }
         else{
         	  resourceManager = Resource.newResource("资源", "resource", "1", menuIcon);
-              resource = Resource.newResource("资源管理", "auth/Resource/list.koala", "2", menuIcon);
-              menuResource = Resource.newResource("菜单管理", "auth/Menu/list.koala", "2", menuIcon);
-              typeResource = Resource.newResource("资源类型管理", "auth/ResourceType/list.koala", "2", menuIcon);
+              resource = Resource.newResource("资源管理", "pages/auth/resource-list.html", "2", menuIcon);
+              menuResource = Resource.newResource("菜单管理", "pages/auth/menu-list.html", "2", menuIcon);
+              typeResource = Resource.newResource("资源类型管理", "pages/auth/resource-type-list.html", "2", menuIcon);
               userRoleResource = Resource.newResource("用户角色管理", "userole", "1", menuIcon);
              
-              userManager = Resource.newResource("用户管理", "auth/User/list.koala", "2", menuIcon);
-              roleManager = Resource.newResource("角色管理", "auth/Role/list.koala", "2", menuIcon);
+              userManager = Resource.newResource("用户管理", "pages/auth/user-list.html", "2", menuIcon);
+              roleManager = Resource.newResource("角色管理", "pages/auth/role-list.html", "2", menuIcon);
               koalaMenu = ResourceType.newResourceType("KOALA_MENU");
               koalaDirectory = ResourceType.newResourceType("KOALA_DIRETORY");
         }
