@@ -80,7 +80,7 @@ $(function(){
                                 content: '权限初始化成功'
                             });
                             setTimeout(function(){
-                                 window.location.href = 'index.koala';
+                            	window.location.reload();
                             },2000);
                         }
                     });
