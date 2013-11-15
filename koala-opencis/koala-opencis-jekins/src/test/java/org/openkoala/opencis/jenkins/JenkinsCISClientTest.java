@@ -8,6 +8,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 
 /**
@@ -25,6 +26,8 @@ public class JenkinsCISClientTest {
 	
 	private Project project;
 	
+	private Developer developer;
+	
 	@Before
 	public void setUp() {
 		init();
@@ -35,6 +38,9 @@ public class JenkinsCISClientTest {
 		jenkinsCISClient.setJenkinsHost(JENKINS_HOST);
 		project = new Project();
 		project.setArtifactId(JOB_NAME);
+		developer = new Developer();
+		developer.setName("admin");
+		developer.setEmail("admin@gmail.com");
 	}
 
 	@Test
@@ -42,17 +48,23 @@ public class JenkinsCISClientTest {
 		jenkinsCISClient.createProject(project);
 	}
 	
+	@Test
+	public void testCreateAccount() {
+		jenkinsCISClient.createUserIfNecessary(project, developer);
+	}
+	
 	private void confirmRemoveJob() {
 		HttpClient httpClient = new DefaultHttpClient();
 		HttpPost httpPost = new HttpPost(getConfirmRemoveJobUrl());
 		try {
 			HttpResponse response = httpClient.execute(httpPost);
-			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_BAD_REQUEST
-					|| response.getStatusLine().getStatusCode() == HttpStatus.SC_NOT_FOUND) {
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_BAD_REQUEST) {
 				throw new RemoveJobFailureException("Remove job failure.");
 			}
 		} catch (Exception e) {
 			throw new RemoveJobFailureException(e);
+		} finally {
+			httpClient.getConnectionManager().shutdown();
 		}
 	}
 	
