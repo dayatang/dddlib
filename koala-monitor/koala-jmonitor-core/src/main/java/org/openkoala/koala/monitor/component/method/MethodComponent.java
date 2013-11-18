@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.openkoala.koala.monitor.analyser.CommonAnalyser;
 import org.openkoala.koala.monitor.component.AbstractComponent;
+import org.openkoala.koala.monitor.constant.E_TraceType;
 import org.openkoala.koala.monitor.core.ComponentContext;
 import org.openkoala.koala.monitor.core.TraceLiftcycleManager;
 import org.openkoala.koala.monitor.toolkit.asm.ClassEnhancer;
@@ -29,16 +30,14 @@ public class MethodComponent extends AbstractComponent{
 	
 	private CommonAnalyser commonAnalyser;
 	
-    public static String TRACE_TYPE = "METHOD";
-	
 	/**
 	 * 启动
 	 */
 	public void startup(ComponentContext context) {
 		componentContext=context;
 		TraceLiftcycleManager container = componentContext.getContainer();
-		commonAnalyser = new CommonAnalyser(TRACE_TYPE);
-		container.registerAnalyser(TRACE_TYPE, commonAnalyser);
+		commonAnalyser = new CommonAnalyser(E_TraceType.METHOD.name());
+		container.registerAnalyser(E_TraceType.METHOD.name(), commonAnalyser);
 		
 		String packages = context.getProperty("detect-packages");
 		String clazzs = context.getProperty("detect-clazzs");

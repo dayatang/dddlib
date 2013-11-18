@@ -21,8 +21,7 @@ import java.util.concurrent.Executor;
 
 import javax.sql.DataSource;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.openkoala.koala.monitor.constant.E_TraceType;
 import org.openkoala.koala.monitor.core.TraceContainer;
 import org.openkoala.koala.monitor.core.TraceLiftcycleManager;
 import org.openkoala.koala.monitor.def.JdbcConnTrace;
@@ -34,7 +33,7 @@ import org.openkoala.koala.monitor.support.JdbcPoolStatusCollector;
  */
 public class ProxyConnection implements Connection {
 
-    private static final Log log = LogFactory.getLog(ProxyConnection.class);
+    //private static final Log log = LogFactory.getLog(ProxyConnection.class);
     private DataSource _dataSource;
     private Connection _delegate;
     /**
@@ -57,7 +56,7 @@ public class ProxyConnection implements Connection {
         JdbcPoolStatusCollector.getInstance().refreshConnPoolStatus(_dataSource, _delegate, threadKey, 1);
         //
         trace = new JdbcConnTrace();
-        _container.activateTrace(JdbcComponent.TRACE_TYPE, trace);
+        _container.activateTrace(E_TraceType.JDBC.name(), trace);
     }
 
     /**
@@ -123,7 +122,7 @@ public class ProxyConnection implements Connection {
         } finally {
             _closed = true;
             trace.inActive();
-            _container.inactivateTrace(JdbcComponent.TRACE_TYPE, trace);
+            _container.inactivateTrace(E_TraceType.JDBC.name(), trace);
             // 标记连接释放
             JdbcPoolStatusCollector.getInstance().refreshConnPoolStatus(_dataSource, _delegate, trace.getThreadKey(), 0);
         }

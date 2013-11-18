@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openkoala.koala.monitor.analyser.CommonAnalyser;
 import org.openkoala.koala.monitor.analyser.SessionFilterAnalyser;
 import org.openkoala.koala.monitor.component.AbstractComponent;
+import org.openkoala.koala.monitor.constant.E_TraceType;
 import org.openkoala.koala.monitor.core.ComponentContext;
 import org.openkoala.koala.monitor.core.TraceLiftcycleManager;
 
@@ -19,13 +20,12 @@ public class HttpComponent extends AbstractComponent {
 	private static final Log log = LogFactory.getLog(HttpComponent.class);
 
 	private ComponentContext componentContext = null;
-	public static String TRACE_TYPE = "HTTP";
 
 	public void startup(ComponentContext context) {
 		componentContext = context;
 		TraceLiftcycleManager container = componentContext.getContainer();
-		container.registerAnalyser(TRACE_TYPE, new CommonAnalyser(TRACE_TYPE));
-		container.registerAnalyser(TRACE_TYPE, new SessionFilterAnalyser(TRACE_TYPE));
+		container.registerAnalyser(E_TraceType.HTTP.name(), new CommonAnalyser(E_TraceType.HTTP.name()));
+		container.registerAnalyser(E_TraceType.HTTP.name(), new SessionFilterAnalyser(E_TraceType.HTTP.name()));
 		log.info("httpcomponent startup.");
 	}
 

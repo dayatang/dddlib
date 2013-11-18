@@ -5,6 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.openkoala.koala.monitor.analyser.CommonAnalyser;
 import org.openkoala.koala.monitor.analyser.SessionFilterAnalyser;
 import org.openkoala.koala.monitor.component.AbstractComponent;
+import org.openkoala.koala.monitor.constant.E_TraceType;
 import org.openkoala.koala.monitor.core.ComponentContext;
 import org.openkoala.koala.monitor.core.TraceLiftcycleManager;
 import org.openkoala.koala.monitor.toolkit.asm.ClassEnhancer;
@@ -31,15 +32,12 @@ public class JdbcComponent extends AbstractComponent {
 
 	private ComponentContext componentContext = null;
 
-	
-    public static String TRACE_TYPE = "JDBC";
-	
 	public void startup(ComponentContext context) {
 		componentContext = context;
 		
 		TraceLiftcycleManager container = componentContext.getContainer();
-		container.registerAnalyser(TRACE_TYPE, new CommonAnalyser(TRACE_TYPE));
-		container.registerAnalyser(TRACE_TYPE, new SessionFilterAnalyser(TRACE_TYPE));
+		container.registerAnalyser(E_TraceType.JDBC.name(), new CommonAnalyser(E_TraceType.JDBC.name()));
+		container.registerAnalyser(E_TraceType.JDBC.name(), new SessionFilterAnalyser(E_TraceType.JDBC.name()));
 
 		String clazzs = context.getProperty("driver-clazzs");
 		String[] drivers = getDriverClassNames(clazzs);

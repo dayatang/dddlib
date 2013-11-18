@@ -7,6 +7,7 @@ import java.lang.reflect.Modifier;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openkoala.koala.monitor.constant.E_TraceType;
 import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.core.TraceLiftcycleManager;
 import org.openkoala.koala.monitor.def.MethodTrace;
@@ -43,9 +44,9 @@ public class TraceMethodHandle implements MethodInjectHandler {
 		try {
 			try {
 				if(doTrace){
-					boolean traceStack = Boolean.parseBoolean(RuntimeContext.getComponentProps(MethodComponent.TRACE_TYPE, "trace-stack"));
+					boolean traceStack = Boolean.parseBoolean(RuntimeContext.getComponentProps(E_TraceType.METHOD.name(), "trace-stack"));
 					trace = new MethodTrace(target, method, args,traceStack);
-					getContainer().activateTrace(MethodComponent.TRACE_TYPE,trace);
+					getContainer().activateTrace(E_TraceType.METHOD.name(),trace);
 				}
 				
 			} catch (Exception e) {
@@ -65,7 +66,7 @@ public class TraceMethodHandle implements MethodInjectHandler {
 		}finally {
 			if(doTrace){
 				try {
-					getContainer().inactivateTrace(MethodComponent.TRACE_TYPE,trace);
+					getContainer().inactivateTrace(E_TraceType.METHOD.name(),trace);
 				} catch (Exception e) {
 					log.warn("["+method.getName() + "]监控代码未正常结束");
 				}

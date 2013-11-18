@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openkoala.koala.monitor.constant.E_TraceType;
 import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.core.TraceContainer;
 import org.openkoala.koala.monitor.core.TraceLiftcycleManager;
@@ -61,7 +62,7 @@ public class DetectFilter implements Filter {
 	public boolean ignoreThisTrace(ServletRequest request, ServletResponse response, FilterChain filterChain) {
 		try {
 			
-			if(!RuntimeContext.componentIsActive(HttpComponent.TRACE_TYPE))return true;
+			if(!RuntimeContext.componentIsActive(E_TraceType.HTTP.name()))return true;
 			
 			HttpServletRequest httprequest = (HttpServletRequest) request;
 			String path = httprequest.getRequestURI().trim();
@@ -71,7 +72,7 @@ public class DetectFilter implements Filter {
 				if(DEFAULT_IGNORE_SUFFIX.contains(suffix))return true;
 			}
 
-			ComponentDef def = RuntimeContext.getContext().getComponentDef(HttpComponent.TRACE_TYPE);
+			ComponentDef def = RuntimeContext.getContext().getComponentDef(E_TraceType.HTTP.name());
 			String[] includeUrls = StringUtils.trimToEmpty(def.getProperty("includeUrls")).split(";");
 			//如果包含网址不为空，则只处理包含在内的网址
 			if(includeUrls.length>0 && StringUtils.isNotBlank(includeUrls[0])){
@@ -117,7 +118,7 @@ public class DetectFilter implements Filter {
 		pageTrace.setPrincipal(getCurrentUser(req));
 		try {
 			try {
-				getContainer().activateTrace(HttpComponent.TRACE_TYPE,pageTrace);
+				getContainer().activateTrace(E_TraceType.HTTP.name(),pageTrace);
 				
 			} catch (Exception e) {
 				log.warn(e.getMessage());
@@ -125,7 +126,7 @@ public class DetectFilter implements Filter {
 			filterChain.doFilter(request, response);
 		} finally {
 			try {
-				getContainer().inactivateTrace(HttpComponent.TRACE_TYPE,pageTrace);
+				getContainer().inactivateTrace(E_TraceType.HTTP.name(),pageTrace);
 				TraceContainer.clearThreadKey();
 				
 			} catch (Exception e) {
@@ -146,7 +147,7 @@ public class DetectFilter implements Filter {
     private static String getCurrentUser(HttpServletRequest req){
     	String user = "unknow";
     	try {
-    		String sessionKey = RuntimeContext.getContext().getComponentDef(HttpComponent.TRACE_TYPE).getProperty("login-user-sessionkey");
+    		String sessionKey = RuntimeContext.getContext().getComponentDef(E_TraceType.HTTP.name()).getProperty("login-user-sessionkey");
         	if(sessionKey.startsWith("SPRING_SECURITY_CONTEXT")){//Spring Security 
         		Object ssContext = req.getSession().getAttribute("SPRING_SECURITY_CONTEXT");
         		if(ssContext != null){
