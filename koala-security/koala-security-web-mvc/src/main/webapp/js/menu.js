@@ -236,8 +236,9 @@ var menuManager = function(){
 	        return;
 	    }
 		var dataGrid = grid.getGrid();
-		dataGrid.up(indexs[0]);
-		changePosition(dataGrid.selectedAllRows());
+        if(dataGrid.up(indexs[0])){
+		    changePosition(dataGrid.selectedAllRows());
+        }
 	};
 
 	/**
@@ -247,25 +248,25 @@ var menuManager = function(){
 		var dataGrid = grid.getGrid();
 		var indexs = dataGrid.selectedRowsNo();
 		if(indexs.length == 0){
-	        $this.message({
+	        $('body').message({
 	            type: 'warning',
 	             content: '请选择要操作的记录'
-	        })
+	        });
 	        return;
 	    }
 		if(indexs.length > 1){
-	        $this.message({
+            $('body').message({
 	            type: 'warning',
 	             content: '只能选择一条记录进行操作'
 	        })
 	        return;
 	    }
 		var dataGrid = grid.getGrid();
-		dataGrid.down(indexs[0]);
-		changePosition(dataGrid.selectedAllRows());
+		if(dataGrid.down(indexs[0])){
+		    changePosition(dataGrid.selectedAllRows());
+        }
 	};
 	var changePosition = function(items){
-		console.info(items)
 		var data = {};
 		for(var i=0,j=items.length; i<j; i++){
 			var item = items[i];
@@ -273,7 +274,10 @@ var menuManager = function(){
 			data['resourceVOs['+i+'].sortOrder'] = i+1;
 		}
 		$.post('/auth/Menu/updateMenuOrder.koala', data).done(function(result){
-			console.info(result)
+			$('body').message({
+                type: 'success',
+                content: '移动成功'
+            })
 		}).fail(function(result){
 
 		});

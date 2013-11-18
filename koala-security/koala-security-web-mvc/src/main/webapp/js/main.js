@@ -56,6 +56,36 @@ $(function(){
 		}
 	})
 	$.get('/auth/Menu/findTopMenuByUser.koala').done(function(data){
+        if(data.data.length == 0){
+            var dialog = $('<div class="modal fade"><div class="modal-dialog" style="padding-top:10%;width:400px;"><div class="modal-content">' +
+                ' <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">' +
+                '&times;</button><h4 class="modal-title">菜单初始化</h4></div><div class="modal-body">' +
+                '<p>是否进行菜单初始化？</p></div><div class="modal-footer"><button type="button" class="btn btn-default"' +
+                ' data-dismiss="modal">取消</button><button id="confirm" type="button" class="btn btn-primary">确定</button></div>' +
+                '</div></div></div>');
+            dialog.modal({
+                keyboard: true
+            }).on('hidden.bs.modal', function(){
+                 $(this).remove();
+            }).find('#confirm').on('click', function(){
+                    $.ajax({
+                        type: 'GET',
+                        url:'dbinit',
+                        dataType: 'text'
+                    }).done(function(data){
+                        if(data == 'success'){
+                            dialog.modal('hide');
+                            $('body').message({
+                                type: 'success',
+                                content: '权限初始化成功'
+                            });
+                            setTimeout(function(){
+                            	window.location.reload();
+                            },2000);
+                        }
+                    });
+            });
+        }
 		$.each(data.data, function(){
 			var $li = $('<li><a data-toggle="collapse" href="#menuMark'+this.id+'"><img class="menu-icon" src="'+this.icon+'"></img>&nbsp;'+this.name+'&nbsp;'+
 				'<i class="glyphicon glyphicon-chevron-left"></i></a><ul id="menuMark'+this.id+'" class="second-level-menu"></ul></li>');

@@ -1,6 +1,8 @@
 package org.openkoala.koala.dbinit;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,7 +41,11 @@ public class SecurityDBInit extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		getResourceApplication().initResource(type);
-		resp.sendRedirect(req.getContextPath()+"/pages/common/dbInit.jsp");
+		//resp.sendRedirect(req.getContextPath()+"/pages/common/dbInit.jsp");
+		PrintWriter out = resp.getWriter();
+		out.write("success");
+		out.flush();
+		out.close();
 	}
 	
 	  public void init() throws ServletException{  
