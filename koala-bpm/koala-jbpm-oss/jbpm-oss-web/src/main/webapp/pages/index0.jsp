@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="ss3" uri="http://www.springframework.org/security/tags" %>
+<%@ page import="java.util.Date"%>
+<%Long time = new Date().getTime();%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -9,10 +11,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
-    <link href="/css/main.css"   rel="stylesheet">
-    <link href="/css/koala.css"   rel="stylesheet">
+    <link href="/css/main.css?time=<%=time%>"    rel="stylesheet">
+    <link href="/css/koala.css?time=<%=time%>"    rel="stylesheet">
     <link href="/css/datetimepicker.css"   rel="stylesheet">
-      <link href="/lib/z-tree/css/zTreeStyle.css"   rel="stylesheet">
+    <link href="/lib/z-tree/css/zTreeStyle.css"   rel="stylesheet">
 </head>
 <body>
 	<div class="g-head">
@@ -79,12 +81,12 @@
 	<script type="text/javascript" src="<c:url value='/js/jquery/jquery-1.8.3.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
-	<script type="text/javascript" src="<c:url value='/js/koala-ui.plugin.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/koala-ui.plugin.js' />?time=<%=time%>" ></script>
 	<script type="text/javascript" src="<c:url value='/js/datetimepicker.js' />" ></script>
 	<script type="text/javascript" src="<c:url value='/js/tree.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/z-tree/js/jquery.ztree.all-3.5.min.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/main.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/main.js' />?time=<%=time%>" ></script>
 	<script type="text/javascript" src="<c:url value='/js/processform/form.render.js' />"></script>
 </body>
 </html>

@@ -75,6 +75,11 @@ public class BusinessSupportApplicationImplTest {
 	@After
 	public void tearDown() throws Exception {
 		DynaProcessForm.setTemplateContent(null);
+		DynaProcessForm.setRepository(null);
+		DynaProcessKey.setRepository(null);
+		DynaProcessTemplate.setRepository(null);
+		DynaProcessHistoryValue.setRepository(null);
+		DynaProcessValue.setRepository(null);
 	}
 
 	@Test
@@ -82,25 +87,6 @@ public class BusinessSupportApplicationImplTest {
 	public void testInitDynaProcessTemplateDatas() {
 		//haven been used
 	}
-
-	/*@Test
-	public void testCheckDynaProcessTemplateExistenceByName() {
-		List<DynaProcessTemplate> list = new ArrayList<DynaProcessTemplate>();
-		when(repository.findByNamedQuery("isExisted", new Object[]{oneColumnTemplateName},
-				DynaProcessTemplate.class)).thenReturn(list);
-		boolean templateExisted = instance.
-				isExistDynaProcessTemplate(oneColumnTemplateName);
-		assertFalse(templateExisted);
-		
-		DynaProcessTemplate dynaProcessTemplate = new DynaProcessTemplate();
-		list.add(dynaProcessTemplate);
-		when(repository.findByNamedQuery("isExisted", new Object[]{twoColumnsTemplateName},
-				DynaProcessTemplate.class)).thenReturn(list);
-		boolean templateExisted2 = instance.
-				isExistDynaProcessTemplate(twoColumnsTemplateName);
-		assertTrue(templateExisted2);
-		
-	}*/
 
 	@Test
 	public void testGetProcesses() {
