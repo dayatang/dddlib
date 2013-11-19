@@ -79,7 +79,7 @@
       <!-- 
          任务源定义文件
        -->
-      <taskResource>monitor/ServiceList.xml</taskResource>
+      <taskResource>/WEB-INF/monitor/ServiceList.xml</taskResource>
     </task>
     <task>
 		<type>SERVERSTATUS-COLLECT</type>
