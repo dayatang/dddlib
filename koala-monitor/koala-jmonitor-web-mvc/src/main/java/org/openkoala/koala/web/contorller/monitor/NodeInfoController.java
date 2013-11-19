@@ -147,7 +147,7 @@ public class NodeInfoController {
     	Map<String, Object> dataMap = new HashMap<String,Object>();
     	ScheduleConfVo conf = new ScheduleConfVo();
     	conf.setTriggerName("dataPolicyTrigger");
-    	conf.setActive("1".equals(request.getParameter("active")));
+    	conf.setActiveAsString(request.getParameter("active"));
     	conf.setInterval(Integer.parseInt(request.getParameter("interval")));
     	serviceMonitorApplication.updateScheduleConf(conf);
     	return dataMap;

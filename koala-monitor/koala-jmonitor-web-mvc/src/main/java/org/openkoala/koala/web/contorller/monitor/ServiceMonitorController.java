@@ -44,11 +44,10 @@ public class ServiceMonitorController {
 				vo.setCronExpr(confExpr);
 				serviceMonitorApplication.updateScheduleConf(vo);
 			}else if(StringUtils.isNotBlank(currentStat)){
-//				vo.setActive(!Boolean.getBoolean(currentStat));
 				if(currentStat.equals("true")){
-					vo.setActive(false);
+					vo.setActiveAsString("false");
 				}else{
-					vo.setActive(true);
+					vo.setActiveAsString("true");
 				}
 				serviceMonitorApplication.updateScheduleConf(vo);
 			}

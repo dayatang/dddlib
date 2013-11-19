@@ -73,8 +73,9 @@ public class ServiceMonitorApplicationIpml implements ServiceMonitorApplication 
 			SchedulerConfg confg = SchedulerConfg.get(SchedulerConfg.class, confVo.getTriggerName());
 			if(StringUtils.isNotBlank(confVo.getCronExpr())){
 				confg.setCronExpr(confVo.getCronExpr());
-			}else{
-				confg.setActive(confVo.isActive());
+			}
+			if(StringUtils.isNotBlank(confVo.getActiveAsString())){
+				confg.setActive("1".equals(confVo.getActiveAsString()) || "true".equals(confVo.getActiveAsString()));
 			}
 			confg.save();
 		} catch (Exception e) {

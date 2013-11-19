@@ -43,6 +43,7 @@ public class ScheduleConfVo implements Serializable {
 	private boolean running;// 是否运行中
 
 	private boolean active;// 是否启用
+	private String activeAsString;//
 
 	private String cronExpr; //执行间隔表达式
 
@@ -81,6 +82,14 @@ public class ScheduleConfVo implements Serializable {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+	
+	public String getActiveAsString() {
+		return activeAsString;
+	}
+
+	public void setActiveAsString(String activeAsString) {
+		this.activeAsString = activeAsString;
 	}
 
 	public String getCronExpr() {
