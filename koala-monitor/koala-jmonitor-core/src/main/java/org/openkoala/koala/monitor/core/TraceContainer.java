@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.openkoala.koala.monitor.component.method.MethodComponent;
+import org.openkoala.koala.monitor.constant.E_TraceType;
 import org.openkoala.koala.monitor.def.CombineMethodTrace;
 import org.openkoala.koala.monitor.def.MethodTrace;
 import org.openkoala.koala.monitor.def.Trace;
@@ -82,7 +82,7 @@ public class TraceContainer implements TraceLiftcycleManager{
 		process.doProcess(traceType,trace);	
 
 		//放入交换数据缓存区
-		if(MethodComponent.TRACE_TYPE.equals(trace.getTraceType())){
+		if(E_TraceType.METHOD.name().equals(trace.getTraceType())){
 			CombineMethodTrace combineMethodTrace = new CombineMethodTrace();
 			combineMethodTrace.combineTraceInfo((MethodTrace)trace);
 			RuntimeContext.getContext().getDataCache().push(combineMethodTrace);

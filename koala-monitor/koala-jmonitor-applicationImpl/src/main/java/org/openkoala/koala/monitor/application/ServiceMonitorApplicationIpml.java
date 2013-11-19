@@ -89,7 +89,7 @@ public class ServiceMonitorApplicationIpml implements ServiceMonitorApplication 
 			SchedulerConfg confg = SchedulerConfg.get(SchedulerConfg.class, triggerName);
 			BeanUtils.copyProperties(result, confg);
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 		}
 		
 		return result;

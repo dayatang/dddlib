@@ -8,8 +8,7 @@ import java.util.TimerTask;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.openkoala.koala.monitor.component.http.HttpComponent;
-import org.openkoala.koala.monitor.component.method.MethodComponent;
+import org.openkoala.koala.monitor.constant.E_TraceType;
 import org.openkoala.koala.monitor.core.Analyser;
 import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.core.TraceContainer;
@@ -64,7 +63,7 @@ public class CommonAnalyser implements Analyser{
 	public void activeProcess(Trace trace) {
 		traces.add(trace);
 		//记录入口方法
-		if(MethodComponent.TRACE_TYPE.equals(trace.getTraceType())){
+		if(E_TraceType.METHOD.name().equals(trace.getTraceType())){
 			if(!methodEnpoints.containsKey(trace.getThreadKey())){
 				methodEnpoints.put(trace.getThreadKey(), ((MethodTrace)trace).getMethod());
 			}
@@ -77,7 +76,7 @@ public class CommonAnalyser implements Analyser{
 		long tracefilterActivetime = getTracefilterActivetime();
 		if (tracefilterActivetime >= activeTime){
 			//发生异常的方法也需要继续处理
-			if(MethodComponent.TRACE_TYPE.equals(trace.getTraceType()) && ((MethodTrace)trace).isSuccessed()==false){
+			if(E_TraceType.METHOD.name().equals(trace.getTraceType()) && ((MethodTrace)trace).isSuccessed()==false){
 				trace.inActive();
 			}else{
 				trace.destroy();
@@ -88,7 +87,7 @@ public class CommonAnalyser implements Analyser{
 		traces.remove(trace);
 		
 		//http请求结束 释放
-		if(HttpComponent.TRACE_TYPE.equals(trace.getTraceType())){
+		if(E_TraceType.HTTP.name().equals(trace.getTraceType())){
 			methodEnpoints.remove(trace.getThreadKey());
 			TraceContainer.clearThreadKey();
 		}

@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.openkoala.koala.monitor.component.MapCacheDataPool;
-import org.openkoala.koala.monitor.config.PersistManager;
 import org.openkoala.koala.monitor.def.ComponentDef;
 import org.openkoala.koala.monitor.def.DataPolicyDef;
 import org.openkoala.koala.monitor.def.NodeDef;

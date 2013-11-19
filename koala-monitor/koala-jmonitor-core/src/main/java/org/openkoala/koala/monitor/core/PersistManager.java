@@ -1,14 +1,14 @@
-package org.openkoala.koala.monitor.config;
+package org.openkoala.koala.monitor.core;
 
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 
-import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.def.ComponentDef;
 import org.openkoala.koala.monitor.def.DataPolicyDef;
 import org.openkoala.koala.monitor.def.NodeDef;
 import org.openkoala.koala.monitor.def.TaskDef;
+import org.openkoala.koala.monitor.toolkit.config.MapEntryConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,6 +1,6 @@
 package org.openkoala.koala.monitor.analyser;
 
-import org.openkoala.koala.monitor.component.http.HttpComponent;
+import org.openkoala.koala.monitor.constant.E_TraceType;
 import org.openkoala.koala.monitor.core.Analyser;
 import org.openkoala.koala.monitor.core.RuntimeContext;
 import org.openkoala.koala.monitor.def.HttpRequestTrace;
@@ -30,7 +30,7 @@ public class SessionFilterAnalyser implements Analyser{
 
 	@Override
 	public void activeProcess(Trace trace) {
-		if(HttpComponent.TRACE_TYPE.equals(trace.getTraceType())){
+		if(E_TraceType.HTTP.name().equals(trace.getTraceType())){
 			//刷新在线人数
 			HttpRequestTrace _trace = (HttpRequestTrace)trace;
 			RuntimeContext.getContext().getDataCache().refreshActiveSessions(_trace);
