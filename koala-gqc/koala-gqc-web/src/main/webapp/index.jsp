@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.Date"%>
+<%Long time = new Date().getTime();%>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
@@ -5,8 +9,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
-        <link href="css/main.css"   rel="stylesheet">
-        <link href="css/koala.css"   rel="stylesheet">
+        <link href="css/main.css?time=<%=time%>"   rel="stylesheet">
+        <link href="css/koala.css?time=<%=time%>"   rel="stylesheet">
     </head>
   	<body>
             <div class="g-head">
@@ -56,7 +60,7 @@
         <script type="text/javascript" src="lib/respond.min.js"></script>
         <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/datetimepicker.js"></script>
-        <script type="text/javascript" src="js/koala-ui.plugin.js"></script>
-	    <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/koala-ui.plugin.js?time=<%=time%>"></script>
+	    <script type="text/javascript" src="js/main.js?time=<%=time%>"></script>
     </body>
 </html>
