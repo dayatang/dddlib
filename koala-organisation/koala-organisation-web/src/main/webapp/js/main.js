@@ -42,7 +42,7 @@ $(function(){
 				changeHeight();
 			})
 	}
-	loadContent($('#home'), 'pages/process/activeTasks.html');
+	loadContent($('#home'), 'pages/welcome.html');
 	/*
 	* 菜单收缩样式变化
 	 */
