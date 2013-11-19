@@ -51,7 +51,7 @@
     <dependency>
 			<groupId>org.openkoala.monitor</groupId>
 			<artifactId>koala-jmonitor-core</artifactId>
-			<version>${koala.version}</version>
+			<version>${koala.monitor.version}</version>
 		</dependency>
 	</root>
          ]]>
@@ -74,12 +74,12 @@
        <dependency>
 			<groupId>org.openkoala.monitor</groupId>
 			<artifactId>koala-jmonitor-application</artifactId>
-			<version>${koala.version}</version>
+			<version>${koala.monitor.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openkoala.monitor</groupId>
 			<artifactId>koala-jmonitor-applicationImpl</artifactId>
-			<version>${koala.version}</version>
+			<version>${koala.monitor.version}</version>
 		</dependency>
 	</root>
          ]]>

@@ -47,7 +47,7 @@
 	
 	<context-param>
 		<param-name>monitor-config</param-name>
-		<param-value>monitor/koala-monitor.xml</param-value>
+		<param-value>WEB-INF/monitor/koala-monitor.xml</param-value>
 	</context-param>
 
 	<filter>
@@ -105,7 +105,7 @@
 	  </servlet-mapping>
     #end
     
-
+#if ($Module.security)
     <servlet>
 		<servlet-name>DBInit</servlet-name>
 		<servlet-class>org.openkoala.koala.dbinit.SecurityDBInit</servlet-class>
@@ -119,17 +119,7 @@
 		<servlet-name>DBInit</servlet-name>
 		<url-pattern>/dbinit</url-pattern>
 	</servlet-mapping>
-    
-
-    <servlet>
-		<servlet-name>koalaUISupport</servlet-name>
-		<servlet-class>org.openkoala.ui.base.KoalaUISupport</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>koalaUISupport</servlet-name>
-		<url-pattern>/koalaUISupport</url-pattern>
-	</servlet-mapping>
+ #end   
 	
 	<error-page>
 		<error-code>404</error-code>
