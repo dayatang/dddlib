@@ -212,13 +212,15 @@ public class ServerStatusCollectorTask extends BaseMonitorTask {
 		Map<String, Map<String, Double>> diskDatas = new TreeMap<String, Map<String, Double>>();
 		keys = diskUsageEveryHour.keySet();
 		Map<String, Double> singgleDiskData;
+		List<Double> dataList;
 		for (String key : keys) {
 			singgleDiskData = new HashMap<String, Double>();
-			singgleDiskData.put("total", diskUsageEveryHour.get(key).get(0));
-			singgleDiskData.put("used", diskUsageEveryHour.get(key).get(1));
-			if(diskUsageEveryHour.get(key).get(2)>0){
-				singgleDiskData.put("readRate", diskUsageEveryHour.get(key).get(2));
-				singgleDiskData.put("writeRate", diskUsageEveryHour.get(key).get(3));
+			dataList = diskUsageEveryHour.get(key);
+			singgleDiskData.put("total", dataList.get(0));
+			singgleDiskData.put("used", dataList.get(1));
+			if(dataList.size()>2){
+				singgleDiskData.put("readRate", dataList.get(2));
+				singgleDiskData.put("writeRate", dataList.get(3));
 			}
 			diskDatas.put(key, singgleDiskData);
 		}

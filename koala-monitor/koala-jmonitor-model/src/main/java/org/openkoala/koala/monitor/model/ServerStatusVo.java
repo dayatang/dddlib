@@ -390,13 +390,21 @@ public class ServerStatusVo implements Serializable{
 			this.usePercent = usePercent;
 		}
 		public double getDiskReadRate() {
-			return new BigDecimal(diskReadRate).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+			try {
+				return new BigDecimal(diskReadRate).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+			} catch (Exception e) {
+				return 0.0;
+			}
 		}
 		public void setDiskReadRate(double diskReadRate) {
 			this.diskReadRate = diskReadRate;
 		}
 		public double getDiskWriteRate() {
-			return new BigDecimal(diskWriteRate).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+			try {
+				return new BigDecimal(diskWriteRate).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+			} catch (Exception e) {
+				return 0.0;
+			}
 		}
 		public void setDiskWriteRate(double diskWriteRate) {
 			this.diskWriteRate = diskWriteRate;
