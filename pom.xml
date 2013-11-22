@@ -7,7 +7,7 @@
     <version>4.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Dayatang Commons Project</name>
-    <url>http://www.dayatang.com/projects/dddlib</url>
+    <url>http://www.dayatang.org/projects/dddlib</url>
     <description>
         Common Domain APIs of dayatang.com. Includes interfaces
         and base classes.
