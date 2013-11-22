@@ -1,463 +1,466 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.dayatang.commons</groupId>
-	<artifactId>dayatang-commons-project</artifactId>
-	<version>4.0-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<name>Dayatang Commons Project</name>
-	<url>http://www.dayatang.com/projects/dddlib</url>
-	<description>
-		Common Domain APIs of dayatang.com. Includes interfaces
-		and base classes.
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.dayatang.commons</groupId>
+    <artifactId>dayatang-commons-project</artifactId>
+    <version>4.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>Dayatang Commons Project</name>
+    <url>http://www.dayatang.com/projects/dddlib</url>
+    <description>
+        Common Domain APIs of dayatang.com. Includes interfaces
+        and base classes.
     </description>
-	<organization>
-		<name>Dayatang Software Corp.</name>
-		<url>http://www.dayatang.com/</url>
-	</organization>
-	<developers>
-		<developer>
-			<id>gdyangyu</id>
-			<name>Yu Yang</name>
-			<email>cnyangyu@hotmail.com</email>
-			<roles>
-				<role>administrator</role>
-				<role>developer</role>
-			</roles>
-		</developer>
-		<developer>
-			<id>cchen</id>
-			<name>Cao Chen</name>
-			<email>chencao0524@hotmail.com</email>
-			<roles>
-				<role>administrator</role>
-				<role>developer</role>
-			</roles>
-		</developer>
-	</developers>
+    <organization>
+        <name>Dayatang Software Corp.</name>
+        <url>http://www.dayatang.com/</url>
+    </organization>
+    <developers>
+        <developer>
+            <id>gdyangyu</id>
+            <name>Yu Yang</name>
+            <email>cnyangyu@hotmail.com</email>
+            <roles>
+                <role>administrator</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>cchen</id>
+            <name>Cao Chen</name>
+            <email>chencao0524@hotmail.com</email>
+            <roles>
+                <role>administrator</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
 
-	<licenses>
-		<license>
-			<name>Apache Software License 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
+    <licenses>
+        <license>
+            <name>Apache Software License 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
-	<ciManagement>
-		<system>hudson</system>
-		<url>http://www.dayatang.com:8080/hudson/job/dddlib/</url>
-		<notifiers>
-			<notifier>
-				<type>mail</type>
-				<configuration>
-					<committers>true</committers>
-				</configuration>
-				<sendOnError>true</sendOnError>
-				<sendOnFailure>true</sendOnFailure>
-				<sendOnWarning>false</sendOnWarning>
-				<sendOnSuccess>false</sendOnSuccess>
-			</notifier>
-			<notifier>
-				<type>mail</type>
-				<configuration>
-					<address>chencao0524@gmail.com</address>
-				</configuration>
-				<sendOnError>true</sendOnError>
-				<sendOnFailure>true</sendOnFailure>
-				<sendOnWarning>true</sendOnWarning>
-				<sendOnSuccess>true</sendOnSuccess>
-			</notifier>
-		</notifiers>
-	</ciManagement>
-        <scm>
-            <connection>scm:git:git://github.com/dayatang/dddlib.git</connection>
-            <developerConnection>scm:git:git@github.com:dayatang/dddlib.git</developerConnection>
-            <url>http://github.com/dayatang/dddlib/tree/master</url>
-          <tag>HEAD</tag>
-  </scm>
+    <ciManagement>
+        <system>hudson</system>
+        <url>http://www.dayatang.com:8080/hudson/job/dddlib/</url>
+        <notifiers>
+            <notifier>
+                <type>mail</type>
+                <configuration>
+                    <committers>true</committers>
+                </configuration>
+                <sendOnError>true</sendOnError>
+                <sendOnFailure>true</sendOnFailure>
+                <sendOnWarning>false</sendOnWarning>
+                <sendOnSuccess>false</sendOnSuccess>
+            </notifier>
+            <notifier>
+                <type>mail</type>
+                <configuration>
+                    <address>chencao0524@gmail.com</address>
+                </configuration>
+                <sendOnError>true</sendOnError>
+                <sendOnFailure>true</sendOnFailure>
+                <sendOnWarning>true</sendOnWarning>
+                <sendOnSuccess>true</sendOnSuccess>
+            </notifier>
+        </notifiers>
+    </ciManagement>
+    <scm>
+        <connection>scm:git:git://github.com/dayatang/dddlib.git</connection>
+        <developerConnection>scm:git:git@github.com:dayatang/dddlib.git</developerConnection>
+        <url>http://github.com/dayatang/dddlib/tree/master</url>
+        <tag>HEAD</tag>
+    </scm>
 
-	<issueManagement> <system>trac</system> <url>http://www.dayatang.com/trac/dddlib</url> 
-		</issueManagement>
-        <!--
-	<issueManagement>
-		<system>github</system>
-		<url>https://github.com/dayatang/dddlib/issues</url>
-	</issueManagement>
-	-->
+    <issueManagement>
+        <system>trac</system>
+        <url>http://www.dayatang.org/trac/dddlib</url>
+    </issueManagement>
+    <!--
+<issueManagement>
+    <system>github</system>
+    <url>https://github.com/dayatang/dddlib/issues</url>
+</issueManagement>
+-->
 
-	<distributionManagement>
-		<repository>
-			<id>koala-releases</id>
-			<name>Koala release repository</name>
-			<url>dav:http://nexus.openkoala.org/nexus/content/repositories/releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>koala-snapshots</id>
-			<name>Koala snapshot repository</name>
-			<url>dav:http://nexus.openkoala.org/nexus/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<site>
-			<id>koala-site</id>
-			<name>Koala maven site</name>
+    <distributionManagement>
+        <repository>
+            <id>koala-releases</id>
+            <name>Koala release repository</name>
+            <url>dav:http://nexus.openkoala.org/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>koala-snapshots</id>
+            <name>Koala snapshot repository</name>
+            <url>dav:http://nexus.openkoala.org/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <site>
+            <id>koala-site</id>
+            <name>Koala maven site</name>
             <url>dav:http://dev.foreveross.com/projects/koala</url>
-		</site>
-		<!-- <site> <id>github-project-site</id> <url>gitsite:git@github.com/dayatang/dddlib</url> 
-			</site> -->
-	</distributionManagement>
+        </site>
+        <!-- <site> <id>github-project-site</id> <url>gitsite:git@github.com/dayatang/dddlib</url>
+            </site> -->
+    </distributionManagement>
 
-	<repositories>
-		<repository>
-			<id>koala-releases</id>
-			<url>http://nexus.openkoala.org/nexus/content/groups/public-releases</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>koala-snapshots</id>
-			<url>http://nexus.openkoala.org/nexus/content/groups/public-snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+    <repositories>
+        <repository>
+            <id>koala-releases</id>
+            <url>http://nexus.openkoala.org/nexus/content/groups/public-releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>koala-snapshots</id>
+            <url>http://nexus.openkoala.org/nexus/content/groups/public-snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>koala-releases</id>
-			<url>http://nexus.openkoala.org/nexus/content/repositories/releases</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>koala-snapshots</id>
-			<url>http://nexus.openkoala.org/nexus/content/repositories/snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>koala-releases</id>
+            <url>http://nexus.openkoala.org/nexus/content/repositories/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>koala-snapshots</id>
+            <url>http://nexus.openkoala.org/nexus/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>javax.inject</groupId>
-				<artifactId>javax.inject</artifactId>
-				<version>1</version>
-			</dependency>
-			<dependency>
-				<groupId>javax.validation</groupId>
-				<artifactId>validation-api</artifactId>
-				<version>1.1.0.Final</version>
-			</dependency>
-			<dependency>
-				<groupId>org.hibernate</groupId>
-				<artifactId>hibernate-validator</artifactId>
-				<version>4.3.1.Final</version>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>${slf4j.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-log4j12</artifactId>
-				<version>${slf4j.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-lang3</artifactId>
-				<version>3.1</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-dbcp</groupId>
-				<artifactId>commons-dbcp</artifactId>
-				<version>1.4</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-beanutils</groupId>
-				<artifactId>commons-beanutils</artifactId>
-				<version>1.8.3</version>
-			</dependency>
-			<dependency>
-				<groupId>org.javassist</groupId>
-				<artifactId>javassist</artifactId>
-				<version>3.16.1-GA</version>
-			</dependency>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>4.11</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.hamcrest</groupId>
-				<artifactId>hamcrest-core</artifactId>
-				<version>1.3</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-core</artifactId>
-				<version>1.9.5</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.dbunit</groupId>
-				<artifactId>dbunit</artifactId>
-				<version>2.4.9</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>proxool</groupId>
-				<artifactId>proxool</artifactId>
-				<version>0.9.1</version>
-			</dependency>
-			<dependency>
-				<groupId>proxool</groupId>
-				<artifactId>proxool-cglib</artifactId>
-				<version>0.9.1</version>
-			</dependency>
-			<dependency>
-				<groupId>com.mchange</groupId>
-				<artifactId>c3p0</artifactId>
-				<version>0.9.2.1</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-configuration</groupId>
-				<artifactId>commons-configuration</artifactId>
-				<version>1.9</version>
-			</dependency>
-			<dependency>
-				<groupId>org.aspectj</groupId>
-				<artifactId>aspectjrt</artifactId>
-				<version>1.7.2</version>
-			</dependency>
-			<dependency>
-				<groupId>org.aspectj</groupId>
-				<artifactId>aspectjweaver</artifactId>
-				<version>1.7.2</version>
-			</dependency>
-			<!-- -->
-			<dependency>
-				<groupId>org.opensymphony.quartz</groupId>
-				<artifactId>quartz</artifactId>
-				<version>1.6.5</version>
-			</dependency>
-			<dependency>
-				<groupId>org.quartz-scheduler</groupId>
-				<artifactId>quartz</artifactId>
-				<version>2.1.6</version>
-			</dependency>
-			<dependency>
-				<groupId>com.h2database</groupId>
-				<artifactId>h2</artifactId>
-				<version>1.3.171</version>
-			</dependency>
-			<dependency>
-				<groupId>org.codehaus.btm</groupId>
-				<artifactId>btm</artifactId>
-				<version>2.1.3</version>
-			</dependency>
-			<dependency>
-				<groupId>org.jboss.logging</groupId>
-				<artifactId>jboss-logging</artifactId>
-				<version>3.1.3.GA</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>1</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>1.1.0.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>4.3.1.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.1</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-dbcp</groupId>
+                <artifactId>commons-dbcp</artifactId>
+                <version>1.4</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>1.8.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>3.16.1-GA</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.11</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-core</artifactId>
+                <version>1.3</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>1.9.5</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.dbunit</groupId>
+                <artifactId>dbunit</artifactId>
+                <version>2.4.9</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>proxool</groupId>
+                <artifactId>proxool</artifactId>
+                <version>0.9.1</version>
+            </dependency>
+            <dependency>
+                <groupId>proxool</groupId>
+                <artifactId>proxool-cglib</artifactId>
+                <version>0.9.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.mchange</groupId>
+                <artifactId>c3p0</artifactId>
+                <version>0.9.2.1</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-configuration</groupId>
+                <artifactId>commons-configuration</artifactId>
+                <version>1.9</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>1.7.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>1.7.2</version>
+            </dependency>
+            <!-- -->
+            <dependency>
+                <groupId>org.opensymphony.quartz</groupId>
+                <artifactId>quartz</artifactId>
+                <version>1.6.5</version>
+            </dependency>
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+                <version>2.1.6</version>
+            </dependency>
+            <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>1.3.171</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.btm</groupId>
+                <artifactId>btm</artifactId>
+                <version>2.1.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.logging</groupId>
+                <artifactId>jboss-logging</artifactId>
+                <version>3.1.3.GA</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-		</dependency>
-	</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
+    </dependencies>
 
-	<build>
-		<pluginManagement>
-			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.1</version>
-					<configuration>
-						<source>1.6</source>
-						<target>1.6</target>
-						<encoding>${project.build.sourceEncoding}</encoding>
-						<fork>true</fork>
-						<meminitial>128m</meminitial>
-						<maxmem>768m</maxmem>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-dependency-plugin</artifactId>
-					<version>2.8</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-resources-plugin</artifactId>
-					<version>2.6</version>
-					<configuration>
-						<encoding>${project.build.sourceEncoding}</encoding>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.15</version>
-					<configuration>
-						<includes>
-							<include>**/*Test.java</include>
-						</includes>
-						<excludes>
-							<exclude>**/Abstract*.java</exclude>
-						</excludes>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-jar-plugin</artifactId>
-					<version>2.4</version>
-					<configuration>
-						<archive>
-							<addMavenDescriptor>false</addMavenDescriptor>
-							<index>false</index>
-							<manifest>
-								<addClasspath>true</addClasspath>
-								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-							</manifest>
-						</archive>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-assembly-plugin</artifactId>
-					<version>2.4</version>
-					<configuration>
-						<descriptorRefs>
-							<descriptorRef>jar-with-dependencies</descriptorRef>
-							<descriptorRef>bin</descriptorRef>
-							<descriptorRef>src</descriptorRef>
-							<descriptorRef>project</descriptorRef>
-						</descriptorRefs>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.felix</groupId>
-					<artifactId>maven-bundle-plugin</artifactId>
-					<version>2.4.0</version>
-					<extensions>true</extensions>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-site-plugin</artifactId>
-					<version>3.3</version>
-					<configuration>
-						<locales>zh_CN</locales>
-						<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
-						<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-release-plugin</artifactId>
-					<version>2.4.1</version>
-					<configuration>
-						<autoVersionSubmodules>true</autoVersionSubmodules>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-source-plugin</artifactId>
-					<version>2.2.1</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-assembly-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-release-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-			</plugin>
-		</plugins>
-		<extensions>
-			<extension>
-				<groupId>org.apache.maven.scm</groupId>
-				<artifactId>maven-scm-provider-gitexe</artifactId>
-				<version>1.8.1</version>
-			</extension>
-			<extension>
-				<groupId>org.apache.maven.scm</groupId>
-				<artifactId>maven-scm-manager-plexus</artifactId>
-				<version>1.8.1</version>
-			</extension>
-			<extension>
-				<groupId>org.kathrynhuxtable.maven.wagon</groupId>
-				<artifactId>wagon-gitsite</artifactId>
-				<version>0.3.1</version>
-			</extension>
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-webdav-jackrabbit</artifactId>
-				<version>2.4</version>
-			</extension>
-		</extensions>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!--This plugin's configuration is used to store Eclipse m2e settings
+                    only. It has no influence on the Maven build itself. -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.1</version>
+                    <configuration>
+                        <source>1.6</source>
+                        <target>1.6</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <fork>true</fork>
+                        <meminitial>128m</meminitial>
+                        <maxmem>768m</maxmem>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.8</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.6</version>
+                    <configuration>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.15</version>
+                    <configuration>
+                        <includes>
+                            <include>**/*Test.java</include>
+                        </includes>
+                        <excludes>
+                            <exclude>**/Abstract*.java</exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.4</version>
+                    <configuration>
+                        <archive>
+                            <addMavenDescriptor>false</addMavenDescriptor>
+                            <index>false</index>
+                            <manifest>
+                                <addClasspath>true</addClasspath>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>2.4</version>
+                    <configuration>
+                        <descriptorRefs>
+                            <descriptorRef>jar-with-dependencies</descriptorRef>
+                            <descriptorRef>bin</descriptorRef>
+                            <descriptorRef>src</descriptorRef>
+                            <descriptorRef>project</descriptorRef>
+                        </descriptorRefs>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>2.4.0</version>
+                    <extensions>true</extensions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.3</version>
+                    <configuration>
+                        <locales>zh_CN</locales>
+                        <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
+                        <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.4.1</version>
+                    <configuration>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.2.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.scm</groupId>
+                <artifactId>maven-scm-provider-gitexe</artifactId>
+                <version>1.8.1</version>
+            </extension>
+            <extension>
+                <groupId>org.apache.maven.scm</groupId>
+                <artifactId>maven-scm-manager-plexus</artifactId>
+                <version>1.8.1</version>
+            </extension>
+            <extension>
+                <groupId>org.kathrynhuxtable.maven.wagon</groupId>
+                <artifactId>wagon-gitsite</artifactId>
+                <version>0.3.1</version>
+            </extension>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav-jackrabbit</artifactId>
+                <version>2.4</version>
+            </extension>
+        </extensions>
 
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-		<testResources>
-			<testResource>
-				<directory>src/test/resources</directory>
-				<filtering>true</filtering>
-			</testResource>
-		</testResources>
-	</build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+    </build>
 
     <reporting>
         <plugins>
@@ -570,61 +573,61 @@
         </plugins>
     </reporting>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<slf4j.version>1.7.5</slf4j.version>
-		<spring.version>3.2.4.RELEASE</spring.version>
-		<tapestry.version>5.3.7</tapestry.version>
-		<hibernate.version>4.2.3.Final</hibernate.version>
-		<!-- Database settings, default to H2 database -->
-		<dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
-		<dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
-		<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <slf4j.version>1.7.5</slf4j.version>
+        <spring.version>3.2.4.RELEASE</spring.version>
+        <tapestry.version>5.3.7</tapestry.version>
+        <hibernate.version>4.2.3.Final</hibernate.version>
+        <!-- Database settings, default to H2 database -->
+        <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+        <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
+        <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
         <db.type>h2</db.type>
         <db.host>localhost</db.host>
         <db.name>testdb</db.name>
-		<jdbc.groupId>com.h2database</jdbc.groupId>
-		<jdbc.artifactId>h2</jdbc.artifactId>
-		<jdbc.version>1.3.173</jdbc.version>
-		<jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
-		<jdbc.url><![CDATA[jdbc:h2:mem:testdb]]></jdbc.url>
-		<jdbc.username>sa</jdbc.username>
-		<jdbc.password />
-		<hibernate.query.substitutions>true 'Y', false 'N'</hibernate.query.substitutions>
-		<hibernate.cache.provider_class>org.hibernate.cache.EhCacheProvider</hibernate.cache.provider_class>
-		<hibernate.cache.use_query_cache>true</hibernate.cache.use_query_cache>
-		<hibernate.hbm2ddl.auto>create-drop</hibernate.hbm2ddl.auto>
-		<hibernate.show_sql>true</hibernate.show_sql>
-		<hibernate.format_sql>true</hibernate.format_sql>
+        <jdbc.groupId>com.h2database</jdbc.groupId>
+        <jdbc.artifactId>h2</jdbc.artifactId>
+        <jdbc.version>1.3.173</jdbc.version>
+        <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
+        <jdbc.url><![CDATA[jdbc:h2:mem:testdb]]></jdbc.url>
+        <jdbc.username>sa</jdbc.username>
+        <jdbc.password/>
+        <hibernate.query.substitutions>true 'Y', false 'N'</hibernate.query.substitutions>
+        <hibernate.cache.provider_class>org.hibernate.cache.EhCacheProvider</hibernate.cache.provider_class>
+        <hibernate.cache.use_query_cache>true</hibernate.cache.use_query_cache>
+        <hibernate.hbm2ddl.auto>create-drop</hibernate.hbm2ddl.auto>
+        <hibernate.show_sql>true</hibernate.show_sql>
+        <hibernate.format_sql>true</hibernate.format_sql>
         <mysql.host>localhost</mysql.host>
-		<mysql.username>root</mysql.username>
-		<mysql.password />
-	</properties>
+        <mysql.username>root</mysql.username>
+        <mysql.password/>
+    </properties>
 
-	<modules>
-		<module>domain</module>
-		<module>jdk6ioc</module>
-		<module>test</module>
-		<module>hibernate</module>
-		<module>jpa</module>
-		<module>tapestry</module>
-		<module>spring</module>
-		<module>guice</module>
-		<module>utils</module>
-		<module>rule</module>
-		<module>observer</module>
-		<module>excel</module>
-		<module>script</module>
-		<module>spring-test</module>
-		<module>db</module>
-		<module>i18n</module>
-		<module>cache</module>
-		<module>dsmonitor</module>
-		<module>querychannel</module>
-		<module>dsrouter</module>
-		<module>ds4saas</module>
-		<module>configuration</module>
-	</modules>
+    <modules>
+        <module>domain</module>
+        <module>jdk6ioc</module>
+        <module>test</module>
+        <module>hibernate</module>
+        <module>jpa</module>
+        <module>tapestry</module>
+        <module>spring</module>
+        <module>guice</module>
+        <module>utils</module>
+        <module>rule</module>
+        <module>observer</module>
+        <module>excel</module>
+        <module>script</module>
+        <module>spring-test</module>
+        <module>db</module>
+        <module>i18n</module>
+        <module>cache</module>
+        <module>dsmonitor</module>
+        <module>querychannel</module>
+        <module>dsrouter</module>
+        <module>ds4saas</module>
+        <module>configuration</module>
+    </modules>
 
     <profiles>
         <profile>
@@ -653,7 +656,7 @@
                 <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
                 <jdbc.url><![CDATA[jdbc:h2:${basedir}/target/${db.name}]]></jdbc.url>
                 <jdbc.username>sa</jdbc.username>
-                <jdbc.password />
+                <jdbc.password/>
             </properties>
         </profile>
         <profile>
@@ -668,7 +671,7 @@
                 <jdbc.driverClassName>org.hsqldb.jdbcDriver</jdbc.driverClassName>
                 <jdbc.url><![CDATA[jdbc:hsqldb:${basedir}/target/${db.name};shutdown=true]]></jdbc.url>
                 <jdbc.username>sa</jdbc.username>
-                <jdbc.password />
+                <jdbc.password/>
             </properties>
         </profile>
         <profile>
@@ -678,7 +681,8 @@
                 <db.port>1521</db.port>
                 <db.instance>XE</db.instance>
                 <dbunit.dataTypeFactoryName>org.dbunit.ext.oracle.Oracle10DataTypeFactory</dbunit.dataTypeFactoryName>
-                <dbunit.schema>SYSTEM</dbunit.schema> <!-- Make sure to capitalize the schema name -->
+                <dbunit.schema>SYSTEM</dbunit.schema>
+                <!-- Make sure to capitalize the schema name -->
                 <hibernate.dialect>org.hibernate.dialect.Oracle9Dialect</hibernate.dialect>
                 <jdbc.groupId>com.oracle.jdbc</jdbc.groupId>
                 <jdbc.artifactId>ojdbc5</jdbc.artifactId>
@@ -695,7 +699,7 @@
                 <db.type>db2</db.type>
                 <db.port>50000</db.port>
                 <dbunit.dataTypeFactoryName>org.dbunit.ext.db2.Db2DataTypeFactory</dbunit.dataTypeFactoryName>
-                <dbunit.schema />
+                <dbunit.schema/>
                 <hibernate.dialect>org.hibernate.dialect.DB2Dialect</hibernate.dialect>
                 <jdbc.groupId>com.ibm</jdbc.groupId>
                 <jdbc.artifactId>db2jcc4</jdbc.artifactId>
@@ -713,7 +717,8 @@
             <id>postgresql</id>
             <properties>
                 <db.type>postgresql</db.type>
-                <dbunit.dataTypeFactoryName>org.dbunit.ext.postgresql.PostgresqlDataTypeFactory</dbunit.dataTypeFactoryName>
+                <dbunit.dataTypeFactoryName>org.dbunit.ext.postgresql.PostgresqlDataTypeFactory
+                </dbunit.dataTypeFactoryName>
                 <hibernate.dialect>org.hibernate.dialect.PostgresPlusDialect</hibernate.dialect>
                 <jdbc.groupId>org.postgresql</jdbc.groupId>
                 <jdbc.artifactId>postgresql</jdbc.artifactId>
@@ -754,7 +759,8 @@
                 <jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
                 <jdbc.version>5.1.22</jdbc.version>
                 <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
-                <jdbc.url><![CDATA[jdbc:mysql://${db.host}:${db.port}/${db.name}?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url>
+                <jdbc.url>
+                    <![CDATA[jdbc:mysql://${db.host}:${db.port}/${db.name}?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url>
                 <jdbc.username>root</jdbc.username>
                 <jdbc.password></jdbc.password>
             </properties>
