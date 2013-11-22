@@ -78,11 +78,11 @@
         <tag>HEAD</tag>
     </scm>
 
+    <!--
     <issueManagement>
         <system>trac</system>
         <url>http://www.dayatang.org/trac/dddlib</url>
     </issueManagement>
-    <!--
 <issueManagement>
     <system>github</system>
     <url>https://github.com/dayatang/dddlib/issues</url>
@@ -103,7 +103,7 @@
         <site>
             <id>koala-site</id>
             <name>Koala maven site</name>
-            <url>dav:http://dev.foreveross.com/projects/koala</url>
+            <url>dav:http://www.dayatang.org/projects/dddlib</url>
         </site>
         <!-- <site> <id>github-project-site</id> <url>gitsite:git@github.com/dayatang/dddlib</url>
             </site> -->
