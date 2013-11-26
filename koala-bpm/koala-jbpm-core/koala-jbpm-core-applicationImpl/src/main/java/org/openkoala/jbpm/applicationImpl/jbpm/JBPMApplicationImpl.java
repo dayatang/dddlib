@@ -1192,9 +1192,8 @@ public class JBPMApplicationImpl implements JBPMApplication {
 				processInfo.setActive(isActive);
 				processInfo.setPackageName(packageName);
 			}
-			processInfo.publishProcess();
-
 			getJbpmSupport().addProcessToCenter(processInfo, isActive);
+			processInfo.publishProcess();
 			this.getJbpmSupport().commitTransaction();
 		} catch (RuntimeException e) {
 			e.printStackTrace();
