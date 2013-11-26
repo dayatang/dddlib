@@ -4,7 +4,7 @@
     <context:annotation-config />
     
     <import resource="base.xml"/>  
-    <import resource="cxf-soap.xml"/> 
+    <import resource="cxf-soap.xml"/>
     
     <import resource="classpath*:META-INF/spring/spring-security.xml"/>  
     <import resource="classpath:META-INF/spring/koala-security-http.xml"/>  
@@ -14,6 +14,6 @@
     <!-- 和权限组件不同数据源 -->
 	<import resource="classpath*:META-INF/spring/security-standalone-context.xml" />
 	
-	 <import resource="classpath*:META-INF/spring/bpm-core.xml"/>  
+	<import resource="classpath*:META-INF/spring/bpm-core.xml"/>  
     
 </beans>
