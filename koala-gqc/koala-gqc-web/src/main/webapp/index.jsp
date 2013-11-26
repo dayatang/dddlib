@@ -9,6 +9,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
+        <link href="lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"   rel="stylesheet">
         <link href="css/main.css?time=<%=time%>"   rel="stylesheet">
         <link href="css/koala.css?time=<%=time%>"   rel="stylesheet">
     </head>
@@ -59,6 +60,7 @@
 	    <script type="text/javascript" src="lib/jquery.js"></script>
         <script type="text/javascript" src="lib/respond.min.js"></script>
         <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
         <script type="text/javascript" src="js/datetimepicker.js"></script>
         <script type="text/javascript" src="js/koala-ui.plugin.js?time=<%=time%>"></script>
 	    <script type="text/javascript" src="js/main.js?time=<%=time%>"></script>
