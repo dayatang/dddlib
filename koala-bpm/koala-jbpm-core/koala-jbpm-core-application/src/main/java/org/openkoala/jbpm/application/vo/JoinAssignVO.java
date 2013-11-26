@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement()
 public class JoinAssignVO implements Serializable {
 
 	private static final long serialVersionUID = -1675622734444870181L;

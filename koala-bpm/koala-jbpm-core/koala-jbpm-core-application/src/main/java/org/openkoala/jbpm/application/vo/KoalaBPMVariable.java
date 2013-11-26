@@ -1,10 +1,13 @@
 package org.openkoala.jbpm.application.vo;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * KoalaBPM中的通用变量
  * @author lingen
  *
  */
+@XmlRootElement()
 public class KoalaBPMVariable {
 
 	/**

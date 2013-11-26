@@ -3,6 +3,8 @@ package org.openkoala.jbpm.application.vo;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement()
 public class KoalaAssignDetailVO implements Serializable {
 
 	/**

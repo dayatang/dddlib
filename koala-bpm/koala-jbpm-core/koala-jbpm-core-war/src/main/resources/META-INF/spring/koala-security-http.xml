@@ -13,6 +13,7 @@
 		<s:intercept-url pattern="/denied.action*" filters="none" />
 		<s:intercept-url pattern="/login.jsp*" filters="none" />
 		<s:intercept-url pattern="/ws/*" filters="none" />
+		<s:intercept-url pattern="/ws/**/*" filters="none" />
 		<s:intercept-url pattern="/*.ico" filters="none" />
 		<s:intercept-url pattern="/" filters="none" />
 		<s:intercept-url pattern="/lib/**" filters="none" />

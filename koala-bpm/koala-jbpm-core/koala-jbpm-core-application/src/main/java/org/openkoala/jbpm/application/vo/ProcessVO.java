@@ -1,5 +1,8 @@
 package org.openkoala.jbpm.application.vo;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement()
 public class ProcessVO {
 
 	private String id;//流程ID

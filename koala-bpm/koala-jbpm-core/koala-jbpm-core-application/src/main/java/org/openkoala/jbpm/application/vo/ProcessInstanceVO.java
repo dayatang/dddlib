@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement()
 public class ProcessInstanceVO implements Serializable {
 	
 	private static final long serialVersionUID = 2687088782968240015L;
