@@ -26,7 +26,7 @@ public class ServiceMonitorController {
 	public Map<String, Object> queryAllSchedulers(){
 		Map<String, Object> dataMap = new HashMap<String,Object>();
 		List<ScheduleConfVo> schedulers = serviceMonitorApplication.queryAllSchedulers();
-		dataMap.put("data", schedulers);
+		dataMap.put("Rows", schedulers);
 		return dataMap;
 	}
 	

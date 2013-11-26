@@ -60,7 +60,8 @@ public class MethodComponent extends AbstractComponent{
 			
 			String[] packagePatterns = packages.split(";");
 	    	Collection<String> cls = new PackageScanner().scanMatchPackages(packagePatterns);
-	    	
+	    	log.info("在包:"+packages);
+	    	log.info("在包[{}]下未扫描到任何类:"+cls);
 	    	if(cls == null || cls.isEmpty()){
 				log.warn("在包[{}]下未扫描到任何类",packages);
 			}else{

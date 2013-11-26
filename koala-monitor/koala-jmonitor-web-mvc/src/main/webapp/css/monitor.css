@@ -1,0 +1,156 @@
+#monitorNodeGrid .buttons {
+    float: right;
+}
+.cronExpr {
+    display:inline;
+    width:74%;
+    margin-right: 5px;
+}
+#scheduleGrid .buttons {
+    float: right;
+}
+.time-example {
+    cursor: pointer;
+}
+.time-example:hover {
+    text-decoration: none;
+}
+#scheduleGrid .glyphicon-ok {
+    font-size: 16px;
+    color: #5cb85c;
+}
+#scheduleGrid .glyphicon-remove {
+    font-size: 16px;
+    color: #d9534f;
+}
+#scheduleGrid .hightlight {
+
+}
+#monitorNodeGrid a {
+    cursor: pointer;
+}
+#monitorNodeGrid a:hover {
+    text-decoration: none;
+}
+#monitorNodeGrid .glyphicon-ok {
+    color: #5cb85c;
+}
+#monitorNodeGrid .glyphicon-remove {
+    color: #d9534f;
+}
+.page-server-summry-info .modal-dialog {
+    width: 95%;
+}
+.page-server-summry-info .modal-body {
+    max-height: 400px;
+    overflow-y: auto;
+}
+.page-server-summry-info .title {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 16px;
+}
+.page-server-summry-info .chart {
+    min-height: 240px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+.page-server-summry-info .server-info {
+    min-height: 250px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 16px;
+}
+
+#poolMonitor .title {
+    position: relative;
+    top: 6px;
+}
+#poolMonitor .tip div{
+    display: inline-block;
+    height: 14px;
+    width: 14px;
+}
+#poolMonitor .tip div:first-child {
+    background-color: #D9534F;
+}
+#poolMonitor .tip div:nth-child(2) {
+    background-color: #5CB85C;
+}
+#poolMonitor .tip div:last-child {
+    background-color: #F5F5F5;
+}
+.chart .disk-child {
+    display: inline-block;
+    width: 25%;
+}
+.jqplot-table-legend-swatch-outline {
+    display: block;
+}
+.method-monitor a,
+.http-monitor a,
+.http-monitor-detail a{
+    cursor: pointer;
+}
+.method-monitor a:hover,
+.http-monitor a:hover,
+.http-monitor-detail a{
+    text-decoration: none;
+}
+
+.monitor-param .time {
+    display: inline;
+    width:30%;
+    height:30px;
+}
+.monitor-param .required {
+    top: 0;
+}
+.monitor-param .stack {
+    top: 0;
+}
+.monitor-param .stack > span{
+    position: relative;
+    top: -7px;
+}
+.http-monitor-detail .modal-dialog{
+    width: 80%;
+}
+.http-monitor-detail .modal-body {
+    overflow: auto;
+    min-height: 350px;
+}
+.jdbc-monitor .tab-content {
+    border-width: 0 1px 1px;
+    border-color: transparent #DDDDDD #DDDDDD;
+    border-style: solid;
+}
+.jdbc-monitor .nav-tabs > li > a {
+    outline: none;
+    color: #464646;
+    border-color: #DDDDDD;
+    padding: 6px 15px;
+    background-image: -moz-linear-gradient(bottom, #FFFFFF, #f5f5f5);
+    background-image: -webkit-linear-gradient(bottom, #FFFFFF, #f5f5f5);
+    background-image: -o-linear-gradient(bottom, #FFFFFF, #f5f5f5);
+    background-image: -ms-linear-gradient(bottom, #FFFFFF, #f5f5f5);
+    background-image: linear-gradient(bottom, #FFFFFF, #f5f5f5);
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#FFFFFF',endColorStr='#f5f5f5', GradientType=0)
+}
+.jdbc-monitor .nav-tabs > li.active > a {
+    border-bottom: 0 transparent solid;
+}
+.jdbc-monitor .nav-tabs > li > a:hover {
+    color: #3391d8!important;
+    background-image: -moz-linear-gradient(bottom, #FFFFFF, #f9f9f9);
+    background-image: -webkit-linear-gradient(bottom, #FFFFFF, #f9f9f9);
+    background-image: -o-linear-gradient(bottom, #FFFFFF, #f9f9f9);
+    background-image: -ms-linear-gradient(bottom, #FFFFFF, #f9f9f9);
+    background-image: linear-gradient(bottom, #FFFFFF, #f9f9f9);
+}
+.jdbc-monitor .nav-tabs > li:not(:last-child) > a {
+    border-right: 0 transparent solid;
+}

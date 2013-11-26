@@ -44,7 +44,7 @@ public class MonitorController {
 	public final Map<String, Object> queryAllNodes() {
 		Map<String, Object> dataMap = new HashMap<String,Object>();
 		List<MonitorNodeVo> nodes = monitorNodeManageApplication.getAllNodes();
-		dataMap.put("data", nodes);
+		dataMap.put("Rows", nodes);
 		return dataMap;
 	}
 
