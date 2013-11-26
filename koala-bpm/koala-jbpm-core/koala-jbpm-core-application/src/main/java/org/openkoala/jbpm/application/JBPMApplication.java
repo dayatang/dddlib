@@ -35,6 +35,7 @@ public interface JBPMApplication {
 	 * </params>
 	 * @return
 	 */
+	
 	public long startProcess(String processId, String creater, String params);
 
 	
