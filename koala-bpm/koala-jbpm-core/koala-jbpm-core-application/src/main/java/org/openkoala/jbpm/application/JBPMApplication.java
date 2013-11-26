@@ -2,6 +2,18 @@ package org.openkoala.jbpm.application;
 
 import java.util.List;
 
+import javax.jws.WebParam;
+import javax.jws.WebService;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
+
 import org.openkoala.jbpm.application.vo.HistoryLogVo;
 import org.openkoala.jbpm.application.vo.JBPMNode;
 import org.openkoala.jbpm.application.vo.KoalaProcessInfoVO;
@@ -13,8 +25,6 @@ import org.openkoala.jbpm.application.vo.TaskVO;
 
 import com.dayatang.querychannel.support.Page;
 
-import javax.jws.*;
-
 /**
  * 流程接口
  * 
@@ -23,6 +33,15 @@ import javax.jws.*;
  */
 @WebService
 public interface JBPMApplication {
+	
+	/**
+	 * 返回所有流程定义
+	 * 
+	 * @return
+	 */
+	@GET
+	@Path("processes")
+	public List<ProcessVO> getProcesses();
 
 	/**
 	 * 发起一个流程
@@ -35,33 +54,43 @@ public interface JBPMApplication {
 	 * </params>
 	 * @return
 	 */
-	
-	public long startProcess(String processId, String creater, String params);
-
-	
-	/**
-	 * 查询一个用户的待办任务
-	 * @param user     用户名
-	 * @param groups   用户所属的group,group可以是角色，部门，岗位或其它，由业务决定 ，以 XML格式
-	 * <params>
-	 *      <creater>lingen</creater> 
-	 *      <isOpen>true</isOpen> 
-	 * </params>
-	 * @return
-	 */
-	public List<TaskVO> queryTodoListWithGroup(String user,String groups);
+	@POST()
+	@Path("process/{processId}")
+	@Produces({"application/xml", "application/json"})
+//	@Consume
+	public long startProcess(@PathParam("processId")String processId, @FormParam("creater")String creater, @FormParam("params")String params);
 	
 	/**
-	 * 查询一个用户的待办任务
-	 * @param user     用户名
-	 * @param groups   用户所属的group,group可以是角色，部门，岗位或其它，由业务决定 ，以 XML格式
-	 * <params>
-	 *      <creater>lingen</creater> 
-	 *      <isOpen>true</isOpen> 
-	 * </params>
+	 * 分页查询已办任务
+	 * @param user
+	 * @param firstRow
+	 * @param pageSize
 	 * @return
 	 */
-	public List<TaskVO> queryTodoList(String user);
+	@GET()
+	@Path("doneTask/{userName}/{processId}")
+	public PageTaskVO pageQueryDoneTask(@PathParam("processId")String processId, @PathParam("userName")String userName, @QueryParam("currentPage")int currentPage, @QueryParam("pageSize")int pageSize);
+	
+	/**
+	 * 按流程查询待办任务
+	 * @param process
+	 * @param user
+	 * @param groups
+	 * @return
+	 */
+	@GET()
+	@Path("todoTask/{userName}/{processId}")
+	public List<TaskVO> processQueryTodoListWithGroup(@PathParam("processId") String processId, @PathParam("userName") String userName, @QueryParam("groupName") String groupName);
+	
+	/**
+	 * 查询一个流程任务的选择策略
+	 * @param processInstanceId
+	 * @param taskId
+	 * @return
+	 */  //只需要taskid，待优化
+	@GET()
+	@Path("choice")
+	public List<TaskChoice> queryTaskChoice(@QueryParam("processInstanceId") long processInstanceId, @QueryParam("taskId") long taskId);
 
 	/**
 	 * 完成一个工作
@@ -76,8 +105,55 @@ public interface JBPMApplication {
 	 *            节点级参数 流程级参数与节点级参数均以XML形式传入，如 <params>
 	 *            <creater>lingen</creater> <isOpen>true</isOpen> </params>
 	 */
-	public boolean completeTask(long processId, long taskId, String user,
-			String params, String data);
+	@PUT()
+	@Path("task/{taskId}")
+	public boolean completeTask(@QueryParam("processInstanceId") long processInstanceId, 
+			@QueryParam("taskId") long taskId, @QueryParam("userName") String userName,
+			@FormParam("params") String params, @FormParam("data") String data);
+	
+	/**
+	 * 返回一个流程图片
+	 * 
+	 * @param instanceId
+	 * @return
+	 */
+	@GET()
+	@Path("processImage/{processInstanceId}")
+	public byte[] getPorcessImageStream(@PathParam("processInstanceId") long processInstanceId);
+	
+	/**
+	 * 查询一个流程的历史记录
+	 * 
+	 * @param processId
+	 * @return
+	 */
+	@GET()
+	@Path("history/{processInstanceId}")
+	public List<HistoryLogVo> queryHistoryLog(@PathParam("processInstanceId") long processInstanceId);
+	
+	/**
+	 * 查询一个用户的待办任务
+	 * @param user     用户名
+	 * @param groups   用户所属的group,group可以是角色，部门，岗位或其它，由业务决定 ，以 XML格式
+	 * <params>
+	 *      <creater>lingen</creater> 
+	 *      <isOpen>true</isOpen> 
+	 * </params>
+	 * @return
+	 */
+	public List<TaskVO> queryTodoListWithGroup(String userName, String groupName);
+	
+	/**
+	 * 查询一个用户的待办任务
+	 * @param user     用户名
+	 * @param groups   用户所属的group,group可以是角色，部门，岗位或其它，由业务决定 ，以 XML格式
+	 * <params>
+	 *      <creater>lingen</creater> 
+	 *      <isOpen>true</isOpen> 
+	 * </params>
+	 * @return
+	 */
+	public List<TaskVO> queryTodoList(String user);
 
 	/**
 	 * 查询一个用户的已完成任务
@@ -86,14 +162,6 @@ public interface JBPMApplication {
 	 * @return
 	 */
 	public List<TaskVO> queryDoenTask(String user);
-
-	/**
-	 * 查询一个流程的历史记录
-	 * 
-	 * @param processId
-	 * @return
-	 */
-	public List<HistoryLogVo> queryHistoryLog(long processInstanceId);
 
 	/**
 	 * 返回错误的流程列表
@@ -190,14 +258,6 @@ public interface JBPMApplication {
 	public byte[] getProcessImage(String processId);
 
 	/**
-	 * 返回一个流程图片
-	 * 
-	 * @param instanceId
-	 * @return
-	 */
-	public byte[] getPorcessImageStream(long processInstacenId);
-
-	/**
 	 * 修复错误流程
 	 * 
 	 * @param taskId
@@ -214,13 +274,6 @@ public interface JBPMApplication {
 	 */
 	public void addProcess(String packageName, String processId, int version,
 			String data, byte[] png, boolean isActive);
-
-	/**
-	 * 返回所有流程定义
-	 * 
-	 * @return
-	 */
-	public List<ProcessVO> getProcesses();
 
 	public List<ProcessVO> getProcessesByProcessName(String processName);
 
@@ -347,30 +400,4 @@ public interface JBPMApplication {
 	 */
 	public void fetchBack(long processInstanceId, long taskId, String userId);
 	
-	/**
-	 * 分页查询已办任务
-	 * @param user
-	 * @param firstRow
-	 * @param pageSize
-	 * @return
-	 */
-	public PageTaskVO pageQueryDoneTask(String process,String user, int currentPage, int pageSize);
-	
-	/**
-	 * 按流程查询待办任务
-	 * @param process
-	 * @param user
-	 * @param groups
-	 * @return
-	 */
-	public List<TaskVO> processQueryTodoListWithGroup(String process,String user,String groups);
-	
-	/**
-	 * 查询一个流程任务的选择策略
-	 * @param processInstanceId
-	 * @param taskId
-	 * @return
-	 */
-	public List<TaskChoice> queryTaskChoice(long processInstanceId,long taskId);
-
 }

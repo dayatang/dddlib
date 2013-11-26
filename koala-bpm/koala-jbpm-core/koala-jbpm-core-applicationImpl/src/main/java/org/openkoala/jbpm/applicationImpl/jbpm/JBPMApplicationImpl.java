@@ -89,7 +89,7 @@ import com.dayatang.querychannel.support.Page;
  */
 @Named("jbpmApplication")
 @SuppressWarnings({ "unchecked", "unused" })
-@org.apache.cxf.interceptor.InInterceptors(interceptors = { "org.apache.cxf.transport.common.gzip.GZIPInInterceptor" })
+//@org.apache.cxf.interceptor.InInterceptors(interceptors = { "org.apache.cxf.transport.common.gzip.GZIPInInterceptor" })
 public class JBPMApplicationImpl implements JBPMApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(JBPMApplicationImpl.class);
