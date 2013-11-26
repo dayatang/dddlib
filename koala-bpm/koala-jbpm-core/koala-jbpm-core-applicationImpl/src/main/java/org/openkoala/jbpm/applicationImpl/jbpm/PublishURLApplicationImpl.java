@@ -11,14 +11,12 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.openkoala.jbpm.application.PublishURLApplication;
 import org.openkoala.jbpm.application.vo.PublishURLVO;
 import org.openkoala.jbpm.core.PublishURL;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.service.QueryChannelService;
 import com.dayatang.querychannel.support.Page;
 
 @Named
-@Transactional(value="transactionManager")
 public class PublishURLApplicationImpl implements PublishURLApplication {
 
 	private static QueryChannelService queryChannel;

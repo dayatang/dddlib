@@ -157,17 +157,19 @@ public class JbpmSupport {
 		initVariables();
 		this.commitTransaction();
 	}
+	
+	boolean owner = false;
 
 	public void startTransaction() {
-			transactionManager.begin();
+			owner = transactionManager.begin();
 	}
 
 	public void commitTransaction() {
-		transactionManager.commit(true);
+		transactionManager.commit(owner);
 	}
 
 	public void rollbackTransaction() {
-		transactionManager.rollback(true);
+		transactionManager.rollback(owner);
 	}
 
 	public List<TaskSummary> findTaskSummary(String user) {

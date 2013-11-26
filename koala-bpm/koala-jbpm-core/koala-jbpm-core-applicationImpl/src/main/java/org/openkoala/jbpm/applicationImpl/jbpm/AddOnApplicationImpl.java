@@ -9,7 +9,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.transaction.annotation.Transactional;
 
 @Named("addOnApplication")
-@Transactional(value="transactionManager")
 public class AddOnApplicationImpl implements AddOnApplication {
 
 	public void jbpmLog(HistoryLogVo log) {

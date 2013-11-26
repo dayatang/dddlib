@@ -5,6 +5,7 @@
     
     <import resource="base.xml"/>  
     <import resource="cxf-soap.xml"/> 
+    <!--<import resource="cxf-rest.xml"/>--> 
     
     <import resource="classpath*:META-INF/spring/spring-security.xml"/>  
     <import resource="classpath:META-INF/spring/koala-security-http.xml"/>  

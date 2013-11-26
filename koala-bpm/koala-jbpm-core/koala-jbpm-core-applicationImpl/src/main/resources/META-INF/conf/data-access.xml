@@ -29,5 +29,4 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 		<property name="nestedTransactionAllowed" value="false" />
 	</bean>
-	<tx:annotation-driven />
 </beans>
