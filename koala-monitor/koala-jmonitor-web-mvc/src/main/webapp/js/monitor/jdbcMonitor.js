@@ -49,6 +49,7 @@ $(function(){
             var xarray = eval('['+data[1]+']');
             var yarray = eval('['+data[0]+']');
             $.jqplot.config.enablePlugins = true;
+            $('#databaseChartArea').empty();
             var plot = $.jqplot('databaseChartArea', [xarray], {
                 title: "<span style='color:#707070; font-size:18px;'>24小时内数据库连接超过阀值统计</span>",
                 animate: !$.jqplot.use_excanvas,

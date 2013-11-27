@@ -145,7 +145,7 @@ function httpMonitorDetail(requestDate){
                         {
                             title : 'URI',
                             name : 'uri',
-                            width : 350
+                            width : 250
                         },
                         {
                             title : '耗时（毫秒）',
@@ -170,7 +170,7 @@ function httpMonitorDetail(requestDate){
                         {
                             title : '参数',
                             name : 'parameters',
-                            width : 250
+                            width : 350
                         },
                         {
                             title : '开始时间',

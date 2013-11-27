@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>欢迎使用Koala</title>
 <link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
-<script type="text/javascript" src="<c:url value='/js/jquery/jquery-1.8.3.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/lib/jquery/jquery-1.8.3.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />"></script>	

@@ -2,8 +2,10 @@
   <#--${keyName}:&nbsp;&nbsp;<#t>-->
      <#if security=="W">
        <!-- 日期 -->
-<div style="width:190px;" data-role="date" class="input-group"><input type="text" name="${keyId}" id="${keyId}" value="${value}" class="form-control time" <#if validationType!="">dataType="${validationType}"</#if> <#if validationExpr!="">validateExpr="${validationExpr}"</#if> />
-<a class="input-group-addon add-on glyphicon glyphicon-time"></a></div>
+ 		<div class="input-group date form_datetime">
+            <input class="form-control" size="16" type="text" value="" name="${keyId}" id="${keyId}">
+			<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+        </div>
 <script>FormRender.renderDatePicker("${keyId}","datetime");</script>
        <#t>
      <#elseif security == "R">
