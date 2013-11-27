@@ -40,23 +40,27 @@ $(function(){
 			}else{
 				if(dynamicQueryCondition.queryOperation == 'BETWEEN'){
 					flag = true;
-					trHtml.push('<td class="query-value"><div style="width:190px;" data-role="startTime"  class="input-group"><input type="text"  class="form-control"/><a class="input-group-addon add-on glyphicon glyphicon-time"></a></div><div class="span">&nbsp;AND&nbsp;</div><div  style="width:190px;" data-role="endTime"  class="input-group"><input type="text"  class="form-control"/><a class="input-group-addon add-on glyphicon glyphicon-time"></a></div></td>')
+					trHtml.push('<td class="query-value"><div style="width:18%;" data-role="startTime" class="input-group date form_datetime"><input class="form-control" size="16" type="text" value=""><span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span></div>'+
+						'<div class="span">&nbsp;AND&nbsp;</div>'+
+						'<div style="width:18%;" data-role="endTime" class="input-group date form_datetime"><input class="form-control" size="16" type="text" value=""><span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span></div></td>');
 				}else{
-					trHtml.push('<td class="query-value"><div style="width:190px;" data-role="time"  class="input-group"><input type="text"  class="form-control"/><a class="input-group-addon add-on glyphicon glyphicon-time"></a></div></td>')
+					trHtml.push('<td class="query-value"><div data-role="time" class="input-group date form_datetime"><input class="form-control" size="16" type="text" value=""><span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span></div></td>');
 				}
 			}
 			trHtml.push('</tr>');
 		}
 		previewQuery.append($(trHtml.join('')));
 		if(flag){
-			$('.query-body').css('width', '73%');
+			$('.query-body').css('width', '83%');
 			previewQuery.find('.column-name, .query-condition').css('width', '10%').end().find('.query-value').css('width', '80%');
 		}
 		$('.buttons').css('top', previewQuery.height()-36);
 		previewQuery.find('[data-role="time"],[data-role="startTime"],[data-role="endTime"]').datetimepicker({
-			language: 'zh-CN',
-			pickDate: true,
-			pickTime: true
+	            language: 'zh-CN',
+		        format: "yyyy-mm-dd hh:ii:ss",
+		        autoclose: true,
+		        todayBtn: true,
+		        pickerPosition: 'bottom-left'
 		});
 		var fieldDetails = data.fieldDetails;
 		var columns = new Array();

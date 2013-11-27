@@ -1,0 +1,27 @@
+<form class="form-horizontal jdbc-monitor" role="form">
+    <div class="form-group">
+        <label class="col-sm-2 control-label" style="width:10%;">监控节点:</label>
+        <div class="col-sm-2">
+            <div class="btn-group select" id="dataBaseMonitorNode"></div>
+        </div>
+        <label class="col-sm-1 control-label">监控项:</label>
+        <div class="col-sm-2">
+            <div class="btn-group select" id="monitorCategory"></div>
+        </div>
+        <div class="col-sm-4" id="databaseChartSearch">
+            仅查看时间超过<input class="form-control" style="width:100px; display: inline;" id="timeOut" value="60"/>秒的数据库连接
+        </div>
+    </div>
+    <div class="form-group" style="width: 98%; margin-left: auto; margin-right: auto;">
+        <div id="databaseChartArea"/>
+    </div>
+    <div class="form-group" id="poolMonitor" style="display:none; width: 98%;margin-left: auto; margin-right: auto;">
+        <ul class="nav nav-tabs nav-justified">
+
+        </ul>
+        <div class="tab-content">
+
+        </div>
+    </div>
+</form>
+<script src="js/monitor/jdbcMonitor.js"></script>

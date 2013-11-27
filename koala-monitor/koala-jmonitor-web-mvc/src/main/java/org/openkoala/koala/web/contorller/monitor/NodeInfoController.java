@@ -42,7 +42,7 @@ public class NodeInfoController {
     public Map<String, Object> queryAllNodes(){
     	Map<String, Object> dataMap = new HashMap<String,Object>();
     	List<MonitorNodeVo> nodes = monitorNodeManageApplication.getAllNodes();
-        dataMap.put("data", nodes);
+        dataMap.put("Rows", nodes);
     	return dataMap;
     }
     
@@ -91,7 +91,12 @@ public class NodeInfoController {
 				}
 			}
     	}
-    	monitorNodeManageApplication.updateComponentConfig(nodeId, comp);
+    	dataMap.put("result", true);
+    	try{
+    		monitorNodeManageApplication.updateComponentConfig(nodeId, comp);
+    	}catch(Exception e){
+    		dataMap.put("result", false);
+    	}
     	return dataMap;
     }
     
@@ -149,7 +154,12 @@ public class NodeInfoController {
     	conf.setTriggerName("dataPolicyTrigger");
     	conf.setActiveAsString(request.getParameter("active"));
     	conf.setInterval(Integer.parseInt(request.getParameter("interval")));
-    	serviceMonitorApplication.updateScheduleConf(conf);
+    	dataMap.put("result", true);
+    	try{
+    		serviceMonitorApplication.updateScheduleConf(conf);
+    	}catch(Exception e){
+        	dataMap.put("result", false);
+    	}
     	return dataMap;
     }
     

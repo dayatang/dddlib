@@ -12,8 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
     <link href="/css/main.css?time=<%=time%>"    rel="stylesheet">
+    <link href="/css/jbpm.css?time=<%=time%>"    rel="stylesheet">
     <link href="/css/koala.css?time=<%=time%>"    rel="stylesheet">
-    <link href="/css/datetimepicker.css"   rel="stylesheet">
+    <link href="/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"   rel="stylesheet">
     <link href="/lib/z-tree/css/zTreeStyle.css"   rel="stylesheet">
 </head>
 <body>
@@ -78,12 +79,14 @@
 	<div id="footer" class="g-foot">
 	    <span>Copyright © 2011-2013 Koala</span>
 	</div>
-	<script type="text/javascript" src="<c:url value='/js/jquery/jquery-1.8.3.min.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/lib/jquery-1.8.3.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
-	<script type="text/javascript" src="<c:url value='/js/koala-ui.plugin.js' />?time=<%=time%>" ></script>
-	<script type="text/javascript" src="<c:url value='/js/datetimepicker.js' />" ></script>
+	<script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />?time=<%=time%>" ></script>
+	<script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js' />" ></script>
+	<script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js' />" ></script>
 	<script type="text/javascript" src="<c:url value='/js/tree.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/js/processform/form.render.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/z-tree/js/jquery.ztree.all-3.5.min.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/main.js' />?time=<%=time%>" ></script>
