@@ -84,7 +84,6 @@ public class JBPMApplicationTest {
 	 */
 	@Test
 	public void testGetProcesses() {
-
 		List<ProcessVO> processes = getJBPMApplication().getProcesses();
 		Assert.assertTrue(processes.size() == 1);
 
@@ -95,9 +94,10 @@ public class JBPMApplicationTest {
 	 */
 	@Test
 	public void testStartProcesses() {
-		
+		Map<String,Object> values = new HashMap<String,Object>();
+		values.put("creater", "abc");
 		long i = getJBPMApplication().startProcess("defaultPackage.Trade",
-				"aaa", null);
+				"aaa", XmlParseUtil.paramsToXml(values));
 		Assert.assertTrue(i == 1);
 		getJBPMApplication().removeProcessInstance(i);
 
@@ -108,9 +108,10 @@ public class JBPMApplicationTest {
 	 */
 	@Test
 	public void testQueryTodoList() {
-		
-		long i = getJBPMApplication().startProcess("defaultPackage.Trade", "aaa", null);
-		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fhjl");
+		Map<String,Object> values = new HashMap<String,Object>();
+		values.put("creater", "abc");
+		long i = getJBPMApplication().startProcess("defaultPackage.Trade", "aaa", XmlParseUtil.paramsToXml(values));
+		List<TaskVO> tasks = getJBPMApplication().queryTodoList("abc");
 		Assert.assertTrue(tasks.size() > 0);
 		//getJBPMApplication().removeProcessInstance(i);
 	}
