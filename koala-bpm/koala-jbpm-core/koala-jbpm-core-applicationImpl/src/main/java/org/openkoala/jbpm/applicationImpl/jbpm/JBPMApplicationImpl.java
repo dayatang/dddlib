@@ -610,9 +610,9 @@ public class JBPMApplicationImpl implements JBPMApplication {
 
 			Map<String, Object> userParams = XmlParseUtil
 					.xmlToPrams(paramsString);
-			if (userParams != null)
+			if (userParams != null){
 				params.putAll(userParams);
-
+			}
 			RuleFlowProcessInstance instance = (RuleFlowProcessInstance) getJbpmSupport()
 					.startProcess(activeProcessName, params);
 			getJbpmSupport().commitTransaction();

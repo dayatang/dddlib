@@ -57,10 +57,10 @@
 	</bean>
 
 	<!-- 验证码过滤器 -->
-<!-- 	<bean id="validateCodeAuthenticationFilter"
+ 	<bean id="validateCodeAuthenticationFilter"
 		class="org.openkoala.koala.auth.ss3adapter.ValidateCodeUsernamePasswordAuthenticationFilter">
 		<property name="authenticationSuccessHandler" ref="loginLogAuthenticationSuccessHandler" />
 		<property name="authenticationFailureHandler" ref="simpleUrlAuthenticationFailureHandler" />
 		<property name="authenticationManager" ref="authenticationManager" />
-	</bean> -->
+	</bean>
 </beans>
