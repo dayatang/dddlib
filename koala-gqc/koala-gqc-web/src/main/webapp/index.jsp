@@ -58,7 +58,7 @@
 		    <div id="footer" class="g-foot">
 		        <span>Copyright © 2011-2013 Koala</span>
 		    </div>   
-	    <script type="text/javascript" src="lib/jquery.js"></script>
+	    <script type="text/javascript" src="lib/jquery-1.8.3.min.js"></script>
         <script type="text/javascript" src="lib/respond.min.js"></script>
         <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>

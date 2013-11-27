@@ -92,8 +92,6 @@ $(function(){
             	currentRowId = 0;
             	$('#formManagement').modal({
                     keyboard: false
-                }).on('hidden.bs.modal', function(){
-                	$(this).remove();
                 });
             	initProcessForm();
             },
@@ -130,12 +128,8 @@ $(function(){
         				for(var index in data){
         					insertFieldRows(index+1,data[index]);
         				}
-        				$('#formManagement').clone().modal({
+        				$('#formManagement').modal({
                             keyboard: false
-                        }).on('hidden.bs.modal', function(){
-                        	$('#formTemplate').empty().data('koala.select', null);
-                        	$('#formTemplate').empty().data('koala.select', null);
-                        	$('#formTemplate').empty().data('koala.select', null);
                         });
         			}
         		});
@@ -287,24 +281,23 @@ $(function(){
     		 });
     		 dialog.modal({
     			keyboard: false
-    		 }).on({
-    			'hidden.bs.modal': function(){
-    				$(this).remove();
-    			}
-    		});
+    		 });
     	}).fail(function(){
     		
     	});
     }
     
     function initProcessForm(form){
+    	$('#formManagement').one('fillData', {form: form}, function(event){
+    		var form = event.form;
+    		$("#formId").val(form ? form.id : "" );
+        	$("#formName").val(form ? form.bizName : "" );
+    		$("#formDesc").val(form ? form.bizDescription : "" );
+    		$("#formTemplate").setValue(form?form.templateId:"NULL");
+        	var active = form ? form.active : 'true';
+        	$("input[name='isActivated'][value='"+active+"']").click(); 
+    	});
     	loadJbpmProcessOpts(form);
-    	$("#formId").val(form ? form.id : "" );
-    	$("#formName").val(form ? form.bizName : "" );
-		$("#formDesc").val(form ? form.bizDescription : "" );
-		$("#formTemplate").setValue(form?form.templateId:"NULL");
-    	var active = form ? form.active : 'true';
-    	$("input[name='isActivated'][value='"+active+"']").click(); 
     	if(currentRowId == 0){
     		$("#fieldListBody").empty();
     	}
@@ -411,7 +404,10 @@ $(function(){
     		optString = optString + "}";
     		field.keyOptions = optString;
     		if(field.keyOptions == "{}"){
-    			alert("请控件设置默认值");
+    			$('body').message({
+					type: 'warning',
+					content: '请控件设置默认值'
+				});
     			showFieldDropdownOpts();
             	return false;
             }
@@ -463,5 +459,6 @@ $(function(){
     			}
     		}
     		$("#associationProcess").resetItems(opts).setValue(form ? form.processId : 'NULL');
+    		$('#formManagement').trigger('fillData');
     	},'json');
     }
