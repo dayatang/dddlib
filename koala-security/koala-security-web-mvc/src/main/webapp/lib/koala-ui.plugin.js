@@ -386,11 +386,15 @@
 				e.stopPropagation();
 				var $this = $(this);
 				if($this.hasClass('checked')){
-					$this.closest('tr').removeClass('success');
+					$this.removeClass('checked').closest('tr').removeClass('success');
 				}else{
-					$this.closest('tr').addClass('success');
+					$this.addClass('checked').closest('tr').addClass('success');
 				}
-				$this.toggleClass('checked');
+				if(self.selectedRowsIndex().length == indexCheckboxs.length){
+					selectAll.addClass('checked');
+				}else{
+					selectAll.removeClass('checked');
+				}
 				self.$element.trigger('selectedRow', {checked: $this.hasClass('checked'), item:self.items[$this.attr('indexValue')]});
 			});
 			this.gridTableBodyTable.find('tr').on('click', function(){
