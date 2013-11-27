@@ -29,6 +29,7 @@ $(function(){
 
   $(function() {
 	$("#formTemplate").select({
+		title: '请选择流程',
 		contents : templateSelectOpts
 	});
     //流程通过AJAX加载选项
@@ -91,6 +92,8 @@ $(function(){
             	currentRowId = 0;
             	$('#formManagement').modal({
                     keyboard: false
+                }).on('hidden.bs.modal', function(){
+                	$(this).remove();
                 });
             	initProcessForm();
             },
@@ -99,17 +102,17 @@ $(function(){
                var indexs = data.data;
                 var $this = $(this);
                 if(indexs.length == 0){
-                    $this.message({
+                    $('body').message({
                         type: 'warning',
                         content: '请选择一条记录进行修改'
-                    })
+                    });
                     return;
                 }
                 if(indexs.length > 1){
-                    $this.message({
+                    $('body').message({
                         type: 'warning',
                         content: '只能选择一条记录进行修改'
-                    })
+                    });
                     return;
                 }
                 $.ajax({
@@ -118,7 +121,7 @@ $(function(){
         			data: {id:indexs[0]},
         			success: function(data){
         				if(!data.result){
-        					$this.message({type: 'warning',content: '获取数据错误'});
+        					$('body').message({type: 'warning',content: '获取数据错误'});
         					return;
         				}
         				data = data.result;
@@ -129,6 +132,8 @@ $(function(){
         				}
         				$('#formManagement').modal({
                             keyboard: false
+                        }).on('hidden.bs.modal', function(){
+                        	$(this).remove();
                         });
         			}
         		});
@@ -137,10 +142,10 @@ $(function(){
                 var indexs = data.data;
                 var $this = $(this);
                 if(indexs.length == 0){
-                    $this.message({
+                	$('body').message({
                         type: 'warning',
                         content: '请选择要删除的记录'
-                    })
+                    });
                     return;
                 }
                 $this.confirm({
@@ -151,7 +156,10 @@ $(function(){
                 			url: "/processform/delete.koala",
                 			data: {id:indexs.join(',')},
                 			success: function(msg){
-                				alert(msg.result);
+                				$('body').message({
+                                    type: 'success',
+                                    content: '删除成功'
+                                });
                 				$this.grid('refresh');
                 			}
                 		});

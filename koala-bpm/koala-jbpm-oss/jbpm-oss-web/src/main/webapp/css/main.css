@@ -246,11 +246,13 @@ a, button{
     color: red;
 }
 
-.form-management .modal-dialog{
+.form-management .modal-dialog, 
+.field-management .modal-dialog{
     width:960px;
     padding-top: 30px;
 }
-.form-management .modal-body {
+.form-management .modal-body,
+.field-management .modal-body{
     height: 380px;
     max-height: 450px;
     overflow-y: auto;
@@ -262,12 +264,6 @@ a, button{
 .form-management .form-group {
     margin-bottom: 5px;
 }
-
-.field-management .modal-dialog {
-    padding-top:  30px;
-    width: 850px;
-}
-
 .field-management .form-group {
     margin-bottom: 10px;
 }

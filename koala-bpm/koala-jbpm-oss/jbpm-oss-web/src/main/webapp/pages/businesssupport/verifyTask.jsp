@@ -11,7 +11,7 @@
     <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/koala.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/datetimepicker.css'/>" rel="stylesheet">
-    <script type="text/javascript" src="<c:url value='/js/jquery/jquery-1.8.3.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/lib/jquery-1.8.3.min.js' />"></script>
     <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />"></script>
