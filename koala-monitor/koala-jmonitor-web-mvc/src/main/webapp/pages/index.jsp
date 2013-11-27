@@ -84,7 +84,7 @@
 	<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
     <script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js' />"></script>
     <script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js' />"></script>
-    <script type="text/javascript" src="<c:url value='/js/koala-ui.plugin.js' />?time=<%=time%>"></script>
+    <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />?time=<%=time%>"></script>
 	<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
     <script type="text/javascript" src="<c:url value='/lib/jqplot/js/excanvas.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/lib/jqplot/js/jquery.jqplot.min.js' />"></script>

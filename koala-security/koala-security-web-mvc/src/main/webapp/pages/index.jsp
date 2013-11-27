@@ -60,7 +60,7 @@
 	<script type="text/javascript" src="<c:url value='/js/jquery/jquery-1.8.3.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
-	<script type="text/javascript" src="<c:url value='/js/koala-ui.plugin.js' />?time=<%=time%>" ></script>	
+	<script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />?time=<%=time%>" ></script>	
 	<script type="text/javascript" src="<c:url value='/lib/z-tree/js/jquery.ztree.all-3.5.min.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/main.js' />?time=<%=time%>" ></script>

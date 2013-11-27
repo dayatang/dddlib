@@ -13,7 +13,7 @@
     <script type="text/javascript" src="<c:url value='/js/jquery/jquery-1.8.3.min.js' />"></script>
     <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
-	<script type="text/javascript" src="<c:url value='/js/koala-ui.plugin.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/datetimepicker.js' />" ></script>
 	<script type="text/javascript" src="<c:url value='/js/processform/form.render.js' />" ></script>
 	<script type="text/javascript" src="<c:url value='/js/koala/Validate.js' />" ></script>

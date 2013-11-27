@@ -11,8 +11,17 @@
 		this.pageNo = options.pageNo;
 		this.showPage = options.showPage;
 		this.searchCondition = {};
-		this.sortName = null;
-		this.sortOrder = null;
+        if(typeof options.searchCondition === 'object'){
+            this.searchCondition = options.searchCondition;
+        }
+        this.sortName = null;
+        this.sortOrder = null;
+        if(options.sortName){
+            this.sortName = options.sortName;
+        }
+        if(options.sortOrder){
+            this.sortOrder = options.sortOrder;
+        }
         this.itemsMap = {};
 		this._initLayout();
 		this._initButtons();
@@ -33,6 +42,7 @@
 		isShowButtons: true,
 		autoLoad: true, //是否表格准备好时加载数据
 		isShowPages: true, //是否显示分页
+        isUserLocalData: false,//是否使用本地数据源
 		method: 'POST', //请求数据方式
 		identity: 'id', //主键
 		lockWidth: false,
@@ -92,9 +102,9 @@
 			var titleHtml = new Array();
 			titleHtml.push('<tr>');
 			if(this.options.isShowIndexCol){
-				titleHtml.push('<th width="50px;"><div class="checker"><span><input type="checkbox" style="opacity: 0;" data-role="selectAll"></span></div></th>');
+				titleHtml.push('<th width="50px;"><div class="checker"><span data-role="selectAll"></span></div></th>');
 			}else{
-				titleHtml.push('<th width="50px;" style="display:none"><div class="checker"><span><input type="checkbox" style="opacity: 0;" data-role="selectAll"></span></div></th>');
+				titleHtml.push('<th width="50px;" style="display:none"><div class="checker"><span data-role="selectAll"></span></div></th>');
 			}
 			for(var i= 0, j=columns.length; i<j; i++){
 				var column = columns[i];
@@ -128,16 +138,17 @@
 			}
 			this.gridTableHeadTable.find('[data-role="selectAll"]').on('click',function(e) {
 				e.stopPropagation();
-				if(this.checked){
-					$(this).parent().addClass('checked');
-					self.gridTableBodyTable.find('.checker').find('input:checkbox').each(function(){
-						$(this).attr('checked','checked').parent().addClass('checked').closest('tr').addClass('success');						
+				var $this = $(this);
+				if($this.hasClass('checked')){
+					self.gridTableBodyTable.find('[data-role="indexCheckbox"]').each(function(){
+						$(this).removeClass('checked').closest('tr').removeClass('success');
 					});
 				}else{
-					self.gridTableBodyTable.find('.checker').find('input:checkbox').each(function(){
-						$(this).removeAttr('checked').parent().removeClass('checked').closest('tr').removeClass('success');						
+					self.gridTableBodyTable.find('[data-role="indexCheckbox"]').each(function(){
+						$(this).addClass('checked').closest('tr').addClass('success');						
 					});
 				}
+				$this.toggleClass('checked');
 			});
 			var sorts = this.gridTableHeadTable.find('.sort');
 			sorts.on('click', function(e){
@@ -248,6 +259,18 @@
 				params.sortname = self.sortName;
 				params.sortorder = self.sortOrder;
 			}
+            if(self.options.isUserLocalData){
+                self.items = self.options.localData;
+                if(self.options.localData.length == 0){
+                    self.gridTableBodyTable.empty();
+                    self.gridTableBody.find('[data-role="noData"]').remove();
+                    self.gridTableBody.append($('<div data-role="noData" style="font-size:16px ; padding: 20px; width:'+self.gridTableBodyTable.width()+'px;">'+self.options.noDataText+'</div>'));
+                }else{
+                    self.gridTableBody.find('[data-role="noData"]').remove();
+                    self.renderDatas();
+                }
+                return;
+            }
 			$.ajax({
 				type: this.options.method,
 				url: this.options.url,
@@ -275,6 +298,7 @@
 						self.gridTableBody.find('[data-role="noData"]').remove();
 						self.renderDatas();
 					}
+                    self.$element.trigger('complate', result);
 				}).fail(function(result){
 
 				});
@@ -356,34 +380,31 @@
 		renderDatas: function(){
 			var self = this;
 			self.renderRows();
+			var selectAll = self.gridTableHeadTable.find('[data-role="selectAll"]');
 			var indexCheckboxs = this.gridTableBodyTable.find('[data-role="indexCheckbox"]');
 			indexCheckboxs.on('click',function(e) {
 				e.stopPropagation();
 				var $this = $(this);
-				if(this.checked){
-					$this.parent().addClass('checked').closest('tr').addClass('success');
+				if($this.hasClass('checked')){
+					$this.closest('tr').removeClass('success');
 				}else{
-					$this.parent().removeClass('checked').closest('tr').removeClass('success');
+					$this.closest('tr').addClass('success');
 				}
-				if(self.selectedRowsIndex().length == indexCheckboxs.length){
-					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked', 'checked').parent().addClass('checked');
-				}else{
-					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked', '').parent().removeClass('checked');
-				}
-				self.$element.trigger('selectedRow', {checked:this.checked, item:self.items[$this.attr('indexValue')]});
+				$this.toggleClass('checked');
+				self.$element.trigger('selectedRow', {checked: $this.hasClass('checked'), item:self.items[$this.attr('indexValue')]});
 			});
 			this.gridTableBodyTable.find('tr').on('click', function(){
 				var $this = $(this);
 				if($this.hasClass('success')){
-					$this.removeClass('success').find('[data-role="indexCheckbox"]').removeAttr('checked').parent().removeClass('checked');
+					$this.removeClass('success').find('[data-role="indexCheckbox"]').removeClass('checked');
 				}else{
-					$this.addClass('success').find('[data-role="indexCheckbox"]').attr('checked', 'checked').parent().addClass('checked');
+					$this.addClass('success').find('[data-role="indexCheckbox"]').addClass('checked');
 				}
-				self.$element.trigger('selectedRow', {checked:this.checked, item:self.items[$this.attr('indexValue')]});
+				self.$element.trigger('selectedRow', {checked: !$this.hasClass('success'), item:self.items[$this.attr('indexValue')]});
 				if(self.selectedRowsIndex().length == indexCheckboxs.length){
-					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked', 'checked').parent().addClass('checked');
+					selectAll.addClass('checked');
 				}else{
-					self.gridTableHeadTable.find('[data-role="selectAll"]').attr('checked', '').parent().removeClass('checked');
+					selectAll.removeClass('checked');
 				}
 			});
 			self.options.isShowPages && self._initPageNo();
@@ -408,9 +429,9 @@
 					trHtml.push('<tr>');	
 				}
 				if(this.options.isShowIndexCol){
-					trHtml.push('<td width="50px;"><div class="checker"><span><input type="checkbox" indexValue="'+i+'" data-role="indexCheckbox" style="opacity: 0;" value="'+item[this.options.identity]+'"></span></div></td>');
+					trHtml.push('<td width="50px;"><div class="checker"><span indexValue="'+i+'" data-role="indexCheckbox" data-value="'+item[this.options.identity]+'"></span></div></td>');
 				}else{
-					trHtml.push('<td width="50px;" style="display:none"><div class="checker"><span><input type="checkbox" indexValue="'+i+'" data-role="indexCheckbox" style="opacity: 0;" value="'+item[this.options.identity]+'"></span></div></td>');					
+					trHtml.push('<td width="50px;" style="display:none"><div class="checker"><span indexValue="'+i+'" data-role="indexCheckbox" data-value="'+item[this.options.identity]+'"></span></div></td>');					
 				}
 				for(var k=0,h=this.options.columns.length; k<h; k++){
 					var column = this.options.columns[k];
@@ -497,7 +518,7 @@
 		selectedRows: function(){
 			var self = this;
 			var selectItems = new Array();
-			this.gridTableBodyTable.find('.checker').find('input:checkbox:checked').each(function(){
+			this.gridTableBodyTable.find('.checked[data-role="indexCheckbox"]').each(function(){
 				selectItems.push(self.items[$(this).attr('indexvalue')]);
 			});
 			return  selectItems;
@@ -507,7 +528,7 @@
 		 */
 		selectedRowsNo: function(){
 			var selectIndexs = new Array();
-			this.gridTableBodyTable.find('.checker').find('input:checkbox:checked').each(function(){
+			this.gridTableBodyTable.find('.checked[data-role="indexCheckbox"]').each(function(){
 				selectIndexs.push($(this).attr('indexvalue'));
 			});
 			return  selectIndexs;
@@ -516,9 +537,8 @@
 		 *返回所有行数据。
 		 */
 		selectedAllRows: function(){
-			var self = this;
 			var selectItems = new Array();
-			this.gridTableBodyTable.find('.checker').find('input:checkbox').each(function(){
+			this.gridTableBodyTable.find('[data-role="indexCheckbox"]').each(function(){
 				selectItems.push(self.items[$(this).attr('indexvalue')]);
 			});
 			return  selectItems;
@@ -528,8 +548,8 @@
 		 */
 		selectedRowsIndex: function(){
 			var selectIndexs = new Array();
-			this.gridTableBodyTable.find('.checker').find('input:checkbox:checked').each(function(){
-				selectIndexs.push($(this).val());
+			this.gridTableBodyTable.find('.checked[data-role="indexCheckbox"]').each(function(){
+				selectIndexs.push($(this).attr('data-value'));
 			});
 			return  selectIndexs;
 		},
@@ -540,7 +560,7 @@
 			var trHtml = new Array();
 			trHtml.push('<tr>');
 			if(this.options.isShowIndexCol){
-				trHtml.push('<td width="50px;"><div class="checker"><span><input type="checkbox" indexValue="'+ this.items.length +'" data-role="indexCheckbox" style="opacity: 0;" value="'+item[this.options.identity]+'"></span></div></td>');
+				trHtml.push('<td width="50px;"><div class="checker"><span indexValue="'+ this.items.length +'" data-role="indexCheckbox" data-value="'+item[this.options.identity]+'"></span></div></td>');
 			}
 			for(var k=0,h=this.options.columns.length; k<h; k++){
 				var column = this.options.columns[k];
@@ -564,12 +584,15 @@
 		 getRowByIndex: function(index){
 		 	return this.gridTableBodyTable.find('[indexvalue="'+index+'"]').closest('tr');
 		 },
+        getItemByIndex: function(index){
+            return this.items[index];
+        },
 		/**
 		 * 刷新表格
 		 */
 		refresh: function(){
 			this.pageNo = Grid.DEFAULTS.pageNo;
-			this.gridTableHeadTable.find('[data-role="selectAll"]').removeAttr('chekced').parent().removeClass('checked');
+			this.gridTableHeadTable.find('[data-role="selectAll"]').removeClass('checked');
 			this._loadData();
 		},
 		/**

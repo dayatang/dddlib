@@ -61,8 +61,7 @@
         <script type="text/javascript" src="lib/respond.min.js"></script>
         <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-        <script type="text/javascript" src="js/datetimepicker.js"></script>
-        <script type="text/javascript" src="js/koala-ui.plugin.js?time=<%=time%>"></script>
+        <script type="text/javascript" src="lib/koala-ui.plugin.js?time=<%=time%>"></script>
 	    <script type="text/javascript" src="js/main.js?time=<%=time%>"></script>
     </body>
 </html>
