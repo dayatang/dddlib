@@ -130,10 +130,12 @@ $(function(){
         				for(var index in data){
         					insertFieldRows(index+1,data[index]);
         				}
-        				$('#formManagement').modal({
+        				$('#formManagement').clone().modal({
                             keyboard: false
                         }).on('hidden.bs.modal', function(){
-                        	$(this).remove();
+                        	$('#formTemplate').empty().data('koala.select', null);
+                        	$('#formTemplate').empty().data('koala.select', null);
+                        	$('#formTemplate').empty().data('koala.select', null);
                         });
         			}
         		});

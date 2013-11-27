@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
     <link href="/css/main.css?time=<%=time%>"    rel="stylesheet">
+    <link href="/css/jbpm.css?time=<%=time%>"    rel="stylesheet">
     <link href="/css/koala.css?time=<%=time%>"    rel="stylesheet">
     <link href="/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"   rel="stylesheet">
     <link href="/lib/z-tree/css/zTreeStyle.css"   rel="stylesheet">
