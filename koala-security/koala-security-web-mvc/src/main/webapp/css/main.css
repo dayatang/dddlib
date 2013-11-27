@@ -5,7 +5,7 @@ a, button{
     text-align: center;
 }
 /*
-头部导航栏
+澶撮儴瀵艰埅鏍�
  */
 .g-head {
     background-color: #428BCA;
@@ -35,7 +35,7 @@ a, button{
     clear: both;
 }
 /*
-左边菜单栏
+宸﹁竟鑿滃崟鏍�
 */
 .g-sidec {
     position: relative;
@@ -159,7 +159,7 @@ a, button{
     font-size: 12px;
 }
 /*
-内容页
+鍐呭椤�
 */
 .g-mainc {
     padding-top: 2px;
@@ -200,7 +200,7 @@ a, button{
     margin-left:  100px;
 }
 /*
-底部样式
+搴曢儴鏍峰紡
 */
 .g-foot {
     clear: both;
@@ -217,7 +217,7 @@ a, button{
     height: 40px;
 }
 /*
-修改密码弹出框
+淇敼瀵嗙爜寮瑰嚭妗�
 */
 .modal {
     overflow-y: auto;
@@ -244,16 +244,4 @@ a, button{
     top: 4px;
     margin-left: 3px;
     color: red;
-}
-
-.form-group .form-control{
-    display: inline;
-    width: 94%;
-}
-
-
-.menu-icon {
-    height: 20px;
-    position: relative;
-    top: -2px;
 }

@@ -11,6 +11,7 @@
         <link href="lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
         <link href="lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"   rel="stylesheet">
         <link href="css/main.css?time=<%=time%>"   rel="stylesheet">
+        <link href="css/gqc.css?time=<%=time%>"   rel="stylesheet">
         <link href="css/koala.css?time=<%=time%>"   rel="stylesheet">
     </head>
   	<body>
@@ -18,7 +19,7 @@
                 <nav class="navbar navbar-default">
                      <a class="navbar-brand" href="http://openkoala.org/display/koala/Home" target="_blank"><img src="images/global.logo.png"/>Koala通用查询</a>
                      <div class="collapse navbar-collapse navbar-ex1-collapse">
-                           <div class="btn-group navbar-right">
+                           <div class="btn-group navbar-right" style="display:none;">
                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                    <i class="glyphicon glyphicon-user"></i>
                                    <span>&nbsp;Admin</span>
@@ -34,25 +35,25 @@
                 </nav>
             </div>
 		    <div class="g-body">
-		        <div class="col-lg-2 g-sidec">
-                    <ul class="nav nav-stacked">
-                        <li class="active">
-                            <a href="#generalQueryConfig" data-toggle="collapse"><span class="glyphicon glyphicon-home"></span><span>菜单栏</span></a>
-                            <ul class="submenu" id="generalQueryConfig">
-                                <li data-target="pages/generalQueryList.html" data-title="通用查询配置" data-mark="generalQueryList"><a><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;通用查询配置</a></li>
-                                <li data-target="pages/dataSourceList.html" data-title="数据源配置"  data-mark="dataSourceList"><a><span class="glyphicon glyphicon-wrench"></span>&nbsp;&nbsp;数据源配置</a></li>
+			      <div class="col-lg-2 g-sidec">
+			        <ul class="nav nav-stacked first-level-menu">
+			            <li>
+			                <a data-toggle="collapse" href="#generalQueryConfig"><i class="glyphicon glyphicon-home"></i>&nbsp;菜单栏&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+			            	<ul id="generalQueryConfig" class="second-level-menu">
+			            		 <li class="submenu" data-role="openTab" data-target="pages/generalQueryList.html" data-title="通用查询配置" data-mark="generalQueryList"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;通用查询配置</a></li>
+			            		 <li class="submenu" data-role="openTab" data-target="pages/dataSourceList.html" data-title="数据源配置" data-mark="generalQueryList"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;数据源配置</a></li>
                             </ul>
-                        </li>
-                   </ul>
-		   		</div>
-		        <div class="col-lg-10 g-mainc container">
-		            <ul class="nav nav-tabs">
-		                <li class="active"><a href="#home" data-toggle="tab">主页</a></li>
-		            </ul>
-		            <div class="tab-content">
-		                <div id="home" class="tab-pane active"></div>
-		            </div>
-		        </div>
+			            </li>
+			        </ul>
+			    </div>
+			    <div class="col-lg-10 g-mainc container">
+			        <ul class="nav nav-tabs" id="navTabs">
+			            <li class="active"><a href="#home" data-toggle="tab">主页面</a></li>
+			        </ul>
+			        <div class="tab-content" id="tabContent">
+			            <div id="home" class="tab-pane active"></div>
+			        </div>
+			    </div>
 		    </div>
 		    <div id="footer" class="g-foot">
 		        <span>Copyright © 2011-2013 Koala</span>

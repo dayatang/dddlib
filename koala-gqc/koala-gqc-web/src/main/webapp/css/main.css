@@ -1,20 +1,20 @@
-a {
+a, button{
     outline: none!important;
 }
 .center {
     text-align: center;
 }
 /*
-头部导航栏
+婢舵挳鍎寸�鑹板焻閺嶏拷
  */
 .g-head {
     background-color: #428BCA;
 }
 .g-head .navbar {
-    margin: 0;
-    padding: 0;
-    border-left-width: 0;
-    background-color: #428BCA;
+   margin: 0;
+   padding: 0;
+   border-left-width: 0;
+   background-color: #428BCA;
 }
 .g-head .navbar-brand,
 .g-head .navbar-brand:hover,
@@ -28,13 +28,14 @@ a {
     margin-right: 10px;
 }
 .g-head .btn-group {
-    display: none;
+   position: relative;
+   top: 15px;
 }
 .g-head:after, .g-body:after {
     clear: both;
 }
 /*
-左边菜单栏
+瀹革箒绔熼懣婊冨礋閺嶏拷
 */
 .g-sidec {
     position: relative;
@@ -45,91 +46,120 @@ a {
     background-color: #ffffff;
     transition: width 0.4 ease-in-out;
 }
-.g-sidec > ul > li {
+.first-level-menu {
+    list-style: none;
+}
+.first-level-menu > li > ul {
+    padding-left: 0;
+}
+.first-level-menu > li > a {
     display: block;
-    margin: 0;
-    padding: 0;
-    border-style: solid none;
-    border-width: 1px 0;
-    border-color: #FCFCFC #999999 #E5E5E5;
-}
-
-.g-sidec > ul > li.active > a {
-    color: #428BCA;
-    background-color: #FFFFFF!important;
-}
-.g-sidec > ul > li > a {
-    background-color: #F9F9F9!important;
-    color: #838383;
-    padding: 10px 0 11px 2px;
-    font-size: 17.5px;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    outline: none;
-}
-.g-sidec > ul > li > a:hover,
-.g-sidec > ul > li.active > a:hover, .g-sidec > ul > li.active > a:focus {
-    color: #428BCA;
-    background-color: #FFFFFF;
-}
-.g-sidec > ul > li > a > span {
-    padding-left: 18px;
-}
-.g-sidec > ul > li > a > span:last-child {
-    padding-left: 38px;
-}
-.g-sidec .submenu:before {
-    position: absolute;
-    left: 25px;
-    bottom: 0;
-    top: 0;
-    display: block;
-    z-index: 1;
-    content: "";
-    border-left: 1px dotted #a0baff;
-
-}
-.g-sidec .submenu {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    list-style: none outside none;
-    background-color: #FFFFFF;
-}
-.g-sidec .submenu  > li  {
-    margin-left: 0;
-    position: relative;
-}
-.g-sidec .submenu > li > a {
-    display: block;
-    color: #838383;
-    border-top: 1px dotted #a0baff;
-    margin: 0;
-    outline: medium none;
-    padding: 9px 0 10px 37px;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 16.5px;
-    position: relative;
+    padding: 5px;
+    font-size: 16px;
     text-decoration: none;
-}
-.g-sidec .submenu > li > a:hover,  .g-sidec .submenu > li > a:focus, .g-sidec .submenu > li.active > a{
+    color: #727272;
     cursor: pointer;
-    color: #428BCA;
+    border-bottom: 1px solid #c6c6c6;
+    background-image: -moz-linear-gradient(top, #FFFFFF, #eaeaea);
+    background-image: -webkit-linear-gradient(top, #FFFFFF, #eaeaea);
+    background-image: -o-linear-gradient(top, #FFFFFF, #eaeaea);
+    background-image: -ms-linear-gradient(top, #FFFFFF, #eaeaea);
+    background-image: linear-gradient(top, #FFFFFF, #eaeaea);
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#FFFFFF',endColorStr='#eaeaea', GradientType=0)
+    transition: all 100ms ease 0s;
 }
-.g-sidec .submenu > li.active > a {
-   background-color: #f8f8f8;
+.first-level-menu > li > a > i:last-child {
+    float: right;
+    font-size: 12px;
+    position: relative;
+    top: 3px;
+    right: 8px;
 }
-.g-sidec .submenu > li.active:after {
+.first-level-menu > li > a > i:first-child {
+    padding-left: 5px;
+    padding-right: 4px;
+}
+.first-level-menu > li {
+    margin-top: 0!important;
+}
+.first-level-menu > li.active > a,
+.first-level-menu > li > a:hover {
+    color: #3774a9;
+    background-color: #f1f1f1;
+}
+.second-level-menu {
+    list-style: none;
+}
+.second-level-menu > li > ul {
+    padding-left: 0;
+}
+.second-level-menu > li > a {
+    border-bottom: 1px dotted #A0BAFF;
+    display: block;
+    font-family: "Helvetica Neue",Arial,sans-serif;
+    font-size: 15px;
+    outline: medium none;
+    padding: 4px 0 5px 40px;
+    position: relative;
+    background-color: #f4f4f4;
+    border-left: 1 dotted #DDDDDD;
+    color: #6e6e6e;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 100ms ease 0s;
+}
+.second-level-menu > li.active  .top-menu.collapsed:after{
     position: relative;
     float: right;
-    top: -42px ;
+    top: -4px;
     content: "";
-    width: 3px;
-    height: 42px;
-    background-color: #269abc;
+    right: -12px;
+    width: 2px;
+    height: 32px;
+    background-color: #428BCA;
+}
+.submenu.active:after {
+    position: relative;
+    float: right;
+    top: -32px ;
+    content: "";
+    width: 2px;
+    height: 32px;
+    background-color: #428BCA;
+}
+.second-level-menu > li > a:hover,
+.second-level-menu > li > a:focus,
+.second-level-menu > li.active > a {
+    color: #428BCA;
+    background-color: #fdfdfd;
+}
+.third-level-menu > li > a {
+    border-bottom: 1px dotted #A0BAFF;
+    display: block;
+    font-family: "Helvetica Neue",Arial,sans-serif;
+    font-size: 15px;
+    outline: medium none;
+    padding: 4px 0 5px 60px;
+    position: relative;
+    background-color: #f4f4f4;
+    color: #6e6e6e;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 100ms ease 0s;
+}
+.third-level-menu  > li.active > a {
+    color: #428BCA;
+    background-color: #fdfdfd;
+}
+.top-menu i:last-child {
+    position: relative;
+    float: right;
+    top: 3px;
+    right: 12px;
+    font-size: 12px;
 }
 /*
-内容页
-*/
+閸愬懎顔愭い锟�*/
 .g-mainc {
     padding-top: 2px;
 }
@@ -169,7 +199,7 @@ a {
     margin-left:  100px;
 }
 /*
-底部样式
+鎼存洟鍎撮弽宄扮础
 */
 .g-foot {
     clear: both;
@@ -185,227 +215,31 @@ a {
     padding-left: 5px;
     height: 40px;
 }
-
-
-.generalQuery .form-inline {
-    padding-bottom: 5px;
-}
-.generalQuery .form-inline .form-group {
-    margin-left: 25px;
-}
-.generalQuery .form-inline .form-group .control-label {
-    margin-right: 5px;
-}
-.generalQuery  .required {
-    position: relative;
-    top: 4px;
-    margin-left: 3px;
-    color: red;
-}
-.generalQuery .form-inline .form-group .btn-group .queryName {
-    display: inline;
-    width: 200px;
-}
-.generalQuery .table {
-    border-width: 0;
-    text-align: center;
-}
-.generalQuery .table th {
-    text-align: center;
-}
-.generalQuery  a {
-    cursor: pointer!important;
-}
-.generalQuery  .panel {
-    margin-top: 5px;
-    margin-bottom: 0;
-}
-.generalQuery  .table .panel {
-    padding: 0;
-    margin: 0;
-}
-.generalQuery  .table .table-value .required {
-    color:red;
-    position: relative;
-    top: 6px;
-    margin-left: 2px;
-}
-.select .dropdown-menu {
-    text-align: left!important;
-}
-.generalQuery .buttons {
-    margin: 10px;
-    text-align: center;
-}
-.generalQuery .buttons .btn {
-    margin-right: 10px;
-    font-size: 14px;
-}
-.generalQuery  .table td .form-control {
-    display: inline!important;
-    width: 95%;
-}
-.general-query-dialog {
-    padding-top: 65px;
-    width: 80%!important;
-}
-.general-query-dialog .modal-body {
+/*
+娣囶喗鏁肩�鍡欑垳瀵懓鍤锟�*/
+.modal {
     overflow-y: auto;
-    max-height: 450px;
 }
-.general-query-dialog .grid-table-head table tr th:last-child,
-.general-query-dialog .grid-table-body table tr td:last-child{
-    border-right-width: 0!important;
+.modify-pwd {
+    padding-top: 80px;
 }
-.general-query-dialog .grid-table-body {
-    height: 180px;
-    min-height: 180px;;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-.general-query-dialog  .visibility .checker {
-    margin: 0 15px 0 0;
-}
-.generalQuery  .panel > table {
-    table-layout: fixed;
-}
-.staticQuerySelected table , .dynamicQuerySelected table , .showColumnSelected table {
-    table-layout: auto;
-}
-
-.staticQuerySelected table td , .dynamicQuerySelected table td , .showColumnSelected table td {
-    padding: 2px!important;
-}
-.query-condition  .column-name {
-    width: 60%;
-}
-.query-condition  .operation {
-    width: 40%;
-    padding-left: 12px;
-    text-align: left !important;
-}
-.staticQuerySelected  .column-name {
-    width: 25%;
-}
-.staticQuerySelected .query-operation {
-    width: 15%;
-}
-.staticQuerySelected .value {
-    width: 35%;
-}
-.staticQuerySelected .visibility {
-    width: 12%;
-}
-.staticQuerySelected .delete-btn {
-    width: 15%;
-}
-.dynamicQuerySelected  .column-name {
-    width: 25%;
-}
-.dynamicQuerySelected .show-label {
-    width: 30%;
-}
-.dynamicQuerySelected .widgetType {
-    width: 15%;
-}
-.dynamicQuerySelected .query-operation {
-    width: 20%;
-}
-.dynamicQuerySelected .delete-btn {
-    width: 15%;
-}
-.showColumnSelected .column-name {
-    width: 40%;
-}
-.showColumnSelected .show-label {
-    width: 40%;
-}
-.showColumnSelected .delete-btn {
-    width: 40%;
-}
-
-.dataSource {
-    padding-top: 60px;
-}
-.dataSource  input {
+.modify-pwd  input {
     width: 300px;
 }
-.dataSource .modal-body {
+.modify-pwd .modal-body {
     padding-top: 20px;
     padding-left: 40px;
     padding-bottom: 10px;
 }
-.dataSource .modal-body .help-block {
+.modify-pwd .modal-body .help-block {
     display: none;
     font-weight: normal;
     margin-bottom: 0;
 }
-.dataSource .modal-footer {
-    margin-top: 0;
-}
-.dataSource  .col-lg-9 > input,  .dataSource .col-lg-9 > span {
-    display: inline;
-}
-.dataSource .col-lg-9 > span {
+
+.required {
     position: relative;
-    top: 3px;
-    margin-left: 5px;
+    top: 4px;
+    margin-left: 3px;
     color: red;
-}
-
-.query {
-    width: 65%;
-    padding: 15px 15px 0;
-}
-.query .query-body {
-    float: left;
-    width: 45%;
-}
-.query .query-body table {
-    margin-bottom: 5px;
-}
-.query .buttons {
-    float: left;
-    left: 15px;
-    position: relative;
-}
-.query .query-body table td {
-    vertical-align: middle!important;
-    border: 0 solid transparent!important;
-    padding: 2px;
-}
-
-.previewQuery .column-name {
-    padding: 0 10px !important;
-    width: 20%;
-}
-.previewQuery .query-condition {
-    padding: 0 10px !important;
-    width: 20%;
-}
-.previewQuery .query-value {
-    width: 60%;
-}
-.previewQuery .query-value > div {
-    float: left;
-    vertical-align: middle;
-}
-.previewQuery .query-value .span {
-    position: relative;
-    padding: 4px;
-}
-.previewQuery input {
-    padding-top: 0;
-    padding-bottom: 0;
-    width: 193px!important;
-}
-.dynamicQueryCondition td {
-    padding: 2px!important;
-}
-.previewGrid {
-    clear: both;
-    padding: 0 15px;
-}
-.previewGrid .grid-table-body {
-    height: 385px;
 }

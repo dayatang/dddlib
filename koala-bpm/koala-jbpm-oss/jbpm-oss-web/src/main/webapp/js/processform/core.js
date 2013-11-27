@@ -133,7 +133,9 @@ $(function(){
         				$('#formManagement').clone().modal({
                             keyboard: false
                         }).on('hidden.bs.modal', function(){
-                        	$(this).remove();
+                        	$('#formTemplate').empty().data('koala.select', null);
+                        	$('#formTemplate').empty().data('koala.select', null);
+                        	$('#formTemplate').empty().data('koala.select', null);
                         });
         			}
         		});
