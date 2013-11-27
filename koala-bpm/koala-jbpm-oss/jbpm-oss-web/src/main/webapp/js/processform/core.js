@@ -268,7 +268,13 @@ $(function(){
     	 .done(function(data){
     		 var dialog = $(data);
     		 dialog.find('.modal-title').html(title+" - 预览");
-    		 dialog.find('#formIframe').attr("src","/processform/templatePreview.koala?formId="+formId);
+    		 $.ajax({
+    			 url: '/processform/templatePreview.koala?formId='+formId,
+    			 type: 'GET',
+    			 dataType: 'html'
+    		 }).done(function(data){
+    			 dialog.find('.modal-body').html(data);
+    		 });
     		 dialog.modal({
     			keyboard: false
     		 }).on({

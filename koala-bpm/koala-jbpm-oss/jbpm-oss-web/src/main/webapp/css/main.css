@@ -418,3 +418,8 @@ a, button{
 	position: relative;
 	top: 4px;
 }
+.processDetail .checkbox-inline,
+.processDetail .radio-inline{
+ 	position: relative;
+    top: 3px;
+}
