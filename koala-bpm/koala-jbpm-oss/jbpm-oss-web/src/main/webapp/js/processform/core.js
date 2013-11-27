@@ -92,6 +92,8 @@ $(function(){
             	currentRowId = 0;
             	$('#formManagement').modal({
                     keyboard: false
+                }).on('hidden.bs.modal', function(){
+                	$(this).remove();
                 });
             	initProcessForm();
             },
