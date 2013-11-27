@@ -108,14 +108,16 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping("/pageJson")
-	public Map<String, Object> pageJson(String page, String pagesize,Long roleId) {
+	public Map<String, Object> pageJson(String page, String pagesize,Long roleId ,String userNameForSearch,String userAccountForSearch) {
 		Map<String, Object> dataMap = new HashMap<String,Object>();
 		int start = Integer.parseInt(page);
 		int limit = Integer.parseInt(pagesize);
-
+		QueryConditionVO search = new QueryConditionVO();
+		initSearchCondition(search,userNameForSearch,userAccountForSearch);
 		Page<UserVO> all = null;
 		if (roleId == null) {
-			all = userApplication.pageQueryUser(start, limit);
+			//all = userApplication.pageQueryUser(start, limit);
+			all = userApplication.pageQueryUserCustom(start, limit, search);
 		} else {
 			RoleVO roleVoForFind = new RoleVO();
 			roleVoForFind.setId(roleId);
