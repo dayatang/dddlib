@@ -210,10 +210,13 @@ var employee = function(){
 	 */
 	var initEntryDate = function(){
 		entryDate.datetimepicker({
-			language: 'zh-CN',
-			pickDate: true,
-			pickTime: false
-		});
+            language: 'zh-CN',
+            format: "yyyy-mm-dd",
+            autoclose: true,
+            todayBtn: true,
+            minView: 2,
+            pickerPosition: 'bottom-left'
+        }).datetimepicker('setDate', new Date());
 	};
 	
 	/*

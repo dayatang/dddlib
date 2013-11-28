@@ -92,7 +92,7 @@ $(function(){
             	currentRowId = 0;
             	$('#formManagement').modal({
                     keyboard: false
-                });
+                })
             	initProcessForm();
             },
             'modify': function(event, data){

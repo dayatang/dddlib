@@ -93,17 +93,18 @@ body {
 	padding-left: 7%;
 	padding-right: 7%;
 }
-.login_con_R  .form-group label {
-	position: relative;
-	top: 4px;
-	padding-right: 1px;
+.login_con_R .input-group {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 .checkCode {
 	height: 50px;
 }
 .btn-login {
-	width: 65%;
-	margin-left: 20%;
+	width: 100%;
+	margin-left: auto;
+    margin-right: auto;
 }
 
 .login_footer {
@@ -157,23 +158,17 @@ body {
 				     	</script>
 			</c:if>
 			<FORM id=loginFormId method=post action="j_spring_security_check" class="form-horizontal">
-				<div class="form-group">
-					<label class="col-lg-3">用户名:</label>
-					<div class="col-lg-9">
-						<input type="text" name="j_username" id="j_username" class="form-control"/>
-					</div>
+				<div class="form-group input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                    <input type="text" class="form-control" placeholder="用户名"  name="j_username" id="j_username">
 				</div>
-				<div class="form-group">
-					<label class="col-lg-3">密&nbsp;&nbsp;&nbsp;&nbsp;码:</label>
-					<div class="col-lg-9">
-						<input type="password" name="j_password" id="j_password" class="form-control"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-3">验证码:</label>
-					<div class="col-lg-9">
-						<input type="text" name="jcaptcha" value="" class="form-control"/>
-					</div>
+                <div class="form-group input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                    <input type="password" name="j_password" id="j_password" class="form-control" placeholder="密码"/>
+                </div>
+				<div class="form-group input-group">
+				    <span class="input-group-addon"><span class="glyphicon glyphicon-magnet"></span></span>
+					<input type="text" name="jcaptcha" value="" class="form-control" placeholder="验证码"/>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3"></label>
@@ -181,7 +176,7 @@ body {
 						<img src="jcaptcha.jpg" id="checkCode" onclick="refreshCode();" class="checkCode"/>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group input-group">
 					<button class="btn btn-primary btn-login" onclick="javascript:login()">登陆</button>
 				</div>
 				<!--<h4>登录</h4>
