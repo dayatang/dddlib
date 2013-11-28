@@ -87,6 +87,11 @@ body {
 	border-bottom: 1px solid #d4d4d4;
 	margin-top: 0px;
 }
+.login_con_R  form {
+	padding-top: 10%;
+	padding-left: 7%;
+	padding-right: 7%;
+}
 .login_con_R  .form-group {
 	margin-bottom: 10%;
 }
