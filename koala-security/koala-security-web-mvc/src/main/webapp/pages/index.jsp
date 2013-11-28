@@ -122,7 +122,10 @@
 						});
 						$menu.find('li.submenu').on('click', function(){
 								var $this = $(this);
-								clearMenuEffect();
+								$('.first-level-menu').find('li').each(function(){
+									var $menuLi = $(this);
+									$menuLi.hasClass('active') && $menuLi.removeClass('active').parent().parent().removeClass('active');
+								});
 								$this.addClass('active').parent().closest('li').addClass('active').parent().closest('li').addClass('active');
 								var target = $this.data('target');
 								var title = $this.data('title');
