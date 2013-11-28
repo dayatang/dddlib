@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.util.Date"%>
 <%Long time = new Date().getTime();%>
 <!DOCTYPE html>
@@ -8,16 +9,16 @@
     <title>组织系统</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
-    <link href="lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"   rel="stylesheet">
-    <link href="css/main.css?time=<%=time%>"    rel="stylesheet">
-     <link href="css/organisation.css?time=<%=time%>"    rel="stylesheet">
-    <link href="css/koala.css?time=<%=time%>"    rel="stylesheet">
+   <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
+    <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
+    <link href="<c:url value='/css/organisation.css' />?time=<%=time%>" rel="stylesheet">
+    <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
+    <link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />" rel="stylesheet">
 </head>
 <body>
 <div class="g-head">
     <nav class="navbar navbar-default">
-        <a class="navbar-brand" href="#"><img src="images/global.logo.png"/>组织系统</a>
+        <a class="navbar-brand" href="#"><img src="<c:url value='images/global.logo.png'/>"/>组织系统</a>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <div class="btn-group navbar-right">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
