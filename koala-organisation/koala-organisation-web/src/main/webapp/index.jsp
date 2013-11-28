@@ -9,10 +9,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
+    <link href="lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"   rel="stylesheet">
     <link href="css/main.css?time=<%=time%>"    rel="stylesheet">
      <link href="css/organisation.css?time=<%=time%>"    rel="stylesheet">
     <link href="css/koala.css?time=<%=time%>"    rel="stylesheet">
-    <link href="css/datetimepicker.css"   rel="stylesheet">
 </head>
 <body>
 <div class="g-head">
@@ -60,12 +60,11 @@
 <div id="footer" class="g-foot">
     <span>Copyright Â© 2011-2013 Koala</span>
 </div>
-<script type="text/javascript" src="lib/jquery.js"></script>
+<script type="text/javascript" src="lib/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/datetimepicker.js"></script>
 <script type="text/javascript" src="lib/koala-ui.plugin.js?time=<%=time%>"></script>
-<script type="text/javascript" src="js/datetimepicker.js" ></script>
 <script type="text/javascript" src="js/tree.js"></script>
 <script type="text/javascript" src="js/validation.js"></script>
 <script type="text/javascript" src="js/main.js?time=<%=time%>" ></script>
