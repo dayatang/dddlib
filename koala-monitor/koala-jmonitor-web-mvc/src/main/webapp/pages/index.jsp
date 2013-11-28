@@ -13,19 +13,21 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
-    <link href="/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"   rel="stylesheet">
-    <link href="/css/main.css?time=<%=time%>"   rel="stylesheet">
-    <link href="/css/koala.css?time=<%=time%>"  rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="/lib/jqplot/css/jquery.jqplot.css" />
-    <link type="text/css" rel="stylesheet" href="/lib/jqplot/css/shCoreDefault.min.css" />
-    <link type="text/css" rel="stylesheet" href="/lib/jqplot/css/shThemejqPlot.min.css" />
-    <link href="/css/monitor.css"   rel="stylesheet">
+    <link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />"   rel="stylesheet">
+    <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
+    <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
+    <link href="<c:url value='/lib/z-tree/css/zTreeStyle.css' />"   rel="stylesheet">
+    <link href="<c:url value='/css/monitor.css' />?time=<%=time%>"   rel="stylesheet">
+    <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
+    <link href="<c:url value='/lib/jqplot/css/jquery.jqplot.css' />"   rel="stylesheet">
+    <link href="<c:url value='/lib/jqplot/css/shCoreDefault.min.css' />"   rel="stylesheet">
+    <link href="<c:url value='/lib/jqplot/css/shThemejqPlot.min.css' />"   rel="stylesheet">
+    <link href="<c:url value='/css/monitor.css' />"   rel="stylesheet"> 
 </head>
 <body>
 	<div class="g-head">
 	    <nav class="navbar navbar-default">
-	        <a class="navbar-brand" href="#"><img src="../images/global.logo.png"/>Koala监控系统</a>
+	        <a class="navbar-brand" href="#"><img src="<c:url value='images/global.logo.png'/>"/>Koala监控系统</a>
 	        <div class="collapse navbar-collapse navbar-ex1-collapse">
 	            <div class="btn-group navbar-right">
 	                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">

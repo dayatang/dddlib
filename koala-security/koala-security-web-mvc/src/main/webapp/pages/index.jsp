@@ -13,17 +13,17 @@
     <meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="Cache-Control" content="no-cache">
 	<meta http-equiv="Expires" content="0">
-    <link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
-    <link href="/lib/z-tree/css/zTreeStyle.css"   rel="stylesheet">
-    <link href="/css/main.css?time=<%=time%>"   rel="stylesheet">
-     <link href="/css/security.css?time=<%=time%>"   rel="stylesheet">
-    <link href="/css/koala.css?time=<%=time%>"    rel="stylesheet">
+    <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
+    <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
+    <link href="<c:url value='/lib/z-tree/css/zTreeStyle.css' />"   rel="stylesheet">
+    <link href="<c:url value='/css/security.css' />"   rel="stylesheet">
+    <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
 </head>
 <body>
 	<input type="hidden" id="roleId" value="${roleId}" />
 	<div class="g-head">
 	    <nav class="navbar navbar-default">
-	        <a class="navbar-brand" href="#"><img src="images/global.logo.png"/>Koala权限系统</a>
+	        <a class="navbar-brand" href="#"><img src="<c:url value='images/global.logo.png'/>"/>Koala权限系统</a>
 	        <div class="collapse navbar-collapse navbar-ex1-collapse">
 	            <div class="btn-group navbar-right">
 	                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
