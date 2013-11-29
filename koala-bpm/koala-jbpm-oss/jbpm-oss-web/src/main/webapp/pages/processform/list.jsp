@@ -64,52 +64,9 @@
 						</div>
 						<div class="col-lg-4 form-group"></div>
 					</div>
-					<div class="btn-group buttons" style="margin-bottom:5px; margin-top:5px;">
-                      <button data-action="open-field-adddialog" data-role="add" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus"></span>&nbsp;新增</button>
-                      <button data-action="open-filed-moddialog" data-role="modify" class="btn btn-success" type="button"><span class="glyphicon glyphicon-wrench"></span>&nbsp;修改</button>
-                      <button data-action="delete-filed" type="button" class="btn btn-danger" data-role="delete"><span class="glyphicon glyphicon-remove"></span>&nbsp;刪除</button>
-                    </div>
-					<div class="row table-responsive" style="padding-left: 15px; padding-right: 15px;">
-						<table class="table table-responsive table-bordered table-hover table-striped fieldList">
-							<thead>
-								<tr>
-									<th width="40px;">
-										<div class="checker">
-											<span><input type="checkbox" style="opacity: 0;"
-												data-role="selectAll"></span>
-										</div>
-									</th>
-									<th width="50px" index="0">编号
-										<div class="colResize"></div>
-									</th>
-									<th width="100px" index="1" style="">字段名称
-										<div class="colResize"></div>
-									</th>
-									<th width="100px" index="2">字段描述
-										<div class="colResize"></div>
-									</th>
-									<th width="100px" index="3">字段类型
-										<div class="colResize"></div>
-									</th>
-									<th width="100px" index="4">输出类型
-										<div class="colResize"></div>
-									</th>
-									<th width="80px" index="5">显示顺序
-										<div class="colResize"></div>
-									</th>
-									<th style="" index="6">选项
-										<div class="colResize"></div>
-									</th>
-									<th width="110px" index="7" >验证规则
-										<div class="colResize"></div>
-									</th>
-								</tr>
-							</thead>
-
-							<tbody id="fieldListBody"></tbody>
-						</table>
-						<input type="hidden"  id="formId"/>
+					<div class="row table-responsive" style="padding-left: 15px; padding-right: 15px;" id="fieldGrid">
 					</div>
+                    <input type="hidden"  id="formId"/>
 				</form>
 			</div>
 			<div class="modal-footer">
@@ -180,9 +137,9 @@
                     <div class="form-group row">
                         <label class="col-lg-2 control-label">选项:&nbsp;&nbsp;</label>
                         <div class="col-lg-10" style="position: relative; top: 6px;" id="fieldOptions">
-                            <div class="checker"><span><input type="checkbox"  style="opacity: 0;"  id="requiredChk"></span></div>必填
-                            &nbsp;&nbsp;&nbsp;<div class="checker"><span><input type="checkbox"  style="opacity: 0;" id="innerVariableChk"></span></div>是否流程变量
-                            &nbsp;&nbsp;&nbsp;<div class="checker"><span><input type="checkbox" style="opacity: 0;" id="outputVarChk"></span></div>是否显示在流程
+                            <div class="checker"><span  id="requiredChk"></span></div>必填
+                            &nbsp;&nbsp;&nbsp;<div class="checker"><span id="innerVariableChk"></span></div>是否流程变量
+                            &nbsp;&nbsp;&nbsp;<div class="checker"><span id="outputVarChk"></span></div>是否显示在流程
                         </div>
                     </div>
                 </form>
@@ -194,7 +151,7 @@
         </div>
     </div>
 </div>
-<div id="keyOptionsPanel" class="popover fade right in" style="display:none;">
+<div id="keyOptionsPanel" class="popover fade right in" data-toggle="popover" style="display:none;">
 <div class="arrow"></div>
 <div class="popover-content">
 <form class="form-inline" id="keyOptionsForm">

@@ -1,17 +1,7 @@
 $(function(){
-    	var  isActivateds = $('[name="isActivated"]');
-        isActivateds.on('click', function(){
-               isActivateds.each(function(){
-                   $(this).parent().removeClass('checked');
-               })
-               $(this).parent().addClass('checked');
+        $('#fieldOptions').find('.checker span').on('click', function(){
+            $(this).toggleClass('checked');
         });
-        
-        $(':checkbox').live('click', function(){
-            $(this).parent().toggleClass('checked');
-        });
-      
-        
         $('#formManagement').find('input[data-role="selectAll"]').on('click',function(){
         	var checked = $(this).parent().hasClass('checked');
         	$('#formManagement').find(':checkbox').each(function(){
@@ -89,14 +79,14 @@ $(function(){
             url: '/processform/getDataList.koala'
         }).on({
             'add': function(){
-            	currentRowId = 0;
-            	$('#formManagement').modal({
+                $('#formManagement').modal({
                     keyboard: false
-                })
+                }).on('shown.bs.modal', {data: null}, function(event){
+                      loadFieldGrid(event.data.data)
+                });
             	initProcessForm();
             },
             'modify': function(event, data){
-            	currentRowId = 0;
                var indexs = data.data;
                 var $this = $(this);
                 if(indexs.length == 0){
@@ -125,11 +115,13 @@ $(function(){
         				data = data.result;
         				initProcessForm(data);
         				data = data.processKeys;
-        				for(var index in data){
+        				/*for(var index in data){
         					insertFieldRows(index+1,data[index]);
-        				}
+        				}*/
         				$('#formManagement').modal({
                             keyboard: false
+                        }).on('shown.bs.modal', {data: data}, function(event){
+                              loadFieldGrid(event.data.data)
                         });
         			}
         		});
@@ -164,56 +156,134 @@ $(function(){
             }
         });
     });
-    
     var filedMap = {};
-    var currentRowId = 0;
+    var currentKeyId = null;
+    var loadFieldGrid = function(data){
+        var columns = [
+            {
+                title:'编号',
+                name:'keyId' ,
+                width: '80px',
+                render: function(item, name, index){
+                    return index;
+                }
+            },
+            {
+                title:'字段名称',
+                name:'keyId' ,
+                width: '120px'
+            },
+            {
+                title:'字段描述',
+                name:'keyName' ,
+                width: '120px'
+            },
+            {
+                title:'字段类型',
+                name:'fieldTypeText' ,
+                width: '90px'
+            },
+            {
+                title:'输出类型',
+                name:'valOutputTypeText' ,
+                width: '90px'
+            },
+            {
+                title:'显示顺序',
+                name:'showOrder' ,
+                width: '90px'
+            },
+            {
+                title:'选项',
+                name:'required' ,
+                width: '340px',
+                render: function(item, name, index){
+                    return '必填:'+item.required+' 是否流程变量:'+item.innerVariable
+                        +'   是否显示在流程 :'+item.outputVar;
+                }
+            },
+            {
+                title:'验证规则',
+                name:'validateRuleText' ,
+                width: '120px'
+            }
+        ];
+        var buttons = [
+            {content: '<button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus"></span>&nbsp;添加</button>', action: 'add'},
+            {content: '<button class="btn btn-success" type="button"><span class="glyphicon glyphicon-edit"></span>&nbsp;修改</button>', action: 'modify'},
+            {content: '<button class="btn btn-danger" type="button"><span class="glyphicon glyphicon-remove"></span>&nbsp;删除</button>', action: 'delete'}
+        ];
+        $('#fieldGrid').grid({
+            identity: 'keyId',
+            columns: columns,
+            buttons: buttons,
+            isShowPages: false,
+            isUserLocalData: true,
+            localData: data
+        }).on({
+             'add': function(){
+                 $('#fieldManagement').show().modal({
+                     keyboard: false
+                 });
+                 initFormFied();
+             },
+             'modify': function(event, data){
+                 var indexs = data.data;
+                 var $this = $(this);
+                 if(indexs.length == 0){
+                     $('body').message({
+                         type: 'warning',
+                         content: '请选择一条记录进行修改'
+                     })
+                     return;
+                 }
+                 if(indexs.length > 1){
+                     $('body').message({
+                         type: 'warning',
+                         content: '只能选择一条记录进行修改'
+                     })
+                     return;
+                 }
+                 currentKeyId = indexs[0];
+                 $('#fieldManagement').show().modal({
+                     keyboard: false
+                 });
+                 initFormFied(data.item[0]);
+             },
+             'delete': function(event, data){
+                 var indexs = data.data;
+                 var $this = $(this)
+                 if(indexs.length == 0){
+                     $('body').message({
+                         type: 'warning',
+                         content: '请选择要删除的记录'
+                     })
+                     return;
+                 }
+                 $this.confirm({
+                     content: '确定要删除所选记录吗?',
+                     callBack: function(){
+                         $.each(indexs, function(){
+                             $this.getGrid().removeRows(indexs);
+                         })
+                     }
+                 });
+             }
+        });
+    };
     $(function(){
-    	$("button[data-action='open-field-adddialog']").on('click', function(){
-    		currentRowId = 0;
-            $('#fieldManagement').show().modal({
-                   keyboard: false
-            });
-    		initFormFied();
-         });
-    	$("button[data-action='open-filed-moddialog']").on('click', function(){
-    		var ids = getSelectFieldIds();
-            if(ids.length ==0){
-            	$('body').message({
-                    type: 'warning',
-                    content: '请选择需要编辑记录'
-                })
-    			return;
-    		}
-    		if(ids.length >1){
-    			$('body').message({
-                    type: 'warning',
-                    content: '只能选择一条记录'
-                })
-    			return;
-    		}
-    		currentRowId = ids[0];
-    		
-            $('#fieldManagement').show().modal({
-                   keyboard: false
-            });
-    		initFormFied(filedMap['field_'+currentRowId]);
-         });
-    	$("button[data-action='delete-filed']").on('click', function(){
-    		var ids  = getSelectFieldIds();
-    		for(var index in ids){
-    			$("#field_rowId_"+ids[index]).remove();
-    			filedMap['field_'+ids[index]] = null;
-    		}
-         });
     	$("button[data-action='save-field']").on('click',function(){
     		if(saveDefineFormFiled()){
     		  $("#keyOptionsPanel").hide();
     		  $("#fieldManagement").modal('hide');
+              $('#fieldGrid').find('[data-role="selectAll"]').removeClass('checked');
     		}
     		
         });
     	$("button[data-action='save-processForm']").on('click',function(){
-    		var form = {};
+            console.info($('#fieldGrid').getGrid().getAllItems())
+
+            var form = {};
     		form.id = $("#formId").val();
     		form.bizName = $("#formName").val();
     		form.bizDescription = $("#formDesc").val();
@@ -231,10 +301,9 @@ $(function(){
         		return;
         	}
     		var fields = [];
-    		for(var index in filedMap){
-    			if(filedMap[index])fields.push(filedMap[index]);
-    		}
-    		
+            $.each($('#fieldGrid').getGrid().getAllItems(), function(){
+                fields.push(this);
+            });
     		if(fields.length == 0){
     			$('body').message({
 	                type: 'warning',
@@ -298,7 +367,7 @@ $(function(){
         	$("input[name='isActivated'][value='"+active+"']").click(); 
     	});
     	loadJbpmProcessOpts(form);
-    	if(currentRowId == 0){
+    	if(currentKeyId){
     		$("#fieldListBody").empty();
     	}
     }
@@ -308,16 +377,23 @@ $(function(){
     	$("#fieldDesc").val(field ? field.keyName : "" );
     	
     	var checked = field ? field.required == 'true' : false;
-    	if(field && field.required == 'true'){
-    	  $("#requiredChk").parent().addClass("checked");
+    	if(checked){
+    	  $("#requiredChk").addClass("checked");
     	}else{
-    	  $("#requiredChk").parent().removeClass("checked");
+    	  $("#requiredChk").removeClass("checked");
     	}
     	checked = field ? field.innerVariable == 'true' : false;
-    	$("#innerVariableChk").attr("checked",checked);
+        if(checked){
+            $("#innerVariableChk").addClass("checked");
+        }else{
+            $("#innerVariableChk").removeClass("checked");
+        }
     	checked = field ? field.outputVar == 'true' : false;
-    	$("#outputVarChk").attr("checked",checked);
-    	
+        if(checked){
+            $("#outputVarChk").addClass("checked");
+        }else{
+            $("#outputVarChk").removeClass("checked");
+        }
     	$("#formFieldTypes").setValue(field?field.keyType:"NULL");
     	$("#validateRules").setValue(field?field.validationType:"NULL");
     	$("#valOutputTypes").setValue(field?field.valOutputType:"NULL");
@@ -354,14 +430,12 @@ $(function(){
     }
     
     function saveDefineFormFiled(){
-    	var $target = $("#fieldListBody");
-    	var rowId = currentRowId > 0 ? currentRowId : ($target.find("tr").length + 1);
-    	var field = {};
+        var field = {};
     	field.keyId = $("#fieldName").val();
     	field.keyName = $("#fieldDesc").val();		
-    	field.required = $("#requiredChk").parent().hasClass("checked") ? "true" : "false";
-    	field.innerVariable = $("#innerVariableChk").parent().hasClass("checked") ? "true" : "false";
-    	field.outputVar = $("#outputVarChk").parent().hasClass("checked") ? "true" : "false";
+    	field.required = $("#requiredChk").hasClass("checked") ? "true" : "false";
+    	field.innerVariable = $("#innerVariableChk").hasClass("checked") ? "true" : "false";
+    	field.outputVar = $("#outputVarChk").hasClass("checked") ? "true" : "false";
     	field.keyType =  $("#formFieldTypes").getValue();
     	field.validationType =  $("#validateRules").getValue();
     	field.fieldTypeText =  $("#formFieldTypes").getItem();
@@ -412,38 +486,13 @@ $(function(){
             	return false;
             }
     	}
-    	
-    	insertFieldRows(rowId,field);
+        if(!currentKeyId){
+            $('#fieldGrid').getGrid().insertRows(field);
+        }else{
+            $('#fieldGrid').getGrid().updateRows(currentKeyId, field);
+        }
+    	//insertFieldRows(rowId,field);
     	return true;
-    }
-    function insertFieldRows(rowId,field){
-    	var validateTD = field.validationType == 'Regex' ? field.validateExpr : field.validateRuleText;
-    	var tdContents = new Array();
-    	tdContents.push("<td><div class='checker'>");
-    	tdContents.push("<span><input type='checkbox' data-role='indexCheckbox' style='opacity: 0;' value='"+rowId+"'></span></div></td>");
-    	tdContents.push("<td index='0'>"+rowId+"</td>");
-    	tdContents.push("<td index='1'>"+field.keyId+"</td>");
-    	tdContents.push("<td index='2'>"+field.keyName+"</td>");
-    	tdContents.push("<td index='3'>"+field.fieldTypeText+"</td>");
-    	tdContents.push("<td index='4'>"+field.valOutputTypeText+"</td>");
-    	tdContents.push("<td index='5'>"+field.showOrder+"</td>");
-    	tdContents.push("<td index='6'>必填:"+field.required+",变量:"+field.innerVariable+"显示:"+field.outputVar+"</td>");
-    	tdContents.push("<td index='7'>"+validateTD+"</td>");
-    	if(currentRowId == 0){
-    		$("#fieldListBody").append("<tr id='field_rowId_"+rowId+"'>"+tdContents.join('')+"</tr>");
-    	}else{
-    		$("#field_rowId_"+rowId).html(tdContents.join(''));
-    	}
-    	
-    	filedMap['field_'+rowId] = field;
-    }
-    
-    function getSelectFieldIds(){
-    	var result = [];
-    	$('#formManagement :checkbox:checked').each(function(){
-    		result.push($(this).val());
-    	});
-    	return result;
     }
     
     function loadJbpmProcessOpts(form){

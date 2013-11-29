@@ -10,17 +10,17 @@
     <title>Koala流程系统</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
-    <link href="/css/main.css?time=<%=time%>"    rel="stylesheet">
-    <link href="/css/jbpm.css?time=<%=time%>"    rel="stylesheet">
-    <link href="/css/koala.css?time=<%=time%>"    rel="stylesheet">
-    <link href="/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"   rel="stylesheet">
-    <link href="/lib/z-tree/css/zTreeStyle.css"   rel="stylesheet">
+    <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
+    <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
+    <link href="<c:url value='/css/jbpm.css' />?time=<%=time%>" rel="stylesheet">
+    <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
+    <link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />" rel="stylesheet">
+    <link href="<c:url value='/lib/z-tree/css/zTreeStyle.css' />"   rel="stylesheet">
 </head>
 <body>
 	<div class="g-head">
 	    <nav class="navbar navbar-default">
-	        <a class="navbar-brand" href="#"><img src="images/global.logo.png"/>Koala流程系统</a>
+	        <a class="navbar-brand" href="#"><img src="<c:url value='images/global.logo.png'/>"/>Koala流程系统</a>
 	        <div class="collapse navbar-collapse navbar-ex1-collapse">
 	            <div class="btn-group navbar-right">
 	                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -90,6 +90,5 @@
 	<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/z-tree/js/jquery.ztree.all-3.5.min.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/main.js' />?time=<%=time%>" ></script>
-	<script type="text/javascript" src="<c:url value='/js/processform/form.render.js' />"></script>
 </body>
 </html>
