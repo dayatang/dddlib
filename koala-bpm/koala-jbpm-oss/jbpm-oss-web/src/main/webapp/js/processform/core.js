@@ -2,28 +2,13 @@ $(function(){
         $('#fieldOptions').find('.checker span').on('click', function(){
             $(this).toggleClass('checked');
         });
-        $('#formManagement').find('input[data-role="selectAll"]').on('click',function(){
-        	var checked = $(this).parent().hasClass('checked');
-        	$('#formManagement').find(':checkbox').each(function(){
-        		if(checked == false){
-        			if($(this).parent().hasClass('checked') == false){
-        				$(this).parent().addClass('checked');
-        			}
-        		}else{
-        			$(this).parent().removeClass('checked');
-        		}
-        	});
-        });
-    });
-
-
-  $(function() {
 	$("#formTemplate").select({
-		title: '请选择流程',
 		contents : templateSelectOpts
 	});
     //流程通过AJAX加载选项
-	$("#associationProcess").select();
+	$("#associationProcess").select({
+        title: '请选择流程'
+    });
 
 	$("#valOutputTypes").select({
 		contents : valOutputTypeOpts
@@ -165,7 +150,7 @@ $(function(){
                 name:'keyId' ,
                 width: '80px',
                 render: function(item, name, index){
-                    return index;
+                    return index+1;
                 }
             },
             {
@@ -213,14 +198,16 @@ $(function(){
             {content: '<button class="btn btn-success" type="button"><span class="glyphicon glyphicon-edit"></span>&nbsp;修改</button>', action: 'modify'},
             {content: '<button class="btn btn-danger" type="button"><span class="glyphicon glyphicon-remove"></span>&nbsp;删除</button>', action: 'delete'}
         ];
-        $('#fieldGrid').grid({
+        var fieldGrid = $('#fieldGrid');
+        fieldGrid.data('koala.grid', null);
+        fieldGrid.empty().grid({
             identity: 'keyId',
             columns: columns,
             buttons: buttons,
             isShowPages: false,
             isUserLocalData: true,
             localData: data
-        }).on({
+        }).off().on({
              'add': function(){
                  $('#fieldManagement').show().modal({
                      keyboard: false
@@ -357,19 +344,11 @@ $(function(){
     }
     
     function initProcessForm(form){
-    	$('#formManagement').one('fillData', {form: form}, function(event){
-    		var form = event.form;
-    		$("#formId").val(form ? form.id : "" );
-        	$("#formName").val(form ? form.bizName : "" );
-    		$("#formDesc").val(form ? form.bizDescription : "" );
-    		$("#formTemplate").setValue(form?form.templateId:"NULL");
-        	var active = form ? form.active : 'true';
-        	$("input[name='isActivated'][value='"+active+"']").click(); 
-    	});
+    	$("#formId").val(form ? form.id : "" );
+        $("#formName").val(form ? form.bizName : "" );
+    	$("#formDesc").val(form ? form.bizDescription : "" );
+    	$("#formTemplate").setValue(form?form.templateId:"NULL");
     	loadJbpmProcessOpts(form);
-    	if(currentKeyId){
-    		$("#fieldListBody").empty();
-    	}
     }
     
     function initFormFied(field){
@@ -499,15 +478,19 @@ $(function(){
     	var params = form ? {usedId:form.processId} : {};
     	$.get(rootPath + '/processform/getActiveProcesses.koala',params,function(data){
     		var opts = [];
-    		if(!form)opts.push({value:'NULL',title:'请选择绑定流程',selected:true});
-    		if(data.processes){
-    			data = data.processes;
-    			for(var index in data){
-    				if(form && form.processId != data[index].processId )continue;
-    				opts.push({value:data[index].processId,title:data[index].processName});
-    			}
+            var data = data.processes;
+    		if(data){
+                $.each(data, function(){
+                    opts.push({value:this.processId,title:this.processName});
+                });
     		}
-    		$("#associationProcess").resetItems(opts).setValue(form ? form.processId : 'NULL');
-    		$('#formManagement').trigger('fillData');
+            console.info(opts)
+    		$("#associationProcess").data('koala.select', null).empty().select({
+                title: '选择关联流程',
+                contents: opts
+            });
+            if(form && form.processId){
+                $("#associationProcess").setValue(form.processId);
+            }
     	},'json');
     }

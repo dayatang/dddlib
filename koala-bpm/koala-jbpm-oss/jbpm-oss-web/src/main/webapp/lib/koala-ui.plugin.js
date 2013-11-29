@@ -680,6 +680,13 @@
 			this.gridTableHeadTable.find('[data-role="selectAll"]').removeClass('checked');
 			this._loadData();
 		},
+        /**
+         * 销毁表格
+         */
+        destory: function(){
+           this.$element.data('koala.grid', null);
+           this.$element.empty();
+        },
 		/**
 		 * 外部查询
 		 */
