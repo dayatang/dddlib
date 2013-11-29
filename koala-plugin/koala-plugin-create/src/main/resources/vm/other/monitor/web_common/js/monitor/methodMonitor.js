@@ -216,7 +216,7 @@ var showMethodMonitorDetail = function(method){
                             name : 'stackTracesDetails',
                             width : 150,
                             render: function(item, name, index){
-                                return '<a onclick="showSqlsMonitorDetail(\''+item.id+'\')">查看SQLS </a>&nbsp;&nbsp;&nbsp;<a onclick="showStackTracesDetail(\''+item[name]+'\')">查看堆栈信息</a>';
+                                return '<a onclick="showSqlsMonitorDetail(\''+item.id+'\')">查看SQLS </a>&nbsp;&nbsp;&nbsp;<a onclick="showStackTracesDetail(\''+item.id+'\')">查看堆栈信息</a>';
                             }
                         }
                     ];
@@ -283,6 +283,8 @@ var showSqlsMonitorDetail = function(methodId){
                         identity: 'id',
                         isShowIndexCol: false,
                         columns: columns,
+	                    sortName: 'timeConsume',
+	                    sortOrder : 'DESC',
                         url : '/monitor/Monitor/sqlsMonitorDetail.koala?methodId='+methodId
                     });
                 }
