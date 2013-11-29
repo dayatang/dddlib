@@ -1148,11 +1148,12 @@
 		this.init();
 	};
 	Confirm.DEFAULTS = {
-
+        backdrop: true
 	};
 	Confirm.prototype.init = function(){
 		var self = this;
 		this.$element.modal({
+            backdrop: self.options.backdrop,
 			keyboard: false
 		})
 			.find('.modal-dialog')

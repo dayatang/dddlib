@@ -157,7 +157,8 @@ var employee = function(){
 				selectDepartment.trigger('keydown');
 				fillPosts(departmentId);
 			}).end().modal({
-				keyboard: false
+				keyboard: true,
+                backdrop: false
 			}).on({
 				'shown.bs.modal': function(){
 					loadDepartmentTree();

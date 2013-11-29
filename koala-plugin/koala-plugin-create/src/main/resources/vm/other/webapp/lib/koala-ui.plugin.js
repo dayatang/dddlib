@@ -261,7 +261,7 @@
 			}
             if(self.options.isUserLocalData){
                 self.items = self.options.localData;
-                if(self.options.localData.length == 0){
+                if(!self.options.localData || self.options.localData.length == 0){
                     self.gridTableBodyTable.empty();
                     self.gridTableBody.find('[data-role="noData"]').remove();
                     self.gridTableBody.append($('<div data-role="noData" style="font-size:16px ; padding: 20px; width:'+self.gridTableBodyTable.width()+'px;">'+self.options.noDataText+'</div>'));
@@ -380,39 +380,43 @@
 		renderDatas: function(){
 			var self = this;
 			self.renderRows();
-			var selectAll = self.gridTableHeadTable.find('[data-role="selectAll"]');
-			var indexCheckboxs = this.gridTableBodyTable.find('[data-role="indexCheckbox"]');
-			indexCheckboxs.on('click',function(e) {
-				e.stopPropagation();
-				var $this = $(this);
-				if($this.hasClass('checked')){
-					$this.removeClass('checked').closest('tr').removeClass('success');
-				}else{
-					$this.addClass('checked').closest('tr').addClass('success');
-				}
-				if(self.selectedRowsIndex().length == indexCheckboxs.length){
-					selectAll.addClass('checked');
-				}else{
-					selectAll.removeClass('checked');
-				}
-				self.$element.trigger('selectedRow', {checked: $this.hasClass('checked'), item:self.items[$this.attr('indexValue')]});
-			});
-			this.gridTableBodyTable.find('tr').on('click', function(){
-				var $this = $(this);
-				if($this.hasClass('success')){
-					$this.removeClass('success').find('[data-role="indexCheckbox"]').removeClass('checked');
-				}else{
-					$this.addClass('success').find('[data-role="indexCheckbox"]').addClass('checked');
-				}
-				self.$element.trigger('selectedRow', {checked: !$this.hasClass('success'), item:self.items[$this.attr('indexValue')]});
-				if(self.selectedRowsIndex().length == indexCheckboxs.length){
-					selectAll.addClass('checked');
-				}else{
-					selectAll.removeClass('checked');
-				}
-			});
+			self.initSelectRowEvent();
 			self.options.isShowPages && self._initPageNo();
 		},
+        initSelectRowEvent: function(){
+            var self = this;
+            var selectAll = self.gridTableHeadTable.find('[data-role="selectAll"]');
+            var indexCheckboxs = this.gridTableBodyTable.find('[data-role="indexCheckbox"]');
+            indexCheckboxs.off('click').on('click',function(e) {
+                e.stopPropagation();
+                var $this = $(this);
+                if($this.hasClass('checked')){
+                    $this.removeClass('checked').closest('tr').removeClass('success');
+                }else{
+                    $this.addClass('checked').closest('tr').addClass('success');
+                }
+                if(self.selectedRowsIndex().length == indexCheckboxs.length){
+                    selectAll.addClass('checked');
+                }else{
+                    selectAll.removeClass('checked');
+                }
+                self.$element.trigger('selectedRow', {checked: $this.hasClass('checked'), item:self.items[$this.attr('indexValue')]});
+            });
+            this.gridTableBodyTable.find('tr').off('click').on('click', function(){
+                var $this = $(this);
+                if($this.hasClass('success')){
+                    $this.removeClass('success').find('[data-role="indexCheckbox"]').removeClass('checked');
+                }else{
+                    $this.addClass('success').find('[data-role="indexCheckbox"]').addClass('checked');
+                }
+                self.$element.trigger('selectedRow', {checked: !$this.hasClass('success'), item:self.items[$this.attr('indexValue')]});
+                if(self.selectedRowsIndex().length == indexCheckboxs.length){
+                    selectAll.addClass('checked');
+                }else{
+                    selectAll.removeClass('checked');
+                }
+            });
+        },
 		/**
 		 * 渲染表格数据
 		 */
@@ -540,12 +544,8 @@
 		/*
 		 *返回所有行数据。
 		 */
-		selectedAllRows: function(){
-			var selectItems = new Array();
-			this.gridTableBodyTable.find('[data-role="indexCheckbox"]').each(function(){
-				selectItems.push(self.items[$(this).attr('indexvalue')]);
-			});
-			return  selectItems;
+        getAllItems: function(){
+			return this.items;
 		},
 		/*
 		 *返回选择行索引的数组。
@@ -560,33 +560,52 @@
 		/**
 		 * 新增一行记录
 		 */
-		 insertRow: function(item){
-			var trHtml = new Array();
-			trHtml.push('<tr>');
-			if(this.options.isShowIndexCol){
-				trHtml.push('<td width="50px;"><div class="checker"><span indexValue="'+ this.items.length +'" data-role="indexCheckbox" data-value="'+item[this.options.identity]+'"></span></div></td>');
-			}
-			for(var k=0,h=this.options.columns.length; k<h; k++){
-				var column = this.options.columns[k];
-				trHtml.push('<td index="'+k+'" width="'+column.width+'"');
-				if(column.align){
-					trHtml.push(' align="'+column.align+'"');
-				}
-				trHtml.push('>');
-				if(column.render){
-					trHtml.push(column.render(item,column.name,1));
-				}else{
-					trHtml.push(item[column.name]);
-				}
-				trHtml.push('</td>');
-			}
-			trHtml.push('</tr>');
-			this.gridTableBodyTable.append($(trHtml.join('')));
-			this.items.push(item);
+		 insertRows: function(items){
+            var self = this;
+            console.info(items)
+            console.info(self.items)
+            if(!self.items){
+                self.items = new Array();
+                self.gridTableBody.find('[data-role="noData"]').remove();
+            }
+            if(items.length){
+                $.each(items, function(){
+                    self.items.push(this);
+                    self.itemsMap[this[self.options.identity], this];
+                });
+            }else{
+                self.items.push(items);
+                self.itemsMap[items[this.options.identity]] = items;
+            }
+            self.gridTableBodyTable.empty();
+            console.info(self.items)
+            self.renderDatas();
 			return this.$element;
 		 },
+         removeRows: function(indexs){
+             var self = this
+             $.each(indexs, function(){
+                  var index = self.getIndexByIdentityValue(this);
+                  self.items.splice(index, 1);
+                  delete self.itemsMap[this];
+             });
+             self.gridTableBodyTable.empty();
+             self.renderDatas();
+         },
+        updateRows: function(currentKeyId, item){
+            console.info(currentKeyId)
+            var self = this;
+            var index = self.getIndexByIdentityValue(currentKeyId);
+            self.items[index] = item;
+            self.itemsMap[item[self.options.identity]] = item;
+            self.gridTableBodyTable.empty();
+            self.renderDatas();
+        },
+         getIndexByIdentityValue: function(value){
+            return this.gridTableBodyTable.find('[data-value="'+value+'"]').closest('tr').index();
+         },
 		 getRowByIndex: function(index){
-		 	return this.gridTableBodyTable.find('[indexvalue="'+index+'"]').closest('tr');
+		 	return this.gridTableBodyTable.find('tr').eq(index);
 		 },
         getItemByIndex: function(index){
             return this.items[index];
@@ -599,6 +618,13 @@
 			this.gridTableHeadTable.find('[data-role="selectAll"]').removeClass('checked');
 			this._loadData();
 		},
+        /**
+         * 销毁表格
+         */
+        destory: function(){
+           this.$element.data('koala.grid', null);
+           this.$element.empty();
+        },
 		/**
 		 * 外部查询
 		 */
@@ -1122,11 +1148,12 @@
 		this.init();
 	};
 	Confirm.DEFAULTS = {
-
+        backdrop: true
 	};
 	Confirm.prototype.init = function(){
 		var self = this;
 		this.$element.modal({
+            backdrop: self.options.backdrop,
 			keyboard: false
 		})
 			.find('.modal-dialog')
