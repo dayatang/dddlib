@@ -154,6 +154,6 @@
 .jdbc-monitor .nav-tabs > li:not(:last-child) > a {
     border-right: 0 transparent solid;
 }
-.page-server-summry-info .span {
+.page-server-summry-info span {
     word-wrap: break-word;
 }
