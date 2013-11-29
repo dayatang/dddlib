@@ -338,7 +338,9 @@ $(function(){
     		 });
     		 dialog.modal({
     			keyboard: false
-    		 });
+    		 }).on('hidden.bs.modal', function(){
+                     $(this).remove();
+             });
     	}).fail(function(){
     		
     	});
