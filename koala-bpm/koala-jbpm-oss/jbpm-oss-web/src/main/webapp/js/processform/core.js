@@ -209,6 +209,7 @@ $(function(){
             localData: data
         }).off().on({
              'add': function(){
+                 currentKeyId = null;
                  $('#fieldManagement').show().modal({
                      keyboard: false
                  });

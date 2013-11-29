@@ -562,10 +562,9 @@
 		 */
 		 insertRows: function(items){
             var self = this;
-            var index = 0;
-            if(self.items){
-                index = self.items.length;
-            }else{
+            console.info(items)
+            console.info(self.items)
+            if(!self.items){
                 self.items = new Array();
                 self.gridTableBody.find('[data-role="noData"]').remove();
             }
@@ -579,7 +578,8 @@
                 self.itemsMap[items[this.options.identity]] = items;
             }
             self.gridTableBodyTable.empty();
-            self.renderRows();
+            console.info(self.items)
+            self.renderDatas();
 			return this.$element;
 		 },
          removeRows: function(indexs){
@@ -590,15 +590,16 @@
                   delete self.itemsMap[this];
              });
              self.gridTableBodyTable.empty();
-             self.renderRows();
+             self.renderDatas();
          },
         updateRows: function(currentKeyId, item){
+            console.info(currentKeyId)
             var self = this;
             var index = self.getIndexByIdentityValue(currentKeyId);
             self.items[index] = item;
             self.itemsMap[item[self.options.identity]] = item;
             self.gridTableBodyTable.empty();
-            self.renderRows();
+            self.renderDatas();
         },
          getIndexByIdentityValue: function(value){
             return this.gridTableBodyTable.find('[data-value="'+value+'"]').closest('tr').index();
