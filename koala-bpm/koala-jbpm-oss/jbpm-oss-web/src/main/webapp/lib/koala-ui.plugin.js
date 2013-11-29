@@ -569,99 +569,36 @@
                 self.items = new Array();
                 self.gridTableBody.find('[data-role="noData"]').remove();
             }
-			var trHtml = new Array();
             if(items.length){
                 $.each(items, function(){
-                    trHtml.push('<tr>');
-                    if(this.options.isShowIndexCol){
-                        trHtml.push('<td width="50px;"><div class="checker"><span indexValue="'+ index +'" data-role="indexCheckbox" data-value="'+this[self.options.identity]+'"></span></div></td>');
-                    }
-                    for(var k=0,h=this.options.columns.length; k<h; k++){
-                        var column = self.options.columns[k];
-                        trHtml.push('<td index="'+k+'" width="'+column.width+'"');
-                        if(column.align){
-                            trHtml.push(' align="'+column.align+'"');
-                        }
-                        trHtml.push('>');
-                        if(column.render){
-                            trHtml.push(column.render(this,column.name,index));
-                        }else{
-                            trHtml.push(this[column.name]);
-                        }
-                        trHtml.push('</td>');
-                    }
-                    trHtml.push('</tr>');
-                    index++;
                     self.items.push(this);
                     self.itemsMap[this[self.options.identity], this];
                 });
             }else{
-                trHtml.push('<tr>');
-                if(self.options.isShowIndexCol){
-                    trHtml.push('<td width="50px;"><div class="checker"><span indexValue="'+ index +'" data-role="indexCheckbox" data-value="'+items[self.options.identity]+'"></span></div></td>');
-                }
-                for(var k=0,h=self.options.columns.length; k<h; k++){
-                    var column = this.options.columns[k];
-                    trHtml.push('<td index="'+k+'" width="'+column.width+'"');
-                    if(column.align){
-                        trHtml.push(' align="'+column.align+'"');
-                    }
-                    trHtml.push('>');
-                    if(column.render){
-                        trHtml.push(column.render(items,column.name,index));
-                    }else{
-                        trHtml.push(items[column.name]);
-                    }
-                    trHtml.push('</td>');
-                }
-                trHtml.push('</tr>');
                 self.items.push(items);
                 self.itemsMap[items[this.options.identity]] = items;
             }
-			self.gridTableBodyTable.append($(trHtml.join('')));
-            self.initSelectRowEvent();
+            self.gridTableBodyTable.empty();
+            self.renderRows();
 			return this.$element;
 		 },
          removeRows: function(indexs){
              var self = this
              $.each(indexs, function(){
                   var index = self.getIndexByIdentityValue(this);
-                  self.gridTableBody.find('tr').eq(index).remove();
                   self.items.splice(index, 1);
                   delete self.itemsMap[this];
              });
+             self.gridTableBodyTable.empty();
+             self.renderRows();
          },
         updateRows: function(currentKeyId, item){
             var self = this;
             var index = self.getIndexByIdentityValue(currentKeyId);
-            var row = self.getRowByIndex(index);
-            var trHtml = new Array();
-            trHtml.push('<tr>');
-            if(self.options.isShowIndexCol){
-                trHtml.push('<td width="50px;"><div class="checker"><span indexValue="'+ index +'" data-role="indexCheckbox" data-value="'+item[self.options.identity]+'"></span></div></td>');
-            }else{
-                trHtml.push('<td width="50px;" style="display:none"><div class="checker"><span indexValue="'+ index +'" data-role="indexCheckbox" data-value="'+item[self.options.identity]+'"></span></div></td>');
-            }
-            for(var k=0,h=self.options.columns.length; k<h; k++){
-                var column = this.options.columns[k];
-                trHtml.push('<td index="'+k+'" width="'+column.width+'"');
-                if(column.align){
-                    trHtml.push(' align="'+column.align+'"');
-                }
-                trHtml.push('>');
-                if(column.render){
-                    trHtml.push(column.render(item,column.name,index));
-                }else{
-                    trHtml.push(item[column.name]);
-                }
-                trHtml.push('</td>');
-            }
-            trHtml.push('</tr>');
-            $(trHtml.join('')).insertAfter(row);
-            row.remove();
-            self.initSelectRowEvent();
             self.items[index] = item;
             self.itemsMap[item[self.options.identity]] = item;
+            self.gridTableBodyTable.empty();
+            self.renderRows();
         },
          getIndexByIdentityValue: function(value){
             return this.gridTableBodyTable.find('[data-value="'+value+'"]').closest('tr').index();
