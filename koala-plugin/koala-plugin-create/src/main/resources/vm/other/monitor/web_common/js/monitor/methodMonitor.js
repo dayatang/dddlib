@@ -242,7 +242,8 @@ var showMethodMonitorDetail = function(method){
 var showStackTracesDetail = function(stackTracesDetails){
     $.get('pages/monitor/stack-trace-detail.html').done(function(data){
         $(data).modal({
-            keyboard: true
+            keyboard: true,
+            backdrop: false
         }).on('hidden.bs.modal', function(){
              $(this).remove();
          }).find('.modal-body').html(stackTracesDetails);
@@ -251,7 +252,8 @@ var showStackTracesDetail = function(stackTracesDetails){
 var showSqlsMonitorDetail = function(methodId){
     $.get('pages/monitor/sql-monitor-detail.html').done(function(data){
         $(data).modal({
-            keyboard: true
+        	keyboard: true,
+        	backdrop: false
         }).on({
                 'hidden.bs.modal': function(){
                     $(this).remove();

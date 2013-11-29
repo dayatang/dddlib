@@ -234,7 +234,8 @@ $(function(){
                  }
                  currentKeyId = indexs[0];
                  $('#fieldManagement').show().modal({
-                     keyboard: false
+                     keyboard: false,
+                     backdrop: false
                  });
                  initFormFied(data.item[0]);
              },
