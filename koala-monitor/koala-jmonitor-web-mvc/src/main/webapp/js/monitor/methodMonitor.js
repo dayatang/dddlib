@@ -185,7 +185,7 @@ var showMethodMonitorDetail = function(method){
                         {
                             title : '方法',
                             name : 'method',
-                            width : 150
+                            width : 400
                         },
                         {
                             title : '耗时（毫秒）',
@@ -195,7 +195,7 @@ var showMethodMonitorDetail = function(method){
                         {
                             title : '开始时间',
                             name : 'beginTime',
-                            width : 180,
+                            width : 160,
                             render: function(item, name, index){
                                 var date = new Date(item[name]);
                                 return date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
@@ -214,9 +214,9 @@ var showMethodMonitorDetail = function(method){
                         {
                             title : '操作',
                             name : 'stackTracesDetails',
-                            width : 150,
+                            width : 250,
                             render: function(item, name, index){
-                                return '<a onclick="showSqlsMonitorDetail(\''+item.id+'\')">查看SQLS </a>&nbsp;&nbsp;&nbsp;<a onclick="showStackTracesDetail(\''+item.id+'\')">查看堆栈信息</a>';
+                                return '<a onclick="showSqlsMonitorDetail(\''+item.id+'\')">查看SQLS </a>&nbsp;&nbsp;&nbsp;<a onclick="showStackTracesDetail(this)" stackTracesDetails="'+item.stackTracesDetails+'">查看堆栈信息</a>';
                             }
                         }
                     ];
@@ -238,17 +238,17 @@ var showMethodMonitorDetail = function(method){
                 }
             });
     });
-}
-var showStackTracesDetail = function(stackTracesDetails){
+};
+var showStackTracesDetail = function(obj){
     $.get('pages/monitor/stack-trace-detail.html').done(function(data){
         $(data).modal({
             keyboard: true,
             backdrop: false
         }).on('hidden.bs.modal', function(){
              $(this).remove();
-         }).find('.modal-body').html(stackTracesDetails);
+         }).find('.modal-body').html($(obj).attr('stackTracesDetails'));
     });
-}
+};
 var showSqlsMonitorDetail = function(methodId){
     $.get('pages/monitor/sql-monitor-detail.html').done(function(data){
         $(data).modal({

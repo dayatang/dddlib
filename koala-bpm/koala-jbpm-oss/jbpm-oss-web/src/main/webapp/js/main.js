@@ -11,7 +11,9 @@ $(function(){
 			$('#sidebar-collapse').hide();
 			sidebar.css('height', 'auto');
 			return;
-		}
+		}else{
+            changeHeight();
+        }
 	});
 	/**
 	 * 根据内容改变高度
@@ -96,8 +98,8 @@ $(function(){
 	 */
 	$.fn.openTab = function(target, title, mark, id, param){
 		var mainc =   $('.g-mainc');
-		var tabs = mainc.find('ul.nav');
-		var contents =  mainc.find('div.tab-content');
+		var tabs = mainc.find('#navTabs');
+		var contents =  mainc.find('#tabContent');
 		var content = contents.find('#'+mark);
 		if(content.length > 0){
 			content.attr('data-value', id);

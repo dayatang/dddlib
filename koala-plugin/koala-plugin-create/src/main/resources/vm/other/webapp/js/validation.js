@@ -6,6 +6,14 @@ var Validation = {
 		}
 		return true;
 	},
+    number: function($container, $element, content, errorMessage){
+        var reg = new RegExp(/^[1-9]\d*|0$/);
+        if (!reg.test(content)) {
+            showErrorMessage($container, $element, errorMessage);
+            return false;
+        }
+        return true;
+    },
     email: function($container, $element, content, errorMessage) {
     	var reg = new RegExp(/^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/);
     	if (!reg.test(content)) {

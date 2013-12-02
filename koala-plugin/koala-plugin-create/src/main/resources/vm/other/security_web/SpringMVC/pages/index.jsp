@@ -15,7 +15,6 @@
 	<meta http-equiv="Expires" content="0">
     <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
-    <link href="<c:url value='/lib/z-tree/css/zTreeStyle.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/security.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
 </head>

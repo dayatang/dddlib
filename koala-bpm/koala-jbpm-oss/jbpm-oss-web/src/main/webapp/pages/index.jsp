@@ -68,10 +68,10 @@
 	        </ul>
 	    </div>
 	    <div class="col-lg-10 g-mainc container">
-	        <ul class="nav nav-tabs">
+	        <ul class="nav nav-tabs" id="navTabs">
 	            <li class="active"><a href="#home" data-toggle="tab">待办任务</a></li>
 	        </ul>
-	        <div class="tab-content">
+	        <div class="tab-content" id="tabContent">
 	            <div id="home" class="tab-pane active"></div>
 	        </div>
 	    </div>
