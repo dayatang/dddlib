@@ -56,6 +56,8 @@ $(function(){
         }
     });
     var loadData = function(){
+    	$('#methodDetailGrid').empty();
+        $('#methodDetailChart').empty();
         var columns = [
             {
                 title : '方法',
@@ -97,6 +99,7 @@ $(function(){
     }
     var loadChart = function(data){
         if(!data || data.length == 0){
+        	$('#methodDetailChart').css('height', 0);
             return;
         }
         $.jqplot.config.enablePlugins = true;
@@ -148,7 +151,6 @@ $(function(){
             }
 
         }
-        $('#methodDetailChart').empty();
         plot1 = $.jqplot('methodDetailChart', [yArray], {
             // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
             animate: !$.jqplot.use_excanvas,
@@ -185,7 +187,7 @@ var showMethodMonitorDetail = function(method){
                         {
                             title : '方法',
                             name : 'method',
-                            width : 400
+                            width : 150
                         },
                         {
                             title : '耗时（毫秒）',
@@ -195,7 +197,7 @@ var showMethodMonitorDetail = function(method){
                         {
                             title : '开始时间',
                             name : 'beginTime',
-                            width : 160,
+                            width : 180,
                             render: function(item, name, index){
                                 var date = new Date(item[name]);
                                 return date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
@@ -214,9 +216,9 @@ var showMethodMonitorDetail = function(method){
                         {
                             title : '操作',
                             name : 'stackTracesDetails',
-                            width : 250,
+                            width : 150,
                             render: function(item, name, index){
-                                return '<a onclick="showSqlsMonitorDetail(\''+item.id+'\')">查看SQLS </a>&nbsp;&nbsp;&nbsp;<a onclick="showStackTracesDetail(this)" stackTracesDetails="'+item.stackTracesDetails+'">查看堆栈信息</a>';
+                                return '<a onclick="showSqlsMonitorDetail(\''+item.id+'\')">查看SQLS </a>&nbsp;&nbsp;&nbsp;<a onclick="showStackTracesDetail(\''+item.id+'\')">查看堆栈信息</a>';
                             }
                         }
                     ];
@@ -238,17 +240,17 @@ var showMethodMonitorDetail = function(method){
                 }
             });
     });
-};
-var showStackTracesDetail = function(obj){
+}
+var showStackTracesDetail = function(stackTracesDetails){
     $.get('pages/monitor/stack-trace-detail.html').done(function(data){
         $(data).modal({
             keyboard: true,
             backdrop: false
         }).on('hidden.bs.modal', function(){
              $(this).remove();
-         }).find('.modal-body').html($(obj).attr('stackTracesDetails'));
+         }).find('.modal-body').html(stackTracesDetails);
     });
-};
+}
 var showSqlsMonitorDetail = function(methodId){
     $.get('pages/monitor/sql-monitor-detail.html').done(function(data){
         $(data).modal({

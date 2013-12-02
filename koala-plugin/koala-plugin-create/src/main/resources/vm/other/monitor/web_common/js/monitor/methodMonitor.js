@@ -56,6 +56,8 @@ $(function(){
         }
     });
     var loadData = function(){
+    	$('#methodDetailGrid').empty();
+        $('#methodDetailChart').empty();
         var columns = [
             {
                 title : '方法',
@@ -97,6 +99,7 @@ $(function(){
     }
     var loadChart = function(data){
         if(!data || data.length == 0){
+        	$('#methodDetailChart').css('height', 0);
             return;
         }
         $.jqplot.config.enablePlugins = true;
@@ -148,7 +151,6 @@ $(function(){
             }
 
         }
-        $('#methodDetailChart').empty();
         plot1 = $.jqplot('methodDetailChart', [yArray], {
             // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
             animate: !$.jqplot.use_excanvas,
