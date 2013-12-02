@@ -271,8 +271,6 @@ $(function(){
     		
         });
     	$("button[data-action='save-processForm']").on('click',function(){
-            console.info($('#fieldGrid').getGrid().getAllItems())
-
             var form = {};
     		form.id = $("#formId").val();
     		form.bizName = $("#formName").val();
@@ -489,7 +487,6 @@ $(function(){
                     opts.push({value:this.processId,title:this.processName});
                 });
     		}
-            console.info(opts)
     		$("#associationProcess").data('koala.select', null).empty().select({
                 title: '选择关联流程',
                 contents: opts

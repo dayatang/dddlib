@@ -645,7 +645,6 @@
 
 				}
 			}).fail(function(msg){
-				console.info(msg)
 			})
 	}
 	ModifyPassword.prototype.isNull = function(obj){

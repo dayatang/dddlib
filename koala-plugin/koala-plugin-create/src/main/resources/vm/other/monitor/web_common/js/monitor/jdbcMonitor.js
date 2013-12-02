@@ -121,7 +121,6 @@ $(function(){
                             width : 120
                         }
                     ];
-                    console.info(data.connDetails)
                     content.find('#poolDetailGrid').grid({
                         identity: 'id',
                         columns: columns,

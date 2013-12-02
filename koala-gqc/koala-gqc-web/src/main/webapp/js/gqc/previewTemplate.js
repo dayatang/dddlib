@@ -3,8 +3,7 @@ $(function(){
 	$.get('../../preview/'+id+'.koala').done(function(data){
 		init(data.generalQuery);
 	}).fail(function(data){
-			console.info(data)
-		})
+    })
 	var init = function(data){
 		var previewQuery = $('#previewQuery');
 		var visiblePreQueryConditions = data.visiblePreQueryConditions;

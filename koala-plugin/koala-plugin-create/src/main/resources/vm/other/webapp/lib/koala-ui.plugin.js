@@ -562,8 +562,6 @@
 		 */
 		 insertRows: function(items){
             var self = this;
-            console.info(items)
-            console.info(self.items)
             if(!self.items){
                 self.items = new Array();
                 self.gridTableBody.find('[data-role="noData"]').remove();
@@ -578,7 +576,6 @@
                 self.itemsMap[items[this.options.identity]] = items;
             }
             self.gridTableBodyTable.empty();
-            console.info(self.items)
             self.renderDatas();
 			return this.$element;
 		 },
@@ -593,7 +590,6 @@
              self.renderDatas();
          },
         updateRows: function(currentKeyId, item){
-            console.info(currentKeyId)
             var self = this;
             var index = self.getIndexByIdentityValue(currentKeyId);
             self.items[index] = item;
