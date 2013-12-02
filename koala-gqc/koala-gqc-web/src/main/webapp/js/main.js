@@ -11,9 +11,7 @@ $(function(){
 			$('#sidebar-collapse').hide();
 			sidebar.css('height', 'auto');
 			return;
-		}else{
-            changeHeight();
-        }
+		}
 	});
 	/**
 	 * 根据内容改变高度
@@ -24,7 +22,7 @@ $(function(){
 		var headerHeight = $('.g-head').outerHeight();
 		var windowHeight = $window.height();
 		var bodyHeight = $(document).height();
-        if(bodyHeight >  windowHeight){
+		if(bodyHeight >  windowHeight){
 			windowHeight =  bodyHeight;
 		}
 		var footHeight = $('#footer').outerHeight();
@@ -47,14 +45,18 @@ $(function(){
 	/*
 	* 菜单收缩样式变化
 	 */
-	$('.first-level-menu').find('[data-toggle="collapse"]').on('click', function(){
-		var $this = $(this);
-		if($this.hasClass('collapsed')){
-			$this.find('i:last').removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-left');
-		}else{
-			$this.find('i:last').removeClass('glyphicon-chevron-left').addClass('glyphicon-chevron-right');
-		}
-	})
+    var firstLevelMenu = $('.first-level-menu');
+    firstLevelMenu.find('[data-toggle="collapse"]').each(function(){
+        var $this = $(this);
+        firstLevelMenu.find($(this).attr('href')).on({
+            'shown.bs.collapse': function(e){
+                $this.find('i:last').addClass('glyphicon-chevron-left').removeClass('glyphicon-chevron-right');
+            },
+            'hidden.bs.collapse': function(e){
+                $this.find('i:last').removeClass('glyphicon-chevron-left').addClass('glyphicon-chevron-right');
+            }
+        })
+    });
 	/*
 	 *菜单点击事件
 	 */
@@ -94,8 +96,8 @@ $(function(){
 	 */
 	$.fn.openTab = function(target, title, mark, id, param){
 		var mainc =   $('.g-mainc');
-		var tabs = mainc.find('#navTabs');
-		var contents =  mainc.find('#tabContent');
+		var tabs = mainc.find('ul.nav');
+		var contents =  mainc.find('div.tab-content');
 		var content = contents.find('#'+mark);
 		if(content.length > 0){
 			content.attr('data-value', id);

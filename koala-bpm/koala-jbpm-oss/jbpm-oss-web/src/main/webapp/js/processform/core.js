@@ -211,7 +211,8 @@ $(function(){
              'add': function(){
                  currentKeyId = null;
                  $('#fieldManagement').show().modal({
-                     keyboard: false
+                     keyboard: true,
+                     backdrop: false
                  });
                  initFormFied();
              },
@@ -234,7 +235,7 @@ $(function(){
                  }
                  currentKeyId = indexs[0];
                  $('#fieldManagement').show().modal({
-                     keyboard: false,
+                     keyboard: true,
                      backdrop: false
                  });
                  initFormFied(data.item[0]);

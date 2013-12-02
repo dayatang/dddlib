@@ -100,10 +100,25 @@
 		        }
 				$.each(data.data, function(){
 					var $li = $('<li><a data-toggle="collapse" href="#menuMark'+this.id+'"><img class="menu-icon" src="'+this.icon+'"></img>&nbsp;'+this.name+'&nbsp;'+
-						'<i class="glyphicon glyphicon-chevron-left"></i></a><ul id="menuMark'+this.id+'" class="second-level-menu"></ul></li>');
+						'<i class="glyphicon glyphicon-chevron-left"></i></a><ul id="menuMark'+this.id+'" class="second-level-menu in"></ul></li>');
 					$('.first-level-menu').append($li);
 					renderSubMenu(this.id, $li);
 				});
+				/*
+				* 菜单收缩样式变化
+				 */
+			    var firstLevelMenu = $('.first-level-menu');
+			    firstLevelMenu.find('[data-toggle="collapse"]').each(function(){
+			        var $this = $(this);
+			        firstLevelMenu.find($(this).attr('href')).on({
+			            'shown.bs.collapse': function(e){
+			                $this.find('i:last').addClass('glyphicon-chevron-left').removeClass('glyphicon-chevron-right');
+			            },
+			            'hidden.bs.collapse': function(e){
+			                $this.find('i:last').removeClass('glyphicon-chevron-left').addClass('glyphicon-chevron-right');
+			            }
+			        });
+			    });
 			});
 			var renderSubMenu = function(id, $menu){
 				$.get('/auth/Menu/findAllSubMenuByParent.koala?resVO.id='+id).done(function(data){

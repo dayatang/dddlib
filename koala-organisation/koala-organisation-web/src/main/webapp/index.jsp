@@ -40,7 +40,7 @@
         <ul class="nav nav-stacked first-level-menu">
             <li>
                 <a data-toggle="collapse" href="#userRight"><i class="glyphicon glyphicon-user"></i>&nbsp;主菜单&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
-                <ul id="userRight" class="second-level-menu">
+                <ul id="userRight" class="second-level-menu in">
                    <li class="submenu" data-role="openTab" data-target="pages/organisation/departmentList.html" openTree=true data-title="部门管理" data-mark="departmentList" ><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;部门管理</a></li>
                    <li class="submenu" data-role="openTab" data-target="pages/organisation/jobList.html" data-title="职务管理" data-mark="jobList" ><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;职务管理</a></li>
                    <li class="submenu" data-role="openTab" data-target="pages/organisation/positionList.html" data-title="岗位管理" data-mark="positionList" ><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;岗位管理</a></li>
