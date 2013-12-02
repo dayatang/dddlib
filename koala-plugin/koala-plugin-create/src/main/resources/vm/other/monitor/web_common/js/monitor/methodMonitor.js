@@ -218,7 +218,7 @@ var showMethodMonitorDetail = function(method){
                             name : 'stackTracesDetails',
                             width : 150,
                             render: function(item, name, index){
-                                return '<a onclick="showSqlsMonitorDetail(\''+item.id+'\')">查看SQLS </a>&nbsp;&nbsp;&nbsp;<a onclick="showStackTracesDetail(\''+item.id+'\')">查看堆栈信息</a>';
+                                return '<a onclick="showSqlsMonitorDetail(\''+item.id+'\')">查看SQLS </a>&nbsp;&nbsp;&nbsp;<a onclick="showStackTracesDetail(this)" stackTracesDetails="'+item.stackTracesDetails+'">查看堆栈信息</a>';
                             }
                         }
                     ];
@@ -241,14 +241,14 @@ var showMethodMonitorDetail = function(method){
             });
     });
 }
-var showStackTracesDetail = function(stackTracesDetails){
+var showStackTracesDetail = function(obj){
     $.get('pages/monitor/stack-trace-detail.html').done(function(data){
         $(data).modal({
             keyboard: true,
             backdrop: false
         }).on('hidden.bs.modal', function(){
              $(this).remove();
-         }).find('.modal-body').html(stackTracesDetails);
+         }).find('.modal-body').html($(obj).attr('stackTracesDetails'));
     });
 }
 var showSqlsMonitorDetail = function(methodId){
