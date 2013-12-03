@@ -457,7 +457,10 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			TaskVO todo = new TaskVO();
 			Map<String, Object> processParams = in.getVariables();
 			String processData = XmlParseUtil.paramsToXml(processParams);
-			todo.setActualOwner(task.getActualOwner().getId());
+			//TOTO 非常特殊的行为，没有用户，只有组
+			if(task.getActualOwner()!=null){
+				todo.setActualOwner(task.getActualOwner().getId());
+			}
 			todo.setActualName(task.getName());
 			todo.setProcessInstanceId(processInstanceId);
 
