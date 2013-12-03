@@ -89,7 +89,7 @@ import com.dayatang.querychannel.support.Page;
  */
 @Named("jbpmApplication")
 @SuppressWarnings({ "unchecked", "unused" })
-@org.apache.cxf.interceptor.InInterceptors(interceptors = { "org.apache.cxf.transport.common.gzip.GZIPInInterceptor" })
+//@org.apache.cxf.interceptor.InInterceptors(interceptors = { "org.apache.cxf.transport.common.gzip.GZIPInInterceptor" })
 public class JBPMApplicationImpl implements JBPMApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(JBPMApplicationImpl.class);
@@ -112,6 +112,12 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		return jbpmSupport;
 	}
 
+	/**
+	 * 根据流程名返回流程图片
+	 * defaultPackage.Trade  不支持查询
+	 *  
+	 * defaultPakage.Trade@1 支持特定版本查询
+	 */
 	public byte[] getProcessImage(String processId) {
 		try {
 			this.getJbpmSupport().startTransaction();
@@ -135,6 +141,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	}
 
 	/**
+	 * 根据流程实例 ID 来查询流程lt
 	 */
 	public byte[] getPorcessImageStream(long processInstanceId) {
 		try {
@@ -251,7 +258,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	 * @param user
 	 *            用户
 	 * @param groups
-	 *            用户所属的组 组格式 <groups> <value>abc</value> <value>bcd</value>
+	 *            用户所属的组 组格式 <groups> <value>ROLE:Manager</value> <value>Dept:技术拓展部</value>
 	 *            </groups>
 	 * @return
 	 */
@@ -259,8 +266,12 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		try {
 			this.getJbpmSupport().startTransaction();
 			List<TaskVO> todos = new ArrayList<TaskVO>();
-			todos.addAll(this.queryTodoListCall(user, groups, null));
-			todos.addAll(this.queryDelegateTodoList(user, null));
+			if(user==null || "".equals(user.trim())){
+				todos.addAll(this.queryTodoListCall(user, groups, null));
+			}
+			if(groups==null || "".equals(groups.trim())){
+				todos.addAll(this.queryDelegateTodoList(user, null));
+			}
 			return todos;
 		} catch (RuntimeException e) {
 			e.printStackTrace();
@@ -558,6 +569,8 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		return dones;
 	}
 
+	//defaultPackage.Trade@1
+	//defaultPackage.Trade
 	public long startProcess(String processName, String creater,
 			String paramsString) {
 		getJbpmSupport().startTransaction();
@@ -566,7 +579,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			Map<String, Object> params = new HashMap<String, Object>();
 			Map<String, Object> globalMap = getJbpmSupport()
 					.getGlobalVariable();
-			globalMap.put(KoalaBPMVariable.CREATE_USER, creater);
+			params.put(KoalaBPMVariable.CREATE_USER, creater);
 			Set<String> keys = globalMap.keySet();
 			for (String key : keys) {
 				params.put(key, globalMap.get(key));
@@ -597,12 +610,11 @@ public class JBPMApplicationImpl implements JBPMApplication {
 
 			Map<String, Object> userParams = XmlParseUtil
 					.xmlToPrams(paramsString);
-			if (userParams != null)
+			if (userParams != null){
 				params.putAll(userParams);
-
+			}
 			RuleFlowProcessInstance instance = (RuleFlowProcessInstance) getJbpmSupport()
 					.startProcess(activeProcessName, params);
-			this.getJbpmSupport().getProcessInstance(instance.getId());
 			getJbpmSupport().commitTransaction();
 			return instance.getId();
 		} catch (RuntimeException e) {
@@ -616,6 +628,9 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		}
 	}
 
+	/**
+	 * 委托
+	 */
 	public void delegate(long taskId, String userId, String targetUserId) {
 		try {
 			this.getJbpmSupport().startTransaction();
@@ -762,11 +777,11 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		}
 	}
 
-	public List<HistoryLogVo> queryHistoryLog(long processId) {
+	public List<HistoryLogVo> queryHistoryLog(long processInstanceId) {
 		List<HistoryLog> lists = queryChannel
 				.queryResult(
 						"select log from HistoryLog log where log.processInstanceId = ? order by log.createDate",
-						new Object[] { processId });
+						new Object[] { processInstanceId });
 		List<HistoryLogVo> logs = new ArrayList<HistoryLogVo>();
 
 		for (HistoryLog vo : lists) {
@@ -778,6 +793,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		return logs;
 	}
 
+	@Deprecated
 	public List<MessageLogVO> getMessages(String user) {
 		List<MessageLog> lists = queryChannel.queryResult(
 				"select log from MessageLog log where log.user = ?",
@@ -1176,9 +1192,8 @@ public class JBPMApplicationImpl implements JBPMApplication {
 				processInfo.setActive(isActive);
 				processInfo.setPackageName(packageName);
 			}
-			processInfo.publishProcess();
-
 			getJbpmSupport().addProcessToCenter(processInfo, isActive);
+			processInfo.publishProcess();
 			this.getJbpmSupport().commitTransaction();
 		} catch (RuntimeException e) {
 			e.printStackTrace();

@@ -17,7 +17,6 @@ import org.openkoala.jbpm.core.*;
 import org.apache.commons.beanutils.BeanUtils;
 
 @Named
-@Transactional(value="transactionManager")
 public class KoalaJbpmVariableApplicationImpl implements KoalaJbpmVariableApplication {
 
 	@Inject

@@ -368,6 +368,7 @@ var department = function(){
 			return;
 		}
 		grid.confirm({
+            backdrop: false,
 			content: '确定要与所选员工解除关系吗?',
 			callBack: function(){
 				$.ajax({

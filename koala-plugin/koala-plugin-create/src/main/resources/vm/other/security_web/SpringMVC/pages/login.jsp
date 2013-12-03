@@ -3,10 +3,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@ include file="/pages/common/header.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>欢迎使用Koala</title>
-<link href="css.css" rel="stylesheet" type="text/css" />
+<link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
+<script type="text/javascript" src="<c:url value='/lib/jquery-1.8.3.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />"></script>	
 <style type="text/css">
 @charset "UTF-8";
 /* CSS Document */
@@ -70,58 +73,48 @@ body {
 
 .login_con_R {
 	float: left;
-	width: 390px;
+	width: 376px;
 	height: 332px;
 	border: 1px solid #dce7f4;
 }
 
-.login_con_R h3 {
-	background: #f0f3f6;
+.login_con_R h4 {
+	background: #F2F2F2;
 	line-height: 36px;
-	height: 36px;
 	width: 376px;
-	font: 18px;
-	color: #666;
-	font-weight: 100;
 	padding: 0px 6px;
 	border: 1px solid #fff;
 	border-bottom: 1px solid #d4d4d4;
 	margin-top: 0px;
 }
 
-.login_con_R ul {
-	margin-top: 20px;
-	margin-left: 20px;
+.login_con_R  form {
+	padding-top: 7%;
+	padding-left: 7%;
+	padding-right: 7%;
 }
-
-.login_con_R li {
-	list-style-type: none;
-	line-height: 30px;
+.login_con_R .input-group {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-.login_con_R li input {
-	height: 30px;
-	line-height: 30px;
-	border: 1px solid #d2d2d2;
-	margin-top: 12px;
-	width: 192px;
+.checkCode {
+	height: 50px;
 }
-
-.login_bnt {
-	width: 211px;
-	height: 42px;
-	background: url(images/background/loginbnt.gif) no-repeat;
-	margin: 30px auto;
-	cursor: pointer;
+.btn-login {
+	width: 100%;
+	margin-left: auto;
+    margin-right: auto;
 }
 
 .login_footer {
 	clear: both;
-	line-height: 40px;
-	color: #999;
-	margin: 20px auto;
-	font-size: 12px;
+	margin: 8% auto 0;
 	width: 300px;
+	color: inherit;
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 2.14286;
 }
 </style>
 <script type="text/javascript">
@@ -130,17 +123,9 @@ body {
 	}
 	
 	function refreshCode(){
-		$('#checkCode').attr('src',"jcaptcha.jpg?"+Math.random());
+		
+		$('#checkCode').attr('src',"jcaptcha.jpg?time="+new Date().getTime());
 	}
-	
-	$(function(){
-		$(document).keydown(function(e){
-		  if(e.keyCode == 13)
-            {
-			   $('#loginFormId').submit();
-            }
-         });
-	});
 	
 </script>
 </head>
@@ -155,22 +140,69 @@ body {
 			<img src="images/background/login_img.gif" />
 		</div>
 		<div class="login_con_R">
-			<FORM id=loginFormId method=post action="j_spring_security_check">
-				<h3>登录</h3>
-				<ul>
-				    <c:if test="${param.login_error == '1' }">
-				      <li><font color='red'>用户名密码错误</font></li>
+			<h4>登录</h4>
+			 <c:if test="${param.login_error == '1' }">
+				     	<script>
+				     		$('body').message({
+								type: 'error',
+								content: '用户名或密码错误!'
+							});
+				     	</script>
 				    </c:if>
 				    <c:if test="${param.login_error == '2' }">
-				      <li><font color='red'>验证码错误</font></li>
+				      	<script>
+				     		$('body').message({
+								type: 'error',
+								content: '验证码错误!'
+							});
+				     	</script>
+			</c:if>
+			<FORM id=loginFormId method=post action="j_spring_security_check" class="form-horizontal">
+				<div class="form-group input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                    <input type="text" class="form-control" placeholder="用户名"  name="j_username" id="j_username">
+				</div>
+                <div class="form-group input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                    <input type="password" name="j_password" id="j_password" class="form-control" placeholder="密码"/>
+                </div>
+				<div class="form-group input-group">
+				    <span class="input-group-addon"><span class="glyphicon glyphicon-magnet"></span></span>
+					<input type="text" name="jcaptcha" value="" class="form-control" placeholder="验证码"/>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-3"></label>
+					<div class="col-lg-9">
+						<img src="jcaptcha.jpg" id="checkCode" onclick="refreshCode();" class="checkCode"/>
+					</div>
+				</div>
+				<div class="form-group input-group">
+					<button class="btn btn-primary btn-login" onclick="javascript:login()">登陆</button>
+				</div>
+				<!--<h4>登录</h4>
+				<ul>
+				    <c:if test="${param.login_error == '1' }">
+				     	<script>
+				     		$('body').message({
+								type: 'error',
+								content: '用户名或密码错误!'
+							});
+				     	</script>
 				    </c:if>
-					<li>用户名:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="j_username" id="j_username" /></li>
-					<li>密&nbsp;&nbsp;&nbsp;&nbsp;码:&nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="j_password"
-						id="j_password" /></li>
-					<li>验证码:&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="jcaptcha" value="" /></li>
-					<li>&nbsp;&nbsp;&nbsp;&nbsp;<img src="jcaptcha.jpg" id="checkCode" onclick="refreshCode();"/></li>
+				    <c:if test="${param.login_error == '2' }">
+				      	<script>
+				     		$('body').message({
+								type: 'error',
+								content: '验证码错误!'
+							});
+				     	</script>
+				    </c:if>
+					<li><label class="col-lg-3">用户名:</label><input type="text" name="j_username" id="j_username" class="form-control"/></li>
+					<li><label class="col-lg-3">密&nbsp;&nbsp;&nbsp;码:</label><input type="password" name="j_password" id="j_password" class="form-control"/></li>
+					<li><label class="col-lg-3">验证码:</label><input type="text" name="jcaptcha" value="" class="form-control"/></li>
+					<li><img src="jcaptcha.jpg" id="checkCode" onclick="refreshCode();"/></li>
 				</ul>
-				<div class="login_bnt" onclick="javascript:login()"></div>
+				<button class="btn btn-primary" onclick="javascript:login()">登陆</button>-->
 			</FORM>
 		</div>
 	</div>

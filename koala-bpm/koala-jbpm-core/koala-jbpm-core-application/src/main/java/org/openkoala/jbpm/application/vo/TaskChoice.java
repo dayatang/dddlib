@@ -2,11 +2,14 @@ package org.openkoala.jbpm.application.vo;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * 节点的抉择策略
  * @author lingen
  *
  */
+@XmlRootElement()
 public class TaskChoice implements Serializable {
 
 	

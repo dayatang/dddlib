@@ -24,9 +24,9 @@
 		<struts2.version>2.3.15.1</struts2.version>
 		<spring.version>3.1.2.RELEASE</spring.version>
 		<spring.security.version>3.0.8.RELEASE</spring.security.version>
-		<koalaSecurity.version>2.0.1-SNAPSHOT</koalaSecurity.version>
-		<koala.framework.version>2.0.1-SNAPSHOT</koala.framework.version>
-		<koala.version>2.0.1-SNAPSHOT</koala.version>
+		<koalaSecurity.version>2.1.0-SNAPSHOT</koalaSecurity.version>
+		<koala.framework.version>2.1.0-SNAPSHOT</koala.framework.version>
+		<koala.version>2.1.0-SNAPSHOT</koala.version>
 		<koala.monitor.version>2.1.0-SNAPSHOT</koala.monitor.version>
 		<quartz.version>2.1.3</quartz.version>
 		

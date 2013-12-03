@@ -18,13 +18,11 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.openkoala.exception.extend.ApplicationException;
 
 @Named
-@Transactional(value="transactionManager")
 public class JoinAssignApplicationImpl implements JoinAssignApplication {
 
 	@Inject
 	private QueryChannelService queryChannel;
 	
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public JoinAssignVO getJoinAssign(Long id) {
 			
 	   	String jpql = "select _joinAssign from JoinAssign _joinAssign  where _joinAssign.id=?";
@@ -77,7 +75,6 @@ public class JoinAssignApplicationImpl implements JoinAssignApplication {
 		}
 	}
 	
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<JoinAssignVO> findAllJoinAssign() {
 		List<JoinAssignVO> list = new ArrayList<JoinAssignVO>();
 		List<JoinAssign> all = JoinAssign.findAll(JoinAssign.class);
@@ -94,7 +91,6 @@ public class JoinAssignApplicationImpl implements JoinAssignApplication {
 		return list;
 	}
 	
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Page<JoinAssignVO> pageQueryJoinAssign(JoinAssignVO queryVo, int currentPage, int pageSize) {
 		List<JoinAssignVO> result = new ArrayList<JoinAssignVO>();
 		List<Object> conditionVals = new ArrayList<Object>();

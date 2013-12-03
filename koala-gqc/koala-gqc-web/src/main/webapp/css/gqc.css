@@ -1,0 +1,222 @@
+.generalQuery .form-inline {
+    padding-bottom: 5px;
+}
+.generalQuery .form-inline .form-group {
+    margin-left: 25px;
+}
+.generalQuery .form-inline .form-group .control-label {
+    margin-right: 5px;
+}
+.generalQuery  .required {
+    position: relative;
+    top: 4px;
+    margin-left: 3px;
+    color: red;
+}
+.generalQuery .form-inline .form-group .btn-group .queryName {
+    display: inline;
+    width: 200px;
+}
+.generalQuery .table {
+    border-width: 0;
+    text-align: center;
+}
+.generalQuery .table th {
+    text-align: center;
+}
+.generalQuery  a {
+    cursor: pointer!important;
+}
+.generalQuery  .panel {
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+.generalQuery  .table .panel {
+    padding: 0;
+    margin: 0;
+}
+.generalQuery  .table .table-value .required {
+    color:red;
+    position: relative;
+    top: 6px;
+    margin-left: 2px;
+}
+.select .dropdown-menu {
+    text-align: left!important;
+}
+.generalQuery .buttons {
+    margin: 10px;
+    text-align: center;
+}
+.generalQuery .buttons .btn {
+    margin-right: 10px;
+    font-size: 14px;
+}
+.generalQuery  .table td .form-control {
+    display: inline!important;
+    width: 95%;
+}
+.general-query-dialog {
+    padding-top: 65px;
+    width: 80%!important;
+}
+.general-query-dialog .modal-body {
+    overflow-y: auto;
+    max-height: 450px;
+}
+.general-query-dialog .grid-table-head table tr th:last-child,
+.general-query-dialog .grid-table-body table tr td:last-child{
+    border-right-width: 0!important;
+}
+.general-query-dialog .grid-table-body {
+    height: 180px;
+    min-height: 180px;;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.general-query-dialog  .visibility .checker {
+    margin: 0 15px 0 0;
+}
+.generalQuery  .panel > table {
+    table-layout: fixed;
+}
+.staticQuerySelected table , .dynamicQuerySelected table , .showColumnSelected table {
+    table-layout: auto;
+}
+
+.staticQuerySelected table td , .dynamicQuerySelected table td , .showColumnSelected table td {
+    padding: 2px!important;
+}
+.query-condition  .column-name {
+    width: 60%;
+}
+.query-condition  .operation {
+    width: 40%;
+    padding-left: 12px;
+    text-align: left !important;
+}
+.staticQuerySelected  .column-name {
+    width: 25%;
+}
+.staticQuerySelected .query-operation {
+    width: 15%;
+}
+.staticQuerySelected .value {
+    width: 35%;
+}
+.staticQuerySelected .visibility {
+    width: 12%;
+}
+.staticQuerySelected .delete-btn {
+    width: 15%;
+}
+.dynamicQuerySelected  .column-name {
+    width: 25%;
+}
+.dynamicQuerySelected .show-label {
+    width: 30%;
+}
+.dynamicQuerySelected .widgetType {
+    width: 15%;
+}
+.dynamicQuerySelected .query-operation {
+    width: 20%;
+}
+.dynamicQuerySelected .delete-btn {
+    width: 15%;
+}
+.showColumnSelected .column-name {
+    width: 40%;
+}
+.showColumnSelected .show-label {
+    width: 40%;
+}
+.showColumnSelected .delete-btn {
+    width: 40%;
+}
+
+.dataSource {
+    padding-top: 60px;
+}
+.dataSource  input {
+    width: 300px;
+}
+.dataSource .modal-body {
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-bottom: 10px;
+}
+.dataSource .modal-body .help-block {
+    display: none;
+    font-weight: normal;
+    margin-bottom: 0;
+}
+.dataSource .modal-footer {
+    margin-top: 0;
+}
+.dataSource  .col-lg-9 > input,  .dataSource .col-lg-9 > span {
+    display: inline;
+}
+.dataSource .col-lg-9 > span {
+    position: relative;
+    top: 3px;
+    margin-left: 5px;
+    color: red;
+}
+
+.query {
+    width: 65%;
+    padding: 15px 15px 0;
+}
+.query .query-body {
+    float: left;
+    width: 45%;
+}
+.query .query-body table {
+    margin-bottom: 5px;
+}
+.query .buttons {
+    float: left;
+    left: 15px;
+    position: relative;
+}
+.query .query-body table td {
+    vertical-align: middle!important;
+    border: 0 solid transparent!important;
+    padding: 2px;
+}
+
+.previewQuery .column-name {
+    padding: 0 10px !important;
+    width: 20%;
+}
+.previewQuery .query-condition {
+    padding: 0 10px !important;
+    width: 20%;
+}
+.previewQuery .query-value {
+    width: 60%;
+}
+.previewQuery .query-value > div {
+    float: left;
+    vertical-align: middle;
+}
+.previewQuery .query-value .span {
+    position: relative;
+    padding: 4px;
+}
+.previewQuery input {
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 193px!important;
+}
+.dynamicQueryCondition td {
+    padding: 2px!important;
+}
+.previewGrid {
+    clear: both;
+    padding: 0 15px;
+}
+.previewGrid .grid-table-body {
+    height: 385px;
+}

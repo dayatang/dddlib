@@ -23,24 +23,43 @@ public class KoalaProcessInfo extends AbstractEntity{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * 包名，如defaultPackage
+	 */
 	private String packageName;
 	
+	/**
+	 * 流程定义 ID，包括版本号的，如defaultPackage.Trade@2
+	 */
 	private String processId;
 	
+	/**
+	 * 流程定义 ID，不包括版本号，如defaultPackage.Trade
+	 */
 	private String processName;
+	
 	
 	private Date createDate;
 	
+	/**
+	 * 版本号
+	 */
 	private int versionNum;
 	
 	private String description;
 	
 	private boolean isActive;
 	
+	/**
+	 * 流程定义XML 的二进制存储
+	 */
 	@Lob
 	@Column(length=2147483647)
 	private byte[] data;
 	
+	/**
+	 * 图片的二进制存储
+	 */
 	@Lob
 	@Column(length=2147483647)
 	private byte[] png;

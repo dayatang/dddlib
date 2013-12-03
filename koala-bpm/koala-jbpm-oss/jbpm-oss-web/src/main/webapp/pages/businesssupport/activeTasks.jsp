@@ -58,7 +58,8 @@
 							width: 250,
 							name: dynamicColumns[i].keyValueForShow,
 							render: function(item, name, rowIndex, columnIndex) {
-								return item.dynamicColumns[columnIndex - 1].keyValueForShow;
+								var dynamicColumn = item.dynamicColumns[columnIndex - 1];
+								return dynamicColumn && dynamicColumn.keyValueForShow;
 							}
 						});
 					}
@@ -70,6 +71,7 @@
 						}
 					});
 					$("#todoTasksGrid").grid({
+						isShowPages: false,
 						columns: columns,
 						url: "${pageContext.request.contextPath}/businessSupport/getTodoTaskList.koala?processId=" + processId
 					});

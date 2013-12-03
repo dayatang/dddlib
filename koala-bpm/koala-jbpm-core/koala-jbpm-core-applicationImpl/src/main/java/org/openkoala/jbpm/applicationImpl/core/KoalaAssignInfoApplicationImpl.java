@@ -18,13 +18,11 @@ import org.openkoala.jbpm.core.*;
 import org.apache.commons.beanutils.BeanUtils;
 
 @Named
-@Transactional(value="transactionManager")
 public class KoalaAssignInfoApplicationImpl implements KoalaAssignInfoApplication {
 
 	@Inject
 	private QueryChannelService queryChannel;
 	
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public KoalaAssignInfoVO getKoalaAssignInfo(Long id) {
 			
 	   	String jpql = "select _koalaAssignInfo from KoalaAssignInfo _koalaAssignInfo left join _koalaAssignInfo.jbpmNames  where _koalaAssignInfo.id=?";
@@ -87,7 +85,6 @@ public class KoalaAssignInfoApplicationImpl implements KoalaAssignInfoApplicatio
 		}
 	}
 	
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KoalaAssignInfoVO> findAllKoalaAssignInfo() {
 		List<KoalaAssignInfoVO> list = new ArrayList<KoalaAssignInfoVO>();
 		List<KoalaAssignInfo> all = KoalaAssignInfo.findAll(KoalaAssignInfo.class);
@@ -104,7 +101,6 @@ public class KoalaAssignInfoApplicationImpl implements KoalaAssignInfoApplicatio
 		return list;
 	}
 	
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Page<KoalaAssignInfoVO> pageQueryKoalaAssignInfo(KoalaAssignInfoVO queryVo, int currentPage, int pageSize) {
 		List<KoalaAssignInfoVO> result = new ArrayList<KoalaAssignInfoVO>();
 		List<Object> conditionVals = new ArrayList<Object>();
@@ -159,9 +155,6 @@ public class KoalaAssignInfoApplicationImpl implements KoalaAssignInfoApplicatio
         return new Page<KoalaAssignInfoVO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), result);
 	}
 	
-
-	
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Page<KoalaAssignDetailVO> findJbpmNamesByKoalaAssignInfo(Long id, int currentPage, int pageSize) {
 		List<KoalaAssignDetailVO> result = new ArrayList<KoalaAssignDetailVO>();
 		String jpql = "select e from KoalaAssignInfo o right join o.jbpmNames e where o.id=?";

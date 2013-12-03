@@ -3,6 +3,8 @@ package org.openkoala.jbpm.application.vo;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement()
 public class HistoryLogVo implements Serializable{
 
 	private static final long serialVersionUID = -6818178336423797500L;

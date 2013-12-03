@@ -1,7 +1,3 @@
-$(function(){
-	
-});
-
 FormRender = {
   renderSelect : function(targetId,optsJson){
 		var optArr = [];
@@ -11,11 +7,16 @@ FormRender = {
 	 	   opt.value = optsJson[index];
 	 	   optArr.push(opt);
 		}
-		
-		$('#'+targetId).select({
-			title: '选择数据',
-			contents: optArr
-		});
+		var intervalId = setInterval(function(){
+			var target = $('#'+targetId);
+			if(target.length > 0){
+				target.show().select({
+					title: '选择数据',
+					contents: optArr
+				});
+				clearInterval(intervalId);
+			}
+		}, 100); 
    },
    
    renderRadio : function(targetId,elmName,optsJson){
@@ -25,22 +26,74 @@ FormRender = {
 		   radioHtml = radioHtml + "<label class='radio-inline'><input type='radio' name='"+elmName+"' value='"+optsJson[index]+"'"+checkedStyle+">"+index+"</label>";
 		   checkedStyle = "";
 	   }
-	   $("#"+targetId).append(radioHtml);
+	   var intervalId = setInterval(function(){
+			var target = $('#'+targetId);
+			if(target.length > 0){
+				target.append(radioHtml);
+				clearInterval(intervalId);
+			}
+		}, 100); 
    },
    renderCheck : function(targetId,elmName,optsJson){
 	   var checkboxHtml = "";
 	   for(var index in optsJson){
 		   checkboxHtml = checkboxHtml + "<label class='checkbox-inline'><input type='checkbox' name='"+elmName+"' value='"+optsJson[index]+"'>"+index+"</label>";
 	   }
-	   $("#"+targetId).append(checkboxHtml);
+	   var intervalId = setInterval(function(){
+			var target = $('#'+targetId);
+			if(target.length > 0){
+				target.append(checkboxHtml);
+				clearInterval(intervalId);
+			}
+		}, 100); 
    },
    renderDatePicker : function(targetId,format){
 	   var pickDate = format.indexOf('date')>=0;
 	   var pickTime = format.indexOf('time')>=0;
-	   $("#"+targetId).parent().datetimepicker({
-	       language: 'zh-CN',
-	       pickDate: pickDate,
-	       pickTime: pickTime
-	   	});
+	   var intervalId = setInterval(function(){
+			var target = $('#'+targetId);
+			if(target.length > 0){
+				var time = target.parent();
+				if(pickDate && pickTime){
+					time.datetimepicker({
+				        language:  'zh-CN',
+				        weekStart: 1,
+				        todayBtn:  1,
+						autoclose: 1,
+						todayHighlight: 1,
+						startView: 2,
+						forceParse: 0,
+                        pickerPosition: 'bottom-left',
+				        showMeridian: 1
+				    });
+				}else if(pickDate && !pickTime){
+					time.datetimepicker({
+				        language:  'zh-CN',
+				        weekStart: 1,
+				        todayBtn:  1,
+						autoclose: 1,
+						todayHighlight: 1,
+						startView: 2,
+						minView: 2,
+                        pickerPosition: 'bottom-left',
+						forceParse: 0
+				    });
+				}else {
+					time.datetimepicker({
+				        language:  'zh-CN',
+				        weekStart: 1,
+				        todayBtn:  1,
+						autoclose: 1,
+						todayHighlight: 1,
+						startView: 1,
+						minView: 0,
+						maxView: 1,
+                        pickerPosition: 'bottom-left',
+						forceParse: 0
+				    });
+				}
+				clearInterval(intervalId);
+			}
+		}, 100); 
    }
 }
