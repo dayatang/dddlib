@@ -72,11 +72,20 @@ public class JBPMApplicationTest {
 							.getPath()));
 
 			getJBPMApplication().addProcess(packageName, processId, version,
-					data, png, true);
+					data, convertToByteArray(png), true);
+			getJBPMApplication().addProcess(packageName, processId, version,
+					data, null, true);
 
 			init = true;
 		}
-
+	}
+	
+	private static Byte[] convertToByteArray(byte[] pngs){
+		Byte[] pngByte = new Byte[pngs.length];
+		for(int i=0; i<pngs.length; i++){
+			pngByte[i] = Byte.valueOf(pngs[i]);
+		}
+		return pngByte;
 	}
 
 	/**

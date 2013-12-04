@@ -2,7 +2,6 @@ package org.openkoala.jbpm.application;
 
 import java.util.List;
 
-import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -12,7 +11,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
 
 import org.openkoala.jbpm.application.vo.HistoryLogVo;
 import org.openkoala.jbpm.application.vo.JBPMNode;
@@ -42,6 +40,21 @@ public interface JBPMApplication {
 	@GET
 	@Path("processes")
 	public List<ProcessVO> getProcesses();
+	
+	/**
+	 * 新增一个流程
+	 * 
+	 * @param processId
+	 * @param version
+	 * @param data
+	 * @param png
+	 */
+	@POST
+	@Path("process")
+	@Produces({"application/xml", "application/json"})
+	public void addProcess(@FormParam("packageName")String packageName, @FormParam("processId")String processId, 
+			@FormParam("version")int version, @FormParam("data")String data, 
+			@FormParam("png")Byte[] png, @FormParam("isActive")boolean isActive);
 
 	/**
 	 * 发起一个流程
@@ -54,11 +67,10 @@ public interface JBPMApplication {
 	 * </params>
 	 * @return
 	 */
-	@POST()
-	@Path("process/{processId}")
+	@POST
+	@Path("processInstance")
 	@Produces({"application/xml", "application/json"})
-//	@Consume
-	public long startProcess(@PathParam("processId")String processId, @FormParam("creater")String creater, @FormParam("params")String params);
+	public long startProcess(@FormParam("processId")String processId, @FormParam("creater")String creater, @FormParam("params")String params);
 	
 	/**
 	 * 分页查询已办任务
@@ -67,7 +79,7 @@ public interface JBPMApplication {
 	 * @param pageSize
 	 * @return
 	 */
-	@GET()
+	@GET
 	@Path("doneTask/{userName}/{processId}")
 	public PageTaskVO pageQueryDoneTask(@PathParam("processId")String processId, @PathParam("userName")String userName, @QueryParam("currentPage")int currentPage, @QueryParam("pageSize")int pageSize);
 	
@@ -78,7 +90,7 @@ public interface JBPMApplication {
 	 * @param groups
 	 * @return
 	 */
-	@GET()
+	@GET
 	@Path("todoTask/{userName}/{processId}")
 	public List<TaskVO> processQueryTodoListWithGroup(@PathParam("processId") String processId, @PathParam("userName") String userName, @QueryParam("groupName") String groupName);
 	
@@ -88,9 +100,9 @@ public interface JBPMApplication {
 	 * @param taskId
 	 * @return
 	 */  //只需要taskid，待优化
-	@GET()
-	@Path("choice")
-	public List<TaskChoice> queryTaskChoice(@QueryParam("processInstanceId") long processInstanceId, @QueryParam("taskId") long taskId);
+	@GET
+	@Path("choice/{processInstanceId}/{taskId}")
+	public List<TaskChoice> queryTaskChoice(@PathParam("processInstanceId") long processInstanceId, @PathParam("taskId") long taskId);
 
 	/**
 	 * 完成一个工作
@@ -105,10 +117,10 @@ public interface JBPMApplication {
 	 *            节点级参数 流程级参数与节点级参数均以XML形式传入，如 <params>
 	 *            <creater>lingen</creater> <isOpen>true</isOpen> </params>
 	 */
-	@PUT()
-	@Path("task/{taskId}")
-	public boolean completeTask(@QueryParam("processInstanceId") long processInstanceId, 
-			@QueryParam("taskId") long taskId, @QueryParam("userName") String userName,
+	@PUT
+	@Path("task/{userName}/{processInstanceId}/{taskId}")
+	public boolean completeTask(@PathParam("processInstanceId") long processInstanceId, 
+			@PathParam("taskId") long taskId, @PathParam("userName") String userName,
 			@FormParam("params") String params, @FormParam("data") String data);
 	
 	/**
@@ -117,7 +129,7 @@ public interface JBPMApplication {
 	 * @param instanceId
 	 * @return
 	 */
-	@GET()
+	@GET
 	@Path("processImage/{processInstanceId}")
 	public byte[] getPorcessImageStream(@PathParam("processInstanceId") long processInstanceId);
 	
@@ -127,7 +139,7 @@ public interface JBPMApplication {
 	 * @param processId
 	 * @return
 	 */
-	@GET()
+	@GET
 	@Path("history/{processInstanceId}")
 	public List<HistoryLogVo> queryHistoryLog(@PathParam("processInstanceId") long processInstanceId);
 	
@@ -263,17 +275,6 @@ public interface JBPMApplication {
 	 * @param taskId
 	 */
 	public void repairTask(long taskId);
-
-	/**
-	 * 新增一个流程
-	 * 
-	 * @param processId
-	 * @param version
-	 * @param data
-	 * @param png
-	 */
-	public void addProcess(String packageName, String processId, int version,
-			String data, byte[] png, boolean isActive);
 
 	public List<ProcessVO> getProcessesByProcessName(String processName);
 

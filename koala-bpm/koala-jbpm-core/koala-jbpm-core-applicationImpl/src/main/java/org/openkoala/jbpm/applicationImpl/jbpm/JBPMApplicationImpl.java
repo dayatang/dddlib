@@ -89,7 +89,7 @@ import com.dayatang.querychannel.support.Page;
  */
 @Named("jbpmApplication")
 @SuppressWarnings({ "unchecked", "unused" })
-//@org.apache.cxf.interceptor.InInterceptors(interceptors = { "org.apache.cxf.transport.common.gzip.GZIPInInterceptor" })
+@org.apache.cxf.interceptor.InInterceptors(interceptors = { "org.apache.cxf.transport.common.gzip.GZIPInInterceptor" })
 public class JBPMApplicationImpl implements JBPMApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(JBPMApplicationImpl.class);
@@ -1175,9 +1175,10 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	}
 
 	public void addProcess(String packageName, String processName, int version,
-			String data, byte[] png, boolean isActive) {
+			String data, Byte[] png, boolean isActive) {
 		try {
 			this.getJbpmSupport().startTransaction();
+			byte[] bytePng = convertFromByteArray(png);
 			Map<String, Object> params = new HashMap<String, Object>();
 			params.put("versionNum", version);
 			params.put("processName", processName);
@@ -1185,10 +1186,13 @@ public class JBPMApplicationImpl implements JBPMApplication {
 					.getKoalaProcessInfo(params);
 			if (processInfo != null) {
 				processInfo.setData(data.getBytes());
-				processInfo.setPng(png);
+				processInfo.setPng(bytePng);
+				processInfo.setPng(null);
 			} else {
 				processInfo = new KoalaProcessInfo(processName, version, data,
-						png);
+						bytePng);
+				processInfo = new KoalaProcessInfo(processName, version, data,
+						null);
 				processInfo.setActive(isActive);
 				processInfo.setPackageName(packageName);
 			}
@@ -1205,8 +1209,17 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			throw new RuntimeException(e.getCause());
 		}
 	}
+	
+	private byte[] convertFromByteArray(Byte[] pngs){
+		byte[] bytePng = new byte[pngs.length];
+		for(int i=0; i<pngs.length; i++){
+			bytePng[i] = pngs[i].byteValue();
+		}
+		return bytePng;
+	}
 
 	public List<ProcessVO> getProcesses() {
+		System.setProperty("org.mortbay.jetty.Request.maxFormContentSize", "0");
 		List<ProcessVO> processStrings = new ArrayList<ProcessVO>();
 		Collection<org.drools.definition.process.Process> processes = getJbpmSupport()
 				.queryProcesses();

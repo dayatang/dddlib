@@ -1,5 +1,7 @@
 package org.openkoala.jbpm.application.vo;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -8,7 +10,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  */
 @XmlRootElement()
-public class KoalaBPMVariable {
+public class KoalaBPMVariable implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1004992513076588607L;
 
 	/**
 	 * 流程创建者

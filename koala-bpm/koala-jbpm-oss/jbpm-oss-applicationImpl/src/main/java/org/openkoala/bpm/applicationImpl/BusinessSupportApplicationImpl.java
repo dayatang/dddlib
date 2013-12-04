@@ -7,10 +7,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.apache.commons.configuration.Configuration;
-import org.apache.commons.configuration.PropertiesConfiguration;
 import org.openkoala.bpm.KoalaBPM.infra.common.ConstantUtil;
 import org.openkoala.bpm.application.BusinessSupportApplication;
 import org.openkoala.bpm.application.dto.DynaProcessHistoryValueDTO;
@@ -20,23 +19,22 @@ import org.openkoala.bpm.application.dto.TaskDTO;
 import org.openkoala.bpm.application.dto.TaskVerifyDTO;
 import org.openkoala.bpm.application.exception.FormHavenDefinedException;
 import org.openkoala.bpm.application.exception.VerifyTaskException;
-import org.openkoala.bpm.application.exception.WebServiceOfJBPMServiceException;
 import org.openkoala.bpm.processdyna.core.DynaProcessForm;
 import org.openkoala.bpm.processdyna.core.DynaProcessHistoryValue;
 import org.openkoala.bpm.processdyna.core.DynaProcessKey;
 import org.openkoala.bpm.processdyna.core.DynaProcessTemplate;
 import org.openkoala.bpm.processdyna.core.DynaProcessValue;
-import org.openkoala.jbpm.wsclient.JBPMApplication;
-import org.openkoala.jbpm.wsclient.JBPMApplicationImplService;
-import org.openkoala.jbpm.wsclient.PageTaskVO;
-import org.openkoala.jbpm.wsclient.ProcessVO;
-import org.openkoala.jbpm.wsclient.TaskChoice;
-import org.openkoala.jbpm.wsclient.TaskVO;
-import org.openkoala.jbpm.wsclient.util.ElementFilter;
-import org.openkoala.jbpm.wsclient.util.KoalaBPMVariable;
-import org.openkoala.jbpm.wsclient.util.XmlParseUtil;
+import org.openkoala.jbpm.application.JBPMApplication;
+import org.openkoala.jbpm.application.vo.KoalaBPMVariable;
+import org.openkoala.jbpm.application.vo.PageTaskVO;
+import org.openkoala.jbpm.application.vo.ProcessVO;
+import org.openkoala.jbpm.application.vo.TaskChoice;
+import org.openkoala.jbpm.application.vo.TaskVO;
+import org.openkoala.jbpm.infra.ElementFilter;
+import org.openkoala.jbpm.infra.XmlParseUtil;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.support.Page;
 
 @Named("businessSupportApplication")
@@ -46,23 +44,13 @@ public class BusinessSupportApplicationImpl implements
 	
 	private JBPMApplication jbpmApplication;
 	
-	private JBPMApplication getJBPMApplication() { 
-		if(jbpmApplication==null){
-			try { 
-				getRemoteJBPMApplication();
-			} catch (Exception e) {
-				throw new WebServiceOfJBPMServiceException("JBPM WebService服务获取异常！", e);
-			} 
-		} 
-		return jbpmApplication; 
+	public JBPMApplication getJBPMApplication(){
+		if(jbpmApplication == null){
+			jbpmApplication = InstanceFactory.getInstance(JBPMApplication.class);
+		}
+		return jbpmApplication;
 	}
 	
-	private void getRemoteJBPMApplication() throws Exception{
-		Configuration conf = new PropertiesConfiguration("jbpmService.properties");
-		String wsdlURL = conf.getString("wsdlURL");
-		jbpmApplication = new JBPMApplicationImplService(wsdlURL).getJBPMApplicationImplPort(); 
-	}
-
 	public void initDynaProcessTemplateDatas(List<DynaProcessTemplate> dynaProcessTemplates) {
 		try {
 			saveDynaProcessTemplates(dynaProcessTemplates);
@@ -79,14 +67,6 @@ public class BusinessSupportApplicationImpl implements
 		}
 	}
 	
-	/*public boolean isExistDynaProcessTemplate(String templateName) {
-		try {
-			return DynaProcessTemplate.checkIsExistedByName(templateName);
-		} catch (Exception e) {
-			throw new RuntimeException("检查模版是否存在异常！",e);
-		}
-	}*/
-
 	public List<ProcessVO> getProcesses() {
 		return getJBPMApplication().getProcesses();
 	}
@@ -324,7 +304,6 @@ public class BusinessSupportApplicationImpl implements
 		formShowDTO.setProcessInstanceId(processInstanceId);
 		formShowDTO.setTaskId(taskId);
 		formShowDTO.setHistoryLogs(getJBPMApplication().queryHistoryLog(processInstanceId));
-		///////////////////？？？？？？？？仅测试
 		formShowDTO.setTemplateHtmlCode(findTemplateHtmlCode(processId.split("@")[0], processInstanceId));
 		return formShowDTO;
 	}

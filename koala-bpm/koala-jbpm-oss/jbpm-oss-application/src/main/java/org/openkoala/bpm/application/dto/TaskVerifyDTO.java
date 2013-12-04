@@ -2,7 +2,8 @@ package org.openkoala.bpm.application.dto;
 
 import java.io.Serializable;
 
-import org.openkoala.jbpm.wsclient.TaskChoice;
+import org.openkoala.jbpm.application.vo.TaskChoice;
+
 
 public class TaskVerifyDTO implements Serializable {
 	/**

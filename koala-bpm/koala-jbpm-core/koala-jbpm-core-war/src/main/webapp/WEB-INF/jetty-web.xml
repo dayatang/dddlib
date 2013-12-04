@@ -1,0 +1,6 @@
+<?xml version="1.0"?>  
+  <!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN"  
+  "http://jetty.mortbay.org/configure.dtd">  
+  <Configure id="WebAppContext" class="org.mortbay.jetty.webapp.WebAppContext">  
+          <Set name="maxFormContentSize" type="int">600000</Set>  
+  </Configure>

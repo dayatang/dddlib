@@ -1,27 +1,24 @@
 package org.openkoala.koala.jbpm.designer.jbpmDesigner.web.action.jbpm;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.apache.struts2.ServletActionContext;
-import org.openkoala.jbpm.wsclient.JBPMApplicationImplService;
-import org.openkoala.jbpm.wsclient.ProcessVO;
+import org.openkoala.jbpm.application.vo.ProcessVO;
 import org.openkoala.koala.jbpm.designer.application.core.BpmDesignerApplication;
 import org.openkoala.koala.jbpm.designer.application.vo.PublishURLVO;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.GunvorApplication;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.vo.Bpmn2;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.vo.PackageVO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.openkoala.koala.jbpm.jbpmDesigner.applicationImpl.GunvorApplicationImpl;
 import org.springframework.beans.factory.annotation.Value;
 
 public class JbpmAction {
 
-	private static final Logger logger = LoggerFactory.getLogger(JbpmAction.class);
+//	private static final Logger logger = LoggerFactory.getLogger(JbpmAction.class);
 	
 	@Inject
 	private GunvorApplication gunvorApplication;
@@ -69,7 +66,6 @@ public class JbpmAction {
 		try {
 			wdsl = gunvorServerUrl+"/org.drools.guvnor.Guvnor/assetExtend/?packageName=" +URLEncoder.encode(packageName, "UTF-8")+ "&assetName=" + URLEncoder.encode(bpmnName, "UTF-8") + "&description="+description;
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		results = gunvorApplication.getConnectionString(wdsl);
@@ -179,15 +175,15 @@ public class JbpmAction {
 	}
 
 	public String processes(){
-		PublishURLVO urlVo = null;
+		/*PublishURLVO urlVo = null;
 		URL url = null;
 		try {
 			urlVo = publishURLApplication.getPublishURL(Long.valueOf(id));
 			url = new URL(urlVo.getUrl());
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		this.processes = new JBPMApplicationImplService(url).getJBPMApplicationImplPort().getProcesses();
+		}*/
+		this.processes = new GunvorApplicationImpl().getJBPMApplication().getProcesses();
 		return "METHOD";
 	}
 
