@@ -18,7 +18,6 @@ import org.openkoala.auth.application.vo.RoleVO;
 import org.openkoala.koala.auth.ss3adapter.AuthUserUtil;
 import org.openkoala.koala.auth.ss3adapter.CustomUserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 

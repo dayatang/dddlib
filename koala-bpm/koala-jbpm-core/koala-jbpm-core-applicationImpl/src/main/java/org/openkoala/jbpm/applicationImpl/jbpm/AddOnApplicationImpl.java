@@ -6,6 +6,7 @@ import org.openkoala.jbpm.application.AddOnApplication;
 import org.openkoala.jbpm.application.vo.HistoryLogVo;
 import org.openkoala.jbpm.core.HistoryLog;
 import org.springframework.beans.BeanUtils;
+import org.springframework.transaction.annotation.Transactional;
 
 @Named("addOnApplication")
 public class AddOnApplicationImpl implements AddOnApplication {

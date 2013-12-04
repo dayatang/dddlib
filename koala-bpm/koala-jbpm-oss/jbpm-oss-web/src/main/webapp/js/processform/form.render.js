@@ -10,7 +10,7 @@ FormRender = {
 		var intervalId = setInterval(function(){
 			var target = $('#'+targetId);
 			if(target.length > 0){
-				target.select({
+				target.show().select({
 					title: '选择数据',
 					contents: optArr
 				});
@@ -63,6 +63,7 @@ FormRender = {
 						todayHighlight: 1,
 						startView: 2,
 						forceParse: 0,
+                        pickerPosition: 'bottom-left',
 				        showMeridian: 1
 				    });
 				}else if(pickDate && !pickTime){
@@ -74,6 +75,7 @@ FormRender = {
 						todayHighlight: 1,
 						startView: 2,
 						minView: 2,
+                        pickerPosition: 'bottom-left',
 						forceParse: 0
 				    });
 				}else {
@@ -86,6 +88,7 @@ FormRender = {
 						startView: 1,
 						minView: 0,
 						maxView: 1,
+                        pickerPosition: 'bottom-left',
 						forceParse: 0
 				    });
 				}

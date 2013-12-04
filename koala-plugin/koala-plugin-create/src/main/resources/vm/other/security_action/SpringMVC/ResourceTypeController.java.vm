@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+
 import org.openkoala.auth.application.ResourceTypeApplication;
 import org.openkoala.auth.application.vo.ResourceTypeVO;
+import org.openkoala.exception.extend.ApplicationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -46,8 +48,12 @@ public class ResourceTypeController {
 	public Map<String, Object> update(ParamsPojo params) {
 		ResourceTypeVO resourceTypeVO = params.getResourceTypeVO();
 		Map<String, Object> dataMap = new HashMap<String,Object>();
-		resourceTypeApplication.update(resourceTypeVO);
 		dataMap.put("result", "success");
+		try{
+			resourceTypeApplication.update(resourceTypeVO);
+		}catch(ApplicationException e){
+			dataMap.put("result", "该资源类型已存在");
+		}
 		return dataMap;
 	}
 

@@ -13,19 +13,20 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
-    <link href="/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css"   rel="stylesheet">
-    <link href="/css/main.css?time=<%=time%>"   rel="stylesheet">
-    <link href="/css/koala.css?time=<%=time%>"  rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="/lib/jqplot/css/jquery.jqplot.css" />
-    <link type="text/css" rel="stylesheet" href="/lib/jqplot/css/shCoreDefault.min.css" />
-    <link type="text/css" rel="stylesheet" href="/lib/jqplot/css/shThemejqPlot.min.css" />
-    <link href="/css/monitor.css"   rel="stylesheet">
+    <link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />"   rel="stylesheet">
+    <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
+    <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
+    <link href="<c:url value='/css/monitor.css' />?time=<%=time%>"   rel="stylesheet">
+    <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
+    <link href="<c:url value='/lib/jqplot/css/jquery.jqplot.css' />"   rel="stylesheet">
+    <link href="<c:url value='/lib/jqplot/css/shCoreDefault.min.css' />"   rel="stylesheet">
+    <link href="<c:url value='/lib/jqplot/css/shThemejqPlot.min.css' />"   rel="stylesheet">
+    <link href="<c:url value='/css/monitor.css' />"   rel="stylesheet"> 
 </head>
 <body>
 	<div class="g-head">
 	    <nav class="navbar navbar-default">
-	        <a class="navbar-brand" href="#"><img src="../images/global.logo.png"/>Koala监控系统</a>
+	        <a class="navbar-brand" href="#"><img src="<c:url value='images/global.logo.png'/>"/>Koala监控系统</a>
 	        <div class="collapse navbar-collapse navbar-ex1-collapse">
 	            <div class="btn-group navbar-right">
 	                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -46,22 +47,22 @@
 	    <div class="col-lg-2 g-sidec">
 	        <ul class="nav nav-stacked first-level-menu">
 	            <li>
-                	<a data-toggle="collapse" href="#businessSupport"><i class="glyphicon glyphicon-bookmark"></i>&nbsp;监控数据&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
-	                <ul id="businessSupport" class="second-level-menu">
+                	<a data-toggle="collapse" href="#monitorData"><i class="glyphicon glyphicon-bookmark"></i>&nbsp;监控数据&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+	                <ul id="monitorData" class="second-level-menu in">
 	                    <li class="submenu" data-role="openTab" data-target="pages/monitor/http-monitor.html" data-title="HTTP监控" data-mark="httpMonitor"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;HTTP监控</a></li>
                         <li class="submenu" data-role="openTab" data-target="pages/monitor/method-monitor.html" data-title="方法监控" data-mark="methodMonitor"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;方法监控</a></li>
                         <li class="submenu" data-role="openTab" data-target="pages/monitor/jdbc-monitor.html" data-title="数据库监控" data-mark="databaseMonitor"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;数据库监控</a></li>
 	                </ul>
 	            </li>
 	            <li>
-                <a data-toggle="collapse" href="#userRight"><i class="glyphicon glyphicon-list"></i>&nbsp;监控节点&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
-	                <ul id="userRight" class="second-level-menu">
+                <a data-toggle="collapse" href="#monitorNode"><i class="glyphicon glyphicon-list"></i>&nbsp;监控节点&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+	                <ul id="monitorNode" class="second-level-menu in">
                          <li class="submenu" data-role="openTab" data-target="pages/monitor/monitor-node-list.html" data-title="监控节点列表" data-mark="monitorNodeList"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;监控节点列表</a></li>
 	                </ul>
 	            </li>
 	             <li>
-                    <a data-toggle="collapse" href="#organisation"><i class="glyphicon glyphicon-tasks"></i>&nbsp;监控服务&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
-	                <ul id="organisation" class="second-level-menu">
+                    <a data-toggle="collapse" href="#monitorService"><i class="glyphicon glyphicon-tasks"></i>&nbsp;监控服务&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+	                <ul id="monitorService" class="second-level-menu in">
 	                    <li class="submenu" data-role="openTab" data-target="pages/monitor/schedule-list.html" data-title="定时任务" data-mark="scheduleList" ><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;定时任务</a></li>
 	                </ul>
 	            </li>

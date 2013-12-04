@@ -24,7 +24,7 @@ $(function(){
 		var headerHeight = $('.g-head').outerHeight();
 		var windowHeight = $window.height();
 		var bodyHeight = $(document).height();
-        if(bodyHeight >  windowHeight){
+		if(bodyHeight >  windowHeight){
 			windowHeight =  bodyHeight;
 		}
 		var footHeight = $('#footer').outerHeight();
@@ -43,18 +43,22 @@ $(function(){
 				changeHeight();
 			});
 	};
-    loadContent($('#home'), 'pages/welcome.html');
+	loadContent($('#home'), 'pages/welcome.html');	
 	/*
 	* 菜单收缩样式变化
 	 */
-	$('.first-level-menu').find('[data-toggle="collapse"]').on('click', function(){
-		var $this = $(this);
-		if($this.hasClass('collapsed')){
-			$this.find('i:last').removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-left');
-		}else{
-			$this.find('i:last').removeClass('glyphicon-chevron-left').addClass('glyphicon-chevron-right');
-		}
-	})
+    var firstLevelMenu = $('.first-level-menu');
+    firstLevelMenu.find('[data-toggle="collapse"]').each(function(){
+        var $this = $(this);
+        firstLevelMenu.find($(this).attr('href')).on({
+            'shown.bs.collapse': function(e){
+                $this.find('i:last').addClass('glyphicon-chevron-left').removeClass('glyphicon-chevron-right');
+            },
+            'hidden.bs.collapse': function(e){
+                $this.find('i:last').removeClass('glyphicon-chevron-left').addClass('glyphicon-chevron-right');
+            }
+        })
+    });
 	/*
 	 *菜单点击事件
 	 */

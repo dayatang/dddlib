@@ -26,7 +26,7 @@ public class ServiceMonitorController {
 	public Map<String, Object> queryAllSchedulers(){
 		Map<String, Object> dataMap = new HashMap<String,Object>();
 		List<ScheduleConfVo> schedulers = serviceMonitorApplication.queryAllSchedulers();
-		dataMap.put("data", schedulers);
+		dataMap.put("Rows", schedulers);
 		return dataMap;
 	}
 	
@@ -45,9 +45,9 @@ public class ServiceMonitorController {
 				serviceMonitorApplication.updateScheduleConf(vo);
 			}else if(StringUtils.isNotBlank(currentStat)){
 				if(currentStat.equals("true")){
-					vo.setActive(false);
+					vo.setActiveAsString("false");
 				}else{
-					vo.setActive(true);
+					vo.setActiveAsString("true");
 				}
 				serviceMonitorApplication.updateScheduleConf(vo);
 			}
