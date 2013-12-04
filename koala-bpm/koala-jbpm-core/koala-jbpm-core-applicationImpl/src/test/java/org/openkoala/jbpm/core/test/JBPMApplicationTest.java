@@ -72,11 +72,18 @@ public class JBPMApplicationTest {
 							.getPath()));
 
 			getJBPMApplication().addProcess(packageName, processId, version,
-					data, png, true);
+					data, convertToByteArray(png), true);
 
 			init = true;
 		}
-
+	}
+	
+	private static Byte[] convertToByteArray(byte[] pngs){
+		Byte[] pngByte = new Byte[pngs.length];
+		for(int i=0; i<pngs.length; i++){
+			pngByte[i] = Byte.valueOf(pngs[i]);
+		}
+		return pngByte;
 	}
 
 	/**
@@ -110,7 +117,7 @@ public class JBPMApplicationTest {
 	public void testQueryTodoList() {
 		Map<String,Object> values = new HashMap<String,Object>();
 		values.put("creater", "abc");
-		long i = getJBPMApplication().startProcess("defaultPackage.Trade", "aaa", XmlParseUtil.paramsToXml(values));
+		getJBPMApplication().startProcess("defaultPackage.Trade", "aaa", XmlParseUtil.paramsToXml(values));
 		List<TaskVO> tasks = getJBPMApplication().queryTodoList("abc");
 		Assert.assertTrue(tasks.size() > 0);
 		//getJBPMApplication().removeProcessInstance(i);
