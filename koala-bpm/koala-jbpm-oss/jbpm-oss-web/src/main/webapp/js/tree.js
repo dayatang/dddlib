@@ -50,7 +50,7 @@
 			var rightMenus = self.options.rightMenus;
 			self.$element.find('.tree-folder-header,.tree-item').on('contextmenu', function(e){
 				self.$element.find('[data-id="rightMenu"]').remove();
-				var rightMenuContainer = $('<ul class="right-menu" data-id="rightMenu"></ul>');
+				var rightMenuContainer = $('<ul class="dropdown-menu" data-id="rightMenu"></ul>');
 				var $this = $(this).click();
 			    var data = null;
 				if($this.hasClass('tree-item')){
@@ -64,18 +64,18 @@
 					if(data.organizationType != 'company' && rightMenu.action == 'addCompany'){
 						continue;
 					}
-					var $li = $('<li>'+rightMenu.title+'</li>').off('click');
+					var $li = $('<li><a>'+rightMenu.title+'</a></li>').off('click');
 					$li.appendTo(rightMenuContainer)
 						.on('click', {action:rightMenu.action}, function(event){
 							 self.$element.trigger(event.data.action, data);
 							 $(this).parent().remove();
 						})
 				}
-				rightMenuContainer.css({left: e.pageX, top: e.pageY})
+				rightMenuContainer.show().css({left: e.pageX, top: e.pageY})
 					.on('mouseleave', function(){
 						$(this).remove();
 					})
-					.appendTo(self.$element);
+					.appendTo($('body'));
 			})
 		},
 		populate: function (data, $el) {
