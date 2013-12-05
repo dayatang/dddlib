@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.jbpm.application.JBPMApplication;
 import org.openkoala.jbpm.application.vo.HistoryLogVo;
@@ -19,6 +20,7 @@ import org.springframework.context.ApplicationContext;
  * 该测试用例需要预先启动JBPM服务端
  * 
  */
+@Ignore
 public class JbpmWsRestClientTest {
 	
 	private static JBPMApplication application;
