@@ -38,7 +38,8 @@ public class BusinessLogEngineTest {
 
         BusinessLogContextQueryExecutor executor = mock(BusinessLogContextQueryExecutor.class);
 
-        BusinessLogEngine engine = new BusinessLogEngine(config, render, executor, createInitContext());
+        BusinessLogEngine engine =
+                new BusinessLogEngine(config, render, executor, createInitContext());
 
 
         when(configAdapter.findConfigByBusinessOperator(businessOperator)).thenReturn(configAdapter);

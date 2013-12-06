@@ -1,6 +1,7 @@
 package org.openkoala.businesslog;
 
 import org.openkoala.businesslog.config.BusinessLogConfig;
+import org.openkoala.businesslog.config.BusinessLogContextQuery;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +47,11 @@ public class BusinessLogEngine {
         if (null == initContext) {
             initContext = new HashMap<String, Object>();
         }
-        return queryExecutor.startQuery(initContext, config.getQueries());
+        if (null == config.getQueries()) {
+            return initContext;
+        }
+        BusinessLogContextQuery[] queries = new BusinessLogContextQuery[config.getQueries().size()];
+        return queryExecutor.startQuery(initContext, queries);
     }
 
 }

@@ -13,7 +13,7 @@ import java.util.Map;
  * Date: 12/4/13
  * Time: 11:35 AM
  */
-public class BusinessLogXmlConfigDefaultContextQuery implements BusinessLogContextQuery {
+public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
 
     private String contextKey;
 
@@ -23,11 +23,13 @@ public class BusinessLogXmlConfigDefaultContextQuery implements BusinessLogConte
 
     private List<String> args;
 
-    public BusinessLogXmlConfigDefaultContextQuery() {
+    public BusinessLogDefaultContextQuery() {
     }
 
     @Override
     public Map<String, Object> queryInContext(Map<String, Object> aContext) {
+
+
         return null;
     }
 

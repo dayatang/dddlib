@@ -13,5 +13,5 @@ import java.util.Map;
  */
 public interface BusinessLogContextQueryExecutor {
 
-    Map<String, Object> startQuery(Map<String, Object> aContext, List<BusinessLogContextQuery> queries);
+    Map<String, Object> startQuery(Map<String, Object> aContext, BusinessLogContextQuery... queries);
 }

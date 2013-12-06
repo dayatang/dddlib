@@ -1,7 +1,7 @@
 package org.openkoala.businesslog.utils;
 
 import org.openkoala.businesslog.config.BusinessLogContextQuery;
-import org.openkoala.businesslog.impl.BusinessLogXmlConfigDefaultContextQuery;
+import org.openkoala.businesslog.impl.BusinessLogDefaultContextQuery;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -183,7 +183,7 @@ public class BusinessLogConfigXmlParser {
     }
 
 
-    private BusinessLogXmlConfigDefaultContextQuery createQueryBy(Node queryNode) {
+    private BusinessLogDefaultContextQuery createQueryBy(Node queryNode) {
         String contextKey = null;
 
         String bean = null;
@@ -213,10 +213,8 @@ public class BusinessLogConfigXmlParser {
             if (TARGET_METHOD_ARGS_NODE_NAME.equals(node.getNodeName())) {
                 args = getBeanMethodArgsFrom(node.getChildNodes());
             }
-
-
         }
-        BusinessLogXmlConfigDefaultContextQuery query = new BusinessLogXmlConfigDefaultContextQuery();
+        BusinessLogDefaultContextQuery query = new BusinessLogDefaultContextQuery();
         query.setContextKey(contextKey);
         query.setBean(bean);
         query.setMethod(targetMethod);

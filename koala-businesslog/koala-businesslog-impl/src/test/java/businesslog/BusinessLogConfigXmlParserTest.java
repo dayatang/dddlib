@@ -1,8 +1,7 @@
 package businesslog;
 
 import org.junit.Test;
-import org.openkoala.businesslog.impl.BusinessLogXmlConfigDefaultAdapter;
-import org.openkoala.businesslog.impl.BusinessLogXmlConfigDefaultContextQuery;
+import org.openkoala.businesslog.impl.BusinessLogDefaultContextQuery;
 import org.openkoala.businesslog.utils.BusinessLogConfigXmlParser;
 
 /**
@@ -28,7 +27,7 @@ public class BusinessLogConfigXmlParserTest {
 
         assert parser.findQueriesFrom(operator).size() == 2;
 
-        assert parser.findQueriesFrom(operator).get(0) instanceof BusinessLogXmlConfigDefaultContextQuery;
+        assert parser.findQueriesFrom(operator).get(0) instanceof BusinessLogDefaultContextQuery;
 
     }
 }
