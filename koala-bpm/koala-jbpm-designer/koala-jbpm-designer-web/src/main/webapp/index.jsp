@@ -4,12 +4,11 @@
 <%@ page import="java.util.Date"%>
 <%
     Long time = new Date().getTime();
-    String gunvorServerUrl = org.openkoala.koala.jbpm.util.EnvConfigHelper.getInstance().getProperty("gunvor.server.url");
 %>
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
-        <title>Koala通用查询</title>
+        <title>Koala流程设计系统</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
@@ -27,7 +26,7 @@
                            <div class="btn-group navbar-right">
                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                    <i class="glyphicon glyphicon-user"></i>
-                                   <span>&nbsp;Admin</span>
+                                   <span>&nbsp;<ss3:authentication property="principal.username" /></span>
                                    <span class="caret"></span>
                                </button>
                                <ul class="dropdown-menu" id="userManager">

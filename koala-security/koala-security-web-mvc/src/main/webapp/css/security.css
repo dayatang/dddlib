@@ -5,7 +5,17 @@
 
 
 .menu-icon {
-    height: 20px;
+    font-size: 35px;
+    margin: 10px;
+}
+.menu-icon:hover {
+    cursor: pointer;
+    background-color: #FDFDFD;
+    color: #428BCA;
+}
+
+.form-group .menu-icon {
     position: relative;
-    top: -2px;
+    top: 6px;
+    font-size: 25px;
 }
