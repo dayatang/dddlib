@@ -184,7 +184,7 @@ public class JbpmAction {
 			e.printStackTrace();
 		}*/
 		this.processes = new GunvorApplicationImpl().getJBPMApplication().getProcesses();
-		return "METHOD";
+		return "json2";
 	}
 
 	public List<String> getNames() {
@@ -234,7 +234,13 @@ public class JbpmAction {
 	public void setErrors(String errors) {
 		this.errors = errors;
 	}
-	
-	
+
+	public String getGunvorServerUrl() {
+		return gunvorServerUrl;
+	}
+
+	public void setGunvorServerUrl(String gunvorServerUrl) {
+		this.gunvorServerUrl = gunvorServerUrl;
+	}
 	
 }

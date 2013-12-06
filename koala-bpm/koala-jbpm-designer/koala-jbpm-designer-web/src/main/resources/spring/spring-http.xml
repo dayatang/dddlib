@@ -7,7 +7,7 @@
 			<!-- 设置登录页面为login.jsp且不拦截页面login.jsp后面的*防止带了参数 -->
 	<s:http auto-config="true" access-denied-page="/pages/common/denied.jsp">
 		<s:form-login login-page="/login.action"
-			default-target-url="/pages/jbpm/jbpm.jsp" 
+			default-target-url="/index.jsp" 
 			authentication-failure-url="/login.action?login_error=1" />
 		<s:intercept-url pattern="/login.action*" filters="none" />
 		<s:intercept-url pattern="/denied.action*" filters="none" />

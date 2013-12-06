@@ -1,14 +1,17 @@
 
 package org.openkoala.koala.jbpm.designer.jbpmDesigner.web.action.core;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 import com.opensymphony.xwork2.ActionSupport;
+
 import javax.inject.Inject;
 
 import org.openkoala.koala.jbpm.designer.application.core.BpmDesignerApplication;
 import org.openkoala.koala.jbpm.designer.application.vo.PublishURLVO;
-
 
 import com.dayatang.querychannel.support.Page;
 
@@ -23,6 +26,8 @@ public class PublishURLAction extends ActionSupport {
 	
 	private Map<String, Object> dataMap = new HashMap<String, Object>();
 		
+	private List<Long> urlIds;
+	
 	@Inject
 	private BpmDesignerApplication publishURLApplication;
 	
@@ -70,7 +75,12 @@ public class PublishURLAction extends ActionSupport {
 	
 	public String delete() {
 		try {
-			publishURLApplication.removePublishURL(publishURLVO.getId());
+			int size = urlIds.size();
+			Long[] ids = new Long[size];
+			for(int i=0; i<size; i++){
+				ids[i] = urlIds.get(i);
+			}
+			publishURLApplication.removePublishURL(ids);
 			dataMap.put("result", "success");
 		} catch (Exception e) {
 		    e.printStackTrace();
@@ -121,4 +131,14 @@ public class PublishURLAction extends ActionSupport {
 	public void setDataMap(Map<String, Object> dataMap) {
 		this.dataMap = dataMap;
 	}
+
+	public List<Long> getUrlIds() {
+		return urlIds;
+	}
+
+	public void setUrlIds(List<Long> urlIds) {
+		this.urlIds = urlIds;
+	}
+	
+	
 }

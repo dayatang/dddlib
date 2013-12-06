@@ -1,15 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/pages/common/header.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>Koala流程设计平台</title>
-<link href="css.css" rel="stylesheet" type="text/css" />
+    <link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
+    <link href="<c:url value='/css/koala.css' />" rel="stylesheet">
+    <script type="text/javascript" src="<c:url value='/lib/jquery-1.8.3.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
 <style type="text/css">
 @charset "UTF-8";
 /* CSS Document */
-* .* {
+*   .* {
 	margin: 0;
 	padding: 0;
 }
@@ -69,105 +75,123 @@ body {
 
 .login_con_R {
 	float: left;
-	width: 390px;
+	width: 376px;
 	height: 332px;
 	border: 1px solid #dce7f4;
 }
 
-.login_con_R h3 {
-	background: #f0f3f6;
+.login_con_R h4 {
+	background: #F2F2F2;
 	line-height: 36px;
-	height: 36px;
 	width: 376px;
-	font: 18px;
-	color: #666;
-	font-weight: 100;
 	padding: 0px 6px;
 	border: 1px solid #fff;
 	border-bottom: 1px solid #d4d4d4;
 	margin-top: 0px;
 }
-
-.login_con_R ul {
-	margin-top: 20px;
-	margin-left: 20px;
+.login_con_R  form {
+	padding-top: 10%;
+	padding-left: 7%;
+	padding-right: 7%;
 }
-
-.login_con_R li {
-	list-style-type: none;
-	line-height: 30px;
+.login_con_R  .form-group {
+	margin-bottom: 10%;
 }
-
-.login_con_R li input {
-	height: 30px;
-	line-height: 30px;
-	border: 1px solid #d2d2d2;
-	margin-top: 12px;
-	width: 192px;
+.login_con_R .input-group {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+ }
+.btn-login {
+	width: 100%;
+	margin-left: auto;
+    margin-right: auto;
+	margin-top: 8%;
 }
-
-.login_bnt {
-	width: 211px;
-	height: 42px;
-	background: url(images/background/loginbnt.gif) no-repeat;
-	margin: 30px auto;
-	cursor: pointer;
-}
-
 .login_footer {
 	clear: both;
-	line-height: 40px;
-	color: #999;
-	margin: 20px auto;
-	font-size: 12px;
+	margin: 8% auto 0;
 	width: 300px;
+	color: inherit;
+    font-size: 21px;
+    font-weight: 200;
+    line-height: 2.14286;
 }
 </style>
 <script type="text/javascript">
-
-function login(){
-	$('#loginFormId').submit();
-}
-
-/**
- * 按回车键时，触发登录按钮
- */
-function keyDown(e){
-	//这样写是为了兼容FireFox和IE，因为IE的onkeydown在FF中不起作用
-	var ev =window.event||e; 
- 	//按回车键
-  	if (ev.keyCode==13) {
-   		ev.returnValue=false;
-   		ev.cancel = true;
-   		var sub =  document.getElementById("btnSubmit");
-  		sub.click();
-  	} 
-}
-
+	function login() {
+		$('#loginFormId').submit();
+	}
+	
+	function refreshCode(){
+		
+		$('#checkCode').attr('src',"jcaptcha.jpg?time="+new Date().getTime());
+	}
 </script>
 </head>
 <body>
 	<div class="head"></div>
 	<div class="logo">
 		<img src="images/background/logo.gif" />
-		<div>Koala流程设计平台</div>
+		<div>Koala系统</div>
 	</div>
 	<div class="login_con">
 		<div class="login_con_L">
 			<img src="images/background/login_img.gif" />
 		</div>
+        <c:if test="${param.login_error == '1' }">
+            <script>
+            $('body').message({
+            type: 'error',
+            content: '用户名或密码错误!'
+            });
+            </script>
+        </c:if>
 		<div class="login_con_R">
-			<FORM id=loginFormId method=post action="j_spring_security_check">
-				<h3>登录</h3>
-				<ul>
-					<li>用户名：<input type="text" name="j_username" id="j_username"/></li>
-					<li>密&nbsp;&nbsp;码：<input type="password" name="j_password" id="j_password"   onkeydown="keyDown(event)"/></li>
-				</ul>
-				<div class="login_bnt" id="btnSubmit" onclick="javascript:login()"></div>
+			<h4>登录</h4>
+			<FORM id="loginFormId" method=post action="j_spring_security_check" onsubmit="return dologin();" class="form-horizontal">
+				<div class="form-group input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                    <input type="text" class="form-control" placeholder="用户名"  name="j_username" id="j_username">
+				</div>
+                <div class="form-group input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                    <input type="password" name="j_password" id="j_password" class="form-control" placeholder="密码"/>
+                </div>
+				<div class="form-group input-group">
+					<button class="btn btn-primary btn-login" type="button">登陆</button>
+				</div>
 			</FORM>
 		</div>
 	</div>
 	<div class="login_footer">Koala 版权信息 2013</div>
+	<script>
+    var btnLogin = $('.btn-login');
+    var form = $('#loginFormId');
+    $(function(){
+        btnLogin.keydown(function(e) {
+            if (e.keyCode == 13) {
+                form.submit();
+            }
+        });
+        btnLogin.on('click',function() {
+                form.submit();
+        });
+    });
+    var dologin = function() {
+        var userNameElement = $("#j_username");
+        var passwordElement = $("#j_password");
+        var username = userNameElement.val();
+        var password = passwordElement.val();
+        if (!Validation.notNull($('body'), userNameElement, username, '用户名不能为空')) {
+            return false;
+        }
+        if (!Validation.notNull($('body'), passwordElement, password, '密码不能为空')) {
+            return false;
+        }
+        return true;
+    }
+	</script>
 </body>
 </html>
 </html>

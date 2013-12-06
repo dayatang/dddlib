@@ -1,157 +1,80 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-	<title>欢迎使用Koala</title>
-<%@ include file="/pages/common/header.jsp" %>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/auth-index.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/auth/changepassword.js"></script>
-<script type="text/javascript">
-var tab = null;
-var accordion = null;
-//tabid计数器，保证tabid不会重复
-var tabidcounter = 0;
-$(function() {
-	// 布局
-	$("#main-content").ligerLayout({
-		leftWidth : 190,
-		height : '100%',
-		heightDiff : -34,
-		space : 4,
-		onHeightChanged : layoutHeiheightChangeEvent
-	});
-
-	var height = $(".l-layout-center").height();
-	// Tab
-	$("#framecenter").ligerTab({
-		height : height
-	});
-	// 面板
-	$("#accordion").ligerAccordion({
-		height : height - 24,
-		speed : null
-	});
-
-	$(".l-link").hover(function() {
-		$(this).addClass("l-link-over");
-	}, function() {
-		$(this).removeClass("l-link-over");
-	});
-
-	tab = $("#framecenter").ligerGetTabManager();
-	accordion = $("#accordion").ligerGetAccordionManager();
-	//加载导航菜单
-	loadLeftMenu();
-	
-	window['f_addTab'] = addTabEvent;
-
-});
-
-function loadLeftMenu() {
-	 var $leftmenu = $("#leftmenu");
-	 //加载栏目
-     $.getJSON('${pageContext.request.contextPath}/auth-Menu-findAllMenuByUser.action', function (menus)
-     {
-         $(menus.data).each(function (i, menu)
-         {
-        	 $leftmenu.append('<div id="main_'+menu.id+'" title="' + menu.name + '" class="l-scroll"><ul id="sub_'+menu.id+'"></ul></div>');
-        	 //加载栏目菜单
-        	 $.getJSON('${pageContext.request.contextPath}/auth-Menu-findAllSubMenuByParent.action?resVO.id=' + menu.id, function(submenu) {
-             	var tree = $("#sub_"+menu.id).ligerTree({
-             		data:submenu.data,
-             		checkbox:false
-             	});
-             	
-             	tree.bind("select", function(node) {
-             		var url = node.data.identifier;
-             		var text = node.data.text;
-             		var tabid = $(node.target).attr("tabid");
-             		if (!url) {
-             			return;
-             		}
-             		if (node.data.menuType == "2") {
-             			return;
-             		}
-                if (!tabid) {
-                    tabidcounter++;
-                    tabid = "tabid" + tabidcounter;
-                    $(node.target).attr("tabid", tabid);
-                }
-                addTabEvent(tabid, text, url);
-             	});
-             });//加载栏目菜单end
-         });
-         
-         //Accordion
-         accordion = $leftmenu.ligerAccordion({ height: $(".l-layout-center").height() - 24, speed: null });
-         $("#pageloading").hide();
-     });//加载栏目end 
-}
-
-function layoutHeiheightChangeEvent(options) {
-	if (tab)
-		tab.addHeight(options.diff);
-	if (accordion && options.middleHeight - 24 > 0)
-		accordion.setHeight(options.middleHeight - 24);
-}
-
-function addTabEvent(tabid, text, url) {
-	tab.addTabItem({
-		tabid : tabid,
-		text : text,
-		url : url
-	});
-	tab.reload(tabid);
-}
-</script>
-</head>
-<body style="padding:0px;background:#EAEEF5;">  
-<div id="pageloading"></div>  
-<div id="topmenu" class="l-topmenu">
-        <div class="l-topmenu-logo">Koala</div>
-        <div class="l-topmenu-welcome"> 
-            <span class="l-topmenu-username">[<ss3:authentication property="principal.username" />]</span>欢迎您  &nbsp; 
-            [<a href="javascript:Koala.changepassword()">修改密码</a>] &nbsp; 
-             [<a href="${pageContext.request.contextPath}/j_spring_security_logout">切换用户</a>]
-            [<a href="${pageContext.request.contextPath}/j_spring_security_logout">退出</a>]
-        </div>
-  </div>
-  
-  <div id="main-content" style="width:99.2%; margin:0 auto; margin-top:4px; "> 
-        <div position="left"  title="主要菜单" id="leftmenu">
-        </div>
-        <div position="center" id="framecenter"> 
-            <div tabid="home" title="我的主页" style="height:300px" >
-                <iframe frameborder="0" name="home" id="home" src="${pageContext.request.contextPath}/pages/common/welcome.jsp"></iframe>
-            </div> 
-        </div> 
-        
-    </div>
-    <div  style="height:32px; line-height:32px; text-align:center;">
-            Copyright © 2011-2012 koala
-    </div>
-    <div style="display:none"></div>
-    <form id="changepasswordPanel" style="display:none;">
-		<table cellpadding="0" cellspacing="0" class="form2column" >
-			<tr>
-				<td class="label">旧密码:</td>
-				<td class="content">
-					<input name="oldPassword" type="password" id="oldPassword" class="input-common" validate="{maxlength: 16, required: true}" />
-				</td>
-			</tr>
-			<tr>
-				<td class="label">新密码:</td>
-				<td class="content">
-					<input name="newPassword" type="password" id="newPassword" class="input-common" validate="{maxlength: 16, required: true}" />
-				</td>
-			</tr>
-			<tr>
-				<td class="label">确认密码:</td>
-				<td class="content">
-					<input name="confirmPassword" type="password" id="confirmPassword" class="input-common" validate="{maxlength: 16, required: true, equalTo: '#newPassword', messages: { required: '请输入密码', equalTo: '两次密码输入不一致'}}" />
-				</td>
-			</tr>
-		</table>
-	</form>
-</body>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.Date"%>
+<%
+    Long time = new Date().getTime();
+    String gunvorServerUrl = org.openkoala.koala.jbpm.util.EnvConfigHelper.getInstance().getProperty("gunvor.server.url");
+%>
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <title>Koala通用查询</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
+	    <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
+	    <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
+        <link href="<c:url value='/css/koala-tree.css' />?time=<%=time%>" rel="stylesheet">
+        <link href="<c:url value='/css/jbpmDesigner.css' />?time=<%=time%>" rel="stylesheet">
+	    <link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />"   rel="stylesheet">
+    </head>
+  	<body>
+            <div class="g-head">
+                <nav class="navbar navbar-default">
+                     <a class="navbar-brand" href="http://openkoala.org/display/koala/Home" target="_blank"><img src="<c:url value='images/global.logo.png'/>"/>Koala通用查询</a>
+                     <div class="collapse navbar-collapse navbar-ex1-collapse">
+                           <div class="btn-group navbar-right">
+                               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                   <i class="glyphicon glyphicon-user"></i>
+                                   <span>&nbsp;Admin</span>
+                                   <span class="caret"></span>
+                               </button>
+                               <ul class="dropdown-menu" id="userManager">
+                                   <li data-target="modifyPwd"><a href="#">修改密码</a></li>
+                                   <li data-target="switchUser"><a href="#">切换用户</a></li>
+                                   <li data-target="loginOut"><a href="#">注销</a></li>
+                               </ul>
+                           </div>
+                       </div>
+                </nav>
+            </div>
+		    <div class="g-body">
+			      <div class="col-lg-2 g-sidec">
+                    <ul class="nav nav-stacked first-level-menu">
+                        <li class="active">
+                            <a data-toggle="collapse" href="#bpmManagement"><i class="glyphicon glyphicon-list"></i>&nbsp;流程管理&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <ul id="bpmManagement" class="second-level-menu in">
+                                <div class="tree" id="menuTree"></div>
+                            </ul>
+                        </li>
+                        <li>
+                            <a data-toggle="collapse" href="#publishManagement"><i class="glyphicon glyphicon-bookmark"></i>&nbsp;发布管理&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+                            <ul id="publishManagement" class="second-level-menu in">
+                                <li class="submenu" data-role="openTab" data-target="pages/jbpm/publish-url-list.html" data-title="流程引擎管理" data-mark="publishURLList"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;流程引擎管理</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+			    </div>
+			    <div class="col-lg-10 g-mainc container">
+			        <ul class="nav nav-tabs" id="navTabs">
+			            <li class="active"><a href="#home" data-toggle="tab">主页面</a></li>
+			        </ul>
+			        <div class="tab-content" id="tabContent">
+			            <div id="home" class="tab-pane active"></div>
+			        </div>
+			    </div>
+		    </div>
+		    <div id="footer" class="g-foot">
+		        <span>Copyright © 2011-2013 Koala</span>
+		    </div>
+    <script type="text/javascript" src="<c:url value='/lib/jquery-1.8.3.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />?time=<%=time%>" ></script>
+    <script type="text/javascript" src="<c:url value='/lib/koala-tree.js' />?time=<%=time%>" ></script>
+    <script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/js/main.js' />?time=<%=time%>" ></script>
+    <script type="text/javascript" src="<c:url value='/js/jbpmDesigner/jbpmDesigner.js' />?time=<%=time%>" ></script>
+    </body>
 </html>
