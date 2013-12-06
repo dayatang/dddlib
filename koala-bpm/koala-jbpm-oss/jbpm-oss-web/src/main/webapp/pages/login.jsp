@@ -4,12 +4,14 @@
 <html>
 <head>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<title>欢迎使用Koala</title>
-<link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
-<script type="text/javascript" src="<c:url value='/lib/jquery-1.8.3.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />"></script>	
+<title>Koala流程设计平台</title>
+    <link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
+    <link href="<c:url value='/css/koala.css' />" rel="stylesheet">
+    <script type="text/javascript" src="<c:url value='/lib/jquery-1.8.3.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
 <style type="text/css">
 @charset "UTF-8";
 /* CSS Document */
@@ -125,7 +127,6 @@ body {
 		
 		$('#checkCode').attr('src',"jcaptcha.jpg?time="+new Date().getTime());
 	}
-	
 </script>
 </head>
 <body>
@@ -138,17 +139,17 @@ body {
 		<div class="login_con_L">
 			<img src="images/background/login_img.gif" />
 		</div>
+        <c:if test="${param.login_error == '1' }">
+            <script>
+            $('body').message({
+            type: 'error',
+            content: '用户名或密码错误!'
+            });
+            </script>
+        </c:if>
 		<div class="login_con_R">
 			<h4>登录</h4>
-			<c:if test="${param.login_error == '1' }">
-				     	<script>
-				     		$('body').message({
-								type: 'error',
-								content: '用户名或密码错误!'
-							});
-				     	</script>
-			</c:if>
-			<FORM id=loginFormId method=post action="j_spring_security_check" class="form-horizontal">
+			<FORM id="loginFormId" method=post action="j_spring_security_check" onsubmit="return dologin();" class="form-horizontal">
 				<div class="form-group input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                     <input type="text" class="form-control" placeholder="用户名"  name="j_username" id="j_username">
@@ -158,12 +159,39 @@ body {
                     <input type="password" name="j_password" id="j_password" class="form-control" placeholder="密码"/>
                 </div>
 				<div class="form-group input-group">
-					<button class="btn btn-primary btn-login" onclick="javascript:login()">登陆</button>
+					<button class="btn btn-primary btn-login" type="button">登陆</button>
 				</div>
 			</FORM>
 		</div>
 	</div>
 	<div class="login_footer">Koala 版权信息 2013</div>
+	<script>
+    var btnLogin = $('.btn-login');
+    var form = $('#loginFormId');
+    $(function(){
+        btnLogin.keydown(function(e) {
+            if (e.keyCode == 13) {
+                form.submit();
+            }
+        });
+        btnLogin.on('click',function() {
+                form.submit();
+        });
+    });
+    var dologin = function() {
+        var userNameElement = $("#j_username");
+        var passwordElement = $("#j_password");
+        var username = userNameElement.val();
+        var password = passwordElement.val();
+        if (!Validation.notNull($('body'), userNameElement, username, '用户名不能为空')) {
+            return false;
+        }
+        if (!Validation.notNull($('body'), passwordElement, password, '密码不能为空')) {
+            return false;
+        }
+        return true;
+    }
+	</script>
 </body>
 </html>
 </html>
