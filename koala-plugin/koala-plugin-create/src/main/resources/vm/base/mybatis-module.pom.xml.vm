@@ -344,10 +344,10 @@
 		</dependency>
 	#end
 	
-	#if ($function == "utils")
+	#if ($function == "org.openkoala.businesslog.utils")
 		<dependency>
 			<groupId>com.dayatang.commons</groupId>
-			<artifactId>dayatang-commons-utils</artifactId>
+			<artifactId>dayatang-commons-org.openkoala.businesslog.utils</artifactId>
 		</dependency>
 	#end
 	

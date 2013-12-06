@@ -1,4 +1,4 @@
-package org.openkoala.utils.sample;
+package org.openkoala.org.openkoala.businesslog.utils.sample;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -8,7 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dayatang.utils.IntRange;
+import com.dayatang.org.openkoala.businesslog.utils.IntRange;
 
 public class IntRangeTest {
 	

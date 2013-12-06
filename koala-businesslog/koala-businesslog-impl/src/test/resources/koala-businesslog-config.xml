@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<businessLogConfigs>
+    <preTemplate>${user}:${ip}:${time!Date}</preTemplate>
+    <businessLogConfig>
+        <!--向项目中的合同，添加一张发票-->
+        <method>String business.ContractApplication.addInvoice(String,long,long)</method>
+        <template><![CDATA[合同添加入项目${project.name}]]></template>
+        <queries>
+            <query key="project">
+                <target>projectApplication</target>
+                <method>findByProjectName</method>
+                <args>
+                    <arg ref="param0"/>
+                </args>
+            </query>
+            <query key="contract">
+                <target>business.ContractApplicationImpl</target>
+                <method>findByContractIdAndProject(String,business.Project)</method>
+                <args>
+                    <arg>xx</arg>
+                    <arg>${project}</arg>
+                </args>
+            </query>
+        </queries>
+    </businessLogConfig>
+    <businessLogConfig>
+        <method>String business.ContractApplication.addContract(long)</method>
+        <template>
+            <![CDATA[添加合同${methodReturn}]]>
+        </template>
+    </businessLogConfig>
+</businessLogConfigs>

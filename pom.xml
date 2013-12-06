@@ -136,7 +136,8 @@
 		<module>koala-gqc</module>
 		<module>koala-monitor</module>
 		<module>koala-organisation</module>
-	</modules>
+        <module>koala-businesslog</module>
+    </modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -300,7 +301,7 @@
 			<!-- dddlib -->
 			<dependency>
 				<groupId>com.dayatang.commons</groupId>
-				<artifactId>dayatang-commons-utils</artifactId>
+				<artifactId>dayatang-commons-org.openkoala.businesslog.utils</artifactId>
 				<version>${dayatang.commons.version}</version>
 			</dependency>
 			<dependency>
