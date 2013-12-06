@@ -54,6 +54,7 @@
     	var url = $('#publishOption').val();
     	
     	var params  = "packageName="+packageName+"&bpmnName="+jbpmName+"&wsdl="+encodeURIComponent(url);
+    	
     	$.ajax({
     		  dataType: "json",
     		  type:"post",
