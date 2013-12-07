@@ -20,11 +20,11 @@ public class BusinessLogXmlConfigDefaultAdapter extends AbstractBusinessLogConfi
 
         BusinessLogConfigXmlParser parser = BusinessLogConfigXmlParser.parsing(getClass().getClassLoader().getResource(XML_CONFIG_FILE_NAME).getFile());
 
-        setPreTemplate(parser.findPreTemplate());
+        setPreTemplate(parser.getPreTemplate());
 
-        setTemplate(parser.findTemplateFrom(businessOperator));
+        setTemplate(parser.getTemplateFrom(businessOperator));
 
-        setQueries(parser.findQueriesFrom(businessOperator));
+        setQueries(parser.getQueriesFrom(businessOperator));
 
         return this;
     }

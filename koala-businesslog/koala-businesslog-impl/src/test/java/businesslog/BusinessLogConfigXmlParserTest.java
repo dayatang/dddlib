@@ -19,15 +19,35 @@ public class BusinessLogConfigXmlParserTest {
 
         BusinessLogConfigXmlParser parser = BusinessLogConfigXmlParser.parsing(xmlconfigPath);
 
-        assert "${user}:${ip}:${time!Date}".equals(parser.findPreTemplate());
+        assert "${user}:${ip}:${time!Date}".equals(parser.getPreTemplate());
 
         String operator = "String business.ContractApplication.addInvoice(String,long,long)";
 
-        assert "合同添加入项目${project.name}".equals(parser.findTemplateFrom(operator));
+        assert "合同添加入项目${project.name}".equals(parser.getTemplateFrom(operator));
 
-        assert parser.findQueriesFrom(operator).size() == 2;
+        assert parser.getQueriesFrom(operator).size() == 2;
 
-        assert parser.findQueriesFrom(operator).get(0) instanceof BusinessLogDefaultContextQuery;
+        assert parser.getQueriesFrom(operator).get(0) instanceof BusinessLogDefaultContextQuery;
+
+        BusinessLogDefaultContextQuery query = (BusinessLogDefaultContextQuery) parser.getQueriesFrom(operator).get(0);
+
+        assert "business.ContractApplication".equals(query.getTargetClass());
+        assert "projectApplication".equals(query.getTargetBeanName());
+
+        BusinessLogDefaultContextQuery query2 = (BusinessLogDefaultContextQuery) parser.getQueriesFrom(operator).get(1);
+
+        assert "business.ContractApplication".equals(query2.getTargetClass());
+        assert "".equals(query2.getTargetBeanName());
+        assert "findByContractIdAndProject(long,business.Project)".equals(query2.getMethod());
+        assert "xx".equals(query2.getArgs().get(0));
+        assert "${project}".equals(query2.getArgs().get(1));
+
+
+        String operator1 = "String business.ContractApplication.addContract(long)";
+
+        assert "添加合同${methodReturn}".equals(parser.getTemplateFrom(operator1));
+
+
 
     }
 }

@@ -47,6 +47,8 @@ public class BusinessLogConfigXmlParser {
      */
     private final static String TARGET_BEAN_NODE_NAME = "target";
 
+    private final static String TARGET_BEAN_CLASS_ATTR_NAME = "class";
+
 
     /**
      * 查询定义子节点
@@ -77,7 +79,7 @@ public class BusinessLogConfigXmlParser {
 
     private BusinessLogConfigXmlParser(Document xmlDoc) {
         this.xmlDoc = xmlDoc;
-        this.configs = findConfigs(xmlDoc);
+        this.configs = getConfigsFrom(xmlDoc);
     }
 
     public static BusinessLogConfigXmlParser parsing(String xmlConfigPath) {
@@ -100,7 +102,7 @@ public class BusinessLogConfigXmlParser {
         }
     }
 
-    public String findPreTemplate() {
+    public String getPreTemplate() {
         Element root = xmlDoc.getDocumentElement();
         NodeList rootChildren = root.getChildNodes();
         for (int i = 0; i < rootChildren.getLength(); i++) {
@@ -112,7 +114,7 @@ public class BusinessLogConfigXmlParser {
         return "";
     }
 
-    public String findTemplateFrom(String businessOperator) {
+    public String getTemplateFrom(String businessOperator) {
         Node configNode = findConfigByBusinessOperator(businessOperator);
         NodeList nodeList = configNode.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
@@ -124,7 +126,7 @@ public class BusinessLogConfigXmlParser {
         return "";
     }
 
-    public static List<Node> findConfigs(Document doc) {
+    public static List<Node> getConfigsFrom(Document doc) {
         List<Node> results = new ArrayList<Node>();
         Element root = doc.getDocumentElement();
         NodeList rootChildren = root.getChildNodes();
@@ -139,7 +141,7 @@ public class BusinessLogConfigXmlParser {
     }
 
 
-    public List<BusinessLogContextQuery> findQueriesFrom(String businessOperator) {
+    public List<BusinessLogContextQuery> getQueriesFrom(String businessOperator) {
         List<BusinessLogContextQuery> result = new ArrayList<BusinessLogContextQuery>();
         Node config = findConfigByBusinessOperator(businessOperator);
 
@@ -186,7 +188,8 @@ public class BusinessLogConfigXmlParser {
     private BusinessLogDefaultContextQuery createQueryBy(Node queryNode) {
         String contextKey = null;
 
-        String bean = null;
+        String beanName = null;
+        String beanClass = null;
         String targetMethod = "";
         List<String> args = new ArrayList<String>();
 
@@ -196,7 +199,8 @@ public class BusinessLogConfigXmlParser {
         for (int i = 0; i < children.getLength(); i++) {
             Node node = children.item(i);
             if (TARGET_BEAN_NODE_NAME.equals(node.getNodeName())) {
-                bean = node.getTextContent();
+                beanName = node.getTextContent();
+                beanClass = node.getAttributes().getNamedItem(TARGET_BEAN_CLASS_ATTR_NAME).getNodeValue();
             }
 
             if (QUERY_CONTEXT_KEY.equals(node.getNodeName())) {
@@ -216,7 +220,8 @@ public class BusinessLogConfigXmlParser {
         }
         BusinessLogDefaultContextQuery query = new BusinessLogDefaultContextQuery();
         query.setContextKey(contextKey);
-        query.setBean(bean);
+        query.setTargetBeanName(beanName);
+        query.setTargetClass(beanClass);
         query.setMethod(targetMethod);
         query.setArgs(args);
         return query;
