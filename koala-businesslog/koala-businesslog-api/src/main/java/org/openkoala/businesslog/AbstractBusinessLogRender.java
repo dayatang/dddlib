@@ -5,9 +5,9 @@ package org.openkoala.businesslog;
  * Date: 11/29/13
  * Time: 4:23 PM
  */
-public abstract class AbstractBusinessLogBuild implements BusinessLogRender {
+public abstract class AbstractBusinessLogRender implements BusinessLogRender {
 
-    protected StringBuilder builder = new StringBuilder();
+    private StringBuilder builder = new StringBuilder();
 
     public BusinessLogRender render(String log) {
         builder.append(log);
@@ -17,5 +17,9 @@ public abstract class AbstractBusinessLogBuild implements BusinessLogRender {
     @Override
     public String build() {
         return builder.toString();
+    }
+
+    public StringBuilder getBuilder() {
+        return builder;
     }
 }

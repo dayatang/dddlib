@@ -7,8 +7,8 @@
         <template><![CDATA[合同添加入项目${project.name}]]></template>
         <queries>
             <query key="project">
-                <target class="business.ContractApplication">projectApplication</target>
-                <method>findByProjectName</method>
+                <target class="business.ProjectApplication">projectApplication</target>
+                <method>findByProjectName(String)</method>
                 <args>
                     <arg>param0</arg>
                 </args>

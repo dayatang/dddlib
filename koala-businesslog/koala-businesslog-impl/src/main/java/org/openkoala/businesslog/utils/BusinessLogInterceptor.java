@@ -1,7 +1,7 @@
 package org.openkoala.businesslog.utils;
 
 import org.aspectj.lang.JoinPoint;
-import org.openkoala.businesslog.BusinessLogEngine;
+import org.openkoala.businesslog.AbstractBusinessLogRender;
 
 import javax.inject.Inject;
 import java.util.Map;
@@ -22,7 +22,7 @@ public class BusinessLogInterceptor {
     public final static String BUSINESS_METHOD_RETURN_VALUE_KEY = "methodReturn";
 
     @Inject
-    private org.openkoala.businesslog.AbstractBusinessLogBuild businessLogBuild;
+    private AbstractBusinessLogRender businessLogBuild;
 
     @Inject
     private org.openkoala.businesslog.BusinessLogExporter businessLogExporter;

@@ -13,15 +13,7 @@ public class BusinessLogConfig {
 
     private String businessOperator;
 
-    private String preTemplate;
-
-    private String template;
-
-    private List<BusinessLogContextQuery> queries;
-
     private BusinessLogConfigAdapter configAdapter;
-
-    private BusinessLogContextQueryExecutor queryExecutor;
 
     private BusinessLogConfig() {
     }
@@ -50,8 +42,6 @@ public class BusinessLogConfig {
     public List<BusinessLogContextQuery> getQueries() {
         return configAdapter.findConfigByBusinessOperator(businessOperator).getQueries();
     }
-
-
 
 
 }

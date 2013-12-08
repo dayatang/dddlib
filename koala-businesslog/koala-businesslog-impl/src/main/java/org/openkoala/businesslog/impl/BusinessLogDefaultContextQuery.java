@@ -1,11 +1,12 @@
 package org.openkoala.businesslog.impl;
 
 import com.dayatang.domain.InstanceFactory;
-import org.openkoala.businesslog.common.FreemarkerProcessor;
+import org.openkoala.businesslog.common.MethodProcesser;
 import org.openkoala.businesslog.config.BusinessLogContextQuery;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,60 +20,123 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
 
     private String contextKey;
 
-    private String targetClass;
+    private String beanClassName;
 
-    private String targetBeanName;
+    private String beanName;
 
-    private String method;
+    private String methodSignature;
 
     private List<String> args;
 
     private Map<String, Object> context;
+
 
     public BusinessLogDefaultContextQuery() {
     }
 
     @Override
     public Map<String, Object> queryInContext(Map<String, Object> aContext) {
-        this.context = aContext;
-
-        return null;
+        context = new HashMap<String, Object>();
+        if (null != aContext) {
+            context.putAll(aContext);
+        }
+        context.put(contextKey, invoke(getMethodName(), getMethodParams()));
+        return context;
     }
 
-    private Object[] convertArgs(List<String> args) {
+    private Object[] getMethodParams() {
         if (null == args || args.isEmpty()) {
             return null;
         }
         Object[] result = new Object[args.size()];
-        for (int i = 0; i < args.size(); i++) {
-            result[i] = convertArg(args.get(i));
+        for (int i = 0; i < getMethodParamTypes().size(); i++) {
+            String type = getMethodParamTypes().get(i);
+            result[i] = convertArg(args.get(i), type);
         }
         return result;
     }
 
-    private Object convertArg(String arg) {
+    private List<String> getMethodParamTypes() {
+        List<String> result = new ArrayList<String>();
+        for (String paramName : methodSignature.substring(methodSignature.indexOf('(') + 1, methodSignature.indexOf(')')).split(",")) {
+            result.add(paramName);
+        }
+        return result;
+    }
+
+
+    private String getMethodName() {
+        return methodSignature.substring(0, methodSignature.indexOf('('));
+    }
+
+    private Method getMethod() {
+        try {
+            return Class.forName(beanClassName).getMethod(getMethodName(), MethodProcesser.getClassTypeOf(getMethodParamTypes()));
+        } catch (NoSuchMethodException e) {
+            new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            new RuntimeException(e);
+        }
+        return null;
+    }
+
+    private Object getBean() {
+        if (MethodProcesser.isStaticMethod(getClassOfBean(), getMethodName(),
+                MethodProcesser.getClassTypeOf(getMethodParamTypes()))) {
+            try {
+                return getClassOfBean().newInstance();
+            } catch (InstantiationException e) {
+                throw new RuntimeException(e);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        if (null != beanName && !"".equals(beanName.trim())) {
+            return InstanceFactory.getInstance(getClassOfBean(), beanName);
+        }
+        return InstanceFactory.getInstance(getClassOfBean());
+
+    }
+
+    private Class getClassOfBean() {
+        try {
+            return Class.forName(beanClassName);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    private Object convertArg(String arg, String type) {
         if (null == arg) {
             return arg;
         }
-        return FreemarkerProcessor.process(arg, context);
+        if ("long".equals(type)) {
+            return Long.parseLong(arg);
+        } else if ("String".equals(type) || "java.lang.String".equals(type)) {
+            return arg;
+        } else {
+            try {
+                String key = arg.substring(arg.indexOf("{") +1, arg.lastIndexOf("}"));
+                return Class.forName(type).cast(context.get(key));
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
     }
 
 
-    private Object invoke(Object methodObject, String methodName, Object[] args) {
-        Class ownerClass = methodObject.getClass();
-        Class[] argsClass = new Class[args.length];
-        for (int i = 0, j = args.length; i < j; i++) {
-            argsClass[i] = args[i].getClass();
-        }
+    private Object invoke(Object methodObject, Object... params) {
         try {
-            Method method = ownerClass.getMethod(methodName, argsClass);
-            return method.invoke(methodObject, args);
+            if (null == params) {
+                return getMethod().invoke(methodObject);
+            }
+            return getMethod().invoke(methodObject, params);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
     }
@@ -81,16 +145,16 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
         this.contextKey = contextKey;
     }
 
-    public void setTargetClass(String targetClass) {
-        this.targetClass = targetClass;
+    public void setBeanClassName(String beanClassName) {
+        this.beanClassName = beanClassName;
     }
 
-    public void setTargetBeanName(String targetBeanName) {
-        this.targetBeanName = targetBeanName;
+    public void setBeanName(String beanName) {
+        this.beanName = beanName;
     }
 
-    public void setMethod(String method) {
-        this.method = method;
+    public void setMethodSignature(String methodSignature) {
+        this.methodSignature = methodSignature;
     }
 
     public void setArgs(List<String> args) {
@@ -101,16 +165,16 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
         return contextKey;
     }
 
-    public String getTargetClass() {
-        return targetClass;
+    public String getBeanClassName() {
+        return beanClassName;
     }
 
-    public String getTargetBeanName() {
-        return targetBeanName;
+    public String getBeanName() {
+        return beanName;
     }
 
-    public String getMethod() {
-        return method;
+    public String getMethodSignature() {
+        return methodSignature;
     }
 
     public List<String> getArgs() {

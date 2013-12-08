@@ -7,6 +7,7 @@ import org.openkoala.businesslog.config.BusinessLogContextQuery;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.mockito.Mockito.mock;
@@ -75,20 +76,20 @@ public class BusinessLogEngineTest {
 
     }
 
-   /* private List<BusinessLogContextQuery> createQuerys() {
+    private List<BusinessLogContextQuery> createQuerys(Map<String, Object> initContext) {
         BusinessLogContextQuery query = mock(BusinessLogContextQuery.class);
         Map<String, Object> queryResult = new HashMap<String, Object>();
-        queryResult.put("invoice", new Invoice("发票编号1"));
-        when(query.query()).thenReturn(queryResult);
+        queryResult.put("invoice", "发票编号1");
+        when(query.queryInContext(initContext)).thenReturn(queryResult);
 
         BusinessLogContextQuery query1 = mock(BusinessLogContextQuery.class);
         Map<String, Object> queryResult1 = new HashMap<String, Object>();
-        queryResult1.put("project", new Project("项目1"));
-        when(query1.query()).thenReturn(queryResult1);
+        queryResult1.put("project", "项目1");
+        when(query1.queryInContext(initContext)).thenReturn(queryResult1);
 
         List<BusinessLogContextQuery> results = new ArrayList<BusinessLogContextQuery>();
         results.add(query);
         results.add(query1);
         return results;
-    }*/
+    }
 }

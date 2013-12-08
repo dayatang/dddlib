@@ -1,5 +1,7 @@
 package business;
 
+import java.math.BigDecimal;
+
 /**
  * User: zjzhai
  * Date: 12/3/13
@@ -20,5 +22,9 @@ public class ContractApplicationImpl implements ContractApplication {
 
     public static Project findByContractIdAndProject(long contractId, Project project) {
         return new Project("项目11");
+    }
+
+    public static void kk(double k, float f, int i, BigDecimal bigDecimal){
+
     }
 }

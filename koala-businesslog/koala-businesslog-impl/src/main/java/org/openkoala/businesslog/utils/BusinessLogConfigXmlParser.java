@@ -220,9 +220,9 @@ public class BusinessLogConfigXmlParser {
         }
         BusinessLogDefaultContextQuery query = new BusinessLogDefaultContextQuery();
         query.setContextKey(contextKey);
-        query.setTargetBeanName(beanName);
-        query.setTargetClass(beanClass);
-        query.setMethod(targetMethod);
+        query.setBeanName(beanName);
+        query.setBeanClassName(beanClass);
+        query.setMethodSignature(targetMethod);
         query.setArgs(args);
         return query;
     }

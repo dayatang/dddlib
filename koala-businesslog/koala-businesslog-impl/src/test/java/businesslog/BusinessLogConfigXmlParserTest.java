@@ -29,16 +29,17 @@ public class BusinessLogConfigXmlParserTest {
 
         assert parser.getQueriesFrom(operator).get(0) instanceof BusinessLogDefaultContextQuery;
 
-        BusinessLogDefaultContextQuery query = (BusinessLogDefaultContextQuery) parser.getQueriesFrom(operator).get(0);
+        BusinessLogDefaultContextQuery query = (BusinessLogDefaultContextQuery)
+                parser.getQueriesFrom(operator).get(0);
 
-        assert "business.ContractApplication".equals(query.getTargetClass());
-        assert "projectApplication".equals(query.getTargetBeanName());
+        assert "business.ProjectApplication".equals(query.getBeanClassName());
+        assert "projectApplication".equals(query.getBeanName());
 
         BusinessLogDefaultContextQuery query2 = (BusinessLogDefaultContextQuery) parser.getQueriesFrom(operator).get(1);
 
-        assert "business.ContractApplication".equals(query2.getTargetClass());
-        assert "".equals(query2.getTargetBeanName());
-        assert "findByContractIdAndProject(long,business.Project)".equals(query2.getMethod());
+        assert "business.ContractApplication".equals(query2.getBeanClassName());
+        assert "".equals(query2.getBeanName());
+        assert "findByContractIdAndProject(long,business.Project)".equals(query2.getMethodSignature());
         assert "xx".equals(query2.getArgs().get(0));
         assert "${project}".equals(query2.getArgs().get(1));
 
