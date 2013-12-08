@@ -38,10 +38,6 @@ public class LogGeneratorTest extends AbstractJUnit4SpringContextTests {
         assert "K-8999".equals(context.get(BusinessLogInterceptor.BUSINESS_METHOD_RETURN_VALUE_KEY));
         assert "张三".equals(context.get("user"));
 
-        long contractId = 1;
-        long invoiceId = 2;
-        contractApplication.addInvoice("projectName", contractId, invoiceId);
-
 
 
 

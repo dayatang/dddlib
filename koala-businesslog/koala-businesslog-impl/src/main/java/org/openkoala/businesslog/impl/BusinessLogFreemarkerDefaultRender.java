@@ -13,6 +13,9 @@ import java.util.Map;
  */
 public class BusinessLogFreemarkerDefaultRender extends AbstractBusinessLogRender {
 
+    public BusinessLogFreemarkerDefaultRender() {
+    }
+
     @Override
     public BusinessLogRender render(Map<String, Object> context, String... templates) {
         if (null == templates) {

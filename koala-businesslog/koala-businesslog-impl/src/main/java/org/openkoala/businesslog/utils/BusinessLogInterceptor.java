@@ -3,6 +3,10 @@ package org.openkoala.businesslog.utils;
 import org.aspectj.lang.JoinPoint;
 import org.openkoala.businesslog.AbstractBusinessLogRender;
 import org.openkoala.businesslog.BusinessLogEngine;
+import org.openkoala.businesslog.config.BusinessLogConfig;
+import org.openkoala.businesslog.impl.BusinessLogConsoleExporter;
+import org.openkoala.businesslog.impl.BusinessLogDefaultContextQueryExecutor;
+import org.openkoala.businesslog.impl.BusinessLogFreemarkerDefaultRender;
 import org.openkoala.businesslog.impl.BusinessLogXmlConfigDefaultAdapter;
 
 import javax.inject.Inject;
@@ -21,10 +25,9 @@ public class BusinessLogInterceptor {
     /**
      * 业务方法返回值，在模板中使用的key
      */
-    public final static String BUSINESS_METHOD_RETURN_VALUE_KEY = "methodReturn";
+    public final static String BUSINESS_METHOD_RETURN_VALUE_KEY = "_methodReturn";
 
-    @Inject
-    private org.openkoala.businesslog.BusinessLogExporter businessLogExporter;
+    public final static String PRE_OPERATOR_OF_METHOD_KEY = "_param";
 
 
     @Inject
@@ -38,7 +41,6 @@ public class BusinessLogInterceptor {
         Map<String, Object> context = createDefaultContext(joinPoint, result);
 
 
-
     }
 
     private Map<String, Object> createDefaultContext(JoinPoint joinPoint, Object result) {
@@ -47,7 +49,8 @@ public class BusinessLogInterceptor {
 
         Object[] args = joinPoint.getArgs();
         for (int i = 0; i < args.length; i++) {
-            context.put(i + "", args[i]);
+            context.put(PRE_OPERATOR_OF_METHOD_KEY + i, args[i]);
+            context.put(PRE_OPERATOR_OF_METHOD_KEY + i, args[i]);
         }
 
         context.put(BUSINESS_METHOD_RETURN_VALUE_KEY, result);
@@ -56,9 +59,11 @@ public class BusinessLogInterceptor {
 
     private BusinessLogEngine getBusinessLogEngine() {
         if (businessLogEngine == null) {
-            BusinessLogXmlConfigDefaultAdapter adapter = new BusinessLogXmlConfigDefaultAdapter();
-            //businessLogEngine = new BusinessLogEngine()
+            BusinessLogConfig config = new BusinessLogConfig(new BusinessLogXmlConfigDefaultAdapter());
 
+
+            businessLogEngine = new BusinessLogEngine(config,
+                    new BusinessLogFreemarkerDefaultRender(), new BusinessLogDefaultContextQueryExecutor());
         }
         return businessLogEngine;
     }

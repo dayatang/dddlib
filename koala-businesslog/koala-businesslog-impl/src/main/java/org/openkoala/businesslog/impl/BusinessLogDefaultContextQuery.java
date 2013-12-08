@@ -136,19 +136,23 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
         if (null == arg) {
             return arg;
         }
-        if ("long".equals(type)) {
-            return Long.parseLong(arg);
-        } else if ("String".equals(type) || "java.lang.String".equals(type)) {
-            return arg;
-        } else {
+        if (arg.contains("$")) {
+            String key = arg.substring(arg.indexOf("{") + 1, arg.lastIndexOf("}"));
             try {
-                String key = arg.substring(arg.indexOf("{") + 1, arg.lastIndexOf("}"));
                 return Class.forName(type).cast(context.get(key));
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
-        }
+        } else {
+            if ("long".equals(type)) {
+                return Long.parseLong(arg);
+            } else if ("String".equals(type) || "java.lang.String".equals(type)) {
+                return arg;
+            }
 
+
+        }
+        return null;
     }
 
 

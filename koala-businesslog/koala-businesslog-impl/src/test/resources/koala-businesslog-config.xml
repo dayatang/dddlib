@@ -10,7 +10,7 @@
                 <target class="business.ProjectApplication">projectApplication</target>
                 <method>findByProjectName(String)</method>
                 <args>
-                    <arg>param0</arg>
+                    <arg>{param0}</arg>
                 </args>
             </query>
             <query key="contract">
