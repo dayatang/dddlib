@@ -30,8 +30,7 @@ public class BusinessLogEngineTest {
 
         BusinessLogConfigAdapter configAdapter = mock(BusinessLogConfigAdapter.class);
 
-        BusinessLogConfig config =
-                BusinessLogConfig.createByAdapterAndBusinessOperator(configAdapter, businessOperator);
+        BusinessLogConfig config = new BusinessLogConfig(configAdapter);
 
         BusinessLogRender render = mock(BusinessLogRender.class);
 
@@ -51,7 +50,7 @@ public class BusinessLogEngineTest {
         when(render.build()).thenReturn(resultLog);
 
 
-        String exlog = engine.exportLogBy(exporter);
+        String exlog = engine.exportLogBy(businessOperator, exporter);
 
         assert resultLog.equals(exlog);
     }

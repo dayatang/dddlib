@@ -2,6 +2,8 @@ package org.openkoala.businesslog.utils;
 
 import org.aspectj.lang.JoinPoint;
 import org.openkoala.businesslog.AbstractBusinessLogRender;
+import org.openkoala.businesslog.BusinessLogEngine;
+import org.openkoala.businesslog.impl.BusinessLogXmlConfigDefaultAdapter;
 
 import javax.inject.Inject;
 import java.util.Map;
@@ -22,11 +24,11 @@ public class BusinessLogInterceptor {
     public final static String BUSINESS_METHOD_RETURN_VALUE_KEY = "methodReturn";
 
     @Inject
-    private AbstractBusinessLogRender businessLogBuild;
-
-    @Inject
     private org.openkoala.businesslog.BusinessLogExporter businessLogExporter;
 
+
+    @Inject
+    private BusinessLogEngine businessLogEngine;
 
 
     public void logAfter(JoinPoint joinPoint, Object result) {
@@ -37,8 +39,6 @@ public class BusinessLogInterceptor {
 
 
 
-        //在此实现多线程
-        businessLogExporter.export(businessLogBuild.build());
     }
 
     private Map<String, Object> createDefaultContext(JoinPoint joinPoint, Object result) {
@@ -52,6 +52,15 @@ public class BusinessLogInterceptor {
 
         context.put(BUSINESS_METHOD_RETURN_VALUE_KEY, result);
         return context;
+    }
+
+    private BusinessLogEngine getBusinessLogEngine() {
+        if (businessLogEngine == null) {
+            BusinessLogXmlConfigDefaultAdapter adapter = new BusinessLogXmlConfigDefaultAdapter();
+            //businessLogEngine = new BusinessLogEngine()
+
+        }
+        return businessLogEngine;
     }
 
 

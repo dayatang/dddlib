@@ -11,35 +11,25 @@ import java.util.List;
  */
 public class BusinessLogConfig {
 
-    private String businessOperator;
 
     private BusinessLogConfigAdapter configAdapter;
 
     private BusinessLogConfig() {
     }
 
-    public BusinessLogConfig(BusinessLogConfigAdapter configAdapter, String businessOperator) {
+    public BusinessLogConfig(BusinessLogConfigAdapter configAdapter) {
         this.configAdapter = configAdapter;
-        this.businessOperator = businessOperator;
-    }
-
-    public static BusinessLogConfig createByAdapterAndBusinessOperator(BusinessLogConfigAdapter configAdapter, String businessOperator) {
-        return new BusinessLogConfig(configAdapter, businessOperator);
-    }
-
-    public String getBusinessOperator() {
-        return businessOperator;
     }
 
     public String getPreTemplate() {
-        return configAdapter.findConfigByBusinessOperator(businessOperator).getPreTemplate();
+        return configAdapter.getPreTemplate();
     }
 
-    public String getTemplate() {
+    public String getLogTemplateof(String businessOperator) {
         return configAdapter.findConfigByBusinessOperator(businessOperator).getTemplate();
     }
 
-    public List<BusinessLogContextQuery> getQueries() {
+    public List<BusinessLogContextQuery> getQueries(String businessOperator) {
         return configAdapter.findConfigByBusinessOperator(businessOperator).getQueries();
     }
 
