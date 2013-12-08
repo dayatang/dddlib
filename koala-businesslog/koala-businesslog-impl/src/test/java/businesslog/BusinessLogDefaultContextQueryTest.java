@@ -46,10 +46,4 @@ public class BusinessLogDefaultContextQueryTest {
         return result;
     }
 
-    @Test
-    public void testdd() throws Exception {
-        System.out.println(Class.forName("org.openkoala.businesslog.common.MethodProcesser").getClass());
-
-
-    }
 }

@@ -1,11 +1,11 @@
 package org.openkoala.businesslog.impl;
 
 import com.dayatang.domain.InstanceFactory;
-import org.openkoala.businesslog.common.MethodProcesser;
 import org.openkoala.businesslog.config.BusinessLogContextQuery;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +40,7 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
         if (null != aContext) {
             context.putAll(aContext);
         }
-        context.put(contextKey, invoke(getMethodName(), getMethodParams()));
+        context.put(contextKey, invoke(getBean(), getMethodParams()));
         return context;
     }
 
@@ -71,7 +71,7 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
 
     private Method getMethod() {
         try {
-            return Class.forName(beanClassName).getMethod(getMethodName(), MethodProcesser.getClassTypeOf(getMethodParamTypes()));
+            return Class.forName(beanClassName).getMethod(getMethodName(), getMethodParamClasses());
         } catch (NoSuchMethodException e) {
             new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -80,17 +80,37 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
         return null;
     }
 
-    private Object getBean() {
-        if (MethodProcesser.isStaticMethod(getClassOfBean(), getMethodName(),
-                MethodProcesser.getClassTypeOf(getMethodParamTypes()))) {
-            try {
-                return getClassOfBean().newInstance();
-            } catch (InstantiationException e) {
-                throw new RuntimeException(e);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
+    private Class[] getMethodParamClasses() {
+        List<Class> classes = new ArrayList<Class>();
+        for (String type : getMethodParamTypes()) {
+            if ("long".equals(type)) {
+                classes.add(long.class);
+                continue;
+            } else if ("String".equals(type) || "java.lang.String".equals(type)) {
+                classes.add(String.class);
+            } else {
+                try {
+
+                    classes.add(Class.forName(type));
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
+        return classes.toArray(new Class[classes.size()]);
+    }
+
+    private Object getBean() {
+        try {
+            if (isStaticMethodWillInvoke()) {
+                return getClassOfBean().newInstance();
+            }
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+
 
         if (null != beanName && !"".equals(beanName.trim())) {
             return InstanceFactory.getInstance(getClassOfBean(), beanName);
@@ -107,6 +127,10 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
         }
     }
 
+    private boolean isStaticMethodWillInvoke() {
+        return Modifier.isStatic(getMethod().getModifiers());
+    }
+
 
     private Object convertArg(String arg, String type) {
         if (null == arg) {
@@ -118,7 +142,7 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
             return arg;
         } else {
             try {
-                String key = arg.substring(arg.indexOf("{") +1, arg.lastIndexOf("}"));
+                String key = arg.substring(arg.indexOf("{") + 1, arg.lastIndexOf("}"));
                 return Class.forName(type).cast(context.get(key));
             } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
