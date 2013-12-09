@@ -2,7 +2,7 @@ package businesslog;
 
 import org.junit.Test;
 import org.openkoala.businesslog.impl.BusinessLogDefaultContextQuery;
-import org.openkoala.businesslog.utils.BusinessLogConfigXmlParser;
+import org.openkoala.businesslog.common.BusinessLogConfigXmlParser;
 
 /**
  * User: zjzhai
@@ -19,11 +19,11 @@ public class BusinessLogConfigXmlParserTest {
 
         BusinessLogConfigXmlParser parser = BusinessLogConfigXmlParser.parsing(xmlconfigPath);
 
-        assert "${user}:${ip}:${time!Date}".equals(parser.getPreTemplate());
+        assert "${user!\"\"}:${ip!\"\"}:".equals(parser.getPreTemplate());
 
         String operator = "String business.ContractApplication.addInvoice(String,long,long)";
 
-        assert "合同添加入项目${project.name}".equals(parser.getTemplateFrom(operator));
+        assert "合同添加入项目".equals(parser.getTemplateFrom(operator));
 
         assert parser.getQueriesFrom(operator).size() == 2;
 
@@ -34,13 +34,14 @@ public class BusinessLogConfigXmlParserTest {
 
         assert "business.ProjectApplication".equals(query.getBeanClassName());
         assert "projectApplication".equals(query.getBeanName());
+        assert "${_param0}".equals(query.getArgs().get(0));
 
         BusinessLogDefaultContextQuery query2 = (BusinessLogDefaultContextQuery) parser.getQueriesFrom(operator).get(1);
 
         assert "business.ContractApplication".equals(query2.getBeanClassName());
         assert "".equals(query2.getBeanName());
         assert "findByContractIdAndProject(long,business.Project)".equals(query2.getMethodSignature());
-        assert "xx".equals(query2.getArgs().get(0));
+        assert "1".equals(query2.getArgs().get(0));
         assert "${project}".equals(query2.getArgs().get(1));
 
 

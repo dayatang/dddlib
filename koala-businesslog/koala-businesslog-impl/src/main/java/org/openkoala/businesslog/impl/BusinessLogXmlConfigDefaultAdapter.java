@@ -1,7 +1,7 @@
 package org.openkoala.businesslog.impl;
 
 import org.openkoala.businesslog.config.AbstractBusinessLogConfigAdapter;
-import org.openkoala.businesslog.utils.BusinessLogConfigXmlParser;
+import org.openkoala.businesslog.common.BusinessLogConfigXmlParser;
 
 /**
  * User: zjzhai

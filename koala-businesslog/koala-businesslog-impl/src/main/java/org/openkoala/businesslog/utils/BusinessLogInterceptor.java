@@ -39,7 +39,9 @@ public class BusinessLogInterceptor {
 
         System.out.println(joinPoint.getSignature());
         Map<String, Object> context = createDefaultContext(joinPoint, result);
-
+        BusinessLogEngine engine = getBusinessLogEngine();
+        engine.setInitContext(context);
+        engine.exportLogBy(joinPoint.getSignature().toString(), new BusinessLogConsoleExporter());
 
     }
 
@@ -49,7 +51,6 @@ public class BusinessLogInterceptor {
 
         Object[] args = joinPoint.getArgs();
         for (int i = 0; i < args.length; i++) {
-            context.put(PRE_OPERATOR_OF_METHOD_KEY + i, args[i]);
             context.put(PRE_OPERATOR_OF_METHOD_KEY + i, args[i]);
         }
 

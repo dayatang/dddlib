@@ -22,8 +22,16 @@ public class BusinessLogDefaultContextQueryExecutor implements BusinessLogContex
             result.putAll(aContext);
         }
 
+
         for (BusinessLogContextQuery query : queries) {
-            result.putAll(query.queryInContext(result));
+            if (null == query) {
+                continue;
+            }
+            Map<String, Object> map = query.queryInContext(result);
+            if (null == map) {
+                continue;
+            }
+            result.putAll(map);
         }
 
         return result;

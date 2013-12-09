@@ -1,4 +1,4 @@
-package org.openkoala.businesslog.utils;
+package org.openkoala.businesslog.common;
 
 import org.openkoala.businesslog.config.BusinessLogContextQuery;
 import org.openkoala.businesslog.impl.BusinessLogDefaultContextQuery;
@@ -116,6 +116,9 @@ public class BusinessLogConfigXmlParser {
 
     public String getTemplateFrom(String businessOperator) {
         Node configNode = findConfigByBusinessOperator(businessOperator);
+        if (null == configNode) {
+            return null;
+        }
         NodeList nodeList = configNode.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
@@ -171,12 +174,15 @@ public class BusinessLogConfigXmlParser {
 
 
     private Node findConfigByBusinessOperator(String businessOperator) {
+
         for (Node eachNode : configs) {
             NodeList nodeList = eachNode.getChildNodes();
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
                 if (BUSINESS_OPERATOR_NODE_NAME.equals(node.getNodeName())
+                        && (Node.ELEMENT_NODE == node.getNodeType())
                         && businessOperator.equals(node.getTextContent())) {
+
                     return eachNode;
                 }
             }

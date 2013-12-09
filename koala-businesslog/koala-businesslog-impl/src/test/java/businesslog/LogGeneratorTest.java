@@ -14,7 +14,6 @@ import javax.inject.Inject;
 import java.util.Date;
 import java.util.Map;
 
-@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:context.xml"})
 public class LogGeneratorTest extends AbstractJUnit4SpringContextTests {
@@ -32,9 +31,9 @@ public class LogGeneratorTest extends AbstractJUnit4SpringContextTests {
         Map<String, Object> context = ThreadLocalBusinessLogContext.get();
 
 
-        assert "项目XXX".equals(context.get("0"));
-        assert new Long(1).equals(context.get("1"));
-        assert new Long(2).equals(context.get("2"));
+        assert "项目XXX".equals(context.get("_param0"));
+        assert new Long(1).equals(context.get("_param1"));
+        assert new Long(2).equals(context.get("_param2"));
         assert "K-8999".equals(context.get(BusinessLogInterceptor.BUSINESS_METHOD_RETURN_VALUE_KEY));
         assert "张三".equals(context.get("user"));
 

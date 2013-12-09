@@ -12,6 +12,16 @@
 	   		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
     <import resource="classpath*:koala-businesslog-aop.xml"/>
+    <bean id="configAdapter" class="org.openkoala.businesslog.impl.BusinessLogXmlConfigDefaultAdapter"/>
+    <bean id="queryExecutor" class="org.openkoala.businesslog.impl.BusinessLogDefaultContextQueryExecutor"/>
+    <bean id="businessLogEnginConfig" class="org.openkoala.businesslog.config.BusinessLogConfig">
+        <constructor-arg name="configAdapter" ref="configAdapter"/>
+    </bean>
+    <bean id="businessLogEngine" class="org.openkoala.businesslog.BusinessLogEngine">
+        <constructor-arg name="config" ref="businessLogEnginConfig"/>
+        <constructor-arg name="render"><bean class="org.openkoala.businesslog.impl.BusinessLogFreemarkerDefaultRender"></bean></constructor-arg>
+        <constructor-arg name="queryExecutor" ref="queryExecutor"></constructor-arg>
+    </bean>
 
     <bean id="testApplication" class="business.TestApplicationImpl"/>
     <bean id="contractApplication" class="business.ContractApplicationImpl"/>
@@ -19,35 +29,6 @@
     <bean id="invoiceApplication" class="business.InvoiceApplicationImpl"/>
 
 
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-          destroy-method="close">
-        <property name="driverClassName" value="${jdbc.driverClassName}" />
-        <property name="url" value="${jdbc.url}" />
-        <property name="username" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
-    </bean>
 
-    <bean id="sessionFactory"
-          class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan">
-            <list>
-                <value>org.openkoala.businesslog.model</value>
-            </list>
-        </property>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
-                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
-                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
-                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
-            </props>
-        </property>
-    </bean>
-
-    <bean id="txManager"
-          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
 
 </beans>

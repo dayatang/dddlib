@@ -29,10 +29,10 @@ public class BusinessLogXmlConfigDefaultAdapterTest {
 
         adapter.findConfigByBusinessOperator(method);
 
-        assert "${user}:${ip}:${time!Date}".equals(adapter.getPreTemplate());
+        assert "${user!\"\"}:${ip!\"\"}:".equals(adapter.getPreTemplate());
 
 
-        assert "合同添加入项目${project.name}".equals(adapter.getTemplate());
+        assert "合同添加入项目".equals(adapter.getTemplate());
 
 
     }
