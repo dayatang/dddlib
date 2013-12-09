@@ -10,6 +10,7 @@
 <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />"></script>	
+<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
 <style type="text/css">
 @charset "UTF-8";
 /* CSS Document */
@@ -157,7 +158,7 @@ body {
 							});
 				     	</script>
 			</c:if>
-			<FORM id=loginFormId method=post action="j_spring_security_check" class="form-horizontal">
+			<FORM id="loginFormId" method=post action="j_spring_security_check" onsubmit="return dologin();" class="form-horizontal">
 				<div class="form-group input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                     <input type="text" class="form-control" placeholder="用户名"  name="j_username" id="j_username">
@@ -168,7 +169,7 @@ body {
                 </div>
 				<div class="form-group input-group">
 				    <span class="input-group-addon"><span class="glyphicon glyphicon-magnet"></span></span>
-					<input type="text" name="jcaptcha" value="" class="form-control" placeholder="验证码"/>
+					<input type="text" id="jcaptcha" name="jcaptcha" value="" class="form-control" placeholder="验证码"/>
 				</div>
 				<div class="form-group">
 					<label class="col-lg-3"></label>
@@ -179,34 +180,37 @@ body {
 				<div class="form-group input-group">
 					<button class="btn btn-primary btn-login" onclick="javascript:login()">登陆</button>
 				</div>
-				<!--<h4>登录</h4>
-				<ul>
-				    <c:if test="${param.login_error == '1' }">
-				     	<script>
-				     		$('body').message({
-								type: 'error',
-								content: '用户名或密码错误!'
-							});
-				     	</script>
-				    </c:if>
-				    <c:if test="${param.login_error == '2' }">
-				      	<script>
-				     		$('body').message({
-								type: 'error',
-								content: '验证码错误!'
-							});
-				     	</script>
-				    </c:if>
-					<li><label class="col-lg-3">用户名:</label><input type="text" name="j_username" id="j_username" class="form-control"/></li>
-					<li><label class="col-lg-3">密&nbsp;&nbsp;&nbsp;码:</label><input type="password" name="j_password" id="j_password" class="form-control"/></li>
-					<li><label class="col-lg-3">验证码:</label><input type="text" name="jcaptcha" value="" class="form-control"/></li>
-					<li><img src="jcaptcha.jpg" id="checkCode" onclick="refreshCode();"/></li>
-				</ul>
-				<button class="btn btn-primary" onclick="javascript:login()">登陆</button>-->
 			</FORM>
 		</div>
 	</div>
 	<div class="login_footer">Koala 版权信息 2013</div>
+	<script>
+    var btnLogin = $('.btn-login');
+    var form = $('#loginFormId');
+    $(function(){
+        btnLogin.keydown(function(e) {
+            if (e.keyCode == 13) {
+                form.submit();
+            }
+        });
+        btnLogin.on('click',function() {
+                form.submit();
+        });
+    });
+    var dologin = function() {
+        var userNameElement = $("#j_username");
+        var passwordElement = $("#j_password");
+        var username = userNameElement.val();
+        var password = passwordElement.val();
+        if (!Validation.notNull($('body'), userNameElement, username, '用户名不能为空')) {
+            return false;
+        }
+        if (!Validation.notNull($('body'), passwordElement, password, '密码不能为空')) {
+            return false;
+        }
+        return true;
+    }
+	</script>
 </body>
 </html>
 </html>
