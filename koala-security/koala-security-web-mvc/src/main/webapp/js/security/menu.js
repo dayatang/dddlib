@@ -236,7 +236,7 @@ var menuManager = function(){
 	    }
 		var dataGrid = grid.getGrid();
         if(dataGrid.up(indexs[0])){
-		    changePosition(dataGrid.selectedAllRows());
+		    changePosition(dataGrid.getAllItems());
         }
 	};
 
@@ -262,7 +262,7 @@ var menuManager = function(){
 	    }
 		var dataGrid = grid.getGrid();
 		if(dataGrid.down(indexs[0])){
-		    changePosition(dataGrid.selectedAllRows());
+		    changePosition(dataGrid.getAllItems());
         }
 	};
 	var changePosition = function(items){
