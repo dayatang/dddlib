@@ -73,7 +73,7 @@ public class JiraProjectInfo extends JiraLoginInfo{
 	@Override
 	public boolean checkNotBlank() {
 		super.checkNotBlank();
-		if(StringUtils.isBlank(projectKey)){//StringUtils.isBlank(str)
+		if(StringUtils.isBlank(projectKey)){
 			throw new ProjectKeyBlankException("project key不能为空！");
 		}
 		
