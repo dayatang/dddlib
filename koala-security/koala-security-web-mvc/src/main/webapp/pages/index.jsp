@@ -99,7 +99,7 @@
 		            });
 		        }
 				$.each(data.data, function(){
-					var $li = $('<li><a data-toggle="collapse" href="#menuMark'+this.id+'"><img class="menu-icon" src="'+this.icon+'"></img>&nbsp;'+this.name+'&nbsp;'+
+					var $li = $('<li><a data-toggle="collapse" href="#menuMark'+this.id+'"><span class="'+this.icon+'"></span>&nbsp;'+this.name+'&nbsp;'+
 						'<i class="glyphicon glyphicon-chevron-left"></i></a><ul id="menuMark'+this.id+'" class="second-level-menu in"></ul></li>');
 					$('.first-level-menu').append($li);
 					renderSubMenu(this.id, $li);
@@ -125,13 +125,13 @@
 						var subMenus = new Array();
 						$.each(data.data, function(){
 							if(this.menuType == "2"){
-		                        var $li = $('<li><a data-toggle="collapse" href="#menuMark'+this.id+'"><img class="menu-icon" src="'+this.icon+'"></img>&nbsp;'+this.name+'&nbsp;'+
+		                        var $li = $('<li><a data-toggle="collapse" href="#menuMark'+this.id+'"><span class="'+this.icon+'"></span>&nbsp;'+this.name+'&nbsp;'+
 		                            '<i class="glyphicon glyphicon-chevron-right pull-right" style="position: relative; right: 12px;font-size: 12px;"></i></a><ul id="menuMark'+this.id+'" class="second-level-menu collapse"></ul></li>');
 		                        $li.appendTo($menu.find('.second-level-menu:first')).find('a').css('padding-left', parseInt(this.level)*18+'px');
 		                        renderSubMenu(this.id, $li);
 		                    }else{
 		                        var $li = $(' <li class="submenu" data-role="openTab" data-target="'+this.identifier+'" data-title="'+this.name+'" ' +
-		                            'data-mark="menuMark'+this.id+'"><a ><img class="menu-icon" src="'+this.icon+'"></img>&nbsp;'+this.name+'</a></li>');
+		                            'data-mark="menuMark'+this.id+'"><a ><span class="'+this.icon+'"></span>&nbsp;'+this.name+'</a></li>');
 		                        $li.appendTo($menu.find('.second-level-menu:first')).find('a').css('padding-left', parseInt(this.level)*18+'px');
 		                    }
 						});
