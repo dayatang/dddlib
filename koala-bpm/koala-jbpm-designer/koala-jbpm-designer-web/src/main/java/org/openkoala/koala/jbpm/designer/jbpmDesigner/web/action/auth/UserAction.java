@@ -154,7 +154,7 @@ public class UserAction extends ActionSupport {
 		} else {
 			dataMap.put("result", "fail");
 		}
-		return "index";
+		return "JSON";
 	}
 
 	public String logOut() {
