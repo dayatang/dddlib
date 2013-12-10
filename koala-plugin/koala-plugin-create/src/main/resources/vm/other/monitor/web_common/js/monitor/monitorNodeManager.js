@@ -4,7 +4,7 @@ var monitorNodeManager = {
      * 同步监控数据配置
      */
     openSyncDataConfDig: function(){
-        $.get('pages/monitor/syncDataConfigTemplate.html').done(function(result){
+        $.get('/pages/monitor/syncDataConfigTemplate.html').done(function(result){
             var dialog = $(result);
             var scheduleActive = dialog.find('[name="schedule_active"]');
             var syncInterval = dialog.find('#syncInterval');
@@ -14,7 +14,7 @@ var monitorNodeManager = {
                 })
                 $(this).parent().addClass('checked');
             });
-            $.get('monitor/NodeInfo/getScheduleConf.koala').done(function(result){
+            $.get('/monitor/NodeInfo/getScheduleConf.koala').done(function(result){
                 var data = result.data;
                 if(!data.active){
                     dialog.find('[name="schedule_active"][value="1"]').removeAttr('checked', 'checked').parent().removeClass('checked');
@@ -33,7 +33,7 @@ var monitorNodeManager = {
                         return;
                     }
                     var params = {active: dialog.find(':radio:checked').val(), interval:syncInterval.val()};
-                    $.post('monitor/NodeInfo/updateScheduleConf.koala', params).done(function(data){
+                    $.post('/monitor/NodeInfo/updateScheduleConf.koala', params).done(function(data){
                           if(data.result){
                               $('body').message({
                                   type: 'success',
@@ -64,7 +64,7 @@ var monitorNodeManager = {
         var grid = $('#monitorNodeGrid').getGrid();
         var item = grid.getItemByIndex(index);
         var childItem = item.conponents[childIndex];
-        $.get('pages/monitor/monitorParamTemplate.html').done(function(result){
+        $.get('/pages/monitor/monitorParamTemplate.html').done(function(result){
             var dialog = $(result);
             dialog.find('#monitorType').html(childItem.name);
             var status = dialog.find('[name="status"]');
@@ -146,7 +146,7 @@ var monitorNodeManager = {
                     params.props = 'trace-filter-active-time->'+tracetime.val()
                         +'@@@trace-timeout->'+tracetimeout.val();
                 }
-                $.post('monitor/NodeInfo/updateMonitorConfig.koala', params).done(function(result){
+                $.post('/monitor/NodeInfo/updateMonitorConfig.koala', params).done(function(result){
                     if(result.result){
                         $('body').message({
                             type: 'success',
@@ -176,7 +176,7 @@ var monitorNodeManager = {
      */
     pageServerSummryInfo: function(nodeId){
         var self = this;
-        $.get('pages/monitor/pageServerSummryInfo.html').done(function(data){
+        $.get('/pages/monitor/pageServerSummryInfo.html').done(function(data){
             var dialog = $(data);
             dialog.modal({
                 keyboard: true
@@ -195,7 +195,7 @@ var monitorNodeManager = {
 
     initData: function(nodeId, dialog){
         var self = this;
-        $.get('monitor/NodeInfo/serverSummryInfo.koala?nodeId='+nodeId).done(function(data){
+        $.get('/monitor/NodeInfo/serverSummryInfo.koala?nodeId='+nodeId).done(function(data){
             dialog.find('#activeCount').text(data.activeCount);
             dialog.find('#pageAvgResponseTime').html(data.pageAvgResponseTime);
             dialog.find('#maxAvgTimePage').html(data.maxAvgTimePage);

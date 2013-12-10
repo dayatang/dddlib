@@ -1,5 +1,5 @@
 <div id="positionGrid"></div>
-<script src="js/organisation/position.js"></script>
+<script src="/js/organisation/position.js"></script>
 
 <script>
     $(function(){
@@ -26,7 +26,7 @@
              columns: cols,
              buttons: buttons,
              querys: [{title: '岗位名称', value: 'name'}],
-             url: 'post/pagingquery.koala'
+             url:  contextPath + '/post/pagingquery.koala'
         }).on({
                     'add': function(){
                         position().add( $(this));

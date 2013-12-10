@@ -1,5 +1,5 @@
 <div id="generalQueryGrid"></div>
-<script src="js/gqc/generalQuery.js"></script>
+<script src="/js/gqc/generalQuery.js"></script>
 <script>
     $(function(){
        var cols = [
@@ -21,7 +21,7 @@
              columns: cols,
              buttons: buttons,
              querys: [{title: '查询器名称', value: 'queryName'}],
-             url: 'generalquery/pageJson.koala'
+             url: '/generalquery/pageJson.koala'
         }).on({
                     'add': function(){
                         generalQuery().add( $(this));

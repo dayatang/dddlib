@@ -11,14 +11,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
        <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
 	    <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
-	    <link href="<c:url value='css/gqc.css' />?time=<%=time%>"   rel="stylesheet">
+	    <link href="<c:url value='/css/gqc.css' />?time=<%=time%>"   rel="stylesheet">
 	    <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
 	    <link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />"   rel="stylesheet">
     </head>
   	<body>
             <div class="g-head">
                 <nav class="navbar navbar-default">
-                     <a class="navbar-brand" href="http://openkoala.org/display/koala/Home" target="_blank"><img src="<c:url value='images/global.logo.png'/>"/>Koala通用查询</a>
+                     <a class="navbar-brand" href="http://openkoala.org/display/koala/Home" target="_blank"><img src="<c:url value='/images/global.logo.png'/>"/>Koala通用查询</a>
                      <div class="collapse navbar-collapse navbar-ex1-collapse">
                            <div class="btn-group navbar-right" style="display:none;">
                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -41,8 +41,8 @@
 			            <li>
 			                <a data-toggle="collapse" href="#generalQueryConfig"><i class="glyphicon glyphicon-home"></i>&nbsp;菜单栏&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
 			            	<ul id="generalQueryConfig" class="second-level-menu in">
-			            		 <li class="submenu" data-role="openTab" data-target="pages/gqc/generalQueryList.html" data-title="通用查询配置" data-mark="generalQueryList"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;通用查询配置</a></li>
-			            		 <li class="submenu" data-role="openTab" data-target="pages/gqc/dataSourceList.html" data-title="数据源配置" data-mark="dataSourceList"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;数据源配置</a></li>
+			            		 <li class="submenu" data-role="openTab" data-target="/pages/gqc/generalQueryList.html" data-title="通用查询配置" data-mark="generalQueryList"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;通用查询配置</a></li>
+			            		 <li class="submenu" data-role="openTab" data-target="/pages/gqc/dataSourceList.html" data-title="数据源配置" data-mark="dataSourceList"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;数据源配置</a></li>
                             </ul>
 			            </li>
 			        </ul>
@@ -58,12 +58,13 @@
 		    </div>
 		    <div id="footer" class="g-foot">
 		        <span>Copyright © 2011-2013 Koala</span>
-		    </div>   
-	    <script type="text/javascript" src="lib/jquery-1.8.3.min.js"></script>
-        <script type="text/javascript" src="lib/respond.min.js"></script>
-        <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-        <script type="text/javascript" src="lib/koala-ui.plugin.js?time=<%=time%>"></script>
-	    <script type="text/javascript" src="js/main.js?time=<%=time%>"></script>
+		    </div>
+            <script type="text/javascript" src="<c:url value='/lib/jquery-1.8.3.min.js' />"></script>
+            <script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
+            <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
+            <script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js' />"></script>
+            <script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js' />"></script>
+            <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />?time=<%=time%>"></script>
+            <script type="text/javascript" src="<c:url value='/js/main.js' />?time=<%=time%>"></script>
     </body>
 </html>

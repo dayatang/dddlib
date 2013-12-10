@@ -1,5 +1,5 @@
 var roleManager = function(){
-	var baseUrl = 'auth/Role/';
+	var baseUrl = '/auth/Role/';
 	var dialog = null;    //对话框
 	var roleName = null;   //角色名称
 	var roleDescript = null;    //角色描述
@@ -9,7 +9,7 @@ var roleManager = function(){
 	 */
 	var add = function(grid){
 		dataGrid = grid;
-		$.get('pages/auth/role-template.html').done(function(data){
+		$.get('/pages/auth/role-template.html').done(function(data){
 			init(data);
 		});
 	};
@@ -18,7 +18,7 @@ var roleManager = function(){
 	 */
 	var modify = function(item, grid){
 		dataGrid = grid;
-		$.get('pages/auth/role-template.html').done(function(data){
+		$.get('/pages/auth/role-template.html').done(function(data){
 			init(data,item);
 			setData(item);
 		});
@@ -136,7 +136,7 @@ var roleManager = function(){
 	 */
 	var assignRole = function(userId, userAccount, grid){
 		dataGrid = grid;
-		$.get('pages/auth/select-role.html').done(function(data){
+		$.get('/pages/auth/select-role.html').done(function(data){
 			var dialog = $(data);
 			dialog.find('#save').on('click',function(){
 				var indexs = dialog.find('#selectRoleGrid').data('koala.grid').selectedRowsIndex();
@@ -253,7 +253,7 @@ var roleManager = function(){
 	 * 资源授权
 	 */
 	var assignResource = function(roleId){
-		$.get('pages/auth/assign-resource.html').done(function(data){
+		$.get('/pages/auth/assign-resource.html').done(function(data){
 			var dialog = $(data);
 			dialog.find('#save').on('click',function(){
 				var treeObj = $.fn.zTree.getZTreeObj("resourceTree");
@@ -306,7 +306,7 @@ var roleManager = function(){
 	* 加载资源树
 	 */
 	var initResourceTree = function(roleId){
-		$.get('auth/Menu/findMenuTreeSelectItemByRole.koala?time='+new Date().getTime()+'&roleId='+roleId).done(function(result){
+		$.get('/auth/Menu/findMenuTreeSelectItemByRole.koala?time='+new Date().getTime()+'&roleId='+roleId).done(function(result){
 			var setting = {
 				check: {
 					enable: true

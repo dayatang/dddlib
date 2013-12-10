@@ -1,5 +1,5 @@
 <div id="monitorNodeGrid"></div>
-<script src="js/monitor/monitorNodeManager.js"></script>
+<script src="/js/monitor/monitorNodeManager.js"></script>
 <script>
 	$(function(){
 		var columns = [ 
@@ -59,7 +59,7 @@
              buttons: buttons,
              isShowIndexCol: false,
              isShowPages: false,
-             url: 'monitor/NodeInfo/queryAllNodes.koala'
+             url: '/monitor/NodeInfo/queryAllNodes.koala'
         }).on({
         	'openSyncDataConfDig': function(){
                 monitorNodeManager.openSyncDataConfDig();
