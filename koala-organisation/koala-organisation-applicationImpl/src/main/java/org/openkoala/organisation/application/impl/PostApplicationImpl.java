@@ -15,6 +15,7 @@ import org.openkoala.organisation.domain.Organization;
 import org.openkoala.organisation.domain.Post;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.service.QueryChannelService;
 import com.dayatang.querychannel.support.Page;
 
@@ -22,9 +23,16 @@ import com.dayatang.querychannel.support.Page;
 @Transactional
 public class PostApplicationImpl implements PostApplication {
 
-	@Inject
+	
 	private QueryChannelService queryChannel;
 	
+	
+	private QueryChannelService getQueryChannelService(){
+		if(queryChannel!=null){
+			return queryChannel;
+		}
+		return InstanceFactory.getInstance(QueryChannelService.class,"queryChannel_org");
+	}
 	@Override
 	public Page<PostDTO> pagingQueryPosts(PostDTO example, int currentPage, int pagesize) {
 		List<Object> conditionVals = new ArrayList<Object>();
@@ -54,7 +62,7 @@ public class PostApplicationImpl implements PostApplication {
 	private Page<PostDTO> queryResult(PostDTO example, StringBuilder jpql, String conditionPrefix, List<Object> conditionVals,
 			int currentPage, int pagesize) {
 		assembleJpqlAndConditionValues(example, jpql, conditionPrefix, conditionVals);
-		Page<Post> postPage = queryChannel.queryPagedResultByPageNo(jpql.toString(), conditionVals.toArray(), currentPage, pagesize);
+		Page<Post> postPage = getQueryChannelService().queryPagedResultByPageNo(jpql.toString(), conditionVals.toArray(), currentPage, pagesize);
 		
 		return new Page<PostDTO>(Page.getStartOfPage(currentPage, pagesize), 
 				postPage.getTotalCount(), pagesize, transformToDtos(postPage.getResult()));

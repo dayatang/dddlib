@@ -12,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openkoala.organisation.application.BaseApplication;
@@ -58,6 +59,7 @@ public class BaseApplicationImplTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testGetEntity() {
 		PowerMockito.mockStatic(AbstractEntity.class);
 		Company company = new Company("总公司", "ORG-001");

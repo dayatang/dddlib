@@ -13,6 +13,7 @@ import org.openkoala.organisation.application.JobApplication;
 import org.openkoala.organisation.domain.Job;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.service.QueryChannelService;
 import com.dayatang.querychannel.support.Page;
 
@@ -20,8 +21,15 @@ import com.dayatang.querychannel.support.Page;
 @Transactional
 public class JobApplicationImpl implements JobApplication {
 
-	@Inject
+	
 	private QueryChannelService queryChannel;
+	
+	private QueryChannelService getQueryChannelService(){
+		if(queryChannel!=null){
+			return queryChannel;
+		}
+		return InstanceFactory.getInstance(QueryChannelService.class,"queryChannel_org");
+	}
 	
 	@Override
 	public Page<Job> pagingQueryJobs(Job jobSearchExample, int currentPage, int pageSize) {
@@ -45,7 +53,7 @@ public class JobApplicationImpl implements JobApplication {
 			conditionVals.add(MessageFormat.format("%{0}%", jobSearchExample.getSn()));
 		}
 
-		return queryChannel.queryPagedResultByPageNo(jpql.toString(),conditionVals.toArray(), currentPage, pageSize);
+		return getQueryChannelService().queryPagedResultByPageNo(jpql.toString(),conditionVals.toArray(), currentPage, pageSize);
 	}
 
 }
