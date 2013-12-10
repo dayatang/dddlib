@@ -37,7 +37,18 @@
 	</servlet-mapping>
 	
    #end
-   
+
+
+	<!-- Spring Listener -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:META-INF/spring/root.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>com.dayatang.spring.webapp.DayatangContextLoaderListener</listener-class>
+	</listener>
+	
+	   
 	
 #if ($Module.monitor)
 	<!-- monitor config begin-->
@@ -60,16 +71,13 @@
 	</filter-mapping>
 <!-- monitor config end -->
 #end
-
-
-	<!-- Spring Listener -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:META-INF/spring/root.xml</param-value>
-	</context-param>
+	
+	<!--组织子系统的listener-->
+#if ($Module.organization)
 	<listener>
-		<listener-class>com.dayatang.spring.webapp.DayatangContextLoaderListener</listener-class>
+		<listener-class>${Module.basePackage}.controller.organization.OrganisationListener</listener-class>
 	</listener>
+#end
 
 	<session-config>
 		<session-timeout>120</session-timeout>
@@ -113,6 +121,12 @@
 			<param-name>type</param-name>
 			<param-value>${Project.mvcProtocol}</param-value>
 		</init-param>
+		#if ($Module.organization)
+		<init-param>
+			<param-name>organization</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		#end
 	</servlet>
 
 	<servlet-mapping>

@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.inject.Named;
 
 import org.openkoala.organisation.application.BaseApplication;
+import org.openkoala.organisation.domain.OrganizationAbstractEntity;
 import org.openkoala.organisation.domain.Party;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,8 +33,8 @@ public class BaseApplicationImpl implements BaseApplication {
 	}
 
 	@Override
-	public <T extends AbstractEntity> T getEntity(Class<T> clazz, Long id) {
-		return AbstractEntity.get(clazz, id);
+	public <T extends OrganizationAbstractEntity> T getEntity(Class<T> clazz, Long id) {
+		return OrganizationAbstractEntity.get(clazz, id);
 	}
 
 	@Override

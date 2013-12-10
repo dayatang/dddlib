@@ -5,10 +5,11 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import org.openkoala.organisation.SnIsExistException;
 import org.openkoala.organisation.application.JobApplication;
 import org.openkoala.organisation.domain.Job;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,7 +28,7 @@ import com.dayatang.querychannel.support.Page;
 @RequestMapping("/job")
 public class JobController extends BaseController {
 
-	@Autowired
+	@Inject
 	private JobApplication jobApplication;
 	
 	/**

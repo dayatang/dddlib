@@ -3,6 +3,7 @@ package org.openkoala.organisation.application;
 import java.util.List;
 import java.util.Set;
 
+import org.openkoala.organisation.domain.OrganizationAbstractEntity;
 import org.openkoala.organisation.domain.Party;
 
 import com.dayatang.domain.AbstractEntity;
@@ -46,7 +47,7 @@ public interface BaseApplication {
 	 * @param id
 	 * @return
 	 */
-	<T extends AbstractEntity> T getEntity(Class<T> clazz, Long id);
+	<T extends OrganizationAbstractEntity> T getEntity(Class<T> clazz, Long id);
 	
 	/**
 	 * 根据参与者类型获得其所有实例

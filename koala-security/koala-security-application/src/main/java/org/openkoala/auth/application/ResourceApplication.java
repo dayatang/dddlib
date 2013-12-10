@@ -108,6 +108,6 @@ public interface ResourceApplication {
      * 初始化资源
      * @param type
      */
-    void initResource(String type);
+    void initMenus(String type,List<String> inits);
     
 }

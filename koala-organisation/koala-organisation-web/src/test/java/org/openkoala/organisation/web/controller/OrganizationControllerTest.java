@@ -46,6 +46,7 @@ public class OrganizationControllerTest {
 	@InjectMocks
 	private OrganizationController organizationController = new OrganizationController();
 	
+	
 	@Test
 	public void testCreateCompany() {
 		Long parentId = 1L;

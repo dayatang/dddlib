@@ -15,13 +15,15 @@ import javax.persistence.TemporalType;
 import org.openkoala.organisation.SnIsExistException;
 
 import com.dayatang.domain.AbstractEntity;
+import com.dayatang.domain.EntityRepository;
+import com.dayatang.domain.InstanceFactory;
 import com.dayatang.domain.QuerySettings;
 import com.dayatang.utils.DateUtils;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "CATEGORY", discriminatorType = DiscriminatorType.STRING)
-public abstract class Party extends AbstractEntity {
+public abstract class Party extends OrganizationAbstractEntity {
 
 	private static final long serialVersionUID = -6083088250263550905L;
 
@@ -116,6 +118,15 @@ public abstract class Party extends AbstractEntity {
 				.le("createDate", date)
 				.gt("terminateDate", date));
 		return parties.isEmpty() ? false : true;
+	}
+	
+	private static EntityRepository repository;
+	
+	public static EntityRepository getRepository() {
+		if (repository == null) {
+			repository = InstanceFactory.getInstance(EntityRepository.class,"repository_org");
+		}
+		return repository;
 	}
 	
 	/**

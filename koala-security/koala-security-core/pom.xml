@@ -27,13 +27,12 @@
 			<groupId>com.dayatang.commons</groupId>
 			<artifactId>dayatang-commons-domain</artifactId>
 		</dependency>
-
-<!--
+		
 		<dependency>
 			<groupId>com.dayatang.commons</groupId>
-			<artifactId>dayatang-commons-org.openkoala.businesslog.utils</artifactId>
+			<artifactId>dayatang-commons-utils</artifactId>
 		</dependency>
-  -->
+		
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>

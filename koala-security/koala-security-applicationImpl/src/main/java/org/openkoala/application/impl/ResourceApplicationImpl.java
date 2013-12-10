@@ -272,89 +272,129 @@ public class ResourceApplicationImpl extends BaseImpl implements ResourceApplica
         return resource;
     }
 
-    public void initResource(String type) {
-        String menuIcon = "images/icons/other/node.png";
+    private static final String menuIcon = "images/icons/other/node.png";
+    private static final String ORGANIATION="organization";
+    public void initMenus(String type,List<String> inits) {
+    	this.initResourceMenu();
+    	this.initUserManagerMenu();
+    	if(inits!=null && inits.contains(ORGANIATION)){
+    		this.initOrganizationMenu();
+    	}
+    	
+    }
+    
+    
+    /**
+     * 初始化资源菜单
+     */
+    private void initResourceMenu(){
+    	  ResourceType koalaMenu = ResourceType.newResourceType("KOALA_MENU");
+          ResourceType koalaDirectory  = ResourceType.newResourceType("KOALA_DIRETORY");
+          koalaMenu.save();
+          koalaDirectory.save();
+          
+          Resource  resourceManager = Resource.newResource("资源", "resource", "1", menuIcon);
+          Resource  resource = Resource.newResource("资源管理", "pages/auth/resource-list.html", "2", menuIcon);
+          Resource   menuResource = Resource.newResource("菜单管理", "pages/auth/menu-list.html", "2", menuIcon);
+          Resource    typeResource = Resource.newResource("资源类型管理", "pages/auth/resource-type-list.html", "2", menuIcon);
+          resourceManager.save();
+          resource.save();
+          menuResource.save();
+          typeResource.save();
+          
+          ResourceLineAssignment.newResourceLineAssignment(resourceManager,
+                  resource).save();;
+          ResourceLineAssignment.newResourceLineAssignment(resourceManager,
+                  menuResource).save();;
+          ResourceLineAssignment.newResourceLineAssignment(resourceManager,
+                  typeResource).save();
+          
+          ResourceTypeAssignment.newResourceTypeAssignment(resourceManager,
+                  koalaDirectory).save();
+          ResourceTypeAssignment.newResourceTypeAssignment(resource, koalaMenu).save();;
+          ResourceTypeAssignment.newResourceTypeAssignment(menuResource,
+                  koalaMenu).save();;
+          ResourceTypeAssignment.newResourceTypeAssignment(typeResource,
+                  koalaMenu).save();;
+          
+    }
+    
+    /**
+     * 初始化用户管理菜单
+     */
+    private void initUserManagerMenu(){
+    
+    	ResourceType koalaMenu = ResourceType.newResourceType("KOALA_MENU");
+        ResourceType koalaDirectory  = ResourceType.newResourceType("KOALA_DIRETORY");
+        koalaMenu.save();
+        koalaDirectory.save();
         
-        Resource resourceManager = null;
-        Resource resource = null;
-        Resource menuResource = null;
-        Resource typeResource = null;
-        Resource userRoleResource = null;
         
-        Resource userManager = null;
-        Resource roleManager = null;
-        ResourceType koalaMenu = null;
-        ResourceType koalaDirectory = null;
-        if("StrutsMVC".equals(type)){
-            
-             resourceManager = Resource.newResource("资源", "resource", "1", menuIcon);
-             resource = Resource.newResource("资源管理", "pages/auth/resource-list.html", "2", menuIcon);
-             menuResource = Resource.newResource("菜单管理", "pages/auth/menu-list.html", "2", menuIcon);
-             typeResource = Resource.newResource("资源类型管理", "pages/auth/resource-type-list.html", "2", menuIcon);
-             userRoleResource = Resource.newResource("用户角色管理", "userole", "1", menuIcon);
-            
-             userManager = Resource.newResource("用户管理", "pages/auth/user-list.html", "2", menuIcon);
-             roleManager = Resource.newResource("角色管理", "pages/auth/role-list.html", "2", menuIcon);
-             koalaMenu = ResourceType.newResourceType("KOALA_MENU");
-             koalaDirectory = ResourceType.newResourceType("KOALA_DIRETORY");
-        }
-        else{
-        	  resourceManager = Resource.newResource("资源", "resource", "1", menuIcon);
-              resource = Resource.newResource("资源管理", "pages/auth/resource-list.html", "2", menuIcon);
-              menuResource = Resource.newResource("菜单管理", "pages/auth/menu-list.html", "2", menuIcon);
-              typeResource = Resource.newResource("资源类型管理", "pages/auth/resource-type-list.html", "2", menuIcon);
-              userRoleResource = Resource.newResource("用户角色管理", "userole", "1", menuIcon);
-             
-              userManager = Resource.newResource("用户管理", "pages/auth/user-list.html", "2", menuIcon);
-              roleManager = Resource.newResource("角色管理", "pages/auth/role-list.html", "2", menuIcon);
-              koalaMenu = ResourceType.newResourceType("KOALA_MENU");
-              koalaDirectory = ResourceType.newResourceType("KOALA_DIRETORY");
-        }
-
-        resourceManager.save();
-        resource.save();
-        menuResource.save();
-        typeResource.save();
+        Resource userRoleResource  = Resource.newResource("用户角色管理", "userole", "1", menuIcon);
+        Resource userManager = Resource.newResource("用户管理", "pages/auth/user-list.html", "2", menuIcon);
+        Resource roleManager = Resource.newResource("角色管理", "pages/auth/role-list.html", "2", menuIcon);
+        
         userRoleResource.save();
         userManager.save();
         roleManager.save();
+
+        ResourceLineAssignment.newResourceLineAssignment(userRoleResource,
+                userManager).save();;
+        ResourceLineAssignment.newResourceLineAssignment(userRoleResource,
+                roleManager).save();;
+
+      
+        
+        ResourceTypeAssignment.newResourceTypeAssignment(
+                userRoleResource, koalaDirectory).save();;
+        ResourceTypeAssignment.newResourceTypeAssignment(userManager,
+                koalaMenu).save();;
+        ResourceTypeAssignment.newResourceTypeAssignment(roleManager,
+                koalaMenu).save();;
+    	
+    }
+    
+    /**
+     * 初始化组织菜单
+     */
+    private void initOrganizationMenu(){
+    	ResourceType koalaMenu = ResourceType.newResourceType("KOALA_MENU");
+        ResourceType koalaDirectory  = ResourceType.newResourceType("KOALA_DIRETORY");
         koalaMenu.save();
         koalaDirectory.save();
-        ResourceLineAssignment resourceLineResource = ResourceLineAssignment.newResourceLineAssignment(resourceManager,
-                resource);
-        ResourceLineAssignment resourceLineMenu = ResourceLineAssignment.newResourceLineAssignment(resourceManager,
-                menuResource);
-        ResourceLineAssignment resourceLinetype = ResourceLineAssignment.newResourceLineAssignment(resourceManager,
-                typeResource);
-        ResourceLineAssignment urlroleLineUser = ResourceLineAssignment.newResourceLineAssignment(userRoleResource,
-                userManager);
-        ResourceLineAssignment urlroleLineRole = ResourceLineAssignment.newResourceLineAssignment(userRoleResource,
-                roleManager);
-        resourceLineResource.save();
-        resourceLineMenu.save();
-        resourceLinetype.save();
-        urlroleLineUser.save();
-        urlroleLineRole.save();
-        ResourceTypeAssignment resourceManagerType = ResourceTypeAssignment.newResourceTypeAssignment(resourceManager,
-                koalaDirectory);
-        ResourceTypeAssignment userRoleResourceType = ResourceTypeAssignment.newResourceTypeAssignment(
-                userRoleResource, koalaDirectory);
-        ResourceTypeAssignment resourceType = ResourceTypeAssignment.newResourceTypeAssignment(resource, koalaMenu);
-        ResourceTypeAssignment menuResourceType = ResourceTypeAssignment.newResourceTypeAssignment(menuResource,
-                koalaMenu);
-        ResourceTypeAssignment typeResourceType = ResourceTypeAssignment.newResourceTypeAssignment(typeResource,
-                koalaMenu);
-        ResourceTypeAssignment userManagerType = ResourceTypeAssignment.newResourceTypeAssignment(userManager,
-                koalaMenu);
-        ResourceTypeAssignment roleManagerType = ResourceTypeAssignment.newResourceTypeAssignment(roleManager,
-                koalaMenu);
-        resourceManagerType.save();
-        userRoleResourceType.save();
-        resourceType.save();
-        menuResourceType.save();
-        typeResourceType.save();
-        userManagerType.save();
-        roleManagerType.save();
+        
+        Resource organization = Resource.newResource("组织机构", "organization", "1", menuIcon);
+        Resource department =  Resource.newResource("部门管理", "pages/organisation/departmentList.htm", "2", menuIcon);
+        Resource job =  Resource.newResource("职务管理", "pages/organisation/jobList.html", "2", menuIcon);
+        Resource position =  Resource.newResource("岗位管理", "pages/organisation/positionList.html", "2", menuIcon);
+        Resource employee =  Resource.newResource("人员管理", "pages/organisation/employeeList.html", "2", menuIcon);
+        organization.save();
+        department.save();
+        job.save();
+        position.save();
+        employee.save();
+        
+        ResourceLineAssignment.newResourceLineAssignment(organization,
+        		department).save();
+        ResourceLineAssignment.newResourceLineAssignment(organization,
+        		job).save();
+        ResourceLineAssignment.newResourceLineAssignment(organization,
+        		position).save();
+        ResourceLineAssignment.newResourceLineAssignment(organization,
+        		employee).save();
+        
+        ResourceTypeAssignment.newResourceTypeAssignment(
+        		organization, koalaDirectory).save();
+        
+        ResourceTypeAssignment.newResourceTypeAssignment(
+        		department, koalaMenu).save();
+        ResourceTypeAssignment.newResourceTypeAssignment(
+        		job, koalaMenu).save();
+        ResourceTypeAssignment.newResourceTypeAssignment(
+        		position, koalaMenu).save();
+        ResourceTypeAssignment.newResourceTypeAssignment(
+        		employee, koalaMenu).save();
+        
     }
 
     
