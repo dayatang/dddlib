@@ -45,5 +45,10 @@
 			<version>${project.parent.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-utils</artifactId>
+		</dependency>
+
 	</dependencies>
 </project>
