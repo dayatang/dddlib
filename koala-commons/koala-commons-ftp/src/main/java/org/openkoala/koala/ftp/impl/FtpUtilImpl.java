@@ -45,7 +45,18 @@ public class FtpUtilImpl implements FtpUtil {
 		this.mode = mode;
 	}
 
-	public File downLoadFile(String path,String filename,String localPath) throws FtpException {
+	
+	public File downLoadFile(String path, String filename, String localPath)
+			throws FtpException {
+		return downLoadFile(path,filename,localPath,FTP.ASCII_FILE_TYPE);
+	}
+	
+	public File downloadBinaryFile(String path,String filename,String localPath) throws FtpException{
+		return downLoadFile(path,filename,localPath,FTP.BINARY_FILE_TYPE);
+	}
+
+	
+	private File downLoadFile(String path,String filename,String localPath,int fileType) throws FtpException {
 		File file = null;
 		FileOutputStream fos = null;
 		if (!path.endsWith("/")) {
@@ -58,6 +69,7 @@ public class FtpUtilImpl implements FtpUtil {
 		long last = 0L;
 		try {
 			ftpClient = connectFtpClient();
+			ftpClient.setFileType(fileType);
 			ftpClient.cwd("/");
 			ftpClient.cwd(path);
 			ftpClient.sendCommand("MDTM " + filename);
@@ -80,6 +92,7 @@ public class FtpUtilImpl implements FtpUtil {
 			file = new File(localPath + "/" + path + "/" + filename);
 			fos = new FileOutputStream(file);
 			ftpClient.retrieveFile(filename, fos);
+			ftpClient.setFileType(FTP.ASCII_FILE_TYPE);
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new FtpException(e.getMessage());
