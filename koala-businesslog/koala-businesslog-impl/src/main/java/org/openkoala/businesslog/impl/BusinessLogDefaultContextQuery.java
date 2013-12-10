@@ -1,15 +1,15 @@
 package org.openkoala.businesslog.impl;
 
 import com.dayatang.domain.InstanceFactory;
+import org.apache.commons.beanutils.PropertyUtils;
+import org.openkoala.businesslog.common.ContextQueryHelper;
 import org.openkoala.businesslog.config.BusinessLogContextQuery;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.MessageFormat;
+import java.util.*;
 
 /**
  * User: zjzhai
@@ -26,6 +26,9 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
 
     private String methodSignature;
 
+    /**
+     * 方法调用的参数
+     */
     private List<String> args;
 
     private Map<String, Object> context;
@@ -50,54 +53,29 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
         }
         Object[] result = new Object[args.size()];
         for (int i = 0; i < getMethodParamTypes().size(); i++) {
-            String type = getMethodParamTypes().get(i);
-            result[i] = convertArg(args.get(i), type);
+            Class clasz = getMethodParamClasses()[i];
+            result[i] = convertArg(args.get(i), clasz);
         }
+
         return result;
     }
 
     private List<String> getMethodParamTypes() {
-        List<String> result = new ArrayList<String>();
-        for (String paramName : methodSignature.substring(methodSignature.indexOf('(') + 1, methodSignature.indexOf(')')).split(",")) {
-            result.add(paramName);
-        }
-        return result;
+        return ContextQueryHelper.getMethodParamTypes(methodSignature);
     }
 
 
     private String getMethodName() {
-        return methodSignature.substring(0, methodSignature.indexOf('('));
+        return ContextQueryHelper.getMethodName(methodSignature);
     }
 
-    private Method getMethod() {
-        try {
-            return Class.forName(beanClassName).getMethod(getMethodName(), getMethodParamClasses());
-        } catch (NoSuchMethodException e) {
-            new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            new RuntimeException(e);
-        }
-        return null;
+    private Method getMethodInstance() {
+        return ContextQueryHelper.getMethodInstanceOf(beanClassName, getMethodName(), getMethodParamClasses());
     }
 
     private Class[] getMethodParamClasses() {
-        List<Class> classes = new ArrayList<Class>();
-        for (String type : getMethodParamTypes()) {
-            if ("long".equals(type)) {
-                classes.add(long.class);
-                continue;
-            } else if ("String".equals(type) || "java.lang.String".equals(type)) {
-                classes.add(String.class);
-            } else {
-                try {
-
-                    classes.add(Class.forName(type));
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
-        return classes.toArray(new Class[classes.size()]);
+        List<String> types = ContextQueryHelper.getMethodParamTypes(methodSignature);
+        return ContextQueryHelper.getMethodParamClasses(types);
     }
 
     private Object getBean() {
@@ -110,8 +88,6 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
-
-
         if (null != beanName && !"".equals(beanName.trim())) {
             return InstanceFactory.getInstance(getClassOfBean(), beanName);
         }
@@ -128,30 +104,42 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
     }
 
     private boolean isStaticMethodWillInvoke() {
-        return Modifier.isStatic(getMethod().getModifiers());
+        return Modifier.isStatic(getMethodInstance().getModifiers());
     }
 
 
-    private Object convertArg(String arg, String type) {
+    private Object convertArg(String arg, Class aClass) {
         if (null == arg) {
             return arg;
         }
         if (arg.contains("$")) {
-            String key = arg.substring(arg.indexOf("{") + 1, arg.lastIndexOf("}"));
-            try {
-                return Class.forName(type).cast(context.get(key));
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
+            if (arg.contains(".")) {
+                String key = arg.substring(arg.indexOf("{") + 1, arg.lastIndexOf("."));
+                Object bean = context.get(key);
+                try {
+                    return PropertyUtils.getNestedProperty(bean, arg.substring(arg.indexOf(".") + 1, arg.lastIndexOf("}")));
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                } catch (InvocationTargetException e) {
+                    throw new RuntimeException(e);
+                } catch (NoSuchMethodException e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                return context.get(arg.substring(arg.indexOf("{") + 1, arg.lastIndexOf("}")));
             }
+
         } else {
-            if ("long".equals(type)) {
+            if (aClass.equals(Long.class) || aClass.equals(long.class)) {
                 return Long.parseLong(arg);
-            } else if ("String".equals(type) || "java.lang.String".equals(type)) {
+            } else if (aClass.equals(String.class)) {
                 return arg;
+            } else if (aClass.equals(Date.class)) {
+                return Date.parse(arg);
             }
-
-
         }
+
+
         return null;
     }
 
@@ -159,9 +147,9 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
     private Object invoke(Object methodObject, Object... params) {
         try {
             if (null == params) {
-                return getMethod().invoke(methodObject);
+                return getMethodInstance().invoke(methodObject);
             }
-            return getMethod().invoke(methodObject, params);
+            return getMethodInstance().invoke(methodObject, params);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         } catch (InvocationTargetException e) {

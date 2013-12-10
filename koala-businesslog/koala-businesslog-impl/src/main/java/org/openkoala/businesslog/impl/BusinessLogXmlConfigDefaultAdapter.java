@@ -30,6 +30,9 @@ public class BusinessLogXmlConfigDefaultAdapter extends AbstractBusinessLogConfi
 
         setTemplate(parser.getTemplateFrom(businessOperator));
 
+        System.out.println("............");
+        System.out.println(parser.getTemplateFrom(businessOperator));
+
         setQueries(parser.getQueriesFrom(businessOperator));
 
         return this;

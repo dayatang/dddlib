@@ -10,4 +10,7 @@ public interface ContractApplication {
 
     String addContract(long contractId);
 
+    Contract findContractById(long contractId);
+
+    Project findByContractIdAndProject(long contractId, Project project);
 }

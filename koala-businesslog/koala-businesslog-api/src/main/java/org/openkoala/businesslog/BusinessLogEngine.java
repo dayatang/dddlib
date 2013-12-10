@@ -27,7 +27,10 @@ public class BusinessLogEngine {
         this.render = render;
     }
 
-    public BusinessLogEngine(BusinessLogConfig config, BusinessLogRender render, BusinessLogContextQueryExecutor queryExecutor, Map<String, Object> aContext) {
+    public BusinessLogEngine(BusinessLogConfig config,
+                             BusinessLogRender render,
+                             BusinessLogContextQueryExecutor queryExecutor,
+                             Map<String, Object> aContext) {
         this(config, render, queryExecutor);
         initContext = aContext;
     }
@@ -48,7 +51,7 @@ public class BusinessLogEngine {
             initContext = new HashMap<String, Object>();
         }
         BusinessLogContextQuery[] queries = new BusinessLogContextQuery[config.getQueries(businessOperator).size()];
-        return queryExecutor.startQuery(initContext, queries);
+        return queryExecutor.startQuery(initContext, config.getQueries(businessOperator).toArray(queries));
     }
 
     public void setRender(BusinessLogRender render) {

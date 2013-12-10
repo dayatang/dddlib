@@ -23,7 +23,7 @@ public class BusinessLogXmlConfigDefaultAdapterTest {
     @Test
     public void testName() throws Exception {
 
-        String method = "String business.ContractApplication.addInvoice(String,long,long)";
+        String method = "Invoice business.InvoiceApplication.addInvoice(String,long)";
 
         BusinessLogConfigAdapter adapter = new BusinessLogXmlConfigDefaultAdapter();
 
@@ -31,8 +31,8 @@ public class BusinessLogXmlConfigDefaultAdapterTest {
 
         assert "${user!\"\"}:${ip!\"\"}:".equals(adapter.getPreTemplate());
 
-
-        assert "合同添加入项目".equals(adapter.getTemplate());
+        assert "向项目${project.name}的合同${contract.name}添加发票：${_methodReturn.sn}"
+                .equals(adapter.getTemplate());
 
 
     }
