@@ -20,6 +20,16 @@ public class Developer {
 	private String name;
 	
 	/**
+	 * 密码
+	 */
+	private String password;
+	
+	/**
+	 * 用户全名
+	 */
+	private String fullName;
+	
+	/**
 	 * 用户邮箱
 	 */
 	private String email;
@@ -44,6 +54,22 @@ public class Developer {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
 	public String getEmail() {
