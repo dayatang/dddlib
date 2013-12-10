@@ -8,7 +8,7 @@ import java.io.IOException;
  * Date: 11/27/13
  * Time: 11:01 AM
  */
-public abstract class KoalaBusinessLogServletFilter implements Filter {
+public abstract class BusinessLogServletFilter implements Filter {
 
     /**
      * 将需要用到的信息放入日志上下文
