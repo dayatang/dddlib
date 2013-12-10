@@ -89,7 +89,7 @@ $(function(){
             isShowIndexCol: false,
             isShowPages: false,
             searchCondition: searchCondition,
-            url: 'monitor/Monitor/methodMonitorCount.koala'
+            url: '/monitor/Monitor/methodMonitorCount.koala'
         }).on('complate', function(event, data){
                 loadChart(data.Rows);
                 $(window).trigger('resize');
@@ -173,7 +173,7 @@ $(function(){
     }
 });
 var showMethodMonitorDetail = function(method){
-    $.get('pages/monitor/method-monitor-detail.html').done(function(data){
+    $.get('/pages/monitor/method-monitor-detail.html').done(function(data){
         $(data).modal({
             keyboard: true
         }).on({
@@ -240,7 +240,7 @@ var showMethodMonitorDetail = function(method){
     });
 }
 var showStackTracesDetail = function(obj){
-    $.get('pages/monitor/stack-trace-detail.html').done(function(data){
+    $.get('/pages/monitor/stack-trace-detail.html').done(function(data){
         $(data).modal({
             keyboard: true,
             backdrop: false
@@ -250,7 +250,7 @@ var showStackTracesDetail = function(obj){
     });
 }
 var showSqlsMonitorDetail = function(methodId){
-    $.get('pages/monitor/sql-monitor-detail.html').done(function(data){
+    $.get('/pages/monitor/sql-monitor-detail.html').done(function(data){
         $(data).modal({
         	keyboard: true,
         	backdrop: false

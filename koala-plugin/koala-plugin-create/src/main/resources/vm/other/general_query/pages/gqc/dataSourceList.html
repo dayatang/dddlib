@@ -1,5 +1,5 @@
 <div id="dataSourceGrid"></div>
-<script src="js/gqc/dataSource.js"></script>
+<script src="/js/gqc/dataSource.js"></script>
 <script>
 $(function(){
     var cols = [
@@ -24,7 +24,7 @@ $(function(){
         identity: 'id',
         columns: cols,
         buttons: buttons,
-        url: 'dataSource/pageJson.koala'
+        url: '/dataSource/pageJson.koala'
     }).on({
         'add': function(){
             dataSource().add( $(this));

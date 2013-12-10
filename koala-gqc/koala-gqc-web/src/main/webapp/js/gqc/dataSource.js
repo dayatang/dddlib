@@ -1,5 +1,5 @@
 var dataSource = function(){
-	var baseUrl = 'dataSource/';
+	var baseUrl = '/dataSource/';
 	var dialog = null;    //对话框
 	var dataSourceType = null;   //数据源类型
 	var dataSourceId = null;    //数据源ID
@@ -14,7 +14,7 @@ var dataSource = function(){
 	 */
 	var add = function(grid){
 		dataGrid = grid;
-		$.get('pages/gqc/dataSourceTemplate.html').done(function(data){
+		$.get('/pages/gqc/dataSourceTemplate.html').done(function(data){
 			init(data);
 		});
 	};
@@ -23,7 +23,7 @@ var dataSource = function(){
 	 */
 	var modify = function(id, grid){
 		dataGrid = grid;
-		$.get('pages/gqc/dataSourceTemplate.html').done(function(data){
+		$.get('/pages/gqc/dataSourceTemplate.html').done(function(data){
 			init(data,id);
 			setData(id);
 		});

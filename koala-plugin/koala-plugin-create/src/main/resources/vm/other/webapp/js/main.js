@@ -43,7 +43,7 @@ $(function(){
 				changeHeight();
 			});
 	};
-	loadContent($('#home'), 'pages/welcome.html');	
+    loadContent($('#home'), '/pages/welcome.html');
 	/*
 	* 菜单收缩样式变化
 	 */
