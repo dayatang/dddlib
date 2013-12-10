@@ -34,9 +34,7 @@ $(function(){
         }).on('change', function(){
                 $('#monitorCategory').trigger('change');
             });
-        if(data.Rows.length > 0){
-            monitorNode.trigger('change');
-        }
+        monitorNode.trigger('change');
     });
     $('#timeOut').on('blur', function(){
         $('#monitorCategory').trigger('change');

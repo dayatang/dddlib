@@ -51,9 +51,7 @@ $(function(){
         }).on('change', function(){
                 methodCountType.trigger('change');
             });
-        if(data.Rows.length > 0){
-            monitorNode.trigger('change');
-        }
+        monitorNode.trigger('change');
     });
     var loadData = function(){
     	$('#methodDetailGrid').empty();
