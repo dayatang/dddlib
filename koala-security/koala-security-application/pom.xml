@@ -37,21 +37,12 @@
 					<groupId>org.springframework</groupId>
 					<artifactId>spring-orm</artifactId>
 				</exclusion>
-				<exclusion>
-					<groupId>org.hibernate.javax.persistence</groupId>
-					<artifactId>hibernate-jpa-2.0-api</artifactId>
-				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.openkoala.security</groupId>
 			<artifactId>koala-security-core</artifactId>
 			<version>${project.parent.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.dayatang.commons</groupId>
-			<artifactId>dayatang-commons-utils</artifactId>
 		</dependency>
 
 	</dependencies>
