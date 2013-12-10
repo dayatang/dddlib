@@ -31,6 +31,12 @@
 			<groupId>org.openkoala.koalacommons</groupId>
 			<artifactId>koala-commons-support</artifactId>
 			<version>${project.parent.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.hibernate.javax.persistence</groupId>
+					<artifactId>hibernate-jpa-2.0-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
