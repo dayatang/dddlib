@@ -37,10 +37,6 @@
 					<groupId>org.springframework</groupId>
 					<artifactId>spring-orm</artifactId>
 				</exclusion>
-				<exclusion>
-					<groupId>org.hibernate.javax.persistence</groupId>
-					<artifactId>hibernate-jpa-2.0-api</artifactId>
-				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
