@@ -2,6 +2,9 @@ package org.openkoala.koala.dbinit;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,6 +30,9 @@ public class SecurityDBInit extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = -268354658112935661L;
+
+	
+	private List<String> inits;
 	
 	private String type;
 
@@ -40,7 +46,7 @@ public class SecurityDBInit extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		getResourceApplication().initResource(type);
+		getResourceApplication().initMenus(type,inits);
 		//resp.sendRedirect(req.getContextPath()+"/pages/common/dbInit.jsp");
 		PrintWriter out = resp.getWriter();
 		out.write("success");
@@ -48,8 +54,15 @@ public class SecurityDBInit extends HttpServlet {
 		out.close();
 	}
 	
+	private static final String INIT_ORGANIATION="organization";
+	
 	  public void init() throws ServletException{  
 		  type = this.getInitParameter("type");   
+		  inits = new ArrayList<String>();
+		  if(this.getInitParameter(INIT_ORGANIATION)!=null){
+			  inits.add(INIT_ORGANIATION);
+		  }
+		  
        }   
 	
 	

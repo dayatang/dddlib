@@ -249,6 +249,9 @@ public class Project implements Serializable {
 				if(mod.getGeneralQuery() != null){
 					packages.add("org.openkoala.gqc.core.domain");
 				}
+				if(mod.getOrganization()!=null){
+					packages.add("org.openkoala.organisation.domain");
+				}
 			}
 		}
 		return packages;
