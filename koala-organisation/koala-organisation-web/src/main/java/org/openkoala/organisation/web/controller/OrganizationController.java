@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.inject.Inject;
+
 import org.openkoala.organisation.SnIsExistException;
 import org.openkoala.organisation.TerminateNotEmptyOrganizationException;
 import org.openkoala.organisation.TerminateRootOrganizationException;
@@ -15,7 +17,6 @@ import org.openkoala.organisation.domain.Company;
 import org.openkoala.organisation.domain.Department;
 import org.openkoala.organisation.domain.Employee;
 import org.openkoala.organisation.domain.Organization;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +34,7 @@ public class OrganizationController extends BaseController {
     /**
      * 组织机构应用接口
      */
-    @Autowired
+    @Inject
     private OrganizationApplication organizationApplication;
     
     /**

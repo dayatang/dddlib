@@ -10,4 +10,11 @@ public class InvoiceApplicationImpl implements InvoiceApplication {
     public Invoice findByInvoiceSn(String invoiceSn) {
         return new Invoice(invoiceSn);
     }
+
+    @Override
+    public Invoice addInvoice(String invoiceSn, long contractId) {
+        return new Invoice(invoiceSn);
+    }
+
+
 }

@@ -35,18 +35,13 @@ public class BusinessLogInterceptor {
 
 
     public void logAfter(JoinPoint joinPoint, Object result) {
-
-
-        System.out.println(joinPoint.getSignature());
-        Map<String, Object> context = createDefaultContext(joinPoint, result);
         BusinessLogEngine engine = getBusinessLogEngine();
-        engine.setInitContext(context);
+        engine.setInitContext( createDefaultContext(joinPoint, result));
         engine.exportLogBy(joinPoint.getSignature().toString(), new BusinessLogConsoleExporter());
 
     }
 
     private Map<String, Object> createDefaultContext(JoinPoint joinPoint, Object result) {
-
         Map<String, Object> context = ThreadLocalBusinessLogContext.get();
 
         Object[] args = joinPoint.getArgs();
@@ -61,8 +56,6 @@ public class BusinessLogInterceptor {
     private BusinessLogEngine getBusinessLogEngine() {
         if (businessLogEngine == null) {
             BusinessLogConfig config = new BusinessLogConfig(new BusinessLogXmlConfigDefaultAdapter());
-
-
             businessLogEngine = new BusinessLogEngine(config,
                     new BusinessLogFreemarkerDefaultRender(), new BusinessLogDefaultContextQueryExecutor());
         }

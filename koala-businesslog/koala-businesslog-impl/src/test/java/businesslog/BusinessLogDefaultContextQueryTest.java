@@ -1,6 +1,10 @@
 package businesslog;
 
+import business.ContractApplicationImpl;
 import business.Project;
+import business.ProjectApplicationImpl;
+import com.dayatang.domain.InstanceFactory;
+import com.dayatang.domain.InstanceProvider;
 import org.junit.Test;
 import org.openkoala.businesslog.impl.BusinessLogDefaultContextQuery;
 
@@ -8,6 +12,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * User: zjzhai
@@ -18,11 +25,17 @@ public class BusinessLogDefaultContextQueryTest {
 
     @Test
     public void testName() throws Exception {
+        InstanceProvider provider = mock(InstanceProvider.class);
+
+
+        InstanceFactory.setInstanceProvider(provider);
+
+        when(provider.getInstance(Class.forName("business.ContractApplication")))
+                .thenReturn(new ContractApplicationImpl());
+
         String queryContextKey = "project";
-
-
         BusinessLogDefaultContextQuery query = new BusinessLogDefaultContextQuery();
-        query.setBeanClassName("business.ContractApplicationImpl");
+        query.setBeanClassName("business.ContractApplication");
         query.setMethodSignature("findByContractIdAndProject(long,business.Project)");
         query.setArgs(getArgs());
         query.setContextKey(queryContextKey);

@@ -1,6 +1,7 @@
 package businesslog;
 
 import business.ContractApplication;
+import business.InvoiceApplication;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,31 +15,23 @@ import javax.inject.Inject;
 import java.util.Date;
 import java.util.Map;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:context.xml"})
-public class LogGeneratorTest extends AbstractJUnit4SpringContextTests {
+
+public class BusinessLogInterceptorTest extends AbstractIntegrationTest {
 
     @Inject
     private ContractApplication contractApplication;
+
+    @Inject
+    private InvoiceApplication invoiceApplication;
 
     @Test
     public void test() {
         ThreadLocalBusinessLogContext.put("user", "张三");
         ThreadLocalBusinessLogContext.put("time", new Date());
         ThreadLocalBusinessLogContext.put("ip", "202.11.22.33");
-        contractApplication.addInvoice("项目XXX", 1l, 2l);
-
-        Map<String, Object> context = ThreadLocalBusinessLogContext.get();
 
 
-        assert "项目XXX".equals(context.get("_param0"));
-        assert new Long(1).equals(context.get("_param1"));
-        assert new Long(2).equals(context.get("_param2"));
-        assert "K-8999".equals(context.get(BusinessLogInterceptor.BUSINESS_METHOD_RETURN_VALUE_KEY));
-        assert "张三".equals(context.get("user"));
-
-
-
+        invoiceApplication.addInvoice("发票编号", 1l);
 
 
     }

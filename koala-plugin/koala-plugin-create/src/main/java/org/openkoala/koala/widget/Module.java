@@ -34,6 +34,8 @@ public class Module implements Serializable {
 	
 	private GeneralQuery generalQuery;
 	
+	private Organization organization;
+	
 	public String getModuleName() {
 		return moduleName;
 	}
@@ -118,4 +120,13 @@ public class Module implements Serializable {
 	public void setGeneralQuery(GeneralQuery generalQuery) {
 		this.generalQuery = generalQuery;
 	}
+
+	public Organization getOrganization() {
+		return organization;
+	}
+
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
+	}
+	
 }

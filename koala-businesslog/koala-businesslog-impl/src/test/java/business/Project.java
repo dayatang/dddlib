@@ -8,6 +8,9 @@ package business;
 public class Project {
     private String name;
 
+    public Project() {
+    }
+
     public Project(String name) {
         this.name = name;
     }
@@ -18,6 +21,10 @@ public class Project {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public static Project findByContract(Contract contract) {
+        return new Project("项目xxxx");
     }
 
 

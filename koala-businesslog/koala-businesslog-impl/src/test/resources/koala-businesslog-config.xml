@@ -3,28 +3,27 @@
     <preTemplate><![CDATA[${user!""}:${ip!""}:]]></preTemplate>
     <businessLogConfig>
         <!--向项目中的合同，添加一张发票-->
-        <method>String business.ContractApplication.addInvoice(String,long,long)</method>
-        <template><![CDATA[合同添加入项目]]></template>
+        <method>Invoice business.InvoiceApplication.addInvoice(String,long)</method>
+        <template><![CDATA[向项目${project.name}的合同${contract.name}添加发票：${_methodReturn.sn}]]></template>
         <queries>
-            <query key="project">
-                <target class="business.ProjectApplication">projectApplication</target>
-                <method>findByProjectName(String)</method>
+            <query key="contract">
+                <target class="business.ContractApplication">contractApplication</target>
+                <method>findContractById(long)</method>
                 <args>
-                    <arg>${_param0}</arg>
+                    <arg>${_param1}</arg>
                 </args>
             </query>
-            <query key="contract">
-                <target class="business.ContractApplication"></target>
-                <method>findByContractIdAndProject(long,business.Project)</method>
+            <query key="project">
+                <target class="business.Project"></target>
+                <method>findByContract(business.Contract)</method>
                 <args>
-                    <arg>1</arg>
-                    <arg>${project}</arg>
+                    <arg>${contract}</arg>
                 </args>
             </query>
         </queries>
     </businessLogConfig>
     <businessLogConfig>
         <method>String business.ContractApplication.addContract(long)</method>
-        <template><![CDATA[添加合同${methodReturn}]]></template>
+        <template><![CDATA[添加合同${_methodReturn}]]></template>
     </businessLogConfig>
 </businessLogConfigs>

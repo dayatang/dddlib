@@ -17,7 +17,6 @@ import java.util.Map;
 public class FreemarkerProcessor {
 
     private static Configuration configuration = new Configuration();
-    private static StringTemplateLoader stringLoader = new StringTemplateLoader();
 
     public static String process(String utf8Template, Map<String, Object> aContext) {
         return process(utf8Template, aContext, "UTF8");
@@ -25,6 +24,10 @@ public class FreemarkerProcessor {
     }
 
     public static String process(String template, Map<String, Object> aContext, String templateEncoding) {
+        if (null == template || "".equals(template.trim())) {
+            return "";
+        }
+        StringTemplateLoader stringLoader = new StringTemplateLoader();
         stringLoader.putTemplate("template", template);
         configuration.setTemplateLoader(stringLoader);
         Template freemarkerTemplate = null;

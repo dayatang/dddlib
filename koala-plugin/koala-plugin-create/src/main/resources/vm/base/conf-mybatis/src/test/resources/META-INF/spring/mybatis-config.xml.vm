@@ -22,14 +22,17 @@ PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN"
 	</settings>
 
 	<!-- 给持久层对象配置个别名，能方便调用 -->
-	<typeAliases>
 	<!-- Koala会自动扫描所有Entity的实现，任何类继承AbstarctEntity或BaseLegacyEntity都会自动进行Alias  如： -->
-		<!--  <typeAlias type="org.openkoala.koala.demo.domain.Account"
-			alias="Account" />-->
 	<!-- Koala会自动扫描所有VO的实现，任何以VO结尾的VO类都会自动进行Alias  如： -->
-		<!--  <typeAlias type="org.openkoala.koala.demo.vo.AccountVO"
-			alias="AccountVO" />-->
-	</typeAliases>
+	
+	<!--<typeAliases>
+	
+		  <typeAlias type="org.openkoala.koala.demo.domain.Account"
+			alias="Account" />
+	
+		  <typeAlias type="org.openkoala.koala.demo.vo.AccountVO"
+			alias="AccountVO" />
+	</typeAliases>-->
 	
 	<!-- 接口映射文件的位置 -->
 	<!-- Koala会自动扫描所有mappings下的XML文件，自动加载为Mappers,无须再自定义 -->

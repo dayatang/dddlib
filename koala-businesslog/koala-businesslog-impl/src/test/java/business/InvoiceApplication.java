@@ -7,4 +7,6 @@ package business;
  */
 public interface InvoiceApplication {
     Invoice findByInvoiceSn(String invoiceSn);
+
+    Invoice addInvoice(String invoiceSn, long contractId);
 }

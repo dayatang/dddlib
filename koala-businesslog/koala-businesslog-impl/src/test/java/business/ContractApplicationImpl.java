@@ -20,11 +20,18 @@ public class ContractApplicationImpl implements ContractApplication {
         return "合同名";
     }
 
-    public static Project findByContractIdAndProject(long contractId, Project project) {
+    @Override
+    public Contract findContractById(long contractId) {
+        Contract contract = new Contract();
+        contract.setName("一期合同");
+        return contract;
+    }
+
+    public Project findByContractIdAndProject(long contractId, Project project) {
         return new Project("项目11");
     }
 
-    public static void kk(double k, float f, int i, BigDecimal bigDecimal){
+    public static void kk(double k, float f, int i, BigDecimal bigDecimal) {
 
     }
 }

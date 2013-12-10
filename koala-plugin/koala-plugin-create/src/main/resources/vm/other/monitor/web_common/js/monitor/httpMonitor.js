@@ -1,5 +1,4 @@
 $(function(){
-    var httpMonitorChart = $('#httpMonitorChart');
     var monitorNode = $('#httpMonitorNode');
     var time = $('#time');
     var timeVal = time.find('input');
@@ -35,6 +34,7 @@ $(function(){
             }
             loadData();
         });
+       
     $.get('monitor/Monitor/queryAllNodes.koala').done(function(data){
         var contents = new Array();
         $.each(data.Rows, function(index){
@@ -46,13 +46,14 @@ $(function(){
         }).on('change', function(){
                 $('#timeUnit').trigger('change');
             });
-        if(data.Rows.length > 0){
-            monitorNode.trigger('change');
-        }
+        monitorNode.trigger('change');
     });
     var loadData = function(){
         var params = {};
         params.system = monitorNode.getValue();
+        /*if(!Validation.notNull($('body'), monitorNode, params.system , '请选择监控节点!')){
+			return;
+		}*/
         params.unit = $('#timeUnit').getValue();
         params.queryTime = timeVal.val();
         $.get('monitor/Monitor/httpMonitorCount.koala', params).done(function(data){

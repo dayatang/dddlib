@@ -23,6 +23,7 @@
         <constructor-arg name="queryExecutor" ref="queryExecutor"></constructor-arg>
     </bean>
 
+
     <bean id="testApplication" class="business.TestApplicationImpl"/>
     <bean id="contractApplication" class="business.ContractApplicationImpl"/>
     <bean id="projectApplication" class="business.ProjectApplicationImpl"/>

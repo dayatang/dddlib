@@ -22,6 +22,7 @@ import org.openkoala.organisation.domain.Organization;
 import org.openkoala.organisation.domain.Post;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.service.QueryChannelService;
 import com.dayatang.querychannel.support.Page;
 
@@ -33,8 +34,15 @@ import com.dayatang.querychannel.support.Page;
 @Transactional
 public class EmployeeApplicationImpl implements EmployeeApplication {
 
-	@Inject
+
 	private QueryChannelService queryChannel;
+	
+	private QueryChannelService getQueryChannelService(){
+		if(queryChannel!=null){
+			return queryChannel;
+		}
+		return InstanceFactory.getInstance(QueryChannelService.class,"queryChannel_org");
+	}
 
 	@Override
 	public Organization getOrganizationOfEmployee(Employee employee, Date date) {
@@ -119,7 +127,7 @@ public class EmployeeApplicationImpl implements EmployeeApplication {
 	private Page<EmployeeDTO> queryResult(EmployeeDTO example, StringBuilder jpql, String conditionPrefix, List<Object> conditionVals,
 			int currentPage, int pagesize) {
 		assembleJpqlAndConditionValues(example, jpql, conditionPrefix, conditionVals);
-		Page<Employee> employeePage = queryChannel.queryPagedResultByPageNo(jpql.toString(), conditionVals.toArray(), currentPage, pagesize);
+		Page<Employee> employeePage = getQueryChannelService().queryPagedResultByPageNo(jpql.toString(), conditionVals.toArray(), currentPage, pagesize);
 		
 		return new Page<EmployeeDTO>(Page.getStartOfPage(currentPage, pagesize), 
 				employeePage.getTotalCount(), pagesize, transformToDtos(employeePage.getResult()));
