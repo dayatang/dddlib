@@ -15,8 +15,8 @@
     <modules>
         <module>koala-businesslog-api</module>
         <module>koala-businesslog-impl</module>
+        <module>koala-businesslog-acceptance-test</module>
     </modules>
-
 
 
     <properties>
@@ -38,20 +38,6 @@
         <cargo.port>6699</cargo.port>
         <cargo.context></cargo.context>
         <browser>org.openqa.selenium.firefox.FirefoxDriver</browser>
-
-        <!--数据库-->
-        <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
-        <hibernate.show_sql>true</hibernate.show_sql>
-        <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
-        <db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
-        <db.connectionURL>jdbc:h2:~/db/businesslog;MVCC=true</db.connectionURL>
-        <db.generate.ddl>true</db.generate.ddl>
-        <db.username>sa</db.username>
-        <db.password />
-        <db.Type>H2</db.Type>
-        <db.groupId>com.h2database</db.groupId>
-        <db.artifactId>h2</db.artifactId>
-
     </properties>
 
     <profiles>
@@ -68,7 +54,7 @@
                 <db.connectionURL>jdbc:h2:~/db/businesslog;MVCC=true</db.connectionURL>
                 <db.generate.ddl>true</db.generate.ddl>
                 <db.username>sa</db.username>
-                <db.password />
+                <db.password/>
                 <db.Type>H2</db.Type>
                 <db.groupId>com.h2database</db.groupId>
                 <db.artifactId>h2</db.artifactId>

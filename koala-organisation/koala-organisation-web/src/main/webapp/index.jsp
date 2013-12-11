@@ -13,6 +13,7 @@
     <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
     <link href="<c:url value='/css/organisation.css' />?time=<%=time%>" rel="stylesheet">
     <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
+    <link href="<c:url value='/css/koala-tree.css' />?time=<%=time%>" rel="stylesheet">
     <link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />" rel="stylesheet">
     <script>
         var contextPath = '<%=request.getContextPath()%>';
@@ -42,12 +43,12 @@
     <div class="col-lg-2 g-sidec">
         <ul class="nav nav-stacked first-level-menu">
             <li>
-                <a data-toggle="collapse" href="#userRight"><i class="glyphicon glyphicon-user"></i>&nbsp;主菜单&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+                <a data-toggle="collapse" href="#userRight"><i class="glyphicon glyphicon-home"></i>&nbsp;主菜单&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
                 <ul id="userRight" class="second-level-menu in">
-                   <li class="submenu" data-role="openTab" data-target="/pages/organisation/departmentList.html" openTree=true data-title="部门管理" data-mark="departmentList" ><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;部门管理</a></li>
-                   <li class="submenu" data-role="openTab" data-target="/pages/organisation/jobList.html" data-title="职务管理" data-mark="jobList" ><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;职务管理</a></li>
-                   <li class="submenu" data-role="openTab" data-target="/pages/organisation/positionList.html" data-title="岗位管理" data-mark="positionList" ><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;岗位管理</a></li>
-                   <li class="submenu" data-role="openTab" data-target="/pages/organisation/employeeList.html" data-title="人员管理" data-mark="employeeList"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;人员管理</a></li>
+                   <li class="submenu" data-role="openTab" data-target="/pages/organisation/departmentList.html" openTree=true data-title="部门管理" data-mark="departmentList" ><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;部门管理</a></li>
+                   <li class="submenu" data-role="openTab" data-target="/pages/organisation/jobList.html" data-title="职务管理" data-mark="jobList" ><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;职务管理</a></li>
+                   <li class="submenu" data-role="openTab" data-target="/pages/organisation/positionList.html" data-title="岗位管理" data-mark="positionList" ><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;岗位管理</a></li>
+                   <li class="submenu" data-role="openTab" data-target="/pages/organisation/employeeList.html" data-title="人员管理" data-mark="employeeList"><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;人员管理</a></li>
                 </ul>
             </li>
         </ul>
@@ -70,8 +71,8 @@
 <script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />?time=<%=time%>"></script>
+    <script type="text/javascript" src="<c:url value='/lib/koala-tree.js' />?time=<%=time%>"></script>
 <script type="text/javascript" src="<c:url value='/js/main.js' />?time=<%=time%>"></script>
 <script type="text/javascript" src="<c:url value='/js/validation.js' />?time=<%=time%>"></script>
-<script type="text/javascript" src="<c:url value='/js/tree.js' />?time=<%=time%>"></script>
 </body>
 </html>
