@@ -28,12 +28,12 @@ import org.openkoala.organisation.application.dto.PostDTO;
 import org.openkoala.organisation.domain.Company;
 import org.openkoala.organisation.domain.Job;
 import org.openkoala.organisation.domain.Organization;
+import org.openkoala.organisation.domain.OrganizationAbstractEntity;
 import org.openkoala.organisation.domain.Post;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.dayatang.domain.AbstractEntity;
 import com.dayatang.querychannel.support.Page;
 
 /**
@@ -42,7 +42,7 @@ import com.dayatang.querychannel.support.Page;
  *
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({PostDTO.class, AbstractEntity.class})
+@PrepareForTest({PostDTO.class, OrganizationAbstractEntity.class})
 public class PostControllerTest {
 	
 	@Mock
@@ -194,9 +194,9 @@ public class PostControllerTest {
 	}
 	
 	private void staticMockForTransFormDtoToPost(Long organizationId, Long jobId) {
-		PowerMockito.mockStatic(AbstractEntity.class);
-		when(AbstractEntity.get(Organization.class, organizationId)).thenReturn(new Company());
-		when(AbstractEntity.get(Job.class, jobId)).thenReturn(new Job());
+		PowerMockito.mockStatic(OrganizationAbstractEntity.class);
+		when(OrganizationAbstractEntity.get(Organization.class, organizationId)).thenReturn(new Company());
+		when(OrganizationAbstractEntity.get(Job.class, jobId)).thenReturn(new Job());
 	}
 	
 	@Test
