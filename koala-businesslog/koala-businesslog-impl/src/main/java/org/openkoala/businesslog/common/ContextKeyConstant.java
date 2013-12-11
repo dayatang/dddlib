@@ -39,4 +39,8 @@ public interface ContextKeyConstant {
     final static String BUSINESS_OPERATION_TIME = "_time";
 
 
+    /**
+     * ip地址
+     */
+    final static String BUSINESS_OPERATION_IP = "_ip";
 }
