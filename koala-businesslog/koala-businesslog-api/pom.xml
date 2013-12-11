@@ -17,19 +17,6 @@
     <dependencies>
 
 
-        <!-- dddlib -->
-        <dependency>
-            <groupId>com.dayatang.commons</groupId>
-            <artifactId>dayatang-commons-utils</artifactId>
-            <version>${dayatang.commons.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.dayatang.commons</groupId>
-            <artifactId>dayatang-commons-domain</artifactId>
-            <version>${dayatang.commons.version}</version>
-        </dependency>
-
-
         <!-- Test -->
         <dependency>
             <groupId>junit</groupId>

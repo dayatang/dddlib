@@ -12,16 +12,7 @@
 	   		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
     <import resource="classpath*:koala-businesslog-aop.xml"/>
-    <bean id="configAdapter" class="org.openkoala.businesslog.impl.BusinessLogXmlConfigDefaultAdapter"/>
-    <bean id="queryExecutor" class="org.openkoala.businesslog.impl.BusinessLogDefaultContextQueryExecutor"/>
-    <bean id="businessLogEnginConfig" class="org.openkoala.businesslog.config.BusinessLogConfig">
-        <constructor-arg name="configAdapter" ref="configAdapter"/>
-    </bean>
-    <bean id="businessLogEngine" class="org.openkoala.businesslog.BusinessLogEngine">
-        <constructor-arg name="config" ref="businessLogEnginConfig"/>
-        <constructor-arg name="render"><bean class="org.openkoala.businesslog.impl.BusinessLogFreemarkerDefaultRender"></bean></constructor-arg>
-        <constructor-arg name="queryExecutor" ref="queryExecutor"></constructor-arg>
-    </bean>
+
 
 
     <bean id="testApplication" class="business.TestApplicationImpl"/>

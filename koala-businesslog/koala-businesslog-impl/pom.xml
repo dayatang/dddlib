@@ -13,24 +13,36 @@
     <packaging>jar</packaging>
 
     <dependencies>
+
+
         <dependency>
             <groupId>org.openkoala.businesslog</groupId>
             <artifactId>koala-businesslog-api</artifactId>
             <version>2.1.0-SNAPSHOT</version>
         </dependency>
+
+        <!-- dddlib -->
+        <dependency>
+            <groupId>com.dayatang.commons</groupId>
+            <artifactId>dayatang-commons-utils</artifactId>
+            <version>${dayatang.commons.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dayatang.commons</groupId>
+            <artifactId>dayatang-commons-domain</artifactId>
+            <version>${dayatang.commons.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
             <version>1</version>
         </dependency>
-
-
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>1.7.0</version>
         </dependency>
-
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
@@ -54,26 +66,6 @@
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
             <version>1.8.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>javax.xml</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.1</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.xml</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <version>2.1</version>
-        </dependency>
-
-
-
-
-        <dependency>
-            <groupId>dom4j</groupId>
-            <artifactId>dom4j</artifactId>
-            <version>1.6.1</version>
         </dependency>
 
         <!-- Test -->
@@ -139,9 +131,7 @@
             <artifactId>commons-dbcp</artifactId>
             <version>1.4</version>
             <scope>test</scope>
-
         </dependency>
-
         <dependency>
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>

@@ -1,10 +1,9 @@
 package org.openkoala.businesslog.utils;
 
 import org.aspectj.lang.JoinPoint;
-import org.openkoala.businesslog.AbstractBusinessLogRender;
 import org.openkoala.businesslog.BusinessLogEngine;
+import org.openkoala.businesslog.BusinessLogExporter;
 import org.openkoala.businesslog.config.BusinessLogConfig;
-import org.openkoala.businesslog.impl.BusinessLogConsoleExporter;
 import org.openkoala.businesslog.impl.BusinessLogDefaultContextQueryExecutor;
 import org.openkoala.businesslog.impl.BusinessLogFreemarkerDefaultRender;
 import org.openkoala.businesslog.impl.BusinessLogXmlConfigDefaultAdapter;
@@ -33,11 +32,14 @@ public class BusinessLogInterceptor {
     @Inject
     private BusinessLogEngine businessLogEngine;
 
+    @Inject
+    private BusinessLogExporter businessLogExporter;
+
 
     public void logAfter(JoinPoint joinPoint, Object result) {
         BusinessLogEngine engine = getBusinessLogEngine();
         engine.setInitContext( createDefaultContext(joinPoint, result));
-        engine.exportLogBy(joinPoint.getSignature().toString(), new BusinessLogConsoleExporter());
+        engine.exportLogBy(joinPoint.getSignature().toString(), businessLogExporter);
 
     }
 
