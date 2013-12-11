@@ -21,7 +21,6 @@ import com.dayatang.utils.DateUtils;
  */
 
 @Entity
-@DiscriminatorColumn(name = "User", discriminatorType = DiscriminatorType.STRING)
 public class User extends Identity {
 
 	private static final long serialVersionUID = 1828900234948658820L;
