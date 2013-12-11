@@ -88,7 +88,7 @@
 	</error-page>
 
 	<welcome-file-list>
-		<welcome-file>login.koala</welcome-file>
+		<welcome-file>/login.koala</welcome-file>
 	</welcome-file-list>
 
 	<distributable />

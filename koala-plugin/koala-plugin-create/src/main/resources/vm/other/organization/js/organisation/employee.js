@@ -1,5 +1,5 @@
 var employee = function(){
-    var baseUrl = '/employee/';
+    var baseUrl =  contextPath + '/employee/';
 	var dialog = null;   //对话框
 	var employeeId = null;
 	var personId = null;
@@ -29,7 +29,7 @@ var employee = function(){
 	var add = function(grid){
 		dataGrid = grid;
 		operateType = 'add';
-		$.get('/pages/organisation/employeeTemplate.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/employeeTemplate.html').done(function(data){
 			init(data);
 		});
 	};
@@ -39,7 +39,7 @@ var employee = function(){
 	var modify = function(id, grid){
 		dataGrid = grid;
 		operateType = 'update';
-		$.get('/pages/organisation/employee-updater.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/employee-updater.html').done(function(data){
 			init(data, id);
 			setData(id);
 		});
@@ -125,7 +125,7 @@ var employee = function(){
 	 * 性别选择
 	 */
 	var  fillGenders = function(){
-		$.get('/employee/genders.koala').done(function(data){
+		$.get( contextPath + '/employee/genders.koala').done(function(data){
 			var items = data.data;
 			var contents = new Array();
 			for(var prop in items){
@@ -146,7 +146,7 @@ var employee = function(){
 	 * 部门选择
 	 */
     var selectDepartments = function(){
-		$.get('/pages/organisation/selectDepartmentTemplate.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/selectDepartmentTemplate.html').done(function(data){
 			var departmentTreeDialog = $(data);
 			departmentTree = departmentTreeDialog.find('.tree');
 			departmentTreeDialog.find('#confirm').on('click',function(){
@@ -173,7 +173,7 @@ var employee = function(){
 	 */
 	var loadDepartmentTree = function(){
 		departmentTree.tree({
-			url:  '/organization/orgTree.koala',
+			url:   contextPath + '/organization/orgTree.koala',
 			loadingHTML: '<div class="static-loader">Loading...</div>',
 			multiSelect: false,
 			cacheItems: true
@@ -186,7 +186,7 @@ var employee = function(){
 	 * 职位选择
 	 */
 	var  fillPosts = function(organizationId){
-		$.get('/post/query-post-by-org.koala?organizationId='+organizationId).done(function(data){
+		$.get( contextPath + '/post/query-post-by-org.koala?organizationId='+organizationId).done(function(data){
 			 var items = data.result;
 			 var contents = new Array();
 			 for(var i= 0, j=items.length; i<j; i++){

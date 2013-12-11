@@ -1,5 +1,5 @@
 var resourceTypeManager = function(){
-	var baseUrl = '/auth/ResourceType/';
+	var baseUrl = contextPath + '/auth/ResourceType/';
 	var dialog = null;    //对话框
 	var resourceTypeName = null;   //资源类型名称
 	var dataGrid = null; //Grid对象
@@ -8,7 +8,7 @@ var resourceTypeManager = function(){
 	 */
 	var add = function(grid){
 		dataGrid = grid;
-		$.get('/pages/auth/resource-type-template.html').done(function(data){
+		$.get(contextPath + '/pages/auth/resource-type-template.html').done(function(data){
 			init(data);
 		});
 	};
@@ -17,7 +17,7 @@ var resourceTypeManager = function(){
 	 */
 	var modify = function(item, grid){
 		dataGrid = grid;
-		$.get('/pages/auth/resource-type-template.html').done(function(data){
+		$.get(contextPath + '/pages/auth/resource-type-template.html').done(function(data){
 			init(data,item);
 			setData(item);
 		});

@@ -1,5 +1,5 @@
 var department = function(){
-	var baseUrl = '/organization/';
+	var baseUrl =  contextPath + '/organization/';
 	var dialog = null;    //对话框
 	var departmentName = null;   //部门名称
 	var departmentSN = null;    //部门编号
@@ -9,7 +9,7 @@ var department = function(){
 	 *新增部门
 	 */
 	var addDepartment = function(id, organizationType){
-		$.get('/pages/organisation/departmentTemplate.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/departmentTemplate.html').done(function(data){
 			init(data,  id , 'addDepartment', organizationType);
 		});
 	};
@@ -17,7 +17,7 @@ var department = function(){
 	 *新增子公司
 	 */
 	var addCompany = function(id){
-		$.get('/pages/organisation/departmentTemplate.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/departmentTemplate.html').done(function(data){
 			init(data, id , 'addCompany');
 		});
 	};
@@ -25,7 +25,7 @@ var department = function(){
 	 * 修改公司信息
 	 */
 	var updateCompany = function(id){
-		$.get('/pages/organisation/departmentTemplate.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/departmentTemplate.html').done(function(data){
 			init(data,  id , 'updateCompany');
 			setData(id);
 		});
@@ -34,7 +34,7 @@ var department = function(){
 	 * 修改部门信息
 	 */
 	var updateDepartment = function(id){
-		$.get('/pages/organisation/departmentTemplate.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/departmentTemplate.html').done(function(data){
 			init(data,  id , 'updateDepartment');
 			setData(id);
 		});
@@ -285,7 +285,7 @@ var department = function(){
 		});
 	};
 	var showDepartmentDetail =  function(id){
-		$.get('/organization/getOrg.koala?id='+id).done(function(data){
+		$.get( contextPath + '/organization/getOrg.koala?id='+id).done(function(data){
 			var org = data.org;
 			var departmentDetail = $('.right-content');
 			departmentDetail.find('[data-role="id"]').val(org.id);
@@ -312,7 +312,7 @@ var department = function(){
 			});
 	};
 	var showEmployeeList = function(id){
-		$.get('/pages/organisation/departmentEmployeeList.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/departmentEmployeeList.html').done(function(data){
 			var employeeListDialog = $(data);
 			employeeListDialog.find('#deleteRelation').on('click',function(){
 				var grid = employeeListDialog.find('#employeeList');
@@ -351,7 +351,7 @@ var department = function(){
 			columns: cols,
 			buttons: buttons,
 			querys: [{title: '姓名', value: 'example.name'}],
-			url: '/employee/pagingquery-by-org.koala?organizationId='+id
+			url:  contextPath + '/employee/pagingquery-by-org.koala?organizationId='+id
 		});
 		departmentEmployeeGrid.find('#queryAllChildren').on('click', function(){
 			var $span = $(this).find('span');
@@ -377,7 +377,7 @@ var department = function(){
 						'Content-Type': 'application/json'
 					},
 					'type': "Post",
-					'url': '/organization/terminate_eoRelations.koala?organizationId=' + id,
+					'url':  contextPath + '/organization/terminate_eoRelations.koala?organizationId=' + id,
 					'data': JSON.stringify(items),
 					'dataType': 'json'
 				}).done(function(data){

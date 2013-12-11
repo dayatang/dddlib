@@ -1,4 +1,4 @@
-<form class="form-horizontal method-monitor" role="form">
+<form class="form-horizontal method-monitor" role="form" id="methodMonitor">
     <div class="form-group">
         <label class="col-sm-2 control-label" style="width:12%;">监控节点:</label>
         <div class="col-sm-2" style="width:20%;">
@@ -35,4 +35,10 @@
         <div id="methodDetailGrid"></div>
     </div>
 </form>
-<script src="/js/monitor/methodMonitor.js"></script>
+<script>
+    $(function(){
+        var script = document.createElement('script');
+        script.src = contextPath + '/js/monitor/methodMonitor.js';
+        document.getElementById('methodMonitor').parentNode.appendChild(script);
+    });
+</script>

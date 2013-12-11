@@ -157,11 +157,6 @@
 					<webApp>
 						<contextPath>/</contextPath>
 					</webApp>
-					 <connectors>  
-			            <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">  
-			                <port>9090</port>  
-			            </connector>  
-			        </connectors>  
 				</configuration>
 			</plugin>
 		</plugins>

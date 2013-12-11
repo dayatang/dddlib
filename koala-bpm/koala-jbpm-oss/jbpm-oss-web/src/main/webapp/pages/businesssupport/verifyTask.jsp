@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -104,13 +104,13 @@
 			//console.info(form.serialize())
 			//$("#form1").attr("action","/businessSupport/verifyTask.koala?choice=" + $(obj).attr("value"));
 			//$("#form1").submit();
-			$.post('/businessSupport/verifyTask.koala?choice=' + $(obj).attr("value"), $('#form1').serialize()).done(function(data){
+			$.post('${pageContext.request.contextPath}/businessSupport/verifyTask.koala?choice=' + $(obj).attr("value"), $('#form1').serialize()).done(function(data){
 				if(data.success){
 					$('body').message({
 						type: 'success',
 						content: data.success
 					});
-					window.location.href = '../index.koala';
+					window.location.href = '${pageContext.request.contextPath}/index.koala';
 				}else{
 					$('body').message({
 						type: 'error',

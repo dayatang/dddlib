@@ -9,11 +9,14 @@
         <title>Koala通用查询</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
+        <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
 	    <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
 	    <link href="<c:url value='/css/gqc.css' />?time=<%=time%>"   rel="stylesheet">
 	    <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
 	    <link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />"   rel="stylesheet">
+        <script>
+             var contextPath = '${pageContext.request.contextPath}';
+        </script>
     </head>
   	<body>
             <div class="g-head">

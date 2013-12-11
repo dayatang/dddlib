@@ -1,6 +1,5 @@
 <div id="jobgrid"></div>
-<script src="js/organisation/job.js"></script>
-
+<script src="/js/organisation/job.js"></script>
 <script>
     $(function(){
        var cols = [
@@ -18,7 +17,7 @@
              columns: cols,
              buttons: buttons,
              querys: [{title: '职务名称', value: 'name'}],
-             url: 'job/pagingquery.koala'
+             url:'/job/pagingquery.koala'
         }).on({
                     'add': function(){
                         job().add( $(this));

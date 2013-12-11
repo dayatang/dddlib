@@ -27,7 +27,7 @@
      	margin-top: 28%;
     }
 </style>
-<div class="department-detail">
+<div class="department-detail" id="departmentDetail">
     <div class="u-tree tree" id="departmentTree"  oncontextmenu="return false"></div>
     <div class="right-content">
         <table class="table table-bordered table-hover base-info">
@@ -78,11 +78,22 @@
     </div>
     <div style="clear:both;"></div>
 </div>
-<script type="text/javascript" src="/js/organisation/department.js"></script>
-<script type="text/javascript" src="/js/organisation/selectEmployee.js"></script>
 <script>
     $(function(){
-        department().getTree();
+        var script = document.createElement('script');
+        script.src = contextPath + '/js/organisation/department.js';
+        script.onreadystatechange= function () {
+            if (this.readyState == 'complete'){
+                department().getTree();
+            }
+        }
+        script.onload= function(){
+            department().getTree();
+        }
+        document.getElementById('departmentDetail').parentNode.appendChild(script);
+        script = document.createElement('script');
+        script.src = contextPath + '/js/organisation/selectEmployee.js';
+        document.getElementById('departmentDetail').parentNode.appendChild(script);
         $('#employeeListBtn').on('click', function(){
             department().showEmployeeList($('.right-content').find('[data-role="id"]').val(), $('#department-employee-list'));
         })

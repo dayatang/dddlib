@@ -3,6 +3,12 @@
 <script src="/js/monitor/validateCronExprUtil.js"></script>
 <script>
 	$(function(){
+        var script = document.createElement('script');
+        script.src = contextPath + '/js/monitor/scheduleManager.js';
+        document.getElementById('scheduleGrid').parentNode.appendChild(script);
+        script = document.createElement('script');
+        script.src = contextPath + '/js/monitor/validateCronExprUtil.js';
+        document.getElementById('scheduleGrid').parentNode.appendChild(script);
 		var columns = [ 
 					{
 						title : "任务名称",

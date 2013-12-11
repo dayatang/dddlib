@@ -16,13 +16,15 @@
     <link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />"   rel="stylesheet">
     <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
-    <link href="<c:url value='/lib/z-tree/css/zTreeStyle.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/monitor.css' />?time=<%=time%>"   rel="stylesheet">
     <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
     <link href="<c:url value='/lib/jqplot/css/jquery.jqplot.css' />"   rel="stylesheet">
     <link href="<c:url value='/lib/jqplot/css/shCoreDefault.min.css' />"   rel="stylesheet">
     <link href="<c:url value='/lib/jqplot/css/shThemejqPlot.min.css' />"   rel="stylesheet">
-    <link href="<c:url value='/css/monitor.css' />"   rel="stylesheet"> 
+    <link href="<c:url value='/css/monitor.css' />"   rel="stylesheet">
+    <script>
+        var contextPath = '${pageContext.request.contextPath}';
+    </script>
 </head>
 <body>
 	<div class="g-head">

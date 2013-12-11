@@ -9,7 +9,7 @@ var changePost = function(){
 	var selectedPost = null;//已选岗位
 	var selectedItem = {};//已选员工数据
 	var init = function(employeeId){
-		$.get('/pages/organisation/changePost.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/changePost.html').done(function(data){
 			dialog = $(data);
 			departmentTree = dialog.find('#departmentTree');
 			postGrid = dialog.find('#postGrid');
@@ -65,7 +65,7 @@ var changePost = function(){
 	};
 
 	var loadData =  function(employeeId){
-		$.get('/employee/get/'+employeeId+'.koala')
+		$.get( contextPath + '/employee/get/'+employeeId+'.koala')
 			.done(function(result){
 				var data = result.data;
 				var employeeDetail = $('.employee-detail');
@@ -84,7 +84,7 @@ var changePost = function(){
 	};
 	
 	var loadExistPostList = function(employeeId){
-		$.get('/employee/get-posts-by-employee.koala?employeeId='+employeeId).done(function(data){
+		$.get( contextPath + '/employee/get-posts-by-employee.koala?employeeId='+employeeId).done(function(data){
 			var postList = data.data;
 			for(var i=0,j=postList.length; i<j; i++){
 				var post = postList[i];
@@ -118,7 +118,7 @@ var changePost = function(){
 	 */
 	var loadDepartmentTree = function(employeeId){
 		departmentTree.tree({
-			url: '/organization/orgTree.koala',
+			url:  contextPath + '/organization/orgTree.koala',
 			loadingHTML: '<div class="static-loader">Loading...</div>',
 			multiSelect: false,
 			cacheItems: true
@@ -171,7 +171,7 @@ var changePost = function(){
 			isShowIndexCol: false,
 			columns: cols,
 			querys: [{title: '岗位名称', value: 'name'}],
-			url: '/post/paging-query-post-by-org.koala?organizationId='+id
+			url:  contextPath + '/post/paging-query-post-by-org.koala?organizationId='+id
 		}).on('addPost', function(evnet, data){
 			var post = selectedPost.find('[data-value="'+data.postId+'"]');
 			var principal = $(data.obj).closest('tr').find('[name="principal"]').is(":checked");

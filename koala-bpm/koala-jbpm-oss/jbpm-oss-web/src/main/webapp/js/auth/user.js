@@ -1,5 +1,5 @@
 var userManager = function(){
-	var baseUrl = contextPath + '/auth/User/';
+	var baseUrl = '/auth/User/';
 	var dialog = null;    //对话框
 	var userName = null;   //用户名
 	var userAccount = null;    //用户账号
@@ -12,7 +12,7 @@ var userManager = function(){
 	 */
 	var add = function(grid){
 		dataGrid = grid;
-		$.get(contextPath + '/pages/auth/user-template.html').done(function(data){
+		$.get('/pages/auth/user-template.html').done(function(data){
 			init(data);
 		});
 	};
@@ -21,7 +21,7 @@ var userManager = function(){
 	 */
 	var modify = function(item, grid){
 		dataGrid = grid;
-		$.get(contextPath + '/pages/auth/user-template.html').done(function(data){
+		$.get('/pages/auth/user-template.html').done(function(data){
 			init(data,item);
 			setData(item);
 		});
@@ -164,14 +164,14 @@ var userManager = function(){
 	 * 分配角色
 	 */
 	var assignRole = function(userId, userAccount){
-		$(this).openTab('/pages/auth/role-list.html',
+		$(this).openTab('/pages/auth/role-list.html', 
 			userAccount+'的角色管理', 'roleManager_'+userId, userId, {userId: userId, userAccount:userAccount});
 	};
 	/**
 	 * 分配用户
 	 */
 	var assignUser = function(roleId, grid){
-		$.get(contextPath + '/pages/auth/select-user.html').done(function(data){
+		$.get('/pages/auth/select-user.html').done(function(data){
 			var dialog = $(data);
 			dialog.find('#save').on('click',function(){
 				var indexs = dialog.find('#selectUserGrid').data('koala.grid').selectedRowsIndex();
@@ -187,7 +187,7 @@ var userManager = function(){
 				for(var i=0,j=indexs.length; i<j; i++){
 					data['users['+i+'].id'] = indexs[i];
 				}
-				$.post(contextPath + '/auth/Role/assignUsers.koala', data).done(function(data){
+				$.post('/auth/Role/assignUsers.koala', data).done(function(data){
 					if(data.result == 'success'){
 						$('body').message({
 							type: 'success',
