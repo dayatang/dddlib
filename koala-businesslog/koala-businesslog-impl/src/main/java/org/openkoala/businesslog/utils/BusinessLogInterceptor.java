@@ -1,5 +1,7 @@
 package org.openkoala.businesslog.utils;
 
+import static org.openkoala.businesslog.common.ContextKeyConstant.*;
+
 import org.aspectj.lang.JoinPoint;
 import org.openkoala.businesslog.BusinessLogEngine;
 import org.openkoala.businesslog.BusinessLogExporter;
@@ -9,6 +11,7 @@ import org.openkoala.businesslog.impl.BusinessLogFreemarkerDefaultRender;
 import org.openkoala.businesslog.impl.BusinessLogXmlConfigDefaultAdapter;
 
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -21,13 +24,6 @@ public class BusinessLogInterceptor {
 
     private static Logger logger = Logger.getLogger(BusinessLogInterceptor.class.toString());
 
-    /**
-     * 业务方法返回值，在模板中使用的key
-     */
-    public final static String BUSINESS_METHOD_RETURN_VALUE_KEY = "_methodReturn";
-
-    public final static String PRE_OPERATOR_OF_METHOD_KEY = "_param";
-
 
     @Inject
     private BusinessLogEngine businessLogEngine;
@@ -37,13 +33,21 @@ public class BusinessLogInterceptor {
 
 
     public void logAfter(JoinPoint joinPoint, Object result) {
-        BusinessLogEngine engine = getBusinessLogEngine();
-        engine.setInitContext( createDefaultContext(joinPoint, result));
-        engine.exportLogBy(joinPoint.getSignature().toString(), businessLogExporter);
+        log(joinPoint, result, null);
+    }
+
+    public void afterThrowing(JoinPoint joinPoint, Throwable error) {
+        log(joinPoint, null, error);
 
     }
 
-    private Map<String, Object> createDefaultContext(JoinPoint joinPoint, Object result) {
+    public void log(JoinPoint joinPoint, Object result, Throwable error) {
+        BusinessLogEngine engine = getBusinessLogEngine();
+        engine.setInitContext(createDefaultContext(joinPoint, result, error));
+        engine.exportLogBy(joinPoint.getSignature().toString(), businessLogExporter);
+    }
+
+    private Map<String, Object> createDefaultContext(JoinPoint joinPoint, Object result, Throwable errer) {
         Map<String, Object> context = ThreadLocalBusinessLogContext.get();
 
         Object[] args = joinPoint.getArgs();
@@ -52,6 +56,14 @@ public class BusinessLogInterceptor {
         }
 
         context.put(BUSINESS_METHOD_RETURN_VALUE_KEY, result);
+
+        if (null != errer) {
+            context.put(BUSINESS_METHOD_EXECUTE_ERROR, errer.getCause());
+        }
+
+        context.put(BUSINESS_METHOD, joinPoint.getSignature().toLongString());
+        context.put(BUSINESS_OPERATION_TIME, new Date());
+
         return context;
     }
 

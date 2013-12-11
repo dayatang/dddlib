@@ -35,23 +35,26 @@ public class BusinessLogEngine {
         initContext = aContext;
     }
 
-    public String exportLogBy(String businessOperator, BusinessLogExporter exporter) {
-        String log = render(businessOperator);
-        exporter.export(log);
+    public String exportLogBy(String businessOperation, BusinessLogExporter exporter) {
+        Map<String,Object> context = createContext(businessOperation);
+        String log = render(businessOperation,context);
+        exporter.setLog(log);
+        exporter.setContext(context);
+        exporter.export();
         return log;
     }
 
-    private String render(String businessOperator) {
-        render.render(createContext(businessOperator), config.getPreTemplate(), config.getLogTemplateof(businessOperator));
+    private String render(String businessOperation, Map<String,Object> context) {
+        render.render(context, config.getPreTemplate(), config.getLogTemplateof(businessOperation));
         return render.build();
     }
 
-    private Map<String, Object> createContext(String businessOperator) {
+    private Map<String, Object> createContext(String businessOperation) {
         if (null == initContext) {
             initContext = new HashMap<String, Object>();
         }
-        BusinessLogContextQuery[] queries = new BusinessLogContextQuery[config.getQueries(businessOperator).size()];
-        return queryExecutor.startQuery(initContext, config.getQueries(businessOperator).toArray(queries));
+        BusinessLogContextQuery[] queries = new BusinessLogContextQuery[config.getQueries(businessOperation).size()];
+        return queryExecutor.startQuery(initContext, config.getQueries(businessOperation).toArray(queries));
     }
 
     public void setRender(BusinessLogRender render) {

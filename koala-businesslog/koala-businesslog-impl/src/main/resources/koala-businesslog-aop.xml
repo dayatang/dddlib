@@ -32,11 +32,11 @@
         <constructor-arg name="queryExecutor" ref="queryExecutor"></constructor-arg>
     </bean>
 
-
     <aop:config>
         <aop:pointcut id="businessBehavior" expression="${pointcut}"/>
         <aop:aspect id="logAspect" ref="logInterceptor">
             <aop:after-returning returning="result" method="logAfter" pointcut-ref="businessBehavior"/>
+            <aop:after-throwing method="afterThrowing" pointcut-ref="businessBehavior" throwing="error"/>
         </aop:aspect>
     </aop:config>
 
