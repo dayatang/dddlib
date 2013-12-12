@@ -46,7 +46,10 @@
             <artifactId>dayatang-commons-domain</artifactId>
             <version>${dayatang.commons.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.dayatang.commons</groupId>
+            <artifactId>dayatang-commons-spring</artifactId>
+        </dependency>
 
         <!--日志文本渲染-->
         <dependency>

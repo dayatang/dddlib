@@ -21,6 +21,7 @@ public class HelloController {
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
         model.addAttribute("message", "Hello world!");
+        contractApplication.addInvoice("项目名", 1, 2);
         int projectId = 1;
         return "hello";
     }
