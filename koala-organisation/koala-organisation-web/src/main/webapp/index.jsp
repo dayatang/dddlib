@@ -70,7 +70,7 @@
 <script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />?time=<%=time%>"></script>
-    <script type="text/javascript" src="<c:url value='/lib/koala-tree.js' />?time=<%=time%>"></script>
+<script type="text/javascript" src="<c:url value='/lib/koala-tree.js' />?time=<%=time%>"></script>
 <script type="text/javascript" src="<c:url value='/js/main.js' />?time=<%=time%>"></script>
 <script type="text/javascript" src="<c:url value='/js/validation.js' />?time=<%=time%>"></script>
 </body>
