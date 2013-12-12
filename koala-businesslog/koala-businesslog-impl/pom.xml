@@ -30,15 +30,16 @@
         </dependency>
 
         <dependency>
+            <groupId>org.openkoala.koalacommons</groupId>
+            <artifactId>koala-commons-support</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.openkoala.businesslog</groupId>
             <artifactId>koala-businesslog-api</artifactId>
             <version>2.1.0-SNAPSHOT</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.dayatang.commons</groupId>
-            <artifactId>dayatang-commons-spring</artifactId>
-        </dependency>
 
         <!--日志文本渲染-->
         <dependency>
@@ -48,12 +49,17 @@
         </dependency>
 
 
+        <!--apache commons-->
         <dependency>
-            <groupId>org.openkoala.koalacommons</groupId>
-            <artifactId>koala-commons-support</artifactId>
-            <version>${project.parent.version}</version>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>1.8</version>
         </dependency>
-
+        <dependency>
+            <groupId>commons-jxpath</groupId>
+            <artifactId>commons-jxpath</artifactId>
+            <version>1.3</version>
+        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-io</artifactId>
@@ -64,6 +70,12 @@
             <artifactId>commons-beanutils</artifactId>
             <version>1.8.3</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.dayatang.commons</groupId>
+            <artifactId>dayatang-commons-spring</artifactId>
+        </dependency>
+
         <!-- spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -133,12 +145,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>com.dayatang.commons</groupId>
-            <artifactId>dayatang-commons-spring</artifactId>
-            <version>3.6</version>
-            <scope>test</scope>
-        </dependency>
 
         <dependency>
             <groupId>commons-dbcp</groupId>
