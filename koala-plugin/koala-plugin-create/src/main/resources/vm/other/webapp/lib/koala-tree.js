@@ -21,7 +21,7 @@
         //右键点击树节点的时候，目前先暂定任意节点
         this.$element.on('mousedown','.tree-folder-name,.tree-item-name',$.proxy(function(ev){this.popMenu(ev.currentTarget,ev);},this));
         //添加鼠标右键事件监听
-        this.$element.on('contextmenu','.tree-folder-header,.tree-item-name',$.proxy(function(ev){this.initContextmenu(ev);},this));
+        this.$element.on('contextmenu','.tree-folder-header,.tree-item',$.proxy(function(ev){this.initContextmenu(ev);},this));
 
     };
 
@@ -66,7 +66,9 @@
                     $entity.find('.tree-folder-name').html(value.menu.title);
                     $entity.find('.tree-folder-header').data(value.menu);
                     $entity.attr("id",value.menu.id);
-                    self.populate(value.children, $entity.find(".tree-folder-content:eq(0)"));
+                    if(value.children && value.children.length > 0){
+                        self.populate(value.children, $entity.find(".tree-folder-content:eq(0)"));
+                    }
                     if(value.menu.open){
                         $entity.find('.glyphicon-folder-close').removeClass('glyphicon-folder-close').addClass('glyphicon-folder-open');
                         $entity.find(".tree-folder-content:eq(0)").show();
@@ -87,7 +89,7 @@
                     $entity.data(value.menu);
                     //这里加上检测是否有自定义图标，对于子节点，还有个bug
                     if(value.menu.icon){
-                        $entity.children("i").addClass(value.menu.icon).prop("icon",value.menu.icon);
+                        $entity.children("i").removeClass().addClass(value.menu.icon).prop("icon",value.menu.icon);
                     }
                 }
                 $el.append($entity);
@@ -201,6 +203,7 @@
             if(data.length) {
                 this.$element.trigger('selected', {info: data});
             }
+            this.$element.trigger('selectChildren', $el.data());
         },
 
         selectParent: function (el) {
@@ -229,6 +232,7 @@
                     .addClass('glyphicon-folder-close');
                 this.$element.trigger('closed', {element:$el, data: $el.data()});
             }
+            this.$element.trigger('selectParent', {element:$el, data: $el.data()});
         },
 
         selectedItems: function () {
@@ -302,11 +306,7 @@
                     $(this).remove();
                 }).find('li').on('click', function(){
                     var $this = $(this);
-                    if($element.hasClass('tree-item-name')){
-                        self.$element.trigger($this.attr('action'), $element.parent());
-                    }else{
-                        self.$element.trigger($this.attr('action'), $element);
-                    }
+                    self.$element.trigger($this.attr('action'), $element);
                     $this.parent().remove();
                 });
         },
