@@ -2,6 +2,7 @@
 <businessLogConfigs>
     <businessLogConfig>
         <!--向项目中的合同，添加一张发票-->
+        <category></category>
         <method>Invoice business.InvoiceApplication.addInvoice(String,long)</method>
         <template><![CDATA[向项目${project.name}的合同${contract.name}添加发票：${(_methodReturn.sn)!""}]]></template>
         <queries>

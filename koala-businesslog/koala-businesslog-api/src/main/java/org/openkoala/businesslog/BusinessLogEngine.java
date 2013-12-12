@@ -40,7 +40,7 @@ public class BusinessLogEngine {
         RenderResult renderResult = new RenderResult();
         String template = config.getLogTemplateof(businessOperation);
         renderResult.setLog(render.render(context, template).build());
-        renderResult.setContext(context);
+        renderResult.addContext(context);
         exporter.export(renderResult);
         return renderResult;
     }
