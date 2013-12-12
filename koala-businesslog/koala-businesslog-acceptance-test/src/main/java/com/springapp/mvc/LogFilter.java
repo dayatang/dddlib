@@ -1,8 +1,6 @@
 package com.springapp.mvc;
 
-import org.openkoala.businesslog.common.ContextKeyConstant;
 import org.openkoala.businesslog.utils.BusinessLogServletFilter;
-import org.openkoala.businesslog.utils.ThreadLocalBusinessLogContext;
 
 import javax.servlet.*;
 

@@ -1,11 +1,9 @@
 package org.openkoala.businesslog.impl;
 
-import static org.openkoala.businesslog.common.ContextKeyConstant.*;
-
-import com.dayatang.domain.InstanceFactory;
-import org.openkoala.businesslog.AbstractBusinessLogExporter;
+import org.openkoala.businesslog.BusinessLogExporter;
+import org.openkoala.businesslog.RenderResult;
 import org.openkoala.businesslog.application.BusinessLogApplication;
-import org.openkoala.businesslog.model.SimpleBusinessLog;
+import org.openkoala.businesslog.model.DefaultBusinessLog;
 
 import javax.inject.Inject;
 
@@ -14,18 +12,18 @@ import javax.inject.Inject;
  * Date: 12/5/13
  * Time: 4:52 PM
  */
-public class BusinessLogJpaDefaultExporter extends AbstractBusinessLogExporter {
+public class BusinessLogJpaDefaultExporter implements BusinessLogExporter {
 
     @Inject
     private BusinessLogApplication businessLogApplication;
 
     @Override
-    public void export() {
+    public void export(RenderResult renderResult) {
+        DefaultBusinessLog log = DefaultBusinessLog.createBy(renderResult);
 
-        SimpleBusinessLog log = new SimpleBusinessLog();
-        log.setBusinessMethod((String) getContext().get(BUSINESS_METHOD));
-        log.setLog(getLog());
+
         businessLogApplication.save(log);
+
         assert log.getId() != null;
 
     }

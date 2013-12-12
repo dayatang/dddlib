@@ -8,9 +8,5 @@ import java.util.Map;
  * Time: 9:36 PM
  */
 public interface BusinessLogExporter {
-    void export();
-
-    void setLog(String log);
-
-    void setContext(Map<String, Object> context);
+    void export(RenderResult renderResult);
 }

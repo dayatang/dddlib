@@ -1,6 +1,6 @@
 package com.springapp.mvc;
 
-import org.openkoala.businesslog.model.SimpleBusinessLog;
+import org.openkoala.businesslog.model.DefaultBusinessLog;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +21,8 @@ public class AdminController {
     @RequestMapping(method = RequestMethod.GET)
     public void printWelcome(ModelMap model) {
         List<String> logs = new ArrayList<String>();
-        for (SimpleBusinessLog log : SimpleBusinessLog.findAll(SimpleBusinessLog.class)) {
-            logs.add(log.toString());
+        for (DefaultBusinessLog log : DefaultBusinessLog.findAll(DefaultBusinessLog.class)) {
+            System.out.println(log);
         }
 
 

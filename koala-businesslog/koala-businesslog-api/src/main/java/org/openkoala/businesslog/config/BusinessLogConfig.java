@@ -19,10 +19,6 @@ public class BusinessLogConfig {
         this.configAdapter = configAdapter;
     }
 
-    public String getPreTemplate() {
-        return configAdapter.getPreTemplate();
-    }
-
     public String getLogTemplateof(String businessOperation) {
         return configAdapter.findConfigByBusinessOperation(businessOperation).getTemplate();
     }

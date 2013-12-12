@@ -10,19 +10,10 @@ import java.util.Map;
  */
 public abstract class AbstractBusinessLogConfigAdapter implements BusinessLogConfigAdapter {
 
-    private String preTemplate;
 
     private String template;
 
     private List<BusinessLogContextQuery> queries;
-
-    public String getPreTemplate() {
-        return preTemplate;
-    }
-
-    public void setPreTemplate(String preTemplate) {
-        this.preTemplate = preTemplate;
-    }
 
     public String getTemplate() {
         return template;
