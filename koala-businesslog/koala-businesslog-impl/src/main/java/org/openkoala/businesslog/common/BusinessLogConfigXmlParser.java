@@ -59,6 +59,10 @@ public class BusinessLogConfigXmlParser {
     private final static String TARGET_METHOD_ARGS_NODE_NAME = "args";
 
     private final static String TARGET_METHOD_ARG_NODE_NAME = "arg";
+    /**
+     * 业务操作分类
+     */
+    private final static String TARGET_BUSINESS_METHOD_CATEGORY = "category";
 
     /**
      * 查询定义的key
@@ -101,7 +105,7 @@ public class BusinessLogConfigXmlParser {
     public String getTemplateFrom(String businessOperator) {
         Node configNode = findConfigByBusinessOperator(businessOperator);
         if (null == configNode) {
-            return null;
+            return "";
         }
         NodeList nodeList = configNode.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
@@ -125,6 +129,27 @@ public class BusinessLogConfigXmlParser {
         }
 
         return results;
+    }
+
+    /**
+     * 得到业务操作的所属分类
+     *
+     * @param businessOperator
+     * @return
+     */
+    public String getBusinessLogMethodCategory(String businessOperator) {
+        Node configNode = findConfigByBusinessOperator(businessOperator);
+        if (null == configNode) {
+            return "";
+        }
+        NodeList nodeList = configNode.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (TARGET_BUSINESS_METHOD_CATEGORY.equals(node.getNodeName())) {
+                return node.getTextContent();
+            }
+        }
+        return "";
     }
 
 
