@@ -117,17 +117,60 @@ var changePost = function(){
 	 * 加载部门树
 	 */
 	var loadDepartmentTree = function(employeeId){
-		departmentTree.tree({
-			url:  contextPath + '/organization/orgTree.koala',
-			loadingHTML: '<div class="static-loader">Loading...</div>',
-			multiSelect: false,
-			cacheItems: true
-		}).on('selected', function(event, data){
-			 loadPostList(data.id, employeeId);
-		});
+        $.get(contextPath  + '/organization/orgTree.koala').done(function(data){
+            var zNodes = new Array();
+            $.each(data, function(){
+                var zNode = {};
+                if(this.organizationType == 'company'){
+                    zNode.type = 'parent';
+                }else{
+                    zNode.icon = 'glyphicon glyphicon-list-alt'
+                }
+                this.title = this.name;
+                zNode.menu = this;
+                if(this.children && this.children.length > 0){
+                    zNode.children = getChildrenData(new Array(), this.children);
+                }
+                zNodes.push(zNode);
+            });
+            var dataSourceTree = {
+                data: zNodes,
+                delay: 400
+            };
+            departmentTree.tree({
+                dataSource: dataSourceTree,
+                loadingHTML: '<div class="static-loader">Loading...</div>',
+                multiSelect: false,
+                cacheItems: true
+            }).on({
+                    'selectParent': function(event, data){
+                        loadPostList(data.data.id, employeeId);
+                    },
+                    'selectChildren': function(event, data){
+                        loadPostList(data.id, employeeId);
+                    }
+            });
+        });
 	};
-	
-	var initRadio = function(obj){
+    var getChildrenData = function(nodes, items){
+        $.each(items, function(){
+            var zNode = {};
+            if(this.organizationType == 'company'){
+                zNode.type = 'parent';
+            }else{
+                zNode.icon = 'glyphicon glyphicon-list-alt'
+            }
+            this.title = this.name;
+            zNode.menu = this;
+            if(this.children && this.children.length > 0){
+                zNode.children = getChildrenData(new Array(), this.children);
+            }
+            nodes.push(zNode);
+        });
+        return nodes;
+    };
+
+    var initRadio = function(obj){
 		var $obj = $(obj);
 		var parent = $obj.parent();
 		if(parent.hasClass('checked')){

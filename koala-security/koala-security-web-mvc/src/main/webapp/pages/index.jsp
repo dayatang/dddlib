@@ -17,7 +17,6 @@
     <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
     <link href="<c:url value='/css/security.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
-    <link href="<c:url value='/css/koala-tree.css' />?time=<%=time%>" rel="stylesheet">
     <script>
         var contextPath = '${pageContext.request.contextPath}';
     </script>

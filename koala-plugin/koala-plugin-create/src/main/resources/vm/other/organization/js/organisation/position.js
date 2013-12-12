@@ -138,16 +138,61 @@ var position = function(){
 	 * 加载部门树
 	 */
 	var loadDepartmentTree = function(){
-		departmentTree.tree({
-			url:  contextPath +  '/organization/orgTree.koala',
-			loadingHTML: '<div class="static-loader">Loading...</div>',
-			multiSelect: false,
-			cacheItems: true
-		}).on('selected', function(event, data){
-				departmentId = data.id;
-				departmentName = data.name;
-		});
+        $.get(contextPath  + '/organization/orgTree.koala').done(function(data){
+            var zNodes = new Array();
+            $.each(data, function(){
+                var zNode = {};
+                if(this.organizationType == 'company'){
+                    zNode.type = 'parent';
+                }else{
+                    zNode.icon = 'glyphicon glyphicon-list-alt'
+                }
+                this.title = this.name;
+                zNode.menu = this;
+                if(this.children && this.children.length > 0){
+                    zNode.children = getChildrenData(new Array(), this.children);
+                }
+                zNodes.push(zNode);
+            });
+            var dataSourceTree = {
+                data: zNodes,
+                delay: 400
+            };
+            departmentTree.tree({
+                dataSource: dataSourceTree,
+                loadingHTML: '<div class="static-loader">Loading...</div>',
+                multiSelect: false,
+                cacheItems: true
+            }).on({
+                    'selectParent': function(event, data){
+                        var data = data.data;
+                        departmentId = data.id;
+                        departmentName = data.name;
+                    },
+                    'selectChildren': function(event, data){
+                        departmentId = data.id;
+                        departmentName = data.name;
+                    }
+                });
+        });
 	};
+    var getChildrenData = function(nodes, items){
+        $.each(items, function(){
+            var zNode = {};
+            if(this.organizationType == 'company'){
+                zNode.type = 'parent';
+            }else{
+                zNode.icon = 'glyphicon glyphicon-list-alt'
+            }
+            this.title = this.name;
+            zNode.menu = this;
+            if(this.children && this.children.length > 0){
+                zNode.children = getChildrenData(new Array(), this.children);
+            }
+            nodes.push(zNode);
+        });
+        return nodes;
+    };
 	/**
 	 *   加载职务列表
 	 * @param id
