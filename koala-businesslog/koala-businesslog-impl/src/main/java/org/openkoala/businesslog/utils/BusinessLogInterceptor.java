@@ -2,6 +2,8 @@ package org.openkoala.businesslog.utils;
 
 import static org.openkoala.businesslog.common.ContextKeyConstant.*;
 
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.aspectj.lang.JoinPoint;
 import org.openkoala.businesslog.BusinessLogEngine;
 import org.openkoala.businesslog.BusinessLogExporter;
@@ -24,6 +26,7 @@ public class BusinessLogInterceptor {
 
     private static Logger logger = Logger.getLogger(BusinessLogInterceptor.class.toString());
 
+    private final String BUSINESS_LOG_CONFIG_PROPERTIES_NAME = "koala-busniesslog.properties";
 
     @Inject
     private BusinessLogEngine businessLogEngine;
@@ -42,6 +45,16 @@ public class BusinessLogInterceptor {
     }
 
     public void log(JoinPoint joinPoint, Object result, Throwable error) {
+        try {
+            PropertiesConfiguration configuration = new PropertiesConfiguration(BUSINESS_LOG_CONFIG_PROPERTIES_NAME);
+            if (!configuration.getBoolean("kaoa-businesslog.enable", true)) {
+                return;
+            }
+        } catch (ConfigurationException e) {
+            throw new RuntimeException(e);
+        }
+
+
         BusinessLogEngine engine = getBusinessLogEngine();
         engine.setInitContext(createDefaultContext(joinPoint, result, error));
         engine.exportLogBy(joinPoint.getSignature().toString(), businessLogExporter);
