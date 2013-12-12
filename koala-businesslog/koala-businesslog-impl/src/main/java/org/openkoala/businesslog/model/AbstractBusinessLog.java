@@ -28,6 +28,9 @@ public abstract class AbstractBusinessLog implements com.dayatang.domain.Entity 
     @Column(name = "VERSION")
     private int version;
 
+    private String category;
+
+    private String log;
 
     /**
      * 获得实体的标识
@@ -45,6 +48,22 @@ public abstract class AbstractBusinessLog implements com.dayatang.domain.Entity 
      */
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getLog() {
+        return log;
+    }
+
+    public void setLog(String log) {
+        this.log = log;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     /**

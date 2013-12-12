@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface BusinessLogConfigAdapter {
 
-    String getPreTemplate();
+    String getCategory();
 
     String getTemplate();
 

@@ -16,9 +16,9 @@ public class PasswordEncoderTest {
 
 	@Test
 	public void testIsPasswordValid() {
-		String encodedPassword = encoder.encode("123456");
+		String encodedPassword = encoder.encode("ff");
 		assertNotNull(encodedPassword);
-		assertTrue(encoder.isPasswordValid(encodedPassword, "123456"));
+		assertTrue(encoder.isPasswordValid(encodedPassword, "ff"));
 		System.out.println(encodedPassword);
 	}
 

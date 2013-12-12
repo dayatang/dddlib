@@ -19,36 +19,34 @@ public class BusinessLogConfigXmlParserTest {
 
         BusinessLogConfigXmlParser parser = BusinessLogConfigXmlParser.parsing(xmlconfigPath);
 
-        assert "${user!\"\"}:${ip!\"\"}:".equals(parser.getPreTemplate());
+        String operation = "Invoice business.InvoiceApplication.addInvoice(String,long)";
 
-        String operator = "Invoice business.InvoiceApplication.addInvoice(String,long)";
+        assert "向项目${project.name}的合同${contract.name}添加发票：${(_methodReturn.sn)!\"\"}".equals(parser.getTemplateFrom(operation));
 
-        assert "向项目${project.name}的合同${contract.name}添加发票：${_methodReturn.sn}".equals(parser.getTemplateFrom(operator));
+        assert parser.getQueriesFrom(operation).size() == 2;
 
-        assert parser.getQueriesFrom(operator).size() == 2;
-
-        assert parser.getQueriesFrom(operator).get(0) instanceof BusinessLogDefaultContextQuery;
+        assert parser.getQueriesFrom(operation).get(0) instanceof BusinessLogDefaultContextQuery;
 
         BusinessLogDefaultContextQuery query = (BusinessLogDefaultContextQuery)
-                parser.getQueriesFrom(operator).get(0);
+                parser.getQueriesFrom(operation).get(0);
 
         assert "business.ContractApplication".equals(query.getBeanClassName());
         assert "contractApplication".equals(query.getBeanName());
         assert "${_param1}".equals(query.getArgs().get(0));
 
-        BusinessLogDefaultContextQuery query2 = (BusinessLogDefaultContextQuery) parser.getQueriesFrom(operator).get(1);
+        BusinessLogDefaultContextQuery query2 = (BusinessLogDefaultContextQuery) parser.getQueriesFrom(operation).get(1);
 
         assert "business.Project".equals(query2.getBeanClassName());
         assert "".equals(query2.getBeanName());
         assert "findByContract(business.Contract)".equals(query2.getMethodSignature());
         assert "${contract}".equals(query2.getArgs().get(0));
+        assert "发票操作".equals(parser.getBusinessLogMethodCategory(operation));
 
 
-        String operator1 = "String business.ContractApplication.addContract(long)";
+        String operation1 = "String business.ContractApplication.addContract(long)";
 
-        assert "添加合同${_methodReturn}".equals(parser.getTemplateFrom(operator1));
-
-
+        assert "添加合同${_methodReturn}".equals(parser.getTemplateFrom(operation1));
+        assert "合同操作".equals(parser.getBusinessLogMethodCategory(operation1));
 
     }
 }

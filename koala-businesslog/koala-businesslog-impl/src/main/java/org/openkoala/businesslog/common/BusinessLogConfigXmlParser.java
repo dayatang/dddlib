@@ -26,10 +26,6 @@ public class BusinessLogConfigXmlParser {
      */
     private final static String BUSINESS_LOG_CONFIG_NODE_NAME = "businessLogConfig";
 
-    /**
-     * 前置模板的节点名
-     */
-    private final static String PRE_TEMPLATE_NODE_NAME = "preTemplate";
 
     /**
      * 业务操作的节点名
@@ -63,6 +59,10 @@ public class BusinessLogConfigXmlParser {
     private final static String TARGET_METHOD_ARGS_NODE_NAME = "args";
 
     private final static String TARGET_METHOD_ARG_NODE_NAME = "arg";
+    /**
+     * 业务操作分类
+     */
+    private final static String TARGET_BUSINESS_METHOD_CATEGORY = "category";
 
     /**
      * 查询定义的key
@@ -102,22 +102,10 @@ public class BusinessLogConfigXmlParser {
         }
     }
 
-    public String getPreTemplate() {
-        Element root = xmlDoc.getDocumentElement();
-        NodeList rootChildren = root.getChildNodes();
-        for (int i = 0; i < rootChildren.getLength(); i++) {
-            Node node = rootChildren.item(i);
-            if (PRE_TEMPLATE_NODE_NAME.equals(node.getNodeName())) {
-                return node.getTextContent();
-            }
-        }
-        return "";
-    }
-
     public String getTemplateFrom(String businessOperator) {
         Node configNode = findConfigByBusinessOperator(businessOperator);
         if (null == configNode) {
-            return null;
+            return "";
         }
         NodeList nodeList = configNode.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
@@ -141,6 +129,28 @@ public class BusinessLogConfigXmlParser {
         }
 
         return results;
+    }
+
+    /**
+     * 得到业务操作的所属分类
+     *
+     * @param businessOperator
+     * @return
+     */
+    public String getBusinessLogMethodCategory(String businessOperator) {
+        Node configNode = findConfigByBusinessOperator(businessOperator);
+        if (null == configNode) {
+            return "";
+        }
+        NodeList nodeList = configNode.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Node node = nodeList.item(i);
+            if (TARGET_BUSINESS_METHOD_CATEGORY.equals(node.getNodeName())
+                    && Node.ELEMENT_NODE == node.getNodeType()) {
+                return node.getTextContent();
+            }
+        }
+        return "";
     }
 
 
