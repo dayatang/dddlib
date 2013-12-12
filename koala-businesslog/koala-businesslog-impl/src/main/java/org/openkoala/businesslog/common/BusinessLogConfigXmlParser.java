@@ -145,7 +145,8 @@ public class BusinessLogConfigXmlParser {
         NodeList nodeList = configNode.getChildNodes();
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
-            if (TARGET_BUSINESS_METHOD_CATEGORY.equals(node.getNodeName())) {
+            if (TARGET_BUSINESS_METHOD_CATEGORY.equals(node.getNodeName())
+                    && Node.ELEMENT_NODE == node.getNodeType()) {
                 return node.getTextContent();
             }
         }

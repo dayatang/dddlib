@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface BusinessLogConfigAdapter {
 
+    String getCategory();
+
     String getTemplate();
 
     List<BusinessLogContextQuery> getQueries();

@@ -27,6 +27,8 @@ public class BusinessLogEngineTest {
 
         String businessOperation = "void org.openkoala.business.method(int, String)";
 
+        String businessMethodCategory = "发票操作";
+
         BusinessLogConfigAdapter configAdapter = mock(BusinessLogConfigAdapter.class);
 
         BusinessLogConfig config = new BusinessLogConfig(configAdapter);
@@ -49,6 +51,7 @@ public class BusinessLogEngineTest {
                 .thenReturn(new ArrayList<BusinessLogContextQuery>());
         when(configAdapter.getTemplate())
                 .thenReturn(template);
+        when(configAdapter.getCategory()).thenReturn(businessMethodCategory);
 
         BusinessLogContextQuery[] queries = new BusinessLogContextQuery[config.getQueries(businessOperation).size()];
 
@@ -59,9 +62,10 @@ public class BusinessLogEngineTest {
         when(render.build()).thenReturn(resultLog);
 
 
-        RenderResult renderResult = engine.exportLogBy(businessOperation, exporter);
+        BusinessLog businessLog = engine.exportLogBy(businessOperation, exporter);
 
-        assert resultLog.equals(renderResult.getLog());
+        assert businessMethodCategory.equals(businessLog.getCategory());
+        assert resultLog.equals(businessLog.getLog());
     }
 
 

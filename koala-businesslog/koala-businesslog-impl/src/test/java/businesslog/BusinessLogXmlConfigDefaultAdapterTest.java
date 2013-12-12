@@ -26,6 +26,8 @@ public class BusinessLogXmlConfigDefaultAdapterTest {
         assert "向项目${project.name}的合同${contract.name}添加发票：${(_methodReturn.sn)!\"\"}"
                 .equals(adapter.getTemplate());
 
+        assert "发票操作".equals(adapter.getCategory());
+
 
     }
 

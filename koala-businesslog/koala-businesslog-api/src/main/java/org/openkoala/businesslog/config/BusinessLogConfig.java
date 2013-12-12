@@ -27,5 +27,9 @@ public class BusinessLogConfig {
         return configAdapter.findConfigByBusinessOperation(businessOperation).getQueries();
     }
 
+    public String getBusinessMethodCategory(String businessOperation) {
+        return configAdapter.findConfigByBusinessOperation(businessOperation).getCategory();
+    }
+
 
 }

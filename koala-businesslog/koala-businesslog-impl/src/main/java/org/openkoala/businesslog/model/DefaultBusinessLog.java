@@ -1,6 +1,6 @@
 package org.openkoala.businesslog.model;
 
-import org.openkoala.businesslog.RenderResult;
+import org.openkoala.businesslog.BusinessLog;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -27,9 +27,9 @@ public class DefaultBusinessLog extends AbstractBusinessLog {
     @Temporal(TemporalType.TIMESTAMP)
     private Date time;
 
-    public static DefaultBusinessLog createBy(RenderResult renderResult) {
+    public static DefaultBusinessLog createBy(BusinessLog businessLog) {
         DefaultBusinessLog myBusinessLog = new DefaultBusinessLog();
-        Map<String, Object> context = renderResult.getContext();
+        Map<String, Object> context = businessLog.getContext();
 
         if (context.get(BUSINESS_OPERATION_USER) != null) {
             myBusinessLog.setUser((String) context.get(BUSINESS_OPERATION_USER));

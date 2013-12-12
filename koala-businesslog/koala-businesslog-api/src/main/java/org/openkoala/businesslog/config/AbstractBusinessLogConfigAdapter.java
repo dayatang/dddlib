@@ -10,6 +10,7 @@ import java.util.Map;
  */
 public abstract class AbstractBusinessLogConfigAdapter implements BusinessLogConfigAdapter {
 
+    private String category;
 
     private String template;
 
@@ -29,6 +30,14 @@ public abstract class AbstractBusinessLogConfigAdapter implements BusinessLogCon
 
     public void setQueries(List<BusinessLogContextQuery> queries) {
         this.queries = queries;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return category;
     }
 
 }

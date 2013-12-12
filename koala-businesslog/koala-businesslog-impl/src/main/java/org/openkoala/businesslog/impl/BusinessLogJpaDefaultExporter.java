@@ -1,7 +1,7 @@
 package org.openkoala.businesslog.impl;
 
 import org.openkoala.businesslog.BusinessLogExporter;
-import org.openkoala.businesslog.RenderResult;
+import org.openkoala.businesslog.BusinessLog;
 import org.openkoala.businesslog.application.BusinessLogApplication;
 import org.openkoala.businesslog.model.DefaultBusinessLog;
 
@@ -18,8 +18,8 @@ public class BusinessLogJpaDefaultExporter implements BusinessLogExporter {
     private BusinessLogApplication businessLogApplication;
 
     @Override
-    public void export(RenderResult renderResult) {
-        DefaultBusinessLog log = DefaultBusinessLog.createBy(renderResult);
+    public void export(BusinessLog businessLog) {
+        DefaultBusinessLog log = DefaultBusinessLog.createBy(businessLog);
 
 
         businessLogApplication.save(log);

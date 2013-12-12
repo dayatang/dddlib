@@ -1,7 +1,7 @@
 package org.openkoala.businesslog.impl;
 
 import org.openkoala.businesslog.BusinessLogExporter;
-import org.openkoala.businesslog.RenderResult;
+import org.openkoala.businesslog.BusinessLog;
 
 
 /**
@@ -13,7 +13,7 @@ public class BusinessLogConsoleExporter implements BusinessLogExporter {
 
 
     @Override
-    public void export(RenderResult renderResult) {
-        System.out.println(renderResult.getLog());
+    public void export(BusinessLog businessLog) {
+        System.out.println(businessLog.getLog());
     }
 }

@@ -10,11 +10,12 @@ import java.util.Map;
  * Time: 9:35 AM
  */
 
-public class RenderResult {
+public class BusinessLog {
 
     private String log;
 
     private Map<String, Object> context = new HashMap<String, Object>();
+    private String category;
 
     public String getLog() {
         return log;
@@ -34,4 +35,11 @@ public class RenderResult {
     }
 
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return category;
+    }
 }
