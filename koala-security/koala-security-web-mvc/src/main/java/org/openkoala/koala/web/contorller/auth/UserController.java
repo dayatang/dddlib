@@ -14,6 +14,7 @@ import org.openkoala.auth.application.vo.QueryConditionVO;
 import org.openkoala.auth.application.vo.QueryItemVO;
 import org.openkoala.auth.application.vo.RoleVO;
 import org.openkoala.auth.application.vo.UserVO;
+import org.openkoala.koala.auth.impl.jdbc.PasswordEncoder;
 import org.openkoala.koala.auth.ss3adapter.CustomUserDetails;
 import org.openkoala.koala.auth.ss3adapter.SecurityMD5;
 import org.openkoala.koala.auth.ss3adapter.ehcache.CacheUtil;
@@ -49,10 +50,9 @@ public class UserController {
 		}
 		UserVO userVO = new UserVO();
 		userVO.setUserAccount(username);
-		userVO.setUserPassword(SecurityMD5.encode(userPassword,
-				username));
+		userVO.setUserPassword(new PasswordEncoder("", "MD5").encode(userVO.getUserPassword()));
 		if (userApplication.updatePassword(userVO,
-				SecurityMD5.encode(oldPassword, username))) {
+				new PasswordEncoder("", "MD5").encode(userVO.getUserPassword()))) {
 			dataMap.put("result", "success");
 			CacheUtil.refreshUserAttributes(username);
 		} else {
@@ -221,8 +221,7 @@ public class UserController {
 		UserVO userVO = userPojo.getUserVO();
 		Map<String, Object> dataMap = new HashMap<String,Object>();
 		userVO.setSerialNumber("0");
-		userVO.setUserPassword(SecurityMD5.encode(userVO.getUserPassword(), //
-				userVO.getUserAccount()));
+		userVO.setUserPassword(new PasswordEncoder("", "MD5").encode(userVO.getUserPassword()));
 		userApplication.saveUser(userVO);
 		CacheUtil.refreshUserAttributes(userVO.getUserAccount());
 		dataMap.put("result", "success");
