@@ -1,5 +1,4 @@
 <div data-role="roleGrid"></div>
-<script src="/js/auth/role.js"></script>
 <script>
 	$(function(){
 		var tabData = $('[data-role="roleGrid"]').closest('.tab-pane.active').data();
@@ -40,7 +39,7 @@
 				return [{title: '角色名称', value: 'roleNameForSearch'}];
 			}
 		}
-		var url = '/auth/Role/pageJson.koala';
+		var url = contextPath + '/auth/Role/pageJson.koala';
 		if(userAccount){
 			url += '?userAccount='+userAccount;
 		}
