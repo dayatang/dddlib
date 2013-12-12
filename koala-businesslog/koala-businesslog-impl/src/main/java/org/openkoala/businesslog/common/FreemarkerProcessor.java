@@ -31,10 +31,9 @@ public class FreemarkerProcessor {
         StringTemplateLoader stringLoader = new StringTemplateLoader();
         stringLoader.putTemplate("template", template);
         configuration.setTemplateLoader(stringLoader);
-        Template freemarkerTemplate = null;
         StringWriter out = new StringWriter(512);
         try {
-            freemarkerTemplate = configuration.getTemplate("template", templateEncoding);
+            Template freemarkerTemplate =configuration.getTemplate("template", templateEncoding);
             freemarkerTemplate.process(aContext, out);
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -15,9 +15,8 @@ public class BusinessLogJpaDefaultExporterTest extends AbstractIntegrationTest {
 
     @Test
     public void test() {
+
         BusinessLogExporter exporter = new BusinessLogJpaDefaultExporter();
-
-
 
 
     }
