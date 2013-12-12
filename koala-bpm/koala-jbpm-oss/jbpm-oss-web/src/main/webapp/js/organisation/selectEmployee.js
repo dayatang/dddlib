@@ -9,7 +9,7 @@ var selectEmployee = function(){
 	var selectedEmployee = null;//已选员工
 	var selectedItem = {};//已选员工数据
 	var init = function(hostOrgId){
-		$.get('/pages/organisation/selectEmployeeTemplate.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/selectEmployeeTemplate.html').done(function(data){
 			dialog = $(data);
 			departmentTree = dialog.find('#departmentTree');
 			employeeGrid = dialog.find('#employeeGrid');
@@ -29,7 +29,7 @@ var selectEmployee = function(){
 				        'Content-Type': 'application/json' 
 				    },
 				    'type': "Post",
-				    'url': '/organization/assign-employees-to-organization.koala?organizationId='+hostOrgId,
+				    'url':  contextPath + '/organization/assign-employees-to-organization.koala?organizationId='+hostOrgId,
 				    'data': JSON.stringify(items),
 				    'dataType': 'json'
 				 }).done(function(data){
@@ -60,7 +60,7 @@ var selectEmployee = function(){
 	 */
 	var loadDepartmentTree = function(hostOrgId){
 		departmentTree.tree({
-			url: '/organization/orgTree.koala',
+			url:  contextPath + '/organization/orgTree.koala',
 			loadingHTML: '<div class="static-loader">Loading...</div>',
 			multiSelect: false,
 			cacheItems: true
@@ -95,7 +95,7 @@ var selectEmployee = function(){
 			identity: 'id',
 			columns: cols,
 			querys: [{title: '姓名', value: 'example.name'}],
-			url: '/employee/pagingquery-by-org.koala?organizationId='+id+'&hostOrgId='+hostOrgId
+			url:  contextPath + '/employee/pagingquery-by-org.koala?organizationId='+id+'&hostOrgId='+hostOrgId
 		}).on({
 			'selectedRow': function(event, data){
 			    var  checked = data.checked;

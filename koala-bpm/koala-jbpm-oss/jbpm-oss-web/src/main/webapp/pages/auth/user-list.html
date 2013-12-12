@@ -1,5 +1,4 @@
 <div data-role="userGrid"></div>
-<script src="/js/auth/user.js"></script>
 <script>
 	$(function(){
 		var tabData = $('[data-role="userGrid"]').closest('.tab-pane.active').data();
@@ -54,7 +53,7 @@
 				];
 			}
 		};
-		var url = '/auth/User/pageJson.koala';
+		var url = contextPath + '/auth/User/pageJson.koala';
 		if(roleId){
 			url += '?roleId='+roleId;
 		}

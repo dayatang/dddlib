@@ -15,7 +15,9 @@
     <link href="<c:url value='/css/jbpm.css' />?time=<%=time%>" rel="stylesheet">
     <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
     <link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />" rel="stylesheet">
-    <link href="<c:url value='/lib/z-tree/css/zTreeStyle.css' />"   rel="stylesheet">
+     <script>
+        var contextPath = '${pageContext.request.contextPath}';
+    </script>
 </head>
 <body>
 	<div class="g-head">
@@ -40,36 +42,36 @@
 	<div class="g-body">
 	    <div class="col-lg-2 g-sidec">
 	        <ul class="nav nav-stacked first-level-menu">
-	            <li class="active">
-                	<a data-toggle="collapse" href="#businessSupport"><i class="glyphicon glyphicon-plane"></i>&nbsp;业务支撑系统&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+	            <li>
+                	<a data-toggle="collapse" href="#businessSupport"><i class="glyphicon glyphicon-plane"></i>&nbsp;&nbsp;业务支撑系统&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
 	                <ul id="businessSupport" class="second-level-menu in">
-	                    <li class="submenu" data-role="openTab" data-target="/pages/businesssupport/processlist.jsp" data-title="发起流程" data-mark="startTask"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;发起流程</a></li>
-	                    <li class="submenu active" data-role="openTab" data-target="/pages/businesssupport/activeTasks.jsp" data-title="待办任务" data-mark="home"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;待办任务</a></li>
-	                    <li class="submenu" data-role="openTab" data-target="/pages/businesssupport/historyTasks.jsp" data-title="已办任务" data-mark="historyTasks"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;已办任务</a></li>
-	                	<li class="submenu" data-role="openTab" data-target="/processform/list.koala" data-title="流程表单" data-mark="formList"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;流程表单</a></li>
+	                    <li class="submenu" data-role="openTab" data-target="/pages/businesssupport/processlist.jsp" data-title="发起流程" data-mark="startTask"><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;发起流程</a></li>
+	                    <li class="submenu" data-role="openTab" data-target="/pages/businesssupport/activeTasks.jsp" data-title="待办任务" data-mark="activeTasks"><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;待办任务</a></li>
+	                    <li class="submenu" data-role="openTab" data-target="/pages/businesssupport/historyTasks.jsp" data-title="已办任务" data-mark="historyTasks"><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;已办任务</a></li>
+	                	<li class="submenu" data-role="openTab" data-target="/processform/list.koala" data-title="流程表单" data-mark="formList"><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;流程表单</a></li>
 	                </ul>
 	            </li>
 	            <li>
-                <a data-toggle="collapse" href="#userRight"><i class="glyphicon glyphicon-user"></i>&nbsp;用户角色管理&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+                <a data-toggle="collapse" href="#userRight"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;用户角色管理&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
 	                <ul id="userRight" class="second-level-menu in">
-	                    <li class="submenu" data-role="openTab" data-target="/pages/auth/user-list.html" data-title="用户管理" data-mark="userList"><a ><i class="glyphicon glyphicon-hand-right"></i>&nbsp;用户管理</a></li>
-	                    <li class="submenu" data-role="openTab" data-target="/pages/auth/role-list.html" data-title="角色管理" data-mark="roleList"><a ><i class="glyphicon glyphicon-hand-right"></i>&nbsp;角色管理</a></li>
+	                    <li class="submenu" data-role="openTab" data-target="/pages/auth/user-list.html" data-title="用户管理" data-mark="userList"><a ><i class="glyphicon glyphicon-list-alt"></i>&nbsp;用户管理</a></li>
+	                    <li class="submenu" data-role="openTab" data-target="/pages/auth/role-list.html" data-title="角色管理" data-mark="roleList"><a ><i class="glyphicon glyphicon-list-alt"></i>&nbsp;角色管理</a></li>
 	                </ul>
 	            </li>
 	             <li>
-                <a data-toggle="collapse" href="#organisation"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;组织子系统&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+                <a data-toggle="collapse" href="#organisation"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;&nbsp;组织子系统&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
 	                <ul id="organisation" class="second-level-menu in">
-	                    <li class="submenu" data-role="openTab" data-target="/pages/organisation/departmentList.html" data-title="机构管理" data-mark="departmentList" ><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;机构管理</a></li>
-	                    <li class="submenu" data-role="openTab" data-target="/pages/organisation/jobList.html" data-title="职务管理" data-mark="jobList" ><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;职务管理</a></li>
-	                    <li class="submenu" data-role="openTab" data-target="/pages/organisation/positionList.html" data-title="岗位管理" data-mark="positionList" ><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;岗位管理</a></li>
-	                    <li class="submenu" data-role="openTab" data-target="/pages/organisation/employeeList.html" data-title="员工管理" data-mark="employeeList"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;员工管理</a></li>
+	                    <li class="submenu" data-role="openTab" data-target="/pages/organisation/departmentList.html" data-title="机构管理" data-mark="departmentList" ><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;机构管理</a></li>
+	                    <li class="submenu" data-role="openTab" data-target="/pages/organisation/jobList.html" data-title="职务管理" data-mark="jobList" ><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;职务管理</a></li>
+	                    <li class="submenu" data-role="openTab" data-target="/pages/organisation/positionList.html" data-title="岗位管理" data-mark="positionList" ><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;岗位管理</a></li>
+	                    <li class="submenu" data-role="openTab" data-target="/pages/organisation/employeeList.html" data-title="员工管理" data-mark="employeeList"><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;员工管理</a></li>
 	                </ul>
 	            </li>
 	        </ul>
 	    </div>
 	    <div class="col-lg-10 g-mainc container">
 	        <ul class="nav nav-tabs" id="navTabs">
-	            <li class="active"><a href="#home" data-toggle="tab">待办任务</a></li>
+	            <li class="active"><a href="#home" data-toggle="tab">主页</a></li>
 	        </ul>
 	        <div class="tab-content" id="tabContent">
 	            <div id="home" class="tab-pane active"></div>
@@ -82,13 +84,14 @@
 	<script type="text/javascript" src="<c:url value='/lib/jquery-1.8.3.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/lib/koala-tree.js' />?time=<%=time%>" ></script>
 	<script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />?time=<%=time%>" ></script>
 	<script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js' />" ></script>
 	<script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js' />" ></script>
-	<script type="text/javascript" src="<c:url value='/js/tree.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/processform/form.render.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
-	<script type="text/javascript" src="<c:url value='/lib/z-tree/js/jquery.ztree.all-3.5.min.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/main.js' />?time=<%=time%>" ></script>
+	<script type="text/javascript" src="<c:url value='/js/auth/role.js' />?time=<%=time%>" ></script>
+    <script type="text/javascript" src="<c:url value='/js/auth/user.js' />?time=<%=time%>" ></script>
 </body>
 </html>
