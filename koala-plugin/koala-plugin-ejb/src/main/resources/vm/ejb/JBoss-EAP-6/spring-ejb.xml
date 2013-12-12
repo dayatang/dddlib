@@ -102,7 +102,7 @@
          
 #end
 
-#if ($hasMonitorModule)
+#if ($hasSecurity_IMPL)
 
  <jee:remote-slsb id="monitorDataManageApplication" expose-access-context="true" 
     jndi-name="${monitorDataManageApplication.Remote}"   
@@ -168,5 +168,67 @@
     </jee:environment>
 </jee:remote-slsb>
 
+#end
+
+#if ($hasOrganizationModule)
+  <jee:remote-slsb id="baseApplication" expose-access-context="true" 
+    jndi-name="${baseApplication.Remote}"   
+    business-interface="org.openkoala.organisation.application.BaseApplication">
+    <jee:environment>
+        java.naming.factory.initial=${java.naming.factory.initial}
+        java.naming.provider.url=${java.naming.provider.url}
+        jboss.naming.client.ejb.context=true
+        java.naming.security.principal=${java.naming.security.principal}
+        java.naming.security.credentials=${java.naming.security.credentials}
+    </jee:environment>
+</jee:remote-slsb>
+
+  <jee:remote-slsb id="employeeApplication" expose-access-context="true" 
+    jndi-name="${employeeApplication.Remote}"   
+    business-interface="org.openkoala.organisation.application.EmployeeApplication">
+    <jee:environment>
+        java.naming.factory.initial=${java.naming.factory.initial}
+        java.naming.provider.url=${java.naming.provider.url}
+        jboss.naming.client.ejb.context=true
+        java.naming.security.principal=${java.naming.security.principal}
+        java.naming.security.credentials=${java.naming.security.credentials}
+    </jee:environment>
+</jee:remote-slsb>
+
+<jee:remote-slsb id="jobApplication" expose-access-context="true" 
+    jndi-name="${jobApplication.Remote}"   
+    business-interface="org.openkoala.organisation.application.JobApplication">
+    <jee:environment>
+        java.naming.factory.initial=${java.naming.factory.initial}
+        java.naming.provider.url=${java.naming.provider.url}
+        jboss.naming.client.ejb.context=true
+        java.naming.security.principal=${java.naming.security.principal}
+        java.naming.security.credentials=${java.naming.security.credentials}
+    </jee:environment>
+</jee:remote-slsb>
+
+<jee:remote-slsb id="organizationApplication" expose-access-context="true" 
+    jndi-name="${organizationApplication.Remote}"   
+    business-interface="org.openkoala.organisation.application.OrganizationApplication">
+    <jee:environment>
+        java.naming.factory.initial=${java.naming.factory.initial}
+        java.naming.provider.url=${java.naming.provider.url}
+        jboss.naming.client.ejb.context=true
+        java.naming.security.principal=${java.naming.security.principal}
+        java.naming.security.credentials=${java.naming.security.credentials}
+    </jee:environment>
+</jee:remote-slsb>
+
+<jee:remote-slsb id="postApplication" expose-access-context="true" 
+    jndi-name="${postApplication.Remote}"   
+    business-interface="org.openkoala.organisation.application.PostApplication">
+    <jee:environment>
+        java.naming.factory.initial=${java.naming.factory.initial}
+        java.naming.provider.url=${java.naming.provider.url}
+        jboss.naming.client.ejb.context=true
+        java.naming.security.principal=${java.naming.security.principal}
+        java.naming.security.credentials=${java.naming.security.credentials}
+    </jee:environment>
+</jee:remote-slsb>
 #end
 </beans>

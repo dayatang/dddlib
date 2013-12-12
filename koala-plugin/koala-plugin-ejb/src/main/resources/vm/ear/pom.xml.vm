@@ -66,15 +66,24 @@
   <dependency> 
             <groupId>org.openkoala.gqc</groupId>  
             <artifactId>koala-gqc-applicationImpl</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${koala.version}</version>
             <type>ejb</type>
   </dependency>  
   <dependency> 
             <groupId>org.openkoala.gqc</groupId>  
             <artifactId>koala-gqc-conf</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${koala.version}</version>
             <type>ejb</type>
   </dependency>  
+#end
+
+#if ($hasOrganizationModule)
+  <dependency> 
+            <groupId>org.openkoala.organisation</groupId>
+		    <artifactId>koala-organisation-applicationImpl</artifactId>
+            <version>${koala.version}</version>
+            <type>ejb</type>
+  </dependency> 
 #end
 
 

@@ -28,6 +28,11 @@ public class Company extends Organization {
 	public Company(String name, String sn) {
 		super(name, sn);
 	}
+	
+	public Company(String name, String sn,String description) {
+		super(name, sn);
+		this.setDescription(description);
+	}
 
 	@Override
 	public boolean equals(Object other) {

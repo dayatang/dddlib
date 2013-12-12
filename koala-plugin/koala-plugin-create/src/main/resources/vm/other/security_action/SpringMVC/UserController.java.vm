@@ -1,4 +1,4 @@
-package org.openkoala.koala.web.contorller.auth;
+package ${Module.basePackage}.controller.auth;
 
 import java.util.ArrayList;
 import java.util.HashMap;

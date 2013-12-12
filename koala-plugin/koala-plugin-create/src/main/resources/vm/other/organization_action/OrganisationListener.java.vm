@@ -2,35 +2,35 @@ package ${Module.basePackage}.controller.organization;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-
 import org.openkoala.organisation.application.OrganizationApplication;
 import org.openkoala.organisation.domain.Company;
-import org.openkoala.organisation.domain.Organization;
-import org.springframework.web.context.support.WebApplicationContextUtils;
+import com.dayatang.domain.InstanceFactory;
 
 public class OrganisationListener implements ServletContextListener {
 
+	private OrganizationApplication organizationApplication;
+	
+	private OrganizationApplication getOrganizationApplication(){
+		if(organizationApplication==null){
+			organizationApplication = InstanceFactory.getInstance(OrganizationApplication.class);
+		}
+		return organizationApplication;
+	}
+	 
 	public void contextInitialized(ServletContextEvent event) {
 		initTopOrganizationIfNecessary(event);
 	}
 	
 	private void initTopOrganizationIfNecessary(ServletContextEvent event) {
-		if (Organization.getTopOrganization() != null) {
-			return;
+		
+		if (getOrganizationApplication().isTopOrganizationExists()==false) {
+			getOrganizationApplication().createAsTopOrganization(newTopOrganization());
 		}
 		
-		System.out.println("--------------------------------");
-		OrganizationApplication organizationApplication = (OrganizationApplication) WebApplicationContextUtils
-				.getWebApplicationContext(event.getServletContext()).getBean(
-						"organizationApplication");
-		
-		organizationApplication.createAsTopOrganization(getTopOrganization());
 	}
 	
-	private Company getTopOrganization() {
-		Company result = new Company("总公司", "COM-001");
-		result.setDescription("总公司：所有机构的根");
-		return result;
+	private Company newTopOrganization() {
+		return new Company("总公司", "COM-001","总公司：所有机构的根");
 	}
 
 	public void contextDestroyed(ServletContextEvent sce) {
