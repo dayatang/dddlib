@@ -21,9 +21,9 @@ public class BusinessLogXmlConfigDefaultAdapterTest {
 
         adapter.findConfigByBusinessOperation(method);
 
-        assert "${user!\"\"}:${ip!\"\"}:".equals(adapter.getPreTemplate());
+        assert 2 == adapter.getQueries().size();
 
-        assert "向项目${project.name}的合同${contract.name}添加发票：${_methodReturn.sn}"
+        assert "向项目${project.name}的合同${contract.name}添加发票：${(_methodReturn.sn)!\"\"}"
                 .equals(adapter.getTemplate());
 
 

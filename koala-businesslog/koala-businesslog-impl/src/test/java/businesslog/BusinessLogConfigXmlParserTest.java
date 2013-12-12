@@ -19,11 +19,9 @@ public class BusinessLogConfigXmlParserTest {
 
         BusinessLogConfigXmlParser parser = BusinessLogConfigXmlParser.parsing(xmlconfigPath);
 
-        assert "${user!\"\"}:${ip!\"\"}:".equals(parser.getPreTemplate());
-
         String operator = "Invoice business.InvoiceApplication.addInvoice(String,long)";
 
-        assert "向项目${project.name}的合同${contract.name}添加发票：${_methodReturn.sn}".equals(parser.getTemplateFrom(operator));
+        assert "向项目${project.name}的合同${contract.name}添加发票：${(_methodReturn.sn)!\"\"}".equals(parser.getTemplateFrom(operator));
 
         assert parser.getQueriesFrom(operator).size() == 2;
 

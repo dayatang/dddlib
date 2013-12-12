@@ -26,10 +26,6 @@ public class BusinessLogConfigXmlParser {
      */
     private final static String BUSINESS_LOG_CONFIG_NODE_NAME = "businessLogConfig";
 
-    /**
-     * 前置模板的节点名
-     */
-    private final static String PRE_TEMPLATE_NODE_NAME = "preTemplate";
 
     /**
      * 业务操作的节点名
@@ -100,18 +96,6 @@ public class BusinessLogConfigXmlParser {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public String getPreTemplate() {
-        Element root = xmlDoc.getDocumentElement();
-        NodeList rootChildren = root.getChildNodes();
-        for (int i = 0; i < rootChildren.getLength(); i++) {
-            Node node = rootChildren.item(i);
-            if (PRE_TEMPLATE_NODE_NAME.equals(node.getNodeName())) {
-                return node.getTextContent();
-            }
-        }
-        return "";
     }
 
     public String getTemplateFrom(String businessOperator) {
