@@ -7,6 +7,7 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 import org.aspectj.lang.JoinPoint;
 import org.openkoala.businesslog.BusinessLogEngine;
 import org.openkoala.businesslog.BusinessLogExporter;
+import org.openkoala.businesslog.common.BusinessLogPropertiesConfig;
 import org.openkoala.businesslog.config.BusinessLogConfig;
 import org.openkoala.businesslog.impl.BusinessLogDefaultContextQueryExecutor;
 import org.openkoala.businesslog.impl.BusinessLogFreemarkerDefaultRender;
@@ -47,13 +48,8 @@ public class BusinessLogInterceptor {
     }
 
     public void log(JoinPoint joinPoint, Object result, Throwable error) {
-        try {
-            PropertiesConfiguration configuration = new PropertiesConfiguration(BUSINESS_LOG_CONFIG_PROPERTIES_NAME);
-            if (!configuration.getBoolean(LOG_ENABLE, true)) {
-                return;
-            }
-        } catch (ConfigurationException e) {
-            throw new RuntimeException(e);
+        if (!BusinessLogPropertiesConfig.getInstance().getLogEnableConfig()) {
+            return;
         }
 
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <businessLogConfigs>
-    <preTemplate><![CDATA[${user!""}:${ip!""}:]]></preTemplate>
     <businessLogConfig>
         <!--向项目中的合同，添加一张发票-->
         <method>Invoice business.InvoiceApplication.addInvoice(String,long)</method>

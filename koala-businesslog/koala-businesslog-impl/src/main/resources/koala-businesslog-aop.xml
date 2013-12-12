@@ -14,7 +14,7 @@
 
     <context:annotation-config/>
     <context:component-scan base-package="org.openkoala.businesslog"/>
-    <context:property-placeholder location="classpath*:koala-busniesslog.properties" ignore-unresolvable="true"/>
+    <context:property-placeholder location="classpath*:koala-businesslog.properties" ignore-unresolvable="true"/>
 
     <bean id="logInterceptor" class="org.openkoala.businesslog.utils.BusinessLogInterceptor"/>
 
