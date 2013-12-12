@@ -28,6 +28,8 @@ public class BusinessLogInterceptor {
 
     private final String BUSINESS_LOG_CONFIG_PROPERTIES_NAME = "koala-busniesslog.properties";
 
+    private final String LOG_ENABLE = "kaola-businesslog.enable";
+
     @Inject
     private BusinessLogEngine businessLogEngine;
 
@@ -47,7 +49,7 @@ public class BusinessLogInterceptor {
     public void log(JoinPoint joinPoint, Object result, Throwable error) {
         try {
             PropertiesConfiguration configuration = new PropertiesConfiguration(BUSINESS_LOG_CONFIG_PROPERTIES_NAME);
-            if (!configuration.getBoolean("kaoa-businesslog.enable", true)) {
+            if (!configuration.getBoolean(LOG_ENABLE, true)) {
                 return;
             }
         } catch (ConfigurationException e) {
