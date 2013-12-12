@@ -27,9 +27,10 @@ public class BusinessLogInterceptor {
 
     private static Logger logger = Logger.getLogger(BusinessLogInterceptor.class.toString());
 
-    private final String BUSINESS_LOG_CONFIG_PROPERTIES_NAME = "koala-busniesslog.properties";
-
-    private final String LOG_ENABLE = "kaola-businesslog.enable";
+    /**
+     * 当前调用方法在ThreadLocalBusinessLogContext中的key
+     */
+    private static final String CURRENT_INVOKED_METHOD_KEY = "CURRENT_INVOKED_METHOD_KEY";
 
     @Inject
     private BusinessLogEngine businessLogEngine;
@@ -39,6 +40,7 @@ public class BusinessLogInterceptor {
 
 
     public void logAfter(JoinPoint joinPoint, Object result) {
+
         log(joinPoint, result, null);
     }
 
@@ -48,14 +50,31 @@ public class BusinessLogInterceptor {
     }
 
     public void log(JoinPoint joinPoint, Object result, Throwable error) {
+
+        /**
+         * 判断递归查询
+         */
+        if (isRecursionQuery(joinPoint)) {
+            return;
+        }
+
         if (!BusinessLogPropertiesConfig.getInstance().getLogEnableConfig()) {
             return;
         }
 
-
         BusinessLogEngine engine = getBusinessLogEngine();
         engine.setInitContext(createDefaultContext(joinPoint, result, error));
         engine.exportLogBy(joinPoint.getSignature().toString(), businessLogExporter);
+    }
+
+    private boolean isRecursionQuery(JoinPoint joinPoint) {
+        if (ThreadLocalBusinessLogContext.get().get(CURRENT_INVOKED_METHOD_KEY) == null) {
+            ThreadLocalBusinessLogContext.put(CURRENT_INVOKED_METHOD_KEY, joinPoint.getSignature().toString());
+            return false;
+        } else if (!ThreadLocalBusinessLogContext.get().get(CURRENT_INVOKED_METHOD_KEY).equals(joinPoint.getSignature().toString())) {
+            return true;
+        }
+        return false;
     }
 
     private Map<String, Object> createDefaultContext(JoinPoint joinPoint, Object result, Throwable errer) {
@@ -77,6 +96,7 @@ public class BusinessLogInterceptor {
 
         return context;
     }
+
 
     private BusinessLogEngine getBusinessLogEngine() {
         if (businessLogEngine == null) {
