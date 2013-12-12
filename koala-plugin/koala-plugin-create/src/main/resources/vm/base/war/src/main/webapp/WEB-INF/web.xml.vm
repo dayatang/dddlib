@@ -39,14 +39,7 @@
    #end
 
 
-	<!-- Spring Listener -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:META-INF/spring/root.xml</param-value>
-	</context-param>
-	<listener>
-		<listener-class>com.dayatang.spring.webapp.DayatangContextLoaderListener</listener-class>
-	</listener>
+
 	
 	   
 	
@@ -71,6 +64,15 @@
 	</filter-mapping>
 <!-- monitor config end -->
 #end
+
+	<!-- Spring Listener -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:META-INF/spring/root.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>com.dayatang.spring.webapp.DayatangContextLoaderListener</listener-class>
+	</listener>
 	
 	<!--组织子系统的listener-->
 #if ($Module.organization)
@@ -145,8 +147,7 @@
 	</error-page>
 	
 	<welcome-file-list>
-		<welcome-file>/security.jsp</welcome-file>
-		<welcome-file>/index.jsp</welcome-file>
+		<welcome-file>/login.koala</welcome-file>
 	</welcome-file-list>
 
 	<distributable />

@@ -18,10 +18,25 @@
 
     <bean id="logInterceptor" class="org.openkoala.businesslog.utils.BusinessLogInterceptor"/>
 
+    <bean id="businessLogExporter" class="${businessLogExporter}"></bean>
+    <bean id="configAdapter" class="${businessLogConfigAdapter}"/>
+    <bean id="queryExecutor" class="${businessLogQueryExecutor}"/>
+    <bean id="businessLogEnginConfig" class="org.openkoala.businesslog.config.BusinessLogConfig">
+        <constructor-arg name="configAdapter" ref="configAdapter"/>
+    </bean>
+    <bean id="businessLogEngine" class="org.openkoala.businesslog.BusinessLogEngine">
+        <constructor-arg name="config" ref="businessLogEnginConfig"/>
+        <constructor-arg name="render">
+            <bean class="${businessLogRender}"></bean>
+        </constructor-arg>
+        <constructor-arg name="queryExecutor" ref="queryExecutor"></constructor-arg>
+    </bean>
+
     <aop:config>
         <aop:pointcut id="businessBehavior" expression="${pointcut}"/>
         <aop:aspect id="logAspect" ref="logInterceptor">
             <aop:after-returning returning="result" method="logAfter" pointcut-ref="businessBehavior"/>
+            <aop:after-throwing method="afterThrowing" pointcut-ref="businessBehavior" throwing="error"/>
         </aop:aspect>
     </aop:config>
 

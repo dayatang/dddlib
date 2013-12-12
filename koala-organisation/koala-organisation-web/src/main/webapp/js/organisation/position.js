@@ -1,5 +1,5 @@
 var position = function(){
-	var baseUrl = 'post/';
+	var baseUrl =  contextPath + '/post/';
 	var dialog = null;    			//对话框
 	var positionSn = null;
 	var positionName = null;   			//职务名称
@@ -18,7 +18,7 @@ var position = function(){
 	 */
 	var add = function(grid){
 		dataGrid = grid;
-		$.get('pages/organisation/positionTemplate.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/positionTemplate.html').done(function(data){
 			init(data);
 		});
 	};
@@ -27,7 +27,7 @@ var position = function(){
 	 */
 	var modify = function(id, grid){
 		dataGrid = grid;
-		$.get('pages/organisation/positionTemplate.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/positionTemplate.html').done(function(data){
 			init(data, id);
 		});
 	};
@@ -113,7 +113,7 @@ var position = function(){
 	 * 部门选择
 	 */
 	var selectDepartments = function(){
-		$.get('pages/organisation/selectDepartmentTemplate.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/selectDepartmentTemplate.html').done(function(data){
 			var departmentTreeDialog = $(data);
 			departmentTree = departmentTreeDialog.find('.tree');
 			departmentTreeDialog.find('#confirm').on('click',function(){
@@ -122,6 +122,7 @@ var position = function(){
 				positionDepartment.find('[data-toggle="item"]').html(departmentName);
 				positionDepartment.trigger('keydown');
 			}).end().modal({
+					backdrop: false,
 					keyboard: false
 				}).on({
 					'shown.bs.modal': function(){
@@ -137,22 +138,67 @@ var position = function(){
 	 * 加载部门树
 	 */
 	var loadDepartmentTree = function(){
-		departmentTree.tree({
-			url:  'organization/orgTree.koala',
-			loadingHTML: '<div class="static-loader">Loading...</div>',
-			multiSelect: false,
-			cacheItems: true
-		}).on('selected', function(event, data){
-				departmentId = data.id;
-				departmentName = data.name;
-		});
+        $.get(contextPath  + '/organization/orgTree.koala').done(function(data){
+            var zNodes = new Array();
+            $.each(data, function(){
+                var zNode = {};
+                if(this.organizationType == 'company'){
+                    zNode.type = 'parent';
+                }else{
+                    zNode.icon = 'glyphicon glyphicon-list-alt'
+                }
+                this.title = this.name;
+                zNode.menu = this;
+                if(this.children && this.children.length > 0){
+                    zNode.children = getChildrenData(new Array(), this.children);
+                }
+                zNodes.push(zNode);
+            });
+            var dataSourceTree = {
+                data: zNodes,
+                delay: 400
+            };
+            departmentTree.tree({
+                dataSource: dataSourceTree,
+                loadingHTML: '<div class="static-loader">Loading...</div>',
+                multiSelect: false,
+                cacheItems: true
+            }).on({
+                    'selectParent': function(event, data){
+                        var data = data.data;
+                        departmentId = data.id;
+                        departmentName = data.name;
+                    },
+                    'selectChildren': function(event, data){
+                        departmentId = data.id;
+                        departmentName = data.name;
+                    }
+                });
+        });
 	};
+    var getChildrenData = function(nodes, items){
+        $.each(items, function(){
+            var zNode = {};
+            if(this.organizationType == 'company'){
+                zNode.type = 'parent';
+            }else{
+                zNode.icon = 'glyphicon glyphicon-list-alt'
+            }
+            this.title = this.name;
+            zNode.menu = this;
+            if(this.children && this.children.length > 0){
+                zNode.children = getChildrenData(new Array(), this.children);
+            }
+            nodes.push(zNode);
+        });
+        return nodes;
+    };
 	/**
 	 *   加载职务列表
 	 * @param id
 	 */
 	var loadJobList = function(id){
-		$.get('job/query-all.koala').done(function(data){
+		$.get( contextPath + '/job/query-all.koala').done(function(data){
 			var items = data.data;
 			var contents = new Array();
 			for(var i= 0, j=items.length; i<j; i++){

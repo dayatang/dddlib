@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.mockingDetails;
 import static org.mockito.Mockito.when;
 
 /**
@@ -42,7 +41,7 @@ public class BusinessLogEngineTest {
                 new BusinessLogEngine(config, render, executor, createInitContext());
 
 
-        when(configAdapter.findConfigByBusinessOperator(businessOperator)).thenReturn(configAdapter);
+        when(configAdapter.findConfigByBusinessOperation(businessOperator)).thenReturn(configAdapter);
         when(configAdapter.getQueries()).thenReturn(new ArrayList<BusinessLogContextQuery>());
         when(configAdapter.getPreTemplate()).thenReturn(preTemplate);
         when(configAdapter.getTemplate()).thenReturn(template);

@@ -15,15 +15,18 @@
 	<meta http-equiv="Expires" content="0">
     <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
-    <link href="<c:url value='/lib/z-tree/css/zTreeStyle.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/security.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
+    <link href="<c:url value='/css/koala-tree.css' />?time=<%=time%>" rel="stylesheet">
+    <script>
+        var contextPath = '${pageContext.request.contextPath}';
+    </script>
 </head>
 <body>
 	<input type="hidden" id="roleId" value="${roleId}" />
 	<div class="g-head">
 	    <nav class="navbar navbar-default">
-	        <a class="navbar-brand" href="#"><img src="<c:url value='images/global.logo.png'/>"/>Koala权限系统</a>
+	        <a class="navbar-brand" href="#"><img src="<c:url value='/images/global.logo.png'/>"/>Koala权限系统</a>
 	        <div class="collapse navbar-collapse navbar-ex1-collapse">
 	            <div class="btn-group navbar-right">
 	                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -62,12 +65,14 @@
 	<script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />?time=<%=time%>" ></script>	
-	<script type="text/javascript" src="<c:url value='/lib/z-tree/js/jquery.ztree.all-3.5.min.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/lib/koala-tree.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/main.js' />?time=<%=time%>" ></script>
+    <script type="text/javascript" src="<c:url value='/js/security/role.js' />?time=<%=time%>" ></script>
+    <script type="text/javascript" src="<c:url value='/js/security/user.js' />?time=<%=time%>" ></script>
 	<script>
 		$(function(){ 
-			$.get('/auth/Menu/findTopMenuByUser.koala').done(function(data){
+			$.get(contextPath + '/auth/Menu/findTopMenuByUser.koala').done(function(data){
 		        if(data.data.length == 0){
 		            var dialog = $('<div class="modal fade"><div class="modal-dialog" style="padding-top:10%;width:400px;"><div class="modal-content">' +
 		                ' <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">' +
@@ -121,7 +126,7 @@
 			    });
 			});
 			var renderSubMenu = function(id, $menu){
-				$.get('/auth/Menu/findAllSubMenuByParent.koala?resVO.id='+id).done(function(data){
+				$.get(contextPath + '/auth/Menu/findAllSubMenuByParent.koala?resVO.id='+id).done(function(data){
 						var subMenus = new Array();
 						$.each(data.data, function(){
 							if(this.menuType == "2"){

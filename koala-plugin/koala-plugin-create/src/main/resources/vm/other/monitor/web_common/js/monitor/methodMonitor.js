@@ -40,7 +40,7 @@ $(function(){
         loadData();
     });
     var monitorNode = $('#methodMonitorNode');
-    $.get('/monitor/Monitor/queryAllNodes.koala').done(function(data){
+    $.get(contextPath + '/monitor/Monitor/queryAllNodes.koala').done(function(data){
         var contents = new Array();
         $.each(data.Rows, function(index){
             contents.push({title: this.nodeName, value: this.nodeId, selected: index==0});
@@ -89,7 +89,7 @@ $(function(){
             isShowIndexCol: false,
             isShowPages: false,
             searchCondition: searchCondition,
-            url: 'monitor/Monitor/methodMonitorCount.koala'
+            url: contextPath + '/monitor/Monitor/methodMonitorCount.koala'
         }).on('complate', function(event, data){
                 loadChart(data.Rows);
                 $(window).trigger('resize');
@@ -173,7 +173,7 @@ $(function(){
     }
 });
 var showMethodMonitorDetail = function(method){
-    $.get('pages/monitor/method-monitor-detail.html').done(function(data){
+    $.get(contextPath + '/pages/monitor/method-monitor-detail.html').done(function(data){
         $(data).modal({
             keyboard: true
         }).on({
@@ -233,14 +233,14 @@ var showMethodMonitorDetail = function(method){
                         searchCondition: params,
                         sortName: 'timeConsume',
                         sortOrder : 'DESC',
-                        url : '/monitor/Monitor/methodMonitorDetail.koala'
+                        url : contextPath + '/monitor/Monitor/methodMonitorDetail.koala'
                     })
                 }
             });
     });
 }
 var showStackTracesDetail = function(obj){
-    $.get('pages/monitor/stack-trace-detail.html').done(function(data){
+    $.get('/pages/monitor/stack-trace-detail.html').done(function(data){
         $(data).modal({
             keyboard: true,
             backdrop: false
@@ -250,7 +250,7 @@ var showStackTracesDetail = function(obj){
     });
 }
 var showSqlsMonitorDetail = function(methodId){
-    $.get('pages/monitor/sql-monitor-detail.html').done(function(data){
+    $.get('/pages/monitor/sql-monitor-detail.html').done(function(data){
         $(data).modal({
         	keyboard: true,
         	backdrop: false

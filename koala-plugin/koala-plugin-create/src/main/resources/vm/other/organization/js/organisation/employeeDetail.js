@@ -1,6 +1,6 @@
 $(function(){
 	var employeeId = $('.employee-detail').parent().attr('data-value');
-	$.get('employee/get/'+employeeId+'.koala')
+	$.get( contextPath + '/employee/get/'+employeeId+'.koala')
 			.done(function(result){
 				var data = result.data;
 				var employeeDetail = $('.employee-detail');

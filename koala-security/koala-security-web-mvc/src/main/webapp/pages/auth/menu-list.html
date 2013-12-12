@@ -1,5 +1,9 @@
 <div id="menuListGrid"></div>
-<script src="js/security/menu.js"></script>
+<script>
+    var script = document.createElement('script');
+    script.src = contextPath + '/js/security/menu.js';
+    document.getElementById('menuListGrid').parentNode.appendChild(script);
+</script>
 <script>
 	$(function(){
 		var columns = [ 
@@ -39,7 +43,7 @@
              columns: columns,
              buttons: buttons,
              isShowPages: false,
-             url: '/auth/Menu/findAllMenuTreeRows.koala',
+             url: contextPath + '/auth/Menu/findAllMenuTreeRows.koala',
              tree: {
              	column: 'name'
              }

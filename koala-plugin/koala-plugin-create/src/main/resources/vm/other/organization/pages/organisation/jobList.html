@@ -1,8 +1,9 @@
 <div id="jobgrid"></div>
-<script src="js/organisation/job.js"></script>
-
 <script>
     $(function(){
+        var script = document.createElement('script');
+        script.src = contextPath + '/js/organisation/job.js';
+        document.getElementById('jobgrid').parentNode.appendChild(script);
        var cols = [
             { title:'职务编号', name:'sn' , width: '250px'},
             { title:'职务名称', name:'name', width: '250px'},
@@ -18,7 +19,7 @@
              columns: cols,
              buttons: buttons,
              querys: [{title: '职务名称', value: 'name'}],
-             url: 'job/pagingquery.koala'
+             url: contextPath +'/job/pagingquery.koala'
         }).on({
                     'add': function(){
                         job().add( $(this));

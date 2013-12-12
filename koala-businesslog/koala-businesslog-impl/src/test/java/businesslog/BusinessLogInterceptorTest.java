@@ -36,5 +36,13 @@ public class BusinessLogInterceptorTest extends AbstractIntegrationTest {
 
     }
 
+    @Test
+    public void testThrow() {
+
+
+
+
+    }
+
 
 }

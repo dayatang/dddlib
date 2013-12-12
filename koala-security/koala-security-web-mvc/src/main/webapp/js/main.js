@@ -35,7 +35,7 @@ $(function(){
 	 加载DIV内容
 	 */
 	var loadContent = function(obj, target){
-		$.get(target).done(function(data){
+		$.get(contextPath + target).done(function(data){
 				obj.html(data);
 			}).fail(function(){
 				throw new Error('加载失败');
@@ -43,7 +43,7 @@ $(function(){
 				changeHeight();
 			});
 	};
-	loadContent($('#home'), 'pages/welcome.html');	
+	loadContent($('#home'), '/pages/welcome.html');
 	/*
 	* 菜单收缩样式变化
 	 */

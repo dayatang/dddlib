@@ -15,5 +15,5 @@ public interface BusinessLogConfigAdapter {
 
     List<BusinessLogContextQuery> getQueries();
 
-    BusinessLogConfigAdapter findConfigByBusinessOperator(String businessOperator);
+    BusinessLogConfigAdapter findConfigByBusinessOperation(String businessOperation);
 }

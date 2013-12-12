@@ -23,6 +23,7 @@ public class FreemarkerProcessor {
 
     }
 
+    // TODO 性能待重构
     public static String process(String template, Map<String, Object> aContext, String templateEncoding) {
         if (null == template || "".equals(template.trim())) {
             return "";

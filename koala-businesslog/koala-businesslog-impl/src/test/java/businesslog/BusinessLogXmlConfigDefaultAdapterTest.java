@@ -1,16 +1,8 @@
 package businesslog;
 
-import business.ContractApplication;
-import business.ContractApplicationImpl;
-import business.Project;
-import org.apache.commons.beanutils.ConvertUtilsBean;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.businesslog.config.BusinessLogConfigAdapter;
 import org.openkoala.businesslog.impl.BusinessLogXmlConfigDefaultAdapter;
-
-import java.lang.reflect.Method;
-import java.util.Date;
 
 /**
  * User: zjzhai
@@ -27,7 +19,7 @@ public class BusinessLogXmlConfigDefaultAdapterTest {
 
         BusinessLogConfigAdapter adapter = new BusinessLogXmlConfigDefaultAdapter();
 
-        adapter.findConfigByBusinessOperator(method);
+        adapter.findConfigByBusinessOperation(method);
 
         assert "${user!\"\"}:${ip!\"\"}:".equals(adapter.getPreTemplate());
 

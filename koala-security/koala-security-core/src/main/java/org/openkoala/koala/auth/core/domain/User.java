@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.NoResultException;
 import javax.persistence.Temporal;
@@ -21,7 +19,6 @@ import com.dayatang.utils.DateUtils;
  */
 
 @Entity
-@DiscriminatorColumn(name = "User", discriminatorType = DiscriminatorType.STRING)
 public class User extends Identity {
 
 	private static final long serialVersionUID = 1828900234948658820L;

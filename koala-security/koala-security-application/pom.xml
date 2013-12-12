@@ -48,5 +48,6 @@
 			<groupId>com.dayatang.commons</groupId>
 			<artifactId>dayatang-commons-utils</artifactId>
 		</dependency>
+
 	</dependencies>
 </project>

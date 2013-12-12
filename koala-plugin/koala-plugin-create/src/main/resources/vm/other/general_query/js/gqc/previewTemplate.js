@@ -1,6 +1,6 @@
 $(function(){
 	var id = window.location.search.split('=')[1];
-	$.get('../../preview/'+id+'.koala').done(function(data){
+	$.get(contextPath + '/preview/'+id+'.koala').done(function(data){
 		init(data.generalQuery);
 	}).fail(function(data){
 		})
@@ -71,7 +71,7 @@ $(function(){
 			isShowButtons: false,
 			isShowIndexCol: false,
 			columns: columns,
-			url: '../../search/'+id+'.koala'
+			url: contextPath + '/search/'+id+'.koala'
 		});
 		$('#searchBtn').on('click', function(){
 			var params = {};

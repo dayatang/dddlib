@@ -29,6 +29,9 @@ public class BusinessLogFreemarkerDefaultRender extends AbstractBusinessLogRende
     }
 
     private String process(String template, Map<String, Object> context) {
+        if (null == template || "".equals(template.trim())) {
+            return "";
+        }
         return FreemarkerProcessor.process(template, context);
     }
 

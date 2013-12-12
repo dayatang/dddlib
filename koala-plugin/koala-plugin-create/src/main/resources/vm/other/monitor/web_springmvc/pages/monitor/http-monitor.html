@@ -26,4 +26,10 @@
         <div id="httpMonitorGrid"/>
     </div>
 </form>
-<script src="js/monitor/httpMonitor.js"></script>
+<script>
+    $(function(){
+        var script = document.createElement('script');
+        script.src = contextPath + '/js/monitor/httpMonitor.js';
+        document.getElementById('httpMonitor').parentNode.appendChild(script);
+    });
+</script>

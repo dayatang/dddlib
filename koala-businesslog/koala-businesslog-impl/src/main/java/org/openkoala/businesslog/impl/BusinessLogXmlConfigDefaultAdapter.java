@@ -22,18 +22,16 @@ public class BusinessLogXmlConfigDefaultAdapter extends AbstractBusinessLogConfi
     }
 
     @Override
-    public AbstractBusinessLogConfigAdapter findConfigByBusinessOperator(String businessOperator) {
+    public AbstractBusinessLogConfigAdapter findConfigByBusinessOperation(String businessOperation) {
 
         BusinessLogConfigXmlParser parser = BusinessLogConfigXmlParser.parsing(getClass().getClassLoader().getResource(XML_CONFIG_FILE_NAME).getFile());
 
         setPreTemplate(parser.getPreTemplate());
 
-        setTemplate(parser.getTemplateFrom(businessOperator));
+        setTemplate(parser.getTemplateFrom(businessOperation));
 
-        System.out.println("............");
-        System.out.println(parser.getTemplateFrom(businessOperator));
 
-        setQueries(parser.getQueriesFrom(businessOperator));
+        setQueries(parser.getQueriesFrom(businessOperation));
 
         return this;
     }
