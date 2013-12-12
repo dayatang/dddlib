@@ -4,7 +4,14 @@
 	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
 	<display-name>Spring MVC Application</display-name>
-
+    <listener>
+        <listener-class>com.dayatang.spring.webapp.DayatangContextLoaderListener</listener-class>
+    </listener>
+    <!-- Spring Listener -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:context.xml</param-value>
+    </context-param>
     <filter>
         <filter-name>LogFilter</filter-name>
         <filter-class>com.springapp.mvc.LogFilter</filter-class>
