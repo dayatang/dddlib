@@ -17,7 +17,8 @@
     <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
     <link href="<c:url value='/css/security.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
-    <link href="<c:url value='/css/koala-tree.css' />?time=<%=time%>" rel="stylesheet">
+    <link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />" rel="stylesheet">
+    <link href="<c:url value='/css/organisation.css' />?time=<%=time%>" rel="stylesheet">
     <script>
         var contextPath = '${pageContext.request.contextPath}';
     </script>
@@ -68,6 +69,8 @@
 	<script type="text/javascript" src="<c:url value='/lib/koala-tree.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/main.js' />?time=<%=time%>" ></script>
+    <script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js' />"></script>
     <script type="text/javascript" src="<c:url value='/js/security/role.js' />?time=<%=time%>" ></script>
     <script type="text/javascript" src="<c:url value='/js/security/user.js' />?time=<%=time%>" ></script>
 	<script>
