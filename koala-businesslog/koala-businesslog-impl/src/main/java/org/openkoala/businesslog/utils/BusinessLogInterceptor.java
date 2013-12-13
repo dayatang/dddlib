@@ -51,9 +51,6 @@ public class BusinessLogInterceptor {
 
     public void log(JoinPoint joinPoint, Object result, Throwable error) {
 
-        /**
-         * 判断递归查询
-         */
         if (isRecursionQuery(joinPoint)) {
             return;
         }

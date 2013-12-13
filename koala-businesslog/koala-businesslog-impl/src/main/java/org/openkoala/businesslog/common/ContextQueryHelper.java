@@ -1,5 +1,11 @@
 package org.openkoala.businesslog.common;
 
+import javassist.CannotCompileException;
+import javassist.ClassPool;
+import javassist.NotFoundException;
+import org.apache.commons.beanutils.BeanUtils;
+
+import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -94,8 +100,16 @@ public class ContextQueryHelper {
             } else if ("Float".equals(type) || "java.lang.Float".equals(type)) {
                 classes.add(Float.class);
                 continue;
-            } else {
+            } else if (type.contains("[") && type.contains("]")) {
+                type = type.substring(0, type.indexOf("["));
                 try {
+                    classes.add(Array.newInstance(Class.forName(type), 0).getClass());
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            }else{
+                try {
+
                     classes.add(Class.forName(type));
                 } catch (ClassNotFoundException e) {
                     throw new RuntimeException(e);

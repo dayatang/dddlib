@@ -10,6 +10,6 @@ import java.util.List;
 public interface ProjectApplication {
     Project findByProjectName(String projectName);
 
-    List<Project> findSomeProjects(List<String> projectNames);
+    Project[] findSomeProjects(List<String> projectNames);
 
 }
