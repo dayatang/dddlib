@@ -11,7 +11,10 @@ import org.openkoala.opencis.svn.command.SvnAssignUserToRoleCommand;
 import org.openkoala.opencis.svn.command.SvnCommand;
 import org.openkoala.opencis.svn.command.SvnCreateProjectCommand;
 import org.openkoala.opencis.svn.command.SvnCreateRoleCommand;
+import org.openkoala.opencis.svn.command.SvnCreateUserCommand;
+import org.openkoala.opencis.svn.command.SvnIsUserExistenceCommand;
 import org.openkoala.opencis.svn.command.SvnRemoveProjectCommand;
+import org.openkoala.opencis.svn.command.SvnClearProjectPasswdFileContentCommand;
 
 import com.dayatang.configuration.Configuration;
 import com.trilead.ssh2.Connection;
@@ -85,46 +88,91 @@ public class SvnCISClient implements CISClient {
 
 	@Override
 	public void createProject(Project project) {
-		//使用java SSH来创建项目
-		//1、先检测项目是否存在，如果存在则不需要创建
-		//2、用命令CommandExecutor来执行TracCreateProjecCommand子类
-		//初始化命令
+		isProjectInfoBlank(project);
 		SvnCommand command = new SvnCreateProjectCommand(configuration,project);
-		success = executor.executeSync(command);
-		
+		try {
+			success = executor.executeSync(command);
+			
+			SvnCommand clearProjectPasswdFileContentCommand = new SvnClearProjectPasswdFileContentCommand(configuration, project);
+			executor.executeSync(clearProjectPasswdFileContentCommand);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void createUserIfNecessary(Project project,Developer developer) {
-		//Trac在创建用户时就已经指派了角色了，所以，这里不需要执行了 
+		isProjectInfoBlank(project);
+		isUserInfoBlank(developer);
+		SvnCommand isUserExistencecommand = new SvnIsUserExistenceCommand(developer.getName(), configuration, project);
+		try {
+			executor.executeSync(isUserExistencecommand);
+			
+			SvnCommand createUsercommand = new SvnCreateUserCommand(developer, configuration, project);
+			executor.executeSync(createUsercommand);
+		}catch (UserExistenceException e) {
+			//用户存在，则不再创建用户
+			return;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
+	
+	private boolean isProjectInfoBlank(Project project){
+		if(StringUtils.isBlank(project.getProjectName())){
+			throw new ProjectBlankException("项目名不能为空！");
+		}
+		return true;
+	}
+	
+	private boolean isUserInfoBlank(Developer developer){
+		if(StringUtils.isBlank(developer.getName())){
+			throw new UserBlankException("用户名不能为空！");
+		}
+		if(StringUtils.isBlank(developer.getPassword())){
+			throw new PasswordBlankException("密码不能为空！");
+		}
+		return true;
+	}
+	
+	
 
 	@Override
 	public void createRoleIfNessceary(Project project,String roleName) {
-		//使用java SSH来创建角色
-		//1、读取project的配置信息，包括该角色(用户组)默认的权限
-		//2、用命令CommandExecutor来执行TracCreateRoleCommand子类
-		SvnCommand command = new SvnCreateRoleCommand(configuration, roleName, project);
-		success = executor.executeSync(command);
+		//svn创建角色和角色授权是一起执行的，即在角色授权时同时创建角色，因此这里不单独实现创建角色
 	}
 
 	@Override
+	/**
+	 * 该授权分两步：
+	 * 1. 创建角色并为用户分配角色
+	 * 2. 为角色授予读写权限
+	 */
 	public void assignUserToRole(Project project,String usrId, String role) {
-		//使用java SSH来分配用户到某个角色，如果是连续分配，个人认为不应该关闭Connection，直到循环完毕才close
-		//1、读取project的配置信息
-		//2、用命令CommandExecutor来执行TracAssignUserToRoleCommand子类
 		SvnCommand command = new SvnAssignUserToRoleCommand(usrId, role, configuration, project);
-		success = executor.executeSync(command);
+		try {
+			success = executor.executeSync(command);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	protected void removeProjcet(Project project){
 		SvnCommand command = new SvnRemoveProjectCommand(configuration,project);
-		success = executor.executeSync(command);
+		try {
+			success = executor.executeSync(command);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public boolean canConnect() {
-		return false;
+		try {
+			return connectToHost();
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	public boolean isSuccess() {

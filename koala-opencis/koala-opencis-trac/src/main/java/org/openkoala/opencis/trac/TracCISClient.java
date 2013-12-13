@@ -43,7 +43,11 @@ public class TracCISClient implements CISClient {
 		//2、用命令CommandExecutor来执行TracCreateProjecCommand子类
 		//初始化命令
 		TracCommand command = new TracCreateProjectCommand(configuration,project);
-		success = executor.executeSync(command);
+		try {
+			success = executor.executeSync(command);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -59,7 +63,11 @@ public class TracCISClient implements CISClient {
 		//1、读取project的配置信息，包括该角色(用户组)默认的权限
 		//2、用命令CommandExecutor来执行TracCreateRoleCommand子类
 		TracCommand command = new TracCreateRoleCommand(configuration, roleName, project);
-		success = executor.executeSync(command);
+		try {
+			success = executor.executeSync(command);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -68,7 +76,11 @@ public class TracCISClient implements CISClient {
 		//1、读取project的配置信息
 		//2、用命令CommandExecutor来执行TracAssignUserToRoleCommand子类
 		TracCommand command = new TracAssignUserToRoleCommand(usrId, role, configuration, project);
-		success = executor.executeSync(command);
+		try {
+			success = executor.executeSync(command);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

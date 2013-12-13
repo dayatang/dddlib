@@ -13,20 +13,20 @@ import com.trilead.ssh2.Session;
 /**
  * svn创建项目命令类
  */
-public class SvnRemoveProjectCommand extends SvnCommand {
+public class SvnClearProjectPasswdFileContentCommand extends SvnCommand {
 
-	public SvnRemoveProjectCommand() {
+	public SvnClearProjectPasswdFileContentCommand() {
 		
 	}
 	
-	public SvnRemoveProjectCommand(Configuration configuration, Project project) {
+	public SvnClearProjectPasswdFileContentCommand(Configuration configuration, Project project) {
 		super(configuration, project);
 	}
 
 	@Override
 	public String getCommand() {
-		String removeProjectCommand = "rm -rf /var/www/svn/" + project.getProjectName();
-		return removeProjectCommand;
+		String clearProjectPasswdFileContentCommand = "echo \"\" > /var/www/svn/" + project.getProjectName() +"/conf/passwd";
+		return clearProjectPasswdFileContentCommand;
 	}
 
 	@Override

@@ -1,0 +1,19 @@
+package org.openkoala.opencis.svn;
+
+public class CreateUserFailedException extends BaseException {
+
+	private static final long serialVersionUID = 2389484663291825626L;
+	
+	public CreateUserFailedException(){
+		super();
+	}
+	
+	public CreateUserFailedException(String message){
+		super(message);
+	}
+	
+	public CreateUserFailedException(String message, Throwable cause){
+		super(message, cause);
+	}
+
+}
