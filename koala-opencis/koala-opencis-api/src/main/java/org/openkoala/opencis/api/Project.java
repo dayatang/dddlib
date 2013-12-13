@@ -12,6 +12,8 @@ public class Project {
 
 	private String artifactId;
 	
+	private String groupId;
+	
 	private String projectName;
 	
 	private String projectKey;
@@ -91,6 +93,14 @@ public class Project {
 
 	public void setNodeElements(Map<String, Object> nodeElements) {
 		this.nodeElements = nodeElements;
+	}
+	
+	public String getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(String groupId) {
+		this.groupId = groupId;
 	}
 
 	@Override
