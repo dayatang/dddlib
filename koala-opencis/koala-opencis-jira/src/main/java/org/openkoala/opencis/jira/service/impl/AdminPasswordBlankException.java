@@ -1,6 +1,6 @@
 package org.openkoala.opencis.jira.service.impl;
 
-public class AdminPasswordBlankException extends RuntimeException {
+public class AdminPasswordBlankException extends BaseException {
 
 	private static final long serialVersionUID = 2389484663291825626L;
 	

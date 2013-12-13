@@ -118,7 +118,7 @@
 #if ($Module.security)
     <servlet>
 		<servlet-name>DBInit</servlet-name>
-		<servlet-class>org.openkoala.koala.dbinit.SecurityDBInit</servlet-class>
+		<servlet-class>${Module.basePackage}.controller.auth.SecurityDBInit</servlet-class>
 		<init-param>
 			<param-name>type</param-name>
 			<param-value>${Project.mvcProtocol}</param-value>

@@ -199,14 +199,14 @@
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
-                    <include>koala-log.properties</include>
+                    <include>*.properties</include>
                 </includes>
                 <filtering>true</filtering>
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
                 <excludes>
-                    <exclude>koala-log.properties</exclude>
+                    <exclude>*.properties</exclude>
                 </excludes>
                 <filtering>false</filtering>
             </resource>

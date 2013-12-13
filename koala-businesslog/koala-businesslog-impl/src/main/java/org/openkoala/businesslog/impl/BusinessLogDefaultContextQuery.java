@@ -2,6 +2,8 @@ package org.openkoala.businesslog.impl;
 
 import com.dayatang.domain.InstanceFactory;
 import org.apache.commons.beanutils.PropertyUtils;
+import org.openkoala.businesslog.QueryMethodConvertArgException;
+import org.openkoala.businesslog.QueryMethodInvokeException;
 import org.openkoala.businesslog.common.ContextQueryHelper;
 import org.openkoala.businesslog.config.BusinessLogContextQuery;
 
@@ -108,39 +110,9 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
     }
 
 
+    // TODO 需要移动到ContextQueryHelper类中，并增加多更多类型的支持
     private Object convertArg(String arg, Class aClass) {
-        if (null == arg) {
-            return arg;
-        }
-        if (arg.contains("$")) {
-            if (arg.contains(".")) {
-                String key = arg.substring(arg.indexOf("{") + 1, arg.lastIndexOf("."));
-                Object bean = context.get(key);
-                try {
-                    return PropertyUtils.getNestedProperty(bean, arg.substring(arg.indexOf(".") + 1, arg.lastIndexOf("}")));
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                } catch (InvocationTargetException e) {
-                    throw new RuntimeException(e);
-                } catch (NoSuchMethodException e) {
-                    throw new RuntimeException(e);
-                }
-            } else {
-                return context.get(arg.substring(arg.indexOf("{") + 1, arg.lastIndexOf("}")));
-            }
-
-        } else {
-            if (aClass.equals(Long.class) || aClass.equals(long.class)) {
-                return Long.parseLong(arg);
-            } else if (aClass.equals(String.class)) {
-                return arg;
-            } else if (aClass.equals(Date.class)) {
-                return Date.parse(arg);
-            }
-        }
-
-
-        return null;
+        return ContextQueryHelper.contextQueryArgConvertStringToObject(arg, aClass, context);
     }
 
 
@@ -151,9 +123,9 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
             }
             return getMethodInstance().invoke(methodObject, params);
         } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
+            throw new QueryMethodInvokeException(e);
         } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
+            throw new QueryMethodInvokeException(e);
         }
     }
 

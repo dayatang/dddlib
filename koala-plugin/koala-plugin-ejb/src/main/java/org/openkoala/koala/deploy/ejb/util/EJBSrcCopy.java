@@ -36,8 +36,22 @@ public class EJBSrcCopy {
 	private static final String MONITOR_CORE = "koala-jmonitor-core";
 
 	private static final String QUERY_CORE = "koala-gqc-controller";
+	
+	private static final String ORGANIZATION_CORE ="koala-organisation-core";
+	
 	private static final String EJB = "-EJB";
+	
 	private static final String WAR = "-EJB-WAR";
+	
+	private static final String IS_HAS_SECURITY="hasSecurity_IMPL";
+	
+	private static final String IS_HAS_QUERY="hasQueryModule";
+	
+	private static final String IS_HAS_MONITOR="hasMonitorModule";
+	
+	private static final String IS_HAS_SECURITY_CORE="hasSecurity_CORE";
+	
+	private static final String IS_HAS_ORGANIZATION="hasOrganizationModule";
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(EJBSrcCopy.class);
@@ -80,59 +94,20 @@ public class EJBSrcCopy {
 
 			List<MavenProject> modules = destProject.getChilds();
 
-			Map<String, Object> hasSecurityModule = new HashMap<String, Object>();
+			Map<String, Object> hasModules = new HashMap<String, Object>();
 
 			if (ejbDeploy.isLocal()) {
-				for (MavenProject module : modules) {
-					// 如果是WEB模块并且加入了权限系统
-					if (isWebModule(module)) {
-						if (hasModule(module, SECURITY_MODULE_IMPL)) {
-							hasSecurityModule.put("hasSecurity_IMPL", true);
-							break;
-						} else {
-							hasSecurityModule.put("hasSecurity_IMPL", false);
-						}
-					}
-				}
-
-				for (MavenProject module : modules) {
-					if (isWebModule(module)) {
-						// 检查是否包含查询子系统
-						if (hasModule(module, QUERY_CORE)) {
-							hasSecurityModule.put("hasQueryModule", true);
-						} else {
-							hasSecurityModule.put("hasQueryModule", false);
-						}
-					}
-				}
-
-				for (MavenProject module : modules) {
-					// 如果是WEB模块并且加入了权限系统
-					if (isWebModule(module)) {
-						// 检查是否包含监控子系统
-						if (hasModule(module, MONITOR_CORE)) {
-							hasSecurityModule.put("hasMonitorModule", true);
-						} else {
-							hasSecurityModule.put("hasMonitorModule", false);
-						}
-					}
-
-				}
-
-				for (MavenProject module : modules) {
-					// 如果是WEB模块并且加入了权限系统
-					if (isWebModule(module)) {
-						// 如果是WEB模块并且加入了权限系统
-						if (isWebModule(module)) {
-							if (hasModule(module, SECURITY_MODULE_CORE)) {
-								hasSecurityModule.put("hasSecurity_CORE", true);
-								break;
-							} else {
-								hasSecurityModule.put("hasSecurity_CORE", false);
-							}
-						}
-					}
-				}
+				
+				hasModules.put(IS_HAS_SECURITY, checkIsHasSecurityWeb(modules));
+				
+				hasModules.put(IS_HAS_QUERY, checkIsHasQueryModule(modules));
+				
+				hasModules.put(IS_HAS_MONITOR, checkIsHasMonitorModule(modules));
+				
+				hasModules.put(IS_HAS_SECURITY_CORE, checkIsHasSecurityCoreModule(modules));
+				
+				hasModules.put(IS_HAS_ORGANIZATION, checkIsHasOrganizationModule(modules));
+				
 			}
 
 			for (MavenProject impl : interfaces) {
@@ -194,7 +169,7 @@ public class EJBSrcCopy {
 			Map<String,Object> params = new HashMap<String,Object>();
 			params.put("Project", project);
 			params.put("Dependencys", earDepens);
-			params.putAll(hasSecurityModule);
+			params.putAll(hasModules);
 			VelocityContext context = VelocityUtil.getVelocityContext(params);
 			VelocityUtil.velocityDirParse("vm/ear", path + "/ear", context);
 
@@ -344,6 +319,8 @@ public class EJBSrcCopy {
 				"koala-gqc-applicationImpl", pomDocument);
 		PomXmlWriter.removeDependencies("org.openkoala.monitor",
 				"koala-jmonitor-applicationImpl", pomDocument);
+		PomXmlWriter.removeDependencies("org.openkoala.organisation",
+				"koala-organisation-applicationImpl", pomDocument);
 		
 		//TODO 取消对客户端JAR的依赖与引用
 		//PomXmlWriter.addDependencies("org.openkoala.ejb.client", ejbDeploy.getDeployConfig().getServer(), "1.0", pomDocument);
@@ -366,28 +343,13 @@ public class EJBSrcCopy {
 		params.put("koalaversion", parent.getProperties().get("koala.version"));
 
 		params.put("ProjectVersion", parent.getVersion());
+		params.put(IS_HAS_SECURITY,hasModule(war, SECURITY_MODULE_IMPL)
+				|| hasModule(war, SECURITY_MODULE_CORE));
+		params.put(IS_HAS_MONITOR, hasModule(war,MONITOR_CORE));
+		params.put(IS_HAS_QUERY, hasModule(war,QUERY_CORE));
+		params.put(IS_HAS_ORGANIZATION, hasModule(war,ORGANIZATION_CORE));
 		
-		// 检查是否包含权限子系统
-		if (hasModule(war, SECURITY_MODULE_IMPL)
-				|| hasModule(war, SECURITY_MODULE_CORE)) {
-			params.put("hasSecurityModule", true);
-		} else {
-			params.put("hasSecurityModule", false);
-		}
-
-		// 检查是否包含监控子系统
-		if (hasModule(war, MONITOR_CORE)) {
-			params.put("hasMonitorModule", true);
-		} else {
-			params.put("hasMonitorModule", false);
-		}
-
-		// 检查是否包含查询子系统
-		if (hasModule(war, QUERY_CORE)) {
-			params.put("hasQueryModule", true);
-		} else {
-			params.put("hasQueryModule", false);
-		}
+		
 
 		VelocityContext context = VelocityUtil.getVelocityContext(params);
 		VelocityUtil.vmToFile(context, "vm/ejb/"+ejbDeploy.getDeployConfig().getServer()+"/spring-ejb.xml", war.getPath()
@@ -415,5 +377,69 @@ public class EJBSrcCopy {
 		params.put("ConfigPath", conf.getPath());
 		VelocityUtil.getVelocityContext(params);
 	}
+	
+	
+	/**
+	 * 检测项目是否包含组织子系统
+	 * @param modules
+	 * @param hasModules
+	 */
+	private  static boolean checkIsHasOrganizationModule(List<MavenProject> modules){
+		for (MavenProject module : modules) {
+				if (isWebModule(module)) {
+					if (hasModule(module, ORGANIZATION_CORE)) {
+						//hasModules.put("hasOrganizationModule", true);
+						return true;
+					}
+				}
+		}
+		return false;
+	}
+	/**
+	 * 检测是否包含权限核心
+	 * @param modules
+	 * @param hasModules
+	 */
+	private static boolean checkIsHasSecurityCoreModule(List<MavenProject> modules){
+		for (MavenProject module : modules) {
+			if (isWebModule(module) && hasModule(module, SECURITY_MODULE_CORE)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
+	/**
+	 * 检测是否包含监控子系统
+	 * @param modules
+	 * @param hasModules
+	 */
+	private static boolean checkIsHasMonitorModule(List<MavenProject> modules){
+		for (MavenProject module : modules) {
+			// 如果是WEB模块并且加入了权限系统
+			if (isWebModule(module) && hasModule(module, MONITOR_CORE)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private static boolean checkIsHasQueryModule(List<MavenProject> modules){
+		for (MavenProject module : modules) {
+			if (isWebModule(module) && hasModule(module, QUERY_CORE)) {
+					return true;
+			}
+		}
+		return false;
+	}
+	
+	private static boolean checkIsHasSecurityWeb(List<MavenProject> modules){
+		for (MavenProject module : modules) {
+			// 如果是WEB模块并且加入了权限系统
+			if (isWebModule(module) && hasModule(module, SECURITY_MODULE_IMPL)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

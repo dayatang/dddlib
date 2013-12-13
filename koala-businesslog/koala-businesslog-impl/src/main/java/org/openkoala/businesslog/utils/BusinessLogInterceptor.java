@@ -2,9 +2,12 @@ package org.openkoala.businesslog.utils;
 
 import static org.openkoala.businesslog.common.ContextKeyConstant.*;
 
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.aspectj.lang.JoinPoint;
 import org.openkoala.businesslog.BusinessLogEngine;
 import org.openkoala.businesslog.BusinessLogExporter;
+import org.openkoala.businesslog.common.BusinessLogPropertiesConfig;
 import org.openkoala.businesslog.config.BusinessLogConfig;
 import org.openkoala.businesslog.impl.BusinessLogDefaultContextQueryExecutor;
 import org.openkoala.businesslog.impl.BusinessLogFreemarkerDefaultRender;
@@ -22,8 +25,10 @@ import java.util.logging.Logger;
  */
 public class BusinessLogInterceptor {
 
-    private static Logger logger = Logger.getLogger(BusinessLogInterceptor.class.toString());
-
+    /**
+     * 当前调用方法在ThreadLocalBusinessLogContext中的key
+     */
+    private static final String CURRENT_INVOKED_METHOD_KEY = "CURRENT_INVOKED_METHOD_KEY";
 
     @Inject
     private BusinessLogEngine businessLogEngine;
@@ -42,9 +47,28 @@ public class BusinessLogInterceptor {
     }
 
     public void log(JoinPoint joinPoint, Object result, Throwable error) {
+
+        if (isRecursionQuery(joinPoint)) {
+            return;
+        }
+
+        if (!BusinessLogPropertiesConfig.getInstance().getLogEnableConfig()) {
+            return;
+        }
+
         BusinessLogEngine engine = getBusinessLogEngine();
         engine.setInitContext(createDefaultContext(joinPoint, result, error));
         engine.exportLogBy(joinPoint.getSignature().toString(), businessLogExporter);
+    }
+
+    private boolean isRecursionQuery(JoinPoint joinPoint) {
+        if (ThreadLocalBusinessLogContext.get().get(CURRENT_INVOKED_METHOD_KEY) == null) {
+            ThreadLocalBusinessLogContext.put(CURRENT_INVOKED_METHOD_KEY, joinPoint.getSignature().toString());
+            return false;
+        } else if (!ThreadLocalBusinessLogContext.get().get(CURRENT_INVOKED_METHOD_KEY).equals(joinPoint.getSignature().toString())) {
+            return true;
+        }
+        return false;
     }
 
     private Map<String, Object> createDefaultContext(JoinPoint joinPoint, Object result, Throwable errer) {
@@ -66,6 +90,7 @@ public class BusinessLogInterceptor {
 
         return context;
     }
+
 
     private BusinessLogEngine getBusinessLogEngine() {
         if (businessLogEngine == null) {

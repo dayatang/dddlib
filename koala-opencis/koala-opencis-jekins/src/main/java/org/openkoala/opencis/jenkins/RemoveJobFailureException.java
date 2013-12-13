@@ -16,10 +16,6 @@ public class RemoveJobFailureException extends RuntimeException {
 		super();
 	}
 
-	public RemoveJobFailureException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-	}
-
 	public RemoveJobFailureException(String message, Throwable cause) {
 		super(message, cause);
 	}

@@ -4,17 +4,21 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.inject.Named;
+import javax.interceptor.Interceptors;
 
 import org.openkoala.organisation.application.BaseApplication;
 import org.openkoala.organisation.domain.OrganizationAbstractEntity;
 import org.openkoala.organisation.domain.Party;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dayatang.domain.AbstractEntity;
-
 @Named
 @Transactional
+@Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
+@Stateless(name = "BaseApplication")
+@Remote
 public class BaseApplicationImpl implements BaseApplication {
 
 	@Override
