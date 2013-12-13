@@ -20,17 +20,22 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>jaxen</groupId>
+			<artifactId>jaxen</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.openkoala.opencis</groupId>
 			<artifactId>koala-opencis-api</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
-
 	</dependencies>
 </project>
