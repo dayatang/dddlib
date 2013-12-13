@@ -3,6 +3,8 @@ package org.openkoala.opencis.svn.command;
 import org.openkoala.opencis.api.Project;
 
 import com.dayatang.configuration.Configuration;
+import com.trilead.ssh2.Connection;
+import com.trilead.ssh2.Session;
 
 /**
  * svn分配用户到某个角色
@@ -25,8 +27,14 @@ public class SvnAssignUserToRoleCommand extends SvnCommand {
 	
 	@Override
 	public String getCommand() {
-		String createRoleCommand = "trac-admin " + project.getProjectPath() + " permission add " + usrId + " " + role;
-		return createRoleCommand;
+		String assignUserToRoleCommand = "trac-admin " + project.getProjectPath() + " permission add " + usrId + " " + role;
+		return assignUserToRoleCommand;
+	}
+
+	@Override
+	public void doWork(Connection connection, Session session) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

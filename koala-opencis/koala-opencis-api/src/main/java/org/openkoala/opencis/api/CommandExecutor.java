@@ -30,13 +30,14 @@ public class CommandExecutor {
 	 * 立即执行同步命令
 	 * @param command
 	 * @return
+	 * @throws Exception 
 	 */
-	public boolean executeSync(Command command){
+	public boolean executeSync(Command command) throws Exception{
 		try {
 			command.execute();
 			return true;
 		} catch (Exception e) {
-			return false;
+			throw e;
 		}
 		
 	}

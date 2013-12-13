@@ -17,7 +17,7 @@ public abstract class AbstractBusinessLogRender implements BusinessLogRender {
     @Override
     public String build() {
         String result = builder.toString();
-        builder.delete(0, builder.length() - 1);
+        builder.delete(0, builder.length());
         return result;
     }
 

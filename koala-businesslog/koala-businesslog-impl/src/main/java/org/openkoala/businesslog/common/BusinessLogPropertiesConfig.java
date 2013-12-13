@@ -2,6 +2,7 @@ package org.openkoala.businesslog.common;
 
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
+import org.openkoala.businesslog.BusinessLogPropertiesConfigException;
 
 /**
  * User: zjzhai
@@ -23,7 +24,7 @@ public class BusinessLogPropertiesConfig {
         try {
             configuration = new PropertiesConfiguration(BUSINESS_LOG_CONFIG_PROPERTIES_NAME);
         } catch (ConfigurationException e) {
-            throw new RuntimeException(e);
+            throw new BusinessLogPropertiesConfigException(e);
         }
         return ourInstance;
     }

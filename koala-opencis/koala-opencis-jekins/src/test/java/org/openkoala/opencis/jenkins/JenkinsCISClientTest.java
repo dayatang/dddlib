@@ -5,20 +5,23 @@ import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.openkoala.opencis.JenkinsServerConfigurationNullException;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.pojo.JenkinsServerConfiguration;
 
 /**
  * 
  * @author zyb <a href="mailto:zhuyuanbiao2013@gmail.com">zhuyuanbiao2013@gmail.com</a>
  * @since Nov 13, 2013 9:56:28 AM
  */
+@Ignore
 public class JenkinsCISClientTest {
 	
-	private static final String JOB_NAME = "myJob";
+	private static final String JOB_NAME = "tenpay";
 
 	private static final String JENKINS_HOST = "http://localhost:8080/jenkins";
 
@@ -28,14 +31,15 @@ public class JenkinsCISClientTest {
 	
 	private Developer developer;
 	
+	private JenkinsServerConfiguration jenkinsServerConfiguration = new JenkinsServerConfiguration(JENKINS_HOST, "test", "test");
+	
 	@Before
 	public void setUp() {
 		init();
 	}
 
 	private void init() {
-		jenkinsCISClient = new JenkinsCISClient();
-		jenkinsCISClient.setJenkinsHost(JENKINS_HOST);
+		jenkinsCISClient = new JenkinsCISClient(jenkinsServerConfiguration);
 		project = new Project();
 		project.setArtifactId(JOB_NAME);
 		developer = new Developer();
@@ -46,11 +50,28 @@ public class JenkinsCISClientTest {
 	@Test
 	public void testCreateJob() {
 		jenkinsCISClient.createProject(project);
+		confirmRemoveJob();
+	}
+	
+	@Ignore
+	@Test(expected = JenkinsServerConfigurationNullException.class)
+	public void testJenkinsCISIfJenkinsServerConfigurationNull() {
+		jenkinsCISClient = new JenkinsCISClient(null);
 	}
 	
 	@Test
 	public void testCreateAccount() {
 		jenkinsCISClient.createUserIfNecessary(project, developer);
+	}
+	
+	@Test
+	public void testCreateRole() {
+		jenkinsCISClient.createRoleIfNessceary(null, "koala");
+	}
+	
+	@Test
+	public void testAssignUserToRole() {
+		jenkinsCISClient.assignUserToRole(project, "koala", null);
 	}
 	
 	private void confirmRemoveJob() {
@@ -72,8 +93,4 @@ public class JenkinsCISClientTest {
 		return new StringBuilder(JENKINS_HOST).append("/job/").append(JOB_NAME).append("/doDelete").toString();
 	}
 
-	@After
-	public void tearDown() {
-		confirmRemoveJob();
-	}
 }

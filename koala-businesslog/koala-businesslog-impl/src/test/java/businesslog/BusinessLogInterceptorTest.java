@@ -31,35 +31,26 @@ public class BusinessLogInterceptorTest extends AbstractIntegrationTest {
     private ProjectApplication projectApplication;
 
     @Test
-    public void test() {
+    public void testFindProjects() {
         ThreadLocalBusinessLogContext.put("user", "张三");
         ThreadLocalBusinessLogContext.put("time", new Date());
         ThreadLocalBusinessLogContext.put("ip", "202.11.22.33");
 
 
-        //invoiceApplication.addInvoice("发票编号", 1l);
+        invoiceApplication.addInvoice("发票编号", 1l);
 
-        //invoiceApplication.addInvoice("发票编号2", 22l);
+        invoiceApplication.addInvoice("发票编号2", 22l);
 
-        List<String> names = new ArrayList<String>();
+        /*List<String> names = new ArrayList<String>();
 
         names.add("1");
         names.add("2");
         names.add("3");
         names.add("4");
 
-        projectApplication.findSomeProjects(names);
+        projectApplication.findSomeProjects(names);*/
 
 
     }
-
-    @Test
-    public void testFindProjects() {
-
-
-
-
-    }
-
 
 }

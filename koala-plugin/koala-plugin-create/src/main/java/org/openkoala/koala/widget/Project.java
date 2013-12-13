@@ -8,7 +8,6 @@ import java.util.List;
 import org.openkoala.koala.annotation.ObjectFunctionCreate;
 import org.openkoala.koala.util.StringUtils;
 
-
 @ObjectFunctionCreate
 public class Project implements Serializable {
 
@@ -16,28 +15,27 @@ public class Project implements Serializable {
 
 	private String path;
 
-	private String groupId = "org.openkoala"; 
+	private String groupId = "org.openkoala";
 
 	private String artifactId;
-	
+
 	private String packaging = "jar";
 
 	private String appName;
-	
+
 	private String version = "1.0-SNAPSHOT";
 
 	private List<Module> module;
-	
+
 	/**
-	 * //数据库实现协议，支持JPA以及Mybatis两种协议
-	 * 默认为JPA实现
+	 * //数据库实现协议，支持JPA以及Mybatis两种协议 默认为JPA实现
 	 */
 	private String dbProtocol = "JPA";
-	
-	private String description ="Auto Created Project";
-	
+
+	private String description = "Auto Created Project";
+
 	/**
-	 * 支持SpringMVC  以及 Struts2MVC 两种模式
+	 * 支持SpringMVC 以及 Struts2MVC 两种模式
 	 */
 	private String mvcProtocol = "SpringMVC";
 
@@ -80,7 +78,7 @@ public class Project implements Serializable {
 	public void setVersion(String version) {
 		this.version = version;
 	}
-	
+
 	public String getAppName() {
 		return appName;
 	}
@@ -88,9 +86,10 @@ public class Project implements Serializable {
 	public void setAppName(String appName) {
 		this.appName = appName;
 	}
-	
+
 	public List<Module> getModule() {
-		if(module==null)module =  new ArrayList<Module>();
+		if (module == null)
+			module = new ArrayList<Module>();
 		return module;
 	}
 
@@ -115,14 +114,16 @@ public class Project implements Serializable {
 			String oldModuleName = theModule.getModuleName();
 			String newModuleName = modulePrefix + "-" + oldModuleName;
 			theModule.setModuleName(newModuleName);
-			
+
 			refreshModulesDependency(oldModuleName, newModuleName);
 		}
 	}
 
-	private void refreshModulesDependency (String oldModuleName, String newModuleName) {
+	private void refreshModulesDependency(String oldModuleName,
+			String newModuleName) {
 		for (Module theModule : getModule()) {
-			List<String> dependencies = new ArrayList<String>(theModule.getDependencies());
+			List<String> dependencies = new ArrayList<String>(
+					theModule.getDependencies());
 			for (String dependencyModuleName : dependencies) {
 				if (dependencyModuleName.equals(oldModuleName)) {
 					theModule.getDependencies().remove(oldModuleName);
@@ -131,16 +132,17 @@ public class Project implements Serializable {
 			}
 		}
 	}
-	
+
 	/**
 	 * 删除模块
+	 * 
 	 * @param module
 	 */
 	public void removeModule(final Module moduleForRemove) {
 		module.remove(moduleForRemove);
 		removeDependency(moduleForRemove);
 	}
-	
+
 	public String getDbProtocol() {
 		return dbProtocol;
 	}
@@ -151,6 +153,7 @@ public class Project implements Serializable {
 
 	/**
 	 * 当模块被删除时，删除其他模块对其的依赖关系
+	 * 
 	 * @param moduleForRemove
 	 */
 	private void removeDependency(final Module moduleForRemove) {
@@ -158,11 +161,11 @@ public class Project implements Serializable {
 			theModule.getDependencies().remove(moduleForRemove.getModuleName());
 		}
 	}
-	
-	public String getGroupPackage(){
+
+	public String getGroupPackage() {
 		return this.groupId.replaceAll("\\.", "/");
 	}
-	
+
 	public String getMvcProtocol() {
 		return mvcProtocol;
 	}
@@ -171,85 +174,91 @@ public class Project implements Serializable {
 		this.mvcProtocol = mvcProtocol;
 	}
 
-	public void initSSJProject(){
+	public void initSSJProject() {
 		getModule().clear();
-		//初始化一个infra层
-		Module infra = new Module();
-		infra.setModuleType("infra");
-		infra.setModuleName("infra");
-		infra.setProjectName(appName);
-		infra.setBasePackage(getGroupId() + "." + getPackageName() + ".infra");
-		getModule().add(infra);
-		
-		//初始化一个领域层
+
+		// 初始化一个领域层
 		Module bizModel = new Module();
 		bizModel.setModuleType("bizModel");
 		bizModel.setModuleName("core");
 		bizModel.setProjectName(appName);
 		bizModel.setBasePackage(getGroupId() + "." + getPackageName() + ".core");
-		bizModel.getDependencies().add("infra");
 		getModule().add(bizModel);
-		
-		//初始化一个接口层
+
+		// 初始化一个接口层
 		Module applicationInterface = new Module();
 		applicationInterface.setModuleType("applicationInterface");
 		applicationInterface.setModuleName("application");
 		applicationInterface.setProjectName(appName);
-		applicationInterface.setBasePackage(getGroupId() + "." + getPackageName() + ".application");
+		applicationInterface.setBasePackage(getGroupId() + "."
+				+ getPackageName() + ".application");
 		getModule().add(applicationInterface);
-		
-		//初始化一个实现层
+
+		// 初始化一个实现层
 		Module applicationImpl = new Module();
 		applicationImpl.setModuleName("applicationImpl");
 		applicationImpl.setProjectName(appName);
 		applicationImpl.setModuleType("applicationImpl");
-		applicationImpl.setBasePackage(getGroupId() + "." + getPackageName() + ".application.impl");
+		applicationImpl.setBasePackage(getGroupId() + "." + getPackageName()
+				+ ".application.impl");
 		applicationImpl.getDependencies().add("application");
 		applicationImpl.getDependencies().add("core");
 		applicationImpl.getDependencies().add("infra");
 		getModule().add(applicationImpl);
-		
-		//初始化一个WEB层
+
+		// 初始化一个infra层
+		Module infra = new Module();
+		infra.setModuleType("infra");
+		infra.setModuleName("infra");
+		infra.setProjectName(appName);
+		infra.getDependencies().add("core");
+		infra.getDependencies().add("application");
+		infra.setBasePackage(getGroupId() + "." + getPackageName() + ".infra");
+		getModule().add(infra);
+
+		// 初始化一个WEB层
 		Module war = new Module();
 		war.setModuleName("web");
 		war.setProjectName(appName);
 		war.setBasePackage(getGroupId() + "." + getPackageName() + ".web");
 		war.setModuleType("war");
-		//war.getFunctions().add("");
+		// war.getFunctions().add("");
 		war.getDependencies().add("applicationImpl");
 		war.getDependencies().add("application");
 		war.getDependencies().add("infra");
 		getModule().add(war);
 	}
-	
+
 	public String getPackageName() {
 		return StringUtils.handleSpecialCharactersInName(artifactId);
 	}
-	
+
 	/**
 	 * Spring 扫描包列表
+	 * 
 	 * @return
 	 */
-	public List<String> getScanPackages(){
+	public List<String> getScanPackages() {
 		List<String> packages = new ArrayList<String>();
-//		packages.add(groupId + "."+artifactId+".*");
-		if(module != null){
+		// packages.add(groupId + "."+artifactId+".*");
+		if (module != null) {
 			for (Module mod : module) {
 				if (mod.getModuleType().equals("bizModel")) {
 					packages.add(mod.getBasePackage());
 				}
-				
-				if(mod.getSecurity() != null){
+
+				if (mod.getSecurity() != null) {
 					packages.add("org.openkoala.koala.auth.core.*");
 				}
-				if(mod.getMonitor() != null && "all".equals(mod.getMonitor().getInstallType())){
+				if (mod.getMonitor() != null
+						&& "all".equals(mod.getMonitor().getInstallType())) {
 					packages.add("org.openkoala.koala.monitor.domain");
 					packages.add("org.openkoala.koala.config.domain");
 				}
-				if(mod.getGeneralQuery() != null){
+				if (mod.getGeneralQuery() != null) {
 					packages.add("org.openkoala.gqc.core.domain");
 				}
-				if(mod.getOrganization()!=null){
+				if (mod.getOrganization() != null) {
 					packages.add("org.openkoala.organisation.domain");
 				}
 			}
