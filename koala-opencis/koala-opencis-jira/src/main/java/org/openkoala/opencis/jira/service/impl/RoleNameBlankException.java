@@ -1,6 +1,6 @@
 package org.openkoala.opencis.jira.service.impl;
 
-public class RoleNameBlankException extends RuntimeException {
+public class RoleNameBlankException extends BaseException {
 
 	private static final long serialVersionUID = 2389484663291825626L;
 	
