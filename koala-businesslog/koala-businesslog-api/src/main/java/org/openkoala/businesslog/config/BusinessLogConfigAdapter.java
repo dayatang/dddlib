@@ -9,11 +9,11 @@ import java.util.List;
  */
 public interface BusinessLogConfigAdapter {
 
-    String getPreTemplate();
+    String getCategory();
 
     String getTemplate();
 
     List<BusinessLogContextQuery> getQueries();
 
-    BusinessLogConfigAdapter findConfigByBusinessOperator(String businessOperator);
+    BusinessLogConfigAdapter findConfigByBusinessOperation(String businessOperation);
 }

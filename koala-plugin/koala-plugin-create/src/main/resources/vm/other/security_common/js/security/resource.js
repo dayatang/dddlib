@@ -1,5 +1,5 @@
 var resourceManager = function(){
-	var baseUrl = '/auth/Resource/';
+	var baseUrl = contextPath + '/auth/Resource/';
 	var dialog = null;    //对话框
 	var parentName = null;   //父资源名称
 	var name = null; //资源名称
@@ -16,7 +16,7 @@ var resourceManager = function(){
 	var add = function(grid, item){
 		dataGrid = grid;
 		opreate = 'add';
-		$.get('/pages/auth/resource-template.html').done(function(data){
+		$.get(contextPath + '/pages/auth/resource-template.html').done(function(data){
 			init(data);
 			if(item){
 				parentId = item.id;
@@ -31,7 +31,7 @@ var resourceManager = function(){
 	var modify = function(item, grid){
 		dataGrid = grid;
 		opreate = 'modify';
-		$.get('/pages/auth/resource-template.html').done(function(data){
+		$.get(contextPath + '/pages/auth/resource-template.html').done(function(data){
 			init(data,item);
 		});
 	};

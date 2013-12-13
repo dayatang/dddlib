@@ -1,5 +1,5 @@
 var generalQuery = function(){
-	var baseUrl = '/generalquery/';
+	var baseUrl = contextPath + '/generalquery/';
 	var generalQueryObject = null;
 	var dataSourceSelect = null;
 	var tableSelect = null
@@ -16,7 +16,7 @@ var generalQuery = function(){
 	 */
 	var add = function(grid){
 		dataGrid = grid;
-		$.get('/pages/gqc/generalQueryTemplate.html').done(function(data){
+		$.get(contextPath + '/pages/gqc/generalQueryTemplate.html').done(function(data){
 			init(data);
 		})
 	};
@@ -25,7 +25,7 @@ var generalQuery = function(){
 	 */
 	var modify = function(id, grid){
 		dataGrid = grid;
-		$.get('/pages/gqc/generalQueryTemplate.html').done(function(data){
+		$.get(contextPath + '/pages/gqc/generalQueryTemplate.html').done(function(data){
 			init(data, id);
 			setData(id);
 		})
@@ -513,7 +513,7 @@ var generalQuery = function(){
 		return data;
 	};
 	var preview = function(id){
-		window.open('/pages/gqc/previewTemplate.html?id='+id,'预览');
+		window.open('/pages/gqc/previewTemplate.jsp?id='+id,'预览');
 	};
 	/**
 	 * 检查变量是否不为空  true:不空   false:空

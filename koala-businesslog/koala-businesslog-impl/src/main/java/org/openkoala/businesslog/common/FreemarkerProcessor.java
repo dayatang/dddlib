@@ -23,6 +23,7 @@ public class FreemarkerProcessor {
 
     }
 
+    // TODO 性能待重构
     public static String process(String template, Map<String, Object> aContext, String templateEncoding) {
         if (null == template || "".equals(template.trim())) {
             return "";
@@ -30,10 +31,9 @@ public class FreemarkerProcessor {
         StringTemplateLoader stringLoader = new StringTemplateLoader();
         stringLoader.putTemplate("template", template);
         configuration.setTemplateLoader(stringLoader);
-        Template freemarkerTemplate = null;
         StringWriter out = new StringWriter(512);
         try {
-            freemarkerTemplate = configuration.getTemplate("template", templateEncoding);
+            Template freemarkerTemplate =configuration.getTemplate("template", templateEncoding);
             freemarkerTemplate.process(aContext, out);
         } catch (IOException e) {
             throw new RuntimeException(e);

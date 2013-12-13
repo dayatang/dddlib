@@ -1,7 +1,9 @@
 <div id="generalQueryGrid"></div>
-<script src="/js/gqc/generalQuery.js"></script>
 <script>
     $(function(){
+        var script = document.createElement('script');
+        script.src = contextPath + '/js/gqc/generalQuery.js';
+        document.getElementById('generalQueryGrid').parentNode.appendChild(script);
        var cols = [
             {title:'查询器名称', name:'queryName', width: '150px'},
             { title:'描述', name:'description' , width: '150px'},
@@ -21,7 +23,7 @@
              columns: cols,
              buttons: buttons,
              querys: [{title: '查询器名称', value: 'queryName'}],
-             url: '/generalquery/pageJson.koala'
+             url: contextPath + '/generalquery/pageJson.koala'
         }).on({
                     'add': function(){
                         generalQuery().add( $(this));

@@ -1,7 +1,9 @@
 <div id="employeegrid"></div>
-<script src="/js/organisation/employee.js"></script>
 <script>
 $(function(){
+    var script = document.createElement('script');
+    script.src = contextPath + '/js/organisation/employee.js';
+    document.getElementById('employeegrid').parentNode.appendChild(script);
     var cols = [
          { title:'姓名', name:'name' , width: '100px'},
          { title:'员工编号', name:'sn', width: '100px'},
@@ -33,7 +35,7 @@ $(function(){
           columns: cols,
           buttons: buttons,
           querys: [{title: '姓名', value: 'name'}],
-          url: '/employee/pagingquery.koala'
+          url: contextPath + '/employee/pagingquery.koala'
      }).on({
                  'add': function(){
                      employee().add( $(this));

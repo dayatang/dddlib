@@ -7,4 +7,5 @@
     <import resource="classpath*:META-INF/spring/authDataService-jdbc.xml"/>  
    <!--  <import resource="classpath*:META-INF/spring/integrated/share/root.xml"/>   -->
     <import resource="classpath*:META-INF/spring/gqc-shared-persistence.xml"></import>
+    <import resource="classpath*:META-INF/spring/organization-shared-persistence.xml"></import>
 </beans>

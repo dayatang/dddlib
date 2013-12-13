@@ -63,7 +63,7 @@ public class EJBAuthDataService implements AuthDataService {
         JdbcManager dbmanager = new JdbcManager(config);
         JdbcCustomUserDetails sd = null;
         if (config.getUseAdmain().equals("true") && config.getAdminAccount().equals(useraccount)) {
-        	PasswordEncoder encoder = new PasswordEncoder(config.getAdminAccount(), "MD5");
+        	PasswordEncoder encoder = new PasswordEncoder("", "MD5");
             sd = new JdbcCustomUserDetails();
             sd.setUseraccount(config.getAdminAccount());
             sd.setPassword(encoder.encode(config.getAdminPass()));

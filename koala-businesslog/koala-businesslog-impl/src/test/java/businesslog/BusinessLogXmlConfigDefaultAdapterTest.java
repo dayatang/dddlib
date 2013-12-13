@@ -1,16 +1,8 @@
 package businesslog;
 
-import business.ContractApplication;
-import business.ContractApplicationImpl;
-import business.Project;
-import org.apache.commons.beanutils.ConvertUtilsBean;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.businesslog.config.BusinessLogConfigAdapter;
 import org.openkoala.businesslog.impl.BusinessLogXmlConfigDefaultAdapter;
-
-import java.lang.reflect.Method;
-import java.util.Date;
 
 /**
  * User: zjzhai
@@ -27,12 +19,14 @@ public class BusinessLogXmlConfigDefaultAdapterTest {
 
         BusinessLogConfigAdapter adapter = new BusinessLogXmlConfigDefaultAdapter();
 
-        adapter.findConfigByBusinessOperator(method);
+        adapter.findConfigByBusinessOperation(method);
 
-        assert "${user!\"\"}:${ip!\"\"}:".equals(adapter.getPreTemplate());
+        assert 2 == adapter.getQueries().size();
 
-        assert "向项目${project.name}的合同${contract.name}添加发票：${_methodReturn.sn}"
+        assert "向项目${project.name}的合同${contract.name}添加发票：${(_methodReturn.sn)!\"\"}"
                 .equals(adapter.getTemplate());
+
+        assert "发票操作".equals(adapter.getCategory());
 
 
     }

@@ -29,7 +29,7 @@ var scheduleManager = {
     },
     changeStatus: function(triggerName, currentStatus){
         var params = {triggerName:triggerName,currentStat:currentStatus};
-        $.post( "/monitor/ServiceMonitor/updateScheduleConf.koala",params)
+        $.post( contextPath + "/monitor/ServiceMonitor/updateScheduleConf.koala",params)
         .done(function(result){
             if(result.success){
                $('body').message({
@@ -56,7 +56,7 @@ var scheduleManager = {
             showErrorMessage($('body'), cronExprInput, '时间表达式不合法，请参考相关实例');
         }
         var params = {triggerName:triggerName,confExpr:cronExprInput.val()};
-        $.post('/monitor/ServiceMonitor/updateScheduleConf.koala', params)
+        $.post(contextPath + '/monitor/ServiceMonitor/updateScheduleConf.koala', params)
          .done(function(result){
             if(result.success){
                 $('body').message({

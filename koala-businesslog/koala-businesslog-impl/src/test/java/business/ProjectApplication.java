@@ -1,5 +1,7 @@
 package business;
 
+import java.util.List;
+
 /**
  * User: zjzhai
  * Date: 12/3/13
@@ -7,4 +9,7 @@ package business;
  */
 public interface ProjectApplication {
     Project findByProjectName(String projectName);
+
+    List<Project> findSomeProjects(List<String> projectNames);
+
 }

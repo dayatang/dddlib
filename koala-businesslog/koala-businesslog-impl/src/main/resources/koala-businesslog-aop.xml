@@ -14,7 +14,7 @@
 
     <context:annotation-config/>
     <context:component-scan base-package="org.openkoala.businesslog"/>
-    <context:property-placeholder location="classpath*:koala-log.properties" ignore-unresolvable="true"/>
+    <context:property-placeholder location="classpath*:koala-businesslog.properties" ignore-unresolvable="true"/>
 
     <bean id="logInterceptor" class="org.openkoala.businesslog.utils.BusinessLogInterceptor"/>
 
@@ -32,11 +32,11 @@
         <constructor-arg name="queryExecutor" ref="queryExecutor"></constructor-arg>
     </bean>
 
-
     <aop:config>
         <aop:pointcut id="businessBehavior" expression="${pointcut}"/>
         <aop:aspect id="logAspect" ref="logInterceptor">
             <aop:after-returning returning="result" method="logAfter" pointcut-ref="businessBehavior"/>
+            <aop:after-throwing method="afterThrowing" pointcut-ref="businessBehavior" throwing="error"/>
         </aop:aspect>
     </aop:config>
 

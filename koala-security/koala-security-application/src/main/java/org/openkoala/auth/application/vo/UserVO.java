@@ -16,6 +16,11 @@ public class UserVO extends IdentityVO implements Serializable {
 	private String userDesc;
 	private String lastModifyTime;
 	private boolean valid;
+	private String email;
+
+	public UserVO() {
+
+	}
 	
 	public UserVO(Long id, String name, int sortOrder, String userAccount, String userDesc, boolean valid) {
 		this.setId(id);
@@ -74,8 +79,12 @@ public class UserVO extends IdentityVO implements Serializable {
 		this.valid = valid;
 	}
 
-	public UserVO() {
+	public String getEmail() {
+		return email;
+	}
 
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public void domain2Vo(User user) {
@@ -91,6 +100,7 @@ public class UserVO extends IdentityVO implements Serializable {
         this.setSerialNumber(user.getSerialNumber());
         this.setSortOrder(user.getSortOrder());
         this.setValid(user.isValid());
+        this.setEmail(user.getEmail());
 	}
 	
 	public void vo2Domain(User user) {
@@ -104,6 +114,7 @@ public class UserVO extends IdentityVO implements Serializable {
         user.setSerialNumber(this.getSerialNumber());
         user.setSortOrder(this.getSortOrder());
         user.setValid(this.isValid());
+        user.setEmail(this.getEmail());
 	}
 	
 }

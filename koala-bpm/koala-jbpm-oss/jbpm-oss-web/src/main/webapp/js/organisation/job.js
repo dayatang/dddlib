@@ -1,5 +1,5 @@
 var job = function(){
-	var baseUrl = 'job/';
+	var baseUrl = contextPath + '/job/';
 	var dialog = null;    			//对话框
 	var jobName = null;   			//职务名称
 	var jobSn = null;    			//职务编号
@@ -12,7 +12,7 @@ var job = function(){
 	 */
 	var add = function(grid){
 		dataGrid = grid;
-		$.get('pages/organisation/job-editor.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/job-editor.html').done(function(data){
 			init(data);
 		});
 	};
@@ -21,7 +21,7 @@ var job = function(){
 	 */
 	var modify = function(id, grid){
 		dataGrid = grid;
-		$.get('pages/organisation/job-editor.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/job-editor.html').done(function(data){
 			init(data, id);
 			setData(id);
 		});

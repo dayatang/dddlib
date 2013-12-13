@@ -77,14 +77,6 @@
     width: 25%;
     border-right: 1px solid #DDDDDD!important;
 }
-.tree-shrink {
-    position: absolute;
-    left: 205px;
-    top: 250px
-}
-.tree-shrink a {
-    cursor: pointer;
-}
 .right-content {
     float: left;
     width: 75%;
@@ -94,6 +86,7 @@
     border: 1px solid #DDDDDD!important;
     margin-bottom: 4px;
 }
+
 
 /**
 *岗位调整

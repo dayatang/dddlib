@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.NoResultException;
 import javax.persistence.Temporal;
@@ -37,7 +35,10 @@ public class User extends Identity {
 
 	@Column(name = "USER_DESC")
 	private String userDesc;
-
+	
+	@Column(name = "EMAIL")
+	private String email;
+	
 	@Column(name = "LAST_MODIFY_TIME")
 	private Date lastModifyTime;
 	
@@ -100,6 +101,14 @@ public class User extends Identity {
 
 	public void setLastModifyTime(Date lastModifyTime) {
 		this.lastModifyTime = lastModifyTime;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override

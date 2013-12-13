@@ -1,8 +1,9 @@
 var userManager = function(){
-	var baseUrl = '/auth/User/';
+	var baseUrl = contextPath + '/auth/User/';
 	var dialog = null;    //对话框
 	var userName = null;   //用户名
 	var userAccount = null;    //用户账号
+    var email = null;    //用户邮箱
 	var userPassword = null;    //用户密码
 	var userDescript = null; //描述
 	var isEnable = null;     //是否启用
@@ -12,7 +13,7 @@ var userManager = function(){
 	 */
 	var add = function(grid){
 		dataGrid = grid;
-		$.get('/pages/auth/user-template.html').done(function(data){
+		$.get(contextPath + '/pages/auth/user-template.html').done(function(data){
 			init(data);
 		});
 	};
@@ -21,7 +22,7 @@ var userManager = function(){
 	 */
 	var modify = function(item, grid){
 		dataGrid = grid;
-		$.get('/pages/auth/user-template.html').done(function(data){
+		$.get(contextPath + '/pages/auth/user-template.html').done(function(data){
 			init(data,item);
 			setData(item);
 		});
@@ -65,6 +66,7 @@ var userManager = function(){
 		dialog.find('.modal-header').find('.modal-title').html(item ? '修改用户信息':'添加用户');
 		userName = dialog.find('#userName');
 		userAccount = dialog.find('#userAccount');
+        email = dialog.find('#email');
 		userPassword = dialog.find('#userPassword');
 		userDescript = dialog.find('#userDescript');
 		isEnable = dialog.find('[name="isEnable"]');
@@ -99,6 +101,7 @@ var userManager = function(){
 	var setData = function(item){
 		userName.val(item.name);
 		userAccount.val(item.userAccount).attr('disabled', 'disabled');
+		email.val(item.userAccount).attr('disabled', 'disabled');
 		userPassword.closest('.form-group').hide();
 		userDescript.val(item.userDesc);
 		if(!item.valid){
@@ -139,6 +142,12 @@ var userManager = function(){
 		if(!Validation.notNull(dialog, userAccount, userAccount.val(), '请输入用户账号')){
 			return false;
 		}
+        if(!Validation.notNull(dialog, email, email.val(), '请输入用户邮箱')){
+            return false;
+        }
+        if(!Validation.email(dialog, email, email.val(), '邮箱不合法')){
+            return false;
+        }
 		if(!item && !Validation.notNull(dialog, userPassword, userPassword.val(), '请输入用户密码')){
 			return false;
 		}
@@ -164,14 +173,14 @@ var userManager = function(){
 	 * 分配角色
 	 */
 	var assignRole = function(userId, userAccount){
-		$(this).openTab('/pages/auth/role-list.html', 
+		$(this).openTab('/pages/auth/role-list.html',
 			userAccount+'的角色管理', 'roleManager_'+userId, userId, {userId: userId, userAccount:userAccount});
 	};
 	/**
 	 * 分配用户
 	 */
 	var assignUser = function(roleId, grid){
-		$.get('/pages/auth/select-user.html').done(function(data){
+		$.get(contextPath + '/pages/auth/select-user.html').done(function(data){
 			var dialog = $(data);
 			dialog.find('#save').on('click',function(){
 				var indexs = dialog.find('#selectUserGrid').data('koala.grid').selectedRowsIndex();
@@ -187,7 +196,7 @@ var userManager = function(){
 				for(var i=0,j=indexs.length; i<j; i++){
 					data['users['+i+'].id'] = indexs[i];
 				}
-				$.post('/auth/Role/assignUsers.koala', data).done(function(data){
+				$.post(contextPath + '/auth/Role/assignUsers.koala', data).done(function(data){
 					if(data.result == 'success'){
 						$('body').message({
 							type: 'success',

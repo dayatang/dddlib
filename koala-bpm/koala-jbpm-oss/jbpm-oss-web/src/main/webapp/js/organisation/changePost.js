@@ -9,7 +9,7 @@ var changePost = function(){
 	var selectedPost = null;//已选岗位
 	var selectedItem = {};//已选员工数据
 	var init = function(employeeId){
-		$.get('pages/organisation/changePost.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/changePost.html').done(function(data){
 			dialog = $(data);
 			departmentTree = dialog.find('#departmentTree');
 			postGrid = dialog.find('#postGrid');
@@ -33,7 +33,7 @@ var changePost = function(){
 				        'Content-Type': 'application/json' 
 				    },
 				    'type': "Post",
-				    'url': 'employee/transform-post.koala?employeeId='+employeeId,
+				    'url': '/employee/transform-post.koala?employeeId='+employeeId,
 				    'data': JSON.stringify(items),
 				    'dataType': 'json'
 				 }).done(function(data){
@@ -65,7 +65,7 @@ var changePost = function(){
 	};
 
 	var loadData =  function(employeeId){
-		$.get('employee/get/'+employeeId+'.koala')
+		$.get( contextPath + '/employee/get/'+employeeId+'.koala')
 			.done(function(result){
 				var data = result.data;
 				var employeeDetail = $('.employee-detail');
@@ -84,7 +84,7 @@ var changePost = function(){
 	};
 	
 	var loadExistPostList = function(employeeId){
-		$.get('employee/get-posts-by-employee.koala?employeeId='+employeeId).done(function(data){
+		$.get( contextPath + '/employee/get-posts-by-employee.koala?employeeId='+employeeId).done(function(data){
 			var postList = data.data;
 			for(var i=0,j=postList.length; i<j; i++){
 				var post = postList[i];
@@ -117,17 +117,60 @@ var changePost = function(){
 	 * 加载部门树
 	 */
 	var loadDepartmentTree = function(employeeId){
-		departmentTree.tree({
-			url: 'organization/orgTree.koala',
-			loadingHTML: '<div class="static-loader">Loading...</div>',
-			multiSelect: false,
-			cacheItems: true
-		}).on('selected', function(event, data){
-			 loadPostList(data.id, employeeId);
-		});
+        $.get(contextPath  + '/organization/orgTree.koala').done(function(data){
+            var zNodes = new Array();
+            $.each(data, function(){
+                var zNode = {};
+                if(this.organizationType == 'company'){
+                    zNode.type = 'parent';
+                }else{
+                    zNode.icon = 'glyphicon glyphicon-list-alt'
+                }
+                this.title = this.name;
+                zNode.menu = this;
+                if(this.children && this.children.length > 0){
+                    zNode.children = getChildrenData(new Array(), this.children);
+                }
+                zNodes.push(zNode);
+            });
+            var dataSourceTree = {
+                data: zNodes,
+                delay: 400
+            };
+            departmentTree.tree({
+                dataSource: dataSourceTree,
+                loadingHTML: '<div class="static-loader">Loading...</div>',
+                multiSelect: false,
+                cacheItems: true
+            }).on({
+                    'selectParent': function(event, data){
+                        loadPostList(data.data.id, employeeId);
+                    },
+                    'selectChildren': function(event, data){
+                        loadPostList(data.id, employeeId);
+                    }
+            });
+        });
 	};
-	
-	var initRadio = function(obj){
+    var getChildrenData = function(nodes, items){
+        $.each(items, function(){
+            var zNode = {};
+            if(this.organizationType == 'company'){
+                zNode.type = 'parent';
+            }else{
+                zNode.icon = 'glyphicon glyphicon-list-alt'
+            }
+            this.title = this.name;
+            zNode.menu = this;
+            if(this.children && this.children.length > 0){
+                zNode.children = getChildrenData(new Array(), this.children);
+            }
+            nodes.push(zNode);
+        });
+        return nodes;
+    };
+
+    var initRadio = function(obj){
 		var $obj = $(obj);
 		var parent = $obj.parent();
 		if(parent.hasClass('checked')){
@@ -171,7 +214,7 @@ var changePost = function(){
 			isShowIndexCol: false,
 			columns: cols,
 			querys: [{title: '岗位名称', value: 'name'}],
-			url: 'post/paging-query-post-by-org.koala?organizationId='+id
+			url:  contextPath + '/post/paging-query-post-by-org.koala?organizationId='+id
 		}).on('addPost', function(evnet, data){
 			var post = selectedPost.find('[data-value="'+data.postId+'"]');
 			var principal = $(data.obj).closest('tr').find('[name="principal"]').is(":checked");

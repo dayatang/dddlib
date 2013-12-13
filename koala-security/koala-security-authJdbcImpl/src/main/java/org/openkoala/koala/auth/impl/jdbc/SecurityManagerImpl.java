@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
+
 import org.apache.commons.dbutils.DbUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
@@ -46,12 +47,13 @@ public class SecurityManagerImpl implements SecurityManager {
 
 	public UserDetails getUser(String userAccount) {
 		if (isSuper(userAccount)) {
-			PasswordEncoder encoder = new PasswordEncoder(config.getAdminAccount(), "MD5");
+			PasswordEncoder encoder = new PasswordEncoder("", "MD5");
 			return getUserDetails(config.getAdminAccount(), //
 					encoder.encode(config.getAdminPass()), //
 					config.getAdminRealName(), //
 					"administrator@openkoala.com", config.getAdminRealName(), //
 					getUserRoles(config.getAdminAccount()), true, true);
+			
 		}
 		
 		Connection conn = getConnection();

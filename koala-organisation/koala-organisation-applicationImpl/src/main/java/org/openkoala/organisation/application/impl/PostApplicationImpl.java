@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.inject.Inject;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.inject.Named;
+import javax.interceptor.Interceptors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openkoala.organisation.application.PostApplication;
@@ -21,6 +23,9 @@ import com.dayatang.querychannel.support.Page;
 
 @Named
 @Transactional
+@Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
+@Stateless(name = "PostApplication")
+@Remote
 public class PostApplicationImpl implements PostApplication {
 
 	
@@ -28,11 +33,12 @@ public class PostApplicationImpl implements PostApplication {
 	
 	
 	private QueryChannelService getQueryChannelService(){
-		if(queryChannel!=null){
-			return queryChannel;
+		if(queryChannel ==null){
+			queryChannel = InstanceFactory.getInstance(QueryChannelService.class,"queryChannel_org");
 		}
-		return InstanceFactory.getInstance(QueryChannelService.class,"queryChannel_org");
+		return queryChannel;
 	}
+	
 	@Override
 	public Page<PostDTO> pagingQueryPosts(PostDTO example, int currentPage, int pagesize) {
 		List<Object> conditionVals = new ArrayList<Object>();

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <businessLogConfigs>
-    <preTemplate><![CDATA[${user!""}:${ip!""}:]]></preTemplate>
     <businessLogConfig>
         <!--向项目中的合同，添加一张发票-->
+        <category>发票操作</category>
         <method>Invoice business.InvoiceApplication.addInvoice(String,long)</method>
-        <template><![CDATA[向项目${project.name}的合同${contract.name}添加发票：${_methodReturn.sn}]]></template>
+        <template><![CDATA[向项目${project.name}的合同${contract.name}添加发票：${(_methodReturn.sn)!""}]]></template>
         <queries>
             <query key="contract">
                 <target class="business.ContractApplication">contractApplication</target>
@@ -23,6 +23,7 @@
         </queries>
     </businessLogConfig>
     <businessLogConfig>
+        <category>合同操作</category>
         <method>String business.ContractApplication.addContract(long)</method>
         <template><![CDATA[添加合同${_methodReturn}]]></template>
     </businessLogConfig>

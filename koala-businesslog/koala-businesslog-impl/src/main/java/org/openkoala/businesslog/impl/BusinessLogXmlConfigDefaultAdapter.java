@@ -15,23 +15,17 @@ public class BusinessLogXmlConfigDefaultAdapter extends AbstractBusinessLogConfi
      */
     public final static String XML_CONFIG_FILE_NAME = "koala-businesslog-config.xml";
 
-    @Override
-    public String getPreTemplate() {
-        BusinessLogConfigXmlParser parser = BusinessLogConfigXmlParser.parsing(getClass().getClassLoader().getResource(XML_CONFIG_FILE_NAME).getFile());
-        return parser.getPreTemplate();
-    }
 
     @Override
-    public AbstractBusinessLogConfigAdapter findConfigByBusinessOperator(String businessOperator) {
+    public AbstractBusinessLogConfigAdapter findConfigByBusinessOperation(String businessOperation) {
 
         BusinessLogConfigXmlParser parser = BusinessLogConfigXmlParser.parsing(getClass().getClassLoader().getResource(XML_CONFIG_FILE_NAME).getFile());
 
-        setPreTemplate(parser.getPreTemplate());
+        setTemplate(parser.getTemplateFrom(businessOperation));
 
-        setTemplate(parser.getTemplateFrom(businessOperator));
+        setCategory(parser.getBusinessLogMethodCategory(businessOperation));
 
-
-        setQueries(parser.getQueriesFrom(businessOperator));
+        setQueries(parser.getQueriesFrom(businessOperation));
 
         return this;
     }

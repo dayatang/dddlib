@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.mockingDetails;
 import static org.mockito.Mockito.when;
 
 /**
@@ -23,10 +22,12 @@ public class BusinessLogEngineTest {
     @Test
     public void testSomeThing() {
         String template = "参数${_param0},参数${_params1},返回值:${_operatorReturn},关联查询值：${invoice}";
-        String preTemplate = "${user}:${time}:${ip}";
+
         String resultLog = "${user}:${time}:${ip}参数1,参数String,返回值:xxxxxx,关联查询值：发票编号1";
 
-        String businessOperator = "void org.openkoala.business.method(int, String)";
+        String businessOperation = "void org.openkoala.business.method(int, String)";
+
+        String businessMethodCategory = "发票操作";
 
         BusinessLogConfigAdapter configAdapter = mock(BusinessLogConfigAdapter.class);
 
@@ -36,23 +37,35 @@ public class BusinessLogEngineTest {
 
         BusinessLogExporter exporter = mock(BusinessLogExporter.class);
 
-        BusinessLogContextQueryExecutor executor = mock(BusinessLogContextQueryExecutor.class);
+        BusinessLogContextQueryExecutor queryExecutor = mock(BusinessLogContextQueryExecutor.class);
+
+        Map<String, Object> initContext = createContext();
 
         BusinessLogEngine engine =
-                new BusinessLogEngine(config, render, executor, createInitContext());
+                new BusinessLogEngine(config, render, queryExecutor, initContext);
 
 
-        when(configAdapter.findConfigByBusinessOperator(businessOperator)).thenReturn(configAdapter);
-        when(configAdapter.getQueries()).thenReturn(new ArrayList<BusinessLogContextQuery>());
-        when(configAdapter.getPreTemplate()).thenReturn(preTemplate);
-        when(configAdapter.getTemplate()).thenReturn(template);
-        when(render.render(createInitContext(), preTemplate, template)).thenReturn(render);
+        when(configAdapter.findConfigByBusinessOperation(businessOperation))
+                .thenReturn(configAdapter);
+        when(configAdapter.getQueries())
+                .thenReturn(new ArrayList<BusinessLogContextQuery>());
+        when(configAdapter.getTemplate())
+                .thenReturn(template);
+        when(configAdapter.getCategory()).thenReturn(businessMethodCategory);
+
+        BusinessLogContextQuery[] queries = new BusinessLogContextQuery[config.getQueries(businessOperation).size()];
+
+        when(queryExecutor.startQuery(initContext, config.getQueries(businessOperation).toArray(queries))).thenReturn(initContext);
+        when(render.render(initContext, template)).thenReturn(render);
+
+
         when(render.build()).thenReturn(resultLog);
 
 
-        String exlog = engine.exportLogBy(businessOperator, exporter);
+        BusinessLog businessLog = engine.exportLogBy(businessOperation, exporter);
 
-        assert resultLog.equals(exlog);
+        assert businessMethodCategory.equals(businessLog.getCategory());
+        assert resultLog.equals(businessLog.getLog());
     }
 
 

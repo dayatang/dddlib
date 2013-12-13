@@ -39,14 +39,7 @@
    #end
 
 
-	<!-- Spring Listener -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:META-INF/spring/root.xml</param-value>
-	</context-param>
-	<listener>
-		<listener-class>com.dayatang.spring.webapp.DayatangContextLoaderListener</listener-class>
-	</listener>
+
 	
 	   
 	
@@ -71,6 +64,15 @@
 	</filter-mapping>
 <!-- monitor config end -->
 #end
+
+	<!-- Spring Listener -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:META-INF/spring/root.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>com.dayatang.spring.webapp.DayatangContextLoaderListener</listener-class>
+	</listener>
 	
 	<!--组织子系统的listener-->
 #if ($Module.organization)
@@ -116,7 +118,7 @@
 #if ($Module.security)
     <servlet>
 		<servlet-name>DBInit</servlet-name>
-		<servlet-class>org.openkoala.koala.dbinit.SecurityDBInit</servlet-class>
+		<servlet-class>${Module.basePackage}.controller.auth.SecurityDBInit</servlet-class>
 		<init-param>
 			<param-name>type</param-name>
 			<param-value>${Project.mvcProtocol}</param-value>
@@ -145,7 +147,7 @@
 	</error-page>
 	
 	<welcome-file-list>
-		<welcome-file>/login.koala</welcome-file>
+		<welcome-file>/login.jsp</welcome-file>
 	</welcome-file-list>
 
 	<distributable />

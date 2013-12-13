@@ -6,7 +6,5 @@ package org.openkoala.businesslog;
  * Time: 9:36 PM
  */
 public interface BusinessLogExporter {
-
-    void export(String log);
-
+    void export(BusinessLog businessLog);
 }

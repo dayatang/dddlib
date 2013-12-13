@@ -1,5 +1,5 @@
 var employee = function(){
-    var baseUrl = '/employee/';
+    var baseUrl =  contextPath + '/employee/';
 	var dialog = null;   //对话框
 	var employeeId = null;
 	var personId = null;
@@ -29,7 +29,7 @@ var employee = function(){
 	var add = function(grid){
 		dataGrid = grid;
 		operateType = 'add';
-		$.get('/pages/organisation/employeeTemplate.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/employeeTemplate.html').done(function(data){
 			init(data);
 		});
 	};
@@ -39,7 +39,7 @@ var employee = function(){
 	var modify = function(id, grid){
 		dataGrid = grid;
 		operateType = 'update';
-		$.get('/pages/organisation/employee-updater.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/employee-updater.html').done(function(data){
 			init(data, id);
 			setData(id);
 		});
@@ -125,7 +125,7 @@ var employee = function(){
 	 * 性别选择
 	 */
 	var  fillGenders = function(){
-		$.get('/employee/genders.koala').done(function(data){
+		$.get( contextPath + '/employee/genders.koala').done(function(data){
 			var items = data.data;
 			var contents = new Array();
 			for(var prop in items){
@@ -146,7 +146,7 @@ var employee = function(){
 	 * 部门选择
 	 */
     var selectDepartments = function(){
-		$.get('/pages/organisation/selectDepartmentTemplate.html').done(function(data){
+		$.get( contextPath + '/pages/organisation/selectDepartmentTemplate.html').done(function(data){
 			var departmentTreeDialog = $(data);
 			departmentTree = departmentTreeDialog.find('.tree');
 			departmentTreeDialog.find('#confirm').on('click',function(){
@@ -168,25 +168,70 @@ var employee = function(){
 			});
 		});
     };
-	/**
-	 * 加载部门树
-	 */
-	var loadDepartmentTree = function(){
-		departmentTree.tree({
-			url:  '/organization/orgTree.koala',
-			loadingHTML: '<div class="static-loader">Loading...</div>',
-			multiSelect: false,
-			cacheItems: true
-		}).on('selected', function(event, data){
-			departmentId = data.id;
-			departmentName = data.name;
-		});
-	};
+    /**
+     * 加载部门树
+     */
+    var loadDepartmentTree = function(){
+        $.get(contextPath  + '/organization/orgTree.koala').done(function(data){
+            var zNodes = new Array();
+            $.each(data, function(){
+                var zNode = {};
+                if(this.organizationType == 'company'){
+                    zNode.type = 'parent';
+                }else{
+                    zNode.icon = 'glyphicon glyphicon-list-alt'
+                }
+                this.title = this.name;
+                zNode.menu = this;
+                if(this.children && this.children.length > 0){
+                    zNode.children = getChildrenData(new Array(), this.children);
+                }
+                zNodes.push(zNode);
+            });
+            var dataSourceTree = {
+                data: zNodes,
+                delay: 400
+            };
+            departmentTree.tree({
+                dataSource: dataSourceTree,
+                loadingHTML: '<div class="static-loader">Loading...</div>',
+                multiSelect: false,
+                cacheItems: true
+            }).on({
+                    'selectParent': function(event, data){
+                        var data = data.data;
+                        departmentId = data.id;
+                        departmentName = data.name;
+                    },
+                    'selectChildren': function(event, data){
+                        departmentId = data.id;
+                        departmentName = data.name;
+                    }
+                });
+        });
+    };
+    var getChildrenData = function(nodes, items){
+        $.each(items, function(){
+            var zNode = {};
+            if(this.organizationType == 'company'){
+                zNode.type = 'parent';
+            }else{
+                zNode.icon = 'glyphicon glyphicon-list-alt'
+            }
+            this.title = this.name;
+            zNode.menu = this;
+            if(this.children && this.children.length > 0){
+                zNode.children = getChildrenData(new Array(), this.children);
+            }
+            nodes.push(zNode);
+        });
+        return nodes;
+    };
 	/**
 	 * 职位选择
 	 */
 	var  fillPosts = function(organizationId){
-		$.get('/post/query-post-by-org.koala?organizationId='+organizationId).done(function(data){
+		$.get( contextPath + '/post/query-post-by-org.koala?organizationId='+organizationId).done(function(data){
 			 var items = data.result;
 			 var contents = new Array();
 			 for(var i= 0, j=items.length; i<j; i++){

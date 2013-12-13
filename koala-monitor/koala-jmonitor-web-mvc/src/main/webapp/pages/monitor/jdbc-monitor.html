@@ -1,4 +1,4 @@
-<form class="form-horizontal jdbc-monitor" role="form">
+<form class="form-horizontal jdbc-monitor" role="form" id="jdbcMonitor">
     <div class="form-group">
         <label class="col-sm-2 control-label" style="width:10%;">监控节点:</label>
         <div class="col-sm-2">
@@ -24,4 +24,10 @@
         </div>
     </div>
 </form>
-<script src="/js/monitor/jdbcMonitor.js"></script>
+<script>
+    $(function(){
+        var script = document.createElement('script');
+        script.src = contextPath + '/js/monitor/jdbcMonitor.js';
+        document.getElementById('jdbcMonitor').parentNode.appendChild(script);
+    });
+</script>

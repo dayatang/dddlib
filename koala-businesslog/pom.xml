@@ -15,7 +15,9 @@
     <modules>
         <module>koala-businesslog-api</module>
         <module>koala-businesslog-impl</module>
+        <module>koala-businesslog-acceptance-test</module>
     </modules>
+
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -37,6 +39,28 @@
         <cargo.context></cargo.context>
         <browser>org.openqa.selenium.firefox.FirefoxDriver</browser>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>businesslog</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+                <hibernate.show_sql>true</hibernate.show_sql>
+                <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+                <db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
+                <db.connectionURL>jdbc:h2:~/db/businesslog;MVCC=true</db.connectionURL>
+                <db.generate.ddl>true</db.generate.ddl>
+                <db.username>sa</db.username>
+                <db.password/>
+                <db.Type>H2</db.Type>
+                <db.groupId>com.h2database</db.groupId>
+                <db.artifactId>h2</db.artifactId>
+            </properties>
+        </profile>
+    </profiles>
 
 
     <developers>

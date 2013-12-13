@@ -1,5 +1,7 @@
 package org.openkoala.businesslog.utils;
 
+import org.openkoala.businesslog.common.ContextKeyConstant;
+
 import javax.servlet.*;
 import java.io.IOException;
 
@@ -25,9 +27,18 @@ public abstract class BusinessLogServletFilter implements Filter {
         chain.doFilter(req, resp);
     }
 
+    public void addUserContext(String user){
+        ThreadLocalBusinessLogContext.put(ContextKeyConstant.BUSINESS_OPERATION_USER, user);
+    }
+
+    public void addIpContext(String ip){
+        ThreadLocalBusinessLogContext.put(ContextKeyConstant.BUSINESS_OPERATION_IP, ip);
+    }
+
     public String getIp(ServletRequest req){
         return req.getRemoteAddr();
     }
+
 
 
 }

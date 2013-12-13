@@ -1,7 +1,11 @@
 package org.openkoala.businesslog.impl;
 
 import org.openkoala.businesslog.BusinessLogExporter;
-import org.openkoala.businesslog.model.BusinessLog;
+import org.openkoala.businesslog.BusinessLog;
+import org.openkoala.businesslog.application.BusinessLogApplication;
+import org.openkoala.businesslog.model.DefaultBusinessLog;
+
+import javax.inject.Inject;
 
 /**
  * User: zjzhai
@@ -9,12 +13,19 @@ import org.openkoala.businesslog.model.BusinessLog;
  * Time: 4:52 PM
  */
 public class BusinessLogJpaDefaultExporter implements BusinessLogExporter {
+
+    @Inject
+    private BusinessLogApplication businessLogApplication;
+
     @Override
-    public void export(String log) {
+    public void export(BusinessLog businessLog) {
+        DefaultBusinessLog log = DefaultBusinessLog.createBy(businessLog);
 
-        BusinessLog businessLog = new BusinessLog(log);
+        businessLogApplication.save(log);
 
-        businessLog.save();
+        assert log.getId() != null;
 
     }
+
+
 }

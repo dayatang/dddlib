@@ -16,6 +16,9 @@ import org.openkoala.organisation.domain.Organization;
  */
 public interface OrganizationApplication {
 
+	
+	boolean isTopOrganizationExists();
+	
 	void createAsTopOrganization(Company company);
 	
 	/**

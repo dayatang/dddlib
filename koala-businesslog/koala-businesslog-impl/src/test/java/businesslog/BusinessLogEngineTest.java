@@ -51,7 +51,8 @@ public class BusinessLogEngineTest {
 
         String operator = "Invoice business.InvoiceApplication.addInvoice(String,long)";
 
-        assert "张三:192.168.1.1:向项目项目xxxx的合同一期合同添加发票：编号： yyyyyy".equals(businessLogEngine.exportLogBy(operator, exporter));
+        assert "向项目项目xxxx的合同一期合同添加发票：编号： yyyyyy".equals(
+                businessLogEngine.exportLogBy(operator, exporter).getLog());
     }
 
 

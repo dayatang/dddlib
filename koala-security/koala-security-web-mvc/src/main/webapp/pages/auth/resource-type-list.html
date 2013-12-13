@@ -1,5 +1,9 @@
 <div id="resourceTypeGrid"></div>
-<script src="/js/security/resourceType.js"></script>
+<script>
+    var script = document.createElement('script');
+    script.src = contextPath + '/js/security/resourceType.js';
+    document.getElementById('resourceTypeGrid').parentNode.appendChild(script);
+</script>
 <script>
 	$(function(){
 		var columns = [ 
@@ -18,7 +22,7 @@
 			 identity: 'id',
              columns: columns,
              buttons: buttons,
-             url: '/auth/ResourceType/pageJson.koala'
+             url: contextPath + '/auth/ResourceType/pageJson.koala'
         }).on({
         	'add': function(){
         		resourceTypeManager().add($(this));
