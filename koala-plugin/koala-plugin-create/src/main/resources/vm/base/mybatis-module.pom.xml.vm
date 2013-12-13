@@ -27,14 +27,16 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<scope>test</scope>
 		</dependency>
+		
   #foreach ($_moduleName in $Module.dependencies )
     #foreach ( $_Module in $Project.module)
       #if ($_moduleName == $_Module.moduleName)
         <dependency>
 		  <groupId>$Project.groupId</groupId>
 	      <artifactId>$_moduleName</artifactId>
- 	      <version>$Project.version</version>
+ 	      <version>${project.parent.version}</version>
 		</dependency>
       #end
     #end
@@ -53,7 +55,7 @@
   <dependency>
   	<groupId>$Project.groupId</groupId>
 	<artifactId>${Project.artifactId}-conf</artifactId>
-	<version>$Project.version</version>
+	<version>${project.parent.version}</version>
 	<type>test-jar</type>
     <scope>test</scope>
   </dependency>
@@ -93,7 +95,7 @@
    <dependency>
   	<groupId>$Project.groupId</groupId>
 	<artifactId>${Project.artifactId}-conf</artifactId>
-	<version>$Project.version</version>
+	<version>${project.parent.version}</version>
 	<type>test-jar</type>
     <scope>test</scope>
   </dependency>
@@ -157,7 +159,7 @@
   <dependency>
   	<groupId>$Project.groupId</groupId>
 	<artifactId>${Project.artifactId}-conf</artifactId>
-	<version>$Project.version</version>
+	<version>${project.parent.version}</version>
   </dependency>
   
   
@@ -193,15 +195,7 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 	</dependency>
-		
-		
 #end
-
-
-		<dependency>
-			<groupId>proxool</groupId>
-			<artifactId>proxool</artifactId>
-		</dependency>
 
 #if ($Module.moduleType == "war")
    #if($Project.mvcProtocol=="Struts2MVC")

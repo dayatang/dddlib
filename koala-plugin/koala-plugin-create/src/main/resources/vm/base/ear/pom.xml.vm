@@ -8,9 +8,7 @@
 	    <artifactId>$Project.artifactId</artifactId>
 	    <version>$Project.version</version>
 	</parent>
-	<groupId>$Project.groupId</groupId>
 	<artifactId>${Project.artifactId}-ear</artifactId>
-	<version>$Project.version</version>
 	
 	<packaging>ear</packaging>
 	

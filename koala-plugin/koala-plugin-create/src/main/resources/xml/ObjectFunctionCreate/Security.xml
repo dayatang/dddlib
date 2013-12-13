@@ -284,7 +284,7 @@
 	  <dependency>
 				<groupId>org.openkoala.koalacommons</groupId>
 	            <artifactId>koala-commons-cache</artifactId>
-	        </dependency>
+	  </dependency>
 	</root>
          ]]>
 		</property>
