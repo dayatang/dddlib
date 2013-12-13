@@ -68,20 +68,6 @@
 	  	<servlet-name>spring</servlet-name>
 	  	<url-pattern>*.koala</url-pattern>
 	  </servlet-mapping>
-        
-    <servlet>
-		<servlet-name>DBInit</servlet-name>
-		<servlet-class>org.openkoala.koala.dbinit.SecurityDBInit</servlet-class>
-		<init-param>
-			<param-name>type</param-name>
-			<param-value>SpringMVC</param-value>
-		</init-param>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>DBInit</servlet-name>
-		<url-pattern>/dbinit</url-pattern>
-	</servlet-mapping>
 	
 	<!-- JAX-RS -->
 	<servlet>

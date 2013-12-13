@@ -1,5 +1,4 @@
 <div data-role="userGrid"></div>
-<script src="js/cas/user.js"></script>
 <script>
 	$(function(){
 		var tabData = $('[data-role="userGrid"]').closest('.tab-pane.active').data();
@@ -14,8 +13,13 @@
 						title : "用户帐号",
 						name : "userAccount",
 						width : 150
-					}, 
-					{
+					},
+                    {
+                        title : "用户邮箱",
+                        name : "email",
+                        width : 180
+                    },
+                    {
 						title : "用户描述",
 						name : "userDesc",
 						width : 200
@@ -54,7 +58,7 @@
 				];
 			}
 		};
-		var url = '/auth/User/pageJson.koala';
+		var url = contextPath + '/auth/User/pageJson.koala';
 		if(roleId){
 			url += '?roleId='+roleId;
 		}
