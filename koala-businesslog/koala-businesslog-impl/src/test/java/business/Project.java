@@ -1,5 +1,8 @@
 package business;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * User: zjzhai
  * Date: 12/3/13
@@ -25,6 +28,14 @@ public class Project {
 
     public static Project findByContract(Contract contract) {
         return new Project("项目xxxx");
+    }
+
+    public static String[] getProjectsName(Project... projects) {
+        List<String> list = new ArrayList<String>();
+        for (Project project : projects) {
+            list.add(project.name);
+        }
+        return list.toArray(new String[list.size()]);
     }
 
 

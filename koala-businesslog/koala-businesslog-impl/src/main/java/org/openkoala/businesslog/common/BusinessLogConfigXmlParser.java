@@ -1,5 +1,9 @@
 package org.openkoala.businesslog.common;
 
+import org.openkoala.businesslog.BusinessLogXmlConfigIOException;
+import org.openkoala.businesslog.BusinessLogXmlConfigNotFoundException;
+import org.openkoala.businesslog.BusinessLogXmlConfigParseException;
+import org.openkoala.businesslog.BusinessLogXmlConfigSAXException;
 import org.openkoala.businesslog.config.BusinessLogContextQuery;
 import org.openkoala.businesslog.impl.BusinessLogDefaultContextQuery;
 import org.w3c.dom.*;
@@ -9,6 +13,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,16 +94,17 @@ public class BusinessLogConfigXmlParser {
 
     public static Document loadXmlDocument(String xmlConfigPath) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder = null;
         try {
-            builder = factory.newDocumentBuilder();
+            DocumentBuilder builder = factory.newDocumentBuilder();
             return builder.parse(new FileInputStream(xmlConfigPath));
         } catch (ParserConfigurationException e) {
-            throw new RuntimeException(e);
+            throw new BusinessLogXmlConfigParseException(e);
+        } catch (FileNotFoundException e) {
+            throw new BusinessLogXmlConfigNotFoundException(e);
         } catch (SAXException e) {
-            throw new RuntimeException(e);
+            throw new BusinessLogXmlConfigSAXException(e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new BusinessLogXmlConfigIOException(e);
         }
     }
 
@@ -217,7 +223,6 @@ public class BusinessLogConfigXmlParser {
         NodeList children = queryNode.getChildNodes();
 
         contextKey = queryNode.getAttributes().getNamedItem(QUERY_CONTEXT_KEY).getNodeValue();
-
 
         for (int i = 0; i < children.getLength(); i++) {
             Node node = children.item(i);

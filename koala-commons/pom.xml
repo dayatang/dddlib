@@ -21,5 +21,6 @@
 		<!-- 取消掉CodeChecker功能 -->
 		<!-- <module>koala-commons-codechecker</module> -->
 		<module>koala-commons-support</module>
+		<module>koala-commons-test-support</module>
 	</modules>
 </project>

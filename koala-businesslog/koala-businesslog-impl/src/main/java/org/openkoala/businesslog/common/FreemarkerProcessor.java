@@ -4,6 +4,7 @@ import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.openkoala.businesslog.FreemarkerProcessorException;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -36,9 +37,9 @@ public class FreemarkerProcessor {
             Template freemarkerTemplate =configuration.getTemplate("template", templateEncoding);
             freemarkerTemplate.process(aContext, out);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new FreemarkerProcessorException(e);
         } catch (TemplateException e) {
-            throw new RuntimeException(e);
+            throw new FreemarkerProcessorException(e);
         } finally {
             configuration.clearSharedVariables();
             configuration.clearTemplateCache();

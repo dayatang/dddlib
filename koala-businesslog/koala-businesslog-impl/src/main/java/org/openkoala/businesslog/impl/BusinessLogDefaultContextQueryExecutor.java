@@ -22,7 +22,6 @@ public class BusinessLogDefaultContextQueryExecutor implements BusinessLogContex
             result.putAll(aContext);
         }
 
-
         for (BusinessLogContextQuery query : queries) {
             if (null == query) {
                 continue;

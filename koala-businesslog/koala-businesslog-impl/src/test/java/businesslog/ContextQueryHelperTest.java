@@ -1,16 +1,19 @@
 package businesslog;
 
+import static org.openkoala.businesslog.common.ContextQueryHelper.*;
+
+import business.Contract;
 import business.Project;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.openkoala.businesslog.BusinessLogClassNotFoundException;
+import org.openkoala.businesslog.BusinessLogQueryMethodException;
 import org.openkoala.businesslog.common.ContextQueryHelper;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * User: zjzhai
@@ -22,7 +25,8 @@ public class ContextQueryHelperTest {
     private String methodSignature = "findContractById(long,business.Project,String,double)";
     private String methodSignature1 = "findContractById(long)";
     private String methodSignature2 = "findContractById()";
-    private String methodSignature3 = "findContractById(long,business.Project,String,double,boolean,float)";
+    private String methodSignature3 =
+            "findContractById(long,business.Project,String,double,boolean,float,business.Project[])";
 
 
     @Test
@@ -64,6 +68,8 @@ public class ContextQueryHelperTest {
         result.add(double.class);
         result.add(boolean.class);
         result.add(float.class);
+        result.add(Project[].class);
+
 
         assert result.equals(
                 Arrays.asList(
@@ -73,8 +79,40 @@ public class ContextQueryHelperTest {
 
 
     @Test
-    public void testgetMethodInstanceOf() throws ClassNotFoundException {
+    public void testcontextQueryArgConvertStringToObject() {
+        assert new Long(1).equals(
+                ContextQueryHelper.contextQueryArgConvertStringToObject("1", Long.class, null));
 
+        Map<String, Object> context = new HashMap<String, Object>();
+
+        context.put("project", new Project("projectName"));
+        context.put("float", 0.2f);
+
+        assert new Project("projectName").
+                equals(
+                        ContextQueryHelper.contextQueryArgConvertStringToObject("${project}",
+                                Project.class, context));
+
+        assert "projectName".equals(
+                ContextQueryHelper.contextQueryArgConvertStringToObject("${project.name}",
+                        String.class, context));
+
+        assert null == contextQueryArgConvertStringToObject("${contact}", Contract.class, context);
+
+        assert 0.2f == (Float)contextQueryArgConvertStringToObject("${float}", float.class, context);
+        assert 0.2f == (Float)contextQueryArgConvertStringToObject("0.2", float.class, context);
+
+
+    }
+
+
+    @Test(expected = BusinessLogClassNotFoundException.class)
+    public void testgetMethodInstanceOf() {
+        String methodSignature4 = "findContractById(business.xx)";
+        assert new ArrayList<Class>().equals(
+                Arrays.asList(
+                        ContextQueryHelper.getMethodParamClasses(
+                                ContextQueryHelper.getMethodParamTypes(methodSignature4))));
     }
 
 

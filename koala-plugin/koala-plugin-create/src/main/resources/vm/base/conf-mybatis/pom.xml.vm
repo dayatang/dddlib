@@ -8,9 +8,7 @@
 	    <artifactId>$Project.artifactId</artifactId>
 	    <version>$Project.version</version>
 	</parent>
-	<groupId>$Project.groupId</groupId>
 	<artifactId>${Project.artifactId}-conf</artifactId>
-	<version>$Project.version</version>
 	
 	<packaging>jar</packaging>
 	

@@ -16,13 +16,11 @@ public class ProjectApplicationImpl implements ProjectApplication {
     }
 
     @Override
-    public List<Project> findSomeProjects(List<String> projectNames) {
+    public Project[] findSomeProjects(List<String> projectNames) {
         List<Project> result = new ArrayList<Project>();
-
         for (String name : projectNames) {
             result.add(new Project(name));
         }
-
-        return result;
+        return result.toArray(new Project[result.size()]);
     }
 }
