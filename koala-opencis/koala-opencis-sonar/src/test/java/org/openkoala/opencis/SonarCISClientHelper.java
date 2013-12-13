@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.pojo.SonarServerConfiguration;
 import org.openkoala.opencis.sonar.SonarCISClient;
 import org.sonar.wsclient.permissions.PermissionParameters;
 import org.sonar.wsclient.permissions.internal.DefaultPermissionClient;
@@ -12,6 +13,10 @@ import org.sonar.wsclient.user.UserQuery;
 import org.sonar.wsclient.user.internal.DefaultUserClient;
 
 public class SonarCISClientHelper extends SonarCISClient {
+
+	public SonarCISClientHelper(SonarServerConfiguration sonarServerConfiguration) {
+		super(sonarServerConfiguration);
+	}
 
 	public void removeUserIfNecessary(Developer developer) {
 		DefaultUserClient client = new DefaultUserClient(createHttpRequestFactory());

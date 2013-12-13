@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.opencis.PropertyIllegalException;
 import org.openkoala.opencis.SonarCISClientHelper;
@@ -14,6 +15,7 @@ import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.pojo.SonarServerConfiguration;
 import org.sonar.wsclient.user.User;
 
+@Ignore
 public class SonarCISClientTest {
 
 	public static final String NAME = "koala";
@@ -92,8 +94,7 @@ public class SonarCISClientTest {
 	
 	@Before
 	public void init() {
-		cisClient = new SonarCISClientHelper();
-		cisClient.setSonarServerConfiguration(new SonarServerConfiguration(SONAR_SERVER_ADDRESS, SONAR_ADMIN_USERNAME, SONAR_ADMIN_PASSWORD));
+		cisClient = new SonarCISClientHelper(new SonarServerConfiguration(SONAR_SERVER_ADDRESS, SONAR_ADMIN_USERNAME, SONAR_ADMIN_PASSWORD));
 		developer = createDeveloper();
 	}
 	

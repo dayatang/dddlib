@@ -26,6 +26,11 @@ public class SonarCISClient implements CISClient {
 	
 	private SonarServerConfiguration sonarServerConfiguration;
 
+	public SonarCISClient(SonarServerConfiguration sonarServerConfiguration) {
+		this.sonarServerConfiguration = sonarServerConfiguration;
+		checkSonarServerNotNull();
+	}
+	
 	@Override
 	public void createProject(Project project) {
 		// TODO Auto-generated method stub
@@ -93,7 +98,6 @@ public class SonarCISClient implements CISClient {
 
 	@Override
 	public boolean canConnect() {
-		checkSonarServerNotNull();
 		return connectSonarServer();
 	}
 
