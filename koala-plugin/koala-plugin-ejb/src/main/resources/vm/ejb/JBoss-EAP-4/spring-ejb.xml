@@ -19,7 +19,7 @@
          </bean>
  
  
- #if ($hasSecurityModule)
+ #if ($hasSecurity_IMPL)
          <!--self -->
          <bean id="menuApplication"
          class="org.springframework.ejb.access.SimpleRemoteStatelessSessionProxyFactoryBean"
@@ -222,6 +222,85 @@
                    </property>
          </bean>
          
+#end
+
+#if ($hasOrganizationModule)
+
+  <bean id="baseApplication"
+         class="org.springframework.ejb.access.SimpleRemoteStatelessSessionProxyFactoryBean"
+                   lazy-init="true">
+                   <property name="jndiTemplate" ref="jndiTemplate" />
+                   <property name="jndiName">
+                            <value>${baseApplication.Remote}</value>
+                   </property>
+                   <property name="businessInterface">
+                            <value>org.openkoala.organisation.application.BaseApplication</value>
+                   </property>
+                   <property name="lookupHomeOnStartup">
+                            <value>false</value>
+                   </property>
+   </bean>
+   
+   <bean id="employeeApplication"
+         class="org.springframework.ejb.access.SimpleRemoteStatelessSessionProxyFactoryBean"
+                   lazy-init="true">
+                   <property name="jndiTemplate" ref="jndiTemplate" />
+                   <property name="jndiName">
+                            <value>${employeeApplication.Remote}</value>
+                   </property>
+                   <property name="businessInterface">
+                            <value>org.openkoala.organisation.application.EmployeeApplication</value>
+                   </property>
+                   <property name="lookupHomeOnStartup">
+                            <value>false</value>
+                   </property>
+   </bean>
+   
+    <bean id="jobApplication"
+         class="org.springframework.ejb.access.SimpleRemoteStatelessSessionProxyFactoryBean"
+                   lazy-init="true">
+                   <property name="jndiTemplate" ref="jndiTemplate" />
+                   <property name="jndiName">
+                            <value>${jobApplication.Remote}</value>
+                   </property>
+                   <property name="businessInterface">
+                            <value>org.openkoala.organisation.application.JobApplication</value>
+                   </property>
+                   <property name="lookupHomeOnStartup">
+                            <value>false</value>
+                   </property>
+   </bean>
+   
+    <bean id="organizationApplication"
+         class="org.springframework.ejb.access.SimpleRemoteStatelessSessionProxyFactoryBean"
+                   lazy-init="true">
+                   <property name="jndiTemplate" ref="jndiTemplate" />
+                   <property name="jndiName">
+                            <value>${organizationApplication.Remote}</value>
+                   </property>
+                   <property name="businessInterface">
+                            <value>org.openkoala.organisation.application.OrganizationApplication</value>
+                   </property>
+                   <property name="lookupHomeOnStartup">
+                            <value>false</value>
+                   </property>
+   </bean>
+   
+   <bean id="postApplication"
+         class="org.springframework.ejb.access.SimpleRemoteStatelessSessionProxyFactoryBean"
+                   lazy-init="true">
+                   <property name="jndiTemplate" ref="jndiTemplate" />
+                   <property name="jndiName">
+                            <value>${postApplication.Remote}</value>
+                   </property>
+                   <property name="businessInterface">
+                            <value>org.openkoala.organisation.application.PostApplication</value>
+                   </property>
+                   <property name="lookupHomeOnStartup">
+                            <value>false</value>
+                   </property>
+   </bean>
+   
 #end
 
 </beans>

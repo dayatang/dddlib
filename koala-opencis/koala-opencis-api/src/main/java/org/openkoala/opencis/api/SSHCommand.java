@@ -40,7 +40,6 @@ public abstract class SSHCommand implements Command {
 	 */
 	@Override
 	public final void execute() throws Exception {
-		// TODO Auto-generated method stub
 		Connection connection = null;
 		Session session = null;
 		connection = new Connection(host);
@@ -55,7 +54,6 @@ public abstract class SSHCommand implements Command {
 			//抽象方法
 			doWork(connection, session);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new Exception("无法执行命令：" + getCommand());
 		}finally{

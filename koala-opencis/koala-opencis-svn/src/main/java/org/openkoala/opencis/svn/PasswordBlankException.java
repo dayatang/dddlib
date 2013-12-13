@@ -1,4 +1,4 @@
-package org.openkoala.opencis.jira.service.impl;
+package org.openkoala.opencis.svn;
 
 public class PasswordBlankException extends BaseException {
 

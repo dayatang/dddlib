@@ -8,8 +8,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.inject.Inject;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.inject.Named;
+import javax.interceptor.Interceptors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openkoala.organisation.EmployeeMustHaveAtLeastOnePostException;
@@ -32,16 +34,19 @@ import com.dayatang.querychannel.support.Page;
  */
 @Named
 @Transactional
+@Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
+@Stateless(name = "EmployeeApplication")
+@Remote
 public class EmployeeApplicationImpl implements EmployeeApplication {
 
 
 	private QueryChannelService queryChannel;
 	
 	private QueryChannelService getQueryChannelService(){
-		if(queryChannel!=null){
-			return queryChannel;
+		if(queryChannel ==null){
+			queryChannel = InstanceFactory.getInstance(QueryChannelService.class,"queryChannel_org");
 		}
-		return InstanceFactory.getInstance(QueryChannelService.class,"queryChannel_org");
+		return queryChannel;
 	}
 
 	@Override
