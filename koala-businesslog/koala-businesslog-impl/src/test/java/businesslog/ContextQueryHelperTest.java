@@ -5,6 +5,8 @@ import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.openkoala.businesslog.BusinessLogClassNotFoundException;
+import org.openkoala.businesslog.BusinessLogQueryMethodException;
 import org.openkoala.businesslog.common.ContextQueryHelper;
 
 import java.lang.reflect.Method;
@@ -75,9 +77,13 @@ public class ContextQueryHelperTest {
     }
 
 
-    @Test
-    public void testgetMethodInstanceOf() throws ClassNotFoundException {
-
+    @Test(expected = BusinessLogClassNotFoundException.class)
+    public void testgetMethodInstanceOf() {
+        String methodSignature4 = "findContractById(business.xx)";
+        assert new ArrayList<Class>().equals(
+                Arrays.asList(
+                        ContextQueryHelper.getMethodParamClasses(
+                                ContextQueryHelper.getMethodParamTypes(methodSignature4))));
     }
 
 

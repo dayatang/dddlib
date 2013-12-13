@@ -25,8 +25,6 @@ import java.util.logging.Logger;
  */
 public class BusinessLogInterceptor {
 
-    private static Logger logger = Logger.getLogger(BusinessLogInterceptor.class.toString());
-
     /**
      * 当前调用方法在ThreadLocalBusinessLogContext中的key
      */
