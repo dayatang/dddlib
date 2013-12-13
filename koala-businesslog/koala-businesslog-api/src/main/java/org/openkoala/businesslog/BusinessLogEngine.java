@@ -38,8 +38,6 @@ public class BusinessLogEngine {
     public BusinessLog exportLogBy(String businessOperation, BusinessLogExporter exporter) {
         Map<String, Object> context = createContext(businessOperation);
         BusinessLog businessLog = new BusinessLog();
-        System.out.println("^^^^^^^^^" + businessOperation);
-
         String template = config.getLogTemplateof(businessOperation);
         businessLog.setLog(render.render(context, template).build());
         businessLog.setCategory(config.getBusinessMethodCategory(businessOperation));

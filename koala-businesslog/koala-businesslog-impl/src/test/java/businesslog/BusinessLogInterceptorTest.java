@@ -31,7 +31,7 @@ public class BusinessLogInterceptorTest extends AbstractIntegrationTest {
     private ProjectApplication projectApplication;
 
     @Test
-    public void test() {
+    public void testFindProjects() {
         ThreadLocalBusinessLogContext.put("user", "张三");
         ThreadLocalBusinessLogContext.put("time", new Date());
         ThreadLocalBusinessLogContext.put("ip", "202.11.22.33");
@@ -52,14 +52,5 @@ public class BusinessLogInterceptorTest extends AbstractIntegrationTest {
 
 
     }
-
-    @Test
-    public void testFindProjects() {
-
-
-
-
-    }
-
 
 }

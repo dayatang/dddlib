@@ -2,6 +2,8 @@ package org.openkoala.businesslog.impl;
 
 import com.dayatang.domain.InstanceFactory;
 import org.apache.commons.beanutils.PropertyUtils;
+import org.openkoala.businesslog.QueryMethodConvertArgException;
+import org.openkoala.businesslog.QueryMethodInvokeException;
 import org.openkoala.businesslog.common.ContextQueryHelper;
 import org.openkoala.businesslog.config.BusinessLogContextQuery;
 
@@ -108,6 +110,7 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
     }
 
 
+    // TODO 需要移动到ContextQueryHelper类中，并增加多更多类型的支持
     private Object convertArg(String arg, Class aClass) {
         if (null == arg) {
             return arg;
@@ -119,11 +122,11 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
                 try {
                     return PropertyUtils.getNestedProperty(bean, arg.substring(arg.indexOf(".") + 1, arg.lastIndexOf("}")));
                 } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
+                    throw new QueryMethodConvertArgException(e);
                 } catch (InvocationTargetException e) {
-                    throw new RuntimeException(e);
+                    throw new QueryMethodConvertArgException(e);
                 } catch (NoSuchMethodException e) {
-                    throw new RuntimeException(e);
+                    throw new QueryMethodConvertArgException(e);
                 }
             } else {
                 return context.get(arg.substring(arg.indexOf("{") + 1, arg.lastIndexOf("}")));
@@ -151,9 +154,9 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
             }
             return getMethodInstance().invoke(methodObject, params);
         } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
+            throw new QueryMethodInvokeException(e);
         } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
+            throw new QueryMethodInvokeException(e);
         }
     }
 

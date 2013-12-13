@@ -40,7 +40,6 @@ public class BusinessLogInterceptor {
 
 
     public void logAfter(JoinPoint joinPoint, Object result) {
-
         log(joinPoint, result, null);
     }
 

@@ -4,6 +4,8 @@ import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.NotFoundException;
 import org.apache.commons.beanutils.BeanUtils;
+import org.openkoala.businesslog.BusinessLogClassNotFoundException;
+import org.openkoala.businesslog.BusinessLogQueryMethodException;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
@@ -44,17 +46,17 @@ public class ContextQueryHelper {
                 result = Class.forName(beanClassName).getMethod(methodName, paramsClasses);
             }
             if (null == result) {
-                throw new RuntimeException(MessageFormat.format("Not found {0}\'s {1}", beanClassName, methodName));
+                throw new BusinessLogQueryMethodException(MessageFormat.format("Not found {0}\'s {1}", beanClassName, methodName));
             }
         } catch (NoSuchMethodException e) {
-            new RuntimeException(e);
+            throw new BusinessLogQueryMethodException(e);
         } catch (ClassNotFoundException e) {
-            new RuntimeException(e);
+            throw new BusinessLogQueryMethodException(e);
         }
         return result;
     }
 
-    // TODO 待重构
+    // TODO 待重构 未对多维数组进行支持
     public static Class[] getMethodParamClasses(List<String> methodParamTypes) {
         List<Class> classes = new ArrayList<Class>();
         for (String type : methodParamTypes) {
@@ -100,19 +102,16 @@ public class ContextQueryHelper {
             } else if ("Float".equals(type) || "java.lang.Float".equals(type)) {
                 classes.add(Float.class);
                 continue;
-            } else if (type.contains("[") && type.contains("]")) {
-                type = type.substring(0, type.indexOf("["));
+            } else {
                 try {
-                    classes.add(Array.newInstance(Class.forName(type), 0).getClass());
+                    if (type.contains("[") && type.contains("]")) {
+                        type = type.substring(0, type.indexOf("["));
+                        classes.add(Array.newInstance(Class.forName(type), 0).getClass());
+                    } else {
+                        classes.add(Class.forName(type));
+                    }
                 } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-            }else{
-                try {
-
-                    classes.add(Class.forName(type));
-                } catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
+                    throw new BusinessLogClassNotFoundException(e);
                 }
             }
         }
