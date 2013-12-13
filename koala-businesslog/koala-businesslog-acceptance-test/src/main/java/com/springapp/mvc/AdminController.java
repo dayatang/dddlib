@@ -21,6 +21,7 @@ public class AdminController {
     @RequestMapping(method = RequestMethod.GET)
     public void printWelcome(ModelMap model) {
         List<String> logs = new ArrayList<String>();
+
         for (DefaultBusinessLog log : DefaultBusinessLog.findAll(DefaultBusinessLog.class)) {
             System.out.println(log);
         }

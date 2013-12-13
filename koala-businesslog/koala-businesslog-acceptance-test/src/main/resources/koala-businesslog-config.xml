@@ -30,7 +30,12 @@
     <businessLogConfig>
         <category>项目操作</category>
         <method>Project[] business.ProjectApplication.findSomeProjects(List)</method>
-        <template><![CDATA[查到项目]]></template>
+        <template><![CDATA[
+        查到项目
+        <#list names as name>
+          ${name},
+        </#list>
+        ]]></template>
         <queries>
             <query key="names">
                 <target class="business.Project"></target>

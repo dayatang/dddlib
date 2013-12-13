@@ -65,49 +65,10 @@ public class ContextQueryHelper {
     public static Class[] getMethodParamClasses(List<String> methodParamTypes) {
         List<Class> classes = new ArrayList<Class>();
         for (String type : methodParamTypes) {
-            if ("long".equals(type)) {
-                classes.add(long.class);
+            if (SimpleClassEnum.isSimpleClass(type)) {
+                classes.add(SimpleClassEnum.getSimpleClassEnumOf(type).getClassz());
                 continue;
-            } else if ("Long".equals(type) || "java.lang.Long".equals(type)) {
-                classes.add(Long.class);
-                continue;
-            } else if ("String".equals(type) || "java.lang.String".equals(type)) {
-                classes.add(String.class);
-                continue;
-            } else if ("double".equals(type)) {
-                classes.add(double.class);
-                continue;
-            } else if ("Double".equals(type) || "java.lang.Double".equals(type)) {
-                classes.add(Double.class);
-                continue;
-
-            } else if ("boolean".equals(type)) {
-                classes.add(boolean.class);
-                continue;
-
-            } else if ("Boolean".equals(type) || "java.lang.Boolean".equals(type)) {
-                classes.add(Boolean.class);
-                continue;
-
-            } else if ("char".equals(type)) {
-                classes.add(char.class);
-                continue;
-            } else if ("Character".equals(type) || "java.lang.Character".equals(type)) {
-                classes.add(Character.class);
-                continue;
-            } else if ("int".equals(type)) {
-                classes.add(int.class);
-                continue;
-            } else if ("Integer".equals(type) || "java.lang.Integer".equals(type)) {
-                classes.add(Integer.class);
-                continue;
-            } else if ("float".equals(type)) {
-                classes.add(float.class);
-                continue;
-            } else if ("Float".equals(type) || "java.lang.Float".equals(type)) {
-                classes.add(Float.class);
-                continue;
-            } else {
+            }else{
                 try {
                     if (type.contains("[") && type.contains("]")) {
                         type = type.substring(0, type.indexOf("["));
@@ -124,11 +85,13 @@ public class ContextQueryHelper {
     }
 
 
-    public static Object contextQueryArgConvertStringToObject(String arg, Class aClass,
+    public static Object contextQueryArgConvertStringToObject(String arg,
+                                                              Class aClass,
                                                               Map<String, Object> context) {
         if (null == arg) {
             return arg;
         }
+
         if (arg.contains("$")) {
             if (arg.contains(".")) {
                 String key = arg.substring(arg.indexOf("{") + 1, arg.indexOf("."));
@@ -147,19 +110,10 @@ public class ContextQueryHelper {
             }
 
         } else {
-            if (aClass.equals(Long.class) || aClass.equals(long.class)) {
-                return Long.parseLong(arg);
-            } else if (aClass.equals(String.class)) {
-                return arg;
-            } else if (aClass.equals(Date.class)) {
-                return Date.parse(arg);
-            } else if (aClass.equals(float.class) || aClass.equals(Float.class)) {
-                return Float.valueOf(arg);
-            }
+            return SimpleClassEnum.getSimpleClassEnumOf(aClass).convert(arg);
         }
 
 
-        return null;
     }
 
 }
