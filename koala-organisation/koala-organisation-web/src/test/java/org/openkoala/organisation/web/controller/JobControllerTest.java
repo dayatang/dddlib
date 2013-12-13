@@ -11,6 +11,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -21,7 +23,9 @@ import org.openkoala.organisation.application.BaseApplication;
 import org.openkoala.organisation.application.JobApplication;
 import org.openkoala.organisation.domain.Job;
 
+import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.support.Page;
+import com.dayatang.spring.factory.SpringInstanceProvider;
 
 /**
  * JobController单元测试

@@ -676,7 +676,7 @@
                 var $this = $(this);
                 var indexCheckbox = $this.find('[data-role="indexCheckbox"]');
                 indexCheckbox.attr('indexvalue', $this.index());
-                self.items.push(self.itemsMap[indexCheckbox.val()]);
+                self.items.push(self.itemsMap[indexCheckbox.attr('data-value')]);
             });
             return true;
 		},
@@ -730,7 +730,7 @@
                 var $this = $(this);
                 var indexCheckbox = $this.find('[data-role="indexCheckbox"]');
                 indexCheckbox.attr('indexvalue', $this.index());
-                self.items.push(self.itemsMap[indexCheckbox.val()]);
+                self.items.push(self.itemsMap[indexCheckbox.attr('data-value')]);
             });
             return true;
 		}

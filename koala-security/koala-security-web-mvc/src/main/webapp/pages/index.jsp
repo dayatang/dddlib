@@ -15,15 +15,17 @@
 	<meta http-equiv="Expires" content="0">
     <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
-    <link href="<c:url value='/lib/z-tree/css/zTreeStyle.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/security.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
+    <script>
+        var contextPath = '${pageContext.request.contextPath}';
+    </script>
 </head>
 <body>
 	<input type="hidden" id="roleId" value="${roleId}" />
 	<div class="g-head">
 	    <nav class="navbar navbar-default">
-	        <a class="navbar-brand" href="#"><img src="<c:url value='images/global.logo.png'/>"/>Koala权限系统</a>
+	        <a class="navbar-brand" href="#"><img src="<c:url value='/images/global.logo.png'/>"/>Koala权限系统</a>
 	        <div class="collapse navbar-collapse navbar-ex1-collapse">
 	            <div class="btn-group navbar-right">
 	                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -62,12 +64,14 @@
 	<script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />?time=<%=time%>" ></script>	
-	<script type="text/javascript" src="<c:url value='/lib/z-tree/js/jquery.ztree.all-3.5.min.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/lib/koala-tree.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/main.js' />?time=<%=time%>" ></script>
+    <script type="text/javascript" src="<c:url value='/js/security/role.js' />?time=<%=time%>" ></script>
+    <script type="text/javascript" src="<c:url value='/js/security/user.js' />?time=<%=time%>" ></script>
 	<script>
 		$(function(){ 
-			$.get('/auth/Menu/findTopMenuByUser.koala').done(function(data){
+			$.get(contextPath + '/auth/Menu/findTopMenuByUser.koala').done(function(data){
 		        if(data.data.length == 0){
 		            var dialog = $('<div class="modal fade"><div class="modal-dialog" style="padding-top:10%;width:400px;"><div class="modal-content">' +
 		                ' <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">' +
@@ -99,7 +103,7 @@
 		            });
 		        }
 				$.each(data.data, function(){
-					var $li = $('<li><a data-toggle="collapse" href="#menuMark'+this.id+'"><img class="menu-icon" src="'+this.icon+'"></img>&nbsp;'+this.name+'&nbsp;'+
+					var $li = $('<li><a data-toggle="collapse" href="#menuMark'+this.id+'"><span class="'+this.icon+'"></span>&nbsp;'+this.name+'&nbsp;'+
 						'<i class="glyphicon glyphicon-chevron-left"></i></a><ul id="menuMark'+this.id+'" class="second-level-menu in"></ul></li>');
 					$('.first-level-menu').append($li);
 					renderSubMenu(this.id, $li);
@@ -121,17 +125,17 @@
 			    });
 			});
 			var renderSubMenu = function(id, $menu){
-				$.get('/auth/Menu/findAllSubMenuByParent.koala?resVO.id='+id).done(function(data){
+				$.get(contextPath + '/auth/Menu/findAllSubMenuByParent.koala?resVO.id='+id).done(function(data){
 						var subMenus = new Array();
 						$.each(data.data, function(){
 							if(this.menuType == "2"){
-		                        var $li = $('<li><a data-toggle="collapse" href="#menuMark'+this.id+'"><img class="menu-icon" src="'+this.icon+'"></img>&nbsp;'+this.name+'&nbsp;'+
+		                        var $li = $('<li><a data-toggle="collapse" href="#menuMark'+this.id+'"><span class="'+this.icon+'"></span>&nbsp;'+this.name+'&nbsp;'+
 		                            '<i class="glyphicon glyphicon-chevron-right pull-right" style="position: relative; right: 12px;font-size: 12px;"></i></a><ul id="menuMark'+this.id+'" class="second-level-menu collapse"></ul></li>');
 		                        $li.appendTo($menu.find('.second-level-menu:first')).find('a').css('padding-left', parseInt(this.level)*18+'px');
 		                        renderSubMenu(this.id, $li);
 		                    }else{
 		                        var $li = $(' <li class="submenu" data-role="openTab" data-target="'+this.identifier+'" data-title="'+this.name+'" ' +
-		                            'data-mark="menuMark'+this.id+'"><a ><img class="menu-icon" src="'+this.icon+'"></img>&nbsp;'+this.name+'</a></li>');
+		                            'data-mark="menuMark'+this.id+'"><a ><span class="'+this.icon+'"></span>&nbsp;'+this.name+'</a></li>');
 		                        $li.appendTo($menu.find('.second-level-menu:first')).find('a').css('padding-left', parseInt(this.level)*18+'px');
 		                    }
 						});

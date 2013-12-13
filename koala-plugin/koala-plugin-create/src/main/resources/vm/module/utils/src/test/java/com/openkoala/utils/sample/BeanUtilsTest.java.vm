@@ -1,4 +1,4 @@
-package org.openkoala.utils.sample;
+package org.openkoala.org.openkoala.businesslog.utils.sample;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,7 +10,7 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import com.dayatang.utils.BeanUtils;
+import com.dayatang.org.openkoala.businesslog.utils.BeanUtils;
 
 public class BeanUtilsTest {
 

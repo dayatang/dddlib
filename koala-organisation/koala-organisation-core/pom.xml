@@ -9,10 +9,12 @@
 	<artifactId>koala-organisation-core</artifactId>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>com.dayatang.commons</groupId>
 			<artifactId>dayatang-commons-utils</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>com.dayatang.commons</groupId>
 			<artifactId>dayatang-commons-domain</artifactId>
@@ -36,6 +38,7 @@
 			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>${db.groupId}</groupId>
 			<artifactId>${db.artifactId}</artifactId>

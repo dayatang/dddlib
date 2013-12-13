@@ -4,7 +4,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.inject.Named;
+import javax.interceptor.Interceptors;
 
 import org.openkoala.organisation.application.OrganizationApplication;
 import org.openkoala.organisation.application.dto.OrganizationDTO;
@@ -22,7 +25,14 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Named("organizationApplication")
 @Transactional
+@Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
+@Stateless(name = "OrganizationApplication")
+@Remote
 public class OrganizationApplicationImpl implements OrganizationApplication {
+	
+	public boolean isTopOrganizationExists(){
+		return Organization.getTopOrganization()==null?false:true;
+	}
 	
 	@Override
 	public void createAsTopOrganization(Company company) {

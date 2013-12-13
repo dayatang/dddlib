@@ -1,7 +1,9 @@
 <div id="dataSourceGrid"></div>
-<script src="js/gqc/dataSource.js"></script>
 <script>
 $(function(){
+    var script = document.createElement('script');
+    script.src = contextPath + '/js/gqc/dataSource.js';
+    document.getElementById('dataSourceGrid').parentNode.appendChild(script);
     var cols = [
         {title:'数据源ID', name:'dataSourceId', width: '180'},
         { title:'类型', name:'dataSourceTypeDesc' , width: '120'},
@@ -24,7 +26,7 @@ $(function(){
         identity: 'id',
         columns: cols,
         buttons: buttons,
-        url: 'dataSource/pageJson.koala'
+        url: contextPath + '/dataSource/pageJson.koala'
     }).on({
         'add': function(){
             dataSource().add( $(this));

@@ -1,12 +1,12 @@
 a, button{
     outline: none!important;
+    text-decoration: none;
+    cursor: pointer;
 }
 .center {
     text-align: center;
 }
-/*
-澶撮儴瀵艰埅鏍�
- */
+
 .g-head {
     background-color: #428BCA;
 }
@@ -34,9 +34,7 @@ a, button{
 .g-head:after, .g-body:after {
     clear: both;
 }
-/*
-宸﹁竟鑿滃崟鏍�
-*/
+
 .g-sidec {
     position: relative;
     margin: 0;
@@ -158,9 +156,7 @@ a, button{
     right: 12px;
     font-size: 12px;
 }
-/*
-鍐呭椤�
-*/
+
 .g-mainc {
     padding-top: 2px;
 }
@@ -199,9 +195,7 @@ a, button{
     background-color: #ffffff;
     margin-left:  100px;
 }
-/*
-搴曢儴鏍峰紡
-*/
+
 .g-foot {
     clear: both;
     padding: 10px;
@@ -216,9 +210,7 @@ a, button{
     padding-left: 5px;
     height: 40px;
 }
-/*
-淇敼瀵嗙爜寮瑰嚭妗�
-*/
+
 .modal {
     overflow-y: auto;
 }

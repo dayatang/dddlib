@@ -130,6 +130,12 @@
 			<artifactId>koala-organisation-applicationImpl</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+		
+		<dependency>
+            <groupId>org.openkoala.jbpm.core</groupId>
+            <artifactId>koala-jbpm-core-application</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
 
 		<!-- 依赖流程引擎子系统 
 		<dependency>

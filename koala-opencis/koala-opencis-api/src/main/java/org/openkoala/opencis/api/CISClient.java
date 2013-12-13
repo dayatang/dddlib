@@ -30,7 +30,7 @@ public interface CISClient {
 	 * @param usrId
 	 * @param role
 	 */
-	public void assignUserToRole(Project project,String usrId,String role);
+	public void assignUserToRole(Project project,String userId,String role);
 	
 	/**
 	 * 检测指定工具是否可连接

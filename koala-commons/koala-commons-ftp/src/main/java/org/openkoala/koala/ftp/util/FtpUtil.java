@@ -18,6 +18,14 @@ public interface FtpUtil {
 	public File downLoadFile(String path,String filename) throws FtpException;
 	
 	/**
+	 * 使用Binary模式下载一个文件
+	 * @param path
+	 * @param filename
+	 * @return
+	 */
+	public File downloadBinaryFile(String path,String filename,String localPath) throws FtpException;
+	
+	/**
 	 * 下载一个文件,保存到{localPath}/{path}/{filename}下面
 	 * @param path
 	 * @param filename

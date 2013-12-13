@@ -136,7 +136,8 @@
 		<module>koala-gqc</module>
 		<module>koala-monitor</module>
 		<module>koala-organisation</module>
-	</modules>
+        <module>koala-businesslog</module>
+    </modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -300,7 +301,7 @@
 			<!-- dddlib -->
 			<dependency>
 				<groupId>com.dayatang.commons</groupId>
-				<artifactId>dayatang-commons-utils</artifactId>
+				<artifactId>dayatang-commons-org.openkoala.businesslog.utils</artifactId>
 				<version>${dayatang.commons.version}</version>
 			</dependency>
 			<dependency>
@@ -318,6 +319,11 @@
 				<artifactId>dayatang-commons-spring</artifactId>
 				<version>${dayatang.commons.version}</version>
 			</dependency>
+			<dependency>
+			  <groupId>com.dayatang.commons</groupId>
+			  <artifactId>dayatang-commons-utils</artifactId>
+			  <version>${dayatang.commons.version}</version>
+		   </dependency>
 			<dependency>
 				<groupId>com.dayatang.commons</groupId>
 				<artifactId>dayatang-commons-hibernate</artifactId>
@@ -944,6 +950,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.3.2</version>
 					<configuration>
 						<source>1.6</source>
 						<target>1.6</target>
@@ -1018,6 +1025,15 @@
 					<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
 				</configuration>
 			</plugin>
+			 <plugin>  
+            <groupId>org.apache.maven.plugins</groupId>  
+            <artifactId>maven-compiler-plugin</artifactId>  
+            <configuration>  
+                <source>1.6</source>  
+                <target>1.6</target>  
+                <encoding>UTF-8</encoding>  
+            </configuration>  
+        </plugin>  
 		</plugins>
 		<extensions>
 			<extension>

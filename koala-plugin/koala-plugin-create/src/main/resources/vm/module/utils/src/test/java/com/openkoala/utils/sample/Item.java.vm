@@ -1,4 +1,4 @@
-package org.openkoala.utils.sample;
+package org.openkoala.org.openkoala.businesslog.utils.sample;
 
 public class Item {
 	private int id;

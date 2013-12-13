@@ -14,6 +14,13 @@ public class Project {
 	
 	private String projectName;
 	
+	private String projectKey;
+	
+	/**
+	 * 项目负责人
+	 */
+	private String projectLead;
+	
 	private String projectPath;
 	
 	private String description;
@@ -56,6 +63,22 @@ public class Project {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getProjectKey() {
+		return projectKey;
+	}
+
+	public void setProjectKey(String projectKey) {
+		this.projectKey = projectKey;
+	}
+	
+	public String getProjectLead() {
+		return projectLead;
+	}
+
+	public void setProjectLead(String projectLead) {
+		this.projectLead = projectLead;
 	}
 
 	public void setDevelopers(List<Developer> developers) {

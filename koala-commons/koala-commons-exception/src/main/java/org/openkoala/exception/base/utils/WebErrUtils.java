@@ -27,7 +27,7 @@ import org.openkoala.exception.extend.SystemException;
 import org.openkoala.framework.i18n.I18NManager;
 
 /**
- * 类    名：org.openkoala.exception.base.utils.WebErrUtils<br />
+ * 类    名：org.openkoala.exception.base.org.openkoala.businesslog.utils.WebErrUtils<br />
  *   
  * 功能描述：web错误工具<br />
  *  

@@ -1,8 +1,9 @@
 <div id="positionGrid"></div>
-<script src="js/organisation/position.js"></script>
-
 <script>
     $(function(){
+        var script = document.createElement('script');
+        script.src = contextPath + '/js/organisation/position.js';
+        document.getElementById('positionGrid').parentNode.appendChild(script);
        var cols = [
             { title:'岗位编号', name:'sn' , width: '100px'},
             { title:'岗位名称', name:'name' , width: '150px'},
@@ -26,7 +27,7 @@
              columns: cols,
              buttons: buttons,
              querys: [{title: '岗位名称', value: 'name'}],
-             url: 'post/pagingquery.koala'
+             url:  contextPath + '/post/pagingquery.koala'
         }).on({
                     'add': function(){
                         position().add( $(this));

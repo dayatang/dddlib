@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.inject.Inject;
+
 import org.openkoala.organisation.OrganizationHasPrincipalYetException;
 import org.openkoala.organisation.SnIsExistException;
 import org.openkoala.organisation.TerminateHasEmployeePostException;
@@ -13,7 +15,6 @@ import org.openkoala.organisation.application.PostApplication;
 import org.openkoala.organisation.application.dto.PostDTO;
 import org.openkoala.organisation.domain.Organization;
 import org.openkoala.organisation.domain.Post;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,7 +33,7 @@ import com.dayatang.querychannel.support.Page;
 @RequestMapping("/post")
 public class PostController extends BaseController {
 
-	@Autowired
+	@Inject
 	private PostApplication postApplication;
 	
 	/**

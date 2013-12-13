@@ -5,11 +5,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.inject.Named;
 
 import org.apache.http.HttpResponse;
@@ -26,14 +25,13 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.openkoala.jbpm.wsclient.JBPMApplication;
-import org.openkoala.jbpm.wsclient.JBPMApplicationImplService;
+import org.openkoala.jbpm.application.JBPMApplication;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.GunvorApplication;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.vo.Bpmn2;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.vo.PackageVO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+
+import com.dayatang.domain.InstanceFactory;
 
 @Named("gunvorApplication")
 public class GunvorApplicationImpl implements GunvorApplication {
@@ -44,16 +42,19 @@ public class GunvorApplicationImpl implements GunvorApplication {
 	private String gunvorServerUser;
 	@Value("${gunvor.server.pwd}")
 	private String gunvorServerPwd;
-
-	private final static Logger logger = LoggerFactory
-			.getLogger(GunvorApplicationImpl.class);
+	
+	private JBPMApplication jbpmApplication;
+	
+	public JBPMApplication getJBPMApplication(){
+		if(jbpmApplication == null){
+			jbpmApplication = InstanceFactory.getInstance(JBPMApplication.class);
+		}
+		return jbpmApplication;
+	}
 
 	public void publichJBPM(String packageName, String name, String wsdl) {
 		try {
 			Bpmn2 bpmn = this.getBpmn2(packageName, name);
-			URL url = new URL(wsdl);
-			JBPMApplication application = new JBPMApplicationImplService(url)
-					.getJBPMApplicationImplPort();
 			String source = getConnectionString(bpmn.getSource());
 			SAXReader reader = new SAXReader();
 			ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(
@@ -69,17 +70,15 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			process.addAttribute("id", processId + "@" + bpmn.getVersion());
 			String pngURL = gunvorServerUrl + "/rest/packages/" + packageName
 					+ "/assets/" + processId + "-image/binary";
-			byte[] pngByte = this.getPng(pngURL);
-			application.addProcess(packageName, processId,
+			Byte[] pngByte = this.getPng(pngURL);
+			getJBPMApplication().addProcess(packageName, processId,
 					Integer.parseInt(bpmn.getVersion()), document.asXML(),
 					pngByte, true);
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
+		} 
 	}
 
 	public List<Bpmn2> getBpmn2s(String packageName) {
@@ -111,7 +110,6 @@ public class GunvorApplicationImpl implements GunvorApplication {
 				if (assertDocument != null) {
 					Element assertRoot = assertDocument.getRootElement();
 					Element metadata = assertRoot.element("metadata");
-					System.out.println(metadata.elementText("title"));
 					if ("bpmn2".equals(metadata.elementText("format"))
 							|| "bpmn".equals(metadata.elementText("format"))) {
 						Bpmn2 bpmn = new Bpmn2();
@@ -142,7 +140,6 @@ public class GunvorApplicationImpl implements GunvorApplication {
 		try {
 			bmnName = URLEncoder.encode(name, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String assertUrl = gunvorServerUrl + "/rest/packages/" + packageName
@@ -154,7 +151,6 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			assertDocument = assertReader.read(new ByteArrayInputStream(
 					assertResult.toString().getBytes("UTF-8")));
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Element assertRoot = assertDocument.getRootElement();
@@ -240,20 +236,14 @@ public class GunvorApplicationImpl implements GunvorApplication {
 		String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><entry xmlns=\"http://purl.org/atom/ns#\"><description></description><name>AB</name><categoryName></categoryName><format>bpmn2</format></entry>";
 		postConnectionString(gunvorServerUrl + "/rest/packages/" + packageName
 				+ "/assets", xml);
-		// String urlString
-		// =gunvorServerUrl+"/org.drools.guvnor.Guvnor/standaloneEditorServlet?packageName="
-		// + packageName + "&categoryName=mycategory" +
-		// "&createNewAsset=true&description="+ description + "&assetName=" +
-		// name + "&assetFormat=bpmn" +"&client=oryx";
-		// this.getConnectionString(urlString);
-
 	}
 
 	private void postConnectionString(String urlString, String xmlContent) {
 
 		// String xml =
 		// "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><package><description>The default rule package</description><title>demo</title></package>";
-
+		
+		DefaultHttpClient httpclient = null;
 		try {
 			InputStream inputString = null;
 			byte[] data;
@@ -262,8 +252,9 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			inputString.read(data);
 			String str = new String(data);
 			byte[] bb = str.getBytes();
-			DefaultHttpClient httpclient = getDefaultHttpClient();
+			httpclient = getDefaultHttpClient();
 			HttpPost httpPost = new HttpPost(urlString);
+			httpPost.addHeader("Content-Type", "application/xml");
 			httpPost.setEntity(new ByteArrayEntity(bb));
 			httpclient.execute(httpPost);
 		} catch (UnsupportedEncodingException e) {
@@ -271,8 +262,6 @@ public class GunvorApplicationImpl implements GunvorApplication {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-
 	}
 
 	/**
@@ -301,7 +290,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 	 * @param urlString
 	 * @return
 	 */
-	private byte[] getPng(String urlString) {
+	private Byte[] getPng(String urlString) {
 		DefaultHttpClient httpclient = getDefaultHttpClient();
 		HttpGet httpGet = new HttpGet(urlString);
 		httpGet.setHeader("Accept", 
@@ -316,7 +305,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 				swapStream.write(buff, 0, rc);
 			}
 			byte[] in_b = swapStream.toByteArray();
-			return in_b;
+			return convertToByteArray(in_b);
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -325,6 +314,14 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			httpGet.releaseConnection();
 		}
 		return null;
+	}
+	
+	private Byte[] convertToByteArray(byte[] pngs){
+		Byte[] pngByte = new Byte[pngs.length];
+		for(int i=0; i<pngs.length; i++){
+			pngByte[i] = Byte.valueOf(pngs[i]);
+		}
+		return pngByte;
 	}
 
 	/**

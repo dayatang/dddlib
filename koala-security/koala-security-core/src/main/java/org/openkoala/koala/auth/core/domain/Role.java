@@ -3,8 +3,6 @@ package org.openkoala.koala.auth.core.domain;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import com.dayatang.utils.DateUtils;
 
@@ -15,7 +13,6 @@ import com.dayatang.utils.DateUtils;
  * 
  */
 @Entity
-@DiscriminatorColumn(name = "role", discriminatorType = DiscriminatorType.STRING)
 public class Role extends Identity {
 
 	private static final long serialVersionUID = -8345993710464457036L;

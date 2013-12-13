@@ -43,7 +43,7 @@ $(function(){
 				changeHeight();
 			});
 	};
-	loadContent($('#home'), 'pages/businesssupport/activeTasks.jsp');
+    loadContent($('#home'), '/pages/welcome.html');
 	/*
 	* 菜单收缩样式变化
 	 */

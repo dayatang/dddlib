@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>koala-project</artifactId>
+        <groupId>org.openkoala</groupId>
+        <version>2.1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.openkoala.businesslog</groupId>
+    <artifactId>koala-businesslog</artifactId>
+    <version>2.1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>koala-businesslog-api</module>
+        <module>koala-businesslog-impl</module>
+        <module>koala-businesslog-acceptance-test</module>
+    </modules>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.version>3.1.3.RELEASE</spring.version>
+        <aspectj.version>1.6.12</aspectj.version>
+        <charset>UTF-8</charset>
+        <tomcat.version>6.0.35</tomcat.version>
+
+
+        <koala.version>2.1.0-SNAPSHOT</koala.version>
+        <cargo.container>jetty8x</cargo.container>
+
+        <cargo.container.url>
+            http://archive.eclipse.org/jetty/8.1.5.v20120716/dist/jetty-distribution-8.1.5.v20120716.zip
+        </cargo.container.url>
+        <cargo.container.downloadDir>${env.HOME}</cargo.container.downloadDir>
+        <cargo.host>localhost</cargo.host>
+        <cargo.port>6699</cargo.port>
+        <cargo.context></cargo.context>
+        <browser>org.openqa.selenium.firefox.FirefoxDriver</browser>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>businesslog</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+                <hibernate.show_sql>true</hibernate.show_sql>
+                <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+                <db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
+                <db.connectionURL>jdbc:h2:~/db/businesslog;MVCC=true</db.connectionURL>
+                <db.generate.ddl>true</db.generate.ddl>
+                <db.username>sa</db.username>
+                <db.password/>
+                <db.Type>H2</db.Type>
+                <db.groupId>com.h2database</db.groupId>
+                <db.artifactId>h2</db.artifactId>
+            </properties>
+        </profile>
+    </profiles>
+
+
+    <developers>
+        <developer>
+            <id>xmfang</id>
+            <name>Fang Xinmin</name>
+            <email>xinmin.fang@gmail.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+
+        <developer>
+            <id>zjzhai</id>
+            <name>Zhai ZhiJun</name>
+            <email>zacker330@gmail.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+</project>

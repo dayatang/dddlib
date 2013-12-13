@@ -1,12 +1,14 @@
 a, button{
     outline: none!important;
+    cursor: pointer;
+}
+a:hover {
+    text-decoration: none;
 }
 .center {
     text-align: center;
 }
-/*
-婢舵挳鍎寸�鑹板焻閺嶏拷
- */
+
 .g-head {
     background-color: #428BCA;
 }
@@ -34,9 +36,7 @@ a, button{
 .g-head:after, .g-body:after {
     clear: both;
 }
-/*
-瀹革箒绔熼懣婊冨礋閺嶏拷
-*/
+
 .g-sidec {
     position: relative;
     margin: 0;
@@ -158,8 +158,7 @@ a, button{
     right: 12px;
     font-size: 12px;
 }
-/*
-閸愬懎顔愭い锟�*/
+
 .g-mainc {
     padding-top: 2px;
 }
@@ -198,9 +197,7 @@ a, button{
     background-color: #ffffff;
     margin-left:  100px;
 }
-/*
-鎼存洟鍎撮弽宄扮础
-*/
+
 .g-foot {
     clear: both;
     padding: 10px;
@@ -215,8 +212,7 @@ a, button{
     padding-left: 5px;
     height: 40px;
 }
-/*
-娣囶喗鏁肩�鍡欑垳瀵懓鍤锟�*/
+
 .modal {
     overflow-y: auto;
 }

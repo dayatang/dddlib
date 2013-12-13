@@ -1,4 +1,4 @@
-package org.openkoala.utils.sample;
+package org.openkoala.org.openkoala.businesslog.utils.sample;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -12,8 +12,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dayatang.utils.ConfigurationFileImpl;
-import com.dayatang.utils.DateUtils;
+import com.dayatang.org.openkoala.businesslog.utils.ConfigurationFileImpl;
+import com.dayatang.org.openkoala.businesslog.utils.DateUtils;
 
 public class ConfigurationFileImplTest {
 

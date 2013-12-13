@@ -2,8 +2,8 @@ package org.openkoala.jbpm.application;
 
 import java.util.List;
 
-import javax.jws.WebParam;
 import javax.jws.WebService;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -12,7 +12,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
 
 import org.openkoala.jbpm.application.vo.HistoryLogVo;
 import org.openkoala.jbpm.application.vo.JBPMNode;
@@ -42,6 +41,21 @@ public interface JBPMApplication {
 	@GET
 	@Path("processes")
 	public List<ProcessVO> getProcesses();
+	
+	/**
+	 * 新增一个流程
+	 * 
+	 * @param processId
+	 * @param version
+	 * @param data
+	 * @param png
+	 */
+	@POST
+	@Path("process")
+	@Produces({"application/xml", "application/json"})
+	public void addProcess(@FormParam("packageName")String packageName, @FormParam("processId")String processId, 
+			@FormParam("version")int version, @FormParam("data")String data, 
+			@FormParam("png")Byte[] png, @FormParam("isActive")boolean isActive);
 
 	/**
 	 * 发起一个流程
@@ -54,11 +68,10 @@ public interface JBPMApplication {
 	 * </params>
 	 * @return
 	 */
-	@POST()
-	@Path("process/{processId}")
+	@POST
+	@Path("processInstance")
 	@Produces({"application/xml", "application/json"})
-//	@Consume
-	public long startProcess(@PathParam("processId")String processId, @FormParam("creater")String creater, @FormParam("params")String params);
+	public long startProcess(@FormParam("processId")String processId, @FormParam("creater")String creater, @FormParam("params")String params);
 	
 	/**
 	 * 分页查询已办任务
@@ -67,7 +80,7 @@ public interface JBPMApplication {
 	 * @param pageSize
 	 * @return
 	 */
-	@GET()
+	@GET
 	@Path("doneTask/{userName}/{processId}")
 	public PageTaskVO pageQueryDoneTask(@PathParam("processId")String processId, @PathParam("userName")String userName, @QueryParam("currentPage")int currentPage, @QueryParam("pageSize")int pageSize);
 	
@@ -78,7 +91,7 @@ public interface JBPMApplication {
 	 * @param groups
 	 * @return
 	 */
-	@GET()
+	@GET
 	@Path("todoTask/{userName}/{processId}")
 	public List<TaskVO> processQueryTodoListWithGroup(@PathParam("processId") String processId, @PathParam("userName") String userName, @QueryParam("groupName") String groupName);
 	
@@ -88,9 +101,9 @@ public interface JBPMApplication {
 	 * @param taskId
 	 * @return
 	 */  //只需要taskid，待优化
-	@GET()
-	@Path("choice")
-	public List<TaskChoice> queryTaskChoice(@QueryParam("processInstanceId") long processInstanceId, @QueryParam("taskId") long taskId);
+	@GET
+	@Path("choice/{processInstanceId}/{taskId}")
+	public List<TaskChoice> queryTaskChoice(@PathParam("processInstanceId") long processInstanceId, @PathParam("taskId") long taskId);
 
 	/**
 	 * 完成一个工作
@@ -105,10 +118,10 @@ public interface JBPMApplication {
 	 *            节点级参数 流程级参数与节点级参数均以XML形式传入，如 <params>
 	 *            <creater>lingen</creater> <isOpen>true</isOpen> </params>
 	 */
-	@PUT()
-	@Path("task/{taskId}")
-	public boolean completeTask(@QueryParam("processInstanceId") long processInstanceId, 
-			@QueryParam("taskId") long taskId, @QueryParam("userName") String userName,
+	@PUT
+	@Path("task/{userName}/{processInstanceId}/{taskId}")
+	public boolean completeTask(@PathParam("processInstanceId") long processInstanceId, 
+			@PathParam("taskId") long taskId, @PathParam("userName") String userName,
 			@FormParam("params") String params, @FormParam("data") String data);
 	
 	/**
@@ -117,9 +130,19 @@ public interface JBPMApplication {
 	 * @param instanceId
 	 * @return
 	 */
-	@GET()
-	@Path("processImage/{processInstanceId}")
+	@GET
+	@Path("processInstanceImage/{processInstanceId}")
 	public byte[] getPorcessImageStream(@PathParam("processInstanceId") long processInstanceId);
+
+	/**
+	 * 返回流程定义的流程图
+	 * 
+	 * @param processId
+	 * @return
+	 */
+	@GET
+	@Path("processImage/{processId}")
+	public byte[] getProcessImage(@PathParam("processId")String processId);
 	
 	/**
 	 * 查询一个流程的历史记录
@@ -127,7 +150,7 @@ public interface JBPMApplication {
 	 * @param processId
 	 * @return
 	 */
-	@GET()
+	@GET
 	@Path("history/{processInstanceId}")
 	public List<HistoryLogVo> queryHistoryLog(@PathParam("processInstanceId") long processInstanceId);
 	
@@ -141,7 +164,9 @@ public interface JBPMApplication {
 	 * </params>
 	 * @return
 	 */
-	public List<TaskVO> queryTodoListWithGroup(String userName, String groupName);
+	@GET
+	@Path("todoTasks")
+	public List<TaskVO> queryTodoListWithGroup(@QueryParam("userName")String userName, @QueryParam("groupName")String groupName);
 	
 	/**
 	 * 查询一个用户的待办任务
@@ -153,7 +178,9 @@ public interface JBPMApplication {
 	 * </params>
 	 * @return
 	 */
-	public List<TaskVO> queryTodoList(String user);
+	@GET
+	@Path("todoTasks/{user}")
+	public List<TaskVO> queryTodoList(@PathParam("user")String user);
 
 	/**
 	 * 查询一个用户的已完成任务
@@ -161,13 +188,17 @@ public interface JBPMApplication {
 	 * @param user
 	 * @return
 	 */
-	public List<TaskVO> queryDoenTask(String user);
+	@GET
+	@Path("doneTasks/{user}")
+	public List<TaskVO> queryDoenTask(@PathParam("user")String user);
 
 	/**
 	 * 返回错误的流程列表
 	 * 
 	 * @return
 	 */
+	@GET
+	@Path("errorProcesses")
 	public List<TaskVO> queryErrorList();
 
 	/**
@@ -176,7 +207,9 @@ public interface JBPMApplication {
 	 * @param processId
 	 * @return
 	 */
-	public List<JBPMNode> getProcessNodes(String processId);
+	@GET
+	@Path("processNodes/{processId}")
+	public List<JBPMNode> getProcessNodes(@PathParam("processId")String processId);
 
 	/**
 	 * 返回一个流程实例的所有人工节点
@@ -184,16 +217,10 @@ public interface JBPMApplication {
 	 * @param processInstanceId
 	 * @return
 	 */
+	@GET
+	@Path("processInstanceNodes/{processInstanceId}")
 	public List<JBPMNode> getProcessNodesFromPorcessInstnaceId(
-			long processInstanceId);
-
-	/**
-	 * 流程节点的人工转移
-	 * 
-	 * @param processInstanceId
-	 * @param nodeId
-	 */
-	public void assignToNode(long processInstanceId, long nodeId);
+			@PathParam("processInstanceId")long processInstanceId);
 
 	/**
 	 * 查询一个流程下的所有活动流程实例信息
@@ -201,15 +228,19 @@ public interface JBPMApplication {
 	 * @param processId
 	 * @return
 	 */
-	public List<ProcessInstanceVO> queryAllActiveProcess(String processId);
+	@GET
+	@Path("processInstances/{processId}")
+	public List<ProcessInstanceVO> queryAllActiveProcess(@PathParam("processId")String processId);
 
 	/**
 	 * 查询一个流程下所部署的所有版本
 	 * @param processId  流程的processId
 	 * @return
 	 */
+	@GET
+	@Path("ProcessVersions/{processId}")
 	public List<KoalaProcessInfoVO> getProcessVersionByProcessId(
-			String processId);
+			@PathParam("processId")String processId);
 
 	/**
 	 * 查询所有正在运行的流程
@@ -217,8 +248,11 @@ public interface JBPMApplication {
 	 * @param processId
 	 * @return
 	 */
+	@GET
+	@Path("runningProcessInstances/{processId}/{versionNum}")
 	public Page<ProcessInstanceVO> queryRunningProcessInstances(
-			String processId, String versionNum, long firstRow, int endRow);
+			@PathParam("processId")String processId, @PathParam("versionNum")String versionNum,
+			@QueryParam("firstRow")long firstRow, @QueryParam("endRow")int endRow);
 
 	/**
 	 * 查询已完成流程
@@ -226,8 +260,11 @@ public interface JBPMApplication {
 	 * @param processId
 	 * @return
 	 */
+	@GET
+	@Path("completedProcessInstances/{processId}/{versionNum}")
 	public Page<ProcessInstanceVO> queryCompleteProcessInstances(
-			String processId, String versionNum, long firstRow, int endRow);
+			@PathParam("processId")String processId, @PathParam("versionNum")String versionNum,
+			@QueryParam("firstRow")long firstRow, @QueryParam("endRow")int endRow);
 
 	/**
 	 * 查询一个流程的实例信息
@@ -235,50 +272,29 @@ public interface JBPMApplication {
 	 * @param processInstaceId
 	 * @return
 	 */
-	public ProcessInstanceVO getProcessInstance(long processInstaceId);
-
-	/**
-	 * 流程委托
-	 * 
-	 * @param taskId
-	 *            任务ID
-	 * @param userId
-	 *            委托者
-	 * @param targetUserId
-	 *            被委托者
-	 */
-	public void delegate(long taskId, String userId, String targetUserId);
-
-	/**
-	 * 返回流程定义的流程图
-	 * 
-	 * @param processId
-	 * @return
-	 */
-	public byte[] getProcessImage(String processId);
+	@GET
+	@Path("processInstance/{processInstaceId}")
+	public ProcessInstanceVO getProcessInstance(@PathParam("processInstaceId")long processInstaceId);
 
 	/**
 	 * 修复错误流程
 	 * 
 	 * @param taskId
 	 */
-	public void repairTask(long taskId);
+	@PUT
+	@Path("taskRepair/{taskId}")
+	public void repairTask(@PathParam("taskId")long taskId);
 
-	/**
-	 * 新增一个流程
-	 * 
-	 * @param processId
-	 * @param version
-	 * @param data
-	 * @param png
-	 */
-	public void addProcess(String packageName, String processId, int version,
-			String data, byte[] png, boolean isActive);
+	@GET
+	@Path("processesByName/{processName}")
+	public List<ProcessVO> getProcessesByProcessName(@PathParam("processName")String processName);
 
-	public List<ProcessVO> getProcessesByProcessName(String processName);
-
+	@GET
+	@Path("processesByPackage/{packageName}")
 	public List<String> getProcessByPackage(String packageName);
 
+	@GET
+	@Path("packages")
 	public List<String> getPakcages();
 
 	/**
@@ -286,6 +302,8 @@ public interface JBPMApplication {
 	 * 
 	 * @param processInstanceId
 	 */
+	@DELETE
+	@Path("processInstance/{processInstanceId}")
 	public void removeProcessInstance(long processInstanceId);
 
 	/**
@@ -299,14 +317,19 @@ public interface JBPMApplication {
 	 *            全局变量的类型 支持以下变量类型： STRING 字符型 BOOLEAN boolean型 INT 整形 LONG 长整形
 	 *            DOUBLE 浮点型
 	 */
-	public void setGlobalVariable(String key, String value, String type);
+	@POST
+	@Path("globalVariable")
+	public void setGlobalVariable(@FormParam("key")String key, 
+			@FormParam("value")String value,@FormParam("type")String type);
 
 	/**
 	 * 删除一个全局变量
 	 * 
 	 * @param key
 	 */
-	public void removeGlobalVariable(String key);
+	@DELETE
+	@Path("globalVariable/{key}")
+	public void removeGlobalVariable(@PathParam("key")String key);
 
 	/**
 	 * 新增一个Package级的变量
@@ -321,8 +344,10 @@ public interface JBPMApplication {
 	 *            package变量的类型 支持以下变量类型： STRING 字符型 BOOLEAN boolean型 INT 整形 LONG
 	 *            长整形 DOUBLE 浮点型
 	 */
-	public void setPackageVariable(String packageName, String key,
-			String value, String type);
+	@POST
+	@Path("packageVariable")
+	public void setPackageVariable(@FormParam("packageName")String packageName, @FormParam("key")String key,
+			@FormParam("value")String value, @FormParam("type")String type);
 
 	/**
 	 * 移除一个Package变量
@@ -330,7 +355,9 @@ public interface JBPMApplication {
 	 * @param packageName
 	 * @param key
 	 */
-	public void removePackageVariable(String packageName, String key);
+	@DELETE
+	@Path("packageVariable/{packageName}/{key}")
+	public void removePackageVariable(@PathParam("packageName")String packageName, @PathParam("key")String key);
 
 	/**
 	 * 添加一个流程定义级的变量
@@ -347,8 +374,10 @@ public interface JBPMApplication {
 	 *            变量的类型 支持以下变量类型： STRING 字符型 BOOLEAN boolean型 INT 整形 LONG 长整形
 	 *            DOUBLE 浮点型
 	 */
-	public void setProcessVariable(String processId, String key, String value,
-			String type);
+	@POST
+	@Path("processVariable")
+	public void setProcessVariable(@FormParam("processId")String processId, @FormParam("key")String key, 
+			@FormParam("value")String value, @FormParam("type")String type);
 
 	/**
 	 * 移除一个流程定义级的变量
@@ -357,7 +386,46 @@ public interface JBPMApplication {
 	 * @param processId
 	 * @param key
 	 */
-	public void removeProcessVariable(String processId, String key);
+	@DELETE
+	@Path("processVariable/{processId}/{key}")
+	public void removeProcessVariable(@PathParam("processId")String processId, @PathParam("key")String key);
+
+	/**
+	 * 退回功能，当前节点用户可进行退回
+	 * 
+	 * @param processInstanceId
+	 * @param userId
+	 * @param userId
+	 */
+	public void roolBack(long processInstanceId, long taskId, String userId);
+
+	/**
+	 * 取回功能，如果下一步的人员未进行任何操作，前一步的用户可以主动取回这个任务，重新决策
+	 * 
+	 * @param TaskId
+	 * @param userId
+	 */
+	public void fetchBack(long processInstanceId, long taskId, String userId);
+	
+	/**
+	 * 流程节点的人工转移
+	 * 
+	 * @param processInstanceId
+	 * @param nodeId
+	 */
+	public void assignToNode(long processInstanceId, long nodeId);
+
+	/**
+	 * 流程委托
+	 * 
+	 * @param taskId
+	 *            任务ID
+	 * @param userId
+	 *            委托者
+	 * @param targetUserId
+	 *            被委托者
+	 */
+	public void delegate(long taskId, String userId, String targetUserId);
 
 	/**
 	 * 设置流程实例变量值
@@ -382,22 +450,4 @@ public interface JBPMApplication {
 	 */
 	@Deprecated
 	public List<ProcessInstanceVO> queryAllProcess(String processId);
-
-	/**
-	 * 退回功能，当前节点用户可进行退回
-	 * 
-	 * @param processInstanceId
-	 * @param userId
-	 * @param userId
-	 */
-	public void roolBack(long processInstanceId, long taskId, String userId);
-
-	/**
-	 * 取回功能，如果下一步的人员未进行任何操作，前一步的用户可以主动取回这个任务，重新决策
-	 * 
-	 * @param TaskId
-	 * @param userId
-	 */
-	public void fetchBack(long processInstanceId, long taskId, String userId);
-	
 }

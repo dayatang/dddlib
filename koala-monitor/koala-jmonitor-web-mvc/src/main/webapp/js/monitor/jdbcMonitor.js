@@ -23,7 +23,7 @@ $(function(){
                 loadConnectionProcessedData();
             }
         });
-    $.get('monitor/Monitor/queryAllNodes.koala').done(function(data){
+    $.get(contextPath + '/monitor/Monitor/queryAllNodes.koala').done(function(data){
         var contents = new Array();
         $.each(data.Rows, function(index){
             contents.push({title: this.nodeName, value: this.nodeId, selected: index==0});
@@ -34,9 +34,7 @@ $(function(){
         }).on('change', function(){
                 $('#monitorCategory').trigger('change');
             });
-        if(data.Rows.length > 0){
-            monitorNode.trigger('change');
-        }
+        monitorNode.trigger('change');
     });
     $('#timeOut').on('blur', function(){
         $('#monitorCategory').trigger('change');
@@ -44,7 +42,7 @@ $(function(){
     var loadConnectionProcessedData = function(){
         var nodeId = monitorNode.getValue();
         var timeOut = $('#timeOut').val();
-        $.get('monitor/Monitor/jdbcTimeStat.koala?nodeId='+nodeId+'&limit='+timeOut).done(function(data){
+        $.get(contextPath + '/monitor/Monitor/jdbcTimeStat.koala?nodeId='+nodeId+'&limit='+timeOut).done(function(data){
             var data = data.data;
             var xarray = eval('['+data[1]+']');
             var yarray = eval('['+data[0]+']');
@@ -73,11 +71,11 @@ $(function(){
         });
     }
     var loadPoolStatusData = function(){
-        $.get('monitor/Monitor/poolMonitorDetail.koala?nodeId='+monitorNode.getValue()).done(function(data){
+        $.get(contextPath + '/monitor/Monitor/poolMonitorDetail.koala?nodeId='+monitorNode.getValue()).done(function(data){
             var navTabs = poolMonitor.find('.nav-tabs').empty();
             var tabContent = poolMonitor.find('.tab-content').empty();
             var pools = data.pools;
-            $.get('pages/monitor/jdbc-monitor-detail.html').done(function(template){
+            $.get(contextPath + '/pages/monitor/jdbc-monitor-detail.html').done(function(template){
                 var index = 0;
                 var template = $(template)
                 for(var prop in pools){
@@ -121,7 +119,6 @@ $(function(){
                             width : 120
                         }
                     ];
-                    //console.info(data.connDetails)
                     content.find('#poolDetailGrid').grid({
                         identity: 'id',
                         columns: columns,

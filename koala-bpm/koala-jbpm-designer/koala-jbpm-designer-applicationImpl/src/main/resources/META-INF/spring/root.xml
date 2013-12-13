@@ -11,4 +11,5 @@
 	<context:property-placeholder location="classpath*:META-INF/*.properties" />
 	<context:component-scan base-package="org.openkoala.koala.jbpm" />
 	<import resource="classpath:META-INF/conf/data-access.xml" />
+	<import resource="classpath:META-INF/spring/ws-client.xml" />
 </beans>

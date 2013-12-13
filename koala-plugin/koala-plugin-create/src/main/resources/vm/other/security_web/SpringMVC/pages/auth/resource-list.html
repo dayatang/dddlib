@@ -1,5 +1,9 @@
 <div id="resourceGrid"></div>
-<script src="js/security/resource.js"></script>
+<script>
+    var script = document.createElement('script');
+    script.src = contextPath + '/js/security/resource.js';
+    document.getElementById('resourceGrid').parentNode.appendChild(script);
+</script>
 <script>
 	$(function(){
 		var columns = [ 
@@ -34,7 +38,7 @@
              columns: columns,
              buttons: buttons,
              isShowPages: false,
-             url: '/auth/Resource/findAllReourceTree.koala',
+             url: contextPath + '/auth/Resource/findAllReourceTree.koala',
              tree: {
              	column: 'name'
              }

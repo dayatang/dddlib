@@ -5,23 +5,36 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.inject.Inject;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.inject.Named;
+import javax.interceptor.Interceptors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openkoala.organisation.application.JobApplication;
 import org.openkoala.organisation.domain.Job;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.service.QueryChannelService;
 import com.dayatang.querychannel.support.Page;
 
 @Named
 @Transactional
+@Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
+@Stateless(name = "JobApplication")
+@Remote
 public class JobApplicationImpl implements JobApplication {
 
-	@Inject
+	
 	private QueryChannelService queryChannel;
+	
+	private QueryChannelService getQueryChannelService(){
+		if(queryChannel ==null){
+			queryChannel = InstanceFactory.getInstance(QueryChannelService.class,"queryChannel_org");
+		}
+		return queryChannel;
+	}
 	
 	@Override
 	public Page<Job> pagingQueryJobs(Job jobSearchExample, int currentPage, int pageSize) {
@@ -45,7 +58,7 @@ public class JobApplicationImpl implements JobApplication {
 			conditionVals.add(MessageFormat.format("%{0}%", jobSearchExample.getSn()));
 		}
 
-		return queryChannel.queryPagedResultByPageNo(jpql.toString(),conditionVals.toArray(), currentPage, pageSize);
+		return getQueryChannelService().queryPagedResultByPageNo(jpql.toString(),conditionVals.toArray(), currentPage, pageSize);
 	}
 
 }

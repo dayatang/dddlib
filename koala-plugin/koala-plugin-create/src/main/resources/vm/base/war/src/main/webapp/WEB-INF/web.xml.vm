@@ -37,7 +37,11 @@
 	</servlet-mapping>
 	
    #end
-   
+
+
+
+	
+	   
 	
 #if ($Module.monitor)
 	<!-- monitor config begin-->
@@ -61,7 +65,6 @@
 <!-- monitor config end -->
 #end
 
-
 	<!-- Spring Listener -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -70,6 +73,13 @@
 	<listener>
 		<listener-class>com.dayatang.spring.webapp.DayatangContextLoaderListener</listener-class>
 	</listener>
+	
+	<!--组织子系统的listener-->
+#if ($Module.organization)
+	<listener>
+		<listener-class>${Module.basePackage}.controller.organization.OrganisationListener</listener-class>
+	</listener>
+#end
 
 	<session-config>
 		<session-timeout>120</session-timeout>
@@ -108,11 +118,17 @@
 #if ($Module.security)
     <servlet>
 		<servlet-name>DBInit</servlet-name>
-		<servlet-class>org.openkoala.koala.dbinit.SecurityDBInit</servlet-class>
+		<servlet-class>${Module.basePackage}.controller.auth.SecurityDBInit</servlet-class>
 		<init-param>
 			<param-name>type</param-name>
 			<param-value>${Project.mvcProtocol}</param-value>
 		</init-param>
+		#if ($Module.organization)
+		<init-param>
+			<param-name>organization</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		#end
 	</servlet>
 
 	<servlet-mapping>
@@ -131,8 +147,7 @@
 	</error-page>
 	
 	<welcome-file-list>
-		<welcome-file>/security.jsp</welcome-file>
-		<welcome-file>/index.jsp</welcome-file>
+		<welcome-file>/login.jsp</welcome-file>
 	</welcome-file-list>
 
 	<distributable />

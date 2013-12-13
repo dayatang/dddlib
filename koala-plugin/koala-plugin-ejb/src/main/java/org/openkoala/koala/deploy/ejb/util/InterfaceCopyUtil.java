@@ -2,6 +2,7 @@ package org.openkoala.koala.deploy.ejb.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import japa.parser.JavaParser;
@@ -54,7 +55,12 @@ public class InterfaceCopyUtil {
             coi.setName(coi.getName());
             cu.getImports().add(new ImportDeclaration(new NameExpr("javax.ejb.Remote"),false,false));
             AnnotationExpr expr = new NormalAnnotationExpr(new NameExpr("Remote"),null);
-            coi.getAnnotations().add(expr);
+			List<AnnotationExpr> annotations = new ArrayList<AnnotationExpr>();
+			if(coi.getAnnotations()!=null){
+				annotations.addAll(coi.getAnnotations());
+			}
+			annotations.add(expr);
+			coi.setAnnotations(annotations);
             JavaSaver.saveToFile(javasrc, cu);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -80,9 +86,13 @@ public class InterfaceCopyUtil {
 			//修改名称
 			coi.setName(coi.getName()+"Local");
 			AnnotationExpr expr = new NormalAnnotationExpr(new NameExpr("Local"),null);
-			coi.getAnnotations().add(expr);
+			List<AnnotationExpr> annotations = new ArrayList<AnnotationExpr>();
+		    if(coi.getAnnotations()!=null){
+		    	annotations.addAll(coi.getAnnotations());
+		    }
+			annotations.add(expr);
+			coi.setAnnotations(annotations);
 			cu.getImports().add(new ImportDeclaration(new NameExpr("javax.ejb.Local"),false,false));
-			
 			
 			if(local!=null){
 				//过滤方法
@@ -132,8 +142,12 @@ public class InterfaceCopyUtil {
 			coi.setName(coi.getName()+"Remote");
 			cu.getImports().add(new ImportDeclaration(new NameExpr("javax.ejb.Remote"),false,false));
 			AnnotationExpr expr = new NormalAnnotationExpr(new NameExpr("Remote"),null);
-			coi.getAnnotations().add(expr);
-			
+			List<AnnotationExpr> annotations = new ArrayList<AnnotationExpr>();
+		    if(coi.getAnnotations()!=null){
+		    	annotations.addAll(coi.getAnnotations());
+		    }
+			annotations.add(expr);
+			coi.setAnnotations(annotations);
 			if(remote!=null && remote.getMethods()==null){
 				return;
 			}

@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.util.logging.Logger;
 
 /**
- * MD5盐值加密
+ * 盐值加密
  * @author zyb
  * @since 2013-7-16 下午7:02:35
  */

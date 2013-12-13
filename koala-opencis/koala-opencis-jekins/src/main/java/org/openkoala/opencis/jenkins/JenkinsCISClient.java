@@ -1,6 +1,5 @@
 package org.openkoala.opencis.jenkins;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -29,7 +28,7 @@ import org.openkoala.opencis.http.HttpInvoker;
 import org.openkoala.opencis.pojo.JenkinsServerConfiguration;
 
 /**
- * Jenkis CIS客户端
+ * Jenkins CIS客户端
  * @author zyb <a href="mailto:zhuyuanbiao2013@gmail.com">zhuyuanbiao2013@gmail.com</a>
  * @since Nov 13, 2013 9:35:24 AM
  */
@@ -171,9 +170,7 @@ public class JenkinsCISClient implements CISClient {
 			while ((len = in.read(buffer)) != -1) {
 				result.append(new String(buffer, 0, len));
 			}
-		} catch (FileNotFoundException e) {
-			logger.error("File not found:", e);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			logger.error("Ocour error while read file:", e);
 		} finally {
 			try {

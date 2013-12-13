@@ -1,5 +1,4 @@
 $(function(){
-    var httpMonitorChart = $('#httpMonitorChart');
     var monitorNode = $('#httpMonitorNode');
     var time = $('#time');
     var timeVal = time.find('input');
@@ -35,7 +34,8 @@ $(function(){
             }
             loadData();
         });
-    $.get('monitor/Monitor/queryAllNodes.koala').done(function(data){
+       
+    $.get(contextPath + '/monitor/Monitor/queryAllNodes.koala').done(function(data){
         var contents = new Array();
         $.each(data.Rows, function(index){
             contents.push({title: this.nodeName, value: this.nodeId, selected: index==0});
@@ -46,16 +46,17 @@ $(function(){
         }).on('change', function(){
                 $('#timeUnit').trigger('change');
             });
-        if(data.Rows.length > 0){
-            monitorNode.trigger('change');
-        }
+        monitorNode.trigger('change');
     });
     var loadData = function(){
         var params = {};
         params.system = monitorNode.getValue();
+        /*if(!Validation.notNull($('body'), monitorNode, params.system , '请选择监控节点!')){
+			return;
+		}*/
         params.unit = $('#timeUnit').getValue();
         params.queryTime = timeVal.val();
-        $.get('monitor/Monitor/httpMonitorCount.koala', params).done(function(data){
+        $.get(contextPath + '/monitor/Monitor/httpMonitorCount.koala', params).done(function(data){
             var columns = [
                 {
                     title : '请求时段',
@@ -133,7 +134,7 @@ $(function(){
 })
 function httpMonitorDetail(requestDate){
    //monitor/Monitor/httpMonitorDetail.koala?unit=hour&requestDate=2013-11-25%2021&system=test
-    $.get('pages/monitor/http-monitor-detail.html').done(function(data){
+    $.get(contextPath + '/pages/monitor/http-monitor-detail.html').done(function(data){
         $(data).modal({
             keyboard: true
         }).on({
@@ -195,7 +196,7 @@ function httpMonitorDetail(requestDate){
                         searchCondition: params,
                         sortName: 'timeConsume',
                         sortOrder : 'DESC',
-                        url : '/monitor/Monitor/httpMonitorDetail.koala'
+                        url : contextPath + '/monitor/Monitor/httpMonitorDetail.koala'
                     })
                 }
         });

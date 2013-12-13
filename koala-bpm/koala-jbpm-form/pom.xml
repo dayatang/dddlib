@@ -21,7 +21,7 @@
 		<module>jbpm-form-applicationImpl</module>
 		<module>jbpm-form-infra-impl</module>
 	</modules>
-	
+
 	<profiles>
 		<profile>
 			<id>jbpmform</id>
@@ -42,5 +42,5 @@
 			</properties>
 		</profile>
 	</profiles>
-	
+
 </project>

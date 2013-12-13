@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.inject.Inject;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.inject.Named;
+import javax.interceptor.Interceptors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openkoala.organisation.application.PostApplication;
@@ -15,15 +17,27 @@ import org.openkoala.organisation.domain.Organization;
 import org.openkoala.organisation.domain.Post;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.service.QueryChannelService;
 import com.dayatang.querychannel.support.Page;
 
 @Named
 @Transactional
+@Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
+@Stateless(name = "PostApplication")
+@Remote
 public class PostApplicationImpl implements PostApplication {
 
-	@Inject
+	
 	private QueryChannelService queryChannel;
+	
+	
+	private QueryChannelService getQueryChannelService(){
+		if(queryChannel ==null){
+			queryChannel = InstanceFactory.getInstance(QueryChannelService.class,"queryChannel_org");
+		}
+		return queryChannel;
+	}
 	
 	@Override
 	public Page<PostDTO> pagingQueryPosts(PostDTO example, int currentPage, int pagesize) {
@@ -54,7 +68,7 @@ public class PostApplicationImpl implements PostApplication {
 	private Page<PostDTO> queryResult(PostDTO example, StringBuilder jpql, String conditionPrefix, List<Object> conditionVals,
 			int currentPage, int pagesize) {
 		assembleJpqlAndConditionValues(example, jpql, conditionPrefix, conditionVals);
-		Page<Post> postPage = queryChannel.queryPagedResultByPageNo(jpql.toString(), conditionVals.toArray(), currentPage, pagesize);
+		Page<Post> postPage = getQueryChannelService().queryPagedResultByPageNo(jpql.toString(), conditionVals.toArray(), currentPage, pagesize);
 		
 		return new Page<PostDTO>(Page.getStartOfPage(currentPage, pagesize), 
 				postPage.getTotalCount(), pagesize, transformToDtos(postPage.getResult()));

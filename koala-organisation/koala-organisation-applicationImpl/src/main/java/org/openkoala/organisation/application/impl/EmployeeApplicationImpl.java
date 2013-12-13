@@ -8,8 +8,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.inject.Inject;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.inject.Named;
+import javax.interceptor.Interceptors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openkoala.organisation.EmployeeMustHaveAtLeastOnePostException;
@@ -22,6 +24,7 @@ import org.openkoala.organisation.domain.Organization;
 import org.openkoala.organisation.domain.Post;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.service.QueryChannelService;
 import com.dayatang.querychannel.support.Page;
 
@@ -31,10 +34,20 @@ import com.dayatang.querychannel.support.Page;
  */
 @Named
 @Transactional
+@Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
+@Stateless(name = "EmployeeApplication")
+@Remote
 public class EmployeeApplicationImpl implements EmployeeApplication {
 
-	@Inject
+
 	private QueryChannelService queryChannel;
+	
+	private QueryChannelService getQueryChannelService(){
+		if(queryChannel ==null){
+			queryChannel = InstanceFactory.getInstance(QueryChannelService.class,"queryChannel_org");
+		}
+		return queryChannel;
+	}
 
 	@Override
 	public Organization getOrganizationOfEmployee(Employee employee, Date date) {
@@ -119,7 +132,7 @@ public class EmployeeApplicationImpl implements EmployeeApplication {
 	private Page<EmployeeDTO> queryResult(EmployeeDTO example, StringBuilder jpql, String conditionPrefix, List<Object> conditionVals,
 			int currentPage, int pagesize) {
 		assembleJpqlAndConditionValues(example, jpql, conditionPrefix, conditionVals);
-		Page<Employee> employeePage = queryChannel.queryPagedResultByPageNo(jpql.toString(), conditionVals.toArray(), currentPage, pagesize);
+		Page<Employee> employeePage = getQueryChannelService().queryPagedResultByPageNo(jpql.toString(), conditionVals.toArray(), currentPage, pagesize);
 		
 		return new Page<EmployeeDTO>(Page.getStartOfPage(currentPage, pagesize), 
 				employeePage.getTotalCount(), pagesize, transformToDtos(employeePage.getResult()));

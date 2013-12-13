@@ -114,8 +114,7 @@
 	</error-page>
 	
 	<welcome-file-list>
-		<welcome-file>/security.jsp</welcome-file>
-		<welcome-file>/index.jsp</welcome-file>
+		<welcome-file>/login.jsp</welcome-file>
 	</welcome-file-list>
 
 	<distributable />

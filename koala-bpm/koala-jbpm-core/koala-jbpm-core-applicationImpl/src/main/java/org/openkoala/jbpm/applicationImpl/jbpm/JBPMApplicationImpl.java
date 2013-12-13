@@ -457,7 +457,10 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			TaskVO todo = new TaskVO();
 			Map<String, Object> processParams = in.getVariables();
 			String processData = XmlParseUtil.paramsToXml(processParams);
-			todo.setActualOwner(task.getActualOwner().getId());
+			//TOTO 非常特殊的行为，没有用户，只有组
+			if(task.getActualOwner()!=null){
+				todo.setActualOwner(task.getActualOwner().getId());
+			}
 			todo.setActualName(task.getName());
 			todo.setProcessInstanceId(processInstanceId);
 
@@ -1175,7 +1178,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	}
 
 	public void addProcess(String packageName, String processName, int version,
-			String data, byte[] png, boolean isActive) {
+			String data, Byte[] png, boolean isActive) {
 		try {
 			this.getJbpmSupport().startTransaction();
 			Map<String, Object> params = new HashMap<String, Object>();
@@ -1185,10 +1188,10 @@ public class JBPMApplicationImpl implements JBPMApplication {
 					.getKoalaProcessInfo(params);
 			if (processInfo != null) {
 				processInfo.setData(data.getBytes());
-				processInfo.setPng(png);
+				processInfo.setPng(convertFromByteArray(png));
 			} else {
 				processInfo = new KoalaProcessInfo(processName, version, data,
-						png);
+						convertFromByteArray(png));
 				processInfo.setActive(isActive);
 				processInfo.setPackageName(packageName);
 			}
@@ -1204,6 +1207,14 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			this.getJbpmSupport().rollbackTransaction();
 			throw new RuntimeException(e.getCause());
 		}
+	}
+	
+	private byte[] convertFromByteArray(Byte[] pngs){
+		byte[] bytePng = new byte[pngs.length];
+		for(int i=0; i<pngs.length; i++){
+			bytePng[i] = pngs[i].byteValue();
+		}
+		return bytePng;
 	}
 
 	public List<ProcessVO> getProcesses() {

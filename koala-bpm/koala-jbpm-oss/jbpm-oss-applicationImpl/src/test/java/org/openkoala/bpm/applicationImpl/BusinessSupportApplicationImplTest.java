@@ -26,12 +26,12 @@ import org.openkoala.bpm.processdyna.core.DynaProcessKey;
 import org.openkoala.bpm.processdyna.core.DynaProcessTemplate;
 import org.openkoala.bpm.processdyna.core.DynaProcessValue;
 import org.openkoala.bpm.processdyna.infra.TemplateContent;
-import org.openkoala.jbpm.wsclient.HistoryLogVo;
-import org.openkoala.jbpm.wsclient.JBPMApplication;
-import org.openkoala.jbpm.wsclient.PageTaskVO;
-import org.openkoala.jbpm.wsclient.ProcessVO;
-import org.openkoala.jbpm.wsclient.TaskChoice;
-import org.openkoala.jbpm.wsclient.TaskVO;
+import org.openkoala.jbpm.application.JBPMApplication;
+import org.openkoala.jbpm.application.vo.HistoryLogVo;
+import org.openkoala.jbpm.application.vo.PageTaskVO;
+import org.openkoala.jbpm.application.vo.ProcessVO;
+import org.openkoala.jbpm.application.vo.TaskChoice;
+import org.openkoala.jbpm.application.vo.TaskVO;
 
 import com.dayatang.domain.EntityRepository;
 import com.dayatang.querychannel.support.Page;

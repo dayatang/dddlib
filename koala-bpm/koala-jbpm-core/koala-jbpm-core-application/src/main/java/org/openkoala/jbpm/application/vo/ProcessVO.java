@@ -1,9 +1,16 @@
 package org.openkoala.jbpm.application.vo;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement()
-public class ProcessVO {
+public class ProcessVO implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3537019144264106661L;
 
 	private String id;//流程ID
 	

@@ -1,4 +1,4 @@
-package org.openkoala.utils.sample;
+package org.openkoala.org.openkoala.businesslog.utils.sample;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -9,7 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.dayatang.utils.ArrayUtils;
+import com.dayatang.org.openkoala.businesslog.utils.ArrayUtils;
 
 public class ArrayUtilsTest {
 

@@ -28,11 +28,10 @@
 	<!-- 认证md5加密密码(原密码加盐值进行加密) -->
 	<s:authentication-manager alias="authenticationManager">
 		<s:authentication-provider user-service-ref="userDetailManager">
-			<s:password-encoder hash="md5">
-				<s:salt-source user-property="username" />
-			</s:password-encoder>
+			<s:password-encoder hash="md5" />
 		</s:authentication-provider>
 	</s:authentication-manager>
-
+	
+	
 
 </beans>
