@@ -22,7 +22,8 @@ public class ContextQueryHelperTest {
     private String methodSignature = "findContractById(long,business.Project,String,double)";
     private String methodSignature1 = "findContractById(long)";
     private String methodSignature2 = "findContractById()";
-    private String methodSignature3 = "findContractById(long,business.Project,String,double,boolean,float)";
+    private String methodSignature3 =
+            "findContractById(long,business.Project,String,double,boolean,float,business.Project[])";
 
 
     @Test
@@ -64,6 +65,8 @@ public class ContextQueryHelperTest {
         result.add(double.class);
         result.add(boolean.class);
         result.add(float.class);
+        result.add(Project[].class);
+
 
         assert result.equals(
                 Arrays.asList(

@@ -2,8 +2,9 @@
 <businessLogConfigs>
     <businessLogConfig>
         <!--向项目中的合同，添加一张发票-->
+        <category>发票操作</category>
         <method>Invoice business.InvoiceApplication.addInvoice(String,long)</method>
-        <template><![CDATA[向项目${project.name}的合同${contract.name}添加发票：${_methodReturn.sn}]]></template>
+        <template><![CDATA[向项目${project.name}的合同${contract.name}添加发票：${(_methodReturn.sn)!""}]]></template>
         <queries>
             <query key="contract">
                 <target class="business.ContractApplication">contractApplication</target>
@@ -22,7 +23,22 @@
         </queries>
     </businessLogConfig>
     <businessLogConfig>
+        <category>合同操作</category>
         <method>String business.ContractApplication.addContract(long)</method>
         <template><![CDATA[添加合同${_methodReturn}]]></template>
+    </businessLogConfig>
+    <businessLogConfig>
+        <category>项目操作</category>
+        <method>Project[] business.ProjectApplication.findSomeProjects(List)</method>
+        <template><![CDATA[查到项目]]></template>
+        <queries>
+            <query key="names">
+                <target class="business.Project"></target>
+                <method>getProjectsName(business.Project[])</method>
+                <args>
+                    <arg>${_methodReturn}</arg>
+                </args>
+            </query>
+        </queries>
     </businessLogConfig>
 </businessLogConfigs>

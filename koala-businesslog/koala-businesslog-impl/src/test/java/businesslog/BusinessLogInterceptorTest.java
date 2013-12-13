@@ -37,13 +37,9 @@ public class BusinessLogInterceptorTest extends AbstractIntegrationTest {
         ThreadLocalBusinessLogContext.put("ip", "202.11.22.33");
 
 
-        invoiceApplication.addInvoice("发票编号", 1l);
+        //invoiceApplication.addInvoice("发票编号", 1l);
 
-
-    }
-
-    @Test
-    public void testFindProjects() {
+        //invoiceApplication.addInvoice("发票编号2", 22l);
 
         List<String> names = new ArrayList<String>();
 
@@ -53,6 +49,14 @@ public class BusinessLogInterceptorTest extends AbstractIntegrationTest {
         names.add("4");
 
         projectApplication.findSomeProjects(names);
+
+
+    }
+
+    @Test
+    public void testFindProjects() {
+
+
 
 
     }

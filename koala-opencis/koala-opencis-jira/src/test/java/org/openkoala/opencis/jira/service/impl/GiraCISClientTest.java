@@ -75,85 +75,85 @@ public class GiraCISClientTest {
 	}
 	
 	@Test(expected = ServerAddressBlankException.class)
-	public void serverAddressBlank(){
+	public void testServerAddressBlank(){
 		this.packagingServerAddressBlank();
 		giraConfiguration.checkLoginInfoNotBlank();
 	}
 	
 	@Test(expected = AdminUserNameBlankException.class)
-	public void adminUserNameBlank(){
+	public void testAdminUserNameBlank(){
 		this.packagingAdminUserNameBlank();
 		giraConfiguration.checkLoginInfoNotBlank();
 	}
 	
 	@Test(expected = AdminPasswordBlankException.class)
-	public void adminPasswordBlank(){
+	public void testAdminPasswordBlank(){
 		this.packagingAdminPasswordBlank();
 		giraConfiguration.checkLoginInfoNotBlank();
 	}
 	
 	@Test(expected = ProjectKeyBlankException.class)
-	public void projectKeyBlank(){
+	public void testProjectKeyBlank(){
 		this.packagingProjectKeyBlank();
 		instance.createProject(project);
 	}
 	
 	@Test(expected = ProjectKeyNotAllCharacterLettersException.class)
-	public void projectKeyNotAllCharacterLetters(){
+	public void testProjectKeyNotAllCharacterLetters(){
 		this.packagingProjectKeyNotAllUppercaseLetters();
 		instance.createProject(project);
 	}
 	
 	@Test(expected = ProjectKeyNotAllCharacterLettersException.class)
-	public void projectKeyNotAllCharacterLetters2(){
+	public void testProjectKeyNotAllCharacterLetters2(){
 		this.packagingProjectKeyNotAllUppercaseLetters2();
 		instance.createProject(project);
 	}
 	
 	@Test(expected = ProjectKeyLengthNotBetweenTwoAndTenCharacterLettersException.class)
-	public void projectKeyNotAtLeastTwoCharacters(){
+	public void testProjectKeyNotAtLeastTwoCharacters(){
 		this.packagingProjectKeyNotAtLeastTwoCharacters();
 		instance.createProject(project);
 	}
 	
 	@Test(expected = ProjectLeadBlankException.class)
-	public void projectLeadBlank(){
+	public void testProjectLeadBlank(){
 		this.packagingProjectLeadBlank();
 		instance.createProject(project);
 	}
 	
 	@Test(expected = ServerAddressErrorException.class)
-	public void serverAddressError(){
+	public void testServerAddressError(){
 		this.packagingServerAddressErrorWithoutProtocal();
 		instance.loginToJira(giraConfiguration);
 	}
 	
 	@Test(expected = ServerAddressErrorException.class)
-	public void serverAddressErrorWithWrongIp(){
+	public void testServerAddressErrorWithWrongIp(){
 		this.packagingServerAddressErrorWithWrongIp();
 		instance.loginToJira(giraConfiguration);
 	}
 	
 	@Test(expected = ServerAddressErrorException.class)
-	public void serverAddressErrorWithWrongPort(){
+	public void testServerAddressErrorWithWrongPort(){
 		this.packagingServerAddressErrorWithWrongPort();
 		instance.loginToJira(giraConfiguration);
 	}
 	
 	@Test(expected = AdminUserNameOrPasswordErrorException.class)
-	public void adminUserNameNotExist(){
+	public void testAdminUserNameNotExist(){
 		this.packagingAdminUserNameNotExist();
 		instance.loginToJira(giraConfiguration);
 	}
 	
 	@Test(expected = AdminUserNameOrPasswordErrorException.class)
-	public void adminPasswordNotCorrect(){
+	public void testAdminPasswordNotCorrect(){
 		this.packagingAdminPasswordNotCorrect();
 		instance.loginToJira(giraConfiguration);
 	}
 	
 	@Test
-	public void projectKeyExist(){
+	public void testProjectKeyExist(){
 		this.packagingProjectCanBeCreatedWithoutDesc();
 		instance.createUserIfNecessary(project, developer);
 		instance.createProject(project);
@@ -174,7 +174,7 @@ public class GiraCISClientTest {
 	}
 	
 	@Test
-	public void projectNameExist(){
+	public void testProjectNameExist(){
 		instance.createUserIfNecessary(project, developer);
 		
 		this.packagingProjectCanBeCreatedWithoutDesc();
@@ -199,7 +199,7 @@ public class GiraCISClientTest {
 	}
 	
 	@Test(expected = UserNotExistException.class)
-	public void projectLeadNotExist(){
+	public void testProjectLeadNotExist(){
 		this.packagingProjectLeadNotExist();
 		instance.createProject(project);
 	}
@@ -223,19 +223,19 @@ public class GiraCISClientTest {
 	}
 	
 	@Test(expected = UserNameBlankException.class)
-	public void userNameBlank(){
+	public void testUserNameBlank(){
 		this.packagingUserNameBlank();
 		instance.createUserIfNecessary(project, developer);
 	}
 	
 	@Test(expected = UserFullNameBlankException.class)
-	public void fullNameBlank(){
+	public void testFullNameBlank(){
 		this.packagingFullNameBlank();
 		instance.createUserIfNecessary(project, developer);
 	}
 	
 	@Test(expected = UserEmailBlankException.class)
-	public void emailBlank(){
+	public void testEmailBlank(){
 		this.packagingEmailBlank();
 		instance.createUserIfNecessary(project, developer);
 	}
@@ -254,7 +254,7 @@ public class GiraCISClientTest {
 	}
 	
 	@Test(expected = RoleNameBlankException.class)
-	public void roleNameBlank(){
+	public void testRoleNameBlank(){
 		this.packagingRoleNameBlank();
 		instance.createRoleIfNessceary(project, roleName);
 	}
@@ -267,7 +267,7 @@ public class GiraCISClientTest {
 	}
 	
 	@Test
-	public void addProjectRoleToUserButProjectNotExist(){
+	public void testAddProjectRoleToUserButProjectNotExist(){
 		instance.createUserIfNecessary(project, developer);
 		instance.createRoleIfNessceary(project, roleName);
 		
@@ -286,7 +286,7 @@ public class GiraCISClientTest {
 	}
 	
 	@Test
-	public void addProjectRoleToUserButRoleNotExist(){
+	public void testAddProjectRoleToUserButRoleNotExist(){
 		instance.createUserIfNecessary(project, developer);
 		instance.createProject(project);
 		
@@ -305,7 +305,7 @@ public class GiraCISClientTest {
 	}
 	
 	@Test
-	public void addProjectRoleToUserButUserNotExist(){
+	public void testAddProjectRoleToUserButUserNotExist(){
 		project.setProjectLead(giraConfiguration.getAdminUserName());
 		instance.createProject(project);
 		instance.createRoleIfNessceary(project, roleName);
