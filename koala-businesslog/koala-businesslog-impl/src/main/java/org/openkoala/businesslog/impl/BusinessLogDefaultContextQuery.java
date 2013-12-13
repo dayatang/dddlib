@@ -72,7 +72,8 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
     }
 
     private Method getMethodInstance() {
-        return ContextQueryHelper.getMethodInstanceOf(beanClassName, getMethodName(), getMethodParamClasses());
+        return ContextQueryHelper.getMethodInstanceOf(beanClassName, getMethodName(),
+                getMethodParamClasses());
     }
 
     private Class[] getMethodParamClasses() {
@@ -116,12 +117,12 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
     }
 
 
-    private Object invoke(Object methodObject, Object... params) {
+    private Object invoke(Object beanObject, Object... params) {
         try {
             if (null == params) {
-                return getMethodInstance().invoke(methodObject);
+                return getMethodInstance().invoke(beanObject);
             }
-            return getMethodInstance().invoke(methodObject, params);
+            return getMethodInstance().invoke(beanObject, params);
         } catch (IllegalAccessException e) {
             throw new QueryMethodInvokeException(e);
         } catch (InvocationTargetException e) {
