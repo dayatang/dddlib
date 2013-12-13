@@ -55,7 +55,7 @@
 
 	<servlet>
 		<servlet-name>DBInit</servlet-name>
-		<servlet-class>org.openkoala.koala.dbinit.SecurityDBInit</servlet-class>
+		<servlet-class>org.openkoala.koala.web.contorller.auth.SecurityDBInit</servlet-class>
 		<init-param>
 			<param-name>type</param-name>
 			<param-value>SpringMVC</param-value>

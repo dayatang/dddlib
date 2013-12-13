@@ -16,10 +16,6 @@ public class CreateJobFailureException extends RuntimeException {
 		super();
 	}
 
-	public CreateJobFailureException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-	}
-
 	public CreateJobFailureException(String message, Throwable cause) {
 		super(message, cause);
 	}

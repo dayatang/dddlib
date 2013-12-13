@@ -9,3 +9,9 @@ target
 /koala-bpm/koala-jbpm-core/koala-jbpm-core-war/btm2.tlog
 /koala-bpm/koala-jbpm-core/koala-jbpm-core-war/btm1.tlog
 /koala-bpm/koala-jbpm-core/koala-jbpm-core-war/btm2.tlog
+
+/koala-opencis/koala-opencis-jekins/logs
+/koala-opencis/koala-opencis-jekins/bin
+
+/koala-opencis/koala-opencis-trac/bin
+/koala-opencis/koala-opencis-sonar/bin
