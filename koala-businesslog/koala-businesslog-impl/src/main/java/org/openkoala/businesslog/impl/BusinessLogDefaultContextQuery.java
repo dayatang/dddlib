@@ -112,38 +112,7 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
 
     // TODO 需要移动到ContextQueryHelper类中，并增加多更多类型的支持
     private Object convertArg(String arg, Class aClass) {
-        if (null == arg) {
-            return arg;
-        }
-        if (arg.contains("$")) {
-            if (arg.contains(".")) {
-                String key = arg.substring(arg.indexOf("{") + 1, arg.lastIndexOf("."));
-                Object bean = context.get(key);
-                try {
-                    return PropertyUtils.getNestedProperty(bean, arg.substring(arg.indexOf(".") + 1, arg.lastIndexOf("}")));
-                } catch (IllegalAccessException e) {
-                    throw new QueryMethodConvertArgException(e);
-                } catch (InvocationTargetException e) {
-                    throw new QueryMethodConvertArgException(e);
-                } catch (NoSuchMethodException e) {
-                    throw new QueryMethodConvertArgException(e);
-                }
-            } else {
-                return context.get(arg.substring(arg.indexOf("{") + 1, arg.lastIndexOf("}")));
-            }
-
-        } else {
-            if (aClass.equals(Long.class) || aClass.equals(long.class)) {
-                return Long.parseLong(arg);
-            } else if (aClass.equals(String.class)) {
-                return arg;
-            } else if (aClass.equals(Date.class)) {
-                return Date.parse(arg);
-            }
-        }
-
-
-        return null;
+        return ContextQueryHelper.contextQueryArgConvertStringToObject(arg, aClass, context);
     }
 
 

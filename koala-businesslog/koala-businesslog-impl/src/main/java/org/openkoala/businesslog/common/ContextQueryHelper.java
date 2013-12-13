@@ -4,14 +4,19 @@ import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.NotFoundException;
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.openkoala.businesslog.BusinessLogClassNotFoundException;
 import org.openkoala.businesslog.BusinessLogQueryMethodException;
+import org.openkoala.businesslog.QueryMethodConvertArgException;
 
 import java.lang.reflect.Array;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * User: zjzhai
@@ -118,5 +123,43 @@ public class ContextQueryHelper {
         return classes.toArray(new Class[classes.size()]);
     }
 
+
+    public static Object contextQueryArgConvertStringToObject(String arg, Class aClass,
+                                                              Map<String, Object> context) {
+        if (null == arg) {
+            return arg;
+        }
+        if (arg.contains("$")) {
+            if (arg.contains(".")) {
+                String key = arg.substring(arg.indexOf("{") + 1, arg.indexOf("."));
+                Object bean = context.get(key);
+                try {
+                    return PropertyUtils.getNestedProperty(bean, arg.substring(arg.indexOf(".") + 1, arg.lastIndexOf("}")));
+                } catch (IllegalAccessException e) {
+                    throw new QueryMethodConvertArgException(e);
+                } catch (InvocationTargetException e) {
+                    throw new QueryMethodConvertArgException(e);
+                } catch (NoSuchMethodException e) {
+                    throw new QueryMethodConvertArgException(e);
+                }
+            } else {
+                return context.get(arg.substring(arg.indexOf("{") + 1, arg.lastIndexOf("}")));
+            }
+
+        } else {
+            if (aClass.equals(Long.class) || aClass.equals(long.class)) {
+                return Long.parseLong(arg);
+            } else if (aClass.equals(String.class)) {
+                return arg;
+            } else if (aClass.equals(Date.class)) {
+                return Date.parse(arg);
+            } else if (aClass.equals(float.class) || aClass.equals(Float.class)) {
+                return Float.valueOf(arg);
+            }
+        }
+
+
+        return null;
+    }
 
 }
