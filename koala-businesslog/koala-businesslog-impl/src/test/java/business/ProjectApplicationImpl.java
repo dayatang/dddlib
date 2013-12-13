@@ -23,4 +23,9 @@ public class ProjectApplicationImpl implements ProjectApplication {
         }
         return result.toArray(new Project[result.size()]);
     }
+
+    @Override
+    public List addProject(String[][][] names) {
+        return new ArrayList();
+    }
 }

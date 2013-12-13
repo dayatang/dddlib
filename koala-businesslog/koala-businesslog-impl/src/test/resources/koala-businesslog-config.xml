@@ -46,4 +46,9 @@
             </query>
         </queries>
     </businessLogConfig>
+    <businessLogConfig>
+        <category>项目操作</category>
+        <!--对于多维数组，待支持-->
+        <method>List business.ProjectApplication.addProject(String[][][])</method>
+    </businessLogConfig>
 </businessLogConfigs>
