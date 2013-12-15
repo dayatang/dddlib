@@ -9,7 +9,6 @@
 <head>
     <title>Koala流程系统</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
     <link href="<c:url value='/css/jbpm.css' />?time=<%=time%>" rel="stylesheet">
@@ -40,7 +39,7 @@
 	    </nav>
 	</div>
 	<div class="g-body">
-	    <div class="col-lg-2 g-sidec">
+	    <div class="col-xs-2 g-sidec">
 	        <ul class="nav nav-stacked first-level-menu">
 	            <li>
                 	<a data-toggle="collapse" href="#businessSupport"><i class="glyphicon glyphicon-plane"></i>&nbsp;&nbsp;业务支撑系统&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
@@ -69,7 +68,7 @@
 	            </li>
 	        </ul>
 	    </div>
-	    <div class="col-lg-10 g-mainc container">
+	    <div class="col-xs-10 g-mainc container">
 	        <ul class="nav nav-tabs" id="navTabs">
 	            <li class="active"><a href="#home" data-toggle="tab">主页</a></li>
 	        </ul>
@@ -89,7 +88,7 @@
 	<script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js' />" ></script>
 	<script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js' />" ></script>
 	<script type="text/javascript" src="<c:url value='/js/processform/form.render.js' />"></script>
-	<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/lib/validate.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/main.js' />?time=<%=time%>" ></script>
 	<script type="text/javascript" src="<c:url value='/js/auth/role.js' />?time=<%=time%>" ></script>
     <script type="text/javascript" src="<c:url value='/js/auth/user.js' />?time=<%=time%>" ></script>
