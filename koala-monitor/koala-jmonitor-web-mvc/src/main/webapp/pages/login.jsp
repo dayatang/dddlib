@@ -10,6 +10,7 @@
 <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />"></script>	
+<script type="text/javascript" src="<c:url value='/lib/validate.js' />"></script>
 <style type="text/css">
 @charset "UTF-8";
 /* CSS Document */
@@ -158,12 +159,40 @@ body {
                     <input type="password" name="j_password" id="j_password" class="form-control" placeholder="密码"/>
                 </div>
 				<div class="form-group input-group">
-					<button class="btn btn-primary btn-login" onclick="javascript:login()">登陆</button>
+					<button type="button" class="btn btn-primary btn-login" onclick="javascript:login()">登陆</button>
 				</div>
 			</FORM>
 		</div>
 	</div>
 	<div class="login_footer">Koala 版权信息 2013</div>
+	<script>
+	    var btnLogin = $('.btn-login');
+	    var form = $('#loginFormId');
+	    $(function(){
+	        btnLogin.keydown(function(e) {
+	            if (e.keyCode == 13) {
+	                form.submit();
+	            }
+	        });
+	        btnLogin.on('click',function() {
+	                form.submit();
+	        });
+	    });
+	    var dologin = function() {
+	        var userNameElement = $("#j_username");
+	        var passwordElement = $("#j_password");
+	        var username = userNameElement.val();
+	        var password = passwordElement.val();
+	        if (!Validation.notNull($('body'), userNameElement, username, '用户名不能为空')) {
+	            return false;
+	        }
+	        if (!Validation.notNull($('body'), passwordElement, password, '密码不能为空')) {
+	            return false;
+	        }
+	        return true;
+	    }
+	</script>
+
 </body>
 </html>
 </html>

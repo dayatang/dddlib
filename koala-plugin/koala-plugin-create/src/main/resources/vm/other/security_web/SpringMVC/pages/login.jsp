@@ -10,7 +10,7 @@
 <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />"></script>	
-<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
+<script type="text/javascript" src="<c:url value='/lib/validate.js' />"></script>
 <style type="text/css">
 @charset "UTF-8";
 /* CSS Document */
@@ -178,7 +178,7 @@ body {
 					</div>
 				</div>
 				<div class="form-group input-group">
-					<button class="btn btn-primary btn-login" onclick="javascript:login()">登陆</button>
+					<button type="button"  class="btn btn-primary btn-login" onclick="javascript:login()">登陆</button>
 				</div>
 			</FORM>
 		</div>
