@@ -26,10 +26,13 @@ import com.dayatang.querychannel.support.Page;
 public class UserApplicationImpl extends BaseImpl implements UserApplication {
 
     public UserVO getUser(Long userId) {
-        User user = User.get(User.class, userId);
-        UserVO userVO = new UserVO();
-        userVO.domain2Vo(user);
-        return userVO;
+    	User user = queryChannel().querySingleResult("select user from User user where user.abolishDate>?", new Object[] { new Date() });
+    	if (user != null) {
+	        UserVO userVO = new UserVO();
+	        userVO.domain2Vo(user);
+	        return userVO;
+    	}
+        return null;
     }
 
     public UserVO saveUser(UserVO userVO) {

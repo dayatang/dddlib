@@ -1,6 +1,7 @@
 package org.openkoala.cas.casmanagement.application;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -10,7 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.openkoala.cas.casmanagement.application.dto.UserDTO;
+import org.openkoala.auth.application.vo.UserVO;
 
 /**
  * CAS用户应用接口层WebService API
@@ -23,31 +24,38 @@ public interface CasUserApplication {
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	Response createUser(UserDTO user);
+	@Produces(MediaType.APPLICATION_JSON)
+	UserVO createUser(UserVO user);
 	
 	@PUT
 	@Path("{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	Response updateUser(@PathParam("id") long id, UserDTO user);
+	@Produces(MediaType.APPLICATION_JSON)
+	UserVO updateUser(@PathParam("id") long id, UserVO user);
 	
 	@PUT
 	@Path("/password/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	Response modifyPassword(@PathParam("id") long id, UserDTO user);
+	@Produces(MediaType.APPLICATION_JSON)
+	UserVO modifyPassword(@PathParam("id") Long id, UserVO user);
 	
 	@PUT
 	@Path("/enabled/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	Response enabled(@PathParam("id") Long id); 
+	@Produces(MediaType.APPLICATION_JSON)
+	UserVO enabled(@PathParam("id") Long id); 
 	
 	@PUT
 	@Path("/disabled/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	Response disabled(@PathParam("id") Long id);
+	@Produces(MediaType.APPLICATION_JSON)
+	UserVO disabled(@PathParam("id") Long id);
 	
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	UserDTO getUser(@PathParam("id") Long id);
+	UserVO getUser(@PathParam("id") Long id);
+	
+	@DELETE
+	@Path("{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	Response removeUser(@PathParam("id") Long id);
 	
 }

@@ -23,6 +23,10 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.openkoala.security</groupId>
+			<artifactId>koala-security-application</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>com.dayatang.commons</groupId>
 			<artifactId>dayatang-commons-querychannel</artifactId>
 			<exclusions>

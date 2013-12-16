@@ -9,7 +9,7 @@
 		<s:form-login login-page="/login.koala"
 			default-target-url="/index.koala" authentication-failure-url="/login.koala?login_error=1" />
 		<s:intercept-url pattern="/login.koala*" filters="none" />
-		<s:intercept-url pattern="/api/**" filters="none" />
+		<s:intercept-url pattern="/api/user/**" filters="none" />
 		<s:intercept-url pattern="/denied.koala*" filters="none" />
 		<s:intercept-url pattern="/login.jsp*" filters="none" />
 		<s:intercept-url pattern="/*.ico" filters="none" />
