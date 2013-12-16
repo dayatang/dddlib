@@ -17,7 +17,7 @@
 		<module>koala-jmonitor-mina</module>
 		<module>koala-jmonitor-core</module>
 		<module>koala-jmonitor-model</module>
-		<module>koala-jmonitor-web-mvc</module>
+		<!--<module>koala-jmonitor-web-mvc</module>-->
 	</modules>
 
 	<issueManagement>
@@ -106,8 +106,6 @@
 		<httpclient.version>4.0-beta2</httpclient.version>
 		<fastinfoset.version>1.2.7</fastinfoset.version>
 		<neethi.version>2.0.4</neethi.version>
-		<koala.version>2.0.1-SNAPSHOT</koala.version>
-		<koalaSecurity.version>2.0.1-SNAPSHOT</koalaSecurity.version>
 		<!-- end dependency version -->
 
 		<!-- project configure -->

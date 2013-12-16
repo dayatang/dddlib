@@ -54,7 +54,6 @@ public abstract class SSHCommand implements Command {
 			//抽象方法
 			doWork(connection, session);
 		} catch (IOException e) {
-			e.printStackTrace();
 			throw new Exception("无法执行命令：" + getCommand());
 		}finally{
 			session.close();

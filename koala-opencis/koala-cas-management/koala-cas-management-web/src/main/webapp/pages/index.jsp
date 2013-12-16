@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <title>Koala CAS用户管理</title>
+    <title>Koala权限系统</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Pragma" content="no-cache">
@@ -17,12 +17,15 @@
     <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
     <link href="<c:url value='/css/security.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
+    <script>
+        var contextPath = '${pageContext.request.contextPath}';
+    </script>
 </head>
 <body>
 	<input type="hidden" id="roleId" value="${roleId}" />
 	<div class="g-head">
 	    <nav class="navbar navbar-default">
-	        <a class="navbar-brand" href="#"><img src="<c:url value='images/global.logo.png'/>"/>Koala CAS用户管理</a>
+	        <a class="navbar-brand" href="#"><img src="<c:url value='/images/global.logo.png'/>"/>Koala权限系统</a>
 	        <div class="collapse navbar-collapse navbar-ex1-collapse">
 	            <div class="btn-group navbar-right">
 	                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -42,13 +45,13 @@
 	<div class="g-body">
 	    <div class="col-lg-2 g-sidec">
 	        <ul class="nav nav-stacked first-level-menu">
-                <li>
-                    <a data-toggle="collapse" href="#menuManagement"><i class="glyphicon glyphicon-home"></i>&nbsp;菜单栏&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
-                    <ul id="menuManagement" class="second-level-menu in">
-                         <li class="submenu" data-role="openTab" data-target="pages/cas/user-list.html" data-title="用户管理" data-mark="userList"><a><i class="glyphicon glyphicon-user"></i>&nbsp;用户管理</a></li>
-                         <li class="submenu" data-role="openTab" data-target="pages/cas/role-list.html" data-title="用户管理" data-mark="roleList"><a><i class="glyphicon glyphicon-user"></i>&nbsp;角色管理</a></li>
-                    </ul>
-                </li>
+	       		 <li>
+                <a data-toggle="collapse" href="#userRight"><i class="glyphicon glyphicon-home"></i>&nbsp;主菜单&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+                <ul id="userRight" class="second-level-menu in">
+                   <li class="submenu" data-role="openTab" data-target="/pages/cas/user-list.html" openTree=true data-title="用户管理" data-mark="userList" ><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;用户管理</a></li>
+                   <li class="submenu" data-role="openTab" data-target="/pages/cas/role-list.html" data-title="角色管理" data-mark="roleList"><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;角色管理</a></li>
+                </ul>
+            </li>
 	        </ul>
 	    </div>
 	    <div class="col-lg-10 g-mainc container">
@@ -67,8 +70,10 @@
 	<script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />?time=<%=time%>" ></script>	
-	<script type="text/javascript" src="<c:url value='/lib/z-tree/js/jquery.ztree.all-3.5.min.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/lib/koala-tree.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/main.js' />?time=<%=time%>" ></script>
+    <script type="text/javascript" src="<c:url value='/js/cas/role.js' />?time=<%=time%>" ></script>
+    <script type="text/javascript" src="<c:url value='/js/cas/user.js' />?time=<%=time%>" ></script>
 </body>
 </html>

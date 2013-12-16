@@ -5,7 +5,9 @@ import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 
 import com.dayatang.configuration.Configuration;
@@ -15,13 +17,14 @@ public class SvnCISClientTest {
 	private Configuration configuration;
 	private SvnCISClient instance;
 	private Project project;
-	
+	private Developer developer;
 	private String projectName = "projectUnitTest";
 
 	@Before
 	public void setUp() throws Exception {
 		configuration = new MockConfiguration();
 		this.initProjectInfo();
+		this.initDeveloperInfo();
 	}
 
 	@After
@@ -29,6 +32,7 @@ public class SvnCISClientTest {
 		configuration = null;
 		instance = null;
 		project = null;
+		developer = null;
 	}
 	
 	@Test(expected = HostBlankException.class)
@@ -73,6 +77,13 @@ public class SvnCISClientTest {
 		instance.isConfigurationCorrect();
 	}
 	
+	@Test(expected = ProjectBlankException.class)
+	public void testProjectInfoBlank(){
+		project.setProjectName(null);
+		instance = new SvnCISClient(configuration);
+		instance.createProject(project);
+	}
+	
 	@Test
 	public void testProjectExistence(){
 		instance = new SvnCISClient(configuration);
@@ -81,51 +92,65 @@ public class SvnCISClientTest {
 			instance.createProject(project);
 		} catch (ProjectExistenceException e) {
 			assertTrue("预期抛出项目存在的异常！", true);
+		}finally{
+			instance.removeProjcet(project);
 		}
-		instance.removeProjcet(project);
 	}
-
-	@Test
-	public void testCreateProject() {
-		fail("Not yet implemented");
+	
+	@Test(expected = UserBlankException.class)
+	public void testProjectUserBlank(){
+		developer.setName(null);
+		instance = new SvnCISClient(configuration);
+		instance.createUserIfNecessary(project, developer);
+	}
+	
+	@Test(expected = PasswordBlankException.class)
+	public void testProjectUserPassowrdBlank(){
+		developer.setPassword(null);
+		instance = new SvnCISClient(configuration);
+		instance.createUserIfNecessary(project, developer);
 	}
 
 	@Test
 	public void testCreateUserIfNecessary() {
-		fail("Not yet implemented");
+		instance = new SvnCISClient(configuration);
+		//要先创建项目，再为项目创建用户
+		instance.createProject(project);
+		try {
+			instance.createUserIfNecessary(project, developer);
+			assertTrue(true);
+		} catch (Exception e) {
+			fail(e.getMessage());
+		}finally{
+			instance.removeProjcet(project);
+		}
 	}
 
 	@Test
-	public void testCreateRoleIfNessceary() {
-		fail("Not yet implemented");
-	}
-
-	@Test
+	@Ignore
 	public void testAssignUserToRole() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
 	public void testCanConnect() {
-		fail("Not yet implemented");
+		instance = new SvnCISClient(configuration);
+		boolean result = instance.canConnect();
+		assertTrue(result);
 	}
 
-	@Test
-	public void testIsSuccess() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetSuccess() {
-		fail("Not yet implemented");
-	}
-	
 	/**
 	 * 确保必填项不为空
 	 */
 	private void initProjectInfo(){
 		project = new Project();
 		project.setProjectName(projectName);
+	}
+	
+	private void initDeveloperInfo(){
+		developer = new Developer();
+		developer.setName("projectUserTest");
+		developer.setPassword("pwdTest");
 	}
 
 }

@@ -1,5 +1,5 @@
 var roleManager = function(){
-	var baseUrl = 'auth/Role/';
+	var baseUrl = contextPath + '/auth/Role/';
 	var dialog = null;    //对话框
 	var roleName = null;   //角色名称
 	var roleDescript = null;    //角色描述
@@ -9,7 +9,7 @@ var roleManager = function(){
 	 */
 	var add = function(grid){
 		dataGrid = grid;
-		$.get('pages/cas/role-template.html').done(function(data){
+		$.get(contextPath + '/pages/auth/role-template.html').done(function(data){
 			init(data);
 		});
 	};
@@ -18,7 +18,7 @@ var roleManager = function(){
 	 */
 	var modify = function(item, grid){
 		dataGrid = grid;
-		$.get('pages/cas/role-template.html').done(function(data){
+		$.get(contextPath + '/pages/auth/role-template.html').done(function(data){
 			init(data,item);
 			setData(item);
 		});
@@ -136,7 +136,7 @@ var roleManager = function(){
 	 */
 	var assignRole = function(userId, userAccount, grid){
 		dataGrid = grid;
-		$.get('pages/cas/select-role.html').done(function(data){
+		$.get(contextPath + '/pages/auth/select-role.html').done(function(data){
 			var dialog = $(data);
 			dialog.find('#save').on('click',function(){
 				var indexs = dialog.find('#selectRoleGrid').data('koala.grid').selectedRowsIndex();
@@ -152,7 +152,7 @@ var roleManager = function(){
 				for(var i=0,j=indexs.length; i<j; i++){
 					data['roles['+i+'].id'] = indexs[i];
 				}
-				$.post('/auth/User/assignRoles.koala', data).done(function(data){
+				$.post(contextPath + '/auth/User/assignRoles.koala', data).done(function(data){
 					if(data.result == 'success'){
 						$('body').message({
 							type: 'success',
@@ -246,18 +246,18 @@ var roleManager = function(){
 			});
 	};
 	var assignUser = function(roleId, name){
-		$(this).openTab('/pages/cas/user-list.html', 
+		$(this).openTab('/pages/auth/user-list.html',
 			name+'的用户管理', 'userManager_'+roleId, roleId, {roleId: roleId});
 	};
 	/**
 	 * 资源授权
 	 */
 	var assignResource = function(roleId){
-		$.get('pages/cas/assign-resource.html').done(function(data){
+		$.get(contextPath + '/pages/auth/assign-resource.html').done(function(data){
 			var dialog = $(data);
 			dialog.find('#save').on('click',function(){
-				var treeObj = $.fn.zTree.getZTreeObj("resourceTree");
-				var nodes = treeObj.getCheckedNodes(true);
+				var treeObj = $("#resourceTree").getTree();
+				var nodes = treeObj.selectedItems();
 				var data = {};
 				data['roleVO.id'] = roleId;
 				for(var i=0,j=nodes.length; i<j; i++){
@@ -306,7 +306,7 @@ var roleManager = function(){
 	* 加载资源树
 	 */
 	var initResourceTree = function(roleId){
-		$.get('auth/Menu/findMenuTreeSelectItemByRole.koala?time='+new Date().getTime()+'&roleId='+roleId).done(function(result){
+		$.get(contextPath + '/auth/Menu/findMenuTreeSelectItemByRole.koala?time='+new Date().getTime()+'&roleId='+roleId).done(function(result){
 			var setting = {
 				check: {
 					enable: true
@@ -317,16 +317,29 @@ var roleManager = function(){
 			for(var i=0, j=items.length; i<j; i++){
 				var item = items[i];
 				var zNode = {};
-				zNode.id = item.id;
-				zNode.name = item.name;
-				zNode.open = true;
-				zNode.checked = item.ischecked;
-				if(item.children &&item.children.length > 0){
+                var menu = {};
+                menu.id = item.id;
+                menu.title = item.name;
+                menu.open = true;
+                menu.checked = item.ischecked;
+                zNode.menu = menu;
+				if(item.children && item.children.length > 0){
 					zNode.children = getChildrenData(new Array(), item.children);
 				}
+                zNode.type = item.menuType == '1' ?  'children' : 'parent';
 				zNodes.push(zNode);
 			}
-			$.fn.zTree.init($("#resourceTree"), setting, zNodes);
+            var dataSourceTree = {
+                data: zNodes,
+                delay: 400
+            };
+            $('#resourceTree').tree({
+                dataSource: dataSourceTree,
+                loadingHTML: '<div class="static-loader">Loading...</div>',
+                multiSelect: true,
+                useChkBox: true,
+                cacheItems: true
+            })
 		});
 	};
 	/**
@@ -335,14 +348,18 @@ var roleManager = function(){
 	var getChildrenData = function(nodes, items){
 		for(var i=0,j=items.length; i<j; i++){
 			var item = items[i];
-			var zNode = {};
-			zNode.id = item.id;
-			zNode.name = item.name;
-			zNode.checked = item.ischecked;
-			if(item.children && item.children.length > 0){
-				zNode.children = getChildrenData(new Array(), item.children);
-			}
-			nodes.push(zNode);
+            var zNode = {};
+            var menu = {};
+            menu.id = item.id;
+            menu.title = item.name;
+            menu.open = true;
+            menu.checked = item.ischecked;
+            zNode.menu = menu;
+            if(item.children && item.children.length > 0){
+                zNode.children = getChildrenData(new Array(), item.children);
+            }
+            zNode.type = item.menuType == '1' ?  'children' : 'parent';
+            nodes.push(zNode);
 		}
 		return nodes;
 	};
