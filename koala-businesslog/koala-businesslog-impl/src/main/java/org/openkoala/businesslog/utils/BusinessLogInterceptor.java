@@ -2,16 +2,22 @@ package org.openkoala.businesslog.utils;
 
 import static org.openkoala.businesslog.common.ContextKeyConstant.*;
 
+import com.dayatang.domain.InstanceFactory;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.aspectj.lang.JoinPoint;
+import org.openkoala.businesslog.BusinessLog;
 import org.openkoala.businesslog.BusinessLogEngine;
 import org.openkoala.businesslog.BusinessLogExporter;
 import org.openkoala.businesslog.common.BusinessLogPropertiesConfig;
+import org.openkoala.businesslog.common.LogEngineCallable;
+import org.openkoala.businesslog.common.LogEngineThread;
+import org.openkoala.businesslog.common.ThreadPool;
 import org.openkoala.businesslog.config.BusinessLogConfig;
 import org.openkoala.businesslog.impl.BusinessLogDefaultContextQueryExecutor;
 import org.openkoala.businesslog.impl.BusinessLogFreemarkerDefaultRender;
 import org.openkoala.businesslog.impl.BusinessLogXmlConfigDefaultAdapter;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import javax.inject.Inject;
 import java.util.Date;
@@ -36,6 +42,8 @@ public class BusinessLogInterceptor {
     @Inject
     private BusinessLogExporter businessLogExporter;
 
+    @Inject
+    private ThreadPoolTaskExecutor executor;
 
     public void logAfter(JoinPoint joinPoint, Object result) {
         log(joinPoint, result, null);
@@ -48,17 +56,39 @@ public class BusinessLogInterceptor {
 
     public void log(JoinPoint joinPoint, Object result, Throwable error) {
 
-        if (isRecursionQuery(joinPoint)) {
+        /*if (isRecursionQuery(joinPoint)) {
             return;
-        }
+        }*/
 
         if (!BusinessLogPropertiesConfig.getInstance().getLogEnableConfig()) {
             return;
         }
 
-        BusinessLogEngine engine = getBusinessLogEngine();
+        System.out.println(joinPoint.getSignature().toString());
+
+
+        System.out.println("********************" + InstanceFactory.isInitialized());
+
+
+        executor.execute(
+                new LogEngineThread(
+                        businessLogEngine,
+                        businessLogExporter,
+                        createDefaultContext(joinPoint, result, error),
+                        joinPoint.getSignature().toString()
+                        )
+        );
+
+        /*BusinessLogEngine engine = getBusinessLogEngine();
         engine.setInitContext(createDefaultContext(joinPoint, result, error));
-        engine.exportLogBy(joinPoint.getSignature().toString(), businessLogExporter);
+        BusinessLog log =
+                engine.exportLogBy(joinPoint.getSignature().toString(), businessLogExporter);
+
+        System.out.println("&&&&&&&&&&&&&&&&&&&&");
+        System.out.println(log.getLog());
+        System.out.println(log.getContext());       */
+
+
     }
 
     private boolean isRecursionQuery(JoinPoint joinPoint) {
@@ -85,7 +115,7 @@ public class BusinessLogInterceptor {
             context.put(BUSINESS_METHOD_EXECUTE_ERROR, errer.getCause());
         }
 
-        context.put(BUSINESS_METHOD, joinPoint.getSignature().toLongString());
+        context.put(BUSINESS_METHOD, joinPoint.getSignature().toString());
         context.put(BUSINESS_OPERATION_TIME, new Date());
 
         return context;
@@ -93,11 +123,9 @@ public class BusinessLogInterceptor {
 
 
     private BusinessLogEngine getBusinessLogEngine() {
-        if (businessLogEngine == null) {
-            BusinessLogConfig config = new BusinessLogConfig(new BusinessLogXmlConfigDefaultAdapter());
-            businessLogEngine = new BusinessLogEngine(config,
-                    new BusinessLogFreemarkerDefaultRender(), new BusinessLogDefaultContextQueryExecutor());
-        }
+        BusinessLogConfig config = new BusinessLogConfig(new BusinessLogXmlConfigDefaultAdapter());
+        businessLogEngine = new BusinessLogEngine(config,
+                new BusinessLogFreemarkerDefaultRender(), new BusinessLogDefaultContextQueryExecutor());
         return businessLogEngine;
     }
 

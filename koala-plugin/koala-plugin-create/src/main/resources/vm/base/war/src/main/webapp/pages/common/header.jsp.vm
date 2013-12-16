@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-#if ($Project.mvcProtocol=="Struts2MVC")
-<%@ taglib prefix="s" uri="/struts-tags" %>
-#end
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-#if ($Project.mvcProtocol=="SpringMVC")	
 <%@ taglib prefix="ss3" uri="http://www.springframework.org/security/tags" %>
-#end
 <%
  String contextPath = request.getContextPath();
 %>
@@ -19,11 +14,14 @@
 <script type="text/javascript" src="<%=contextPath %>/lib/respond.min.js"></script>
 <script type="text/javascript" src="<%=contextPath %>/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="<%=contextPath %>/lib/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="<%=contextPath %>/lib/koala-ui.plugin.js"></script>
 <script type="text/javascript" src="<%=contextPath %>/lib/koala-tree.js"></script>
-<script type="text/javascript" src="<%=contextPath %>/js/validation.js"></script>
+<script type="text/javascript" src="<%=contextPath %>/lib/validate.js"></script>
 
-<link href="<%=contextPath %>/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> 
-<link href="<%=contextPath %>/css/koala.css" rel="stylesheet" type="text/css" /> 
+<link href="<%=contextPath %>/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />
+    " rel="stylesheet">
+<link href="<%=contextPath %>/css/koala.css" rel="stylesheet" type="text/css" />
 <link href="<%=contextPath %>/css/main.css" rel="stylesheet" type="text/css" /> 
 <link href="<%=contextPath %>/css/gqc.css" rel="stylesheet" type="text/css" /> 
 <link href="<%=contextPath %>/css/monitor.css" rel="stylesheet" type="text/css" /> 

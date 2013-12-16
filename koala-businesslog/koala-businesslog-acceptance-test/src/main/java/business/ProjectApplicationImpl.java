@@ -18,13 +18,14 @@ public class ProjectApplicationImpl implements ProjectApplication {
     @Override
     public Project[] findSomeProjects(List<String> projectNames) {
         List<Project> result = new ArrayList<Project>();
-
-
-
         for (String name : projectNames) {
             result.add(new Project(name));
         }
-        System.out.println("*********************ProjectApplicationImpl");
         return result.toArray(new Project[result.size()]);
+    }
+
+    @Override
+    public List addProject() {
+        return new ArrayList();
     }
 }

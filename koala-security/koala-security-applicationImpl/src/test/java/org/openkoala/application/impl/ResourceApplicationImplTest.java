@@ -1,7 +1,9 @@
 package org.openkoala.application.impl;
 
 import static org.junit.Assert.*;
+
 import javax.inject.Inject;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openkoala.auth.application.ResourceApplication;
@@ -10,6 +12,7 @@ import org.openkoala.auth.application.vo.ResourceTypeVO;
 import org.openkoala.auth.application.vo.ResourceVO;
 import org.openkoala.koala.util.KoalaBaseSpringTestCase;
 import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.util.Assert;
 
 /**
  * ResourceApplicationImpl测试
@@ -30,7 +33,7 @@ public class ResourceApplicationImplTest extends KoalaBaseSpringTestCase {
 	
 	private ResourceTypeVO resourceTypeVO;
 	
-	@Before
+
 	public void setUp() {
 		resourceVO = new ResourceVO();
 		resourceVO.setName("testResource");
@@ -46,9 +49,17 @@ public class ResourceApplicationImplTest extends KoalaBaseSpringTestCase {
 		resourceApplication.saveResource(resourceVO);
 		assertNotNull(resourceVO.getId());
 	}
+	
+	@Test
+	public void testIsResourceEmpty(){
+		Assert.isTrue(resourceApplication.isResourceEmpty());
+		setUp();
+		Assert.isTrue(resourceApplication.isResourceEmpty()==false);
+	}
 
 	@Test
 	public void testAssignAndFindResourceTree() {
+		setUp();
 		ResourceVO child = new ResourceVO();
 		child.setName("child");
 		child.setDesc("child");
@@ -64,12 +75,14 @@ public class ResourceApplicationImplTest extends KoalaBaseSpringTestCase {
 
 	@Test
 	public void testGetResource() {
+		setUp();
 		ResourceVO result = resourceApplication.getResource(resourceVO.getId());
 		assertNotNull(result);
 	}
 
 	@Test
 	public void testUpdateResource() {
+		setUp();
 		resourceVO.setName("updateName");
 		resourceApplication.updateResource(resourceVO);
 		assertEquals("updateName", resourceApplication.getResource(resourceVO.getId()).getName());
@@ -77,16 +90,19 @@ public class ResourceApplicationImplTest extends KoalaBaseSpringTestCase {
 
 	@Test
 	public void testRemoveResource() {
+		setUp();
 		resourceApplication.removeResource(resourceVO.getId());
 	}
 
 	@Test
 	public void testIsNameExist() {
+		setUp();
 		assertTrue(resourceApplication.isNameExist(resourceVO));
 	}
 
 	@Test
 	public void testIsIdentifierExist() {
+		setUp();
 		assertTrue(resourceApplication.isIdentifierExist(resourceVO));
 	}
 

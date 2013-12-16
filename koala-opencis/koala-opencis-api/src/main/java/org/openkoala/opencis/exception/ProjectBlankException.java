@@ -1,4 +1,4 @@
-package org.openkoala.opencis.svn;
+package org.openkoala.opencis.exception;
 
 public class ProjectBlankException extends BaseException {
 

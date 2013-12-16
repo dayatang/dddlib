@@ -26,6 +26,7 @@ public class Project {
         this.name = name;
     }
 
+
     public static Project findByContract(Contract contract) {
         return new Project("项目xxxx");
     }
