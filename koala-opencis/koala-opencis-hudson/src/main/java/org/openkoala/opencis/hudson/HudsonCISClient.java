@@ -101,4 +101,11 @@ public class HudsonCISClient implements CISClient {
 		return false;
 	}
 
+	@Override
+	public void assignUsersToRole(Project project, List<String> userName,
+			String role) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

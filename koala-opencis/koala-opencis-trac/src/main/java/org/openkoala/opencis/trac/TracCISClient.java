@@ -1,5 +1,7 @@
 package org.openkoala.opencis.trac;
 
+import java.util.List;
+
 import org.openkoala.opencis.api.CISClient;
 import org.openkoala.opencis.api.CommandExecutor;
 import org.openkoala.opencis.api.Developer;
@@ -94,6 +96,13 @@ public class TracCISClient implements CISClient {
 
 	public void setSuccess(boolean success) {
 		this.success = success;
+	}
+
+	@Override
+	public void assignUsersToRole(Project project, List<String> userName,
+			String role) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
