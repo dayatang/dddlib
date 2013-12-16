@@ -4,6 +4,9 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
 	<display-name>koalaMonitor-web</display-name>
+	<listener>
+		<listener-class>com.dayatang.spring.webapp.DayatangContextLoaderListener</listener-class>
+	</listener>
 
 	<!-- Character Filter -->
 	<filter>
@@ -15,20 +18,16 @@
 		</init-param>
 	</filter>
 
-	<filter-mapping>
-		<filter-name>encodingFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-
-	<!-- Spring Listener -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:spring/root.xml</param-value>
-	</context-param>
-	<listener>
-		<listener-class>com.dayatang.spring.webapp.DayatangContextLoaderListener</listener-class>
-	</listener>
+	<servlet>
+		<servlet-name>jcaptcha</servlet-name>
+		<servlet-class>com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet</servlet-class>
+	</servlet>
 	
+	<servlet-mapping>
+		<servlet-name>jcaptcha</servlet-name>
+		<url-pattern>/jcaptcha.jpg</url-pattern>
+	</servlet-mapping>
+
 	<!-- ss3过滤器链 -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
@@ -38,21 +37,6 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
-	<servlet>
-		<servlet-name>DBInit</servlet-name>
-		<servlet-class>org.openkoala.koala.dbinit.SecurityDBInit</servlet-class>
-		<init-param>
-			<param-name>type</param-name>
-			<param-value>SpringMVC</param-value>
-		</init-param>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>DBInit</servlet-name>
-		<url-pattern>/dbinit</url-pattern>
-	</servlet-mapping>
-
 
 	<servlet>
 		<servlet-name>spring</servlet-name>
@@ -69,6 +53,12 @@
 		<url-pattern>*.koala</url-pattern>
 	</servlet-mapping>
 
+	<!-- Spring Listener -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/root.xml</param-value>
+	</context-param>
+
 	<session-config>
 		<session-timeout>120</session-timeout>
 	</session-config>
@@ -77,42 +67,15 @@
 		<error-code>404</error-code>
 		<location>/pages/errors/404.html</location>
 	</error-page>
+	
 	<error-page>
 		<error-code>500</error-code>
 		<location>/pages/errors/500.html</location>
 	</error-page>
-	
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.css</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.gif</url-pattern>
-	</servlet-mapping>
-
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.jpg</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.png</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.js</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.html</url-pattern>
-	</servlet-mapping>
 
 	<welcome-file-list>
-	    <welcome-file>/login.jsp</welcome-file>
+		<welcome-file>/login.jsp</welcome-file>
 	</welcome-file-list>
-
 
 	<distributable />
 </web-app>

@@ -10,6 +10,7 @@
 <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />"></script>	
+<script type="text/javascript" src="<c:url value='/lib/validate.js' />"></script>
 <style type="text/css">
 @charset "UTF-8";
 /* CSS Document */
@@ -87,25 +88,26 @@ body {
 	border-bottom: 1px solid #d4d4d4;
 	margin-top: 0px;
 }
+
 .login_con_R  form {
-	padding-top: 10%;
+	padding-top: 7%;
 	padding-left: 7%;
 	padding-right: 7%;
-}
-.login_con_R  .form-group {
-	margin-bottom: 10%;
 }
 .login_con_R .input-group {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
- }
+}
+.checkCode {
+	height: 50px;
+}
 .btn-login {
 	width: 100%;
 	margin-left: auto;
     margin-right: auto;
-	margin-top: 8%;
 }
+
 .login_footer {
 	clear: both;
 	margin: 8% auto 0;
@@ -140,15 +142,23 @@ body {
 		</div>
 		<div class="login_con_R">
 			<h4>登录</h4>
-			<c:if test="${param.login_error == '1' }">
+			 <c:if test="${param.login_error == '1' }">
 				     	<script>
 				     		$('body').message({
 								type: 'error',
 								content: '用户名或密码错误!'
 							});
 				     	</script>
+				    </c:if>
+				    <c:if test="${param.login_error == '2' }">
+				      	<script>
+				     		$('body').message({
+								type: 'error',
+								content: '验证码错误!'
+							});
+				     	</script>
 			</c:if>
-			<FORM id=loginFormId method=post action="j_spring_security_check" class="form-horizontal">
+			<FORM id="loginFormId" method=post action="j_spring_security_check" onsubmit="return dologin();" class="form-horizontal">
 				<div class="form-group input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                     <input type="text" class="form-control" placeholder="用户名"  name="j_username" id="j_username">
@@ -158,12 +168,49 @@ body {
                     <input type="password" name="j_password" id="j_password" class="form-control" placeholder="密码"/>
                 </div>
 				<div class="form-group input-group">
-					<button class="btn btn-primary btn-login" onclick="javascript:login()">登陆</button>
+				    <span class="input-group-addon"><span class="glyphicon glyphicon-magnet"></span></span>
+					<input type="text" id="jcaptcha" name="jcaptcha" value="" class="form-control" placeholder="验证码"/>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-3"></label>
+					<div class="col-lg-9">
+						<img src="jcaptcha.jpg" id="checkCode" onclick="refreshCode();" class="checkCode"/>
+					</div>
+				</div>
+				<div class="form-group input-group">
+					<button type="button"  class="btn btn-primary btn-login" onclick="javascript:login()">登陆</button>
 				</div>
 			</FORM>
 		</div>
 	</div>
 	<div class="login_footer">Koala 版权信息 2013</div>
+	<script>
+    var btnLogin = $('.btn-login');
+    var form = $('#loginFormId');
+    $(function(){
+        btnLogin.keydown(function(e) {
+            if (e.keyCode == 13) {
+                form.submit();
+            }
+        });
+        btnLogin.on('click',function() {
+                form.submit();
+        });
+    });
+    var dologin = function() {
+        var userNameElement = $("#j_username");
+        var passwordElement = $("#j_password");
+        var username = userNameElement.val();
+        var password = passwordElement.val();
+        if (!Validation.notNull($('body'), userNameElement, username, '用户名不能为空')) {
+            return false;
+        }
+        if (!Validation.notNull($('body'), passwordElement, password, '密码不能为空')) {
+            return false;
+        }
+        return true;
+    }
+	</script>
 </body>
 </html>
 </html>

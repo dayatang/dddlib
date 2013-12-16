@@ -23,6 +23,7 @@ import java.util.Map;
  * Date: 12/9/13
  * Time: 8:45 AM
  */
+@Ignore
 public class BusinessLogEngineTest {
     @Test
     public void testName() throws Exception {

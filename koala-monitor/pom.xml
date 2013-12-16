@@ -17,7 +17,7 @@
 		<module>koala-jmonitor-mina</module>
 		<module>koala-jmonitor-core</module>
 		<module>koala-jmonitor-model</module>
-		<!--<module>koala-jmonitor-web-mvc</module>-->
+		<module>koala-jmonitor-web-mvc</module>
 	</modules>
 
 	<issueManagement>
@@ -740,28 +740,28 @@
 			<dependency>
 				<groupId>org.openkoala.security</groupId>
 				<artifactId>koala-security-core</artifactId>
-				<version>${koalaSecurity.version}</version>
+				<version>${project.parent.version}</version>
 			</dependency>
 			<!-- koala Security -->
 			<dependency>
 				<groupId>org.openkoala.security</groupId>
 				<artifactId>koala-security-ss3Adapter</artifactId>
-				<version>${koalaSecurity.version}</version>
+				<version>${project.parent.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.openkoala.security</groupId>
 				<artifactId>koala-security-application</artifactId>
-				<version>${koalaSecurity.version}</version>
+				<version>${project.parent.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.openkoala.security</groupId>
 				<artifactId>koala-security-authJdbcImpl</artifactId>
-				<version>${koalaSecurity.version}</version>
+				<version>${project.parent.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.openkoala.security</groupId>
 				<artifactId>koala-security-applicationImpl</artifactId>
-				<version>${koalaSecurity.version}</version>
+				<version>${project.parent.version}</version>
 			</dependency>
 
 			<!-- <dependency> <groupId>org.apache.velocity</groupId> <artifactId>velocity-tools</artifactId> 

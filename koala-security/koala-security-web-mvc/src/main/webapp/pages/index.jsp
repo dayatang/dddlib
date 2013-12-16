@@ -9,14 +9,14 @@
 <head>
     <title>Koala权限系统</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Pragma" content="no-cache">
-	<meta http-equiv="Cache-Control" content="no-cache">
-	<meta http-equiv="Expires" content="0">
     <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
     <link href="<c:url value='/css/security.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
+    <link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />
+    " rel="stylesheet">
+    <link href="<c:url value='/css/organisation.css' />?time=<%=time%>" rel="stylesheet">
+
     <script>
         var contextPath = '${pageContext.request.contextPath}';
     </script>
@@ -43,12 +43,12 @@
 	    </nav>
 	</div>
 	<div class="g-body">
-	    <div class="col-lg-2 g-sidec">
+	    <div class="col-xs-2 g-sidec">
 	        <ul class="nav nav-stacked first-level-menu">
 	       		
 	        </ul>
 	    </div>
-	    <div class="col-lg-10 g-mainc container">
+	    <div class="col-xs-10 g-mainc container">
 	        <ul class="nav nav-tabs" id="navTabs">
 	            <li class="active"><a href="#home" data-toggle="tab">主页</a></li>
 	        </ul>
@@ -64,8 +64,10 @@
 	<script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />?time=<%=time%>" ></script>	
+	<script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/koala-tree.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/lib/validate.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/js/main.js' />?time=<%=time%>" ></script>
     <script type="text/javascript" src="<c:url value='/js/security/role.js' />?time=<%=time%>" ></script>
     <script type="text/javascript" src="<c:url value='/js/security/user.js' />?time=<%=time%>" ></script>

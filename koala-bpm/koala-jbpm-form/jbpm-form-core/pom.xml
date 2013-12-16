@@ -24,7 +24,7 @@
 		<dependency>
 			<groupId>org.openkoala.bpm</groupId>
 			<artifactId>jbpm-form-infra</artifactId>
-			<version>${project.parent.version}</version> 
+			<version>${project.parent.version}</version>
 		</dependency>
 
 		<!-- 加入对DOMAIN层的依赖 -->
@@ -43,7 +43,7 @@
 		<dependency>
 			<groupId>org.openkoala.bpm</groupId>
 			<artifactId>jbpm-form-infra-impl</artifactId>
-			<version>${project.parent.version}</version> 
+			<version>${project.parent.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -51,7 +51,7 @@
 		<dependency>
 			<groupId>org.openkoala.bpm</groupId>
 			<artifactId>jbpm-form-conf</artifactId>
-			<version>${project.parent.version}</version> 
+			<version>${project.parent.version}</version>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
@@ -69,24 +69,24 @@
 			<artifactId>hibernate-validator</artifactId>
 			<scope>test</scope>
 		</dependency>
-        <dependency>
-            <groupId>${db.groupId}</groupId>
-            <artifactId>${db.artifactId}</artifactId>
-            <version>${db.version}</version>
-            <scope>test</scope>
-        </dependency>
-		
 		<dependency>
-					<groupId>org.openkoala.koalacommons</groupId>
-					<artifactId>koala-commons-test-support</artifactId>
-					<version>${project.parent.version}</version>
-					<scope>test</scope>
-				</dependency>
+			<groupId>${db.groupId}</groupId>
+			<artifactId>${db.artifactId}</artifactId>
+			<version>${db.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openkoala.koalacommons</groupId>
+			<artifactId>koala-commons-test-support</artifactId>
+			<version>${project.parent.version}</version>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
-	
+
 	<build>
 		<plugins></plugins>
 	</build>
-	
+
 </project>
