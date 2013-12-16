@@ -1,4 +1,5 @@
-package org.openkoala.opencis.svn;
+package org.openkoala.opencis.exception;
+
 
 public class BaseException extends RuntimeException {
 
