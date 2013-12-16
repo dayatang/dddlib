@@ -1,5 +1,7 @@
 package org.openkoala.opencis.sonar;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -132,6 +134,13 @@ public class SonarCISClient implements CISClient {
 		requestFactory.setLogin(sonarServerConfiguration.getUsername());
 		requestFactory.setPassword(sonarServerConfiguration.getPassword());
 		return requestFactory;
+	}
+
+	@Override
+	public void assignUsersToRole(Project project, List<String> userName,
+			String role) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

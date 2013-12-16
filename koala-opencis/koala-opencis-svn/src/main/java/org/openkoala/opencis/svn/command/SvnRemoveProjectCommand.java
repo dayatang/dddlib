@@ -1,10 +1,7 @@
 package org.openkoala.opencis.svn.command;
 
-import java.io.IOException;
-
-import org.apache.commons.lang.StringUtils;
+import org.openkoala.opencis.api.OpencisConstant;
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.svn.ProjectExistenceException;
 
 import com.dayatang.configuration.Configuration;
 import com.trilead.ssh2.Connection;
@@ -25,7 +22,7 @@ public class SvnRemoveProjectCommand extends SvnCommand {
 
 	@Override
 	public String getCommand() {
-		String removeProjectCommand = "rm -rf /var/www/svn/" + project.getProjectName();
+		String removeProjectCommand = "rm -rf " + OpencisConstant.PROJECT_PATH_IN_LINUX_SVN + project.getProjectName();
 		return removeProjectCommand;
 	}
 

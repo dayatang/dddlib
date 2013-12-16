@@ -4,6 +4,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.openkoala.businesslog.SimpleClassConvertException;
 import org.openkoala.businesslog.SimpleClassEnumNotFoundException;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.*;
 
@@ -107,16 +108,20 @@ public enum SimpleClassEnum {
             }
             return null;
         }
-    }
-    ,
-    _String(String.class,"String","java.lang.String"){
+    },
+    _String(String.class, "String", "java.lang.String") {
         @Override
         public Object convert(String value) {
             return value;
 
         }
-    }
-    ;
+    },
+    _BigDecimal(BigDecimal.class, "BigDecimal", "java.math.BigDecimal") {
+        @Override
+        public Object convert(String value) {
+            return new BigDecimal(value);
+        }
+    };
 
     private final static String[] parsePatterns = new String[]{
             "yyyy.MM.dd G \'at\' hh:mm:ss z",
@@ -165,18 +170,6 @@ public enum SimpleClassEnum {
         return null;
     }
 
-    /* public static Object convertStringToObject(String className, String value) {
-         if (!isSimpleClass(className)) {
-             throw new SimpleClassConvertException(className + " is not a simple class");
-         }
-         SimpleClassEnum simpleClassEnum = getSimpleClassEnumOf(className);
-         if (null == simpleClassEnum) {
-             throw new SimpleClassEnumNotFoundException(className + " is not found!");
-         }
-         return simpleClassEnum.convert(value);
-
-     }
- */
     public static boolean isSimpleClass(String className) {
         for (SimpleClassEnum each : SimpleClassEnum.values()) {
             if (each.names.contains(className)) {

@@ -41,7 +41,6 @@ public class GiraCISClientTest {
 	private String email = "test@gmail.com";
 	/**针对创建角色**/
 	private String roleName;
-	private String typeDesc;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws IOException{
@@ -71,7 +70,6 @@ public class GiraCISClientTest {
 		project = null;
 		developer = null;
 		roleName = null;
-		typeDesc = null;
 	}
 	
 	@Test(expected = ServerAddressBlankException.class)
@@ -368,7 +366,6 @@ public class GiraCISClientTest {
 	
 	private void initRoleInfo(){
 		roleName = "roleName";
-		typeDesc = "角色描述";
 	}
 	
 	private void packagingServerAddressBlank(){

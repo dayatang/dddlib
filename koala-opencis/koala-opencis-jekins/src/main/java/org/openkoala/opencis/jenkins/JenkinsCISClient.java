@@ -189,4 +189,11 @@ public class JenkinsCISClient implements CISClient {
 			throw new JenkinsServerConfigurationNullException();
 		}
 	}
+
+	@Override
+	public void assignUsersToRole(Project project, List<String> userName,
+			String role) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -32,6 +32,8 @@ public class HelloController {
         names.add("4");
 
         projectApplication.findSomeProjects(names);
+        // TODO 同步问题
+        contractApplication.addInvoice("xxxx", 1l, 3);
         return "hello";
     }
 }

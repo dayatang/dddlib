@@ -3,12 +3,23 @@ package org.openkoala.opencis.svn;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.exception.HostBlankException;
+import org.openkoala.opencis.exception.HostCannotConnectException;
+import org.openkoala.opencis.exception.PasswordBlankException;
+import org.openkoala.opencis.exception.ProjectBlankException;
+import org.openkoala.opencis.exception.ProjectExistenceException;
+import org.openkoala.opencis.exception.RoleBlankException;
+import org.openkoala.opencis.exception.UserBlankException;
+import org.openkoala.opencis.exception.UserListBlankException;
+import org.openkoala.opencis.exception.UserOrPasswordErrorException;
 
 import com.dayatang.configuration.Configuration;
 
@@ -19,6 +30,8 @@ public class SvnCISClientTest {
 	private Project project;
 	private Developer developer;
 	private String projectName = "projectUnitTest";
+	private List<String> userNames;
+	private String roleName;
 
 	@Before
 	public void setUp() throws Exception {
@@ -39,42 +52,39 @@ public class SvnCISClientTest {
 	public void testHostBlank(){
 		configuration.setString("HOST", null);
 		instance = new SvnCISClient(configuration);
-		instance.isConfigurationCorrect();
 	}
 	
 	@Test(expected = UserBlankException.class)
 	public void testUserBlank(){
 		configuration.setString("USER", null);
 		instance = new SvnCISClient(configuration);
-		instance.isConfigurationCorrect();
 	}
 	
 	@Test(expected = PasswordBlankException.class)
 	public void testPasswordBlank(){
 		configuration.setString("PASSWORD", null);
 		instance = new SvnCISClient(configuration);
-		instance.isConfigurationCorrect();
 	}
 	
 	@Test(expected = HostCannotConnectException.class)
 	public void testHostCannotConnect(){
 		configuration.setString("HOST", "aaaaaaaa");
 		instance = new SvnCISClient(configuration);
-		instance.isConfigurationCorrect();
+		instance.canConnect();
 	}
 	
 	@Test(expected = UserOrPasswordErrorException.class)
 	public void testUserError(){
 		configuration.setString("USER", "usererror");
 		instance = new SvnCISClient(configuration);
-		instance.isConfigurationCorrect();
+		instance.canConnect();
 	}
 	
 	@Test(expected = UserOrPasswordErrorException.class)
 	public void testPasswordError(){
 		configuration.setString("PASSWORD", "pwderror");
 		instance = new SvnCISClient(configuration);
-		instance.isConfigurationCorrect();
+		instance.canConnect();
 	}
 	
 	@Test(expected = ProjectBlankException.class)
@@ -125,13 +135,40 @@ public class SvnCISClientTest {
 			instance.removeProjcet(project);
 		}
 	}
-
-	@Test
-	@Ignore
-	public void testAssignUserToRole() {
-		
+	
+	@Test(expected = UserListBlankException.class)
+	public void testUserListBlank(){
+		instance = new SvnCISClient(configuration);
+		instance.assignUsersToRole(project, null, "Architect");
+	}
+	
+	@Test(expected = UserListBlankException.class)
+	public void testUserListBlank2(){
+		instance = new SvnCISClient(configuration);
+		instance.assignUsersToRole(project, new ArrayList<String>(), "Architect");
+	}
+	
+	@Test(expected = RoleBlankException.class)
+	public void testRoleBlank(){
+		initUserListAndRoleName();
+		instance = new SvnCISClient(configuration);
+		instance.assignUsersToRole(project, userNames, null);
 	}
 
+	@Test
+	public void testAssignUsersToRole() {
+		try {
+			initUserListAndRoleName();
+			instance = new SvnCISClient(configuration);
+			instance.createProject(project);
+			instance.assignUsersToRole(project, userNames, roleName);
+			instance.removeProjcet(project);
+			assertTrue(true);
+		} catch (Exception e) {
+			fail("授权失败！");
+		}
+	}
+	
 	@Test
 	public void testCanConnect() {
 		instance = new SvnCISClient(configuration);
@@ -151,6 +188,14 @@ public class SvnCISClientTest {
 		developer = new Developer();
 		developer.setName("projectUserTest");
 		developer.setPassword("pwdTest");
+	}
+	
+	private void initUserListAndRoleName(){
+		userNames = new ArrayList<String>();
+		userNames.add("aaa");
+		userNames.add("bbb");
+		
+		roleName = "Architect";
 	}
 
 }
