@@ -30,4 +30,8 @@ public class ThreadLocalBusinessLogContext {
     }
 
 
+    public static void clear() {
+        contextMap.clear();
+        context.set(new HashMap<String, Object>());
+    }
 }

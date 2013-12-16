@@ -20,6 +20,20 @@
                     <arg>${contract}</arg>
                 </args>
             </query>
+            <query key="ok">
+                <target class="business.ProjectApplication">projectApplication</target>
+                <method>addProject()</method>
+            </query>
+
+        </queries>
+    </businessLogConfig>
+    <businessLogConfig>
+        <!--向项目中的合同，添加一张发票-->
+        <category>发票操作</category>
+        <method>Contract business.ContractApplication.findContractById(long)</method>
+        <template><![CDATA[xxxxxxx]]></template>
+        <queries>
+
         </queries>
     </businessLogConfig>
     <businessLogConfig>
@@ -49,6 +63,19 @@
     <businessLogConfig>
         <category>项目操作</category>
         <!--对于多维数组，待支持-->
-        <method>List business.ProjectApplication.addProject(String[][][])</method>
+        <method>List business.ProjectApplication.addProject()</method>
+        <template><![CDATA[
+        ererererer         addProject
+        ]]></template>
+        <queries>
+            <query key="ij">
+                <target class="business.InvoiceApplication">invoiceApplication</target>
+                <method>addInvoice(String,long)</method>
+                <args>
+                    <arg>xxx</arg>
+                    <arg>122</arg>
+                </args>
+            </query>
+        </queries>
     </businessLogConfig>
 </businessLogConfigs>

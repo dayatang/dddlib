@@ -38,6 +38,10 @@ public class ContextQueryHelper {
     }
 
     public static String getMethodName(String methodSignature) {
+        /*如果客户省略括号*/
+        if (!methodSignature.contains("(")) {
+            return  methodSignature;
+        }
         return methodSignature.substring(0, methodSignature.indexOf('('));
     }
 

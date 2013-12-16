@@ -91,6 +91,8 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
+
+        System.out.println("####" + InstanceFactory.isInitialized());
         if (null != beanName && !"".equals(beanName.trim())) {
             return InstanceFactory.getInstance(getClassOfBean(), beanName);
         }

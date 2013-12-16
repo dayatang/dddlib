@@ -18,8 +18,30 @@
     <bean id="contractApplication" class="business.ContractApplicationImpl"/>
     <bean id="projectApplication" class="business.ProjectApplicationImpl"/>
     <bean id="invoiceApplication" class="business.InvoiceApplicationImpl"/>
+    <!-- 异步线程池 -->
+    <bean id="threadPool" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <!-- 核心线程数  -->
+        <property name="corePoolSize" value="10" />
+        <!-- 最大线程数 -->
+        <property name="maxPoolSize" value="50" />
+        <!-- 队列最大长度 >=mainExecutor.maxSize -->
+        <property name="queueCapacity" value="1000" />
+        <!-- 线程池维护线程所允许的空闲时间 -->
+        <property name="keepAliveSeconds" value="300" />
+        <!-- 线程池对拒绝任务(无线程可用)的处理策略 -->
+        <property name="rejectedExecutionHandler">
+            <bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
+        </property>
+    </bean>
 
 
+    <bean id="logInterceptor1" class="business2.TestInterceptor"/>
+    <aop:config>
+        <aop:pointcut id="businessBehavior1" expression="execution(* business.TestApplication.*(..))"/>
+        <aop:aspect id="ssdsdsd" ref="logInterceptor1">
+            <aop:after-returning returning="result" method="logAfter" pointcut-ref="businessBehavior1"/>
+        </aop:aspect>
+    </aop:config>
 
 
 </beans>

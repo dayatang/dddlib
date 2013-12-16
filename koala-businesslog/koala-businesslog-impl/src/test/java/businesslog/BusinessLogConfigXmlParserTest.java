@@ -23,7 +23,7 @@ public class BusinessLogConfigXmlParserTest {
 
         assert "向项目${project.name}的合同${contract.name}添加发票：${(_methodReturn.sn)!\"\"}".equals(parser.getTemplateFrom(operation));
 
-        assert parser.getQueriesFrom(operation).size() == 2;
+        assert parser.getQueriesFrom(operation).size() == 3;
 
         assert parser.getQueriesFrom(operation).get(0) instanceof BusinessLogDefaultContextQuery;
 

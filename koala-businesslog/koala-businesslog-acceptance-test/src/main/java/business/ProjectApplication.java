@@ -12,4 +12,6 @@ public interface ProjectApplication {
 
     Project[] findSomeProjects(List<String> projectNames);
 
+    List addProject();
+
 }

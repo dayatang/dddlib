@@ -25,7 +25,7 @@ public class ProjectApplicationImpl implements ProjectApplication {
     }
 
     @Override
-    public List addProject(String[][][] names) {
+    public List addProject() {
         return new ArrayList();
     }
 }
