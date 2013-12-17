@@ -42,7 +42,8 @@ public class BusinessLogEngineTest {
         Map<String, Object> initContext = createContext();
 
         BusinessLogEngine engine =
-                new BusinessLogEngine(config, render, queryExecutor, initContext);
+                new BusinessLogEngine(config, render, queryExecutor);
+        engine.setInitContext(initContext);
 
 
         when(configAdapter.findConfigByBusinessOperation(businessOperation))

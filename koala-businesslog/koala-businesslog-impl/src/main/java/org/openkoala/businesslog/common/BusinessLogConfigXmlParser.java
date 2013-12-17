@@ -213,7 +213,6 @@ public class BusinessLogConfigXmlParser {
 
 
     private BusinessLogDefaultContextQuery createQueryBy(Node queryNode) {
-        String contextKey = null;
 
         String beanName = null;
         String beanClass = null;
@@ -222,7 +221,7 @@ public class BusinessLogConfigXmlParser {
 
         NodeList children = queryNode.getChildNodes();
 
-        contextKey = queryNode.getAttributes().getNamedItem(QUERY_CONTEXT_KEY).getNodeValue();
+        String contextKey = queryNode.getAttributes().getNamedItem(QUERY_CONTEXT_KEY).getNodeValue();
 
         for (int i = 0; i < children.getLength(); i++) {
             Node node = children.item(i);
@@ -255,13 +254,13 @@ public class BusinessLogConfigXmlParser {
         if (argsNode.getLength() == 0) {
             return null;
         }
-        List<String> args = new ArrayList<String>();
+        List<String> result = new ArrayList<String>();
         for (int i = 0; i < argsNode.getLength(); i++) {
             Node node = argsNode.item(i);
             if (TARGET_METHOD_ARG_NODE_NAME.equals(node.getNodeName())) {
-                args.add(node.getTextContent());
+                result.add(node.getTextContent());
             }
         }
-        return args;
+        return result;
     }
 }

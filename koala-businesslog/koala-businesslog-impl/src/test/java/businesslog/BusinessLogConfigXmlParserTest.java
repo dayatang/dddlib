@@ -43,6 +43,7 @@ public class BusinessLogConfigXmlParserTest {
         assert "发票操作".equals(parser.getBusinessLogMethodCategory(operation));
 
 
+
         String operation1 = "String business.ContractApplication.addContract(long)";
 
         assert "添加合同${_methodReturn}".equals(parser.getTemplateFrom(operation1));

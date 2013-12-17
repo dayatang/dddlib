@@ -27,15 +27,6 @@ public class BusinessLogEngine {
         this.render = render;
     }
 
-    public BusinessLogEngine(BusinessLogConfig config,
-                             BusinessLogRender render,
-                             BusinessLogContextQueryExecutor queryExecutor,
-                             Map<String, Object> aContext) {
-        this(config, render, queryExecutor);
-        initContext = aContext;
-    }
-
-
     public BusinessLog exportLogBy(String businessOperation, BusinessLogExporter exporter) {
         synchronized (this) {
             BusinessLog businessLog = new BusinessLog();
@@ -52,11 +43,14 @@ public class BusinessLogEngine {
 
 
     private Map<String, Object> createContext(String businessOperation) {
-        if (null == initContext) {
-            initContext = new Hashtable<String, Object>();
+        synchronized (this) {
+            if (null == initContext) {
+                initContext = new Hashtable<String, Object>();
+            }
+            BusinessLogContextQuery[] queries = new BusinessLogContextQuery[config.getQueries(businessOperation).size()];
+            return queryExecutor.startQuery(initContext, config.getQueries(businessOperation).toArray(queries));
         }
-        BusinessLogContextQuery[] queries = new BusinessLogContextQuery[config.getQueries(businessOperation).size()];
-        return queryExecutor.startQuery(initContext, config.getQueries(businessOperation).toArray(queries));
+
     }
 
     public void setRender(BusinessLogRender render) {
@@ -71,7 +65,7 @@ public class BusinessLogEngine {
         this.queryExecutor = queryExecutor;
     }
 
-    public void setInitContext(Map<String, Object> initContext) {
+    public synchronized void setInitContext(Map<String, Object> initContext) {
         this.initContext = initContext;
     }
 }

@@ -24,7 +24,7 @@
     <bean id="businessLogEnginConfig" class="org.openkoala.businesslog.config.BusinessLogConfig">
         <constructor-arg name="configAdapter" ref="configAdapter"/>
     </bean>
-    <bean id="businessLogEngine" class="org.openkoala.businesslog.BusinessLogEngine">
+    <bean id="businessLogEngine" class="org.openkoala.businesslog.BusinessLogEngine" >
         <constructor-arg name="config" ref="businessLogEnginConfig"/>
         <constructor-arg name="render">
             <bean class="${businessLogRender}"></bean>

@@ -44,8 +44,9 @@ public class BusinessLogEngineTest {
         BusinessLogEngine businessLogEngine = new BusinessLogEngine(
                 config,
                 new BusinessLogFreemarkerDefaultRender(),
-                new BusinessLogDefaultContextQueryExecutor(),
-                getContext());
+                new BusinessLogDefaultContextQueryExecutor()
+                );
+        businessLogEngine.setInitContext(getContext());
 
 
         BusinessLogExporter exporter = new BusinessLogConsoleExporter();

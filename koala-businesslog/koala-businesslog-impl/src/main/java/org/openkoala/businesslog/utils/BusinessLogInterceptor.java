@@ -57,15 +57,15 @@ public class BusinessLogInterceptor {
                 || ThreadLocalBusinessLogContext.get().get(BUSINESS_METHOD) != null) {
             return;
         }
-       executor.execute(new LogEngineThread(getBusinessLogEngine(),
+        executor.execute(new LogEngineThread(getBusinessLogEngine(),
                 businessLogExporter, Collections.unmodifiableMap(
-               createDefaultContext(joinPoint, result, error)),
-               joinPoint.getSignature().toString()));
+                createDefaultContext(joinPoint, result, error)),
+                joinPoint.getSignature().toString()));
 
     }
 
     private Map<String, Object> createDefaultContext(JoinPoint joinPoint,
-                                                                  Object result, Throwable error) {
+                                                     Object result, Throwable error) {
         Map<String, Object> context = ThreadLocalBusinessLogContext.get();
 
         Object[] args = joinPoint.getArgs();
@@ -86,11 +86,11 @@ public class BusinessLogInterceptor {
     }
 
     private BusinessLogEngine getBusinessLogEngine() {
-        BusinessLogConfig config = new BusinessLogConfig(
-                new BusinessLogXmlConfigDefaultAdapter());
-        businessLogEngine = new BusinessLogEngine(config,
-                new BusinessLogFreemarkerDefaultRender(),
-                new BusinessLogDefaultContextQueryExecutor());
+        synchronized (this) {
+            if (null == businessLogEngine) {
+                InstanceFactory.getInstance(BusinessLogEngine.class, "businessLogEngine");
+            }
+        }
         return businessLogEngine;
     }
 

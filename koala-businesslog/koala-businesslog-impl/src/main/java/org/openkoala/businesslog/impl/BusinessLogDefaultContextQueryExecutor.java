@@ -14,13 +14,13 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class BusinessLogDefaultContextQueryExecutor implements BusinessLogContextQueryExecutor {
     @Override
-    public Map<String, Object> startQuery(Map<String, Object> aContext, BusinessLogContextQuery... queries) {
+    public Map<String, Object> startQuery(final Map<String, Object> aContext, BusinessLogContextQuery... queries) {
         synchronized (this) {
 
             if (null == queries) {
-                return aContext;
+                return new HashMap<String, Object>();
             }
-            Map<String, Object> result = new ConcurrentHashMap<String, Object>();
+            Map<String, Object> result = new HashMap<String, Object>();
             if (null != aContext) {
                 result.putAll(aContext);
             }
