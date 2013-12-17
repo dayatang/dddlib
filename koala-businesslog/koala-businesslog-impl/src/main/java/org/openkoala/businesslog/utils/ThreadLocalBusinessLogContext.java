@@ -1,5 +1,6 @@
 package org.openkoala.businesslog.utils;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +21,11 @@ public class ThreadLocalBusinessLogContext {
     };
 
     public static Map<String, Object> get() {
-        return context.get();
+        Map<String, Object> result = new HashMap<String, Object>();
+        for (String key : context.get().keySet()) {
+            result.put(key, context.get().get(key));
+        }
+        return result;
     }
 
 

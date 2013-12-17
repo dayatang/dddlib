@@ -73,10 +73,11 @@ public class DefaultBusinessLog extends AbstractBusinessLog {
 
     @Override
     public String toString() {
-        return "MyBusinessLog{" +
+        return "DefaultBusinessLog{" +
                 "user='" + user + '\'' +
                 ", ip='" + ip + '\'' +
                 ", time=" + time +
+                ", log=" + getLog() +
                 '}';
     }
 

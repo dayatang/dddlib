@@ -122,6 +122,12 @@
 			<groupId>proxool</groupId>
 			<artifactId>proxool-cglib</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.1</version>
+        </dependency>
+
 
 		<dependency>
 			<groupId>${db.groupId}</groupId>
