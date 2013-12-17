@@ -43,9 +43,10 @@ public class LogEngineThread implements Runnable {
 
             System.out.println("第一次进入时的业务方法" + ThreadLocalBusinessLogContext.get().get(BUSINESS_METHOD));
             System.out.println("当前执行的业务方法" + joinPointSignature);
-            if (isRecursionQuery(joinPointSignature)) {
-                return;
-            }
+            ThreadLocalBusinessLogContext.put(BUSINESS_METHOD, joinPointSignature);
+//            if (isRecursionQuery(joinPointSignature)) {
+//                return;
+//            }
             BusinessLogConfig config = new BusinessLogConfig(new BusinessLogXmlConfigDefaultAdapter());
             BusinessLogEngine businessLogEngine1 = new BusinessLogEngine(config,
                     new BusinessLogFreemarkerDefaultRender(), new BusinessLogDefaultContextQueryExecutor());
@@ -53,10 +54,10 @@ public class LogEngineThread implements Runnable {
             businessLogEngine1.setInitContext(context);
             BusinessLog log = businessLogEngine1.exportLogBy(joinPointSignature, businessLogExporter);
 
-            if (isRecursionQuery(joinPointSignature)) {
-                ThreadLocalBusinessLogContext.clear();
-                return;
-            }
+//            if (isRecursionQuery(joinPointSignature)) {
+//                ThreadLocalBusinessLogContext.clear();
+//                return;
+//            }
             System.out.println("退出时的业务方法 " + joinPointSignature);
             System.out.println(log);
 
@@ -67,11 +68,10 @@ public class LogEngineThread implements Runnable {
     private boolean isRecursionQuery(String joinPointSignature) {
         Object businessMethod = ThreadLocalBusinessLogContext.get().get(BUSINESS_METHOD);
         if (businessMethod == null) {
-            ThreadLocalBusinessLogContext.put(BUSINESS_METHOD, joinPointSignature);
+            //ThreadLocalBusinessLogContext.put(BUSINESS_METHOD, joinPointSignature);
             return false;
-        } else if (businessMethod != null && businessMethod.equals(joinPointSignature)) {
+        } else {
             return true;
         }
-        return false;
     }
 }

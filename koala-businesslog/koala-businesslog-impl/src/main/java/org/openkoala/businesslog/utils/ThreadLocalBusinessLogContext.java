@@ -10,11 +10,12 @@ import java.util.Map;
  * Time: 2:18 PM
  */
 public class ThreadLocalBusinessLogContext {
-    private static Map<String, Object> contextMap = new HashMap<String, Object>();
+    //private static Map<String, Object> contextMap = new HashMap<String, Object>();
 
     private static ThreadLocal<Map<String, Object>> context = new ThreadLocal<Map<String, Object>>() {
         protected synchronized Map<String, Object> initialValue() {
             Map<String, Object> map = new HashMap<String, Object>();
+            Map contextMap = new HashMap<String, Object>();
             map.putAll(contextMap);
             return map;
         }
@@ -30,13 +31,14 @@ public class ThreadLocalBusinessLogContext {
 
 
     public static void put(String key, Object value) {
+    	Map contextMap = new HashMap<String, Object>();
         contextMap.put(key, value);
         context.set(contextMap);
     }
 
 
     public static void clear() {
-        contextMap.clear();
+        //contextMap.clear();
         context.set(new HashMap<String, Object>());
     }
 }
