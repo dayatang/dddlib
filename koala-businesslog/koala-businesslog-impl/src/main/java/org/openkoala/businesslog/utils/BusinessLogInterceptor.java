@@ -56,21 +56,11 @@ public class BusinessLogInterceptor {
 
     public void log(JoinPoint joinPoint, Object result, Throwable error) {
 
-        /*if (isRecursionQuery(joinPoint)) {
-            return;
-        }*/
-
         if (!BusinessLogPropertiesConfig.getInstance().getLogEnableConfig()) {
             return;
         }
 
-        System.out.println(joinPoint.getSignature().toString());
-
-
-        System.out.println("********************" + InstanceFactory.isInitialized());
-
-
-        executor.execute(
+       executor.execute(
                 new LogEngineThread(
                         businessLogEngine,
                         businessLogExporter,
@@ -79,27 +69,10 @@ public class BusinessLogInterceptor {
                         )
         );
 
-        /*BusinessLogEngine engine = getBusinessLogEngine();
-        engine.setInitContext(createDefaultContext(joinPoint, result, error));
-        BusinessLog log =
-                engine.exportLogBy(joinPoint.getSignature().toString(), businessLogExporter);
-
-        System.out.println("&&&&&&&&&&&&&&&&&&&&");
-        System.out.println(log.getLog());
-        System.out.println(log.getContext());       */
 
 
     }
 
-    private boolean isRecursionQuery(JoinPoint joinPoint) {
-        if (ThreadLocalBusinessLogContext.get().get(CURRENT_INVOKED_METHOD_KEY) == null) {
-            ThreadLocalBusinessLogContext.put(CURRENT_INVOKED_METHOD_KEY, joinPoint.getSignature().toString());
-            return false;
-        } else if (!ThreadLocalBusinessLogContext.get().get(CURRENT_INVOKED_METHOD_KEY).equals(joinPoint.getSignature().toString())) {
-            return true;
-        }
-        return false;
-    }
 
     private Map<String, Object> createDefaultContext(JoinPoint joinPoint, Object result, Throwable errer) {
         Map<String, Object> context = ThreadLocalBusinessLogContext.get();

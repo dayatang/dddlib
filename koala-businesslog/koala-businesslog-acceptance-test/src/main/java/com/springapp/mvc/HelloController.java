@@ -1,6 +1,7 @@
 package com.springapp.mvc;
 
 import business.ContractApplication;
+import business.InvoiceApplication;
 import business.ProjectApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,9 @@ public class HelloController {
     @Autowired
     private ProjectApplication projectApplication;
 
+    @Autowired
+    private InvoiceApplication invoiceApplication;
+
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
         model.addAttribute("message", "Hello world!");
@@ -33,7 +37,7 @@ public class HelloController {
 
         projectApplication.findSomeProjects(names);
         // TODO 同步问题
-        contractApplication.addInvoice("xxxx", 1l, 3);
+        invoiceApplication.addInvoice("xxxx", 1l);
         return "hello";
     }
 }

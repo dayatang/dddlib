@@ -12,8 +12,8 @@
 	   		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
 
-    <context:annotation-config/>
-    <context:component-scan base-package="org.openkoala.businesslog"/>
+    <context:component-scan base-package="org.openkoala.businesslog.applicationImpl,org.openkoala.businesslog.application"/>
+
     <context:property-placeholder location="classpath*:koala-businesslog.properties" ignore-unresolvable="true"/>
 
     <bean id="logInterceptor" class="org.openkoala.businesslog.utils.BusinessLogInterceptor"/>
@@ -32,15 +32,29 @@
         <constructor-arg name="queryExecutor" ref="queryExecutor"></constructor-arg>
     </bean>
 
-    <!--<aop:config>
+    <aop:config proxy-target-class="true">
         <aop:pointcut id="businessBehavior" expression="${pointcut}"/>
         <aop:aspect id="logAspect" ref="logInterceptor">
             <aop:after-returning returning="result" method="logAfter" pointcut-ref="businessBehavior"/>
             <aop:after-throwing method="afterThrowing" pointcut-ref="businessBehavior" throwing="error"/>
         </aop:aspect>
-    </aop:config>-->
+    </aop:config>
 
-
+    <!-- 异步线程池 -->
+    <bean id="threadPool" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <!-- 核心线程数  -->
+        <property name="corePoolSize" value="10" />
+        <!-- 最大线程数 -->
+        <property name="maxPoolSize" value="50" />
+        <!-- 队列最大长度 >=mainExecutor.maxSize -->
+        <property name="queueCapacity" value="1000" />
+        <!-- 线程池维护线程所允许的空闲时间 -->
+        <property name="keepAliveSeconds" value="300" />
+        <!-- 线程池对拒绝任务(无线程可用)的处理策略 -->
+        <property name="rejectedExecutionHandler">
+            <bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
+        </property>
+    </bean>
 
 
 </beans>

@@ -37,9 +37,9 @@ public class FreemarkerProcessor {
             Template freemarkerTemplate =configuration.getTemplate("template", templateEncoding);
             freemarkerTemplate.process(aContext, out);
         } catch (IOException e) {
-            throw new FreemarkerProcessorException(e);
+            //throw new FreemarkerProcessorException(e);
         } catch (TemplateException e) {
-            throw new FreemarkerProcessorException(e);
+            //throw new FreemarkerProcessorException(e);
         } finally {
             configuration.clearSharedVariables();
             configuration.clearTemplateCache();
