@@ -13,10 +13,10 @@
     <meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="Cache-Control" content="no-cache">
 	<meta http-equiv="Expires" content="0">
-    <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
-    <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
-    <link href="<c:url value='/css/security.css' />"   rel="stylesheet">
-    <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/main.css?time=<%=time%>" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/security.css"   rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/koala.css?time=<%=time%>" rel="stylesheet">
     <script>
         var contextPath = '${pageContext.request.contextPath}';
     </script>
@@ -48,8 +48,8 @@
 	       		 <li>
                 <a data-toggle="collapse" href="#userRight"><i class="glyphicon glyphicon-home"></i>&nbsp;主菜单&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
                 <ul id="userRight" class="second-level-menu in">
-                   <li class="submenu" data-role="openTab" data-target="/pages/cas/user-list.html" openTree=true data-title="用户管理" data-mark="userList" ><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;用户管理</a></li>
-                   <li class="submenu" data-role="openTab" data-target="/pages/cas/role-list.html" data-title="角色管理" data-mark="roleList"><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;角色管理</a></li>
+                   <li class="submenu" data-role="openTab" data-target="${pageContext.request.contextPath}/pages/cas/user-list.html" openTree=true data-title="用户管理" data-mark="userList" ><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;用户管理</a></li>
+                   <li class="submenu" data-role="openTab" data-target="${pageContext.request.contextPath}/pages/cas/role-list.html" data-title="角色管理" data-mark="roleList"><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;角色管理</a></li>
                 </ul>
             </li>
 	        </ul>
@@ -66,14 +66,14 @@
 	<div id="footer" class="g-foot">
 	    <span>Copyright © 2011-2013 Koala</span>
 	</div>
-	<script type="text/javascript" src="<c:url value='/lib/jquery-1.8.3.min.js' />"></script>
-	<script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
-	<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
-	<script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />?time=<%=time%>" ></script>	
-	<script type="text/javascript" src="<c:url value='/lib/koala-tree.js'/>"></script>
-	<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
-	<script type="text/javascript" src="<c:url value='/js/main.js' />?time=<%=time%>" ></script>
-    <script type="text/javascript" src="<c:url value='/js/cas/role.js' />?time=<%=time%>" ></script>
-    <script type="text/javascript" src="<c:url value='/js/cas/user.js' />?time=<%=time%>" ></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/respond.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/koala-ui.plugin.js?time=<%=time%>" ></script>	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/lib/koala-tree.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/validation.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/main.js?time=<%=time%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/cas/role.js?time=<%=time%>"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/cas/user.js?time=<%=time%>"></script>
 </body>
 </html>

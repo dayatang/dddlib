@@ -5,11 +5,11 @@
 <head>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>欢迎使用Koala</title>
-<link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
-<script type="text/javascript" src="<c:url value='/lib/jquery-1.8.3.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
-<script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />"></script>	
+<link href="${pageContext.request.contextPath}/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
+<script type="text/javascript" src="${pageContext.request.contextPath}/lib/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/lib/respond.min.js"</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/lib/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/lib/koala-ui.plugin.js"></script>	
 <style type="text/css">
 @charset "UTF-8";
 /* CSS Document */
