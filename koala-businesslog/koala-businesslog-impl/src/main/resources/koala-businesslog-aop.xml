@@ -12,7 +12,7 @@
 	   		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
 
-    <context:component-scan base-package="org.openkoala.businesslog.applicationImpl,org.openkoala.businesslog.application"/>
+    <context:component-scan base-package="org.openkoala.businesslog.applicationImpl,org.openkoala.businesslog.application,org.openkoala.businesslog.impl"/>
 
     <context:property-placeholder location="classpath*:koala-businesslog.properties" ignore-unresolvable="true"/>
 

@@ -31,14 +31,11 @@ public class ThreadLocalBusinessLogContext {
 
 
     public static void put(String key, Object value) {
-    	Map contextMap = new HashMap<String, Object>();
-        contextMap.put(key, value);
-        context.set(contextMap);
+        context.get().put(key,value);
     }
 
 
     public static void clear() {
-        //contextMap.clear();
         context.set(new HashMap<String, Object>());
     }
 }

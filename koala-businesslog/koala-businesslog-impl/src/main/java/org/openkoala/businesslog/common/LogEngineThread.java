@@ -8,6 +8,7 @@ import org.openkoala.businesslog.BusinessLogExporter;
 import org.openkoala.businesslog.config.BusinessLogConfig;
 import org.openkoala.businesslog.impl.BusinessLogDefaultContextQueryExecutor;
 import org.openkoala.businesslog.impl.BusinessLogFreemarkerDefaultRender;
+import org.openkoala.businesslog.impl.BusinessLogJpaDefaultExporter;
 import org.openkoala.businesslog.impl.BusinessLogXmlConfigDefaultAdapter;
 import org.openkoala.businesslog.utils.ThreadLocalBusinessLogContext;
 
@@ -39,39 +40,17 @@ public class LogEngineThread implements Runnable {
     @Override
     public void run() {
 
-        synchronized (this) {
 
-            System.out.println("第一次进入时的业务方法" + ThreadLocalBusinessLogContext.get().get(BUSINESS_METHOD));
-            System.out.println("当前执行的业务方法" + joinPointSignature);
-            ThreadLocalBusinessLogContext.put(BUSINESS_METHOD, joinPointSignature);
-//            if (isRecursionQuery(joinPointSignature)) {
-//                return;
-//            }
-            BusinessLogConfig config = new BusinessLogConfig(new BusinessLogXmlConfigDefaultAdapter());
-            BusinessLogEngine businessLogEngine1 = new BusinessLogEngine(config,
-                    new BusinessLogFreemarkerDefaultRender(), new BusinessLogDefaultContextQueryExecutor());
+        System.out.println("第一次进入时的业务方法" + ThreadLocalBusinessLogContext.get().get(BUSINESS_METHOD));
+        System.out.println("当前执行的业务方法" + joinPointSignature);
+        ThreadLocalBusinessLogContext.put(BUSINESS_METHOD, joinPointSignature);
+        System.out.println(joinPointSignature + "_____");
+        System.out.println(context);
+        businessLogEngine.setInitContext(context);
+        businessLogEngine.exportLogBy(joinPointSignature, businessLogExporter);
+        System.out.println("退出时的业务方法 " + joinPointSignature);
 
-            businessLogEngine1.setInitContext(context);
-            BusinessLog log = businessLogEngine1.exportLogBy(joinPointSignature, businessLogExporter);
-
-//            if (isRecursionQuery(joinPointSignature)) {
-//                ThreadLocalBusinessLogContext.clear();
-//                return;
-//            }
-            System.out.println("退出时的业务方法 " + joinPointSignature);
-            System.out.println(log);
-
-        }
     }
 
 
-    private boolean isRecursionQuery(String joinPointSignature) {
-        Object businessMethod = ThreadLocalBusinessLogContext.get().get(BUSINESS_METHOD);
-        if (businessMethod == null) {
-            //ThreadLocalBusinessLogContext.put(BUSINESS_METHOD, joinPointSignature);
-            return false;
-        } else {
-            return true;
-        }
-    }
 }

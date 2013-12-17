@@ -43,6 +43,9 @@ public class DefaultBusinessLog extends AbstractBusinessLog {
             myBusinessLog.setIp((String) context.get(BUSINESS_OPERATION_IP));
         }
 
+        myBusinessLog.setLog(businessLog.getLog());
+        myBusinessLog.setCategory(businessLog.getCategory());
+
 
         return myBusinessLog;
 

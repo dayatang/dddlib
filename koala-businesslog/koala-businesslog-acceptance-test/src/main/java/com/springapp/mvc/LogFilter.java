@@ -21,8 +21,8 @@ public class LogFilter extends BusinessLogServletFilter {
      */
     @Override
     public void beforeFilter(ServletRequest req, ServletResponse resp, FilterChain chain) {
-        addUserContext(req.getParameter("user"));
         addIpContext(getIp(req));
+        addUserContext(req.getParameter("user"));
     }
 
 

@@ -35,14 +35,18 @@ public class BusinessLogEngine {
         initContext = aContext;
     }
 
+
     public BusinessLog exportLogBy(String businessOperation, BusinessLogExporter exporter) {
-        Map<String, Object> context = createContext(businessOperation);
         BusinessLog businessLog = new BusinessLog();
+        Map<String, Object> context = createContext(businessOperation);
         String template = config.getLogTemplateof(businessOperation);
+        System.out.println("方法:" + businessOperation);
+        System.out.println(template);
         businessLog.setLog(render.render(context, template).build());
         businessLog.setCategory(config.getBusinessMethodCategory(businessOperation));
         businessLog.addContext(context);
         exporter.export(businessLog);
+
         return businessLog;
     }
 
