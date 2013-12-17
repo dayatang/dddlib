@@ -22,6 +22,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import javax.inject.Inject;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -31,10 +32,6 @@ import java.util.logging.Logger;
  */
 public class BusinessLogInterceptor {
 
-    /**
-     * 当前调用方法在ThreadLocalBusinessLogContext中的key
-     */
-    private static final String CURRENT_INVOKED_METHOD_KEY = "CURRENT_INVOKED_METHOD_KEY";
 
     @Inject
     private BusinessLogEngine businessLogEngine;
@@ -56,20 +53,18 @@ public class BusinessLogInterceptor {
 
     public void log(JoinPoint joinPoint, Object result, Throwable error) {
 
-        if (!BusinessLogPropertiesConfig.getInstance().getLogEnableConfig()) {
+        if (!BusinessLogPropertiesConfig.getInstance().getLogEnableConfig()
+                || ThreadLocalBusinessLogContext.get().get(BUSINESS_METHOD) != null) {
             return;
         }
-        if (ThreadLocalBusinessLogContext.get().get(BUSINESS_METHOD) != null) {
-            System.out.println("被切入的日志方法：" + joinPoint.getSignature().toString() + ":不会进行日志记录");
-            return;
-        }
-        executor.execute(new LogEngineThread(businessLogEngine,
-                businessLogExporter, createDefaultContext(joinPoint, result,
-                error), joinPoint.getSignature().toString()));
+       executor.execute(new LogEngineThread(getBusinessLogEngine(),
+                businessLogExporter, Collections.unmodifiableMap(
+               createDefaultContext(joinPoint, result, error)),
+               joinPoint.getSignature().toString()));
 
     }
 
-    private synchronized Map<String, Object> createDefaultContext(JoinPoint joinPoint,
+    private Map<String, Object> createDefaultContext(JoinPoint joinPoint,
                                                                   Object result, Throwable error) {
         Map<String, Object> context = ThreadLocalBusinessLogContext.get();
 

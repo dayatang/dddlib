@@ -4,6 +4,7 @@ import org.openkoala.businesslog.config.BusinessLogConfig;
 import org.openkoala.businesslog.config.BusinessLogContextQuery;
 
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 /**
@@ -17,8 +18,7 @@ public class BusinessLogEngine {
 
     private BusinessLogRender render;
 
-    private Map<String, Object> initContext = new HashMap<String, Object>();
-
+    private Map<String, Object> initContext;
     private BusinessLogContextQueryExecutor queryExecutor;
 
     public BusinessLogEngine(BusinessLogConfig config, BusinessLogRender render, BusinessLogContextQueryExecutor queryExecutor) {
@@ -37,23 +37,23 @@ public class BusinessLogEngine {
 
 
     public BusinessLog exportLogBy(String businessOperation, BusinessLogExporter exporter) {
-        BusinessLog businessLog = new BusinessLog();
-        Map<String, Object> context = createContext(businessOperation);
-        String template = config.getLogTemplateof(businessOperation);
-        System.out.println("方法:" + businessOperation);
-        System.out.println(template);
-        businessLog.setLog(render.render(context, template).build());
-        businessLog.setCategory(config.getBusinessMethodCategory(businessOperation));
-        businessLog.addContext(context);
-        exporter.export(businessLog);
+        synchronized (this) {
+            BusinessLog businessLog = new BusinessLog();
+            Map<String, Object> context = createContext(businessOperation);
+            String template = config.getLogTemplateof(businessOperation);
+            businessLog.setLog(render.render(context, template).build());
+            businessLog.setCategory(config.getBusinessMethodCategory(businessOperation));
+            businessLog.addContext(context);
+            exporter.export(businessLog);
 
-        return businessLog;
+            return businessLog;
+        }
     }
 
 
     private Map<String, Object> createContext(String businessOperation) {
         if (null == initContext) {
-            initContext = new HashMap<String, Object>();
+            initContext = new Hashtable<String, Object>();
         }
         BusinessLogContextQuery[] queries = new BusinessLogContextQuery[config.getQueries(businessOperation).size()];
         return queryExecutor.startQuery(initContext, config.getQueries(businessOperation).toArray(queries));

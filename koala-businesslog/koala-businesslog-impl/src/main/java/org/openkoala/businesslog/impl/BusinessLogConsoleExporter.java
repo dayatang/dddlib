@@ -14,6 +14,6 @@ public class BusinessLogConsoleExporter implements BusinessLogExporter {
 
     @Override
     public void export(BusinessLog businessLog) {
-        System.out.println(businessLog.getLog());
+        System.out.println(businessLog);
     }
 }

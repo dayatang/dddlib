@@ -12,6 +12,7 @@ import org.openkoala.businesslog.impl.BusinessLogJpaDefaultExporter;
 import org.openkoala.businesslog.impl.BusinessLogXmlConfigDefaultAdapter;
 import org.openkoala.businesslog.utils.ThreadLocalBusinessLogContext;
 
+import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -40,15 +41,10 @@ public class LogEngineThread implements Runnable {
     @Override
     public void run() {
 
-
-        System.out.println("第一次进入时的业务方法" + ThreadLocalBusinessLogContext.get().get(BUSINESS_METHOD));
-        System.out.println("当前执行的业务方法" + joinPointSignature);
         ThreadLocalBusinessLogContext.put(BUSINESS_METHOD, joinPointSignature);
-        System.out.println(joinPointSignature + "_____");
-        System.out.println(context);
-        businessLogEngine.setInitContext(context);
+        businessLogEngine.setInitContext(Collections.unmodifiableMap(context));
         businessLogEngine.exportLogBy(joinPointSignature, businessLogExporter);
-        System.out.println("退出时的业务方法 " + joinPointSignature);
+
 
     }
 

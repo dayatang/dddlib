@@ -42,4 +42,13 @@ public class BusinessLog {
     public String getCategory() {
         return category;
     }
+
+    @Override
+    public String toString() {
+        return "BusinessLog{" +
+                "log='" + log + '\'' +
+                ", context=" + context +
+                ", category='" + category + '\'' +
+                '}';
+    }
 }

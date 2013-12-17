@@ -3,6 +3,7 @@ package org.openkoala.businesslog.utils;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * User: zjzhai
@@ -14,10 +15,7 @@ public class ThreadLocalBusinessLogContext {
 
     private static ThreadLocal<Map<String, Object>> context = new ThreadLocal<Map<String, Object>>() {
         protected synchronized Map<String, Object> initialValue() {
-            Map<String, Object> map = new HashMap<String, Object>();
-            Map contextMap = new HashMap<String, Object>();
-            map.putAll(contextMap);
-            return map;
+            return new ConcurrentHashMap<String,Object>();
         }
     };
 

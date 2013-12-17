@@ -2,10 +2,8 @@ package org.openkoala.businesslog.model;
 
 import org.openkoala.businesslog.BusinessLog;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
 
@@ -27,6 +25,9 @@ public class DefaultBusinessLog extends AbstractBusinessLog {
     @Temporal(TemporalType.TIMESTAMP)
     private Date time;
 
+    @Transient
+    private Map<String,Object> context;
+
     public static DefaultBusinessLog createBy(BusinessLog businessLog) {
         DefaultBusinessLog myBusinessLog = new DefaultBusinessLog();
         Map<String, Object> context = businessLog.getContext();
@@ -46,6 +47,7 @@ public class DefaultBusinessLog extends AbstractBusinessLog {
         myBusinessLog.setLog(businessLog.getLog());
         myBusinessLog.setCategory(businessLog.getCategory());
 
+        context = Collections.unmodifiableMap(context);
 
         return myBusinessLog;
 
@@ -81,6 +83,7 @@ public class DefaultBusinessLog extends AbstractBusinessLog {
                 ", ip='" + ip + '\'' +
                 ", time=" + time +
                 ", log=" + getLog() +
+                ", context="  + context +
                 '}';
     }
 

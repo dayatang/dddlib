@@ -12,6 +12,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.text.MessageFormat;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * User: zjzhai
@@ -41,12 +42,15 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
 
     @Override
     public Map<String, Object> queryInContext(Map<String, Object> aContext) {
-        context = new HashMap<String, Object>();
-        if (null != aContext) {
-            context.putAll(aContext);
+        synchronized (this) {
+            context = aContext;
+            if (null == context) {
+                context = new ConcurrentHashMap<String, Object>();
+            }
+            Map<String, Object> map = new ConcurrentHashMap<String, Object>();
+            map.put(contextKey, invoke(getBean(), getMethodParams()));
+            return Collections.unmodifiableMap(map);
         }
-        context.put(contextKey, invoke(getBean(), getMethodParams()));
-        return context;
     }
 
     private Object[] getMethodParams() {
