@@ -32,7 +32,7 @@ import com.dayatang.utils.DateUtils;
 @Remote
 public class ResourceApplicationImpl extends BaseImpl implements ResourceApplication {
 	
-    public static ResourceVO domainObject2Vo(Resource resource) {
+    public static  ResourceVO domainObject2Vo(Resource resource) {
         ResourceVO treeVO = new ResourceVO();
         treeVO.setId(resource.getId() == null ? null : resource.getId());
         treeVO.setName(resource.getName());
@@ -66,6 +66,14 @@ public class ResourceApplicationImpl extends BaseImpl implements ResourceApplica
     }
     
     
+    public boolean isResourceEmpty(){
+    	String jpql = "select count(r.name) from Resource r";
+    	Long count = queryChannel().querySingleResult(jpql, new Object[]{});
+    	if(count==0){
+    		return true;
+    	}
+    	return false;
+    }
     /*
      *@see org.openkoala.auth.application.ResourceApplication#findResource(org.openkoala.auth.application.vo.ResourceVO, boolean)
      */
@@ -237,7 +245,7 @@ public class ResourceApplicationImpl extends BaseImpl implements ResourceApplica
         return list;
     }
 
-    public static Page<ResourceVO> basePageQuery(String query, Object[] params, int currentPage, int pageSize) {
+    private Page<ResourceVO> basePageQuery(String query, Object[] params, int currentPage, int pageSize) {
         List<ResourceVO> result = new ArrayList<ResourceVO>();
         Page<Resource> pages = queryChannel().queryPagedResultByPageNo(query, params, currentPage, pageSize);
         for (Resource ne : pages.getResult()) {

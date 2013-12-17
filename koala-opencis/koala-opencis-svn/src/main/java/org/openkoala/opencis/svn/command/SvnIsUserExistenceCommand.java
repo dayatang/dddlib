@@ -2,8 +2,9 @@ package org.openkoala.opencis.svn.command;
 
 import java.io.IOException;
 
+import org.openkoala.opencis.api.OpencisConstant;
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.svn.UserExistenceException;
+import org.openkoala.opencis.exception.UserExistenceException;
 
 import com.dayatang.configuration.Configuration;
 import com.trilead.ssh2.Connection;
@@ -17,7 +18,7 @@ public class SvnIsUserExistenceCommand extends SvnCommand {
 	private String userName;
 	
 	public SvnIsUserExistenceCommand() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	public SvnIsUserExistenceCommand(String userName, Configuration configuration, Project project){
@@ -27,7 +28,7 @@ public class SvnIsUserExistenceCommand extends SvnCommand {
 	
 	@Override
 	public String getCommand() {
-		String isUserExistenceCommand = "grep -q '" + userName + ":' /var/www/svn/" + project.getProjectName() + "/conf/passwd && echo 'exist' || echo 'not exist'";
+		String isUserExistenceCommand = "grep -q '" + userName + ":' " + OpencisConstant.PROJECT_PATH_IN_LINUX_SVN + project.getProjectName() + "/conf/passwd && echo 'exist' || echo 'not exist'";
 		return isUserExistenceCommand;
 	}
 

@@ -445,4 +445,11 @@ public class GiraCISClient implements CISClient {
 		}
 	}
 
+	@Override
+	public void assignUsersToRole(Project project, List<String> userName,
+			String role) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -21,6 +21,47 @@
 		<module>koala-cas-management-applicationImpl</module>
 		<module>koala-cas-management-web</module>
 	</modules>
+	
+	<profiles>
+		<profile>
+			<id>test</id>
+			<properties>
+                <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+                <hibernate.show_sql>true</hibernate.show_sql>
+                <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+                <db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
+                <db.connectionURL>jdbc:h2:~/db/security</db.connectionURL>
+                <db.username>sa</db.username>
+                <db.password />
+                <db.Type>H2</db.Type>
+                <generateDdl>true</generateDdl>
+			</properties>
+		</profile>
+		<profile>
+			<id>deploy</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<!--DB实现以及MVC模型的实现支持，不要修改这两个值 -->
+				<dbProtocol>JPA</dbProtocol>
+				<mvcProtocol>SpringMVC</mvcProtocol>
+				<!-- DB config -->
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<hibernate.show_sql>true</hibernate.show_sql>
+				<hibernate.dialect>org.hibernate.dialect.MySQL5Dialect</hibernate.dialect>
+				<db.jdbcDriver>com.mysql.jdbc.Driver</db.jdbcDriver>
+				<db.connectionURL>jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8</db.connectionURL>
+				<db.username>root</db.username>
+				<db.password>root</db.password>
+				<db.Type>MYSQL</db.Type>
+				<db.generateDdl>true</db.generateDdl>
+				<db.groupId>mysql</db.groupId>
+				<db.artifactId>mysql-connector-java</db.artifactId>
+			</properties>
+		</profile>
+	</profiles>
+	
 	<properties>
 		<!-- version config -->
 		<dayatang.commons.version>3.5</dayatang.commons.version>
@@ -33,34 +74,8 @@
 		<koala.monitor.version>2.1.0-SNAPSHOT</koala.monitor.version>
 		<koala.cas.management.version>2.1.0-SNAPSHOT</koala.cas.management.version>
 		<quartz.version>2.1.3</quartz.version>
-		<!--DB实现以及MVC模型的实现支持，不要修改这两个值 -->
-		<dbProtocol>JPA</dbProtocol>
-		<mvcProtocol>SpringMVC</mvcProtocol>
-		<!-- DB config -->
-		<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
-		<hibernate.show_sql>true</hibernate.show_sql>
-		<hibernate.dialect>org.hibernate.dialect.MySQL5Dialect</hibernate.dialect>
-		<db.jdbcDriver>com.mysql.jdbc.Driver</db.jdbcDriver>
-		<db.connectionURL>jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8</db.connectionURL>
-		<db.username>root</db.username>
-		<db.password>root</db.password>
-		<db.Type>MYSQL</db.Type>
-		<db.generateDdl>true</db.generateDdl>
-		<db.groupId>mysql</db.groupId>
-		<db.artifactId>mysql-connector-java</db.artifactId>
-		<!--test DB Config -->
-		<test.hibernate.hbm2ddl.auto>update</test.hibernate.hbm2ddl.auto>
-		<test.hibernate.show_sql>true</test.hibernate.show_sql>
-		<test.hibernate.dialect>org.hibernate.dialect.H2Dialect</test.hibernate.dialect>
-		<test.db.jdbcDriver>org.h2.Driver</test.db.jdbcDriver>
-		<test.db.connectionURL>jdbc:h2:~/db/cas-management</test.db.connectionURL>
-		<test.db.username>sa</test.db.username>
-		<test.db.password />
-		<test.db.Type>H2</test.db.Type>
-		<test.db.generateDdl>true</test.db.generateDdl>
-		<test.db.groupId>com.h2database</test.db.groupId>
-		<test.db.artifactId>h2</test.db.artifactId>
 	</properties>
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -592,6 +607,12 @@
 				<groupId>javax.xml.bind</groupId>
 				<artifactId>jaxb-api</artifactId>
 				<version>2.2.10</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.openkoala.security</groupId>
+				<artifactId>koala-security-application</artifactId>
+				<version>${koalaSecurity.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

@@ -1,5 +1,7 @@
 package org.openkoala.opencis.api;
 
+import java.util.List;
+
 /**
  * CIS的能用接口
  * @author lingen
@@ -31,6 +33,13 @@ public interface CISClient {
 	 * @param role
 	 */
 	public void assignUserToRole(Project project,String userId,String role);
+	
+	/**
+	 * 在 CIS 某个工具中将角色同某个用户列表关联
+	 * @param usrId
+	 * @param role
+	 */
+	public void assignUsersToRole(Project project,List<String> userName,String role);
 	
 	/**
 	 * 检测指定工具是否可连接

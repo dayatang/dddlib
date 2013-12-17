@@ -292,5 +292,12 @@ public class GitlabCISClient implements CISClient {
 	public void assignUserToRole(Project project, String usrId, String role) {
 		// TODO Auto-generated method stub
 	}
+
+	@Override
+	public void assignUsersToRole(Project project, List<String> userName,
+			String role) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

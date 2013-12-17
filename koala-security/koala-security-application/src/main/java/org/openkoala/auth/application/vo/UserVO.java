@@ -17,6 +17,7 @@ public class UserVO extends IdentityVO implements Serializable {
 	private String lastModifyTime;
 	private boolean valid;
 	private String email;
+	private String oldPassword;
 
 	public UserVO() {
 
@@ -85,6 +86,14 @@ public class UserVO extends IdentityVO implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getOldPassword() {
+		return oldPassword;
+	}
+
+	public void setOldPassword(String oldPassword) {
+		this.oldPassword = oldPassword;
 	}
 
 	public void domain2Vo(User user) {

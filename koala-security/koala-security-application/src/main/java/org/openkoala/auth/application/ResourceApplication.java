@@ -9,6 +9,14 @@ import com.dayatang.querychannel.support.Page;
 
 public interface ResourceApplication {
 
+	
+	/**
+	 * 判断资源是否为空
+	 * @return
+	 */
+	public boolean isResourceEmpty();
+	
+	
 	/**
 	 * 根据资源ID获取资源信息
 	 * @param resourceId
