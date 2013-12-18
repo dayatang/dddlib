@@ -43,6 +43,7 @@ public class LogEngineThread implements Runnable {
         ThreadLocalBusinessLogContext.put(BUSINESS_METHOD, joinPointSignature);
         businessLogEngine.setInitContext(Collections.unmodifiableMap(context));
         businessLogEngine.exportLogBy(joinPointSignature, businessLogExporter);
+
     }
 
 

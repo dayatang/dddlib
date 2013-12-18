@@ -37,14 +37,6 @@
         </queries>
     </businessLogConfig>
     <businessLogConfig>
-        <!--向项目中的合同，添加一张发票-->
-        <category>测试抛异常</category>
-        <method>Contract business.TestApplicationImpl.testLogMethod(int)</method>
-        <template><![CDATA[xxxxxxx]]></template>
-        <queries>
-        </queries>
-    </businessLogConfig>
-    <businessLogConfig>
         <category>合同操作</category>
         <method>String business.ContractApplicationImpl.addContract(long)</method>
         <template><![CDATA[添加合同${_methodReturn}]]></template>
