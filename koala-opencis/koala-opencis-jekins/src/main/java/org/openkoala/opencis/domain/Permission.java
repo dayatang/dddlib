@@ -3,6 +3,7 @@ package org.openkoala.opencis.domain;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -17,8 +18,15 @@ import org.openkoala.opencis.PropertyIllegalException;
 public abstract class Permission {
 
 	protected static final String CONFIG_XML_NAME = "config.xml";
-	protected static final String USER_HOME_PATH = System.getProperty("user.home") + "\\.jenkins\\";
+	
+	private static final String USER_HOME_DIR = System.getProperty("user.home");
+	
+	private static final String JENKINS_DIR = ".jenkins";
+	
+	protected static final String USER_HOME_PATH = MessageFormat.format("{0}/{1}/", USER_HOME_DIR, JENKINS_DIR);
+	
 	public static final String XML_CHARSET = "UTF-8";
+	
 	public static final String PERMISSION_NODE_NAME = "permission";
 	
 	private String text;

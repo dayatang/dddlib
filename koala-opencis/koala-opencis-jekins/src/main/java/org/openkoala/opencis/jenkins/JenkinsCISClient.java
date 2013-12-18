@@ -2,7 +2,7 @@ package org.openkoala.opencis.jenkins;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,14 +11,17 @@ import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.CookieStore;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.AbstractHttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.log4j.Logger;
 import org.openkoala.opencis.JenkinsAdminLoginException;
 import org.openkoala.opencis.JenkinsCreateUserFailureException;
 import org.openkoala.opencis.JenkinsServerConfigurationNullException;
+import org.openkoala.opencis.JobExistedException;
 import org.openkoala.opencis.api.CISClient;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
@@ -34,6 +37,8 @@ import org.openkoala.opencis.pojo.JenkinsServerConfiguration;
  */
 public class JenkinsCISClient implements CISClient {
 	
+	private static final String CONFIG_PATH = "ci/jenkins/config.xml";
+
 	private static final int BUFFER_SIZE = 2048;
 	
 	private static Logger logger = Logger.getLogger(JenkinsCISClient.class);
@@ -49,23 +54,22 @@ public class JenkinsCISClient implements CISClient {
 	public void createProject(Project project) {
 		HttpInvoker httpInvoker = new HttpInvoker(getCreateJobUrl(project.getArtifactId()));
 		HttpPost httpPost = httpInvoker.getHttpPost();
-		
 		try {
 			StringEntity entity = new StringEntity(getConfigFileContent(), "UTF-8");
 			httpPost.addHeader("Content-Type", "application/xml");
 			httpPost.setEntity(entity);
+			((AbstractHttpClient) httpInvoker.getHttpClient()).setCookieStore(getAdminLoginJenkinsCookie());
 			HttpResponse response = httpInvoker.execute();
 			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
 				logger.info("Create job successful.");
-			} else {
-				throw new CreateJobFailureException(response.getStatusLine().toString());
+			} 
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_BAD_REQUEST) {
+				logger.info(MessageFormat.format("Job [{0}] is existed.", project.getProjectName()));
+				throw new JobExistedException(MessageFormat.format("Job [{0}] is existed.", project.getProjectName()));
 			}
-		} catch (ClientProtocolException e) {
+		} catch (Exception e) {
 			logger.error("Create job failure:", e);
-		} catch (UnsupportedEncodingException e) {
-			logger.error("Create job failure:", e);
-		} catch (IOException e) {
-			logger.error("Create job failure:", e);
+			throw new CreateJobFailureException(e);
 		} finally {
 			httpInvoker.shutdown();
 		}
@@ -93,6 +97,26 @@ public class JenkinsCISClient implements CISClient {
 		} finally {
 			httpInvoker.shutdown();
 		}
+	}
+	
+	public void confirmRemoveJob(String jobName) {
+		HttpClient httpClient = new DefaultHttpClient();
+		HttpPost httpPost = new HttpPost(getConfirmRemoveJobUrl(jobName));
+		try {
+			((AbstractHttpClient) httpClient).setCookieStore(getAdminLoginJenkinsCookie());
+			HttpResponse response = httpClient.execute(httpPost);
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_BAD_REQUEST) {
+				throw new RemoveJobFailureException("Remove job failure.");
+			}
+		} catch (Exception e) {
+			throw new RemoveJobFailureException(e);
+		} finally {
+			httpClient.getConnectionManager().shutdown();
+		}
+	}
+	
+	private String getConfirmRemoveJobUrl(String jobName) {
+		return new StringBuilder(jenkinsServerConfiguration.getServerAddress()).append("/job/").append(jobName).append("/doDelete").toString();
 	}
 
 	@Override
@@ -164,7 +188,7 @@ public class JenkinsCISClient implements CISClient {
 		InputStream in = null;
 		StringBuilder result = new StringBuilder();
 		try {
-			in = Thread.currentThread().getContextClassLoader().getResourceAsStream("ci/jenkins/config.xml");
+			in = Thread.currentThread().getContextClassLoader().getResourceAsStream(CONFIG_PATH);
 			byte[] buffer = new byte[BUFFER_SIZE];
 			int len = 0;
 			while ((len = in.read(buffer)) != -1) {

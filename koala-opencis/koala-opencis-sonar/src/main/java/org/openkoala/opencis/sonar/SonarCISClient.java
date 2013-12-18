@@ -46,6 +46,7 @@ public class SonarCISClient implements CISClient {
 			UserParameters params = UserParameters.create().login(developer.getId()).password(developer.getId()).passwordConfirmation(developer.getId()).name(developer.getName()).email(developer.getEmail());
 			client.create(params);
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new SonarUserExistException();
 		}
 	}

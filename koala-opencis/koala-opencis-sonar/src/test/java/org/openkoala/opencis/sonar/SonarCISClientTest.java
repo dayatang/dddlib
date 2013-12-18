@@ -15,16 +15,16 @@ import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.pojo.SonarServerConfiguration;
 import org.sonar.wsclient.user.User;
 
-@Ignore
+//@Ignore
 public class SonarCISClientTest {
 
 	public static final String NAME = "koala";
-	public static final String SONAR_SERVER_ADDRESS = "http://localhost:9000";
-	public static final String SONAR_SERVER_ADDRESS2 = "http://localhost:9001";
+	public static final String SONAR_SERVER_ADDRESS = "http://localhost:8888";
+	public static final String SONAR_SERVER_ADDRESS2 = "http://10.108.1.138:9001";
 	public static final String SONAR_ADMIN_USERNAME = "admin";
 	public static final String SONAR_ADMIN_PASSWORD = "admin";
-	public static final String PROJECT_ARTIFACTID = "tenpay";
-	public static final String PROJECT_GROUPID = "com.capital";
+	public static final String PROJECT_ARTIFACTID = "koala-cas-management";
+	public static final String PROJECT_GROUPID = "org.openkoala.cas";
 	
 	
 	private SonarCISClientHelper cisClient;
