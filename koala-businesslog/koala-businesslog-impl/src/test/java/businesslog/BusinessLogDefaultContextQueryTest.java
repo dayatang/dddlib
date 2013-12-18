@@ -2,7 +2,6 @@ package businesslog;
 
 import business.ContractApplicationImpl;
 import business.Project;
-import business.ProjectApplicationImpl;
 import com.dayatang.domain.InstanceFactory;
 import com.dayatang.domain.InstanceProvider;
 import org.junit.Test;

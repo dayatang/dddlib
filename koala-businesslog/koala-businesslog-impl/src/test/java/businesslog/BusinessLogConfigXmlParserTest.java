@@ -15,13 +15,14 @@ public class BusinessLogConfigXmlParserTest {
     @Test
     public void testName() throws Exception {
 
-        String xmlconfigPath = "src/test/resources/koala-businesslog-config.xml";
+        String xmlconfigPath = "src/test/resources/koala-businesslog-config-test1.xml";
 
         BusinessLogConfigXmlParser parser = BusinessLogConfigXmlParser.parsing(xmlconfigPath);
 
-        String operation = "Invoice business.InvoiceApplication.addInvoice(String,long)";
+        String operation = "Invoice business.InvoiceApplicationImpl.addInvoice(String,long)";
 
-        assert "向项目${project.name}的合同${contract.name}添加发票：${(_methodReturn.sn)!\"\"}".equals(parser.getTemplateFrom(operation));
+        assert "向项目${project.name}的合同${contract.name}添加发票：${(_methodReturn.sn)!\"\"}".
+                equals(parser.getTemplateFrom(operation));
 
         assert parser.getQueriesFrom(operation).size() == 3;
 
@@ -30,7 +31,7 @@ public class BusinessLogConfigXmlParserTest {
         BusinessLogDefaultContextQuery query = (BusinessLogDefaultContextQuery)
                 parser.getQueriesFrom(operation).get(0);
 
-        assert "business.ContractApplication".equals(query.getBeanClassName());
+        assert "business.ContractApplicationImpl".equals(query.getBeanClassName());
         assert "contractApplication".equals(query.getBeanName());
         assert "${_param1}".equals(query.getArgs().get(0));
 
@@ -44,7 +45,7 @@ public class BusinessLogConfigXmlParserTest {
 
 
 
-        String operation1 = "String business.ContractApplication.addContract(long)";
+        String operation1 = "String business.ContractApplicationImpl.addContract(long)";
 
         assert "添加合同${_methodReturn}".equals(parser.getTemplateFrom(operation1));
         assert "合同操作".equals(parser.getBusinessLogMethodCategory(operation1));

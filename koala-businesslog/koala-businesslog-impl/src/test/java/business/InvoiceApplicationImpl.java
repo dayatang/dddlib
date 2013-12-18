@@ -1,5 +1,8 @@
 package business;
 
+import business.Invoice;
+import business.InvoiceApplication;
+
 /**
  * User: zjzhai
  * Date: 12/3/13

@@ -1,17 +1,11 @@
 package businesslog;
 
-import business.Project;
-import business.ProjectApplication;
-import business.ProjectApplicationImpl;
 import freemarker.template.TemplateException;
-import org.apache.commons.beanutils.BeanUtils;
 import org.junit.Test;
 import org.openkoala.businesslog.BusinessLogRender;
 import org.openkoala.businesslog.impl.BusinessLogFreemarkerDefaultRender;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.Map;
 

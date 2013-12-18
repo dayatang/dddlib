@@ -22,22 +22,23 @@ public class MainTest {
 
     protected static WebDriver driver;
 
-    /*@BeforeClass
+    @BeforeClass
     public static void openBrowser() throws InterruptedException, IOException {
         System.out.println("openBrowser");
         driver = new HtmlUnitDriver();
         driver.get(getBaseUrl());
-
         driver.manage().timeouts().implicitlyWait(9000, TimeUnit.MILLISECONDS);
 
     }
 
     @Test
     public void test() {
-
         System.out.println(driver.getCurrentUrl());
         System.out.println(driver.getTitle());
         System.out.println(driver.getPageSource());
+
+
+
     }
 
     @AfterClass
@@ -49,7 +50,7 @@ public class MainTest {
     @After
     public void tearDown() throws Exception {
 
-    }            */
+    }
 
     protected static String getBaseUrl() throws IOException {
        /* Properties properties = new Properties();
