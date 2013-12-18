@@ -1,6 +1,6 @@
 package businesslog;
 
-import business.impl.ContractApplicationImpl;
+import business.ContractApplicationImpl;
 import business.Project;
 import com.dayatang.domain.InstanceFactory;
 import com.dayatang.domain.InstanceProvider;

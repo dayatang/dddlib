@@ -3,8 +3,8 @@ package businesslog;
 import static org.mockito.Mockito.*;
 
 import business.*;
-import business.impl.ContractApplicationImpl;
-import business.impl.ProjectApplicationImpl;
+import business.ContractApplicationImpl;
+import business.ProjectApplicationImpl;
 import com.dayatang.domain.InstanceFactory;
 import com.dayatang.domain.InstanceProvider;
 import org.junit.Ignore;

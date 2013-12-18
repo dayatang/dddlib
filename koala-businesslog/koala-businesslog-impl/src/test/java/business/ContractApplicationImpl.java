@@ -1,4 +1,4 @@
-package business.impl;
+package business;
 
 import business.Contract;
 import business.ContractApplication;

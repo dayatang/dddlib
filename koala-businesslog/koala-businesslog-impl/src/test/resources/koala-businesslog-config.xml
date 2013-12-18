@@ -3,11 +3,11 @@
     <businessLogConfig>
         <!--向项目中的合同，添加一张发票-->
         <category>发票操作</category>
-        <method>Invoice business.InvoiceApplication.addInvoice(String,long)</method>
+        <method>Invoice business.InvoiceApplicationImpl.addInvoice(String,long)</method>
         <template><![CDATA[向项目${project.name}的合同${contract.name}添加发票：${(_methodReturn.sn)!""}]]></template>
         <queries>
             <query key="contract">
-                <target class="business.ContractApplication">contractApplication</target>
+                <target class="business.ContractApplicationImpl">contractApplication</target>
                 <method>findContractById(long)</method>
                 <args>
                     <arg>${_param1}</arg>
@@ -21,7 +21,7 @@
                 </args>
             </query>
             <query key="ok">
-                <target class="business.ProjectApplication">projectApplication</target>
+                <target class="business.ProjectApplicationImpl">projectApplication</target>
                 <method>addProject()</method>
             </query>
 
@@ -30,20 +30,28 @@
     <businessLogConfig>
         <!--向项目中的合同，添加一张发票-->
         <category>发票操作</category>
-        <method>Contract business.ContractApplication.findContractById(long)</method>
+        <method>Contract business.ContractApplicationImpl.findContractById(long)</method>
         <template><![CDATA[xxxxxxx]]></template>
         <queries>
 
         </queries>
     </businessLogConfig>
     <businessLogConfig>
+        <!--向项目中的合同，添加一张发票-->
+        <category>测试抛异常</category>
+        <method>Contract business.TestApplicationImpl.testLogMethod(int)</method>
+        <template><![CDATA[xxxxxxx]]></template>
+        <queries>
+        </queries>
+    </businessLogConfig>
+    <businessLogConfig>
         <category>合同操作</category>
-        <method>String business.ContractApplication.addContract(long)</method>
+        <method>String business.ContractApplicationImpl.addContract(long)</method>
         <template><![CDATA[添加合同${_methodReturn}]]></template>
     </businessLogConfig>
     <businessLogConfig>
         <category>项目操作</category>
-        <method>Project[] business.ProjectApplication.findSomeProjects(List)</method>
+        <method>Project[] business.ProjectApplicationImpl.findSomeProjects(List)</method>
         <template><![CDATA[
         查到项目
         <#list names as name>
@@ -63,13 +71,13 @@
     <businessLogConfig>
         <category>项目操作</category>
         <!--对于多维数组，待支持-->
-        <method>List business.ProjectApplication.addProject()</method>
+        <method>List business.ProjectApplicationImpl.addProject()</method>
         <template><![CDATA[
         ererererer         addProject
         ]]></template>
         <queries>
             <query key="ij">
-                <target class="business.InvoiceApplication">invoiceApplication</target>
+                <target class="business.InvoiceApplicationImpl">invoiceApplication</target>
                 <method>addInvoice(String,long)</method>
                 <args>
                     <arg>xxx</arg>
