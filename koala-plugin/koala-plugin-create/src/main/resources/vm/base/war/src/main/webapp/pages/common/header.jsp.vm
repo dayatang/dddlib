@@ -22,8 +22,4 @@
 <link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />
     " rel="stylesheet">
 <link href="<%=contextPath %>/css/koala.css" rel="stylesheet" type="text/css" />
-<link href="<%=contextPath %>/css/main.css" rel="stylesheet" type="text/css" /> 
-<link href="<%=contextPath %>/css/gqc.css" rel="stylesheet" type="text/css" /> 
-<link href="<%=contextPath %>/css/monitor.css" rel="stylesheet" type="text/css" /> 
-<link href="<%=contextPath %>/css/organisation.css" rel="stylesheet" type="text/css" /> 
-<link href="<%=contextPath %>/css/security.css" rel="stylesheet" type="text/css" /> 
+<link href="<%=contextPath %>/css/main.css" rel="stylesheet" type="text/css" />

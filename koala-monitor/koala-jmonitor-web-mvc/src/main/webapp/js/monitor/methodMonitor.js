@@ -14,7 +14,7 @@ $(function(){
     });
     var yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
-    startTime.datetimepicker('setDate', yesterday)
+    startTime.datetimepicker('setDate', yesterday);
     endTime.datetimepicker({
         language: 'zh-CN',
         format: "yyyy-mm-dd hh:ii:ss",

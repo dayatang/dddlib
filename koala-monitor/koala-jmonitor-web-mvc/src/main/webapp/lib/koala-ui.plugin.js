@@ -1051,7 +1051,7 @@
 		},
 		clickItem: function($item){
 			var value = $item.data('value');
-			if(!value || this.$value.val() == value){
+			if(this.$value.val() == value){
 				return this.$element;
 			}
 			this.$item.html($item.find('a:first').html());

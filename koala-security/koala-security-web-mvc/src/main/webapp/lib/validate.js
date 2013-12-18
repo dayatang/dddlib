@@ -68,8 +68,8 @@ Validator = {
                 case 3 :
                     try{
 //$(this.ErrorItem[1]).addClass('highlight');
-                        var content = this.ErrorMessage[1].replace(/\d+:/,"&nbsp;");
-                        $(this.ErrorItem[1]).ligerTip({content: content});
+                        var content = this.ErrorMessage[1].replace(/\d+:/," ");
+                        showErrorMessage($(this.ErrorItem[1]).closest('.modal'), $(this.ErrorItem[1]), content);
 //window.console.log(content);
                     }
                     catch(e){alert(e.description);}
