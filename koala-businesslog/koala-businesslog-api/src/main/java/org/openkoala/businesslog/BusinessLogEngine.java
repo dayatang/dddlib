@@ -42,15 +42,12 @@ public class BusinessLogEngine {
     }
 
 
-    private Map<String, Object> createContext(String businessOperation) {
-        synchronized (this) {
-            if (null == initContext) {
-                initContext = new Hashtable<String, Object>();
-            }
-            BusinessLogContextQuery[] queries = new BusinessLogContextQuery[config.getQueries(businessOperation).size()];
-            return queryExecutor.startQuery(initContext, config.getQueries(businessOperation).toArray(queries));
+    private synchronized Map<String, Object> createContext(String businessOperation) {
+        if (null == initContext) {
+            initContext = new Hashtable<String, Object>();
         }
-
+        BusinessLogContextQuery[] queries = new BusinessLogContextQuery[config.getQueries(businessOperation).size()];
+        return queryExecutor.startQuery(initContext, config.getQueries(businessOperation).toArray(queries));
     }
 
     public void setRender(BusinessLogRender render) {
