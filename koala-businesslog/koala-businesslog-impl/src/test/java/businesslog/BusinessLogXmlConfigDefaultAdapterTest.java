@@ -15,7 +15,7 @@ public class BusinessLogXmlConfigDefaultAdapterTest {
     @Test
     public void testName() throws Exception {
 
-        String method = "Invoice business.InvoiceApplication.addInvoice(String,long)";
+        String method = "Invoice business.InvoiceApplicationImpl.addInvoice(String,long)";
 
         BusinessLogConfigAdapter adapter = new BusinessLogXmlConfigDefaultAdapter();
 

@@ -11,28 +11,32 @@
 	   		http://www.springframework.org/schema/aop
 	   		http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
+    <context:component-scan
+            base-package="org.openkoala.businesslog.applicationImpl,org.openkoala.businesslog.application,org.openkoala.businesslog.impl"/>
 
-    <context:component-scan base-package="org.openkoala.businesslog.applicationImpl,org.openkoala.businesslog.application,org.openkoala.businesslog.impl"/>
 
-    <context:property-placeholder location="classpath*:koala-businesslog.properties" ignore-unresolvable="true"/>
+    <context:annotation-config/>
+
+    <context:property-placeholder
+            location="classpath*:koala-businesslog.properties" ignore-unresolvable="true"/>
 
     <bean id="logInterceptor" class="org.openkoala.businesslog.utils.BusinessLogInterceptor"/>
 
     <bean id="businessLogExporter" class="${businessLogExporter}"></bean>
     <bean id="configAdapter" class="${businessLogConfigAdapter}"/>
     <bean id="queryExecutor" class="${businessLogQueryExecutor}"/>
-    <bean id="businessLogEnginConfig" class="org.openkoala.businesslog.config.BusinessLogConfig">
+    <bean id="businessLogEngineConfig" class="org.openkoala.businesslog.config.BusinessLogConfig">
         <constructor-arg name="configAdapter" ref="configAdapter"/>
     </bean>
-    <bean id="businessLogEngine" class="org.openkoala.businesslog.BusinessLogEngine" >
-        <constructor-arg name="config" ref="businessLogEnginConfig"/>
+    <bean id="businessLogEngine" class="org.openkoala.businesslog.BusinessLogEngine">
+        <constructor-arg name="config" ref="businessLogEngineConfig"/>
         <constructor-arg name="render">
             <bean class="${businessLogRender}"></bean>
         </constructor-arg>
         <constructor-arg name="queryExecutor" ref="queryExecutor"></constructor-arg>
     </bean>
-
-    <aop:config proxy-target-class="true">
+    <!-- 加了 proxy-target-class="true" 使spring集中制使用cglib的代理 -->
+    <aop:config proxy-target-class="true" >
         <aop:pointcut id="businessBehavior" expression="${pointcut}"/>
         <aop:aspect id="logAspect" ref="logInterceptor">
             <aop:after-returning returning="result" method="logAfter" pointcut-ref="businessBehavior"/>
@@ -43,16 +47,16 @@
     <!-- 异步线程池 -->
     <bean id="threadPool" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
         <!-- 核心线程数  -->
-        <property name="corePoolSize" value="10" />
+        <property name="corePoolSize" value="${log.threadPool.corePoolSize}"/>
         <!-- 最大线程数 -->
-        <property name="maxPoolSize" value="50" />
+        <property name="maxPoolSize" value="${log.threadPool.maxPoolSize}"/>
         <!-- 队列最大长度 >=mainExecutor.maxSize -->
-        <property name="queueCapacity" value="1000" />
+        <property name="queueCapacity" value="${log.threadPool.queueCapacity}"/>
         <!-- 线程池维护线程所允许的空闲时间 -->
-        <property name="keepAliveSeconds" value="300" />
+        <property name="keepAliveSeconds" value="${log.threadPool.keepAliveSeconds}"/>
         <!-- 线程池对拒绝任务(无线程可用)的处理策略 -->
         <property name="rejectedExecutionHandler">
-            <bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
+            <bean class="${log.threadPool.rejectedExecutionHandler}"/>
         </property>
     </bean>
 
