@@ -117,4 +117,12 @@ public class ResourceController {
 		dataMap.put("data", resourceTypeApplication.findResourceType());
 		return dataMap;
 	}
+
+	@ResponseBody
+    @RequestMapping("/isResourceEmpty")
+    public Map<String,Object> isResourceEmpty() {
+    	Map<String, Object> dataMap = new HashMap<String,Object>();
+    	dataMap.put("result", resourceApplication.isResourceEmpty());
+    	return dataMap;
+    }
 }

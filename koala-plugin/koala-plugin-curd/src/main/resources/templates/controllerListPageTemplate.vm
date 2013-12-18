@@ -203,7 +203,7 @@ PageLoader = {
                     }else{
                         $('body').message({
                             type: 'error',
-                            content: result.result
+                            content: result.actionError
                         });
                      }
               });
@@ -247,7 +247,7 @@ PageLoader = {
                         }else{
                             $('body').message({
                             type: 'error',
-                            content: result.result
+                            content: result.actionError
                             });
                         }
                     });
