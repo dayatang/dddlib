@@ -11,13 +11,7 @@ import org.openkoala.businesslog.BusinessLog;
 import org.openkoala.businesslog.BusinessLogEngine;
 import org.openkoala.businesslog.BusinessLogExporter;
 import org.openkoala.businesslog.common.BusinessLogPropertiesConfig;
-import org.openkoala.businesslog.common.LogEngineCallable;
 import org.openkoala.businesslog.common.LogEngineThread;
-import org.openkoala.businesslog.common.ThreadPool;
-import org.openkoala.businesslog.config.BusinessLogConfig;
-import org.openkoala.businesslog.impl.BusinessLogDefaultContextQueryExecutor;
-import org.openkoala.businesslog.impl.BusinessLogFreemarkerDefaultRender;
-import org.openkoala.businesslog.impl.BusinessLogXmlConfigDefaultAdapter;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import javax.inject.Inject;
@@ -52,6 +46,8 @@ public class BusinessLogInterceptor {
     }
 
     public void log(JoinPoint joinPoint, Object result, Throwable error) {
+
+        System.out.println("--:" + joinPoint.getSignature().toString());
 
         if (!BusinessLogPropertiesConfig.getInstance().getLogEnableConfig()
                 || ThreadLocalBusinessLogContext.get().get(BUSINESS_METHOD) != null) {

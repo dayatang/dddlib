@@ -12,6 +12,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.openkoala.businesslog.utils.BusinessLogInterceptor;
 import org.openkoala.businesslog.utils.ThreadLocalBusinessLogContext;
 import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ import java.util.Map;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-//@TransactionConfiguration(transactionManager = "transactionManager_businessLog", defaultRollback = true)
+@Transactional(propagation = Propagation.REQUIRED)
 public class BusinessLogInterceptorTest extends AbstractIntegrationTest {
 
     @Inject

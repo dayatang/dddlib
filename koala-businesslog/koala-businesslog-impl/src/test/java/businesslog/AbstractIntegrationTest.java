@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:context.xml"})
-@TransactionConfiguration(transactionManager = "transactionManager_businessLog",defaultRollback = true)
+@TransactionConfiguration(transactionManager = "transactionManager_businessLog",defaultRollback = false)
 public abstract class AbstractIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
 
 	@Before

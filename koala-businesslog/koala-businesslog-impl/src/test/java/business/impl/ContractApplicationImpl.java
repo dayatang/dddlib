@@ -1,4 +1,8 @@
-package business;
+package business.impl;
+
+import business.Contract;
+import business.ContractApplication;
+import business.Project;
 
 import java.math.BigDecimal;
 

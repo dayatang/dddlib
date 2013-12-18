@@ -29,6 +29,11 @@ public class BusinessLogJpaDefaultExporter implements BusinessLogExporter {
         businessLogApplication.save(log);
         assert log.getId() != null;
         System.out.println(log);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 

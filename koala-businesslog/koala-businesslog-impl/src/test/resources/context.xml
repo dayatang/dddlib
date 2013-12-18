@@ -16,10 +16,10 @@
 
 
 
-    <bean id="testApplication" class="business.TestApplicationImpl"/>
-    <bean id="contractApplication" class="business.ContractApplicationImpl"/>
-    <bean id="projectApplication" class="business.ProjectApplicationImpl"/>
-    <bean id="invoiceApplication" class="business.InvoiceApplicationImpl"/>
+    <bean id="testApplication" class="business.impl.TestApplicationImpl"/>
+    <bean id="contractApplication" class="business.impl.ContractApplicationImpl"/>
+    <bean id="projectApplication" class="business.impl.ProjectApplicationImpl"/>
+    <bean id="invoiceApplication" class="business.impl.InvoiceApplicationImpl"/>
 
 
 

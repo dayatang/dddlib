@@ -1,4 +1,7 @@
-package business;
+package business.impl;
+
+import business.Invoice;
+import business.InvoiceApplication;
 
 /**
  * User: zjzhai

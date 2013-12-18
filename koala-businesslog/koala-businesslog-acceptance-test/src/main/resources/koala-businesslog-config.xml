@@ -63,7 +63,7 @@
     <businessLogConfig>
         <category>项目操作</category>
         <!--对于多维数组，待支持-->
-        <method>List business.ProjectApplication.addProject()</method>
+        <method>List business.ProjectApplicationImpl.addProject()</method>
         <template><![CDATA[
         ererererer         addProject
         ]]></template>

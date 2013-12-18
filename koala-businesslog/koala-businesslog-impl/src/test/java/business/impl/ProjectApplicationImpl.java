@@ -1,4 +1,7 @@
-package business;
+package business.impl;
+
+import business.Project;
+import business.ProjectApplication;
 
 import java.util.ArrayList;
 import java.util.List;
