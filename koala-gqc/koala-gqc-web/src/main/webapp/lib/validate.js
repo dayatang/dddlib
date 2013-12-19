@@ -172,6 +172,14 @@ var Validation = {
         }
         return true;
     },
+    number: function($container, $element, content, errorMessage) {
+        var reg = new RegExp(/^[0-9]*$/);
+        if (!reg.test(content)) {
+            showErrorMessage($container, $element, errorMessage);
+            return false;
+        }
+        return true;
+    },
     humanName: function($container, $element, content, errorMessage) {
         var reg = new RegExp(/(^[A-Z a-z]*$)|(^[\u4e00-\u9fa5]*$)/);
         if (!reg.test(content)) {
