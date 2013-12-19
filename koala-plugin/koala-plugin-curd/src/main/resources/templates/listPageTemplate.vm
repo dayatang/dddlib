@@ -113,7 +113,7 @@ PageLoader = {
                         {content: '<button class="btn btn-success" type="button"><span class="glyphicon glyphicon-edit"><span>修改</button>', action: 'modify'},
                         {content: '<button class="btn btn-danger" type="button"><span class="glyphicon glyphicon-remove"><span>删除</button>', action: 'delete'}
                     ],
-                url:"<%=contextPath %>/${base_url}pageJson.action",
+                url:"${pageContext.request.contextPath}/${base_url}pageJson.action",
                 columns: [
                      #foreach( $view in $pageParams.listModel.views)
                          #if($view.type.indexOf("oolean") > 0)
@@ -192,7 +192,7 @@ PageLoader = {
         });
         dialog.find('#save').on('click',{grid: grid}, function(e){
               if(!Validator.Validate(dialog.find('form')[0],3))return;
-              $.post('<%=contextPath %>/${base_url}add.action', dialog.find('form').serialize()).done(function(result){
+              $.post('${pageContext.request.contextPath}/${base_url}add.action', dialog.find('form').serialize()).done(function(result){
                    if(result.result == 'success'){
                         dialog.modal('hide');
                         e.data.grid.data('koala.grid').refresh();
@@ -215,7 +215,7 @@ PageLoader = {
         $.get('${entityName}-update.jsp').done(function(html){
                dialog.find('.modal-body').html(html);
                self.initPage(dialog.find('form'));
-               $.get( '<%=contextPath %>/${base_url}get.action?${voName}.${dtoClass.entityModel.singleIDFieldModel.name}=' + id).done(function(json){
+               $.get( '${pageContext.request.contextPath}/${base_url}get.action?${voName}.${dtoClass.entityModel.singleIDFieldModel.name}=' + id).done(function(json){
                        json = json.data;
                         var elm;
                         for(var index in json){
@@ -236,7 +236,7 @@ PageLoader = {
                 });
                 dialog.find('#save').on('click',{grid: grid}, function(e){
                     if(!Validator.Validate(dialog.find('form')[0],3))return;
-                    $.post('<%=contextPath %>/${base_url}update.action?${voName}.${dtoClass.entityModel.singleIDFieldModel.name}='+id, dialog.find('form').serialize()).done(function(result){
+                    $.post('${pageContext.request.contextPath}/${base_url}update.action?${voName}.${dtoClass.entityModel.singleIDFieldModel.name}='+id, dialog.find('form').serialize()).done(function(result){
                         if(result.result == 'success'){
                             dialog.modal('hide');
                             e.data.grid.data('koala.grid').refresh();
@@ -276,7 +276,7 @@ PageLoader = {
     },
     remove: function(ids, grid){
     	var data = [{ name: '${dtoClass.entityModel.singleIDFieldModel.name}s', value: ids.join(',') }];
-    	$.post('<%=contextPath %>/${base_url}delete.action', data).done(function(result){
+    	$.post('${pageContext.request.contextPath}/${base_url}delete.action', data).done(function(result){
                         if(result.result == 'success'){
                             grid.data('koala.grid').refresh();
                             $('body').message({
@@ -296,7 +296,7 @@ var openDetailsPage = function(id){
         var dialog = $('<div class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">查看</h4></div><div class="modal-body"><p>One fine body&hellip;</p></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">返回</button></div></div></div></div>');
         $.get('${entityName}-view.jsp').done(function(html){
                dialog.find('.modal-body').html(html);
-               $.get( '<%=contextPath %>/${base_url}get.action?${voName}.${dtoClass.entityModel.singleIDFieldModel.name}=' + id).done(function(json){
+               $.get( '${pageContext.request.contextPath}/${base_url}get.action?${voName}.${dtoClass.entityModel.singleIDFieldModel.name}=' + id).done(function(json){
                        json = json.data;
                         var elm;
                         for(var index in json){
