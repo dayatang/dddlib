@@ -149,7 +149,7 @@ body {
 							});
 				     	</script>
 			</c:if>
-			<FORM id=loginFormId method=post action="j_spring_security_check" class="form-horizontal">
+			<FORM id=loginFormId method=post action="j_spring_security_check" onsubmit="return dologin();" class="form-horizontal">
 				<div class="form-group input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                     <input type="text" class="form-control" placeholder="用户名"  name="j_username" id="j_username">
