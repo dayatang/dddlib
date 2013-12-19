@@ -11,6 +11,7 @@ import org.openkoala.koala.auth.AuthDataService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.util.AntUrlPathMatcher;
@@ -63,6 +64,8 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 		}
 		return userCache;
 	}
+	
+	
 
 	/**
 	 * 根据用户账号获取资源授权信息
@@ -72,11 +75,8 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 	 */
 	@SuppressWarnings("unchecked")
 	public boolean getResAuthByUseraccount(String userAccount, String res) {
-		List<String> grantRoles = null;
-		if (getResourceCache().isKeyInCache(res)) {
-			grantRoles = (List<String>) getResourceCache().get(res);
-		}
-		CustomUserDetails user = (CustomUserDetails) this.getUserCache().get(userAccount);
+		List<String> grantRoles = getGrantRoles(res);
+		CustomUserDetails user =  getUserInfo(userAccount);
 		if (user != null && grantRoles != null) {
 			Collection<GrantedAuthority> authorities = user.getAuthorities();
 			for (GrantedAuthority grant : authorities) {
@@ -88,6 +88,38 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 
 		}
 		return false;
+	}
+	
+	private List<String> getGrantRoles(String res){
+		List<String> roles = new ArrayList<String>();
+		roles =  (List<String>) getResourceCache().get(res);
+		if(roles.isEmpty()){
+			roles = provider.getAttributes(res);
+		}
+		return roles;
+	}
+	
+	/**
+	 * 获取用户信息
+	 * @param userAccount
+	 * @return
+	 */
+	private CustomUserDetails getUserInfo(String userAccount){
+		CustomUserDetails userInfo = (CustomUserDetails)getUserCache().get(userAccount);
+		if(userInfo==null){
+			org.openkoala.koala.auth.UserDetails user = provider.loadUserByUseraccount(userAccount);
+			List<GrantedAuthority> gAuthoritys = new ArrayList<GrantedAuthority>();
+			for (String role : user.getAuthorities()) {
+				GrantedAuthorityImpl gai = new GrantedAuthorityImpl(role);
+				gAuthoritys.add(gai);
+			}
+			userInfo = new CustomUserDetails(user.getPassword(), user.getUseraccount(), user.isAccountNonExpired(),
+					user.isAccountNonLocked(), user.isCredentialsNonExpired(), user.isEnabled(), gAuthoritys);
+			userInfo.setSuper(user.isSuper());
+			getUserCache().put(userAccount, userInfo);
+		}
+		
+		return userInfo;
 	}
 
 	/**
