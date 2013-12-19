@@ -46,7 +46,7 @@
 	    <div class="col-xs-2 g-sidec">
 	        <ul class="nav nav-stacked first-level-menu">
 	            <li>
-                	<a data-toggle="collapse" href="#businessSupport"><i class="glyphicon glyphicon-bookmark"></i>&nbsp;监控数据&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+                	<a data-toggle="collapse" href="#businessSupport"><i class="glyphicon glyphicon-list"></i>&nbsp;监控数据&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
 	                <ul id="businessSupport" class="second-level-menu in">
 	                    <li class="submenu" data-role="openTab" data-target="/pages/monitor/http-monitor.html" data-title="HTTP监控" data-mark="httpMonitor"><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;HTTP监控</a></li>
                         <li class="submenu" data-role="openTab" data-target="/pages/monitor/method-monitor.html" data-title="方法监控" data-mark="methodMonitor"><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;方法监控</a></li>
@@ -60,7 +60,7 @@
 	                </ul>
 	            </li>
 	             <li>
-                    <a data-toggle="collapse" href="#organisation"><i class="glyphicon glyphicon-tasks"></i>&nbsp;监控服务&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+                    <a data-toggle="collapse" href="#organisation"><i class="glyphicon glyphicon-list"></i>&nbsp;监控服务&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
 	                <ul id="organisation" class="second-level-menu in">
 	                    <li class="submenu" data-role="openTab" data-target="/pages/monitor/schedule-list.html" data-title="定时任务" data-mark="scheduleList" ><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;定时任务</a></li>
 	                </ul>
@@ -85,7 +85,7 @@
     <script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js' />"></script>
     <script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js' />"></script>
     <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />?time=<%=time%>"></script>
-	<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/lib/validate.js' />"></script>
     <script type="text/javascript" src="<c:url value='/lib/jqplot/js/excanvas.js'/>"></script>
     <script type="text/javascript" src="<c:url value='/lib/jqplot/js/jquery.jqplot.min.js' />"></script>
     <script type="text/javascript" src="<c:url value='/lib/jqplot/js/shCore.min.js' />"></script>
