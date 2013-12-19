@@ -169,7 +169,7 @@ body {
     var btnLogin = $('.btn-login');
     var form = $('#loginFormId');
     $(function(){
-        btnLogin.keydown(function(e) {
+    	$('body').keydown(function(e) {
             if (e.keyCode == 13) {
                 form.submit();
             }
