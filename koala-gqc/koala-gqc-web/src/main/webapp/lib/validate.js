@@ -20,7 +20,6 @@ Validator = {
         this.ErrorMessage.length = 1;
         this.ErrorItem.length = 1;
         this.ErrorItem[0] = obj;
-//window.console.log('');
         for(var i=0;i<count;i++){
             with(obj.elements[i]){
                 if(disabled)continue;
@@ -55,31 +54,18 @@ Validator = {
             }
         }
         if(this.ErrorMessage.length > 1){
-            mode = mode || 1;
-            var errCount = this.ErrorItem.length;
-            switch(mode){
-                case 2 :
-                    for(var i=1;i<errCount;i++)
-                        this.ErrorItem[i].style.color = "red";
-                case 1 :
-                    alert(this.ErrorMessage.join("\n"));
-                    this.ErrorItem[1].focus();
-                    break;
-                case 3 :
-                    try{
-//$(this.ErrorItem[1]).addClass('highlight');
-                        var content = this.ErrorMessage[1].replace(/\d+:/," ");
-                        showErrorMessage($(this.ErrorItem[1]).closest('.modal'), $(this.ErrorItem[1]), content);
-//window.console.log(content);
-                    }
-                    catch(e){alert(e.description);}
-
-                    this.ErrorItem[1].focus();
-                    break;
-                default :
-                    alert(this.ErrorMessage.join("\n"));
-                    break;
+            var content = this.ErrorMessage[1].replace(/\d+:/," ");
+            var $element = $(this.ErrorItem[1]);
+            var name = $element.attr('name');
+            if(name.indexOf('DTO') != -1){
+                name = name.split('.')[1];
             }
+            var $targetElement = $element;
+            var $tempElement = $targetElement.closest('form').find('#' + name + 'ID');
+            if($tempElement.hasClass('select')){
+                $targetElement = $tempElement;
+            }
+            showErrorMessage($element.closest('.modal'), $targetElement, content);
             return false;
         }
         return true;
