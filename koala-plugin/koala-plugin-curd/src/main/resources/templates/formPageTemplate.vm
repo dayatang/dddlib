@@ -1,5 +1,5 @@
 #set($entityName = $pageParams.entityModel.name)
-#set($voName  = ${entityName.substring(0, 1).toLowerCase()} + ${entityName.substring(1)} + "VO")
+#set($voName  = ${entityName.substring(0, 1).toLowerCase()} + ${entityName.substring(1)} + "DTO")
 #set($base_url = $pageParams.entityModel.lastPackageName + "-" + $entityName +"-")
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.Date"%>
@@ -14,14 +14,14 @@
 #if($view.type.indexOf("oolean") > 0)
                     <div class="col-lg-9">
                            <div class="btn-group select" id="${view.express}ID"></div>
-	                       <input type="hidden" id="${view.express}ID_" name="${view.express}AsString" ${view.validateAttrs}/>                    </div>
+	                       <input type="hidden" id="${view.express}ID_" name="${voName}.${view.express}AsString" ${view.validateAttrs}/>                    </div>
 #elseif($view.widgetType == 'text')
                     <div class="col-lg-9">
-                           <input name="${view.express}" style="display:inline; width:94%;" class="form-control"  type="text" ${view.validateAttrs} id="${view.express}ID" />
+                           <input name="${voName}.${view.express}" style="display:inline; width:94%;" class="form-control"  type="text" ${view.validateAttrs} id="${view.express}ID" />
 #elseif ($view.widgetType == 'date')
                  <div class="col-lg-9">
                     <div class="input-group date form_datetime" style="width:160px;float:left;" >
-                        <input type="text" class="form-control" style="width:160px;" name="${view.express}" id="${view.express}ID" ${view.validateAttrs}>
+                        <input type="text" class="form-control" style="width:160px;" name="${voName}.${view.express}" id="${view.express}ID" ${view.validateAttrs}>
                         <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                      </div>
 #elseif ($view.widgetType == 'textArea')
@@ -30,7 +30,7 @@
 #elseif ($view.widgetType == 'staticDropdown')
                     <div class="col-lg-9">
                            <div class="btn-group select" id="${view.express}ID"></div>
-	                       <input type="hidden" id="${view.express}ID_"  name="${view.express}" ${view.validateAttrs}/>
+	                       <input type="hidden" id="${view.express}ID_"  name="${voName}.${view.express}" ${view.validateAttrs}/>
 #elseif ($view.widgetType == 'queryDropdown')
            //未实现
 #end

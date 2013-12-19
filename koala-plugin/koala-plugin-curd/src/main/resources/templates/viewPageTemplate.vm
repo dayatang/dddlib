@@ -1,5 +1,5 @@
 #set($entityName = $pageParams.entityModel.name)
-#set($voName  = ${entityName.substring(0, 1).toLowerCase()} + ${entityName.substring(1)} + "VO")
+#set($voName  = ${entityName.substring(0, 1).toLowerCase()} + ${entityName.substring(1)} + "DTO")
 #set($base_url = $pageParams.entityModel.lastPackageName + "-" + $entityName +"-")
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <form  class="form-horizontal">
