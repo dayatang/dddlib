@@ -221,8 +221,7 @@ public class UserController {
 		UserVO userVO = userPojo.getUserVO();
 		Map<String, Object> dataMap = new HashMap<String,Object>();
 		userVO.setSerialNumber("0");
-		userVO.setUserPassword(SecurityMD5.encode(userVO.getUserPassword(), //
-				userVO.getUserAccount()));
+		userVO.setUserPassword(new PasswordEncoder("", "MD5").encode(userVO.getUserPassword()));
 		userApplication.saveUser(userVO);
 		CacheUtil.refreshUserAttributes(userVO.getUserAccount());
 		dataMap.put("result", "success");
