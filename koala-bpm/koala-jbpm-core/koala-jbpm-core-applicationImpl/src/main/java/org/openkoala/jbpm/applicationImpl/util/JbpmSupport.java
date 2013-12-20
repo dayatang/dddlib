@@ -59,6 +59,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.transaction.jta.JtaTransactionManager;
 import org.springframework.transaction.support.AbstractPlatformTransactionManager;
 
 import bitronix.tm.TransactionManagerServices;
@@ -70,6 +71,7 @@ public class JbpmSupport {
 
 	private KnowledgeBase kbase;
 
+	@Inject
 	private StatefulKnowledgeSession ksession;
 
 	@Inject
@@ -104,41 +106,42 @@ public class JbpmSupport {
 	 */
 	public void initialize() throws Exception {
 		
-		KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-
-		kbase = kbuilder.newKnowledgeBase();
+//		KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
+//
+//		kbase = kbuilder.newKnowledgeBase();
+		
+		kbase = ksession.getKnowledgeBase();
+		
 		
 		kbuilderAllResurce();// 加载所有流程
 		
-		Environment env = KnowledgeBaseFactory.newEnvironment();
-
-		env.set(EnvironmentName.APP_SCOPED_ENTITY_MANAGER, jbpmEM);
-
-		env.set(EnvironmentName.CMD_SCOPED_ENTITY_MANAGER, jbpmEM);
-
-		env.set("IS_JTA_TRANSACTION", false);
-
-		env.set("IS_SHARED_ENTITY_MANAGER", true);
-
-		transactionManager = new DroolsSpringTransactionManager(aptm);
-
-		env.set(EnvironmentName.TRANSACTION_MANAGER, transactionManager);
-
-		PersistenceContextManager persistenceContextManager = new DroolsSpringJpaManager(
-				env);
-
-		env.set(EnvironmentName.PERSISTENCE_CONTEXT_MANAGER,
-				persistenceContextManager);
-
-		ksession =
-
-		JPAKnowledgeService.newStatefulKnowledgeSession(kbase, null, env);
+//		Environment env = KnowledgeBaseFactory.newEnvironment();
+//
+//		env.set(EnvironmentName.APP_SCOPED_ENTITY_MANAGER, jbpmEM);
+//
+//		env.set(EnvironmentName.CMD_SCOPED_ENTITY_MANAGER, jbpmEM);
+//
+//		env.set("IS_JTA_TRANSACTION", false);
+//
+//		env.set("IS_SHARED_ENTITY_MANAGER", true);
+//
+//		transactionManager = new DroolsSpringTransactionManager(aptm);
+//
+//		env.set(EnvironmentName.TRANSACTION_MANAGER, transactionManager);
+//
+//		PersistenceContextManager persistenceContextManager = new DroolsSpringJpaManager(
+//				env);
+//
+//		env.set(EnvironmentName.PERSISTENCE_CONTEXT_MANAGER,
+//				persistenceContextManager);
+//
+//		ksession =
+//
+//		JPAKnowledgeService.newStatefulKnowledgeSession(kbase, null, env);
 		
 		
 
 		logger.info("Jbpm Support initialize... ... ...");
-		this.startTransaction();
-		
 		KoalaWSHumanTaskHandler humanTaskHandler = new KoalaWSHumanTaskHandler(
 				this.localTaskService, ksession);
 		humanTaskHandler.setLocal(true);
@@ -155,19 +158,22 @@ public class JbpmSupport {
 
 		initActiveProcess();
 		initVariables();
-		this.commitTransaction();
 	}
 
+	private ThreadLocal<Boolean> ownerStatu = new ThreadLocal<Boolean>();
+	private ThreadLocal<TransactionManager> transactions = new ThreadLocal<TransactionManager>();
 	public void startTransaction() {
-		transactionManager.begin();
+//		transactions.set(new DroolsSpringTransactionManager(new JtaTransactionManager()));
+//		boolean owner = transactions.get().begin();
+//		ownerStatu.set(owner);
 	}
 
 	public void commitTransaction() {
-		transactionManager.commit(false);
+		//transactions.get().commit(ownerStatu.get());
 	}
 
 	public void rollbackTransaction() {
-		transactionManager.rollback(false);
+		//transactions.get().rollback(ownerStatu.get());
 	}
 
 	public List<TaskSummary> findTaskSummary(String user) {
@@ -324,8 +330,6 @@ public class JbpmSupport {
 			KoalaProcessInfoVO info = new KoalaProcessInfoVO();
 			BeanUtils.copyProperties(process, info);
 			addKoalaProcessInfoVO(info);
-			
-			
 		}
 	}
 	

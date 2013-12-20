@@ -15,10 +15,11 @@
 		<property name="password" value="${db.jdbc.password}" />
 		<property name="prototypeCount" value="5" />
 		<property name="maximumConnectionCount" value="100" />
-		<property name="minimumConnectionCount" value="20" />
+		<property name="minimumConnectionCount" value="100" />
 		<property name="houseKeepingTestSql" value="select 1"/>
-		<property name="testBeforeUse" value="true"/>
-		<property name="alias" value="default"/>
+		<property name="testBeforeUse" value="false"/>
+		<property name="alias" value="jbpmcore"/>
+		<property name="maximumActiveTime" value="700000" />
 	</bean>
 
 	<bean id="entityManagerFactory"
@@ -43,6 +44,8 @@
 		<property name="transactionManager" ref="BitronixTransactionManager" />
 		<property name="userTransaction" ref="BitronixTransactionManager" />
 	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<bean id="systemEventListener" class="org.drools.SystemEventListenerFactory"
 		factory-method="getSystemEventListener" />
@@ -78,4 +81,18 @@
 
 	<bean id="jbpmSupport" class="org.openkoala.jbpm.applicationImpl.util.JbpmSupport"
 		init-method="initialize" />
+		
+			<jbpm:kbase id="kbase1">
+		<jbpm:resources>
+		</jbpm:resources>
+	</jbpm:kbase>
+
+	<jbpm:ksession id="ksession1" type="stateful" kbase="kbase1">
+		<jbpm:configuration>
+			<jbpm:jpa-persistence>
+				<jbpm:transaction-manager ref="transactionManager" />
+				<jbpm:entity-manager-factory ref="entityManagerFactory" />
+			</jbpm:jpa-persistence>
+		</jbpm:configuration>
+	</jbpm:ksession>
 </beans>
