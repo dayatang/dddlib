@@ -31,7 +31,7 @@ public class BusinessLogEngineTest {
     public void testName() throws Exception {
 
         InstanceProvider provider = mock(InstanceProvider.class);
-
+        String operation = "Invoice business.InvoiceApplication.addInvoice(String,long)";
 
         InstanceFactory.setInstanceProvider(provider);
 
@@ -42,9 +42,9 @@ public class BusinessLogEngineTest {
         when(provider.getInstance(Class.forName("business.ContractApplication"), "contractApplication"))
                 .thenReturn(new ContractApplicationImpl());
 
-        BusinessLogConfig config = new BusinessLogConfig(new BusinessLogXmlConfigDefaultAdapter());
+        BusinessLogXmlConfigDefaultAdapter adapter = new BusinessLogXmlConfigDefaultAdapter();
         BusinessLogEngine businessLogEngine = new BusinessLogEngine(
-                config,
+                adapter,
                 new BusinessLogFreemarkerDefaultRender(),
                 new BusinessLogDefaultContextQueryExecutor()
                 );
@@ -53,10 +53,10 @@ public class BusinessLogEngineTest {
 
         BusinessLogExporter exporter = new BusinessLogConsoleExporter();
 
-        String operator = "Invoice business.InvoiceApplication.addInvoice(String,long)";
+
 
         assert "向项目项目xxxx的合同一期合同添加发票：编号： yyyyyy".equals(
-                businessLogEngine.exportLogBy(operator, exporter).getLog());
+                businessLogEngine.exportLogBy(operation, exporter).getLog());
     }
 
 

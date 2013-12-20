@@ -1,9 +1,5 @@
 package org.openkoala.businesslog.common;
 
-import javassist.CannotCompileException;
-import javassist.ClassPool;
-import javassist.NotFoundException;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.openkoala.businesslog.BusinessLogClassNotFoundException;
 import org.openkoala.businesslog.BusinessLogQueryMethodException;
@@ -14,7 +10,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 

@@ -19,14 +19,13 @@ public class BusinessLogXmlConfigDefaultAdapterTest {
 
         BusinessLogConfigAdapter adapter = new BusinessLogXmlConfigDefaultAdapter();
 
-        adapter.findConfigByBusinessOperation(method);
 
-        assert 3 == adapter.getQueries().size();
+        assert 3 == adapter.findConfigBy(method).getQueries().size();
 
         assert "向项目${project.name}的合同${contract.name}添加发票：${(_methodReturn.sn)!\"\"}"
-                .equals(adapter.getTemplate());
+                .equals(adapter.findConfigBy(method).getTemplate());
 
-        assert "发票操作".equals(adapter.getCategory());
+        assert "发票操作".equals(adapter.findConfigBy(method).getCategory());
 
 
     }

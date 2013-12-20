@@ -12,6 +12,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -88,15 +89,27 @@ public class BusinessLogConfigXmlParser {
     }
 
     public static BusinessLogConfigXmlParser parsing(String xmlConfigPath) {
+        File file = new File(xmlConfigPath);
+        if (!file.exists()) {
+            return null;
+        }
+        return parsing(file);
+    }
+
+    public synchronized static BusinessLogConfigXmlParser parsing(File xmlConfigPath) {
         Document doc = loadXmlDocument(xmlConfigPath);
         return new BusinessLogConfigXmlParser(doc);
     }
 
-    public static Document loadXmlDocument(String xmlConfigPath) {
+
+
+
+
+    public synchronized static Document loadXmlDocument(File xmlConfigPath) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
-            return builder.parse(new FileInputStream(xmlConfigPath));
+            return builder.parse(xmlConfigPath);
         } catch (ParserConfigurationException e) {
             throw new BusinessLogXmlConfigParseException(e);
         } catch (FileNotFoundException e) {
@@ -108,7 +121,8 @@ public class BusinessLogConfigXmlParser {
         }
     }
 
-    public String getTemplateFrom(String businessOperator) {
+
+    public synchronized String getTemplateFrom(String businessOperator) {
         Node configNode = findConfigByBusinessOperator(businessOperator);
         if (null == configNode) {
             return "";
@@ -123,7 +137,7 @@ public class BusinessLogConfigXmlParser {
         return "";
     }
 
-    public static List<Node> getConfigsFrom(Document doc) {
+    public synchronized static List<Node> getConfigsFrom(Document doc) {
         List<Node> results = new ArrayList<Node>();
         Element root = doc.getDocumentElement();
         NodeList rootChildren = root.getChildNodes();
@@ -143,7 +157,7 @@ public class BusinessLogConfigXmlParser {
      * @param businessOperator
      * @return
      */
-    public String getBusinessLogMethodCategory(String businessOperator) {
+    public synchronized String getCategory(String businessOperator) {
         Node configNode = findConfigByBusinessOperator(businessOperator);
         if (null == configNode) {
             return "";
@@ -160,7 +174,7 @@ public class BusinessLogConfigXmlParser {
     }
 
 
-    public List<BusinessLogContextQuery> getQueriesFrom(String businessOperator) {
+    public synchronized List<BusinessLogContextQuery> getQueriesFrom(String businessOperator) {
         List<BusinessLogContextQuery> result = new ArrayList<BusinessLogContextQuery>();
         Node config = findConfigByBusinessOperator(businessOperator);
         if (null == config) {
@@ -181,7 +195,7 @@ public class BusinessLogConfigXmlParser {
     }
 
 
-    private Node findQueriesNode(Node nodeConfig) {
+    private synchronized Node findQueriesNode(Node nodeConfig) {
         NodeList children = nodeConfig.getChildNodes();
         for (int i = 0; i < children.getLength(); i++) {
             Node queryNode = children.item(i);
@@ -212,7 +226,7 @@ public class BusinessLogConfigXmlParser {
     }
 
 
-    private BusinessLogDefaultContextQuery createQueryBy(Node queryNode) {
+    private  synchronized  BusinessLogDefaultContextQuery createQueryBy(Node queryNode) {
 
         String beanName = null;
         String beanClass = null;
@@ -262,5 +276,9 @@ public class BusinessLogConfigXmlParser {
             }
         }
         return result;
+    }
+
+    public synchronized boolean exists(String businessOperation) {
+        return findConfigByBusinessOperator(businessOperation) != null;
     }
 }

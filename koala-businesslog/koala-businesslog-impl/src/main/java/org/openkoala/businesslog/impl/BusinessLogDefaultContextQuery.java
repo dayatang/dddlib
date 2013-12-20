@@ -41,16 +41,14 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
     }
 
     @Override
-    public Map<String, Object> queryInContext(Map<String, Object> aContext) {
-        synchronized (this) {
-            context = aContext;
-            if (null == context) {
-                context = new ConcurrentHashMap<String, Object>();
-            }
-            Map<String, Object> map = new ConcurrentHashMap<String, Object>();
-            map.put(contextKey, invoke(getBean(), getMethodParams()));
-            return Collections.unmodifiableMap(map);
+    public synchronized Map<String, Object> queryInContext(Map<String, Object> aContext) {
+        context = aContext;
+        if (null == context) {
+            context = new ConcurrentHashMap<String, Object>();
         }
+        Map<String, Object> map = new ConcurrentHashMap<String, Object>();
+        map.put(contextKey, invoke(getBean(), getMethodParams()));
+        return Collections.unmodifiableMap(map);
     }
 
     private Object[] getMethodParams() {

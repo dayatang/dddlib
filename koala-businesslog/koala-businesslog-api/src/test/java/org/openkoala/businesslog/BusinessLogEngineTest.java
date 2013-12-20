@@ -19,9 +19,10 @@ import static org.mockito.Mockito.when;
  * Time: 10:00 AM
  */
 public class BusinessLogEngineTest {
+    String template = "参数${_param0},参数${_params1},返回值:${_operatorReturn},关联查询值：${invoice}";
+
     @Test
     public void testSomeThing() {
-        String template = "参数${_param0},参数${_params1},返回值:${_operatorReturn},关联查询值：${invoice}";
 
         String resultLog = "${user}:${time}:${ip}参数1,参数String,返回值:xxxxxx,关联查询值：发票编号1";
 
@@ -30,8 +31,6 @@ public class BusinessLogEngineTest {
         String businessMethodCategory = "发票操作";
 
         BusinessLogConfigAdapter configAdapter = mock(BusinessLogConfigAdapter.class);
-
-        BusinessLogConfig config = new BusinessLogConfig(configAdapter);
 
         BusinessLogRender render = mock(BusinessLogRender.class);
 
@@ -42,21 +41,18 @@ public class BusinessLogEngineTest {
         Map<String, Object> initContext = createContext();
 
         BusinessLogEngine engine =
-                new BusinessLogEngine(config, render, queryExecutor);
+                new BusinessLogEngine(configAdapter, render, queryExecutor);
         engine.setInitContext(initContext);
 
+        BusinessLogConfig config = getConfig();
 
-        when(configAdapter.findConfigByBusinessOperation(businessOperation))
-                .thenReturn(configAdapter);
-        when(configAdapter.getQueries())
-                .thenReturn(new ArrayList<BusinessLogContextQuery>());
-        when(configAdapter.getTemplate())
-                .thenReturn(template);
-        when(configAdapter.getCategory()).thenReturn(businessMethodCategory);
+        when(configAdapter.findConfigBy(businessOperation)).thenReturn(config);
 
-        BusinessLogContextQuery[] queries = new BusinessLogContextQuery[config.getQueries(businessOperation).size()];
 
-        when(queryExecutor.startQuery(initContext, config.getQueries(businessOperation).toArray(queries))).thenReturn(initContext);
+        when(queryExecutor.startQuery(initContext,
+                config.getQueries().toArray(new BusinessLogContextQuery[config.getQueries().size()])))
+                .thenReturn(initContext);
+
         when(render.render(initContext, template)).thenReturn(render);
 
 
@@ -67,6 +63,16 @@ public class BusinessLogEngineTest {
 
         assert businessMethodCategory.equals(businessLog.getCategory());
         assert resultLog.equals(businessLog.getLog());
+    }
+
+    private BusinessLogConfig getConfig() {
+        BusinessLogConfig config = new BusinessLogConfig();
+
+        config.setCategory("发票操作");
+        config.setTemplate(template);
+        config.setQueries(new ArrayList<BusinessLogContextQuery>());
+
+        return config;
     }
 
 

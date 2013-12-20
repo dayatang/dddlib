@@ -9,19 +9,19 @@ public abstract class AbstractBusinessLogRender implements BusinessLogRender {
 
     private StringBuilder builder = new StringBuilder();
 
-    public BusinessLogRender render(String log) {
+    public  BusinessLogRender render(String log) {
         builder.append(log);
         return this;
     }
 
     @Override
-    public String build() {
+    public  String build() {
         String result = builder.toString();
-        builder.delete(0, builder.length());
+        builder = new StringBuilder();
         return result;
     }
 
-    public StringBuilder getBuilder() {
+    public synchronized StringBuilder getBuilder() {
         return builder;
     }
 }

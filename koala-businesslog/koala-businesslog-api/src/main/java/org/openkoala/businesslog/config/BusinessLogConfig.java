@@ -10,26 +10,36 @@ import java.util.List;
 public class BusinessLogConfig {
 
 
-    private BusinessLogConfigAdapter configAdapter;
+    private String template;
 
-    private BusinessLogConfig() {
+    private String category;
+
+    private List<BusinessLogContextQuery> queries;
+
+    public BusinessLogConfig() {
     }
 
-    public BusinessLogConfig(BusinessLogConfigAdapter configAdapter) {
-        this.configAdapter = configAdapter;
+    public String getTemplate() {
+        return template;
     }
 
-    public String getLogTemplateof(String businessOperation) {
-        return configAdapter.findConfigByBusinessOperation(businessOperation).getTemplate();
+    public String getCategory() {
+        return category;
     }
 
-    public List<BusinessLogContextQuery> getQueries(String businessOperation) {
-        return configAdapter.findConfigByBusinessOperation(businessOperation).getQueries();
+    public List<BusinessLogContextQuery> getQueries() {
+        return queries;
     }
 
-    public String getBusinessMethodCategory(String businessOperation) {
-        return configAdapter.findConfigByBusinessOperation(businessOperation).getCategory();
+    public void setTemplate(String template) {
+        this.template = template;
     }
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
+    public void setQueries(List<BusinessLogContextQuery> queries) {
+        this.queries = queries;
+    }
 }

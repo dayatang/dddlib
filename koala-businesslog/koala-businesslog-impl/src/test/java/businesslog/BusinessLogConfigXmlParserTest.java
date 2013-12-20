@@ -15,9 +15,8 @@ public class BusinessLogConfigXmlParserTest {
     @Test
     public void testName() throws Exception {
 
-        String xmlconfigPath = "src/test/resources/koala-businesslog-config-test1.xml";
 
-        BusinessLogConfigXmlParser parser = BusinessLogConfigXmlParser.parsing(xmlconfigPath);
+        BusinessLogConfigXmlParser parser = BusinessLogConfigXmlParser.parsing(getClass().getClassLoader().getResource("koala-businesslog-config-test1.xml").getFile());
 
         String operation = "Invoice business.InvoiceApplicationImpl.addInvoice(String,long)";
 
@@ -41,14 +40,17 @@ public class BusinessLogConfigXmlParserTest {
         assert "".equals(query2.getBeanName());
         assert "findByContract(business.Contract)".equals(query2.getMethodSignature());
         assert "${contract}".equals(query2.getArgs().get(0));
-        assert "发票操作".equals(parser.getBusinessLogMethodCategory(operation));
-
+        assert "发票操作".equals(parser.getCategory(operation));
 
 
         String operation1 = "String business.ContractApplicationImpl.addContract(long)";
 
         assert "添加合同${_methodReturn}".equals(parser.getTemplateFrom(operation1));
-        assert "合同操作".equals(parser.getBusinessLogMethodCategory(operation1));
+        assert "合同操作".equals(parser.getCategory(operation1));
+
+
+        assert false == parser.exists("void xxxxxx.xxx.dfff()");
+
 
     }
 }
