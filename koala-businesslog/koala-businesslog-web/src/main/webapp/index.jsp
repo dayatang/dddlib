@@ -21,7 +21,7 @@
     <nav class="navbar navbar-default">
         <a class="navbar-brand" href="#"><img src="<c:url value='/images/global.logo.png'/>"/>Koala 日志系统</a>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <div class="btn-group navbar-right">
+            <div class="btn-group navbar-right" style="display:none;">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                     <i class="glyphicon glyphicon-user"></i>
                     <span>&nbsp;Admin</span>
