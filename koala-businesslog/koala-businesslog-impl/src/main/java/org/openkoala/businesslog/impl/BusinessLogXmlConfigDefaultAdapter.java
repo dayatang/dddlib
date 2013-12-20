@@ -16,7 +16,7 @@ public class BusinessLogXmlConfigDefaultAdapter implements BusinessLogConfigAdap
 
 
 
-    public  synchronized BusinessLogConfig findConfigBy(String businessOperation) {
+    public   BusinessLogConfig findConfigBy(String businessOperation) {
         BusinessLogConfigXmlParser xmlParser = null;
         for (File xmlFile : BusinessLogConfigPathProcessor.getAllConfigFiles()) {
             BusinessLogConfigXmlParser parser = BusinessLogConfigXmlParser.parsing(xmlFile);

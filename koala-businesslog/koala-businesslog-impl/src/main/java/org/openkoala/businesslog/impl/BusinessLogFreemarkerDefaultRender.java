@@ -16,7 +16,7 @@ public class BusinessLogFreemarkerDefaultRender implements BusinessLogRender {
     }
 
     @Override
-    public synchronized String render(Map<String, Object> context, String... templates) {
+    public  String render(Map<String, Object> context, String... templates) {
         if (null == templates) {
             return "";
         }
