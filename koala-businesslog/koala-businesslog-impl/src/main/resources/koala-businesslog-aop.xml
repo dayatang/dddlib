@@ -19,22 +19,12 @@
 
     <context:property-placeholder
             location="classpath*:koala-businesslog.properties" ignore-unresolvable="true"/>
-
+     <bean id="businessLogRender" class="org.openkoala.businesslog.impl.BusinessLogFreemarkerDefaultRender"></bean>
     <bean id="logInterceptor" class="org.openkoala.businesslog.utils.BusinessLogInterceptor"/>
+    <bean id="businessLogConfigAdapter" class="org.openkoala.businesslog.impl.BusinessLogXmlConfigDefaultAdapter"/>
+    <bean id="businessLogExporter" class="org.openkoala.businesslog.impl.BusinessLogConsoleExporter"></bean>
+    <bean id="queryExecutor" class="org.openkoala.businesslog.impl.BusinessLogDefaultContextQueryExecutor"/>
 
-    <bean id="businessLogExporter" class="${businessLogExporter}"></bean>
-    <bean id="configAdapter" class="${businessLogConfigAdapter}"/>
-    <bean id="queryExecutor" class="${businessLogQueryExecutor}"/>
-    <bean id="businessLogEngineConfig" class="org.openkoala.businesslog.config.BusinessLogConfig">
-        <constructor-arg name="configAdapter" ref="configAdapter"/>
-    </bean>
-    <bean id="businessLogEngine" class="org.openkoala.businesslog.BusinessLogEngine">
-        <constructor-arg name="config" ref="businessLogEngineConfig"/>
-        <constructor-arg name="render">
-            <bean class="${businessLogRender}"></bean>
-        </constructor-arg>
-        <constructor-arg name="queryExecutor" ref="queryExecutor"></constructor-arg>
-    </bean>
     <!-- 加了 proxy-target-class="true" 使spring集中制使用cglib的代理 -->
     <aop:config proxy-target-class="true" >
         <aop:pointcut id="businessBehavior" expression="${pointcut}"/>

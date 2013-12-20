@@ -7,11 +7,10 @@ import com.dayatang.domain.InstanceFactory;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.aspectj.lang.JoinPoint;
-import org.openkoala.businesslog.BusinessLog;
-import org.openkoala.businesslog.BusinessLogEngine;
-import org.openkoala.businesslog.BusinessLogExporter;
+import org.openkoala.businesslog.*;
 import org.openkoala.businesslog.common.BusinessLogPropertiesConfig;
 import org.openkoala.businesslog.common.LogEngineThread;
+import org.openkoala.businesslog.config.BusinessLogConfigAdapter;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import javax.inject.Inject;
@@ -28,10 +27,16 @@ public class BusinessLogInterceptor {
 
 
     @Inject
-    private BusinessLogEngine businessLogEngine;
+    private BusinessLogConfigAdapter businessLogConfigAdapter;
+
+    @Inject
+    private BusinessLogRender businessLogRender;
 
     @Inject
     private BusinessLogExporter businessLogExporter;
+
+    @Inject
+    private BusinessLogContextQueryExecutor queryExecutor;
 
     @Inject
     private ThreadPoolTaskExecutor executor;
@@ -52,15 +57,19 @@ public class BusinessLogInterceptor {
                 || ThreadLocalBusinessLogContext.get().get(BUSINESS_METHOD) != null) {
             return;
         }
-        executor.execute(new LogEngineThread(getBusinessLogEngine(),
-                businessLogExporter, Collections.unmodifiableMap(
-                createDefaultContext(joinPoint, result, error)),
-                joinPoint.getSignature().toString()));
+        executor.execute(new LogEngineThread(
+                Collections.unmodifiableMap(createDefaultContext(joinPoint, result, error)),
+                joinPoint.getSignature().toString(),
+                businessLogConfigAdapter,
+                businessLogRender,
+                businessLogExporter,
+                queryExecutor)
+        );
 
 
     }
 
-    private Map<String, Object> createDefaultContext(JoinPoint joinPoint,
+    private synchronized Map<String, Object> createDefaultContext(JoinPoint joinPoint,
                                                      Object result, Throwable error) {
         Map<String, Object> context = ThreadLocalBusinessLogContext.get();
 
@@ -81,13 +90,5 @@ public class BusinessLogInterceptor {
 
     }
 
-    private BusinessLogEngine getBusinessLogEngine() {
-        synchronized (this) {
-            if (null == businessLogEngine) {
-                InstanceFactory.getInstance(BusinessLogEngine.class, "businessLogEngine");
-            }
-        }
-        return businessLogEngine;
-    }
 
 }
