@@ -89,6 +89,7 @@ import com.dayatang.querychannel.support.Page;
  */
 @Named("jbpmApplication")
 @SuppressWarnings({ "unchecked", "unused" })
+@Transactional
 //@org.apache.cxf.interceptor.InInterceptors(interceptors = { "org.apache.cxf.transport.common.gzip.GZIPInInterceptor" })
 public class JBPMApplicationImpl implements JBPMApplication {
 
