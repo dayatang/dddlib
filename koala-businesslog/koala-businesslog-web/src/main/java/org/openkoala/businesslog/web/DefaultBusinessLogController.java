@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.dayatang.querychannel.support.Page;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/log")
 public class DefaultBusinessLogController {
 
 
