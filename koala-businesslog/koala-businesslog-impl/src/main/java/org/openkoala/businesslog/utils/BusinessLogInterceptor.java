@@ -69,7 +69,7 @@ public class BusinessLogInterceptor {
 
     }
 
-    private synchronized Map<String, Object> createDefaultContext(JoinPoint joinPoint,
+    private Map<String, Object> createDefaultContext(JoinPoint joinPoint,
                                                      Object result, Throwable error) {
         Map<String, Object> context = ThreadLocalBusinessLogContext.get();
 

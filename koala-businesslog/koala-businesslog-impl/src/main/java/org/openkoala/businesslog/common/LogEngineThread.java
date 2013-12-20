@@ -44,13 +44,11 @@ public class LogEngineThread implements Runnable {
     }
 
     @Override
-    public  void run() {
-        synchronized (this) {
-            ThreadLocalBusinessLogContext.put(BUSINESS_METHOD, joinPointSignature);
-            BusinessLogEngine businessLogEngine = new BusinessLogEngine(configAdapter, render, queryExecutor);
-            businessLogEngine.setInitContext(Collections.unmodifiableMap(context));
-            businessLogEngine.exportLogBy(joinPointSignature, businessLogExporter);
-        }
+    public void run() {
+        ThreadLocalBusinessLogContext.put(BUSINESS_METHOD, joinPointSignature);
+        BusinessLogEngine businessLogEngine = new BusinessLogEngine(configAdapter, render, queryExecutor);
+        businessLogEngine.setInitContext(Collections.unmodifiableMap(context));
+        businessLogEngine.exportLogBy(joinPointSignature, businessLogExporter);
     }
 
 

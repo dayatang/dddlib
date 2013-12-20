@@ -46,7 +46,7 @@ public class BusinessLogEngine {
     }
 
 
-    private synchronized Map<String, Object> createContext(BusinessLogConfig config) {
+    private  Map<String, Object> createContext(BusinessLogConfig config) {
         if (null == initContext) {
             initContext = new Hashtable<String, Object>();
         }
@@ -67,7 +67,7 @@ public class BusinessLogEngine {
         this.configAdapter = configAdapter;
     }
 
-    public synchronized void setInitContext(Map<String, Object> initContext) {
+    public  void setInitContext(Map<String, Object> initContext) {
         this.initContext = initContext;
     }
 }
