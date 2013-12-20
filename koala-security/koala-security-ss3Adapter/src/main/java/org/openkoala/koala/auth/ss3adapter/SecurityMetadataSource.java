@@ -93,11 +93,12 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 	private List<String> getGrantRoles(String res){
 		List<String> roles = new ArrayList<String>();
 		roles =  (List<String>) getResourceCache().get(res);
-		if(roles.isEmpty()){
+		if(roles==null || roles.isEmpty()){
 			roles = provider.getAttributes(res);
 		}
 		return roles;
 	}
+	
 	
 	/**
 	 * 获取用户信息

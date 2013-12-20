@@ -35,7 +35,7 @@ $(function(){
 	 加载DIV内容
 	 */
 	var loadContent = function(obj, target){
-		$.get(target).done(function(data){
+		$.get(contextPath + target).done(function(data){
 				obj.html(data);
 			}).fail(function(){
 				throw new Error('加载失败');
@@ -43,7 +43,7 @@ $(function(){
 				changeHeight();
 			});
 	};
-    loadContent($('#home'), '/pages/welcome.html');
+	loadContent($('#home'), '/pages/welcome.html');
 	/*
 	* 菜单收缩样式变化
 	 */
@@ -105,7 +105,7 @@ $(function(){
 			content.attr('data-value', id);
 			loadContent(content, target);
 			tabs.find('a[href="#'+mark+'"]').tab('show');
-			tabs.find('a[href="#'+mark+'"]').find('span').text(title);
+			//tabs.find('a[href="#'+mark+'"]').find('span').text(title);
 			return;
 		}
 		var tab = $('<li><a href="#'+mark+'" data-toggle="tab"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><span>'+title+'<span></a></li>');
@@ -113,7 +113,9 @@ $(function(){
 		content.data(param);
 		loadContent(content, target);
 		contents.append(content);
-		var closeBtn = tab.appendTo(tabs).on('click',function(){
+        var tab =  $('<li>');
+        tab.html('<a href="#'+mark+'" data-toggle="tab"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><span>'+title+'<span></a>');
+        var closeBtn = tab.appendTo(tabs).on('click',function(){
 			var $this = $(this);
 			if($this.hasClass('active')){
 				return;
