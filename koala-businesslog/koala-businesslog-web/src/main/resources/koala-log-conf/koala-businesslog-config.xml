@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<businessLogConfigs>
+    <!--每个businessLogConfig配置对一个业务方法-->
+    <businessLogConfig>
+        <category>项目操作</category>
+        <method>Project[] business.ProjectApplicationImpl.findSomeProjects(List)</method>
+        <template><![CDATA[
+        查到项目
+        <#list names as name>
+          ${name},
+        </#list>
+        ]]></template>
+        <queries>
+            <query key="names">
+                <target class="business.Project"></target>
+                <method>getProjectsName(business.Project[])</method>
+                <args>
+                    <arg>${_methodReturn}</arg>
+                </args>
+            </query>
+        </queries>
+    </businessLogConfig>
+
+</businessLogConfigs>
