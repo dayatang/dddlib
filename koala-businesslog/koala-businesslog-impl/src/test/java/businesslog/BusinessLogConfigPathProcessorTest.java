@@ -15,8 +15,6 @@ public class BusinessLogConfigPathProcessorTest {
     @Test
     public void testName() throws Exception {
 
-
-
         assert BusinessLogConfigPathProcessor.getAllConfigFiles().size() == 4;
 
 

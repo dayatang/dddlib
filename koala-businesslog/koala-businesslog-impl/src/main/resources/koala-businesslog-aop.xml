@@ -19,7 +19,7 @@
 
     <context:property-placeholder
             location="classpath*:koala-businesslog.properties" ignore-unresolvable="true"/>
-     <bean id="businessLogRender" class="org.openkoala.businesslog.impl.BusinessLogFreemarkerDefaultRender"></bean>
+     <bean id="businessLogRender" class="org.openkoala.businesslog.impl.BusinessLogFreemarkerDefaultRender" />
     <bean id="logInterceptor" class="org.openkoala.businesslog.utils.BusinessLogInterceptor"/>
     <bean id="businessLogConfigAdapter" class="org.openkoala.businesslog.impl.BusinessLogXmlConfigDefaultAdapter"/>
     <bean id="businessLogExporter" class="org.openkoala.businesslog.impl.BusinessLogConsoleExporter"></bean>
