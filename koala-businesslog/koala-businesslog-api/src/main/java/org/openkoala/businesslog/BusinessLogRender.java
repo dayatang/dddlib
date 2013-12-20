@@ -11,10 +11,6 @@ public interface BusinessLogRender {
 
 
 
-    public BusinessLogRender render(Map<String, Object> context, String... templates);
-
-    public BusinessLogRender render(String log);
-
-    public String build();
+    public String render(Map<String, Object> context, String... templates);
 
 }

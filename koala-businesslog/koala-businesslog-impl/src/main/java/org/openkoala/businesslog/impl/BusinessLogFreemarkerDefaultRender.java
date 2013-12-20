@@ -1,6 +1,5 @@
 package org.openkoala.businesslog.impl;
 
-import org.openkoala.businesslog.AbstractBusinessLogRender;
 import org.openkoala.businesslog.BusinessLogRender;
 import org.openkoala.businesslog.common.FreemarkerProcessor;
 
@@ -11,22 +10,23 @@ import java.util.Map;
  * Date: 11/29/13
  * Time: 4:23 PM
  */
-public class BusinessLogFreemarkerDefaultRender extends AbstractBusinessLogRender {
+public class BusinessLogFreemarkerDefaultRender implements BusinessLogRender {
 
     public BusinessLogFreemarkerDefaultRender() {
     }
 
     @Override
-    public BusinessLogRender render(Map<String, Object> context, String... templates) {
+    public synchronized String render(Map<String, Object> context, String... templates) {
         if (null == templates) {
-            return this;
+            return "";
         }
+        StringBuilder builder = new StringBuilder();
         for (String template : templates) {
-            getBuilder().append(process(template, context));
+            builder.append(process(template, context));
         }
-
-        return this;
+        return builder.toString();
     }
+
 
     private String process(String template, Map<String, Object> context) {
         if (null == template || "".equals(template.trim())) {

@@ -23,7 +23,7 @@ public class BusinessLogRenderTest {
         Map<String, Object> context = new HashMap<String, Object>();
         context.put("contractName", "xx");
         BusinessLogRender render = new BusinessLogFreemarkerDefaultRender();
-        assert "添加合同:xx".equals(render.render(context, template).build());
+        assert "添加合同:xx".equals(render.render(context, template));
     }
 
 

@@ -23,6 +23,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.openkoala.koala.auth.impl.jdbc.PasswordEncoder;
 
 import com.dayatang.querychannel.support.Page;
 
@@ -221,8 +222,7 @@ public class UserController {
 		UserVO userVO = userPojo.getUserVO();
 		Map<String, Object> dataMap = new HashMap<String,Object>();
 		userVO.setSerialNumber("0");
-		userVO.setUserPassword(SecurityMD5.encode(userVO.getUserPassword(), //
-				userVO.getUserAccount()));
+		userVO.setUserPassword(new PasswordEncoder("", "MD5").encode(userVO.getUserPassword()));
 		userApplication.saveUser(userVO);
 		CacheUtil.refreshUserAttributes(userVO.getUserAccount());
 		dataMap.put("result", "success");

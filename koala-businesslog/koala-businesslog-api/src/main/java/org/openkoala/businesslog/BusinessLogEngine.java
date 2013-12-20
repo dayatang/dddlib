@@ -37,7 +37,7 @@ public class BusinessLogEngine {
             BusinessLog businessLog = new BusinessLog();
             Map<String, Object> context = createContext(config);
             String template = config.getTemplate();
-            businessLog.setLog(render.render(context, template).build());
+            businessLog.setLog(render.render(context, template));
             businessLog.setCategory(config.getCategory());
             businessLog.addContext(context);
             exporter.export(businessLog);
