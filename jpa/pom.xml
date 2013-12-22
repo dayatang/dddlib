@@ -18,6 +18,16 @@
 			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>el-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>el-impl</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>dayatang-commons-test</artifactId>
 			<version>${project.parent.version}</version>

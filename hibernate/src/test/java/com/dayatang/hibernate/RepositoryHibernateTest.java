@@ -10,19 +10,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.transaction.UserTransaction;
 import javax.validation.ValidationException;
 
-import org.hibernate.SessionFactory;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.dayatang.commons.domain.Dictionary;
 import com.dayatang.commons.domain.DictionaryCategory;
-import com.dayatang.domain.AbstractEntity;
 import com.dayatang.domain.ExampleSettings;
-import com.dayatang.domain.InstanceFactory;
 import com.dayatang.domain.QuerySettings;
 
 /**

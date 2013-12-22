@@ -20,5 +20,5 @@ rule "female"
 		$p : Person( gender == "female" )
 	then
 		System.out.println("rule 'female' is running...")
-		$p.retireAge = 55		
+		$p.retireAge = 55
 end

@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * 
- * 无状态规则服务接口，
+ * 有状态规则服务接口，
  * 
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>) <a href="mailto:gdyangyu@gmail.com">杨宇</a>
  * 
@@ -16,7 +16,7 @@ import java.util.List;
  * 
  */
 @SuppressWarnings("rawtypes")
-public interface StatelessRuleService extends Serializable {
+public interface StatefulRuleService extends Serializable {
 
 	/**
 	 * 执行规则并返回结果

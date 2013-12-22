@@ -1,49 +1,28 @@
 package com.dayatang.rule.examples;
 
-import java.io.InputStreamReader;
-import java.io.Reader;
-
-import org.drools.RuleBase;
-import org.drools.RuleBaseFactory;
-import org.drools.StatefulSession;
-import org.drools.audit.WorkingMemoryFileLogger;
-import org.drools.compiler.PackageBuilder;
-import org.drools.event.DebugAgendaEventListener;
-import org.drools.event.DebugWorkingMemoryEventListener;
-import org.drools.rule.Package;
+import org.drools.core.audit.WorkingMemoryFileLogger;
+import org.kie.api.KieBase;
+import org.kie.api.KieServices;
+import org.kie.api.event.rule.DebugAgendaEventListener;
+import org.kie.api.event.rule.DebugRuleRuntimeEventListener;
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
 
 public class HelloWorld {
 
 	public static final void main(final String[] args) throws Exception {
-		// read in the source
-		final Reader source = new InputStreamReader(HelloWorld.class
-				.getResourceAsStream("/rule/HelloWorld.drl"));
-
-		final PackageBuilder builder = new PackageBuilder();
-
-		// this wil parse and compile in one step
-		builder.addPackageFromDrl(source);
-
-		// Check the builder for errors
-		if (builder.hasErrors()) {
-			System.out.println(builder.getErrors().toString());
-			throw new RuntimeException("Unable to compile \"HelloWorld.drl\".");
-		}
-
-		// get the compiled package (which is serializable)
-		final Package pkg = builder.getPackage();
-
-		// add the package to a rulebase (deploy the rule package).
-		final RuleBase ruleBase = RuleBaseFactory.newRuleBase();
-		ruleBase.addPackage(pkg);
-
-		final StatefulSession session = ruleBase.newStatefulSession();
+		
+		KieServices kieServices = KieServices.Factory.get();
+		KieContainer kContainer = kieServices.getKieClasspathContainer();
+		KieBase kBase1 = kContainer.getKieBase("rules");
+		KieSession session = kContainer.newKieSession("ksession-stateful");
 
 		session.addEventListener(new DebugAgendaEventListener());
-		session.addEventListener(new DebugWorkingMemoryEventListener());
+		session.addEventListener(new DebugRuleRuntimeEventListener());
 
-		final WorkingMemoryFileLogger logger = new WorkingMemoryFileLogger(
-				session);
+		
+		
+		final WorkingMemoryFileLogger logger = new WorkingMemoryFileLogger();
 		logger.setFileName("log/helloworld");
 
 		final Message message = new Message();

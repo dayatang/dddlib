@@ -2,11 +2,7 @@ package com.dayatang.rule.examples;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.drools.jsr94.rules.RuleServiceProviderImpl;
 import org.junit.Test;
@@ -24,8 +20,14 @@ public class JSR94Test {
 		// Execute rule
 		List<Person> objects = new ArrayList<Person>();
 		objects.add(new Person(1L, "chencao"));
-		StatelessRuleService ruleService = new StatelessRuleServiceJsr94(new RuleServiceProviderImpl());
-		List statelessResults = ruleService.executeRules(getClass().getResourceAsStream(ruleDrl), null, null, objects);
+
+        StatelessRuleService instance = StatelessRuleServiceJsr94.builder()
+                .ruleServiceProvider(new RuleServiceProviderImpl())
+                .ruleSource(getClass().getResourceAsStream(ruleDrl))
+                .bulid();
+
+        // Execute rule
+        List statelessResults = instance.executeRules(Arrays.asList(new Person(1L, "chencao")));
 
 		// Validate
 		assertEquals(1, statelessResults.size());
@@ -41,11 +43,16 @@ public class JSR94Test {
 		List globalList = new ArrayList();
 		Map sessionProperties = new HashMap();
 		sessionProperties.put("list", globalList);
-		StatelessRuleService ruleService = new StatelessRuleServiceJsr94(new RuleServiceProviderImpl());
+
+        StatelessRuleService instance = StatelessRuleServiceJsr94.builder()
+                .ruleServiceProvider(new RuleServiceProviderImpl())
+                .ruleSource(getClass().getResourceAsStream(ruleDrl))
+                .sessionProperties(sessionProperties)
+                .bulid();
 
 		// Execute rule
 		Person firstPerson = new Person(3L, "chencao");
-		ruleService.executeRules(getClass().getResourceAsStream(ruleDrl), null, sessionProperties, Collections.singletonList(firstPerson));
+        instance.executeRules(Arrays.asList(firstPerson));
 
 		// FirstPerson hasn't been changed
 		assertEquals(300, firstPerson.getId().longValue());

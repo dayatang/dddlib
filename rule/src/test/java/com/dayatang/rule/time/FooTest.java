@@ -16,8 +16,11 @@ public class FooTest {
 
 	@Test
 	public void item1() throws Exception {
-		StatelessRuleService ruleService = new StatelessRuleServiceJsr94(new RuleServiceProviderImpl());
-		List<?> globalStatelessResults = ruleService.executeRules(getClass().getResourceAsStream(ruleDrl), null, null, createObjects());
+        StatelessRuleService instance = StatelessRuleServiceJsr94.builder()
+                .ruleServiceProvider(new RuleServiceProviderImpl())
+                .ruleSource(getClass().getResourceAsStream(ruleDrl))
+                .bulid();
+		List<?> globalStatelessResults = instance.executeRules(createObjects());
 		for (Object object : globalStatelessResults) {
 			System.out.println(object);
 		}
