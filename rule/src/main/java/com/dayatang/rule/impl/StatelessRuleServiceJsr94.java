@@ -34,9 +34,6 @@ public class StatelessRuleServiceJsr94 implements StatelessRuleService {
     private static final long serialVersionUID = -6550908446842944288L;
 
     private static Logger LOGGER = LoggerFactory.getLogger(StatelessRuleServiceJsr94.class);
-    private RuleServiceProvider ruleServiceProvider;
-    private Map serviceProviderProperties;
-    private Object ruleSource;
     private StatelessRuleSession session;
 
     private StatelessRuleServiceJsr94(RuleServiceProvider ruleServiceProvider, Map serviceProviderProperties,
