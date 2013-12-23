@@ -202,7 +202,8 @@ var monitorNodeManager = {
             dialog.find('#mostCallMethod').html(data.mostCallMethod);
             dialog.find('#maxAvgTimeMethod').html(data.maxAvgTimeMethod);
             var exceptionRate = dialog.find('#exceptionRate');
-            exceptionRate.css('width', data.exceptionRate).find('span').html(data.exceptionRate);
+            dialog.find('#exceptionRateValue').html(data.exceptionRate);
+            exceptionRate.css('width', data.exceptionRate);
             var serverInfo = JSON.parse(data.serverInfo);
             if(serverInfo && serverInfo.error){
                 $("div.error").html(serverInfo.error);
