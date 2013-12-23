@@ -75,11 +75,13 @@
     float: left;
     min-height: 540px;
     width: 25%;
+    margin-left: 4px;
+    margin-top: 4px;
     border-right: 1px solid #DDDDDD!important;
 }
 .right-content {
     float: left;
-    width: 75%;
+    width: 72%;
     padding: 15px;
 }
 .department-detail {
