@@ -26,6 +26,18 @@ public class Project implements Serializable {
 	private String version = "1.0-SNAPSHOT";
 
 	private List<Module> module;
+	
+	private static final String BUSINESS_LOG_PACKAGE="org.openkoala.businesslog.model";
+	
+	private static final String ORGANISATION_PACKAGE= "org.openkoala.organisation.domain";
+	
+	private static final String GENERATY_QUERY_PACKAGE= "org.openkoala.gqc.core.domain";
+	
+	private static final String SECURITY_PACKAGE= "org.openkoala.koala.auth.core.*";
+	
+	private static final String MONITOR_DOMAIN_PCAKGE = "org.openkoala.koala.monitor.domain";
+	
+	private static final String MONITOR_CONFIG_PCAKAGE= "org.openkoala.koala.config.domain";
 
 	/**
 	 * //数据库实现协议，支持JPA以及Mybatis两种协议 默认为JPA实现
@@ -248,18 +260,23 @@ public class Project implements Serializable {
 				}
 
 				if (mod.getSecurity() != null) {
-					packages.add("org.openkoala.koala.auth.core.*");
+					packages.add(SECURITY_PACKAGE);
 				}
+				
 				if (mod.getMonitor() != null
 						&& "all".equals(mod.getMonitor().getInstallType())) {
-					packages.add("org.openkoala.koala.monitor.domain");
-					packages.add("org.openkoala.koala.config.domain");
+					packages.add(MONITOR_DOMAIN_PCAKGE);
+					packages.add(MONITOR_CONFIG_PCAKAGE);
 				}
 				if (mod.getGeneralQuery() != null) {
-					packages.add("org.openkoala.gqc.core.domain");
+					packages.add(GENERATY_QUERY_PACKAGE);
 				}
 				if (mod.getOrganization() != null) {
-					packages.add("org.openkoala.organisation.domain");
+					packages.add(ORGANISATION_PACKAGE);
+				}
+
+				if (mod.getBusinessLog() != null) {
+					packages.add(BUSINESS_LOG_PACKAGE);
 				}
 			}
 		}

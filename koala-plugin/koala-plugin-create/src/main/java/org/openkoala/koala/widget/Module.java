@@ -36,6 +36,8 @@ public class Module implements Serializable {
 	
 	private Organization organization;
 	
+	private BusinessLog businessLog;
+	
 	public String getModuleName() {
 		return moduleName;
 	}
@@ -128,5 +130,14 @@ public class Module implements Serializable {
 	public void setOrganization(Organization organization) {
 		this.organization = organization;
 	}
+
+	public BusinessLog getBusinessLog() {
+		return businessLog;
+	}
+
+	public void setBusinessLog(BusinessLog businessLog) {
+		this.businessLog = businessLog;
+	}
+	
 	
 }
