@@ -75,7 +75,7 @@ $(function(){
     });//加载日期选择器
     var yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
-    startTime.datetimepicker('setDate', yesterday);
+    startTime.datetimepicker('setDate', yesterday).trigger('changeDate');
     endTime.datetimepicker({
         language: 'zh-CN',
         format: "yyyy-mm-dd",
