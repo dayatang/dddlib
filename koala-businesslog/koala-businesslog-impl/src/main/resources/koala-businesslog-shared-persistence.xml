@@ -19,7 +19,7 @@
 	<bean id="repository_businessLog" class="org.openkoala.koala.util.KoalaEntityRepositoryJpa">
 		<property name="entityManager">
 			<bean class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
-				<property name="persistenceUnitName" value="businessLog" />
+				<property name="persistenceUnitName" value="default" />
 			</bean>
 		</property>
 	</bean>
@@ -27,7 +27,7 @@
 	<bean id="queryChannel_businessLog" class="org.openkoala.koala.util.KoalaQueryChannelServiceJpa">
 		<property name="entityManager">
 			<bean class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
-				<property name="persistenceUnitName" value="businessLog" />
+				<property name="persistenceUnitName" value="default" />
 			</bean>
 		</property>
 	</bean>
@@ -36,6 +36,6 @@
 
 	<!-- Drives transactions using local JPA APIs -->
 	<bean id="transactionManager_businessLog" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory_businessLog" />
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 </beans>

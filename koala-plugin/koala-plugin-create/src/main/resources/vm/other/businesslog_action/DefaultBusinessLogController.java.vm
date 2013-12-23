@@ -1,5 +1,4 @@
-
-package org.openkoala.businesslog.web;
+package ${Module.basePackage}.controller.businesslog;
 
 import java.util.HashMap;
 import java.util.Map;

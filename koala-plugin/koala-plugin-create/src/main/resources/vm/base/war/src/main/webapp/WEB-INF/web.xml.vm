@@ -129,14 +129,31 @@
 			<param-value>true</param-value>
 		</init-param>
 		#end
+		#if ($Module.businessLog)
+		<init-param>
+			<param-name>businessLog</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		#end
 	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>DBInit</servlet-name>
 		<url-pattern>/dbinit</url-pattern>
 	</servlet-mapping>
- #end   
-	
+ #end
+ 
+ #if ($Module.businessLog)
+     <filter>
+        <filter-name>LogFilter</filter-name>
+        <filter-class>${Module.basePackage}.controller.businesslog.LogFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LogFilter</filter-name>
+        <url-pattern>/</url-pattern>
+    </filter-mapping>
+#end
+
 	<error-page>
 		<error-code>404</error-code>
 		<location>/error/404.html</location>
