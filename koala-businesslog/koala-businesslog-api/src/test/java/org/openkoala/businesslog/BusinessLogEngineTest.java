@@ -53,7 +53,7 @@ public class BusinessLogEngineTest {
                 config.getQueries().toArray(new BusinessLogContextQuery[config.getQueries().size()])))
                 .thenReturn(initContext);
 
-        when(render.render(initContext, template)).thenReturn(resultLog);
+        when(render.render(initContext,template)).thenReturn(resultLog);
 
 
         BusinessLog businessLog = engine.exportLogBy(businessOperation, exporter);

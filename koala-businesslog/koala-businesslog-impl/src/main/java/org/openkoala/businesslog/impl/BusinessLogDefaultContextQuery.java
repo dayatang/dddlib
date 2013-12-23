@@ -34,31 +34,29 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
      */
     private List<String> args;
 
-    private Map<String, Object> context;
-
 
     public BusinessLogDefaultContextQuery() {
     }
 
     @Override
-    public  Map<String, Object> queryInContext(Map<String, Object> aContext) {
-        context = aContext;
+    public Map<String, Object> queryInContext(Map<String, Object> aContext) {
+        Map<String, Object> context = aContext;
         if (null == context) {
             context = new ConcurrentHashMap<String, Object>();
         }
         Map<String, Object> map = new ConcurrentHashMap<String, Object>();
-        map.put(contextKey, invoke(getBean(), getMethodParams()));
+        map.put(contextKey, invoke(getBean(), getMethodInstance(), getMethodParams(context)));
         return Collections.unmodifiableMap(map);
     }
 
-    private Object[] getMethodParams() {
+    private Object[] getMethodParams(Map<String, Object> context) {
         if (null == args || args.isEmpty()) {
             return null;
         }
         Object[] result = new Object[args.size()];
         for (int i = 0; i < getMethodParamTypes().size(); i++) {
             Class clasz = getMethodParamClasses()[i];
-            result[i] = convertArg(args.get(i), clasz);
+            result[i] = convertArg(args.get(i), clasz, context);
         }
 
         return result;
@@ -114,18 +112,17 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
     }
 
 
-    // TODO 需要移动到ContextQueryHelper类中，并增加多更多类型的支持
-    private Object convertArg(String arg, Class aClass) {
+    private Object convertArg(String arg, Class aClass, Map<String, Object> context) {
         return ContextQueryHelper.contextQueryArgConvertStringToObject(arg, aClass, context);
     }
 
 
-    private Object invoke(Object beanObject, Object... params) {
+    private Object invoke(Object beanObject, Method method, Object... params) {
         try {
             if (null == params) {
-                return getMethodInstance().invoke(beanObject);
+                return method.invoke(beanObject);
             }
-            return getMethodInstance().invoke(beanObject, params);
+            return method.invoke(beanObject, params);
         } catch (IllegalAccessException e) {
             throw new QueryMethodInvokeException(e);
         } catch (InvocationTargetException e) {

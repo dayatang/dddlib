@@ -28,7 +28,6 @@ public class BusinessLogJpaDefaultExporter implements BusinessLogExporter {
         DefaultBusinessLog log = DefaultBusinessLog.createBy(businessLog);
         businessLogApplication.save(log);
         assert log.getId() != null;
-        System.out.println(log);
     }
 
 

@@ -16,24 +16,10 @@ public class BusinessLogFreemarkerDefaultRender implements BusinessLogRender {
     }
 
     @Override
-    public  String render(Map<String, Object> context, String... templates) {
-        if (null == templates) {
-            return "";
-        }
-        StringBuilder builder = new StringBuilder();
-        for (String template : templates) {
-            builder.append(process(template, context));
-        }
-        return builder.toString();
-    }
-
-
-    private String process(String template, Map<String, Object> context) {
+    public String render(Map<String, Object> context, String template) {
         if (null == template || "".equals(template.trim())) {
             return "";
         }
         return FreemarkerProcessor.process(template, context);
     }
-
-
 }
