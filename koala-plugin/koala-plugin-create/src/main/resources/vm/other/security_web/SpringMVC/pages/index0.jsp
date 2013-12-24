@@ -46,7 +46,7 @@
 	    </div>
 	</div>
     <div class="g-body">
-	    <div class="g-mainc">
+	    <div class="g-mainc" style="width:98%;margin-left:auto;margin-right:auto">
 	        <ul class="nav nav-tabs" id="navTabs">
 	            <li class="active"><a href="#home" data-toggle="tab">主页</a></li>
 	        </ul>
