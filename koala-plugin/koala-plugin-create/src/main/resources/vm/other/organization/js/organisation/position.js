@@ -115,7 +115,10 @@ var position = function(){
 	var selectDepartments = function(){
 		$.get( contextPath + '/pages/organisation/selectDepartmentTemplate.html').done(function(data){
 			var departmentTreeDialog = $(data);
+            departmentTreeDialog.find('.modal-dialog').css({width:'600px'});
+            departmentTreeDialog.find('.modal-body').css({height:'325px'});
 			departmentTree = departmentTreeDialog.find('.tree');
+            loadDepartmentTree();
 			departmentTreeDialog.find('#confirm').on('click',function(){
 				departmentTreeDialog.modal('hide');
 				positionDepartment.find('input').val(departmentId);
@@ -125,9 +128,6 @@ var position = function(){
 					backdrop: false,
 					keyboard: false
 				}).on({
-					'shown.bs.modal': function(){
-						loadDepartmentTree();
-					},
 					'hidden.bs.modal': function(){
 						$(this).remove();
 					}

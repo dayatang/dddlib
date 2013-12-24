@@ -10,6 +10,7 @@
 			default-target-url="/index.jsp" 
 			authentication-failure-url="/login.action?login_error=1" />
 		<s:intercept-url pattern="/login.action*" filters="none" />
+		<s:intercept-url pattern="/pages/errors/*" filters="none" />
 		<s:intercept-url pattern="/denied.action*" filters="none" />
 		<s:intercept-url pattern="/login.jsp*" filters="none" />
 		<s:intercept-url pattern="/*.ico" filters="none" />

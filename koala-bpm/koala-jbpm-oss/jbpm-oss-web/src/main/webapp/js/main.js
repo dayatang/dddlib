@@ -30,6 +30,7 @@ $(function(){
 		var footHeight = $('#footer').outerHeight();
 		var height =  windowHeight - headerHeight - footHeight;
 		sidebarHeight < height && sidebar.css('height', height);
+		$('.g-mainc').css('min-height', height);
 	};
 	/*
 	 加载DIV内容
@@ -108,7 +109,6 @@ $(function(){
 			//tabs.find('a[href="#'+mark+'"]').find('span').text(title);
 			return;
 		}
-		var tab = $('<li><a href="#'+mark+'" data-toggle="tab"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><span>'+title+'<span></a></li>');
 		content = $('<div id="'+mark+'" class="tab-pane" data-value="'+id+'"></div>');
 		content.data(param);
 		loadContent(content, target);
@@ -146,20 +146,20 @@ $(function(){
 	 */
 	self.on('modifyPwd',function(){
 		$('body').modifyPassword({
-			service: 'auth/User/updatePassword.koala'
+			service: contextPath + 'auth/User/updatePassword.koala'
 		});
 	});
 	/*
 	 切换用户
 	*/
 	self.on('switchUser',function(){
-		window.location.href = "j_spring_security_logout";
+		window.location.href = contextPath+"j_spring_security_logout";
 	});
 	/*
 	注销
 	*/
 	self.on('loginOut',function(){
-		window.location.href = "j_spring_security_logout";
+		window.location.href = contextPath+"j_spring_security_logout";
 	});
 	$('#userManager').find('li').on('click', function(){
 		self.trigger($(this).data('target'));

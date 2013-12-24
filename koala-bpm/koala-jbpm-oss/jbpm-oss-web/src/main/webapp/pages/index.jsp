@@ -42,7 +42,7 @@
 	    <div class="col-xs-2 g-sidec">
 	        <ul class="nav nav-stacked first-level-menu">
 	            <li>
-                	<a data-toggle="collapse" href="#businessSupport"><i class="glyphicon glyphicon-plane"></i>&nbsp;&nbsp;业务支撑系统&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+                	<a data-toggle="collapse" href="#businessSupport"><i class="glyphicon glyphicon-plane"></i>&nbsp;&nbsp;业务支撑系统&nbsp;<i class="glyphicon glyphicon-chevron-left" style=" float: right;font-size: 12px;position: relative;right: 8px;top: 3px;"></i></a>
 	                <ul id="businessSupport" class="second-level-menu in">
 	                    <li class="submenu" data-role="openTab" data-target="/pages/businesssupport/processlist.jsp" data-title="发起流程" data-mark="startTask"><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;发起流程</a></li>
 	                    <li class="submenu" data-role="openTab" data-target="/pages/businesssupport/activeTasks.jsp" data-title="待办任务" data-mark="activeTasks"><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;待办任务</a></li>
@@ -51,14 +51,14 @@
 	                </ul>
 	            </li>
 	            <li>
-                <a data-toggle="collapse" href="#userRight"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;用户角色管理&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+                <a data-toggle="collapse" href="#userRight"><i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;用户角色管理&nbsp;<i class="glyphicon glyphicon-chevron-left" style=" float: right;font-size: 12px;position: relative;right: 8px;top: 3px;"></i></a>
 	                <ul id="userRight" class="second-level-menu in">
 	                    <li class="submenu" data-role="openTab" data-target="/pages/auth/user-list.html" data-title="用户管理" data-mark="userList"><a ><i class="glyphicon glyphicon-list-alt"></i>&nbsp;用户管理</a></li>
 	                    <li class="submenu" data-role="openTab" data-target="/pages/auth/role-list.html" data-title="角色管理" data-mark="roleList"><a ><i class="glyphicon glyphicon-list-alt"></i>&nbsp;角色管理</a></li>
 	                </ul>
 	            </li>
 	             <li>
-                <a data-toggle="collapse" href="#organisation"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;&nbsp;组织子系统&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+                <a data-toggle="collapse" href="#organisation"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;&nbsp;组织子系统&nbsp;<i class="glyphicon glyphicon-chevron-left" style=" float: right;font-size: 12px;position: relative;right: 8px;top: 3px;"></i></a>
 	                <ul id="organisation" class="second-level-menu in">
 	                    <li class="submenu" data-role="openTab" data-target="/pages/organisation/departmentList.html" data-title="机构管理" data-mark="departmentList" ><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;机构管理</a></li>
 	                    <li class="submenu" data-role="openTab" data-target="/pages/organisation/jobList.html" data-title="职务管理" data-mark="jobList" ><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;职务管理</a></li>

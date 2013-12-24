@@ -24,31 +24,29 @@
 <body>
 	<input type="hidden" id="roleId" value="${roleId}" />
 	<div class="g-head">
-	    <nav class="navbar navbar-default">
+	    <div class="navbar navbar-default">
 	        <a class="navbar-brand" href="#"><img src="<c:url value='/images/global.logo.png'/>"/>Koala权限系统</a>
-	        <div class="collapse navbar-collapse navbar-ex1-collapse">
-	            <div class="btn-group navbar-right">
-	                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-	                    <i class="glyphicon glyphicon-user"></i>
-	                    <span>&nbsp;<ss3:authentication property="principal.username" /></span>
-	                    <span class="caret"></span>
-	                </button>
-	                <ul class="dropdown-menu" id="userManager">
-	                    <li data-target="modifyPwd"><a href="#">修改密码</a></li>
-	                    <li data-target="switchUser"><a href="#">切换用户</a></li>
-	                    <li data-target="loginOut"><a href="#">注销</a></li>
-	                </ul>
-	            </div>
-	        </div>
-	    </nav>
-	</div>
-	<div class="g-body">
-	    <div class="col-xs-2 g-sidec">
-	        <ul class="nav nav-stacked first-level-menu">
-	       		
-	        </ul>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
+                <div class="btn-group navbar-right">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <i class="glyphicon glyphicon-user"></i>
+                        <span>&nbsp;<ss3:authentication property="principal.username" /></span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" id="userManager">
+                        <li data-target="modifyPwd"><a href="#">修改密码</a></li>
+                        <li data-target="switchUser"><a href="#">切换用户</a></li>
+                        <li data-target="loginOut"><a href="#">注销</a></li>
+                    </ul>
+                </div>
+                <ul class="nav navbar-nav pull-right u-menu-top">
+
+                </ul>
+            </div>
 	    </div>
-	    <div class="col-xs-10 g-mainc container">
+	</div>
+    <div class="g-body">
+	    <div class="g-mainc" style="width:98%;margin-left:auto;margin-right:auto">
 	        <ul class="nav nav-tabs" id="navTabs">
 	            <li class="active"><a href="#home" data-toggle="tab">主页</a></li>
 	        </ul>
@@ -105,18 +103,19 @@
                     });
                     return;
                 }
+                var uMenuTop =  $('.u-menu-top');
                 $.get(contextPath + '/auth/Menu/findTopMenuByUser.koala').done(function(data){
                     $.each(data.data, function(){
-                        var $li = $('<li><a data-toggle="collapse" href="#menuMark'+this.id+'"><span class="'+this.icon+'"></span>&nbsp;'+this.name+'&nbsp;'+
-                            '<i class="glyphicon glyphicon-chevron-left" style=" float: right;font-size: 12px;position: relative;right: 8px;top: 3px;"></i></a><ul id="menuMark'+this.id+'" class="second-level-menu in"></ul></li>');
-                        $('.first-level-menu').append($li);
+                        var $li = $('<li class="dropdown">'+
+                            '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="'+this.icon+'"></span>&nbsp;'+this.name+'&nbsp;<b class="caret"></b></a>'+
+                            '<ul class="dropdown-menu" id="menuMark'+this.id+'"></ul></li>');
+                        uMenuTop.append($li);
                         renderSubMenu(this.id, $li);
                     });
                     /*
                     * 菜单收缩样式变化
                      */
-                    var firstLevelMenu = $('.first-level-menu');
-                    firstLevelMenu.find('[data-toggle="collapse"]').each(function(){
+                    uMenuTop.find('[data-toggle="collapse"]').each(function(){
                         var $this = $(this);
                         firstLevelMenu.find($(this).attr('href')).on({
                             'shown.bs.collapse': function(e){
@@ -134,19 +133,20 @@
 						var subMenus = new Array();
 						$.each(data.data, function(){
 							if(this.menuType == "2"){
-		                        var $li = $('<li><a data-toggle="collapse" href="#menuMark'+this.id+'"><span class="'+this.icon+'"></span>&nbsp;'+this.name+'&nbsp;'+
-		                            '<i class="glyphicon glyphicon-chevron-right pull-right" style="position: relative; right: 12px;font-size: 12px;"></i></a><ul id="menuMark'+this.id+'" class="second-level-menu collapse"></ul></li>');
-		                        $li.appendTo($menu.find('.second-level-menu:first')).find('a').css('padding-left', parseInt(this.level)*18+'px');
+                                var $li = $('<li class="dropdown-submenu">'+
+                                    '<a href="#"><span class="'+this.icon+'"></span>&nbsp;'+this.name+'</a>'+
+                                    '<ul class="dropdown-menu" id="menuMark'+this.id+'"></ul></li><li class="divider"></li>');
+                                $li.appendTo($menu.find('#menuMark' + id));
 		                        renderSubMenu(this.id, $li);
 		                    }else{
-		                        var $li = $(' <li class="submenu" data-role="openTab" data-target="'+this.identifier+'" data-title="'+this.name+'" ' +
+		                        var $li = $(' <li data-role="openTab" data-target="'+this.identifier+'" data-title="'+this.name+'" ' +
 		                            'data-mark="menuMark'+this.id+'"><a ><span class="'+this.icon+'"></span>&nbsp;'+this.name+'</a></li>');
-		                        $li.appendTo($menu.find('.second-level-menu:first')).find('a').css('padding-left', parseInt(this.level)*18+'px');
+		                        $li.appendTo($menu.find('#menuMark' + id));
 		                    }
 						});
-						$menu.find('li.submenu').on('click', function(){
+						$menu.find('li[data-role="openTab"]').on('click', function(){
 								var $this = $(this);
-								$('.first-level-menu').find('li').each(function(){
+                                $('.u-menu-top').find('li').each(function(){
 									var $menuLi = $(this);
 									$menuLi.hasClass('active') && $menuLi.removeClass('active').parent().parent().removeClass('active');
 								});
@@ -161,6 +161,6 @@
 				});
 			};
 		});
-	</script>
+	</script>    
 </body>
 </html>

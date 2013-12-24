@@ -101,7 +101,7 @@ var userManager = function(){
 	var setData = function(item){
 		userName.val(item.name);
 		userAccount.val(item.userAccount).attr('disabled', 'disabled');
-		email.val(item.userAccount).attr('disabled', 'disabled');
+		email.val(item.email).attr('disabled', 'disabled');
 		userPassword.closest('.form-group').hide();
 		userDescript.val(item.userDesc);
 		if(!item.valid){
@@ -160,6 +160,7 @@ var userManager = function(){
 		var data = {};
 		data['userVO.name'] = userName.val();
 		data['userVO.userAccount'] = userAccount.val();
+        data['userVO.email'] = email.val();
 		if(item){
 			data['userVO.id'] = item.id;	
 		}else{

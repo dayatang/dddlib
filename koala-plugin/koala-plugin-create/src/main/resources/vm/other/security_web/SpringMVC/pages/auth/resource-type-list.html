@@ -1,11 +1,9 @@
 <div id="resourceTypeGrid"></div>
 <script>
-    var script = document.createElement('script');
-    script.src = contextPath + '/js/security/resourceType.js';
-    document.getElementById('resourceTypeGrid').parentNode.appendChild(script);
-</script>
-<script>
 	$(function(){
+        var script = document.createElement('script');
+        script.src = contextPath + '/js/security/resourceType.js';
+        document.getElementById('resourceTypeGrid').parentNode.appendChild(script);
 		var columns = [ 
 					{
 						title : "资源类型名称",
@@ -16,7 +14,7 @@
 		var buttons = [
 			{content: '<button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus"><span>添加</button>', action: 'add'},
 			{content: '<button class="btn btn-success" type="button"><span class="glyphicon glyphicon-edit"><span>修改</button>', action: 'modify'},
-			{content: '<button class="btn btn-danger" type="button"><span class="glyphicon glyphicon-remove"><span>删除</button>', action: 'delete'},
+			{content: '<button class="btn btn-danger" type="button"><span class="glyphicon glyphicon-remove"><span>删除</button>', action: 'delete'}
 		];
 		$('#resourceTypeGrid').grid({
 			 identity: 'id',

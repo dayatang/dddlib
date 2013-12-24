@@ -14,8 +14,8 @@
 		<property name="user" value="${db.jdbc.username}" />
 		<property name="password" value="${db.jdbc.password}" />
 		<property name="prototypeCount" value="5" />
-		<property name="maximumConnectionCount" value="200" />
-		<property name="minimumConnectionCount" value="200" />
+		<property name="maximumConnectionCount" value="20" />
+		<property name="minimumConnectionCount" value="20" />
 		<property name="houseKeepingTestSql" value="select 1" />
 		<property name="testBeforeUse" value="true" />
 		<property name="alias" value="jbpmcore" />
