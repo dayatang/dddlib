@@ -117,7 +117,6 @@ var position = function(){
 			var departmentTreeDialog = $(data);
             departmentTreeDialog.find('.modal-dialog').css({width:'600px'});
             departmentTreeDialog.find('.modal-body').css({height:'325px'});
-            console.info(departmentTreeDialog.find('.modal-dialog'));
 			departmentTree = departmentTreeDialog.find('.tree');
             loadDepartmentTree();
 			departmentTreeDialog.find('#confirm').on('click',function(){
