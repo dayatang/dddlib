@@ -17,7 +17,10 @@
 	    <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
         <link href="<c:url value='/css/koala-tree.css' />?time=<%=time%>" rel="stylesheet">
         <link href="<c:url value='/css/jbpmDesigner.css' />?time=<%=time%>" rel="stylesheet">
-	    <link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />"   rel="stylesheet">
+	    <link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />"   rel="stylesheet">  
+	    <script>
+	        var contextPath = '${pageContext.request.contextPath}';
+	    </script>
     </head>
   	<body>
             <div class="g-head">

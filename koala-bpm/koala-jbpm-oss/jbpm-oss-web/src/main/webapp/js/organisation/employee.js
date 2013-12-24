@@ -425,7 +425,7 @@ var employee = function(){
 	 * 显示详细信息
 	 */
 	var showDetail = function(id, employeeName){
-		$('body').openTab('/pages/organisation/employeeDetail.html', employeeName, 'employeeDetail', id);
+		openTab('/pages/organisation/employeeDetail.html', employeeName, 'employeeDetail', id);
 	};
 	return {
 		add: add,

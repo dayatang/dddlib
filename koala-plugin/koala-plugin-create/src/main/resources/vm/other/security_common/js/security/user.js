@@ -174,7 +174,7 @@ var userManager = function(){
 	 * 分配角色
 	 */
 	var assignRole = function(userId, userAccount){
-		$(this).openTab('/pages/auth/role-list.html',
+		openTab('/pages/auth/role-list.html',
 			userAccount+'的角色管理', 'roleManager_'+userId, userId, {userId: userId, userAccount:userAccount});
 	};
 	/**

@@ -155,7 +155,7 @@
 								var title = $this.data('title');
 								var mark = $this.data('mark');
 								if(target && title && mark ){
-									$this.openTab(target, title, mark);
+									openTab(target, title, mark);
 								}
 							});
 				});

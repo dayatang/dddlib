@@ -246,7 +246,7 @@ var roleManager = function(){
 			});
 	};
 	var assignUser = function(roleId, name){
-		$(this).openTab('/pages/auth/user-list.html',
+		openTab('/pages/auth/user-list.html',
 			name+'的用户管理', 'userManager_'+roleId, roleId, {roleId: roleId});
 	};
 	/**
