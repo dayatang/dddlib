@@ -3,6 +3,7 @@ $(function(){
     var databaseChartArea = $('#databaseChartArea');
     var databaseChartSearch = $('#databaseChartSearch');
     var monitorNode = $('#dataBaseMonitorNode');
+    var databaseChartSearchBtn = $('#databaseChartSearchBtn');
     $('#monitorCategory').select({
         title: '选择监控项',
         contents: [
@@ -13,11 +14,13 @@ $(function(){
             var value = $(this).getValue();
             if(value == 'poolStausChart'){
                 databaseChartSearch.css('visibility', 'hidden');
+                databaseChartSearchBtn.parent().hide();
                 poolMonitor.show();
                 databaseChartArea.parent().hide();
                 loadPoolStatusData();
             }else{
                 databaseChartSearch.css('visibility', 'visible');
+                databaseChartSearchBtn.parent().show();
                 poolMonitor.hide();
                 databaseChartArea.parent().show();
                 loadConnectionProcessedData();
@@ -36,7 +39,7 @@ $(function(){
             });
         monitorNode.trigger('change');
     });
-    $('#timeOut').on('blur', function(){
+    databaseChartSearchBtn.on('click', function(){
         $('#monitorCategory').trigger('change');
     });
     var loadConnectionProcessedData = function(){
