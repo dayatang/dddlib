@@ -16,7 +16,6 @@ import org.openkoala.auth.application.vo.RoleVO;
 import org.openkoala.auth.application.vo.UserVO;
 import org.openkoala.koala.auth.impl.jdbc.PasswordEncoder;
 import org.openkoala.koala.auth.ss3adapter.CustomUserDetails;
-import org.openkoala.koala.auth.ss3adapter.SecurityMD5;
 import org.openkoala.koala.auth.ss3adapter.ehcache.CacheUtil;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
