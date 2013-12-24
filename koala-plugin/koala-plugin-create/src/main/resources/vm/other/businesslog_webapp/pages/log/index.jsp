@@ -40,7 +40,7 @@
     <div class="col-xs-2 g-sidec">
         <ul class="nav nav-stacked first-level-menu">
             <li>
-                <a data-toggle="collapse" href="#userRight"><i class="glyphicon glyphicon-home"></i>&nbsp;主菜单&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+                <a data-toggle="collapse" href="#userRight"><i class="glyphicon glyphicon-home"></i>&nbsp;主菜单&nbsp;<i class="glyphicon glyphicon-chevron-left" style=" float: right;font-size: 12px;position: relative;right: 8px;top: 3px;"></i></a>
                 <ul id="userRight" class="second-level-menu in">
                      <li class="submenu" data-role="openTab" data-target="/pages/log/log-list.html" data-title="日志管理" data-mark="logList"><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;日志管理</a></li>
                 </ul>
