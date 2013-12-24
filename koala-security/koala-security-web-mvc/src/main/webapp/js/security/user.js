@@ -160,7 +160,7 @@ var userManager = function(){
 		var data = {};
 		data['userVO.name'] = userName.val();
 		data['userVO.userAccount'] = userAccount.val();
-		data['userVO.email'] = email.val();
+        data['userVO.email'] = email.val();
 		if(item){
 			data['userVO.id'] = item.id;	
 		}else{
