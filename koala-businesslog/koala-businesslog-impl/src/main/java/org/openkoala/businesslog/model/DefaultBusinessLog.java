@@ -28,7 +28,7 @@ public class DefaultBusinessLog extends AbstractBusinessLog {
     @Transient
     private Map<String,Object> context;
 
-    public static DefaultBusinessLog createBy(BusinessLog businessLog) {
+    public synchronized static DefaultBusinessLog createBy(BusinessLog businessLog) {
         DefaultBusinessLog myBusinessLog = new DefaultBusinessLog();
         Map<String, Object> context = businessLog.getContext();
 
