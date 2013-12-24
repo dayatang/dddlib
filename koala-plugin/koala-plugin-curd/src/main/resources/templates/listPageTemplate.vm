@@ -180,7 +180,7 @@ PageLoader = {
     add: function(grid){
         var self = this;
         var dialog = $('<div class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">新增</h4></div><div class="modal-body"><p>One fine body&hellip;</p></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">取消</button><button type="button" class="btn btn-primary" id="save">保存</button></div></div></div></div>');
-        $.get('${entityName}-add.jsp').done(function(html){
+        $.get('./${entityName}-add.jsp').done(function(html){
             dialog.modal({
                 keyboard:false
             }).on({
@@ -212,7 +212,7 @@ PageLoader = {
     modify: function(id, grid){
         var self = this;
         var dialog = $('<div class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">修改</h4></div><div class="modal-body"><p>One fine body&hellip;</p></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">取消</button><button type="button" class="btn btn-primary" id="save">保存</button></div></div></div></div>');
-        $.get('${entityName}-update.jsp').done(function(html){
+        $.get('./${entityName}-update.jsp').done(function(html){
                dialog.find('.modal-body').html(html);
                self.initPage(dialog.find('form'));
                $.get( '${pageContext.request.contextPath}/${base_url}get.action?${voName}.${dtoClass.entityModel.singleIDFieldModel.name}=' + id).done(function(json){
