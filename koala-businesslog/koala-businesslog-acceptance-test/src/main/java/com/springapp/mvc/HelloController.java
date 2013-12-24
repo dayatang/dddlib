@@ -37,7 +37,7 @@ public class HelloController {
 
         projectApplication.findSomeProjects(names);
         // TODO 同步问题
-        invoiceApplication.addInvoice("xxxx", 1l);
+        //invoiceApplication.addInvoice("xxxx", 1l);
         invoiceApplication.addInvoice("yyyyyyyy", 1l);
         return "hello";
     }

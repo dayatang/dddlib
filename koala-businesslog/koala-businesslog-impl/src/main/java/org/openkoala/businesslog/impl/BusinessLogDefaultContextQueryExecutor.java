@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class BusinessLogDefaultContextQueryExecutor implements BusinessLogContextQueryExecutor {
     @Override
-    public Map<String, Object> startQuery(final Map<String, Object> aContext, BusinessLogContextQuery... queries) {
+    public synchronized Map<String, Object> startQuery(final Map<String, Object> aContext, BusinessLogContextQuery... queries) {
 
             if (null == queries) {
                 return new HashMap<String, Object>();

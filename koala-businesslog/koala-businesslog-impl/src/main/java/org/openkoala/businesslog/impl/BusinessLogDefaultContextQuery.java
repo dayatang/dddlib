@@ -39,7 +39,7 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
     }
 
     @Override
-    public Map<String, Object> queryInContext(Map<String, Object> aContext) {
+    public synchronized Map<String, Object> queryInContext(final Map<String, Object> aContext) {
         Map<String, Object> context = aContext;
         if (null == context) {
             context = new ConcurrentHashMap<String, Object>();

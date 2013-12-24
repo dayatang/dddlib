@@ -34,10 +34,10 @@
 		<property name="dataSource" ref="dataSource_businessLog" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="database" value="${org.db.Type}"></property>
-				<property name="showSql" value="${org.hibernate.show_sql}"></property>
+				<property name="database" value="${log.db.Type}"></property>
+				<property name="showSql" value="${log.hibernate.show_sql}"></property>
 				<property name="generateDdl" value="${db.generateDdl}"></property>
-				<property name="databasePlatform" value="${org.db.jdbc.dialect}"></property>
+				<property name="databasePlatform" value="${log.db.jdbc.dialect}"></property>
 			</bean>
 		</property>
 	</bean>
@@ -59,13 +59,13 @@
 	</bean>
 
 	<bean id="dataSource_businessLog" class="org.logicalcobwebs.proxool.ProxoolDataSource">
-		<property name="driver" value="${org.db.jdbc.driver}" />
-		<property name="driverUrl" value="${org.db.jdbc.connection.url}" />
-		<property name="user" value="${org.db.jdbc.username}" />
-		<property name="password" value="${org.db.jdbc.password}" />
+		<property name="driver" value="${log.db.jdbc.driver}" />
+		<property name="driverUrl" value="${log.db.jdbc.connection.url}" />
+		<property name="user" value="${log.db.jdbc.username}" />
+		<property name="password" value="${log.db.jdbc.password}" />
 		<property name="prototypeCount" value="5" />
-		<property name="maximumConnectionCount" value="${org.maximumConnectionCount}" />
-		<property name="minimumConnectionCount" value="${org.minimumConnectionCount}" />
+		<property name="maximumConnectionCount" value="${log.maximumConnectionCount}" />
+		<property name="minimumConnectionCount" value="${log.minimumConnectionCount}" />
 		<property name="houseKeepingTestSql" value="select 1" />
 		<property name="testBeforeUse" value="true" />
 		<property name="alias" value="businessLog" />
