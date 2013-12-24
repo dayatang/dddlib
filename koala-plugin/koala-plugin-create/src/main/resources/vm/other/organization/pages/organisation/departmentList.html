@@ -83,7 +83,7 @@
         var script = document.createElement('script');
         script.src = contextPath + '/js/organisation/department.js';
         script.onreadystatechange= function () {
-            if (this.readyState == 'complete'){
+            if (this.readyState == 'complete' || this.readyState == 'loaded'){
                 department().getTree();
             }
         }
