@@ -106,6 +106,9 @@ body {
 	width: 100%;
 	margin-left: auto;
     margin-right: auto;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 15px;
 }
 
 .login_footer {
@@ -178,7 +181,7 @@ body {
 					</div>
 				</div>
 				<div class="form-group input-group">
-					<button type="button"  class="btn btn-primary btn-login" onclick="javascript:login()">登陆</button>
+					<button type="button"  class="btn btn-primary btn-login" onclick="javascript:login()">登录</button>
 				</div>
 			</FORM>
 		</div>
