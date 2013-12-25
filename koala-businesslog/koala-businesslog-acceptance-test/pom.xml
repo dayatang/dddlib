@@ -58,6 +58,11 @@
             <version>2.2</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.22</version>
+        </dependency>
 
 
         <dependency>
@@ -209,6 +214,20 @@
                     <exclude>*.properties</exclude>
                 </excludes>
                 <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>koala-businesslog-standalone-persistence.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>koala-businesslog-standalone-persistence.xml</exclude>
+                </excludes>
+                <filtering>true</filtering>
             </resource>
         </resources>
 

@@ -42,10 +42,10 @@
     </properties>
 
     <profiles>
-       <!-- <profile>
+        <profile>
             <id>businesslog</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
                 <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
@@ -59,18 +59,19 @@
                 <db.Type>H2</db.Type>
                 <db.groupId>com.h2database</db.groupId>
                 <db.artifactId>h2</db.artifactId>
+                <db.version>1.3.174</db.version>
             </properties>
-        </profile>-->
+        </profile>
         <profile>
             <id>bl-mysql</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <hibernate.hbm2ddl.auto>create</hibernate.hbm2ddl.auto>
+                <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
                 <hibernate.show_sql>true</hibernate.show_sql>
                 <db.generateDdl>true</db.generateDdl>
-                <db.type>MYSQL</db.type>
+                <db.Type>MYSQL</db.Type>
                 <db.port>3306</db.port>
                 <db.name>businesslog_test</db.name>
                 <hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>
@@ -78,7 +79,8 @@
                 <db.groupId>mysql</db.groupId>
                 <db.artifactId>mysql-connector-java</db.artifactId>
                 <db.version>5.1.22</db.version>
-                <db.connectionURL><![CDATA[jdbc:mysql://127.0.0.1:${db.port}/${db.name}?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8]]></db.connectionURL>
+                <db.connectionURL>
+                    <![CDATA[jdbc:mysql://127.0.0.1:${db.port}/${db.name}?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8]]></db.connectionURL>
                 <db.username>root</db.username>
                 <db.password></db.password>
             </properties>

@@ -30,7 +30,7 @@ public class BusinessLogEngine {
         this.render = render;
     }
 
-    public synchronized BusinessLog exportLogBy(String businessOperation, BusinessLogExporter exporter) {
+    public  BusinessLog exportLogBy(String businessOperation, BusinessLogExporter exporter) {
             BusinessLogConfig config = configAdapter.findConfigBy(businessOperation);
             if (null == config) {
                 return null;

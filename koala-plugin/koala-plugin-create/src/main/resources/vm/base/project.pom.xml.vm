@@ -695,7 +695,7 @@
 		
 		<repository>
 			<id>koala-snapshots</id>
-			<url>http://115.28.0.46:8081/nexus/content/groups/Koala-snapshots/</url>
+			<url>http://nexus.openkoala.org/content/groups/Koala-snapshots/</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
@@ -706,7 +706,7 @@
 		
 		<repository>
 			<id>koala-release</id>
-			<url>http://115.28.0.46:8081/nexus/content/groups/Koala-release/</url>
+			<url>http://nexus.openkoala.org/content/groups/Koala-release/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>

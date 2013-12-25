@@ -47,7 +47,9 @@ public class ValueObjUtil {
 			AnnotationExpr xmlRootElement = new NormalAnnotationExpr(new NameExpr("XmlRootElement"),null);
 			
 			AnnotationExpr xmlElement = new NormalAnnotationExpr(new NameExpr("XmlElement"),null);
-			
+			if(coi.getAnnotations()==null){
+				coi.setAnnotations(new ArrayList<AnnotationExpr>());
+			}
 			coi.getAnnotations().add(xmlRootElement);
 			List<String> properties = new ArrayList<String>();
 			for(FieldDeclaration filed:fieldDeclarations){
@@ -61,7 +63,12 @@ public class ValueObjUtil {
 			
 			List<MethodDeclaration> methods = JavaManagerUtil.getMethodDeclaration(cu);
 			for(MethodDeclaration method:methods){
-				if(properties.contains(method.getName()))method.getAnnotations().add(xmlElement);
+				if(properties.contains(method.getName())){
+					if(method.getAnnotations()==null){
+						method.setAnnotations(new ArrayList<AnnotationExpr>());
+					}
+					method.getAnnotations().add(xmlElement);
+				}
 			}
 			
 			//import javax.xml.bind.annotation.XmlElement;

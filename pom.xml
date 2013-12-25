@@ -81,12 +81,12 @@
 		<repository>
 			<id>koala-release</id>
 			<name>koala-release</name>
-			<url>http://www.openkoala.org:8081/nexus/content/repositories/releases/</url>
+			<url>http://www.openkoala.org:8081/content/repositories/releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>koala-snapshots</id>
 			<name>koala-snapshots</name>
-			<url>http://www.openkoala.org:8081/nexus/content/repositories/snapshots/</url>
+			<url>http://www.openkoala.org:8081/content/repositories/snapshots/</url>
 		</snapshotRepository>
 		<site>
 			<id>mvn-site</id>

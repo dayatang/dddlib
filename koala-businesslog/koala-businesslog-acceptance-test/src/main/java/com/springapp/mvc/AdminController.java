@@ -19,14 +19,9 @@ import java.util.List;
 public class AdminController {
 
     @RequestMapping(method = RequestMethod.GET)
-    public void printWelcome(ModelMap model) {
-        List<String> logs = new ArrayList<String>();
+    public String printWelcome(ModelMap model) {
+        model.put("logs", "size:" + DefaultBusinessLog.findAll(DefaultBusinessLog.class).size());
+        return "hello";
 
-        for (DefaultBusinessLog log : DefaultBusinessLog.findAll(DefaultBusinessLog.class)) {
-            System.out.println(log);
-        }
-
-
-        model.put("logs", logs);
     }
 }

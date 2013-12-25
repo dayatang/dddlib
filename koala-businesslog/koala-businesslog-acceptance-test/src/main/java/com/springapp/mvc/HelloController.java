@@ -3,6 +3,8 @@ package com.springapp.mvc;
 import business.ContractApplication;
 import business.InvoiceApplication;
 import business.ProjectApplication;
+import org.openkoala.businesslog.BusinessLog;
+import org.openkoala.businesslog.model.DefaultBusinessLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,7 +29,6 @@ public class HelloController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
-        model.addAttribute("message", "Hello world!");
         List<String> names = new ArrayList<String>();
 
         names.add("1");
@@ -37,8 +38,15 @@ public class HelloController {
 
         projectApplication.findSomeProjects(names);
         // TODO 同步问题
-        //invoiceApplication.addInvoice("xxxx", 1l);
+        invoiceApplication.addInvoice("xxxx", 1l);
         invoiceApplication.addInvoice("yyyyyyyy", 1l);
+       /* try {
+            Thread.sleep(20000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("message",
+                "size:" + DefaultBusinessLog.findAll(DefaultBusinessLog.class).size());*/
         return "hello";
     }
 }
