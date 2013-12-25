@@ -153,9 +153,19 @@ public class Post extends Party {
 	@Override
 	public void save() {
 		if (organizationPrincipal && hasPrincipalPostOfOrganization(organization, new Date())) {
-			throw new OrganizationHasPrincipalYetException();
+			if (getId() != null) {
+				if (!isOrganizationPrincipalBefore()) {
+					throw new OrganizationHasPrincipalYetException();
+				}
+			} else {
+				throw new OrganizationHasPrincipalYetException();
+			}
 		}
 		super.save();
+	}
+	
+	private boolean isOrganizationPrincipalBefore() {
+		return getRepository().get(Post.class, getId()).isOrganizationPrincipal();
 	}
 	
 	@Override
