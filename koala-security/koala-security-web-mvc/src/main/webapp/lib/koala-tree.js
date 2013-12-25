@@ -73,7 +73,10 @@
                         });
                         $folder.find('.tree-folder').trigger('selectCheckBox');
                     }else{
-                        $folder.find('.tree-selected').click();
+                        console.info($folder.find('.tree-selected'))
+                        $folder.find('.tree-selected').each(function(){
+                            $(this).click();
+                        });
                         $folder.find('.tree-folder').trigger('disSelectCheckBox');
                     }
                 });
@@ -130,9 +133,7 @@
                     $entity.find('.tree-folder-name').html(value.menu.title);
                     $entity.find('.tree-folder-header').data(value.menu);
                     $entity.attr("id",value.menu.id);
-                    if(value.children && value.children.length > 0){
-                        self.populate(value.children, $entity.find(".tree-folder-content:eq(0)"));
-                    }
+                    self.populate(value.children, $entity.find(".tree-folder-content:eq(0)"));
                     if(value.menu.open){
                         $entity.find('.glyphicon-folder-close').removeClass('glyphicon-folder-close').addClass('glyphicon-folder-open');
                         $entity.find(".tree-folder-content:eq(0)").show();
@@ -207,11 +208,12 @@
             var self = this;
             var $el = $(el);
             var data = $el.data();
-            if (!this.options.multiSelect) {
+            var flag = $el.hasClass('tree-selected');
+            if (!this.options.multiSelect && !this.options.useChkBox) {
                 this.$element.find('.tree-selected').removeClass('tree-selected')
                     .find('i').removeClass('glyphicon-ok').addClass('glyphicon-list-alt');
             }
-            if($el.hasClass('tree-selected')) {
+            if(flag) {
                 $el.removeClass('tree-selected').find('i').removeClass('glyphicon-ok').addClass('glyphicon-list-alt');
                 //这里检测是否有icon属性
                 if($el.find("i").prop("icon")){
@@ -403,38 +405,38 @@
     $.fn.getTree = function(){
         return $(this).data('koala.tree');
     },
-    // TREE PLUGIN DEFINITION
+        // TREE PLUGIN DEFINITION
 
-    $.fn.tree = function (option, value) {
-        var methodReturn;
+        $.fn.tree = function (option, value) {
+            var methodReturn;
 
-        var $set = this.each(function () {
-            var $this = $(this);
-            var data = $this.data('koala.tree');
-            var options = typeof option === 'object' && option;
+            var $set = this.each(function () {
+                var $this = $(this);
+                var data = $this.data('koala.tree');
+                var options = typeof option === 'object' && option;
 
-            if (!data) $this.data('koala.tree', (data = new Tree(this, options)));
-            if (typeof option === 'string') methodReturn = data[option](value);
-        });
-
-        //如果有右键菜单，就把原来的右键除掉
-        if(option.mouseMenu!=null){
-            $(document).bind("contextmenu",function(){return false;});
-        }
-
-        //添加判断是否可拖放
-        if(option.draggable){
-//			var $node = $(this).find(".tree-folder,.tree-item");
-            var $node = $(".tree");
-            $node.sortable({
-                items:".tree-folder,.tree-item"
+                if (!data) $this.data('koala.tree', (data = new Tree(this, options)));
+                if (typeof option === 'string') methodReturn = data[option](value);
             });
-            $node.disableSelection();
-        }
 
-        return (methodReturn === undefined) ? $set : methodReturn;
+            //如果有右键菜单，就把原来的右键除掉
+            if(option.mouseMenu!=null){
+                $(document).bind("contextmenu",function(){return false;});
+            }
 
-    };
+            //添加判断是否可拖放
+            if(option.draggable){
+//			var $node = $(this).find(".tree-folder,.tree-item");
+                var $node = $(".tree");
+                $node.sortable({
+                    items:".tree-folder,.tree-item"
+                });
+                $node.disableSelection();
+            }
+
+            return (methodReturn === undefined) ? $set : methodReturn;
+
+        };
 
     //默认内置属性列表
     $.fn.tree.defaults = {
