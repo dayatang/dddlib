@@ -49,7 +49,6 @@ public class LogEngineThread implements Runnable {
         BusinessLogEngine businessLogEngine = new BusinessLogEngine(configAdapter, render, queryExecutor);
         businessLogEngine.setInitContext(Collections.unmodifiableMap(context));
         businessLogEngine.exportLogBy(joinPointSignature, businessLogExporter);
-
     }
 
 
