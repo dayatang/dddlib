@@ -59,7 +59,7 @@ public interface CasUserApplication {
 	@Produces(MediaType.APPLICATION_JSON)
 	Response removeUser(@PathParam("id") Long id);
 	
-	@GET
+	@POST
 	@Path("/isUserValid")
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
