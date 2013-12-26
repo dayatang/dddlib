@@ -2,6 +2,7 @@ package org.openkoala.cas.casmanagement.application;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -57,5 +58,10 @@ public interface CasUserApplication {
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	Response removeUser(@PathParam("id") Long id);
+	
+	@GET
+	@Path("/isUserValid")
+	@Produces(MediaType.TEXT_PLAIN)
+	boolean isUserValid(@FormParam("username")String username,@FormParam("password")String password);
 	
 }
