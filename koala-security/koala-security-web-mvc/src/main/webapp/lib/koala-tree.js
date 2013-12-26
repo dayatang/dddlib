@@ -125,6 +125,9 @@
         },
         populate: function (data, $el) {
             var self = this;
+            if(!data){
+                return;
+            }
             $.each(data, function(index, value) {
                 var $entity ;
                 //如果还有子节点
