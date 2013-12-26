@@ -297,7 +297,7 @@ $(function (){
 });
 
 var openDetailsPage = function(id){
-        var dialog = $('<div class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">查看</h4></div><div class="modal-body"><p>One fine body&hellip;</p></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">返回</button></div></div></div></div>');
+        var dialog = $('<div class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">查看</h4></div><div class="modal-body"><p>One fine body&hellip;</p></div><div class="modal-footer"><button type="button" class="btn btn-info" data-dismiss="modal">返回</button></div></div></div></div>');
         $.get('<%=path%>/${entityName}-view.jsp').done(function(html){
                dialog.find('.modal-body').html(html);
                $.get( '${pageContext.request.contextPath}/${entityName}/get/' + id + '.koala').done(function(json){
