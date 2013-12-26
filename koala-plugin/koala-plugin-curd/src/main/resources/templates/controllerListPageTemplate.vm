@@ -11,6 +11,7 @@
 <%@ page import="java.util.Date"%>
 <% String formId = "form_" + new Date().getTime();
    String gridId = "grid_" + new Date().getTime();
+   String path = request.getContextPath()+request.getServletPath().substring(0,request.getServletPath().lastIndexOf("/")+1);
 %>
 <script type="text/javascript">
 var grid;
@@ -180,7 +181,7 @@ PageLoader = {
     add: function(grid){
         var self = this;
         var dialog = $('<div class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">新增</h4></div><div class="modal-body"><p>One fine body&hellip;</p></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">取消</button><button type="button" class="btn btn-primary" id="save">保存</button></div></div></div></div>');
-        $.get('./${entityName}-add.jsp').done(function(html){
+        $.get('<%=path%>/${entityName}-add.jsp').done(function(html){
             dialog.modal({
                 keyboard:false
             }).on({
@@ -212,7 +213,7 @@ PageLoader = {
     modify: function(id, grid){
         var self = this;
         var dialog = $('<div class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">修改</h4></div><div class="modal-body"><p>One fine body&hellip;</p></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">取消</button><button type="button" class="btn btn-primary" id="save">保存</button></div></div></div></div>');
-        $.get('./${entityName}-update.jsp').done(function(html){
+        $.get('<%=path%>/${entityName}-update.jsp').done(function(html){
                dialog.find('.modal-body').html(html);
                self.initPage(dialog.find('form'));
                $.get( '${pageContext.request.contextPath}/${entityName}/get/' + id + '.koala').done(function(json){
@@ -294,7 +295,7 @@ PageLoader = {
 }
 var openDetailsPage = function(id){
         var dialog = $('<div class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">查看</h4></div><div class="modal-body"><p>One fine body&hellip;</p></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">返回</button></div></div></div></div>');
-        $.get('${entityName}-view.jsp').done(function(html){
+        $.get('<%=path%>/${entityName}-view.jsp').done(function(html){
                dialog.find('.modal-body').html(html);
                $.get( '${pageContext.request.contextPath}/${entityName}/get/' + id + '.koala').done(function(json){
                        json = json.data;
@@ -332,16 +333,16 @@ var openDetailsPage = function(id){
     #end
       <label class="control-label" style="width:100px;float:left;">${view.name}:&nbsp;</label>
     #if($view.type.indexOf("oolean") > 0)
-	  <div style="width:180px;float:left;">
+	  <div style="margin-left:15px;float:left;">
 	      <div class="btn-group select" id="${view.express}_SELECT"></div>
 	      <input type="hidden" id="${view.express}ID_" name="${view.express}AsString" ${view.validateAttrs}/>
 	  </div>
     #elseif($view.widgetType == 'text')
-        <div style="width:180px;float:left;">
+        <div style="margin-left:15px;float:left;">
             <input name="${view.express}" class="form-control" type="text" style="width:180px;" id="${view.express}ID" ${view.validateAttrs} />
         </div>
     #elseif ($view.widgetType == 'date')
-       <div style="width:480px;float:left;">
+       <div style="margin-left:15px;float:left;">
             <div class="input-group date form_datetime" style="width:160px;float:left;" >
                 <input type="text" class="form-control" style="width:160px;" name="${view.express}" id="${view.express}ID_start" ${view.validateAttrs}>
                 <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
@@ -353,7 +354,7 @@ var openDetailsPage = function(id){
             </div>
        </div>
     #elseif ($view.widgetType == 'staticDropdown')
-	  <div style="width:180px;float:left;">
+	  <div style="margin-left:15px;float:left;">
 	      <div class="btn-group select" id="${view.express}_SELECT"></div>
 	        <input type="hidden" id="${view.express}ID_" name="${view.express}" ${view.validateAttrs}/>
 	      </div>
@@ -367,7 +368,7 @@ var openDetailsPage = function(id){
     #end
     </td>
     #end
-   <td style="vertical-align: bottom;"><button id="search" type="button" style="position:relative; top: -15px" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>&nbsp;查询</button></td>
+   <td style="vertical-align: bottom;"><button id="search" type="button" style="position:relative; margin-left:35px; top: -15px" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span>&nbsp;查询</button></td>
   </tr>
 </table>	
 </form>
