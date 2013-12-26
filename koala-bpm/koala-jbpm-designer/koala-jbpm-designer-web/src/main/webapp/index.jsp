@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head>
-        <title>Koala通用查询</title>
+        <title>Koala流程设计平台</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
@@ -25,7 +25,7 @@
   	<body>
             <div class="g-head">
                 <nav class="navbar navbar-default">
-                     <a class="navbar-brand" href="http://openkoala.org/display/koala/Home" target="_blank"><img src="<c:url value='images/global.logo.png'/>"/>Koala通用查询</a>
+                     <a class="navbar-brand" href="http://openkoala.org/display/koala/Home" target="_blank"><img src="<c:url value='images/global.logo.png'/>"/>Koala流程设计平台</a>
                      <div class="collapse navbar-collapse navbar-ex1-collapse">
                            <div class="btn-group navbar-right">
                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
