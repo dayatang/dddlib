@@ -11,10 +11,15 @@ import java.util.List;
 
 import javax.inject.Named;
 
+import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.methods.ByteArrayRequestEntity;
+import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -52,7 +57,8 @@ public class GunvorApplicationImpl implements GunvorApplication {
 		return jbpmApplication;
 	}
 
-	public void publichJBPM(String packageName, String name, String wsdl) {
+	public void publichJBPM(String packageName, String name, String url) {
+		PostMethod postMethod = null;
 		try {
 			Bpmn2 bpmn = this.getBpmn2(packageName, name);
 			String source = getConnectionString(bpmn.getSource());
@@ -70,15 +76,66 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			process.addAttribute("id", processId + "@" + bpmn.getVersion());
 			String pngURL = gunvorServerUrl + "/rest/packages/" + packageName
 					+ "/assets/" + processId + "-image/binary";
-			Byte[] pngByte = this.getPng(pngURL);
-			getJBPMApplication().addProcess(packageName, processId,
-					Integer.parseInt(bpmn.getVersion()), document.asXML(),
-					pngByte, true);
+			byte[] pngByte = this.getPng(pngURL);
+			
+			postMethod = new PostMethod(url + "/process");
+//			HttpMethodParams p = new HttpMethodParams();
+//			p.setParameter("packageName", packageName);
+//			p.setParameter("processName", processId);
+//			p.setIntParameter("version", Integer.parseInt(bpmn.getVersion()));
+//			p.setParameter("data", document.asXML());
+//			p.setParameter("png", pngByte);
+//			p.setBooleanParameter("isActive", true);
+//			
+//			// 将表单的值放入postMethod中
+//			postMethod.setParams(p);
+//			postMethod.addParameter("packageName", "包名");
+			ByteArrayRequestEntity byteArrayEntity = new ByteArrayRequestEntity(pngByte);
+			postMethod.setRequestEntity(byteArrayEntity);  
+//			postMethod.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, "UTF-8");
+			
+			  // 执行postMethod
+			  org.apache.commons.httpclient.HttpClient httpClient = new org.apache.commons.httpclient.HttpClient();
+			  httpClient.executeMethod(postMethod);
+			  if(postMethod.getStatusCode() != HttpStatus.SC_OK){
+				  throw new RuntimeException("发布失败！");
+			  }
+			
+			/*HttpClient httpclient = getDefaultHttpClient();
+			HttpPost httpPost = new HttpPost(url);
+			httpPost.addHeader("Content-Type", "application/xml");
+			List params = new ArrayList();
+			params.add(new BasicNameValuePair("packageName", packageName));
+			params.add(new BasicNameValuePair("processName", processId));
+			params.add(new BasicNameValuePair("version", bpmn.getVersion()));
+			httpPost.setEntity(new ByteArrayEntity(pngByte));
+			ContentProducer cp = new ContentProducer() {
+			    public void writeTo(OutputStream outstream) throws IOException {
+			        Writer writer = new OutputStreamWriter(outstream, "UTF-8");
+			        writer.write("");
+			        writer.write("  ");
+			        writer.write("    important stuff");
+			        writer.write("  ");
+			        writer.write("");
+			        writer.flush();
+			    }
+			};
+			HttpEntity entity = new EntityTemplate(cp);
+			httpclient.execute(httpPost);*/
+		    
+//			getJBPMApplication().addProcess(packageName, processId,
+//					Integer.parseInt(bpmn.getVersion()), document.asXML(),
+//					pngByte, true);
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
-		} 
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {   
+			postMethod.releaseConnection();   
+    }  
 	}
 
 	public List<Bpmn2> getBpmn2s(String packageName) {
@@ -243,7 +300,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 		// String xml =
 		// "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><package><description>The default rule package</description><title>demo</title></package>";
 		
-		DefaultHttpClient httpclient = null;
+		HttpClient httpclient = null;
 		try {
 			InputStream inputString = null;
 			byte[] data;
@@ -290,7 +347,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 	 * @param urlString
 	 * @return
 	 */
-	private Byte[] getPng(String urlString) {
+	private byte[] getPng(String urlString) {
 		DefaultHttpClient httpclient = getDefaultHttpClient();
 		HttpGet httpGet = new HttpGet(urlString);
 		httpGet.setHeader("Accept", 
@@ -305,7 +362,8 @@ public class GunvorApplicationImpl implements GunvorApplication {
 				swapStream.write(buff, 0, rc);
 			}
 			byte[] in_b = swapStream.toByteArray();
-			return convertToByteArray(in_b);
+			return in_b;
+//			return convertToByteArray(in_b);
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
