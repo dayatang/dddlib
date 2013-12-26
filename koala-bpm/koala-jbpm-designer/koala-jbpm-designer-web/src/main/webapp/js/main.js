@@ -3,18 +3,6 @@ $(function(){
 	 重置菜单栏容器默认高度
 	 */
 	var self = $(this);
-	var $window = $(window);
-	$window.on('resize', function(){
-		var windowWidth = $window.width();
-		var sidebar = $('.g-sidec');
-		if(windowWidth < 768){
-			$('#sidebar-collapse').hide();
-			sidebar.css('height', 'auto');
-			return;
-		}else{
-            changeHeight();
-        }
-	});
 
 	loadContent($('#home'), '/pages/welcome.html');
 	/*
@@ -170,3 +158,7 @@ var changeHeight = function(){
     sidebarHeight < height && sidebar.css('height', height);
     $('.g-mainc').css('min-height', height);
 };
+
+$(window).on('resize', function(){
+    changeHeight();
+});

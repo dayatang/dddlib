@@ -255,7 +255,8 @@ var roleManager = function(){
 	var assignResource = function(roleId){
 		$.get(contextPath + '/pages/auth/assign-resource.html').done(function(data){
 			var dialog = $(data);
-			dialog.find('#save').on('click',function(){
+            initResourceTree(roleId);
+            dialog.find('#save').on('click',function(){
 				var treeObj = $("#resourceTree").getTree();
 				var nodes = treeObj.selectedItems();
 				var data = {};
@@ -287,9 +288,6 @@ var roleManager = function(){
 			}).on({
 					'hidden.bs.modal': function(){
 						$(this).remove();
-					},
-					'shown.bs.modal': function(){
-						initResourceTree(roleId);
 					},
 					'complete': function(){
 						$('body').message({
