@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <businessLogConfigs>
     <businessLogConfig>
-        <category>项目操作</category>
+        <category>project</category>
         <method>Project[] business.ProjectApplicationImpl.findSomeProjects(List)</method>
         <template><![CDATA[
-        查到项目
+        find
         <#list names as name>
           ${name},
         </#list>

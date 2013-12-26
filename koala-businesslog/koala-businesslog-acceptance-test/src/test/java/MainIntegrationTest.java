@@ -1,14 +1,9 @@
-
 import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -16,8 +11,7 @@ import java.util.concurrent.TimeUnit;
  * Date: 11/29/13
  * Time: 8:42 AM
  */
-@Ignore
-public class MainTest {
+public class MainIntegrationTest {
 
 
     protected static WebDriver driver;
@@ -26,19 +20,17 @@ public class MainTest {
     public static void openBrowser() throws InterruptedException, IOException {
         System.out.println("openBrowser");
         driver = new HtmlUnitDriver();
-        driver.get(getBaseUrl());
-        driver.manage().timeouts().implicitlyWait(9000, TimeUnit.MILLISECONDS);
+        //
 
     }
 
     @Test
-    public void test() {
+    public void test() throws InterruptedException, IOException  {
+        driver.get(getBaseUrl());
+        driver.get(getBaseUrl() + "admin");
         System.out.println(driver.getCurrentUrl());
-        System.out.println(driver.getTitle());
         System.out.println(driver.getPageSource());
-
-
-
+        driver.findElement(By.id("size")).getText().equals("size:3");
     }
 
     @AfterClass

@@ -24,11 +24,10 @@ public class BusinessLogJpaDefaultExporter implements BusinessLogExporter {
      * @param businessLog
      */
     @Override
-    public  void export(BusinessLog businessLog) {
+    public void export(BusinessLog businessLog) {
         DefaultBusinessLog log = DefaultBusinessLog.createBy(businessLog);
         businessLogApplication.save(log);
-        System.out.println(log.getId());
-        System.out.println(log);
+        assert log.getId() != null;
     }
 
 

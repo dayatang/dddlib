@@ -8,7 +8,6 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>koala-businesslog-acceptance-test</artifactId>
     <version>2.1.0-SNAPSHOT</version>
-
     <packaging>war</packaging>
     <name>koala-businesslog-acceptance-test</name>
     <description>用于对koala-businesslog的测试</description>
@@ -80,12 +79,12 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>koala-businesslog-acceptance-test</finalName>
+        <finalName>koala-businesslog</finalName>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.cargo</groupId>
                 <artifactId>cargo-maven2-plugin</artifactId>
-                <version>1.4.2</version>
+                <version>1.4.6</version>
                 <executions>
                     <execution>
                         <id>start-container</id>
@@ -100,9 +99,6 @@
                         <phase>post-integration-test</phase>
                         <goals>
                             <goal>stop</goal>
-                            <!--
-                                                         <goal>undeploy</goal>
-                            -->
                         </goals>
                     </execution>
                 </executions>
@@ -127,13 +123,11 @@
                             </cargo.jvmargs>
                         </properties>
                     </configuration>
-                    <deployer>
-
-                    </deployer>
                     <deployables>
                         <deployable>
                             <groupId>org.openkoala.businesslog</groupId>
-                            <artifactId>koala-businesslog-acceptance-test</artifactId>                            <type>war</type>
+                            <artifactId>koala-businesslog-acceptance-test</artifactId>
+                            <type>war</type>
                             <properties>
                                 <context>/</context>
                             </properties>
@@ -148,21 +142,27 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.7.2</version>
                 <configuration>
                     <skip>true</skip>
                 </configuration>
                 <executions>
                     <execution>
+                        <id>run-integration-test</id>
                         <phase>integration-test</phase>
                         <goals>
                             <goal>test</goal>
                         </goals>
                         <configuration>
                             <skip>false</skip>
+                            <includes>
+                                <include>MainIntegrationTest.java</include>
+                            </includes>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
@@ -185,17 +185,20 @@
             </plugin>
 
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.0</version>
+                <configuration>
+                    <dependentWarExcludes>WEB-INF/lib</dependentWarExcludes>
+                </configuration>
+            </plugin>
 
         </plugins>
 

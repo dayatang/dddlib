@@ -30,7 +30,6 @@
 
         <koala.version>2.1.0-SNAPSHOT</koala.version>
         <cargo.container>jetty8x</cargo.container>
-
         <cargo.container.url>
             http://archive.eclipse.org/jetty/8.1.5.v20120716/dist/jetty-distribution-8.1.5.v20120716.zip
         </cargo.container.url>

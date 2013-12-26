@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -38,7 +37,7 @@ public class HttpInvoker {
 		httpPost = new HttpPost(requestUrl);
 	}
 
-	public HttpResponse execute() throws ClientProtocolException, IOException {
+	public HttpResponse execute() throws IOException {
 		if (params != null && params.size() > 0) {
 			httpPost.setEntity(new UrlEncodedFormEntity(params));
 		}

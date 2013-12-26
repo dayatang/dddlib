@@ -4,6 +4,6 @@
     <title></title>
 </head>
 <body>
-${logs}
+<h3 id="size">${logs}</h3>
 </body>
 </html>
