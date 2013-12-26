@@ -1013,6 +1013,7 @@
 		this.$element = $(element);
 		this.options = options;
 		this.$element.html(Select.DEFAULTS.TEMPLATE);
+        this.$button = this.$element.find('[data-toggle="button"]');
 		this.$items = this.$element.find('.dropdown-menu');
 		this.$item = this.$element.find('[data-toggle="item"]');
 		this.$value = this.$element.find('[data-toggle="value"]');
@@ -1025,6 +1026,9 @@
 		Constructor: Select,
 		init: function(){
 			var self = this;
+            this.$button.on('click', function(){
+                self.$element.toggleClass('open');
+            });
 			this.$item.html(self.options.title);
 			var contents = self.options.contents;
 			if(contents && contents.length){
@@ -1050,6 +1054,8 @@
 			return self.$element;
 		},
 		clickItem: function($item){
+            this.$element.removeClass('open')
+            this.$button.removeClass('active');
 			var value = $item.data('value');
 			if(this.$value.val() == value){
 				return this.$element;
@@ -1079,7 +1085,7 @@
 		}
 	};
 	Select.DEFAULTS.TEMPLATE = '<button type="button" class="btn btn-default" data-toggle="item">' +
-		'</button><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">' +
+		'</button><button type="button" class="btn btn-default dropdown-toggle" data-toggle="button">' +
 		'<span class="caret"></span>' +
 		'</button>' +
 		'<input type="hidden" data-toggle="value"/>' +
