@@ -133,6 +133,13 @@ public enum ClassEnum {
         public Object convert(String value) {
             return null;
         }
+    },
+    _Set(Set.class, "Set", "java.util.Set") {
+        @Deprecated
+        @Override
+        public Object convert(String value) {
+            return null;
+        }
     };
 
     private final static String[] parsePatterns = new String[]{
