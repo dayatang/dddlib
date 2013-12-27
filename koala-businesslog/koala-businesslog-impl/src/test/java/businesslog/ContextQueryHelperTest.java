@@ -48,7 +48,7 @@ public class ContextQueryHelperTest {
 
         assert List.class.equals(ContextQueryHelper.getMethodParamClass("List"));
         assert Map.class.equals(ContextQueryHelper.getMethodParamClass("Map"));
-        assert Set.class.equals(ContextQueryHelper.getMethodParamClass("Se"));
+        assert Set.class.equals(ContextQueryHelper.getMethodParamClass("Set"));
     }
 
     @Test
