@@ -18,6 +18,7 @@ import japa.parser.ast.expr.StringLiteralExpr;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -116,6 +117,9 @@ public class InterfaceObjUtil {
 	private static void addHttpMethodAnnotation(MethodDeclaration method, 
 			RestWebServiceMethod restWebServiceMethod, AnnotationExpr httpMethodAnnotation) {
 		if(JavaManagerUtil.containsAnnotation(method, restWebServiceMethod.getType().getAnnotationString()) == false) {
+			if(method.getAnnotations()==null){
+				method.setAnnotations(new ArrayList<AnnotationExpr>());
+			}
 			method.getAnnotations().add(httpMethodAnnotation);
 		}
 	}
@@ -123,6 +127,9 @@ public class InterfaceObjUtil {
 	private static void addPahtUriAnnotation(MethodDeclaration method, RestWebServiceMethod restWebServiceMethod) {
 		AnnotationExpr pathAnnotation = new SingleMemberAnnotationExpr(new NameExpr("Path"), new StringLiteralExpr(restWebServiceMethod.getUriPath()));
 		if(JavaManagerUtil.containsAnnotation(method,"Path")== false) {
+			if(method.getAnnotations()==null){
+				method.setAnnotations(Collections.<AnnotationExpr> emptyList());
+			}
 			method.getAnnotations().add(pathAnnotation);
 		}
 	}
@@ -139,6 +146,9 @@ public class InterfaceObjUtil {
 				
 				AnnotationExpr paramTypeAnnotation = new SingleMemberAnnotationExpr(
 								new NameExpr(paramType.getParamTransferType()), new StringLiteralExpr(paramName));
+				if(parameter.getAnnotations()==null){
+					parameter.setAnnotations(new ArrayList<AnnotationExpr>());
+				}
 				parameter.getAnnotations().add(paramTypeAnnotation);
 			}
 		}
@@ -167,11 +177,17 @@ public class InterfaceObjUtil {
 		if (isProduces) {
 			AnnotationExpr producesAnnotation = new SingleMemberAnnotationExpr(new NameExpr("Produces"),new ArrayInitializerExpr(values));
 			if(JavaManagerUtil.containsAnnotation(method,"Produces") == false) {
+				if(method.getAnnotations()==null){
+					method.setAnnotations(new ArrayList<AnnotationExpr>());
+				}
 				method.getAnnotations().add(producesAnnotation);
 			}
 		} else {
 			AnnotationExpr consumesAnnotation = new SingleMemberAnnotationExpr(new NameExpr("Consumes"),new ArrayInitializerExpr(values));
 			if(JavaManagerUtil.containsAnnotation(method,"Consumes") == false) {
+				if(method.getAnnotations()==null){
+					method.setAnnotations(new ArrayList<AnnotationExpr>());
+				}
 				method.getAnnotations().add(consumesAnnotation);
 			}
 		}
@@ -202,6 +218,9 @@ public class InterfaceObjUtil {
 				
 			AnnotationExpr webServiceAnnotation = new SingleMemberAnnotationExpr(new NameExpr("WebService"), new NameExpr(""));
 			if(JavaManagerUtil.containsAnnotation(coi,"WebService") == false) {
+				if(coi.getAnnotations()==null){
+					coi.setAnnotations(new ArrayList<AnnotationExpr>());
+				}
 				coi.getAnnotations().add(webServiceAnnotation);
 			}
 			

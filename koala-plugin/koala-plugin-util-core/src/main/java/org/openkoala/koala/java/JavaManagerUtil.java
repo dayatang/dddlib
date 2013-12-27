@@ -362,6 +362,9 @@ public class JavaManagerUtil {
      * @return
      */
     public static boolean containsAnnotation(BodyDeclaration body,String name){
+    	if(body.getAnnotations()==null){
+    		return false;
+    	}
 		for(AnnotationExpr annotation:body.getAnnotations()){
 			if(annotation.getName().getName().equals(name)){
 				return true;

@@ -9,25 +9,92 @@
 
     var Tree = function (element, options) {
         this.$element = $(element);
+        this.childrenElements = [];//子元素节点
+        this.childrenItems = [];//子元素节点数据
+        this.selectedDatas = {}; //已选择的数据
         this.options = $.extend({}, $.fn.tree.defaults, options);
-        //渲染，改成build建造方法
-        this.build(options);
-        //叶子节点点击的时候
-        this.$element.on('click', '.tree-item', $.proxy( function(ev) { this.selectChildren(ev.currentTarget); } ,this));
-        //父节点点击的时候
-        this.$element.on('click', '.tree-folder-header', $.proxy( function(ev) { this.selectParent(ev.currentTarget); }, this));
-        //复选框点击的时候
-        this.$element.on('click',':checkbox',$.proxy(function(ev){this.checkParent(ev.currentTarget);},this));
-        //右键点击树节点的时候，目前先暂定任意节点
-        this.$element.on('mousedown','.tree-folder-name,.tree-item-name',$.proxy(function(ev){this.popMenu(ev.currentTarget,ev);},this));
-        //添加鼠标右键事件监听
-        this.$element.on('contextmenu','.tree-folder-header,.tree-item-name',$.proxy(function(ev){this.initContextmenu(ev);},this));
-
+        this.init();
     };
 
     Tree.prototype = {
         constructor: Tree,
-
+        init: function(){
+            var self = this;
+            //渲染，改成build建造方法
+            this.build(this.options);
+            $.each(self.$element.find('.tree-folder'), function(){
+                var $folder = $(this);
+                $folder.on({
+                    'selectCheckBox': function(e){
+                        e.preventDefault();
+                        e.stopPropagation();
+                        var $this = $(this);
+                        $this.find('>input').prop('checked', true);
+                        var data = $this.find('.tree-folder-header').data();
+                        self.selectedDatas[data.id] = data;
+                        var treeFolderContent = $this.parent();
+                        var treeFolder = treeFolderContent.parent();
+                        if(!treeFolder.hasClass('tree-folder')){
+                            return;
+                        }
+                        var treeFolderCheckBox = treeFolder.find('>input');
+                        if(!treeFolderCheckBox.is(':checked')){
+                            treeFolder.trigger('selectCheckBox');
+                        }
+                    },
+                    'disSelectCheckBox': function(e){
+                        e.preventDefault();
+                        e.stopPropagation();
+                        var $this = $(this);
+                        $this.find('>input').prop('checked', false);
+                        var data = $this.find('.tree-folder-header').data();
+                        delete self.selectedDatas[data.id];
+                        var treeFolderContent = $this.parent();
+                        var treeFolder = treeFolderContent.parent();
+                        if(!treeFolder.hasClass('tree-folder')){
+                            return;
+                        }
+                        var treeFolderCheckBox = treeFolder.find('>input');
+                        if(treeFolderCheckBox.is(':checked')){
+                            if(treeFolderContent.find('>.tree-selected').length == 0 &&
+                                treeFolderContent.find('>.tree-folder>input:checked').length == 0){
+                                treeFolder.trigger('disSelectCheckBox');
+                            }
+                        }
+                    }
+                });
+                $folder.find('>input').on('click', function(){
+                    if(this.checked){
+                        $folder.find('.tree-item').each(function(){
+                            var $this = $(this);
+                            if(!$this.hasClass('tree-selected')){
+                                $this.click();
+                            }
+                        });
+                        $folder.find('.tree-folder').trigger('selectCheckBox');
+                    }else{
+                        console.info($folder.find('.tree-selected'))
+                        $folder.find('.tree-selected').each(function(){
+                            $(this).click();
+                        });
+                        $folder.find('.tree-folder').trigger('disSelectCheckBox');
+                    }
+                });
+            });
+            //叶子节点点击的时候
+            this.$element.on('click', '.tree-item', $.proxy( function(ev) { this.selectChildren(ev.currentTarget); } ,this));
+            //父节点点击的时候
+            this.$element.on('click', '.tree-folder-header', $.proxy( function(ev) { this.selectParent(ev.currentTarget); }, this));
+            //复选框点击的时候
+            //this.$element.on('click',':checkbox',$.proxy(function(ev){this.checkParent(ev.currentTarget);},this));
+            //右键点击树节点的时候，目前先暂定任意节点
+            this.$element.on('mousedown','.tree-folder-name,.tree-item-name',$.proxy(function(ev){this.popMenu(ev.currentTarget,ev);},this));
+            //添加鼠标右键事件监听
+            this.$element.on('contextmenu','.tree-folder-header,.tree-item',$.proxy(function(ev){this.initContextmenu(ev);},this));
+            if(this.options.useChkBox){
+                this.initCheckBox();
+            }
+        },
         //建造方法，包括对参数ajaxUrl的判断，如果包含有该参数，则ajax方式获取，而不是纯this.options.dataSource.data
         build: function(options){
             var self = this;
@@ -51,8 +118,8 @@
 
         //渲染方法
         render: function () {
-            this.populate(this.options.dataSource.data, this.$element);
-
+            var self = this;
+            this.populate(self.options.dataSource.data, self.$element);
             this.$element.find('.tree-folder').show();
             this.$element.find('.tree-item').show();
         },
@@ -62,7 +129,7 @@
                 var $entity ;
                 //如果还有子节点
                 if(!self.isEmpty(value.children) || value.type == 'parent'){
-                    $entity = self.createParent();
+                    $entity = self.createParent(value.menu.id);
                     $entity.find('.tree-folder-name').html(value.menu.title);
                     $entity.find('.tree-folder-header').data(value.menu);
                     $entity.attr("id",value.menu.id);
@@ -80,41 +147,19 @@
                             .attr("icon",value.menu.icon);
                     }
                 }else{
-                    $entity = self.createChildren(value.menu.checked);
+                    $entity = self.createChildren(value.menu.id);
                     $entity.find('.tree-item-name').html(value.menu.title);
-                    $entity.attr("href",value.menu.href);
                     $entity.attr("id",value.menu.id);
                     $entity.data(value.menu);
                     //这里加上检测是否有自定义图标，对于子节点，还有个bug
                     if(value.menu.icon){
-                        $entity.children("i").addClass(value.menu.icon).prop("icon",value.menu.icon);
+                        $entity.children("i").removeClass().addClass(value.menu.icon).prop("icon",value.menu.icon);
                     }
+                    self.childrenItems.push(value);
+                    self.childrenElements.push($entity);
                 }
                 $el.append($entity);
-                if(self.options.useChkBox){
-                    $entity.children().filter('input').on('click', function(){
-                        if($entity.hasClass('tree-folder')){
-
-                        }else{
-                            clickChildrenCheckbox($entity);
-                        }
-                    });
-                    /*if(!self.isEmpty(value.children) || value.type == 'parent'){
-                        var treeFolderContent = $entity.closest('.tree-folder');
-                        var checkBox = treeFolderContent.parent().children().filter('input');
-                        var children = treeFolderContent.children().filter('input');
-                        checkBox.prop('checked', children.length == children.filter(':checked').length);
-                    }else{
-                        var treeFolderContent = $entity.parent();
-                        var checkBox = treeFolderContent.parent().children().filter('input');
-                        var children = treeFolderContent.children().children().filter('input');
-                        checkBox.prop('checked', children.length == children.filter(':checked').length);
-                    }*/
-                }
             });
-        },
-        clickChildrenCheckbox: function(){
-
         },
         isEmpty: function(obj){
             if(!obj){
@@ -127,12 +172,12 @@
             }
             return true;
         },
-        createParent: function(opened){
+        createParent: function(value){
             var $node;
             //如果采用复选框
             if(this.options.useChkBox){
                 $node = $('<div class="tree-folder checkbox" style="display:none;">' +
-                    '<input type="checkbox">'+
+                    '<input type="checkbox" value="'+value+'">'+
                     '<div class="tree-folder-header">' +
                     '<i class="glyphicon glyphicon-folder-close"></i>'+
                     '<div class="tree-folder-name"></div></div><div class="tree-folder-content"></div>'+
@@ -146,61 +191,59 @@
 
             return $node;
         },
-        createChildren:function(checked){
+        createChildren:function(value){
             var $node;
             //如果采用复选框
-            var checkedClass = checked ? 'tree-selected':'';
             if(this.options.useChkBox){
-                $node = $('<div class="tree-item checkbox '+checkedClass+'" style="display:none;">'+
-                    '<input type="checkbox" '+(checked ? 'checked="checked"' : '')+'">' +
+                $node = $('<div class="tree-item checkbox" style="display:none;">'+
+                    '<input type="checkbox" value="'+value+'">' +
                     '<div class="tree-item-name"></div></div>');
             }else{
-                $node = $('<div class="tree-item '+checkedClass+'" style="display:none;">'+
+                $node = $('<div class="tree-item" style="display:none;">'+
                     '<i class="glyphicon glyphicon-list-alt"></i><div class="tree-item-name"></div></div>');
             }
-
             return $node;
         },
         selectChildren: function (el) {
+            var self = this;
             var $el = $(el);
-            if(this.options.useChkBox){
-                $el.find('input').prop('checked', !$el.hasClass('tree-selected'));
-            }
-            var $all = this.$element.find('.tree-selected');
-            var data = [];
-
-            if (this.options.multiSelect) {
-                $.each($all, function(index, value) {
-                    var $val = $(value);
-                    if($val[0] !== $el[0]) {
-                        data.push( $(value).data() );
-                    }
-                });
-            } else if ($all[0] !== $el[0]) {
-                $all.removeClass('tree-selected')
+            var data = $el.data();
+            var flag = $el.hasClass('tree-selected');
+            if (!this.options.multiSelect && !this.options.useChkBox) {
+                this.$element.find('.tree-selected').removeClass('tree-selected')
                     .find('i').removeClass('glyphicon-ok').addClass('glyphicon-list-alt');
-                data.push($el.data());
             }
-
-            if($el.hasClass('tree-selected')) {
-                $el.removeClass('tree-selected');
-                $el.find('i').removeClass('glyphicon-ok').addClass('glyphicon-list-alt');
+            if(flag) {
+                $el.removeClass('tree-selected').find('i').removeClass('glyphicon-ok').addClass('glyphicon-list-alt');
                 //这里检测是否有icon属性
                 if($el.find("i").prop("icon")){
                     $el.find("i").addClass($el.find("i").prop("icon"));
                 }
+                delete self.selectedDatas[data.id];
             } else {
-                $el.addClass ('tree-selected');
-                $el.find('i').removeClass('glyphicon-list-alt').addClass('glyphicon-ok');
-                if (this.options.multiSelect) {
-                    data.push( $el.data() );
+                $el.addClass ('tree-selected').find('i').removeClass('glyphicon-list-alt').addClass('glyphicon-ok');
+                self.selectedDatas[data.id] = data;
+            }
+            if(this.options.useChkBox){
+                $el.find('input').prop('checked', $el.hasClass('tree-selected'));
+                var treeFolderContent = $el.parent()
+                var treeFolder = treeFolderContent.parent();
+                if(!treeFolder.hasClass('tree-folder')){
+                    return;
+                }
+                if($el.hasClass('tree-selected')){
+                    treeFolder.trigger('selectCheckBox');
+                }else{
+                    if(treeFolderContent.find('>.tree-selected').length == 0 &&
+                        treeFolderContent.find('>.tree-folder>input:checked').length == 0){
+                        treeFolder.trigger('disSelectCheckBox');
+                    }
                 }
             }
-
-            //console.info("icon = " + $el.find("i").prop("icon"));
             if(data.length) {
-                this.$element.trigger('selected', {info: data});
+                this.$element.trigger('selected', {info: self.selectedItems()});
             }
+            this.$element.trigger('selectChildren', $el.data());
         },
 
         selectParent: function (el) {
@@ -229,20 +272,30 @@
                     .addClass('glyphicon-folder-close');
                 this.$element.trigger('closed', {element:$el, data: $el.data()});
             }
+            this.$element.trigger('selectParent', {element:$el, data: $el.data()});
         },
 
         selectedItems: function () {
-            var $sel = this.$element.find('.tree-selected');
-            var data = [];
-
-            $.each($sel, function (index, value) {
-                data.push($(value).data());
+            var items = [];
+            for(var prop in this.selectedDatas){
+                items.push(this.selectedDatas[prop])
+            }
+            return items;
+        },
+        /**
+         * 初始化checkbox
+         */
+        initCheckBox: function(){
+            var self = this;
+            $.each(self.childrenItems, function(index, value){
+                if(value.menu.checked){
+                    self.childrenElements[index].click();
+                    self.selectedDatas[value.menu.id] = value.menu;
+                }
             });
-            return data;
-        }
-
+        },
         //新加函数，勾选父节点的复选框时，下面所有的子节点的复选框都要同样的勾选状态
-        ,checkParent:function(el,ev){
+        checkParent:function(el,ev){
             var $el = $(el);
             var isChecked = $el.prop("checked");
             if(isChecked){
@@ -302,11 +355,7 @@
                     $(this).remove();
                 }).find('li').on('click', function(){
                     var $this = $(this);
-                    if($element.hasClass('tree-item-name')){
-                        self.$element.trigger($this.attr('action'), $element.parent());
-                    }else{
-                        self.$element.trigger($this.attr('action'), $element);
-                    }
+                    self.$element.trigger($this.attr('action'), $element);
                     $this.parent().remove();
                 });
         },
@@ -356,38 +405,38 @@
     $.fn.getTree = function(){
         return $(this).data('koala.tree');
     },
-    // TREE PLUGIN DEFINITION
+        // TREE PLUGIN DEFINITION
 
-    $.fn.tree = function (option, value) {
-        var methodReturn;
+        $.fn.tree = function (option, value) {
+            var methodReturn;
 
-        var $set = this.each(function () {
-            var $this = $(this);
-            var data = $this.data('koala.tree');
-            var options = typeof option === 'object' && option;
+            var $set = this.each(function () {
+                var $this = $(this);
+                var data = $this.data('koala.tree');
+                var options = typeof option === 'object' && option;
 
-            if (!data) $this.data('koala.tree', (data = new Tree(this, options)));
-            if (typeof option === 'string') methodReturn = data[option](value);
-        });
-
-        //如果有右键菜单，就把原来的右键除掉
-        if(option.mouseMenu!=null){
-            $(document).bind("contextmenu",function(){return false;});
-        }
-
-        //添加判断是否可拖放
-        if(option.draggable){
-//			var $node = $(this).find(".tree-folder,.tree-item");
-            var $node = $(".tree");
-            $node.sortable({
-                items:".tree-folder,.tree-item"
+                if (!data) $this.data('koala.tree', (data = new Tree(this, options)));
+                if (typeof option === 'string') methodReturn = data[option](value);
             });
-            $node.disableSelection();
-        }
 
-        return (methodReturn === undefined) ? $set : methodReturn;
+            //如果有右键菜单，就把原来的右键除掉
+            if(option.mouseMenu!=null){
+                $(document).bind("contextmenu",function(){return false;});
+            }
 
-    };
+            //添加判断是否可拖放
+            if(option.draggable){
+//			var $node = $(this).find(".tree-folder,.tree-item");
+                var $node = $(".tree");
+                $node.sortable({
+                    items:".tree-folder,.tree-item"
+                });
+                $node.disableSelection();
+            }
+
+            return (methodReturn === undefined) ? $set : methodReturn;
+
+        };
 
     //默认内置属性列表
     $.fn.tree.defaults = {
