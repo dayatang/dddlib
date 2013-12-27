@@ -104,7 +104,7 @@ var menuManager = function(){
 				var imgsDialog = $(result);
 				var contents = new Array();
                 $.each(icons, function(){
-                    contents.push('<span class="menu-icon '+this+'" src="'+this+'"></span>')
+                    contents.push('<span class="menu-icon '+this+'" src="'+this+'"></span>');
                 });
 				imgsDialog.find('#images').html(contents.join(''))
 				.find('span')
@@ -152,7 +152,7 @@ var menuManager = function(){
 		desc.val(item.desc);
 		menuImg.removeClass().addClass('menu-icon').addClass(item.icon).attr('src', item.icon);
 		menuType.setValue(item.menuType);
-	}
+	};
 		
 	/*
 	*   保存数据 id存在则为修改 否则为新增
@@ -174,7 +174,7 @@ var menuManager = function(){
 			}else{
 				dialog.message({
 					type: 'error',
-					content: '保存失败'
+					content: data.actionError
 				});
 			}
 		});
@@ -193,7 +193,7 @@ var menuManager = function(){
 			return false;
 		}
 		return true;
-	}
+	};
 	/*
 	*获取表单数据
 	 */
@@ -224,14 +224,14 @@ var menuManager = function(){
 	        $this.message({
 	            type: 'warning',
 	             content: '请选择要操作的记录'
-	        })
+	        });
 	        return;
 	    }
 		if(indexs.length > 1){
 	        $this.message({
 	            type: 'warning',
 	             content: '只能选择一条记录进行操作'
-	        })
+	        });
 	        return;
 	    }
 		var dataGrid = grid.getGrid();
@@ -257,7 +257,7 @@ var menuManager = function(){
             $('body').message({
 	            type: 'warning',
 	             content: '只能选择一条记录进行操作'
-	        })
+	        });
 	        return;
 	    }
 		var dataGrid = grid.getGrid();
@@ -273,10 +273,17 @@ var menuManager = function(){
 			data['resourceVOs['+i+'].sortOrder'] = i+1;
 		}
 		$.post(contextPath + '/auth/Menu/updateMenuOrder.koala', data).done(function(result){
-			$('body').message({
-                type: 'success',
-                content: '移动成功'
-            })
+			if(data.actionError){
+				$('body').message({
+	                type: 'error',
+	                content: data.actionError
+	            });
+			}else{
+				$('body').message({
+	                type: 'success',
+	                content: '移动成功'
+	            });
+			}
 		}).fail(function(result){
 
 		});

@@ -105,7 +105,7 @@ var roleManager = function(){
 			}else{
 				dialog.message({
 					type: 'error',
-					content: data.result
+					content: data.actionError
 				});
 			}
 		});
@@ -163,7 +163,7 @@ var roleManager = function(){
 					}else{
 						$('body').message({
 							type: 'error',
-							content: data.result
+							content: data.actionError
 						});
 					}
 				}).fail(function(data){
