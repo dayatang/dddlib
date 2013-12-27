@@ -105,10 +105,10 @@
             department().addCompany($('.right-content').find('[data-role="id"]').val());
         })
         $('#updateDepartment').on('click', function(){
-            department().updateDepartment($('.right-content').find('[data-role="id"]').val())
+            department().updateDepartment($('.right-content').find('[data-role="id"]').val(), $('#departmentTree').find('.tree-selected'))
         })
         $('#updateCompany').on('click', function(){
-            department().updateCompany($('.right-content').find('[data-role="id"]').val())
+            department().updateCompany($('.right-content').find('[data-role="id"]').val(), $('#departmentTree').find('.tree-selected'))
         })
        $('#delete').on('click', function(){
             $(this).confirm({

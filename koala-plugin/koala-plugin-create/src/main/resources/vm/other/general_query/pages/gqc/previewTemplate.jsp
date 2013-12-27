@@ -15,6 +15,9 @@
         <link href="<c:url value='/css/gqc.css' />?time=<%=time%>"   rel="stylesheet">
         <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
         <link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />"   rel="stylesheet">
+         <script>
+             var contextPath = '${pageContext.request.contextPath}';
+        </script>
     </head>
     <body>
         <div class="query">
@@ -34,5 +37,6 @@
         <script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js' />"></script>
         <script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js' />"></script>
         <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />?time=<%=time%>"></script>
+        <script type="text/javascript" src="<c:url value='/js/gqc/previewTemplate.js' />?time=<%=time%>"></script>
     </body>
 </html>

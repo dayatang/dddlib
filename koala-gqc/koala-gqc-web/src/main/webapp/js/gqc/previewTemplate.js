@@ -65,7 +65,7 @@ $(function(){
 		var columns = new Array();
 		for(var i= 0, j=fieldDetails.length; i<j; i++){
 			var fieldDetail = fieldDetails[i];
-			columns.push({title: fieldDetail.label, name: fieldDetail.fieldName, width: i==(j-1) ? 'auto':'200px'});
+			columns.push({title: fieldDetail.label, name: fieldDetail.fieldName, width: '200px'});
 		}
 		$('#previewGrid').grid({
 			isShowButtons: false,
