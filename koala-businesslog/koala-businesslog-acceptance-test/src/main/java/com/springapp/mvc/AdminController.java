@@ -20,12 +20,6 @@ public class AdminController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         model.put("logs", "size:" + DefaultBusinessLog.findAll(DefaultBusinessLog.class).size());
         return "admin";
 
