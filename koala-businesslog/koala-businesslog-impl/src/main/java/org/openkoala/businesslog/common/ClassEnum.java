@@ -1,8 +1,6 @@
 package org.openkoala.businesslog.common;
 
 import org.apache.commons.lang3.time.DateUtils;
-import org.openkoala.businesslog.SimpleClassConvertException;
-import org.openkoala.businesslog.SimpleClassEnumNotFoundException;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -13,7 +11,7 @@ import java.util.*;
  * Date: 12/13/13
  * Time: 1:01 PM
  */
-public enum SimpleClassEnum {
+public enum ClassEnum {
 
     _int(int.class, "int") {
         @Override
@@ -121,6 +119,20 @@ public enum SimpleClassEnum {
         public Object convert(String value) {
             return new BigDecimal(value);
         }
+    },
+    _List(List.class, "List", "java.util.List") {
+        @Deprecated
+        @Override
+        public Object convert(String value) {
+            return null;
+        }
+    },
+    _Map(Map.class, "Map", "java.util.Map") {
+        @Deprecated
+        @Override
+        public Object convert(String value) {
+            return null;
+        }
     };
 
     private final static String[] parsePatterns = new String[]{
@@ -137,7 +149,7 @@ public enum SimpleClassEnum {
     private Set<String> names = new HashSet<String>();
     private Class classz;
 
-    private SimpleClassEnum(Class clasz, String... stringName) {
+    private ClassEnum(Class clasz, String... stringName) {
         if (null != stringName) {
             names.addAll(Arrays.asList(stringName));
         }
@@ -152,8 +164,8 @@ public enum SimpleClassEnum {
 
     public abstract Object convert(String value);
 
-    public static SimpleClassEnum getSimpleClassEnumOf(String className) {
-        for (SimpleClassEnum each : SimpleClassEnum.values()) {
+    public static ClassEnum getSimpleClassEnumOf(String className) {
+        for (ClassEnum each : ClassEnum.values()) {
             if (each.names.contains(className)) {
                 return each;
             }
@@ -161,8 +173,8 @@ public enum SimpleClassEnum {
         return null;
     }
 
-    public static SimpleClassEnum getSimpleClassEnumOf(Class clazz) {
-        for (SimpleClassEnum each : SimpleClassEnum.values()) {
+    public static ClassEnum getSimpleClassEnumOf(Class clazz) {
+        for (ClassEnum each : ClassEnum.values()) {
             if (each.classz.equals(clazz)) {
                 return each;
             }
@@ -171,7 +183,7 @@ public enum SimpleClassEnum {
     }
 
     public static boolean isSimpleClass(String className) {
-        for (SimpleClassEnum each : SimpleClassEnum.values()) {
+        for (ClassEnum each : ClassEnum.values()) {
             if (each.names.contains(className)) {
                 return true;
             }
@@ -180,7 +192,7 @@ public enum SimpleClassEnum {
     }
 
     public static boolean isSimpleClass(Class clazz) {
-        for (SimpleClassEnum each : SimpleClassEnum.values()) {
+        for (ClassEnum each : ClassEnum.values()) {
             if (each.classz.equals(clazz)) {
                 return true;
             }

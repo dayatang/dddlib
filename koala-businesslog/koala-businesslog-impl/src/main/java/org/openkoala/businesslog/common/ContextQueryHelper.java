@@ -35,7 +35,7 @@ public class ContextQueryHelper {
     public static String getMethodName(String methodSignature) {
         /*如果客户省略括号*/
         if (!methodSignature.contains("(")) {
-            return  methodSignature;
+            return methodSignature;
         }
         return methodSignature.substring(0, methodSignature.indexOf('('));
     }
@@ -61,28 +61,34 @@ public class ContextQueryHelper {
     }
 
     // TODO 待重构 未对多维数组进行支持
-    public static Class[] getMethodParamClasses(List<String> methodParamTypes) {
+    public static Class[] getMethodParamClass(List<String> methodParamTypes) {
+        if (null == methodParamTypes) {
+            return new Class[0];
+        }
         List<Class> classes = new ArrayList<Class>();
         for (String type : methodParamTypes) {
-            if (SimpleClassEnum.isSimpleClass(type)) {
-                classes.add(SimpleClassEnum.getSimpleClassEnumOf(type).getClassz());
-                continue;
-            }else{
-                try {
-                    if (type.contains("[") && type.contains("]")) {
-                        type = type.substring(0, type.indexOf("["));
-                        classes.add(Array.newInstance(Class.forName(type), 0).getClass());
-                    } else {
-                        classes.add(Class.forName(type));
-                    }
-                } catch (ClassNotFoundException e) {
-                    throw new BusinessLogClassNotFoundException(e);
-                }
-            }
+            classes.add(getMethodParamClass(type));
         }
         return classes.toArray(new Class[classes.size()]);
     }
 
+    public static Class getMethodParamClass(String methodParamType) {
+
+        if (ClassEnum.isSimpleClass(methodParamType)) {
+            return ClassEnum.getSimpleClassEnumOf(methodParamType).getClassz();
+        } else {
+            try {
+                if (methodParamType.contains("[") && methodParamType.contains("]")) {
+                    methodParamType = methodParamType.substring(0, methodParamType.indexOf("["));
+                    return Array.newInstance(Class.forName(methodParamType), 0).getClass();
+                } else {
+                    return Class.forName(methodParamType);
+                }
+            } catch (ClassNotFoundException e) {
+                throw new BusinessLogClassNotFoundException(e);
+            }
+        }
+    }
 
     public static Object contextQueryArgConvertStringToObject(String arg,
                                                               Class aClass,
@@ -109,7 +115,7 @@ public class ContextQueryHelper {
             }
 
         } else {
-            return SimpleClassEnum.getSimpleClassEnumOf(aClass).convert(arg);
+            return ClassEnum.getSimpleClassEnumOf(aClass).convert(arg);
         }
 
 

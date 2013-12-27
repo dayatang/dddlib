@@ -4,15 +4,10 @@ import static org.openkoala.businesslog.common.ContextQueryHelper.*;
 
 import business.Contract;
 import business.Project;
-import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.PropertiesConfiguration;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.businesslog.BusinessLogClassNotFoundException;
-import org.openkoala.businesslog.BusinessLogQueryMethodException;
 import org.openkoala.businesslog.common.ContextQueryHelper;
 
-import java.lang.reflect.Method;
 import java.util.*;
 
 /**
@@ -49,6 +44,11 @@ public class ContextQueryHelperTest {
         List<String> result2 = new ArrayList<String>();
         assert result2.equals(
                 ContextQueryHelper.getMethodParamTypes(methodSignature2));
+
+
+        assert List.class.equals(ContextQueryHelper.getMethodParamClass("List"));
+        assert Map.class.equals(ContextQueryHelper.getMethodParamClass("Map"));
+        assert Set.class.equals(ContextQueryHelper.getMethodParamClass("Se"));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class ContextQueryHelperTest {
 
         assert result.equals(
                 Arrays.asList(
-                        ContextQueryHelper.getMethodParamClasses(
+                        ContextQueryHelper.getMethodParamClass(
                                 ContextQueryHelper.getMethodParamTypes(methodSignature3))));
     }
 
@@ -99,8 +99,8 @@ public class ContextQueryHelperTest {
 
         assert null == contextQueryArgConvertStringToObject("${contact}", Contract.class, context);
 
-        assert 0.2f == (Float)contextQueryArgConvertStringToObject("${float}", float.class, context);
-        assert 0.2f == (Float)contextQueryArgConvertStringToObject("0.2", float.class, context);
+        assert 0.2f == (Float) contextQueryArgConvertStringToObject("${float}", float.class, context);
+        assert 0.2f == (Float) contextQueryArgConvertStringToObject("0.2", float.class, context);
 
 
     }
@@ -111,7 +111,7 @@ public class ContextQueryHelperTest {
         String methodSignature4 = "findContractById(business.xx)";
         assert new ArrayList<Class>().equals(
                 Arrays.asList(
-                        ContextQueryHelper.getMethodParamClasses(
+                        ContextQueryHelper.getMethodParamClass(
                                 ContextQueryHelper.getMethodParamTypes(methodSignature4))));
     }
 
