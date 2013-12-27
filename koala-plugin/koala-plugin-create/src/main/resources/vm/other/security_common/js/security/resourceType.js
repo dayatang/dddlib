@@ -102,7 +102,7 @@ var resourceTypeManager = function(){
 			}else{
 				dialog.message({
 					type: 'error',
-					content: data.result
+					content: data.actionError
 				});
 			}
 		});
