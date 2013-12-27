@@ -86,7 +86,7 @@ var roleManager = function(){
 	var setData = function(item){
 		roleName.val(item.name);
 		roleDescript.val(item.roleDesc);
-	}
+	};
 		
 	/*
 	*   保存数据 id存在则为修改 否则为新增
@@ -118,7 +118,7 @@ var roleManager = function(){
 			return false;
 		}
 		return true;
-	}
+	};
 	/*
 	*获取表单数据
 	 */
@@ -311,11 +311,6 @@ var roleManager = function(){
 	 */
 	var initResourceTree = function(roleId){
 		$.get(contextPath + '/auth/Menu/findMenuTreeSelectItemByRole.koala?time='+new Date().getTime()+'&roleId='+roleId).done(function(result){
-			var setting = {
-				check: {
-					enable: true
-				}
-			};
 			var zNodes = new Array();
 			var items = result.data;
 			for(var i=0, j=items.length; i<j; i++){
@@ -343,7 +338,7 @@ var roleManager = function(){
                 multiSelect: true,
                 useChkBox: true,
                 cacheItems: true
-            })
+            });
 		});
 	};
 	/**
