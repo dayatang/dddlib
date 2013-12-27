@@ -65,4 +65,13 @@ public class CasUserApplicationImpl implements CasUserApplication {
 		return Response.ok().build();
 	}
 
+	@Override
+	public boolean isUserValid(String username, String password) {
+		// TODO TEST CODE
+		if(username.equals(password)){
+			return true;
+		}
+		return false;
+	}
+
 }

@@ -592,8 +592,8 @@ div.uploader input {
 }
 
 .tree .checkbox input {
-    position: relative;
-    top: -2px;
+    height: 20px;
+    margin: 0 0 0 -20px;
 }
 .tree .radio, .tree .checkbox {
     margin-top: 2px;
