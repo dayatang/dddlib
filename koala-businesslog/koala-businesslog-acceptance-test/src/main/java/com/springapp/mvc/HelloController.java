@@ -40,13 +40,9 @@ public class HelloController {
         // TODO 同步问题
         invoiceApplication.addInvoice("xxxx", 1l);
         invoiceApplication.addInvoice("yyyyyyyy", 1l);
-       /* try {
-            Thread.sleep(20000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         model.addAttribute("message",
-                "size:" + DefaultBusinessLog.findAll(DefaultBusinessLog.class).size());*/
+                "size:" + DefaultBusinessLog.findAll(DefaultBusinessLog.class).size());
         return "hello";
     }
 }

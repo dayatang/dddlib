@@ -6,6 +6,7 @@ import com.dayatang.spring.factory.SpringInstanceProvider;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
+import org.logicalcobwebs.proxool.ProxoolFacade;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -27,6 +28,7 @@ public abstract class AbstractIntegrationTest extends AbstractTransactionalJUnit
 	@After
 	public void tearDown() throws Exception {
 		InstanceFactory.setInstanceProvider(null);
+        //ProxoolFacade.shutdown(0);
 	}
 
 }

@@ -8,10 +8,37 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>koala-businesslog-acceptance-test</artifactId>
     <version>2.1.0-SNAPSHOT</version>
-
     <packaging>war</packaging>
     <name>koala-businesslog-acceptance-test</name>
     <description>用于对koala-businesslog的测试</description>
+
+    <!--<profiles>
+        <profile>
+            <id>bl-mysql</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <hibernate.hbm2ddl.auto>create-drop</hibernate.hbm2ddl.auto>
+                <hibernate.show_sql>true</hibernate.show_sql>
+                <db.generateDdl>true</db.generateDdl>
+                <db.Type>MYSQL</db.Type>
+                <db.port>3306</db.port>
+                <db.name>businesslog_test</db.name>
+                <hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>
+                <db.jdbcDriver>com.mysql.jdbc.Driver</db.jdbcDriver>
+                <db.groupId>mysql</db.groupId>
+                <db.artifactId>mysql-connector-java</db.artifactId>
+                <db.version>5.1.22</db.version>
+                <db.connectionURL>
+                    <![CDATA[jdbc:mysql://127.0.0.1:${db.port}/${db.name}?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8]]></db.connectionURL>
+                <db.username>root</db.username>
+                <db.password></db.password>
+            </properties>
+
+
+        </profile>
+    </profiles>-->
 
     <dependencies>
         <dependency>
@@ -64,6 +91,12 @@
             <version>5.1.22</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3.1</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -80,12 +113,12 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>koala-businesslog-acceptance-test</finalName>
+        <finalName>koala-businesslog</finalName>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.cargo</groupId>
                 <artifactId>cargo-maven2-plugin</artifactId>
-                <version>1.4.2</version>
+                <version>1.4.6</version>
                 <executions>
                     <execution>
                         <id>start-container</id>
@@ -100,9 +133,6 @@
                         <phase>post-integration-test</phase>
                         <goals>
                             <goal>stop</goal>
-                            <!--
-                                                         <goal>undeploy</goal>
-                            -->
                         </goals>
                     </execution>
                 </executions>
@@ -127,13 +157,11 @@
                             </cargo.jvmargs>
                         </properties>
                     </configuration>
-                    <deployer>
-
-                    </deployer>
                     <deployables>
                         <deployable>
                             <groupId>org.openkoala.businesslog</groupId>
-                            <artifactId>koala-businesslog-acceptance-test</artifactId>                            <type>war</type>
+                            <artifactId>koala-businesslog-acceptance-test</artifactId>
+                            <type>war</type>
                             <properties>
                                 <context>/</context>
                             </properties>
@@ -143,26 +171,49 @@
                     </deployables>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>com.lazerycode.jmeter</groupId>
+                <artifactId>jmeter-maven-plugin</artifactId>
+                <version>1.8.1</version>
+                <executions>
+                    <execution>
+                        <id>jmeter-tests</id>
+                        <configuration>
+                            <skipTests>true</skipTests>
+                        </configuration>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>jmeter</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.7.2</version>
+                <!--取消单单元测试-->
                 <configuration>
                     <skip>true</skip>
                 </configuration>
                 <executions>
                     <execution>
+                        <id>run-integration-test</id>
                         <phase>integration-test</phase>
                         <goals>
                             <goal>test</goal>
                         </goals>
                         <configuration>
                             <skip>false</skip>
+                            <includes>
+                                <include>MainIntegrationTest.java</include>
+                            </includes>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
@@ -185,17 +236,20 @@
             </plugin>
 
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <source>1.6</source>
                     <target>1.6</target>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.0</version>
+                <configuration>
+                    <dependentWarExcludes>WEB-INF/lib</dependentWarExcludes>
+                </configuration>
+            </plugin>
 
         </plugins>
 

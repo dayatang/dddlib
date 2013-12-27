@@ -21,7 +21,7 @@ public class AdminController {
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
         model.put("logs", "size:" + DefaultBusinessLog.findAll(DefaultBusinessLog.class).size());
-        return "hello";
+        return "admin";
 
     }
 }
