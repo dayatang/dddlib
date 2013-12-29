@@ -24,6 +24,11 @@
                 <target class="business.ProjectApplicationImpl">projectApplication</target>
                 <method>addProject()</method>
             </query>
+            <query key="projects">
+                <target class="business.ProjectApplicationImpl">projectApplication</target>
+                <method>findSomeProjects(List)</method>
+            </query>
+
 
         </queries>
     </businessLogConfig>

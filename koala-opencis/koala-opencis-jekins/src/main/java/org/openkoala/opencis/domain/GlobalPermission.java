@@ -8,7 +8,7 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.openkoala.opencis.JenkinsSecurityNotOpenException;
 import org.openkoala.opencis.PermissionElementNotExistException;
-import org.openkoala.opencis.PermissionOptionException;
+import org.openkoala.opencis.PermissionOperationException;
 
 public class GlobalPermission extends Permission {
 
@@ -28,9 +28,9 @@ public class GlobalPermission extends Permission {
 			writePermissionToXML(document);
 			return document;
 		} catch (DocumentException e) {
-			throw new PermissionOptionException(e.toString());
+			throw new PermissionOperationException(e.toString());
 		} catch (IOException e) {
-			throw new PermissionOptionException(e.toString());
+			throw new PermissionOperationException(e.toString());
 		}
 	}
 
