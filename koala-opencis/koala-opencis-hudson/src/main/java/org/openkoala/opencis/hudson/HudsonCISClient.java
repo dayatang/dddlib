@@ -86,7 +86,7 @@ public class HudsonCISClient implements CISClient {
 	}
 
 	@Override
-	public void createRoleIfNessceary(Project project, String roleName) {
+	public void createRoleIfNecessary(Project project, String roleName) {
 	}
 	
 	@Override

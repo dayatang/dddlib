@@ -39,7 +39,7 @@ public class HudsonCISClientTest {
 	public void testCreateRole() {
 		cisClient = new HudsonCISClient();
 //		cisClient.authenticate("admin", "admin");
-		cisClient.createRoleIfNessceary(null, null);
+		cisClient.createRoleIfNecessary(null, null);
 	}
 	
 	/*private Project createProject() {

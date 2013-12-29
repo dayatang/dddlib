@@ -44,60 +44,57 @@ import java.util.Random;
 @Ignore
 public class JenkinsCISClientTest {
 
-    private static final String JOB_NAME = "tenpay";
 
-    private static final String url = "http://10.108.1.138:8080";
+    private static URL JENKINS_URL;
 
-    private static final String JENKINS_HOST = "http://10.108.1.138:8080";
+    private static URL CAS_URL;
 
+    private JenkinsCISClient jenkinsCISClient;
 
-    private Project project;
+    static {
+        try {
+            JENKINS_URL = new URL("http", "10.108.1.138", 8080, "/jenkins");
+            CAS_URL = new URL("http", "10.108.1.138", 8080, "/cas/v1/tickets/");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
 
-    private Developer developer;
-
-    private JenkinsServerConfiguration jenkinsServerConfiguration
-            = new JenkinsServerConfiguration(JENKINS_HOST, "admin", "admin");
-
-	/*@Before
-    public void setUp() {
-		init();
-	}
-	
-	@After
-	public void tearDown() {
-		jenkinsCISClient.confirmRemoveJob(JOB_NAME);
-	}
-
-	private void init() {
-		jenkinsCISClient = new JenkinsCISClient(jenkinsServerConfiguration);
-		project = new Project();
-		project.setArtifactId(JOB_NAME);
-		developer = new Developer();
-		developer.setName("www");
-		developer.setEmail("admin@gmail.com");
-		createJob();
-	}*/
-
-
-    @Test
-    public void testCreateProject() throws MalformedURLException {
-
-        URL JENKINS_URL = new URL("http", "10.108.1.138", 8080, "/jenkins");
-
-        JenkinsCISClient jenkinsCISClient = new JenkinsCISClient(JENKINS_URL);
-        HttpCASAuthentication authentication = new HttpCASAuthentication(
-                new URL("http", "10.108.1.138", 8080, "/cas/v1/tickets/")
-                , "admin", "admin");
+    @Before
+    public void setUp() throws Exception {
+        jenkinsCISClient = new JenkinsCISClient(JENKINS_URL);
+        HttpCASAuthentication authentication = new HttpCASAuthentication(CAS_URL, "admin", "admin");
         authentication.setJenkinsAuthenticationUrl(JENKINS_URL);
         jenkinsCISClient.addAuthentication(authentication);
+    }
+
+    @Test
+    public void testOperationProject() throws MalformedURLException {
 
 
-        for (int i = 90; i < 123; i++) {
-            project = new Project();
+        for (int i = 135; i < 140; i++) {
+            Project project = new Project();
             project.setProjectName("projectName" + new Random(2100).nextInt());
-            project.setArtifactId("ArtifactIdasdfasdf" + i);
+            String jobName = "ArtifactIdasdfasdf" + i;
+            project.setArtifactId(jobName);
             jenkinsCISClient.createProject(project);
+
+            jenkinsCISClient.confirmRemoveJob(jobName);
         }
+
+
+    }
+
+    @Test
+    public void testCreateUserIfNecessary() {
+        Project project = new Project();
+        project.setArtifactId("ArtifactIdasdfasdfssdd");
+        Developer developer = new Developer();
+        developer.setName("www");
+        developer.setEmail("admin@gmail.com");
+        jenkinsCISClient.createProject(project);
+
+
 
 
     }

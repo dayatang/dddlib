@@ -34,7 +34,7 @@ public class TracCISClientTest {
 
 	@Test
 	public void testCreateRoleIfNessceary() {
-		client.createRoleIfNessceary(project, "developer");
+		client.createRoleIfNecessary(project, "developer");
 		assertTrue(client.isSuccess());
 	}
 
