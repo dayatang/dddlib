@@ -132,7 +132,7 @@ public class SvnCISClient implements CISClient {
 	
 
 	@Override
-	public void createRoleIfNessceary(Project project,String roleName) {
+	public void createRoleIfNecessary(Project project, String roleName) {
 		//svn创建角色和角色授权是一起执行的，即在角色授权时同时创建角色，因此这里不单独实现创建角色
 	}
 

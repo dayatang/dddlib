@@ -59,7 +59,7 @@ public class TracCISClient implements CISClient {
 	}
 
 	@Override
-	public void createRoleIfNessceary(Project project,String roleName) {
+	public void createRoleIfNecessary(Project project, String roleName) {
 		// TODO Auto-generated method stub
 		//使用java SSH来创建角色
 		//1、读取project的配置信息，包括该角色(用户组)默认的权限

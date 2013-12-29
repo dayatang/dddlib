@@ -2,6 +2,7 @@ package org.openkoala.opencis.jenkins;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.AbstractHttpClient;
@@ -68,13 +70,8 @@ public class JenkinsCISClient implements CISClient {
 
     @Override
     public void createProject(Project project) {
-        if (cisAuthentication != null && !cisAuthentication.authentication()) {
-            throw new AuthenticationException("jenkins authentication failure!");
-        }
-        HttpContext context = new BasicHttpContext();
-        if (cisAuthentication != null) {
-            context = cisAuthentication.getContext();
-        }
+
+        HttpContext context = authenticationAndGetContext();
 
         AbstractHttpClient httpClient = new DefaultHttpClient();
 
@@ -83,8 +80,6 @@ public class JenkinsCISClient implements CISClient {
         BasicHttpParams paramsName = new BasicHttpParams();
 
         paramsName.setParameter(CREATE_ITEM_API_PARAM, project.getArtifactId());
-        //createProjectPost.setParams(paramsName);
-        System.out.println(createProjectPost.getURI());
         try {
             StringEntity entity = new StringEntity(getConfigFileContent(), "UTF-8");
             createProjectPost.addHeader("Content-Type", "application/xml");
@@ -108,6 +103,7 @@ public class JenkinsCISClient implements CISClient {
 
     }
 
+
     @Override
     public void createUserIfNecessary(Project project, Developer developer) {
         List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -116,29 +112,38 @@ public class JenkinsCISClient implements CISClient {
         params.add(new BasicNameValuePair("password2", developer.getName()));
         params.add(new BasicNameValuePair("fullname", developer.getName()));
         params.add(new BasicNameValuePair("email", developer.getEmail()));
-        HttpInvoker httpInvoker = new HttpInvoker(getCreateAccountUrl(), params);
 
+        HttpContext context = authenticationAndGetContext();
+        AbstractHttpClient httpClient = new DefaultHttpClient();
         try {
-            HttpResponse response = httpInvoker.execute();
+            HttpPost httpPost = new HttpPost(jenkinsUrl.toString() + "");
+
+            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            HttpResponse response = httpClient.execute(httpPost, context);
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 logger.info("Create user account success.");
             } else {
                 throw new JenkinsCreateUserFailureException();
             }
-        } catch (Exception e) {
-            logger.error("Create user account occurs error.", e);
+        } catch (UnsupportedEncodingException e) {
+            throw new JenkinsCreateUserFailureException(e);
+        } catch (ClientProtocolException e) {
+            throw new JenkinsCreateUserFailureException(e);
+        } catch (IOException e) {
+            throw new JenkinsCreateUserFailureException(e);
         } finally {
-            httpInvoker.shutdown();
+            httpClient.getConnectionManager().shutdown();
         }
+
     }
 
     public void confirmRemoveJob(String jobName) {
+        HttpContext context = authenticationAndGetContext();
         HttpClient httpClient = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost(getConfirmRemoveJobUrl(jobName));
+        HttpPost httpPost = new HttpPost(jenkinsUrl.toString() + "/job/" + jobName + "/doDelete");
         try {
-            ((AbstractHttpClient) httpClient).setCookieStore(getAdminLoginJenkinsCookie());
-            HttpResponse response = httpClient.execute(httpPost);
-            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_BAD_REQUEST) {
+            HttpResponse response = httpClient.execute(httpPost, context);
+            if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
                 throw new RemoveJobFailureException("Remove job failure.");
             }
         } catch (Exception e) {
@@ -148,13 +153,9 @@ public class JenkinsCISClient implements CISClient {
         }
     }
 
-    private String getConfirmRemoveJobUrl(String jobName) {
-        return new StringBuilder(jenkinsServerConfiguration.getServerAddress()).append("/job/")
-                .append(jobName).append("/doDelete").toString();
-    }
 
     @Override
-    public void createRoleIfNessceary(Project project, String roleName) {
+    public void createRoleIfNecessary(Project project, String roleName) {
         GlobalPermission permission = new GlobalPermission(roleName);
         permission.save();
         reloadConfigToMemory();
@@ -168,9 +169,9 @@ public class JenkinsCISClient implements CISClient {
     }
 
     private void reloadConfigToMemory() {
-        CookieStore cookieStore = getAdminLoginJenkinsCookie();
+        CookieStore cookieStore = null;
         try {
-            String requestUrl = jenkinsServerConfiguration.getServerAddress() + "/reload";
+            String requestUrl = jenkinsUrl.toString() + "/reload";
             HttpInvoker httpInvoker = new HttpInvoker(requestUrl);
             ((AbstractHttpClient) httpInvoker.getHttpClient()).setCookieStore(cookieStore);
             httpInvoker.execute();
@@ -181,33 +182,22 @@ public class JenkinsCISClient implements CISClient {
         }
     }
 
-    private CookieStore getAdminLoginJenkinsCookie() {
-        String requestUrl = jenkinsServerConfiguration.getServerAddress() + "/j_acegi_security_check";
-        List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("j_username", jenkinsServerConfiguration.getUsername()));
-        params.add(new BasicNameValuePair("j_password", jenkinsServerConfiguration.getPassword()));
-        HttpInvoker httpInvoker = new HttpInvoker(requestUrl, params);
-        try {
-            HttpResponse httpResponse = httpInvoker.execute();
-            if (HttpStatus.SC_MOVED_TEMPORARILY == httpResponse.getStatusLine().getStatusCode()) {
-                return ((AbstractHttpClient) httpInvoker.getHttpClient()).getCookieStore();
-            }
-            throw new JenkinsAdminLoginException();
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     @Override
     public boolean canConnect() {
         return false;
     }
 
-    private String getCreateJobUrl(String jobName) {
-        return new StringBuilder(jenkinsServerConfiguration.getServerAddress()).append("/createItem?name=").append(jobName).toString();
+
+    private HttpContext authenticationAndGetContext() {
+        if (cisAuthentication != null && !cisAuthentication.authentication()) {
+            throw new AuthenticationException("jenkins authentication failure!");
+        }
+        HttpContext context = new BasicHttpContext();
+        if (cisAuthentication != null) {
+            context = cisAuthentication.getContext();
+        }
+        return context;
     }
 
     private String getCreateAccountUrl() {
@@ -260,7 +250,4 @@ public class JenkinsCISClient implements CISClient {
         this.cisAuthentication.setAppURL(jenkinsUrl);
     }
 
-    public boolean authentication() {
-        return cisAuthentication.authentication();
-    }
 }

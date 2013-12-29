@@ -67,7 +67,7 @@ public class SonarCISClient implements CISClient {
 	}
 
 	@Override
-	public void createRoleIfNessceary(Project project, String roleName) {
+	public void createRoleIfNecessary(Project project, String roleName) {
 		// TODO Auto-generated method stub
 	}
 

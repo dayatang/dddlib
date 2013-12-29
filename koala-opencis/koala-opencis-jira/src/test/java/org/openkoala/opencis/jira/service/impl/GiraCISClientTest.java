@@ -254,12 +254,12 @@ public class GiraCISClientTest {
 	@Test(expected = RoleNameBlankException.class)
 	public void testRoleNameBlank(){
 		this.packagingRoleNameBlank();
-		instance.createRoleIfNessceary(project, roleName);
+		instance.createRoleIfNecessary(project, roleName);
 	}
 
 	@Test
 	public void testCreateRoleIfNessceary() {
-		instance.createRoleIfNessceary(project, roleName);
+		instance.createRoleIfNecessary(project, roleName);
 		instance.removeRole(roleName);
 		assertTrue("创建角色成功！", true);
 	}
@@ -267,7 +267,7 @@ public class GiraCISClientTest {
 	@Test
 	public void testAddProjectRoleToUserButProjectNotExist(){
 		instance.createUserIfNecessary(project, developer);
-		instance.createRoleIfNessceary(project, roleName);
+		instance.createRoleIfNecessary(project, roleName);
 		
 		try {
 			instance.assignUserToRole(project, developer.getName(), roleName);
@@ -306,7 +306,7 @@ public class GiraCISClientTest {
 	public void testAddProjectRoleToUserButUserNotExist(){
 		project.setProjectLead(giraConfiguration.getAdminUserName());
 		instance.createProject(project);
-		instance.createRoleIfNessceary(project, roleName);
+		instance.createRoleIfNecessary(project, roleName);
 		
 		try {
 			instance.assignUserToRole(project, developer.getName(), roleName);
@@ -326,7 +326,7 @@ public class GiraCISClientTest {
 	public void testAssignUserToRole() {
 		instance.createUserIfNecessary(project, developer);
 		instance.createProject(project);
-		instance.createRoleIfNessceary(project, roleName);
+		instance.createRoleIfNecessary(project, roleName);
 
 		instance.assignUserToRole(project, developer.getName(), roleName);
 
