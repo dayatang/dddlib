@@ -66,19 +66,15 @@ public class JenkinsCISClient implements CISClient {
         this.jenkinsUrl = jenkinsUrl;
     }
 
-
     @Override
     public void createProject(Project project) {
         if (cisAuthentication != null && !cisAuthentication.authentication()) {
             throw new AuthenticationException("jenkins authentication failure!");
         }
-
         HttpContext context = new BasicHttpContext();
         if (cisAuthentication != null) {
             context = cisAuthentication.getContext();
         }
-
-
 
         AbstractHttpClient httpClient = new DefaultHttpClient();
 
