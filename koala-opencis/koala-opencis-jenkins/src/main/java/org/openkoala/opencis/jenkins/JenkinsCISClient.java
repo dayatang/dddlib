@@ -3,9 +3,7 @@ package org.openkoala.opencis.jenkins;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -75,9 +73,9 @@ public class JenkinsCISClient implements CISClient {
             throw new AuthenticationException("jenkins authentication failure!");
         }
 
-        BasicHttpContext context = new BasicHttpContext();
+        HttpContext context = new BasicHttpContext();
         if (cisAuthentication != null) {
-            context = (BasicHttpContext)cisAuthentication.getContext();
+            context = cisAuthentication.getContext();
         }
 
 
@@ -112,18 +110,6 @@ public class JenkinsCISClient implements CISClient {
         }
 
 
-    }
-
-
-    private BasicHttpContext createBasicHttpContextBy(Map<String, Object> map) {
-        BasicHttpContext result = new BasicHttpContext();
-        if (null == map) {
-            return result;
-        }
-        for (String key : map.keySet()) {
-            result.setAttribute(key, map.get(key));
-        }
-        return result;
     }
 
     @Override
@@ -167,7 +153,8 @@ public class JenkinsCISClient implements CISClient {
     }
 
     private String getConfirmRemoveJobUrl(String jobName) {
-        return new StringBuilder(jenkinsServerConfiguration.getServerAddress()).append("/job/").append(jobName).append("/doDelete").toString();
+        return new StringBuilder(jenkinsServerConfiguration.getServerAddress()).append("/job/")
+                .append(jobName).append("/doDelete").toString();
     }
 
     @Override

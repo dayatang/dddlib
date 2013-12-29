@@ -16,6 +16,11 @@ public interface CISAuthentication {
 
     CISAuthentication setAppURL(URL url);
 
+    /**
+     * 暂时依赖HttpContext
+     *
+     * @return
+     */
     HttpContext getContext();
 
 }
