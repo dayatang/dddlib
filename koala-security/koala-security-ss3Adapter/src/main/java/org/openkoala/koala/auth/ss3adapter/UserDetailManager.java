@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.openkoala.koala.auth.AuthDataService;
+import org.openkoala.koala.auth.vo.DefaultUserDetailsImpl;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
@@ -42,9 +43,9 @@ public class UserDetailManager implements UserDetailsService {
 	 * 根据用户名取得及权限等信息
 	 */
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
-		org.openkoala.koala.auth.UserDetails user = null;
+		DefaultUserDetailsImpl user = null;
 		try {
-			user = provider.loadUserByUseraccount(username);
+			user = (DefaultUserDetailsImpl) provider.loadUserByUseraccount(username);
 		} catch (Exception e) {
 			LOGGER.info(e.getMessage());
 		}
@@ -58,7 +59,7 @@ public class UserDetailManager implements UserDetailsService {
 		}
 
 		CustomUserDetails result = new CustomUserDetails(user.getPassword(), user.getUseraccount(), user.isAccountNonExpired(),
-				user.isAccountNonLocked(), user.isCredentialsNonExpired(), user.isEnabled(), gAuthoritys);
+				user.isAccountNonLocked(), user.isCredentialsNonExpired(), user.isEnabled(), gAuthoritys, user.getRealName());
 		result.setSuper(user.isSuper());
 		getCache().put(username, result);
 		return result;

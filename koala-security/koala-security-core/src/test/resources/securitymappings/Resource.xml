@@ -34,7 +34,7 @@
 	
 	<named-query name="findChildByParent">
 		<query>
-			select distinct child FROM ResourceLineAssignment m  join m.parent parent 
+			select distinct child from ResourceLineAssignment m join m.parent parent 
 			join m.child child where parent.id=? and m.abolishDate>? 
 			order by child.sortOrder asc
 		</query>
@@ -92,6 +92,13 @@
 		<query>
 			select resource from Resource resource where resource.identifier=?
 			and resource.abolishDate>?
+		</query>
+	</named-query>
+	
+	<named-query name="hasParent">
+		<query>
+			select assignment.child from ResourceLineAssignment assignment
+			where assignment.abolishDate>?
 		</query>
 	</named-query>
 	

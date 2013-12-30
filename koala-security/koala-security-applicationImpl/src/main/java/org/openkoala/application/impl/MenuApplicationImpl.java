@@ -25,10 +25,10 @@ import com.dayatang.querychannel.support.Page;
 import com.dayatang.utils.DateUtils;
 
 @Named
+@Remote
+@Stateless(name = "MenuApplication")
 @Transactional(value="transactionManager_security")
 @Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
-@Stateless(name = "MenuApplication")
-@Remote
 public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 
 	@Inject
@@ -102,8 +102,7 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 	}
 
 	public void removeMenu(Long menuId) {
-		Resource resource = Resource.load(Resource.class, menuId);
-		resource.removeResource();
+		Resource.load(Resource.class, menuId).removeResource();
 	}
 
 	public List<ResourceVO> findAllMenu() {

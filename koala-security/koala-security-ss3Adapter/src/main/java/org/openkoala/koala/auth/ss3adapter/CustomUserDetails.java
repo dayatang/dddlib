@@ -27,9 +27,11 @@ public class CustomUserDetails implements UserDetails {
 	private boolean enabled;
 
 	private boolean isSuper;
+	
+	private String realName;
 
 	public CustomUserDetails(String password, String username, boolean accountNonExpired, boolean accountNonLocked,
-			boolean credentialsNonExpired, boolean enabled, List<GrantedAuthority> gAuthoritys) {
+			boolean credentialsNonExpired, boolean enabled, List<GrantedAuthority> gAuthoritys, String realName) {
 
 		this.password = password;
 		this.username = username;
@@ -38,6 +40,7 @@ public class CustomUserDetails implements UserDetails {
 		this.credentialsNonExpired = credentialsNonExpired;
 		this.enabled = enabled;
 		this.authorities = gAuthoritys;
+		this.realName = realName;
 	}
 
 	public void setAuthorities(Collection<GrantedAuthority> authorities) {
@@ -78,6 +81,14 @@ public class CustomUserDetails implements UserDetails {
 
 	public void setSuper(boolean isSuper) {
 		this.isSuper = isSuper;
+	}
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
 
 }

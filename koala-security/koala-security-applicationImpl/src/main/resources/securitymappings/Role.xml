@@ -24,4 +24,10 @@
 		</query>
 	</named-query>
 	
+	<named-query name="findAllRoles">
+		<query>
+			select role from Role role where role.abolishDate>? 
+		</query>
+	</named-query>
+	
 </entity-mappings>

@@ -31,7 +31,7 @@ public class EJBSrcCopy {
 
 	private static final String EAR_MODULE = "ear";
 	private static final String SECURITY_MODULE_IMPL = "koala-security-applicationImpl";
-	private static final String SECURITY_MODULE_CORE = "koala-security-authJdbcImpl";
+	private static final String SECURITY_MODULE_CORE = "koala-security-authImpl";
 
 	private static final String MONITOR_CORE = "koala-jmonitor-core";
 
@@ -314,7 +314,7 @@ public class EJBSrcCopy {
 		PomXmlWriter.removeDependencies("org.openkoala.security",
 				"koala-security-applicationImpl", pomDocument);
 		PomXmlWriter.removeDependencies("org.openkoala.security",
-				"koala-security-authJdbcImpl", pomDocument);
+				"koala-security-authImpl", pomDocument);
 		PomXmlWriter.removeDependencies("org.openkoala.gqc",
 				"koala-gqc-applicationImpl", pomDocument);
 		PomXmlWriter.removeDependencies("org.openkoala.monitor",

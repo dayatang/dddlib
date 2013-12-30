@@ -7,8 +7,26 @@
 	<named-query name="findRelationByResource">
 		<query>
 			select distinct m from ResourceLineAssignment m
-			join m.child child join m.parent parent where child.id=? or parent.id=?
+			join m.child
+			child join m.parent parent where child.id=? or parent.id=?
+		</query>
+	</named-query>
+
+	<named-query name="findAllResourceLineByUseraccount">
+		<query>
+			select distinct m from ResourceLineAssignment m,
+			IdentityResourceAuthorization a,
+			RoleUserAuthorization b where
+			m.child.id=a.resource.id and a.identity.id=b.role.id
+			and b.user.userAccount=?
+			and a.abolishDate>? and b.abolishDate>?
 		</query>
 	</named-query>
 	
+	<named-query name="findAllResourceLine">
+		<query>
+			select m from ResourceLineAssignment m where m.abolishDate>?
+		</query>
+	</named-query>
+
 </entity-mappings>

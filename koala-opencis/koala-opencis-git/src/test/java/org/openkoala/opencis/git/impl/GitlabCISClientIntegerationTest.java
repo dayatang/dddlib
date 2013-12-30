@@ -19,11 +19,11 @@ import org.openkoala.opencis.api.CISClient;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 
-@Ignore
+//@Ignore
 public class GitlabCISClientIntegerationTest {
 
-	@SuppressWarnings("unchecked")
 	@Test
+	@SuppressWarnings("unchecked")
 	public void testCreateProject() throws IOException {
 		Project project = getProjectForTest();
 		GitlabConfiguration configuration = getConfigurationForTest();
@@ -73,18 +73,18 @@ public class GitlabCISClientIntegerationTest {
 		result.setDescription("This project is for test");
 		result.setProjectName("projectfortest");
 		result.setDevelopers(developers);
-		result.setProjectPath("E:\\temp\\temp\\projectfortest");
+		result.setProjectPath("F:\\temp\\temp\\projectfortest");
 		
 		return result;
 	}
 	
 	private GitlabConfiguration getConfigurationForTest() {
 		GitlabConfiguration result = new GitlabConfiguration();
-		result.setAdminUsername("xinminfang");
-		result.setAdminPassword("xmfang");
+		result.setAdminUsername("admin@local.host");
+		result.setAdminPassword("123456");
 		result.setAdminEmail("xinmin.fang@gmail.com");
-		result.setGitHostURL("http://10.108.1.102");
-		result.setToken("Hroq8x5zFZasydzFXEvC");
+		result.setGitHostURL("http://10.108.1.138:99");
+		result.setToken("p8sx2zcH6AzkksAvxifh");
 		return result;
 	}
 	

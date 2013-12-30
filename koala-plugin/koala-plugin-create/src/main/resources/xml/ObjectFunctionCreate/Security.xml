@@ -339,7 +339,7 @@
     <root>
 	<dependency>
 			<groupId>org.openkoala.security</groupId>
-			<artifactId>koala-security-authJdbcImpl</artifactId>
+			<artifactId>koala-security-authImpl</artifactId>
 	</dependency>
 	</root>
          ]]>

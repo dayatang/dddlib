@@ -61,7 +61,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.openkoala.koala</groupId>
-			<artifactId>wsSecurity-authJdbcImpl</artifactId>
+			<artifactId>wsSecurity-authImpl</artifactId>
 			<version>${koala.version}</version>
 		</dependency>
 		<dependency>

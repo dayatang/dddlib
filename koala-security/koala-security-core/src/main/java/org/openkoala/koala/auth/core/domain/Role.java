@@ -2,8 +2,10 @@ package org.openkoala.koala.auth.core.domain;
 
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import com.dayatang.utils.DateUtils;
 
 /**
@@ -134,6 +136,10 @@ public class Role extends Identity {
 	 */
 	public List<RoleUserAuthorization> getRoleUserAuthorizations() {
 		return RoleUserAuthorization.findUserAuthorizationByRole(getId());
+	}
+	
+	public static List<Role> findAllRoles() {
+		return Role.getRepository().findByNamedQuery("findAllRoles", new Object[] { new Date() }, Role.class);
 	}
 
 	@Override

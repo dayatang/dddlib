@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.openkoala.koala.jbpm.designer</groupId>
@@ -35,16 +36,13 @@
 			<artifactId>koala-jbpm-designer-infra</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.openkoala.jbpm.client</groupId>
-			<artifactId>koala-jbpm-ws-client</artifactId>
-			<version>${project.parent.version}</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.openkoala.jbpm.client</groupId> <artifactId>koala-jbpm-ws-client</artifactId> 
+			<version>${project.parent.version}</version> </dependency> -->
 		<dependency>
-            <groupId>org.openkoala.jbpm.core</groupId>
-            <artifactId>koala-jbpm-core-application</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
+			<groupId>org.openkoala.jbpm.core</groupId>
+			<artifactId>koala-jbpm-core-application</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
@@ -52,7 +50,7 @@
 		<dependency>
 			<groupId>org.openkoala.koalacommons</groupId>
 			<artifactId>koala-commons-ui-support</artifactId>
-	        <version>${project.parent.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<!-- 加入对查询通道的依赖 -->
 		<dependency>
@@ -117,6 +115,25 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-client</artifactId>
+			<version>3.0.0-milestone1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http-hc</artifactId>
+			<!-- 2.7.8 or 3.0.0-milestone1 -->
+			<version>3.0.0-milestone1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.8</version>
 		</dependency>
 	</dependencies>
 	<build>

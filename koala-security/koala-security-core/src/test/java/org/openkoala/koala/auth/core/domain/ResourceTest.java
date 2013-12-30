@@ -273,6 +273,12 @@ public class ResourceTest extends KoalaBaseSpringTestCase {
 		assertFalse(Resource.isMenu(createResource()));
 	}
 	
+	@Test
+	public void testGetRootResources() {
+		List<Resource> resources = Resource.getRootResources();
+		System.out.println(resources);
+	}
+	
 	/**
 	 * 创建资源
 	 * @return

@@ -9,7 +9,6 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<context:property-placeholder location="classpath*:ejb-client.properties" ignore-unresolvable="true"/>
 	<context:property-placeholder location="classpath*:security-db.properties" ignore-unresolvable="true"/>
-	<context:property-placeholder location="classpath*:security-sql.properties" ignore-unresolvable="true"/>
 
 	<bean id="jndiTemplate" class="org.springframework.jndi.JndiTemplate"
 		lazy-init="true">
