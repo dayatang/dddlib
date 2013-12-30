@@ -372,7 +372,7 @@ public class ResourceApplicationImpl extends BaseImpl implements ResourceApplica
         koalaDirectory.save();
         
         Resource organization = Resource.newResource("组织机构", "organization", "1", menuIcon);
-        Resource department =  Resource.newResource("部门管理", "/pages/organisation/departmentList.html", "2", menuIcon);
+        Resource department =  Resource.newResource("机构管理", "/pages/organisation/departmentList.html", "2", menuIcon);
         Resource job =  Resource.newResource("职务管理", "/pages/organisation/jobList.html", "2", menuIcon);
         Resource position =  Resource.newResource("岗位管理", "/pages/organisation/positionList.html", "2", menuIcon);
         Resource employee =  Resource.newResource("人员管理", "/pages/organisation/employeeList.html", "2", menuIcon);

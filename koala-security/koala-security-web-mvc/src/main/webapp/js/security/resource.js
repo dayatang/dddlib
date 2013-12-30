@@ -137,7 +137,7 @@ var resourceManager = function(){
 			}else{
 				dialog.message({
 					type: 'error',
-					content: data.result
+					content: data.actionError
 				});
 			}
 		});

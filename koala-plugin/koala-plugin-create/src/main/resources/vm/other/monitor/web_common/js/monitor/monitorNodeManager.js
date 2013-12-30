@@ -187,9 +187,13 @@ var monitorNodeManager = {
                     'shown.bs.modal': function(){
                         self.initData(nodeId, $(this));
                     }
-            }).find('#save').on('click', function(){
-
             });
+            //兼容IE8 IE9
+            if(window.ActiveXObject){
+               if(parseInt(navigator.userAgent.toLowerCase().match(/msie ([\d.]+)/)[1]) < 10){
+            	   dialog.trigger('shown.bs.modal');
+               }
+            }
         });
     },
 
@@ -202,7 +206,8 @@ var monitorNodeManager = {
             dialog.find('#mostCallMethod').html(data.mostCallMethod);
             dialog.find('#maxAvgTimeMethod').html(data.maxAvgTimeMethod);
             var exceptionRate = dialog.find('#exceptionRate');
-            exceptionRate.css('width', data.exceptionRate).find('span').html(data.exceptionRate);
+            dialog.find('#exceptionRateValue').html(data.exceptionRate);
+            exceptionRate.css('width', data.exceptionRate);
             var serverInfo = JSON.parse(data.serverInfo);
             if(serverInfo && serverInfo.error){
                 $("div.error").html(serverInfo.error);

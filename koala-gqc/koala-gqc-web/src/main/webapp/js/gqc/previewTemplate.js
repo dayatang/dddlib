@@ -32,18 +32,18 @@ $(function(){
 			if(dynamicQueryCondition.widgetType == 'TEXT'){
 				if(dynamicQueryCondition.queryOperation == 'BETWEEN'){
 					flag = true;
-					trHtml.push('<td class="query-value"><input data-role="startValue" class="form-control" style="display:inline;"/>&nbsp;AND&nbsp;<input data-role="endValue" class="form-control" required="true" style="display:inline;"/></td>');
+					trHtml.push('<td class="query-value"><input data-role="startValue" class="form-control" style="display:inline;"/><span>&nbsp;&nbsp;AND&nbsp;&nbsp;<span><input data-role="endValue" class="form-control" required="true" style="display:inline;"/></td>');
 				}else{
 					trHtml.push('<td class="query-value"><input data-role="value" class="form-control"/></td>')
 				}
 			}else{
 				if(dynamicQueryCondition.queryOperation == 'BETWEEN'){
 					flag = true;
-					trHtml.push('<td class="query-value"><div style="width:18%;" data-role="startTime" class="input-group date form_datetime"><input class="form-control" size="16" type="text" value=""><span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span></div>'+
+					trHtml.push('<td class="query-value"><div style="width:18%;" data-role="startTime" class="input-group date form_datetime" style="width:160px;"><input class="form-control" size="16" type="text" value="" style="width:156px!important;"><span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span></div>'+
 						'<div class="span">&nbsp;AND&nbsp;</div>'+
-						'<div style="width:18%;" data-role="endTime" class="input-group date form_datetime"><input class="form-control" size="16" type="text" value=""><span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span></div></td>');
+						'<div style="width:18%;" data-role="endTime" class="input-group date form_datetime" style="width:160px;"><input class="form-control" size="16" type="text" value="" style="width:156px!important;"><span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span></div></td>');
 				}else{
-					trHtml.push('<td class="query-value"><div data-role="time" class="input-group date form_datetime"><input class="form-control" size="16" type="text" value=""><span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span></div></td>');
+					trHtml.push('<td class="query-value"><div data-role="time" class="input-group date form_datetime" style="width:160px;"><input class="form-control" size="16" type="text" value="" style="width:156px!important;"><span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span></div></td>');
 				}
 			}
 			trHtml.push('</tr>');
@@ -65,7 +65,7 @@ $(function(){
 		var columns = new Array();
 		for(var i= 0, j=fieldDetails.length; i<j; i++){
 			var fieldDetail = fieldDetails[i];
-			columns.push({title: fieldDetail.label, name: fieldDetail.fieldName, width: i==(j-1) ? 'auto':'200px'});
+			columns.push({title: fieldDetail.label, name: fieldDetail.fieldName, width: '200px'});
 		}
 		$('#previewGrid').grid({
 			isShowButtons: false,

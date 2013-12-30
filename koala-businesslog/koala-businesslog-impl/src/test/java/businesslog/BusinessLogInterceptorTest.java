@@ -6,6 +6,7 @@ import com.dayatang.domain.InstanceProvider;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openkoala.businesslog.model.DefaultBusinessLog;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -24,7 +25,8 @@ import java.util.Map;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@Transactional(propagation = Propagation.REQUIRED)
+
+@Ignore
 public class BusinessLogInterceptorTest extends AbstractIntegrationTest {
 
     @Inject
@@ -37,7 +39,7 @@ public class BusinessLogInterceptorTest extends AbstractIntegrationTest {
     private ProjectApplication projectApplication;
 
     @Test
-    public void testFindProjects() throws ClassNotFoundException {
+    public void testFindProjects() throws ClassNotFoundException, InterruptedException {
 
         ThreadLocalBusinessLogContext.put("user", "张三");
         ThreadLocalBusinessLogContext.put("time", new Date());
@@ -56,6 +58,10 @@ public class BusinessLogInterceptorTest extends AbstractIntegrationTest {
         names.add("4");
 
         projectApplication.findSomeProjects(names);
+
+        System.out.println(DefaultBusinessLog.findAll(DefaultBusinessLog.class).size() + "===========");
+
+        assert DefaultBusinessLog.findAll(DefaultBusinessLog.class).size() == 3;
 
 
     }

@@ -106,6 +106,9 @@ body {
 	margin-left: auto;
     margin-right: auto;
 	margin-top: 8%;
+	font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 15px;
 }
 .login_footer {
 	clear: both;
@@ -159,7 +162,7 @@ body {
                     <input type="password" name="j_password" id="j_password" class="form-control" placeholder="密码"/>
                 </div>
 				<div class="form-group input-group">
-					<button type="button" class="btn btn-primary btn-login" onclick="javascript:login()">登陆</button>
+					<button type="button" class="btn btn-primary btn-login" onclick="javascript:login()">登录</button>
 				</div>
 			</FORM>
 		</div>
@@ -194,5 +197,4 @@ body {
 	</script>
 
 </body>
-</html>
 </html>

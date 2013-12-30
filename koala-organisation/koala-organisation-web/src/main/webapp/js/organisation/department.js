@@ -394,6 +394,7 @@ var department = function(){
 	var showEmployeeList = function(id){
 		$.get( contextPath + '/pages/organisation/departmentEmployeeList.html').done(function(data){
 			var employeeListDialog = $(data);
+
 			employeeListDialog.find('#deleteRelation').on('click',function(){
 				var grid = employeeListDialog.find('#employeeList');
 				deleteEmployeeRelation(id, grid.data('koala.grid').selectedRows() , grid);
@@ -407,6 +408,12 @@ var department = function(){
 						$(this).remove();
 					}
 				});
+                //兼容IE8 IE9
+                if(window.ActiveXObject){
+                   if(parseInt(navigator.userAgent.toLowerCase().match(/msie ([\d.]+)/)[1]) < 10){
+                       employeeListDialog.trigger('shown.bs.modal');
+                   }
+                }
 		});
 	};
 	var loadEmployeeList = function(employeeListDialog, id){

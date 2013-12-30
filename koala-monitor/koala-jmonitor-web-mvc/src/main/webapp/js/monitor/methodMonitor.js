@@ -14,7 +14,7 @@ $(function(){
     });
     var yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
-    startTime.datetimepicker('setDate', yesterday);
+    startTime.datetimepicker('setDate', yesterday)
     endTime.datetimepicker({
         language: 'zh-CN',
         format: "yyyy-mm-dd hh:ii:ss",
@@ -174,7 +174,8 @@ $(function(){
 });
 var showMethodMonitorDetail = function(method){
     $.get(contextPath + '/pages/monitor/method-monitor-detail.html').done(function(data){
-        $(data).modal({
+    	var dialog = $(data);
+    	dialog.modal({
             keyboard: true
         }).on({
                 'hidden.bs.modal': function(){
@@ -234,9 +235,15 @@ var showMethodMonitorDetail = function(method){
                         sortName: 'timeConsume',
                         sortOrder : 'DESC',
                         url : contextPath + '/monitor/Monitor/methodMonitorDetail.koala'
-                    })
+                    });
                 }
             });
+        //兼容IE8 IE9
+        if(window.ActiveXObject){
+           if(parseInt(navigator.userAgent.toLowerCase().match(/msie ([\d.]+)/)[1]) < 10){
+        	   dialog.trigger('shown.bs.modal');
+           }
+        }
     });
 }
 var showStackTracesDetail = function(obj){
@@ -251,7 +258,8 @@ var showStackTracesDetail = function(obj){
 }
 var showSqlsMonitorDetail = function(methodId){
     $.get('/pages/monitor/sql-monitor-detail.html').done(function(data){
-        $(data).modal({
+    	var dialog = $(data);
+    	dialog.modal({
         	keyboard: true,
         	backdrop: false
         }).on({
@@ -291,5 +299,11 @@ var showSqlsMonitorDetail = function(methodId){
                     });
                 }
         });
+        //兼容IE8 IE9
+        if(window.ActiveXObject){
+           if(parseInt(navigator.userAgent.toLowerCase().match(/msie ([\d.]+)/)[1]) < 10){
+        	   dialog.trigger('shown.bs.modal');
+           }
+        }
     });
 }

@@ -1,8 +1,6 @@
 package org.openkoala.businesslog.impl;
 
 import com.dayatang.domain.InstanceFactory;
-import org.apache.commons.beanutils.PropertyUtils;
-import org.openkoala.businesslog.QueryMethodConvertArgException;
 import org.openkoala.businesslog.QueryMethodInvokeException;
 import org.openkoala.businesslog.common.ContextQueryHelper;
 import org.openkoala.businesslog.config.BusinessLogContextQuery;
@@ -10,7 +8,6 @@ import org.openkoala.businesslog.config.BusinessLogContextQuery;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.text.MessageFormat;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -39,7 +36,7 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
     }
 
     @Override
-    public Map<String, Object> queryInContext(Map<String, Object> aContext) {
+    public synchronized Map<String, Object> queryInContext(final Map<String, Object> aContext) {
         Map<String, Object> context = aContext;
         if (null == context) {
             context = new ConcurrentHashMap<String, Object>();
@@ -78,7 +75,7 @@ public class BusinessLogDefaultContextQuery implements BusinessLogContextQuery {
 
     private Class[] getMethodParamClasses() {
         List<String> types = ContextQueryHelper.getMethodParamTypes(methodSignature);
-        return ContextQueryHelper.getMethodParamClasses(types);
+        return ContextQueryHelper.getMethodParamClass(types);
     }
 
     private Object getBean() {

@@ -14,7 +14,6 @@ import java.util.List;
  */
 @MappedSuperclass
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
-@Table(name = "koala_businesslogs")
 public abstract class AbstractBusinessLog implements com.dayatang.domain.Entity {
 
     private static final String ENTITY_REPOSITORY = "repository_businessLog";

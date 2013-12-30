@@ -6,15 +6,6 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-
-    <import resource="classpath*:koala-businesslog-aop.xml"/>
-    <import resource="classpath*:koala-businesslog-standalone-persistence.xml"/>
-
-
-    <bean id="contractApplication" class="business.ContractApplicationImpl"/>
-    <bean id="projectApplication" class="business.ProjectApplicationImpl"/>
-    <bean id="invoiceApplication" class="business.InvoiceApplicationImpl"/>
-
     <context:component-scan base-package="com.springapp.mvc"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

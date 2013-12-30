@@ -86,7 +86,7 @@ var roleManager = function(){
 	var setData = function(item){
 		roleName.val(item.name);
 		roleDescript.val(item.roleDesc);
-	}
+	};
 		
 	/*
 	*   保存数据 id存在则为修改 否则为新增
@@ -105,7 +105,7 @@ var roleManager = function(){
 			}else{
 				dialog.message({
 					type: 'error',
-					content: data.result
+					content: data.actionError
 				});
 			}
 		});
@@ -118,7 +118,7 @@ var roleManager = function(){
 			return false;
 		}
 		return true;
-	}
+	};
 	/*
 	*获取表单数据
 	 */
@@ -163,7 +163,7 @@ var roleManager = function(){
 					}else{
 						$('body').message({
 							type: 'error',
-							content: data.result
+							content: data.actionError
 						});
 					}
 				}).fail(function(data){
@@ -190,6 +190,12 @@ var roleManager = function(){
 						dataGrid.grid('refresh');
 					}
 			});
+			 //兼容IE8 IE9
+	        if(window.ActiveXObject){
+	           if(parseInt(navigator.userAgent.toLowerCase().match(/msie ([\d.]+)/)[1]) < 10){
+	        	   dialog.trigger('shown.bs.modal');
+	           }
+	        }
 		});
 	};
 	/**
@@ -246,7 +252,7 @@ var roleManager = function(){
 			});
 	};
 	var assignUser = function(roleId, name){
-		$(this).openTab('/pages/auth/user-list.html',
+		openTab('/pages/auth/user-list.html',
 			name+'的用户管理', 'userManager_'+roleId, roleId, {roleId: roleId});
 	};
 	/**
@@ -255,7 +261,8 @@ var roleManager = function(){
 	var assignResource = function(roleId){
 		$.get(contextPath + '/pages/auth/assign-resource.html').done(function(data){
 			var dialog = $(data);
-			dialog.find('#save').on('click',function(){
+            initResourceTree(roleId);
+            dialog.find('#save').on('click',function(){
 				var treeObj = $("#resourceTree").getTree();
 				var nodes = treeObj.selectedItems();
 				var data = {};
@@ -288,9 +295,6 @@ var roleManager = function(){
 					'hidden.bs.modal': function(){
 						$(this).remove();
 					},
-					'shown.bs.modal': function(){
-						initResourceTree(roleId);
-					},
 					'complete': function(){
 						$('body').message({
 							type: 'success',
@@ -307,11 +311,6 @@ var roleManager = function(){
 	 */
 	var initResourceTree = function(roleId){
 		$.get(contextPath + '/auth/Menu/findMenuTreeSelectItemByRole.koala?time='+new Date().getTime()+'&roleId='+roleId).done(function(result){
-			var setting = {
-				check: {
-					enable: true
-				}
-			};
 			var zNodes = new Array();
 			var items = result.data;
 			for(var i=0, j=items.length; i<j; i++){
@@ -339,7 +338,7 @@ var roleManager = function(){
                 multiSelect: true,
                 useChkBox: true,
                 cacheItems: true
-            })
+            });
 		});
 	};
 	/**

@@ -52,7 +52,13 @@ var selectEmployee = function(){
 						$(this).remove();
 					}
 				});
-		})
+			 //兼容IE8 IE9
+	        if(window.ActiveXObject){
+	           if(parseInt(navigator.userAgent.toLowerCase().match(/msie ([\d.]+)/)[1]) < 10){
+	        	   dialog.trigger('shown.bs.modal');
+	           }
+	        }
+		});
 	};
 
 	/**

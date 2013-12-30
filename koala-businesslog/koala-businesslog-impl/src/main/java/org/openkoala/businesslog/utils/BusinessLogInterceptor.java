@@ -52,6 +52,7 @@ public class BusinessLogInterceptor {
 
     public void log(JoinPoint joinPoint, Object result, Throwable error) {
 
+        System.out.println(joinPoint.getSignature().toString());
 
         if (!BusinessLogPropertiesConfig.getInstance().getLogEnableConfig()
                 || ThreadLocalBusinessLogContext.get().get(BUSINESS_METHOD) != null) {
@@ -65,6 +66,7 @@ public class BusinessLogInterceptor {
                 businessLogExporter,
                 queryExecutor)
         );
+
 
 
     }

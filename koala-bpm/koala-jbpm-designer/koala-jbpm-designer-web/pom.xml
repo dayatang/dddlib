@@ -17,7 +17,7 @@
     </properties>  
     <dependencies> 
         <dependency> 
-            <groupId>junit</groupId>  
+            <groupId>junit</groupId>
             <artifactId>junit</artifactId> 
         </dependency>  
         <dependency> 
@@ -113,6 +113,17 @@
             <artifactId>koala-security-applicationImpl</artifactId> 
             <version>${project.parent.version}</version> 
         </dependency> 
+        <dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
     </dependencies>  
     <build> 
         <plugins> 

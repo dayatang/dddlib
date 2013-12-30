@@ -190,6 +190,12 @@ var roleManager = function(){
 						dataGrid.grid('refresh');
 					}
 			});
+			//兼容IE8 IE9
+            if(window.ActiveXObject){
+               if(parseInt(navigator.userAgent.toLowerCase().match(/msie ([\d.]+)/)[1]) < 10){
+                   employeeListDialog.trigger('shown.bs.modal');
+               }
+            }
 		});
 	};
 	/**
@@ -246,7 +252,7 @@ var roleManager = function(){
 			});
 	};
 	var assignUser = function(roleId, name){
-		$(this).openTab('/pages/auth/user-list.html',
+		openTab('/pages/auth/user-list.html',
 			name+'的用户管理', 'userManager_'+roleId, roleId, {roleId: roleId});
 	};
 	/**

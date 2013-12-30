@@ -7,6 +7,7 @@ import org.openkoala.businesslog.config.BusinessLogContextQuery;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * User: zjzhai
@@ -29,7 +30,7 @@ public class BusinessLogEngine {
         this.render = render;
     }
 
-    public synchronized BusinessLog exportLogBy(String businessOperation, BusinessLogExporter exporter) {
+    public  BusinessLog exportLogBy(String businessOperation, BusinessLogExporter exporter) {
             BusinessLogConfig config = configAdapter.findConfigBy(businessOperation);
             if (null == config) {
                 return null;
@@ -46,9 +47,9 @@ public class BusinessLogEngine {
     }
 
 
-    private  Map<String, Object> createContext(BusinessLogConfig config) {
+    private synchronized   Map<String, Object> createContext(BusinessLogConfig config) {
         if (null == initContext) {
-            initContext = new Hashtable<String, Object>();
+            initContext = new ConcurrentHashMap<String, Object>();
         }
         List<BusinessLogContextQuery> list = config.getQueries();
         BusinessLogContextQuery[] queries = new BusinessLogContextQuery[list.size()];
@@ -67,7 +68,7 @@ public class BusinessLogEngine {
         this.configAdapter = configAdapter;
     }
 
-    public  void setInitContext(Map<String, Object> initContext) {
+    public synchronized void setInitContext(Map<String, Object> initContext) {
         this.initContext = initContext;
     }
 }

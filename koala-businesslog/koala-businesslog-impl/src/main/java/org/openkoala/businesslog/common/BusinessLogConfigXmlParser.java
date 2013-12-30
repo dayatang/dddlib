@@ -96,7 +96,7 @@ public class BusinessLogConfigXmlParser {
         return parsing(file);
     }
 
-    public synchronized static BusinessLogConfigXmlParser parsing(File xmlConfigPath) {
+    public static BusinessLogConfigXmlParser parsing(File xmlConfigPath) {
         Document doc = loadXmlDocument(xmlConfigPath);
         return new BusinessLogConfigXmlParser(doc);
     }

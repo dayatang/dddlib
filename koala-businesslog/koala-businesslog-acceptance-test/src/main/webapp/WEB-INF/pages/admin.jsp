@@ -4,7 +4,6 @@
     <title></title>
 </head>
 <body>
-有${logs.size()}条记录
-
+<h3 id="size">${logs}</h3>
 </body>
 </html>

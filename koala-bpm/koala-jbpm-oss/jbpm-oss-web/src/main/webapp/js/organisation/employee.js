@@ -149,6 +149,7 @@ var employee = function(){
 		$.get( contextPath + '/pages/organisation/selectDepartmentTemplate.html').done(function(data){
 			var departmentTreeDialog = $(data);
 			departmentTree = departmentTreeDialog.find('.tree');
+            loadDepartmentTree();
 			departmentTreeDialog.find('#confirm').on('click',function(){
 				departmentInput.val(departmentId);
 				selectDepartment.find('[data-toggle="item"]').text(departmentName);
@@ -159,9 +160,6 @@ var employee = function(){
 				backdrop: false,
 				keyboard: false
 			}).on({
-				'shown.bs.modal': function(){
-					loadDepartmentTree();
-				},
 				'hidden.bs.modal': function(){
 					$(this).remove();
 				}
@@ -427,7 +425,7 @@ var employee = function(){
 	 * 显示详细信息
 	 */
 	var showDetail = function(id, employeeName){
-		$('body').openTab('/pages/organisation/employeeDetail.html', employeeName, 'employeeDetail', id);
+		openTab('/pages/organisation/employeeDetail.html', employeeName, 'employeeDetail', id);
 	};
 	return {
 		add: add,

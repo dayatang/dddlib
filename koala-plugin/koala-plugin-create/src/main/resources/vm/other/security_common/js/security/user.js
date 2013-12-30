@@ -48,7 +48,7 @@ var userManager = function(){
 			}else{
 				$('body').message({
 					type: 'error',
-					content: data.result
+					content: data.actionError
 				});
 			}
 		}).fail(function(data){
@@ -101,7 +101,7 @@ var userManager = function(){
 	var setData = function(item){
 		userName.val(item.name);
 		userAccount.val(item.userAccount).attr('disabled', 'disabled');
-		email.val(item.userAccount).attr('disabled', 'disabled');
+		email.val(item.email).attr('disabled', 'disabled');
 		userPassword.closest('.form-group').hide();
 		userDescript.val(item.userDesc);
 		if(!item.valid){
@@ -127,7 +127,7 @@ var userManager = function(){
 			}else{
 				dialog.message({
 					type: 'error',
-					content: data.result
+					content: data.actionError
 				});
 			}
 		});
@@ -160,6 +160,7 @@ var userManager = function(){
 		var data = {};
 		data['userVO.name'] = userName.val();
 		data['userVO.userAccount'] = userAccount.val();
+        data['userVO.email'] = email.val();
 		if(item){
 			data['userVO.id'] = item.id;	
 		}else{
@@ -173,7 +174,7 @@ var userManager = function(){
 	 * 分配角色
 	 */
 	var assignRole = function(userId, userAccount){
-		$(this).openTab('/pages/auth/role-list.html',
+		openTab('/pages/auth/role-list.html',
 			userAccount+'的角色管理', 'roleManager_'+userId, userId, {userId: userId, userAccount:userAccount});
 	};
 	/**
@@ -207,7 +208,7 @@ var userManager = function(){
 					}else{
 						$('body').message({
 							type: 'error',
-							content: data.result
+							content: data.actionError
 						});
 					}
 				}).fail(function(data){
@@ -234,6 +235,12 @@ var userManager = function(){
 						dataGrid.grid('refresh');
 					}
 			});
+			 //兼容IE8 IE9
+	        if(window.ActiveXObject){
+	           if(parseInt(navigator.userAgent.toLowerCase().match(/msie ([\d.]+)/)[1]) < 10){
+	        	   dialog.trigger('shown.bs.modal');
+	           }
+	        }
 		});
 	};
 	/**
@@ -286,7 +293,7 @@ var userManager = function(){
 			}else{
 				$('body').message({
 					type: 'error',
-					content: data.result
+					content: data.actionError
 				});
 			}
 		}).fail(function(data){

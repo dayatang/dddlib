@@ -15,7 +15,8 @@ var changePost = function(){
 			postGrid = dialog.find('#postGrid');
 			selectedPost = dialog.find('#selectedPost');
 			loadExistPostList(employeeId);
-			dialog.find('#save').on('click',function(){
+            loadDepartmentTree(employeeId);
+            dialog.find('#save').on('click',function(){
 				if(selectedPost.find('.principal').length == 0){
 					$('body').message({
 						type: 'warning',
@@ -55,12 +56,18 @@ var changePost = function(){
 					keyboard: false
 				}).on({
 					'shown.bs.modal': function(){
-						loadDepartmentTree(employeeId);
+						//loadDepartmentTree(employeeId);
 					},
 					'hidden.bs.modal': function(){
 						$(this).remove();
 					}
 				});
+            //兼容IE8 IE9
+            if(window.ActiveXObject){
+               if(parseInt(navigator.userAgent.toLowerCase().match(/msie ([\d.]+)/)[1]) < 10){
+            	   dialog.trigger('shown.bs.modal');
+               }
+            }
 		});
 	};
 

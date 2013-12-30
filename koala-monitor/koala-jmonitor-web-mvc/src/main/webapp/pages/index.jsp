@@ -46,7 +46,7 @@
 	    <div class="col-xs-2 g-sidec">
 	        <ul class="nav nav-stacked first-level-menu">
 	            <li>
-                	<a data-toggle="collapse" href="#businessSupport"><i class="glyphicon glyphicon-list"></i>&nbsp;监控数据&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+                	<a data-toggle="collapse" href="#businessSupport"><i class="glyphicon glyphicon-list"></i>&nbsp;监控数据&nbsp;<i class="glyphicon glyphicon-chevron-left" style=" float: right;font-size: 12px;position: relative;right: 8px;top: 3px;"></i></a>
 	                <ul id="businessSupport" class="second-level-menu in">
 	                    <li class="submenu" data-role="openTab" data-target="/pages/monitor/http-monitor.html" data-title="HTTP监控" data-mark="httpMonitor"><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;HTTP监控</a></li>
                         <li class="submenu" data-role="openTab" data-target="/pages/monitor/method-monitor.html" data-title="方法监控" data-mark="methodMonitor"><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;方法监控</a></li>
@@ -54,13 +54,13 @@
 	                </ul>
 	            </li>
 	            <li>
-                <a data-toggle="collapse" href="#userRight"><i class="glyphicon glyphicon-list"></i>&nbsp;监控节点&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+                <a data-toggle="collapse" href="#userRight"><i class="glyphicon glyphicon-list"></i>&nbsp;监控节点&nbsp;<i class="glyphicon glyphicon-chevron-left" style=" float: right;font-size: 12px;position: relative;right: 8px;top: 3px;"></i></a>
 	                <ul id="userRight" class="second-level-menu in">
                          <li class="submenu" data-role="openTab" data-target="/pages/monitor/monitor-node-list.html" data-title="监控节点列表" data-mark="monitorNodeList"><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;监控节点列表</a></li>
 	                </ul>
 	            </li>
 	             <li>
-                    <a data-toggle="collapse" href="#organisation"><i class="glyphicon glyphicon-list"></i>&nbsp;监控服务&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
+                    <a data-toggle="collapse" href="#organisation"><i class="glyphicon glyphicon-list"></i>&nbsp;监控服务&nbsp;<i class="glyphicon glyphicon-chevron-left" style=" float: right;font-size: 12px;position: relative;right: 8px;top: 3px;"></i></a>
 	                <ul id="organisation" class="second-level-menu in">
 	                    <li class="submenu" data-role="openTab" data-target="/pages/monitor/schedule-list.html" data-title="定时任务" data-mark="scheduleList" ><a><i class="glyphicon glyphicon-list-alt"></i>&nbsp;定时任务</a></li>
 	                </ul>

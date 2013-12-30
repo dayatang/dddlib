@@ -108,7 +108,7 @@
                 $.get(contextPath + '/auth/Menu/findTopMenuByUser.koala').done(function(data){
                     $.each(data.data, function(){
                         var $li = $('<li><a data-toggle="collapse" href="#menuMark'+this.id+'"><span class="'+this.icon+'"></span>&nbsp;'+this.name+'&nbsp;'+
-                            '<i class="glyphicon glyphicon-chevron-left"></i></a><ul id="menuMark'+this.id+'" class="second-level-menu in"></ul></li>');
+                            '<i class="glyphicon glyphicon-chevron-left" style=" float: right;font-size: 12px;position: relative;right: 8px;top: 3px;"></i></a><ul id="menuMark'+this.id+'" class="second-level-menu in"></ul></li>');
                         $('.first-level-menu').append($li);
                         renderSubMenu(this.id, $li);
                     });
@@ -155,7 +155,7 @@
 								var title = $this.data('title');
 								var mark = $this.data('mark');
 								if(target && title && mark ){
-									$this.openTab(target, title, mark);
+									openTab(target, title, mark);
 								}
 							});
 				});

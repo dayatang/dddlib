@@ -16,6 +16,7 @@ import static org.openkoala.businesslog.common.ContextKeyConstant.*;
  */
 @Entity
 @DiscriminatorValue(value = "default")
+@Table(name = "koala_businesslogs")
 public class DefaultBusinessLog extends AbstractBusinessLog {
 
     private String user;
@@ -28,7 +29,7 @@ public class DefaultBusinessLog extends AbstractBusinessLog {
     @Transient
     private Map<String,Object> context;
 
-    public static DefaultBusinessLog createBy(BusinessLog businessLog) {
+    public synchronized static DefaultBusinessLog createBy(BusinessLog businessLog) {
         DefaultBusinessLog myBusinessLog = new DefaultBusinessLog();
         Map<String, Object> context = businessLog.getContext();
 

@@ -42,7 +42,7 @@
     width: 95%;
 }
 .page-server-summry-info .modal-body {
-    max-height: 400px;
+    max-height: 450px;
     overflow-y: auto;
 }
 .page-server-summry-info .title {

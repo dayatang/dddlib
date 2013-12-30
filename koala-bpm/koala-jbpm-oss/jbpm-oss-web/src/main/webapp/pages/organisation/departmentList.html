@@ -83,7 +83,7 @@
         var script = document.createElement('script');
         script.src = contextPath + '/js/organisation/department.js';
         script.onreadystatechange= function () {
-            if (this.readyState == 'complete'){
+            if (this.readyState == 'complete' || this.readyState == 'loaded'){
                 department().getTree();
             }
         }
@@ -105,10 +105,12 @@
             department().addCompany($('.right-content').find('[data-role="id"]').val());
         })
         $('#updateDepartment').on('click', function(){
-            department().updateDepartment($('.right-content').find('[data-role="id"]').val())
+            var id = $('.right-content').find('[data-role="id"]').val();
+            department().updateDepartment(id, $('#departmentTree').find('#'+id))
         })
         $('#updateCompany').on('click', function(){
-            department().updateCompany($('.right-content').find('[data-role="id"]').val())
+            var id = $('.right-content').find('[data-role="id"]').val();
+            department().updateCompany(id, $('#departmentTree').find('#'+id))
         })
        $('#delete').on('click', function(){
             $(this).confirm({
