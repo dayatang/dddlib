@@ -154,6 +154,9 @@
 		<tomcat.version>6.0.35</tomcat.version>
 		<aether.connector.version>1.13.1</aether.connector.version>
 		<koala.version>2.1.0-SNAPSHOT</koala.version>
+
+
+
 	</properties>
 
 	<profiles>
@@ -238,6 +241,11 @@
 				<version>2.1</version>
 				<scope>provided</scope>
 			</dependency>
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>1</version>
+            </dependency>
 			<dependency>
 				<groupId>javax.faces</groupId>
 				<artifactId>jsf-impl</artifactId>
@@ -254,6 +262,11 @@
 				<artifactId>commons-lang</artifactId>
 				<version>2.6</version>
 			</dependency>
+            <dependency>
+                <groupId>commons-configuration</groupId>
+                <artifactId>commons-configuration</artifactId>
+                <version>1.10</version>
+            </dependency>
 			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-lang3</artifactId>

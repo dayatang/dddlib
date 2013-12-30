@@ -16,7 +16,6 @@ import java.util.Random;
  * @author zyb <a href="mailto:zhuyuanbiao2013@gmail.com">zhuyuanbiao2013@gmail.com</a>
  * @since Nov 13, 2013 9:56:28 AM
  */
-@Ignore
 public class JenkinsCISClientTest {
 
 
@@ -37,7 +36,7 @@ public class JenkinsCISClientTest {
             CAS_URL = new URL("http", "10.108.1.138", 8080, "/cas/v1/tickets/");
 
 
-            project.setArtifactId("ArtifactIdasd232323232323");
+            project.setArtifactId("Artifactdddddd43323");
             developer.setName("www");
             developer.setEmail("admin@gmail.com");
 
@@ -57,7 +56,7 @@ public class JenkinsCISClientTest {
 
     @After
     public void tearDown() throws Exception {
-        // jenkinsCISClient.confirmRemoveJob(project.getArtifactId());
+        //jenkinsCISClient.confirmRemoveJob(project.getArtifactId());
     }
 
     @Test

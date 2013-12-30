@@ -23,6 +23,7 @@ import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
@@ -102,11 +103,13 @@ public class JenkinsCISClient implements CISClient {
         try {
             HttpPost httpPost = new HttpPost(jenkinsUrl.toString() + "/securityRealm/createAccount");
             httpPost.setEntity(new UrlEncodedFormEntity(createDeveloperNameValuePair(developer)));
+            System.out.println(EntityUtils.toString(httpPost.getEntity()));
             HttpResponse response = httpClient.execute(httpPost, context);
+            System.out.println(response.getStatusLine());
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_MOVED_TEMPORARILY) {
                 logger.info("Create user account success.");
             } else {
-                throw new JenkinsCreateUserFailureException();
+                throw new JenkinsCreateUserFailureException("");
             }
         } catch (UnsupportedEncodingException e) {
             throw new JenkinsCreateUserFailureException(e);
@@ -126,7 +129,6 @@ public class JenkinsCISClient implements CISClient {
         HttpPost httpPost = new HttpPost(jenkinsUrl.toString() + "/job/" + jobName + "/doDelete");
         try {
             HttpResponse response = httpClient.execute(httpPost, context);
-            System.out.println(response.getStatusLine());
             //jenkins返回的是302的码
             if (response.getStatusLine().getStatusCode() != HttpStatus.SC_MOVED_TEMPORARILY) {
                 throw new RemoveJobFailureException("Remove job failure.");
