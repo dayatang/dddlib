@@ -226,7 +226,7 @@
                 <version>2.7.2</version>
                 <!--取消单单元测试-->
                 <configuration>
-                    <skip>true</skip>
+                    <skip>false</skip>
                 </configuration>
                 <executions>
                     <execution>
@@ -236,7 +236,7 @@
                             <goal>test</goal>
                         </goals>
                         <configuration>
-                            <skip>true</skip>
+                            <skip>false</skip>
                             <includes>
                                 <include>MainIntegrationTest.java</include>
                             </includes>
