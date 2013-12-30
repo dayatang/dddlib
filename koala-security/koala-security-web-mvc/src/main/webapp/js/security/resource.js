@@ -114,8 +114,8 @@ var resourceManager = function(){
 		name.val(item.name);
 		identifier.val(item.identifier);
 		desc.val(item.desc);
-		resourceType.setValue(item.typeId)
-	}
+		resourceType.setValue(item.typeId);
+	};
 		
 	/*
 	*   保存数据 id存在则为修改 否则为新增
@@ -156,7 +156,7 @@ var resourceManager = function(){
 			return false;
 		}
 		return true;
-	}
+	};
 	/*
 	*获取表单数据
 	 */

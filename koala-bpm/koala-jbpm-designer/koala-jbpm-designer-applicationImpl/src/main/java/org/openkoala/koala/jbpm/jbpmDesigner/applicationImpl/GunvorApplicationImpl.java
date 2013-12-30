@@ -1,20 +1,9 @@
 package org.openkoala.koala.jbpm.jbpmDesigner.applicationImpl;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Named;
-
+import com.dayatang.domain.InstanceFactory;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.ByteArrayRequestEntity;
 import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -36,7 +25,11 @@ import org.openkoala.koala.jbpm.jbpmDesigner.application.vo.Bpmn2;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.vo.PackageVO;
 import org.springframework.beans.factory.annotation.Value;
 
-import com.dayatang.domain.InstanceFactory;
+import javax.inject.Named;
+import java.io.*;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 @Named("gunvorApplication")
 public class GunvorApplicationImpl implements GunvorApplication {
