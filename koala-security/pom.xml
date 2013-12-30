@@ -16,8 +16,7 @@
 		<module>koala-security-infra</module>
 		<module>koala-security-application</module>
 		<module>koala-security-auth</module>
-		<module>koala-security-authJdbcImpl</module>
-		<module>koala-security-authEJBImpl</module>
+		<module>koala-security-authImpl</module>
 		<module>koala-security-applicationImpl</module>
 		<module>koala-security-ss3Adapter</module>
 		<module>koala-security-ks-jbpm-adapter</module>
@@ -34,12 +33,12 @@
             <properties>
                 <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
                 <hibernate.show_sql>true</hibernate.show_sql>
-                <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
-                <db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
-                <db.connectionURL>jdbc:h2:~/db/security</db.connectionURL>
-                <db.username>sa</db.username>
-                <db.password />
-                <db.Type>H2</db.Type>
+                <hibernate.dialect>org.hibernate.dialect.MySQL5Dialect</hibernate.dialect>
+                <db.jdbcDriver>com.mysql.jdbc.Driver</db.jdbcDriver>
+                <db.connectionURL>jdbc:mysql://localhost:3306/security</db.connectionURL>
+                <db.username>root</db.username>
+                <db.password>root</db.password>
+                <db.Type>MySQL</db.Type>
                 <generateDdl>true</generateDdl>
             </properties>
         </profile>

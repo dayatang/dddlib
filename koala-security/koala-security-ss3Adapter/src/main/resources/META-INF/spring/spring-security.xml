@@ -6,11 +6,11 @@
 
 	<bean id="securityMetadataSource"
 		class="org.openkoala.koala.auth.ss3adapter.SecurityMetadataSource">
-		<property name="provider" ref="authDataService"></property>
+		<property name="provider" ref="authDataService" />
 	</bean>
 		
 	<bean id="userDetailManager" class="org.openkoala.koala.auth.ss3adapter.UserDetailManager">
-		<property name="provider" ref="authDataService"></property>
+		<property name="provider" ref="authDataService" />
 	</bean>
 
 	<bean id="accessDecisionManager" class="org.openkoala.koala.auth.ss3adapter.AccessDecisionManager"/>
@@ -24,14 +24,16 @@
 		<!-- 资源和权限列表 -->
 		<property name="securityMetadataSource" ref="securityMetadataSource" />
 	</bean>
+	
+	<bean id="loginAuthenticationProvider" class="org.openkoala.koala.auth.ss3adapter.LoginAuthenticationProvider">
+		<property name="authHandler" ref="authHandler" />
+		<property name="userDetailsService" ref="userDetailManager" />
+	</bean>
+	
 
 	<!-- 认证md5加密密码(原密码加盐值进行加密) -->
 	<s:authentication-manager alias="authenticationManager">
-		<s:authentication-provider user-service-ref="userDetailManager">
-			<s:password-encoder hash="md5" />
-		</s:authentication-provider>
+		<s:authentication-provider ref="loginAuthenticationProvider" />
 	</s:authentication-manager>
-	
-	
 
 </beans>

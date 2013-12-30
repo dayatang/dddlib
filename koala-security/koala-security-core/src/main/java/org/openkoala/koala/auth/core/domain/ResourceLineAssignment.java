@@ -2,10 +2,12 @@ package org.openkoala.koala.auth.core.domain;
 
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 import com.dayatang.utils.DateUtils;
 
 /**
@@ -81,6 +83,48 @@ public class ResourceLineAssignment extends Accountability {
 		    assignment.setAbolishDate(DateUtils.MAX_DATE);
         }
 	    return assignment;
+	}
+	
+	public static List<ResourceLineAssignment> findAllResourceLineByUseraccount(String useraccount) {
+		return ResourceLineAssignment.getRepository().findByNamedQuery(
+				"findAllResourceLineByUseraccount", new Object[] { useraccount, new Date(), new Date() }, 
+				ResourceLineAssignment.class);
+	}
+	
+	public static List<ResourceLineAssignment> findAllResourceLine() {
+		return ResourceLineAssignment.getRepository().findByNamedQuery(
+				"findAllResourceLine", new Object[] { new Date() }, ResourceLineAssignment.class);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((child == null) ? 0 : child.hashCode());
+		result = prime * result + ((parent == null) ? 0 : parent.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ResourceLineAssignment other = (ResourceLineAssignment) obj;
+		if (child == null) {
+			if (other.child != null)
+				return false;
+		} else if (!child.equals(other.child))
+			return false;
+		if (parent == null) {
+			if (other.parent != null)
+				return false;
+		} else if (!parent.equals(other.parent))
+			return false;
+		return true;
 	}
 
 }

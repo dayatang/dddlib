@@ -150,6 +150,15 @@ public class User extends Identity {
 			return null;
 		}
 	}
+	
+	public static User findByEmail(String email) {
+		try {
+			return User.getRepository().getSingleResult("select user from User user where user.email=?",
+					new Object[] { email }, User.class);
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
 
 	/**
 	 * 为用户分配单个角色 

@@ -5,23 +5,43 @@ import java.util.List;
 
 import org.openkoala.koala.auth.UserDetails;
 
-
-public class JdbcCustomUserDetails implements UserDetails {
-	private static final long serialVersionUID = 1L;
-	private List<String> authorities;
-	private String password;
-	private String useraccount;
-	private boolean accountNonExpired = true;
-	private boolean accountNonLocked = true;
-	private boolean credentialsNonExpired = true;
-	private boolean enabled = true;
-	private String description;
-	private String email;
-	private Date passwordLastUpdateDate;
-	private String realName;
-	private Date registryDate;
-	private boolean isSuper;
+/**
+ * UserDetails实现
+ * @author zhuyuanbiao
+ * @date Dec 25, 2013 9:57:27 AM
+ *
+ */
+public class DefaultUserDetailsImpl implements UserDetails {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2909376441295598896L;
 	
+	private List<String> authorities;
+	
+	private String password;
+	
+	private String useraccount;
+	
+	private boolean accountNonExpired = true;
+	
+	private boolean accountNonLocked = true;
+	
+	private boolean credentialsNonExpired = true;
+	
+	private boolean enabled = true;
+	
+	private String description;
+	
+	private String email;
+	
+	private Date passwordLastUpdateDate;
+	
+	private String realName;
+	
+	private Date registryDate;
+	
+	private boolean isSuper;
 
 	public String getDescription() {
 		return description;
@@ -124,16 +144,11 @@ public class JdbcCustomUserDetails implements UserDetails {
 	}
 
 	public boolean isSuper() {
-        return isSuper;
-    }
-
-    public void setSuper(boolean isSuper) {
-        this.isSuper = isSuper;
-    }
-
-    public JdbcCustomUserDetails()
-	{
-		
+		return isSuper;
 	}
-	
+
+	public void setSuper(boolean isSuper) {
+		this.isSuper = isSuper;
+	}
+
 }

@@ -1,14 +1,20 @@
 package org.openkoala.koala.auth.core.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import com.dayatang.utils.DateUtils;
 
 /**
@@ -28,7 +34,7 @@ public class Resource extends Party {
 	private boolean isValid;
 
 	/** 资源标识 **/
-	@Column(name = "IDENTIFIER", length = 100, nullable = false)
+	@Column(name = "IDENTIFIER", nullable = false)
 	private String identifier;
 
 	/** 资源级别 **/
@@ -36,16 +42,38 @@ public class Resource extends Party {
 	private String level;
 
 	/** 资源图标 **/
-	@Column(name = "MENU_ICON", length = 100)
+	@Column(name = "MENU_ICON")
 	private String menuIcon;
 
 	/** 资源描述 **/
-	@Column(name = "DESCRIPTION", length = 100)
+	@Column(name = "DESCRIPTION")
 	private String desc;
 
 	/** 角色资源授权关系 **/
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "resource")
 	private Set<IdentityResourceAuthorization> authorizations = new HashSet<IdentityResourceAuthorization>();
+	
+	@Transient
+	private Resource parent;
+	
+	public Resource getParent() {
+		return parent;
+	}
+
+	public void setParent(Resource parent) {
+		this.parent = parent;
+	}
+
+	public List<Resource> getChildren() {
+		return children;
+	}
+
+	public void addChild(Resource child) {
+		this.children.add(child);
+	}
+
+	@Transient
+	private List<Resource> children = new ArrayList<Resource>();
 
 	public String getIdentifier() {
 		return identifier;
@@ -55,6 +83,8 @@ public class Resource extends Party {
 		this.identifier = identifier;
 	}
 
+	
+	
 	public String getLevel() {
 		return level;
 	}
@@ -353,6 +383,33 @@ public class Resource extends Party {
 		return !Resource.findByNamedQuery("isResourceIdentifierExist", new Object[] { getIdentifier(), new Date() },
 				Resource.class).isEmpty();
 	}
+	
+	public static List<Resource> getRootResources() {
+		List<Resource> results = new ArrayList<Resource>();
+		List<Resource> all = Resource.findAll(Resource.class);
+		List<Resource> hasParent = hasParent();
+		all.removeAll(hasParent);
+		
+		Map<Long, Resource> map = new HashMap<Long, Resource>();
+		for (ResourceLineAssignment each : ResourceLineAssignment.findAllResourceLine()) {
+			Resource parent = map.get(each.getParent().getId());
+			if (parent == null) {
+				parent = each.getParent();
+				map.put(parent.getId(), parent);
+			}
+			Resource child = map.get( each.getChild().getId());
+			if (child == null) {
+				child = each.getChild();
+				map.put(child.getId(), child);
+			}
+			
+			parent.addChild(child);
+			if (all.contains(parent)) {
+				results.add(parent);
+			}
+		}
+		return results;
+	}
 
 	@Override
 	public int hashCode() {
@@ -382,6 +439,15 @@ public class Resource extends Party {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Resource [name=" + this.getName() + ",children=" + children + "]";
+	}
+
+	public static List<Resource> hasParent() {
+		return Resource.getRepository().findByNamedQuery("hasParent", new Object[]{new Date()}, Resource.class);
 	}
 
 }

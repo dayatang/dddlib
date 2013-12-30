@@ -30,7 +30,7 @@
 	            <div class="btn-group navbar-right">
 	                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 	                    <i class="glyphicon glyphicon-user"></i>
-	                    <span>&nbsp;<ss3:authentication property="principal.username" /></span>
+	                    <span>&nbsp;<ss3:authentication property="principal.realName" /></span>
 	                    <span class="caret"></span>
 	                </button>
 	                <ul class="dropdown-menu" id="userManager">

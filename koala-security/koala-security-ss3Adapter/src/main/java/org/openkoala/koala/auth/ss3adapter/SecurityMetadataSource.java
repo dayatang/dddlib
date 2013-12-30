@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import org.openkoala.koala.auth.AuthDataService;
+import org.openkoala.koala.auth.vo.DefaultUserDetailsImpl;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.core.GrantedAuthority;
@@ -73,7 +74,6 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 	 * @param res
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public boolean getResAuthByUseraccount(String userAccount, String res) {
 		List<String> grantRoles = getGrantRoles(res);
 		CustomUserDetails user =  getUserInfo(userAccount);
@@ -90,10 +90,11 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 		return false;
 	}
 	
-	private List<String> getGrantRoles(String res){
+	@SuppressWarnings("unchecked")
+	private List<String> getGrantRoles(String res) {
 		List<String> roles = new ArrayList<String>();
-		roles =  (List<String>) getResourceCache().get(res);
-		if(roles==null || roles.isEmpty()){
+		roles = (List<String>) getResourceCache().get(res);
+		if(roles == null || roles.isEmpty()) {
 			roles = provider.getAttributes(res);
 		}
 		return roles;
@@ -108,14 +109,14 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 	private CustomUserDetails getUserInfo(String userAccount){
 		CustomUserDetails userInfo = (CustomUserDetails)getUserCache().get(userAccount);
 		if(userInfo==null){
-			org.openkoala.koala.auth.UserDetails user = provider.loadUserByUseraccount(userAccount);
+			DefaultUserDetailsImpl user = (DefaultUserDetailsImpl) provider.loadUserByUseraccount(userAccount);
 			List<GrantedAuthority> gAuthoritys = new ArrayList<GrantedAuthority>();
 			for (String role : user.getAuthorities()) {
 				GrantedAuthorityImpl gai = new GrantedAuthorityImpl(role);
 				gAuthoritys.add(gai);
 			}
 			userInfo = new CustomUserDetails(user.getPassword(), user.getUseraccount(), user.isAccountNonExpired(),
-					user.isAccountNonLocked(), user.isCredentialsNonExpired(), user.isEnabled(), gAuthoritys);
+					user.isAccountNonLocked(), user.isCredentialsNonExpired(), user.isEnabled(), gAuthoritys, user.getRealName());
 			userInfo.setSuper(user.isSuper());
 			getUserCache().put(userAccount, userInfo);
 		}
