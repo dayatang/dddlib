@@ -41,8 +41,6 @@ public class HelloController {
         invoiceApplication.addInvoice("xxxx", 1l);
         invoiceApplication.addInvoice("yyyyyyyy", 1l);
 
-        model.addAttribute("message",
-                "size:" + DefaultBusinessLog.findAll(DefaultBusinessLog.class).size());
         return "hello";
     }
 }

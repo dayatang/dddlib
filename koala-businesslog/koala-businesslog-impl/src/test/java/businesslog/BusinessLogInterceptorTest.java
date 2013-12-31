@@ -59,7 +59,6 @@ public class BusinessLogInterceptorTest extends AbstractIntegrationTest {
 
         projectApplication.findSomeProjects(names);
 
-        System.out.println(DefaultBusinessLog.findAll(DefaultBusinessLog.class).size() + "===========");
 
         assert DefaultBusinessLog.findAll(DefaultBusinessLog.class).size() == 3;
 

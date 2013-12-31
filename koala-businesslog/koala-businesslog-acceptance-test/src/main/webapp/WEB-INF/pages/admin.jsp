@@ -4,6 +4,6 @@
     <title></title>
 </head>
 <body>
-<h3 id="size">${logs}</h3>
+<h3 id="size">${logs.size()}</h3>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package org.openkoala.businesslog.impl;
 
+import com.dayatang.domain.InstanceFactory;
 import org.openkoala.businesslog.BusinessLogExporter;
 import org.openkoala.businesslog.BusinessLog;
 import org.openkoala.businesslog.application.BusinessLogApplication;
@@ -14,7 +15,6 @@ import javax.inject.Inject;
  */
 public class BusinessLogJpaDefaultExporter implements BusinessLogExporter {
 
-    @Inject
     private BusinessLogApplication businessLogApplication;
 
     /**
@@ -26,9 +26,14 @@ public class BusinessLogJpaDefaultExporter implements BusinessLogExporter {
     @Override
     public void export(BusinessLog businessLog) {
         DefaultBusinessLog log = DefaultBusinessLog.createBy(businessLog);
-        businessLogApplication.save(log);
+        getBusinessLogApplication().save(log);
         assert log.getId() != null;
     }
 
-
+    public BusinessLogApplication getBusinessLogApplication() {
+        if (null == businessLogApplication) {
+            businessLogApplication = InstanceFactory.getInstance(BusinessLogApplication.class, "businessLogApplication");
+        }
+        return businessLogApplication;
+    }
 }
