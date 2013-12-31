@@ -1,10 +1,14 @@
 package org.openkoala.organisation.application.dto;
 
+import java.io.Serializable;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.openkoala.organisation.domain.Post;
 
-public class ResponsiblePostDTO {
+public class ResponsiblePostDTO implements Serializable {
+
+	private static final long serialVersionUID = -4923359393439988366L;
 
 	private Long postId;
 	
