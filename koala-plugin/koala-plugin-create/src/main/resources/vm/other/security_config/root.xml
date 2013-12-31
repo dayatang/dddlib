@@ -15,7 +15,7 @@
 	<import resource="classpath*:META-INF/spring/root.xml" />
 	
 	<import resource="classpath*:META-INF/spring/spring-security.xml"/>
-	<import resource="classpath:spring/spring-http.xml"/>
-	<import resource="classpath:spring/security-custom.xml"/>
+	<import resource="classpath:META-INF/spring/spring-http.xml"/>
+	<import resource="classpath:META-INF/spring/security-custom.xml"/>
 	<import resource="classpath*:META-INF/spring/spring-ehcache.xml"/>
 </beans>
