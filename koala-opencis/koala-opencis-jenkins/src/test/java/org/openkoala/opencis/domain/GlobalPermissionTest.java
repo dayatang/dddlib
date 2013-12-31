@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.openkoala.opencis.JenkinsSecurityNotOpenException;
 import org.openkoala.opencis.PermissionElementNotExistException;
 import org.openkoala.opencis.PropertyIllegalException;
+import org.openkoala.opencis.utils.JenkinsConfUtil;
 
 @Ignore
 public class GlobalPermissionTest extends PermissionTest {
@@ -23,7 +24,7 @@ public class GlobalPermissionTest extends PermissionTest {
 		Document document = permission.save();
 		assertNotNull(document);
 		assertTrue(xmlConfigContainNewPermission(document, XPATH));
-		removePermission(document, PARENT_XPATH, GlobalPermission.JENKINS_CONFIG_XML_PATH);
+		removePermission(document, PARENT_XPATH, JenkinsConfUtil.getJenkinsConfigXmlPath());
 		assertFalse(xmlConfigContainNewPermission(document, XPATH));
 	}
 	

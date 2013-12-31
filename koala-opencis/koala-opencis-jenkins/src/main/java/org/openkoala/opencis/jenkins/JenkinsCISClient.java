@@ -8,13 +8,11 @@ import java.net.URLEncoder;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -22,8 +20,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
@@ -35,8 +31,6 @@ import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.authentication.CISAuthentication;
 import org.openkoala.opencis.domain.GlobalPermission;
 import org.openkoala.opencis.domain.ProjectPermission;
-import org.openkoala.opencis.http.HttpInvoker;
-import org.openkoala.opencis.pojo.JenkinsServerConfiguration;
 
 /**
  * Jenkins CIS客户端
@@ -103,9 +97,7 @@ public class JenkinsCISClient implements CISClient {
         try {
             HttpPost httpPost = new HttpPost(jenkinsUrl.toString() + "/securityRealm/createAccount");
             httpPost.setEntity(new UrlEncodedFormEntity(createDeveloperNameValuePair(developer)));
-            System.out.println(EntityUtils.toString(httpPost.getEntity()));
             HttpResponse response = httpClient.execute(httpPost, context);
-            System.out.println(response.getStatusLine());
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_MOVED_TEMPORARILY) {
                 logger.info("Create user account success.");
             } else {

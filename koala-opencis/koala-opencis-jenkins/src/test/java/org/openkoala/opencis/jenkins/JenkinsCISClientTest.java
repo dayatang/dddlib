@@ -16,6 +16,7 @@ import java.util.Random;
  * @author zyb <a href="mailto:zhuyuanbiao2013@gmail.com">zhuyuanbiao2013@gmail.com</a>
  * @since Nov 13, 2013 9:56:28 AM
  */
+@Ignore
 public class JenkinsCISClientTest {
 
 
@@ -32,8 +33,8 @@ public class JenkinsCISClientTest {
 
     static {
         try {
-            JENKINS_URL = new URL("http", "10.108.1.138", 8080, "/jenkins");
-            CAS_URL = new URL("http", "10.108.1.138", 8080, "/cas/v1/tickets/");
+            JENKINS_URL = new URL("http", "127.0.0.1", 8080, "/jenkins");
+            CAS_URL = new URL("http", "127.0.0.1", 8080, "/cas/v1/tickets/");
 
 
             project.setArtifactId("Artifactdddfee3323");
@@ -50,7 +51,7 @@ public class JenkinsCISClientTest {
         jenkinsCISClient = new JenkinsCISClient(JENKINS_URL);
         HttpCASAuthentication authentication = new HttpCASAuthentication(CAS_URL, "admin", "admin");
         authentication.setJenkinsAuthenticationUrl(JENKINS_URL);
-        jenkinsCISClient.addAuthentication(authentication);
+        // jenkinsCISClient.addAuthentication(authentication);
         jenkinsCISClient.createProject(project);
     }
 
