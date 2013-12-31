@@ -36,7 +36,7 @@ public class JenkinsCISClientTest {
             CAS_URL = new URL("http", "10.108.1.138", 8080, "/cas/v1/tickets/");
 
 
-            project.setArtifactId("Artifactdddddd43323");
+            project.setArtifactId("Artifactdddfee3323");
             developer.setName("www");
             developer.setEmail("admin@gmail.com");
 
@@ -56,13 +56,13 @@ public class JenkinsCISClientTest {
 
     @After
     public void tearDown() throws Exception {
-        //jenkinsCISClient.confirmRemoveJob(project.getArtifactId());
+        jenkinsCISClient.confirmRemoveJob(project.getArtifactId());
     }
 
     @Test
     public void testOperationProject() throws MalformedURLException {
         Project project1 = new Project();
-        project1.setArtifactId("ArtifactIsdfffggsdfs23");
+        project1.setArtifactId("Artifacadmin1tIsdfffggsdfs23");
         project1.setProjectName("projectNamesdfdsfsfs");
         jenkinsCISClient.createProject(project1);
         jenkinsCISClient.confirmRemoveJob(project1.getArtifactId());
