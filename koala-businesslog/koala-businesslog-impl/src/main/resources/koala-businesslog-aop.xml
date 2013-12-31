@@ -19,14 +19,15 @@
 
     <context:property-placeholder
             location="classpath*:koala-businesslog.properties" ignore-unresolvable="true"/>
-     <bean id="businessLogRender" class="org.openkoala.businesslog.impl.BusinessLogFreemarkerDefaultRender" />
+    <bean id="businessLogApplication" class="org.openkoala.businesslog.applicationImpl.BusinessLogApplicationImpl"/>
+    <bean id="businessLogRender" class="${businessLogRender}"/>
+    <bean id="businessLogConfigAdapter" class="${businessLogConfigAdapter}"/>
+    <bean id="businessLogExporter" class="${businessLogExporter}"></bean>
+    <bean id="queryExecutor" class="${businessLogQueryExecutor}"/>
     <bean id="logInterceptor" class="org.openkoala.businesslog.utils.BusinessLogInterceptor"/>
-    <bean id="businessLogConfigAdapter" class="org.openkoala.businesslog.impl.BusinessLogXmlConfigDefaultAdapter"/>
-    <bean id="businessLogExporter" class="org.openkoala.businesslog.impl.BusinessLogJpaDefaultExporter"></bean>
-    <bean id="queryExecutor" class="org.openkoala.businesslog.impl.BusinessLogDefaultContextQueryExecutor"/>
 
     <!-- 加了 proxy-target-class="true" 使spring集中制使用cglib的代理 -->
-    <aop:config proxy-target-class="true" >
+    <aop:config proxy-target-class="true">
         <aop:pointcut id="businessBehavior" expression="${pointcut}"/>
         <aop:aspect id="logAspect" ref="logInterceptor">
             <aop:after-returning returning="result" method="logAfter" pointcut-ref="businessBehavior"/>
@@ -35,7 +36,7 @@
     </aop:config>
 
     <!-- 异步线程池 -->
-    <bean id="threadPool" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+    <bean id="threadPoolTaskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
         <!-- 核心线程数  -->
         <property name="corePoolSize" value="${log.threadPool.corePoolSize}"/>
         <!-- 最大线程数 -->

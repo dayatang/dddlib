@@ -4,8 +4,6 @@ import static org.openkoala.businesslog.common.ContextKeyConstant.*;
 
 import com.dayatang.domain.InstanceFactory;
 
-import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.PropertiesConfiguration;
 import org.aspectj.lang.JoinPoint;
 import org.openkoala.businesslog.*;
 import org.openkoala.businesslog.common.BusinessLogPropertiesConfig;
@@ -13,12 +11,9 @@ import org.openkoala.businesslog.common.LogEngineThread;
 import org.openkoala.businesslog.config.BusinessLogConfigAdapter;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import javax.inject.Inject;
-
 import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
-import java.util.logging.Logger;
 
 /**
  * User: zjzhai Date: 11/28/13 Time: 11:38 AM
@@ -26,20 +21,15 @@ import java.util.logging.Logger;
 public class BusinessLogInterceptor {
 
 
-    @Inject
     private BusinessLogConfigAdapter businessLogConfigAdapter;
 
-    @Inject
     private BusinessLogRender businessLogRender;
 
-    @Inject
     private BusinessLogExporter businessLogExporter;
 
-    @Inject
     private BusinessLogContextQueryExecutor queryExecutor;
 
-    @Inject
-    private ThreadPoolTaskExecutor executor;
+    private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
     public void logAfter(JoinPoint joinPoint, Object result) {
         log(joinPoint, result, null);
@@ -52,21 +42,27 @@ public class BusinessLogInterceptor {
 
     public void log(JoinPoint joinPoint, Object result, Throwable error) {
 
-        System.out.println(joinPoint.getSignature().toString());
-
         if (!BusinessLogPropertiesConfig.getInstance().getLogEnableConfig()
                 || ThreadLocalBusinessLogContext.get().get(BUSINESS_METHOD) != null) {
             return;
         }
-        executor.execute(new LogEngineThread(
+
+        LogEngineThread logEngineThread = new LogEngineThread(
                 Collections.unmodifiableMap(createDefaultContext(joinPoint, result, error)),
                 joinPoint.getSignature().toString(),
-                businessLogConfigAdapter,
-                businessLogRender,
-                businessLogExporter,
-                queryExecutor)
-        );
+                getBusinessLogConfigAdapter(),
+                getBusinessLogRender(),
+                getBusinessLogExporter(),
+                getQueryExecutor());
 
+
+        if (null == getThreadPoolTaskExecutor()) {
+            System.err.println("ThreadPoolTaskExecutor is not set or null");
+            logEngineThread.run();
+        } else {
+            getThreadPoolTaskExecutor().execute(logEngineThread);
+
+        }
 
 
     }
@@ -92,5 +88,44 @@ public class BusinessLogInterceptor {
 
     }
 
+    public BusinessLogConfigAdapter getBusinessLogConfigAdapter() {
+        if (null == businessLogConfigAdapter) {
+            businessLogConfigAdapter = InstanceFactory.getInstance(BusinessLogConfigAdapter.class, "businessLogConfigAdapter");
+        }
 
+        return businessLogConfigAdapter;
+    }
+
+    public BusinessLogRender getBusinessLogRender() {
+        if (null == businessLogRender) {
+            businessLogRender = InstanceFactory.getInstance(BusinessLogRender.class, "businessLogRender");
+
+        }
+        return businessLogRender;
+    }
+
+    public BusinessLogExporter getBusinessLogExporter() {
+        if (null == businessLogExporter) {
+            businessLogExporter = InstanceFactory.getInstance(BusinessLogExporter.class, "businessLogExporter");
+
+        }
+        return businessLogExporter;
+    }
+
+    public BusinessLogContextQueryExecutor getQueryExecutor() {
+        if (null == queryExecutor) {
+            queryExecutor = InstanceFactory.getInstance(BusinessLogContextQueryExecutor.class, "queryExecutor");
+
+        }
+        return queryExecutor;
+    }
+
+    public ThreadPoolTaskExecutor getThreadPoolTaskExecutor() {
+        if (null == threadPoolTaskExecutor) {
+            threadPoolTaskExecutor = InstanceFactory.getInstance(ThreadPoolTaskExecutor.class, "threadPoolTaskExecutor");
+
+        }
+
+        return threadPoolTaskExecutor;
+    }
 }

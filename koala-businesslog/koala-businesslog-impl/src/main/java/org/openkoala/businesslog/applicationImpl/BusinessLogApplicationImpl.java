@@ -28,7 +28,6 @@ import java.util.List;
  * Date: 12/11/13
  * Time: 3:12 PM
  */
-@Named
 @Transactional
 @Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
 @Stateless(name = "BusinessLogApplication")
@@ -55,7 +54,7 @@ public class BusinessLogApplicationImpl implements BusinessLogApplication {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        defaultBusinessLogDTO.setId((java.lang.Long) defaultBusinessLog.getId());
+        defaultBusinessLogDTO.setId(defaultBusinessLog.getId());
         return defaultBusinessLogDTO;
     }
 

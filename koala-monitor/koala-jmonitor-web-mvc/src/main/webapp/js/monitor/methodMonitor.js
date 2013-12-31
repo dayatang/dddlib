@@ -186,7 +186,7 @@ var showMethodMonitorDetail = function(method){
                         {
                             title : '方法',
                             name : 'method',
-                            width : 250
+                            width : 450
                         },
                         {
                             title : '耗时（毫秒）',
@@ -271,7 +271,7 @@ var showSqlsMonitorDetail = function(methodId){
                         {
                             title : 'SQL',
                             name : 'sql',
-                            width : 150
+                            width : 450
                         },
                         {
                             title : '耗时（毫秒）',
