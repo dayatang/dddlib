@@ -9,7 +9,6 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<context:property-placeholder location="classpath*:security-db.properties" ignore-unresolvable="true"/>
-	<context:property-placeholder location="classpath*:security-sql.properties" ignore-unresolvable="true"/>
 	
 	<import resource="base.xml" />
 	
@@ -17,7 +16,6 @@
 	
 	<import resource="classpath*:META-INF/spring/spring-security.xml"/>
 	<import resource="classpath:spring/spring-http.xml"/>
+	<import resource="classpath:spring/security-custom.xml"/>
 	<import resource="classpath*:META-INF/spring/spring-ehcache.xml"/>
-	<!--如果使用EJB部署，就使用authDataService-ejb.xml,如果使用JDBC部署，就使用authDataService-jdbc.xml-->
-	<import resource="classpath*:META-INF/spring/authDataService-jdbc.xml"/>
 </beans>
