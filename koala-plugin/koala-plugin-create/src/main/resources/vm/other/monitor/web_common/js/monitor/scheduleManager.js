@@ -18,7 +18,7 @@ var scheduleManager = {
                 '</tbody>' +
             '</table></div>' +
             '<div class="modal-footer">' +
-                 '<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>' +
+                 '<button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>' +
             '</div></div>' +
             '</div></div>');
         dialog.modal({

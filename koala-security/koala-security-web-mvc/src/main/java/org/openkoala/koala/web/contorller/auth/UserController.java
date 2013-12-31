@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.support.Page;
 
 @Controller
@@ -35,12 +34,9 @@ public class UserController {
 	@Inject
 	private RoleApplication roleApplication;
 	
-	private static PasswordEncoder passwordEncoder;
+	@Inject
+	private PasswordEncoder passwordEncoder;
 	
-	static {
-		passwordEncoder = InstanceFactory.getInstance(PasswordEncoder.class, "passwordEncoder");
-	}
-
 	@ResponseBody
 	@RequestMapping("/updatePassword")
 	public Map<String, Object> updatePassword(@RequestParam String oldPassword,@RequestParam String userPassword) {

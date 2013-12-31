@@ -33,12 +33,12 @@
             <properties>
                 <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
                 <hibernate.show_sql>true</hibernate.show_sql>
-                <hibernate.dialect>org.hibernate.dialect.MySQL5Dialect</hibernate.dialect>
-                <db.jdbcDriver>com.mysql.jdbc.Driver</db.jdbcDriver>
-                <db.connectionURL>jdbc:mysql://localhost:3306/security</db.connectionURL>
-                <db.username>root</db.username>
-                <db.password>root</db.password>
-                <db.Type>MySQL</db.Type>
+                <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+                <db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
+                <db.connectionURL>jdbc:h2:~/db/security</db.connectionURL>
+                <db.username>sa</db.username>
+                <db.password />
+                <db.Type>H2</db.Type>
                 <generateDdl>true</generateDdl>
             </properties>
         </profile>
