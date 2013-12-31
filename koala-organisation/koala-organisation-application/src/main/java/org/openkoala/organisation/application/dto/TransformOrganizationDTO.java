@@ -1,9 +1,13 @@
 package org.openkoala.organisation.application.dto;
 
+import java.io.Serializable;
+
 import org.openkoala.organisation.domain.Organization;
 
-public class TransformOrganizationDTO {
+public class TransformOrganizationDTO implements Serializable {
 	
+	private static final long serialVersionUID = 7894829542701979243L;
+
 	private Long organizationId;
 	
 	private String organizationSn;

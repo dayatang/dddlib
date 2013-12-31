@@ -104,6 +104,7 @@ public class GqcApplicationImpl implements GqcApplication {
 	    try {
 			return GeneralQuery.get(GeneralQuery.class, id);
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new RuntimeException("查询指定的查询器失败！", e);
 		}
 	}

@@ -1,5 +1,6 @@
 package org.openkoala.organisation.application.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,9 @@ import org.openkoala.organisation.domain.Organization;
 import org.openkoala.organisation.domain.Person;
 import org.openkoala.organisation.domain.Post;
 
-public class EmployeeDTO {
+public class EmployeeDTO implements Serializable {
+
+	private static final long serialVersionUID = -7358868162940087039L;
 
 	private Long id;
 	

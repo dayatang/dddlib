@@ -1,5 +1,6 @@
 package org.openkoala.organisation.application.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -9,7 +10,9 @@ import org.openkoala.organisation.domain.Job;
 import org.openkoala.organisation.domain.Organization;
 import org.openkoala.organisation.domain.Post;
 
-public class PostDTO {
+public class PostDTO implements Serializable {
+
+	private static final long serialVersionUID = 1282817894639039057L;
 
 	private Long id;
 	
