@@ -5,8 +5,8 @@
         <method>Project[] business.ProjectApplicationImpl.findSomeProjects(List)</method>
         <template><![CDATA[
         find
-        <#list names as name>
-          ${name},
+        <#list names as name1>
+          ${name1},
         </#list>
         ]]></template>
         <queries>

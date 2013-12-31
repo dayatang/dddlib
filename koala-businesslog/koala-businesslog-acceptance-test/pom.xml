@@ -308,6 +308,10 @@
                 <filtering>false</filtering>
             </resource>
             <resource>
+                <directory>src/main/resources/koala-log-conf</directory>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
                 <directory>src/main/resources</directory>
                 <excludes>
                     <exclude>koala-businesslog-standalone-persistence.xml</exclude>
