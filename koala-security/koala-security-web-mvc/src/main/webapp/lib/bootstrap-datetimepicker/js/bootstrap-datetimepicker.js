@@ -958,6 +958,8 @@
 						}
 						break;
 				}
+                //兼容IE8下位置错乱问题
+                $(window).trigger('resize');
 			}
 		},
 
