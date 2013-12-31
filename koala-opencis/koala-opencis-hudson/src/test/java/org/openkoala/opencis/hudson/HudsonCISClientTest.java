@@ -1,9 +1,11 @@
 package org.openkoala.opencis.hudson;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 
+@Ignore
 public class HudsonCISClientTest {
 
 //	private static final String SCM_ADDRESS = "http://git.oschina.net/openkoala/koala.git";

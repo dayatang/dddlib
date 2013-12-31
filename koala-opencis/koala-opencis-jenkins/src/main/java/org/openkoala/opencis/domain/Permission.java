@@ -13,21 +13,15 @@ import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
+import org.openkoala.opencis.JenkinsHomeNotFoundException;
 import org.openkoala.opencis.PropertyIllegalException;
 
 public abstract class Permission {
 
-    protected static final String CONFIG_XML_NAME = "config.xml";
-
-    private static final String USER_HOME_DIR = System.getProperty("user.home");
-
-    private static final String JENKINS_DIR = ".jenkins";
-
-    protected static final String USER_HOME_PATH = MessageFormat.format("{0}/{1}/", USER_HOME_DIR, JENKINS_DIR);
-
     public static final String XML_CHARSET = "UTF-8";
 
     public static final String PERMISSION_NODE_NAME = "permission";
+
 
     private String text;
 
@@ -39,6 +33,8 @@ public abstract class Permission {
         }
         this.text = text;
     }
+
+
 
 
     protected void writeToXML(Document document, String filePath) throws IOException {

@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
@@ -23,6 +24,7 @@ import org.openkoala.opencis.exception.UserOrPasswordErrorException;
 
 import com.dayatang.configuration.Configuration;
 
+@Ignore
 public class SvnCISClientTest {
 	
 	private Configuration configuration;
