@@ -1,19 +1,24 @@
 package org.openkoala.businesslog.applicationImpl;
 
+import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.service.QueryChannelService;
 import com.dayatang.querychannel.support.Page;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.openkoala.businesslog.BusinessLog;
 import org.openkoala.businesslog.dto.DefaultBusinessLogDTO;
 import org.openkoala.businesslog.model.DefaultBusinessLog;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
 import org.openkoala.businesslog.application.BusinessLogApplication;
 import org.openkoala.businesslog.model.AbstractBusinessLog;
 
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.interceptor.Interceptors;
+
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +30,20 @@ import java.util.List;
  */
 @Named
 @Transactional
+@Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
+@Stateless(name = "BusinessLogApplication")
+@Remote
 public class BusinessLogApplicationImpl implements BusinessLogApplication {
 
-    @Inject
-    private QueryChannelService queryChannel;
+
+	private QueryChannelService queryChannel;
+	
+	private QueryChannelService getQueryChannelService(){
+		if(queryChannel ==null){
+			queryChannel = InstanceFactory.getInstance(QueryChannelService.class,"queryChannel_businessLog");
+		}
+		return queryChannel;
+	}
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public DefaultBusinessLogDTO getDefaultBusinessLog(Long id) {
@@ -132,7 +147,7 @@ public class BusinessLogApplicationImpl implements BusinessLogApplication {
             jpql.append(" and _defaultBusinessLog.log like ?");
             conditionVals.add(MessageFormat.format("%{0}%", queryVo.getLog()));
         }
-        Page<DefaultBusinessLog> pages = queryChannel.queryPagedResultByPageNo(jpql.toString(), conditionVals.toArray(), currentPage, pageSize);
+        Page<DefaultBusinessLog> pages = getQueryChannelService().queryPagedResultByPageNo(jpql.toString(), conditionVals.toArray(), currentPage, pageSize);
         for (DefaultBusinessLog defaultBusinessLog : pages.getResult()) {
             DefaultBusinessLogDTO defaultBusinessLogDTO = new DefaultBusinessLogDTO();
 

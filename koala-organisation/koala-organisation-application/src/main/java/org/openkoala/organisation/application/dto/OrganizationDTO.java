@@ -20,9 +20,6 @@ import org.openkoala.organisation.domain.Organization;
  */
 public class OrganizationDTO implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6538960709126681092L;
 
 	public static final String COMPANY = "company";

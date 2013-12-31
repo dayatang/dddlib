@@ -146,8 +146,7 @@ public class JbpmSupport {
 				this.localTaskService, ksession);
 		humanTaskHandler.setLocal(true);
 		humanTaskHandler.connect();
-		ksession.getWorkItemManager().registerWorkItemHandler("Human Task",
-				humanTaskHandler);
+		ksession.getWorkItemManager().registerWorkItemHandler("Human Task",humanTaskHandler);
 		ksession.getWorkItemManager().registerWorkItemHandler("Service Task",
 				new ServiceTaskHandler());
 		System.setProperty("jbpm.usergroup.callback",

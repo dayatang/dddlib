@@ -60,7 +60,7 @@ $(function(){
             {
                 title : '方法',
                 name : 'method',
-                width : 250
+                width : 450
             },
             {
                 title : '调用次数',
@@ -186,7 +186,7 @@ var showMethodMonitorDetail = function(method){
                         {
                             title : '方法',
                             name : 'method',
-                            width : 150
+                            width : 250
                         },
                         {
                             title : '耗时（毫秒）',
