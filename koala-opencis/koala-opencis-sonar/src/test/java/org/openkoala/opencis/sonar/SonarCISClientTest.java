@@ -15,7 +15,7 @@ import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.pojo.SonarServerConfiguration;
 import org.sonar.wsclient.user.User;
 
-//@Ignore
+@Ignore
 public class SonarCISClientTest {
 
 	public static final String NAME = "koala";

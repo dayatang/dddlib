@@ -31,8 +31,6 @@ public class CISAuthenticationTest {
     @Test
     public void testName() throws Exception {
 
-
-
         HttpCASAuthentication authentication = new HttpCASAuthentication(
                 new URL("http", "10.108.1.138", 8080, "/cas/v1/tickets/"),
                 "admin",
