@@ -29,8 +29,6 @@ public class MainIntegrationTest {
         httpGet.abort();
 
         httpclient.getConnectionManager().shutdown();
-
-
     }
 
 

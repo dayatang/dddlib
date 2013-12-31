@@ -147,6 +147,7 @@ public class JenkinsCISClient implements CISClient {
         result.add(new BasicNameValuePair("password2", developer.getName()));
         result.add(new BasicNameValuePair("fullname", developer.getName()));
         result.add(new BasicNameValuePair("email", developer.getEmail()));
+        result.add(new BasicNameValuePair("json", "\t{\"username\": \"admin1\", \"password1\": \"admin1\", \"password2\": \"admin1\", \"fullname\": \"admin1\", \"email\": \"admin1@11.com\"}"));
         return result;
     }
 
