@@ -2,7 +2,6 @@ package org.openkoala.cas.casmanagement.application.impl;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.openkoala.auth.application.UserApplication;

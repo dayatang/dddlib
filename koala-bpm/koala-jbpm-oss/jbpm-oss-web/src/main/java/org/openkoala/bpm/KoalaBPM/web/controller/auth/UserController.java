@@ -6,17 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-
 import org.openkoala.auth.application.RoleApplication;
 import org.openkoala.auth.application.UserApplication;
 import org.openkoala.auth.application.vo.QueryConditionVO;
 import org.openkoala.auth.application.vo.QueryItemVO;
 import org.openkoala.auth.application.vo.RoleVO;
 import org.openkoala.auth.application.vo.UserVO;
-import org.openkoala.koala.auth.impl.jdbc.PasswordEncoder;
+import org.openkoala.koala.auth.password.PasswordEncoder;
 import org.openkoala.koala.auth.ss3adapter.CustomUserDetails;
-import org.openkoala.koala.auth.ss3adapter.SecurityMD5;
 import org.openkoala.koala.auth.ss3adapter.ehcache.CacheUtil;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -36,7 +33,10 @@ public class UserController {
 
 	@Inject
 	private RoleApplication roleApplication;
-
+	
+	@Inject
+	private PasswordEncoder passwordEncoder;
+	
 	@ResponseBody
 	@RequestMapping("/updatePassword")
 	public Map<String, Object> updatePassword(@RequestParam String oldPassword,@RequestParam String userPassword) {
@@ -50,30 +50,12 @@ public class UserController {
 		}
 		UserVO userVO = new UserVO();
 		userVO.setUserAccount(username);
-		userVO.setUserPassword(SecurityMD5.encode(userPassword,
-				username));
-		if (userApplication.updatePassword(userVO,
-				SecurityMD5.encode(oldPassword, username))) {
+		userVO.setUserPassword(passwordEncoder.encode(userVO.getUserPassword()));
+		if (userApplication.updatePassword(userVO, passwordEncoder.encode(userVO.getUserPassword()))) {
 			dataMap.put("result", "success");
 			CacheUtil.refreshUserAttributes(username);
 		} else {
 			dataMap.put("result", "failure");
-		}
-		return dataMap;
-	}
-
-	@ResponseBody
-	@RequestMapping("/login")
-	public Map<String, Object> login(ParamsPojo params,HttpServletRequest request) {
-		UserVO userVO = params.getUserVO();
-		Map<String, Object> dataMap = new HashMap<String, Object>();
-		if (userVO.getUserAccount().equals("admin") && //
-				userVO.getUserPassword().equals("1")) {
-			dataMap.put("result", "success");
-			request.getSession() //
-					.setAttribute("username", userVO.getUserAccount());
-		} else {
-			dataMap.put("result", "fail");
 		}
 		return dataMap;
 	}
@@ -89,12 +71,6 @@ public class UserController {
 		return "auth/User-list";
 	}
 
-	@RequestMapping("/listByUserId")
-	public String listByUserId(Long roleId, ModelMap modelMap) {
-		modelMap.addAttribute("roleId", roleId);
-		return "auth/User-List-new";
-	}
-	
 	@ResponseBody
 	@RequestMapping("/query")
 	public Map<String, Object> query(String page, String pagesize,String userNameForSearch,String userAccountForSearch) {
@@ -115,14 +91,16 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping("/pageJson")
-	public Map<String, Object> pageJson(String page, String pagesize,Long roleId) {
+	public Map<String, Object> pageJson(String page, String pagesize,Long roleId ,String userNameForSearch,String userAccountForSearch) {
 		Map<String, Object> dataMap = new HashMap<String,Object>();
 		int start = Integer.parseInt(page);
 		int limit = Integer.parseInt(pagesize);
-
+		QueryConditionVO search = new QueryConditionVO();
+		initSearchCondition(search,userNameForSearch,userAccountForSearch);
 		Page<UserVO> all = null;
 		if (roleId == null) {
-			all = userApplication.pageQueryUser(start, limit);
+			//all = userApplication.pageQueryUser(start, limit);
+			all = userApplication.pageQueryUserCustom(start, limit, search);
 		} else {
 			RoleVO roleVoForFind = new RoleVO();
 			roleVoForFind.setId(roleId);
@@ -226,7 +204,7 @@ public class UserController {
 		UserVO userVO = userPojo.getUserVO();
 		Map<String, Object> dataMap = new HashMap<String,Object>();
 		userVO.setSerialNumber("0");
-		userVO.setUserPassword(new PasswordEncoder("", "MD5").encode(userVO.getUserPassword()));
+		userVO.setUserPassword(passwordEncoder.encode(userVO.getUserPassword()));
 		userApplication.saveUser(userVO);
 		CacheUtil.refreshUserAttributes(userVO.getUserAccount());
 		dataMap.put("result", "success");
