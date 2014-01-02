@@ -1,5 +1,6 @@
 package org.openkoala.koala.auth.vo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class DefaultUserDetailsImpl implements UserDetails {
 	 */
 	private static final long serialVersionUID = 2909376441295598896L;
 	
-	private List<String> authorities;
+	private List<String> authorities = new ArrayList<String>();
 	
 	private String password;
 	
@@ -149,6 +150,10 @@ public class DefaultUserDetailsImpl implements UserDetails {
 
 	public void setSuper(boolean isSuper) {
 		this.isSuper = isSuper;
+	}
+	
+	public void addAuthority(String authority) {
+		this.authorities.add(authority);
 	}
 
 }

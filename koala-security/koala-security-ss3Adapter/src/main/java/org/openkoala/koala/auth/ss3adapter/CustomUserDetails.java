@@ -30,6 +30,10 @@ public class CustomUserDetails implements UserDetails {
 	
 	private String realName;
 
+	public CustomUserDetails() {
+		super();
+	}
+
 	public CustomUserDetails(String password, String username, boolean accountNonExpired, boolean accountNonLocked,
 			boolean credentialsNonExpired, boolean enabled, List<GrantedAuthority> gAuthoritys, String realName) {
 
@@ -89,6 +93,30 @@ public class CustomUserDetails implements UserDetails {
 
 	public void setRealName(String realName) {
 		this.realName = realName;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setAccountNonExpired(boolean accountNonExpired) {
+		this.accountNonExpired = accountNonExpired;
+	}
+
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
+
+	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+		this.credentialsNonExpired = credentialsNonExpired;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 }

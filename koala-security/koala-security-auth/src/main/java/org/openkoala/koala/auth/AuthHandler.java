@@ -9,10 +9,11 @@ package org.openkoala.koala.auth;
 public interface AuthHandler {
 
 	/**
-	 * 是否认证通过
-	 * @param loginInfo
+	 * 认证
+	 * @param useraccount
+	 * @param password
 	 * @return
 	 */
-	boolean isAuth(AuthInfo loginInfo);
+	UserDetails authenticate(String useraccount, String password);
 	
 }
