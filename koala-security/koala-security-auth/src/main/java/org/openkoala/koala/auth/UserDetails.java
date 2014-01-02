@@ -58,4 +58,16 @@ public interface UserDetails extends Serializable {
      */
     public boolean isSuper();
     
+    /**
+     * 获取用户邮箱
+     * @return
+     */
+    public String getEmail();
+    
+    /**
+     * 获取真实名字
+     * @return
+     */
+    public String getRealName();
+    
 }
