@@ -1,9 +1,6 @@
 package org.openkoala.koala.jbpm.jbpmDesigner.applicationImpl;
 
 import com.dayatang.domain.InstanceFactory;
-import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.httpclient.methods.ByteArrayRequestEntity;
-import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -50,85 +47,87 @@ public class GunvorApplicationImpl implements GunvorApplication {
 		return jbpmApplication;
 	}
 
+	
 	public void publichJBPM(String packageName, String name, String url) {
-		PostMethod postMethod = null;
-		try {
-			Bpmn2 bpmn = this.getBpmn2(packageName, name);
-			String source = getConnectionString(bpmn.getSource());
-			SAXReader reader = new SAXReader();
-			ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(
-					source.getBytes("UTF-8"));
-			Document document = reader.read(byteArrayInputStream);
-			Element root = document.getRootElement();
-			Element process = root.element("process");
-			String processId = process.attributeValue("id");
-			Element bpmnPlane = root.element("BPMNDiagram")
-					.element("BPMNPlane");
-			bpmnPlane.addAttribute("bpmnElement",
-					processId + "@" + bpmn.getVersion());
-			process.addAttribute("id", processId + "@" + bpmn.getVersion());
-			String pngURL = gunvorServerUrl + "/rest/packages/" + packageName
-					+ "/assets/" + processId + "-image/binary";
-			byte[] pngByte = this.getPng(pngURL);
-			
-			postMethod = new PostMethod(url + "/process");
-//			HttpMethodParams p = new HttpMethodParams();
-//			p.setParameter("packageName", packageName);
-//			p.setParameter("processName", processId);
-//			p.setIntParameter("version", Integer.parseInt(bpmn.getVersion()));
-//			p.setParameter("data", document.asXML());
-//			p.setParameter("png", pngByte);
-//			p.setBooleanParameter("isActive", true);
+		//TODO 使用统一版本的httpclient来优化
+//		PostMethod postMethod = null;
+//		try {
+//			Bpmn2 bpmn = this.getBpmn2(packageName, name);
+//			String source = getConnectionString(bpmn.getSource());
+//			SAXReader reader = new SAXReader();
+//			ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(
+//					source.getBytes("UTF-8"));
+//			Document document = reader.read(byteArrayInputStream);
+//			Element root = document.getRootElement();
+//			Element process = root.element("process");
+//			String processId = process.attributeValue("id");
+//			Element bpmnPlane = root.element("BPMNDiagram")
+//					.element("BPMNPlane");
+//			bpmnPlane.addAttribute("bpmnElement",
+//					processId + "@" + bpmn.getVersion());
+//			process.addAttribute("id", processId + "@" + bpmn.getVersion());
+//			String pngURL = gunvorServerUrl + "/rest/packages/" + packageName
+//					+ "/assets/" + processId + "-image/binary";
+//			byte[] pngByte = this.getPng(pngURL);
 //			
-//			// 将表单的值放入postMethod中
-//			postMethod.setParams(p);
-//			postMethod.addParameter("packageName", "包名");
-			ByteArrayRequestEntity byteArrayEntity = new ByteArrayRequestEntity(pngByte);
-			postMethod.setRequestEntity(byteArrayEntity);  
-//			postMethod.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, "UTF-8");
-			
-			  // 执行postMethod
-			  org.apache.commons.httpclient.HttpClient httpClient = new org.apache.commons.httpclient.HttpClient();
-			  httpClient.executeMethod(postMethod);
-			  if(postMethod.getStatusCode() != HttpStatus.SC_OK){
-				  throw new RuntimeException("发布失败！");
-			  }
-			
-			/*HttpClient httpclient = getDefaultHttpClient();
-			HttpPost httpPost = new HttpPost(url);
-			httpPost.addHeader("Content-Type", "application/xml");
-			List params = new ArrayList();
-			params.add(new BasicNameValuePair("packageName", packageName));
-			params.add(new BasicNameValuePair("processName", processId));
-			params.add(new BasicNameValuePair("version", bpmn.getVersion()));
-			httpPost.setEntity(new ByteArrayEntity(pngByte));
-			ContentProducer cp = new ContentProducer() {
-			    public void writeTo(OutputStream outstream) throws IOException {
-			        Writer writer = new OutputStreamWriter(outstream, "UTF-8");
-			        writer.write("");
-			        writer.write("  ");
-			        writer.write("    important stuff");
-			        writer.write("  ");
-			        writer.write("");
-			        writer.flush();
-			    }
-			};
-			HttpEntity entity = new EntityTemplate(cp);
-			httpclient.execute(httpPost);*/
-		    
-//			getJBPMApplication().addProcess(packageName, processId,
-//					Integer.parseInt(bpmn.getVersion()), document.asXML(),
-//					pngByte, true);
-		} catch (DocumentException e) {
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {   
-			postMethod.releaseConnection();   
-    }  
+//			postMethod = new PostMethod(url + "/process");
+////			HttpMethodParams p = new HttpMethodParams();
+////			p.setParameter("packageName", packageName);
+////			p.setParameter("processName", processId);
+////			p.setIntParameter("version", Integer.parseInt(bpmn.getVersion()));
+////			p.setParameter("data", document.asXML());
+////			p.setParameter("png", pngByte);
+////			p.setBooleanParameter("isActive", true);
+////			
+////			// 将表单的值放入postMethod中
+////			postMethod.setParams(p);
+////			postMethod.addParameter("packageName", "包名");
+//			ByteArrayRequestEntity byteArrayEntity = new ByteArrayRequestEntity(pngByte);
+//			postMethod.setRequestEntity(byteArrayEntity);  
+////			postMethod.getParams().setParameter(HttpMethodParams.HTTP_CONTENT_CHARSET, "UTF-8");
+//			
+//			  // 执行postMethod
+//			  org.apache.commons.httpclient.HttpClient httpClient = new org.apache.commons.httpclient.HttpClient();
+//			  httpClient.executeMethod(postMethod);
+//			  if(postMethod.getStatusCode() != HttpStatus.SC_OK){
+//				  throw new RuntimeException("发布失败！");
+//			  }
+//			
+//			/*HttpClient httpclient = getDefaultHttpClient();
+//			HttpPost httpPost = new HttpPost(url);
+//			httpPost.addHeader("Content-Type", "application/xml");
+//			List params = new ArrayList();
+//			params.add(new BasicNameValuePair("packageName", packageName));
+//			params.add(new BasicNameValuePair("processName", processId));
+//			params.add(new BasicNameValuePair("version", bpmn.getVersion()));
+//			httpPost.setEntity(new ByteArrayEntity(pngByte));
+//			ContentProducer cp = new ContentProducer() {
+//			    public void writeTo(OutputStream outstream) throws IOException {
+//			        Writer writer = new OutputStreamWriter(outstream, "UTF-8");
+//			        writer.write("");
+//			        writer.write("  ");
+//			        writer.write("    important stuff");
+//			        writer.write("  ");
+//			        writer.write("");
+//			        writer.flush();
+//			    }
+//			};
+//			HttpEntity entity = new EntityTemplate(cp);
+//			httpclient.execute(httpPost);*/
+//		    
+////			getJBPMApplication().addProcess(packageName, processId,
+////					Integer.parseInt(bpmn.getVersion()), document.asXML(),
+////					pngByte, true);
+//		} catch (DocumentException e) {
+//			e.printStackTrace();
+//		} catch (UnsupportedEncodingException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {   
+//			postMethod.releaseConnection();   
+//    }  
 	}
 
 	public List<Bpmn2> getBpmn2s(String packageName) {

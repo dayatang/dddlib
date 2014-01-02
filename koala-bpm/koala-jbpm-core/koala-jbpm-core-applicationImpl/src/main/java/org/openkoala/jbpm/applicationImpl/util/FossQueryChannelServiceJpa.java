@@ -32,7 +32,8 @@ import com.dayatang.querychannel.support.Page;
 @SuppressWarnings({"unchecked","unused","serial"})
 public class FossQueryChannelServiceJpa implements QueryChannelService {
 	
-	@Inject
+	
+	@PersistenceContext(unitName="org.jbpm.persistence.jpa")
 	EntityManager jbpmEM;
 
 	public EntityManager getEntityManager() {

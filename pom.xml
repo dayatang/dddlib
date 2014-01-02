@@ -125,6 +125,63 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+		
+		<!--  use this repository for stable releases -->
+
+		    <repository>
+
+		      <id>jboss-public-repository-group</id>
+
+		      <name>JBoss Public Maven Repository Group</name>
+
+		      <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+
+		      <layout>default</layout>
+
+		      <releases>
+
+		        <enabled>true</enabled>
+
+		        <updatePolicy>never</updatePolicy>
+
+		      </releases>
+
+		      <snapshots>
+
+		        <enabled>false</enabled>
+
+		      </snapshots>
+
+		    </repository>
+
+		    <!-- use this repository for snapshot releases -->
+
+		    <repository>
+
+		      <id>jboss-snapshot-repository-group</id>
+
+		      <name>JBoss SNAPSHOT Maven Repository Group</name>
+
+		      <url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
+
+		      <layout>default</layout>
+
+		      <releases>
+
+		        <enabled>false</enabled>
+
+		      </releases>
+
+		      <snapshots>
+
+		        <enabled>true</enabled>
+
+		        <updatePolicy>never</updatePolicy>
+
+		      </snapshots>
+
+		    </repository>
+			
 	</repositories>
 
 
@@ -146,8 +203,8 @@
 		<spring.version>3.1.3.RELEASE</spring.version>
 		<spring.security.version>3.0.8.RELEASE</spring.security.version>
 		<aspectj.version>1.6.12</aspectj.version>
-		<drools.version>5.3.1.BRMS</drools.version>
-		<jbpm.version>5.3.1.BRMS</jbpm.version>
+		<drools.version>5.5.0.Final</drools.version>
+		<jbpm.version>5.4.0.Final</jbpm.version>
 		<cxf.version>2.6.2</cxf.version>
 		<fastjson.version>1.1.17</fastjson.version>
 		<mina.version>2.0.7</mina.version>
