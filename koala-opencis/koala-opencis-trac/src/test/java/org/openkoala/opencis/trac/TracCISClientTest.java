@@ -4,11 +4,13 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.opencis.api.Project;
 
 import com.dayatang.configuration.Configuration;
 
+@Ignore
 public class TracCISClientTest {
 
 	private Project project = new MockProject();

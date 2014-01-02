@@ -6,7 +6,7 @@
     version="2.0">
     
   <tlib-version>1.1</tlib-version>
-  <uri>http://www.openkoala.com/permission</uri>
+  <uri>http://www.foreveross.com/permission</uri>
 
   <tag>
     <name>hasPermission</name>
@@ -17,5 +17,20 @@
         <required>true</required>
         <rtexprvalue>false</rtexprvalue>
     </attribute>
+  </tag>
+  
+  <tag>
+  	<name>authorize</name>
+  	<tag-class>org.openkoala.koala.auth.web.AuthorizeTag</tag-class>
+  	<body-content>scriptless</body-content>
+  	<attribute>
+  		<name>ifAllGranted</name>
+  	</attribute>
+  	<attribute>
+  		<name>ifAnyGranted</name>
+  	</attribute>
+  	<attribute>
+  		<name>ifNotGranted</name>
+  	</attribute>
   </tag>
 </taglib>

@@ -1,25 +1,11 @@
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.junit.*;
-import org.junit.runner.RunWith;
-import org.logicalcobwebs.proxool.ProxoolFacade;
-import org.openkoala.businesslog.model.DefaultBusinessLog;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import java.io.IOException;
-import java.io.StringWriter;
-import java.util.concurrent.TimeUnit;
 
 /**
  * User: zjzhai
@@ -29,13 +15,6 @@ import java.util.concurrent.TimeUnit;
 @Ignore
 public class MainIntegrationTest {
 
-
-    protected static WebDriver driver;
-
-    @BeforeClass
-    public static void openBrowser() throws InterruptedException, IOException {
-        driver = new HtmlUnitDriver();
-    }
 
     @Test
     public void test() throws InterruptedException, IOException {
@@ -50,15 +29,8 @@ public class MainIntegrationTest {
         httpGet.abort();
 
         httpclient.getConnectionManager().shutdown();
-
-
     }
 
-    @AfterClass
-    public static void closeBrowser() throws Exception {
-        driver.close();
-        driver.quit();
-    }
 
     @After
     public void tearDown() throws Exception {

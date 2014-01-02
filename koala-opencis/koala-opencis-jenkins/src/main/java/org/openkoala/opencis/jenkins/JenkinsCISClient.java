@@ -4,15 +4,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.net.URLEncoder;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
@@ -20,7 +20,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.BasicHttpParams;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
@@ -32,8 +31,6 @@ import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.authentication.CISAuthentication;
 import org.openkoala.opencis.domain.GlobalPermission;
 import org.openkoala.opencis.domain.ProjectPermission;
-import org.openkoala.opencis.http.HttpInvoker;
-import org.openkoala.opencis.pojo.JenkinsServerConfiguration;
 
 /**
  * Jenkins CIS客户端
@@ -45,9 +42,7 @@ public class JenkinsCISClient implements CISClient {
 
     private static final String CONFIG_PATH = "ci/jenkins/config.xml";
 
-    public static final String CREATE_ITEM_API = "/createItem";
-
-    public static final String CREATE_ITEM_API_PARAM = "name";
+    public static final String CREATE_ITEM_API = "/createItem?name=";
 
     private URL jenkinsUrl;
 
@@ -57,12 +52,6 @@ public class JenkinsCISClient implements CISClient {
 
     private static Logger logger = Logger.getLogger(JenkinsCISClient.class);
 
-    private JenkinsServerConfiguration jenkinsServerConfiguration;
-
-    public JenkinsCISClient(JenkinsServerConfiguration jenkinsServerConfiguration) {
-        this.jenkinsServerConfiguration = jenkinsServerConfiguration;
-        checkJenkinsServerConfigurationNotNull();
-    }
 
     public JenkinsCISClient(URL jenkinsUrl) {
         this.jenkinsUrl = jenkinsUrl;
@@ -70,29 +59,26 @@ public class JenkinsCISClient implements CISClient {
 
     @Override
     public void createProject(Project project) {
-
         HttpContext context = authenticationAndGetContext();
 
         AbstractHttpClient httpClient = new DefaultHttpClient();
-
-        HttpPost createProjectPost = new HttpPost(jenkinsUrl.toString() + CREATE_ITEM_API + "?name=" + project.getArtifactId());
-
-        BasicHttpParams paramsName = new BasicHttpParams();
-
-        paramsName.setParameter(CREATE_ITEM_API_PARAM, project.getArtifactId());
+        HttpPost createProjectPost = null;
         try {
+
+            createProjectPost = new HttpPost(jenkinsUrl.toString()
+                    + CREATE_ITEM_API + URLEncoder.encode(project.getArtifactId(), "UTF-8"));
             StringEntity entity = new StringEntity(getConfigFileContent(), "UTF-8");
             createProjectPost.addHeader("Content-Type", "application/xml");
             createProjectPost.setEntity(entity);
             HttpResponse jenkinsResponse = httpClient.execute(createProjectPost, context);
-
-
             if (jenkinsResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 logger.info("Create job successful.");
             } else {
                 throw new CreateJobFailureException(EntityUtils.toString(jenkinsResponse.getEntity()));
             }
             createProjectPost.abort();
+        } catch (UnsupportedEncodingException e) {
+            throw new CreateJobFailureException(MessageFormat.format("{0} is UnsupportedEncoding", project.getArtifactId()));
         } catch (Exception e) {
             logger.error("Create job failure:", e);
             throw new CreateJobFailureException(e);
@@ -106,24 +92,16 @@ public class JenkinsCISClient implements CISClient {
 
     @Override
     public void createUserIfNecessary(Project project, Developer developer) {
-        List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("username", developer.getName()));
-        params.add(new BasicNameValuePair("password1", developer.getName()));
-        params.add(new BasicNameValuePair("password2", developer.getName()));
-        params.add(new BasicNameValuePair("fullname", developer.getName()));
-        params.add(new BasicNameValuePair("email", developer.getEmail()));
-
         HttpContext context = authenticationAndGetContext();
         AbstractHttpClient httpClient = new DefaultHttpClient();
         try {
-            HttpPost httpPost = new HttpPost(jenkinsUrl.toString() + "");
-
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
+            HttpPost httpPost = new HttpPost(jenkinsUrl.toString() + "/securityRealm/createAccount");
+            httpPost.setEntity(new UrlEncodedFormEntity(createDeveloperNameValuePair(developer)));
             HttpResponse response = httpClient.execute(httpPost, context);
-            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_MOVED_TEMPORARILY) {
                 logger.info("Create user account success.");
             } else {
-                throw new JenkinsCreateUserFailureException();
+                throw new JenkinsCreateUserFailureException("");
             }
         } catch (UnsupportedEncodingException e) {
             throw new JenkinsCreateUserFailureException(e);
@@ -143,7 +121,8 @@ public class JenkinsCISClient implements CISClient {
         HttpPost httpPost = new HttpPost(jenkinsUrl.toString() + "/job/" + jobName + "/doDelete");
         try {
             HttpResponse response = httpClient.execute(httpPost, context);
-            if (response.getStatusLine().getStatusCode() != HttpStatus.SC_OK) {
+            //jenkins返回的是302的码
+            if (response.getStatusLine().getStatusCode() != HttpStatus.SC_MOVED_TEMPORARILY) {
                 throw new RemoveJobFailureException("Remove job failure.");
             }
         } catch (Exception e) {
@@ -151,6 +130,17 @@ public class JenkinsCISClient implements CISClient {
         } finally {
             httpClient.getConnectionManager().shutdown();
         }
+    }
+
+    private List<NameValuePair> createDeveloperNameValuePair(Developer developer) {
+        List<NameValuePair> result = new ArrayList<NameValuePair>();
+        result.add(new BasicNameValuePair("username", developer.getName()));
+        result.add(new BasicNameValuePair("password1", developer.getName()));
+        result.add(new BasicNameValuePair("password2", developer.getName()));
+        result.add(new BasicNameValuePair("fullname", developer.getName()));
+        result.add(new BasicNameValuePair("email", developer.getEmail()));
+        result.add(new BasicNameValuePair("json", "\t{\"username\": \"admin1\", \"password1\": \"admin1\", \"password2\": \"admin1\", \"fullname\": \"admin1\", \"email\": \"admin1@11.com\"}"));
+        return result;
     }
 
 
@@ -162,23 +152,35 @@ public class JenkinsCISClient implements CISClient {
     }
 
     @Override
-    public void assignUserToRole(Project project, String usrId, String role) {
-        ProjectPermission permission = new ProjectPermission(usrId, project.getArtifactId());
+    public void assignUserToRole(Project project, String userId, String role) {
+        ProjectPermission permission = new ProjectPermission(userId, project.getArtifactId());
         permission.save();
         reloadConfigToMemory();
     }
 
     private void reloadConfigToMemory() {
-        CookieStore cookieStore = null;
+        HttpContext context = authenticationAndGetContext();
+        HttpClient httpClient = new DefaultHttpClient();
         try {
+
             String requestUrl = jenkinsUrl.toString() + "/reload";
-            HttpInvoker httpInvoker = new HttpInvoker(requestUrl);
-            ((AbstractHttpClient) httpInvoker.getHttpClient()).setCookieStore(cookieStore);
-            httpInvoker.execute();
+            HttpPost httpPost = new HttpPost(requestUrl);
+
+            HttpResponse response = httpClient.execute(httpPost, context);
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                logger.info("jenkins config reload success");
+                return;
+            }
+            httpPost.abort();
+            throw new JenkinsReloadConfigException("reload the config failure!");
         } catch (ClientProtocolException e) {
+            logger.error(e.getMessage());
             e.printStackTrace();
         } catch (IOException e) {
+            logger.error(e.getMessage() + " may be the config file is not exist!");
             e.printStackTrace();
+        } finally {
+            httpClient.getConnectionManager().shutdown();
         }
     }
 
@@ -193,6 +195,8 @@ public class JenkinsCISClient implements CISClient {
         if (cisAuthentication != null && !cisAuthentication.authentication()) {
             throw new AuthenticationException("jenkins authentication failure!");
         }
+
+
         HttpContext context = new BasicHttpContext();
         if (cisAuthentication != null) {
             context = cisAuthentication.getContext();
@@ -200,9 +204,6 @@ public class JenkinsCISClient implements CISClient {
         return context;
     }
 
-    private String getCreateAccountUrl() {
-        return new StringBuilder(jenkinsServerConfiguration.getServerAddress()).append("/securityRealm/createAccount").toString();
-    }
 
     /**
      * 获取Jenkins配置文件的内容
@@ -233,16 +234,15 @@ public class JenkinsCISClient implements CISClient {
         return result.toString();
     }
 
-    private void checkJenkinsServerConfigurationNotNull() {
-        if (jenkinsServerConfiguration == null) {
-            throw new JenkinsServerConfigurationNullException();
-        }
-    }
-
     @Override
     public void assignUsersToRole(Project project, List<String> userName,
                                   String role) {
-        // TODO Auto-generated method stub
+        if (null == userName || userName.size() == 0) {
+            return;
+        }
+        for (String each : userName) {
+            assignUserToRole(project, each, role);
+        }
     }
 
     public void addAuthentication(CISAuthentication cisAuthentication) {
