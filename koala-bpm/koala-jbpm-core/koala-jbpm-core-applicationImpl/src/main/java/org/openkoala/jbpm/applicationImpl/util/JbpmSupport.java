@@ -94,7 +94,6 @@ public class JbpmSupport {
 	@Inject
 	private JtaTransactionManager transactionManager;
 
-	private static final ThreadLocal<TransactionManager> configTimeTransactionManagerHolder = new ThreadLocal<TransactionManager>();
 
 	@Inject
 	private EntityManagerFactory entityManagerFactory;
@@ -144,8 +143,6 @@ public class JbpmSupport {
 
 		Environment env = KnowledgeBaseFactory.newEnvironment();
 		env.set(EnvironmentName.ENTITY_MANAGER_FACTORY, entityManagerFactory);
-		env.set( EnvironmentName.TRANSACTION_MANAGER,TransactionManagerServices.getTransactionManager() );
-
 		Properties properties = new Properties();
 		KnowledgeSessionConfiguration config = KnowledgeBaseFactory
 				.newKnowledgeSessionConfiguration(properties);

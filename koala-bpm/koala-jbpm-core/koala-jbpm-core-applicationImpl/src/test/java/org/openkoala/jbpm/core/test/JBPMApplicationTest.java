@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.transaction.TransactionManager;
+
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -47,12 +49,13 @@ public class JBPMApplicationTest {
 			jbpmApplication = InstanceFactory
 					.getInstance(JBPMApplication.class);
 		}
+		TransactionManager t;
 		return jbpmApplication;
 	}
 
 	@BeforeClass
 	public static void publishJbpm() throws IOException {
-		InstanceFactory.setInstanceProvider(new SpringInstanceProvider(
+ 		InstanceFactory.setInstanceProvider(new SpringInstanceProvider(
 				new String[] { "classpath*:META-INF/spring/root.xml" }));
 
 		if (init == false) {
@@ -70,9 +73,11 @@ public class JBPMApplicationTest {
 					JBPMApplicationTest.class.getClassLoader()
 							.getResource("defaultPackage.Trade-image.png")
 							.getPath()));
+			
+			String pngString = new String(png);
 
 			getJBPMApplication().addProcess(packageName, processId, version,
-					data, convertToByteArray(png), true);
+					data, pngString, true);
 
 			init = true;
 		}
@@ -105,8 +110,7 @@ public class JBPMApplicationTest {
 		values.put("creater", "abc");
 		long i = getJBPMApplication().startProcess("defaultPackage.Trade",
 				"aaa", XmlParseUtil.paramsToXml(values));
-		Assert.assertTrue(i == 1);
-		getJBPMApplication().removeProcessInstance(i);
+		//getJBPMApplication().removeProcessInstance(i);
 
 	}
 
@@ -118,7 +122,7 @@ public class JBPMApplicationTest {
 		Map<String,Object> values = new HashMap<String,Object>();
 		values.put("creater", "abc");
 		getJBPMApplication().startProcess("defaultPackage.Trade", "aaa", XmlParseUtil.paramsToXml(values));
-		List<TaskVO> tasks = getJBPMApplication().queryTodoList("abc");
+		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fhjl");
 		Assert.assertTrue(tasks.size() > 0);
 		//getJBPMApplication().removeProcessInstance(i);
 	}
@@ -137,7 +141,7 @@ public class JBPMApplicationTest {
 	 */
 	@Test
 	public void testCompleteTask() {
-		testStartProcesses();
+		
 		long i = getJBPMApplication().startProcess("defaultPackage.Trade", "aaa", null);
 
 		Map<String, Object> data = new HashMap<String, Object>();
@@ -152,7 +156,7 @@ public class JBPMApplicationTest {
 		tasks = getJBPMApplication().queryTodoList("fwzy");
 		Assert.assertTrue(tasks.size() > 0);
 		
-		getJBPMApplication().removeProcessInstance(i);
+		//getJBPMApplication().removeProcessInstance(i);
 
 	}
 
@@ -172,7 +176,7 @@ public class JBPMApplicationTest {
 				XmlParseUtil.paramsToXml(data), null);
 		tasks = getJBPMApplication().queryDoenTask("fhjl");
 		Assert.assertTrue(tasks.size() > 0);
-		getJBPMApplication().removeProcessInstance(i);
+		//getJBPMApplication().removeProcessInstance(i);
 	}
 	
 	/**
@@ -193,7 +197,7 @@ public class JBPMApplicationTest {
 				XmlParseUtil.paramsToXml(data), null);
 		PageTaskVO pages = getJBPMApplication().pageQueryDoneTask("defaultPackage.Trade","fhjl", 1, 10);
 		Assert.assertTrue(pages.getTotalCount()>0);
-		getJBPMApplication().removeProcessInstance(i);
+		//getJBPMApplication().removeProcessInstance(i);
 	}
 
 	/**
@@ -205,7 +209,7 @@ public class JBPMApplicationTest {
 				"aaa", null);
 		List<HistoryLogVo> vos = getJBPMApplication().queryHistoryLog(i);
 		Assert.assertTrue(vos.size() > 0);
-		getJBPMApplication().removeProcessInstance(i);
+		//getJBPMApplication().removeProcessInstance(i);
 	}
 
 	/**
@@ -230,7 +234,7 @@ public class JBPMApplicationTest {
 			logger.debug(node.getName() + ":" + node.getId());
 		}
 		Assert.assertTrue(nodes.size() > 0);
-		getJBPMApplication().removeProcessInstance(i);
+		//getJBPMApplication().removeProcessInstance(i);
 	}
 
 	/**
@@ -260,7 +264,7 @@ public class JBPMApplicationTest {
 		tasks = getJBPMApplication().queryTodoList("fwzy");
 		Assert.assertTrue(tasks.size() > 0);
 //		
-		getJBPMApplication().removeProcessInstance(i);
+		//getJBPMApplication().removeProcessInstance(i);
 	}
 
 	/**
@@ -391,5 +395,34 @@ public class JBPMApplicationTest {
 		Assert.assertTrue(tasks.size() > 0);
 		getJBPMApplication().removeProcessInstance(i);
 	}
+	
+	@Test
+	public void threadTest(){
+		for(int i=0;i<10;i++){
+			new ThreadA().start();
+		}
+	}
 
+	class ThreadA extends Thread{
+		public void run(){
+			Map<String,Object> values = new HashMap<String,Object>();
+			values.put("creater", "abc");
+			long i = getJBPMApplication().startProcess("defaultPackage.Trade",
+					"aaa", XmlParseUtil.paramsToXml(values));
+		}
+	}
+	
+	public static void main(String args[]) throws IOException{
+		JBPMApplicationTest test = new JBPMApplicationTest();
+		test.publishJbpm();
+		for(int i=0;i<2;i++){
+			test.threadTest();
+		}
+		
+		System.out.println();
+		
+	}
+	
 }
+
+
