@@ -1,25 +1,13 @@
 package org.openkoala.jbpm.applicationImpl.util;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
 import javax.inject.Inject;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
-import javax.transaction.NotSupportedException;
-import javax.transaction.RollbackException;
-import javax.transaction.SystemException;
-import javax.transaction.Transaction;
-import javax.transaction.TransactionManager;
-import javax.transaction.UserTransaction;
 
 import org.drools.KnowledgeBase;
 import org.drools.KnowledgeBaseFactory;
@@ -29,52 +17,31 @@ import org.drools.builder.KnowledgeBuilderErrors;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
 import org.drools.compiler.PackageBuilder;
-import org.drools.container.spring.beans.persistence.DroolsSpringJpaManager;
-import org.drools.container.spring.beans.persistence.DroolsSpringTransactionManager;
 import org.drools.io.impl.ByteArrayResource;
-import org.drools.persistence.PersistenceContextManager;
 import org.drools.persistence.jpa.JPAKnowledgeService;
 import org.drools.runtime.Environment;
 import org.drools.runtime.EnvironmentName;
 import org.drools.runtime.KnowledgeSessionConfiguration;
 import org.drools.runtime.StatefulKnowledgeSession;
-import org.drools.runtime.process.ProcessInstance;
 import org.openkoala.jbpm.application.vo.KoalaProcessInfoVO;
 import org.openkoala.jbpm.core.KoalaJbpmVariable;
 import org.openkoala.jbpm.core.KoalaProcessInfo;
 import org.openkoala.jbpm.core.service.JBPMTaskService;
 import org.jbpm.bpmn2.handler.ServiceTaskHandler;
 import org.jbpm.bpmn2.xml.BPMNSemanticModule;
-import org.jbpm.persistence.JpaProcessPersistenceContextManager;
-import org.jbpm.persistence.jta.ContainerManagedTransactionManager;
 import org.jbpm.process.audit.JPAProcessInstanceDbLog;
 import org.jbpm.process.audit.JPAWorkingMemoryDbLogger;
-import org.jbpm.process.audit.ProcessInstanceLog;
-import org.jbpm.process.audit.VariableInstanceLog;
 import org.jbpm.process.workitem.wsht.LocalHTWorkItemHandler;
-import org.jbpm.ruleflow.instance.RuleFlowProcessInstance;
-import org.jbpm.task.Task;
 import org.jbpm.task.TaskService;
-import org.jbpm.task.query.TaskSummary;
-import org.jbpm.task.service.ContentData;
 import org.jbpm.task.service.local.LocalTaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.jta.JtaTransactionManager;
-import org.springframework.transaction.support.AbstractPlatformTransactionManager;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
 
-import bitronix.tm.TransactionManagerServices;
-
-public class JbpmSupport {
+public class KoalaBPMSession {
 
 	private static final Logger logger = LoggerFactory
-			.getLogger(JbpmSupport.class);
+			.getLogger(KoalaBPMSession.class);
 
 	private KnowledgeBase kbase;
 
@@ -92,10 +59,6 @@ public class JbpmSupport {
 	private Map<String, List<String>> allProcesses = new HashMap<String, List<String>>();
 
 	@Inject
-	private JtaTransactionManager transactionManager;
-
-
-	@Inject
 	private EntityManagerFactory entityManagerFactory;
 
 	public void initialize() throws Exception {
@@ -109,11 +72,6 @@ public class JbpmSupport {
 		initActiveProcess();
 
 		initVariables();
-	}
-	
-	public void reloadKsession(){
-		
-		
 	}
 
 	private void initTaskService() {
@@ -146,83 +104,18 @@ public class JbpmSupport {
 		Properties properties = new Properties();
 		KnowledgeSessionConfiguration config = KnowledgeBaseFactory
 				.newKnowledgeSessionConfiguration(properties);
-	
+
 		return JPAKnowledgeService.newStatefulKnowledgeSession(kbase, config,
 				env);
 
 	}
-	
+
 	public StatefulKnowledgeSession getKsession() {
 		return ksession;
 	}
 
-
-	public List<TaskSummary> findTaskSummary(String user) {
-		return localTaskService.getTasksAssignedAsPotentialOwner(user, "en-UK");
-	}
-
-	public List<TaskSummary> findTaskSummaryByGroup(String user,
-			List<String> groups) {
-		return localTaskService.getTasksAssignedAsPotentialOwner(user, groups,
-				"en-UK");
-	}
-
-	public Collection<org.drools.definition.process.Process> queryProcesses() {
-		return getKsession().getKnowledgeBase().getProcesses();
-	}
-
-	public org.drools.definition.process.Process getProcess(String processId) {
-		return getKsession().getKnowledgeBase().getProcess(processId);
-	}
-
-	public ProcessInstanceLog getProcessInstanceLog(long processId) {
-		return JPAProcessInstanceDbLog.findProcessInstance(processId);
-	}
-
-	public List<ProcessInstanceLog> findActiveProcessInstances(
-			String processIdActual) {
-		return JPAProcessInstanceDbLog
-				.findActiveProcessInstances(processIdActual);
-	}
-
-	public List<ProcessInstanceLog> findProcessInstances(String processIdActual) {
-		return JPAProcessInstanceDbLog.findProcessInstances();
-	}
-
-	public List<VariableInstanceLog> findVariableInstances(long processId) {
-		return JPAProcessInstanceDbLog.findVariableInstances(processId);
-	}
-
-	public List<VariableInstanceLog> findVariableInstances(long processId,
-			String variableId) {
-		return JPAProcessInstanceDbLog.findVariableInstances(processId,
-				variableId);
-	}
-
-	public ProcessInstance getProcessInstance(long processInstanceId) {
-		RuleFlowProcessInstance in = (RuleFlowProcessInstance) ksession
-				.getProcessInstance(processInstanceId);
-		return in;
-	}
-
-	public void abortProcessInstance(long processInstanceId) {
-		getKsession().abortProcessInstance(processInstanceId);
-	}
-
-	public void delegate(long taskId, String userId, String targetUserId) {
-		localTaskService.delegate(taskId, userId, targetUserId);
-	}
-
-	public Task getTask(long taskId) {
-		return localTaskService.getTask(taskId);
-	}
-
-	public void startTask(long taskId, String userId) {
-		localTaskService.start(taskId, userId);
-	}
-
-	public void completeTask(long taskId, String userId, ContentData outputData) {
-		localTaskService.complete(taskId, userId, outputData);
+	public TaskService getLocalTaskService() {
+		return localTaskService;
 	}
 
 	public Map<String, Object> getGlobalVariable() {
@@ -250,14 +143,6 @@ public class JbpmSupport {
 		if (processMap != null)
 			values.putAll(processMap);
 		return values;
-	}
-
-	public ProcessInstance startProcess(String processName,
-			Map<String, Object> params) {
-		ProcessInstance instance = getKsession().startProcess(processName, params);
-		ksession.insert(instance);
-		ksession.fireAllRules();
-		return instance;
 	}
 
 	/**

@@ -36,7 +36,7 @@ import org.drools.runtime.process.NodeInstance;
 import org.drools.runtime.process.ProcessInstance;
 import org.drools.runtime.process.WorkflowProcessInstance;
 import org.openkoala.jbpm.application.JBPMApplication;
-import org.openkoala.jbpm.application.KoalaJbpmCoreApplication;
+import org.openkoala.jbpm.application.KoalaBPMApiApplication;
 import org.openkoala.jbpm.application.core.JoinAssignApplication;
 import org.openkoala.jbpm.application.vo.HistoryLogVo;
 import org.openkoala.jbpm.application.vo.JBPMNode;
@@ -49,7 +49,7 @@ import org.openkoala.jbpm.application.vo.ProcessInstanceVO;
 import org.openkoala.jbpm.application.vo.ProcessVO;
 import org.openkoala.jbpm.application.vo.TaskChoice;
 import org.openkoala.jbpm.application.vo.TaskVO;
-import org.openkoala.jbpm.applicationImpl.util.JbpmSupport;
+import org.openkoala.jbpm.applicationImpl.util.KoalaBPMSession;
 import org.openkoala.jbpm.core.HistoryLog;
 import org.openkoala.jbpm.core.JoinAssign;
 import org.openkoala.jbpm.core.KoalaAssignDetail;
@@ -104,15 +104,18 @@ public class JBPMApplicationImpl implements JBPMApplication {
 
 	@Inject
 	private JoinAssignApplication joinAssignApplication;
+	
+	@Inject
+	private KoalaBPMApiApplication koalaBPMApiApplication;
 
 	@Inject
 	private JBPMTaskService jbpmTaskService;
 
-	private JbpmSupport jbpmSupport;
+	private KoalaBPMSession jbpmSupport;
 
-	public JbpmSupport getJbpmSupport() {
+	public KoalaBPMSession getJbpmSupport() {
 		if (jbpmSupport == null) {
-			jbpmSupport = InstanceFactory.getInstance(JbpmSupport.class);
+			jbpmSupport = InstanceFactory.getInstance(KoalaBPMSession.class);
 		}
 		return jbpmSupport;
 	}
@@ -152,7 +155,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		UserTransaction owner = null;
 		try {
 			owner = this.startUserTransaction();
-			RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
+			RuleFlowProcessInstance in = (RuleFlowProcessInstance) koalaBPMApiApplication
 					.getProcessInstance(processInstanceId);
 			List<Integer> nodes = new ArrayList<Integer>();
 			String processId = null;
@@ -199,7 +202,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		UserTransaction owner = null;
 		try {
 			owner = this.startUserTransaction();
-			Task task = getJbpmSupport().getTask(taskId);
+			Task task = koalaBPMApiApplication.getTask(taskId);
 			String taskName = task.getNames().get(0).getText();
 
 			long contentId = task.getTaskData().getDocumentContentId();
@@ -215,7 +218,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 				return null;
 			}
 
-			RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
+			RuleFlowProcessInstance in = (RuleFlowProcessInstance) koalaBPMApiApplication
 					.getProcessInstance(processInstanceId);
 
 			Collection<org.drools.runtime.process.NodeInstance> actives = in
@@ -379,12 +382,12 @@ public class JBPMApplicationImpl implements JBPMApplication {
 				// 如果koalaAssignInfo中指定的流程为空，则表明所有流程都委托，否指定某个流程进行待办
 				if (koalaAssignInfo.getJbpmNames() == null
 						|| koalaAssignInfo.getJbpmNames().size() == 0) {
-					tasks = getJbpmSupport().findTaskSummary(user);
+					tasks = koalaBPMApiApplication.findTaskSummary(user);
 					agentTasks.addAll(tasks);
 				} else {
 					// 如果指定了迁移的流程，则只委托指定的流程
 					List<TaskSummary> assignTasks = null;
-					assignTasks = getJbpmSupport().findTaskSummary(user);
+					assignTasks = koalaBPMApiApplication.findTaskSummary(user);
 					List<String> allowProcess = new ArrayList<String>();
 					for (KoalaAssignDetail detail : koalaAssignInfo
 							.getJbpmNames()) {
@@ -405,7 +408,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 					long processId = task.getProcessInstanceId();
 					RuleFlowProcessInstance in = null;
 					try {
-						ProcessInstance instance = getJbpmSupport()
+						ProcessInstance instance = koalaBPMApiApplication
 								.getProcessInstance(processId);
 						if (instance == null)
 							continue;
@@ -468,11 +471,11 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			}
 		} else {
 			if (userGroups.size() > 0) {
-				tasks = getJbpmSupport().findTaskSummaryByGroup(user,
+				tasks =koalaBPMApiApplication.findTaskSummaryByGroup(user,
 						userGroups);
 
 			} else {
-				tasks = getJbpmSupport().findTaskSummary(user);
+				tasks = koalaBPMApiApplication.findTaskSummary(user);
 			}
 		}
 
@@ -480,7 +483,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			long processInstanceId = task.getProcessInstanceId();
 			RuleFlowProcessInstance in = null;
 			try {
-				ProcessInstance instance = getJbpmSupport().getProcessInstance(
+				ProcessInstance instance = koalaBPMApiApplication.getProcessInstance(
 						processInstanceId);
 				if (instance == null)
 					continue;
@@ -627,7 +630,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			String activeProcessName = getJbpmSupport().getActiveProcess(
 					processName);
 
-			org.drools.definition.process.Process process = getJbpmSupport()
+			org.drools.definition.process.Process process = koalaBPMApiApplication
 					.getProcess(activeProcessName);
 			if (process == null) {
 				throw new RuntimeException("不存在的流程，请检查");
@@ -653,8 +656,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			if (userParams != null) {
 				params.putAll(userParams);
 			}
-			RuleFlowProcessInstance instance = (RuleFlowProcessInstance) getJbpmSupport()
-					.startProcess(activeProcessName, params);
+			RuleFlowProcessInstance instance = (RuleFlowProcessInstance) koalaBPMApiApplication.startProcess(activeProcessName, params);
 			commitUserTransaction(owner);
 			return instance.getId();
 		} catch (RuntimeException e) {
@@ -677,8 +679,8 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		UserTransaction owner = null;
 		try {
 			owner = this.startUserTransaction();
-			getJbpmSupport().delegate(taskId, userId, targetUserId);
-			Task task = getJbpmSupport().getTask(taskId);
+			koalaBPMApiApplication.delegate(taskId, userId, targetUserId);
+			Task task = koalaBPMApiApplication.getTask(taskId);
 			HistoryLog log = new HistoryLog();
 			log.setComment("当初任务由" + userId + "委托给" + targetUserId);
 			log.setCreateDate(new Date());
@@ -708,14 +710,14 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			// 更新流程级的参数
 			Map<String, Object> proceeParams = XmlParseUtil.xmlToPrams(params);
 			proceeParams.put(KoalaBPMVariable.NODE_USER, user);
-			RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
+			RuleFlowProcessInstance in = (RuleFlowProcessInstance)koalaBPMApiApplication
 					.getProcessInstance(processInstanceId);
 			Set<String> keys = proceeParams.keySet();
 			for (String key : keys) {
 				in.setVariable(key, proceeParams.get(key));
 
 			}
-			Task task = getJbpmSupport().getTask(taskId);
+			Task task = koalaBPMApiApplication.getTask(taskId);
 			// 更新TASK参数
 			Map<String, Object> dataParams = XmlParseUtil.xmlToPrams(data);
 			ContentData contentData = null;
@@ -742,7 +744,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			}
 			JoinAssignVO joginAssign = null;
 			// 判断是否是会签流程
-			long contentId = getJbpmSupport().getTask(task.getId())
+			long contentId = koalaBPMApiApplication.getTask(task.getId())
 					.getTaskData().getDocumentContentId();
 			Map<String, Object> map = this.getContentId(contentId);
 			if (map.containsKey("KJ_ASSIGN")) {
@@ -809,9 +811,9 @@ public class JBPMApplicationImpl implements JBPMApplication {
 
 	private boolean completeTask(Task task, ContentData contentData) {
 		try {
-			getJbpmSupport().startTask(task.getId(),
+			koalaBPMApiApplication.startTask(task.getId(),
 					task.getTaskData().getActualOwner().getId());
-			getJbpmSupport().completeTask(task.getId(),
+			koalaBPMApiApplication.completeTask(task.getId(),
 					task.getTaskData().getActualOwner().getId(), contentData);
 			return true;
 		} catch (RuntimeException e) {
@@ -876,7 +878,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	}
 
 	private void assignToNodeCall(long processInstanceId, long nodeId) {
-		RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
+		RuleFlowProcessInstance in = (RuleFlowProcessInstance) koalaBPMApiApplication
 				.getProcessInstance(processInstanceId);
 		HumanTaskNode node = (HumanTaskNode) in.getNodeContainer().getNode(
 				nodeId);
@@ -950,7 +952,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	public List<JBPMNode> getProcessNodes(String processId) {
 		String processIdActual = getJbpmSupport().getActiveProcess(processId);
 		List<JBPMNode> jbpmNodes = new ArrayList<JBPMNode>();
-		org.drools.definition.process.Process process = getJbpmSupport()
+		org.drools.definition.process.Process process = koalaBPMApiApplication
 				.getProcess(processIdActual);
 		RuleFlowProcess rule = (RuleFlowProcess) process;
 		Node[] nodes = rule.getNodes();
@@ -1032,7 +1034,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		try {
 			owner = this.startUserTransaction();
 			List<JBPMNode> jbpmNodes = new ArrayList<JBPMNode>();
-			RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
+			RuleFlowProcessInstance in = (RuleFlowProcessInstance) koalaBPMApiApplication
 					.getProcessInstance(processInstanceId);
 			RuleFlowProcess rule = (RuleFlowProcess) in.getProcess();
 			Node[] nodes = rule.getNodes();
@@ -1060,7 +1062,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		UserTransaction owner = null;
 		try {
 			owner = this.startUserTransaction();
-			Task task = getJbpmSupport().getTask(taskId);
+			Task task = koalaBPMApiApplication.getTask(taskId);
 			jbpmTaskService.repairTask(task);
 			this.commitUserTransaction(owner);
 		} catch (RuntimeException e) {
@@ -1080,8 +1082,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		List<TaskSummary> tasks = jbpmTaskService.getErrorTasks();
 		List<TaskVO> todos = new ArrayList<TaskVO>();
 
-		Collection<org.drools.definition.process.Process> processes = getJbpmSupport()
-				.queryProcesses();
+		Collection<org.drools.definition.process.Process> processes = koalaBPMApiApplication.queryProcesses();
 		List<String> processList = new ArrayList<String>();
 		for (org.drools.definition.process.Process process : processes) {
 			processList.add(process.getId());
@@ -1092,7 +1093,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			try {
 				if (!processList.contains(task.getProcessId()))
 					continue;
-				ProcessInstance instance = getJbpmSupport().getProcessInstance(
+				ProcessInstance instance = koalaBPMApiApplication.getProcessInstance(
 						processId);
 				if (instance == null)
 					continue;
@@ -1130,8 +1131,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		List<ProcessInstanceLog> logs = jbpmTaskService
 				.findActiveProcessInstances(processIdActual);
 		for (ProcessInstanceLog log : logs) {
-			RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
-					.getProcessInstance(log.getProcessInstanceId());
+			RuleFlowProcessInstance in = (RuleFlowProcessInstance) koalaBPMApiApplication.getProcessInstance(log.getProcessInstanceId());
 			instances.add(getProcessInstanceVO(in, log));
 		}
 		return instances;
@@ -1195,8 +1195,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	}
 
 	public ProcessInstanceVO getProcessInstance(long processId) {
-		RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
-				.getProcessInstance(processId);
+		RuleFlowProcessInstance in = (RuleFlowProcessInstance) koalaBPMApiApplication.getProcessInstance(processId);
 		ProcessInstanceLog log = jbpmTaskService.findProcessInstance(processId);
 		return getProcessInstanceVO(in, log);
 	}
@@ -1266,8 +1265,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 
 	public List<ProcessVO> getProcesses() {
 		List<ProcessVO> processStrings = new ArrayList<ProcessVO>();
-		Collection<org.drools.definition.process.Process> processes = getJbpmSupport()
-				.queryProcesses();
+		Collection<org.drools.definition.process.Process> processes = koalaBPMApiApplication.queryProcesses();
 		List<String> ids = new ArrayList<String>();
 		for (org.drools.definition.process.Process process : processes) {
 			String id = process.getId();
@@ -1320,7 +1318,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		UserTransaction owner = null;
 		try {
 			owner = this.startUserTransaction();
-			getJbpmSupport().abortProcessInstance(processInstanceId);
+			koalaBPMApiApplication.abortProcessInstance(processInstanceId);
 			this.commitUserTransaction(owner);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
@@ -1501,8 +1499,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		UserTransaction owner = null;
 		try {
 			owner = this.startUserTransaction();
-			RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
-					.getProcessInstance(processInstanceId);
+			RuleFlowProcessInstance in = (RuleFlowProcessInstance) koalaBPMApiApplication.getProcessInstance(processInstanceId);
 			String typeValue = type.toUpperCase();
 			if ("STRING".equals(typeValue)) {
 				in.setVariable(key, value);
@@ -1628,7 +1625,6 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		try {
 			if (ut.getStatus() == javax.transaction.Status.STATUS_MARKED_ROLLBACK) {
 				ut.rollback();
-				getJbpmSupport().reloadKsession();
 			} else {
 				ut.commit();
 			}
