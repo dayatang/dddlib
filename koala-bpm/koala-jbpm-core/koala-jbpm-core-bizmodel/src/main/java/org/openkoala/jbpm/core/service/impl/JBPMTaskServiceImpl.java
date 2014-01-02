@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.drools.persistence.info.WorkItemInfo;
@@ -32,7 +33,8 @@ import com.dayatang.domain.QuerySettings;
 @SuppressWarnings("unchecked")
 public class JBPMTaskServiceImpl implements JBPMTaskService {
 
-	@Inject
+	
+	@PersistenceContext(unitName="org.jbpm.persistence.jpa")
 	EntityManager jbpmEM;
 
 	public void removeTaskUser(long taskId, String user) {

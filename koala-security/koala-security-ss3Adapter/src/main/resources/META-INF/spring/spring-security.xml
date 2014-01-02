@@ -27,7 +27,7 @@
 	
 	<bean id="loginAuthenticationProvider" class="org.openkoala.koala.auth.ss3adapter.LoginAuthenticationProvider">
 		<property name="authHandler" ref="authHandler" />
-		<property name="userDetailsService" ref="userDetailManager" />
+		<!-- <property name="userDetailsService" ref="userDetailManager" /> -->
 	</bean>
 	
 

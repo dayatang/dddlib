@@ -39,7 +39,8 @@ public class FossEntityRepositoryJpa implements EntityRepository {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(FossEntityRepositoryJpa.class);
 
-	@Inject
+	
+	@PersistenceContext(unitName="org.jbpm.persistence.jpa")
 	EntityManager jbpmEM;
 
 	public FossEntityRepositoryJpa() {

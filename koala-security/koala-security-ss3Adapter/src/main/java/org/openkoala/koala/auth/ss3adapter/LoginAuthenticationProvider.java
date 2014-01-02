@@ -1,16 +1,15 @@
 package org.openkoala.koala.auth.ss3adapter;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.openkoala.koala.auth.AuthHandler;
-import org.openkoala.koala.auth.AuthInfo;
-import org.springframework.dao.DataAccessException;
-import org.springframework.security.authentication.AuthenticationServiceException;
-import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 /**
  * 登录验证
@@ -19,65 +18,68 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  * @date 2013年12月23日 上午11:22:35
  * 
  */
-public class LoginAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
+public class LoginAuthenticationProvider implements AuthenticationProvider {
 
-	private UserDetailsService userDetailsService;
-	
 	private AuthHandler authHandler;
-
-	@Override
-	protected void additionalAuthenticationChecks(UserDetails userDetails,
-			UsernamePasswordAuthenticationToken authentication) throws AuthenticationException {
-
-		if (authentication.getCredentials() == null) {
-			logger.debug("Authentication failed: no credentials provided");
-			throw new BadCredentialsException(messages.getMessage(
-					"AbstractUserDetailsAuthenticationProvider.badCredentials", "Bad credentials"));
-		}
-
-		AuthInfo loginInfo = getUserInfo(userDetails.getPassword(), authentication.getCredentials().toString());
-		
-		if (!authHandler.isAuth(loginInfo)) {
-			logger.debug("Authentication failed.");
-			throw new AuthenticationFailureException("Authentication failed.");
-		}
-
-	}
-
-	private AuthInfo getUserInfo(String encodedPassword, String password) {
-		AuthInfo loginInfo = new AuthInfo();
-		loginInfo.setEncodedPassword(encodedPassword);
-		loginInfo.setPassword(password);
-		return loginInfo;
-	}
-
-	@Override
-	protected UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken authentication)
-			throws AuthenticationException {
-		UserDetails loadedUser;
-
-		try {
-			loadedUser = userDetailsService.loadUserByUsername(username);
-		} catch (DataAccessException repositoryProblem) {
-			throw new AuthenticationServiceException(repositoryProblem.getMessage(), repositoryProblem);
-		} catch (UsernameNotFoundException notFound) {
-			throw notFound;
-		}
-
-		if (loadedUser == null) {
-			throw new AuthenticationServiceException(
-					"UserDetailsService returned null, which is an interface contract violation");
-		}
-
-		return loadedUser;
-	}
 
 	public void setAuthHandler(AuthHandler authHandler) {
 		this.authHandler = authHandler;
 	}
 
-	public void setUserDetailsService(UserDetailsService userDetailsService) {
-		this.userDetailsService = userDetailsService;
+	@Override
+	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+		org.openkoala.koala.auth.UserDetails loadedUser = authHandler.authenticate(
+				authentication.getPrincipal().toString(), 
+				authentication.getCredentials().toString());
+		
+		if (loadedUser == null) {
+			throw new AuthenticationFailureException("Authentication failed.");
+		}
+		
+		return createSuccessAuthentication(authentication, getUserDetails(loadedUser), loadedUser);
+	}
+
+	private CustomUserDetails getUserDetails(org.openkoala.koala.auth.UserDetails loadedUser) {
+		CustomUserDetails userDetails = new CustomUserDetails();
+		userDetails.setRealName(loadedUser.getRealName());
+		userDetails.setAuthorities(getAuthorities(loadedUser));
+		userDetails.setUsername(loadedUser.getUseraccount());
+		userDetails.setPassword(loadedUser.getPassword());
+		userDetails.setEnabled(loadedUser.isEnabled());
+		userDetails.setSuper(loadedUser.isSuper());
+		return userDetails;
+	}
+	
+	private Authentication createSuccessAuthentication(Authentication authentication, 
+			UserDetails userDetails, org.openkoala.koala.auth.UserDetails loadedUser) {
+		UsernamePasswordAuthenticationToken result = new UsernamePasswordAuthenticationToken(userDetails,
+				authentication.getCredentials(), getAuthorities(loadedUser));
+		result.setDetails(authentication.getDetails());
+		return result;
+	}
+
+	private Collection<GrantedAuthority> getAuthorities(org.openkoala.koala.auth.UserDetails loadedUser) {
+		Collection<GrantedAuthority> results = new ArrayList<GrantedAuthority>();
+		for (final String authority : loadedUser.getAuthorities()) {
+			results.add(new GrantedAuthority() {
+				
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 4687464060621929687L;
+
+				@Override
+				public String getAuthority() {
+					return authority;
+				}
+			});
+		}
+		return results;
+	}
+
+	@Override
+	public boolean supports(Class<? extends Object> authentication) {
+		return true;
 	}
 
 }

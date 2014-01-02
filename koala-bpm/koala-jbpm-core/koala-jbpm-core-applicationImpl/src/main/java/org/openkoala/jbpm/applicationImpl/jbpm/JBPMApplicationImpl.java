@@ -15,19 +15,26 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jws.WebMethod;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
 import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
+import javax.transaction.TransactionManager;
+import javax.transaction.UserTransaction;
+
 import org.drools.definition.process.Node;
 import org.drools.persistence.info.WorkItemInfo;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.process.NodeInstance;
 import org.drools.runtime.process.ProcessInstance;
+import org.drools.runtime.process.WorkflowProcessInstance;
 import org.openkoala.jbpm.application.JBPMApplication;
 import org.openkoala.jbpm.application.KoalaJbpmCoreApplication;
 import org.openkoala.jbpm.application.core.JoinAssignApplication;
@@ -74,8 +81,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.service.QueryChannelService;
@@ -89,11 +94,10 @@ import com.dayatang.querychannel.support.Page;
  */
 @Named("jbpmApplication")
 @SuppressWarnings({ "unchecked", "unused" })
-@Transactional
-//@org.apache.cxf.interceptor.InInterceptors(interceptors = { "org.apache.cxf.transport.common.gzip.GZIPInInterceptor" })
 public class JBPMApplicationImpl implements JBPMApplication {
 
-	private static final Logger logger = LoggerFactory.getLogger(JBPMApplicationImpl.class);
+	private static final Logger logger = LoggerFactory
+			.getLogger(JBPMApplicationImpl.class);
 
 	@Inject
 	private QueryChannelService queryChannel;
@@ -114,29 +118,29 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	}
 
 	/**
-	 * 根据流程名返回流程图片
-	 * defaultPackage.Trade  不支持查询
-	 *  
+	 * 根据流程名返回流程图片 defaultPackage.Trade 不支持查询
+	 * 
 	 * defaultPakage.Trade@1 支持特定版本查询
 	 */
 	public byte[] getProcessImage(String processId) {
+		UserTransaction owner = null;
 		try {
-			this.getJbpmSupport().startTransaction();
+			owner = this.startUserTransaction();
 			Map<String, Object> params = new HashMap<String, Object>();
 			params.put("processId", processId);
 			KoalaProcessInfo processInfo = jbpmTaskService
 					.getKoalaProcessInfo(params);
 			byte[] image = ImageUtil.getProcessPictureByte(processId,
 					processInfo.getPng(), new ArrayList<Integer>());
-			this.getJbpmSupport().commitTransaction();
+			this.commitUserTransaction(owner);
 			return image;
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw new RuntimeException(e.getCause());
 		}
 	}
@@ -145,8 +149,9 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	 * 根据流程实例 ID 来查询流程lt
 	 */
 	public byte[] getPorcessImageStream(long processInstanceId) {
+		UserTransaction owner = null;
 		try {
-			this.getJbpmSupport().startTransaction();
+			owner = this.startUserTransaction();
 			RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
 					.getProcessInstance(processInstanceId);
 			List<Integer> nodes = new ArrayList<Integer>();
@@ -170,15 +175,15 @@ public class JBPMApplicationImpl implements JBPMApplication {
 					.getKoalaProcessInfo(params);
 			byte[] image = ImageUtil.getProcessPictureByte(processId,
 					processInfo.getPng(), nodes);
-			this.getJbpmSupport().commitTransaction();
+			this.commitUserTransaction(owner);
 			return image;
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw new RuntimeException(e.getCause());
 		}
 	}
@@ -191,8 +196,9 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	 * @return
 	 */
 	public List<TaskChoice> queryTaskChoice(long processInstanceId, long taskId) {
+		UserTransaction owner = null;
 		try {
-			this.getJbpmSupport().startTransaction();
+			owner = this.startUserTransaction();
 			Task task = getJbpmSupport().getTask(taskId);
 			String taskName = task.getNames().get(0).getText();
 
@@ -205,7 +211,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			 * KJ_CHOICE_KEY 关键决择KEY CHOICE KJ_CHOICE_TYPE KEY类型 String
 			 * KJ_CHOICE_VALUE 值映射 同意->1;不同意->2;
 			 */
-			if (!map.containsKey("KJ_CHOICE_KEY")) {
+			if (map == null || !map.containsKey("KJ_CHOICE_KEY")) {
 				return null;
 			}
 
@@ -239,15 +245,15 @@ public class JBPMApplicationImpl implements JBPMApplication {
 				TaskChoice choice = new TaskChoice(key, type, name, keyValue);
 				choiceList.add(choice);
 			}
-			this.getJbpmSupport().commitTransaction();
+			this.commitUserTransaction(owner);
 			return choiceList;
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw new RuntimeException(e.getCause());
 		}
 
@@ -259,28 +265,30 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	 * @param user
 	 *            用户
 	 * @param groups
-	 *            用户所属的组 组格式 <groups> <value>ROLE:Manager</value> <value>Dept:技术拓展部</value>
-	 *            </groups>
+	 *            用户所属的组 组格式 <groups> <value>ROLE:Manager</value>
+	 *            <value>Dept:技术拓展部</value> </groups>
 	 * @return
 	 */
 	public List<TaskVO> queryTodoListWithGroup(String user, String groups) {
+		UserTransaction owner = null;
 		try {
-			this.getJbpmSupport().startTransaction();
+			owner = this.startUserTransaction();
 			List<TaskVO> todos = new ArrayList<TaskVO>();
-			if(user==null || "".equals(user.trim())){
+			if (user == null || "".equals(user.trim())) {
 				todos.addAll(this.queryTodoListCall(user, groups, null));
 			}
-			if(groups==null || "".equals(groups.trim())){
+			if (groups == null || "".equals(groups.trim())) {
 				todos.addAll(this.queryDelegateTodoList(user, null));
 			}
+			this.commitUserTransaction(owner);
 			return todos;
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw new RuntimeException(e.getCause());
 		}
 
@@ -299,10 +307,24 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	 */
 	public List<TaskVO> processQueryTodoListWithGroup(String process,
 			String user, String groups) {
-		List<TaskVO> todos = new ArrayList<TaskVO>();
-		todos.addAll(this.queryTodoListCall(user, groups, process));
-		todos.addAll(this.queryDelegateTodoList(user, process));
-		return todos;
+
+		UserTransaction owner = null;
+		try {
+			owner = this.startUserTransaction();
+			List<TaskVO> todos = new ArrayList<TaskVO>();
+			todos.addAll(this.queryTodoListCall(user, groups, process));
+			todos.addAll(this.queryDelegateTodoList(user, process));
+			this.commitUserTransaction(owner);
+			return todos;
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+			this.rollbackUserTransaction(owner);
+			throw e;
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.rollbackUserTransaction(owner);
+			throw new RuntimeException(e.getCause());
+		}
 	}
 
 	/**
@@ -316,10 +338,23 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	 * @return
 	 */
 	public List<TaskVO> queryTodoList(String user) {
-		List<TaskVO> todos = new ArrayList<TaskVO>();
-		todos.addAll(this.queryTodoListCall(user, null, null));
-		todos.addAll(this.queryDelegateTodoList(user, null));
-		return todos;
+		UserTransaction owner = null;
+		try {
+			owner = this.startUserTransaction();
+			List<TaskVO> todos = new ArrayList<TaskVO>();
+			todos.addAll(this.queryTodoListCall(user, null, null));
+			todos.addAll(this.queryDelegateTodoList(user, null));
+			this.commitUserTransaction(owner);
+			return todos;
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+			this.rollbackUserTransaction(owner);
+			throw e;
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.rollbackUserTransaction(owner);
+			throw new RuntimeException(e.getCause());
+		}
 	}
 
 	/**
@@ -458,8 +493,8 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			TaskVO todo = new TaskVO();
 			Map<String, Object> processParams = in.getVariables();
 			String processData = XmlParseUtil.paramsToXml(processParams);
-			//TOTO 非常特殊的行为，没有用户，只有组
-			if(task.getActualOwner()!=null){
+			// TOTO 非常特殊的行为，没有用户，只有组
+			if (task.getActualOwner() != null) {
 				todo.setActualOwner(task.getActualOwner().getId());
 			}
 			todo.setActualName(task.getName());
@@ -573,11 +608,12 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		return dones;
 	}
 
-	//defaultPackage.Trade@1
-	//defaultPackage.Trade
-	public long startProcess(String processName, String creater,
+	// defaultPackage.Trade@1
+	// defaultPackage.Trade
+	public synchronized long startProcess(String processName, String creater,
 			String paramsString) {
-		getJbpmSupport().startTransaction();
+		UserTransaction owner = null;
+		owner = startUserTransaction();
 		// 读取Global级的变量
 		try {
 			Map<String, Object> params = new HashMap<String, Object>();
@@ -614,21 +650,23 @@ public class JBPMApplicationImpl implements JBPMApplication {
 
 			Map<String, Object> userParams = XmlParseUtil
 					.xmlToPrams(paramsString);
-			if (userParams != null){
+			if (userParams != null) {
 				params.putAll(userParams);
 			}
 			RuleFlowProcessInstance instance = (RuleFlowProcessInstance) getJbpmSupport()
 					.startProcess(activeProcessName, params);
-			getJbpmSupport().commitTransaction();
+			commitUserTransaction(owner);
 			return instance.getId();
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw new RuntimeException(e.getCause());
+		}finally{
+			
 		}
 	}
 
@@ -636,8 +674,9 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	 * 委托
 	 */
 	public void delegate(long taskId, String userId, String targetUserId) {
+		UserTransaction owner = null;
 		try {
-			this.getJbpmSupport().startTransaction();
+			owner = this.startUserTransaction();
 			getJbpmSupport().delegate(taskId, userId, targetUserId);
 			Task task = getJbpmSupport().getTask(taskId);
 			HistoryLog log = new HistoryLog();
@@ -649,22 +688,23 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			log.setProcessInstanceId(task.getTaskData().getProcessInstanceId());
 			log.setProcessId(task.getTaskData().getProcessId());
 			log.save();
-			this.getJbpmSupport().commitTransaction();
+			this.commitUserTransaction(owner);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw new RuntimeException(e.getCause());
 		}
 	}
 
 	public boolean completeTask(long processInstanceId, long taskId,
 			String user, String params, String data) {
+		UserTransaction owner = null;
 		try {
-			this.getJbpmSupport().startTransaction();
+			owner = this.startUserTransaction();
 			// 更新流程级的参数
 			Map<String, Object> proceeParams = XmlParseUtil.xmlToPrams(params);
 			proceeParams.put(KoalaBPMVariable.NODE_USER, user);
@@ -673,6 +713,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			Set<String> keys = proceeParams.keySet();
 			for (String key : keys) {
 				in.setVariable(key, proceeParams.get(key));
+
 			}
 			Task task = getJbpmSupport().getTask(taskId);
 			// 更新TASK参数
@@ -753,14 +794,14 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			if (joginAssign == null) {
 				completeTask(task, contentData);
 			}
-			this.getJbpmSupport().commitTransaction();
+			this.commitUserTransaction(owner);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw new RuntimeException(e.getCause());
 		}
 		return true;
@@ -818,17 +859,18 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	 * @param nodeId
 	 */
 	public void assignToNode(long processInstanceId, long nodeId) {
+		UserTransaction owner = null;
 		try {
-			this.getJbpmSupport().startTransaction();
+			owner = startUserTransaction();
 			this.assignToNodeCall(processInstanceId, nodeId);
-			this.getJbpmSupport().commitTransaction();
+			this.commitUserTransaction(owner);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			getJbpmSupport().rollbackTransaction();
+			rollbackUserTransaction(owner);
 			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw new RuntimeException(e.getCause());
 		}
 	}
@@ -928,21 +970,22 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	 * @param userId
 	 */
 	public void fetchBack(long processInstanceId, long taskId, String userId) {
+		UserTransaction owner = null;
 		try {
-			this.getJbpmSupport().startTransaction();
+			owner = this.startUserTransaction();
 			// 查询流程的上个节点处理人，将流程回复到此节点
 			HistoryLog historyLog = HistoryLog
 					.queryLastActivedNodeId(processInstanceId);
 			assignToNodeCall(processInstanceId, historyLog.getNodeId());
 
-			this.getJbpmSupport().commitTransaction();
+			this.commitUserTransaction(owner);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			getJbpmSupport().rollbackTransaction();
+			rollbackUserTransaction(owner);
 			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw new RuntimeException(e.getCause());
 		}
 	}
@@ -955,8 +998,9 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	 * @param userId
 	 */
 	public void roolBack(long processInstanceId, long taskId, String userId) {
+		UserTransaction owner = null;
 		try {
-			this.getJbpmSupport().startTransaction();
+			owner = this.startUserTransaction();
 			// RuleFlowProcessInstance in = (RuleFlowProcessInstance)
 			// getJbpmSupport()
 			// .getProcessInstance(processInstanceId);
@@ -970,13 +1014,13 @@ public class JBPMApplicationImpl implements JBPMApplication {
 				throw new RuntimeException("没有上一个人工处理节点，不能回退");
 			}
 			assignToNodeCall(processInstanceId, historyLog.getNodeId());
-			this.getJbpmSupport().commitTransaction();
+			this.commitUserTransaction(owner);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw e;
 		} catch (Exception e) {
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			e.printStackTrace();
 			throw new RuntimeException(e.getCause());
 		}
@@ -984,8 +1028,9 @@ public class JBPMApplicationImpl implements JBPMApplication {
 
 	public List<JBPMNode> getProcessNodesFromPorcessInstnaceId(
 			long processInstanceId) {
+		UserTransaction owner = null;
 		try {
-			this.getJbpmSupport().startTransaction();
+			owner = this.startUserTransaction();
 			List<JBPMNode> jbpmNodes = new ArrayList<JBPMNode>();
 			RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
 					.getProcessInstance(processInstanceId);
@@ -998,32 +1043,33 @@ public class JBPMApplicationImpl implements JBPMApplication {
 					jbpmNodes.add(jbpmNode);
 				}
 			}
-			getJbpmSupport().commitTransaction();
+			commitUserTransaction(owner);
 			return jbpmNodes;
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw e;
 		} catch (Exception e) {
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			e.printStackTrace();
 			throw new RuntimeException(e.getCause());
 		}
 	}
 
 	public void repairTask(long taskId) {
+		UserTransaction owner = null;
 		try {
-			this.getJbpmSupport().startTransaction();
+			owner = this.startUserTransaction();
 			Task task = getJbpmSupport().getTask(taskId);
 			jbpmTaskService.repairTask(task);
-			this.getJbpmSupport().commitTransaction();
+			this.commitUserTransaction(owner);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			getJbpmSupport().rollbackTransaction();
+			rollbackUserTransaction(owner);
 			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw new RuntimeException(e.getCause());
 		}
 	}
@@ -1179,40 +1225,40 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	}
 
 	public void addProcess(String packageName, String processName, int version,
-			String data, Byte[] png, boolean isActive) {
+			String data, String pngString, boolean isActive) {
+		UserTransaction owner = null;
 		try {
-			this.getJbpmSupport().startTransaction();
-			Map<String, Object> params = new HashMap<String, Object>();
-			params.put("versionNum", version);
-			params.put("processName", processName);
-			KoalaProcessInfo processInfo = jbpmTaskService
-					.getKoalaProcessInfo(params);
+			byte[] png = pngString.getBytes();
+			owner = this.startUserTransaction();
+			KoalaProcessInfo processInfo = KoalaProcessInfo
+					.getProcessInfoByProcessNameAndVersion(processName, version);
 			if (processInfo != null) {
 				processInfo.setData(data.getBytes());
-				processInfo.setPng(convertFromByteArray(png));
+				processInfo.setPng(png);
 			} else {
 				processInfo = new KoalaProcessInfo(processName, version, data,
-						convertFromByteArray(png));
+						png);
 				processInfo.setActive(isActive);
 				processInfo.setPackageName(packageName);
+				processInfo.save();
 			}
 			getJbpmSupport().addProcessToCenter(processInfo, isActive);
 			processInfo.publishProcess();
-			this.getJbpmSupport().commitTransaction();
+			this.commitUserTransaction(owner);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			getJbpmSupport().rollbackTransaction();
+			rollbackUserTransaction(owner);
 			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw new RuntimeException(e.getCause());
 		}
 	}
-	
-	private byte[] convertFromByteArray(Byte[] pngs){
+
+	private byte[] convertFromByteArray(Byte[] pngs) {
 		byte[] bytePng = new byte[pngs.length];
-		for(int i=0; i<pngs.length; i++){
+		for (int i = 0; i < pngs.length; i++) {
 			bytePng[i] = pngs[i].byteValue();
 		}
 		return bytePng;
@@ -1271,17 +1317,18 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	 * @param processInstanceId
 	 */
 	public void removeProcessInstance(long processInstanceId) {
+		UserTransaction owner = null;
 		try {
-			this.getJbpmSupport().startTransaction();
+			owner = this.startUserTransaction();
 			getJbpmSupport().abortProcessInstance(processInstanceId);
-			this.getJbpmSupport().commitTransaction();
+			this.commitUserTransaction(owner);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			getJbpmSupport().rollbackTransaction();
+			rollbackUserTransaction(owner);
 			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw new RuntimeException(e.getCause());
 		}
 
@@ -1298,17 +1345,18 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	 *            全局变量的类型
 	 */
 	public void setGlobalVariable(String key, String value, String type) {
+		UserTransaction owner = null;
 		try {
-			this.getJbpmSupport().startTransaction();
+			owner = this.startUserTransaction();
 			KoalaJbpmVariable.setGlobalVariable(key, value, type);
-			this.getJbpmSupport().commitTransaction();
+			this.commitUserTransaction(owner);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			getJbpmSupport().rollbackTransaction();
+			rollbackUserTransaction(owner);
 			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw new RuntimeException(e.getCause());
 		}
 
@@ -1320,17 +1368,18 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	 * @param key
 	 */
 	public void removeGlobalVariable(String key) {
+		UserTransaction owner = null;
 		try {
-			this.getJbpmSupport().startTransaction();
+			owner = this.startUserTransaction();
 			KoalaJbpmVariable.removeGlobalVariable(key);
-			this.getJbpmSupport().commitTransaction();
+			this.commitUserTransaction(owner);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			getJbpmSupport().rollbackTransaction();
+			rollbackUserTransaction(owner);
 			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw new RuntimeException(e.getCause());
 		}
 	}
@@ -1349,17 +1398,18 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	 */
 	public void setPackageVariable(String packageName, String key,
 			String value, String type) {
+		UserTransaction owner = null;
 		try {
-			this.getJbpmSupport().startTransaction();
+			owner = this.startUserTransaction();
 			KoalaJbpmVariable.setPackageVariable(packageName, key, value, type);
-			this.getJbpmSupport().commitTransaction();
+			this.commitUserTransaction(owner);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			getJbpmSupport().rollbackTransaction();
+			rollbackUserTransaction(owner);
 			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw new RuntimeException(e.getCause());
 		}
 	}
@@ -1371,17 +1421,18 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	 * @param key
 	 */
 	public void removePackageVariable(String packageName, String key) {
+		UserTransaction owner = null;
 		try {
-			getJbpmSupport().startTransaction();
+			owner = startUserTransaction();
 			KoalaJbpmVariable.removePackageVariable(packageName, key);
-			getJbpmSupport().commitTransaction();
+			commitUserTransaction(owner);
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-			getJbpmSupport().rollbackTransaction();
+			rollbackUserTransaction(owner);
 			throw e;
 		} catch (Exception e) {
 			e.printStackTrace();
-			this.getJbpmSupport().rollbackTransaction();
+			this.rollbackUserTransaction(owner);
 			throw new RuntimeException(e.getCause());
 		}
 
@@ -1403,13 +1454,14 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	 */
 	public void setProcessVariable(String processId, String key, String value,
 			String type) {
+		UserTransaction owner = null;
 		try {
-			getJbpmSupport().startTransaction();
+			owner = startUserTransaction();
 			KoalaJbpmVariable.setProcessVariable(processId, key, value, type);
-			getJbpmSupport().commitTransaction();
+			commitUserTransaction(owner);
 		} catch (Exception e) {
 			e.printStackTrace();
-			getJbpmSupport().rollbackTransaction();
+			rollbackUserTransaction(owner);
 		}
 	}
 
@@ -1421,13 +1473,14 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	 * @param key
 	 */
 	public void removeProcessVariable(String processId, String key) {
+		UserTransaction owner = null;
 		try {
-			getJbpmSupport().startTransaction();
+			owner = startUserTransaction();
 			KoalaJbpmVariable.removeProcessVariable(processId, key);
-			getJbpmSupport().commitTransaction();
+			commitUserTransaction(owner);
 		} catch (Exception e) {
 			e.printStackTrace();
-			getJbpmSupport().rollbackTransaction();
+			rollbackUserTransaction(owner);
 		}
 	}
 
@@ -1445,7 +1498,9 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	 */
 	public void setProcessInstanceVariable(long processInstanceId, String key,
 			String value, String type) {
+		UserTransaction owner = null;
 		try {
+			owner = this.startUserTransaction();
 			RuleFlowProcessInstance in = (RuleFlowProcessInstance) getJbpmSupport()
 					.getProcessInstance(processInstanceId);
 			String typeValue = type.toUpperCase();
@@ -1464,10 +1519,10 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			if ("BOOLEAN".equals(typeValue)) {
 				in.setVariable(key, Boolean.parseBoolean(value));
 			}
-			getJbpmSupport().commitTransaction();
+			commitUserTransaction(owner);
 		} catch (Exception e) {
 			e.printStackTrace();
-			getJbpmSupport().rollbackTransaction();
+			rollbackUserTransaction(owner);
 		}
 	}
 
@@ -1532,7 +1587,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		byte[] conByte = content.getContent();
 		ByteArrayInputStream bis = new ByteArrayInputStream(conByte);
 		ObjectInputStream ois;
-		Map<String, Object> map = null;
+		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			ois = new ObjectInputStream(bis);
 			Object obj = ois.readObject();
@@ -1551,5 +1606,56 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			return processId.substring(0, i);
 		}
 		return processId;
+	}
+
+	private UserTransaction startUserTransaction() {
+		UserTransaction ut = null;
+		try {
+			ut = (UserTransaction) new InitialContext()
+					.lookup("java:jboss/UserTransaction");
+			ut.begin();
+		} catch (NotSupportedException e) {
+			e.printStackTrace();
+		} catch (SystemException e) {
+			e.printStackTrace();
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+		return ut;
+	}
+
+	private void commitUserTransaction(UserTransaction ut) {
+		try {
+			if (ut.getStatus() == javax.transaction.Status.STATUS_MARKED_ROLLBACK) {
+				ut.rollback();
+				getJbpmSupport().reloadKsession();
+			} else {
+				ut.commit();
+			}
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (RollbackException e) {
+			e.printStackTrace();
+		} catch (HeuristicMixedException e) {
+			e.printStackTrace();
+		} catch (HeuristicRollbackException e) {
+			e.printStackTrace();
+		} catch (SystemException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void rollbackUserTransaction(UserTransaction ut) {
+		try {
+			ut.rollback();
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (SystemException e) {
+			e.printStackTrace();
+		}
 	}
 }

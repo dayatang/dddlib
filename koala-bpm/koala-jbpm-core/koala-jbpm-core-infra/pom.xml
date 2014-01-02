@@ -99,7 +99,7 @@
 		<dependency>
 			<groupId>org.jbpm</groupId>
 			<artifactId>jbpm-bpmn2</artifactId>
-			<version>${jbpm.version}</version>
+			<version>5.4.0.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jbpm</groupId>
@@ -113,7 +113,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.jbpm</groupId>
-			<artifactId>jbpm-human-task</artifactId>
+			<artifactId>jbpm-human-task-core</artifactId>
 			<version>${jbpm.version}</version>
 		</dependency>
 		<dependency>

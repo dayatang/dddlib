@@ -154,18 +154,6 @@ public class KoalaProcessInfo extends AbstractEntity{
 		if (getClass() != obj.getClass())
 			return false;
 		KoalaProcessInfo other = (KoalaProcessInfo) obj;
-		if (createDate == null) {
-			if (other.createDate != null)
-				return false;
-		} else if (!createDate.equals(other.createDate))
-			return false;
-		if (!Arrays.equals(data, other.data))
-			return false;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
 		if (processId == null) {
 			if (other.processId != null)
 				return false;
@@ -270,22 +258,20 @@ public class KoalaProcessInfo extends AbstractEntity{
 		return getRepository().find("from KoalaProcessInfo k where k.processName = ? ", new Object[]{processId}, KoalaProcessInfo.class);
 	}
 	
+	public static KoalaProcessInfo getProcessInfoByProcessNameAndVersion(String processName,int versionNum){
+		String jpql = "from KoalaProcessInfo k where k.processName = ? and k.versionNum = ? and k.isActive is true";
+		List<KoalaProcessInfo> infos =  getRepository().find(jpql, new Object[]{processName,versionNum}, KoalaProcessInfo.class);
+		if(infos!=null && infos.isEmpty()==false){
+			return infos.get(0);
+		}
+		return null;
+	}
+	
 	public void publishProcess(){
 		//如果当前流程在数据库中没有激活的流程，则这一次始终为激活的流程
-		String hql = "from KoalaProcessInfo k where k.processName = ? and k.isActive is true";
-		List<KoalaProcessInfo> processes = getRepository().find(hql, new Object[]{processName}, KoalaProcessInfo.class);
-		
-		if(processes==null || processes.size()==0)this.setActive(true);
-		
-		if(isActive){
-			//如果当前流程为激活的流程，则取消以前的激活的流程
-			for(KoalaProcessInfo process:processes){
-				process.setActive(false);
-				process.save();
-			}
-		}
+		//getRepository().executeUpdate("update KoalaProcessInfo k set k.isActive = false where k.processName = ?",  new Object[]{processName});
+		setActive(true);
 		setCreateDate(new Date());
-		super.save();
 	}
 	
 }

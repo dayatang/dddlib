@@ -55,7 +55,7 @@ public interface JBPMApplication {
 	@Produces({"application/xml", "application/json"})
 	public void addProcess(@FormParam("packageName")String packageName, @FormParam("processId")String processId, 
 			@FormParam("version")int version, @FormParam("data")String data, 
-			@FormParam("png")Byte[] png, @FormParam("isActive")boolean isActive);
+			@FormParam("png")String png, @FormParam("isActive")boolean isActive);
 
 	/**
 	 * 发起一个流程

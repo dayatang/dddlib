@@ -67,7 +67,7 @@ public class AuthDataServiceImpl implements AuthDataService {
 			return getUserDetails(userConfig.getAdminAccount(), 
 					passwordEncoder.encode(userConfig.getAdminPassword()),
 					userConfig.getAdminAccount(), "administrator@openkoala.com", 
-					userConfig.getAdminRealName(), true, true);
+					userConfig.getAdminAccount(), userConfig.getAdminRealName(), true, true);
 		}
 		
 		User user = User.findByUserAccount(useraccount);
@@ -81,7 +81,7 @@ public class AuthDataServiceImpl implements AuthDataService {
 		}
 		
 		return getUserDetails(user.getUserAccount(), user.getUserPassword(), user.getUserDesc(),
-				user.getEmail(), user.getName(), user.isValid(), false);
+				user.getEmail(), user.getName(), user.getName(), user.isValid(), false);
 	}
 	
 	@Override
@@ -114,7 +114,7 @@ public class AuthDataServiceImpl implements AuthDataService {
 	}
 	
 	private DefaultUserDetailsImpl getUserDetails(String useraccount, String password, String desc, 
-			String email, String name, boolean isValid, boolean isSuper) {
+			String email, String name, String realName, boolean isValid, boolean isSuper) {
 		DefaultUserDetailsImpl userDetails = new DefaultUserDetailsImpl();
 		userDetails.setUseraccount(useraccount);
 		userDetails.setPassword(password);
@@ -124,6 +124,7 @@ public class AuthDataServiceImpl implements AuthDataService {
 		userDetails.setAuthorities(getUserRoles(useraccount));
 		userDetails.setEnabled(isValid);
 		userDetails.setSuper(isSuper);
+		userDetails.setRealName(realName);
 		return userDetails;
 	}
 
