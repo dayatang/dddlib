@@ -1,23 +1,10 @@
 package org.openkoala.opencis.authentication;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.AbstractHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.HttpContext;
-import org.apache.http.util.EntityUtils;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.opencis.jenkins.HttpCASAuthentication;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * User: zjzhai
@@ -36,7 +23,7 @@ public class CISAuthenticationTest {
                 "admin",
                 "admin");
 
-        authentication.setJenkinsAuthenticationUrl(new URL("http", "10.108.1.138", 8080, "/jenkins"));
+        authentication.setJenkinsAuthenticationUrl(new URL("http", "10.108.1.138", 8080, "/ci/jenkins"));
 
 
         assert authentication.authentication();
