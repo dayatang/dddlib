@@ -14,7 +14,6 @@ import javax.persistence.TemporalType;
 
 import org.openkoala.organisation.SnIsExistException;
 
-import com.dayatang.domain.AbstractEntity;
 import com.dayatang.domain.EntityRepository;
 import com.dayatang.domain.InstanceFactory;
 import com.dayatang.domain.QuerySettings;
@@ -37,10 +36,12 @@ public abstract class Party extends OrganizationAbstractEntity {
 	
 	// 创建日期
 	@Temporal(TemporalType.DATE)
+	@Column(name = "create_date")
 	private Date createDate = new Date();
 
 	// 终结日期
 	@Temporal(TemporalType.DATE)
+	@Column(name = "terminate_date")
 	private Date terminateDate = DateUtils.MAX_DATE;
 
 	Party() {
