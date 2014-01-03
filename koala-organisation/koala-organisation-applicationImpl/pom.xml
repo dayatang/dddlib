@@ -11,6 +11,12 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.openkoala.organisation</groupId>
+			<artifactId>koala-organisation-conf</artifactId>
+			<version>${project.parent.version}</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>org.openkoala.organisation</groupId>
 			<artifactId>koala-organisation-core</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
@@ -28,13 +34,6 @@
 
 
 		<!-- Test -->
-		<dependency>
-			<groupId>org.openkoala.organisation</groupId>
-			<artifactId>koala-organisation-conf</artifactId>
-			<version>${project.parent.version}</version>
-			<type>jar</type>
-			<scope>test</scope>
-		</dependency>
 		<dependency>
 			<groupId>${db.groupId}</groupId>
 			<artifactId>${db.artifactId}</artifactId>
