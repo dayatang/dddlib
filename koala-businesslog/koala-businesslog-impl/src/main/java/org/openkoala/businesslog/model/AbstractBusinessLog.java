@@ -27,8 +27,10 @@ public abstract class AbstractBusinessLog implements com.dayatang.domain.Entity 
     @Column(name = "VERSION")
     private int version;
 
+    @Column(name = "LOG_CATEGORY")
     private String category;
 
+    @Column(name = "LOG_CONTENT")
     private String log;
 
     /**
