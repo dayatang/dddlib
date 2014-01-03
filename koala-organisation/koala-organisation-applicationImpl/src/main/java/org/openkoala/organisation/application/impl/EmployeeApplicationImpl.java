@@ -33,7 +33,7 @@ import com.dayatang.querychannel.support.Page;
  *
  */
 @Named
-@Transactional
+@Transactional(value="transactionManager_org")
 @Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
 @Stateless(name = "EmployeeApplication")
 @Remote

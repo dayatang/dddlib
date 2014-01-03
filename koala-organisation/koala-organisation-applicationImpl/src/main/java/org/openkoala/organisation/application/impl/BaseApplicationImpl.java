@@ -15,7 +15,7 @@ import org.openkoala.organisation.domain.Party;
 import org.springframework.transaction.annotation.Transactional;
 
 @Named
-@Transactional
+@Transactional(value="transactionManager_org")
 @Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
 @Stateless(name = "BaseApplication")
 @Remote

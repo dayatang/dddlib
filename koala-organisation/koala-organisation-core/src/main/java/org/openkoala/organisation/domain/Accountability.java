@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
@@ -40,9 +41,11 @@ public abstract class Accountability<C extends Party, R extends Party> extends O
 	private R responsible;
 
 	@Temporal(TemporalType.DATE)
+	@Column(name = "from_date")
 	private Date fromDate;
 
 	@Temporal(TemporalType.DATE)
+	@Column(name = "to_date")
 	private Date toDate;
 
 	Accountability() {
