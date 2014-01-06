@@ -36,10 +36,6 @@ public interface JBPMTaskService {
 
 	public List<WorkItemInfo> getWorkItemInfo(long processInstanceId);
 
-	public void exitedTask(long processInstanceId);
-
-	public void removeWorkItemInfo(long itemId);
-
 	public void saveWorkItem(WorkItemInfo info);
 
 	public void addProcessInfo(KoalaProcessInfo info);

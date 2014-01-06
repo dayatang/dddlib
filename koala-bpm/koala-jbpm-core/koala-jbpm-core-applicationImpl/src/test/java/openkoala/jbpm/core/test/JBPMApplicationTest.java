@@ -1,4 +1,4 @@
-package org.openkoala.jbpm.core.test;
+package openkoala.jbpm.core.test;
 
 import java.io.File;
 import java.io.IOException;
@@ -110,7 +110,7 @@ public class JBPMApplicationTest {
 		values.put("creater", "abc");
 		long i = getJBPMApplication().startProcess("defaultPackage.Trade",
 				"aaa", XmlParseUtil.paramsToXml(values));
-		//getJBPMApplication().removeProcessInstance(i);
+	   getJBPMApplication().removeProcessInstance(i);
 
 	}
 
@@ -197,7 +197,7 @@ public class JBPMApplicationTest {
 				XmlParseUtil.paramsToXml(data), null);
 		PageTaskVO pages = getJBPMApplication().pageQueryDoneTask("defaultPackage.Trade","fhjl", 1, 10);
 		Assert.assertTrue(pages.getTotalCount()>0);
-		//getJBPMApplication().removeProcessInstance(i);
+		getJBPMApplication().removeProcessInstance(i);
 	}
 
 	/**
@@ -359,7 +359,7 @@ public class JBPMApplicationTest {
 		getJBPMApplication().roolBack(i, 0, "fwzy");
 		List<TaskVO> tasks = getJBPMApplication().queryTodoList("fhjl");
 		Assert.assertTrue(tasks.size() > 0);
-		getJBPMApplication().removeProcessInstance(i);
+		//getJBPMApplication().removeProcessInstance(i);
 	}
 
 	@Test
@@ -374,7 +374,7 @@ public class JBPMApplicationTest {
 		getJBPMApplication().fetchBack(i, 0l, "fhjl");
 		tasks = getJBPMApplication().queryTodoList("fhjl");
 		Assert.assertTrue(tasks.size() > 0);
-		getJBPMApplication().removeProcessInstance(i);
+		//getJBPMApplication().removeProcessInstance(i);
 	}
 
 	/**
@@ -393,34 +393,7 @@ public class JBPMApplicationTest {
 		getJBPMApplication().roolBack(i, 0, "fwzy");
 		tasks = getJBPMApplication().queryTodoList("fhjl");
 		Assert.assertTrue(tasks.size() > 0);
-		getJBPMApplication().removeProcessInstance(i);
-	}
-	
-	@Test
-	public void threadTest(){
-		for(int i=0;i<10;i++){
-			new ThreadA().start();
-		}
-	}
-
-	class ThreadA extends Thread{
-		public void run(){
-			Map<String,Object> values = new HashMap<String,Object>();
-			values.put("creater", "abc");
-			long i = getJBPMApplication().startProcess("defaultPackage.Trade",
-					"aaa", XmlParseUtil.paramsToXml(values));
-		}
-	}
-	
-	public static void main(String args[]) throws IOException{
-		JBPMApplicationTest test = new JBPMApplicationTest();
-		test.publishJbpm();
-		for(int i=0;i<2;i++){
-			test.threadTest();
-		}
-		
-		System.out.println();
-		
+		//getJBPMApplication().removeProcessInstance(i);
 	}
 	
 }
