@@ -513,7 +513,7 @@ var generalQuery = function(){
 		return data;
 	};
 	var preview = function(id){
-		window.open('/pages/gqc/previewTemplate.jsp?id='+id,'预览');
+		window.open(contextPath + '/pages/gqc/previewTemplate.jsp?id='+id,'预览');
 	};
 	/**
 	 * 检查变量是否不为空  true:不空   false:空

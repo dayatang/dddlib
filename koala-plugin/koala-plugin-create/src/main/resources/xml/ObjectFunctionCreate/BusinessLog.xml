@@ -52,12 +52,12 @@
 		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml</property>
 		<property name="uri">http://www.springframework.org/schema/beans</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
-		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:META-INF/spring/koala-businesslog-shared-persistence.xml']]]></property>
+		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:koala-businesslog-shared-persistence.xml']]]></property>
 		<property name="xmlContent">
          <![CDATA[
     <?xml version="1.0" encoding="UTF-8"?>
     <root>
-	  <import resource="classpath*:META-INF/spring/koala-businesslog-shared-persistence.xml"/>
+	  <import resource="classpath*:koala-businesslog-shared-persistence.xml"/>
 	</root>
          ]]>
 		</property>
@@ -68,12 +68,12 @@
 		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml</property>
 		<property name="uri">http://www.springframework.org/schema/beans</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
-		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:META-INF/spring/koala-businesslog-mybatis-shared-persistence.xml']]]></property>
+		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:koala-businesslog-mybatis-shared-persistence.xml']]]></property>
 		<property name="xmlContent">
          <![CDATA[
     <?xml version="1.0" encoding="UTF-8"?>
     <root>
-	  <import resource="classpath*:META-INF/spring/koala-businesslog-mybatis-shared-persistence.xml"/>
+	  <import resource="classpath*:koala-businesslog-mybatis-shared-persistence.xml"/>
 	</root>
          ]]>
 		</property>
