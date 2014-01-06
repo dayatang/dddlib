@@ -36,6 +36,11 @@
 	<bean id="txManager" class="org.springframework.transaction.jta.JtaTransactionManager">
 	</bean>
 
+	<bean id="jbpmEM"
+		class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
 	<bean id="koalaBPMSession" class="org.openkoala.jbpm.applicationImpl.util.KoalaBPMSession" init-method="initialize" />
 
 </beans>

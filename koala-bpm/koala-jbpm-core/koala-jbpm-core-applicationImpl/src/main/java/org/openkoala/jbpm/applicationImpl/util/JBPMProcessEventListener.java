@@ -72,9 +72,11 @@ public class JBPMProcessEventListener implements ProcessEventListener {
 	}
 	
 	public void beforeNodeTriggered(ProcessNodeTriggeredEvent event) {
+		
 	}
 
 	public void afterNodeTriggered(ProcessNodeTriggeredEvent event) {
+		
 	}
 
 	public void beforeNodeLeft(ProcessNodeLeftEvent event) {
