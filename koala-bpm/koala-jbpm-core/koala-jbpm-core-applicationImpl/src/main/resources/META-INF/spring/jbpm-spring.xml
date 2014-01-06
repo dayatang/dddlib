@@ -8,9 +8,6 @@
 		http://drools.org/schema/drools-spring http://drools.org/schema/drools-spring-1.5.0.xsd"
 	default-autowire="byName">
 	
-	<!-- 标注事务 -->
-	<tx:annotation-driven transaction-manager="transactionManager" />
-	
 	 <bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
 		<property name="driver" value="${db.jdbc.driver}" />
 		<property name="driverUrl" value="${db.jdbc.connection.url}" />
@@ -35,7 +32,8 @@
 
 	<bean id="txManager" class="org.springframework.transaction.jta.JtaTransactionManager">
 	</bean>
+	
 
-	<bean id="jbpmSupport" class="org.openkoala.jbpm.applicationImpl.util.JbpmSupport" init-method="initialize" />
+	<bean id="koalaBPMSession" class="org.openkoala.jbpm.applicationImpl.util.KoalaBPMSession" init-method="initialize" />
 
 </beans>

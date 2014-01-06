@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.inject.Inject;
+
 import org.apache.struts2.ServletActionContext;
 import org.openkoala.auth.application.RoleApplication;
 import org.openkoala.auth.application.UserApplication;
@@ -12,10 +14,11 @@ import org.openkoala.auth.application.vo.QueryConditionVO;
 import org.openkoala.auth.application.vo.QueryItemVO;
 import org.openkoala.auth.application.vo.RoleVO;
 import org.openkoala.auth.application.vo.UserVO;
+import org.openkoala.koala.auth.password.PasswordEncoder;
 import org.openkoala.koala.auth.ss3adapter.CustomUserDetails;
-import org.openkoala.koala.auth.ss3adapter.SecurityMD5;
 import org.openkoala.koala.auth.ss3adapter.ehcache.CacheUtil;
 import org.springframework.security.core.context.SecurityContextHolder;
+
 import com.dayatang.querychannel.support.Page;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -30,6 +33,11 @@ public class UserAction extends ActionSupport {
 	private UserApplication userApplication;
 	@Inject
 	private RoleApplication roleApplication;
+	
+	@Inject
+	private PasswordEncoder passwordEncoder;
+	
+	
 	private Map<String, Object> dataMap = new HashMap<String, Object>();
 	private List<UserVO> users = new ArrayList<UserVO>();
 	private String page;
@@ -276,8 +284,7 @@ public class UserAction extends ActionSupport {
 
 	public String add() {
 		userVO.setSerialNumber("0");
-		userVO.setUserPassword(SecurityMD5.encode(userVO.getUserPassword(), //
-				userVO.getUserAccount()));
+		userVO.setUserPassword(passwordEncoder.encode(userVO.getUserPassword()));
 		userApplication.saveUser(userVO);
 		CacheUtil.refreshUserAttributes(userVO.getUserAccount());
 		dataMap.put("result", "success");
@@ -344,8 +351,8 @@ public class UserAction extends ActionSupport {
 			return "JSON";
 		}
 		userVO.setUserAccount(username);
-		userVO.setUserPassword(SecurityMD5.encode(userVO.getUserPassword(), username));
-		if (userApplication.updatePassword(userVO, SecurityMD5.encode(oldPassword, username))) {
+		userVO.setUserPassword(passwordEncoder.encode(userVO.getUserPassword()));
+		if (userApplication.updatePassword(userVO, passwordEncoder.encode(oldPassword))) {
 			dataMap.put("result", "success");
 			CacheUtil.refreshUserAttributes(username);
 		} else {

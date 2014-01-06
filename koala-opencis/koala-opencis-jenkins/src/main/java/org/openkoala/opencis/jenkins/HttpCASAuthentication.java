@@ -77,13 +77,13 @@ public class HttpCASAuthentication implements CISAuthentication {
             HttpResponse response = httpClient.execute(post, httpContext);
             // TODO 需要添加访问失败
             String ticket = getTicketFromHttpResponse(response);
+
             post.abort();
 
             HttpPost postService = new HttpPost(casURL.toString() + ticket);
             postService.setEntity(new UrlEncodedFormEntity(getServiceNameValuePair()));
 
             HttpResponse serviceResponse = httpClient.execute(postService, httpContext);
-
             // TODO 需要添加访问失败
             String serviceTicket = EntityUtils.toString(serviceResponse.getEntity(), "UTF-8");
             postService.abort();
@@ -92,12 +92,14 @@ public class HttpCASAuthentication implements CISAuthentication {
             HttpGet getServiceCall = new HttpGet(jenkinsAuthenticationUrl.toString()
                     + JENKINS_REST_SERVICE_API + "?ticket=" + serviceTicket);
             HttpResponse serviceCall = httpClient.execute(getServiceCall, httpContext);
+
             result = serviceCall.getStatusLine().getStatusCode() == HttpStatus.SC_OK;
             httpContext.setAttribute(ClientContext.COOKIE_STORE, httpClient.getCookieStore());
             context = httpContext;
             getServiceCall.abort();
 
         } catch (UnsupportedEncodingException e) {
+
             e.printStackTrace();
         } catch (ClientProtocolException e) {
             e.printStackTrace();

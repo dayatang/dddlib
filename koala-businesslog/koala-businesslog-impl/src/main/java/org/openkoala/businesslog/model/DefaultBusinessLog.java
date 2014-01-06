@@ -19,6 +19,7 @@ import static org.openkoala.businesslog.common.ContextKeyConstant.*;
 @Table(name = "koala_businesslogs")
 public class DefaultBusinessLog extends AbstractBusinessLog {
 
+    @Column(name = "USERNAME")
     private String user;
 
     private String ip;
@@ -27,7 +28,7 @@ public class DefaultBusinessLog extends AbstractBusinessLog {
     private Date time;
 
     @Transient
-    private Map<String,Object> context;
+    private Map<String, Object> context;
 
     public synchronized static DefaultBusinessLog createBy(BusinessLog businessLog) {
         DefaultBusinessLog myBusinessLog = new DefaultBusinessLog();
@@ -84,7 +85,7 @@ public class DefaultBusinessLog extends AbstractBusinessLog {
                 ", ip='" + ip + '\'' +
                 ", time=" + time +
                 ", log=" + getLog() +
-                ", context="  + context +
+                ", context=" + context +
                 '}';
     }
 

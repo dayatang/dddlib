@@ -36,6 +36,6 @@
 	<bean id="txManager" class="org.springframework.transaction.jta.JtaTransactionManager">
 	</bean>
 
-	<bean id="jbpmSupport" class="org.openkoala.jbpm.applicationImpl.util.JbpmSupport" init-method="initialize" />
+	<bean id="koalaBPMSession" class="org.openkoala.jbpm.applicationImpl.util.KoalaBPMSession" init-method="initialize" />
 
 </beans>

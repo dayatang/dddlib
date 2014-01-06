@@ -4,15 +4,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.openkoala.opencis.CreateJobFailureException;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Random;
 
 /**
+ * /createItem?name=
+ *
  * @author zyb <a href="mailto:zhuyuanbiao2013@gmail.com">zhuyuanbiao2013@gmail.com</a>
  * @since Nov 13, 2013 9:56:28 AM
  */
@@ -33,10 +33,8 @@ public class JenkinsCISClientTest {
 
     static {
         try {
-            JENKINS_URL = new URL("http", "127.0.0.1", 8080, "/jenkins");
-            CAS_URL = new URL("http", "127.0.0.1", 8080, "/cas/v1/tickets/");
-
-
+            JENKINS_URL = new URL("http", "localhost", 8080, "/jenkins");
+            CAS_URL = new URL("http", "localhost", 8080, "/cas/v1/tickets/");
             project.setArtifactId("Artifactdddfee3323");
             developer.setName("www");
             developer.setEmail("admin@gmail.com");
@@ -51,34 +49,39 @@ public class JenkinsCISClientTest {
         jenkinsCISClient = new JenkinsCISClient(JENKINS_URL);
         HttpCASAuthentication authentication = new HttpCASAuthentication(CAS_URL, "admin", "admin");
         authentication.setJenkinsAuthenticationUrl(JENKINS_URL);
-        // jenkinsCISClient.addAuthentication(authentication);
-        jenkinsCISClient.createProject(project);
+        jenkinsCISClient.addAuthentication(authentication);
+        //jenkinsCISClient.createProject(project);
     }
 
     @After
     public void tearDown() throws Exception {
-        jenkinsCISClient.confirmRemoveJob(project.getArtifactId());
+        //jenkinsCISClient.confirmRemoveJob(project.getArtifactId());
     }
+
 
     @Test
     public void testOperationProject() throws MalformedURLException {
         Project project1 = new Project();
-        project1.setArtifactId("Artifacadmin1tIsdfffggsdfs23");
+        project1.setArtifactId("Artifacaddddadfffggsdfs23");
         project1.setProjectName("projectNamesdfdsfsfs");
         jenkinsCISClient.createProject(project1);
         jenkinsCISClient.confirmRemoveJob(project1.getArtifactId());
     }
 
 
+
+
     @Test
     public void testCreateUserIfNecessary() {
         jenkinsCISClient.createUserIfNecessary(project, developer);
+        /*Project project1 = new Project();
+        project1.setArtifactId("sss");
+        jenkinsCISClient.assignUserToRole(project1, "dddd", "role");*/
     }
 
     @Test
     public void testCreateRole() {
         jenkinsCISClient.createRoleIfNecessary(project, "roleExample");
     }
-
 
 }

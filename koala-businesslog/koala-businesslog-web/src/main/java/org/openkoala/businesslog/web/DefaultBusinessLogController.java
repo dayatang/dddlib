@@ -3,8 +3,8 @@ package org.openkoala.businesslog.web;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.inject.Inject;
 
+import com.dayatang.domain.InstanceFactory;
 import org.openkoala.businesslog.application.BusinessLogApplication;
 import org.openkoala.businesslog.dto.DefaultBusinessLogDTO;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,6 @@ import com.dayatang.querychannel.support.Page;
 public class DefaultBusinessLogController {
 
 
-    @Inject
     private BusinessLogApplication businessLogApplication;
 
 
@@ -28,14 +27,13 @@ public class DefaultBusinessLogController {
     public Map<String, Object> pageJson(DefaultBusinessLogDTO defaultBusinessLogDTO,
                                         @RequestParam int page, @RequestParam int pagesize) {
         Map<String, Object> result = new HashMap<String, Object>();
-        Page<DefaultBusinessLogDTO> all = businessLogApplication.pageQueryDefaultBusinessLog(defaultBusinessLogDTO, page, pagesize);
+        Page<DefaultBusinessLogDTO> all = getBusinessLogApplication().pageQueryDefaultBusinessLog(defaultBusinessLogDTO, page, pagesize);
         result.put("Rows", all.getResult());
         result.put("start", page * pagesize - pagesize);
         result.put("limit", pagesize);
         result.put("Total", all.getTotalCount());
         return result;
     }
-
 
 
     @ResponseBody
@@ -49,7 +47,7 @@ public class DefaultBusinessLogController {
             idArrs[i] = Long.parseLong(value[i]);
 
         }
-        businessLogApplication.removeDefaultBusinessLogs(idArrs);
+        getBusinessLogApplication().removeDefaultBusinessLogs(idArrs);
         result.put("result", "success");
         return result;
     }
@@ -58,9 +56,15 @@ public class DefaultBusinessLogController {
     @RequestMapping("/get/{id}")
     public Map<String, Object> get(@PathVariable Long id) {
         Map<String, Object> result = new HashMap<String, Object>();
-        result.put("data", businessLogApplication.getDefaultBusinessLog(id));
+        result.put("data", getBusinessLogApplication().getDefaultBusinessLog(id));
         return result;
     }
 
 
+    public BusinessLogApplication getBusinessLogApplication() {
+        if (null == businessLogApplication) {
+            businessLogApplication = InstanceFactory.getInstance(BusinessLogApplication.class);
+        }
+        return businessLogApplication;
+    }
 }

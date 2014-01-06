@@ -1,14 +1,13 @@
 package org.openkoala.opencis.jenkins;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
@@ -60,7 +59,6 @@ public class JenkinsCISClient implements CISClient {
     @Override
     public void createProject(Project project) {
         HttpContext context = authenticationAndGetContext();
-
         AbstractHttpClient httpClient = new DefaultHttpClient();
         HttpPost createProjectPost = null;
         try {
@@ -95,13 +93,19 @@ public class JenkinsCISClient implements CISClient {
         HttpContext context = authenticationAndGetContext();
         AbstractHttpClient httpClient = new DefaultHttpClient();
         try {
-            HttpPost httpPost = new HttpPost(jenkinsUrl.toString() + "/securityRealm/createAccount");
-            httpPost.setEntity(new UrlEncodedFormEntity(createDeveloperNameValuePair(developer)));
+            HttpPost httpPost = new HttpPost(jenkinsUrl.toString() + "/script");
+            List<NameValuePair> result = new ArrayList<NameValuePair>();
+            String script = readFileAsString(this.getClass().getClassLoader().getResource("ci/jenkins/assignUserToRole.groovy").getFile());
+            result.add(new BasicNameValuePair("script", MessageFormat.format(script, "\"" + developer.getId() + "\"")));
+            httpPost.setEntity(new UrlEncodedFormEntity(result));
             HttpResponse response = httpClient.execute(httpPost, context);
-            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_MOVED_TEMPORARILY) {
+            String responseText = EntityUtils.toString(response.getEntity());
+            System.out.println(responseText);
+
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK && StringUtils.isNotBlank(responseText)) {
                 logger.info("Create user account success.");
             } else {
-                throw new JenkinsCreateUserFailureException("");
+                throw new JenkinsCreateUserFailureException(responseText);
             }
         } catch (UnsupportedEncodingException e) {
             throw new JenkinsCreateUserFailureException(e);
@@ -113,6 +117,20 @@ public class JenkinsCISClient implements CISClient {
             httpClient.getConnectionManager().shutdown();
         }
 
+    }
+
+    private String readFileAsString(String filePath) throws IOException {
+        StringBuffer fileData = new StringBuffer();
+        BufferedReader reader = new BufferedReader(
+                new FileReader(filePath));
+        char[] buf = new char[1024];
+        int numRead = 0;
+        while ((numRead = reader.read(buf)) != -1) {
+            String readData = String.valueOf(buf, 0, numRead);
+            fileData.append(readData);
+        }
+        reader.close();
+        return fileData.toString();
     }
 
     public void confirmRemoveJob(String jobName) {
@@ -139,7 +157,6 @@ public class JenkinsCISClient implements CISClient {
         result.add(new BasicNameValuePair("password2", developer.getName()));
         result.add(new BasicNameValuePair("fullname", developer.getName()));
         result.add(new BasicNameValuePair("email", developer.getEmail()));
-        result.add(new BasicNameValuePair("json", "\t{\"username\": \"admin1\", \"password1\": \"admin1\", \"password2\": \"admin1\", \"fullname\": \"admin1\", \"email\": \"admin1@11.com\"}"));
         return result;
     }
 
@@ -153,9 +170,22 @@ public class JenkinsCISClient implements CISClient {
 
     @Override
     public void assignUserToRole(Project project, String userId, String role) {
-        ProjectPermission permission = new ProjectPermission(userId, project.getArtifactId());
-        permission.save();
-        reloadConfigToMemory();
+        HttpContext context = authenticationAndGetContext();
+        HttpClient httpClient = new DefaultHttpClient();
+
+        HttpPost httpPost = new HttpPost(jenkinsUrl.toString() + "/job/" + project.getArtifactId() + "/configSubmit");
+        List<NameValuePair> result = new ArrayList<NameValuePair>();
+        String script = null;
+        try {
+            script = readFileAsString(this.getClass().getClassLoader().getResource("ci/jenkins/1.json").getFile());
+            result.add(new BasicNameValuePair("json", script));
+            httpPost.setEntity(new UrlEncodedFormEntity(result));
+            HttpResponse response = httpClient.execute(httpPost, context);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     private void reloadConfigToMemory() {
