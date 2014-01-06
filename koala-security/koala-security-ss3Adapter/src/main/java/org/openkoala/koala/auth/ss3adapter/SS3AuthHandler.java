@@ -19,7 +19,7 @@ public class SS3AuthHandler implements AuthHandler {
 	private PasswordEncoder passwordEncoder;
 	
 	private UserDetailsService userDetailsService;
-
+	
 	public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
 		this.passwordEncoder = passwordEncoder;
 	}

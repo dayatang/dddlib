@@ -50,7 +50,7 @@ public class UserDetailManager implements UserDetailsService {
 			LOGGER.info(e.getMessage());
 		}
 		if (user == null) {
-			throw new UsernameNotFoundException("用户名不存在!");
+			return null;
 		}
 		List<GrantedAuthority> gAuthoritys = new ArrayList<GrantedAuthority>();
 		for (String role : user.getAuthorities()) {
