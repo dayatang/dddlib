@@ -3,7 +3,6 @@ package org.openkoala.businesslog.web;
 
 import java.util.HashMap;
 import java.util.Map;
-import javax.inject.Inject;
 
 import com.dayatang.domain.InstanceFactory;
 import org.openkoala.businesslog.application.BusinessLogApplication;

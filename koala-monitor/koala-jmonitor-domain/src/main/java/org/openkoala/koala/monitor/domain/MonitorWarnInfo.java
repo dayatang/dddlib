@@ -46,7 +46,7 @@ public class MonitorWarnInfo extends KmBaseEntity {
 	@Column(name="CONTENT")
 	private String content;
 	
-	@Column(name="LEVEL")
+	@Column(name="WARN_LEVEL")
 	private int level;
 	
 	@Column(name="STATUS")
