@@ -55,6 +55,9 @@ public class InterfaceObjUtil {
 		try {
 			File file = new File(javasrc);
 			cu = JavaParser.parse(file);
+			if(cu.getImports()==null){
+				cu.setImports(new ArrayList<ImportDeclaration>());
+			}
 			cu.getImports().add(new ImportDeclaration(new NameExpr("javax.ws.rs.*"),false,false));
 			cu.getImports().add(new ImportDeclaration(new NameExpr("javax.ws.rs.core.*"),false,false));
 			cu.getImports().add(new ImportDeclaration(new NameExpr("javax.ws.rs.ext.*"),false,false));
