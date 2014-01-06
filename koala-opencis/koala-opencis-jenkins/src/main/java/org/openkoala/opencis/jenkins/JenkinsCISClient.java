@@ -59,7 +59,6 @@ public class JenkinsCISClient implements CISClient {
     @Override
     public void createProject(Project project) {
         HttpContext context = authenticationAndGetContext();
-
         AbstractHttpClient httpClient = new DefaultHttpClient();
         HttpPost createProjectPost = null;
         try {
@@ -94,13 +93,14 @@ public class JenkinsCISClient implements CISClient {
         HttpContext context = authenticationAndGetContext();
         AbstractHttpClient httpClient = new DefaultHttpClient();
         try {
-            HttpPost httpPost = new HttpPost(jenkinsUrl.toString() + "/scriptText");
+            HttpPost httpPost = new HttpPost(jenkinsUrl.toString() + "/script");
             List<NameValuePair> result = new ArrayList<NameValuePair>();
-            String script = readFileAsString(this.getClass().getClassLoader().getResource("ci/jenkins/scripts/createUser.groovy").getFile());
-            result.add(new BasicNameValuePair("script", MessageFormat.format(script, "\""  + developer.getId() + "\"")));
+            String script = readFileAsString(this.getClass().getClassLoader().getResource("ci/jenkins/assignUserToRole.groovy").getFile());
+            result.add(new BasicNameValuePair("script", MessageFormat.format(script, "\"" + developer.getId() + "\"")));
             httpPost.setEntity(new UrlEncodedFormEntity(result));
             HttpResponse response = httpClient.execute(httpPost, context);
             String responseText = EntityUtils.toString(response.getEntity());
+            System.out.println(responseText);
 
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK && StringUtils.isNotBlank(responseText)) {
                 logger.info("Create user account success.");
@@ -170,9 +170,22 @@ public class JenkinsCISClient implements CISClient {
 
     @Override
     public void assignUserToRole(Project project, String userId, String role) {
-        ProjectPermission permission = new ProjectPermission(userId, project.getArtifactId());
-        permission.save();
-        reloadConfigToMemory();
+        HttpContext context = authenticationAndGetContext();
+        HttpClient httpClient = new DefaultHttpClient();
+
+        HttpPost httpPost = new HttpPost(jenkinsUrl.toString() + "/job/" + project.getArtifactId() + "/configSubmit");
+        List<NameValuePair> result = new ArrayList<NameValuePair>();
+        String script = null;
+        try {
+            script = readFileAsString(this.getClass().getClassLoader().getResource("ci/jenkins/1.json").getFile());
+            result.add(new BasicNameValuePair("json", script));
+            httpPost.setEntity(new UrlEncodedFormEntity(result));
+            HttpResponse response = httpClient.execute(httpPost, context);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     private void reloadConfigToMemory() {

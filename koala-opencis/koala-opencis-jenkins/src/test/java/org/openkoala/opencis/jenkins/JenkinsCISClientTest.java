@@ -1,16 +1,30 @@
 package org.openkoala.opencis.jenkins;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HttpContext;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.openkoala.opencis.RemoveJobFailureException;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-/**                               /createItem?name=
+/**
+ * /createItem?name=
+ *
  * @author zyb <a href="mailto:zhuyuanbiao2013@gmail.com">zhuyuanbiao2013@gmail.com</a>
  * @since Nov 13, 2013 9:56:28 AM
  */
@@ -57,26 +71,29 @@ public class JenkinsCISClientTest {
     }
 
 
-
     @Test
     public void testOperationProject() throws MalformedURLException {
         Project project1 = new Project();
-        project1.setArtifactId("Artifacadmin1tIsaaadfffggsdfs23");
+        project1.setArtifactId("Artifacaddddadfffggsdfs23");
         project1.setProjectName("projectNamesdfdsfsfs");
         jenkinsCISClient.createProject(project1);
         jenkinsCISClient.confirmRemoveJob(project1.getArtifactId());
     }
 
 
+
+
     @Test
     public void testCreateUserIfNecessary() {
         jenkinsCISClient.createUserIfNecessary(project, developer);
+        /*Project project1 = new Project();
+        project1.setArtifactId("sss");
+        jenkinsCISClient.assignUserToRole(project1, "dddd", "role");*/
     }
 
     @Test
     public void testCreateRole() {
         jenkinsCISClient.createRoleIfNecessary(project, "roleExample");
     }
-
 
 }
