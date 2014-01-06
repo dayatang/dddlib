@@ -3,8 +3,6 @@ package org.openkoala.jbpm.core.service.impl;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -83,21 +81,6 @@ public class JBPMTaskServiceImpl implements JBPMTaskService {
 		return (List<WorkItemInfo>) workItemQuery.getResultList();
 	}
 
-	public void exitedTask(long processInstanceId) {
-		final Query workItemQuery = jbpmEM
-				.createQuery("select w from Task w where w.taskData.processInstanceId = :processInstanceId");
-		workItemQuery.setParameter("processInstanceId", processInstanceId);
-		List<Task> tasks = (List<Task>) workItemQuery.getResultList();
-		for (Task task : tasks) {
-			if (task.getTaskData().getStatus().equals(Status.Failed)
-					|| task.getTaskData().getStatus().equals(Status.InProgress)
-					|| task.getTaskData().getStatus().equals(Status.Reserved)) {
-				task.getTaskData().setStatus(Status.Exited);
-				jbpmEM.merge(task);
-			}
-		}
-	}
-
 	public List<KoalaJbpmVariable> queryJbpmVariable() {
 		List<KoalaJbpmVariable> varsiableList = jbpmEM.createQuery(
 				"select k from KoalaJbpmVariable k").getResultList();
@@ -141,14 +124,7 @@ public class JBPMTaskServiceImpl implements JBPMTaskService {
 	public void removeAssignUser(User user) {
 		jbpmEM.remove(jbpmEM.merge(user));
 	}
-
-	public void removeWorkItemInfo(long processInstanceId) {
-		List<WorkItemInfo> workitems = this.getWorkItemInfo(processInstanceId);
-		for (WorkItemInfo workItemInfo : workitems) {
-			this.jbpmEM.remove(workItemInfo);
-		}
-	}
-
+	
 	public void saveWorkItem(WorkItemInfo info) {
 		jbpmEM.persist(info);
 	}

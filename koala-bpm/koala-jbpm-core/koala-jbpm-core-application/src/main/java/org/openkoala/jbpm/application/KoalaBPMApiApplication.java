@@ -9,6 +9,7 @@ import org.jbpm.process.audit.JPAProcessInstanceDbLog;
 import org.jbpm.process.audit.ProcessInstanceLog;
 import org.jbpm.process.audit.VariableInstanceLog;
 import org.jbpm.ruleflow.instance.RuleFlowProcessInstance;
+import org.jbpm.task.Content;
 import org.jbpm.task.Task;
 import org.jbpm.task.query.TaskSummary;
 import org.jbpm.task.service.ContentData;
@@ -51,9 +52,13 @@ public interface KoalaBPMApiApplication {
 	public void delegate(long taskId, String userId, String targetUserId);
 
 	public Task getTask(long taskId);
+	
+	public Content getContent(long contentId);
 
 	public void startTask(long taskId, String userId);
 
-	public void completeTask(long taskId, String userId, ContentData outputData) ;
+	public void completeTask(long taskId, String userId, ContentData outputData);
+	
+	public void clearTaskByProcessInstanceId(long processInstanceId);
 	
 }
