@@ -72,6 +72,8 @@ import org.jbpm.task.Status;
 import org.jbpm.task.Task;
 import org.jbpm.task.query.TaskSummary;
 import org.jbpm.task.service.ContentData;
+import org.jbpm.task.service.responsehandlers.BlockingGetContentResponseHandler;
+import org.jbpm.task.utils.ContentMarshallerHelper;
 import org.jbpm.workflow.core.node.HumanTaskNode;
 import org.jbpm.workflow.core.node.WorkItemNode;
 import org.jbpm.workflow.instance.node.EventBasedNodeInstanceInterface;
@@ -911,10 +913,8 @@ public class JBPMApplicationImpl implements JBPMApplication {
 						(HumanTaskNodeInstance) removeNode, false);
 			}
 		}
-
-		jbpmTaskService.removeWorkItemInfo(processInstanceId);
-
-		jbpmTaskService.exitedTask(processInstanceId);
+		
+		koalaBPMApiApplication.clearTaskByProcessInstanceId(processInstanceId);
 
 		human.trigger(null, "DROOLS_DEFAULT");
 		human.setNodeInstanceContainer(in);
@@ -1580,21 +1580,11 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	}
 
 	private Map<String, Object> getContentId(long contentId) {
-		Content content = jbpmTaskService.getContent(contentId);
-		byte[] conByte = content.getContent();
-		ByteArrayInputStream bis = new ByteArrayInputStream(conByte);
-		ObjectInputStream ois;
-		Map<String, Object> map = new HashMap<String, Object>();
-		try {
-			ois = new ObjectInputStream(bis);
-			Object obj = ois.readObject();
-			map = (Map<String, Object>) obj;
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return map;
+		
+        Content content = jbpmTaskService.getContent(contentId);
+        Object input = ContentMarshallerHelper.unmarshall(content.getContent(), null);  
+        return (Map<String, Object>) input;
+        
 	}
 
 	private String getNoVersionProcessId(String processId) {
@@ -1610,6 +1600,9 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		try {
 			ut = (UserTransaction) new InitialContext()
 					.lookup("java:jboss/UserTransaction");
+			// TEST
+//			ut = (UserTransaction) new InitialContext()
+//			.lookup("java:comp/UserTransaction");
 			ut.begin();
 		} catch (NotSupportedException e) {
 			e.printStackTrace();

@@ -34,10 +34,10 @@ $(function(){
             {title: '出错次数', value: 'methodExceptionCount'}
         ]
     }).on('change', function(){
-         loadData();
+         loadData($(this).getValue());
     });
     $('#methodSearch').on('click', function(){
-        loadData();
+        loadData($(this).getValue());
     });
     var monitorNode = $('#methodMonitorNode');
     $.get(contextPath + '/monitor/Monitor/queryAllNodes.koala').done(function(data){
@@ -53,9 +53,17 @@ $(function(){
             });
         monitorNode.trigger('change');
     });
-    var loadData = function(){
+    var loadData = function(type){
     	$('#methodDetailGrid').empty();
         $('#methodDetailChart').empty();
+        var title = '调用次数';
+        if(type == 'methodCount'){
+        	title = '调用次数';
+        }else if(type == 'avgTimeConsume'){
+        	title = '平均耗时（毫秒）';
+        }else{
+        	title = '出错次数';
+        }
         var columns = [
             {
                 title : '方法',
@@ -63,7 +71,7 @@ $(function(){
                 width : 450
             },
             {
-                title : '调用次数',
+                title : title,
                 name : methodCountType.getValue(),
                 width : 150
             },

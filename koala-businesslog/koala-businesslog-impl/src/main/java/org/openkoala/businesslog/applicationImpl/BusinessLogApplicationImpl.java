@@ -28,6 +28,7 @@ import java.util.List;
  * Date: 12/11/13
  * Time: 3:12 PM
  */
+@Named
 @Transactional
 @Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
 @Stateless(name = "BusinessLogApplication")

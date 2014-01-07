@@ -11,8 +11,12 @@
 	<import resource="base.xml" />
 	<import resource="classpath*:META-INF/spring/security-standalone-context.xml" />
 	
+	<!-- 使用CAS验证时，需注释掉下面两行代码 -->
 	<import resource="classpath*:META-INF/spring/spring-security.xml"/>
 	<import resource="classpath:spring/spring-http.xml"/>
+	
+	<!-- 使用CAS验证时导入此文件 -->
+	<!-- <import resource="classpath*:META-INF/spring/security-cas.xml"/> -->
 	<import resource="classpath:spring/security-custom.xml"/>
 	<import resource="classpath*:META-INF/spring/spring-ehcache.xml"/>
 </beans>

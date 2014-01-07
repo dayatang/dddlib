@@ -99,6 +99,18 @@
 			<artifactId>filters</artifactId>
 			<version>2.0.235-1</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-cas-client</artifactId>
+			<version>3.0.8.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openkoala.security</groupId>
+			<artifactId>koala-security-applicationImpl</artifactId>
+			<version>${koala.version}</version>
+		</dependency>
+
 	</dependencies>
 </project>

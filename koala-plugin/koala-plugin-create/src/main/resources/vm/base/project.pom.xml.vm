@@ -24,35 +24,20 @@
 		<struts2.version>2.3.15.1</struts2.version>
 		<spring.version>3.1.2.RELEASE</spring.version>
 		<spring.security.version>3.0.8.RELEASE</spring.security.version>
-		<koalaSecurity.version>2.1.0-SNAPSHOT</koalaSecurity.version>
 		<koala.framework.version>2.1.0-SNAPSHOT</koala.framework.version>
 		<koala.version>2.1.0-SNAPSHOT</koala.version>
-		<koala.monitor.version>2.1.0-SNAPSHOT</koala.monitor.version>
 		<quartz.version>2.1.3</quartz.version>
 		
 		<!--DB实现以及MVC模型的实现支持，不要修改这两个值-->
 		<dbProtocol>${Project.dbProtocol}</dbProtocol>
 		<mvcProtocol>${Project.mvcProtocol}</mvcProtocol>
 		
-		<!-- DB config -->
-		<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
-		<hibernate.show_sql>true</hibernate.show_sql>
-		<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
-		<db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
-		<db.connectionURL>jdbc:h2:~/db/${Project.appName}</db.connectionURL>
-		<db.username>sa</db.username>
-		<db.password></db.password>
-		<db.Type>H2</db.Type>
-		<db.generateDdl>true</db.generateDdl>
-		<db.groupId>com.h2database</db.groupId>
-		<db.artifactId>h2</db.artifactId>
-		
-		<!--test DB Config-->
+		<!--test DB -->
 		<test.hibernate.hbm2ddl.auto>update</test.hibernate.hbm2ddl.auto>
 		<test.hibernate.show_sql>true</test.hibernate.show_sql>
 		<test.hibernate.dialect>org.hibernate.dialect.H2Dialect</test.hibernate.dialect>
 		<test.db.jdbcDriver>org.h2.Driver</test.db.jdbcDriver>
-		<test.db.connectionURL>jdbc:h2:~/db/${Project.appName}</test.db.connectionURL>
+		<test.db.connectionURL>jdbc:h2:mem:test;MODE=Oracle;DB_CLOSE_DELAY=-1</test.db.connectionURL>
 		<test.db.username>sa</test.db.username>
 		<test.db.password></test.db.password>
 		<test.db.Type>H2</test.db.Type>
@@ -61,6 +46,176 @@
 		<test.db.artifactId>h2</test.db.artifactId>
 		
 	</properties>
+	
+	<profiles>
+	    <!--  H2 DB  -->
+		<profile>
+			<id>H2</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<hibernate.show_sql>true</hibernate.show_sql>
+				<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+				<db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
+				<db.connectionURL>jdbc:h2:mem:test;MODE=Oracle;DB_CLOSE_DELAY=-1</db.connectionURL>
+				<db.username>sa</db.username>
+				<db.password></db.password>
+				<db.Type>H2</db.Type>
+				<db.generateDdl>true</db.generateDdl>
+				<db.groupId>com.h2database</db.groupId>
+				<db.artifactId>h2</db.artifactId>
+			</properties>
+		</profile>
+		
+		<!--  MYSQL DB  -->
+		<profile>
+			<id>MySQL</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<hibernate.show_sql>true</hibernate.show_sql>
+				<hibernate.dialect>org.hibernate.dialect.MySQL5Dialect</hibernate.dialect>
+				<db.jdbcDriver>com.mysql.jdbc.Driver</db.jdbcDriver>
+				<db.connectionURL>jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8</db.connectionURL>
+				<db.username>root</db.username>
+				<db.password>root</db.password>
+				<db.Type>MYSQL</db.Type>
+				<db.generateDdl>true</db.generateDdl>
+				<db.groupId>mysql</db.groupId>
+				<db.artifactId>mysql-connector-java</db.artifactId>
+			</properties>
+		</profile>
+		
+		<!--  Oracle 10G DB  -->
+		<profile>
+			<id>Oracle10g</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<hibernate.show_sql>true</hibernate.show_sql>
+				<hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</hibernate.dialect>
+				<db.jdbcDriver>oracle.jdbc.OracleDriver</db.jdbcDriver>
+				<db.connectionURL>jdbc:oracle:thin:@localhost:1521:oa</db.connectionURL>
+				<db.username>root</db.username>
+				<db.password>root</db.password>
+				<db.Type>ORACLE</db.Type>
+				<db.generateDdl>true</db.generateDdl>
+				<db.groupId>com.oracle</db.groupId>
+				<db.artifactId>ojdbc14</db.artifactId>
+			</properties>
+		</profile>
+		
+		<!--  Oracle 11G DB  -->
+		<profile>
+			<id>Oracle11g</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<hibernate.show_sql>true</hibernate.show_sql>
+				<hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</hibernate.dialect>
+				<db.jdbcDriver>oracle.jdbc.OracleDriver</db.jdbcDriver>
+				<db.connectionURL>jdbc:oracle:thin:@localhost:1521:oa</db.connectionURL>
+				<db.username>root</db.username>
+				<db.password>root</db.password>
+				<db.Type>ORACLE</db.Type>
+				<db.generateDdl>true</db.generateDdl>
+				<db.groupId>com.oracle</db.groupId>
+				<db.artifactId>ojdbc14</db.artifactId>
+			</properties>
+		</profile>
+		
+		<!--  DB2 DB  -->
+		<profile>
+			<id>DB2</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<hibernate.show_sql>true</hibernate.show_sql>
+				<hibernate.dialect>org.hibernate.dialect.DB2Dialect</hibernate.dialect>
+				<db.jdbcDriver>com.ibm.db2.jcc.DB2Driver</db.jdbcDriver>
+				<db.connectionURL>jdbc:db2://localhost:50000/db_name</db.connectionURL>
+				<db.username>root</db.username>
+				<db.password>root</db.password>
+				<db.Type>DB2</db.Type>
+				<db.generateDdl>true</db.generateDdl>
+				<db.groupId>com.ibm</db.groupId>
+				<db.artifactId>db2jcc4</db.artifactId>
+			</properties>
+		</profile>
+		
+		<!--  Sybase DB  -->
+		<profile>
+			<id>Sybase</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<hibernate.show_sql>true</hibernate.show_sql>
+				<hibernate.dialect>org.hibernate.dialect.SybaseDialect</hibernate.dialect>
+				<db.jdbcDriver>net.sourceforge.jtds.jdbc.Driver</db.jdbcDriver>
+				<db.connectionURL>dbc:sybase:Tds:localhost:5000/db_name</db.connectionURL>
+				<db.username>root</db.username>
+				<db.password>root</db.password>
+				<db.Type>DB2</db.Type>
+				<db.generateDdl>true</db.generateDdl>
+				<db.groupId>net.sourceforge.jtds</db.groupId>
+				<db.artifactId>jtds</db.artifactId>
+			</properties>
+		</profile>
+		
+		<!--  Sybase DB  -->
+		<profile>
+			<id>SqlServer2008</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<hibernate.show_sql>true</hibernate.show_sql>
+				<hibernate.dialect>org.hibernate.dialect.SQLServer2008Dialect</hibernate.dialect>
+				<db.jdbcDriver>com.microsoft.sqlserver.jdbc.SQLServerDriver</db.jdbcDriver>
+				<db.connectionURL>dbc:sybase:Tds:localhost:5000/db_name</db.connectionURL>
+				<db.username>root</db.username>
+				<db.password>root</db.password>
+				<db.Type>DB2</db.Type>
+				<db.generateDdl>true</db.generateDdl>
+				<db.groupId>com.microsoft.sqlserver</db.groupId>
+				<db.artifactId>sqljdbc4</db.artifactId>
+			</properties>
+		</profile>
+		<!--  PostgreSQL DB  -->
+		<profile>
+			<id>PostgreSQL</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<hibernate.show_sql>true</hibernate.show_sql>
+				<hibernate.dialect>org.hibernate.dialect.PostgreSQLDialect</hibernate.dialect>
+				<db.jdbcDriver>org.postgresql.Driver</db.jdbcDriver>
+				<db.connectionURL>jdbc:postgresql://localhost:5432/postgres</db.connectionURL>
+				<db.username>postgres</db.username>
+				<db.password>root</db.password>
+				<db.Type>POSTGRESQL</db.Type>
+				<db.generateDdl>true</db.generateDdl>
+				<db.groupId>org.postgresql</db.groupId>
+				<db.artifactId>postgresql</db.artifactId>
+			</properties>
+		</profile>
+	</profiles>
+	
 	
 	<dependencyManagement>
 
@@ -577,30 +732,70 @@
 		<dependency>
 			<groupId>org.openkoala.security</groupId>
 			<artifactId>koala-security-core</artifactId>
-			<version>${koalaSecurity.version}</version>
+			<version>${koala.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.openkoala.security</groupId>
 			<artifactId>koala-security-ss3Adapter</artifactId>
-			<version>${koalaSecurity.version}</version>
+			<version>${koala.version}</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.openkoala.security</groupId>
 			<artifactId>koala-security-application</artifactId>
-			<version>${koalaSecurity.version}</version>
+			<version>${koala.version}</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.openkoala.security</groupId>
 			<artifactId>koala-security-authImpl</artifactId>
-			<version>${koalaSecurity.version}</version>
+			<version>${koala.version}</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.openkoala.security</groupId>
 			<artifactId>koala-security-applicationImpl</artifactId>
-			<version>${koalaSecurity.version}</version>
+			<version>${koala.version}</version>
 		</dependency>
+		
+		<dependency> 
+            <groupId>org.openkoala.gqc</groupId>  
+            <artifactId>koala-gqc-application</artifactId>  
+            <version>${koala.version}</version> 
+        </dependency>
+        
+    	<dependency> 
+            <groupId>org.openkoala.gqc</groupId>  
+            <artifactId>koala-gqc-controller</artifactId>  
+            <version>${koala.version}</version> 
+        </dependency>
+        
+        <dependency> 
+            <groupId>org.openkoala.gqc</groupId>  
+            <artifactId>koala-gqc-applicationImpl</artifactId>  
+            <version>${koala.version}</version> 
+        </dependency>
+        
+    	<dependency> 
+            <groupId>org.openkoala.gqc</groupId>  
+            <artifactId>koala-gqc-controller</artifactId>  
+            <version>${koala.version}</version> 
+        </dependency>
 			
+			
+		<dependency>
+			<groupId>org.openkoala.monitor</groupId>
+			<artifactId>koala-jmonitor-application</artifactId>
+			<version>${koala.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.openkoala.monitor</groupId>
+			<artifactId>koala-jmonitor-applicationImpl</artifactId>
+			<version>${koala.version}</version>
+		</dependency>
+		
 	    <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity-tools</artifactId>
@@ -637,6 +832,12 @@
 	     <version>1.2.4</version>
       </dependency>
       
+      <dependency>
+	    <groupId>org.postgresql</groupId>
+	    <artifactId>postgresql</artifactId>
+	    <version>9.3-1100-jdbc4</version>
+	  </dependency>
+	  
       <dependency>
 				<groupId>org.apache.activemq</groupId>
 				<artifactId>activemq-all</artifactId>

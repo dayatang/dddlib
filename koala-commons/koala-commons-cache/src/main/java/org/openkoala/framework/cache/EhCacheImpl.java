@@ -27,11 +27,11 @@ public class EhCacheImpl implements com.dayatang.cache.Cache  {
 	 * 从缓存中获取一个KEY值
 	 */
 	public Object get(String key) {
-		if(isKeyInCache(key)==false){
-			return null;
+		Element el = (Element) cache.get(key);
+		if (el != null) {
+			return el.getObjectValue();
 		}
-		Element el = (Element)cache.get(key);
-		return el.getObjectValue();
+		return null;
 	}
 
 	/**
