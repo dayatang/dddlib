@@ -19,16 +19,21 @@
          <![CDATA[
     <?xml version="1.0" encoding="UTF-8"?>
     <root>
-        
-        <dependency> 
+         <dependency> 
             <groupId>org.openkoala.gqc</groupId>  
-            <artifactId>koala-gqc-applicationImpl</artifactId>  
-            <version>${koala.version}</version> 
+            <artifactId>koala-gqc-application</artifactId>
         </dependency>
     	<dependency> 
             <groupId>org.openkoala.gqc</groupId>  
-            <artifactId>koala-gqc-controller</artifactId>  
-            <version>${koala.version}</version> 
+            <artifactId>koala-gqc-controller</artifactId>
+        </dependency>
+        <dependency> 
+            <groupId>org.openkoala.gqc</groupId>  
+            <artifactId>koala-gqc-applicationImpl</artifactId>
+        </dependency>
+    	<dependency> 
+            <groupId>org.openkoala.gqc</groupId>  
+            <artifactId>koala-gqc-controller</artifactId>
         </dependency>
 	</root>
          ]]>

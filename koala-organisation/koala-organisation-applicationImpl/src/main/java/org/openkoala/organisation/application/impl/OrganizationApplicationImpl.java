@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
  * 组织机构应用实现层类
  *
  */
-@Named("organizationApplication")
+@Named
 @Transactional(value="transactionManager_org")
 @Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
 @Stateless(name = "OrganizationApplication")

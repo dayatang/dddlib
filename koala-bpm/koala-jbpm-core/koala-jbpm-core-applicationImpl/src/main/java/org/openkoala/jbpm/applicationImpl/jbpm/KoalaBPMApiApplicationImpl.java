@@ -1,5 +1,6 @@
 package org.openkoala.jbpm.applicationImpl.jbpm;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -8,11 +9,14 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import javax.inject.Named;
+
 import org.drools.runtime.process.ProcessInstance;
 import org.jbpm.process.audit.JPAProcessInstanceDbLog;
 import org.jbpm.process.audit.ProcessInstanceLog;
 import org.jbpm.process.audit.VariableInstanceLog;
 import org.jbpm.ruleflow.instance.RuleFlowProcessInstance;
+import org.jbpm.task.Content;
+import org.jbpm.task.Status;
 import org.jbpm.task.Task;
 import org.jbpm.task.query.TaskSummary;
 import org.jbpm.task.service.ContentData;
@@ -21,61 +25,80 @@ import org.openkoala.jbpm.applicationImpl.util.KoalaBPMSession;
 
 import com.dayatang.domain.InstanceFactory;
 
-@Named(value="KoalaBPMApiApplication")
+@Named(value = "KoalaBPMApiApplication")
 public class KoalaBPMApiApplicationImpl implements KoalaBPMApiApplication {
 
 	private final ReadWriteLock lock = new ReentrantReadWriteLock();
 	private final Lock rLock = lock.readLock();
 	private final Lock wLock = lock.writeLock();
-	
+
 	private KoalaBPMSession koalaBPMSession;
 
 	public KoalaBPMSession getKoalaBPMSession() {
 		if (koalaBPMSession == null) {
-			koalaBPMSession = InstanceFactory.getInstance(KoalaBPMSession.class);
+			koalaBPMSession = InstanceFactory
+					.getInstance(KoalaBPMSession.class);
 		}
 		return koalaBPMSession;
 	}
-	
+
 	@Override
 	public ProcessInstance startProcess(String processName,
 			Map<String, Object> params) {
 		wLock.lock();
 		ProcessInstance instance = null;
 		try {
-		    instance = getKoalaBPMSession().getKsession().startProcess(processName,
-					params);
-		    getKoalaBPMSession().getKsession().insert(instance);
-		    getKoalaBPMSession().getKsession().fireAllRules();
+			instance = getKoalaBPMSession().getKsession().startProcess(
+					processName, params);
+			getKoalaBPMSession().getKsession().insert(instance);
+			getKoalaBPMSession().getKsession().fireAllRules();
 		} finally {
 			wLock.unlock();
 		}
 		return instance;
 	}
-	
+
 	public List<TaskSummary> findTaskSummary(String user) {
-		return getKoalaBPMSession().getLocalTaskService().getTasksAssignedAsPotentialOwner(user, "en-UK");
+		return getKoalaBPMSession().getLocalTaskService()
+				.getTasksAssignedAsPotentialOwner(user, "en-UK");
 	}
 
 	public List<TaskSummary> findTaskSummaryByGroup(String user,
 			List<String> groups) {
-		return getKoalaBPMSession().getLocalTaskService().getTasksAssignedAsPotentialOwner(user, groups,
-				"en-UK");
+		return getKoalaBPMSession().getLocalTaskService()
+				.getTasksAssignedAsPotentialOwner(user, groups, "en-UK");
+	}
+
+	public void clearTaskByProcessInstanceId(long processInstanceId) {
+		List<Status> status = new ArrayList<Status>();
+		status.add(Status.Created);
+		status.add(Status.InProgress);
+		status.add(Status.Reserved);
+		status.add(Status.Ready);
+		List<TaskSummary> summarys = getKoalaBPMSession()
+				.getLocalTaskService()
+				.getTasksByStatusByProcessId(processInstanceId, status, "en-UK");
+		for (TaskSummary summary : summarys) {
+			Task task = getKoalaBPMSession().getLocalTaskService().getTask(summary.getId());
+			getKoalaBPMSession().getLocalTaskService().exit(task.getId(),task.getPeopleAssignments().getBusinessAdministrators().get(0).getId());
+		}
 	}
 
 	public Collection<org.drools.definition.process.Process> queryProcesses() {
 		Collection<org.drools.definition.process.Process> process = null;
 		rLock.lock();
-		try{
-			process = getKoalaBPMSession().getKsession().getKnowledgeBase().getProcesses();
-		}finally{
+		try {
+			process = getKoalaBPMSession().getKsession().getKnowledgeBase()
+					.getProcesses();
+		} finally {
 			rLock.unlock();
 		}
 		return process;
 	}
 
 	public org.drools.definition.process.Process getProcess(String processId) {
-		return getKoalaBPMSession().getKsession().getKnowledgeBase().getProcess(processId);
+		return getKoalaBPMSession().getKsession().getKnowledgeBase()
+				.getProcess(processId);
 	}
 
 	public ProcessInstanceLog getProcessInstanceLog(long processId) {
@@ -103,21 +126,39 @@ public class KoalaBPMApiApplicationImpl implements KoalaBPMApiApplication {
 	}
 
 	public ProcessInstance getProcessInstance(long processInstanceId) {
-		RuleFlowProcessInstance in = (RuleFlowProcessInstance) getKoalaBPMSession().getKsession()
-				.getProcessInstance(processInstanceId);
+		RuleFlowProcessInstance in = null;
+		rLock.lock();
+		try {
+			in = (RuleFlowProcessInstance) getKoalaBPMSession().getKsession()
+					.getProcessInstance(processInstanceId);
+		} finally {
+			rLock.unlock();
+		}
 		return in;
 	}
 
 	public void abortProcessInstance(long processInstanceId) {
-		getKoalaBPMSession().getKsession().abortProcessInstance(processInstanceId);
+		wLock.lock();
+		try {
+			getKoalaBPMSession().getKsession().abortProcessInstance(
+					processInstanceId);
+		} finally {
+			wLock.unlock();
+		}
+
 	}
 
 	public void delegate(long taskId, String userId, String targetUserId) {
-		getKoalaBPMSession().getLocalTaskService().delegate(taskId, userId, targetUserId);
+		getKoalaBPMSession().getLocalTaskService().delegate(taskId, userId,
+				targetUserId);
 	}
 
 	public Task getTask(long taskId) {
 		return getKoalaBPMSession().getLocalTaskService().getTask(taskId);
+	}
+
+	public Content getContent(long contentId) {
+		return getKoalaBPMSession().getLocalTaskService().getContent(contentId);
 	}
 
 	public void startTask(long taskId, String userId) {
@@ -125,7 +166,8 @@ public class KoalaBPMApiApplicationImpl implements KoalaBPMApiApplication {
 	}
 
 	public void completeTask(long taskId, String userId, ContentData outputData) {
-		getKoalaBPMSession().getLocalTaskService().complete(taskId, userId, outputData);
+		getKoalaBPMSession().getLocalTaskService().complete(taskId, userId,
+				outputData);
 	}
 
 }

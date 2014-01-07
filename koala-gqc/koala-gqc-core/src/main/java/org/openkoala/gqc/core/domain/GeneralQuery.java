@@ -174,7 +174,7 @@ public class GeneralQuery extends GeneralQueryEntity {
 		this.fieldDetails = fieldDetails;
 	}
 
-	public QueryAllQuerier getQueryAllQuerierInstance() {
+	public QueryAllQuerier getQueryAllQuerier() {
 		if (queryAllQuerier == null) {
 			queryAllQuerier = new QueryAllQuerier(getQuerySql(), dataSource);
 		} else {
@@ -183,7 +183,7 @@ public class GeneralQuery extends GeneralQueryEntity {
 		return queryAllQuerier;
 	}
 
-	public PagingQuerier getPagingQuerierInstance() {
+	public PagingQuerier getPagingQuerier() {
 		if (pagingQuerier == null) {
 			pagingQuerier = new PagingQuerier(getQuerySql(), dataSource);
 		} else {
@@ -197,7 +197,7 @@ public class GeneralQuery extends GeneralQueryEntity {
 	 * @return
 	 */
 	public List<Map<String, Object>> query() {
-		return getQueryAllQuerierInstance().query();
+		return getQueryAllQuerier().query();
 	}
 
 	/**
@@ -207,8 +207,8 @@ public class GeneralQuery extends GeneralQueryEntity {
 	 * @return 
 	 */
 	public List<Map<String, Object>> pagingQuery(int currentPage, int pagesize) {
-		getPagingQuerierInstance().changePagingParameter(Page.getStartOfPage(currentPage, pagesize), pagesize);
-		return getPagingQuerierInstance().query();
+		getPagingQuerier().changePagingParameter(Page.getStartOfPage(currentPage, pagesize), pagesize);
+		return getPagingQuerier().query();
 	}
 	
 	/**
@@ -218,7 +218,7 @@ public class GeneralQuery extends GeneralQueryEntity {
 	 * @return
 	 */
 	public Page<Map<String, Object>> pagingQueryPage(int currentPage, int pagesize) {
-		long totalCount = getPagingQuerierInstance().getTotalCount();
+		long totalCount = getPagingQuerier().getTotalCount();
 		return new Page<Map<String, Object>>(Page.getStartOfPage(currentPage, pagesize), totalCount, pagesize, pagingQuery(currentPage, pagesize));
 	}
 	
