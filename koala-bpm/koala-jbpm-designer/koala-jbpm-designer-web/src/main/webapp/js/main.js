@@ -124,6 +124,7 @@ var openTab = function(target, title, mark, id, param){
 var loadContent = function(obj, target){
     $.get(contextPath + target).done(function(data){
         obj.html(data);
+        $('#tabContent').trigger('loadContentCompalte', obj);
     }).fail(function(){
             throw new Error('加载失败');
         }).always(function(){
