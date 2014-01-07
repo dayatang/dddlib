@@ -107,7 +107,8 @@ public class JbpmAction {
 	public String publish(){
 		try {
 			
-			this.gunvorApplication.publichJBPM(packageName, bpmnName,wsdl);
+			this.gunvorApplication.publichJBPM(packageName, bpmnName, wsdl);
+			
 			result = 1;
 		} catch (Exception e) {
 			this.errors = e.getMessage();
@@ -175,15 +176,7 @@ public class JbpmAction {
 	}
 
 	public String processes(){
-		/*PublishURLVO urlVo = null;
-		URL url = null;
-		try {
-			urlVo = publishURLApplication.getPublishURL(Long.valueOf(id));
-			url = new URL(urlVo.getUrl());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
-		this.processes = new GunvorApplicationImpl().getJBPMApplication().getProcesses();
+		//TODO 获取某个流程引擎中的所有流程信息
 		return "json2";
 	}
 
