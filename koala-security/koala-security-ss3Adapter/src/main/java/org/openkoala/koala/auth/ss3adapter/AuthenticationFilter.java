@@ -35,23 +35,23 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 			throw new AuthenticationServiceException("Authentication method not supported: " + request.getMethod());
 		}
 		
-		for (HttpHandler each : httpHandlers) {
-			each.handle(request, response);
-		}
+		handle(request, response);
 		
-        // 获取Username和Password  
-        String username = obtainUsername(request);  
-        String password = obtainPassword(request);  
-  
         // UsernamePasswordAuthenticationToken实现Authentication校验  
         UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(  
-                username, password);  
+        		obtainUsername(request), obtainPassword(request));  
   
         // 允许子类设置详细属性  
         setDetails(request, authRequest);  
   
         // 运行UserDetailsService的loadUserByUsername 再次封装Authentication  
         return this.getAuthenticationManager().authenticate(authRequest);  
+	}
+
+	private void handle(HttpServletRequest request, HttpServletResponse response) {
+		for (HttpHandler each : httpHandlers) {
+			each.handle(request, response);
+		}
 	}
 
 	public boolean isPostOnly() {

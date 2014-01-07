@@ -229,7 +229,6 @@ public class KoalaBPMSession {
 			addProcess(info.getData());
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw e;
 		}
 
 		updateProcessVersion(info.getProcessName(), info.getVersionNum());
