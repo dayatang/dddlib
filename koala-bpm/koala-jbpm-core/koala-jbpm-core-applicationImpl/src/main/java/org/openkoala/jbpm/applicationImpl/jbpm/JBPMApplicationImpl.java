@@ -1598,11 +1598,11 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	private UserTransaction startUserTransaction() {
 		UserTransaction ut = null;
 		try {
-//			ut = (UserTransaction) new InitialContext()
-//					.lookup("java:jboss/UserTransaction");
-			// TEST
 			ut = (UserTransaction) new InitialContext()
-			.lookup("java:comp/UserTransaction");
+					.lookup("java:jboss/UserTransaction");
+			// TEST
+//			ut = (UserTransaction) new InitialContext()
+//			.lookup("java:comp/UserTransaction");
 			ut.begin();
 		} catch (NotSupportedException e) {
 			e.printStackTrace();

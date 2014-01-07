@@ -71,28 +71,5 @@
 		<property name="alias" value="gqc" />
 	</bean>
 	
-	<!-- <bean id="dataSource_test" class="org.logicalcobwebs.proxool.ProxoolDataSource">
-		<property name="driver" value="${gqc.db.jdbc.driver}" />
-		<property name="driverUrl" value="jdbc:h2:~/db/security" />
-		<property name="user" value="${gqc.db.jdbc.username}" />
-		<property name="password" value="${gqc.db.jdbc.password}" />
-		<property name="prototypeCount" value="5" />
-		<property name="maximumConnectionCount" value="${gqc.maximumConnectionCount}" />
-		<property name="minimumConnectionCount" value="${gqc.minimumConnectionCount}" />
-		<property name="houseKeepingTestSql" value="select 1" />
-		<property name="testBeforeUse" value="true" />
-		<property name="alias" value="test" />
-	</bean> -->
-	<!--拦截器事务 -->
-<!-- 	<tx:advice id="txAdvice" transaction-manager="transactionManager_gqc">
-		<tx:attributes>
-			<tx:method name="*" propagation="REQUIRED" />
-		</tx:attributes>
-	</tx:advice>
-	<aop:config>
-		<aop:pointcut id="tx-pointcut"
-			expression="execution(* org.openkoala.gqc.application.impl.*ApplicationImpl.*(..))" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="tx-pointcut" />
-	</aop:config>
- -->
+	
 </beans>

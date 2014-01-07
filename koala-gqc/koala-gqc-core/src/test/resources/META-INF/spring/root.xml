@@ -4,5 +4,6 @@
 
     <!-- <import resource="classpath*:META-INF/spring/base-context.xml" /> -->
     <context:property-placeholder location="classpath:META-INF/props/*.properties" ignore-unresolvable="true"/>
-    <import resource="classpath*:META-INF/spring/gqc-standalone-persistence.xml" />
+    <import resource="classpath*:META-INF/spring/persistence.xml" />
+    
 </beans>

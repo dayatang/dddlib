@@ -59,7 +59,7 @@
 				<hibernate.show_sql>true</hibernate.show_sql>
 				<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
 				<db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
-				<db.connectionURL>jdbc:h2:~/db/${Project.appName}</db.connectionURL>
+				<db.connectionURL>jdbc:h2:mem:test;MODE=Oracle;DB_CLOSE_DELAY=-1</db.connectionURL>
 				<db.username>sa</db.username>
 				<db.password></db.password>
 				<db.Type>H2</db.Type>
