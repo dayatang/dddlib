@@ -194,7 +194,26 @@
 				<db.artifactId>sqljdbc4</db.artifactId>
 			</properties>
 		</profile>
-
+		<!--  PostgreSQL DB  -->
+		<profile>
+			<id>PostgreSQL</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<hibernate.show_sql>true</hibernate.show_sql>
+				<hibernate.dialect>org.hibernate.dialect.PostgreSQLDialect</hibernate.dialect>
+				<db.jdbcDriver>org.postgresql.Driver</db.jdbcDriver>
+				<db.connectionURL>jdbc:postgresql://localhost:5432/postgres</db.connectionURL>
+				<db.username>postgres</db.username>
+				<db.password>root</db.password>
+				<db.Type>POSTGRESQL</db.Type>
+				<db.generateDdl>true</db.generateDdl>
+				<db.groupId>org.postgresql</db.groupId>
+				<db.artifactId>postgresql</db.artifactId>
+			</properties>
+		</profile>
 	</profiles>
 	
 	
@@ -813,6 +832,12 @@
 	     <version>1.2.4</version>
       </dependency>
       
+      <dependency>
+	    <groupId>org.postgresql</groupId>
+	    <artifactId>postgresql</artifactId>
+	    <version>9.3-1100-jdbc4</version>
+	  </dependency>
+	  
       <dependency>
 				<groupId>org.apache.activemq</groupId>
 				<artifactId>activemq-all</artifactId>
