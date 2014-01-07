@@ -11,12 +11,7 @@
 	<context:property-placeholder location="classpath*:security-db.properties" ignore-unresolvable="true"/>	
     <context:property-placeholder location="classpath:user-config.properties" ignore-unresolvable="true"/>       
      
-	<bean id="passwordEncoder" class="org.openkoala.koala.auth.ss3adapter.SS3PasswordEncoder">
-		<property name="saltSource" ref="saltSource" />
-	</bean>
-<!-- 	<bean id="passwordEncoder" class="org.openkoala.koala.auth.ss3adapter.PlainPasswordEncoder" /> -->
-
-	<bean id="saltSource" class="org.openkoala.koala.auth.ss3adapter.UserNameSaltSource" />
+	<bean id="passwordEncoder" class="org.openkoala.koala.auth.ss3adapter.SS3PasswordEncoder"/>
 
 	<bean id="authHandler" class="org.openkoala.koala.auth.ss3adapter.SS3AuthHandler">
 		<property name="passwordEncoder" ref="passwordEncoder" />

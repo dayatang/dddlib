@@ -6,7 +6,6 @@ import java.util.Set;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.interceptor.Interceptors;
 
@@ -16,6 +15,7 @@ import org.openkoala.gqc.core.domain.GeneralQueryEntity;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dayatang.domain.AbstractEntity;
+import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.service.QueryChannelService;
 import com.dayatang.querychannel.support.Page;
 
@@ -33,28 +33,18 @@ public class GqcApplicationImpl implements GqcApplication {
 	/**
 	 * 查询通道
 	 */
-	@Inject
-	private QueryChannelService queryChannel;
-	
-	/**
-	 * 锁对象
-	 */
-//	private static byte[] lock = new byte[0];
+	private static QueryChannelService queryChannel;
 
 	/**
 	 * 获取查询通道实例
 	 * @return
 	 */
-	/*private static QueryChannelService getQueryChannelService() {
+	private static QueryChannelService getQueryChannelService() {
 		if (queryChannel == null) {
-			synchronized (lock) {
-				if (queryChannel == null) {
-					queryChannel = InstanceFactory.getInstance(QueryChannelService.class, "queryChannel_gqc");
-				}
-			}
+			queryChannel = InstanceFactory.getInstance(QueryChannelService.class, "queryChannel_gqc");
 		}
 		return queryChannel;
-	}*/
+	}
 	
 	public <T extends GeneralQueryEntity> T getEntity(Class<T> clazz, Long id) {
 		try {
@@ -94,7 +84,7 @@ public class GqcApplicationImpl implements GqcApplication {
 		try {
 			jpql = new StringBuilder("select _generalQuery from GeneralQuery _generalQuery");
 			conditionVals = new ArrayList<Object>();
-			return queryChannel.queryPagedResultByPageNo(jpql.toString(), conditionVals.toArray(), currentPage, pagesize);
+			return getQueryChannelService().queryPagedResultByPageNo(jpql.toString(), conditionVals.toArray(), currentPage, pagesize);
 		} catch (Exception e) {
 			throw new RuntimeException("查询失败！", e);
 		}
@@ -131,7 +121,7 @@ public class GqcApplicationImpl implements GqcApplication {
 				conditionVals.add("%" + queryName + "%");
 			}
 			
-			return queryChannel.queryPagedResultByPageNo(jpql.toString(), conditionVals.toArray(), currentPage, pagesize);
+			return getQueryChannelService().queryPagedResultByPageNo(jpql.toString(), conditionVals.toArray(), currentPage, pagesize);
 		} catch (Exception e) {
 			throw new RuntimeException("查询失败！", e);
 		}

@@ -14,7 +14,7 @@
 	<!-- Instructs Spring to perfrom declarative transaction managemenet on 
 		annotated classes -->
 	<tx:annotation-driven transaction-manager="transactionManager_gqc" />
-
+	
 	<!-- Drives transactions using local JPA APIs -->
 	<bean id="transactionManager_gqc" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory_gqc" />
@@ -71,16 +71,5 @@
 		<property name="alias" value="gqc" />
 	</bean>
 	
-	<!--拦截器事务 -->
-<!-- 	<tx:advice id="txAdvice" transaction-manager="transactionManager_gqc">
-		<tx:attributes>
-			<tx:method name="*" propagation="REQUIRED" />
-		</tx:attributes>
-	</tx:advice>
-	<aop:config>
-		<aop:pointcut id="tx-pointcut"
-			expression="execution(* org.openkoala.gqc.application.impl.*ApplicationImpl.*(..))" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="tx-pointcut" />
-	</aop:config>
- -->
+	
 </beans>
