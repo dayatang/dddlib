@@ -1,8 +1,10 @@
 package org.openkoala.opencis.authentication;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.openkoala.opencis.jenkins.HttpCASAuthentication;
+import org.openkoala.opencis.jenkins.authentication.casAuthen.HttpAuthen;
 
 import java.net.URL;
 
@@ -18,15 +20,15 @@ public class CISAuthenticationTest {
     @Test
     public void testName() throws Exception {
 
-        HttpCASAuthentication authentication = new HttpCASAuthentication(
+        HttpClient httpClient = HttpClients.createDefault();
+        HttpAuthen authentication = new HttpAuthen(httpClient,
                 new URL("http", "10.108.1.138", 8080, "/cas/v1/tickets/"),
+                new URL("http", "10.108.1.138", 8080, "/ci/jenkins"),
                 "admin",
                 "admin");
 
-        authentication.setJenkinsAuthenticationUrl(new URL("http", "10.108.1.138", 8080, "/ci/jenkins"));
 
-
-        assert authentication.authentication();
+        assert authentication.authenticate();
 
 
     }
