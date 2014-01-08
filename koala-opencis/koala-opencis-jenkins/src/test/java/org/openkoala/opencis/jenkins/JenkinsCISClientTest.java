@@ -1,14 +1,18 @@
 package org.openkoala.opencis.jenkins;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.authentication.CISAuthentication;
+import org.openkoala.opencis.authorize.CISAuthorization;
+import org.openkoala.opencis.jenkins.project.ProjectCreateStrategy;
 
 import java.net.MalformedURLException;
+
 import java.net.URL;
+
+import static org.mockito.Mockito.*;
 
 /**
  * /createItem?name=
@@ -20,68 +24,42 @@ import java.net.URL;
 public class JenkinsCISClientTest {
 
 
-    private static URL JENKINS_URL;
+    @Test
+    public void test() throws MalformedURLException {
+        URL JENKINS_URL = new URL("http", "localhost", 8080, "/jenkins");
 
-    private static URL CAS_URL;
+        URL CAS_URL = new URL("http", "localhost", 8080, "/cas/v1/tickets/");
 
-    private JenkinsCISClient jenkinsCISClient;
+        JenkinsCISClient jenkinsCISClient;
 
-    private static Project project = new Project();
+        Project project = new Project();
+        project.setArtifactId("Artifactdddfee3323");
+        Developer developer = new Developer();
+        developer.setName("www");
+        developer.setEmail("admin@gmail.com");
 
-    private static Developer developer = new Developer();
 
-
-    static {
-        try {
-            JENKINS_URL = new URL("http", "localhost", 8080, "/jenkins");
-            CAS_URL = new URL("http", "localhost", 8080, "/cas/v1/tickets/");
-            project.setArtifactId("Artifactdddfee3323");
-            developer.setName("www");
-            developer.setEmail("admin@gmail.com");
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Before
-    public void setUp() {
+        //认证
         jenkinsCISClient = new JenkinsCISClient(JENKINS_URL);
-        HttpCASAuthentication authentication = new HttpCASAuthentication(CAS_URL, "admin", "admin");
-        authentication.setJenkinsAuthenticationUrl(JENKINS_URL);
-        jenkinsCISClient.addAuthentication(authentication);
-        //jenkinsCISClient.createProject(project);
-    }
+        CISAuthentication authentication = mock(CISAuthentication.class);
+        if (!jenkinsCISClient.authenticateBy(authentication)) {
+            return;
+        }
+        verify(authentication).authenticate();
 
-    @After
-    public void tearDown() throws Exception {
-        //jenkinsCISClient.confirmRemoveJob(project.getArtifactId());
-    }
+        //创建项目
+        ProjectCreateStrategy projectCreateStrategy = mock(ProjectCreateStrategy.class);
+        jenkinsCISClient.setProjectCreateStrategy(projectCreateStrategy);
+        jenkinsCISClient.createProject(project);
+        verify(projectCreateStrategy).create(project);
 
-
-    @Test
-    public void testOperationProject() throws MalformedURLException {
-        Project project1 = new Project();
-        project1.setArtifactId("Artifacaddddadfffggsdfs23");
-        project1.setProjectName("projectNamesdfdsfsfs");
-        jenkinsCISClient.createProject(project1);
-        jenkinsCISClient.confirmRemoveJob(project1.getArtifactId());
-    }
-
-
-
-
-    @Test
-    public void testCreateUserIfNecessary() {
+        //授权
+        CISAuthorization cisAuthorization = mock(CISAuthorization.class);
+        jenkinsCISClient.setAuthorization(cisAuthorization);
         jenkinsCISClient.createUserIfNecessary(project, developer);
-        /*Project project1 = new Project();
-        project1.setArtifactId("sss");
-        jenkinsCISClient.assignUserToRole(project1, "dddd", "role");*/
+        verify(cisAuthorization).authorize(project, developer);
+
     }
 
-    @Test
-    public void testCreateRole() {
-        jenkinsCISClient.createRoleIfNecessary(project, "roleExample");
-    }
 
 }

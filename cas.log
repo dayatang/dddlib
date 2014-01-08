@@ -1,0 +1,108 @@
+2014-01-06 09:30:59,404 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 09:30:59,573 WARN [org.jasig.cas.authentication.handler.support.SimpleTestUsernamePasswordAuthenticationHandler] - org.jasig.cas.authentication.handler.support.SimpleTestUsernamePasswordAuthenticationHandler is only to be used in a testing environment.  NEVER enable this in a production environment.
+2014-01-06 09:31:00,900 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Starting Quartz Scheduler now
+2014-01-06 09:31:18,782 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2014-01-06 09:31:18,783 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 0 tickets found to be removed.
+2014-01-06 09:31:18,784 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2014-01-06 09:33:12,586 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 09:33:12,659 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 09:34:59,448 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 09:34:59,458 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 09:36:59,448 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 09:36:59,449 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 09:38:59,448 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 09:38:59,449 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 09:40:59,448 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 09:40:59,449 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 09:42:59,448 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 09:42:59,449 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 09:44:59,448 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 09:44:59,448 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 09:46:59,448 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 09:46:59,448 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 09:48:59,448 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 09:48:59,449 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 09:50:59,448 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 09:50:59,448 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 09:52:59,448 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 09:52:59,448 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 09:54:59,448 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 09:54:59,448 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 09:56:59,448 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 09:56:59,449 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 09:58:59,448 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 09:58:59,449 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:00:59,450 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:00:59,450 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:02:59,449 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:02:59,450 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:03:13,245 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Shutting down Quartz Scheduler
+2014-01-06 10:03:40,779 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:03:40,992 WARN [org.jasig.cas.authentication.handler.support.SimpleTestUsernamePasswordAuthenticationHandler] - org.jasig.cas.authentication.handler.support.SimpleTestUsernamePasswordAuthenticationHandler is only to be used in a testing environment.  NEVER enable this in a production environment.
+2014-01-06 10:03:42,380 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Starting Quartz Scheduler now
+2014-01-06 10:04:00,091 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2014-01-06 10:04:00,104 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 0 tickets found to be removed.
+2014-01-06 10:04:00,104 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2014-01-06 10:05:40,849 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:05:40,850 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:07:40,828 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:07:40,828 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:09:40,828 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:09:40,828 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:11:40,828 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:11:40,829 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:13:40,827 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:13:40,828 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:15:40,827 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:15:40,828 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:17:40,827 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:17:40,828 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:19:40,827 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:19:40,828 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:21:40,827 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:21:40,828 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:23:40,828 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:23:40,837 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:25:40,828 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:25:40,828 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:27:40,828 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:27:40,828 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:29:40,828 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:29:40,828 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:29:59,122 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Shutting down Quartz Scheduler
+2014-01-06 10:30:59,402 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:30:59,733 WARN [org.jasig.cas.authentication.handler.support.SimpleTestUsernamePasswordAuthenticationHandler] - org.jasig.cas.authentication.handler.support.SimpleTestUsernamePasswordAuthenticationHandler is only to be used in a testing environment.  NEVER enable this in a production environment.
+2014-01-06 10:31:01,344 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Starting Quartz Scheduler now
+2014-01-06 10:31:18,264 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2014-01-06 10:31:18,272 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 0 tickets found to be removed.
+2014-01-06 10:31:18,272 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2014-01-06 10:32:08,883 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Shutting down Quartz Scheduler
+2014-01-06 10:32:46,381 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:32:46,587 WARN [org.jasig.cas.authentication.handler.support.SimpleTestUsernamePasswordAuthenticationHandler] - org.jasig.cas.authentication.handler.support.SimpleTestUsernamePasswordAuthenticationHandler is only to be used in a testing environment.  NEVER enable this in a production environment.
+2014-01-06 10:32:48,067 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Starting Quartz Scheduler now
+2014-01-06 10:33:05,645 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Beginning ticket cleanup.
+2014-01-06 10:33:05,647 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - 0 tickets found to be removed.
+2014-01-06 10:33:05,647 INFO [org.jasig.cas.ticket.registry.support.DefaultTicketRegistryCleaner] - Finished ticket cleanup.
+2014-01-06 10:34:46,450 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:34:46,451 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:36:46,430 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:36:46,431 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:38:46,430 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:38:46,431 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:40:46,431 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:40:46,431 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:42:46,431 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:42:46,431 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:44:46,431 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:44:46,431 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:46:46,431 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:46:46,431 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:48:46,431 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:48:46,431 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:50:46,431 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:50:46,431 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:52:46,431 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:52:46,431 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:54:46,431 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-06 10:54:46,432 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-06 10:55:43,144 INFO [org.jasig.cas.util.AutowiringSchedulerFactoryBean] - Shutting down Quartz Scheduler
