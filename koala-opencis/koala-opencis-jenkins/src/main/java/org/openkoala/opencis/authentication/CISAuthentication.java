@@ -12,15 +12,9 @@ import java.util.Map;
  */
 public interface CISAuthentication {
 
-    boolean authentication();
+    boolean authenticate();
 
-    CISAuthentication setAppURL(URL url);
+    void setAppURL(URL url);
 
-    /**
-     * 暂时依赖HttpContext
-     *
-     * @return
-     */
-    HttpContext getContext();
 
 }
