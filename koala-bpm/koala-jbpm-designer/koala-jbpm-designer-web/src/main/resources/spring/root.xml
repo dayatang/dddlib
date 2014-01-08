@@ -17,8 +17,8 @@
 	<import resource="classpath*:META-INF/spring/spring-security.xml"/>
 	<import resource="classpath:spring/spring-http.xml"/>
 	<import resource="classpath*:META-INF/spring/spring-ehcache.xml"/>
-	<!--如果使用EJB部署，就使用authDataService-ejb.xml,如果使用JDBC部署，就使用authDataService-jdbc.xml-->
-	<import resource="classpath*:META-INF/spring/authDataService-jdbc.xml"/>
+	
+	<import resource="classpath:spring/security-custom.xml"/>
 	
 	 <!-- 和权限组件不同数据源 -->
 	<import resource="classpath*:META-INF/spring/security-standalone-context.xml" />

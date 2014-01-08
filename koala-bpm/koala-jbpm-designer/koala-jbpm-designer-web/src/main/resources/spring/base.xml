@@ -14,7 +14,4 @@
 	<context:annotation-config />
 	<context:component-scan base-package="org.openkoala.koala.jbpm,org.openkoala" />
 	
-	<!--UI SUPPORT-->
-	<bean id="koalaUISupportApplication" class="org.openkoala.ui.service.KoalaUISupportApplicationImpl" />
-	
 </beans>

@@ -1,9 +1,7 @@
 package org.openkoala.koala.jbpm.jbpmDesigner.applicationImpl;
 
-import com.dayatang.domain.InstanceFactory;
 import com.dayatang.utils.Assert;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
@@ -17,8 +15,6 @@ import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
-import org.apache.http.entity.ContentProducer;
-import org.apache.http.entity.EntityTemplate;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -106,6 +102,30 @@ public class GunvorApplicationImpl implements GunvorApplication {
 		} finally {   
     }  
 	}
+	
+	private Bpmn2 getBpmnFromDocument(String packageName,Document assertDocument){
+		Bpmn2 bpmn = null;
+		if (assertDocument != null) {
+			Element assertRoot = assertDocument.getRootElement();
+			Element metadata = assertRoot.element("metadata");
+			if ("bpmn2".equals(metadata.elementText("format"))
+					|| "bpmn".equals(metadata.elementText("format"))) {
+				bpmn = new Bpmn2();
+				bpmn.setCreated(metadata.elementText("created"));
+				bpmn.setCreatedby(metadata.elementText("createdBy"));
+				bpmn.setDescription(assertRoot
+						.elementText("description"));
+				bpmn.setFormat(metadata.elementText("format"));
+				bpmn.setText(assertRoot.elementText("title"));
+				bpmn.setPkgname(packageName);
+				bpmn.setUuid(metadata.elementText("uuid"));
+				bpmn.setVersion(metadata.elementText("version"));
+				bpmn.setSource(assertRoot.elementText("sourceLink"));
+				bpmn.setPackageName(packageName);
+			}
+		}
+		return bpmn;
+	}
 
 	public List<Bpmn2> getBpmn2s(String packageName) {
 		List<Bpmn2> bpmn2 = new ArrayList<Bpmn2>();
@@ -133,25 +153,10 @@ public class GunvorApplicationImpl implements GunvorApplication {
 				Document assertDocument = assertReader
 						.read(new ByteArrayInputStream(assertResult.toString()
 								.getBytes("UTF-8")));
-				if (assertDocument != null) {
-					Element assertRoot = assertDocument.getRootElement();
-					Element metadata = assertRoot.element("metadata");
-					if ("bpmn2".equals(metadata.elementText("format"))
-							|| "bpmn".equals(metadata.elementText("format"))) {
-						Bpmn2 bpmn = new Bpmn2();
-						bpmn.setCreated(metadata.elementText("created"));
-						bpmn.setCreatedby(metadata.elementText("createdBy"));
-						bpmn.setDescription(assertRoot
-								.elementText("description"));
-						bpmn.setFormat(metadata.elementText("format"));
-						bpmn.setText(metadata.elementText("title"));
-						bpmn.setPkgname(packageName);
-						bpmn.setUuid(metadata.elementText("uuid"));
-						bpmn.setVersion(assertRoot.elementText("version"));
-						bpmn.setSource(assertRoot.elementText("sourceLink"));
-						bpmn.setPackageName(packageName);
-						bpmn2.add(bpmn);
-					}
+				Bpmn2 bpmn = getBpmnFromDocument(packageName, assertDocument);
+				
+				if(bpmn!=null){
+					bpmn2.add(bpmn);
 				}
 			}
 		} catch (Exception e) {
@@ -179,19 +184,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		Element assertRoot = assertDocument.getRootElement();
-		Element metadata = assertRoot.element("metadata");
-		Bpmn2 bpmn = new Bpmn2();
-		bpmn.setCreated(metadata.elementText("created"));
-		bpmn.setCreatedby(metadata.elementText("createdBy"));
-		bpmn.setDescription(assertRoot.elementText("description"));
-		bpmn.setFormat(metadata.elementText("format"));
-		bpmn.setText(metadata.elementText("title"));
-		bpmn.setPkgname(packageName);
-		bpmn.setUuid(metadata.elementText("uuid"));
-		bpmn.setVersion(assertRoot.elementText("version"));
-		bpmn.setSource(assertRoot.elementText("sourceLink"));
-		bpmn.setPackageName(packageName);
+		Bpmn2 bpmn = getBpmnFromDocument(packageName, assertDocument);
 		return bpmn;
 	}
 
