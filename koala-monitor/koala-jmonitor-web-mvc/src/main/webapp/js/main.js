@@ -51,20 +51,20 @@ $(function(){
 	 */
 	self.on('modifyPwd',function(){
 		$('body').modifyPassword({
-			service: contextPath + 'auth/User/updatePassword.koala'
+			service: contextPath + '/auth/User/updatePassword.koala'
 		});
 	});
 	/*
 	 切换用户
 	*/
 	self.on('switchUser',function(){
-		window.location.href = contextPath+"j_spring_security_logout";
+		window.location.href = contextPath+"/j_spring_security_logout";
 	});
 	/*
 	注销
 	*/
 	self.on('loginOut',function(){
-		window.location.href = contextPath+"j_spring_security_logout";
+		window.location.href = contextPath+"/j_spring_security_logout";
 	});
 	$('#userManager').find('li').on('click', function(){
 		self.trigger($(this).data('target'));
@@ -124,6 +124,7 @@ var openTab = function(target, title, mark, id, param){
 var loadContent = function(obj, target){
     $.get(contextPath + target).done(function(data){
         obj.html(data);
+        $('#tabContent').trigger('loadContentCompalte', obj);
     }).fail(function(){
             throw new Error('加载失败');
         }).always(function(){

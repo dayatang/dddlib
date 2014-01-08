@@ -51,20 +51,20 @@ $(function(){
 	 */
 	self.on('modifyPwd',function(){
 		$('body').modifyPassword({
-			service: contextPath + 'auth/User/updatePassword.koala'
+			service: contextPath + '/auth/User/updatePassword.koala'
 		});
 	});
 	/*
 	 切换用户
 	*/
 	self.on('switchUser',function(){
-		window.location.href = contextPath+"j_spring_security_logout";
+		window.location.href = contextPath+"/j_spring_security_logout";
 	});
 	/*
 	注销
 	*/
 	self.on('loginOut',function(){
-		window.location.href = contextPath+"j_spring_security_logout";
+		window.location.href = contextPath+"/j_spring_security_logout";
 	});
 	$('#userManager').find('li').on('click', function(){
 		self.trigger($(this).data('target'));
