@@ -34,7 +34,7 @@ var changePost = function(){
 				        'Content-Type': 'application/json' 
 				    },
 				    'type': "Post",
-				    'url': '/employee/transform-post.koala?employeeId='+employeeId,
+				    'url': contextPath + '/employee/transform-post.koala?employeeId='+employeeId,
 				    'data': JSON.stringify(items),
 				    'dataType': 'json'
 				 }).done(function(data){

@@ -147,8 +147,7 @@ public class OrganizationController extends BaseController {
     @RequestMapping("/getOrg")
     public Map<String, Object> getOrganization(long id) {
     	Map<String, Object> dataMap = new HashMap<String, Object>();
-    	Organization organization = getBaseApplication().getEntity(Organization.class, id);
-    	OrganizationDTO organizationDTO = OrganizationDTO.generateDtoBy(organization);
+    	OrganizationDTO organizationDTO = organizationApplication.getOrganizationById(id);
     	dataMap.put("org", organizationDTO);
     	return dataMap;
     }
