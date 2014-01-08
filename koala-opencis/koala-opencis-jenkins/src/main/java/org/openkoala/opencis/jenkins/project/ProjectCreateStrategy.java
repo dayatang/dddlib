@@ -10,6 +10,9 @@ import org.openkoala.opencis.jenkins.scm.ScmConfigStrategy;
  */
 public interface ProjectCreateStrategy {
 
-    void create(Project project);
+    boolean create(Project project, Object context);
+
+    String getError();
+
 
 }

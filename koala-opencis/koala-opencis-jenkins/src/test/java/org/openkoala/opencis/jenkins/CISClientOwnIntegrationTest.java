@@ -1,6 +1,7 @@
 package org.openkoala.opencis.jenkins;
 
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.openkoala.opencis.api.Developer;
@@ -25,8 +26,9 @@ import java.util.concurrent.TimeUnit;
  * Date: 1/7/14
  * Time: 9:46 PM
  */
+@Ignore
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class JenkinsCISClientIntegrationTest {
+public class CISClientOwnIntegrationTest {
 
     private static final String jobName = UUID.randomUUID().toString();
     private static URL jenkins_url = null;
@@ -45,15 +47,7 @@ public class JenkinsCISClientIntegrationTest {
 
     @Test
     public void test001CreateProject() throws Exception {
-        WebDriver driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-        SeleniumJenkinsOwnAuthen cisAuthentication = new SeleniumJenkinsOwnAuthen(driver, jenkins_url.toString(), "admin", "admin");
-
-        if (!cisAuthentication.authenticate()) {
-            System.out.println("authentication error");
-            return;
-        }
+        WebDriver driver = authenticationAndCreateWebDriver();
 
 
         ProjectCreateStrategy projectCreateStrategy

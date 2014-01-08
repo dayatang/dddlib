@@ -11,7 +11,7 @@ import org.openkoala.opencis.api.Project;
  */
 public interface CISAuthorization {
 
-    void authorize(Project project, Developer developer);
+    void authorize(Project project, Developer developer, Object context);
 
 
 }
