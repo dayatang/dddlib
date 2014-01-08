@@ -2,6 +2,7 @@ package org.openkoala.opencis.jenkins.scm;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openkoala.opencis.jenkins.util.SeleniumUtil;
+import org.openkoala.opencis.jenkins.util.UrlUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,6 +42,8 @@ public class SeleniumSvnConfig implements ScmConfigStrategy {
 
         driver.get(jobConfigUrl);
 
+        String jobName = driver.findElement(By.name("name")).getAttribute("value");
+
         List<WebElement> scmRadios = driver.findElements(By.cssSelector("input[name=\"scm\"]"));
         String scm = "Subversion";
         WebElement selectedSCM = null;
@@ -64,6 +67,8 @@ public class SeleniumSvnConfig implements ScmConfigStrategy {
         //保存配置
         WebElement saveButton = driver.findElement(By.cssSelector("span[name=\"Submit\"] button"));
         saveButton.click();
+        assert StringUtils.endsWith(driver.getCurrentUrl(), "job/" + jobName);
+
         driver.quit();
     }
 

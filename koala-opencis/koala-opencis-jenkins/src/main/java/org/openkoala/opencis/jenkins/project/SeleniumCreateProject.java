@@ -44,6 +44,9 @@ public class SeleniumCreateProject implements ProjectCreateStrategy {
         //保存配置
         WebElement saveButton = driver.findElement(By.cssSelector("span[name=\"Submit\"] button"));
         saveButton.click();
+
+        assert driver.getCurrentUrl().contains("/job/" + UrlUtil.encodeURL(project.getArtifactId()));
+
         driver.quit();
     }
 
