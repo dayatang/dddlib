@@ -1,13 +1,12 @@
 package org.openkoala.opencis.jenkins;
 
 import org.junit.FixMethodOrder;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.authorize.CISAuthorization;
-import org.openkoala.opencis.jenkins.authentication.jenkinsOwnUserDatabaseAuthen.SeleniumAuthen;
+import org.openkoala.opencis.jenkins.authentication.SeleniumJenkinsOwnAuthen;
 import org.openkoala.opencis.jenkins.authorize.SeleniumProjectAuthorization;
 import org.openkoala.opencis.jenkins.project.ProjectCreateStrategy;
 import org.openkoala.opencis.jenkins.project.SeleniumCreateProject;
@@ -46,11 +45,10 @@ public class JenkinsCISClientIntegrationTest {
 
     @Test
     public void test001CreateProject() throws Exception {
-
         WebDriver driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        SeleniumAuthen cisAuthentication = new SeleniumAuthen(driver, jenkins_url.toString(), "admin", "admin");
+        SeleniumJenkinsOwnAuthen cisAuthentication = new SeleniumJenkinsOwnAuthen(driver, jenkins_url.toString(), "admin", "admin");
 
         if (!cisAuthentication.authenticate()) {
             System.out.println("authentication error");
@@ -59,9 +57,9 @@ public class JenkinsCISClientIntegrationTest {
 
 
         ProjectCreateStrategy projectCreateStrategy
-                = new SeleniumCreateProject(driver, jenkins_url.toString());
+                = new SeleniumCreateProject(jenkins_url.toString());
 
-        projectCreateStrategy.create(getProject());
+        projectCreateStrategy.create(getProject(), driver);
 
 
     }
@@ -75,25 +73,25 @@ public class JenkinsCISClientIntegrationTest {
         String svnUrl = "http://10.108.1.138/svn/project1";
         String svnUser = "admin";
         String svnPassword = "admin";
-        SeleniumSvnConfig svnConfig = new SeleniumSvnConfig(driver, jobConfigUrl, svnUrl, svnUser, svnPassword);
-        svnConfig.config();
+        SeleniumSvnConfig svnConfig =
+                new SeleniumSvnConfig(jobConfigUrl, svnUrl, svnUser, svnPassword);
+        svnConfig.config(driver);
 
     }
 
     @Test
     public void test003addUserToProject() {
         WebDriver driver = authenticationAndCreateWebDriver();
-        CISAuthorization cisAuthorization = new SeleniumProjectAuthorization(driver, jenkins_url.toString());
-        cisAuthorization.authorize(getProject(), getDeveloper());
+        CISAuthorization cisAuthorization = new SeleniumProjectAuthorization(jenkins_url.toString());
+        cisAuthorization.authorize(getProject(), getDeveloper(), driver);
 
     }
 
     private WebDriver authenticationAndCreateWebDriver() {
         WebDriver driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
-
-        SeleniumAuthen cisAuthentication = new SeleniumAuthen(driver, jenkins_url.toString(), "admin", "admin");
+        SeleniumJenkinsOwnAuthen cisAuthentication =
+                new SeleniumJenkinsOwnAuthen(driver, jenkins_url.toString(), "admin", "admin");
 
         if (!cisAuthentication.authenticate()) {
             System.out.println("authentication error");

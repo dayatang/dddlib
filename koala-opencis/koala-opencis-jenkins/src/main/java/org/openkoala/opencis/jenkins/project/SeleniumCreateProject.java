@@ -1,12 +1,14 @@
 package org.openkoala.opencis.jenkins.project;
 
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.jenkins.scm.ScmConfigStrategy;
-import org.openkoala.opencis.jenkins.scm.SeleniumSvnConfig;
+import org.openkoala.opencis.authentication.CISAuthentication;
 import org.openkoala.opencis.jenkins.util.UrlUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * User: zjzhai
@@ -15,21 +17,29 @@ import org.openqa.selenium.WebElement;
  */
 public class SeleniumCreateProject implements ProjectCreateStrategy {
 
-    private WebDriver driver;
 
     private String jenkinsUrl;
+
+    private CISAuthentication cisAuthentication;
 
     private SeleniumCreateProject() {
     }
 
-    public SeleniumCreateProject(WebDriver driver, String jenkinsUrl) {
-        this.driver = driver;
+    public SeleniumCreateProject(String jenkinsUrl) {
         this.jenkinsUrl = jenkinsUrl;
-
     }
 
+
     @Override
-    public void create(Project project) {
+    public void create(Project project, Object context) {
+        WebDriver driver;
+        if (context != null) {
+            driver = (WebDriver) context;
+        } else {
+            driver = new HtmlUnitDriver();
+            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        }
+
         driver.get(jenkinsUrl + "/view/All/newJob");
         WebElement jobNameInput = driver.findElement(By.id("name"));
         jobNameInput.sendKeys(project.getArtifactId());

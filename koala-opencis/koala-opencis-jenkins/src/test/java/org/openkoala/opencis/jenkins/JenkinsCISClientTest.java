@@ -11,6 +11,7 @@ import org.openkoala.opencis.jenkins.project.ProjectCreateStrategy;
 import java.net.MalformedURLException;
 
 import java.net.URL;
+import java.util.HashMap;
 
 import static org.mockito.Mockito.*;
 
@@ -47,17 +48,20 @@ public class JenkinsCISClientTest {
         }
         verify(authentication).authenticate();
 
+        Object context = new HashMap<String, Object>();
+        when(authentication.getContext()).thenReturn(context);
+
         //创建项目
         ProjectCreateStrategy projectCreateStrategy = mock(ProjectCreateStrategy.class);
         jenkinsCISClient.setProjectCreateStrategy(projectCreateStrategy);
         jenkinsCISClient.createProject(project);
-        verify(projectCreateStrategy).create(project);
+        verify(projectCreateStrategy).create(project, context);
 
         //授权
         CISAuthorization cisAuthorization = mock(CISAuthorization.class);
         jenkinsCISClient.setAuthorization(cisAuthorization);
         jenkinsCISClient.createUserIfNecessary(project, developer);
-        verify(cisAuthorization).authorize(project, developer);
+        verify(cisAuthorization).authorize(project, developer, context);
 
     }
 

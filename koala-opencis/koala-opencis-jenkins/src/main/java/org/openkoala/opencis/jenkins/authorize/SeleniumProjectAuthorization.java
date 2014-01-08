@@ -8,6 +8,9 @@ import org.openkoala.opencis.jenkins.util.UrlUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * User: zjzhai
@@ -16,21 +19,26 @@ import org.openqa.selenium.WebElement;
  */
 public class SeleniumProjectAuthorization implements CISAuthorization {
 
-    private WebDriver driver;
 
     private String jenkinsUrl;
 
 
-    public SeleniumProjectAuthorization(WebDriver driver, String jenkinsUrl) {
-        this.driver = driver;
+    public SeleniumProjectAuthorization(String jenkinsUrl) {
         this.jenkinsUrl = jenkinsUrl;
     }
 
     @Override
-    public void authorize(Project project, Developer developer) {
+    public void authorize(Project project, Developer developer, Object context) {
+        WebDriver driver;
+        if (context != null) {
+            driver = (WebDriver) context;
+        } else {
+            driver = new HtmlUnitDriver();
+            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        }
 
-        String jobConfigureUrl =
-                UrlUtil.removeEndIfExists(jenkinsUrl, "/") + "/job/" + project.getArtifactId() + "/configure";
+         String jobConfigureUrl =
+                 UrlUtil.removeEndIfExists(jenkinsUrl, "/") + "/job/" + project.getArtifactId() + "/configure";
 
         driver.get(jobConfigureUrl);
 
@@ -60,6 +68,7 @@ public class SeleniumProjectAuthorization implements CISAuthorization {
                 By.cssSelector("tr.permission-row[name=\"[" + developer.getName() + "]\"] input[name=\"[hudson.model.Item.Read]\"]"));
         readPermissionCheckbox.click();
 
+
         //保存配置
         WebElement saveButton = driver.findElement(By.cssSelector("span[name=\"Submit\"] button"));
         saveButton.click();
@@ -67,7 +76,6 @@ public class SeleniumProjectAuthorization implements CISAuthorization {
         assert driver.getCurrentUrl().contains("/job/" + UrlUtil.encodeURL(project.getArtifactId()));
 
         driver.quit();
-
     }
 
 

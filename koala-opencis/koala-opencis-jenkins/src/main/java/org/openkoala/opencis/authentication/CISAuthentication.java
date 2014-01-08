@@ -16,5 +16,7 @@ public interface CISAuthentication {
 
     void setAppURL(URL url);
 
+    Object getContext();
+
 
 }
