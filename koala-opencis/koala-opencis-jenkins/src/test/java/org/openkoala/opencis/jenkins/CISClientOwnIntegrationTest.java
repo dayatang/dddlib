@@ -26,7 +26,6 @@ import java.util.concurrent.TimeUnit;
  * Date: 1/7/14
  * Time: 9:46 PM
  */
-@Ignore
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CISClientOwnIntegrationTest {
 
