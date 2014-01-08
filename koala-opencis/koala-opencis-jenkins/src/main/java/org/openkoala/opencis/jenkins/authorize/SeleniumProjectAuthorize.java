@@ -3,26 +3,46 @@ package org.openkoala.opencis.jenkins.authorize;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.authorize.CISAuthorization;
+import org.openkoala.opencis.jenkins.user.SeleniumUserSignUp;
 import org.openkoala.opencis.jenkins.util.SeleniumUtil;
+import org.openkoala.opencis.jenkins.util.UrlUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * User: zjzhai
  * Date: 1/7/14
  * Time: 6:17 PM
  */
-public class SeleniumAuthorization implements CISAuthorization {
-
-    private WebDriver driver;
+public class SeleniumProjectAuthorize implements CISAuthorization {
 
 
+    private String jenkinsUrl;
 
 
+    public SeleniumProjectAuthorize(String jenkinsUrl) {
+        this.jenkinsUrl = jenkinsUrl;
+    }
 
     @Override
-    public void authorize(Project project, Developer developer) {
+    public void authorize(Project project, Developer developer, Object context) {
+        WebDriver driver;
+        if (context != null) {
+            driver = (WebDriver) context;
+        } else {
+            driver = new HtmlUnitDriver();
+            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        }
+
+        String jobConfigureUrl =
+                UrlUtil.removeEndIfExists(jenkinsUrl, "/") + "/job/" + project.getArtifactId() + "/configure";
+
+        driver.get(jobConfigureUrl);
+
         if (!SeleniumUtil.elementExist(driver, By.cssSelector("input[name=\"useProjectSecurity\"][type=\"checkbox\"]"))) {
             return;
         }
@@ -48,7 +68,27 @@ public class SeleniumAuthorization implements CISAuthorization {
         WebElement readPermissionCheckbox = driver.findElement(
                 By.cssSelector("tr.permission-row[name=\"[" + developer.getName() + "]\"] input[name=\"[hudson.model.Item.Read]\"]"));
         readPermissionCheckbox.click();
+
+
+        /*//不存在该用户
+        if (SeleniumUtil.elementExist(driver, By.cssSelector("tr.permission-row[name=\"[\" + developer.getName() + \"]\"] img[src*=\"error.png\"]"))) {
+            SeleniumUserSignUp.create(jenkinsUrl).username(developer.getName())
+        } else {
+
+        }*/
+
+
+        //保存配置
+        WebElement saveButton = driver.findElement(By.cssSelector("span[name=\"Submit\"] button"));
+        saveButton.click();
+
+        assert driver.getCurrentUrl().contains("/job/" + UrlUtil.encodeURL(project.getArtifactId()));
+
+        driver.quit();
     }
+
+
+
 
 
 

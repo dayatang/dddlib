@@ -1,5 +1,7 @@
 package org.openkoala.opencis.jenkins.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -17,4 +19,12 @@ public class UrlUtil {
             throw new RuntimeException("encode " + url + " to UTF-8 failure", e);
         }
     }
+
+    public static String removeEndIfExists(String url, String end) {
+        if (url.endsWith(end)) {
+            return StringUtils.removeEnd(url, end);
+        }
+        return url;
+    }
+
 }

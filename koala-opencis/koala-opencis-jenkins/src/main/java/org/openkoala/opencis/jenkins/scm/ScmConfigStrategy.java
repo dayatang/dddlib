@@ -7,6 +7,6 @@ package org.openkoala.opencis.jenkins.scm;
  */
 public interface ScmConfigStrategy {
 
-    void config();
+    void config(Object context);
 
 }

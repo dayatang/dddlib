@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.openkoala.opencis.AuthenticationException;
 import org.openkoala.opencis.api.CISClient;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
@@ -30,6 +31,11 @@ public class JenkinsCISClient implements CISClient {
     private CISAuthorization authorization;
 
     private ProjectCreateStrategy projectCreateStrategy;
+
+    /**
+     * 认证
+     */
+    private CISAuthentication cisAuthentication;
 
     private String createProjectUrl;
 
@@ -60,14 +66,19 @@ public class JenkinsCISClient implements CISClient {
 
     @Override
     public void createProject(Project project) {
-        projectCreateStrategy.create(project);
+        if (!authenticateBy(cisAuthentication)) {
+            throw new AuthenticationException("CIS authentication failure");
+        }
+        projectCreateStrategy.create(project, cisAuthentication.getContext());
     }
 
 
     @Override
     public void createUserIfNecessary(Project project, Developer developer) {
-        authorization.authorize(project, developer);
-
+        if (!authenticateBy(cisAuthentication)) {
+            throw new AuthenticationException("CIS authentication failure");
+        }
+        authorization.authorize(project, developer, cisAuthentication.getContext());
     }
 
     @Override
@@ -77,9 +88,7 @@ public class JenkinsCISClient implements CISClient {
     @Override
     public void assignUserToRole(Project project, String userId, String role) {
 
-
     }
-
 
     @Override
     public boolean canConnect() {
