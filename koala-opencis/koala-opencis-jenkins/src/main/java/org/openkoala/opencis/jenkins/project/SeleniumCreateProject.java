@@ -2,6 +2,7 @@ package org.openkoala.opencis.jenkins.project;
 
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.authentication.CISAuthentication;
+import org.openkoala.opencis.jenkins.util.SeleniumUtil;
 import org.openkoala.opencis.jenkins.util.UrlUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,9 +19,9 @@ import java.util.concurrent.TimeUnit;
 public class SeleniumCreateProject implements ProjectCreateStrategy {
 
 
-    private String jenkinsUrl;
+    private String error;
 
-    private CISAuthentication cisAuthentication;
+    private String jenkinsUrl;
 
     private SeleniumCreateProject() {
     }
@@ -31,7 +32,7 @@ public class SeleniumCreateProject implements ProjectCreateStrategy {
 
 
     @Override
-    public void create(Project project, Object context) {
+    public boolean create(Project project, Object context) {
         WebDriver driver;
         if (context != null) {
             driver = (WebDriver) context;
@@ -43,22 +44,29 @@ public class SeleniumCreateProject implements ProjectCreateStrategy {
         driver.get(jenkinsUrl + "/view/All/newJob");
         WebElement jobNameInput = driver.findElement(By.id("name"));
         jobNameInput.sendKeys(project.getArtifactId());
+        SeleniumUtil.clickBlankArea(driver);
+        if (SeleniumUtil.elementExist(driver, By.cssSelector("div.error"))) {
+            error = driver.findElement(By.cssSelector("div.error")).getText();
+            return false;
+        }
+
+
         WebElement jobTypeRadio = driver.findElement(By.cssSelector("input[value=\"hudson.maven.MavenModuleSet\"]"));
         jobTypeRadio.click();
         jobNameInput.submit();
         if (!driver.getCurrentUrl().contains("job/" + UrlUtil.encodeURL(project.getArtifactId()) + "/configure")
                 || driver.getCurrentUrl().contains("view/All/createItem")) {
-            throw new RuntimeException("jenkins create job failure");
+            error = "create job failure!";
+            return false;
         }
-
-        //保存配置
-        WebElement saveButton = driver.findElement(By.cssSelector("span[name=\"Submit\"] button"));
-        saveButton.click();
 
         assert driver.getCurrentUrl().contains("/job/" + UrlUtil.encodeURL(project.getArtifactId()));
 
         driver.quit();
+        return true;
     }
 
-
+    public String getError() {
+        return error;
+    }
 }

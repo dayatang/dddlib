@@ -88,10 +88,7 @@ public class JenkinsCISClient implements CISClient {
     @Override
     public void assignUserToRole(Project project, String userId, String role) {
 
-
-
     }
-
 
     @Override
     public boolean canConnect() {

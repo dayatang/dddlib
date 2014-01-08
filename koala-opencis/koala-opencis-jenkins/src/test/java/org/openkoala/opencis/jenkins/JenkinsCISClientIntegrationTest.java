@@ -7,7 +7,7 @@ import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.authorize.CISAuthorization;
 import org.openkoala.opencis.jenkins.authentication.SeleniumJenkinsOwnAuthen;
-import org.openkoala.opencis.jenkins.authorize.SeleniumProjectAuthorization;
+import org.openkoala.opencis.jenkins.authorize.SeleniumProjectAuthorize;
 import org.openkoala.opencis.jenkins.project.ProjectCreateStrategy;
 import org.openkoala.opencis.jenkins.project.SeleniumCreateProject;
 import org.openkoala.opencis.jenkins.scm.SeleniumSvnConfig;
@@ -82,7 +82,7 @@ public class JenkinsCISClientIntegrationTest {
     @Test
     public void test003addUserToProject() {
         WebDriver driver = authenticationAndCreateWebDriver();
-        CISAuthorization cisAuthorization = new SeleniumProjectAuthorization(jenkins_url.toString());
+        CISAuthorization cisAuthorization = new SeleniumProjectAuthorize(jenkins_url.toString());
         cisAuthorization.authorize(getProject(), getDeveloper(), driver);
 
     }
