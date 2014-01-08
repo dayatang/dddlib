@@ -21,8 +21,10 @@ public class I18NManager {
 	
 	
 	// 国际资源文件存放路径
-	private static final String I18N_PATH = "/i18n";
-    private static final Locale DEFAULT_LOCALE = Locale.CHINA;
+	private static final String I18N_PATH = "i18n";
+	
+	// 默认地区
+    private static final Locale DEFAULT_LOCALE = Locale.getDefault();
 
     // 用于保存basename
 	private static Set<String> basename = new HashSet<String>();
@@ -41,19 +43,10 @@ public class I18NManager {
 	 * 初始化
 	 */
 	private static void init() {
-		URL url = Thread.currentThread().getContextClassLoader().getResource(I18N_PATH);
-		if (url != null) {
-			File file = new File(url.getFile());
-			handleBasename(file, "i18n");
+		if (getURL() != null) {
+			File file = new File(getURL().getFile());
+			handleBasename(file, I18N_PATH);
 		}
-		//TODO WEB下需要使用/i18n，但普通应用下得使用i18n这种方式，具体原因待查找
-		/*
-		url = Thread.currentThread().getContextClassLoader().getResource("i18n");
-		if (url != null) {
-			File file = new File(url.getFile());
-			handleBasename(file, "i18n");
-		}
-		*/
 	}
 	
 	/**
@@ -74,6 +67,10 @@ public class I18NManager {
 				handleBasename(f, sb + "." + f.getName());
 			}
 		}
+	}
+	
+	private static URL getURL() {
+		return ResourceLoaderUtils.getResource(I18N_PATH, I18NManager.class);
 	}
 	
 
