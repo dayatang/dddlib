@@ -10,7 +10,7 @@ var publishUrlList = {
         var self = this;
         self.grid = grid;
         self.item = null;
-        $.get('pages/jbpm/publishUrlTemplate.html').done(function(data){
+        $.get(contextPath + '/pages/jbpm/publishUrlTemplate.html').done(function(data){
             self.dialog = $(data);
             self.initDialog();
         });
@@ -19,7 +19,7 @@ var publishUrlList = {
         var self = this;
         self.item = item;
         self.grid = grid;
-        $.get('pages/jbpm/publishUrlTemplate.html').done(function(data){
+        $.get(contextPath + '/pages/jbpm/publishUrlTemplate.html').done(function(data){
             self.dialog = $(data);
             self.initDialog();
         });
@@ -54,10 +54,10 @@ var publishUrlList = {
         var params = {};
         params['publishURLVO.name'] = self.name.val();
         params['publishURLVO.url'] = self.url.val();
-        var url = 'core-PublishURL-add.action';
+        var url = contextPath + '/core-PublishURL-add.action';
         if(self.item){
             params['publishURLVO.id'] = self.item.id;
-            url = 'core-PublishURL-update.action';
+            url = contextPath + '/core-PublishURL-update.action';
         }
         $.post(url, params).done(function(result){
             if(result.result == 'success'){
@@ -80,7 +80,7 @@ var publishUrlList = {
         $.each(ids, function(index){
             params['urlIds['+index+']'] = this;
         });
-        $.post('core-PublishURL-delete.action', params).done(function(result){
+        $.post(contextPath + '/core-PublishURL-delete.action', params).done(function(result){
             if(result.result == 'success'){
                 $('body').message({
                     type: 'success',
@@ -96,7 +96,7 @@ var publishUrlList = {
         })
     },
     view: function(name, url){
-        $.get('pages/jbpm/publishUrlTemplate.html').done(function(data){
+        $.get(contextPath + '/pages/jbpm/publishUrlTemplate.html').done(function(data){
             var dialog = $(data);
             dialog.find('#name').val(name).attr('disabled', true);
             dialog.find('#url').val(url).attr('disabled', true);
@@ -113,7 +113,7 @@ var publishUrlList = {
         });
     },
     browse: function(id){
-        $.get('pages/jbpm/urlPreviewTemplate.html').done(function(data){
+        $.get(contextPath + '/pages/jbpm/urlPreviewTemplate.html').done(function(data){
             var dialog = $(data);
             dialog.modal({
                 keyboard: true
@@ -122,7 +122,7 @@ var publishUrlList = {
                         $(this).remove();
                     },
                    'shown.bs.modal': function(){
-                        $.get('jbpm-Jbpm-processes.action?id='+id).done(function(data){
+                        $.get(contextPath + '/jbpm-Jbpm-processes.action?id='+id).done(function(data){
                             if(data.actionError){
                                 dialog.find('.modal-body').html('<h3>'+data.actionError+'</h3>');
                                 return;
