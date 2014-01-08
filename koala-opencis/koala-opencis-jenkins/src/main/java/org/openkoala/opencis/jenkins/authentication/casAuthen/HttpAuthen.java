@@ -1,10 +1,11 @@
-package org.openkoala.opencis.jenkins;
+package org.openkoala.opencis.jenkins.authentication.casAuthen;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -30,7 +31,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * Date: 12/27/13
  * Time: 5:13 PM
  */
-public class HttpCASAuthentication implements CISAuthentication {
+public class HttpAuthen implements CISAuthentication {
+
+    private HttpClient httpClient;
 
     private URL casURL;
 
@@ -40,28 +43,20 @@ public class HttpCASAuthentication implements CISAuthentication {
 
     private URL jenkinsAuthenticationUrl;
 
-    private HttpContext context;
-
     private static final String JENKINS_REST_SERVICE_API = "/securityRealm/finishLogin";
 
-    public HttpCASAuthentication(URL casURL, String username, String password) {
+    public HttpAuthen(HttpClient httpClient, URL casURL, URL jenkinsAuthenticationUrl, String username, String password) {
+        this.httpClient = httpClient;
         this.casURL = casURL;
         this.username = username;
         this.password = password;
-    }
-
-    public void setJenkinsAuthenticationUrl(URL jenkinsAuthenticationUrl) {
         this.jenkinsAuthenticationUrl = jenkinsAuthenticationUrl;
     }
 
-    @Override
-    public HttpContext getContext() {
-        return context;
-    }
+
 
     @Override
-    public boolean authentication() {
-        AbstractHttpClient httpClient = new DefaultHttpClient();
+    public boolean authenticate() {
 
         boolean result = false;
         try {
@@ -94,12 +89,10 @@ public class HttpCASAuthentication implements CISAuthentication {
             HttpResponse serviceCall = httpClient.execute(getServiceCall, httpContext);
 
             result = serviceCall.getStatusLine().getStatusCode() == HttpStatus.SC_OK;
-            httpContext.setAttribute(ClientContext.COOKIE_STORE, httpClient.getCookieStore());
-            context = httpContext;
+            httpContext.setAttribute(ClientContext.COOKIE_STORE, ((DefaultHttpClient) httpClient).getCookieStore());
             getServiceCall.abort();
 
         } catch (UnsupportedEncodingException e) {
-
             e.printStackTrace();
         } catch (ClientProtocolException e) {
             e.printStackTrace();
@@ -122,9 +115,8 @@ public class HttpCASAuthentication implements CISAuthentication {
 
 
     @Override
-    public CISAuthentication setAppURL(URL url) {
+    public void setAppURL(URL url) {
         jenkinsAuthenticationUrl = url;
-        return this;
     }
 
 

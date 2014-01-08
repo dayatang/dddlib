@@ -5,7 +5,7 @@
             http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
 	<!-- 设置登录页面为login.jsp且不拦截页面login.jsp后面的*防止带了参数 -->
-	<s:http auto-config="true" access-denied-page="/pages/errors/denied.jsp">
+	<s:http auto-config="true" access-denied-page="/pages/common/denied.jsp">
 		<s:form-login login-page="/login.koala"
 			default-target-url="/index.koala" always-use-default-target="true"
 			authentication-failure-url="/login.koala?login_error=1" />
@@ -56,13 +56,14 @@
 		<property name="defaultFailureUrl" value="/login.koala?login_error=2" />
 	</bean>
 
-	<!-- 验证码过滤器 -->
+	<!-- 过滤器 -->
  	<bean id="authenticationFilter" class="org.openkoala.koala.auth.ss3adapter.AuthenticationFilter">
 		<property name="authenticationSuccessHandler" ref="loginLogAuthenticationSuccessHandler" />
 		<property name="authenticationFailureHandler" ref="simpleUrlAuthenticationFailureHandler" />
 		<property name="authenticationManager" ref="authenticationManager" />
 		<property name="httpHandlers">
 			<list>
+			    <!-- 验证码 -->
 				<bean class="org.openkoala.koala.auth.ss3adapter.ValidCodeHandler" />
 			</list>
 		</property>
