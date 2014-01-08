@@ -1,7 +1,9 @@
 <div id="publishUrlListGrid"></div>
-<script src="js/jbpmDesigner/publishUrlList.js"></script>
 <script>
     $(function(){
+    	var script = document.createElement('script');
+        script.src = contextPath + 'js/jbpmDesigner/publishUrlList.js';
+        document.getElementById('publishUrlListGrid').parentNode.appendChild(script);
         var columns = [
             {
                 title : '名称',

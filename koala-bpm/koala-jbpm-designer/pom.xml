@@ -38,7 +38,7 @@
 				<db.groupId>com.h2database</db.groupId>
 				<db.artifactId>h2</db.artifactId>
 				<jbpm.wsdl.localtion>http://localhost:8180/ws/jbpmService</jbpm.wsdl.localtion>
-				<gunvor.server.url>http://localhost:8080/jboss-brms</gunvor.server.url>
+				<gunvor.server.url>http://localhost:8080/drools-guvnor</gunvor.server.url>
 				<gunvor.server.user>admin</gunvor.server.user>
 				<gunvor.server.pwd>admin</gunvor.server.pwd>
 			</properties>

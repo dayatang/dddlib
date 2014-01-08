@@ -182,7 +182,7 @@ public class EmployeeController extends BaseController {
 	public Map<String,Object> get(@PathVariable("id") Long id) {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		try {
-			dataMap.put("data", EmployeeDTO.generateDtoBy(getBaseApplication().getEntity(Employee.class, id)));
+			dataMap.put("data", employeeApplication.getEmployeeById(id));
 		} catch (Exception e) {
             dataMap.put("error", "查询指定职务失败！");
         	e.printStackTrace();

@@ -16,6 +16,7 @@ import org.openkoala.organisation.domain.Department;
 import org.openkoala.organisation.domain.Employee;
 import org.openkoala.organisation.domain.EmployeePostHolding;
 import org.openkoala.organisation.domain.Organization;
+import org.openkoala.organisation.domain.OrganizationAbstractEntity;
 import org.openkoala.organisation.domain.OrganizationLineManagement;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -92,6 +93,12 @@ public class OrganizationApplicationImpl implements OrganizationApplication {
 	@Override
 	public void terminateEmployeeOrganizationRelation(Organization organization, Set<Employee> employees) {
 		EmployeePostHolding.terminateEmployeeOrganizationRelation(organization, employees);
+	}
+
+	@Override
+	public OrganizationDTO getOrganizationById(Long id) {
+		Organization organization = OrganizationAbstractEntity.get(Organization.class, id);
+		return organization == null ? null : OrganizationDTO.generateDtoBy(organization);
 	}
 
 }

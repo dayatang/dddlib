@@ -9,8 +9,11 @@ import java.util.Set;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.openkoala.organisation.domain.Company;
+import org.openkoala.organisation.domain.Department;
 import org.openkoala.organisation.domain.Employee;
+import org.openkoala.organisation.domain.Job;
 import org.openkoala.organisation.domain.Organization;
+import org.openkoala.organisation.domain.Post;
 
 /**
  * 组织机构DTO
@@ -30,6 +33,10 @@ public class OrganizationDTO implements Serializable {
 	private String name;
 	
 	private String description;
+	
+	private Date createDate;
+	
+	private Date terminateDate;
 	
 	private Set<OrganizationDTO> children = new HashSet<OrganizationDTO>();
 
@@ -68,6 +75,22 @@ public class OrganizationDTO implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public Date getTerminateDate() {
+		return terminateDate;
+	}
+
+	public void setTerminateDate(Date terminateDate) {
+		this.terminateDate = terminateDate;
 	}
 
 	public Set<OrganizationDTO> getChildren() {
@@ -113,13 +136,14 @@ public class OrganizationDTO implements Serializable {
 	public static OrganizationDTO generateDtoBy(Organization organization) {
 		OrganizationDTO dto = new OrganizationDTO(organization.getId(), organization.getName());
 		dto.setSn(organization.getSn());
+		dto.setCreateDate(organization.getCreateDate());
 		dto.setDescription(organization.getDescription());
 		dto.setVersion(organization.getVersion());
 		
 		if (organization instanceof Company) {
-			dto.setOrganizationType(OrganizationDTO.COMPANY);
+			dto.setOrganizationType(COMPANY);
 		} else {
-			dto.setOrganizationType(OrganizationDTO.DEPARTMENT);
+			dto.setOrganizationType(DEPARTMENT);
 		}
 		
 		List<Employee> principals = organization.getPrincipal(new Date());
@@ -134,6 +158,24 @@ public class OrganizationDTO implements Serializable {
 		}
 		
 		return dto;
+	}
+	
+	public Organization transFormToOrganization() {
+		Organization result = null;
+		if (organizationType.equals(COMPANY)) {
+			result = new Company(name, sn);
+		} else {
+			result = new Department(name, sn);
+		}
+		
+		result.setId(id);
+		result.setCreateDate(createDate);
+		result.setSn(sn);
+		result.setDescription(description);
+		result.setTerminateDate(terminateDate);
+		result.setVersion(version);
+		
+		return result;
 	}
 	
 	@Override

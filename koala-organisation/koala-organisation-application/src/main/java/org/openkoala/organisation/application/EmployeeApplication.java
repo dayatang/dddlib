@@ -85,4 +85,6 @@ public interface EmployeeApplication {
 	 * @return
 	 */
 	List<ResponsiblePostDTO> getPostsByEmployee(Employee employee);
+	
+	EmployeeDTO getEmployeeById(Long id);
 }

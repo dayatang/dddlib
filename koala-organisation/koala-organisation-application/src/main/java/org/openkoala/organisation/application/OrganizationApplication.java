@@ -73,4 +73,6 @@ public interface OrganizationApplication {
 	 */
 	void terminateEmployeeOrganizationRelation(Organization organization, Set<Employee> employees);
 	
+	OrganizationDTO getOrganizationById(Long id);
+	
 }
