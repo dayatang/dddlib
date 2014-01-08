@@ -19,7 +19,7 @@
 	<bean id="repository_org" class="org.openkoala.koala.util.KoalaEntityRepositoryJpa">
 		<property name="entityManager">
 			<bean class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
-				<property name="persistenceUnitName" value="org" />
+				<property name="persistenceUnitName" value="default" />
 			</bean>
 		</property>
 	</bean>
@@ -27,7 +27,7 @@
 	<bean id="queryChannel_org" class="org.openkoala.koala.util.KoalaQueryChannelServiceJpa">
 		<property name="entityManager">
 			<bean class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
-				<property name="persistenceUnitName" value="org" />
+				<property name="persistenceUnitName" value="default" />
 			</bean>
 		</property>
 	</bean>
