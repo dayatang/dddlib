@@ -67,7 +67,7 @@ public class SeleniumSvnConfig implements ScmConfigStrategy {
         //保存配置
         WebElement saveButton = driver.findElement(By.cssSelector("span[name=\"Submit\"] button"));
         saveButton.click();
-        assert StringUtils.endsWith(driver.getCurrentUrl(), "job/" + jobName);
+        assert StringUtils.endsWith(driver.getCurrentUrl(), "job/" + jobName + "/");
 
         driver.quit();
     }
