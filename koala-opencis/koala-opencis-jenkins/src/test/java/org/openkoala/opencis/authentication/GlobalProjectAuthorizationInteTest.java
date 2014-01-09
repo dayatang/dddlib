@@ -1,6 +1,7 @@
 package org.openkoala.opencis.authentication;
 
 import org.junit.Test;
+import org.openkoala.opencis.CISClientAbstactIntegrationTest;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.jenkins.authentication.CasAuthen;
@@ -19,55 +20,16 @@ import java.util.concurrent.TimeUnit;
  * Date: 1/8/14
  * Time: 11:52 PM
  */
-public class GlobalProjectAuthorizationInteTest {
+public class GlobalProjectAuthorizationInteTest extends CISClientAbstactIntegrationTest {
 
-    private static final String jobName = UUID.randomUUID().toString();
-    private static URL jenkins_url = null;
-    private static String jobConfigUrl;
-
-
-    static {
-        try {
-            jenkins_url = new URL("http", "localhost", 8080, "/jenkins");
-            jobConfigUrl = jenkins_url.toString() + "/job/" + UrlUtil.encodeURL(jobName) + "/configure";
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Test
     public void testName() throws Exception {
-        WebDriver driver = authenticationAndCreateWebDriver();
-        GlobalProjectAuthorization cisAuthorization = new GlobalProjectAuthorization(jenkins_url.toString());
+        WebDriver driver = ownAuthenticationAndCreateWebDriver();
+        GlobalProjectAuthorization cisAuthorization =
+                new GlobalProjectAuthorization(jenkinsUrl.toString());
         cisAuthorization.authorize(getDeveloper(), driver);
     }
 
 
-    private WebDriver authenticationAndCreateWebDriver() {
-        WebDriver driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        CasAuthen cisAuthentication =
-                new CasAuthen(driver, jenkins_url, "admin", "admin");
-
-        if (!cisAuthentication.authenticate()) {
-            System.out.println("authentication error");
-            return null;
-        }
-        return driver;
-    }
-
-    private Developer getDeveloper() {
-        Developer developer = new Developer();
-        developer.setName("www");
-        developer.setEmail("admin@gmail.com");
-        return developer;
-    }
-
-
-    private Project getProject() {
-        Project project = new Project();
-        project.setArtifactId(jobName);
-        return project;
-
-    }
 }

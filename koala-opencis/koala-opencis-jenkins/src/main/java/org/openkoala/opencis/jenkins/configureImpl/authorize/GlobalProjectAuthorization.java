@@ -37,9 +37,10 @@ public class GlobalProjectAuthorization {
 
         driver.get(jenkinsUrl + "/configureSecurity/");
 
+        //用户已经存在
         if (SeleniumUtil.elementExist(driver, By.cssSelector("table#hudson-security-ProjectMatrixAuthorizationStrategy tr.permission-row[name=\"[" + developer.getName() + "]\"]"))) {
-            error = "not found hudson-security-ProjectMatrixAuthorizationStrategy";
-            return false;
+            driver.quit();
+            return true;
         }
 
 

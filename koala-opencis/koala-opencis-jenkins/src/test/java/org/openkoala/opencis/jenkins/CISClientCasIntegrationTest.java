@@ -4,6 +4,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.openkoala.opencis.CISClientAbstactIntegrationTest;
 import org.openkoala.opencis.authorize.CISAuthorization;
 import org.openkoala.opencis.jenkins.configureImpl.authorize.ProjectAuthorize;
 import org.openkoala.opencis.jenkins.configureImpl.project.CreateMavenProject;
@@ -20,16 +21,13 @@ import java.net.MalformedURLException;
  */
 @Ignore
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class CISClientCasIntegrationTest extends CISClientAbstactIntegrationTest{
-
-
-
+public class CISClientCasIntegrationTest extends CISClientAbstactIntegrationTest {
 
     @Test
     public void test001CreateProject() throws Exception {
         WebDriver driver = casAuthenticationAndCreateWebDriver();
         ProjectCreateStrategy projectCreateStrategy
-                = new CreateMavenProject(jenkins_url.toString());
+                = new CreateMavenProject(jenkinsUrl.toString());
 
         projectCreateStrategy.create(getProject(), driver);
 
@@ -52,7 +50,7 @@ public class CISClientCasIntegrationTest extends CISClientAbstactIntegrationTest
     @Test
     public void test003addUserToProject() {
         WebDriver driver = casAuthenticationAndCreateWebDriver();
-        CISAuthorization cisAuthorization = new ProjectAuthorize(jenkins_url.toString());
+        CISAuthorization cisAuthorization = new ProjectAuthorize(jenkinsUrl.toString());
         cisAuthorization.authorize(getProject(), getDeveloper(), driver);
 
     }

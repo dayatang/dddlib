@@ -39,7 +39,7 @@ public class CreateMavenProject implements ProjectCreateStrategy {
             driver = (WebDriver) context;
         } else {
             driver = new HtmlUnitDriver();
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         }
 
         driver.get(jenkinsUrl + "/view/All/newJob");
@@ -48,6 +48,7 @@ public class CreateMavenProject implements ProjectCreateStrategy {
         SeleniumUtil.clickBlankArea(driver);
         if (SeleniumUtil.elementExist(driver, By.cssSelector("div.error"))) {
             error = driver.findElement(By.cssSelector("div.error")).getText();
+            driver.quit();
             return false;
         }
 
