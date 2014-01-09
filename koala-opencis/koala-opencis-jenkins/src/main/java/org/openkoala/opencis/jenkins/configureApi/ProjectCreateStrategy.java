@@ -1,7 +1,6 @@
-package org.openkoala.opencis.jenkins.project;
+package org.openkoala.opencis.jenkins.configureApi;
 
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.jenkins.scm.ScmConfigStrategy;
 
 /**
  * User: zjzhai

@@ -6,7 +6,7 @@ import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.authentication.CISAuthentication;
 import org.openkoala.opencis.authorize.CISAuthorization;
-import org.openkoala.opencis.jenkins.project.ProjectCreateStrategy;
+import org.openkoala.opencis.jenkins.configureApi.ProjectCreateStrategy;
 
 import java.net.MalformedURLException;
 
@@ -21,7 +21,6 @@ import static org.mockito.Mockito.*;
  * @author zyb <a href="mailto:zhuyuanbiao2013@gmail.com">zhuyuanbiao2013@gmail.com</a>
  * @since Nov 13, 2013 9:56:28 AM
  */
-@Ignore
 public class JenkinsCISClientTest {
 
 

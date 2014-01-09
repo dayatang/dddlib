@@ -4,23 +4,15 @@ import org.junit.FixMethodOrder;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import org.openkoala.opencis.api.Developer;
-import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.CISClientAbstactIntegrationTest;
 import org.openkoala.opencis.authorize.CISAuthorization;
-import org.openkoala.opencis.jenkins.authentication.SeleniumCasAuthen;
-import org.openkoala.opencis.jenkins.authentication.SeleniumJenkinsOwnAuthen;
-import org.openkoala.opencis.jenkins.authorize.SeleniumProjectAuthorize;
-import org.openkoala.opencis.jenkins.project.ProjectCreateStrategy;
-import org.openkoala.opencis.jenkins.project.SeleniumCreateProject;
-import org.openkoala.opencis.jenkins.scm.SeleniumSvnConfig;
-import org.openkoala.opencis.jenkins.util.UrlUtil;
+import org.openkoala.opencis.jenkins.configureImpl.authorize.ProjectAuthorization;
+import org.openkoala.opencis.jenkins.configureImpl.project.MavenProjectCreator;
+import org.openkoala.opencis.jenkins.configureApi.ProjectCreateStrategy;
+import org.openkoala.opencis.jenkins.configureImpl.scm.SvnConfig;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 /**
  * User: zjzhai
@@ -29,28 +21,13 @@ import java.util.concurrent.TimeUnit;
  */
 @Ignore
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class CISClientCasIntegrationTest {
-
-    private static final String jobName = UUID.randomUUID().toString();
-    private static URL jenkins_url = null;
-    private static String jobConfigUrl;
-
-
-    static {
-        try {
-            jenkins_url = new URL("http", "localhost", 8080, "/jenkins");
-            jobConfigUrl = jenkins_url.toString() + "/job/" + UrlUtil.encodeURL(jobName) + "/configure";
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-    }
-
+public class CISClientCasIntegrationTest extends CISClientAbstactIntegrationTest {
 
     @Test
     public void test001CreateProject() throws Exception {
-        WebDriver driver = authenticationAndCreateWebDriver();
+        WebDriver driver = casAuthenticationAndCreateWebDriver();
         ProjectCreateStrategy projectCreateStrategy
-                = new SeleniumCreateProject(jenkins_url.toString());
+                = new MavenProjectCreator(jenkinsUrl.toString());
 
         projectCreateStrategy.create(getProject(), driver);
 
@@ -60,49 +37,25 @@ public class CISClientCasIntegrationTest {
 
     @Test
     public void test002SCM() throws MalformedURLException {
-        WebDriver driver = authenticationAndCreateWebDriver();
+        WebDriver driver = casAuthenticationAndCreateWebDriver();
         String svnUrl = "http://10.108.1.138/svn/project1";
         String svnUser = "admin";
         String svnPassword = "admin";
-        SeleniumSvnConfig svnConfig =
-                new SeleniumSvnConfig(jobConfigUrl, svnUrl, svnUser, svnPassword);
+        SvnConfig svnConfig =
+                new SvnConfig(jobConfigUrl, svnUrl, svnUser, svnPassword);
         svnConfig.config(driver);
 
     }
 
     @Test
     public void test003addUserToProject() {
-        WebDriver driver = authenticationAndCreateWebDriver();
-        CISAuthorization cisAuthorization = new SeleniumProjectAuthorize(jenkins_url.toString());
+        WebDriver driver = casAuthenticationAndCreateWebDriver();
+        CISAuthorization cisAuthorization = new ProjectAuthorization(jenkinsUrl.toString());
         cisAuthorization.authorize(getProject(), getDeveloper(), driver);
 
     }
 
-    private WebDriver authenticationAndCreateWebDriver() {
-        WebDriver driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        SeleniumCasAuthen cisAuthentication =
-                new SeleniumCasAuthen(driver, jenkins_url, "admin", "admin");
-
-        if (!cisAuthentication.authenticate()) {
-            System.out.println("authentication error");
-            return null;
-        }
-        return driver;
-    }
-
-    private Developer getDeveloper() {
-        Developer developer = new Developer();
-        developer.setName("www");
-        developer.setEmail("admin@gmail.com");
-        return developer;
-    }
 
 
-    private Project getProject() {
-        Project project = new Project();
-        project.setArtifactId(jobName);
-        return project;
 
-    }
 }

@@ -10,7 +10,7 @@ import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.authentication.CISAuthentication;
 import org.openkoala.opencis.authorize.CISAuthorization;
-import org.openkoala.opencis.jenkins.project.ProjectCreateStrategy;
+import org.openkoala.opencis.jenkins.configureApi.ProjectCreateStrategy;
 
 /**
  * Jenkins CIS客户端
@@ -83,6 +83,7 @@ public class JenkinsCISClient implements CISClient {
 
     @Override
     public void createRoleIfNecessary(Project project, String roleName) {
+
     }
 
     @Override
