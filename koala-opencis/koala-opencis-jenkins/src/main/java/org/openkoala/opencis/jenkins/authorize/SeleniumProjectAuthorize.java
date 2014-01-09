@@ -70,14 +70,6 @@ public class SeleniumProjectAuthorize implements CISAuthorization {
         readPermissionCheckbox.click();
 
 
-        /*//不存在该用户
-        if (SeleniumUtil.elementExist(driver, By.cssSelector("tr.permission-row[name=\"[\" + developer.getName() + \"]\"] img[src*=\"error.png\"]"))) {
-            SeleniumUserSignUp.create(jenkinsUrl).username(developer.getName())
-        } else {
-
-        }*/
-
-
         //保存配置
         WebElement saveButton = driver.findElement(By.cssSelector("span[name=\"Submit\"] button"));
         saveButton.click();

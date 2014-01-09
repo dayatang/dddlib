@@ -1,17 +1,12 @@
-package org.openkoala.opencis.jenkins;
+package org.openkoala.opencis.authentication;
 
-import org.junit.FixMethodOrder;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runners.MethodSorters;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.authorize.CISAuthorization;
-import org.openkoala.opencis.jenkins.authentication.SeleniumJenkinsOwnAuthen;
+import org.openkoala.opencis.jenkins.authentication.SeleniumCasAuthen;
+import org.openkoala.opencis.jenkins.authorize.SeleniumGlobalProjectAuthorization;
 import org.openkoala.opencis.jenkins.authorize.SeleniumProjectAuthorize;
-import org.openkoala.opencis.jenkins.project.ProjectCreateStrategy;
-import org.openkoala.opencis.jenkins.project.SeleniumCreateProject;
-import org.openkoala.opencis.jenkins.scm.SeleniumSvnConfig;
 import org.openkoala.opencis.jenkins.util.UrlUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -23,11 +18,10 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * User: zjzhai
- * Date: 1/7/14
- * Time: 9:46 PM
+ * Date: 1/8/14
+ * Time: 11:52 PM
  */
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class CISClientOwnIntegrationTest {
+public class SeleniumGlobalProjectAuthorizationInteTest {
 
     private static final String jobName = UUID.randomUUID().toString();
     private static URL jenkins_url = null;
@@ -43,48 +37,19 @@ public class CISClientOwnIntegrationTest {
         }
     }
 
-
     @Test
-    public void test001CreateProject() throws Exception {
+    public void testName() throws Exception {
         WebDriver driver = authenticationAndCreateWebDriver();
-
-
-        ProjectCreateStrategy projectCreateStrategy
-                = new SeleniumCreateProject(jenkins_url.toString());
-
-        projectCreateStrategy.create(getProject(), driver);
-
-
-    }
-
-
-    @Test
-    public void test002SCM() throws MalformedURLException {
-
-        WebDriver driver = authenticationAndCreateWebDriver();
-
-        String svnUrl = "http://10.108.1.138/svn/project1";
-        String svnUser = "admin";
-        String svnPassword = "admin";
-        SeleniumSvnConfig svnConfig =
-                new SeleniumSvnConfig(jobConfigUrl, svnUrl, svnUser, svnPassword);
-        svnConfig.config(driver);
-
-    }
-
-    @Test
-    public void test003addUserToProject() {
-        WebDriver driver = authenticationAndCreateWebDriver();
-        CISAuthorization cisAuthorization = new SeleniumProjectAuthorize(jenkins_url.toString());
+        SeleniumGlobalProjectAuthorization cisAuthorization = new SeleniumGlobalProjectAuthorization(jenkins_url.toString());
         cisAuthorization.authorize(getProject(), getDeveloper(), driver);
-
     }
+
 
     private WebDriver authenticationAndCreateWebDriver() {
         WebDriver driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        SeleniumJenkinsOwnAuthen cisAuthentication =
-                new SeleniumJenkinsOwnAuthen(driver, jenkins_url.toString(), "admin", "admin");
+        SeleniumCasAuthen cisAuthentication =
+                new SeleniumCasAuthen(driver, jenkins_url, "admin", "admin");
 
         if (!cisAuthentication.authenticate()) {
             System.out.println("authentication error");

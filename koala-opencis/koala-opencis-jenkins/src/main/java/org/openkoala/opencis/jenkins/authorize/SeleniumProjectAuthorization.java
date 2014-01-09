@@ -24,7 +24,7 @@ public class SeleniumProjectAuthorization implements CISAuthorization {
 
 
     public SeleniumProjectAuthorization(String jenkinsUrl) {
-        this.jenkinsUrl = jenkinsUrl;
+        this.jenkinsUrl = UrlUtil.removeEndIfExists(jenkinsUrl, "/");
     }
 
     @Override
@@ -37,10 +37,8 @@ public class SeleniumProjectAuthorization implements CISAuthorization {
             driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         }
 
-         String jobConfigureUrl =
-                 UrlUtil.removeEndIfExists(jenkinsUrl, "/") + "/job/" + project.getArtifactId() + "/configure";
 
-        driver.get(jobConfigureUrl);
+        driver.get(jenkinsUrl + "/job/" + project.getArtifactId() + "/configure");
 
         if (!SeleniumUtil.elementExist(driver, By.cssSelector("input[name=\"useProjectSecurity\"][type=\"checkbox\"]"))) {
             return;
