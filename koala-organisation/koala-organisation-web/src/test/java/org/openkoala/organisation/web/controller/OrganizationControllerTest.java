@@ -177,9 +177,9 @@ public class OrganizationControllerTest {
 		OrganizationDTO organizationDTO = new OrganizationDTO(organizationId, "总公司");
 		organizationDTO.setSn("xxx");
 		
-		when(baseApplication.getEntity(Organization.class, organizationId)).thenReturn(company);
-		PowerMockito.mockStatic(OrganizationDTO.class);
-		PowerMockito.when(OrganizationDTO.generateDtoBy(company)).thenReturn(organizationDTO);
+		when(organizationApplication.getOrganizationById(organizationId)).thenReturn(organizationDTO);
+//		PowerMockito.mockStatic(OrganizationDTO.class);
+//		PowerMockito.when(OrganizationDTO.generateDtoBy(company)).thenReturn(organizationDTO);
 		
 		assertEquals(organizationDTO, organizationController.getOrganization(organizationId).get("org"));
 	}

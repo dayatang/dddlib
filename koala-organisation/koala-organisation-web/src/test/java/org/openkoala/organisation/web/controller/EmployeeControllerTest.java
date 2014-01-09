@@ -311,11 +311,11 @@ public class EmployeeControllerTest {
 		employeeDTO.setName("张三");
 		employeeDTO.setId(employeeId);
 
-		when(baseApplication.getEntity(Employee.class, employeeId)).thenReturn(
-				employee);
-		PowerMockito.mockStatic(EmployeeDTO.class);
-		PowerMockito.when(EmployeeDTO.generateDtoBy(employee)).thenReturn(
+		when(employeeApplication.getEmployeeById(employeeId)).thenReturn(
 				employeeDTO);
+//		PowerMockito.mockStatic(EmployeeDTO.class);
+//		PowerMockito.when(EmployeeDTO.generateDtoBy(employee)).thenReturn(
+//				employeeDTO);
 
 		assertEquals(employeeDTO, employeeController.get(employeeId)
 				.get("data"));

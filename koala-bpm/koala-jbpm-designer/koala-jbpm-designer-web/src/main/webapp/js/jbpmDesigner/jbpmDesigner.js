@@ -2,7 +2,7 @@ var gunvorServerUrl = null;
 $(function(){
    // var data = [{"parentId":"root","menu":{"id":"001","title":"权限管理","href":"#"},"children":{"001001":{"parentId":"001","menu":{"id":"001001","title":"用户管理","href":"#"},"children":{"001001001":{"parentId":"001001","menu":{"id":"001001001","title":"添加新用户","href":"#"},"children":{}},"001001002":{"parentId":"001001","menu":{"id":"001001002","title":"系统用户查询","href":"#"},"children":{}}}},"001002":{"parentId":"001","menu":{"id":"001002","title":"角色管理","href":"#"},"children":{"001002001":{"parentId":"001002","menu":{"id":"001002001","title":"添加新角色","href":"#"},"children":{}},"001002002":{"parentId":"001002","menu":{"id":"001002002","title":"用户角色配置","href":"#"},"children":{}},"001002003":{"parentId":"001002","menu":{"id":"001002003","title":"角色权限配置","href":"#"},"children":{}}}},"001003":{"parentId":"001","menu":{"id":"001003","title":"菜单管理","href":"#"},"children":{}}}},{"parentId":"root","menu":{"id":"002","title":"系统管理","href":"#"},"children":{"002001":{"parentId":"002","menu":{"id":"002001","title":"功能配置","href":"#"},"children":{}},"002002":{"parentId":"002","menu":{"id":"002002","title":"系统访问记录","href":"#"},"children":{}}}},{"parentId":"root","menu":{"id":"003","title":"日志管理","href":"#"},"children":{"003001":{"parentId":"003","menu":{"id":"003001","title":"日志查询","href":"#"},"children":{}}}}];
     var menuTree = $('#menuTree');
-    $.get('jbpm-Jbpm-findPackages.action').done(function(data){
+    $.get(contextPath + '/jbpm-Jbpm-findPackages.action').done(function(data){
         gunvorServerUrl = data.gunvorServerUrl;
         var children = data.packages || [];
         var rootNode = {menu:{id:'root', title:'流程', level: 0}, parentId:"root", type: 'parent'};
@@ -73,7 +73,7 @@ $(function(){
     }
 
     var  addPackage = function($element){
-        $.get('pages/jbpm/jbpmPackageTemplate.html').done(function(data){
+        $.get(contextPath + '/pages/jbpm/jbpmPackageTemplate.html').done(function(data){
             var dialog = $(data);
             dialog.modal({
                 keyboard: true
@@ -90,7 +90,7 @@ $(function(){
                     packageName: name.val(),
                     description: descript.val()
                 }
-                $.post('jbpm-Jbpm-createPackage.action').done(function(data){
+                $.post(contextPath + '/jbpm-Jbpm-createPackage.action').done(function(data){
                     if(!data.errors){
                         $('body').message({
                             type: 'success',
@@ -114,7 +114,7 @@ $(function(){
     }
 
     var addProcess = function($element){
-        $.get('pages/jbpm/jbpmProcessTemplate.html').done(function(data){
+        $.get(contextPath + '/pages/jbpm/jbpmProcessTemplate.html').done(function(data){
             var dialog = $(data);
             dialog.modal({
                 keyboard: true
@@ -153,7 +153,7 @@ $(function(){
         $('body').confirm({
             content: '确定要删除所选的包吗?',
             callBack: function(){
-                $.post('jbpm-Jbpm-deletePackage.action?packageName='+data.id).done(function(result){
+                $.post(contextPath + '/jbpm-Jbpm-deletePackage.action?packageName='+data.id).done(function(result){
                     if(!data.errors){
                         $('body').message({
                             type: 'success',
@@ -173,7 +173,7 @@ $(function(){
 
     var editProcess = function(data){
         data.url = gunvorServerUrl+"/org.drools.guvnor.Guvnor/standaloneEditorServlet?locale=zh_CN&assetsUUIDs="+ data.id + "&client=oryx";
-        openTab('pages/jbpm/edit-process.html', data.title, data.title,  data.title, data);
+        openTab('/pages/jbpm/edit-process.html', data.title, data.title,  data.title, data);
     }
 
     var deleteProcess = function($element){
@@ -182,7 +182,7 @@ $(function(){
             callBack: function(){
                 var data = $($element).data();
                 var bpmnName = data.title;
-                $.post('jbpm-Jbpm-deleteBpmn.action?packageName='+data.parent+'&bpmnName='+bpmnName).done(function(result){
+                $.post(contextPath + '/jbpm-Jbpm-deleteBpmn.action?packageName='+data.parent+'&bpmnName='+bpmnName).done(function(result){
                     if(!result.errors){
                         $('body').message({
                             type: 'success',
@@ -204,9 +204,9 @@ $(function(){
     }
 
     var publishProcess = function($element){
-        $.get('pages/jbpm/publishProcessTemplate.html').done(function(data){
+        $.get(contextPath + '/pages/jbpm/publishProcessTemplate.html').done(function(data){
             var dialog = $(data);
-            $.get('jbpm-Jbpm-getPublish.action').done(function(result){
+            $.get(contextPath + '/jbpm-Jbpm-getPublish.action').done(function(result){
                 var urls = new Array();
                 $.each(result.urls, function(){
                     urls.push({title: this.name, value: this.url})
@@ -232,7 +232,7 @@ $(function(){
                         packageName: data.parent,
                         wsdl: urlList.getValue()
                     }
-                    $.post('jbpm-Jbpm-publish.action', params).done(function(data){
+                    $.post(contextPath + '/jbpm-Jbpm-publish.action', params).done(function(data){
                         if(!data.errors){
                             $('body').message({
                                 type: 'success',
@@ -255,7 +255,7 @@ $(function(){
         var data = params.data;
         var treeFolderContent = $element.parent().find('.tree-folder-content');
         if(data.level == 1 && treeFolderContent.children().length == 0){
-            $.get('jbpm-Jbpm-findBpmns.action?packageName='+data.id).done(function(result){
+            $.get(contextPath + '/jbpm-Jbpm-findBpmns.action?packageName='+data.id).done(function(result){
                 $.each(result.bpmns, function(){
                     menuTree.tree('addChildren', {node: $element, type: 'children',menu: {id:this.uuid, parent:data.id, title: this.text, level: 2} });
                 });

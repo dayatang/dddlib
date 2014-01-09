@@ -1,4 +1,4 @@
- <div class="employee-detail">
+ <div class="employee-detail" id="employeeDetail">
 	    <style>
 	        .employee-detail {
 	            padding-top: 20px!important;
@@ -115,6 +115,14 @@
 	     <button type="button" class="btn btn-success" data-id="changePostBtn">调整岗位</button>
 	</div>
 </div>
-<script src="/js/organisation/changePost.js"></script>
-<script src="/js/organisation/employeeDetail.js"></script>
+<script>
+$(function(){
+	var script = document.createElement('script');
+    script.src = contextPath + '/js/organisation/changePost.js';
+    document.getElementById('employeeDetail').parentNode.appendChild(script);
+    script = document.createElement('script');
+    script.src = contextPath + '/js/organisation/employeeDetail.js';
+    document.getElementById('employeeDetail').parentNode.appendChild(script);
+});
+</script>
 

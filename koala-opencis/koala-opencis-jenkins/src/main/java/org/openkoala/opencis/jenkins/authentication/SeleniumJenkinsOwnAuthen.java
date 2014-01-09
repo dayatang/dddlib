@@ -1,4 +1,4 @@
-package org.openkoala.opencis.jenkins.authentication.jenkinsOwnUserDatabaseAuthen;
+package org.openkoala.opencis.jenkins.authentication;
 
 import org.openkoala.opencis.authentication.CISAuthentication;
 import org.openqa.selenium.By;
@@ -12,7 +12,7 @@ import java.net.URL;
  * Date: 1/7/14
  * Time: 4:57 PM
  */
-public class SeleniumAuthen implements CISAuthentication {
+public class SeleniumJenkinsOwnAuthen implements CISAuthentication {
 
     private WebDriver driver;
 
@@ -22,10 +22,10 @@ public class SeleniumAuthen implements CISAuthentication {
 
     private String password;
 
-    private SeleniumAuthen() {
+    private SeleniumJenkinsOwnAuthen() {
     }
 
-    public SeleniumAuthen(WebDriver driver, String jenkinsURL, String username, String password) {
+    public SeleniumJenkinsOwnAuthen(WebDriver driver, String jenkinsURL, String username, String password) {
         this.driver = driver;
         this.jenkinsURL = jenkinsURL;
         this.username = username;
@@ -34,6 +34,8 @@ public class SeleniumAuthen implements CISAuthentication {
 
     @Override
     public boolean authenticate() {
+
+
         driver.get(jenkinsURL);
         WebElement usernameElement = driver.findElement(By.cssSelector("input[name=\"j_username\"]"));
         usernameElement.sendKeys(username);
@@ -46,5 +48,10 @@ public class SeleniumAuthen implements CISAuthentication {
     @Override
     public void setAppURL(URL url) {
         jenkinsURL = url.toString();
+    }
+
+    @Override
+    public Object getContext() {
+        return driver;
     }
 }

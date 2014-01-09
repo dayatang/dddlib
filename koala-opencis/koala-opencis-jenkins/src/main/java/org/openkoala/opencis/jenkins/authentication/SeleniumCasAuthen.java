@@ -1,4 +1,4 @@
-package org.openkoala.opencis.jenkins.authentication.casAuthen;
+package org.openkoala.opencis.jenkins.authentication;
 
 import org.openkoala.opencis.authentication.CISAuthentication;
 import org.openqa.selenium.By;
@@ -12,9 +12,9 @@ import java.net.URL;
  * Date: 1/7/14
  * Time: 4:57 PM
  */
-public class SeleniumAuthen implements CISAuthentication {
+public class SeleniumCasAuthen implements CISAuthentication {
 
-    private WebDriver driver = null;
+    private WebDriver driver;
 
     private URL jenkinsURL = null;
 
@@ -22,10 +22,10 @@ public class SeleniumAuthen implements CISAuthentication {
 
     private String password = null;
 
-    private SeleniumAuthen() {
+    private SeleniumCasAuthen() {
     }
 
-    public SeleniumAuthen(WebDriver driver, URL jenkinsURL, String username, String password) {
+    public SeleniumCasAuthen(WebDriver driver, URL jenkinsURL, String username, String password) {
         this.driver = driver;
         this.jenkinsURL = jenkinsURL;
         this.username = username;
@@ -46,5 +46,10 @@ public class SeleniumAuthen implements CISAuthentication {
     @Override
     public void setAppURL(URL url) {
         jenkinsURL = url;
+    }
+
+    @Override
+    public Object getContext() {
+        return driver;
     }
 }

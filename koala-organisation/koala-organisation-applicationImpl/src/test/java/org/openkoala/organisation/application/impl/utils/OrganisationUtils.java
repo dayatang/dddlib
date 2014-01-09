@@ -2,6 +2,7 @@ package org.openkoala.organisation.application.impl.utils;
 
 import java.util.Date;
 
+import org.openkoala.organisation.application.dto.EmployeeDTO;
 import org.openkoala.organisation.domain.*;
 
 public class OrganisationUtils {
@@ -67,5 +68,21 @@ public class OrganisationUtils {
 		Employee result = createEmployee(name, idNumber, sn, date);
 		new EmployeePostHolding(post, result, true, date).save();
 		return result;
+	}
+	
+	public EmployeeDTO createEmployeeDTO(String name, String idNumber, String sn, Date date) {
+		Person person = new Person(name);
+		person.setIdNumber(idNumber);
+		
+		Employee employee = new Employee(person, sn, date);
+		employee.setCreateDate(date);
+		employee.save();
+		return EmployeeDTO.generateDtoBy(employee);
+	}
+	
+	public EmployeeDTO createEmployeeDTO(String name, String idNumber, String sn, Post post, Date date) {
+		Employee employee = createEmployee(name, idNumber, sn, date);
+		new EmployeePostHolding(post, employee, true, date).save();
+		return EmployeeDTO.generateDtoBy(employee);
 	}
 }

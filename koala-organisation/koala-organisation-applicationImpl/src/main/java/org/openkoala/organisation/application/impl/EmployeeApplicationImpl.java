@@ -228,4 +228,10 @@ public class EmployeeApplicationImpl implements EmployeeApplication {
 		}
 		return results;
 	}
+
+	@Override
+	public EmployeeDTO getEmployeeById(Long id) {
+		Employee employee = Employee.get(Employee.class, id);
+		return employee == null ? null : EmployeeDTO.generateDtoBy(employee);
+	}
 }
