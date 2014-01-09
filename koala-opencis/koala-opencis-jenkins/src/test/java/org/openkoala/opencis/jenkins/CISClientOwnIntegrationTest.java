@@ -1,6 +1,7 @@
 package org.openkoala.opencis.jenkins;
 
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.openkoala.opencis.CISClientAbstactIntegrationTest;
@@ -19,6 +20,7 @@ import java.net.MalformedURLException;
  * Date: 1/7/14
  * Time: 9:46 PM
  */
+@Ignore
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CISClientOwnIntegrationTest extends CISClientAbstactIntegrationTest {
 
