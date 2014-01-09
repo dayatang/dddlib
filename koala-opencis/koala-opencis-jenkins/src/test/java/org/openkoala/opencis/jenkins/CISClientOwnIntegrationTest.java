@@ -6,8 +6,8 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.openkoala.opencis.CISClientAbstactIntegrationTest;
 import org.openkoala.opencis.authorize.CISAuthorization;
-import org.openkoala.opencis.jenkins.configureImpl.authorize.ProjectAuthorize;
-import org.openkoala.opencis.jenkins.configureImpl.project.CreateMavenProject;
+import org.openkoala.opencis.jenkins.configureImpl.authorize.ProjectAuthorization;
+import org.openkoala.opencis.jenkins.configureImpl.project.MavenProjectCreator;
 import org.openkoala.opencis.jenkins.configureApi.ProjectCreateStrategy;
 import org.openkoala.opencis.jenkins.configureImpl.scm.GitConfig;
 import org.openkoala.opencis.jenkins.configureImpl.scm.SvnConfig;
@@ -31,7 +31,7 @@ public class CISClientOwnIntegrationTest extends CISClientAbstactIntegrationTest
     public void test001CreateProject() throws Exception {
         WebDriver driver = ownAuthenticationAndCreateWebDriver();
         ProjectCreateStrategy projectCreateStrategy
-                = new CreateMavenProject(jenkinsUrl.toString());
+                = new MavenProjectCreator(jenkinsUrl.toString());
         projectCreateStrategy.create(getProject(), driver);
     }
 
@@ -59,7 +59,7 @@ public class CISClientOwnIntegrationTest extends CISClientAbstactIntegrationTest
     @Test
     public void test010addUserToProject() {
         WebDriver driver = ownAuthenticationAndCreateWebDriver();
-        CISAuthorization cisAuthorization = new ProjectAuthorize(jenkinsUrl.toString());
+        CISAuthorization cisAuthorization = new ProjectAuthorization(jenkinsUrl.toString());
         cisAuthorization.authorize(getProject(), getDeveloper(), driver);
     }
 

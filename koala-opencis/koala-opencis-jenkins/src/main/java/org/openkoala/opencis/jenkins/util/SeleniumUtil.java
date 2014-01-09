@@ -1,6 +1,8 @@
 package org.openkoala.opencis.jenkins.util;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 
@@ -16,7 +18,7 @@ public class SeleniumUtil {
 
     public static void clickBlankArea(WebDriver driver) {
         Actions actions = new Actions(driver);
-        actions.moveByOffset(0, 0).click().build().perform();
+        actions.doubleClick();
     }
 
     /**

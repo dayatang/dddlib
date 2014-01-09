@@ -43,7 +43,6 @@ public class ProjectConfigUtil {
         saveButton.click();
 
         if (StringUtils.endsWith(driver.getCurrentUrl(), "job/" + jobName + "/")) {
-            driver.quit();
             return null;
         }
         return "project configure form submit failure";

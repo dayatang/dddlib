@@ -1,5 +1,6 @@
 package org.openkoala.opencis;
 
+import com.gargoylesoftware.htmlunit.BrowserVersion;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.jenkins.authentication.CasAuthen;
@@ -7,6 +8,8 @@ import org.openkoala.opencis.jenkins.authentication.JenkinsOwnAuthen;
 import org.openkoala.opencis.jenkins.util.UrlUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -36,8 +39,8 @@ public abstract class CISClientAbstactIntegrationTest {
 
 
     public WebDriver casAuthenticationAndCreateWebDriver() {
-        WebDriver driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        WebDriver driver = new HtmlUnitDriver();
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         CasAuthen cisAuthentication =
                 new CasAuthen(driver, jenkinsUrl, "admin", "admin");
 
@@ -50,8 +53,13 @@ public abstract class CISClientAbstactIntegrationTest {
 
 
     public WebDriver ownAuthenticationAndCreateWebDriver() {
+      /*  FirefoxProfile profile = new FirefoxProfile();
+
+        profile.setPreference("browser.link.open_newwindow.restriction", 1);
+        FirefoxDriver driver  = new FirefoxDriver(profile);*/
+
         WebDriver driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         JenkinsOwnAuthen cisAuthentication =
                 new JenkinsOwnAuthen(driver, jenkinsUrl.toString(), "admin", "admin");
 
@@ -65,7 +73,15 @@ public abstract class CISClientAbstactIntegrationTest {
     public Developer getDeveloper() {
         Developer developer = new Developer();
         developer.setName("ww2");
-        developer.setPassword("xxxxx");
+        developer.setPassword("1111");
+        developer.setEmail("admin@gmail.com");
+        return developer;
+    }
+
+    public Developer getDeveloper(String name) {
+        Developer developer = new Developer();
+        developer.setName(name);
+        developer.setPassword("1111");
         developer.setEmail("admin@gmail.com");
         return developer;
     }
@@ -75,7 +91,13 @@ public abstract class CISClientAbstactIntegrationTest {
         Project project = new Project();
         project.setArtifactId(jobName);
         return project;
-
     }
+
+    public Project getProject(String name) {
+        Project project = new Project();
+        project.setArtifactId(name);
+        return project;
+    }
+
 
 }

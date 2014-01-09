@@ -45,16 +45,26 @@ public class ProjectAuthorization implements CISAuthorization {
             return false;
         }
 
-        WebElement userProjectSecurityCheckbox = driver.findElement(By.cssSelector("input[name=\"useProjectSecurity\"][type=\"checkbox\"]"));
-        userProjectSecurityCheckbox.click();
+        WebElement userProjectSecurityCheckbox = driver.findElement(By.cssSelector("input[name=\"useProjectSecurity\"]"));
+        if (!"true".equals(userProjectSecurityCheckbox.getAttribute("checked"))) {
+            userProjectSecurityCheckbox.click();
+        }
+
 
         WebElement userProjectSecurityMartix =
-                userProjectSecurityCheckbox.findElement(
-                        By.xpath("../../following-sibling::tr/following-sibling::tr/td")
+                driver.findElement(
+                        By.xpath("//input[@name=\"useProjectSecurity\"]/../../following-sibling::*[2]")
                 );
 
-        WebElement userInput = userProjectSecurityMartix.findElement(By.cssSelector("input[type=\"text\"]"));
 
+        //用户已经存在
+        if (SeleniumUtil.elementExist(driver,
+                By.cssSelector("tr.permission-row[name=\"[" + developer.getName() + "]\"]"))) {
+            driver.quit();
+            return true;
+        }
+
+        WebElement userInput = userProjectSecurityMartix.findElement(By.cssSelector("input[type=\"text\"]"));
         //添加用户名
         userInput.sendKeys(developer.getName());
 
