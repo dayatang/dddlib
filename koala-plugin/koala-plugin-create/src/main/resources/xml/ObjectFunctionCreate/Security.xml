@@ -35,16 +35,16 @@
 	<VelocityFileObject>
 		<property name="vm">vm/other/security_config/security_zh_CN.properties
 		</property>
-		<property name="path">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/i18n/exception/koalaSecurity_zh_CN.properties
+		<property name="path">${Project.path}/${Project.appName}/${Project.appName}-web/src/main/resources/i18n/exception/koalaSecurity_zh_CN.properties
 		</property>
 	</VelocityFileObject>
 	
-	<VelocityFileObject>
+<!-- 	<VelocityFileObject>
 		<property name="vm">vm/other/security_config/security-sql.properties
 		</property>
 		<property name="path">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/props/koala-security-sql.properties
 		</property>
-	</VelocityFileObject>
+	</VelocityFileObject> -->
 	
 	<VelocityFileObject>
 		<property name="vm">vm/other/security_config/spring-http-springmvc.xml</property>
