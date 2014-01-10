@@ -115,7 +115,7 @@ public class QueryController {
 			}
 		}
 		
-		Page<Map<String, Object>> data = generalQuery.pagingQueryPage(page, pagesize);
+		Page<Map<String, Object>> data = gqcApplication.pagingQuery(generalQuery, page, pagesize);
 
 		result.put("Rows", data.getResult());
 		result.put("start", page * pagesize - pagesize);
