@@ -8,7 +8,6 @@
 	<version>2.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>koala project</name>
-	<url>http://115.28.1.104/projects/koala</url>
 	<description />
 
 
@@ -81,12 +80,12 @@
 		<repository>
 			<id>koala-release</id>
 			<name>koala-release</name>
-			<url>http://115.28.0.46:8081/nexus/content/repositories/releases/</url>
+			<url>http://nexus.openkoala.org:8081/content/repositories/releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>koala-snapshots</id>
 			<name>koala-snapshots</name>
-			<url>http://115.28.0.46:8081/nexus/content/repositories/snapshots/</url>
+			<url>http://nexus.openkoala.org:8081/content/repositories/snapshots/</url>
 		</snapshotRepository>
 		<site>
 			<id>mvn-site</id>
@@ -98,7 +97,7 @@
 	<repositories>
 		<repository>
 			<id>koala-snapshots</id>
-			<url>http://115.28.0.46:8081/nexus/content/groups/Koala-snapshots/</url>
+			<url>http://nexus.openkoala.org:8081/content/groups/Koala-snapshots/</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
@@ -109,7 +108,7 @@
 
 		<repository>
 			<id>koala-release</id>
-			<url>http://115.28.0.46:8081/nexus/content/groups/Koala-release/</url>
+			<url>http://nexus.openkoala.org:8081/content/groups/Koala-release/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -389,123 +388,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
 				<version>3.3</version>
-				<configuration>
-					<reportPlugins>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-project-info-reports-plugin</artifactId>
-							<version>2.7</version>
-							<configuration>
-								<encoding>${project.build.sourceEncoding}</encoding>
-								<charset>${project.build.sourceEncoding}</charset>
-							</configuration>
-						</plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-javadoc-plugin</artifactId>
-							<version>2.9.1</version>
-							<configuration>
-								<encoding>${project.build.sourceEncoding}</encoding>
-								<charset>${project.build.sourceEncoding}</charset>
-								<minmemory>128m</minmemory>
-								<maxmemory>1024m</maxmemory>
-							</configuration>
-						</plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-jxr-plugin</artifactId>
-							<version>2.3</version>
-							<configuration>
-								<inputEncoding>${project.build.sourceEncoding}</inputEncoding>
-								<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
-							</configuration>
-						</plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-surefire-report-plugin</artifactId>
-							<version>2.15</version>
-							<configuration>
-								<encoding>${project.build.sourceEncoding}</encoding>
-								<charset>${project.build.sourceEncoding}</charset>
-							</configuration>
-						</plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-clover-plugin</artifactId>
-							<version>2.4</version>
-						</plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-pmd-plugin</artifactId>
-							<version>3.0.1</version>
-							<configuration>
-								<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
-								<targetJdk>1.6</targetJdk>
-								<format>xml</format>
-								<linkXref>true</linkXref>
-								<minimumTokens>100</minimumTokens>
-							</configuration>
-						</plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-checkstyle-plugin</artifactId>
-							<version>2.10</version>
-							<configuration>
-								<configLocation>config/sun_checks.xml</configLocation>
-								<encoding>${project.build.sourceEncoding}</encoding>
-							</configuration>
-						</plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-changes-plugin</artifactId>
-							<version>2.9</version>
-							<configuration>
-								<tracUser>${trac.username}</tracUser>
-								<tracPassword>${trac.password}</tracPassword>
-								<query>status!=closed&amp;order=type</query>
-								<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
-							</configuration>
-						</plugin>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-changelog-plugin</artifactId>
-							<version>2.2</version>
-							<configuration>
-								<passphrase>${passphase}</passphrase>
-								<outputEncoding>${project.build.sourceEncoding}</outputEncoding>
-							</configuration>
-						</plugin>
-						<plugin>
-							<groupId>org.codehaus.mojo</groupId>
-							<artifactId>taglist-maven-plugin</artifactId>
-							<version>2.4</version>
-							<configuration>
-								<tags>
-									<tag>TODO</tag>
-									<tag>@todo</tag>
-									<tag>FIXME</tag>
-									<tag>XXX</tag>
-								</tags>
-							</configuration>
-						</plugin>
-						<plugin>
-							<groupId>org.codehaus.mojo</groupId>
-							<artifactId>cobertura-maven-plugin</artifactId>
-							<version>2.5.2</version>
-							<configuration>
-								<encoding>${project.build.sourceEncoding}</encoding>
-							</configuration>
-						</plugin>
-						<plugin>
-							<groupId>org.codehaus.mojo</groupId>
-							<artifactId>clirr-maven-plugin</artifactId>
-							<version>2.5</version>
-							<configuration>
-								<minSeverity>info</minSeverity>
-							</configuration>
-						</plugin>
-					</reportPlugins>
-				</configuration>
 			</plugin>
 		</plugins>
 		<extensions>
