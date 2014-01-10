@@ -32,7 +32,7 @@ public class CISClientOwnIntegrationTest extends CISClientAbstactIntegrationTest
         WebDriver driver = ownAuthenticationAndCreateWebDriver();
         ProjectCreateStrategy projectCreateStrategy
                 = new MavenProjectCreator(jenkinsUrl.toString());
-        projectCreateStrategy.create(getProject(), driver);
+        projectCreateStrategy.createAndConfig(getProject(), driver);
     }
 
 
@@ -60,7 +60,7 @@ public class CISClientOwnIntegrationTest extends CISClientAbstactIntegrationTest
     public void test010addUserToProject() {
         WebDriver driver = ownAuthenticationAndCreateWebDriver();
         CISAuthorization cisAuthorization = new ProjectAuthorization(jenkinsUrl.toString());
-        cisAuthorization.authorize(getProject(), getDeveloper(), driver);
+        cisAuthorization.authorize(getProject(), driver);
     }
 
 

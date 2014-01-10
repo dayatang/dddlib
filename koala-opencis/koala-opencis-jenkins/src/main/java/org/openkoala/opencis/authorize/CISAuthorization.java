@@ -11,7 +11,7 @@ import org.openkoala.opencis.api.Project;
  */
 public interface CISAuthorization {
 
-    boolean authorize(Project project, Developer developer, Object context);
+    boolean authorize(Project project, Object context, Developer... developers);
 
     String getError();
 

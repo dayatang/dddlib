@@ -9,7 +9,7 @@ import org.openkoala.opencis.api.Project;
  */
 public interface ProjectCreateStrategy {
 
-    boolean create(Project project, Object context);
+    boolean createAndConfig(Project project, Object context);
 
     String getError();
 
