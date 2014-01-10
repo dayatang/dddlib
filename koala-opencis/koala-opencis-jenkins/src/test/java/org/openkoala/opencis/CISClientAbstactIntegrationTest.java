@@ -58,7 +58,7 @@ public abstract class CISClientAbstactIntegrationTest {
         profile.setPreference("browser.link.open_newwindow.restriction", 1);
         FirefoxDriver driver  = new FirefoxDriver(profile);*/
 
-        WebDriver driver = new FirefoxDriver();
+        WebDriver driver = new HtmlUnitDriver(true);
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         JenkinsOwnAuthen cisAuthentication =
                 new JenkinsOwnAuthen(driver, jenkinsUrl.toString(), "admin", "admin");
