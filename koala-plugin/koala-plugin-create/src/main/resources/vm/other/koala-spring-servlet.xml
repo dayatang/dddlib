@@ -31,6 +31,14 @@
 			</util:list>
 		</property>
 	</bean>
+	
+	<bean class="org.openkoala.exception.support.springmvc.ExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.Exception">pages/errors/404.jsp</prop>
+			</props>
+		</property>
+	</bean>
 
 	<!-- JSON转换器 -->
 	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
