@@ -81,12 +81,12 @@
 		<repository>
 			<id>koala-release</id>
 			<name>koala-release</name>
-			<url>http://www.openkoala.org:8081/content/repositories/releases/</url>
+			<url>http://115.28.0.46:8081/nexus/content/repositories/releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>koala-snapshots</id>
 			<name>koala-snapshots</name>
-			<url>http://www.openkoala.org:8081/content/repositories/snapshots/</url>
+			<url>http://115.28.0.46:8081/nexus/content/repositories/snapshots/</url>
 		</snapshotRepository>
 		<site>
 			<id>mvn-site</id>
@@ -98,7 +98,7 @@
 	<repositories>
 		<repository>
 			<id>koala-snapshots</id>
-			<url>http://www.openkoala.org:8081/content/groups/Koala-snapshots/</url>
+			<url>http://115.28.0.46:8081/nexus/content/groups/Koala-snapshots/</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
@@ -109,7 +109,7 @@
 
 		<repository>
 			<id>koala-release</id>
-			<url>http://www.openkoala.org:8081/content/groups/Koala-release/</url>
+			<url>http://115.28.0.46:8081/nexus/content/groups/Koala-release/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -136,7 +136,7 @@
 		<spring.version>3.1.2.RELEASE</spring.version>
 		<spring.security.version>3.0.8.RELEASE</spring.security.version>
 		<aspectj.version>1.6.12</aspectj.version>
-		<framework.version>2.1.0-SNAPSHOT</framework.version>
+		<framework.version>2.0.0-SNAPSHOT</framework.version>
 
 		<drools.version>5.3.1.BRMS</drools.version>
 		<jbpm.version>5.3.1.BRMS</jbpm.version>
