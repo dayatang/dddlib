@@ -123,6 +123,11 @@
             <groupId>org.openkoala.security</groupId>  
             <artifactId>koala-security-application</artifactId> 
         </dependency> 
+       	<dependency>
+			<groupId>org.openkoala.security</groupId>
+			<artifactId>koala-security-auth</artifactId>
+			<version>${koala.version}</version>
+		</dependency>
     </dependencies>  
     <build> 
         <plugins></plugins> 
