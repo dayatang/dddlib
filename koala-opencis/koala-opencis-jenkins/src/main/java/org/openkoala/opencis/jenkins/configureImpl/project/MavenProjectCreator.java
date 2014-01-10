@@ -35,7 +35,6 @@ public class MavenProjectCreator implements ProjectCreateStrategy {
         this.jenkinsUrl = jenkinsUrl;
     }
 
-
     @Override
     public boolean createAndConfig(Project project, Object context) {
         WebDriver driver;
@@ -75,6 +74,7 @@ public class MavenProjectCreator implements ProjectCreateStrategy {
             driver.quit();
             return false;
         }
+
         driver.quit();
         return true;
     }

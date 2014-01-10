@@ -1,14 +1,11 @@
 package org.openkoala.opencis;
 
-import com.gargoylesoftware.htmlunit.BrowserVersion;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.jenkins.authentication.CasAuthen;
 import org.openkoala.opencis.jenkins.authentication.JenkinsOwnAuthen;
 import org.openkoala.opencis.jenkins.util.UrlUtil;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import java.net.MalformedURLException;
@@ -59,7 +56,7 @@ public abstract class CISClientAbstactIntegrationTest {
         FirefoxDriver driver  = new FirefoxDriver(profile);*/
 
         WebDriver driver = new HtmlUnitDriver(true);
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         JenkinsOwnAuthen cisAuthentication =
                 new JenkinsOwnAuthen(driver, jenkinsUrl.toString(), "admin", "admin");
 

@@ -58,8 +58,7 @@ public class ProjectAuthorization implements CISAuthorization {
             //用户已经存在
             if (SeleniumUtil.elementExist(driver,
                     By.cssSelector("tr.permission-row[name=\"[" + developer.getName() + "]\"]"))) {
-                driver.quit();
-                return true;
+                continue;
             }
 
             WebElement userInput = userProjectSecurityMartix.findElement(By.cssSelector("input[type=\"text\"]"));

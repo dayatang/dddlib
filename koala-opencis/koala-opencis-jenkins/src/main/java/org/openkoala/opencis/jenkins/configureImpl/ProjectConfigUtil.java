@@ -28,7 +28,9 @@ public class ProjectConfigUtil {
             driver = new HtmlUnitDriver();
             driver.manage().timeouts().implicitlyWait(waitingTime, TimeUnit.SECONDS);
         }
-        driver.get(jenkinsJobConfigUrl);
+        if (!driver.getCurrentUrl().equals(jenkinsJobConfigUrl)) {
+            driver.get(jenkinsJobConfigUrl);
+        }
 
         if (SeleniumUtil.elementExist(driver, By.cssSelector("input[type=\"text\"][name=\"name\"]"))) {
             return null;
