@@ -45,7 +45,7 @@
 #if ($hasSecurity_CORE)	
 	 <dependency>
 		<groupId>org.openkoala.security</groupId>
-		<artifactId>koala-security-authEJBImpl</artifactId>
+		<artifactId>koala-security-authImpl</artifactId>
 		<version>${koala.version}</version>
 		<type>ejb</type>
 	 </dependency>
