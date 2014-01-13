@@ -1,7 +1,6 @@
-package org.openkoala.opencis.jenkins.project;
+package org.openkoala.opencis.jenkins.configureApi;
 
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.jenkins.scm.ScmConfigStrategy;
 
 /**
  * User: zjzhai
@@ -10,7 +9,7 @@ import org.openkoala.opencis.jenkins.scm.ScmConfigStrategy;
  */
 public interface ProjectCreateStrategy {
 
-    boolean create(Project project, Object context);
+    boolean createAndConfig(Project project, Object context);
 
     String getError();
 

@@ -1,9 +1,9 @@
-package org.openkoala.opencis.jenkins.scm;
+package org.openkoala.opencis.jenkins.configureImpl.scm;
 
 import org.apache.commons.lang3.StringUtils;
-import org.openkoala.opencis.JenkinsSvnAuthenticationFailureException;
+import org.openkoala.opencis.jenkins.configureApi.ScmConfigStrategy;
+import org.openkoala.opencis.jenkins.configureImpl.ProjectConfigUtil;
 import org.openkoala.opencis.jenkins.util.SeleniumUtil;
-import org.openkoala.opencis.jenkins.util.UrlUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * Date: 1/7/14
  * Time: 6:01 PM
  */
-public class SeleniumSvnConfig implements ScmConfigStrategy {
+public class SvnConfig implements ScmConfigStrategy {
 
     private String jobConfigUrl;
 
@@ -26,11 +26,12 @@ public class SeleniumSvnConfig implements ScmConfigStrategy {
     private String username;
 
     private String password;
+    private String error;
 
-    private SeleniumSvnConfig() {
+    private SvnConfig() {
     }
 
-    public SeleniumSvnConfig(String jobConfigUrl, String svnUrl, String username, String password) {
+    public SvnConfig(String jobConfigUrl, String svnUrl, String username, String password) {
         this.svnUrl = svnUrl;
         this.username = username;
         this.password = password;
@@ -38,16 +39,13 @@ public class SeleniumSvnConfig implements ScmConfigStrategy {
     }
 
     @Override
-    public void config(Object context) {
-        WebDriver driver;
-        if (context != null) {
-            driver = (WebDriver) context;
-        } else {
-            driver = new HtmlUnitDriver();
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+    public boolean config(Object context) {
+        String directConfigurePageResult = ProjectConfigUtil.openJobConfigurePage(context, jobConfigUrl);
+        if (directConfigurePageResult != null) {
+            error = directConfigurePageResult;
+            return false;
         }
-
-        driver.get(jobConfigUrl);
+        WebDriver driver = (WebDriver) context;
 
         String jobName = driver.findElement(By.name("name")).getAttribute("value");
 
@@ -67,23 +65,37 @@ public class SeleniumSvnConfig implements ScmConfigStrategy {
         WebElement repositoryUrlInput = driver.findElement(By.id("svn.remote.loc"));
         repositoryUrlInput.sendKeys(svnUrl);
         SeleniumUtil.clickBlankArea(driver);
-        repositoryUrlInput.click();
 
-        authenticationSubversionRepository(driver);
+        if(!authenticationSubversionRepository(driver)){
+            return false;
+        }
 
-        //保存配置
-        WebElement saveButton = driver.findElement(By.cssSelector("span[name=\"Submit\"] button"));
-        saveButton.click();
-        assert StringUtils.endsWith(driver.getCurrentUrl(), "job/" + jobName + "/");
-
-        driver.quit();
+        String submitResult = ProjectConfigUtil.submitForm(driver, jobName);
+        if (submitResult != null) {
+            error = submitResult;
+            return false;
+        }
+        return true;
     }
 
-    private void authenticationSubversionRepository(WebDriver driver) {
-        if (!SeleniumUtil.elementExist(driver, By.cssSelector("a[href*=\"hudson.scm.SubversionSCM/enterCredential?\"]"))) {
-            return;
+    @Override
+    public String getError() {
+        return error;
+    }
+
+    private boolean authenticationSubversionRepository(WebDriver driver) {
+        if (SeleniumUtil.elementExist(driver, By.cssSelector("a#svnerrorlink"))) {
+            error = driver.findElement(By.xpath("//a[@id=\"svnerrorlink\"]/..")).getText();
+            return false;
         }
-        WebElement creWebElement = driver.findElement(By.cssSelector("a[href*=\"hudson.scm.SubversionSCM/enterCredential?\"]"));
+
+
+        if (!SeleniumUtil.elementExist(driver,
+                By.cssSelector("a[href*=\"hudson.scm.SubversionSCM/enterCredential?\"]"))) {
+            return true;
+        }
+        WebElement creWebElement = driver.findElement(
+                By.cssSelector("a[href*=\"hudson.scm.SubversionSCM/enterCredential?\"]"));
 
         creWebElement.click();
 
@@ -108,11 +120,13 @@ public class SeleniumSvnConfig implements ScmConfigStrategy {
         driver.findElement(By.name("postCredential")).submit();
 
         if (driver.getPageSource().contains("Error")) {
-            throw new JenkinsSvnAuthenticationFailureException("svn authentication failure:"
-                    + svnUrl);
+            error = "svn authentication failure";
+            driver.quit();
+            return false;
         }
 
         driver.switchTo().window(dashboardHandle);
 
+        return true;
     }
 }

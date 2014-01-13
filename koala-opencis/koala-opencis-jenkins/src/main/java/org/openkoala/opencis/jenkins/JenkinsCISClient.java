@@ -10,7 +10,7 @@ import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.authentication.CISAuthentication;
 import org.openkoala.opencis.authorize.CISAuthorization;
-import org.openkoala.opencis.jenkins.project.ProjectCreateStrategy;
+import org.openkoala.opencis.jenkins.configureApi.ProjectCreateStrategy;
 
 /**
  * Jenkins CIS客户端
@@ -30,22 +30,21 @@ public class JenkinsCISClient implements CISClient {
      */
     private CISAuthorization authorization;
 
+    /**
+     * 创建项目
+     */
     private ProjectCreateStrategy projectCreateStrategy;
 
     /**
      * 认证
      */
-    private CISAuthentication cisAuthentication;
-
-    private String createProjectUrl;
-
+    private CISAuthentication authentication;
 
     private static Logger logger = Logger.getLogger(JenkinsCISClient.class);
 
 
     public JenkinsCISClient(URL jenkinsUrl) {
         this.jenkinsUrl = jenkinsUrl;
-        createProjectUrl = jenkinsUrl.toString() + CREATE_ITEM_API;
     }
 
     /**
@@ -66,23 +65,24 @@ public class JenkinsCISClient implements CISClient {
 
     @Override
     public void createProject(Project project) {
-        if (!authenticateBy(cisAuthentication)) {
+        if (!authenticateBy(authentication)) {
             throw new AuthenticationException("CIS authentication failure");
         }
-        projectCreateStrategy.create(project, cisAuthentication.getContext());
+        projectCreateStrategy.createAndConfig(project, authentication.getContext());
     }
 
 
     @Override
     public void createUserIfNecessary(Project project, Developer developer) {
-        if (!authenticateBy(cisAuthentication)) {
+        if (!authenticateBy(authentication)) {
             throw new AuthenticationException("CIS authentication failure");
         }
-        authorization.authorize(project, developer, cisAuthentication.getContext());
+        authorization.authorize(project, authentication.getContext());
     }
 
     @Override
     public void createRoleIfNecessary(Project project, String roleName) {
+
     }
 
     @Override

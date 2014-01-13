@@ -1,7 +1,6 @@
 package org.openkoala.organisation.web.controller;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.only;
@@ -10,12 +9,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -136,12 +133,15 @@ public class PostControllerTest {
 	
 	@Test
 	public void testQueryPostsOfOrganization() {
-		Organization organization = mock(Organization.class);
-		Set<Post> posts = new HashSet<Post>();
-		posts.add(post);
+//		Organization organization = mock(Organization.class);
+		Set<PostDTO> posts = new HashSet<PostDTO>();
+		PostDTO postDto = new PostDTO();
+		postDto.setId(3L);
+		postDto.setName("Post00001");
+		posts.add(postDto);
 		
-		when(baseApplication.getEntity(Organization.class, organizationId)).thenReturn(organization);
-		when(organization.getPosts(any(Date.class))).thenReturn(posts);
+//		when(baseApplication.getEntity(Organization.class, organizationId)).thenReturn(organization);
+		when(postApplication.findPostsByOrganizationId(organizationId)).thenReturn(posts);
 		assertEquals(posts, postController.queryPostsOfOrganization(organizationId).get("result"));
 	}
 	
@@ -162,8 +162,8 @@ public class PostControllerTest {
 		PostDTO dto = createPostDTO();
 		
 		PowerMockito.mockStatic(PostDTO.class);
-		when(baseApplication.getEntity(Post.class, postId)).thenReturn(post);
-		when(PostDTO.generateDtoBy(post)).thenReturn(dto);
+		when(postApplication.getPostById(postId)).thenReturn(dto);
+//		when(PostDTO.generateDtoBy(post)).thenReturn(dto);
 		
 		assertEquals(dto, postController.get(postId).get("data"));
 	}

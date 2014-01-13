@@ -1,9 +1,9 @@
-package org.openkoala.opencis.jenkins.authorize;
+package org.openkoala.opencis.jenkins.configureImpl.authorize;
 
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.authorize.CISAuthorization;
-import org.openkoala.opencis.jenkins.user.SeleniumUserSignUp;
+import org.openkoala.opencis.jenkins.configureImpl.ProjectConfigUtil;
 import org.openkoala.opencis.jenkins.util.SeleniumUtil;
 import org.openkoala.opencis.jenkins.util.UrlUtil;
 import org.openqa.selenium.By;
@@ -18,33 +18,31 @@ import java.util.concurrent.TimeUnit;
  * Date: 1/7/14
  * Time: 6:17 PM
  */
-public class SeleniumProjectAuthorize implements CISAuthorization {
+public class ProjectAuthorize implements CISAuthorization {
 
 
     private String jenkinsUrl;
+    private String error;
 
 
-    public SeleniumProjectAuthorize(String jenkinsUrl) {
+    public ProjectAuthorize(String jenkinsUrl) {
         this.jenkinsUrl = jenkinsUrl;
     }
 
     @Override
-    public void authorize(Project project, Developer developer, Object context) {
-        WebDriver driver;
-        if (context != null) {
-            driver = (WebDriver) context;
-        } else {
-            driver = new HtmlUnitDriver();
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        }
-
+    public boolean authorize(Project project, Developer developer, Object context) {
         String jobConfigureUrl =
                 UrlUtil.removeEndIfExists(jenkinsUrl, "/") + "/job/" + project.getArtifactId() + "/configure";
-
-        driver.get(jobConfigureUrl);
+        String directConfigurePageResult = ProjectConfigUtil.openJobConfigurePage(context, jobConfigureUrl);
+        if (directConfigurePageResult != null) {
+            error = directConfigurePageResult;
+            return false;
+        }
+        WebDriver driver = (WebDriver) context;
 
         if (!SeleniumUtil.elementExist(driver, By.cssSelector("input[name=\"useProjectSecurity\"][type=\"checkbox\"]"))) {
-            return;
+            error = "not found useProjectSecurity checkbox";
+            return false;
         }
 
         WebElement userProjectSecurityCheckbox = driver.findElement(By.cssSelector("input[name=\"useProjectSecurity\"][type=\"checkbox\"]"));
@@ -70,18 +68,19 @@ public class SeleniumProjectAuthorize implements CISAuthorization {
         readPermissionCheckbox.click();
 
 
-        //保存配置
-        WebElement saveButton = driver.findElement(By.cssSelector("span[name=\"Submit\"] button"));
-        saveButton.click();
+        String submitResult = ProjectConfigUtil.submitForm(driver, project.getArtifactId());
+        if (submitResult != null) {
+            error = submitResult;
+            return false;
+        }
 
-        assert driver.getCurrentUrl().contains("/job/" + UrlUtil.encodeURL(project.getArtifactId()));
-
-        driver.quit();
+        return true;
     }
 
-
-
-
+    @Override
+    public String getError() {
+        return error;
+    }
 
 
 }

@@ -6,7 +6,7 @@ import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.authentication.CISAuthentication;
 import org.openkoala.opencis.authorize.CISAuthorization;
-import org.openkoala.opencis.jenkins.project.ProjectCreateStrategy;
+import org.openkoala.opencis.jenkins.configureApi.ProjectCreateStrategy;
 
 import java.net.MalformedURLException;
 
@@ -55,13 +55,13 @@ public class JenkinsCISClientTest {
         ProjectCreateStrategy projectCreateStrategy = mock(ProjectCreateStrategy.class);
         jenkinsCISClient.setProjectCreateStrategy(projectCreateStrategy);
         jenkinsCISClient.createProject(project);
-        verify(projectCreateStrategy).create(project, context);
+        verify(projectCreateStrategy).createAndConfig(project, context);
 
         //授权
         CISAuthorization cisAuthorization = mock(CISAuthorization.class);
         jenkinsCISClient.setAuthorization(cisAuthorization);
         jenkinsCISClient.createUserIfNecessary(project, developer);
-        verify(cisAuthorization).authorize(project, developer, context);
+        verify(cisAuthorization).authorize(project, context);
 
     }
 

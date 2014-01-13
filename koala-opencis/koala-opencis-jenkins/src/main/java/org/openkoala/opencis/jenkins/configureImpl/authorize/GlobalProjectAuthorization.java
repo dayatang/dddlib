@@ -1,4 +1,4 @@
-package org.openkoala.opencis.jenkins.authorize;
+package org.openkoala.opencis.jenkins.configureImpl.authorize;
 
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
@@ -17,16 +17,16 @@ import java.util.concurrent.TimeUnit;
  * Date: 1/8/14
  * Time: 11:36 PM
  */
-public class SeleniumGlobalProjectAuthorization implements CISAuthorization {
+public class GlobalProjectAuthorization {
 
     private String jenkinsUrl;
+    private String error;
 
-    public SeleniumGlobalProjectAuthorization(String jenkinsUrl) {
+    public GlobalProjectAuthorization(String jenkinsUrl) {
         this.jenkinsUrl = UrlUtil.removeEndIfExists(jenkinsUrl, "/");
     }
 
-    @Override
-    public void authorize(Project project, Developer developer, Object context) {
+    public boolean authorize(Developer developer, Object context) {
         WebDriver driver;
         if (context != null) {
             driver = (WebDriver) context;
@@ -37,9 +37,10 @@ public class SeleniumGlobalProjectAuthorization implements CISAuthorization {
 
         driver.get(jenkinsUrl + "/configureSecurity/");
 
+        //用户已经存在
         if (SeleniumUtil.elementExist(driver, By.cssSelector("table#hudson-security-ProjectMatrixAuthorizationStrategy tr.permission-row[name=\"[" + developer.getName() + "]\"]"))) {
             driver.quit();
-            return;
+            return true;
         }
 
 
@@ -65,7 +66,12 @@ public class SeleniumGlobalProjectAuthorization implements CISAuthorization {
 
         assert driver.getCurrentUrl().equals(jenkinsUrl + "/manage");
 
-        //driver.quit();
+        driver.quit();
+        return true;
 
+    }
+
+    public String getError() {
+        return error;
     }
 }

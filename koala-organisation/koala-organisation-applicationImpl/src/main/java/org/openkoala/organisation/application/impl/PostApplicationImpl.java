@@ -3,7 +3,9 @@ package org.openkoala.organisation.application.impl;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -96,6 +98,22 @@ public class PostApplicationImpl implements PostApplication {
 	private List<PostDTO> transformToDtos(List<Post> posts) {
 		List<PostDTO> results = new ArrayList<PostDTO>();
 		for (Post post : posts) {
+			results.add(PostDTO.generateDtoBy(post));
+		}
+		return results;
+	}
+
+	@Override
+	public PostDTO getPostById(Long id) {
+		Post post = Post.get(Post.class, id);
+		return post == null ? null : PostDTO.generateDtoBy(post);
+	}
+
+	@Override
+	public Set<PostDTO> findPostsByOrganizationId(Long organizationId) {
+		Organization organization = Organization.get(Organization.class, organizationId);
+		Set<PostDTO> results = new HashSet<PostDTO>();
+		for (Post post : organization.getPosts(new Date())) {
 			results.add(PostDTO.generateDtoBy(post));
 		}
 		return results;

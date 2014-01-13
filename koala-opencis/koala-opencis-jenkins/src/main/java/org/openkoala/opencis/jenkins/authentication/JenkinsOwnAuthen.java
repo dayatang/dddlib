@@ -12,7 +12,7 @@ import java.net.URL;
  * Date: 1/7/14
  * Time: 4:57 PM
  */
-public class SeleniumJenkinsOwnAuthen implements CISAuthentication {
+public class JenkinsOwnAuthen implements CISAuthentication {
 
     private WebDriver driver;
 
@@ -22,10 +22,10 @@ public class SeleniumJenkinsOwnAuthen implements CISAuthentication {
 
     private String password;
 
-    private SeleniumJenkinsOwnAuthen() {
+    private JenkinsOwnAuthen() {
     }
 
-    public SeleniumJenkinsOwnAuthen(WebDriver driver, String jenkinsURL, String username, String password) {
+    public JenkinsOwnAuthen(WebDriver driver, String jenkinsURL, String username, String password) {
         this.driver = driver;
         this.jenkinsURL = jenkinsURL;
         this.username = username;
@@ -34,8 +34,6 @@ public class SeleniumJenkinsOwnAuthen implements CISAuthentication {
 
     @Override
     public boolean authenticate() {
-
-
         driver.get(jenkinsURL);
         WebElement usernameElement = driver.findElement(By.cssSelector("input[name=\"j_username\"]"));
         usernameElement.sendKeys(username);

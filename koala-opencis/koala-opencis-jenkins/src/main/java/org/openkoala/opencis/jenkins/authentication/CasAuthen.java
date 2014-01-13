@@ -12,7 +12,7 @@ import java.net.URL;
  * Date: 1/7/14
  * Time: 4:57 PM
  */
-public class SeleniumCasAuthen implements CISAuthentication {
+public class CasAuthen implements CISAuthentication {
 
     private WebDriver driver;
 
@@ -22,10 +22,10 @@ public class SeleniumCasAuthen implements CISAuthentication {
 
     private String password = null;
 
-    private SeleniumCasAuthen() {
+    private CasAuthen() {
     }
 
-    public SeleniumCasAuthen(WebDriver driver, URL jenkinsURL, String username, String password) {
+    public CasAuthen(WebDriver driver, URL jenkinsURL, String username, String password) {
         this.driver = driver;
         this.jenkinsURL = jenkinsURL;
         this.username = username;

@@ -106,10 +106,7 @@ public class PostController extends BaseController {
     @RequestMapping("/query-post-by-org")
 	public Map<String, Object> queryPostsOfOrganization(Long organizationId) {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
-		Organization organization = getBaseApplication().getEntity(Organization.class, organizationId);
-		if (organization != null) {
-			dataMap.put("result", organization.getPosts(new Date()));
-		}
+		dataMap.put("result", postApplication.findPostsByOrganizationId(organizationId));
 		return dataMap;
 	}
 
@@ -137,7 +134,7 @@ public class PostController extends BaseController {
 	public Map<String, Object> get(@PathVariable("id") Long id) {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		try {
-			dataMap.put("data", PostDTO.generateDtoBy(getBaseApplication().getEntity(Post.class, id)));
+			dataMap.put("data", postApplication.getPostById(id));
 		} catch (Exception e) {
 			dataMap.put("error", "查询指定岗位失败！");
 			e.printStackTrace();

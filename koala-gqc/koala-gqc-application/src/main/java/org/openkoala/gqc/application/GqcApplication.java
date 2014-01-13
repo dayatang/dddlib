@@ -1,5 +1,6 @@
 package org.openkoala.gqc.application;
 
+import java.util.Map;
 import java.util.Set;
 
 import org.openkoala.gqc.core.domain.GeneralQuery;
@@ -20,31 +21,31 @@ public interface GqcApplication {
 	 * @param id 通用查询主键
 	 * @return
 	 */
-	public <T extends GeneralQueryEntity> T getEntity(Class<T> clazz, Long id);
+	<T extends GeneralQueryEntity> T getEntity(Class<T> clazz, Long id);
 	
 	/**
 	 * 保存用查询实例
 	 * @param entity
 	 */
-	public void saveEntity(GeneralQueryEntity entity);
+	void saveEntity(GeneralQueryEntity entity);
 	
 	/**
 	 * 更新用查询实例
 	 * @param entity
 	 */
-	public void updateEntity(GeneralQueryEntity entity);
+	void updateEntity(GeneralQueryEntity entity);
 
 	/**
 	 * 删除用查询实例
 	 * @param entity
 	 */
-	public void removeEntity(GeneralQueryEntity entity);
+	void removeEntity(GeneralQueryEntity entity);
 	
 	/**
 	 * 批量删除用查询实例
 	 * @param entities
 	 */
-	public <T extends GeneralQueryEntity> void removeEntities(Set<T> entities);
+	<T extends GeneralQueryEntity> void removeEntities(Set<T> entities);
 	
 	/**
 	 * 分页查询用查询实例
@@ -52,14 +53,14 @@ public interface GqcApplication {
 	 * @param pagesize
 	 * @return
 	 */
-	public Page<GeneralQuery> pagingQueryGeneralQueries(int currentPage, int pagesize);
+	Page<GeneralQuery> pagingQueryGeneralQueries(int currentPage, int pagesize);
 	
 	/**
 	 * 获取通用查询实例
 	 * @param id 主键
 	 * @return
 	 */
-	public GeneralQuery getById(Long id);
+	GeneralQuery getById(Long id);
 	
 	/**
 	 * 分页查询用查询实例
@@ -68,6 +69,8 @@ public interface GqcApplication {
 	 * @param pagesize
 	 * @return
 	 */
-	public Page<GeneralQuery> pagingQueryGeneralQueriesByQueryName(String queryName, int currentPage, int pagesize);
+	Page<GeneralQuery> pagingQueryGeneralQueriesByQueryName(String queryName, int currentPage, int pagesize);
+	
+	Page<Map<String, Object>> pagingQuery(GeneralQuery generalQuery, int currentPage, int pagesize);
 	
 }

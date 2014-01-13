@@ -1,7 +1,7 @@
-package org.openkoala.opencis.jenkins.project;
+package org.openkoala.opencis.jenkins.configureImpl.project;
 
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.authentication.CISAuthentication;
+import org.openkoala.opencis.jenkins.configureApi.ProjectCreateStrategy;
 import org.openkoala.opencis.jenkins.util.SeleniumUtil;
 import org.openkoala.opencis.jenkins.util.UrlUtil;
 import org.openqa.selenium.By;
@@ -12,21 +12,22 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 目前只版本只支持maven项目的创建
  * User: zjzhai
  * Date: 1/7/14
  * Time: 5:37 PM
  */
-public class SeleniumCreateProject implements ProjectCreateStrategy {
+public class CreateMavenProject implements ProjectCreateStrategy {
 
 
     private String error;
 
     private String jenkinsUrl;
 
-    private SeleniumCreateProject() {
+    private CreateMavenProject() {
     }
 
-    public SeleniumCreateProject(String jenkinsUrl) {
+    public CreateMavenProject(String jenkinsUrl) {
         this.jenkinsUrl = jenkinsUrl;
     }
 
@@ -38,7 +39,7 @@ public class SeleniumCreateProject implements ProjectCreateStrategy {
             driver = (WebDriver) context;
         } else {
             driver = new HtmlUnitDriver();
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         }
 
         driver.get(jenkinsUrl + "/view/All/newJob");
@@ -47,6 +48,7 @@ public class SeleniumCreateProject implements ProjectCreateStrategy {
         SeleniumUtil.clickBlankArea(driver);
         if (SeleniumUtil.elementExist(driver, By.cssSelector("div.error"))) {
             error = driver.findElement(By.cssSelector("div.error")).getText();
+            driver.quit();
             return false;
         }
 
