@@ -1,6 +1,7 @@
 package org.openkoala.opencis.jenkins.configureImpl.project;
 
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.authorize.CISAuthorization;
 import org.openkoala.opencis.jenkins.configureApi.ProjectCreateStrategy;
 import org.openkoala.opencis.jenkins.configureApi.ScmConfigStrategy;
 import org.openkoala.opencis.jenkins.util.SeleniumUtil;
@@ -34,9 +35,8 @@ public class MavenProjectCreator implements ProjectCreateStrategy {
         this.jenkinsUrl = jenkinsUrl;
     }
 
-
     @Override
-    public boolean create(Project project, Object context) {
+    public boolean createAndConfig(Project project, Object context) {
         WebDriver driver;
         if (context != null) {
             driver = (WebDriver) context;
@@ -71,6 +71,7 @@ public class MavenProjectCreator implements ProjectCreateStrategy {
 
         if (scmConfig != null && scmConfig.config(driver) == false) {
             error = scmConfig.getError();
+            driver.quit();
             return false;
         }
 

@@ -29,7 +29,7 @@ public class CISClientCasIntegrationTest extends CISClientAbstactIntegrationTest
         ProjectCreateStrategy projectCreateStrategy
                 = new MavenProjectCreator(jenkinsUrl.toString());
 
-        projectCreateStrategy.create(getProject(), driver);
+        projectCreateStrategy.createAndConfig(getProject(), driver);
 
 
     }
@@ -51,7 +51,7 @@ public class CISClientCasIntegrationTest extends CISClientAbstactIntegrationTest
     public void test003addUserToProject() {
         WebDriver driver = casAuthenticationAndCreateWebDriver();
         CISAuthorization cisAuthorization = new ProjectAuthorization(jenkinsUrl.toString());
-        cisAuthorization.authorize(getProject(), getDeveloper(), driver);
+        cisAuthorization.authorize(getProject(), driver);
 
     }
 
