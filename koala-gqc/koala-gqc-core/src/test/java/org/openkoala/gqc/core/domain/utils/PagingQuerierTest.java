@@ -124,7 +124,7 @@ public class PagingQuerierTest extends KoalaBaseSpringTestCase{
 	 */
 	@Test
 	public void testGetTotalCount() {
-		long total = pagingQuerier.getTotalCount();
+		long total = pagingQuerier.caculateTotalCount();
 		assertEquals(0, total);
 	}
 

@@ -32,10 +32,6 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
 				authentication.getPrincipal().toString(), 
 				authentication.getCredentials().toString());
 		
-		if (loadedUser == null) {
-			throw new AuthenticationFailureException("Authentication failed.");
-		}
-		
 		return createSuccessAuthentication(authentication, getUserDetails(loadedUser), loadedUser);
 	}
 

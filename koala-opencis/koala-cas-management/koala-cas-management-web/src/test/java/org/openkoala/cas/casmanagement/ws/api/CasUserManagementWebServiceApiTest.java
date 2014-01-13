@@ -9,14 +9,18 @@ import static junit.framework.Assert.assertTrue;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.After;
@@ -36,7 +40,7 @@ public class CasUserManagementWebServiceApiTest {
 
 	private static final int BUFFER_SIZE = 1024;
 
-	private static final String API_URL = "http://localhost:8080/api/user";
+	private static final String API_URL = "http://localhost:8888/api/user";
 	
 	private DefaultHttpClient httpClient;
 	
@@ -122,7 +126,6 @@ public class CasUserManagementWebServiceApiTest {
 		StringEntity entity = new StringEntity(toJson(user));
 		entity.setContentType(APPLICATION_JSON);
 		put.setEntity(entity);
-		//assertEquals(new PasswordEncoder("", "MD5").encode("123456"), toUser(getResponseContent(httpClient.execute(put))).getUserPassword());
 		put.getEntity().consumeContent();
 	}
 	
@@ -180,5 +183,26 @@ public class CasUserManagementWebServiceApiTest {
 		UserVO result = toUser(getResponseContent(httpClient.execute(put)));
 		assertTrue(result.isValid());
 	}
+	
+	@Test
+	public void testGetEmail() throws Exception {
+		HttpGet get = new HttpGet(MessageFormat.format("{0}/email/{1}", API_URL, savedUser.getUserAccount()));
+		HttpResponse response = httpClient.execute(get);
+		assertEquals("zyb@gmail.com", getResponseContent(response));
+		response.getEntity().consumeContent();
+	}
+	
+	@Test
+	public void testIsUserValid() throws Exception {
+		HttpPost post = new HttpPost(MessageFormat.format("{0}/isUserValid", API_URL));
+		List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
+		params.add(new BasicNameValuePair("username", savedUser.getUserAccount()));
+		params.add(new BasicNameValuePair("password", "zyb"));
+		post.setEntity(new UrlEncodedFormEntity(params));
+		HttpResponse response = httpClient.execute(post);
+		assertTrue(Boolean.valueOf(getResponseContent(response)));
+		response.getEntity().consumeContent();
+	}
+	
 	
 }

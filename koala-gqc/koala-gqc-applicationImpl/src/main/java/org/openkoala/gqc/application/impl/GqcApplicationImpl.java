@@ -2,6 +2,7 @@ package org.openkoala.gqc.application.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.ejb.Remote;
@@ -125,6 +126,11 @@ public class GqcApplicationImpl implements GqcApplication {
 		} catch (Exception e) {
 			throw new RuntimeException("查询失败！", e);
 		}
+	}
+
+	@Override
+	public Page<Map<String, Object>> pagingQuery(GeneralQuery generalQuery, int currentPage, int pagesize) {
+		return generalQuery.pagingQueryPage(currentPage, pagesize);
 	}
 	
 }

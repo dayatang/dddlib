@@ -218,7 +218,7 @@ public class GeneralQuery extends GeneralQueryEntity {
 	 * @return
 	 */
 	public Page<Map<String, Object>> pagingQueryPage(int currentPage, int pagesize) {
-		long totalCount = getPagingQuerier().getTotalCount();
+		long totalCount = getPagingQuerier().caculateTotalCount();
 		return new Page<Map<String, Object>>(Page.getStartOfPage(currentPage, pagesize), totalCount, pagesize, pagingQuery(currentPage, pagesize));
 	}
 	

@@ -68,7 +68,7 @@ public class PagingQuerier extends Querier {
 	 * 获取记录总数
 	 * @return
 	 */
-	public long getTotalCount() {
+	final public long caculateTotalCount() {
 		Number result = null;
 		Connection connection = null;
 

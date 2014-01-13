@@ -6,4 +6,5 @@
     <import resource="classpath:META-INF/spring/koala-security-http.xml" />  
     <import resource="classpath:META-INF/spring/security-shared-context.xml" />  
     <import resource="classpath*:META-INF/spring/spring-ehcache.xml" />
+    <import resource="classpath:META-INF/spring/security-custom.xml" />
 </beans>
