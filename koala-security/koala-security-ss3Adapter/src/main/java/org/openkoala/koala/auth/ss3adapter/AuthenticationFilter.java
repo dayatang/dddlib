@@ -1,5 +1,6 @@
 package org.openkoala.koala.auth.ss3adapter;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 	
 	private boolean postOnly = true;
 	
-	private List<HttpHandler> httpHandlers;
+	private List<HttpHandler> httpHandlers = Collections.EMPTY_LIST;
 
 	public void setHttpHandlers(List<HttpHandler> httpHandlers) {
 		this.httpHandlers = httpHandlers;
@@ -49,8 +50,10 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 	}
 
 	private void handle(HttpServletRequest request, HttpServletResponse response) {
-		for (HttpHandler each : httpHandlers) {
-			each.handle(request, response);
+		if (!httpHandlers.isEmpty()) {
+			for (HttpHandler each : httpHandlers) {
+				each.handle(request, response);
+			}
 		}
 	}
 
