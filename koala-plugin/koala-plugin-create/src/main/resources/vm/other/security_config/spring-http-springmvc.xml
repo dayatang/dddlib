@@ -7,8 +7,7 @@
 	<!-- 设置登录页面为login.jsp且不拦截页面login.jsp后面的*防止带了参数 -->
 	<s:http auto-config="true" access-denied-page="/pages/errors/denied.jsp">
 		<s:form-login login-page="/login.koala"
-			default-target-url="/index.koala" always-use-default-target="true"
-			authentication-failure-url="/login.koala?login_error=1" />
+			default-target-url="/index.koala" always-use-default-target="true" />
 		<s:intercept-url pattern="/login.koala*" filters="none" />
 		<s:intercept-url pattern="/denied.koala*" filters="none" />
 		<s:intercept-url pattern="/login.jsp*" filters="none" />
@@ -38,8 +37,6 @@
 		<!-- 过滤器，不能修改 -->
 		<s:custom-filter ref="securityFilter" before="FILTER_SECURITY_INTERCEPTOR" />
 
-
-
 	</s:http>
 
 
@@ -50,19 +47,20 @@
 	</bean>
 
 	<!-- 登录失败 -->
-	<bean id="simpleUrlAuthenticationFailureHandler"
-		class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
-		<property name="defaultFailureUrl" value="/login.koala?login_error=2" />
+	<bean id="loginFailureHandler" class="org.openkoala.koala.auth.ss3adapter.LoginFailureHandler">
+		<property name="userAccountNotFoundUrl" value="/login.koala?login_error=1" />
+		<property name="passwordNotCorrectUrl" value="/login.koala?login_error=2" />
+		<property name="validateCodeNotCorrectUrl" value="/login.koala?login_error=3" />
 	</bean>
 
 	<!-- 验证码过滤器 -->
  	<bean id="authenticationFilter" class="org.openkoala.koala.auth.ss3adapter.AuthenticationFilter">
 		<property name="authenticationSuccessHandler" ref="loginLogAuthenticationSuccessHandler" />
-		<property name="authenticationFailureHandler" ref="simpleUrlAuthenticationFailureHandler" />
+		<property name="failureHandler" ref="loginFailureHandler" />
 		<property name="authenticationManager" ref="authenticationManager" />
 		<property name="httpHandlers">
 			<list>
-				<bean class="org.openkoala.koala.auth.ss3adapter.ValidCodeHandler" />
+				<bean class="org.openkoala.koala.auth.ss3adapter.ValidateCodeHandler" />
 			</list>
 		</property>
 	</bean>
