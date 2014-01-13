@@ -3,8 +3,6 @@ package org.openkoala.koala.auth.ss3adapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.security.authentication.AuthenticationServiceException;
-
 import com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet;
 
 /**
@@ -13,7 +11,7 @@ import com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet;
  * @date 2014年1月7日 上午11:11:10
  *
  */
-public class ValidCodeHandler implements HttpHandler {
+public class ValidateCodeHandler implements HttpHandler {
 	
 	private boolean allowEmptyValidateCode = false;
 	
@@ -59,10 +57,10 @@ public class ValidCodeHandler implements HttpHandler {
 	 * @param request
 	 */
 	private void checkValidateCode(HttpServletRequest request) {
-		 String userCaptchaResponse = request.getParameter("jcaptcha");  
-		 boolean captchaPassed = SimpleImageCaptchaServlet.validateResponse(request, userCaptchaResponse); 
+		String userCaptchaResponse = request.getParameter("jcaptcha");  
+		boolean captchaPassed = SimpleImageCaptchaServlet.validateResponse(request, userCaptchaResponse); 
 	    if (!captchaPassed) {
-			throw new AuthenticationServiceException("Wrong ValidateCode！");
+			throw new BadValidateCodeException("Bad validate code.");
 		}
 	}
 }

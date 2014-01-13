@@ -4,8 +4,10 @@ import org.openkoala.koala.auth.AuthHandler;
 import org.openkoala.koala.auth.UserDetails;
 import org.openkoala.koala.auth.password.PasswordEncoder;
 import org.openkoala.koala.auth.vo.DefaultUserDetailsImpl;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 /**
  * Spring Security3.0认证处理器实现
@@ -32,11 +34,11 @@ public class SS3AuthHandler implements AuthHandler {
 		CustomUserDetails loadedUser = (CustomUserDetails) userDetailsService.loadUserByUsername(useraccount);
 		
 		if (loadedUser == null) {
-			return null;
+			throw new UsernameNotFoundException("Username not found.");
 		}
 		
 		if (!isPasswordValid(password, loadedUser.getPassword())) {
-			return null;
+			throw new BadCredentialsException("Password is not correct.");
 		}
 		
 		DefaultUserDetailsImpl result = new DefaultUserDetailsImpl();
