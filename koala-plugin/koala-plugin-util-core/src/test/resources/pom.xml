@@ -135,7 +135,6 @@
 		<spring.version>3.1.2.RELEASE</spring.version>
 		<spring.security.version>3.0.8.RELEASE</spring.security.version>
 		<aspectj.version>1.6.12</aspectj.version>
-		<framework.version>2.0.0-SNAPSHOT</framework.version>
 
 		<drools.version>5.3.1.BRMS</drools.version>
 		<jbpm.version>5.3.1.BRMS</jbpm.version>

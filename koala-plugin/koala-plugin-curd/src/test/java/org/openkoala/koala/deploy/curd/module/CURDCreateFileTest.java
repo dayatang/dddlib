@@ -72,7 +72,7 @@ public class CURDCreateFileTest {
 	}
 
 	private String getUnZipToDir() {
-		return getCurrentProjectPath() + "/target";
+		return getCurrentProjectPath() + "/target/";
 	}
 
 	private String getEntitySrcPath() {
