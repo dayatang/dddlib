@@ -32,7 +32,9 @@ public class UserCreator {
 
 
     public boolean createUser(Developer developer, WebDriver driver) {
-        driver.get(jenkinsUrl + "/securityRealm/addUser");
+        if (!(jenkinsUrl + "/securityRealm/addUser").equals(driver.getCurrentUrl())) {
+            driver.get(jenkinsUrl + "/securityRealm/addUser");
+        }
 
         WebElement usernameInput = driver.findElement(By.name("username"));
         usernameInput.sendKeys(developer.getName());

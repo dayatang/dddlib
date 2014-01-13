@@ -16,27 +16,28 @@ import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.UUID;
 
-@Ignore
+
 public class JenkinsCISClientIntegrationTest extends CISClientAbstactIntegrationTest {
 
 
     @Test
     public void test() throws MalformedURLException {
-        System.out.println(new Date());
 
-        Project project = getProject(UUID.randomUUID().toString());
-        Developer developer = getDeveloper("sdgdfa");
+        Project project = getProject("11111");
+        Developer developer = getDeveloper("sdgdfa111");
 
         WebDriver driver = ownAuthenticationAndCreateWebDriver();
         MavenProjectCreator projectCreateStrategy = new MavenProjectCreator(jenkinsUrl.toString());
-        projectCreateStrategy.setScmConfig(new SvnConfig(jenkinsUrl.toString() + "/job/" + project.getArtifactId() + "/configure", "http://10.108.1.138/svn/projec1", "admin", "admin"));
+        projectCreateStrategy.setScmConfig(
+                new SvnConfig(jenkinsUrl.toString() + "/job/" + project.getArtifactId()
+                        + "/configure", "http://10.108.1.138/svn/projec1", "admin", "admin"));
         projectCreateStrategy.createAndConfig(project, driver);
         System.out.println(projectCreateStrategy.getError());
 
 
         driver = ownAuthenticationAndCreateWebDriver();
         ProjectAuthorization projectAuthorization = new ProjectAuthorization(jenkinsUrl.toString());
-        projectAuthorization.authorize(project, driver);
+        projectAuthorization.authorize(project, driver, developer);
         System.out.println(projectAuthorization.getError());
 
         driver = ownAuthenticationAndCreateWebDriver();
@@ -51,12 +52,12 @@ public class JenkinsCISClientIntegrationTest extends CISClientAbstactIntegration
 
 
         driver = ownAuthenticationAndCreateWebDriver();
-        Developer developer1 = getDeveloper("asfsdf");
+        Developer developer1 = getDeveloper("asfsd22f");
         globalProjectAuthorization.authorize(developer1, driver);
         System.out.println(globalProjectAuthorization.getError());
 
         driver = ownAuthenticationAndCreateWebDriver();
-        projectAuthorization.authorize(project, driver);
+        projectAuthorization.authorize(project, driver, developer1);
         System.out.println(projectAuthorization.getError());
 
         driver = ownAuthenticationAndCreateWebDriver();

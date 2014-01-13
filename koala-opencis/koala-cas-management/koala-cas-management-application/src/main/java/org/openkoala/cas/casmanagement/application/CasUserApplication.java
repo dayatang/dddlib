@@ -63,6 +63,10 @@ public interface CasUserApplication {
 	@Path("/isUserValid")
 	@Produces(MediaType.TEXT_PLAIN)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	boolean isUserValid(@FormParam("username")String username,@FormParam("password")String password);
+	boolean isUserValid(@FormParam("username") String username,@FormParam("password") String password);
 	
+	@GET
+	@Path("/email/{useraccount}")
+	@Produces(MediaType.TEXT_PLAIN)
+	String getEmail(@PathParam("useraccount") String useraccount);
 }
