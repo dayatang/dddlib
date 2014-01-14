@@ -36,8 +36,6 @@
 			<artifactId>koala-jbpm-designer-infra</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
-		<!-- <dependency> <groupId>org.openkoala.jbpm.client</groupId> <artifactId>koala-jbpm-ws-client</artifactId> 
-			<version>${project.parent.version}</version> </dependency> -->
 		<dependency>
 			<groupId>org.openkoala.jbpm.core</groupId>
 			<artifactId>koala-jbpm-core-application</artifactId>

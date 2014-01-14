@@ -69,6 +69,12 @@ $(function(){
 	$('#userManager').find('li').on('click', function(){
 		self.trigger($(this).data('target'));
 	});
+	 $('body').keydown(function(e) {
+	     if (e.keyCode == 13) {
+	         e.preventDefault();
+	         e.stopPropagation();
+	     }
+	 });
 });
 /*
  *打开一个Tab

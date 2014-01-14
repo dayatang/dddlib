@@ -26,8 +26,7 @@ public class ProcessDynaListener implements ServletContextListener {
 	private void initDynaProcessTemplateDatas(ServletContextEvent event) {
 		System.out.println("--------------------------------");
 		BusinessSupportApplication businessSupportApplication = (BusinessSupportApplication) WebApplicationContextUtils
-				.getWebApplicationContext(event.getServletContext()).getBean(
-						"businessSupportApplication");
+				.getWebApplicationContext(event.getServletContext()).getBean(BusinessSupportApplication.class);
 		
 		List<DynaProcessTemplate> dynaProcessTemplates = this.getInitDynaProcessTemplateDatas();
 		businessSupportApplication.initDynaProcessTemplateDatas(dynaProcessTemplates);
@@ -40,8 +39,7 @@ public class ProcessDynaListener implements ServletContextListener {
 		
 		System.out.println("--------------------------------");
 		OrganizationApplication organizationApplication = (OrganizationApplication) WebApplicationContextUtils
-				.getWebApplicationContext(event.getServletContext()).getBean(
-						"organizationApplication");
+				.getWebApplicationContext(event.getServletContext()).getBean(OrganizationApplication.class);
 		
 		organizationApplication.createAsTopOrganization(getTopOrganization());
 	}

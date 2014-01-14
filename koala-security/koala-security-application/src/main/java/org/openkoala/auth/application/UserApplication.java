@@ -108,4 +108,18 @@ public interface UserApplication {
 	 * @return
 	 */
     boolean updatePassword(UserVO userVO, String oldPass);
+    
+    /**
+     * 修改用户最后登录时间
+     * @param useraccount
+     */
+    void modifyLastLoginTime(String useraccount);
+    
+    /**
+     * 根据用户账号查找用户邮箱
+     * @param email
+     * @return
+     */
+    UserVO findByEmail(String email);
+    
 }

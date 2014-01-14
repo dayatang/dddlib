@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.apache.commons.lang.StringUtils;
 import org.openkoala.opencis.api.OpencisConstant;
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.api.SSHConnectConfig;
 import org.openkoala.opencis.exception.ProjectExistenceException;
 
 import com.dayatang.configuration.Configuration;
@@ -21,7 +22,7 @@ public class SvnCreateProjectCommand extends SvnCommand {
 		
 	}
 	
-	public SvnCreateProjectCommand(Configuration configuration, Project project) {
+	public SvnCreateProjectCommand(SSHConnectConfig configuration, Project project) {
 		super(configuration, project);
 	}
 

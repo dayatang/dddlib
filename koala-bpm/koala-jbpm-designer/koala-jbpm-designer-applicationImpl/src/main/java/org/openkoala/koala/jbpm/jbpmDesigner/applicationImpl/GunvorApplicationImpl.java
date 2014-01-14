@@ -24,7 +24,6 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.openkoala.jbpm.application.JBPMApplication;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.GunvorApplication;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.vo.Bpmn2;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.vo.PackageVO;
@@ -47,10 +46,9 @@ public class GunvorApplicationImpl implements GunvorApplication {
 	@Value("${gunvor.server.pwd}")
 	private String gunvorServerPwd;
 
-	
 	public void publichJBPM(String packageName, String name, String url) {
 		Assert.isTrue(url.endsWith("?_wadl"));
-		String publisURL = url.substring(0,url.indexOf("?_wadl"))+"/process";
+		String publisURL = url.substring(0, url.indexOf("?_wadl")) + "/process";
 		try {
 			Bpmn2 bpmn = this.getBpmn2(packageName, name);
 			String source = getConnectionString(bpmn.getSource());
@@ -69,29 +67,25 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			String pngURL = gunvorServerUrl + "/rest/packages/" + packageName
 					+ "/assets/" + processId + "-image/binary";
 			byte[] pngByte = this.getPng(pngURL);
-			
+
 			CloseableHttpClient httpclient = HttpClients.createDefault();
 			HttpPost httpPost = new HttpPost(publisURL);
-			List <NameValuePair> nvps = new ArrayList <NameValuePair>();
+			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 			nvps.add(new BasicNameValuePair("packageName", packageName));
-			nvps.add(new BasicNameValuePair("processId",processId));
+			nvps.add(new BasicNameValuePair("processId", processId));
 			nvps.add(new BasicNameValuePair("version", bpmn.getVersion()));
 			nvps.add(new BasicNameValuePair("data", document.asXML()));
 			nvps.add(new BasicNameValuePair("png", new String(pngByte)));
 			nvps.add(new BasicNameValuePair("isActive", "true"));
-			httpPost.setEntity(new UrlEncodedFormEntity(nvps));
+			httpPost.setEntity(new UrlEncodedFormEntity(nvps,"UTF-8"));
 			CloseableHttpResponse response = httpclient.execute(httpPost);
 
 			try {
-				StatusLine statusLine = response.getStatusLine();
-				if(statusLine.getStatusCode()==204){
-					
-				}
+				response.getStatusLine();
 			} finally {
-			    response.close();
+				response.close();
 			}
-		    
-			
+
 		} catch (DocumentException e) {
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
@@ -99,11 +93,12 @@ public class GunvorApplicationImpl implements GunvorApplication {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {   
-    }  
+		} finally {
+		}
 	}
-	
-	private Bpmn2 getBpmnFromDocument(String packageName,Document assertDocument){
+
+	private Bpmn2 getBpmnFromDocument(String packageName,
+			Document assertDocument) {
 		Bpmn2 bpmn = null;
 		if (assertDocument != null) {
 			Element assertRoot = assertDocument.getRootElement();
@@ -113,13 +108,12 @@ public class GunvorApplicationImpl implements GunvorApplication {
 				bpmn = new Bpmn2();
 				bpmn.setCreated(metadata.elementText("created"));
 				bpmn.setCreatedby(metadata.elementText("createdBy"));
-				bpmn.setDescription(assertRoot
-						.elementText("description"));
+				bpmn.setDescription(assertRoot.elementText("description"));
 				bpmn.setFormat(metadata.elementText("format"));
 				bpmn.setText(assertRoot.elementText("title"));
 				bpmn.setPkgname(packageName);
 				bpmn.setUuid(metadata.elementText("uuid"));
-				bpmn.setVersion(metadata.elementText("version"));
+				bpmn.setVersion(metadata.elementText("versionNumber"));
 				bpmn.setSource(assertRoot.elementText("sourceLink"));
 				bpmn.setPackageName(packageName);
 			}
@@ -154,8 +148,8 @@ public class GunvorApplicationImpl implements GunvorApplication {
 						.read(new ByteArrayInputStream(assertResult.toString()
 								.getBytes("UTF-8")));
 				Bpmn2 bpmn = getBpmnFromDocument(packageName, assertDocument);
-				
-				if(bpmn!=null){
+
+				if (bpmn != null) {
 					bpmn2.add(bpmn);
 				}
 			}
@@ -261,7 +255,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 
 		// String xml =
 		// "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><package><description>The default rule package</description><title>demo</title></package>";
-		
+
 		HttpClient httpclient = null;
 		try {
 			InputStream inputString = null;
@@ -312,8 +306,8 @@ public class GunvorApplicationImpl implements GunvorApplication {
 	private byte[] getPng(String urlString) {
 		DefaultHttpClient httpclient = getDefaultHttpClient();
 		HttpGet httpGet = new HttpGet(urlString);
-		httpGet.setHeader("Accept", 
-	             "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+		httpGet.setHeader("Accept",
+				"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
 		try {
 			HttpResponse response = httpclient.execute(httpGet);
 			InputStream inputStream = response.getEntity().getContent();
@@ -325,7 +319,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			}
 			byte[] in_b = swapStream.toByteArray();
 			return in_b;
-//			return convertToByteArray(in_b);
+			// return convertToByteArray(in_b);
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -335,10 +329,10 @@ public class GunvorApplicationImpl implements GunvorApplication {
 		}
 		return null;
 	}
-	
-	private Byte[] convertToByteArray(byte[] pngs){
+
+	private Byte[] convertToByteArray(byte[] pngs) {
 		Byte[] pngByte = new Byte[pngs.length];
-		for(int i=0; i<pngs.length; i++){
+		for (int i = 0; i < pngs.length; i++) {
 			pngByte[i] = Byte.valueOf(pngs[i]);
 		}
 		return pngByte;
@@ -350,8 +344,8 @@ public class GunvorApplicationImpl implements GunvorApplication {
 	public String getConnectionString(String urlString) {
 		DefaultHttpClient httpclient = getDefaultHttpClient();
 		HttpGet httpGet = new HttpGet(urlString);
-		httpGet.setHeader("Accept", 
-	             "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+		httpGet.setHeader("Accept",
+				"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
 		try {
 			HttpResponse response = httpclient.execute(httpGet);
 			String result = EntityUtils.toString(response.getEntity());
@@ -368,6 +362,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 
 	/**
 	 * 返回一个带验证的默认HTTP CLIENT，用于和Gunonor进行交互
+	 * 
 	 * @return
 	 */
 	private DefaultHttpClient getDefaultHttpClient() {
@@ -376,7 +371,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 				new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT),
 				new UsernamePasswordCredentials(gunvorServerUser,
 						gunvorServerPwd));
-		
+
 		return httpclient;
 	}
 }

@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.openkoala.bpm.KoalaBPM.infra.common.ConstantUtil;
@@ -68,7 +66,13 @@ public class BusinessSupportApplicationImpl implements
 	}
 	
 	public List<ProcessVO> getProcesses() {
-		return getJBPMApplication().getProcesses();
+		List<ProcessVO> process = null;
+		try{
+		  process =  getJBPMApplication().getProcesses();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return process;
 	}
 
 	public FormShowDTO findTemplateHtmlCodeByProcessId(String processId) {

@@ -26,10 +26,10 @@ public abstract class SSHCommand implements Command {
 		
 	}
 
-	public SSHCommand(Configuration configuration,Project project) {
-		this.host = configuration.getString("HOST");
-		this.userName = configuration.getString("USER");
-		this.password = configuration.getString("PASSWORD");
+	public SSHCommand(SSHConnectConfig config,Project project) {
+		this.host = config.getHost();
+		this.userName = config.getUsername();
+		this.password = config.getPassword();
 		this.project = project;
 		
 	}
