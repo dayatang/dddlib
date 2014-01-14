@@ -60,7 +60,7 @@
 		<property name="authenticationManager" ref="authenticationManager" />
 		<property name="httpHandlers">
 			<list>
-				<bean class="org.openkoala.koala.auth.ss3adapter.ValidateCodeHandler" />
+				<!-- <bean class="org.openkoala.koala.auth.ss3adapter.ValidateCodeHandler" /> -->
 			</list>
 		</property>
 	</bean>

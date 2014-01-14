@@ -43,7 +43,7 @@ public class GunvorApplicationTest {
 		String pngString = new String(png);
 		
 		CloseableHttpClient httpclient = HttpClients.createDefault();
-		HttpPost httpPost = new HttpPost("http://localhost:8080/bpm-core/ws/jbpmService/process");
+		HttpPost httpPost = new HttpPost("http://localhost:8180/ws/jbpmService/process");
 		List <NameValuePair> nvps = new ArrayList <NameValuePair>();
 		nvps.add(new BasicNameValuePair("packageName", packageName));
 		nvps.add(new BasicNameValuePair("processId",processId));
@@ -51,7 +51,7 @@ public class GunvorApplicationTest {
 		nvps.add(new BasicNameValuePair("data", data));
 		nvps.add(new BasicNameValuePair("png", pngString));
 		nvps.add(new BasicNameValuePair("isActive", "true"));
-		httpPost.setEntity(new UrlEncodedFormEntity(nvps));
+		httpPost.setEntity(new UrlEncodedFormEntity(nvps,"UTF-8"));
 		CloseableHttpResponse response2 = httpclient.execute(httpPost);
 
 		try {

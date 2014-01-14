@@ -5,9 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Named;
-
-import org.apache.commons.configuration.Configuration;
-import org.apache.commons.configuration.PropertiesConfiguration;
 import org.openkoala.bpm.application.ProcessFormOperApplication;
 import org.openkoala.bpm.application.dto.DynaProcessFormDTO;
 import org.openkoala.bpm.application.dto.DynaProcessKeyDTO;
@@ -22,9 +19,8 @@ import org.openkoala.bpm.processdyna.core.DynaType;
 import org.openkoala.bpm.processdyna.core.FieldType;
 import org.openkoala.bpm.processdyna.core.ValidateRule;
 import org.openkoala.exception.base.BaseException;
-import org.openkoala.jbpm.wsclient.JBPMApplication;
-import org.openkoala.jbpm.wsclient.JBPMApplicationImplService;
-import org.openkoala.jbpm.wsclient.ProcessVO;
+import org.openkoala.jbpm.application.JBPMApplication;
+import org.openkoala.jbpm.application.vo.ProcessVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,19 +48,11 @@ public class ProcessFormOperApplicationImpl implements
 		return queryChannel;
 	}
 	
-	
     private JBPMApplication jbpmApplication;
 	
 	private JBPMApplication getJBPMApplication() { 
 		if(jbpmApplication==null){
-			try { 
-				Configuration conf = new PropertiesConfiguration("jbpmService.properties");
-				String wsdlURL = conf.getString("wsdlURL");
-				LOG.info("JBPM WS:{}",wsdlURL);
-				jbpmApplication = new JBPMApplicationImplService(wsdlURL).getJBPMApplicationImplPort(); 
-			} catch (Exception e) {
-				e.printStackTrace(); 
-			} 
+			jbpmApplication = InstanceFactory.getInstance(JBPMApplication.class);
 		} 
 		return jbpmApplication; 
 	}

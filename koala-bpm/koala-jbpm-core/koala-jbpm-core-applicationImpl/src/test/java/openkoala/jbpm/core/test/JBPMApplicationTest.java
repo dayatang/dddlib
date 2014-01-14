@@ -49,7 +49,6 @@ public class JBPMApplicationTest {
 			jbpmApplication = InstanceFactory
 					.getInstance(JBPMApplication.class);
 		}
-		TransactionManager t;
 		return jbpmApplication;
 	}
 
