@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.UUID;
 
 
+@Ignore
 public class JenkinsCISClientIntegrationTest extends CISClientAbstactIntegrationTest {
 
 
