@@ -11,7 +11,7 @@
 		http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
 
 	<!-- all application configure should configure in this file -->
-    <context:property-placeholder location="classpath:META-INF/props/ws-client.properties" />
+    <context:property-placeholder location="classpath*:META-INF/props/ws-client.properties" />
     
 	<jaxrs:client id="jbpmApplication" address="${JbpmApplication.ws.url}" serviceClass="org.openkoala.jbpm.application.JBPMApplication">
 	</jaxrs:client>

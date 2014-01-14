@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="ss3" uri="http://www.springframework.org/security/tags" %>
 <%@ page import="java.util.Date"%>
 <%Long time = new Date().getTime();%>
 <!DOCTYPE html>
@@ -27,18 +26,6 @@
 	    <nav class="navbar navbar-default">
 	        <a class="navbar-brand" href="#"><img src="<c:url value='/images/global.logo.png'/>"/>Koala监控系统</a>
 	        <div class="collapse navbar-collapse navbar-ex1-collapse">
-	            <div class="btn-group navbar-right">
-	                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-	                    <i class="glyphicon glyphicon-user"></i>
-	                    <span>&nbsp;<ss3:authentication property="principal.username" /></span>
-	                    <span class="caret"></span>
-	                </button>
-	                <ul class="dropdown-menu" id="userManager">
-	                    <li data-target="modifyPwd"><a href="#">修改密码</a></li>
-	                    <li data-target="switchUser"><a href="#">切换用户</a></li>
-	                    <li data-target="loginOut"><a href="#">注销</a></li>
-	                </ul>
-	            </div>
 	        </div>
 	    </nav>
 	</div>

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.openkoala.opencis.api.OpencisConstant;
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.api.SSHConnectConfig;
 import org.openkoala.opencis.exception.UserExistenceException;
 
 import com.dayatang.configuration.Configuration;
@@ -21,7 +22,7 @@ public class SvnIsUserExistenceCommand extends SvnCommand {
 		
 	}
 	
-	public SvnIsUserExistenceCommand(String userName, Configuration configuration, Project project){
+	public SvnIsUserExistenceCommand(String userName, SSHConnectConfig configuration, Project project){
 		super(configuration, project);
 		this.userName = userName;
 	}

@@ -146,6 +146,25 @@
 			<artifactId>powermock-module-junit4</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.openkoala.organisation</groupId>
+			<artifactId>koala-organisation-core</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.openkoala.organisation</groupId>
+			<artifactId>koala-organisation-application</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.openkoala.organisation</groupId>
+			<artifactId>koala-organisation-applicationImpl</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>
