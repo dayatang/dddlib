@@ -182,8 +182,12 @@ public class User extends Identity {
 	 * 用户账号是否存在
 	 * @return
 	 */
-	public boolean isAccountExist() {
-		return !findByNamedQuery("isAccountExist", new Object[] { getUserAccount(), new Date() }, User.class).isEmpty();
+	public boolean isAccountExisted() {
+		return !findByNamedQuery("isAccountExisted", new Object[] { userAccount, new Date() }, User.class).isEmpty();
+	}
+	
+	public boolean isEmailExisted() {
+		return !findByNamedQuery("isEmailExisted", new Object[] { email, new Date() }, User.class).isEmpty();
 	}
 
 	/**
