@@ -11,14 +11,6 @@ public interface CISClient {
 
 
     /**
-     * 认证
-     *
-     * @return
-     */
-    boolean authenticate();
-
-
-    /**
      * 关闭与具体工具的连接
      */
     void close();

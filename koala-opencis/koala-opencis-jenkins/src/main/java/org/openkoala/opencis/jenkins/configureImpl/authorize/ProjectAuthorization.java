@@ -11,33 +11,31 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
+ * 项目授权
  * User: zjzhai
  * Date: 1/7/14
  * Time: 6:17 PM
  */
-public class ProjectAuthorization implements CISAuthorization {
+public class ProjectAuthorization implements CISAuthorization<WebDriver> {
 
 
-    private String jenkinsUrl;
     private String errors;
 
     public ProjectAuthorization() {
     }
 
-    public ProjectAuthorization(String jenkinsUrl) {
-        this.jenkinsUrl = UrlUtil.removeEndIfExists(jenkinsUrl, "/");
-    }
-
     @Override
-    public boolean authorize(Project project, Object context, Developer... developers) {
+    public boolean authorize(String jenkinsBaseUrl, Project project, WebDriver context, Developer... developers) {
         String jobConfigureUrl =
-                UrlUtil.removeEndIfExists(jenkinsUrl, "/") + "/job/" + project.getArtifactId() + "/configure";
+                UrlUtil.removeEndIfExists(jenkinsBaseUrl, "/") + "/job/" + project.getArtifactId() + "/configure";
+
+
         String directConfigurePageResult = ProjectConfigUtil.openJobConfigurePage(context, jobConfigureUrl);
         if (directConfigurePageResult != null) {
             errors = directConfigurePageResult;
             return false;
         }
-        WebDriver driver = (WebDriver) context;
+        WebDriver driver = context;
 
         if (!SeleniumUtil.elementExist(driver, By.cssSelector("input[name=\"useProjectSecurity\"][type=\"checkbox\"]"))) {
             errors = "not found useProjectSecurity checkbox";

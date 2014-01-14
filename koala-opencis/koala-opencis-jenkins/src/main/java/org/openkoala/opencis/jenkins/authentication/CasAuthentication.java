@@ -1,5 +1,6 @@
 package org.openkoala.opencis.jenkins.authentication;
 
+import org.openkoala.opencis.api.AuthenticationResult;
 import org.openkoala.opencis.api.AuthenticationStrategy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +13,7 @@ import java.net.URL;
  * Date: 1/7/14
  * Time: 4:57 PM
  */
-public class CasAuthentication implements AuthenticationStrategy {
+public class CasAuthentication implements AuthenticationStrategy<WebDriver> {
 
     private WebDriver driver;
 
@@ -21,8 +22,6 @@ public class CasAuthentication implements AuthenticationStrategy {
     private String username = null;
 
     private String password = null;
-
-    private String errors;
 
     private CasAuthentication() {
     }
@@ -35,23 +34,22 @@ public class CasAuthentication implements AuthenticationStrategy {
     }
 
     @Override
-    public boolean authenticate() {
+    public AuthenticationResult authenticate() {
         driver.get(jenkinsURL);
         WebElement usernameElement = driver.findElement(By.id("username"));
         usernameElement.sendKeys(username);
         WebElement passwordElement = driver.findElement(By.id("password"));
         passwordElement.sendKeys(password);
         passwordElement.submit();
-        return "Dashboard [Jenkins]".equals(driver.getTitle());
+
+        AuthenticationResult authenticationResult = new AuthenticationResult();
+
+        if ("Dashboard [Jenkins]".equals(driver.getTitle())) {
+            authenticationResult.setContext(driver);
+        } else {
+            authenticationResult.setErrors("authentication failure!");
+        }
+        return authenticationResult;
     }
 
-    @Override
-    public Object getContext() {
-        return driver;
-    }
-
-    @Override
-    public String getErrors() {
-        return errors;
-    }
 }

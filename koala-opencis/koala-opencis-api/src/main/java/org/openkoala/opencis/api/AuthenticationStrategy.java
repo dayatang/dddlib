@@ -5,12 +5,8 @@ package org.openkoala.opencis.api;
  * Date: 1/14/14
  * Time: 9:26 AM
  */
-public interface AuthenticationStrategy {
+public interface AuthenticationStrategy<T> {
 
-    boolean authenticate();
-
-    Object getContext();
-
-    String getErrors();
+    AuthenticationResult<T> authenticate();
 
 }

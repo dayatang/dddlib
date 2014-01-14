@@ -35,16 +35,12 @@ public class JenkinsCISClient implements CISClient {
      */
     private ProjectCreateStrategy projectCreateStrategy;
 
-    /**
-     * 认证
-     */
-    private AuthenticationStrategy authentication;
 
     private String errors;
 
-    public JenkinsCISClient(String jenkinsUrl, AuthenticationStrategy authentication) {
+    public JenkinsCISClient(String jenkinsUrl, WebDriver driver) {
         this.jenkinsUrl = jenkinsUrl;
-        this.authentication = authentication;
+        this.driver = driver;
     }
 
 
@@ -56,16 +52,6 @@ public class JenkinsCISClient implements CISClient {
         this.authorization = authorization;
     }
 
-
-    @Override
-    public boolean authenticate() {
-        if (!authentication.authenticate()) {
-            errors = authentication.getErrors();
-            return false;
-        }
-        driver = (WebDriver) authentication.getContext();
-        return true;
-    }
 
     @Override
     public void close() {

@@ -9,9 +9,9 @@ import org.openkoala.opencis.api.Project;
  * Date: 1/7/14
  * Time: 8:51 PM
  */
-public interface CISAuthorization {
+public interface CISAuthorization<T> {
 
-    boolean authorize(Project project, Object context, Developer... developers);
+    boolean authorize(String jenkinsBaseUrl, Project project, T context, Developer... developers);
 
     String getErrors();
 }

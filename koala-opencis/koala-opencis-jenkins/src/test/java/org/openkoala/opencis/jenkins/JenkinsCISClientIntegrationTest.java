@@ -41,7 +41,7 @@ public class JenkinsCISClientIntegrationTest extends CISClientAbstactIntegration
         driver = ownAuthenticationAndCreateWebDriver();
         GlobalProjectAuthorization globalProjectAuthorization = new GlobalProjectAuthorization(jenkinsUrl.toString());
         globalProjectAuthorization.authorize(developer, driver);
-        System.out.println(globalProjectAuthorization.getError());
+        System.out.println(globalProjectAuthorization.getErrors());
 
         driver = ownAuthenticationAndCreateWebDriver();
         UserCreator userCreator = new UserCreator(jenkinsUrl.toString());
@@ -52,7 +52,7 @@ public class JenkinsCISClientIntegrationTest extends CISClientAbstactIntegration
         driver = ownAuthenticationAndCreateWebDriver();
         Developer developer1 = getDeveloper("asfsd22f");
         globalProjectAuthorization.authorize(developer1, driver);
-        System.out.println(globalProjectAuthorization.getError());
+        System.out.println(globalProjectAuthorization.getErrors());
 
         driver = ownAuthenticationAndCreateWebDriver();
         projectAuthorization.authorize(project, driver, developer1);

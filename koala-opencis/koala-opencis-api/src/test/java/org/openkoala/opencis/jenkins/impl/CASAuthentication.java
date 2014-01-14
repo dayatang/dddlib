@@ -1,6 +1,8 @@
 package org.openkoala.opencis.jenkins.impl;
 
+import org.openkoala.opencis.api.AuthenticationResult;
 import org.openkoala.opencis.api.AuthenticationStrategy;
+import sun.net.www.http.HttpClient;
 
 /**
  * User: zjzhai
@@ -10,21 +12,16 @@ import org.openkoala.opencis.api.AuthenticationStrategy;
 public class CASAuthentication implements AuthenticationStrategy {
 
 
-    private String error;
-
     @Override
-    public boolean authenticate() {
-        System.out.println("cas authentication success");
-        return true;
-    }
+    public AuthenticationResult authenticate() {
 
-    @Override
-    public Object getContext() {
-        return new String();
-    }
+        AuthenticationResult authenticationResult = new AuthenticationResult();
 
-    @Override
-    public String getErrors() {
-        return error;
+        authenticationResult.setContext("context");
+
+
+
+
+        return authenticationResult;
     }
 }

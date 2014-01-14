@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * Date: 1/7/14
  * Time: 6:01 PM
  */
-public class SvnConfig implements ScmConfigStrategy {
+public class SvnConfig implements ScmConfigStrategy<WebDriver> {
 
     private String jobConfigUrl;
 
@@ -39,13 +39,9 @@ public class SvnConfig implements ScmConfigStrategy {
     }
 
     @Override
-    public boolean config(Object context) {
-        String directConfigurePageResult = ProjectConfigUtil.openJobConfigurePage(context, jobConfigUrl);
-        if (directConfigurePageResult != null) {
-            error = directConfigurePageResult;
-            return false;
+    public boolean config(WebDriver driver) {
+        if () {
         }
-        WebDriver driver = (WebDriver) context;
 
         String jobName = driver.findElement(By.name("name")).getAttribute("value");
 
@@ -66,7 +62,7 @@ public class SvnConfig implements ScmConfigStrategy {
         repositoryUrlInput.sendKeys(svnUrl);
         SeleniumUtil.clickBlankArea(driver);
 
-        if(!authenticationSubversionRepository(driver)){
+        if (!authenticationSubversionRepository(driver)) {
             return false;
         }
 
@@ -79,7 +75,7 @@ public class SvnConfig implements ScmConfigStrategy {
     }
 
     @Override
-    public String getError() {
+    public String getErrors() {
         return error;
     }
 
