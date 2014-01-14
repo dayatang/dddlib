@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.OpencisConstant;
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.api.SSHConnectConfig;
 import org.openkoala.opencis.exception.CreateUserFailedException;
 
 import com.dayatang.configuration.Configuration;
@@ -22,7 +23,7 @@ public class SvnCreateUserCommand extends SvnCommand {
 		
 	}
 	
-	public SvnCreateUserCommand(Developer developer, Configuration configuration, Project project){
+	public SvnCreateUserCommand(Developer developer, SSHConnectConfig configuration, Project project){
 		super(configuration, project);
 		this.developer = developer;
 	}
