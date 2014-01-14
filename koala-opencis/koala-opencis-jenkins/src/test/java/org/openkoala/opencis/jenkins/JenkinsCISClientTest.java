@@ -63,7 +63,7 @@ public class JenkinsCISClientTest {
         CISAuthorization cisAuthorization = mock(CISAuthorization.class);
         jenkinsCISClient.setAuthorizationStrategy(cisAuthorization);
         jenkinsCISClient.createUserIfNecessary(project, developer);
-        verify(cisAuthorization).authorize(project, context);
+        verify(cisAuthorization).authorize(JENKINS_URL, project, authenticationResult.getContext(), developer);
 
     }
 

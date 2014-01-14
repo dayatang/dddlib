@@ -5,8 +5,10 @@ import org.openkoala.opencis.api.AuthenticationStrategy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 /**
  * User: zjzhai
@@ -26,8 +28,20 @@ public class CasAuthentication implements AuthenticationStrategy<WebDriver> {
     private CasAuthentication() {
     }
 
+    /**
+     * 用于方便测试使用
+     *
+     * @param driver
+     * @param jenkinsURL
+     * @param username
+     * @param password
+     */
     public CasAuthentication(WebDriver driver, String jenkinsURL, String username, String password) {
+        this(jenkinsURL, username, password);
         this.driver = driver;
+    }
+
+    public CasAuthentication(String jenkinsURL, String username, String password) {
         this.jenkinsURL = jenkinsURL;
         this.username = username;
         this.password = password;
@@ -35,6 +49,10 @@ public class CasAuthentication implements AuthenticationStrategy<WebDriver> {
 
     @Override
     public AuthenticationResult authenticate() {
+        if (driver == null) {
+            driver = new HtmlUnitDriver(true);
+            driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        }
         driver.get(jenkinsURL);
         WebElement usernameElement = driver.findElement(By.id("username"));
         usernameElement.sendKeys(username);

@@ -36,7 +36,7 @@ public class MavenProjectCreator implements ProjectCreateStrategy<WebDriver> {
             driver = context;
         } else {
             driver = new HtmlUnitDriver();
-            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         }
 
         driver.get(jenkinsUrl + "/view/All/newJob");
@@ -63,7 +63,7 @@ public class MavenProjectCreator implements ProjectCreateStrategy<WebDriver> {
 
         assert driver.getCurrentUrl().contains("/job/" + UrlUtil.encodeURL(project.getArtifactId()));
 
-        if (scmConfig != null && scmConfig.config(jenkinsUrl, driver) == false) {
+        if (scmConfig != null && !scmConfig.config(driver)) {
             error = scmConfig.getErrors();
             return false;
         }

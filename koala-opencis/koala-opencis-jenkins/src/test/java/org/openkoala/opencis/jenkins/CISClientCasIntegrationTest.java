@@ -27,17 +27,10 @@ public class CISClientCasIntegrationTest extends CISClientAbstactIntegrationTest
     public void test001CreateProject() throws Exception {
         WebDriver driver = casAuthenticationAndCreateWebDriver();
         ProjectCreateStrategy projectCreateStrategy
-                = new MavenProjectCreator(jenkinsUrl.toString());
+                = new MavenProjectCreator();
 
-        projectCreateStrategy.createAndConfig(getProject(), driver);
+        projectCreateStrategy.createAndConfig(jenkinsUrl, getProject(), driver);
 
-
-    }
-
-
-    @Test
-    public void test002SCM() throws MalformedURLException {
-        WebDriver driver = casAuthenticationAndCreateWebDriver();
         String svnUrl = "http://10.108.1.138/svn/project1";
         String svnUser = "admin";
         String svnPassword = "admin";
@@ -45,17 +38,10 @@ public class CISClientCasIntegrationTest extends CISClientAbstactIntegrationTest
                 new SvnConfig(jobConfigUrl, svnUrl, svnUser, svnPassword);
         svnConfig.config(driver);
 
+
+        CISAuthorization cisAuthorization = new ProjectAuthorization();
+        cisAuthorization.authorize(jenkinsUrl, getProject(), driver, getDeveloper());
     }
-
-    @Test
-    public void test003addUserToProject() {
-        WebDriver driver = casAuthenticationAndCreateWebDriver();
-        CISAuthorization cisAuthorization = new ProjectAuthorization(jenkinsUrl.toString());
-        cisAuthorization.authorize(getProject(), driver);
-
-    }
-
-
 
 
 }

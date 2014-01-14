@@ -1,6 +1,5 @@
 package org.openkoala.opencis.api;
 
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * User: zjzhai
@@ -17,7 +16,7 @@ public class AuthenticationResult<T> {
     }
 
     public boolean isSuccess() {
-        return StringUtils.isEmpty(errors);
+        return errors == null || "".equals(errors.trim());
     }
 
     public T getContext() {

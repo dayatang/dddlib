@@ -24,15 +24,13 @@ import java.net.MalformedURLException;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CISClientOwnIntegrationTest extends CISClientAbstactIntegrationTest {
 
-
-
-
     @Test
     public void test001CreateProject() throws Exception {
+
         WebDriver driver = ownAuthenticationAndCreateWebDriver();
         ProjectCreateStrategy projectCreateStrategy
-                = new MavenProjectCreator(jenkinsUrl.toString());
-        projectCreateStrategy.createAndConfig(getProject(), driver);
+                = new MavenProjectCreator();
+        projectCreateStrategy.createAndConfig(jenkinsUrl, getProject(), driver);
     }
 
 
@@ -59,11 +57,9 @@ public class CISClientOwnIntegrationTest extends CISClientAbstactIntegrationTest
     @Test
     public void test010addUserToProject() {
         WebDriver driver = ownAuthenticationAndCreateWebDriver();
-        CISAuthorization cisAuthorization = new ProjectAuthorization(jenkinsUrl.toString());
-        cisAuthorization.authorize(getProject(), driver);
+        CISAuthorization cisAuthorization = new ProjectAuthorization();
+        cisAuthorization.authorize(jenkinsUrl, getProject(), driver);
     }
-
-
 
 
 }

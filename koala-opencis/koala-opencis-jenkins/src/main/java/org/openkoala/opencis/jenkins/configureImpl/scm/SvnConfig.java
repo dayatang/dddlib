@@ -40,8 +40,6 @@ public class SvnConfig implements ScmConfigStrategy<WebDriver> {
 
     @Override
     public boolean config(WebDriver driver) {
-        if () {
-        }
 
         String jobName = driver.findElement(By.name("name")).getAttribute("value");
 

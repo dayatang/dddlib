@@ -2,7 +2,6 @@ package org.openkoala.opencis.api;
 
 import java.io.IOException;
 
-import com.dayatang.configuration.Configuration;
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.Session;
 

@@ -1,5 +1,6 @@
 package org.openkoala.opencis.jenkins;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.opencis.CISClientAbstactIntegrationTest;
 import org.openkoala.opencis.api.Developer;

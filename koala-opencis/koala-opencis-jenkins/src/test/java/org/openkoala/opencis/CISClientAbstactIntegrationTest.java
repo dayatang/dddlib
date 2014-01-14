@@ -1,5 +1,6 @@
 package org.openkoala.opencis;
 
+import org.openkoala.opencis.api.AuthenticationResult;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.jenkins.authentication.CasAuthentication;
@@ -21,17 +22,13 @@ import java.util.concurrent.TimeUnit;
 public abstract class CISClientAbstactIntegrationTest {
 
     public static final String jobName = UUID.randomUUID().toString();
-    public static URL jenkinsUrl = null;
+    public static String jenkinsUrl = null;
     public static String jobConfigUrl;
 
 
     static {
-        try {
-            jenkinsUrl = new URL("http", "localhost", 8080, "/jenkins");
-            jobConfigUrl = jenkinsUrl.toString() + "/job/" + UrlUtil.encodeURL(jobName) + "/configure";
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
+        jenkinsUrl = "http://127.0.0.1:8080/jenkins";
+        jobConfigUrl = jenkinsUrl + "/job/" + UrlUtil.encodeURL(jobName) + "/configure";
     }
 
 
@@ -41,11 +38,14 @@ public abstract class CISClientAbstactIntegrationTest {
         CasAuthentication cisAuthentication =
                 new CasAuthentication(driver, jenkinsUrl, "admin", "admin");
 
-        if (!cisAuthentication.authenticate()) {
-            System.out.println("authentication error");
+        AuthenticationResult<WebDriver> result = cisAuthentication.authenticate();
+
+        if (!result.isSuccess()) {
+            System.out.println(result.getErrors());
             return null;
         }
-        return driver;
+
+        return result.getContext();
     }
 
 
@@ -60,11 +60,14 @@ public abstract class CISClientAbstactIntegrationTest {
         JenkinsOwnAuthentication cisAuthentication =
                 new JenkinsOwnAuthentication(driver, jenkinsUrl.toString(), "admin", "admin");
 
-        if (!cisAuthentication.authenticate()) {
-            System.out.println("authentication error");
+        AuthenticationResult<WebDriver> result = cisAuthentication.authenticate();
+
+        if (!result.isSuccess()) {
+            System.out.println(result.getErrors());
             return null;
         }
-        return driver;
+
+        return result.getContext();
     }
 
     public Developer getDeveloper() {

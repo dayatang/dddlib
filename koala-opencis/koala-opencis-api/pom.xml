@@ -15,11 +15,6 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>com.dayatang.commons</groupId>
-            <artifactId>dayatang-commons-configuration</artifactId>
-            <version>3.5</version>
-        </dependency>
-        <dependency>
             <groupId>com.trilead</groupId>
             <artifactId>trilead-ssh2</artifactId>
             <version>1.0.0-build217</version>
