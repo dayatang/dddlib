@@ -3,6 +3,7 @@ package org.openkoala.opencis.trac.command;
 import org.openkoala.opencis.api.Project;
 
 import com.dayatang.configuration.Configuration;
+import org.openkoala.opencis.api.SSHConnectConfig;
 
 /**
  * Trac创建项目命令类
@@ -15,7 +16,7 @@ public class TracCreateProjectCommand extends TracCommand {
 		
 	}
 	
-	public TracCreateProjectCommand(Configuration configuration, Project project) {
+	public TracCreateProjectCommand(SSHConnectConfig configuration, Project project) {
 		super(configuration, project);
 	}
 
