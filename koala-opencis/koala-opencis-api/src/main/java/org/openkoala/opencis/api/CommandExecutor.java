@@ -14,7 +14,6 @@ public class CommandExecutor {
 	private List<Command> commands;
 	
 	public CommandExecutor() {
-		// TODO Auto-generated constructor stub
 		commands = new ArrayList<Command>();
 	}
 	

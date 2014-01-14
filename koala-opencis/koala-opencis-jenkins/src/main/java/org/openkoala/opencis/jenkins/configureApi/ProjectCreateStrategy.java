@@ -11,7 +11,7 @@ public interface ProjectCreateStrategy {
 
     boolean createAndConfig(Project project, Object context);
 
-    String getError();
+    String getErrors();
 
 
 }

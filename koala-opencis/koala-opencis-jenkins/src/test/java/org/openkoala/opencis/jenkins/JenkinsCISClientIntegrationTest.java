@@ -1,6 +1,5 @@
 package org.openkoala.opencis.jenkins;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.opencis.CISClientAbstactIntegrationTest;
 import org.openkoala.opencis.api.Developer;
@@ -14,7 +13,6 @@ import org.openqa.selenium.WebDriver;
 
 import java.net.MalformedURLException;
 import java.util.Date;
-import java.util.UUID;
 
 
 public class JenkinsCISClientIntegrationTest extends CISClientAbstactIntegrationTest {
@@ -32,13 +30,13 @@ public class JenkinsCISClientIntegrationTest extends CISClientAbstactIntegration
                 new SvnConfig(jenkinsUrl.toString() + "/job/" + project.getArtifactId()
                         + "/configure", "http://10.108.1.138/svn/projec1", "admin", "admin"));
         projectCreateStrategy.createAndConfig(project, driver);
-        System.out.println(projectCreateStrategy.getError());
+        System.out.println(projectCreateStrategy.getErrors());
 
 
         driver = ownAuthenticationAndCreateWebDriver();
         ProjectAuthorization projectAuthorization = new ProjectAuthorization(jenkinsUrl.toString());
         projectAuthorization.authorize(project, driver, developer);
-        System.out.println(projectAuthorization.getError());
+        System.out.println(projectAuthorization.getErrors());
 
         driver = ownAuthenticationAndCreateWebDriver();
         GlobalProjectAuthorization globalProjectAuthorization = new GlobalProjectAuthorization(jenkinsUrl.toString());
@@ -58,7 +56,7 @@ public class JenkinsCISClientIntegrationTest extends CISClientAbstactIntegration
 
         driver = ownAuthenticationAndCreateWebDriver();
         projectAuthorization.authorize(project, driver, developer1);
-        System.out.println(projectAuthorization.getError());
+        System.out.println(projectAuthorization.getErrors());
 
         driver = ownAuthenticationAndCreateWebDriver();
         userCreator.createUser(developer1, driver);

@@ -2,8 +2,8 @@ package org.openkoala.opencis;
 
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.jenkins.authentication.CasAuthen;
-import org.openkoala.opencis.jenkins.authentication.JenkinsOwnAuthen;
+import org.openkoala.opencis.jenkins.authentication.CasAuthentication;
+import org.openkoala.opencis.jenkins.authentication.JenkinsOwnAuthentication;
 import org.openkoala.opencis.jenkins.util.UrlUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
@@ -38,8 +38,8 @@ public abstract class CISClientAbstactIntegrationTest {
     public WebDriver casAuthenticationAndCreateWebDriver() {
         WebDriver driver = new HtmlUnitDriver();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        CasAuthen cisAuthentication =
-                new CasAuthen(driver, jenkinsUrl, "admin", "admin");
+        CasAuthentication cisAuthentication =
+                new CasAuthentication(driver, jenkinsUrl, "admin", "admin");
 
         if (!cisAuthentication.authenticate()) {
             System.out.println("authentication error");
@@ -57,8 +57,8 @@ public abstract class CISClientAbstactIntegrationTest {
 
         WebDriver driver = new HtmlUnitDriver(true);
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        JenkinsOwnAuthen cisAuthentication =
-                new JenkinsOwnAuthen(driver, jenkinsUrl.toString(), "admin", "admin");
+        JenkinsOwnAuthentication cisAuthentication =
+                new JenkinsOwnAuthentication(driver, jenkinsUrl.toString(), "admin", "admin");
 
         if (!cisAuthentication.authenticate()) {
             System.out.println("authentication error");

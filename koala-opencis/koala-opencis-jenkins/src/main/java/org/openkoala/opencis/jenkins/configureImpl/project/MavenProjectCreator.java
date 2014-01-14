@@ -75,7 +75,6 @@ public class MavenProjectCreator implements ProjectCreateStrategy {
             return false;
         }
 
-        driver.quit();
         return true;
     }
 
@@ -83,7 +82,7 @@ public class MavenProjectCreator implements ProjectCreateStrategy {
         this.scmConfig = scmConfig;
     }
 
-    public String getError() {
+    public String getErrors() {
         return error;
     }
 }

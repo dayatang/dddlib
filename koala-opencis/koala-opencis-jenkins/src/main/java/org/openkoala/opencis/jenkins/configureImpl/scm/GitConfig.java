@@ -31,7 +31,6 @@ public class GitConfig implements ScmConfigStrategy {
 
     @Override
     public boolean config(Object context) {
-
         String directConfigurePageResult = ProjectConfigUtil.openJobConfigurePage(context, jobConfigUrl);
         if (directConfigurePageResult != null) {
             error = directConfigurePageResult;

@@ -19,8 +19,10 @@ public class ProjectAuthorization implements CISAuthorization {
 
 
     private String jenkinsUrl;
-    private String error;
+    private String errors;
 
+    public ProjectAuthorization() {
+    }
 
     public ProjectAuthorization(String jenkinsUrl) {
         this.jenkinsUrl = UrlUtil.removeEndIfExists(jenkinsUrl, "/");
@@ -32,13 +34,13 @@ public class ProjectAuthorization implements CISAuthorization {
                 UrlUtil.removeEndIfExists(jenkinsUrl, "/") + "/job/" + project.getArtifactId() + "/configure";
         String directConfigurePageResult = ProjectConfigUtil.openJobConfigurePage(context, jobConfigureUrl);
         if (directConfigurePageResult != null) {
-            error = directConfigurePageResult;
+            errors = directConfigurePageResult;
             return false;
         }
         WebDriver driver = (WebDriver) context;
 
         if (!SeleniumUtil.elementExist(driver, By.cssSelector("input[name=\"useProjectSecurity\"][type=\"checkbox\"]"))) {
-            error = "not found useProjectSecurity checkbox";
+            errors = "not found useProjectSecurity checkbox";
             return false;
         }
 
@@ -78,7 +80,7 @@ public class ProjectAuthorization implements CISAuthorization {
 
         String submitResult = ProjectConfigUtil.submitForm(driver, project.getArtifactId());
         if (submitResult != null) {
-            error = submitResult;
+            errors = submitResult;
             return false;
         }
 
@@ -86,8 +88,8 @@ public class ProjectAuthorization implements CISAuthorization {
     }
 
     @Override
-    public String getError() {
-        return error;
+    public String getErrors() {
+        return errors;
     }
 
 

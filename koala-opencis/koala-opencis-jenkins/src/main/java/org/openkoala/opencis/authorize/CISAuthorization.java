@@ -13,7 +13,5 @@ public interface CISAuthorization {
 
     boolean authorize(Project project, Object context, Developer... developers);
 
-    String getError();
-
-
+    String getErrors();
 }
