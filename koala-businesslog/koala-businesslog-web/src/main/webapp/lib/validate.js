@@ -146,7 +146,7 @@ Validator = {
         return (typeof(date) == "object" && year == date.getFullYear() && month == date.getMonth() && day == date.getDate());
         function GetFullYear(y){return ((y<30 ? "20" : "19") + y)|0;}
     }
-}
+};
 
 var Validation = {
     notNull: function($container, $element, content, errorMessage) {
@@ -187,6 +187,14 @@ var Validation = {
             return false;
         }
         return true;
+    },
+    checkByRegExp: function($container, $element, regExp, content, errorMessage){
+    	var reg = new RegExp(regExp);
+    	if (!reg.test(content)) {
+    		showErrorMessage($container, $element, errorMessage);
+    		return false;
+    	}
+    	return true;
     }
 };
 
