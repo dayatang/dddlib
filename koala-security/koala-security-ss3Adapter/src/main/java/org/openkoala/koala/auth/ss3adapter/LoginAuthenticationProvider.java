@@ -3,6 +3,10 @@ package org.openkoala.koala.auth.ss3adapter;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.inject.Inject;
+
+import org.openkoala.auth.application.UserApplication;
+import org.openkoala.auth.application.vo.UserVO;
 import org.openkoala.koala.auth.AuthHandler;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,18 +25,49 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class LoginAuthenticationProvider implements AuthenticationProvider {
 
 	private AuthHandler authHandler;
-
+	
+	@Inject
+	private UserApplication userApplication;
+	
 	public void setAuthHandler(AuthHandler authHandler) {
 		this.authHandler = authHandler;
+	}
+
+	public void setUserApplication(UserApplication userApplication) {
+		this.userApplication = userApplication;
 	}
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		org.openkoala.koala.auth.UserDetails loadedUser = authHandler.authenticate(
-				authentication.getPrincipal().toString(), 
-				authentication.getCredentials().toString());
+				getUseraccount(authentication), 
+				getPassword(authentication));
+		
+		modifyLastLoginTime(getUseraccount(authentication));
 		
 		return createSuccessAuthentication(authentication, getUserDetails(loadedUser), loadedUser);
+	}
+	
+	private void modifyLastLoginTime(String useraccount) {
+		if (isUserExisted(useraccount)) {
+			userApplication.modifyLastLoginTime(useraccount);
+		}
+	}
+
+	private boolean isUserExisted(String useraccount) {
+		UserVO result = userApplication.findByUserAccount(useraccount);
+		if (result == null) {
+			result = userApplication.findByEmail(useraccount);
+		}
+		return result == null ? false : true;
+	}
+
+	private String getUseraccount(Authentication authentication) {
+		return authentication.getPrincipal().toString();
+	}
+	
+	private String getPassword(Authentication authentication) {
+		return authentication.getCredentials().toString();
 	}
 
 	private CustomUserDetails getUserDetails(org.openkoala.koala.auth.UserDetails loadedUser) {
@@ -58,10 +93,7 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
 		Collection<GrantedAuthority> results = new ArrayList<GrantedAuthority>();
 		for (final String authority : loadedUser.getAuthorities()) {
 			results.add(new GrantedAuthority() {
-				
-				/**
-				 * 
-				 */
+
 				private static final long serialVersionUID = 4687464060621929687L;
 
 				@Override

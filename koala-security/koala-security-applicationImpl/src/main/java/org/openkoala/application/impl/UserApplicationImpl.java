@@ -3,10 +3,12 @@ package org.openkoala.application.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 import javax.interceptor.Interceptors;
+
 import org.openkoala.exception.extend.ApplicationException;
 import org.openkoala.auth.application.UserApplication;
 import org.openkoala.auth.application.vo.QueryConditionVO;
@@ -16,13 +18,14 @@ import org.openkoala.koala.auth.core.domain.Role;
 import org.openkoala.koala.auth.core.domain.RoleUserAuthorization;
 import org.openkoala.koala.auth.core.domain.User;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.dayatang.querychannel.support.Page;
 
+@Remote
 @Named("userApplication")
+@Stateless(name = "UserApplication")
 @Transactional(value="transactionManager_security")
 @Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
-@Stateless(name = "UserApplication")
-@Remote
 public class UserApplicationImpl extends BaseImpl implements UserApplication {
 
     public UserVO getUser(Long userId) {
@@ -38,10 +41,15 @@ public class UserApplicationImpl extends BaseImpl implements UserApplication {
     public UserVO saveUser(UserVO userVO) {
 		User user = new User();
 		userVO.vo2Domain(user);
-        // 检查用户账号是否已经存在
-        if (user.isAccountExist()) {
+
+		if (user.isAccountExisted()) {
         	throw new ApplicationException("userAccount.exist", null);
         }
+        
+        if (user.isEmailExisted()) {
+        	throw new ApplicationException("email.exist", null);
+        }
+        
         user.save();
         userVO.setId(user.getId());
         return userVO;
@@ -163,4 +171,26 @@ public class UserApplicationImpl extends BaseImpl implements UserApplication {
         }
         return new Page<UserVO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), results);
     }
+
+	@Override
+	public void modifyLastLoginTime(String useraccount) {
+		User user = User.findByUserAccount(useraccount);
+		if (user == null) {
+			user = User.findByEmail(useraccount);
+		}
+		user.setLastLoginTime(new Date());
+	}
+
+	@Override
+	public UserVO findByEmail(String email) {
+		User user = User.findByEmail(email);
+		
+		if (user == null) {
+			return null;
+		}
+		
+		UserVO userVO = new UserVO();
+        userVO.domain2Vo(user);
+        return userVO;
+	}
 }
