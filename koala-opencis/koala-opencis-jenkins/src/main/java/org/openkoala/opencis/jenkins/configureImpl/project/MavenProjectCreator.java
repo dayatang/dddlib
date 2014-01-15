@@ -65,7 +65,6 @@ public class MavenProjectCreator implements ProjectCreateStrategy<WebDriver> {
 
         if (scmConfig != null && !scmConfig.config(driver)) {
             error = scmConfig.getErrors();
-            return false;
         }
 
         return true;

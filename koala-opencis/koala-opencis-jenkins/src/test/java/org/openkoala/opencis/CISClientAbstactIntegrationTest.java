@@ -7,10 +7,9 @@ import org.openkoala.opencis.jenkins.authentication.CasAuthentication;
 import org.openkoala.opencis.jenkins.authentication.JenkinsOwnAuthentication;
 import org.openkoala.opencis.jenkins.util.UrlUtil;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -22,21 +21,18 @@ import java.util.concurrent.TimeUnit;
 public abstract class CISClientAbstactIntegrationTest {
 
     public static final String jobName = UUID.randomUUID().toString();
-    public static String jenkinsUrl = null;
-    public static String jobConfigUrl;
-
-
-    static {
-        jenkinsUrl = "http://127.0.0.1:8080/jenkins";
-        jobConfigUrl = jenkinsUrl + "/job/" + UrlUtil.encodeURL(jobName) + "/configure";
-    }
+    public static String jenkinsURL = "http://127.0.0.1:8080/jenkins";
+    public static String jobConfigURL = jenkinsURL + "/job/" + UrlUtil.encodeURL(jobName) + "/configure";
+    public static String svnUrl = "http://10.108.1.138/svn/projec2";
+    public static String svnUser = "admin";
+    public static String svnPassword = "admin";
 
 
     public WebDriver casAuthenticationAndCreateWebDriver() {
         WebDriver driver = new HtmlUnitDriver();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         CasAuthentication cisAuthentication =
-                new CasAuthentication(driver, jenkinsUrl, "admin", "admin");
+                new CasAuthentication(driver, jenkinsURL, "admin", "admin");
 
         AuthenticationResult<WebDriver> result = cisAuthentication.authenticate();
 
@@ -56,9 +52,9 @@ public abstract class CISClientAbstactIntegrationTest {
         FirefoxDriver driver  = new FirefoxDriver(profile);*/
 
         WebDriver driver = new HtmlUnitDriver(true);
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         JenkinsOwnAuthentication cisAuthentication =
-                new JenkinsOwnAuthentication(driver, jenkinsUrl.toString(), "admin", "admin");
+                new JenkinsOwnAuthentication(driver, jenkinsURL.toString(), "admin", "admin");
 
         AuthenticationResult<WebDriver> result = cisAuthentication.authenticate();
 

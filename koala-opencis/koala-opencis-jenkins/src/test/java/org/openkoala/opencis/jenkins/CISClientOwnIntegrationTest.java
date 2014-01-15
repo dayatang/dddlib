@@ -30,7 +30,7 @@ public class CISClientOwnIntegrationTest extends CISClientAbstactIntegrationTest
         WebDriver driver = ownAuthenticationAndCreateWebDriver();
         ProjectCreateStrategy projectCreateStrategy
                 = new MavenProjectCreator();
-        projectCreateStrategy.createAndConfig(jenkinsUrl, getProject(), driver);
+        projectCreateStrategy.createAndConfig(jenkinsURL, getProject(), driver);
     }
 
 
@@ -41,7 +41,7 @@ public class CISClientOwnIntegrationTest extends CISClientAbstactIntegrationTest
         String svnUser = "admin";
         String svnPassword = "admin";
         SvnConfig svnConfig =
-                new SvnConfig(jobConfigUrl, svnUrl, svnUser, svnPassword);
+                new SvnConfig(svnUrl, svnUser, svnPassword);
         assert !svnConfig.config(driver);
     }
 
@@ -50,7 +50,7 @@ public class CISClientOwnIntegrationTest extends CISClientAbstactIntegrationTest
         WebDriver driver = ownAuthenticationAndCreateWebDriver();
         String gitUrl = "git@github.com:mitchellh/vagrant.git";
         GitConfig config =
-                new GitConfig(jobConfigUrl, gitUrl);
+                new GitConfig(jobConfigURL, gitUrl);
         config.config(driver);
     }
 
@@ -58,7 +58,7 @@ public class CISClientOwnIntegrationTest extends CISClientAbstactIntegrationTest
     public void test010addUserToProject() {
         WebDriver driver = ownAuthenticationAndCreateWebDriver();
         CISAuthorization cisAuthorization = new ProjectAuthorization();
-        cisAuthorization.authorize(jenkinsUrl, getProject(), driver);
+        cisAuthorization.authorize(jenkinsURL, getProject(), driver);
     }
 
 

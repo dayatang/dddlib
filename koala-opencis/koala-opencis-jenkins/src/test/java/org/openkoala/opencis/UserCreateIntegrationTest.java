@@ -15,8 +15,8 @@ public class UserCreateIntegrationTest extends CISClientAbstactIntegrationTest {
 
     @Test
     public void testName() throws Exception {
-        UserCreator creator = UserCreator.newInstance(jenkinsUrl.toString());
-        creator.createUser(getDeveloper(), (WebDriver) ownAuthenticationAndCreateWebDriver());
+        UserCreator creator = new UserCreator();
+        creator.createUser(jenkinsURL, getDeveloper("xxx"), ownAuthenticationAndCreateWebDriver());
 
         System.out.println(creator.getError());
     }

@@ -65,7 +65,7 @@ public class JenkinsCISClient implements CISClient {
 
     @Override
     public boolean createProject(Project project) {
-        if (!projectCreateStrategy.createAndConfig(project, driver)) {
+        if (!projectCreateStrategy.createAndConfig(jenkinsUrl, project, driver)) {
             errors = projectCreateStrategy.getErrors();
             return false;
         }
@@ -75,7 +75,7 @@ public class JenkinsCISClient implements CISClient {
 
     @Override
     public boolean createUserIfNecessary(Project project, Developer developer) {
-        if (!authorization.authorize(project, driver)) {
+        if (!authorization.authorize(jenkinsUrl, project, driver, developer)) {
             errors = authorization.getErrors();
             return false;
         }

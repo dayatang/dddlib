@@ -31,6 +31,8 @@ public class GitConfig implements ScmConfigStrategy<WebDriver> {
 
     @Override
     public boolean config(WebDriver driver) {
+
+
         String jobName = driver.findElement(By.name("name")).getAttribute("value");
 
         List<WebElement> scmRadios = driver.findElements(By.cssSelector("input[name=\"scm\"]"));

@@ -19,7 +19,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class SvnConfig implements ScmConfigStrategy<WebDriver> {
 
-    private String jobConfigUrl;
 
     private String svnUrl;
 
@@ -31,11 +30,10 @@ public class SvnConfig implements ScmConfigStrategy<WebDriver> {
     private SvnConfig() {
     }
 
-    public SvnConfig(String jobConfigUrl, String svnUrl, String username, String password) {
+    public SvnConfig(String svnUrl, String username, String password) {
         this.svnUrl = svnUrl;
         this.username = username;
         this.password = password;
-        this.jobConfigUrl = jobConfigUrl;
     }
 
     @Override

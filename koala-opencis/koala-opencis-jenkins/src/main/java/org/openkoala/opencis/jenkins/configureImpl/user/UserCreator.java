@@ -17,21 +17,14 @@ import java.util.concurrent.TimeUnit;
  * Time: 2:48 PM
  */
 public class UserCreator {
-    private String jenkinsUrl;
 
     private String error;
 
-
-    public UserCreator(String jenkinsUrl) {
-        this.jenkinsUrl = UrlUtil.removeEndIfExists(jenkinsUrl, "/");
+    public UserCreator() {
     }
 
-    public static UserCreator newInstance(String jenkinsUrl) {
-        return new UserCreator(jenkinsUrl);
-    }
-
-
-    public boolean createUser(Developer developer, WebDriver driver) {
+    public boolean createUser(String jenkinsUrl, Developer developer, WebDriver driver) {
+        jenkinsUrl = UrlUtil.removeEndIfExists(jenkinsUrl, "/");
         if (!(jenkinsUrl + "/securityRealm/addUser").equals(driver.getCurrentUrl())) {
             driver.get(jenkinsUrl + "/securityRealm/addUser");
         }
@@ -54,10 +47,8 @@ public class UserCreator {
 
         if (!driver.getCurrentUrl().endsWith("securityRealm/")) {
             error = driver.findElement(By.cssSelector("div.error")).getText();
-            driver.quit();
             return false;
         }
-        driver.quit();
         return true;
 
     }

@@ -45,6 +45,7 @@ public class JenkinsOwnAuthentication implements AuthenticationStrategy<WebDrive
             driver = new HtmlUnitDriver(true);
             driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         }
+        driver.get(jenkinsURL);
         WebElement usernameElement = driver.findElement(By.name("j_username"));
         usernameElement.sendKeys(username);
         WebElement passwordElement = driver.findElement(By.name("j_password"));
