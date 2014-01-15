@@ -10,19 +10,19 @@ import java.util.Properties;
 import org.junit.*;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.jira.service.GiraConfiguration;
+import org.openkoala.opencis.jira.service.JiraConfiguration;
 
 @Ignore
-public class GiraCISClientTest {
+public class JiraCISClientTest {
 
-	private GiraConfiguration giraConfiguration;
-	private static GiraCISClient instance;
+	private JiraConfiguration jiraConfiguration;
+	private static JiraCISClient instance;
 	private Project project;
 	private Developer developer;
 	
 	/**管理员登陆信息**/
 	private static InputStream inputFile = 
-			new GiraCISClientTest().getClass().getResourceAsStream("/loginToJiraConfig.properties");
+			new JiraCISClientTest().getClass().getResourceAsStream("/loginToJiraConfig.properties");
 	private static String serverAddress;// = "http://localhost:8080"
 	private static String adminUserName;// = "lishibin"
 	private static String adminPassword;// = "87809237"
@@ -55,8 +55,8 @@ public class GiraCISClientTest {
 
 	@Before
 	public void setUp() throws Exception {
-		giraConfiguration = new GiraConfiguration(serverAddress, adminUserName, adminPassword);
-		instance = new GiraCISClient(giraConfiguration);
+		jiraConfiguration = new JiraConfiguration(serverAddress, adminUserName, adminPassword);
+		instance = new JiraCISClient(jiraConfiguration);
 		this.initProjectInfo();
 		this.initUserInfo();
 		this.initRoleInfo();
@@ -72,19 +72,19 @@ public class GiraCISClientTest {
 	@Test(expected = ServerAddressBlankException.class)
 	public void testServerAddressBlank(){
 		this.packagingServerAddressBlank();
-		giraConfiguration.checkLoginInfoNotBlank();
+		jiraConfiguration.checkLoginInfoNotBlank();
 	}
 	
 	@Test(expected = AdminUserNameBlankException.class)
 	public void testAdminUserNameBlank(){
 		this.packagingAdminUserNameBlank();
-		giraConfiguration.checkLoginInfoNotBlank();
+		jiraConfiguration.checkLoginInfoNotBlank();
 	}
 	
 	@Test(expected = AdminPasswordBlankException.class)
 	public void testAdminPasswordBlank(){
 		this.packagingAdminPasswordBlank();
-		giraConfiguration.checkLoginInfoNotBlank();
+		jiraConfiguration.checkLoginInfoNotBlank();
 	}
 	
 	@Test(expected = ProjectKeyBlankException.class)
@@ -120,31 +120,31 @@ public class GiraCISClientTest {
 	@Test(expected = ServerAddressErrorException.class)
 	public void testServerAddressError(){
 		this.packagingServerAddressErrorWithoutProtocal();
-		instance.loginToJira(giraConfiguration);
+		instance.loginToJira(jiraConfiguration);
 	}
 	
 	@Test(expected = ServerAddressErrorException.class)
 	public void testServerAddressErrorWithWrongIp(){
 		this.packagingServerAddressErrorWithWrongIp();
-		instance.loginToJira(giraConfiguration);
+		instance.loginToJira(jiraConfiguration);
 	}
 	
 	@Test(expected = ServerAddressErrorException.class)
 	public void testServerAddressErrorWithWrongPort(){
 		this.packagingServerAddressErrorWithWrongPort();
-		instance.loginToJira(giraConfiguration);
+		instance.loginToJira(jiraConfiguration);
 	}
 	
 	@Test(expected = AdminUserNameOrPasswordErrorException.class)
 	public void testAdminUserNameNotExist(){
 		this.packagingAdminUserNameNotExist();
-		instance.loginToJira(giraConfiguration);
+		instance.loginToJira(jiraConfiguration);
 	}
 	
 	@Test(expected = AdminUserNameOrPasswordErrorException.class)
 	public void testAdminPasswordNotCorrect(){
 		this.packagingAdminPasswordNotCorrect();
-		instance.loginToJira(giraConfiguration);
+		instance.loginToJira(jiraConfiguration);
 	}
 	
 	@Test
@@ -301,7 +301,7 @@ public class GiraCISClientTest {
 	
 	@Test
 	public void testAddProjectRoleToUserButUserNotExist(){
-		project.setProjectLead(giraConfiguration.getAdminUserName());
+		project.setProjectLead(jiraConfiguration.getAdminUserName());
 		instance.createProject(project);
 		instance.createRoleIfNecessary(project, roleName);
 		
@@ -333,12 +333,7 @@ public class GiraCISClientTest {
 		assertTrue("为用户分配角色成功！", true);
 	}
 
-	@Test
-	public void testCanConnect() {
-		boolean canConnect = instance.canConnect();
-		assertTrue(canConnect);
-	}
-	
+
 	/**
 	 * 确保必填项不为空
 	 */
@@ -366,15 +361,15 @@ public class GiraCISClientTest {
 	}
 	
 	private void packagingServerAddressBlank(){
-		giraConfiguration.setServerAddress(null);
+		jiraConfiguration.setServerAddress(null);
 	}
 	
 	private void packagingAdminUserNameBlank(){
-		giraConfiguration.setAdminUserName(null);
+		jiraConfiguration.setAdminUserName(null);
 	}
 	
 	private void packagingAdminPasswordBlank(){
-		giraConfiguration.setAdminPassword(null);
+		jiraConfiguration.setAdminPassword(null);
 	}
 	
 	private void packagingProjectKeyBlank(){
@@ -398,27 +393,27 @@ public class GiraCISClientTest {
 	}
 	
 	private void packagingServerAddressErrorWithoutProtocal(){
-		giraConfiguration.setServerAddress("aaaaaa");
+		jiraConfiguration.setServerAddress("aaaaaa");
 		instance.setJiraService(null);
 	}
 	
 	private void packagingServerAddressErrorWithWrongIp(){
-		giraConfiguration.setServerAddress("http://localhosta:8080");
+		jiraConfiguration.setServerAddress("http://localhosta:8080");
 		instance.setJiraService(null);
 	}
 	
 	private void packagingServerAddressErrorWithWrongPort(){
-		giraConfiguration.setServerAddress("http://localhost:80805");
+		jiraConfiguration.setServerAddress("http://localhost:80805");
 		instance.setJiraService(null);
 	}
 	
 	private void packagingAdminUserNameNotExist(){
-		giraConfiguration.setAdminUserName("errorName");
+		jiraConfiguration.setAdminUserName("errorName");
 		instance.setJiraService(null);
 	}
 	
 	private void packagingAdminPasswordNotCorrect(){
-		giraConfiguration.setAdminPassword("errorPassword");
+		jiraConfiguration.setAdminPassword("errorPassword");
 		instance.setJiraService(null);
 	}
 	

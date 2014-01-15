@@ -2,11 +2,14 @@ package org.openkoala.opencis.jenkins;
 
 import org.junit.Ignore;
 import org.junit.Test;
+import org.openkoala.opencis.api.AuthenticationResult;
+import org.openkoala.opencis.api.AuthenticationStrategy;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.authentication.CISAuthentication;
 import org.openkoala.opencis.authorize.CISAuthorization;
 import org.openkoala.opencis.jenkins.configureApi.ProjectCreateStrategy;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import java.net.MalformedURLException;
 
@@ -21,15 +24,14 @@ import static org.mockito.Mockito.*;
  * @author zyb <a href="mailto:zhuyuanbiao2013@gmail.com">zhuyuanbiao2013@gmail.com</a>
  * @since Nov 13, 2013 9:56:28 AM
  */
-@Ignore
 public class JenkinsCISClientTest {
 
 
     @Test
     public void test() throws MalformedURLException {
-        URL JENKINS_URL = new URL("http", "localhost", 8080, "/jenkins");
+        String JENKINS_URL = "http://127.0.0.1:8080/jenkins";
 
-        URL CAS_URL = new URL("http", "localhost", 8080, "/cas/v1/tickets/");
+        String CAS_URL = "http://127.0.0.1:8080/cas/v1/tickets/";
 
         JenkinsCISClient jenkinsCISClient;
 
@@ -40,28 +42,27 @@ public class JenkinsCISClientTest {
         developer.setEmail("admin@gmail.com");
 
 
-        //认证
-        jenkinsCISClient = new JenkinsCISClient(JENKINS_URL);
-        CISAuthentication authentication = mock(CISAuthentication.class);
-        if (!jenkinsCISClient.authenticateBy(authentication)) {
-            return;
-        }
-        verify(authentication).authenticate();
+        AuthenticationResult<WebDriver> authenticationResult = new AuthenticationResult<WebDriver>();
+        authenticationResult.setContext(new HtmlUnitDriver(true));
 
-        Object context = new HashMap<String, Object>();
-        when(authentication.getContext()).thenReturn(context);
+        //认证
+        AuthenticationStrategy<WebDriver> authentication = mock(AuthenticationStrategy.class);
+        when(authentication.authenticate()).thenReturn(authenticationResult);
+
+        jenkinsCISClient = new JenkinsCISClient(JENKINS_URL, authenticationResult.getContext());
 
         //创建项目
         ProjectCreateStrategy projectCreateStrategy = mock(ProjectCreateStrategy.class);
         jenkinsCISClient.setProjectCreateStrategy(projectCreateStrategy);
         jenkinsCISClient.createProject(project);
-        verify(projectCreateStrategy).createAndConfig(project, context);
+
+        verify(projectCreateStrategy).createAndConfig(JENKINS_URL, project, authenticationResult.getContext());
 
         //授权
         CISAuthorization cisAuthorization = mock(CISAuthorization.class);
-        jenkinsCISClient.setAuthorization(cisAuthorization);
+        jenkinsCISClient.setAuthorizationStrategy(cisAuthorization);
         jenkinsCISClient.createUserIfNecessary(project, developer);
-        verify(cisAuthorization).authorize(project, context);
+        verify(cisAuthorization).authorize(JENKINS_URL, project, authenticationResult.getContext(), developer);
 
     }
 

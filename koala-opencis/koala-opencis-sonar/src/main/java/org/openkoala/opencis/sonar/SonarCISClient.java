@@ -28,27 +28,44 @@ public class SonarCISClient implements CISClient {
 
     private SonarServerConfiguration sonarServerConfiguration;
 
+    private String errors;
+
     public SonarCISClient(SonarServerConfiguration sonarServerConfiguration) {
         this.sonarServerConfiguration = sonarServerConfiguration;
         checkSonarServerNotNull();
     }
 
     @Override
-    public void createProject(Project project) {
-        //由maven的pom文件指定
+    public void close() {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public void createUserIfNecessary(Project project, Developer developer) {
+    public String getErrors() {
+        return errors;
+    }
+
+    @Override
+    public boolean createProject(Project project) {
+        //由maven的pom文件指定
+        // do nothing
+        return true;
+    }
+
+    @Override
+    public boolean createUserIfNecessary(Project project, Developer developer) {
         verifyDeveloperLegal(developer);
         try {
             DefaultUserClient client = new DefaultUserClient(createHttpRequestFactory());
-            UserParameters params = UserParameters.create().login(developer.getId()).password(developer.getId()).passwordConfirmation(developer.getId()).name(developer.getName()).email(developer.getEmail());
+            UserParameters params = UserParameters.create().login(developer.getId())
+                    .password(developer.getId()).passwordConfirmation(developer.getId())
+                    .name(developer.getName()).email(developer.getEmail());
             client.create(params);
         } catch (Exception e) {
             e.printStackTrace();
             throw new SonarUserExistException();
         }
+        return true;
     }
 
     private void verifyDeveloperLegal(Developer developer) {
@@ -67,12 +84,12 @@ public class SonarCISClient implements CISClient {
     }
 
     @Override
-    public void createRoleIfNecessary(Project project, String roleName) {
-        // TODO Auto-generated method stub
+    public boolean createRoleIfNecessary(Project project, String roleName) {
+        return true;
     }
 
     @Override
-    public void assignUserToRole(Project project, String usrId, String role) {
+    public boolean assignUserToRole(Project project, String usrId, String role) {
         verifyProjectAndUserIdLegal(project, usrId);
         String component = project.getGroupId() + ":" + project.getArtifactId();
         try {
@@ -82,6 +99,7 @@ public class SonarCISClient implements CISClient {
         } catch (Exception e) {
             throw new SonarUserExistException("用户名不存在或项目角色信息有误");
         }
+        return true;
     }
 
     protected void verifyProjectAndUserIdLegal(Project project, String usrId) {
@@ -99,7 +117,6 @@ public class SonarCISClient implements CISClient {
         }
     }
 
-    @Override
     public boolean canConnect() {
         return connectSonarServer();
     }
@@ -138,9 +155,10 @@ public class SonarCISClient implements CISClient {
     }
 
     @Override
-    public void assignUsersToRole(Project project, List<String> userName,
-                                  String role) {
-        // TODO Auto-generated method stub
+    public boolean assignUsersToRole(Project project, List<String> userName,
+                                     String role) {
+        // do nothing
+        return true;
 
     }
 

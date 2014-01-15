@@ -19,8 +19,8 @@ public class GlobalProjectAuthorizationInteTest extends CISClientAbstactIntegrat
     public void testName() throws Exception {
         WebDriver driver = ownAuthenticationAndCreateWebDriver();
         GlobalProjectAuthorization cisAuthorization =
-                new GlobalProjectAuthorization(jenkinsUrl.toString());
-        cisAuthorization.authorize(getDeveloper(), driver);
+                new GlobalProjectAuthorization();
+        cisAuthorization.authorize(jenkinsURL, driver, getDeveloper());
     }
 
 

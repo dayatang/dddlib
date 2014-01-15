@@ -23,7 +23,6 @@ import org.openkoala.opencis.exception.UserBlankException;
 import org.openkoala.opencis.exception.UserListBlankException;
 import org.openkoala.opencis.exception.UserOrPasswordErrorException;
 
-import com.dayatang.configuration.Configuration;
 
 @Ignore
 public class SvnCISClientTest {
@@ -38,7 +37,6 @@ public class SvnCISClientTest {
 
     @Before
     public void setUp() throws Exception {
-
         configuration = new SSHConnectConfig("10.108.1.131", "root", "openkoala");
         this.initProjectInfo();
         this.initDeveloperInfo();

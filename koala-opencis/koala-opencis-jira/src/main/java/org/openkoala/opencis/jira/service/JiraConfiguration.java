@@ -5,7 +5,7 @@ import org.openkoala.opencis.jira.service.impl.AdminPasswordBlankException;
 import org.openkoala.opencis.jira.service.impl.AdminUserNameBlankException;
 import org.openkoala.opencis.jira.service.impl.ServerAddressBlankException;
 
-public class GiraConfiguration {
+public class JiraConfiguration {
 
 	private String serverAddress;
 
@@ -13,11 +13,11 @@ public class GiraConfiguration {
 
 	private String adminPassword;
 	
-	public GiraConfiguration(){
+	public JiraConfiguration(){
 		
 	}
 	
-	public GiraConfiguration(String serverAddress, String adminUserName, String adminPassword){
+	public JiraConfiguration(String serverAddress, String adminUserName, String adminPassword){
 		this.serverAddress = serverAddress;
 		this.adminUserName = adminUserName;
 		this.adminPassword = adminPassword;

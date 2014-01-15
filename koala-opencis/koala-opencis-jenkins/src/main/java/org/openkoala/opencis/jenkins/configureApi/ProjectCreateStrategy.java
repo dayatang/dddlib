@@ -7,11 +7,11 @@ import org.openkoala.opencis.api.Project;
  * Date: 1/7/14
  * Time: 5:40 PM
  */
-public interface ProjectCreateStrategy {
+public interface ProjectCreateStrategy<T> {
 
-    boolean createAndConfig(Project project, Object context);
+    boolean createAndConfig(String jenkinsBaseUrl, Project project, T context);
 
-    String getError();
+    String getErrors();
 
 
 }

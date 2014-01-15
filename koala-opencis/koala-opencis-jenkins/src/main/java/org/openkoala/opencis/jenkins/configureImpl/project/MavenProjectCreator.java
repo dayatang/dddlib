@@ -1,7 +1,6 @@
 package org.openkoala.opencis.jenkins.configureImpl.project;
 
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.authorize.CISAuthorization;
 import org.openkoala.opencis.jenkins.configureApi.ProjectCreateStrategy;
 import org.openkoala.opencis.jenkins.configureApi.ScmConfigStrategy;
 import org.openkoala.opencis.jenkins.util.SeleniumUtil;
@@ -19,30 +18,25 @@ import java.util.concurrent.TimeUnit;
  * Date: 1/7/14
  * Time: 5:37 PM
  */
-public class MavenProjectCreator implements ProjectCreateStrategy {
+public class MavenProjectCreator implements ProjectCreateStrategy<WebDriver> {
 
 
     private String error;
 
-    private String jenkinsUrl;
 
     private ScmConfigStrategy scmConfig;
 
-    private MavenProjectCreator() {
-    }
-
-    public MavenProjectCreator(String jenkinsUrl) {
-        this.jenkinsUrl = jenkinsUrl;
+    public MavenProjectCreator() {
     }
 
     @Override
-    public boolean createAndConfig(Project project, Object context) {
+    public boolean createAndConfig(String jenkinsUrl, Project project, WebDriver context) {
         WebDriver driver;
         if (context != null) {
-            driver = (WebDriver) context;
+            driver = context;
         } else {
             driver = new HtmlUnitDriver();
-            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         }
 
         driver.get(jenkinsUrl + "/view/All/newJob");
@@ -69,13 +63,10 @@ public class MavenProjectCreator implements ProjectCreateStrategy {
 
         assert driver.getCurrentUrl().contains("/job/" + UrlUtil.encodeURL(project.getArtifactId()));
 
-        if (scmConfig != null && scmConfig.config(driver) == false) {
-            error = scmConfig.getError();
-            driver.quit();
-            return false;
+        if (scmConfig != null && !scmConfig.config(driver)) {
+            error = scmConfig.getErrors();
         }
 
-        driver.quit();
         return true;
     }
 
@@ -83,7 +74,7 @@ public class MavenProjectCreator implements ProjectCreateStrategy {
         this.scmConfig = scmConfig;
     }
 
-    public String getError() {
+    public String getErrors() {
         return error;
     }
 }

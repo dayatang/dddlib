@@ -1,15 +1,15 @@
 package org.openkoala.opencis;
 
+import org.openkoala.opencis.api.AuthenticationResult;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.jenkins.authentication.CasAuthen;
-import org.openkoala.opencis.jenkins.authentication.JenkinsOwnAuthen;
+import org.openkoala.opencis.jenkins.authentication.CasAuthentication;
+import org.openkoala.opencis.jenkins.authentication.JenkinsOwnAuthentication;
 import org.openkoala.opencis.jenkins.util.UrlUtil;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -21,31 +21,27 @@ import java.util.concurrent.TimeUnit;
 public abstract class CISClientAbstactIntegrationTest {
 
     public static final String jobName = UUID.randomUUID().toString();
-    public static URL jenkinsUrl = null;
-    public static String jobConfigUrl;
-
-
-    static {
-        try {
-            jenkinsUrl = new URL("http", "localhost", 8080, "/jenkins");
-            jobConfigUrl = jenkinsUrl.toString() + "/job/" + UrlUtil.encodeURL(jobName) + "/configure";
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-    }
+    public static String jenkinsURL = "http://127.0.0.1:8080/jenkins";
+    public static String jobConfigURL = jenkinsURL + "/job/" + UrlUtil.encodeURL(jobName) + "/configure";
+    public static String svnUrl = "http://10.108.1.138/svn/projec2";
+    public static String svnUser = "admin";
+    public static String svnPassword = "admin";
 
 
     public WebDriver casAuthenticationAndCreateWebDriver() {
         WebDriver driver = new HtmlUnitDriver();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        CasAuthen cisAuthentication =
-                new CasAuthen(driver, jenkinsUrl, "admin", "admin");
+        CasAuthentication cisAuthentication =
+                new CasAuthentication(driver, jenkinsURL, "admin", "admin");
 
-        if (!cisAuthentication.authenticate()) {
-            System.out.println("authentication error");
+        AuthenticationResult<WebDriver> result = cisAuthentication.authenticate();
+
+        if (!result.isSuccess()) {
+            System.out.println(result.getErrors());
             return null;
         }
-        return driver;
+
+        return result.getContext();
     }
 
 
@@ -56,15 +52,18 @@ public abstract class CISClientAbstactIntegrationTest {
         FirefoxDriver driver  = new FirefoxDriver(profile);*/
 
         WebDriver driver = new HtmlUnitDriver(true);
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        JenkinsOwnAuthen cisAuthentication =
-                new JenkinsOwnAuthen(driver, jenkinsUrl.toString(), "admin", "admin");
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        JenkinsOwnAuthentication cisAuthentication =
+                new JenkinsOwnAuthentication(driver, jenkinsURL.toString(), "admin", "admin");
 
-        if (!cisAuthentication.authenticate()) {
-            System.out.println("authentication error");
+        AuthenticationResult<WebDriver> result = cisAuthentication.authenticate();
+
+        if (!result.isSuccess()) {
+            System.out.println(result.getErrors());
             return null;
         }
-        return driver;
+
+        return result.getContext();
     }
 
     public Developer getDeveloper() {

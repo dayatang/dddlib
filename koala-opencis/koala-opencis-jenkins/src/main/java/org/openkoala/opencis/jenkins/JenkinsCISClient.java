@@ -1,16 +1,14 @@
 package org.openkoala.opencis.jenkins;
 
-import java.net.URL;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-import org.openkoala.opencis.AuthenticationException;
+import org.openkoala.opencis.api.AuthenticationStrategy;
 import org.openkoala.opencis.api.CISClient;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.authentication.CISAuthentication;
 import org.openkoala.opencis.authorize.CISAuthorization;
 import org.openkoala.opencis.jenkins.configureApi.ProjectCreateStrategy;
+import org.openqa.selenium.WebDriver;
 
 /**
  * Jenkins CIS客户端
@@ -23,7 +21,9 @@ public class JenkinsCISClient implements CISClient {
 
     public static final String CREATE_ITEM_API = "/createItem?name=";
 
-    private URL jenkinsUrl;
+    private String jenkinsUrl;
+
+    private WebDriver driver;
 
     /**
      * 授权
@@ -35,75 +35,75 @@ public class JenkinsCISClient implements CISClient {
      */
     private ProjectCreateStrategy projectCreateStrategy;
 
-    /**
-     * 认证
-     */
-    private CISAuthentication authentication;
 
-    private static Logger logger = Logger.getLogger(JenkinsCISClient.class);
+    private String errors;
 
-
-    public JenkinsCISClient(URL jenkinsUrl) {
+    public JenkinsCISClient(String jenkinsUrl, WebDriver driver) {
         this.jenkinsUrl = jenkinsUrl;
+        this.driver = driver;
     }
 
-    /**
-     * 认证
-     */
-    public boolean authenticateBy(CISAuthentication authentication) {
-        authentication.setAppURL(jenkinsUrl);
-        return authentication.authenticate();
-    }
 
     public void setProjectCreateStrategy(ProjectCreateStrategy projectCreateStrategy) {
         this.projectCreateStrategy = projectCreateStrategy;
     }
 
-    public void setAuthorization(CISAuthorization authorization) {
+    public void setAuthorizationStrategy(CISAuthorization authorization) {
         this.authorization = authorization;
     }
 
+
     @Override
-    public void createProject(Project project) {
-        if (!authenticateBy(authentication)) {
-            throw new AuthenticationException("CIS authentication failure");
+    public void close() {
+        driver.quit();
+    }
+
+    @Override
+    public String getErrors() {
+        return errors;
+    }
+
+    @Override
+    public boolean createProject(Project project) {
+        if (!projectCreateStrategy.createAndConfig(jenkinsUrl, project, driver)) {
+            errors = projectCreateStrategy.getErrors();
+            return false;
         }
-        projectCreateStrategy.createAndConfig(project, authentication.getContext());
+        return true;
     }
 
 
     @Override
-    public void createUserIfNecessary(Project project, Developer developer) {
-        if (!authenticateBy(authentication)) {
-            throw new AuthenticationException("CIS authentication failure");
+    public boolean createUserIfNecessary(Project project, Developer developer) {
+        if (!authorization.authorize(jenkinsUrl, project, driver, developer)) {
+            errors = authorization.getErrors();
+            return false;
         }
-        authorization.authorize(project, authentication.getContext());
-    }
-
-    @Override
-    public void createRoleIfNecessary(Project project, String roleName) {
+        return true;
 
     }
 
     @Override
-    public void assignUserToRole(Project project, String userId, String role) {
+    public boolean createRoleIfNecessary(Project project, String roleName) {
+        return false;
 
     }
 
     @Override
-    public boolean canConnect() {
+    public boolean assignUserToRole(Project project, String userId, String role) {
         return false;
     }
 
 
     @Override
-    public void assignUsersToRole(Project project, List<String> userName,
-                                  String role) {
+    public boolean assignUsersToRole(Project project, List<String> userName,
+                                     String role) {
         if (null == userName || userName.size() == 0) {
-            return;
+            return false;
         }
         for (String each : userName) {
             assignUserToRole(project, each, role);
         }
+        return true;
     }
 }

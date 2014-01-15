@@ -24,15 +24,13 @@ import java.net.MalformedURLException;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CISClientOwnIntegrationTest extends CISClientAbstactIntegrationTest {
 
-
-
-
     @Test
     public void test001CreateProject() throws Exception {
+
         WebDriver driver = ownAuthenticationAndCreateWebDriver();
         ProjectCreateStrategy projectCreateStrategy
-                = new MavenProjectCreator(jenkinsUrl.toString());
-        projectCreateStrategy.createAndConfig(getProject(), driver);
+                = new MavenProjectCreator();
+        projectCreateStrategy.createAndConfig(jenkinsURL, getProject(), driver);
     }
 
 
@@ -43,7 +41,7 @@ public class CISClientOwnIntegrationTest extends CISClientAbstactIntegrationTest
         String svnUser = "admin";
         String svnPassword = "admin";
         SvnConfig svnConfig =
-                new SvnConfig(jobConfigUrl, svnUrl, svnUser, svnPassword);
+                new SvnConfig(svnUrl, svnUser, svnPassword);
         assert !svnConfig.config(driver);
     }
 
@@ -52,18 +50,16 @@ public class CISClientOwnIntegrationTest extends CISClientAbstactIntegrationTest
         WebDriver driver = ownAuthenticationAndCreateWebDriver();
         String gitUrl = "git@github.com:mitchellh/vagrant.git";
         GitConfig config =
-                new GitConfig(jobConfigUrl, gitUrl);
+                new GitConfig(jobConfigURL, gitUrl);
         config.config(driver);
     }
 
     @Test
     public void test010addUserToProject() {
         WebDriver driver = ownAuthenticationAndCreateWebDriver();
-        CISAuthorization cisAuthorization = new ProjectAuthorization(jenkinsUrl.toString());
-        cisAuthorization.authorize(getProject(), driver);
+        CISAuthorization cisAuthorization = new ProjectAuthorization();
+        cisAuthorization.authorize(jenkinsURL, getProject(), driver);
     }
-
-
 
 
 }

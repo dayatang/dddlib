@@ -5,12 +5,11 @@ package org.openkoala.opencis.jenkins.configureApi;
  * Date: 1/7/14
  * Time: 5:57 PM
  */
-public interface ScmConfigStrategy {
+public interface ScmConfigStrategy<T> {
 
-    boolean config(Object context);
+    boolean config(T context);
 
-    String getError();
-
+    String getErrors();
 
 
 }

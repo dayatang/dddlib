@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * Date: 1/9/14
  * Time: 10:44 AM
  */
-public class GitConfig implements ScmConfigStrategy {
+public class GitConfig implements ScmConfigStrategy<WebDriver> {
     private String jobConfigUrl;
 
     private String scmUrl;
@@ -30,14 +30,7 @@ public class GitConfig implements ScmConfigStrategy {
     }
 
     @Override
-    public boolean config(Object context) {
-
-        String directConfigurePageResult = ProjectConfigUtil.openJobConfigurePage(context, jobConfigUrl);
-        if (directConfigurePageResult != null) {
-            error = directConfigurePageResult;
-            return false;
-        }
-        WebDriver driver = (WebDriver) context;
+    public boolean config(WebDriver driver) {
 
 
         String jobName = driver.findElement(By.name("name")).getAttribute("value");
@@ -76,7 +69,7 @@ public class GitConfig implements ScmConfigStrategy {
     }
 
     @Override
-    public String getError() {
+    public String getErrors() {
         return error;
     }
 }

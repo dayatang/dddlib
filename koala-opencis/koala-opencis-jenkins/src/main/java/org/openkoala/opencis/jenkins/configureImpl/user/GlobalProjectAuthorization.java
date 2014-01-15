@@ -1,8 +1,6 @@
 package org.openkoala.opencis.jenkins.configureImpl.user;
 
 import org.openkoala.opencis.api.Developer;
-import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.authorize.CISAuthorization;
 import org.openkoala.opencis.jenkins.util.SeleniumUtil;
 import org.openkoala.opencis.jenkins.util.UrlUtil;
 import org.openqa.selenium.By;
@@ -19,14 +17,14 @@ import java.util.concurrent.TimeUnit;
  */
 public class GlobalProjectAuthorization {
 
-    private String jenkinsUrl;
-    private String error;
+    private String errors;
 
-    public GlobalProjectAuthorization(String jenkinsUrl) {
-        this.jenkinsUrl = UrlUtil.removeEndIfExists(jenkinsUrl, "/");
+
+    public GlobalProjectAuthorization() {
     }
 
-    public boolean authorize(Developer developer, Object context) {
+    public boolean authorize(String jenkinsUrl, Object context, Developer... developers) {
+        jenkinsUrl = UrlUtil.removeEndIfExists(jenkinsUrl, "/");
         WebDriver driver;
         if (context != null) {
             driver = (WebDriver) context;
@@ -37,27 +35,28 @@ public class GlobalProjectAuthorization {
 
         driver.get(jenkinsUrl + "/configureSecurity/");
 
-        //用户已经存在
-        if (SeleniumUtil.elementExist(driver, By.cssSelector("table#hudson-security-ProjectMatrixAuthorizationStrategy tr.permission-row[name=\"[" + developer.getName() + "]\"]"))) {
-            driver.quit();
-            return true;
+        for (Developer developer : developers) {
+            //用户已经存在
+            if (SeleniumUtil.elementExist(driver, By.cssSelector("table#hudson-security-ProjectMatrixAuthorizationStrategy tr.permission-row[name=\"[" + developer.getName() + "]\"]"))) {
+                return true;
+            }
+
+            WebElement usernameInput =
+                    driver.findElement(By.cssSelector("table[id=\"hudson-security-ProjectMatrixAuthorizationStrategy\"] +table input[type=\"text\"]"));
+
+            usernameInput.sendKeys(developer.getName());
+
+            WebElement addUserSubmitButton = driver.findElement(By.cssSelector("table[id=\"hudson-security-ProjectMatrixAuthorizationStrategy\"] +table button[type=\"button\"]"));
+            addUserSubmitButton.click();
+
+            //设置read权限
+            WebElement readPermissionCheckbox = driver.findElement(
+                    By.cssSelector("tr.permission-row[name=\"[" + developer.getName() + "]\"] input[name=\"[hudson.model.Hudson.Read]\"][type=\"checkbox\"]"));
+            readPermissionCheckbox.click();
+
+
+
         }
-
-
-        WebElement usernameInput =
-                driver.findElement(By.cssSelector("table[id=\"hudson-security-ProjectMatrixAuthorizationStrategy\"] +table input[type=\"text\"]"));
-
-        usernameInput.sendKeys(developer.getName());
-
-
-        WebElement addUserSubmitButton = driver.findElement(By.cssSelector("table[id=\"hudson-security-ProjectMatrixAuthorizationStrategy\"] +table button[type=\"button\"]"));
-        addUserSubmitButton.click();
-
-
-        //设置read权限
-        WebElement readPermissionCheckbox = driver.findElement(
-                By.cssSelector("tr.permission-row[name=\"[" + developer.getName() + "]\"] input[name=\"[hudson.model.Hudson.Read]\"][type=\"checkbox\"]"));
-        readPermissionCheckbox.click();
 
 
         //保存配置
@@ -65,13 +64,11 @@ public class GlobalProjectAuthorization {
         saveButton.click();
 
         assert driver.getCurrentUrl().equals(jenkinsUrl + "/manage");
-
-        driver.quit();
         return true;
 
     }
 
-    public String getError() {
-        return error;
+    public String getErrors() {
+        return errors;
     }
 }
