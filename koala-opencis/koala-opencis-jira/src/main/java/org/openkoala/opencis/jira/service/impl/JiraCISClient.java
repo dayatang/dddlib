@@ -1,6 +1,5 @@
 package org.openkoala.opencis.jira.service.impl;
 
-import java.rmi.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,6 +90,7 @@ public class JiraCISClient implements CISClient {
                 throw new ServerAddressErrorException("服务器地址错误！");
             }
         }
+        return true;
     }
 
     /**
@@ -202,7 +202,7 @@ public class JiraCISClient implements CISClient {
 
     private boolean checkUserInfoNotBlank(Developer developer) {
         if (StringUtils.isBlank(developer.getName())) {
-           errors = "developer";
+            errors = "developer";
         }
         if (StringUtils.isBlank(developer.getPassword())) {
             developer.setPassword(developer.getName());
