@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class BusinessLogConfigPathProcessor {
 
+
     private static final String CONFIG_PATH = "koala-log-conf";
 
     public static List<File> getAllConfigFiles(String configPath) {
