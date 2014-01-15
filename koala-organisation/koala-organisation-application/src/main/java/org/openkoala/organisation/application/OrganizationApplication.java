@@ -73,6 +73,11 @@ public interface OrganizationApplication {
 	 */
 	void terminateEmployeeOrganizationRelation(Organization organization, Set<Employee> employees);
 	
+	/**
+	 * 根据id获得机构信息
+	 * @param id
+	 * @return
+	 */
 	OrganizationDTO getOrganizationById(Long id);
 	
 }

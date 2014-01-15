@@ -86,5 +86,10 @@ public interface EmployeeApplication {
 	 */
 	List<ResponsiblePostDTO> getPostsByEmployee(Employee employee);
 	
+	/**
+	 * 根据id获得员工信息
+	 * @param id
+	 * @return
+	 */
 	EmployeeDTO getEmployeeById(Long id);
 }

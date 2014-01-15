@@ -6,6 +6,7 @@ import org.openkoala.opencis.api.Project;
 import com.dayatang.configuration.Configuration;
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.Session;
+import org.openkoala.opencis.api.SSHConnectConfig;
 
 /**
  * svn创建项目命令类
@@ -16,8 +17,8 @@ public class SvnClearProjectPasswdFileContentCommand extends SvnCommand {
 		
 	}
 	
-	public SvnClearProjectPasswdFileContentCommand(Configuration configuration, Project project) {
-		super(configuration, project);
+	public SvnClearProjectPasswdFileContentCommand(SSHConnectConfig config, Project project) {
+		super(config, project);
 	}
 
 	@Override
