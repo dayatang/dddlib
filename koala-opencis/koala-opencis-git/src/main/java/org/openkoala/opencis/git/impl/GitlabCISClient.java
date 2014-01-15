@@ -27,14 +27,7 @@ import org.gitlab.api.models.GitlabUser;
 import org.openkoala.opencis.api.CISClient;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.git.CreateProjectFailesException;
-import org.openkoala.opencis.git.GitCISProjectException;
 import org.openkoala.opencis.git.GitCISUserException;
-import org.openkoala.opencis.git.NoGitlabHostException;
-import org.openkoala.opencis.git.NoTokenException;
-import org.openkoala.opencis.git.NullOrEmptyProjectNameException;
-import org.openkoala.opencis.git.NullProjectException;
-import org.openkoala.opencis.git.ProjectPathIsNullOrEmptyException;
 
 /**
  * 连接GitLab服务器并实现创建项目等操作的客户端.
@@ -42,6 +35,7 @@ import org.openkoala.opencis.git.ProjectPathIsNullOrEmptyException;
  * @author xmfang
  */
 public class GitlabCISClient implements CISClient {
+
 
     /*
      * gitlab配置
@@ -106,12 +100,12 @@ public class GitlabCISClient implements CISClient {
     public boolean createProject(Project project) {
         GitlabProject gitlabProject = createProjectInGitLab(project);
 
-        if (null ==  gitlabProject) {
+        if (null == gitlabProject) {
             return false;
         }
-
-        addProjectTeamMember(project);
-        pushProjectToGitLab(project);
+        if (addProjectTeamMember(project, gitlabProject) && pushProjectToGitLab(project)) {
+            return false;
+        }
         return true;
     }
 
@@ -142,11 +136,7 @@ public class GitlabCISClient implements CISClient {
      *
      * @param project
      */
-    private void addProjectTeamMember(Project project) {
-        GitlabProject gitlabProject = null;
-        if (gitlabProject == null) {
-            throw new NullProjectException("the created gitlab project is null!");
-        }
+    private boolean addProjectTeamMember(Project project, GitlabProject gitlabProject) {
         for (Developer developer : project.getDevelopers()) {
             createUserIfNecessary(project, developer);
             Integer userId = getUserIdByUsername(developer.getId());
@@ -159,9 +149,11 @@ public class GitlabCISClient implements CISClient {
                         .with("id", gitlabProject.getId()).with("user_id", userId).with("access_level", "30")
                         .to(wsUrl, gitlabProject);
             } catch (IOException e) {
-                throw new GitCISProjectException("IO exception at add project team member", e);
+                errors = "IO exception at add project team member";
+                return false;
             }
         }
+        return true;
     }
 
     /**
@@ -184,19 +176,19 @@ public class GitlabCISClient implements CISClient {
      *
      * @param project
      */
-    private void pushProjectToGitLab(Project project) {
+    private boolean pushProjectToGitLab(Project project) {
         Repository repository = null;
         InitCommand init = new InitCommand();
 
         String projectPath = project.getProjectPath();
         if (StringUtils.isBlank(projectPath)) {
-            throw new ProjectPathIsNullOrEmptyException("The project path is null or empty!");
+            errors = "The project path is null or empty!";
+            return false;
         }
 
         init.setDirectory(new File(projectPath));
-        Git git = null;
         try {
-            git = init.call();
+            Git git = init.call();
             repository = git.getRepository();
             StoredConfig config = repository.getConfig();
             RemoteConfig remoteConfig = new RemoteConfig(config, "origin");
@@ -222,14 +214,19 @@ public class GitlabCISClient implements CISClient {
                     new UsernamePasswordCredentialsProvider(gitLabConfiguration.getAdminUsername(), gitLabConfiguration.getAdminPassword());
             git.push().setCredentialsProvider(credentialsProvider).call();
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+            errors = "gitURI failure!";
+            // TODO 将log打印出来
+            return false;
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NoFilepatternException e) {
-            e.printStackTrace();
+            // TODO 将log打印出来
+            errors = "StoredConfig save failure";
+            return false;
         } catch (GitAPIException e) {
-            e.printStackTrace();
+            // TODO 将log打印出来
+            errors = "GitAPI call failure";
+            return false;
         }
+        return true;
     }
 
     /**
@@ -242,7 +239,9 @@ public class GitlabCISClient implements CISClient {
         try {
             result = gitlabHTTPRequestor.method("GET").to("/user", GitlabUser.class);
         } catch (IOException e) {
-            throw new GitCISUserException("IO exception at get current!", e);
+            errors = "IO exception at get current!";
+            // TODO logger
+            return null;
         }
         return result;
     }
@@ -277,17 +276,19 @@ public class GitlabCISClient implements CISClient {
      *
      * @param developer
      */
-    private void createNewUser(Developer developer) {
-        GitlabUser gitlabUser = new GitlabUser();
+    private boolean createNewUser(Developer developer) {
+        GitlabUser gitlabUser;
         try {
             gitlabUser = gitlabHTTPRequestor.method("POST")
                     .with("email", developer.getEmail()).with("username", developer.getId()).with("name", developer.getName()).with("password", developer.getId())
                     .to(GitlabUser.URL, GitlabUser.class);
         } catch (IOException e) {
-            throw new GitCISUserException("IO exception at create user", e);
+            errors = "IO exception at create user";
+            return false;
         }
 
         currentGitlabUsers.add(gitlabUser);
+        return true;
     }
 
     @Override
