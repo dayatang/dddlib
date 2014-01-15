@@ -2,7 +2,7 @@ package org.openkoala.opencis.trac.command;
 
 import org.openkoala.opencis.api.Project;
 
-import com.dayatang.configuration.Configuration;
+import org.openkoala.opencis.api.SSHConnectConfig;
 
 /**
  * Trac分配用户到某个角色
@@ -19,7 +19,7 @@ public class TracAssignUserToRoleCommand extends TracCommand {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public TracAssignUserToRoleCommand(String usrId, String role, Configuration configuration,Project project){
+	public TracAssignUserToRoleCommand(String usrId, String role, SSHConnectConfig configuration,Project project){
 		super(configuration, project);
 		this.usrId = usrId;
 		this.role = role;

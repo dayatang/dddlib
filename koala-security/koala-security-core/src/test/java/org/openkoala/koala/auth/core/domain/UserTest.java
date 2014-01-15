@@ -101,7 +101,7 @@ public class UserTest extends KoalaBaseSpringTestCase {
 		User user = createUser();
 		user.save();
 		Assert.assertNotNull(user.getId());
-		Assert.assertTrue(user.isAccountExist());
+		Assert.assertTrue(user.isAccountExisted());
 	}
 	
 	/**
