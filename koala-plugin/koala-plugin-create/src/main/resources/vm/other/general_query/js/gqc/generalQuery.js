@@ -2,7 +2,7 @@ var generalQuery = function(){
 	var baseUrl = contextPath + '/generalquery/';
 	var generalQueryObject = null;
 	var dataSourceSelect = null;
-	var tableSelect = null
+	var tableSelect = null;
 	var dialog = null;
 	var staticQueryLeftTable = null;
 	var staticQueryRightTable = null;
@@ -152,8 +152,8 @@ var generalQuery = function(){
 					clearSelectedItem();
 					fillLeftTable(data.tableMap, data.tableMap)
 					dialog.trigger('tableSelectComplete.koala')
-				})
-		})
+				});
+		});
 	};
 	/*
 	 *修改填充数据
@@ -191,7 +191,7 @@ var generalQuery = function(){
 		for(var column in queryConditionColumns){
 			queryConditionRows.push('<tr><td class="column-name">'+column+'</td><td class="operation"><a data-value="'+column+'" data-type="'+queryConditionColumns[column]+'" data-role="add"><span class="glyphicon glyphicon-plus">添加</span></a></td></tr>');
 		}
-		var queryConditionRowsHtml = queryConditionRows.join();
+		var queryConditionRowsHtml = queryConditionRows.join('');
 		staticQueryLeftTable.html(queryConditionRowsHtml)
 			.find('a[data-role="add"]')
 			.on('click', function(){
@@ -210,7 +210,7 @@ var generalQuery = function(){
 					}else{
 						valueTd.html('<input data-role="value" class="form-control" required="true"/><span class="required" >*</span>');
 					}
-				})
+				});
 				$this.closest('tr').hide();
 				dynamicQueryLeftTable.find('a[data-value="'+fieldName+'"]')
 					.closest('tr')
@@ -224,14 +224,14 @@ var generalQuery = function(){
 					}else{
 						$(this).parent().removeClass('checked');
 					}
-				})
+				});
 			});
 		dynamicQueryLeftTable.html(queryConditionRowsHtml)
 			.find('a[data-role="add"]')
 			.on('click', function(){
 				var $this = $(this);
 				var column = $this.data('value');
-				var fieldType = $this.data('type')
+				var fieldType = $this.data('type');
 				var row = $(' <tr><td class="column-name">'+column+'<input data-role="fieldName" type="hidden" value="'+column+'"/><input data-role="fieldType" type="hidden" value="'+fieldType+'"/</td>' +
 					'<td class="show-label"><input data-role="label" class="form-control" required="true" value="'+column+'"/><span class="required">*</span></td>' +
 					'<td class="widgetType"><div class="btn-group select" data-role="widgetType"></div></td>'+
@@ -251,7 +251,7 @@ var generalQuery = function(){
 		for(var column in showColumns){
 			showColumnsRows.push('<tr><td class="column-name">'+column+'</td><td class="operation"><a data-value="'+column+'" data-type="'+showColumns[column]+'" data-role="add"><span class="glyphicon glyphicon-plus">添加</span></a></td></tr>');
 		}
-		var showColumnsRowsHtml = showColumnsRows.join();
+		var showColumnsRowsHtml = showColumnsRows.join('');
 		showColumnLeftTable.html(showColumnsRowsHtml)
 			.find('a[data-role="add"]')
 			.on('click', function(){
@@ -453,6 +453,13 @@ var generalQuery = function(){
 				return false;
 			}
 		});
+		if(showColumnRightTable.find('tr').length == 0){
+			$('body').message({
+				type: 'warning',
+				content: '请选择要显示的列！'
+			});
+			return false;
+		}
 		return flag;
 	};
 	/**
