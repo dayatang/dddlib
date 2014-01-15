@@ -2,8 +2,7 @@ $(function() {
 	var id = window.location.search.split('=')[1];
 	$.get(contextPath + '/preview/' + id + '.koala').done(function(data) {
 		init(data.generalQuery);
-	}).fail(function(data) {
-	})
+	});
 	var init = function(data) {
 		var previewQuery = $('#previewQuery');
 		var visiblePreQueryConditions = data.visiblePreQueryConditions;
@@ -60,6 +59,11 @@ $(function() {
 			minView : 2,
 			pickerPosition : 'bottom-left'
 		});
+		if(visiblePreQueryConditions.length == 0 && dynamicQueryConditions.length == 0){
+			$('.query').hide();
+			$('#previewGrid').css('margin-top', '10px');
+		}
+
 		var fieldDetails = data.fieldDetails;
 		var columns = new Array();
 		for (var i = 0, j = fieldDetails.length; i < j; i++) {
