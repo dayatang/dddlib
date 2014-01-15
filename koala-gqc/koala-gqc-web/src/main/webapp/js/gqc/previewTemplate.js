@@ -26,7 +26,7 @@ $(function() {
 		for (var i = 0, j = dynamicQueryConditions.length; i < j; i++) {
 			var dynamicQueryCondition = dynamicQueryConditions[i];
 			trHtml.push('<tr data-role="dynamicQueryCondition" class="dynamicQueryCondition"><input data-role="widgetType" type="hidden" value="' + dynamicQueryCondition.widgetType + '"/>');
-			trHtml.push('<td class="column-name">' + dynamicQueryCondition.fieldName + '<input data-role="fieldName" type="hidden" value="' + dynamicQueryCondition.fieldName + '"></td>')
+			trHtml.push('<td class="column-name">' + dynamicQueryCondition.label + '<input data-role="fieldName" type="hidden" value="' + dynamicQueryCondition.fieldName + '"></td>')
 			trHtml.push('<td class="query-condition">' + showQueryCondition(dynamicQueryCondition.queryOperation) + '<input data-role="queryOperation" type="hidden" value="' + dynamicQueryCondition.queryOperation + '"/></td>')
 			if (dynamicQueryCondition.widgetType == 'TEXT') {
 				if (dynamicQueryCondition.queryOperation == 'BETWEEN') {
