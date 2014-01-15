@@ -333,12 +333,7 @@ public class JiraCISClientTest {
 		assertTrue("为用户分配角色成功！", true);
 	}
 
-	@Test
-	public void testCanConnect() {
-		boolean canConnect = instance.canConnect();
-		assertTrue(canConnect);
-	}
-	
+
 	/**
 	 * 确保必填项不为空
 	 */

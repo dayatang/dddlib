@@ -3,7 +3,6 @@ package org.openkoala.opencis.svn.command;
 import org.openkoala.opencis.api.OpencisConstant;
 import org.openkoala.opencis.api.Project;
 
-import com.dayatang.configuration.Configuration;
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.Session;
 import org.openkoala.opencis.api.SSHConnectConfig;

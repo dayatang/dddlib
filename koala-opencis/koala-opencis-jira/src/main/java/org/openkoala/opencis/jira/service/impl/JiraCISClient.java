@@ -70,10 +70,7 @@ public class JiraCISClient implements CISClient {
             return false;
         }
 
-        if (createProjectToJira(project)) {
-            return true;
-        }
-        return false;
+        return createProjectToJira(project);
     }
 
     /**

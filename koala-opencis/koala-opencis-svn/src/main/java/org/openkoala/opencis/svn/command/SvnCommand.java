@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.api.SSHCommand;
 
-import com.dayatang.configuration.Configuration;
 import org.openkoala.opencis.api.SSHConnectConfig;
 
 /**

@@ -2,7 +2,6 @@ package org.openkoala.opencis.trac.command;
 
 import org.openkoala.opencis.api.Project;
 
-import com.dayatang.configuration.Configuration;
 import org.openkoala.opencis.api.SSHConnectConfig;
 
 /**

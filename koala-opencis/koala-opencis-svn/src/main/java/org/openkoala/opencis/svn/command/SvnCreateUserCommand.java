@@ -8,7 +8,6 @@ import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.api.SSHConnectConfig;
 import org.openkoala.opencis.exception.CreateUserFailedException;
 
-import com.dayatang.configuration.Configuration;
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.Session;
 
