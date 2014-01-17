@@ -42,7 +42,7 @@ public class JenkinsCISClientTest {
         developer.setEmail("admin@gmail.com");
 
 
-        AuthenticationResult<WebDriver> authenticationResult = new AuthenticationResult<WebDriver>();
+        AuthenticationResult authenticationResult = new AuthenticationResult<WebDriver>();
         authenticationResult.setContext(new HtmlUnitDriver(true));
 
         //认证
