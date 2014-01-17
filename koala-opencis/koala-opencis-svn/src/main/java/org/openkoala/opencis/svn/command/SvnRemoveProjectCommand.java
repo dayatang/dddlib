@@ -1,11 +1,13 @@
 package org.openkoala.opencis.svn.command;
 
-import org.openkoala.opencis.api.OpencisConstant;
+import java.io.File;
+
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.support.OpencisConstant;
+import org.openkoala.opencis.support.SSHConnectConfig;
 
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.Session;
-import org.openkoala.opencis.api.SSHConnectConfig;
 
 /**
  * svn创建项目命令类
@@ -22,7 +24,7 @@ public class SvnRemoveProjectCommand extends SvnCommand {
 
     @Override
     public String getCommand() {
-        String removeProjectCommand = "rm -rf " + OpencisConstant.PROJECT_PATH_IN_LINUX_SVN + project.getProjectName();
+        String removeProjectCommand = "rm -rf " + project.getProjectPath() + project.getProjectName();
         return removeProjectCommand;
     }
 
