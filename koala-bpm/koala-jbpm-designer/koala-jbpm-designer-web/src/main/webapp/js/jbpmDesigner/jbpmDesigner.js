@@ -137,7 +137,7 @@ $(function(){
                         '?locale=zh_CN&packageName='+$($element).data('title')+
                         '&createNewAsset=true&assetName='+menu.title+'&description='+descript.val()+
                         '&assetFormat=bpmn2&client=oryx';
-                    openTab('pages/jbpm/edit-process.html', name.val(), name.val(),  name.val(), menu);
+                    openTab('/pages/jbpm/edit-process.html', name.val(), name.val(),  name.val(), menu);
                     $('body').message({
                           type: 'success',
                           content: '添加成功'
