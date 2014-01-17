@@ -1,11 +1,7 @@
 package org.openkoala.opencis.jenkins;
 
-import java.util.List;
-
 import org.openkoala.opencis.api.*;
-import org.openkoala.opencis.authorize.CISAuthorization;
-import org.openkoala.opencis.exception.CISClientBaseRuntimeException;
-import org.openkoala.opencis.jenkins.configureApi.ProjectCreateStrategy;
+import org.openkoala.opencis.CISClientBaseRuntimeException;
 import org.openkoala.opencis.jenkins.configureApi.ScmConfigStrategy;
 import org.openkoala.opencis.jenkins.configureImpl.authorize.GlobalProjectAuthorization;
 import org.openkoala.opencis.jenkins.configureImpl.authorize.ProjectAuthorization;

@@ -1,8 +1,7 @@
 package org.openkoala.opencis.jenkins.configureImpl;
 
 import org.apache.commons.lang3.StringUtils;
-import org.openkoala.opencis.exception.CISClientBaseRuntimeException;
-import org.openkoala.opencis.jenkins.configureApi.ScmConfigStrategy;
+import org.openkoala.opencis.CISClientBaseRuntimeException;
 import org.openkoala.opencis.jenkins.util.SeleniumUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

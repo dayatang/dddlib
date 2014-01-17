@@ -21,7 +21,7 @@ public class TestTracProject extends Project {
 	}
 
 	@Override
-	public String getProjectPath() {
+	public String getPhysicalPath() {
 		// TODO Auto-generated method stub
 		return "/usr/share/trac/projects/" + this.getArtifactId();
 	}

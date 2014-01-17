@@ -21,7 +21,7 @@ public class TracCreateProjectCommand extends TracCommand {
 	@Override
 	public String getCommand() {
 		// TODO Auto-generated method stub
-		String createProjectCommand = "trac-admin " + project.getProjectPath() +
+		String createProjectCommand = "trac-admin " + project.getPhysicalPath() +
                 " initenv " + project.getArtifactId() + " sqlite:db/trac.db";
 		return createProjectCommand;
 	}

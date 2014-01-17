@@ -1,101 +1,105 @@
 package org.openkoala.opencis.api;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openkoala.opencis.CISClientBaseRuntimeException;
+import org.openkoala.opencis.DeveloperValidateRuntimeException;
 
 import java.util.List;
 
 /**
  * 开发者对象
- * @author lingen
  *
+ * @author lingen
  */
 public class Developer {
-	
-	/**
-	 * 用户 ID
-	 */
-	private String id;
-	
-	/**
-	 * 用户名称
-	 */
-	private String name;
-	
-	/**
-	 * 密码
-	 */
-	private String password;
-	
-	/**
-	 * 用户全名
-	 */
-	private String fullName;
-	
-	/**
-	 * 用户邮箱
-	 */
-	private String email;
-	
-	/**
-	 * 用户角色
-	 */
-	private List<String> roles;
 
+    /**
+     * 用户 ID
+     */
+    private String id;
+
+    /**
+     * 用户名称
+     */
+    private String name;
+
+    /**
+     * 密码
+     */
+    private String password;
+
+    /**
+     * 用户全名
+     */
+    private String fullName;
+
+    /**
+     * 用户邮箱
+     */
+    private String email;
+
+    /**
+     * 用户角色
+     */
+    private List<String> roles;
+
+
+    private final static String EMAIL_REG = "^(\\w)+(\\.\\w+)*@(\\w)+((\\.\\w{2,3}){1,3})$";
 
     public void validate() {
-        if (StringUtils.isBlank(name) ) {
+        if (StringUtils.isBlank(name) || StringUtils.isBlank(password)
+                || StringUtils.isBlank(email) || email.matches(EMAIL_REG)) {
+            throw new DeveloperValidateRuntimeException("Developer is invalid");
         }
-
-
     }
 
-	
-	public String getId() {
-		return id;
-	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public String getFullName() {
-		return fullName;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
+    public String getFullName() {
+        return fullName;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public List<String> getRoles() {
-		return roles;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
-	}
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
 
 }

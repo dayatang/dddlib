@@ -1,8 +1,6 @@
 package org.openkoala.opencis.jenkins.configureImpl.project;
 
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.exception.CISClientBaseRuntimeException;
-import org.openkoala.opencis.jenkins.configureApi.ProjectCreateStrategy;
 import org.openkoala.opencis.jenkins.configureApi.ScmConfigStrategy;
 import org.openkoala.opencis.jenkins.util.SeleniumUtil;
 import org.openkoala.opencis.jenkins.util.UrlUtil;

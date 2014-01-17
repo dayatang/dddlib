@@ -12,7 +12,6 @@ import org.apache.commons.lang.StringUtils;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.InitCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.api.errors.NoFilepatternException;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.lib.StoredConfig;
 import org.eclipse.jgit.transport.CredentialsProvider;
@@ -27,8 +26,7 @@ import org.gitlab.api.models.GitlabUser;
 import org.openkoala.opencis.api.CISClient;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.exception.CISClientBaseRuntimeException;
-import org.openkoala.opencis.git.GitCISUserException;
+import org.openkoala.opencis.CISClientBaseRuntimeException;
 
 /**
  * 连接GitLab服务器并实现创建项目等操作的客户端.
@@ -165,7 +163,7 @@ public class GitlabCISClient implements CISClient {
         Repository repository = null;
         InitCommand init = new InitCommand();
 
-        String projectPath = project.getProjectPath();
+        String projectPath = project.getPhysicalPath();
         if (StringUtils.isBlank(projectPath)) {
             return false;
         }
