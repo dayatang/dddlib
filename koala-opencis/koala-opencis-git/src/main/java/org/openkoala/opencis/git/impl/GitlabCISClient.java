@@ -280,7 +280,8 @@ public class GitlabCISClient implements CISClient {
         GitlabUser gitlabUser;
         try {
             gitlabUser = gitlabHTTPRequestor.method("POST")
-                    .with("email", developer.getEmail()).with("username", developer.getId()).with("name", developer.getName()).with("password", developer.getId())
+                    .with("email", developer.getEmail()).with("username",
+                            developer.getId()).with("name", developer.getName()).with("password", developer.getId())
                     .to(GitlabUser.URL, GitlabUser.class);
         } catch (IOException e) {
             errors = "IO exception at create user";

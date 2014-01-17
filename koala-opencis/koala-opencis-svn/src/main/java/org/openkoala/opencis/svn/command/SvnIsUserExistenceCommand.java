@@ -28,7 +28,10 @@ public class SvnIsUserExistenceCommand extends SvnCommand {
 	
 	@Override
 	public String getCommand() {
-		String isUserExistenceCommand = "grep -q '" + userName + ":' " + OpencisConstant.PROJECT_PATH_IN_LINUX_SVN + project.getProjectName() + "/conf/passwd && echo 'exist' || echo 'not exist'";
+		String isUserExistenceCommand =
+                "grep -q '" + userName + ":' " +
+                        OpencisConstant.PROJECT_PATH_IN_LINUX_SVN + project.getProjectName() +
+                        "/conf/passwd && echo 'exist' || echo 'not exist'";
 		return isUserExistenceCommand;
 	}
 

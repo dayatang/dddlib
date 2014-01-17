@@ -6,9 +6,9 @@ package org.openkoala.opencis.api;
  * Date: 1/14/14
  * Time: 2:09 PM
  */
-public class AuthenticationResult<T> {
+public class AuthenticationResult {
 
-    private T context;
+    private Object context;
 
     private String errors;
 
@@ -19,11 +19,11 @@ public class AuthenticationResult<T> {
         return errors == null || "".equals(errors.trim());
     }
 
-    public T getContext() {
+    public Object getContext() {
         return context;
     }
 
-    public void setContext(T context) {
+    public void setContext(Object context) {
         this.context = context;
     }
 

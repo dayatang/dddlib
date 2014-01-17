@@ -1,6 +1,6 @@
 package org.openkoala.opencis.exception;
 
-public class UserListBlankException extends BaseException {
+public class UserListBlankException extends CISClientBaseRuntimeException {
 
 	private static final long serialVersionUID = 2389484663291825626L;
 	

@@ -26,11 +26,19 @@
 			<artifactId>commons-lang</artifactId>
 		</dependency>
 
+
+
 		<dependency>
 			<groupId>org.openkoala.opencis</groupId>
 			<artifactId>koala-opencis-api</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+
+        <dependency>
+            <groupId>org.openkoala.opencis</groupId>
+            <artifactId>koala-opencis-support</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
 
 	</dependencies>
 </project>

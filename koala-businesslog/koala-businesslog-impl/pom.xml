@@ -109,9 +109,19 @@
             <version>${db.version}</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+
         <!-- Test -->
-
-
         <dependency>
             <groupId>org.openkoala.koalacommons</groupId>
             <artifactId>koala-commons-test-support</artifactId>
