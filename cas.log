@@ -1013,3 +1013,5 @@ SERVER IP ADDRESS: 127.0.0.1
 2014-01-17 11:08:14,545 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
 2014-01-17 11:10:14,544 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
 2014-01-17 11:10:14,545 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
+2014-01-17 11:12:14,544 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Reloading registered services.
+2014-01-17 11:12:14,544 INFO [org.jasig.cas.services.DefaultServicesManagerImpl] - Loaded 1 services.
