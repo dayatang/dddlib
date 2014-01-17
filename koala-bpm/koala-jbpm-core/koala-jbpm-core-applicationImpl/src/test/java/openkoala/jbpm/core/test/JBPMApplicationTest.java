@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.transaction.TransactionManager;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.net.util.Base64;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -72,22 +73,27 @@ public class JBPMApplicationTest {
 					JBPMApplicationTest.class.getClassLoader()
 							.getResource("defaultPackage.Trade-image.png")
 							.getPath()));
+		
 			
-			String pngString = new String(png);
+			
+			String stringToStore = Base64.encodeBase64String(png);
+			
+			
 
 			getJBPMApplication().addProcess(packageName, processId, version,
-					data, pngString, true);
+					data, stringToStore, true);
 
 			init = true;
 		}
 	}
 	
-	private static Byte[] convertToByteArray(byte[] pngs){
-		Byte[] pngByte = new Byte[pngs.length];
-		for(int i=0; i<pngs.length; i++){
-			pngByte[i] = Byte.valueOf(pngs[i]);
-		}
-		return pngByte;
+	@Test
+	public void testGetImage(){
+		Map<String,Object> values = new HashMap<String,Object>();
+		values.put("creater", "abc");
+		long i = getJBPMApplication().startProcess("defaultPackage.Trade", "aaa", XmlParseUtil.paramsToXml(values));
+		byte[] png = getJBPMApplication().getPorcessImageStream(i);
+		Assert.assertNotNull(png);
 	}
 
 	/**

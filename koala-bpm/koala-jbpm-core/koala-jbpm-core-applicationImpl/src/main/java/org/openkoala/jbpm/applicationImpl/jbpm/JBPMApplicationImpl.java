@@ -20,6 +20,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jws.WebMethod;
 import javax.naming.InitialContext;
+import javax.naming.NameNotFoundException;
 import javax.naming.NamingException;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
@@ -29,6 +30,7 @@ import javax.transaction.SystemException;
 import javax.transaction.TransactionManager;
 import javax.transaction.UserTransaction;
 
+import org.apache.commons.net.util.Base64;
 import org.drools.definition.process.Node;
 import org.drools.persistence.info.WorkItemInfo;
 import org.drools.runtime.StatefulKnowledgeSession;
@@ -220,29 +222,31 @@ public class JBPMApplicationImpl implements JBPMApplication {
 				return null;
 			}
 
-			RuleFlowProcessInstance in = (RuleFlowProcessInstance) koalaBPMApiApplication
-					.getProcessInstance(processInstanceId);
-
-			Collection<org.drools.runtime.process.NodeInstance> actives = in
-					.getNodeInstances();
-
-			HumanTaskNodeInstance activeNode = null;
-			for (NodeInstance active : actives) {
-				if (active instanceof HumanTaskNodeInstance) {
-					HumanTaskNodeInstance node = (HumanTaskNodeInstance) active;
-					String nodeName = (String) ((HumanTaskNodeInstance) active)
-							.getHumanTaskNode().getWork()
-							.getParameter("TaskName");
-					if (taskName.equals(nodeName)) {
-						activeNode = node;
-					}
-				}
-			}
+//			RuleFlowProcessInstance in = (RuleFlowProcessInstance) koalaBPMApiApplication
+//					.getProcessInstance(processInstanceId);
+//
+//			Collection<org.drools.runtime.process.NodeInstance> actives = in
+//					.getNodeInstances();
+//
+//			HumanTaskNodeInstance activeNode = null;
+//			for (NodeInstance active : actives) {
+//				if (active instanceof HumanTaskNodeInstance) {
+//					HumanTaskNodeInstance node = (HumanTaskNodeInstance) active;
+//					String nodeName = (String) ((HumanTaskNodeInstance) active)
+//							.getHumanTaskNode().getWork()
+//							.getParameter("TaskName");
+//					if (taskName.equals(nodeName)) {
+//						activeNode = node;
+//					}
+//				}
+//			}
 
 			String key = (String) map.get("KJ_CHOICE_KEY");
 			String type = (String) map.get("KJ_CHOICE_TYPE");
 			String choiceValue = (String) map.get("KJ_CHOICE_VALUE");
+			choiceValue = new String(choiceValue.getBytes("ISO-8859-1"),"UTF-8");
 			String[] values = choiceValue.split(";");
+			logger.info("CHOICE:"+choiceValue);
 			for (String value : values) {
 				String[] choices = value.split("->");
 				String name = choices[0];
@@ -1227,7 +1231,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			String data, String pngString, boolean isActive) {
 		UserTransaction owner = null;
 		try {
-			byte[] png = pngString.getBytes();
+			byte[] png = Base64.decodeBase64(pngString);
 			owner = this.startUserTransaction();
 			KoalaProcessInfo processInfo = KoalaProcessInfo
 					.getProcessInfoByProcessNameAndVersion(processName, version);
@@ -1582,7 +1586,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	private Map<String, Object> getContentId(long contentId) {
 		
         Content content = jbpmTaskService.getContent(contentId);
-        Object input = ContentMarshallerHelper.unmarshall(content.getContent(), null);  
+        Object input = ContentMarshallerHelper.unmarshall(content.getContent(), null);
         return (Map<String, Object>) input;
         
 	}
@@ -1598,11 +1602,13 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	private UserTransaction startUserTransaction() {
 		UserTransaction ut = null;
 		try {
+			try{
 			ut = (UserTransaction) new InitialContext()
 					.lookup("java:jboss/UserTransaction");
-			// TEST
-//			ut = (UserTransaction) new InitialContext()
-//			.lookup("java:comp/UserTransaction");
+			}catch(NameNotFoundException e){
+				ut = (UserTransaction) new InitialContext()
+				.lookup("java:comp/UserTransaction");
+			}
 			ut.begin();
 		} catch (NotSupportedException e) {
 			e.printStackTrace();

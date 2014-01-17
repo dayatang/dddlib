@@ -100,7 +100,7 @@ public interface JBPMApplication {
 	 * @param processInstanceId
 	 * @param taskId
 	 * @return
-	 */  //只需要taskid，待优化
+	 */  
 	@GET
 	@Path("choice/{processInstanceId}/{taskId}")
 	public List<TaskChoice> queryTaskChoice(@PathParam("processInstanceId") long processInstanceId, @PathParam("taskId") long taskId);

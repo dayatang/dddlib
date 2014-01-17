@@ -29,7 +29,7 @@ public class ImageUtil {
 			InputStream imagein= null;
 			InputStream imagein2 = null;
 			try{
-			imagein= new ByteArrayInputStream(png);
+			imagein = new ByteArrayInputStream(png);  
 			imagein2=ImageUtil.class.getResourceAsStream("/png/role.gif");
 	        BufferedImage image=ImageIO.read(imagein);
 	        BufferedImage image2=ImageIO.read(imagein2);
