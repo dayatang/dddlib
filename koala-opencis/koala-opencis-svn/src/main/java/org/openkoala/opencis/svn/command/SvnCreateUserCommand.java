@@ -1,12 +1,13 @@
 package org.openkoala.opencis.svn.command;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.openkoala.opencis.api.Developer;
-import org.openkoala.opencis.api.OpencisConstant;
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.api.SSHConnectConfig;
 import org.openkoala.opencis.exception.CreateUserFailedException;
+import org.openkoala.opencis.support.OpencisConstant;
+import org.openkoala.opencis.support.SSHConnectConfig;
 
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.Session;
@@ -29,7 +30,7 @@ public class SvnCreateUserCommand extends SvnCommand {
 	
 	@Override
 	public String getCommand() {
-		String createUserCommand = "htpasswd -b " + OpencisConstant.PROJECT_PATH_IN_LINUX_SVN + project.getProjectName() +
+		String createUserCommand = "htpasswd -b " + project.getProjectPath() + project.getProjectName() +
 								   "/conf/passwd " + developer.getName() + " " + developer.getPassword();
 		return createUserCommand;
 	}

@@ -1,13 +1,14 @@
 package org.openkoala.opencis.svn.command;
 
 
+import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.lang.StringUtils;
-import org.openkoala.opencis.api.OpencisConstant;
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.api.SSHConnectConfig;
 import org.openkoala.opencis.exception.ProjectExistenceException;
+import org.openkoala.opencis.support.OpencisConstant;
+import org.openkoala.opencis.support.SSHConnectConfig;
 
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.Session;
@@ -27,7 +28,7 @@ public class SvnCreateProjectCommand extends SvnCommand {
 
 	@Override
 	public String getCommand() {
-		String createProjectCommand = "svnadmin create " + OpencisConstant.PROJECT_PATH_IN_LINUX_SVN + project.getProjectName();
+		String createProjectCommand = "svnadmin create " + project.getProjectPath() + project.getProjectName();
 		return createProjectCommand;
 	}
 	

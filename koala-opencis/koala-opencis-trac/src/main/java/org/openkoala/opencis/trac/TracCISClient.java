@@ -2,6 +2,7 @@ package org.openkoala.opencis.trac;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openkoala.opencis.api.CISClient;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
@@ -11,6 +12,7 @@ import org.openkoala.opencis.trac.command.TracAssignUserToRoleCommand;
 import org.openkoala.opencis.trac.command.TracCommand;
 import org.openkoala.opencis.trac.command.TracCreateProjectCommand;
 import org.openkoala.opencis.trac.command.TracCreateRoleCommand;
+import org.openkoala.opencis.trac.command.TracRemoveProjectCommand;
 
 
 /**
@@ -25,6 +27,7 @@ import org.openkoala.opencis.trac.command.TracCreateRoleCommand;
 public class TracCISClient implements CISClient {
 
     private SSHConnectConfig configuration = null;
+    private static final Logger logger = Logger.getLogger(TracCISClient.class);
 
     private CommandExecutor executor = new CommandExecutor();
 
@@ -58,7 +61,7 @@ public class TracCISClient implements CISClient {
         try {
             success = executor.executeSync(command);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
         }
 
     }
@@ -78,7 +81,7 @@ public class TracCISClient implements CISClient {
         try {
             success = executor.executeSync(command);
         } catch (Exception e) {
-            e.printStackTrace();
+        	logger.error(e.getMessage(),e);
 //            return false;
         }
 //        return true;
@@ -92,23 +95,23 @@ public class TracCISClient implements CISClient {
         try {
             success = executor.executeSync(command);
         } catch (Exception e) {
-            e.printStackTrace();
+        	logger.error(e.getMessage(),e);
             return false;
         }
         return true;
     }
 
 
-    public boolean assignUsersToRole(Project project, List<String> userName,String role) {
-        // TODO Auto-generated method stub
-        return true;
-
-    }
-
 	@Override
 	public void removeProject(Project project) {
 		// TODO Auto-generated method stub
-		
+		TracCommand command = new TracRemoveProjectCommand(configuration,project);
+		try {
+			success = executor.executeSync(command);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			logger.error(e.getMessage(),e);
+		}
 	}
 
 	@Override

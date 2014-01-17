@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
-import org.openkoala.opencis.api.*;
+import org.openkoala.opencis.api.CISClient;
+import org.openkoala.opencis.api.Developer;
+import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.exception.CreateProjectException;
 import org.openkoala.opencis.exception.CreateUserException;
 import org.openkoala.opencis.exception.CreateUserGroupException;
@@ -19,6 +21,8 @@ import org.openkoala.opencis.exception.UserBlankException;
 import org.openkoala.opencis.exception.UserExistenceException;
 import org.openkoala.opencis.exception.UserListBlankException;
 import org.openkoala.opencis.exception.UserOrPasswordErrorException;
+import org.openkoala.opencis.support.CommandExecutor;
+import org.openkoala.opencis.support.SSHConnectConfig;
 import org.openkoala.opencis.svn.command.SvnAuthzCommand;
 import org.openkoala.opencis.svn.command.SvnClearProjectPasswdFileContentCommand;
 import org.openkoala.opencis.svn.command.SvnCommand;
@@ -83,12 +87,7 @@ public class SvnCISClient implements CISClient {
     }
 
     @Override
-    public String getErrors() {
-        return errors;
-    }
-
-    @Override
-    public boolean createProject(Project project) {
+    public void createProject(Project project) {
         isProjectInfoNotBlank(project);
         SvnCommand command = new SvnCreateProjectCommand(configuration, project);
         try {
@@ -101,11 +100,10 @@ public class SvnCISClient implements CISClient {
             throw new CreateProjectException("创建项目异常", e);
         }
 
-        return true;
     }
 
     @Override
-    public boolean createUserIfNecessary( Developer developer) {
+    public void createUserIfNecessary(Project project, Developer developer) {
         isProjectInfoNotBlank(project);
         isUserInfoBlank(developer);
         SvnCommand isUserExistencecommand = new SvnIsUserExistenceCommand(developer.getName(),
@@ -117,11 +115,11 @@ public class SvnCISClient implements CISClient {
             success = executor.executeSync(createUsercommand);
         } catch (UserExistenceException e) {
             //用户存在，则不再创建用户
-            return true;
+//            return true;
         } catch (Exception e) {
             throw new CreateUserException("创建用户异常", e);
         }
-        return false;
+//        return false;
     }
 
     private boolean isProjectInfoNotBlank(Project project) {
@@ -142,19 +140,15 @@ public class SvnCISClient implements CISClient {
     }
 
 
-    @Override
-    public boolean createRoleIfNecessary(Project project, String roleName) {
+    public void createRoleIfNecessary(Project project, String roleName) {
         //svn创建角色和角色授权是一起执行的，即在角色授权时同时创建角色，因此这里不单独实现创建角色
-        return true;
     }
 
-    @Override
     public boolean assignUserToRole(Project project, String userName, String role) {
         //使用assignUsersToRole方法来实现
         return true;
     }
 
-    @Override
     /**
      * 该授权分两步：
      * 1. 创建角色并为用户分配角色
@@ -208,7 +202,8 @@ public class SvnCISClient implements CISClient {
 
     }
 
-    protected void removeProjcet(Project project) {
+	@Override
+	public void removeProject(Project project) {
         SvnCommand command = new SvnRemoveProjectCommand(configuration, project);
         try {
             success = executor.executeSync(command);
@@ -251,5 +246,25 @@ public class SvnCISClient implements CISClient {
     public void setSuccess(boolean success) {
         this.success = success;
     }
+
+
+	@Override
+	public void removeUser(Project project, Developer developer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void assignUsersToRole(Project project, String role,
+			Developer... developers) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean authenticate() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }
