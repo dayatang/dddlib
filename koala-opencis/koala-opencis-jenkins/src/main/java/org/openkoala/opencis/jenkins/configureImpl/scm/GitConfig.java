@@ -1,6 +1,7 @@
 package org.openkoala.opencis.jenkins.configureImpl.scm;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openkoala.opencis.exception.CISClientBaseRuntimeException;
 import org.openkoala.opencis.jenkins.configureApi.ScmConfigStrategy;
 import org.openkoala.opencis.jenkins.configureImpl.ProjectConfigUtil;
 import org.openkoala.opencis.jenkins.util.SeleniumUtil;
@@ -18,24 +19,20 @@ import java.util.concurrent.TimeUnit;
  * Time: 10:44 AM
  */
 public class GitConfig implements ScmConfigStrategy<WebDriver> {
-    private String jobConfigUrl;
 
     private String scmUrl;
 
-    private String error;
-
-    public GitConfig(String jobConfigUrl, String scmUrl) {
-        this.jobConfigUrl = jobConfigUrl;
+    public GitConfig(String scmUrl) {
         this.scmUrl = scmUrl;
     }
 
     @Override
-    public boolean config(WebDriver driver) {
+    public void config(WebDriver context) {
 
 
-        String jobName = driver.findElement(By.name("name")).getAttribute("value");
+        String jobName = context.findElement(By.name("name")).getAttribute("value");
 
-        List<WebElement> scmRadios = driver.findElements(By.cssSelector("input[name=\"scm\"]"));
+        List<WebElement> scmRadios = context.findElements(By.cssSelector("input[name=\"scm\"]"));
         String scm = "Git";
         WebElement selectedSCM = null;
         for (WebElement scmRadio : scmRadios) {
@@ -49,27 +46,17 @@ public class GitConfig implements ScmConfigStrategy<WebDriver> {
         selectedSCM.click();
 
         WebElement repositoryUrlInput =
-                driver.findElement(
+                context.findElement(
                         By.cssSelector("input[checkurl*=\"hudson.plugins.git.UserRemoteConfig\"]"));
         repositoryUrlInput.sendKeys(scmUrl);
-        SeleniumUtil.clickBlankArea(driver);
+        SeleniumUtil.clickBlankArea(context);
 
 
         repositoryUrlInput.click();
 
-        String submitResult = ProjectConfigUtil.submitForm(driver, jobName);
-        if (submitResult != null) {
-            error = submitResult;
-            return false;
-        }
-
-        return true;
+        ProjectConfigUtil.submitForm(context, jobName);
 
 
     }
 
-    @Override
-    public String getErrors() {
-        return error;
-    }
 }

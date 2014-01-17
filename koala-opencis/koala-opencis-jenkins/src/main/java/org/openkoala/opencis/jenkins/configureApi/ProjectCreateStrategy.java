@@ -9,9 +9,7 @@ import org.openkoala.opencis.api.Project;
  */
 public interface ProjectCreateStrategy<T> {
 
-    boolean createAndConfig(String jenkinsBaseUrl, Project project, T context);
-
-    String getErrors();
+    void createAndConfig(String jenkinsBaseUrl, Project project, T context);
 
 
 }

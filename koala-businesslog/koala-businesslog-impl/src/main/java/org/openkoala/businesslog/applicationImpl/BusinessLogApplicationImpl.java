@@ -8,6 +8,8 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.openkoala.businesslog.BusinessLog;
 import org.openkoala.businesslog.dto.DefaultBusinessLogDTO;
 import org.openkoala.businesslog.model.DefaultBusinessLog;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.openkoala.businesslog.application.BusinessLogApplication;
@@ -19,6 +21,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.interceptor.Interceptors;
 
+import java.lang.reflect.InvocationTargetException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,15 +38,17 @@ import java.util.List;
 @Remote
 public class BusinessLogApplicationImpl implements BusinessLogApplication {
 
+    private final static Logger LOGGER = LoggerFactory.getLogger(BusinessLogApplicationImpl.class);
 
-	private QueryChannelService queryChannel;
-	
-	private QueryChannelService getQueryChannelService(){
-		if(queryChannel ==null){
-			queryChannel = InstanceFactory.getInstance(QueryChannelService.class,"queryChannel_businessLog");
-		}
-		return queryChannel;
-	}
+
+    private QueryChannelService queryChannel;
+
+    private QueryChannelService getQueryChannelService() {
+        if (queryChannel == null) {
+            queryChannel = InstanceFactory.getInstance(QueryChannelService.class, "queryChannel_businessLog");
+        }
+        return queryChannel;
+    }
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public DefaultBusinessLogDTO getDefaultBusinessLog(Long id) {
@@ -52,8 +57,12 @@ public class BusinessLogApplicationImpl implements BusinessLogApplication {
         // 将domain转成VO
         try {
             BeanUtils.copyProperties(defaultBusinessLogDTO, defaultBusinessLog);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            LOGGER.error("InvocationTargetException error", e);
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            LOGGER.error("IllegalAccessException error", e);
+            throw new RuntimeException(e);
         }
         defaultBusinessLogDTO.setId(defaultBusinessLog.getId());
         return defaultBusinessLogDTO;
@@ -63,8 +72,12 @@ public class BusinessLogApplicationImpl implements BusinessLogApplication {
         DefaultBusinessLog defaultBusinessLog = new DefaultBusinessLog();
         try {
             BeanUtils.copyProperties(defaultBusinessLog, defaultBusinessLogDTO);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            LOGGER.error("InvocationTargetException error", e);
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            LOGGER.error("IllegalAccessException error", e);
+            throw new RuntimeException(e);
         }
         defaultBusinessLog.save();
         defaultBusinessLogDTO.setId((java.lang.Long) defaultBusinessLog.getId());
@@ -76,8 +89,12 @@ public class BusinessLogApplicationImpl implements BusinessLogApplication {
         // 设置要更新的值
         try {
             BeanUtils.copyProperties(defaultBusinessLog, defaultBusinessLogDTO);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            LOGGER.error("InvocationTargetException error", e);
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            LOGGER.error("IllegalAccessException error", e);
+            throw new RuntimeException(e);
         }
     }
 
@@ -88,7 +105,6 @@ public class BusinessLogApplicationImpl implements BusinessLogApplication {
     @Override
     public void save(DefaultBusinessLog log) {
         log.save();
-
     }
 
     public void removeDefaultBusinessLogs(Long[] ids) {
@@ -107,8 +123,12 @@ public class BusinessLogApplicationImpl implements BusinessLogApplication {
             // 将domain转成VO
             try {
                 BeanUtils.copyProperties(defaultBusinessLogDTO, defaultBusinessLog);
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                LOGGER.error("InvocationTargetException error", e);
+                throw new RuntimeException(e);
+            } catch (IllegalAccessException e) {
+                LOGGER.error("IllegalAccessException error", e);
+                throw new RuntimeException(e);
             }
             list.add(defaultBusinessLogDTO);
         }
@@ -154,8 +174,12 @@ public class BusinessLogApplicationImpl implements BusinessLogApplication {
             // 将domain转成VO
             try {
                 BeanUtils.copyProperties(defaultBusinessLogDTO, defaultBusinessLog);
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                LOGGER.error("InvocationTargetException error", e);
+                throw new RuntimeException(e);
+            } catch (IllegalAccessException e) {
+                LOGGER.error("IllegalAccessException error", e);
+                throw new RuntimeException(e);
             }
 
             result.add(defaultBusinessLogDTO);

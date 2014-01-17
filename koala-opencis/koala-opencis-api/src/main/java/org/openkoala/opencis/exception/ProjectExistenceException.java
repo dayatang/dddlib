@@ -1,6 +1,6 @@
 package org.openkoala.opencis.exception;
 
-public class ProjectExistenceException extends BaseException {
+public class ProjectExistenceException extends CISClientBaseRuntimeException {
 
 	private static final long serialVersionUID = 2389484663291825626L;
 	

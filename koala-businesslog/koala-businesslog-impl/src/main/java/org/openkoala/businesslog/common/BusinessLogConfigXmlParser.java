@@ -6,6 +6,8 @@ import org.openkoala.businesslog.BusinessLogXmlConfigParseException;
 import org.openkoala.businesslog.BusinessLogXmlConfigSAXException;
 import org.openkoala.businesslog.config.BusinessLogContextQuery;
 import org.openkoala.businesslog.impl.BusinessLogDefaultContextQuery;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -25,6 +27,8 @@ import java.util.List;
  * Time: 2:20 PM
  */
 public class BusinessLogConfigXmlParser {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(BusinessLogConfigXmlParser.class);
 
 
     /**
@@ -102,21 +106,22 @@ public class BusinessLogConfigXmlParser {
     }
 
 
-
-
-
     public synchronized static Document loadXmlDocument(File xmlConfigPath) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
             return builder.parse(xmlConfigPath);
         } catch (ParserConfigurationException e) {
+            LOGGER.error("loadXmlDocment ParserConfigurationException", e);
             throw new BusinessLogXmlConfigParseException(e);
         } catch (FileNotFoundException e) {
+            LOGGER.error("xmlConfigPath FileNotFoundException", e);
             throw new BusinessLogXmlConfigNotFoundException(e);
         } catch (SAXException e) {
+            LOGGER.error("SAXException", e);
             throw new BusinessLogXmlConfigSAXException(e);
         } catch (IOException e) {
+            LOGGER.error("IOException", e);
             throw new BusinessLogXmlConfigIOException(e);
         }
     }
@@ -226,7 +231,7 @@ public class BusinessLogConfigXmlParser {
     }
 
 
-    private  synchronized  BusinessLogDefaultContextQuery createQueryBy(Node queryNode) {
+    private synchronized BusinessLogDefaultContextQuery createQueryBy(Node queryNode) {
 
         String beanName = null;
         String beanClass = null;

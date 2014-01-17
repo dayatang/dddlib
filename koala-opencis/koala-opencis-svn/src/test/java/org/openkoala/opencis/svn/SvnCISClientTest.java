@@ -12,7 +12,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.api.SSHConnectConfig;
 import org.openkoala.opencis.exception.HostBlankException;
 import org.openkoala.opencis.exception.HostCannotConnectException;
 import org.openkoala.opencis.exception.PasswordBlankException;
@@ -22,6 +21,7 @@ import org.openkoala.opencis.exception.RoleBlankException;
 import org.openkoala.opencis.exception.UserBlankException;
 import org.openkoala.opencis.exception.UserListBlankException;
 import org.openkoala.opencis.exception.UserOrPasswordErrorException;
+import org.openkoala.opencis.support.SSHConnectConfig;
 
 
 @Ignore
@@ -105,7 +105,7 @@ public class SvnCISClientTest {
         } catch (ProjectExistenceException e) {
             assertTrue("预期抛出项目存在的异常！", true);
         } finally {
-            instance.removeProjcet(project);
+            instance.removeProject(project);
         }
     }
 
@@ -134,7 +134,7 @@ public class SvnCISClientTest {
         } catch (Exception e) {
             fail(e.getMessage());
         } finally {
-            instance.removeProjcet(project);
+            instance.removeProject(project);
         }
     }
 
@@ -164,7 +164,7 @@ public class SvnCISClientTest {
             instance = new SvnCISClient(configuration);
             instance.createProject(project);
             instance.assignUsersToRole(project, userNames, roleName);
-            instance.removeProjcet(project);
+            instance.removeProject(project);
             assertTrue(true);
         } catch (Exception e) {
             fail("授权失败！");
@@ -184,6 +184,7 @@ public class SvnCISClientTest {
     private void initProjectInfo() {
         project = new Project();
         project.setProjectName(projectName);
+        project.setProjectPath("/var/www/svn/");
     }
 
     private void initDeveloperInfo() {

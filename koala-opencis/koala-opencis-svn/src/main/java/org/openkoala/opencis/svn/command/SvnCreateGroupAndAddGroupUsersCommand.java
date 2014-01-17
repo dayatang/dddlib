@@ -1,13 +1,14 @@
 package org.openkoala.opencis.svn.command;
 
+import java.io.File;
 import java.util.List;
 
-import org.openkoala.opencis.api.OpencisConstant;
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.support.OpencisConstant;
+import org.openkoala.opencis.support.SSHConnectConfig;
 
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.Session;
-import org.openkoala.opencis.api.SSHConnectConfig;
 
 /**
  * svn分配用户到某个角色
@@ -34,11 +35,11 @@ public class SvnCreateGroupAndAddGroupUsersCommand extends SvnCommand {
         String groupUsers = ConvertGroupUserListToString();
         StringBuilder assignUserToRoleCommand = new StringBuilder();
         assignUserToRoleCommand.append("grep -q '^\\[groups\\]' ")
-                .append(OpencisConstant.PROJECT_PATH_IN_LINUX_SVN).append(project.getProjectName()).append("/conf/authz ")
+                .append(project.getProjectPath()).append(project.getProjectName()).append("/conf/authz ")
                 .append("&& sed -i '/\\[groups\\]/a ").append(groupName).append("=").append(groupUsers).append("' ")
-                .append(OpencisConstant.PROJECT_PATH_IN_LINUX_SVN).append(project.getProjectName()).append("/conf/authz ")
+                .append(project.getProjectPath()).append(project.getProjectName()).append("/conf/authz ")
                 .append("|| echo -ne '\n[groups]\n").append(groupName).append("=").append(groupUsers).append("' >>  ")
-                .append(OpencisConstant.PROJECT_PATH_IN_LINUX_SVN).append(project.getProjectName()).append("/conf/authz ");
+                .append(project.getProjectPath()).append(project.getProjectName()).append("/conf/authz ");
         return assignUserToRoleCommand.toString();
     }
 

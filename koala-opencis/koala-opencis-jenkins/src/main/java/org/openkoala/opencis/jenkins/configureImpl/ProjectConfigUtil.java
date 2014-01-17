@@ -1,6 +1,7 @@
 package org.openkoala.opencis.jenkins.configureImpl;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openkoala.opencis.exception.CISClientBaseRuntimeException;
 import org.openkoala.opencis.jenkins.configureApi.ScmConfigStrategy;
 import org.openkoala.opencis.jenkins.util.SeleniumUtil;
 import org.openqa.selenium.By;
@@ -20,10 +21,10 @@ public class ProjectConfigUtil {
 
     private static final int waitingTime = 2;
 
-    public static String openJobConfigurePage(Object context, String jenkinsJobConfigUrl) {
+    public static void openJobConfigurePage(WebDriver context, String jenkinsJobConfigUrl) {
         WebDriver driver;
         if (context != null) {
-            driver = (WebDriver) context;
+            driver = context;
         } else {
             driver = new HtmlUnitDriver();
             driver.manage().timeouts().implicitlyWait(waitingTime, TimeUnit.SECONDS);
@@ -33,21 +34,21 @@ public class ProjectConfigUtil {
         }
 
         if (SeleniumUtil.elementExist(driver, By.cssSelector("input[type=\"text\"][name=\"name\"]"))) {
-            return null;
+            return;
         }
-        return "job is not exist.";
+        throw new CISClientBaseRuntimeException("job is not exist.");
     }
 
 
-    public static String submitForm(WebDriver driver, String jobName) {
+    public static void submitForm(WebDriver driver, String jobName) {
         //保存配置
         WebElement saveButton = driver.findElement(By.cssSelector("span[name=\"Submit\"] button"));
         saveButton.click();
 
         if (StringUtils.endsWith(driver.getCurrentUrl(), "job/" + jobName + "/")) {
-            return null;
+            return;
         }
-        return "project configure form submit failure";
+        throw new CISClientBaseRuntimeException("project configure form submit failure");
     }
 
 
