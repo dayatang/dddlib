@@ -21,6 +21,7 @@
         <module>koala-opencis-hudson</module>
         <module>koala-opencis-sonar</module>
         <module>koala-opencis-api</module>
+        <module>koala-opencis-support</module>
     </modules>
 
     <dependencies>

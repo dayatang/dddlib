@@ -2,7 +2,7 @@ package org.openkoala.opencis.trac.command;
 
 import org.openkoala.opencis.api.Project;
 
-import org.openkoala.opencis.api.SSHConnectConfig;
+import org.openkoala.opencis.support.SSHConnectConfig;
 
 /**
  * Trac创建角色，赋予某个配置的默认权限

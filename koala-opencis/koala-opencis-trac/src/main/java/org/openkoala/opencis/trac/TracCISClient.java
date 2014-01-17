@@ -3,6 +3,8 @@ package org.openkoala.opencis.trac;
 import java.util.List;
 
 import org.openkoala.opencis.api.*;
+import org.openkoala.opencis.support.CommandExecutor;
+import org.openkoala.opencis.support.SSHConnectConfig;
 import org.openkoala.opencis.trac.command.TracAssignUserToRoleCommand;
 import org.openkoala.opencis.trac.command.TracCommand;
 import org.openkoala.opencis.trac.command.TracCreateProjectCommand;
@@ -43,13 +45,9 @@ public class TracCISClient implements CISClient {
         // do nothing
     }
 
-    @Override
-    public String getErrors() {
-        return errors;
-    }
 
     @Override
-    public boolean createProject(Project project) {
+    public void createProject(Project project) {
         //使用java SSH来创建项目
         //1、先检测项目是否存在，如果存在则不需要创建
         //2、用命令CommandExecutor来执行TracCreateProjecCommand子类
@@ -59,20 +57,17 @@ public class TracCISClient implements CISClient {
             success = executor.executeSync(command);
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
 
     }
 
     @Override
-    public boolean createUserIfNecessary(Project project, Developer developer) {
+    public void createUserIfNecessary(Project project, Developer developer) {
         //Trac在创建用户时就已经指派了角色了，所以，这里不需要执行了
-        return true;
     }
 
     @Override
-    public boolean createRoleIfNecessary(Project project, String roleName) {
+    public void createRoleIfNecessary(Project project, String roleName) {
         // TODO Auto-generated method stub
         //使用java SSH来创建角色
         //1、读取project的配置信息，包括该角色(用户组)默认的权限

@@ -2,10 +2,7 @@ package org.openkoala.opencis.jenkins;
 
 import java.util.List;
 
-import org.openkoala.opencis.api.AuthenticationStrategy;
-import org.openkoala.opencis.api.CISClient;
-import org.openkoala.opencis.api.Developer;
-import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.api.*;
 import org.openkoala.opencis.authorize.CISAuthorization;
 import org.openkoala.opencis.jenkins.configureApi.ProjectCreateStrategy;
 import org.openqa.selenium.WebDriver;
@@ -25,6 +22,9 @@ public class JenkinsCISClient implements CISClient {
 
     private WebDriver driver;
 
+    private AuthenticationStrategy authenticationStrategy;
+
+
     /**
      * 授权
      */
@@ -36,11 +36,9 @@ public class JenkinsCISClient implements CISClient {
     private ProjectCreateStrategy projectCreateStrategy;
 
 
-    private String errors;
-
-    public JenkinsCISClient(String jenkinsUrl, WebDriver driver) {
+    public JenkinsCISClient(String jenkinsUrl, AuthenticationStrategy authenticationStrategy) {
         this.jenkinsUrl = jenkinsUrl;
-        this.driver = driver;
+        this.authenticationStrategy = authenticationStrategy;
     }
 
 
@@ -58,52 +56,52 @@ public class JenkinsCISClient implements CISClient {
         driver.quit();
     }
 
-    @Override
-    public String getErrors() {
-        return errors;
-    }
 
     @Override
-    public boolean createProject(Project project) {
+    public void createProject(Project project) {
         if (!projectCreateStrategy.createAndConfig(jenkinsUrl, project, driver)) {
-            errors = projectCreateStrategy.getErrors();
-            return false;
         }
-        return true;
+    }
+
+    @Override
+    public void removeProject(Project project) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
 
     @Override
-    public boolean createUserIfNecessary(Project project, Developer developer) {
+    public void createUserIfNecessary(Project project, Developer developer) {
         if (!authorization.authorize(jenkinsUrl, project, driver, developer)) {
             errors = authorization.getErrors();
-            return false;
         }
-        return true;
 
     }
 
     @Override
-    public boolean createRoleIfNecessary(Project project, String roleName) {
-        return false;
-
+    public void removeUser(Developer developer) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    public boolean assignUserToRole(Project project, String userId, String role) {
-        return false;
+    public void createRoleIfNecessary(Project project, String roleName) {
+
+    }
+
+    public void assignUserToRole(Project project, String userId, String role) {
     }
 
 
-    @Override
-    public boolean assignUsersToRole(Project project, List<String> userName,
-                                     String role) {
-        if (null == userName || userName.size() == 0) {
-            return false;
-        }
-        for (String each : userName) {
+    public void assignUsersToRole(Project project,
+                                  String role, String... userId) {
+        for (String each : userId) {
             assignUserToRole(project, each, role);
         }
-        return true;
+    }
+
+    @Override
+    public boolean authenticate() {
+        AuthenticationResult authenticationResult = authenticationStrategy.authenticate();
+        driver = (WebDriver) authenticationResult.getContext();
+        return authenticationResult.isSuccess();
     }
 }

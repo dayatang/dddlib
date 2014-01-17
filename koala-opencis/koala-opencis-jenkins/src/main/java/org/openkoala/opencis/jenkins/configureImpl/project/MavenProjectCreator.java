@@ -74,7 +74,4 @@ public class MavenProjectCreator implements ProjectCreateStrategy<WebDriver> {
         this.scmConfig = scmConfig;
     }
 
-    public String getErrors() {
-        return error;
-    }
 }

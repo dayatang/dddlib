@@ -11,7 +11,5 @@ public interface ProjectCreateStrategy<T> {
 
     boolean createAndConfig(String jenkinsBaseUrl, Project project, T context);
 
-    String getErrors();
-
 
 }
