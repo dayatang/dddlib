@@ -1,7 +1,6 @@
 package org.openkoala.opencis.jenkins.configureImpl.authorize;
 
 import org.openkoala.opencis.api.Developer;
-import org.openkoala.opencis.exception.CISClientBaseRuntimeException;
 import org.openkoala.opencis.jenkins.util.SeleniumUtil;
 import org.openkoala.opencis.jenkins.util.UrlUtil;
 import org.openqa.selenium.By;
