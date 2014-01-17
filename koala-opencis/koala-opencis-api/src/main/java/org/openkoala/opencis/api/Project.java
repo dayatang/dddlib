@@ -16,8 +16,6 @@ public class Project {
 
     private String projectName;
 
-    private String projectKey;
-
     /**
      * 项目负责人
      */
@@ -68,14 +66,6 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getProjectKey() {
-        return projectKey;
-    }
-
-    public void setProjectKey(String projectKey) {
-        this.projectKey = projectKey;
     }
 
     public String getProjectLead() {
