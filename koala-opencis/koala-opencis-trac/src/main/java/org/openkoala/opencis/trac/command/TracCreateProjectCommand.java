@@ -1,8 +1,7 @@
 package org.openkoala.opencis.trac.command;
 
 import org.openkoala.opencis.api.Project;
-
-import org.openkoala.opencis.api.SSHConnectConfig;
+import org.openkoala.opencis.support.SSHConnectConfig;
 
 /**
  * Trac创建项目命令类

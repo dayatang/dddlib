@@ -2,7 +2,9 @@ package org.openkoala.opencis.trac;
 
 import java.util.List;
 
-import org.openkoala.opencis.api.*;
+import org.openkoala.opencis.api.CISClient;
+import org.openkoala.opencis.api.Developer;
+import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.support.CommandExecutor;
 import org.openkoala.opencis.support.SSHConnectConfig;
 import org.openkoala.opencis.trac.command.TracAssignUserToRoleCommand;
@@ -77,12 +79,11 @@ public class TracCISClient implements CISClient {
             success = executor.executeSync(command);
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+//            return false;
         }
-        return true;
+//        return true;
     }
 
-    @Override
     public boolean assignUserToRole(Project project, String usrId, String role) {
         //使用java SSH来分配用户到某个角色，如果是连续分配，个人认为不应该关闭Connection，直到循环完毕才close
         //1、读取project的配置信息
@@ -97,20 +98,46 @@ public class TracCISClient implements CISClient {
         return true;
     }
 
+
+    public boolean assignUsersToRole(Project project, List<String> userName,String role) {
+        // TODO Auto-generated method stub
+        return true;
+
+    }
+
+	@Override
+	public void removeProject(Project project) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeUser(Project project, Developer developer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void assignUsersToRole(Project project, String role,String... usersId) {
+		// TODO Auto-generated method stub
+		for(String userId:usersId){
+			assignUserToRole(project, userId, role);
+		}
+	}
+
+	@Override
+	public boolean authenticate() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+
     public boolean isSuccess() {
         return success;
     }
 
     public void setSuccess(boolean success) {
         this.success = success;
-    }
-
-    @Override
-    public boolean assignUsersToRole(Project project, List<String> userName,
-                                  String role) {
-        // TODO Auto-generated method stub
-        return true;
-
     }
 
 }
