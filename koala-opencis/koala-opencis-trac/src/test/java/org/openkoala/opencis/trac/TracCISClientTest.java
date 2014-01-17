@@ -7,8 +7,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.opencis.api.Project;
-
-import org.openkoala.opencis.api.SSHConnectConfig;
+import org.openkoala.opencis.support.SSHConnectConfig;
 
 @Ignore
 public class TracCISClientTest {
@@ -48,4 +47,9 @@ public class TracCISClientTest {
         assertTrue(client.isSuccess());
     }
 
+    @Test
+    public void testRemoveProject(){
+    	client.removeProject(project);
+    	assertTrue(client.isSuccess());
+    }
 }

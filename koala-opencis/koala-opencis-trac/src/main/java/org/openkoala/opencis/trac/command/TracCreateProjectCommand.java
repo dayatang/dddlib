@@ -1,8 +1,7 @@
 package org.openkoala.opencis.trac.command;
 
 import org.openkoala.opencis.api.Project;
-
-import org.openkoala.opencis.api.SSHConnectConfig;
+import org.openkoala.opencis.support.SSHConnectConfig;
 
 /**
  * Trac创建项目命令类
@@ -22,7 +21,7 @@ public class TracCreateProjectCommand extends TracCommand {
 	@Override
 	public String getCommand() {
 		// TODO Auto-generated method stub
-		String createProjectCommand = "trac-admin " + project.getProjectPath() +
+		String createProjectCommand = "trac-admin " + project.getPhysicalPath() +
                 " initenv " + project.getArtifactId() + " sqlite:db/trac.db";
 		return createProjectCommand;
 	}

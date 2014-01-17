@@ -49,28 +49,24 @@ public class JiraCISClient implements CISClient {
         // do nothing
     }
 
-    @Override
-    public String getErrors() {
-        return errors;
-    }
 
     @Override
-    public boolean createProject(Project project) {
+    public void createProject(Project project) {
         checkProjectInfoNotBlank(project);
 
-        project.setProjectKey(convertProjectKeyToValidFormat(project.getProjectKey()));
+        project.setProjectName(convertProjectKeyToValidFormat(project.getProjectName()));
 
         if (checkProjectExistence(project)) {
             errors = "project:" + project.getArtifactId() + " is exist";
-            return false;
+
         }
 
         if (!checkUserExistence(project.getProjectLead())) {
             errors = "user '" + project.getProjectLead() + "' is not exist！";
-            return false;
+
         }
 
-        return createProjectToJira(project);
+        createProjectToJira(project);
     }
 
     /**
@@ -112,7 +108,7 @@ public class JiraCISClient implements CISClient {
             return false;
         }
         for (RemoteProject remoteProject : remoteProjectArray) {
-            if (remoteProject.getKey().equals(project.getProjectKey())
+            if (remoteProject.getKey().equals(project.getProjectName())
                     || remoteProject.getName().equals(project.getProjectName())) {
                 return true;
             }
@@ -159,7 +155,7 @@ public class JiraCISClient implements CISClient {
 
     private boolean createProjectToJira(Project project) {
         try {
-            jiraService.createProject(token, project.getProjectKey(), project.getProjectName(),
+            jiraService.createProject(token, project.getProjectName(), project.getProjectName(),
                     project.getDescription(), jiraConfiguration.getServerAddress(), project.getProjectLead(),
                     jiraService.getPermissionSchemes(token)[0], null, null);
             return true;
@@ -186,15 +182,19 @@ public class JiraCISClient implements CISClient {
         }
     }
 
-    @Override
-    public boolean createUserIfNecessary(Project project, Developer developer) {
+    @Override                                                        //To change body of implemented methods use File | Settings | File Templates.
+    public void createUserIfNecessary(Project project, Developer developer) {
         checkUserInfoNotBlank(developer);
         //用户存在，则不创建，忽略
         boolean userExisted = checkUserExistence(developer.getName());
         if (!userExisted) {
-            return createUser(developer);
+            createUser(developer);
         }
-        return true;
+    }
+
+    @Override
+    public void removeUser(Project project, Developer developer) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     private boolean checkUserInfoNotBlank(Developer developer) {
@@ -243,12 +243,22 @@ public class JiraCISClient implements CISClient {
     }
 
     @Override
-    public boolean createRoleIfNecessary(Project project, String roleName) {
+    public void createRoleIfNecessary(Project project, String roleName) {
         //角色存在，则不创建
         if (!checkRoleExist(roleName)) {
-            return createRole(roleName);
+            createRole(roleName);
         }
-        return true;
+        return;
+    }
+
+    @Override
+    public void assignUsersToRole(Project project, String role, Developer... developers) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public boolean authenticate() {
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
 
@@ -332,14 +342,13 @@ public class JiraCISClient implements CISClient {
         return remoteProjectRole;
     }
 
-    @Override
-    public boolean assignUserToRole(Project project, String userName, String roleName) {
+    public void assignUserToRole(Project project, String userName, String roleName) {
 
         checkProjectRoleUserAllExist(project, userName, roleName);
 
 
-        addProjectRoleToUser(project.getProjectKey(), userName, roleName);
-        return true;
+        addProjectRoleToUser(project.getProjectName(), userName, roleName);
+
     }
 
     /**
@@ -419,7 +428,7 @@ public class JiraCISClient implements CISClient {
      * 检查登陆信息和项目信息是否为空
      */
     private boolean checkProjectInfoNotBlank(Project project) {
-        if (StringUtils.isBlank(project.getProjectKey())) {
+        if (StringUtils.isBlank(project.getProjectName())) {
             throw new ProjectKeyBlankException("project key不能为空！");
         }
 
@@ -456,9 +465,9 @@ public class JiraCISClient implements CISClient {
     /**
      * 仅供单元测试调用
      */
-    protected void removeProject(Project project) {
+    public void removeProject(Project project) {
         try {
-            jiraService.deleteProject(token, project.getProjectKey());
+            jiraService.deleteProject(token, project.getProjectName());
         } catch (RemotePermissionException e) {
             throw new UserPermissionNotEnoughException("该账号 '" + jiraConfiguration.getAdminUserName() + "' 没有权限删除项目！");
         } catch (Exception e) {
@@ -493,11 +502,6 @@ public class JiraCISClient implements CISClient {
         }
     }
 
-    @Override
-    public boolean assignUsersToRole(Project project, List<String> userName,
-                                     String role) {
-        // do nothing
-        return false;
-    }
+
 
 }

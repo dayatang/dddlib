@@ -73,7 +73,7 @@ public class GitlabCISClientIntegerationTest {
 		result.setDescription("This project is for test");
 		result.setProjectName("projectfortest");
 		result.setDevelopers(developers);
-		result.setProjectPath("F:\\temp\\temp\\projectfortest");
+		result.setPhysicalPath("F:\\temp\\temp\\projectfortest");
 		
 		return result;
 	}

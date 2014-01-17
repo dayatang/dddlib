@@ -79,7 +79,7 @@
 	</error-page>
 
 	<welcome-file-list>
-		<welcome-file>login.jsp</welcome-file>
+		<welcome-file>welcome.html</welcome-file>
 	</welcome-file-list>
 
 	<servlet>

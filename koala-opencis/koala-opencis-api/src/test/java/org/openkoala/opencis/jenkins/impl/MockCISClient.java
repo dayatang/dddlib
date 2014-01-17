@@ -59,14 +59,10 @@ public class MockCISClient implements CISClient {
     }
 
     @Override
-    public void assignUsersToRole(Project project, String role, String... usersId) {
+    public void assignUsersToRole(Project project, String role, Developer... developers) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-
-    public boolean assignUsersToRole(Project project, List<String> userName, String role) {
-        return false;
-    }
 
     @Override
     public boolean authenticate() {

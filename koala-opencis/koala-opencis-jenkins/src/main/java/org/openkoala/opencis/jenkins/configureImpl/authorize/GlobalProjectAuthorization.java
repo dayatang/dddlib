@@ -1,4 +1,4 @@
-package org.openkoala.opencis.jenkins.configureImpl.user;
+package org.openkoala.opencis.jenkins.configureImpl.authorize;
 
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.jenkins.util.SeleniumUtil;
@@ -17,13 +17,11 @@ import java.util.concurrent.TimeUnit;
  */
 public class GlobalProjectAuthorization {
 
-    private String errors;
-
 
     public GlobalProjectAuthorization() {
     }
 
-    public boolean authorize(String jenkinsUrl, Object context, Developer... developers) {
+    public void authorize(String jenkinsUrl, Object context, Developer... developers) {
         jenkinsUrl = UrlUtil.removeEndIfExists(jenkinsUrl, "/");
         WebDriver driver;
         if (context != null) {
@@ -38,7 +36,7 @@ public class GlobalProjectAuthorization {
         for (Developer developer : developers) {
             //用户已经存在
             if (SeleniumUtil.elementExist(driver, By.cssSelector("table#hudson-security-ProjectMatrixAuthorizationStrategy tr.permission-row[name=\"[" + developer.getName() + "]\"]"))) {
-                return true;
+                continue;
             }
 
             WebElement usernameInput =
@@ -55,7 +53,6 @@ public class GlobalProjectAuthorization {
             readPermissionCheckbox.click();
 
 
-
         }
 
 
@@ -64,11 +61,6 @@ public class GlobalProjectAuthorization {
         saveButton.click();
 
         assert driver.getCurrentUrl().equals(jenkinsUrl + "/manage");
-        return true;
 
-    }
-
-    public String getErrors() {
-        return errors;
     }
 }

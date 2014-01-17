@@ -7,8 +7,7 @@
 	<listener>
 		<listener-class>com.dayatang.spring.webapp.DayatangContextLoaderListener</listener-class>
 	</listener>
-
-	<!-- Character Filter -->
+	
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -17,6 +16,12 @@
 			<param-value>UTF-8</param-value>
 		</init-param>
 	</filter>
+	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<!-- 
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
@@ -40,7 +45,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>action2</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>*.action</url-pattern>
 	</filter-mapping>
 	
 	<!-- Spring Listener -->

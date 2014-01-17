@@ -31,7 +31,7 @@ public class EJBSrcCopy {
 
 	private static final String EAR_MODULE = "ear";
 	private static final String SECURITY_MODULE_IMPL = "koala-security-applicationImpl";
-	private static final String SECURITY_MODULE_CORE = "koala-security-authImpl";
+	private static final String SECURITY_MODULE_CORE = "koala-security-core";
 
 	private static final String MONITOR_CORE = "koala-jmonitor-core";
 
@@ -197,14 +197,6 @@ public class EJBSrcCopy {
 			List<MavenProject> wars = project.getWarProjects();
 
 			interfaces.addAll(wars);
-			// for (MavenProject war : wars) {
-			// logger.info("WAR:"+war.getPath()+"..................");
-			// if (hasSecurityModule(war, SECURITY_MODULE_IMPL)
-			// || hasSecurityModule(war, SECURITY_MODULE_CORE)) {
-			// logger.info("进来了。。。。。。。。。。。。。。。。。。。。");
-			// interfaces.add(war);
-			// }
-			// }
 
 			// 获取需要修改的依赖关系
 			List<Dependency> changes = new ArrayList<Dependency>();

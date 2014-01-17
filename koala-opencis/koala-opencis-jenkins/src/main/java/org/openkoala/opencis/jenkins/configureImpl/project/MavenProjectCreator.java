@@ -1,7 +1,6 @@
 package org.openkoala.opencis.jenkins.configureImpl.project;
 
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.jenkins.configureApi.ProjectCreateStrategy;
 import org.openkoala.opencis.jenkins.configureApi.ScmConfigStrategy;
 import org.openkoala.opencis.jenkins.util.SeleniumUtil;
 import org.openkoala.opencis.jenkins.util.UrlUtil;
@@ -18,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * Date: 1/7/14
  * Time: 5:37 PM
  */
-public class MavenProjectCreator implements ProjectCreateStrategy<WebDriver> {
+public class MavenProjectCreator {
 
 
     private String error;
@@ -29,7 +28,6 @@ public class MavenProjectCreator implements ProjectCreateStrategy<WebDriver> {
     public MavenProjectCreator() {
     }
 
-    @Override
     public boolean createAndConfig(String jenkinsUrl, Project project, WebDriver context) {
         WebDriver driver;
         if (context != null) {
@@ -63,8 +61,8 @@ public class MavenProjectCreator implements ProjectCreateStrategy<WebDriver> {
 
         assert driver.getCurrentUrl().contains("/job/" + UrlUtil.encodeURL(project.getArtifactId()));
 
-        if (scmConfig != null && !scmConfig.config(driver)) {
-            error = scmConfig.getErrors();
+        if (scmConfig != null) {
+            scmConfig.config(driver);
         }
 
         return true;

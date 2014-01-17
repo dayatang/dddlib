@@ -49,7 +49,7 @@
 			            </li>
 			        </ul>
 			    </div>
-			    <div class="col-xs-10 g-mainc container">
+			    <div class="col-xs-10 g-mainc">
 			        <ul class="nav nav-tabs" id="navTabs">
 			            <li class="active"><a href="#home" data-toggle="tab">主页面</a></li>
 			        </ul>

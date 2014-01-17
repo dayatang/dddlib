@@ -2,13 +2,17 @@ package org.openkoala.opencis.trac;
 
 import java.util.List;
 
-import org.openkoala.opencis.api.*;
+import org.apache.log4j.Logger;
+import org.openkoala.opencis.api.CISClient;
+import org.openkoala.opencis.api.Developer;
+import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.support.CommandExecutor;
 import org.openkoala.opencis.support.SSHConnectConfig;
 import org.openkoala.opencis.trac.command.TracAssignUserToRoleCommand;
 import org.openkoala.opencis.trac.command.TracCommand;
 import org.openkoala.opencis.trac.command.TracCreateProjectCommand;
 import org.openkoala.opencis.trac.command.TracCreateRoleCommand;
+import org.openkoala.opencis.trac.command.TracRemoveProjectCommand;
 
 
 /**
@@ -23,6 +27,7 @@ import org.openkoala.opencis.trac.command.TracCreateRoleCommand;
 public class TracCISClient implements CISClient {
 
     private SSHConnectConfig configuration = null;
+    private static final Logger logger = Logger.getLogger(TracCISClient.class);
 
     private CommandExecutor executor = new CommandExecutor();
 
@@ -56,7 +61,7 @@ public class TracCISClient implements CISClient {
         try {
             success = executor.executeSync(command);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
         }
 
     }
@@ -76,13 +81,12 @@ public class TracCISClient implements CISClient {
         try {
             success = executor.executeSync(command);
         } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+        	logger.error(e.getMessage(),e);
+//            return false;
         }
-        return true;
+//        return true;
     }
 
-    @Override
     public boolean assignUserToRole(Project project, String usrId, String role) {
         //使用java SSH来分配用户到某个角色，如果是连续分配，个人认为不应该关闭Connection，直到循环完毕才close
         //1、读取project的配置信息
@@ -91,11 +95,47 @@ public class TracCISClient implements CISClient {
         try {
             success = executor.executeSync(command);
         } catch (Exception e) {
-            e.printStackTrace();
+        	logger.error(e.getMessage(),e);
             return false;
         }
         return true;
     }
+
+
+	@Override
+	public void removeProject(Project project) {
+		// TODO Auto-generated method stub
+		TracCommand command = new TracRemoveProjectCommand(configuration,project);
+		try {
+			success = executor.executeSync(command);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			logger.error(e.getMessage(),e);
+		}
+	}
+
+	@Override
+	public void removeUser(Project project, Developer developer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public boolean authenticate() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+
+	@Override
+	public void assignUsersToRole(Project project, String role, Developer... developers) {
+		// TODO Auto-generated method stub
+		for(Developer developer:developers){
+			assignUserToRole(project, developer.getId(), role);
+		}
+	}
+
 
     public boolean isSuccess() {
         return success;
@@ -104,13 +144,4 @@ public class TracCISClient implements CISClient {
     public void setSuccess(boolean success) {
         this.success = success;
     }
-
-    @Override
-    public boolean assignUsersToRole(Project project, List<String> userName,
-                                  String role) {
-        // TODO Auto-generated method stub
-        return true;
-
-    }
-
 }

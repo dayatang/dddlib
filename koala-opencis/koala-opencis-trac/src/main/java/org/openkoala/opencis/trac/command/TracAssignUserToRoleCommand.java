@@ -1,8 +1,7 @@
 package org.openkoala.opencis.trac.command;
 
 import org.openkoala.opencis.api.Project;
-
-import org.openkoala.opencis.api.SSHConnectConfig;
+import org.openkoala.opencis.support.SSHConnectConfig;
 
 /**
  * Trac分配用户到某个角色
@@ -28,7 +27,7 @@ public class TracAssignUserToRoleCommand extends TracCommand {
 	@Override
 	public String getCommand() {
 		// TODO Auto-generated method stub
-		String createRoleCommand = "trac-admin " + project.getProjectPath() + " permission add " + usrId + " " + role;
+		String createRoleCommand = "trac-admin " + project.getPhysicalPath() + " permission add " + usrId + " " + role;
 		return createRoleCommand;
 	}
 

@@ -2,6 +2,7 @@ package org.openkoala.application.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,5 +60,10 @@ public class GunvorApplicationTest {
 		} finally {
 		    response2.close();
 		}
+	}
+	@Test
+	public void testCode() throws UnsupportedEncodingException{
+		String code = "CHOICE:åæ->1;è¿åä";
+		System.out.println(new String(code.getBytes("ISO-8859-1"),"UTF-8"));
 	}
 }
