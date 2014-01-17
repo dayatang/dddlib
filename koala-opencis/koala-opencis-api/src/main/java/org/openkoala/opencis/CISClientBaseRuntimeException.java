@@ -1,4 +1,4 @@
-package org.openkoala.opencis.exception;
+package org.openkoala.opencis;
 
 
 public class CISClientBaseRuntimeException extends RuntimeException {

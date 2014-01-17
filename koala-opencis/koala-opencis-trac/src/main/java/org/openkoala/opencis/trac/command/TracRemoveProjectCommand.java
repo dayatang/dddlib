@@ -21,7 +21,7 @@ public class TracRemoveProjectCommand extends TracCommand {
 	@Override
 	public String getCommand() {
 		// TODO Auto-generated method stub
-		String removeProjectCommand = "rm -rf " + project.getProjectPath();
+		String removeProjectCommand = "rm -rf " + project.getPhysicalPath();
 		return removeProjectCommand;
 	}
 

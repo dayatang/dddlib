@@ -2,7 +2,7 @@ package org.openkoala.opencis.jenkins.configureImpl.authorize;
 
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.exception.CISClientBaseRuntimeException;
+import org.openkoala.opencis.CISClientBaseRuntimeException;
 import org.openkoala.opencis.jenkins.configureImpl.ProjectConfigUtil;
 import org.openkoala.opencis.jenkins.configureImpl.user.UserCreator;
 import org.openkoala.opencis.jenkins.util.SeleniumUtil;
