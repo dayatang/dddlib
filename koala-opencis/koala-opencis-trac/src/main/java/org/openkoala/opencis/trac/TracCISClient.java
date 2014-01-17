@@ -117,13 +117,6 @@ public class TracCISClient implements CISClient {
 		
 	}
 
-	@Override
-	public void assignUsersToRole(Project project, String role,String... usersId) {
-		// TODO Auto-generated method stub
-		for(String userId:usersId){
-			assignUserToRole(project, userId, role);
-		}
-	}
 
 	@Override
 	public boolean authenticate() {
@@ -132,6 +125,15 @@ public class TracCISClient implements CISClient {
 	}
 	
 
+	@Override
+	public void assignUsersToRole(Project project, String role, Developer... developers) {
+		// TODO Auto-generated method stub
+		for(Developer developer:developers){
+			assignUserToRole(project, developer.getId(), role);
+		}
+	}
+
+
     public boolean isSuccess() {
         return success;
     }
@@ -139,5 +141,4 @@ public class TracCISClient implements CISClient {
     public void setSuccess(boolean success) {
         this.success = success;
     }
-
 }
