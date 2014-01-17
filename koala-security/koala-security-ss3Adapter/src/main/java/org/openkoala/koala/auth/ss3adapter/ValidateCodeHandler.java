@@ -27,13 +27,11 @@ public class ValidateCodeHandler implements HttpHandler {
 
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response) {
-		
 		checkValidateCode(request);
 	}
 
 	protected String obtainSessionValidateCode(HttpServletRequest request) {
-		Object obj = request.getSession().getAttribute(sessionvalidateCodeField);
-		return null == obj ? "" : obj.toString();
+		return getValidateCodeField(request) == null ? "" : getValidateCodeField(request).toString();
 	}
 
 	public String getValidateCodeName() {
@@ -57,10 +55,17 @@ public class ValidateCodeHandler implements HttpHandler {
 	 * @param request
 	 */
 	private void checkValidateCode(HttpServletRequest request) {
-		String userCaptchaResponse = request.getParameter("jcaptcha");  
-		boolean captchaPassed = SimpleImageCaptchaServlet.validateResponse(request, userCaptchaResponse); 
-	    if (!captchaPassed) {
+	    if (!isValid(request)) {
 			throw new BadValidateCodeException("Bad validate code.");
 		}
 	}
+
+	private boolean isValid(HttpServletRequest request) {
+		return SimpleImageCaptchaServlet.validateResponse(request, request.getParameter("jcaptcha"));
+	}
+	
+	private Object getValidateCodeField(HttpServletRequest request) {
+		return request.getSession().getAttribute(sessionvalidateCodeField);
+	}
+	
 }

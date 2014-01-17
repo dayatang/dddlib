@@ -48,12 +48,8 @@ public class ResourceTypeController {
 	public Map<String, Object> update(ParamsPojo params) {
 		ResourceTypeVO resourceTypeVO = params.getResourceTypeVO();
 		Map<String, Object> dataMap = new HashMap<String,Object>();
+		resourceTypeApplication.update(resourceTypeVO);
 		dataMap.put("result", "success");
-		try{
-			resourceTypeApplication.update(resourceTypeVO);
-		}catch(ApplicationException e){
-			dataMap.put("result", "该资源类型已存在");
-		}
 		return dataMap;
 	}
 

@@ -191,13 +191,11 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
 		Page<${entityName}> pages = queryChannel.queryPagedResultByPageNo(jpql, new Object[] { ${dtoClass.entityModel.singleIDFieldModel.name} }, currentPage, pageSize);
         for (${entityName} entity : pages.getResult()) {
             ${entityName}DTO dto = new ${entityName}DTO();
-            if (result != null) {
-            	try {
-				BeanUtils.copyProperties(dto, result);
+            try {
+				BeanUtils.copyProperties(dto, entity);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-            }
             result.add(dto);
         }
         return new Page<${entityName}DTO>(Page.getStartOfPage(currentPage, pageSize), pages.getTotalCount(), pages.getPageSize(), result);

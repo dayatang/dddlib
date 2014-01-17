@@ -22,11 +22,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dayatang.dsrouter.context.memory.ContextHolder;
 import com.dayatang.querychannel.support.Page;
 
+@Remote
 @Named("roleApplication")
+@Stateless(name = "RoleApplication")
 @Transactional(value="transactionManager_security")
 @Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
-@Stateless(name = "RoleApplication")
-@Remote
 public class RoleApplicationImpl extends BaseImpl implements RoleApplication {
 
 	public RoleVO getRole(Long roleId) {

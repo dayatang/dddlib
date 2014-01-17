@@ -20,17 +20,17 @@ import com.dayatang.querychannel.support.Page;
 import com.dayatang.utils.DateUtils;
 
 @Named
-@Transactional(value="transactionManager_security")
-@Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
-@Stateless(name = "ResourceTypeApplication")
 @Remote
+@Stateless(name = "ResourceTypeApplication")
+@Transactional(value = "transactionManager_security")
+@Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
 public class ResourceTypeApplicationImpl extends BaseImpl implements ResourceTypeApplication {
 
 	public boolean isExist(ResourceTypeVO resourceTypeVO) {
 		ResourceType resourceType = queryChannel().querySingleResult("from ResourceType o where o.name=? and o.abolishDate>?",
 				new Object[] { resourceTypeVO.getName(), new Date() });
 		if (resourceType != null) {
-			throw new ApplicationException("resourceType.exist", null);
+			return true;
 		}
 		return false;
 	}
@@ -72,12 +72,16 @@ public class ResourceTypeApplicationImpl extends BaseImpl implements ResourceTyp
 
 	public void update(ResourceTypeVO resourceTypeVO) {
 		ResourceType resourceType = ResourceType.load(ResourceType.class, Long.valueOf(resourceTypeVO.getId()));
+		
 		if (resourceType.getName().equals(resourceTypeVO.getName())) {
 			return;
 		}
-		if (!isExist(resourceTypeVO)) {
-			resourceType.setName(resourceTypeVO.getName());
+		
+		if (isExist(resourceTypeVO)) {
+			throw new ApplicationException("resourceType.exist", null);
 		}
+		
+		resourceType.setName(resourceTypeVO.getName());
 	}
 
 	public Page<ResourceTypeVO> pageQuery(int currentPage, int pageSize) {
