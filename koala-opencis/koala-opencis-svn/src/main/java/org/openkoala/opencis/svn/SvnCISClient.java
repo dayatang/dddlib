@@ -105,10 +105,11 @@ public class SvnCISClient implements CISClient {
     }
 
     @Override
-    public boolean createUserIfNecessary(Project project, Developer developer) {
+    public boolean createUserIfNecessary( Developer developer) {
         isProjectInfoNotBlank(project);
         isUserInfoBlank(developer);
-        SvnCommand isUserExistencecommand = new SvnIsUserExistenceCommand(developer.getName(), configuration, project);
+        SvnCommand isUserExistencecommand = new SvnIsUserExistenceCommand(developer.getName(),
+                configuration, project);
         try {
             executor.executeSync(isUserExistencecommand);
 

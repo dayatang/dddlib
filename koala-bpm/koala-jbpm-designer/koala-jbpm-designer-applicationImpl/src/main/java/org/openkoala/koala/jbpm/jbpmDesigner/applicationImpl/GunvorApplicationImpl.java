@@ -2,6 +2,7 @@ package org.openkoala.koala.jbpm.jbpmDesigner.applicationImpl;
 
 import com.dayatang.utils.Assert;
 
+import org.apache.commons.net.util.Base64;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
@@ -75,8 +76,9 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			nvps.add(new BasicNameValuePair("processId", processId));
 			nvps.add(new BasicNameValuePair("version", bpmn.getVersion()));
 			nvps.add(new BasicNameValuePair("data", document.asXML()));
-			nvps.add(new BasicNameValuePair("png", new String(pngByte)));
+			nvps.add(new BasicNameValuePair("png",Base64.encodeBase64String(pngByte)));
 			nvps.add(new BasicNameValuePair("isActive", "true"));
+			
 			httpPost.setEntity(new UrlEncodedFormEntity(nvps,"UTF-8"));
 			CloseableHttpResponse response = httpclient.execute(httpPost);
 

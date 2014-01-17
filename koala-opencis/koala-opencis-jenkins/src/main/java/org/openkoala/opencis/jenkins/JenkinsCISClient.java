@@ -2,12 +2,14 @@ package org.openkoala.opencis.jenkins;
 
 import java.util.List;
 
-import org.openkoala.opencis.api.AuthenticationStrategy;
-import org.openkoala.opencis.api.CISClient;
-import org.openkoala.opencis.api.Developer;
-import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.api.*;
 import org.openkoala.opencis.authorize.CISAuthorization;
+import org.openkoala.opencis.exception.CISClientBaseRuntimeException;
 import org.openkoala.opencis.jenkins.configureApi.ProjectCreateStrategy;
+import org.openkoala.opencis.jenkins.configureApi.ScmConfigStrategy;
+import org.openkoala.opencis.jenkins.configureImpl.authorize.GlobalProjectAuthorization;
+import org.openkoala.opencis.jenkins.configureImpl.authorize.ProjectAuthorization;
+import org.openkoala.opencis.jenkins.configureImpl.project.MavenProjectCreator;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -18,92 +20,74 @@ import org.openqa.selenium.WebDriver;
  */
 public class JenkinsCISClient implements CISClient {
 
-
-    public static final String CREATE_ITEM_API = "/createItem?name=";
-
     private String jenkinsUrl;
 
     private WebDriver driver;
 
-    /**
-     * 授权
-     */
-    private CISAuthorization authorization;
+    private AuthenticationStrategy authenticationStrategy;
+
 
     /**
-     * 创建项目
+     * 源码版本控制 svn or git
      */
-    private ProjectCreateStrategy projectCreateStrategy;
+    private ScmConfigStrategy scmConfig;
 
-
-    private String errors;
-
-    public JenkinsCISClient(String jenkinsUrl, WebDriver driver) {
+    public JenkinsCISClient(String jenkinsUrl, AuthenticationStrategy authenticationStrategy) {
         this.jenkinsUrl = jenkinsUrl;
-        this.driver = driver;
+        this.authenticationStrategy = authenticationStrategy;
     }
 
-
-    public void setProjectCreateStrategy(ProjectCreateStrategy projectCreateStrategy) {
-        this.projectCreateStrategy = projectCreateStrategy;
+    public void setScmConfig(ScmConfigStrategy scmConfig) {
+        this.scmConfig = scmConfig;
     }
-
-    public void setAuthorizationStrategy(CISAuthorization authorization) {
-        this.authorization = authorization;
-    }
-
 
     @Override
     public void close() {
         driver.quit();
     }
 
-    @Override
-    public String getErrors() {
-        return errors;
-    }
 
     @Override
-    public boolean createProject(Project project) {
-        if (!projectCreateStrategy.createAndConfig(jenkinsUrl, project, driver)) {
-            errors = projectCreateStrategy.getErrors();
-            return false;
+    public void createProject(Project project) {
+        if (null == scmConfig) {
+            throw new CISClientBaseRuntimeException("jenkins.scmConfig.null");
         }
-        return true;
-    }
-
-
-    @Override
-    public boolean createUserIfNecessary(Project project, Developer developer) {
-        if (!authorization.authorize(jenkinsUrl, project, driver, developer)) {
-            errors = authorization.getErrors();
-            return false;
-        }
-        return true;
+        MavenProjectCreator creator = new MavenProjectCreator();
+        creator.setScmConfig(scmConfig);
+        creator.createAndConfig(jenkinsUrl, project, driver);
 
     }
 
     @Override
-    public boolean createRoleIfNecessary(Project project, String roleName) {
-        return false;
-
-    }
-
-    @Override
-    public boolean assignUserToRole(Project project, String userId, String role) {
-        return false;
+    public void removeProject(Project project) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
 
     @Override
-    public boolean assignUsersToRole(Project project, List<String> userName,
-                                     String role) {
-        if (null == userName || userName.size() == 0) {
-            return false;
-        }
-        for (String each : userName) {
-            assignUserToRole(project, each, role);
-        }
-        return true;
+    public void createUserIfNecessary(Project project, Developer developer) {
+        new ProjectAuthorization().authorize(jenkinsUrl, project, driver, developer);
+    }
+
+    @Override
+    public void removeUser(Project project, Developer developer) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void createRoleIfNecessary(Project project, String roleName) {
+
+    }
+
+    public void assignUsersToRole(Project project,
+                                  String role, Developer... developers) {
+        new GlobalProjectAuthorization().authorize(jenkinsUrl, driver, developers);
+    }
+
+    @Override
+    public boolean authenticate() {
+        AuthenticationResult authenticationResult = authenticationStrategy.authenticate();
+        driver = (WebDriver) authenticationResult.getContext();
+        return authenticationResult.isSuccess();
     }
 }

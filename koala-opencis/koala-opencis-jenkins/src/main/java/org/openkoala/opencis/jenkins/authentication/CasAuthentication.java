@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * Date: 1/7/14
  * Time: 4:57 PM
  */
-public class CasAuthentication implements AuthenticationStrategy<WebDriver> {
+public class CasAuthentication implements AuthenticationStrategy {
 
     private WebDriver driver;
 

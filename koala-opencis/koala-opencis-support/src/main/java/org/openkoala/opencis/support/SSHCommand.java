@@ -1,9 +1,10 @@
-package org.openkoala.opencis.api;
+package org.openkoala.opencis.support;
 
 import java.io.IOException;
 
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.Session;
+import org.openkoala.opencis.api.Project;
 
 /**
  * 抽象的SSH命令类

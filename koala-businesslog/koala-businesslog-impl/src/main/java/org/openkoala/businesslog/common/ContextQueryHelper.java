@@ -4,6 +4,8 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.openkoala.businesslog.BusinessLogClassNotFoundException;
 import org.openkoala.businesslog.BusinessLogQueryMethodException;
 import org.openkoala.businesslog.QueryMethodConvertArgException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
@@ -19,6 +21,9 @@ import java.util.Map;
  * Time: 2:31 PM
  */
 public class ContextQueryHelper {
+
+    private final static Logger LOGGER = LoggerFactory.getLogger(ContextQueryHelper.class);
+
 
     public static List<String> getMethodParamTypes(String methodSignature) {
         List<String> result = new ArrayList<String>();
@@ -53,6 +58,7 @@ public class ContextQueryHelper {
                 throw new BusinessLogQueryMethodException(MessageFormat.format("Not found {0}\'s {1}", beanClassName, methodName));
             }
         } catch (NoSuchMethodException e) {
+            LOGGER.error("NoSuchMethodException", e);
             throw new BusinessLogQueryMethodException(e);
         } catch (ClassNotFoundException e) {
             throw new BusinessLogQueryMethodException(e);
@@ -85,6 +91,7 @@ public class ContextQueryHelper {
                     return Class.forName(methodParamType);
                 }
             } catch (ClassNotFoundException e) {
+                LOGGER.error("ClassNotFoundException when getClass", e);
                 throw new BusinessLogClassNotFoundException(e);
             }
         }
@@ -104,10 +111,13 @@ public class ContextQueryHelper {
                 try {
                     return PropertyUtils.getNestedProperty(bean, arg.substring(arg.indexOf(".") + 1, arg.lastIndexOf("}")));
                 } catch (IllegalAccessException e) {
+                    LOGGER.error("PropertyUtils.getNestedProperty IllegalAccessException", e);
                     throw new QueryMethodConvertArgException(e);
                 } catch (InvocationTargetException e) {
+                    LOGGER.error("PropertyUtils.getNestedProperty InvocationTargetException", e);
                     throw new QueryMethodConvertArgException(e);
                 } catch (NoSuchMethodException e) {
+                    LOGGER.error("PropertyUtils.getNestedProperty NoSuchMethodException", e);
                     throw new QueryMethodConvertArgException(e);
                 }
             } else {

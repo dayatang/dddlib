@@ -1,6 +1,7 @@
 package org.openkoala.opencis;
 
 import org.openkoala.opencis.api.AuthenticationResult;
+import org.openkoala.opencis.api.AuthenticationStrategy;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.jenkins.authentication.CasAuthentication;
@@ -28,42 +29,29 @@ public abstract class CISClientAbstactIntegrationTest {
     public static String svnPassword = "admin";
 
 
-    public WebDriver casAuthenticationAndCreateWebDriver() {
-        WebDriver driver = new HtmlUnitDriver();
+    public AuthenticationStrategy casAuthenticationAndCreateWebDriver() {
+        WebDriver driver = new HtmlUnitDriver(true);
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         CasAuthentication cisAuthentication =
                 new CasAuthentication(driver, jenkinsURL, "admin", "admin");
 
-        AuthenticationResult<WebDriver> result = cisAuthentication.authenticate();
 
-        if (!result.isSuccess()) {
-            System.out.println(result.getErrors());
-            return null;
-        }
-
-        return result.getContext();
+        return cisAuthentication;
     }
 
 
-    public WebDriver ownAuthenticationAndCreateWebDriver() {
+    public AuthenticationStrategy ownAuthenticationAndCreateWebDriver() {
       /*  FirefoxProfile profile = new FirefoxProfile();
 
         profile.setPreference("browser.link.open_newwindow.restriction", 1);
         FirefoxDriver driver  = new FirefoxDriver(profile);*/
 
-        WebDriver driver = new HtmlUnitDriver(true);
+        WebDriver driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         JenkinsOwnAuthentication cisAuthentication =
                 new JenkinsOwnAuthentication(driver, jenkinsURL.toString(), "admin", "admin");
 
-        AuthenticationResult<WebDriver> result = cisAuthentication.authenticate();
-
-        if (!result.isSuccess()) {
-            System.out.println(result.getErrors());
-            return null;
-        }
-
-        return result.getContext();
+        return cisAuthentication;
     }
 
     public Developer getDeveloper() {

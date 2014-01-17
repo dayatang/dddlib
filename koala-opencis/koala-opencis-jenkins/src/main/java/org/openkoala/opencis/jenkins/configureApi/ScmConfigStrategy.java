@@ -7,9 +7,6 @@ package org.openkoala.opencis.jenkins.configureApi;
  */
 public interface ScmConfigStrategy<T> {
 
-    boolean config(T context);
-
-    String getErrors();
-
+    void config(T context);
 
 }
