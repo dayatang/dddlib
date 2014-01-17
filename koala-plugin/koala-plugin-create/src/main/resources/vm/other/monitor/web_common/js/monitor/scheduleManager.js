@@ -54,6 +54,7 @@ var scheduleManager = {
         var cronExprInput = $(obj).prev('input');
         if(!cronValidate(cronExprInput.val())){
             showErrorMessage($('body'), cronExprInput, '时间表达式不合法，请参考相关实例');
+            return;
         }
         var params = {triggerName:triggerName,confExpr:cronExprInput.val()};
         $.post(contextPath + '/monitor/ServiceMonitor/updateScheduleConf.koala', params)

@@ -1,11 +1,12 @@
 package org.openkoala.opencis;
 
+import static org.mockito.Mockito.*;
+
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.junit.Test;
-import org.openkoala.opencis.api.AuthenticationStrategy;
-import org.openkoala.opencis.api.CISClient;
-import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.jenkins.impl.CASAuthentication;
-import org.openkoala.opencis.jenkins.impl.JenkinsCISClient;
+import org.openkoala.opencis.api.*;
+import org.openkoala.opencis.jenkins.impl.MockCISClient;
 
 /**
  * User: zjzhai
@@ -16,23 +17,42 @@ public class MainTest {
 
     @Test
     public void testName() throws Exception {
-        String error;
-
-        AuthenticationStrategy authenticationStrategy = new CASAuthentication();
-
-        String jenkinsUrl = "http://126.0.0.1";
-        CISClient cisClient = new JenkinsCISClient(jenkinsUrl);
+        String jenkinsUrl = "http://126.0.0.1/jenkinsUrl";
         Project project = new Project();
         project.setArtifactId("josn");
         project.setGroupId("group");
 
-        if (!cisClient.createProject(project)) {
-            error = cisClient.getErrors();
-            return;
+        Developer developer = new Developer();
+        developer.setName("xx");
+        developer.setPassword("password");
+        developer.setEmail("email");
+        developer.setFullName("fullname");
+
+        CloseableHttpClient client = mock(CloseableHttpClient.class);
+
+        AuthenticationResult authenticationResult = new AuthenticationResult();
+        authenticationResult.setContext(client);
+
+        AuthenticationStrategy authenticationStrategy = mock(AuthenticationStrategy.class);
+        when(authenticationStrategy.authenticate()).thenReturn(authenticationResult);
+
+        CISClient cisClient = new MockCISClient(jenkinsUrl, authenticationStrategy);
+
+        try {
+            cisClient.authenticate();
+            verify(authenticationStrategy).authenticate();
+            cisClient.createProject(project);
+
+            for (Developer eachDeveloper : project.getDevelopers()) {
+                cisClient.createUserIfNecessary(project, eachDeveloper);
+                cisClient.assignUsersToRole(project, "role", eachDeveloper.getName());
+            }
+        } catch (Exception e) {
+
+        } finally {
+            cisClient.close();
+            verify(client).close();
         }
-
-        cisClient.close();
-
 
     }
 }

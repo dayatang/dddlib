@@ -1,4 +1,4 @@
-package org.openkoala.opencis.api;
+package org.openkoala.opencis.support;
 
 /**
  * SSH连接参数

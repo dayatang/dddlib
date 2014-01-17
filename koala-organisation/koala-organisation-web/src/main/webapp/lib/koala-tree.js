@@ -64,6 +64,7 @@
                     }
                 });
                 $folder.find('>input').on('click', function(){
+                	var data = $folder.find('.tree-folder-header').data();
                     if(this.checked){
                         $folder.find('.tree-item').each(function(){
                             var $this = $(this);
@@ -72,12 +73,13 @@
                             }
                         });
                         $folder.find('.tree-folder').trigger('selectCheckBox');
+                        self.selectedDatas[data.id] = data;
                     }else{
-                        console.info($folder.find('.tree-selected'))
                         $folder.find('.tree-selected').each(function(){
                             $(this).click();
                         });
                         $folder.find('.tree-folder').trigger('disSelectCheckBox');
+                        delete  self.selectedDatas[data.id];
                     }
                 });
             });
@@ -148,6 +150,11 @@
                     if(value.menu.icon){
                         $entity.children('.tree-folder-header').children("i").addClass(value.menu.icon)
                             .attr("icon",value.menu.icon);
+                    }
+                    if(self.isEmpty(value.children) && value.menu.checked){
+                    	$entity.find('>input').prop('checked', true);
+                        var data = $entity.find('.tree-folder-header').data();
+                        self.selectedDatas[data.id] = data;
                     }
                 }else{
                     $entity = self.createChildren(value.menu.id);

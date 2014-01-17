@@ -261,7 +261,7 @@ var roleManager = function(){
 	var assignResource = function(roleId){
 		$.get(contextPath + '/pages/auth/assign-resource.html').done(function(data){
 			var dialog = $(data);
-            initResourceTree(roleId);
+            initResourceTree(dialog, roleId);
             dialog.find('#save').on('click',function(){
 				var treeObj = $("#resourceTree").getTree();
 				var nodes = treeObj.selectedItems();
@@ -309,7 +309,7 @@ var roleManager = function(){
 	/*
 	* 加载资源树
 	 */
-	var initResourceTree = function(roleId){
+	var initResourceTree = function(dialog, roleId){
 		$.get(contextPath + '/auth/Menu/findMenuTreeSelectItemByRole.koala?time='+new Date().getTime()+'&roleId='+roleId).done(function(result){
 			var zNodes = new Array();
 			var items = result.data;
@@ -332,7 +332,7 @@ var roleManager = function(){
                 data: zNodes,
                 delay: 400
             };
-            $('#resourceTree').tree({
+            dialog.find('#resourceTree').tree({
                 dataSource: dataSourceTree,
                 loadingHTML: '<div class="static-loader">Loading...</div>',
                 multiSelect: true,

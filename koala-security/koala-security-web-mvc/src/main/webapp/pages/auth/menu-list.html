@@ -18,6 +18,14 @@
 						width : 450
 					},
 					{
+						title : "菜单类型",
+						name : "menuType",
+						width : 150,
+						render: function(item, name, index){
+							return item[name] == '2' ? '目录':'菜单';
+						}
+					},
+					{
 						title : "菜单图片",
 						name : "icon",
 						width : 150,
@@ -59,7 +67,15 @@
 	                return;
 	            }
 	            if(indexs.length == 1){
-        			menuManager().add($(this), data.item[0]);
+	            	var data = data.item[0];
+	            	if(data.menuType == '1'){
+	            		 $this.message({
+	 	                    type: 'warning',
+	 	                    content: '菜单下不能新增菜单！'
+	 	                })
+	 	                return;
+	            	}
+        			menuManager().add($(this), data);
 	            }else{
 	            	menuManager().add($(this));
 	            }
