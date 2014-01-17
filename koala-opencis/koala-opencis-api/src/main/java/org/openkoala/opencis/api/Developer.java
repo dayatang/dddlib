@@ -1,5 +1,7 @@
 package org.openkoala.opencis.api;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.List;
 
 /**
@@ -38,6 +40,14 @@ public class Developer {
 	 * 用户角色
 	 */
 	private List<String> roles;
+
+
+    public void validate() {
+        if (StringUtils.isBlank(name) ) {
+        }
+
+
+    }
 
 	
 	public String getId() {
