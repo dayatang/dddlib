@@ -39,7 +39,6 @@
 				<db.Type>H2</db.Type>
 				<db.groupId>com.h2database</db.groupId>
 				<db.artifactId>h2</db.artifactId>
-				<jbpm.wsdl.localtion>http://localhost:8180/jbpmService</jbpm.wsdl.localtion>
 			</properties>
 		</profile>
 	</profiles>
