@@ -4,7 +4,12 @@ import java.util.List;
 
 import org.openkoala.opencis.api.*;
 import org.openkoala.opencis.authorize.CISAuthorization;
+import org.openkoala.opencis.exception.CISClientBaseRuntimeException;
 import org.openkoala.opencis.jenkins.configureApi.ProjectCreateStrategy;
+import org.openkoala.opencis.jenkins.configureApi.ScmConfigStrategy;
+import org.openkoala.opencis.jenkins.configureImpl.authorize.GlobalProjectAuthorization;
+import org.openkoala.opencis.jenkins.configureImpl.authorize.ProjectAuthorization;
+import org.openkoala.opencis.jenkins.configureImpl.project.MavenProjectCreator;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -15,9 +20,6 @@ import org.openqa.selenium.WebDriver;
  */
 public class JenkinsCISClient implements CISClient {
 
-
-    public static final String CREATE_ITEM_API = "/createItem?name=";
-
     private String jenkinsUrl;
 
     private WebDriver driver;
@@ -26,30 +28,18 @@ public class JenkinsCISClient implements CISClient {
 
 
     /**
-     * 授权
+     * 源码版本控制 svn or git
      */
-    private CISAuthorization authorization;
-
-    /**
-     * 创建项目
-     */
-    private ProjectCreateStrategy projectCreateStrategy;
-
+    private ScmConfigStrategy scmConfig;
 
     public JenkinsCISClient(String jenkinsUrl, AuthenticationStrategy authenticationStrategy) {
         this.jenkinsUrl = jenkinsUrl;
         this.authenticationStrategy = authenticationStrategy;
     }
 
-
-    public void setProjectCreateStrategy(ProjectCreateStrategy projectCreateStrategy) {
-        this.projectCreateStrategy = projectCreateStrategy;
+    public void setScmConfig(ScmConfigStrategy scmConfig) {
+        this.scmConfig = scmConfig;
     }
-
-    public void setAuthorizationStrategy(CISAuthorization authorization) {
-        this.authorization = authorization;
-    }
-
 
     @Override
     public void close() {
@@ -59,8 +49,13 @@ public class JenkinsCISClient implements CISClient {
 
     @Override
     public void createProject(Project project) {
-        if (!projectCreateStrategy.createAndConfig(jenkinsUrl, project, driver)) {
+        if (null == scmConfig) {
+            throw new CISClientBaseRuntimeException("jenkins.scmConfig.null");
         }
+        MavenProjectCreator creator = new MavenProjectCreator();
+        creator.setScmConfig(scmConfig);
+        creator.createAndConfig(jenkinsUrl, project, driver);
+
     }
 
     @Override
@@ -71,14 +66,11 @@ public class JenkinsCISClient implements CISClient {
 
     @Override
     public void createUserIfNecessary(Project project, Developer developer) {
-        if (!authorization.authorize(jenkinsUrl, project, driver, developer)) {
-            errors = authorization.getErrors();
-        }
-
+        new ProjectAuthorization().authorize(jenkinsUrl, project, driver, developer);
     }
 
     @Override
-    public void removeUser(Developer developer) {
+    public void removeUser(Project project, Developer developer) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -87,15 +79,9 @@ public class JenkinsCISClient implements CISClient {
 
     }
 
-    public void assignUserToRole(Project project, String userId, String role) {
-    }
-
-
     public void assignUsersToRole(Project project,
-                                  String role, String... userId) {
-        for (String each : userId) {
-            assignUserToRole(project, each, role);
-        }
+                                  String role, Developer... developers) {
+        new GlobalProjectAuthorization().authorize(jenkinsUrl, driver, developers);
     }
 
     @Override

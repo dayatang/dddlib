@@ -2,9 +2,8 @@ package org.openkoala.opencis.jenkins.configureImpl.authorize;
 
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.authorize.CISAuthorization;
+import org.openkoala.opencis.exception.CISClientBaseRuntimeException;
 import org.openkoala.opencis.jenkins.configureImpl.ProjectConfigUtil;
-import org.openkoala.opencis.jenkins.configureImpl.user.GlobalProjectAuthorization;
 import org.openkoala.opencis.jenkins.configureImpl.user.UserCreator;
 import org.openkoala.opencis.jenkins.util.SeleniumUtil;
 import org.openkoala.opencis.jenkins.util.UrlUtil;
@@ -21,7 +20,7 @@ import java.util.List;
  * Date: 1/7/14
  * Time: 6:17 PM
  */
-public class ProjectAuthorization implements CISAuthorization<WebDriver> {
+public class ProjectAuthorization {
 
 
     private String errors;
@@ -29,21 +28,17 @@ public class ProjectAuthorization implements CISAuthorization<WebDriver> {
     public ProjectAuthorization() {
     }
 
-    @Override
-    public boolean authorize(String jenkinsBaseUrl, Project project, WebDriver context, Developer... developers) {
+    public void authorize(String jenkinsBaseUrl, Project project, WebDriver driver, Developer... developers) {
         String jobConfigureUrl =
                 UrlUtil.removeEndIfExists(jenkinsBaseUrl, "/") + "/job/" + project.getArtifactId() + "/configure";
 
-        String directConfigurePageResult = ProjectConfigUtil.openJobConfigurePage(context, jobConfigureUrl);
-        if (directConfigurePageResult != null) {
-            errors = directConfigurePageResult;
-            return false;
-        }
-        WebDriver driver = context;
+        ProjectConfigUtil.openJobConfigurePage(driver, jobConfigureUrl);
+
 
         if (!SeleniumUtil.elementExist(driver, By.cssSelector("input[name=\"useProjectSecurity\"][type=\"checkbox\"]"))) {
-            errors = "not found useProjectSecurity checkbox";
-            return false;
+            //jenkins没有开启权限控制
+            throw new CISClientBaseRuntimeException("jenkins.not.openSecurity");
+
         }
 
         WebElement userProjectSecurityCheckbox = driver.findElement(By.cssSelector("input[name=\"useProjectSecurity\"]"));
@@ -89,34 +84,15 @@ public class ProjectAuthorization implements CISAuthorization<WebDriver> {
         }
 
 
-        String submitResult = ProjectConfigUtil.submitForm(driver, project.getArtifactId());
-        if (submitResult != null) {
-            errors = submitResult;
-            return false;
-        }
+        ProjectConfigUtil.submitForm(driver, project.getArtifactId());
 
-        // 需要设置全局的权限
-        GlobalProjectAuthorization globalProjectAuthorization = new GlobalProjectAuthorization();
-        if (!globalProjectAuthorization.authorize(jenkinsBaseUrl, driver, developers)) {
-            errors = globalProjectAuthorization.getErrors();
-            return false;
-        }
 
-        System.out.println(notExistUsers);
 
         //创建用户
         for (Developer developer : notExistUsers) {
             UserCreator userCreator = new UserCreator();
             userCreator.createUser(jenkinsBaseUrl, developer, driver);
         }
-
-
-        return true;
-    }
-
-    @Override
-    public String getErrors() {
-        return errors;
     }
 
 

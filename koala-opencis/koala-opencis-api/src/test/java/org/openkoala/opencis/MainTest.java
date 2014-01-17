@@ -45,7 +45,7 @@ public class MainTest {
 
             for (Developer eachDeveloper : project.getDevelopers()) {
                 cisClient.createUserIfNecessary(project, eachDeveloper);
-                cisClient.assignUsersToRole(project, "role", eachDeveloper.getName());
+                cisClient.assignUsersToRole(project, "role", eachDeveloper);
             }
         } catch (Exception e) {
 
