@@ -25,11 +25,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dayatang.querychannel.support.Page;
 import com.dayatang.utils.DateUtils;
 
-@Named("urlApplication")
-@Transactional(value="transactionManager_security")
-@Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
-@Stateless(name = "ResourceApplication")
 @Remote
+@Named("urlApplication")
+@Stateless(name = "ResourceApplication")
+@Transactional(value = "transactionManager_security")
+@Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
 public class ResourceApplicationImpl extends BaseImpl implements ResourceApplication {
 	
     public static  ResourceVO domainObject2Vo(Resource resource) {
@@ -191,7 +191,21 @@ public class ResourceApplicationImpl extends BaseImpl implements ResourceApplica
     }
 
     public void updateResource(ResourceVO vo) {
-        Resource resource = Resource.load(Resource.class, vo.getId());
+    	
+    	Resource resource = Resource.load(Resource.class, vo.getId());
+    	
+    	if (!resource.getName().equals(vo.getName())) {
+	        if (isNameExist(vo)) {
+	            throw new ApplicationException("resource.name.exist", null);
+	        }
+    	}
+        
+    	if (!resource.getIdentifier().equals(vo.getIdentifier())) {
+	        if (isIdentifierExist(vo)) {
+	            throw new ApplicationException("resource.identifier.exist", null);
+	        }
+    	}
+        
         resource.setName(vo.getName());
         resource.setIdentifier(vo.getIdentifier());
         resource.setDesc(vo.getDesc());

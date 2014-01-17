@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,6 +16,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.util.TextEscapeUtils;
 
 /**
  * 验证过滤器
@@ -29,6 +31,8 @@ public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter
 	private static final String SPRING_SECURITY_FORM_USERNAME_KEY = "j_username";
 	
 	private static final String SPRING_SECURITY_FORM_PASSWORD_KEY = "j_password";
+	
+	private static final String SPRING_SECURITY_LAST_USERNAME_KEY = "SPRING_SECURITY_LAST_USERNAME";
 	
 	@SuppressWarnings("unchecked")
 	private List<HttpHandler> httpHandlers = Collections.EMPTY_LIST;
@@ -51,7 +55,7 @@ public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter
 		this.failureHandler = failureHandler;
 	}
 
-	protected AuthenticationFilter() {
+	public AuthenticationFilter() {
 		super("/j_spring_security_check");
 	}
 
@@ -68,7 +72,14 @@ public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter
         UsernamePasswordAuthenticationToken authRequest = 
         		new UsernamePasswordAuthenticationToken(  
         		obtainUsername(request), 
-        		obtainPassword(request));  
+        		obtainPassword(request)); 
+        
+        HttpSession session = request.getSession(false);
+
+        if (session != null || getAllowSessionCreation()) {
+            request.getSession().setAttribute(SPRING_SECURITY_LAST_USERNAME_KEY, 
+            		TextEscapeUtils.escapeEntities(obtainUsername(request).toString()));
+        }
   
         // 允许子类设置详细属性  
         setDetails(request, authRequest);  
