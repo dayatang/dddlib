@@ -19,8 +19,8 @@ public class TracCISClientTest {
     @Before
     public void setUp() throws Exception {
         SSHConnectConfig sshConnectConfig = new SSHConnectConfig();
-        sshConnectConfig.setHost("127.0.0.1");
-        sshConnectConfig.setUsername("user");
+        sshConnectConfig.setHost("10.108.1.134");
+        sshConnectConfig.setUsername("root");
         sshConnectConfig.setPassword("password");
         client = new TracCISClient(sshConnectConfig);
     }
@@ -52,4 +52,21 @@ public class TracCISClientTest {
     	client.removeProject(project);
     	assertTrue(client.isSuccess());
     }
+    
+    @Test
+    public void testRemoveUser(){
+    	client.removeUser(project, project.getDevelopers().get(0));
+    }
+    
+    public static void main(String[] args) {
+    	TracCISClientTest cisClient = new TracCISClientTest();
+    	try {
+    		cisClient.setUp();
+    		cisClient.testRemoveProject();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+	}
 }
