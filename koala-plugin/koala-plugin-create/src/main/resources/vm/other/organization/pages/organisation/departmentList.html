@@ -122,7 +122,8 @@
                         var type = org.organizationType;
             			delete org.children;
                         delete org.organizationType;
-                        department().del(org, type);
+                        var $element = $('#departmentTree').find('#'+org.id);
+                        department().del(org, type, $element.hasClass('tree-item') ? $element : $element.find('.tree-folder-header'));
                 	})
                 }
             })

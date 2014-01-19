@@ -11,13 +11,13 @@ public class MockProject extends Project {
 	@Override
 	public String getArtifactId() {
 		// TODO Auto-generated method stub
-		return "testProject";
+		return "testProject2";
 	}
 
 	@Override
 	public String getProjectName() {
 		// TODO Auto-generated method stub
-		return "testProject";
+		return "testProject2";
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class MockProject extends Project {
 		//创建一个开发者
 		Developer developer = new Developer();
 		developer.setId("");
-		developer.setName("zjh");
+		developer.setName("developer");
 		developer.setEmail("");
 		developer.setRoles(roles);
 		//创建一个开发者列表

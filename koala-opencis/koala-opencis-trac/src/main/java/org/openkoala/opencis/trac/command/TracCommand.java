@@ -14,6 +14,8 @@ import org.openkoala.opencis.support.SSHConnectConfig;
  *         2013-9-23 下午7:10:32
  */
 public abstract class TracCommand extends SSHCommand {
+	
+	protected static final String PERMISSION = "TRAC_ADMIN";
 
     public TracCommand() {
         // TODO Auto-generated constructor stub

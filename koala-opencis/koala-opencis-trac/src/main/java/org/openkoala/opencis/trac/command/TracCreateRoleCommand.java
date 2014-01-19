@@ -12,7 +12,7 @@ import org.openkoala.opencis.support.SSHConnectConfig;
  */
 public class TracCreateRoleCommand extends TracCommand {
 
-    private static final String PERMISSION = "TRAC-ADMIN";
+//    private static final String PERMISSION = "TRAC-ADMIN";
 
     private String roleName;
 
