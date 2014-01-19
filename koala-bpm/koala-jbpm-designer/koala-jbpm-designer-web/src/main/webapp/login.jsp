@@ -5,7 +5,7 @@
 <head>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>Koala流程设计平台</title>
-    <link href="/lib/bootstrap/css/bootstrap.min.css"   rel="stylesheet">
+ 	<link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />" rel="stylesheet">
     <link href="<c:url value='/css/koala.css' />" rel="stylesheet">
     <script type="text/javascript" src="<c:url value='/lib/jquery-1.8.3.min.js' />"></script>
     <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
