@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 public abstract class CISClientAbstactIntegrationTest {
 
     public static final String jobName = UUID.randomUUID().toString();
-    public static String jenkinsURL = "http://127.0.0.1:8080/jenkins";
+    public static String jenkinsURL = "http://10.108.1.128:8080/jenkins";
     public static String jobConfigURL = jenkinsURL + "/job/" + UrlUtil.encodeURL(jobName) + "/configure";
     public static String svnUrl = "http://10.108.1.138/svn/projec2";
     public static String svnUser = "admin";
@@ -46,7 +46,7 @@ public abstract class CISClientAbstactIntegrationTest {
         profile.setPreference("browser.link.open_newwindow.restriction", 1);
         FirefoxDriver driver  = new FirefoxDriver(profile);*/
 
-        WebDriver driver = new FirefoxDriver();
+        WebDriver driver = new HtmlUnitDriver(true);
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         JenkinsOwnAuthentication cisAuthentication =
                 new JenkinsOwnAuthentication(driver, jenkinsURL.toString(), "admin", "admin");

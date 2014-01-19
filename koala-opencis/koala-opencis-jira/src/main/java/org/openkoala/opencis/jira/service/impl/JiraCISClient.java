@@ -55,8 +55,6 @@ public class JiraCISClient implements CISClient {
     public void createProject(Project project) {
         project.validate();
 
-        project.setProjectName(convertProjectKeyToValidFormat(project.getProjectName()));
-
         if (checkProjectExistence(project)) {
             errors = "project:" + project.getArtifactId() + " is exist";
 
@@ -94,8 +92,7 @@ public class JiraCISClient implements CISClient {
         JiraSoapServiceServiceLocator jiraSoapServiceLocator = new JiraSoapServiceServiceLocator();
         jiraSoapServiceLocator.setJirasoapserviceV2EndpointAddress(serverAddress
                 + "/rpc/soap/jirasoapservice-v2?wsdl");
-        JiraSoapService jiraService = jiraSoapServiceLocator.getJirasoapserviceV2();
-        return jiraService;
+        return jiraSoapServiceLocator.getJirasoapserviceV2();
     }
 
     /**
@@ -426,36 +423,6 @@ public class JiraCISClient implements CISClient {
         return remoteProject;
     }
 
-    /**
-     * 检查登陆信息和项目信息是否为空
-     */
-    private boolean checkProjectInfoNotBlank(Project project) {
-        return project.validate();
-    }
-
-    private String convertProjectKeyToValidFormat(String projectKey) {
-        return checkProjectKeyAndTurnToUppercase(projectKey);
-    }
-
-    /**
-     * 检查project key 必须都是英文字母，且必须都大写（由代码负责转换），且必须至少2个字母
-     *
-     * @param projectKey
-     */
-    private String checkProjectKeyAndTurnToUppercase(String projectKey) {
-        if (projectKey.length() < 2 || projectKey.length() > 10) {
-            throw new ProjectKeyLengthNotBetweenTwoAndTenCharacterLettersException(
-                    "project key '" + projectKey + "' 长度必须为2-10个英文字母！");
-        }
-        for (int i = 0; i < projectKey.length(); i++) {
-            char c = projectKey.charAt(i);
-            if (!((c >= 65 && c <= 90) || (c >= 97 && c <= 120))) {
-                throw new ProjectKeyNotAllCharacterLettersException(
-                        "project key '" + projectKey + "' 必须都是英文字母！");
-            }
-        }
-        return projectKey.toUpperCase();
-    }
 
     /**
      * 仅供单元测试调用
