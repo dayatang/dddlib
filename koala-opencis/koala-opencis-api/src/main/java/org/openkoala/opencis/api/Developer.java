@@ -46,11 +46,12 @@ public class Developer {
 
     private final static String EMAIL_REG = "^(\\w)+(\\.\\w+)*@(\\w)+((\\.\\w{2,3}){1,3})$";
 
-    public void validate() {
+    public boolean validate() {
         if (StringUtils.isBlank(name) || StringUtils.isBlank(password)
                 || StringUtils.isBlank(email) || email.matches(EMAIL_REG)) {
             throw new DeveloperValidateRuntimeException("Developer is invalid");
         }
+        return true;
     }
 
 

@@ -184,7 +184,7 @@ public class SvnCISClientTest {
     private void initProjectInfo() {
         project = new Project();
         project.setProjectName(projectName);
-        project.setProjectPath("/var/www/svn/");
+        project.setPhysicalPath("/var/www/svn/");
     }
 
     private void initDeveloperInfo() {

@@ -24,7 +24,7 @@ public class SvnRemoveProjectCommand extends SvnCommand {
 
     @Override
     public String getCommand() {
-        String removeProjectCommand = "rm -rf " + project.getProjectPath() + project.getProjectName();
+        String removeProjectCommand = "rm -rf " + project.getPhysicalPath() + project.getProjectName();
         return removeProjectCommand;
     }
 

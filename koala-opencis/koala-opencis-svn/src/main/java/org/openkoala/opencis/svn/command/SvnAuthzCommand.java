@@ -32,13 +32,13 @@ public class SvnAuthzCommand extends SvnCommand {
         StringBuilder authzCommand = new StringBuilder();
         authzCommand.append("grep -q '\\[")
                 .append(project.getProjectName()).append(":/\\]' ")
-                .append(project.getProjectPath()).append(project.getProjectName()).append("/conf/authz ")
+                .append(project.getPhysicalPath()).append(project.getProjectName()).append("/conf/authz ")
                 .append("&& sed -i '/\\[").append(project.getProjectName()).append(":\\/\\]/a ")
                 .append("@").append(groupName).append("=rw' ")
-                .append(project.getProjectPath()).append(project.getProjectName()).append("/conf/authz ")
+                .append(project.getPhysicalPath()).append(project.getProjectName()).append("/conf/authz ")
                 .append("|| echo -ne '\n[").append(project.getProjectName()).append(":/]\n@")
                 .append(groupName).append("=rw\n' >> ")
-                .append(project.getProjectPath()).append(project.getProjectName()).append("/conf/authz");
+                .append(project.getPhysicalPath()).append(project.getProjectName()).append("/conf/authz");
         return authzCommand.toString();
     }
 
