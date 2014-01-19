@@ -19,5 +19,7 @@ public interface GunvorApplication {
 	
 	public void publichJBPM(String packageName,String name,String wsdl) throws Exception;
 	
-	public String getConnectionString(String urlString);
+	public String createBpm(String packageName,String bpmName);
+	
+	public String getGunvorServerUrl();
 }

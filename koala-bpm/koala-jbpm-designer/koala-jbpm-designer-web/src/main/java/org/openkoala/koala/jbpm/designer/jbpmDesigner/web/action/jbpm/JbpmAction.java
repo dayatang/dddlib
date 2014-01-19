@@ -52,23 +52,21 @@ public class JbpmAction {
 	
 	private String errors;
 	
-	@Value("${gunvor.server.url}")
 	private String gunvorServerUrl;
 
 	public String findPackages() {
 		System.out.println(ServletActionContext.getRequest().getLocalAddr()+":"+ServletActionContext.getRequest().getLocalPort());
+		gunvorServerUrl = gunvorApplication.getGunvorServerUrl();
 		packages = gunvorApplication.getPackages();
 		return "json2";
 	}
 	
 	public String createBpmn(){
-		String wdsl = null;
 		try {
-			wdsl = gunvorServerUrl+"/org.drools.guvnor.Guvnor/assetExtend/?packageName=" +URLEncoder.encode(packageName, "UTF-8")+ "&assetName=" + URLEncoder.encode(bpmnName, "UTF-8") + "&description="+description;
+			results = gunvorApplication.createBpm(URLEncoder.encode(packageName, "UTF-8"), URLEncoder.encode(bpmnName, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		results = gunvorApplication.getConnectionString(wdsl);
 		return "json2";
 	}
 
@@ -231,9 +229,7 @@ public class JbpmAction {
 	public String getGunvorServerUrl() {
 		return gunvorServerUrl;
 	}
-
-	public void setGunvorServerUrl(String gunvorServerUrl) {
-		this.gunvorServerUrl = gunvorServerUrl;
-	}
+	
+	
 	
 }

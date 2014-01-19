@@ -134,7 +134,7 @@
                 <configuration> 
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                     <webApp> 
-                        <contextPath>/</contextPath> 
+                        <contextPath>/Koala-Designer</contextPath> 
                     </webApp> 
                 </configuration> 
             </plugin> 
