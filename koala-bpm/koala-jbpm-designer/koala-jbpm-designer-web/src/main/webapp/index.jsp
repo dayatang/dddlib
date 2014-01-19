@@ -11,7 +11,6 @@
     <head>
         <title>Koala流程设计平台</title>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
 	    <link href="<c:url value='/css/main.css' />?time=<%=time%>" rel="stylesheet">
 	    <link href="<c:url value='/css/koala.css' />?time=<%=time%>" rel="stylesheet">
@@ -43,7 +42,7 @@
                 </nav>
             </div>
 		    <div class="g-body">
-			      <div class="col-lg-2 g-sidec">
+			      <div class="col-xs-2 g-sidec">
                     <ul class="nav nav-stacked first-level-menu">
                         <li class="active">
                             <a data-toggle="collapse" href="#bpmManagement"><i class="glyphicon glyphicon-list"></i>&nbsp;流程管理&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
@@ -59,7 +58,7 @@
                         </li>
                     </ul>
 			    </div>
-			    <div class="col-lg-10 g-mainc">
+			    <div class="col-xs-10 g-mainc">
 			        <ul class="nav nav-tabs" id="navTabs">
 			            <li class="active"><a href="#home" data-toggle="tab">主页面</a></li>
 			        </ul>
