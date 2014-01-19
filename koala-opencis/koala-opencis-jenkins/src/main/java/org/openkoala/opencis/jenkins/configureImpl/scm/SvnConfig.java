@@ -41,7 +41,7 @@ public class SvnConfig implements ScmConfigStrategy<WebDriver> {
         String scm = "Subversion";
         WebElement selectedSCM = null;
         for (WebElement scmRadio : scmRadios) {
-            WebElement label = scmRadio.findElement(By.xpath(".."));
+            WebElement label = scmRadio.findElement(By.xpath("../../label"));
             if (label.getText().contains(scm)) {
                 selectedSCM = scmRadio;
                 break;

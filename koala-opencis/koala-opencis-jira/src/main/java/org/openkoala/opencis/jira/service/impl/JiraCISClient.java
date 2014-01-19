@@ -19,7 +19,7 @@ public class JiraCISClient implements CISClient {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JiraCISClient.class);
 
-    JiraConfiguration jiraConfiguration;
+    private JiraConfiguration jiraConfiguration;
 
     /**
      * jira soap服务接口
@@ -38,6 +38,7 @@ public class JiraCISClient implements CISClient {
      * 用户登录返回的token
      */
     private String token;
+
 
     public JiraCISClient(JiraConfiguration jiraConfiguration) {
         this.jiraConfiguration = jiraConfiguration;
@@ -75,7 +76,7 @@ public class JiraCISClient implements CISClient {
     protected boolean loginToJira(JiraConfiguration jiraConfiguration) {
         if (jiraService == null) {
             try {
-                jiraService = this.getJiraSoapService(jiraConfiguration.getServerAddress());
+                jiraService = getJiraSoapService(jiraConfiguration.getServerAddress());
                 token = jiraService.login(jiraConfiguration.getAdminUserName(), jiraConfiguration.getAdminPassword());
             } catch (RemoteAuthenticationException e) {
                 throw new AdminUserNameOrPasswordErrorException("管理员登陆账号或密码错误！");
@@ -182,7 +183,8 @@ public class JiraCISClient implements CISClient {
         }
     }
 
-    @Override                                                        //To change body of implemented methods use File | Settings | File Templates.
+    @Override
+    //To change body of implemented methods use File | Settings | File Templates.
     public void createUserIfNecessary(Project project, Developer developer) {
         checkUserInfoNotBlank(developer);
         //用户存在，则不创建，忽略
@@ -428,14 +430,7 @@ public class JiraCISClient implements CISClient {
      * 检查登陆信息和项目信息是否为空
      */
     private boolean checkProjectInfoNotBlank(Project project) {
-        if (StringUtils.isBlank(project.getProjectName())) {
-            throw new ProjectKeyBlankException("project key不能为空！");
-        }
-
-        if (StringUtils.isBlank(project.getProjectLead())) {
-            throw new ProjectLeadBlankException("项目负责人不能为空！");
-        }
-        return true;
+        return project.validate();
     }
 
     private String convertProjectKeyToValidFormat(String projectKey) {
@@ -501,7 +496,6 @@ public class JiraCISClient implements CISClient {
             throw new RuntimeException(e);
         }
     }
-
 
 
 }
