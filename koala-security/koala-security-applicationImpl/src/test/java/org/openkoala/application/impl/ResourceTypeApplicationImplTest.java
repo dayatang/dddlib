@@ -10,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openkoala.auth.application.ResourceTypeApplication;
 import org.openkoala.auth.application.vo.ResourceTypeVO;
-import org.openkoala.exception.extend.ApplicationException;
 import org.openkoala.koala.util.KoalaBaseSpringTestCase;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
@@ -50,9 +49,9 @@ public class ResourceTypeApplicationImplTest extends KoalaBaseSpringTestCase {
 		assertNotNull(resourceTypeVO.getId());
 	}
 
-	@Test(expected = ApplicationException.class)
+	@Test
 	public void testIsExist() {
-		resourceTypeApplication.isExist(resourceTypeVO);
+		assertTrue(resourceTypeApplication.isExist(resourceTypeVO));
 	}
 
 	@Test
