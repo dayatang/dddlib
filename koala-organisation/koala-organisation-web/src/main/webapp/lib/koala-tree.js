@@ -400,6 +400,7 @@
         },
         //删除一个节点
         removeChildren: function(data){
+        	console.info(data)
             $(data).remove();
         },
         //销毁tree
