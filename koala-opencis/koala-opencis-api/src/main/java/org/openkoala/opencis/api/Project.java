@@ -1,5 +1,7 @@
 package org.openkoala.opencis.api;
 
+import org.openkoala.opencis.ProjectValidateFailureException;
+
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +36,15 @@ public class Project {
 
     // TODO 校验
     public boolean validate() {
+        if (projectName.length() < 2 ) {
+            throw new ProjectValidateFailureException("project.validateFailure");
+        }
+        for (int i = 0; i < projectName.length(); i++) {
+            char c = projectName.charAt(i);
+            if (!((c >= 65 && c <= 90) || (c >= 97 && c <= 120))) {
+                throw new ProjectValidateFailureException("project.validateFailure");
+            }
+        }
         return true;
     }
 
