@@ -1,8 +1,7 @@
 package org.openkoala.opencis.api;
 
 import org.apache.commons.lang3.StringUtils;
-import org.openkoala.opencis.CISClientBaseRuntimeException;
-import org.openkoala.opencis.DeveloperValidateRuntimeException;
+import org.openkoala.opencis.DeveloperValidateFailureException;
 
 import java.util.List;
 
@@ -49,7 +48,7 @@ public class Developer {
     public boolean validate() {
         if (StringUtils.isBlank(name) || StringUtils.isBlank(password)
                 || StringUtils.isBlank(email) || email.matches(EMAIL_REG)) {
-            throw new DeveloperValidateRuntimeException("Developer is invalid");
+            throw new DeveloperValidateFailureException("Developer is invalid");
         }
         return true;
     }
