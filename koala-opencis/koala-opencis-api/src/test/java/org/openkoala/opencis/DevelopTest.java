@@ -10,7 +10,7 @@ import org.openkoala.opencis.api.Developer;
  */
 public class DevelopTest {
 
-    @Test(expected = DeveloperValidateRuntimeException.class)
+    @Test(expected = DeveloperValidateFailureException.class)
     public void testValidate() throws Exception {
         Developer developer = new Developer();
         developer.setName("xxx");

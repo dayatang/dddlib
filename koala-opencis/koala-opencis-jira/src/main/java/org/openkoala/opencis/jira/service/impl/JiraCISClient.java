@@ -53,7 +53,7 @@ public class JiraCISClient implements CISClient {
 
     @Override
     public void createProject(Project project) {
-        checkProjectInfoNotBlank(project);
+        project.validate();
 
         project.setProjectName(convertProjectKeyToValidFormat(project.getProjectName()));
 
