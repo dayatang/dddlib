@@ -11,6 +11,7 @@ import org.openkoala.opencis.jenkins.configureImpl.scm.SvnConfig;
 import java.net.MalformedURLException;
 
 
+@Ignore
 public class JenkinsCISClientIntegrationTest extends CISClientAbstactIntegrationTest {
 
 
