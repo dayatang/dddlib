@@ -13,6 +13,7 @@ import org.openkoala.opencis.trac.command.TracCommand;
 import org.openkoala.opencis.trac.command.TracCreateProjectCommand;
 import org.openkoala.opencis.trac.command.TracCreateRoleCommand;
 import org.openkoala.opencis.trac.command.TracRemoveProjectCommand;
+import org.openkoala.opencis.trac.command.TracRemoveRoleCommand;
 
 
 /**
@@ -117,7 +118,13 @@ public class TracCISClient implements CISClient {
 	@Override
 	public void removeUser(Project project, Developer developer) {
 		// TODO Auto-generated method stub
-		
+		TracCommand command = new TracRemoveRoleCommand(configuration,developer.getName(),project);
+		try {
+			success = executor.executeSync(command);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			logger.error(e.getMessage(),e);
+		}
 	}
 
 
