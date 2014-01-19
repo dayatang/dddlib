@@ -409,7 +409,7 @@
                 }else{
                     $this.addClass('success').find('[data-role="indexCheckbox"]').addClass('checked');
                 }
-                self.$element.trigger('selectedRow', {checked: !$this.hasClass('success'), item:self.items[$this.attr('indexValue')]});
+                self.$element.trigger('selectedRow', {checked: $this.hasClass('success'), item:self.items[$this.find('[data-role="indexCheckbox"]').attr('indexValue')]});
                 if(self.selectedRowsIndex().length == indexCheckboxs.length){
                     selectAll.addClass('checked');
                 }else{
