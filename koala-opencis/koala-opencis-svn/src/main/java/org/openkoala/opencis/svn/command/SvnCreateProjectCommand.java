@@ -28,7 +28,7 @@ public class SvnCreateProjectCommand extends SvnCommand {
 
 	@Override
 	public String getCommand() {
-		String createProjectCommand = "svnadmin create " + project.getProjectPath() + project.getProjectName();
+		String createProjectCommand = "svnadmin create " + project.getPhysicalPath() + project.getProjectName();
 		return createProjectCommand;
 	}
 	

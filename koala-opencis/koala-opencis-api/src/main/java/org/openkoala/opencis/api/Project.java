@@ -32,6 +32,12 @@ public class Project {
 
     private Map<String, Object> nodeElements;
 
+    // TODO 校验
+    public boolean validate() {
+        return true;
+    }
+
+
     public String getArtifactId() {
         return artifactId;
     }
