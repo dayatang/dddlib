@@ -22,7 +22,7 @@ public class TracCISClientTest {
         sshConnectConfig.setHost("10.108.1.134");
         sshConnectConfig.setUsername("root");
         sshConnectConfig.setPassword("password");
-        sshConnectConfig.setStorePath("/opencis/trac/testProject2/");
+        sshConnectConfig.setStorePath("/opencis/trac/");
         client = new TracCISClient(sshConnectConfig);
     }
 
