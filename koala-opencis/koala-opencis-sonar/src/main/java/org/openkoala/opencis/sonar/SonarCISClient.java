@@ -116,7 +116,6 @@ public class SonarCISClient implements CISClient {
         String username = "sss";
         String password = "xxx";
         UsernamePasswordCredentials creds = new UsernamePasswordCredentials(username, password);
-
         HttpRequest request = new HttpGet();
         try {
             request.addHeader(new BasicScheme().authenticate(creds, request));
