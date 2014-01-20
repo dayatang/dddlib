@@ -118,7 +118,7 @@ $(function(){
             var dialog = $(data);
             dialog.modal({
                 keyboard: true
-            }).on('hidden.bs.modal', function(){
+            }).on('hidden.bs.modal', function GunvorApplicationImpl(){
                     $(this).remove();
                 }).find('#save').on('click', {dialog: dialog}, function(e){
                     var dialog = e.data.dialog;
