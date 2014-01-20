@@ -1,5 +1,6 @@
 package org.openkoala.opencis.trac;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -7,6 +8,8 @@ import org.openkoala.opencis.api.CISClient;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.exception.CreateProjectException;
+import org.openkoala.opencis.exception.HostCannotConnectException;
+import org.openkoala.opencis.exception.UserOrPasswordErrorException;
 import org.openkoala.opencis.support.CommandExecutor;
 import org.openkoala.opencis.support.SSHConnectConfig;
 import org.openkoala.opencis.trac.command.TracAssignUserToRoleCommand;
@@ -15,6 +18,8 @@ import org.openkoala.opencis.trac.command.TracCreateProjectCommand;
 import org.openkoala.opencis.trac.command.TracCreateRoleCommand;
 import org.openkoala.opencis.trac.command.TracRemoveProjectCommand;
 import org.openkoala.opencis.trac.command.TracRemoveRoleCommand;
+
+import com.trilead.ssh2.Connection;
 
 
 /**
@@ -32,7 +37,8 @@ public class TracCISClient implements CISClient {
     private static final Logger logger = Logger.getLogger(TracCISClient.class);
 
     private CommandExecutor executor = new CommandExecutor();
-
+    
+    private Connection conn;
     /**
      * 执行结果
      */
@@ -49,7 +55,10 @@ public class TracCISClient implements CISClient {
 
     @Override
     public void close() {
-        // do nothing
+//    	if(conn!=null){
+//			conn.close();
+//			conn=null;
+//		}
     }
 
 
@@ -134,7 +143,26 @@ public class TracCISClient implements CISClient {
 	@Override
 	public boolean authenticate() {
 		// TODO Auto-generated method stub
-		return false;
+		try {
+            if (conn != null) {
+                return true;
+            }
+            conn = new Connection(configuration.getHost());
+            conn.connect();
+            //登陆linux
+            boolean isAuthenticated = conn.authenticateWithPassword(configuration.getUsername(),
+                    configuration.getPassword());
+            if (!isAuthenticated) {
+                conn.close();
+                conn = null;
+                throw new UserOrPasswordErrorException("账号或密码错误！");
+            }
+            return true;
+        } catch (IOException e) {
+            conn.close();
+            conn = null;
+            throw new HostCannotConnectException("无法连接到主机！");
+        }
 	}
 	
 
