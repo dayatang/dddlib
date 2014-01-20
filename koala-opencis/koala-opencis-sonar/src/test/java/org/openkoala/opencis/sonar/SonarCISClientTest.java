@@ -12,7 +12,6 @@ import org.openkoala.opencis.SonarServiceNotExistException;
 import org.openkoala.opencis.SonarUserExistException;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.pojo.SonarServerConfiguration;
 import org.sonar.wsclient.user.User;
 
 @Ignore
@@ -30,15 +29,10 @@ public class SonarCISClientTest {
 	private SonarCISClientHelper cisClient;
 	private Developer developer;
 	
-	@Test
-	public void testCanConnect() {
-		assertTrue(cisClient.canConnect());
-	}
-	
+
 	@Test(expected = SonarServiceNotExistException.class)
 	public void testCanConnectIfServiceNotExists() {
 		cisClient.setSonarServerConfiguration(new SonarServerConfiguration(SONAR_SERVER_ADDRESS2, SONAR_ADMIN_USERNAME, SONAR_ADMIN_PASSWORD));
-		cisClient.canConnect();
 	}
 	
 	@Test
@@ -77,19 +71,18 @@ public class SonarCISClientTest {
 	public void testAssignUserToRole() {
 		cisClient.createUserIfNecessary(null, developer);
 		Project project = createProject();
-		cisClient.assignUserToRole(project, NAME, null);
 		cisClient.removeUserPermission(project, NAME);
 		cisClient.removeUserIfNecessary(developer);
 	}
 	
 	@Test(expected = PropertyIllegalException.class)
 	public void testAssignUserToRoleIfProjectIsNull() {
-		cisClient.assignUserToRole(null, NAME, null);
+		//cisClient.assignUserToRole(null, NAME, null);
 	}
 	
 	@Test(expected = PropertyIllegalException.class)
 	public void testAssignUserToRoleIfUserIdIsNull() {
-		cisClient.assignUserToRole(createProject(), null, null);
+		//cisClient.assignUserToRole(createProject(), null, null);
 	}
 	
 	@Before
