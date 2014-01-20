@@ -121,9 +121,6 @@ body {
 }
 </style>
 <script type="text/javascript">
-	function login() {
-		$('#loginFormId').submit();
-	}
 	
 	function refreshCode(){
 		
