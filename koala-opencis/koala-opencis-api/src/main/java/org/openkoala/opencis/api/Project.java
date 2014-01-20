@@ -33,8 +33,6 @@ public class Project {
 
     private List<Developer> developers;
 
-    private Map<String, Object> nodeElements;
-
     // TODO 校验
     public boolean validate() {
         if (projectName.length() < 2) {
@@ -108,13 +106,6 @@ public class Project {
         this.developers = developers;
     }
 
-    public Map<String, Object> getNodeElements() {
-        return nodeElements;
-    }
-
-    public void setNodeElements(Map<String, Object> nodeElements) {
-        this.nodeElements = nodeElements;
-    }
 
     public String getGroupId() {
         return groupId;

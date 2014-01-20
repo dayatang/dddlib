@@ -6,6 +6,7 @@ import org.openkoala.opencis.jenkins.configureApi.ScmConfigStrategy;
 import org.openkoala.opencis.jenkins.configureImpl.authorize.GlobalProjectAuthorization;
 import org.openkoala.opencis.jenkins.configureImpl.authorize.ProjectAuthorization;
 import org.openkoala.opencis.jenkins.configureImpl.project.MavenProjectCreator;
+import org.openkoala.opencis.jenkins.configureImpl.user.UserCreator;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -62,7 +63,8 @@ public class JenkinsCISClient implements CISClient {
 
     @Override
     public void createUserIfNecessary(Project project, Developer developer) {
-        new ProjectAuthorization().authorize(jenkinsUrl, project, driver, developer);
+        new UserCreator().createUser(jenkinsUrl, developer, driver);
+
     }
 
     @Override
@@ -77,6 +79,7 @@ public class JenkinsCISClient implements CISClient {
 
     public void assignUsersToRole(Project project,
                                   String role, Developer... developers) {
+        new ProjectAuthorization().authorize(jenkinsUrl, project, driver, developers);
         new GlobalProjectAuthorization().authorize(jenkinsUrl, driver, developers);
     }
 
