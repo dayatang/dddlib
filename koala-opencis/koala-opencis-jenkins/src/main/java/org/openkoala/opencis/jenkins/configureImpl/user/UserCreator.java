@@ -1,5 +1,6 @@
 package org.openkoala.opencis.jenkins.configureImpl.user;
 
+import org.openkoala.opencis.CISClientBaseRuntimeException;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.jenkins.util.SeleniumUtil;
 import org.openkoala.opencis.jenkins.util.UrlUtil;
@@ -17,8 +18,6 @@ import java.util.concurrent.TimeUnit;
  * Time: 2:48 PM
  */
 public class UserCreator {
-
-    private String error;
 
     public UserCreator() {
     }
@@ -46,14 +45,9 @@ public class UserCreator {
         emailInput.submit();
 
         if (!driver.getCurrentUrl().endsWith("securityRealm/")) {
-            error = driver.findElement(By.cssSelector("div.error")).getText();
-            return false;
+            throw new CISClientBaseRuntimeException(driver.findElement(By.cssSelector("div.error")).getText());
         }
         return true;
 
-    }
-
-    public String getError() {
-        return error;
     }
 }
