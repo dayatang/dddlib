@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.openkoala.opencis.api.CISClient;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.exception.CreateProjectException;
 import org.openkoala.opencis.support.CommandExecutor;
 import org.openkoala.opencis.support.SSHConnectConfig;
 import org.openkoala.opencis.trac.command.TracAssignUserToRoleCommand;
@@ -63,6 +64,8 @@ public class TracCISClient implements CISClient {
             success = executor.executeSync(command);
         } catch (Exception e) {
             logger.error(e.getMessage(),e);
+            throw new CreateProjectException("创建Trac项目" + project.getProjectName() + "失败，原因：" 
+            		+ e.getMessage(), e);
         }
 
     }

@@ -28,7 +28,7 @@ public class SvnCreateProjectCommand extends SvnCommand {
 
 	@Override
 	public String getCommand() {
-		String createProjectCommand = "svnadmin create " + project.getPhysicalPath() + project.getProjectName();
+		String createProjectCommand = "svnadmin create " + storePath + project.getProjectName();
 		return createProjectCommand;
 	}
 	
@@ -40,7 +40,7 @@ public class SvnCreateProjectCommand extends SvnCommand {
 				throw new ProjectExistenceException("项目已经存在！");
 			}
 		} catch (IOException e) {
-			throw new RuntimeException("执行创建项目" + project.getProjectName() + "命令，返回结果时异常！");
+			throw new RuntimeException("执行创建项目" + storePath + "命令，返回结果时异常！");
 		}
 	}
 	

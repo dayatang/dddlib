@@ -4,6 +4,8 @@ import org.openkoala.opencis.api.Project;
 
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.Session;
+
+import org.openkoala.opencis.support.CommonUtil;
 import org.openkoala.opencis.support.SSHCommand;
 import org.openkoala.opencis.support.SSHConnectConfig;
 
@@ -16,6 +18,8 @@ import org.openkoala.opencis.support.SSHConnectConfig;
 public abstract class TracCommand extends SSHCommand {
 	
 	protected static final String PERMISSION = "TRAC_ADMIN";
+	
+	protected static final String KEY_PATH = "TRAC_PROJECT_PATH";
 
     public TracCommand() {
         // TODO Auto-generated constructor stub
@@ -26,6 +30,7 @@ public abstract class TracCommand extends SSHCommand {
         this.host = configuration.getHost();
         this.userName = configuration.getUsername();
         this.password = configuration.getPassword();
+        this.storePath = CommonUtil.validatePath(configuration.getStorePath());
         this.project = project;
 
     }

@@ -85,6 +85,10 @@ public class SvnCISClient implements CISClient {
     @Override
     public void close() {
         // do nothing
+//    	if(conn!=null){
+//    		conn.close();
+//    		conn=null;
+//    	}
     }
 
     @Override
@@ -270,7 +274,7 @@ public class SvnCISClient implements CISClient {
 	@Override
 	public boolean authenticate() {
 		// TODO Auto-generated method stub
-		return false;
+		return connectToHost();
 	}
 
 }

@@ -24,7 +24,6 @@ import org.openkoala.opencis.exception.UserOrPasswordErrorException;
 import org.openkoala.opencis.support.SSHConnectConfig;
 
 
-@Ignore
 public class SvnCISClientTest {
 
     private SSHConnectConfig configuration;
@@ -226,16 +225,16 @@ public class SvnCISClientTest {
         roleName = "Architect";
     }
 
-    public static void main(String[] args) {
-		SvnCISClientTest test = new SvnCISClientTest();
-		try {
-			test.setUp();
-//			test.testProjectExistence();
-			test.testCreateUserIfNecessary();
-			test.testRemoveUser();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//    public static void main(String[] args) {
+//		SvnCISClientTest test = new SvnCISClientTest();
+//		try {
+//			test.setUp();
+////			test.testProjectExistence();
+//			test.testCreateUserIfNecessary();
+//			test.testRemoveUser();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 }

@@ -31,7 +31,7 @@ public class SvnRemoveUserCommand extends SvnCommand {
 	@Override
 	public String getCommand() {
 		// TODO Auto-generated method stub
-		String removeUserCommand = "htpasswd -D " + project.getPhysicalPath() 
+		String removeUserCommand = "htpasswd -D " + storePath 
 				+ project.getProjectName() + "/conf/passwd " + developer.getName();
         return removeUserCommand;
 	}
