@@ -1,6 +1,7 @@
 package org.openkoala.opencis.svn;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -111,7 +112,7 @@ public class SvnCISClient implements CISClient {
     public void createUserIfNecessary(Project project, Developer developer) {
         isProjectInfoNotBlank(project);
         isUserInfoBlank(developer);
-        SvnCommand isUserExistencecommand = new SvnIsUserExistenceCommand(developer.getName(),
+        SvnCommand isUserExistencecommand = new SvnIsUserExistenceCommand(developer.getId(),
                 configuration, project);
         try {
             executor.executeSync(isUserExistencecommand);
@@ -135,7 +136,7 @@ public class SvnCISClient implements CISClient {
     }
 
     private boolean isUserInfoBlank(Developer developer) {
-        if (StringUtils.isBlank(developer.getName())) {
+        if (StringUtils.isBlank(developer.getId())) {
             throw new UserBlankException("用户名不能为空！");
         }
         if (StringUtils.isBlank(developer.getPassword())) {
@@ -265,10 +266,17 @@ public class SvnCISClient implements CISClient {
 	}
 
 	@Override
-	public void assignUsersToRole(Project project, String role,
-			Developer... developers) {
+	public void assignUsersToRole(Project project, String role,Developer... developers) {
 		// TODO Auto-generated method stub
+		List<String> userNames = new ArrayList<String>();
 		
+		for(Developer developer:developers){
+			userNames.add(developer.getId());
+		}
+		
+		isAuthInfoNotBlank(project, userNames, role);
+        createGroupAndAddGroupUsers(project, userNames, role);
+        authz(project, role);
 	}
 
 	@Override

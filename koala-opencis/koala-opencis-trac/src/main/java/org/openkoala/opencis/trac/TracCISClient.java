@@ -81,23 +81,21 @@ public class TracCISClient implements CISClient {
 
     @Override
     public void createUserIfNecessary(Project project, Developer developer) {
-        //Trac在创建用户时就已经指派了角色了，所以，这里不需要执行了
+    	 //使用java SSH来创建角色
+        //1、读取project的配置信息，包括该角色(用户组)默认的权限
+        //2、用命令CommandExecutor来执行TracCreateRoleCommand子类
+        TracCommand command = new TracCreateRoleCommand(configuration, developer.getId(), project);
+        try {
+            success = executor.executeSync(command);
+        } catch (Exception e) {
+        	logger.error(e.getMessage(),e);
+        }
     }
 
     @Override
     public void createRoleIfNecessary(Project project, String roleName) {
         // TODO Auto-generated method stub
-        //使用java SSH来创建角色
-        //1、读取project的配置信息，包括该角色(用户组)默认的权限
-        //2、用命令CommandExecutor来执行TracCreateRoleCommand子类
-        TracCommand command = new TracCreateRoleCommand(configuration, roleName, project);
-        try {
-            success = executor.executeSync(command);
-        } catch (Exception e) {
-        	logger.error(e.getMessage(),e);
-//            return false;
-        }
-//        return true;
+       
     }
 
     public boolean assignUserToRole(Project project, String usrId, String role) {
@@ -130,7 +128,7 @@ public class TracCISClient implements CISClient {
 	@Override
 	public void removeUser(Project project, Developer developer) {
 		// TODO Auto-generated method stub
-		TracCommand command = new TracRemoveRoleCommand(configuration,developer.getName(),project);
+		TracCommand command = new TracRemoveRoleCommand(configuration,developer.getId(),project);
 		try {
 			success = executor.executeSync(command);
 		} catch (Exception e) {

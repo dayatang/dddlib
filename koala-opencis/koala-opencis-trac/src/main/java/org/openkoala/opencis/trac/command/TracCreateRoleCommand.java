@@ -29,7 +29,7 @@ public class TracCreateRoleCommand extends TracCommand {
     @Override
     public String getCommand() {
         // TODO Auto-generated method stub
-        String createRoleCommand = "trac-admin " + storePath + " permission add " + roleName + " " + PERMISSION;
+        String createRoleCommand = "trac-admin " + storePath + project.getArtifactId() + " permission add " + roleName + " " + PERMISSION;
         return createRoleCommand;
     }
 

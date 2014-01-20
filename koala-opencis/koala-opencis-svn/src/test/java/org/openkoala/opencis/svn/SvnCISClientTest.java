@@ -126,7 +126,7 @@ public class SvnCISClientTest {
     	instance = new SvnCISClient(configuration);
     	try {
 			instance.removeUser(project, developer);
-			assertTrue("成功删除用户" + developer.getName(), true);
+			assertTrue("成功删除用户" + developer.getId(), true);
 		} catch (Exception e) {
 			// TODO: handle exception
 			fail("删除用户失败");

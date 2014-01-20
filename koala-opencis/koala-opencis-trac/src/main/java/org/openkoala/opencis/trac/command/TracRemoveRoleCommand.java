@@ -24,7 +24,8 @@ public class TracRemoveRoleCommand extends TracCommand {
 	@Override
 	public String getCommand() {
 		// TODO Auto-generated method stub
-		String removeRoleCommand = "trac-admin " + storePath + " permission remove " + roleName + " " + PERMISSION;
+		String removeRoleCommand = "trac-admin " + storePath + project.getArtifactId() 
+				+ " permission remove " + roleName + " " + PERMISSION;
         return removeRoleCommand;
 	}
 
