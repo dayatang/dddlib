@@ -22,7 +22,7 @@ public class ProjectTest {
     }
 
 
-    @Test()
+    @Test(expected = ProjectValidateFailureException.class)
     public void testName1() throws Exception {
 
         Project project = new Project();
