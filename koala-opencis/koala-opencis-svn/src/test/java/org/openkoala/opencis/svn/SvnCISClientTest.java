@@ -186,9 +186,9 @@ public class SvnCISClientTest {
         try {
             initUserListAndRoleName();
             instance = new SvnCISClient(configuration);
-            instance.createProject(project);
+//            instance.createProject(project);
             instance.assignUsersToRole(project, userNames, roleName);
-            instance.removeProject(project);
+//            instance.removeProject(project);
             assertTrue(true);
         } catch (Exception e) {
             fail("授权失败！");
