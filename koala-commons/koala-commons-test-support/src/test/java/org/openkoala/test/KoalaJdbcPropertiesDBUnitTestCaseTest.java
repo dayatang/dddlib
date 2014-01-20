@@ -14,7 +14,7 @@ public class KoalaJdbcPropertiesDBUnitTestCaseTest extends
 
 	@Override
 	public String getDataXmlFile() {
-		return "/dataxml/test.xml";
+		return "dataxml/test.xml";
 	}
 
 	@Override

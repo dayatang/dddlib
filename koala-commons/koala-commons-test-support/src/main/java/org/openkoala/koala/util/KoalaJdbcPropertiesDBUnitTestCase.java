@@ -44,9 +44,9 @@ public abstract class KoalaJdbcPropertiesDBUnitTestCase extends
 				.getResourceAsStream(getPropertiesFile());
 		try {
 			props.load(input);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-			throw new RuntimeException(e);
+			throw new RuntimeException("加载配置文件失败："+getPropertiesFile(),e);
 		}
 		return props;
 	}
