@@ -15,9 +15,9 @@ public class CommonUtil {
 	 * @return
 	 */
 	public static String validatePath(String path){
-		if(path.matches(".*[\\\\\\\\|/]$")){
+		if(path.matches(".*[/]$")){
 			return path;
 		}
-		return path + File.separator;
+		return path + "/";
 	}
 }

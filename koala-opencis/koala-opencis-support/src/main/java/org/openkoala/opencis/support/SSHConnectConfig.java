@@ -20,10 +20,11 @@ public class SSHConnectConfig {
 
     }
 
-    public SSHConnectConfig(String host, String username, String password) {
+    public SSHConnectConfig(String host, String username, String password,String storePath) {
         this.host = host;
         this.username = username;
         this.password = password;
+        this.storePath = storePath;
     }
 
     public String getHost() {
