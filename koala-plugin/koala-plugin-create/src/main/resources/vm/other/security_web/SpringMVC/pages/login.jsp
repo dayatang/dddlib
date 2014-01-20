@@ -125,7 +125,6 @@ body {
 	function refreshCode(){
 		$('#checkCode').attr('src',"jcaptcha.jpg?time="+new Date().getTime());
 	}
-	
 </script>
 </head>
 <body>

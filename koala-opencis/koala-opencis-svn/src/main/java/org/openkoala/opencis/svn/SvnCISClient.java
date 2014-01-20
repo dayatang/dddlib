@@ -31,6 +31,7 @@ import org.openkoala.opencis.svn.command.SvnCreateProjectCommand;
 import org.openkoala.opencis.svn.command.SvnCreateUserCommand;
 import org.openkoala.opencis.svn.command.SvnIsUserExistenceCommand;
 import org.openkoala.opencis.svn.command.SvnRemoveProjectCommand;
+import org.openkoala.opencis.svn.command.SvnRemoveUserCommand;
 
 import com.trilead.ssh2.Connection;
 
@@ -117,7 +118,7 @@ public class SvnCISClient implements CISClient {
             //用户存在，则不再创建用户
 //            return true;
         } catch (Exception e) {
-            throw new CreateUserException("创建用户异常", e);
+            throw new CreateUserException("创建用户异常，原因：" + e.getMessage(), e);
         }
 //        return false;
     }
@@ -251,7 +252,12 @@ public class SvnCISClient implements CISClient {
 	@Override
 	public void removeUser(Project project, Developer developer) {
 		// TODO Auto-generated method stub
-		
+		SvnCommand command = new SvnRemoveUserCommand(developer, configuration, project);
+		try {
+            success = executor.executeSync(command);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 	}
 
 	@Override

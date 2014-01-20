@@ -525,7 +525,6 @@ public class KoalaSqlSessionFactoryBean implements
 		while (urls.hasMoreElements()) {
 			URL u = (URL)urls.nextElement();
 			String path = u.getFile();
-			System.out.println("PATH:"+path);
 			String protocol = u.getProtocol();
 			if("file".equals(protocol) || "jar".equals(protocol)){
 				if(path.endsWith("!/"+basePackage)){
@@ -584,8 +583,16 @@ public class KoalaSqlSessionFactoryBean implements
 				if(c.getSimpleName().toUpperCase().endsWith("DTO")){
 					configuration.getTypeAliasRegistry().registerAlias(c);
 				}
+			}catch (java.lang.ExceptionInInitializerError e){
+				logger.warn("加载类出错"+className);
+				continue;
 			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
+				logger.warn("加载类出错"+className);
+				continue;
+			}
+			catch (Exception e) {
+				logger.warn("找不到类"+className);
+				continue;
 			}
 			
 		}

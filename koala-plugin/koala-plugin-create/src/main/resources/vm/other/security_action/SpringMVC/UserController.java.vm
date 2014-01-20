@@ -35,11 +35,8 @@ public class UserController {
 	@Inject
 	private RoleApplication roleApplication;
 	
-	private static PasswordEncoder passwordEncoder;
-	
-	static {
-		passwordEncoder = InstanceFactory.getInstance(PasswordEncoder.class, "passwordEncoder");
-	}
+	@Inject
+	private PasswordEncoder passwordEncoder;
 
 	@ResponseBody
 	@RequestMapping("/updatePassword")
