@@ -15,9 +15,11 @@ import org.openkoala.opencis.support.SSHConnectConfig;
 import org.openkoala.opencis.trac.command.TracAssignUserToRoleCommand;
 import org.openkoala.opencis.trac.command.TracCommand;
 import org.openkoala.opencis.trac.command.TracCreateProjectCommand;
-import org.openkoala.opencis.trac.command.TracCreateRoleCommand;
+import org.openkoala.opencis.trac.command.TracCreateUserCommand;
+import org.openkoala.opencis.trac.command.TracCreateUserToRoleCommand;
 import org.openkoala.opencis.trac.command.TracRemoveProjectCommand;
-import org.openkoala.opencis.trac.command.TracRemoveRoleCommand;
+import org.openkoala.opencis.trac.command.TracRemoveUserCommand;
+import org.openkoala.opencis.trac.command.TracRemoveUserFromRoleCommand;
 
 import com.trilead.ssh2.Connection;
 
@@ -84,9 +86,13 @@ public class TracCISClient implements CISClient {
     	 //使用java SSH来创建角色
         //1、读取project的配置信息，包括该角色(用户组)默认的权限
         //2、用命令CommandExecutor来执行TracCreateRoleCommand子类
-        TracCommand command = new TracCreateRoleCommand(configuration, developer.getId(), project);
+    	TracCommand createUserCommand = new TracCreateUserCommand(configuration, project, developer);
+        TracCommand createUserToRoleCommand = new TracCreateUserToRoleCommand(configuration, developer.getId(), project);
+        
         try {
-            success = executor.executeSync(command);
+        	executor.addCommand(createUserCommand);
+        	executor.addCommand(createUserToRoleCommand);
+            success = executor.executeBatch();
         } catch (Exception e) {
         	logger.error(e.getMessage(),e);
         }
@@ -128,9 +134,12 @@ public class TracCISClient implements CISClient {
 	@Override
 	public void removeUser(Project project, Developer developer) {
 		// TODO Auto-generated method stub
-		TracCommand command = new TracRemoveRoleCommand(configuration,developer.getId(),project);
+		TracCommand removeUserFromRoleCommand = new TracRemoveUserFromRoleCommand(configuration,developer.getId(),project);
+		TracCommand removeUserCommand = new TracRemoveUserCommand(developer, configuration, project);
 		try {
-			success = executor.executeSync(command);
+			executor.addCommand(removeUserFromRoleCommand);
+			executor.addCommand(removeUserCommand);
+			success = executor.executeBatch();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			logger.error(e.getMessage(),e);

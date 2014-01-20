@@ -213,13 +213,14 @@ public class SvnCISClientTest {
 
     private void initDeveloperInfo() {
         developer = new Developer();
+        developer.setId("zjh");
         developer.setName("projectUserTest");
         developer.setPassword("pwdTest");
     }
 
     private void initUserListAndRoleName() {
         userNames = new ArrayList<String>();
-        userNames.add("aaa");
+        userNames.add("zjh");
         userNames.add("bbb");
 
         roleName = "Architect";

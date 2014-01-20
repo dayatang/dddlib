@@ -10,26 +10,26 @@ import org.openkoala.opencis.support.SSHConnectConfig;
  * @author 赵健华
  *         2013-9-23 下午8:52:51
  */
-public class TracCreateRoleCommand extends TracCommand {
+public class TracCreateUserToRoleCommand extends TracCommand {
 
 //    private static final String PERMISSION = "TRAC-ADMIN";
 
-    private String roleName;
+    private String userName;
 
 
-    public TracCreateRoleCommand() {
+    public TracCreateUserToRoleCommand() {
         // TODO Auto-generated constructor stub
     }
 
-    public TracCreateRoleCommand(SSHConnectConfig configuration, String roleName, Project project) {
+    public TracCreateUserToRoleCommand(SSHConnectConfig configuration, String userName, Project project) {
         super(configuration, project);
-        this.roleName = roleName;
+        this.userName = userName;
     }
 
     @Override
     public String getCommand() {
         // TODO Auto-generated method stub
-        String createRoleCommand = "trac-admin " + storePath + project.getArtifactId() + " permission add " + roleName + " " + PERMISSION;
+        String createRoleCommand = "trac-admin " + storePath + project.getArtifactId() + " permission add " + userName + " " + PERMISSION;
         return createRoleCommand;
     }
 

@@ -8,15 +8,15 @@ import org.openkoala.opencis.support.SSHConnectConfig;
  * @author zjh
  *
  */
-public class TracRemoveRoleCommand extends TracCommand {
+public class TracRemoveUserFromRoleCommand extends TracCommand {
 	
 	private String roleName;
 
-	public TracRemoveRoleCommand() {
+	public TracRemoveUserFromRoleCommand() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public TracRemoveRoleCommand(SSHConnectConfig configuration,String roleName, Project project) {
+	public TracRemoveUserFromRoleCommand(SSHConnectConfig configuration,String roleName, Project project) {
 		super(configuration, project);
 		this.roleName = roleName;
 	}
