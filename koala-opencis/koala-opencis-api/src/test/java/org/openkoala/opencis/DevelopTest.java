@@ -35,4 +35,16 @@ public class DevelopTest {
 
 
     }
+
+    @Test
+    public void testValidate1() throws Exception {
+        Developer developer = new Developer();
+        developer.setName("xxx");
+        developer.setFullName("xxxxxx");
+        developer.setPassword("password");
+        developer.setEmail("email22@df.com");
+        assert developer.validate();
+
+
+    }
 }

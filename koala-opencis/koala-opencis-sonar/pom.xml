@@ -34,11 +34,11 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>org.codehaus.sonar</groupId>
 			<artifactId>sonar-ws-client</artifactId>
 			<version>4.0</version>
-		</dependency>
+		</dependency>-->
 	</dependencies>
 
 </project>
