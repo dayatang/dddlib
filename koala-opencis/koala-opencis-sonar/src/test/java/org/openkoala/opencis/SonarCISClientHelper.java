@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.pojo.SonarServerConfiguration;
+import org.openkoala.opencis.sonar.SonarServerConfiguration;
 import org.openkoala.opencis.sonar.SonarCISClient;
 import org.sonar.wsclient.permissions.PermissionParameters;
 import org.sonar.wsclient.permissions.internal.DefaultPermissionClient;
@@ -31,7 +31,6 @@ public class SonarCISClientHelper extends SonarCISClient {
 	}
 	
 	public void removeUserPermission(Project project, String userId) {
-		verifyProjectAndUserIdLegal(project, userId);
 		String component = project.getGroupId() + ":" + project.getArtifactId();
 		try {
 			DefaultPermissionClient client = new DefaultPermissionClient(createHttpRequestFactory());
