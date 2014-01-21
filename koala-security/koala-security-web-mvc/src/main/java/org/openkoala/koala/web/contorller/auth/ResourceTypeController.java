@@ -60,7 +60,7 @@ public class ResourceTypeController {
 		Page<ResourceTypeVO> result = resourceTypeApplication.pageQuery(page,
 				pagesize);
 		dataMap.put("Rows", result.getResult());
-		dataMap.put("start", page * page - pagesize);
+		dataMap.put("start", page * pagesize - pagesize);
 		dataMap.put("limit", pagesize);
 		dataMap.put("Total", result.getTotalCount());
 		return dataMap;
