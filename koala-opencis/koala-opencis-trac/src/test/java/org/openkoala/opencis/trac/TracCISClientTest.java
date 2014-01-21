@@ -29,9 +29,9 @@ public class TracCISClientTest {
         client = new TracCISClient(sshConnectConfig);
         
         developer = new Developer();
-        developer.setId("zjh");
-        developer.setName("zjh");
-        developer.setPassword("zjh");
+        developer.setId("zjh2");
+        developer.setName("zjh2");
+        developer.setPassword("zjh2");
     }
 
     @After

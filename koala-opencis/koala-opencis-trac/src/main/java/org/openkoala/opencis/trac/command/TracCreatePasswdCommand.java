@@ -22,7 +22,7 @@ public class TracCreatePasswdCommand extends TracCommand {
 	@Override
 	public String getCommand() {
 		// TODO Auto-generated method stub
-		String strCommand = "touch " + storePath + project.getProjectName() + "/conf/passwd"; 
+		String strCommand = "touch " + storePath + "passwd"; 
 		return strCommand;
 	}
 

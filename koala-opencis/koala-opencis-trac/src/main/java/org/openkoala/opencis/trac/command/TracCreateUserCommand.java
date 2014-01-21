@@ -27,13 +27,9 @@ public class TracCreateUserCommand extends TracCommand {
 	@Override
 	public String getCommand() {
 		// TODO Auto-generated method stub
-		String filePath = storePath + project.getProjectName() + "/conf/passwd";
-		String param = "";
-		//如果文件不存在，要增加c参数选项
-//		if(!CommonUtil.fileExists(filePath,"passwd")){
-//			param = "c";
-//		}
-		String createUserCommand = "htpasswd -b" + param + " " +  filePath + " "
+		String filePath = storePath + "passwd";
+
+		String createUserCommand = "htpasswd -b " +  filePath + " "
 				+ developer.getId() + " " + developer.getPassword();
 		return createUserCommand;
 	}

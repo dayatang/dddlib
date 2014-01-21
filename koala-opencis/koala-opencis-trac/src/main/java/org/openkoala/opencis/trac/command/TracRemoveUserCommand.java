@@ -26,8 +26,7 @@ public class TracRemoveUserCommand extends TracCommand {
 	@Override
 	public String getCommand() {
 		// TODO Auto-generated method stub
-		String removeUserCommand = "htpasswd -D " + storePath 
-				+ project.getProjectName() + "/conf/passwd " + developer.getId();
+		String removeUserCommand = "htpasswd -D " + storePath + "passwd " + developer.getId();
         return removeUserCommand;
 	}
 
