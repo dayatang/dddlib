@@ -2,6 +2,7 @@ package org.openkoala.opencis.trac.command;
 
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.support.CommonUtil;
 import org.openkoala.opencis.support.SSHConnectConfig;
 
 /**
@@ -26,8 +27,14 @@ public class TracCreateUserCommand extends TracCommand {
 	@Override
 	public String getCommand() {
 		// TODO Auto-generated method stub
-		String createUserCommand = "htpasswd -b " + storePath + project.getProjectName() +
-				   "/conf/passwd " + developer.getId() + " " + developer.getPassword();
+		String filePath = storePath + project.getProjectName() + "/conf";
+		String param = "";
+		//如果文件不存在，要增加c参数选项
+		if(!CommonUtil.fileExists(filePath,"passwd")){
+			param = "c";
+		}
+		String createUserCommand = "htpasswd -b" + param + " " +  filePath + " "
+				+ developer.getId() + " " + developer.getPassword();
 		return createUserCommand;
 	}
 

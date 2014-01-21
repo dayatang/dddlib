@@ -108,13 +108,13 @@ public class TracCISClient implements CISClient {
         //使用java SSH来分配用户到某个角色，如果是连续分配，个人认为不应该关闭Connection，直到循环完毕才close
         //1、读取project的配置信息
         //2、用命令CommandExecutor来执行TracAssignUserToRoleCommand子类
-        TracCommand command = new TracAssignUserToRoleCommand(usrId, role, configuration, project);
-        try {
-            success = executor.executeSync(command);
-        } catch (Exception e) {
-        	logger.error(e.getMessage(),e);
-            return false;
-        }
+//        TracCommand command = new TracAssignUserToRoleCommand(usrId, role, configuration, project);
+//        try {
+//            success = executor.executeSync(command);
+//        } catch (Exception e) {
+//        	logger.error(e.getMessage(),e);
+//            return false;
+//        }
         return true;
     }
 

@@ -20,4 +20,13 @@ public class CommonUtil {
 		}
 		return path + "/";
 	}
+	
+	/**
+	 * 检查文件是否存在
+	 * @param 文件全路径，包括文件名
+	 * @return
+	 */
+	public static boolean fileExists(String filePath,String fileName){
+		return new File(filePath,fileName).exists();
+	}
 }

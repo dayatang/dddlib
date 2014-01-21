@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.support.SSHConnectConfig;
 
@@ -13,6 +14,8 @@ import org.openkoala.opencis.support.SSHConnectConfig;
 public class TracCISClientTest {
 
     private Project project = new MockProject();
+    
+    private Developer developer = null;
 
     private TracCISClient client = null;
 
@@ -24,6 +27,11 @@ public class TracCISClientTest {
         sshConnectConfig.setPassword("password");
         sshConnectConfig.setStorePath("/opencis/trac/");
         client = new TracCISClient(sshConnectConfig);
+        
+        developer = new Developer();
+        developer.setId("zjh");
+        developer.setName("zjh");
+        developer.setPassword("zjh");
     }
 
     @After
@@ -38,7 +46,7 @@ public class TracCISClientTest {
 
     @Test
     public void testCreateRoleIfNessceary() {
-        client.createRoleIfNecessary(project, "developer");
+        client.createUserIfNecessary(project, developer);
         assertTrue(client.isSuccess());
     }
 
