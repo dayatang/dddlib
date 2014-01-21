@@ -34,10 +34,4 @@ public abstract class TracCommand extends SSHCommand {
         this.project = project;
 
     }
-
-    @Override
-    public void doWork(Connection connection, Session session) {
-        // TODO Auto-generated method stub
-
-    }
 }

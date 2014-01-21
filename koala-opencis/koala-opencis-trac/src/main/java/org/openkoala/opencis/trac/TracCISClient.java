@@ -14,6 +14,7 @@ import org.openkoala.opencis.support.CommandExecutor;
 import org.openkoala.opencis.support.SSHConnectConfig;
 import org.openkoala.opencis.trac.command.TracAssignUserToRoleCommand;
 import org.openkoala.opencis.trac.command.TracCommand;
+import org.openkoala.opencis.trac.command.TracCreatePasswdCommand;
 import org.openkoala.opencis.trac.command.TracCreateProjectCommand;
 import org.openkoala.opencis.trac.command.TracCreateUserCommand;
 import org.openkoala.opencis.trac.command.TracCreateUserToRoleCommand;
@@ -67,12 +68,15 @@ public class TracCISClient implements CISClient {
     @Override
     public void createProject(Project project) {
         //使用java SSH来创建项目
-        //1、先检测项目是否存在，如果存在则不需要创建
-        //2、用命令CommandExecutor来执行TracCreateProjecCommand子类
+        //1、创建项目
+    	//2、创建项目路径下的conf/passwd文件
         //初始化命令
-        TracCommand command = new TracCreateProjectCommand(configuration, project);
+        TracCommand createProjectCmd = new TracCreateProjectCommand(configuration, project);
+        TracCommand createPasswdCmd = new TracCreatePasswdCommand(configuration, project);
         try {
-            success = executor.executeSync(command);
+        	executor.addCommand(createProjectCmd);
+        	executor.addCommand(createPasswdCmd);
+            success = executor.executeBatch();
         } catch (Exception e) {
             logger.error(e.getMessage(),e);
             throw new CreateProjectException("创建Trac项目" + project.getProjectName() + "失败，原因：" 

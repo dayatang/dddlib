@@ -27,15 +27,4 @@ public abstract class SvnCommand extends SSHCommand {
         this.project = project;
 
     }
-
-    protected String readOutput(InputStream inputStream) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while ((line = br.readLine()) != null) {
-            sb.append(line);
-        }
-        br.close();
-        return sb.toString();
-    }
 }

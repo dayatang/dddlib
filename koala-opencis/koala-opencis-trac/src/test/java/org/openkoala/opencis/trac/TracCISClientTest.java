@@ -22,7 +22,7 @@ public class TracCISClientTest {
     @Before
     public void setUp() throws Exception {
         SSHConnectConfig sshConnectConfig = new SSHConnectConfig();
-        sshConnectConfig.setHost("10.108.1.134");
+        sshConnectConfig.setHost("10.108.1.87");
         sshConnectConfig.setUsername("root");
         sshConnectConfig.setPassword("password");
         sshConnectConfig.setStorePath("/opencis/trac/");
@@ -64,7 +64,7 @@ public class TracCISClientTest {
     
     @Test
     public void testRemoveUser(){
-    	client.removeUser(project, project.getDevelopers().get(0));
+    	client.removeUser(project, developer);
     }
     
 //    public static void main(String[] args) {
