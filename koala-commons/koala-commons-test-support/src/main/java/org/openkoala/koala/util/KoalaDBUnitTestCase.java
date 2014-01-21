@@ -1,5 +1,4 @@
 package org.openkoala.koala.util;
-import javax.sql.DataSource;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
@@ -63,15 +62,20 @@ public abstract class KoalaDBUnitTestCase implements ApplicationContextAware {
 	
 	
 
-	private IDatabaseTester databaseTester ;
+	private IDatabaseTester databaseTester;
+	
 	@Before
 	public void setUp() throws Exception {
 		
-		databaseTester = getIDatabaseTester();//new DataSourceDatabaseTester(getDataSource());
+		databaseTester = getIDatabaseTester();
         
 		IDataSet dataSet = getDataSet();
 		
 		databaseTester.setDataSet( dataSet );
+		
+		databaseTester.setSetUpOperation(getSetUpOperation());
+		
+		databaseTester.setTearDownOperation(getTearDownOperation());
 		
 		databaseTester.onSetup();
 	}
