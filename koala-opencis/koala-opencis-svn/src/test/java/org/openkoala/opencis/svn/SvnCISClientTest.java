@@ -36,7 +36,7 @@ public class SvnCISClientTest {
 
     @Before
     public void setUp() throws Exception {
-        configuration = new SSHConnectConfig("10.108.1.134", "root", "password","/opencis/svn/");
+        configuration = new SSHConnectConfig("10.108.1.87", "root", "password","/opencis/svn/");
         this.initProjectInfo();
         this.initDeveloperInfo();
     }

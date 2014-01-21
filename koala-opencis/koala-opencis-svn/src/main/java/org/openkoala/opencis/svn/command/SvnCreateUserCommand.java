@@ -30,8 +30,10 @@ public class SvnCreateUserCommand extends SvnCommand {
 	
 	@Override
 	public String getCommand() {
-		String createUserCommand = "htpasswd -b " + storePath + project.getProjectName() +
-								   "/conf/passwd " + developer.getId() + " " + developer.getPassword();
+		String filePath = storePath + "passwd";
+
+		String createUserCommand = "htpasswd -b " +  filePath + " " + developer.getId() + " " 
+								+ developer.getPassword();
 		return createUserCommand;
 	}
 
