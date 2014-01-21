@@ -27,6 +27,7 @@ import org.openkoala.opencis.support.SSHConnectConfig;
 import org.openkoala.opencis.svn.command.SvnAuthzCommand;
 import org.openkoala.opencis.svn.command.SvnClearProjectPasswdFileContentCommand;
 import org.openkoala.opencis.svn.command.SvnCommand;
+import org.openkoala.opencis.svn.command.SvnCreateAuthFileCommand;
 import org.openkoala.opencis.svn.command.SvnCreateGroupAndAddGroupUsersCommand;
 import org.openkoala.opencis.svn.command.SvnCreateProjectCommand;
 import org.openkoala.opencis.svn.command.SvnCreateUserCommand;
@@ -96,10 +97,13 @@ public class SvnCISClient implements CISClient {
     public void createProject(Project project) {
         isProjectInfoNotBlank(project);
         SvnCommand command = new SvnCreateProjectCommand(configuration, project);
+        SvnCommand clearProjectPasswdFileContentCommand = new SvnClearProjectPasswdFileContentCommand(configuration, project);
+        SvnCommand createAuthzFileCommand = new SvnCreateAuthFileCommand(configuration, project);
         try {
-            executor.executeSync(command);
-            SvnCommand clearProjectPasswdFileContentCommand = new SvnClearProjectPasswdFileContentCommand(configuration, project);
-            success = executor.executeSync(clearProjectPasswdFileContentCommand);
+            executor.addCommand(command);
+            executor.addCommand(clearProjectPasswdFileContentCommand);
+            executor.addCommand(createAuthzFileCommand);
+            success = executor.executeBatch();
         } catch (ProjectExistenceException e) {
             throw e;
         } catch (Exception e) {
