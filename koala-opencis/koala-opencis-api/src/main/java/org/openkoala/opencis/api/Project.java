@@ -33,7 +33,6 @@ public class Project {
 
     private List<Developer> developers;
 
-    // TODO 校验
     public boolean validate() {
         if (projectName.length() < 2) {
             throw new ProjectValidateFailureException("project.validateFailure");

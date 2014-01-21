@@ -6,15 +6,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.openkoala.opencis.SonarCISClientHelper;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
-import org.sonar.wsclient.user.User;
+
+import java.util.UUID;
+
 @Ignore
 public class SonarCISClientTest {
 
     public static final String NAME = "koala";
-    public static final String address = "http://localhost:8888";
     public static final String address2 = "http://10.108.1.138:9000";
     public static final String username = "admin";
     public static final String password = "admin";
@@ -22,68 +22,54 @@ public class SonarCISClientTest {
     public static final String PROJECT_GROUPID = "org.openkoala.cas";
 
 
-    private SonarCISClientHelper cisClient;
-    private Developer developer;
-
-
     @Test
     public void testAuthenticate() {
         SonarCISClient sonarCISClient = new SonarCISClient(new SonarConnectConfig(address2, username, password));
-        sonarCISClient.authenticate();
+        assert sonarCISClient.authenticate();
 
         Project project = new Project();
-        project.setProjectName("projectName");
-        project.setArtifactId("project");
-        project.setGroupId("com.group");
+        project.setProjectName("projdrr");
+        project.setArtifactId("proffr");
+        project.setGroupId("com.grou3");
         project.setDescription("description");
+        project.setProjectLead("xxx");
+
+        Developer developer = new Developer();
+        developer.setName(UUID.randomUUID().toString());
+        developer.setEmail("xxx@dxx.com");
+        developer.setPassword("xxxx1111");
+        developer.setFullName("fullname");
+
 
         sonarCISClient.createProject(project);
 
+        sonarCISClient.createUserIfNecessary(project, developer);
+
+        assert sonarCISClient.existsUser(developer.getName());
+
+
+        sonarCISClient.assignUsersToRole(project, "", developer);
+
+        SonarCISClient developerClient = new SonarCISClient(new SonarConnectConfig(address2, developer.getName(), developer.getPassword()));
+        assert developerClient.authenticate();
+        developerClient.close();
+
+
+        sonarCISClient.removeUser(project, developer);
+
+        assert !sonarCISClient.isActivated(developer.getName());
+
+        sonarCISClient.removeProject(project);
+
+        sonarCISClient.close();
+
+
+        SonarCISClient developerClient1 = new SonarCISClient(new SonarConnectConfig(address2, developer.getName(), developer.getPassword()));
+        assert !developerClient1.authenticate();
+        developerClient.close();
+
+
     }
 
 
-    @Test
-    public void testCreateUser() {
-        cisClient.createUserIfNecessary(null, developer);
-        User user = cisClient.findUserByName(developer.getId());
-        assertNotNull(user);
-        assertEquals(developer.getName(), user.name());
-        cisClient.removeUserIfNecessary(developer);
-    }
-
-    @Test
-    public void testAssignUserToRole() {
-        cisClient.createUserIfNecessary(null, developer);
-        Project project = createProject();
-        cisClient.removeUserPermission(project, NAME);
-        cisClient.removeUserIfNecessary(developer);
-    }
-
-
-    @Before
-    public void init() {
-        cisClient = new SonarCISClientHelper(new SonarConnectConfig(address, username, password));
-        developer = createDeveloper();
-    }
-
-    private Developer createDeveloper() {
-        Developer developer = new Developer();
-        developer.setId(NAME);
-        developer.setName(NAME);
-        developer.setEmail(NAME + "@" + NAME + ".com");
-        return developer;
-    }
-
-    private Project createProject() {
-        Project project = new Project();
-        project.setArtifactId(PROJECT_ARTIFACTID);
-        project.setGroupId(PROJECT_GROUPID);
-        return project;
-    }
-
-    @After
-    public void destory() {
-        cisClient = null;
-        developer = null;
-    }
 }

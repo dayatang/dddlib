@@ -30,8 +30,8 @@ public class SvnCreateUserCommand extends SvnCommand {
 	
 	@Override
 	public String getCommand() {
-		String createUserCommand = "htpasswd -b " + project.getPhysicalPath() + project.getProjectName() +
-								   "/conf/passwd " + developer.getName() + " " + developer.getPassword();
+		String createUserCommand = "htpasswd -b " + storePath + project.getProjectName() +
+								   "/conf/passwd " + developer.getId() + " " + developer.getPassword();
 		return createUserCommand;
 	}
 
@@ -44,7 +44,7 @@ public class SvnCreateUserCommand extends SvnCommand {
 			}
 		} catch (IOException e) {
 			throw new RuntimeException("为项目" + project.getProjectName() + "创建用户" + 
-							developer.getName() + "和密码" + developer.getPassword() + "时异常！");
+							developer.getId() + "和密码" + developer.getPassword() + "时异常！");
 		}
 	}
 

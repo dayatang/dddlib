@@ -21,6 +21,8 @@ public abstract class SSHCommand implements Command {
 	
 	protected String password;
 	
+	protected String storePath;
+	
 	public SSHCommand() {
 		// TODO Auto-generated constructor stub
 		

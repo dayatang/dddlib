@@ -35,11 +35,11 @@ public class SvnCreateGroupAndAddGroupUsersCommand extends SvnCommand {
         String groupUsers = ConvertGroupUserListToString();
         StringBuilder assignUserToRoleCommand = new StringBuilder();
         assignUserToRoleCommand.append("grep -q '^\\[groups\\]' ")
-                .append(project.getPhysicalPath()).append(project.getProjectName()).append("/conf/authz ")
+                .append(storePath).append(project.getProjectName()).append("/conf/authz ")
                 .append("&& sed -i '/\\[groups\\]/a ").append(groupName).append("=").append(groupUsers).append("' ")
-                .append(project.getPhysicalPath()).append(project.getProjectName()).append("/conf/authz ")
+                .append(storePath).append(project.getProjectName()).append("/conf/authz ")
                 .append("|| echo -ne '\n[groups]\n").append(groupName).append("=").append(groupUsers).append("' >>  ")
-                .append(project.getPhysicalPath()).append(project.getProjectName()).append("/conf/authz ");
+                .append(storePath).append(project.getProjectName()).append("/conf/authz ");
         return assignUserToRoleCommand.toString();
     }
 

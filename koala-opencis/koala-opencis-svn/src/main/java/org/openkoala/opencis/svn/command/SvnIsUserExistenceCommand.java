@@ -31,8 +31,8 @@ public class SvnIsUserExistenceCommand extends SvnCommand {
 	public String getCommand() {
 		String isUserExistenceCommand =
                 "grep -q '" + userName + ":' " +
-                project.getPhysicalPath() + project.getProjectName() +
-                        "/conf/passwd && echo 'exist' || echo 'not exist'";
+        		storePath + project.getProjectName() +
+                "/conf/passwd && echo 'exist' || echo 'not exist'";
 		return isUserExistenceCommand;
 	}
 

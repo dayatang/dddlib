@@ -24,7 +24,7 @@ public class SvnClearProjectPasswdFileContentCommand extends SvnCommand {
 
 	@Override
 	public String getCommand() {
-		String clearProjectPasswdFileContentCommand = "echo \"\" > " + project.getPhysicalPath() + project.getProjectName() +"/conf/passwd";
+		String clearProjectPasswdFileContentCommand = "echo \"\" > " + storePath + project.getProjectName() +"/conf/passwd";
 		return clearProjectPasswdFileContentCommand;
 	}
 

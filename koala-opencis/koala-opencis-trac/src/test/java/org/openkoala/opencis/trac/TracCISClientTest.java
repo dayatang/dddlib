@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.support.SSHConnectConfig;
 
-@Ignore
+//@Ignore
 public class TracCISClientTest {
 
     private Project project = new MockProject();
@@ -22,6 +22,7 @@ public class TracCISClientTest {
         sshConnectConfig.setHost("10.108.1.134");
         sshConnectConfig.setUsername("root");
         sshConnectConfig.setPassword("password");
+        sshConnectConfig.setStorePath("/opencis/trac/");
         client = new TracCISClient(sshConnectConfig);
     }
 
@@ -58,15 +59,15 @@ public class TracCISClientTest {
     	client.removeUser(project, project.getDevelopers().get(0));
     }
     
-    public static void main(String[] args) {
-    	TracCISClientTest cisClient = new TracCISClientTest();
-    	try {
-    		cisClient.setUp();
-    		cisClient.testRemoveProject();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-	}
+//    public static void main(String[] args) {
+//    	TracCISClientTest cisClient = new TracCISClientTest();
+//    	try {
+//    		cisClient.setUp();
+//    		cisClient.testRemoveProject();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//    	
+//	}
 }

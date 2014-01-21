@@ -15,6 +15,26 @@
 			<artifactId>dayatang-commons-spring-test</artifactId>
 			<scope>compile</scope>
 		</dependency>
-		
+
+
+		<dependency>
+			<groupId>org.openkoala.koalacommons</groupId>
+			<artifactId>koala-commons-support</artifactId>
+			<version>${project.parent.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>proxool</groupId>
+			<artifactId>proxool-cglib</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 </project>

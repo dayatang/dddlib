@@ -24,7 +24,6 @@ import org.openkoala.opencis.exception.UserOrPasswordErrorException;
 import org.openkoala.opencis.support.SSHConnectConfig;
 
 
-@Ignore
 public class SvnCISClientTest {
 
     private SSHConnectConfig configuration;
@@ -37,7 +36,7 @@ public class SvnCISClientTest {
 
     @Before
     public void setUp() throws Exception {
-        configuration = new SSHConnectConfig("10.108.1.134", "root", "password");
+        configuration = new SSHConnectConfig("10.108.1.134", "root", "password","/opencis/svn/");
         this.initProjectInfo();
         this.initDeveloperInfo();
     }
@@ -127,7 +126,7 @@ public class SvnCISClientTest {
     	instance = new SvnCISClient(configuration);
     	try {
 			instance.removeUser(project, developer);
-			assertTrue("成功删除用户" + developer.getName(), true);
+			assertTrue("成功删除用户" + developer.getId(), true);
 		} catch (Exception e) {
 			// TODO: handle exception
 			fail("删除用户失败");
@@ -187,9 +186,9 @@ public class SvnCISClientTest {
         try {
             initUserListAndRoleName();
             instance = new SvnCISClient(configuration);
-            instance.createProject(project);
+//            instance.createProject(project);
             instance.assignUsersToRole(project, userNames, roleName);
-            instance.removeProject(project);
+//            instance.removeProject(project);
             assertTrue(true);
         } catch (Exception e) {
             fail("授权失败！");
@@ -214,28 +213,29 @@ public class SvnCISClientTest {
 
     private void initDeveloperInfo() {
         developer = new Developer();
+        developer.setId("zjh");
         developer.setName("projectUserTest");
         developer.setPassword("pwdTest");
     }
 
     private void initUserListAndRoleName() {
         userNames = new ArrayList<String>();
-        userNames.add("aaa");
+        userNames.add("zjh");
         userNames.add("bbb");
 
         roleName = "Architect";
     }
 
-    public static void main(String[] args) {
-		SvnCISClientTest test = new SvnCISClientTest();
-		try {
-			test.setUp();
-//			test.testProjectExistence();
-			test.testCreateUserIfNecessary();
-			test.testRemoveUser();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//    public static void main(String[] args) {
+//		SvnCISClientTest test = new SvnCISClientTest();
+//		try {
+//			test.setUp();
+////			test.testProjectExistence();
+//			test.testCreateUserIfNecessary();
+//			test.testRemoveUser();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 }

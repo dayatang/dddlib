@@ -8,20 +8,23 @@ package org.openkoala.opencis.support;
  */
 
 public class SSHConnectConfig {
-    public String host;
+    private String host;
 
-    public String username;
+    private String username;
 
-    public String password;
+    private String password;
+    
+    private String storePath;
 
     public SSHConnectConfig() {
 
     }
 
-    public SSHConnectConfig(String host, String username, String password) {
+    public SSHConnectConfig(String host, String username, String password,String storePath) {
         this.host = host;
         this.username = username;
         this.password = password;
+        this.storePath = storePath;
     }
 
     public String getHost() {
@@ -47,4 +50,12 @@ public class SSHConnectConfig {
     public void setPassword(String password) {
         this.password = password;
     }
+
+	public String getStorePath() {
+		return storePath;
+	}
+
+	public void setStorePath(String storePath) {
+		this.storePath = storePath;
+	}
 }

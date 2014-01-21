@@ -24,7 +24,7 @@ public class SvnRemoveProjectCommand extends SvnCommand {
 
     @Override
     public String getCommand() {
-        String removeProjectCommand = "rm -rf " + project.getPhysicalPath() + project.getProjectName();
+        String removeProjectCommand = "rm -rf " + storePath + project.getProjectName();
         return removeProjectCommand;
     }
 
@@ -32,8 +32,8 @@ public class SvnRemoveProjectCommand extends SvnCommand {
     public void doWork(Connection connection, Session session) {
     	try {
 			String stderr = readOutput(session.getStderr());
-			if( !stderr.contains("Adding password for user")){
-				throw new RemoveProjectException("创建用户失败！");
+			if( !"".equals(stderr)){
+				throw new RemoveProjectException("删除项目失败！");
 			}
 		} catch (IOException e) {
 			throw new RuntimeException("删除项目" + project.getPhysicalPath() + project.getProjectName()

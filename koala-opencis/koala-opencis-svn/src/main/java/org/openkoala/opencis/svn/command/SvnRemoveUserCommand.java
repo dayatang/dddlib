@@ -31,8 +31,8 @@ public class SvnRemoveUserCommand extends SvnCommand {
 	@Override
 	public String getCommand() {
 		// TODO Auto-generated method stub
-		String removeUserCommand = "htpasswd -D " + project.getPhysicalPath() 
-				+ project.getProjectName() + "/conf/passwd " + developer.getName();
+		String removeUserCommand = "htpasswd -D " + storePath 
+				+ project.getProjectName() + "/conf/passwd " + developer.getId();
         return removeUserCommand;
 	}
 	
@@ -46,7 +46,7 @@ public class SvnRemoveUserCommand extends SvnCommand {
 			}
 		} catch (IOException e) {
 			throw new RuntimeException("为项目" + project.getProjectName() + "创建用户" + 
-					developer.getName() + "和密码" + developer.getPassword() + "时异常！，原因：" + e.getMessage());
+					developer.getId() + "和密码" + developer.getPassword() + "时异常！，原因：" + e.getMessage());
 		}
 	}
 

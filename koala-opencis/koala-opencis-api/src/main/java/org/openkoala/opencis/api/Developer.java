@@ -43,11 +43,11 @@ public class Developer {
     private List<String> roles;
 
 
-    private final static String EMAIL_REG = "^(\\w)+(\\.\\w+)*@(\\w)+((\\.\\w{2,3}){1,3})$";
+    private final static String EMAIL_REG = "^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$";
 
     public boolean validate() {
         if (StringUtils.isBlank(name) || StringUtils.isBlank(password)
-                || StringUtils.isBlank(email) || email.matches(EMAIL_REG)) {
+                || StringUtils.isBlank(email) || !email.matches(EMAIL_REG)) {
             throw new DeveloperValidateFailureException("Developer is invalid");
         }
         return true;

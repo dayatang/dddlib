@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.support.CommonUtil;
 import org.openkoala.opencis.support.SSHCommand;
 import org.openkoala.opencis.support.SSHConnectConfig;
 
@@ -22,6 +23,7 @@ public abstract class SvnCommand extends SSHCommand {
         this.host = config.getHost();
         this.userName = config.getUsername();
         this.password = config.getPassword();
+        this.storePath = CommonUtil.validatePath(config.getStorePath());
         this.project = project;
 
     }

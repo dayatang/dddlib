@@ -24,7 +24,7 @@
         <dependency> 
             <groupId>org.openkoala.bpm</groupId>  
             <artifactId>jbpm-oss-infra</artifactId>  
-            <version>1.0.0-SNAPSHOT</version> 
+            <version>${project.parent.version}</version> 
         </dependency>  
         <!-- 加入对DOMAIN层的依赖 -->  
         <dependency> 
@@ -35,7 +35,7 @@
         <dependency> 
             <groupId>org.openkoala.bpm</groupId>  
             <artifactId>jbpm-oss-conf</artifactId>  
-            <version>1.0.0-SNAPSHOT</version>  
+            <version>${project.parent.version}</version>  
             <type>jar</type>  
             <scope>test</scope> 
         </dependency>  
