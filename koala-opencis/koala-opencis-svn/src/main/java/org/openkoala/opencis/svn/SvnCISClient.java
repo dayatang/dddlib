@@ -160,17 +160,17 @@ public class SvnCISClient implements CISClient {
         return true;
     }
 
-    /**
-     * 该授权分两步：
-     * 1. 创建角色并为用户分配角色
-     * 2. 为角色授予读写权限
-     */
-    public boolean assignUsersToRole(Project project, List<String> userNames, String role) {
-        isAuthInfoNotBlank(project, userNames, role);
-        createGroupAndAddGroupUsers(project, userNames, role);
-        authz(project, role);
-        return true;
-    }
+//    /**
+//     * 该授权分两步：
+//     * 1. 创建角色并为用户分配角色
+//     * 2. 为角色授予读写权限
+//     */
+//    public boolean assignUsersToRole(Project project, List<String> userNames, String role) {
+//        isAuthInfoNotBlank(project, userNames, role);
+//        createGroupAndAddGroupUsers(project, userNames, role);
+//        authz(project, role);
+//        return true;
+//    }
 
     private boolean isAuthInfoNotBlank(Project project, List<String> userNames, String role) {
         isProjectInfoNotBlank(project);

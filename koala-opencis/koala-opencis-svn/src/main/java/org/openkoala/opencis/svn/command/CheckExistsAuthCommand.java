@@ -31,7 +31,7 @@ public class CheckExistsAuthCommand extends SvnCommand {
 	public String getCommand() {
 		// TODO Auto-generated method stub
 		String strUsers = CommonUtil.ConvertGroupUserListToString(userNames);
-		String strCommand = "grep '" + role + "_" + strUsers + "' " + storePath + "authz"; 
+		String strCommand = "grep '" + project.getProjectName() + "_" +  role + "=" + strUsers + "' " + storePath + "authz"; 
 		return strCommand;
 	}
 
@@ -39,7 +39,7 @@ public class CheckExistsAuthCommand extends SvnCommand {
 	public void doWork(Connection connection, Session session) {
 		// TODO Auto-generated method stub
 		try {
-			String stderr = readOutput(session.getStderr());
+			String stderr = readOutput(session.getStdout());
 			//如果为空表示没有
 			if(!"".equals(stderr)){
 				throw new RuntimeException("重复的用户+组配置");
