@@ -11,7 +11,7 @@ import nl.tudelft.jenkins.jobs.ScmConfig;
 public class KoalaGitConfig extends KoalaScmConfig {
 
 
-    protected KoalaGitConfig(String scmAddress) {
+    public KoalaGitConfig(String scmAddress) {
         super(scmAddress);
     }
 

@@ -11,7 +11,7 @@ import nl.tudelft.jenkins.jobs.ScmConfig;
 public class KoalaSvnConfig extends KoalaScmConfig {
 
 
-    protected KoalaSvnConfig(String scmAddress) {
+    public KoalaSvnConfig(String scmAddress) {
         super(scmAddress);
     }
 
