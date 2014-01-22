@@ -76,7 +76,9 @@ public class SonarCISClient implements CISClient {
             throw new CISClientBaseRuntimeException("sonar.createProjectFailure", e);
         } finally {
             try {
-                response.close();
+                if (null != response) {
+                    response.close();
+                }
             } catch (IOException e) {
                 throw new CISClientBaseRuntimeException("sonar.createProject.responseCloseFailure", e);
             }
@@ -283,7 +285,7 @@ public class SonarCISClient implements CISClient {
         try {
             response = httpClient.execute(targetHost, httpget, localContext);
             return response.getStatusLine().getStatusCode() == HttpStatus.SC_OK
-                    && ("{\"valid\":true}".equals(EntityUtils.toString(response.getEntity())));
+                    && ("{\"validate\":true}".equals(EntityUtils.toString(response.getEntity())));
         } catch (IOException e) {
             e.printStackTrace();
             throw new CISClientBaseRuntimeException("sonar.authenticateFailure");
@@ -291,12 +293,13 @@ public class SonarCISClient implements CISClient {
             try {
                 response.close();
             } catch (IOException e) {
-                throw new CISClientBaseRuntimeException("sonar.authenticate.responseCloseFailure", e);
+                e.printStackTrace();
+                throw new CISClientBaseRuntimeException("sonar.authenticate.responseCloseFailure");
             }
         }
     }
 
-    private String getKeyOf(Project project) {
+    protected static String getKeyOf(Project project) {
         return project.getGroupId() + ":" + project.getArtifactId();
     }
 

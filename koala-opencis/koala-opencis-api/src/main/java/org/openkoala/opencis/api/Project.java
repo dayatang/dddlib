@@ -47,12 +47,14 @@ public class Project {
 
         }
 
+/*
+
         for (int i = 0; i < projectName.length(); i++) {
             char c = projectName.charAt(i);
             if (!((c >= 65 && c <= 90) || (c >= 97 && c <= 120))) {
                 throw new ProjectValidateFailureException("project.validateFailure");
             }
-        }
+        }*/
         return true;
     }
 
