@@ -53,7 +53,7 @@
                         <li>
                             <a data-toggle="collapse" href="#publishManagement"><i class="glyphicon glyphicon-bookmark"></i>&nbsp;发布管理&nbsp;<i class="glyphicon glyphicon-chevron-left"></i></a>
                             <ul id="publishManagement" class="second-level-menu in">
-                                <li class="submenu" data-role="openTab" data-target="pages/jbpm/publish-url-list.html" data-title="流程引擎管理" data-mark="publishURLList"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;流程引擎管理</a></li>
+                                <li class="submenu" data-role="openTab" data-target="/pages/jbpm/publish-url-list.html" data-title="流程引擎管理" data-mark="publishURLList"><a><i class="glyphicon glyphicon-hand-right"></i>&nbsp;流程引擎管理</a></li>
                             </ul>
                         </li>
                     </ul>
