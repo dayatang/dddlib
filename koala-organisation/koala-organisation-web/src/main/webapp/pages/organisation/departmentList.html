@@ -24,7 +24,7 @@
     	border-style: solid
     }
     .department-detail .buttons {
-     	margin-top: 28%;
+     	margin-top: 38%;
     }
 </style>
 <div class="department-detail" id="departmentDetail">
@@ -122,8 +122,7 @@
                         var type = org.organizationType;
             			delete org.children;
                         delete org.organizationType;
-                        var $element = $('#departmentTree').find('#'+org.id);
-                        department().del(org, type, $element.hasClass('tree-item') ? $element : $element.find('.tree-folder-header'));
+                        department().del(org, type);
                 	})
                 }
             })

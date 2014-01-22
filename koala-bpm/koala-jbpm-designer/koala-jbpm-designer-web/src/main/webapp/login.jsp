@@ -10,7 +10,7 @@
 <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />"></script>	
-<script type="text/javascript" src="<c:url value='/lib/validate.js' />"></script>
+<script type="text/javascript" src="<c:url value='/js/Validation.js' />"></script>
 <style type="text/css">
 @charset "UTF-8";
 /* CSS Document */
