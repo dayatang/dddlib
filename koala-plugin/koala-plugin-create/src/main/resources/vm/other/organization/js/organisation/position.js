@@ -115,7 +115,7 @@ var position = function(){
 	var selectDepartments = function(){
 		$.get( contextPath + '/pages/organisation/selectDepartmentTemplate.html').done(function(data){
 			var departmentTreeDialog = $(data);
-            departmentTreeDialog.find('.modal-dialog').css({width:'600px'});
+            departmentTreeDialog.find('.modal-dialog').css({width:'620px'});
             departmentTreeDialog.find('.modal-body').css({height:'325px'});
 			departmentTree = departmentTreeDialog.find('.tree');
             loadDepartmentTree();

@@ -285,7 +285,7 @@
 						});
 						return;
 					}
-					self.startRecord.text(result.start);
+					self.startRecord.text(result.start + 1);
 					self.endRecord.text(result.start + result.limit);
 					self.totalRecordHtml.text(result.Total);
 					//self._initPageNo(result.Total)
@@ -299,6 +299,7 @@
 						self.gridTableBody.find('[data-role="noData"]').remove();
 						self.renderDatas();
 					}
+					self.$element.trigger('complateRenderData', result);
 				}).fail(function(result){
 
 				});
@@ -383,6 +384,7 @@
 			self.initSelectRowEvent();
 			self.options.isShowPages && self._initPageNo();
 			self.$element.trigger('complate');
+			self.$element.find('[data-role="selectAll"]').removeClass('checked');
 		},
         initSelectRowEvent: function(){
             var self = this;
@@ -565,7 +567,6 @@
             var self = this;
             if(!self.items){
                 self.items = new Array();
-                self.gridTableBody.find('[data-role="noData"]').remove();
             }
             if(items.length){
                 $.each(items, function(){
@@ -577,6 +578,7 @@
                 self.itemsMap[items[this.options.identity]] = items;
             }
             self.gridTableBodyTable.empty();
+            self.gridTableBody.find('[data-role="noData"]').remove();
             self.renderDatas();
 			return this.$element;
 		 },
