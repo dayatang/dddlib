@@ -299,6 +299,7 @@
 						self.gridTableBody.find('[data-role="noData"]').remove();
 						self.renderDatas();
 					}
+					self.$element.trigger('complateRenderData', result);
 				}).fail(function(result){
 
 				});
