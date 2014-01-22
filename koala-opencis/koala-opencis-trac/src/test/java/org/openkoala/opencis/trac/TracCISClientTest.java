@@ -10,7 +10,7 @@ import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
 import org.openkoala.opencis.support.SSHConnectConfig;
 
-//@Ignore
+@Ignore
 public class TracCISClientTest {
 
     private Project project = new MockProject();
