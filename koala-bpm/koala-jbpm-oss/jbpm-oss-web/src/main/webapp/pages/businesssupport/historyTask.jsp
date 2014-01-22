@@ -10,12 +10,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="<c:url value='/lib/bootstrap/css/bootstrap.min.css' />"   rel="stylesheet">
     <link href="<c:url value='/css/koala.css' />"   rel="stylesheet">
-    <link href="<c:url value='/css/datetimepicker.css'/>" rel="stylesheet">
+    <link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />" rel="stylesheet">
     <script type="text/javascript" src="<c:url value='/lib/jquery-1.8.3.min.js' />"></script>
     <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />"></script>
-	<script type="text/javascript" src="<c:url value='/js/datetimepicker.js' />" ></script>
+	<script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js' />" ></script>
+	<script type="text/javascript" src="<c:url value='/lib/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js' />" ></script>
 	<script type="text/javascript">
 		function colse(){
 			window.close();
