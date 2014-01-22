@@ -1,5 +1,6 @@
 package org.openkoala.opencis.jenkins;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
@@ -8,6 +9,8 @@ import java.net.MalformedURLException;
 import java.util.UUID;
 
 
+
+@Ignore
 public class JenkinsCISClientIntegrationTest {
 
 
