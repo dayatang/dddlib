@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import org.openkoala.opencis.api.Project;
-import org.openkoala.opencis.exception.DuplicateAuthzException;
 import org.openkoala.opencis.support.CommonUtil;
 import org.openkoala.opencis.support.SSHConnectConfig;
 
@@ -12,21 +11,21 @@ import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.Session;
 
 /**
- * 检测重复的授权
+ * 检测重复的用户-用户组配置
  * @author zjh
  *
  */
-public class CheckExistsAuthCommand extends SvnCommand {
-
+public class CheckExistsUserGroupCommand extends SvnCommand {
+	
 	private List<String> userNames;
 
     private String role;
     
-	public CheckExistsAuthCommand() {
+	public CheckExistsUserGroupCommand() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CheckExistsAuthCommand(List<String> userNames, String role,SSHConnectConfig config, Project project) {
+	public CheckExistsUserGroupCommand(List<String> userNames, String role,SSHConnectConfig config, Project project) {
 		super(config, project);
 		this.userNames = userNames;
 		this.role = role;
@@ -47,11 +46,11 @@ public class CheckExistsAuthCommand extends SvnCommand {
 			String stderr = readOutput(session.getStdout());
 			//如果为空表示没有
 			if(!"".equals(stderr)){
-				throw new RuntimeException("重复授权配置");
+				throw new RuntimeException("重复的用户+组配置");
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			throw new RuntimeException("检测重复授权时发生异常");
+			throw new RuntimeException("检测用户组" + role + "_" + userNames + "时发生异常");
 		} 
 	}
 }
