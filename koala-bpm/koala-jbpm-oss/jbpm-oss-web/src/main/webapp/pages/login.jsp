@@ -10,7 +10,7 @@
 <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />"></script>	
-<script type="text/javascript" src="<c:url value='/lib/validate.js' />"></script>
+<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
 <style type="text/css">
 @charset "UTF-8";
 /* CSS Document */
@@ -88,28 +88,29 @@ body {
 	border-bottom: 1px solid #d4d4d4;
 	margin-top: 0px;
 }
+
 .login_con_R  form {
-	padding-top: 10%;
+	padding-top: 7%;
 	padding-left: 7%;
 	padding-right: 7%;
-}
-.login_con_R  .form-group {
-	margin-bottom: 10%;
 }
 .login_con_R .input-group {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
- }
+}
+.checkCode {
+	height: 50px;
+}
 .btn-login {
 	width: 100%;
 	margin-left: auto;
     margin-right: auto;
-	margin-top: 8%;
-	font-size: 17px;
+    font-size: 17px;
     font-weight: bold;
     letter-spacing: 15px;
 }
+
 .login_footer {
 	clear: both;
 	margin: 8% auto 0;
@@ -119,7 +120,6 @@ body {
     font-weight: 200;
     line-height: 2.14286;
 }
-</style>
 </style>
 <script type="text/javascript">
 	function refreshCode(){
@@ -175,6 +175,16 @@ body {
                     <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
                     <input type="password" name="j_password" id="j_password" class="form-control" placeholder="密码"/>
                 </div>
+				<div class="form-group input-group">
+				    <span class="input-group-addon"><span class="glyphicon glyphicon-magnet"></span></span>
+					<input type="text" id="jcaptcha" name="jcaptcha" value="" class="form-control" placeholder="验证码"/>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-3"></label>
+					<div class="col-lg-9">
+						<img src="jcaptcha.jpg" id="checkCode" onclick="refreshCode();" class="checkCode"/>
+					</div>
+				</div>
 				<div class="form-group input-group">
 					<button type="button"  class="btn btn-primary btn-login">登录</button>
 				</div>
