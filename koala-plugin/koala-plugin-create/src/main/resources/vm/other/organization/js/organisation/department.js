@@ -54,7 +54,7 @@ var department = function(){
 					type: 'success',
 					content: '撤销成功'
 				});
-                if($element.hasClass('tree-item ')){
+                if($element.hasClass('tree-item')){
                     $('#departmentTree').tree('removeChildren', $element);
                 }else{
                     $('#departmentTree').tree('removeChildren', $element.parent());

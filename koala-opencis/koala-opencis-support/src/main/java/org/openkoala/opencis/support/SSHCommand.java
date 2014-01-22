@@ -1,10 +1,14 @@
 package org.openkoala.opencis.support;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import com.trilead.ssh2.Connection;
 import com.trilead.ssh2.Session;
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.exception.CreateUserFailedException;
 
 /**
  * 抽象的SSH命令类
@@ -20,6 +24,8 @@ public abstract class SSHCommand implements Command {
 	protected String userName;
 	
 	protected String password;
+	
+	protected String storePath;
 	
 	public SSHCommand() {
 		// TODO Auto-generated constructor stub
@@ -63,5 +69,29 @@ public abstract class SSHCommand implements Command {
 	
 	public abstract String getCommand();
 
-	public abstract void doWork(Connection connection,Session session);
+	/**
+	 * 查看输出
+	 * @param connection
+	 * @param session
+	 */
+	public void doWork(Connection connection,Session session){
+		try {
+			String stderr = readOutput(session.getStderr());
+			System.out.println(stderr);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+    protected String readOutput(InputStream inputStream) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) {
+            sb.append(line);
+        }
+        br.close();
+        return sb.toString();
+    }
 }

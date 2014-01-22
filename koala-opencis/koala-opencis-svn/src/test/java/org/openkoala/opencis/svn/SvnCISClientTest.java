@@ -24,7 +24,6 @@ import org.openkoala.opencis.exception.UserOrPasswordErrorException;
 import org.openkoala.opencis.support.SSHConnectConfig;
 
 
-@Ignore
 public class SvnCISClientTest {
 
     private SSHConnectConfig configuration;
@@ -37,7 +36,7 @@ public class SvnCISClientTest {
 
     @Before
     public void setUp() throws Exception {
-        configuration = new SSHConnectConfig("10.108.1.131", "root", "openkoala");
+        configuration = new SSHConnectConfig("10.108.1.87", "root", "password","/opencis/svn/");
         this.initProjectInfo();
         this.initDeveloperInfo();
     }
@@ -105,8 +104,33 @@ public class SvnCISClientTest {
         } catch (ProjectExistenceException e) {
             assertTrue("预期抛出项目存在的异常！", true);
         } finally {
-            instance.removeProject(project);
+//            instance.removeProject(project);
         }
+    }
+    
+    @Test
+    public void testRemoveProject(){
+    	instance = new SvnCISClient(configuration);
+    	try {
+    		instance.removeProject(project);
+        	assertTrue("成功删除项目",true);
+		} catch (Exception e) {
+			// TODO: handle exception
+			fail("删除项目失败");
+		}
+    	
+    }
+    
+    @Test
+    public void testRemoveUser(){
+    	instance = new SvnCISClient(configuration);
+    	try {
+			instance.removeUser(project, developer);
+			assertTrue("成功删除用户" + developer.getId(), true);
+		} catch (Exception e) {
+			// TODO: handle exception
+			fail("删除用户失败");
+		}
     }
 
     @Test(expected = UserBlankException.class)
@@ -127,14 +151,14 @@ public class SvnCISClientTest {
     public void testCreateUserIfNecessary() {
         instance = new SvnCISClient(configuration);
         //要先创建项目，再为项目创建用户
-        instance.createProject(project);
+//        instance.createProject(project);
         try {
             instance.createUserIfNecessary(project, developer);
             assertTrue(true);
         } catch (Exception e) {
             fail(e.getMessage());
         } finally {
-            instance.removeProject(project);
+//            instance.removeProject(project);
         }
     }
 
@@ -162,9 +186,9 @@ public class SvnCISClientTest {
         try {
             initUserListAndRoleName();
             instance = new SvnCISClient(configuration);
-            instance.createProject(project);
+//            instance.createProject(project);
             instance.assignUsersToRole(project, userNames, roleName);
-            instance.removeProject(project);
+//            instance.removeProject(project);
             assertTrue(true);
         } catch (Exception e) {
             fail("授权失败！");
@@ -184,21 +208,34 @@ public class SvnCISClientTest {
     private void initProjectInfo() {
         project = new Project();
         project.setProjectName(projectName);
-        project.setPhysicalPath("/var/www/svn/");
+        project.setPhysicalPath("/usr/local/subversion/");
     }
 
     private void initDeveloperInfo() {
         developer = new Developer();
+        developer.setId("zjh");
         developer.setName("projectUserTest");
         developer.setPassword("pwdTest");
     }
 
     private void initUserListAndRoleName() {
         userNames = new ArrayList<String>();
-        userNames.add("aaa");
+        userNames.add("zjh");
         userNames.add("bbb");
 
         roleName = "Architect";
     }
 
+//    public static void main(String[] args) {
+//		SvnCISClientTest test = new SvnCISClientTest();
+//		try {
+//			test.setUp();
+////			test.testProjectExistence();
+//			test.testCreateUserIfNecessary();
+//			test.testRemoveUser();
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 }

@@ -1,5 +1,6 @@
 package org.openkoala.opencis.api;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openkoala.opencis.ProjectValidateFailureException;
 
 import java.util.List;
@@ -32,13 +33,20 @@ public class Project {
 
     private List<Developer> developers;
 
-    private Map<String, Object> nodeElements;
-
-    // TODO 校验
     public boolean validate() {
-        if (projectName.length() < 2 ) {
+        if (projectName.length() < 2) {
             throw new ProjectValidateFailureException("project.validateFailure");
         }
+
+        if (StringUtils.isBlank(groupId)) {
+            throw new ProjectValidateFailureException("project.groupId.null");
+        }
+
+        if (StringUtils.isBlank(artifactId)) {
+            throw new ProjectValidateFailureException("project.artifactId.null");
+
+        }
+
         for (int i = 0; i < projectName.length(); i++) {
             char c = projectName.charAt(i);
             if (!((c >= 65 && c <= 90) || (c >= 97 && c <= 120))) {
@@ -97,13 +105,6 @@ public class Project {
         this.developers = developers;
     }
 
-    public Map<String, Object> getNodeElements() {
-        return nodeElements;
-    }
-
-    public void setNodeElements(Map<String, Object> nodeElements) {
-        this.nodeElements = nodeElements;
-    }
 
     public String getGroupId() {
         return groupId;

@@ -18,18 +18,18 @@ public class JenkinsCISClientIntegrationTest extends CISClientAbstactIntegration
     @Test
     public void test() throws MalformedURLException {
 
-        Project project = getProject("907");
+        Project project = getProject("902");
 
         AuthenticationStrategy au = ownAuthenticationAndCreateWebDriver();
 
         JenkinsCISClient client = new JenkinsCISClient(jenkinsURL, au);
         client.authenticate();
-        client.setScmConfig(new SvnConfig("http://location:8080/svn", "username", "password"));
+        client.setScmConfig(new SvnConfig("http://10.108.1.138:8080/svn", "username", "password"));
         client.createProject(project);
         client.close();
 
         // TODO 添加自动验证
-        Developer developer = getDeveloper("907");
+        Developer developer = getDeveloper("902");
         AuthenticationStrategy driver1 = ownAuthenticationAndCreateWebDriver();
         JenkinsCISClient client1 = new JenkinsCISClient(jenkinsURL, driver1);
         client1.authenticate();

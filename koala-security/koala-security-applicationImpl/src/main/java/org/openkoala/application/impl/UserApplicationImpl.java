@@ -19,6 +19,7 @@ import org.openkoala.koala.auth.core.domain.RoleUserAuthorization;
 import org.openkoala.koala.auth.core.domain.User;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.support.Page;
 
 @Remote
@@ -41,7 +42,7 @@ public class UserApplicationImpl extends BaseImpl implements UserApplication {
     public UserVO saveUser(UserVO userVO) {
 		User user = new User();
 		userVO.vo2Domain(user);
-
+		
 		if (user.isAccountExisted()) {
         	throw new ApplicationException("userAccount.exist", null);
         }

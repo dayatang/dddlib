@@ -28,7 +28,6 @@ public class GitConfig implements ScmConfigStrategy<WebDriver> {
 
         String jobName = context.findElement(By.name("name")).getAttribute("value");
 
-        List<WebElement> scmRadios = context.findElements(By.cssSelector("input[name=\"scm\"]"));
         String scm = "Git";
         WebElement selectedSCM = context.findElement(By.xpath("//label[contains(., '"+ scm +"')]//input[@name=\"scm\"]"));
 

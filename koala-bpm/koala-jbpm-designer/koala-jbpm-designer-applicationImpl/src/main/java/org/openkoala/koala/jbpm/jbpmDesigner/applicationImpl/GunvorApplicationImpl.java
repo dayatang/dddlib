@@ -1,23 +1,27 @@
 package org.openkoala.koala.jbpm.jbpmDesigner.applicationImpl;
 
 import com.dayatang.utils.Assert;
-
 import org.apache.commons.net.util.Base64;
-import org.apache.http.HttpResponse;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
 import org.apache.http.NameValuePair;
-import org.apache.http.StatusLine;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.AuthCache;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
+import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.client.utils.HttpClientUtils;
 import org.apache.http.entity.ByteArrayEntity;
+import org.apache.http.impl.auth.BasicScheme;
+import org.apache.http.impl.client.BasicAuthCache;
+import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -39,20 +43,39 @@ import java.util.List;
 
 @Named("gunvorApplication")
 public class GunvorApplicationImpl implements GunvorApplication {
-
-	@Value("${gunvor.server.url}")
-	private String gunvorServerUrl;
+	
+	@Value("${gunvor.server.host}")
+	private String gunvorServerHost;
+	
+	@Value("${gunvor.server.port}")
+	private int gunvorServerPort;
+	
 	@Value("${gunvor.server.user}")
 	private String gunvorServerUser;
+	
 	@Value("${gunvor.server.pwd}")
 	private String gunvorServerPwd;
-
+	
+	
+	private static final String ACCEPT = "Accept";
+	
+	private static final String XML_HEADER = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+	
+	private static final String HTTP_PROTOCOL = "http://";
+	
+	private static final String DROOLS_GUVNOR = "drools-guvnor";
+	
+	private static final int HTTP_OK = 200;
+	
+	
 	public void publichJBPM(String packageName, String name, String url) {
 		Assert.isTrue(url.endsWith("?_wadl"));
 		String publisURL = url.substring(0, url.indexOf("?_wadl")) + "/process";
+		CloseableHttpClient httpclient = HttpClients.createDefault();
+		
 		try {
 			Bpmn2 bpmn = this.getBpmn2(packageName, name);
-			String source = getConnectionString(bpmn.getSource());
+			String source = getHttpGetRequestStringResponse(bpmn.getSource());
 			SAXReader reader = new SAXReader();
 			ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(
 					source.getBytes("UTF-8"));
@@ -65,11 +88,11 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			bpmnPlane.addAttribute("bpmnElement",
 					processId + "@" + bpmn.getVersion());
 			process.addAttribute("id", processId + "@" + bpmn.getVersion());
-			String pngURL = gunvorServerUrl + "/rest/packages/" + packageName
+			String pngURL = getGunvorServerUrl() + "/rest/packages/" + packageName
 					+ "/assets/" + processId + "-image/binary";
 			byte[] pngByte = this.getPng(pngURL);
 
-			CloseableHttpClient httpclient = HttpClients.createDefault();
+			
 			HttpPost httpPost = new HttpPost(publisURL);
 			List<NameValuePair> nvps = new ArrayList<NameValuePair>();
 			nvps.add(new BasicNameValuePair("packageName", packageName));
@@ -93,10 +116,19 @@ public class GunvorApplicationImpl implements GunvorApplication {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
+			try {
+				httpclient.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
+	}
+	
+	public String createBpm(String packageName,String bpmName){
+		String url = this.getGunvorServerUrl()+"/org.drools.guvnor.Guvnor/assetExtend/?packageName=" +packageName+ "&assetName=" + bpmName;
+		return getHttpGetRequestStringResponse(url);
 	}
 
 	private Bpmn2 getBpmnFromDocument(String packageName,
@@ -126,7 +158,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 	public List<Bpmn2> getBpmn2s(String packageName) {
 		List<Bpmn2> bpmn2 = new ArrayList<Bpmn2>();
 		try {
-			String result = getConnectionString(gunvorServerUrl
+			String result = getHttpGetRequestStringResponse(getGunvorServerUrl()
 					+ "/rest/packages/" + packageName);
 			SAXReader reader = new SAXReader();
 			ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(
@@ -139,7 +171,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 				String assertUrl = ass.getTextTrim();
 				String assertResult = null;
 				try {
-					assertResult = getConnectionString(assertUrl);
+					assertResult = getHttpGetRequestStringResponse(assertUrl);
 				} catch (Exception e) {
 					continue;
 				}
@@ -169,9 +201,9 @@ public class GunvorApplicationImpl implements GunvorApplication {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		String assertUrl = gunvorServerUrl + "/rest/packages/" + packageName
+		String assertUrl = getGunvorServerUrl() + "/rest/packages/" + packageName
 				+ "/assets/" + bmnName;
-		String assertResult = getConnectionString(assertUrl);
+		String assertResult = getHttpGetRequestStringResponse(assertUrl);
 		SAXReader assertReader = new SAXReader();
 		Document assertDocument = null;
 		try {
@@ -185,28 +217,25 @@ public class GunvorApplicationImpl implements GunvorApplication {
 	}
 
 	public void deleteBpmn(String packageName, String bpmnName) {
-		// /packages/{packageName}
-		String deleteBpmnName = null;
 		try {
-			deleteBpmnName = URLEncoder.encode(bpmnName, "UTF-8");
+			String url = getGunvorServerUrl() + "/rest/packages/" + packageName
+					+ "/assets/" + URLEncoder.encode(bpmnName, "UTF-8");
+			doHttpDeleteRequest(url);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		String url = gunvorServerUrl + "/rest/packages/" + packageName
-				+ "/assets/" + deleteBpmnName;
-		deleteConnectionString(url);
 	}
 
 	public void deletePackage(String packageName) {
-		String url = gunvorServerUrl + "/rest/packages/" + packageName;
-		deleteConnectionString(url);
+		String url = getGunvorServerUrl() + "/rest/packages/" + packageName;
+		doHttpDeleteRequest(url);
 	}
 
 	public List<PackageVO> getPackages() {
 		InputStream is = null;
 		try {
 			List<PackageVO> packages = new ArrayList<PackageVO>();
-			String stringBuilder = getConnectionString(gunvorServerUrl
+			String stringBuilder = getHttpGetRequestStringResponse(getGunvorServerUrl()
 					+ "/rest/packages");
 
 			SAXReader reader = new SAXReader();
@@ -233,7 +262,6 @@ public class GunvorApplicationImpl implements GunvorApplication {
 				} catch (IOException e) {
 				}
 			}
-			;
 		}
 	}
 
@@ -243,22 +271,95 @@ public class GunvorApplicationImpl implements GunvorApplication {
 				+ "</description><title>"
 				+ packageName
 				+ "</title></package>";
-		postConnectionString(gunvorServerUrl + "/rest/packages", xml);
+		doHttpPostRequest(getGunvorServerUrl() + "/rest/packages", xml);
 
 	}
 
 	public void createBpmn2(String packageName, String name, String description) {
 		String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><entry xmlns=\"http://purl.org/atom/ns#\"><description></description><name>AB</name><categoryName></categoryName><format>bpmn2</format></entry>";
-		postConnectionString(gunvorServerUrl + "/rest/packages/" + packageName
+		doHttpPostRequest(getGunvorServerUrl() + "/rest/packages/" + packageName
 				+ "/assets", xml);
 	}
 
-	private void postConnectionString(String urlString, String xmlContent) {
+	
+	/**
+	 * 查询一个流程的PNG
+	 * 
+	 * @param urlString
+	 * @return
+	 */
+	private byte[] getPng(String urlString) {
+		return getHttpGetRequestByteArrayResponse(urlString);
+	}
 
-		// String xml =
-		// "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><package><description>The default rule package</description><title>demo</title></package>";
+	
+	public byte[] getHttpGetRequestByteArrayResponse(String urlString){
+		HttpEntity entity = null;
+		CloseableHttpClient httpclient = HttpClients.createDefault();
+		CloseableHttpResponse response = null;
+		HttpGet httpGet = this.getXmlHttpGet(urlString);
+		try {;
+			response = httpclient.execute(httpGet,getCredentialContext());
+			entity = response.getEntity();
+			
+			if(response.getStatusLine().getStatusCode()!=HTTP_OK){
+				throw new RuntimeException("HTTP GET请求失败，URL为"+urlString+";返回状态码为:"+response.getStatusLine().getStatusCode());
+			}
+			return EntityUtils.toByteArray(entity);
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			HttpClientUtils.closeQuietly(response);
+			HttpClientUtils.closeQuietly(httpclient);
+		}
+		return null;
+	}
+	
+	public String getHttpGetRequestStringResponse(String urlString) {
+		HttpEntity entity = null;
+		CloseableHttpClient httpclient = HttpClients.createDefault();
+		CloseableHttpResponse response = null;
+		HttpGet httpGet = this.getXmlHttpGet(urlString);
+		try {;
+			response = httpclient.execute(httpGet,getCredentialContext());
+			entity = response.getEntity();
+			
+			if(response.getStatusLine().getStatusCode()!=HTTP_OK){
+				throw new RuntimeException("HTTP GET请求失败，URL为"+urlString+";返回状态码为:"+response.getStatusLine().getStatusCode());
+			}
+			return EntityUtils.toString(entity);
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			HttpClientUtils.closeQuietly(response);
+			HttpClientUtils.closeQuietly(httpclient);
+		}
+		return null;
+	}
 
-		HttpClient httpclient = null;
+	private void doHttpDeleteRequest(String url){
+		CloseableHttpClient httpclient = HttpClients.createDefault();
+		CloseableHttpResponse response = null;
+		HttpDelete httpDelete = new HttpDelete();
+		try {
+			response = httpclient.execute(httpDelete);
+			if(response.getStatusLine().getStatusCode()!=HTTP_OK){
+				throw new RuntimeException("HTTP DELETE请求失败，URL为:"+url+";返回状态码为:"+response.getStatusLine().getStatusCode());
+			}
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void doHttpPostRequest(String urlString, String xmlContent) {
+		CloseableHttpResponse response = null;
+		CloseableHttpClient httpclient = HttpClients.createDefault();
 		try {
 			InputStream inputString = null;
 			byte[] data;
@@ -267,113 +368,46 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			inputString.read(data);
 			String str = new String(data);
 			byte[] bb = str.getBytes();
-			httpclient = getDefaultHttpClient();
 			HttpPost httpPost = new HttpPost(urlString);
 			httpPost.addHeader("Content-Type", "application/xml");
 			httpPost.setEntity(new ByteArrayEntity(bb));
-			httpclient.execute(httpPost);
+			response = httpclient.execute(httpPost);
+			if(response.getStatusLine().getStatusCode()!=HTTP_OK){
+				throw new RuntimeException("HTTP POST请求失败，URL为:"+urlString+";返回状态码为:"+response.getStatusLine().getStatusCode());
+			}
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	private HttpClientContext getCredentialContext(){
+		HttpHost targetHost = new HttpHost(this.gunvorServerHost, this.gunvorServerPort,"http");
+		CredentialsProvider credsProvider = new BasicCredentialsProvider();
+		credsProvider.setCredentials(
+		        new AuthScope(targetHost.getHostName(), targetHost.getPort()),
+		        new UsernamePasswordCredentials(this.gunvorServerUser, this.gunvorServerPwd));
+		
+		AuthCache authCache = new BasicAuthCache();
+		BasicScheme basicAuth = new BasicScheme();
+		authCache.put(targetHost, basicAuth);
 
-	/**
-	 * 删除一个流程
-	 * 
-	 * @param urlString
-	 */
-	private void deleteConnectionString(String urlString) {
-		DefaultHttpClient httpclient = getDefaultHttpClient();
-		HttpDelete httpDelete = new HttpDelete(urlString);
-		try {
-			httpclient.execute(httpDelete);
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			httpDelete.releaseConnection();
-		}
-
+		HttpClientContext context = HttpClientContext.create();
+		context.setCredentialsProvider(credsProvider);
+		return context;
+	}
+	
+	private HttpGet getXmlHttpGet(String url){
+		HttpGet httpGet = new HttpGet(url);
+		httpGet.setHeader(ACCEPT,XML_HEADER);
+		return httpGet;
 	}
 
-	/**
-	 * 查询一个流程的PNG
-	 * 
-	 * @param urlString
-	 * @return
-	 */
-	private byte[] getPng(String urlString) {
-		DefaultHttpClient httpclient = getDefaultHttpClient();
-		HttpGet httpGet = new HttpGet(urlString);
-		httpGet.setHeader("Accept",
-				"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-		try {
-			HttpResponse response = httpclient.execute(httpGet);
-			InputStream inputStream = response.getEntity().getContent();
-			ByteArrayOutputStream swapStream = new ByteArrayOutputStream();
-			byte[] buff = new byte[100]; // buff用于存放循环读取的临时数据
-			int rc = 0;
-			while ((rc = inputStream.read(buff, 0, 100)) > 0) {
-				swapStream.write(buff, 0, rc);
-			}
-			byte[] in_b = swapStream.toByteArray();
-			return in_b;
-			// return convertToByteArray(in_b);
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			httpGet.releaseConnection();
-		}
-		return null;
+	
+	public String getGunvorServerUrl(){
+		return HTTP_PROTOCOL+this.gunvorServerHost+":"+this.gunvorServerPort+"/"+DROOLS_GUVNOR;
 	}
-
-	private Byte[] convertToByteArray(byte[] pngs) {
-		Byte[] pngByte = new Byte[pngs.length];
-		for (int i = 0; i < pngs.length; i++) {
-			pngByte[i] = Byte.valueOf(pngs[i]);
-		}
-		return pngByte;
-	}
-
-	/**
-	 * 传入REST请求的URL，返回String
-	 */
-	public String getConnectionString(String urlString) {
-		DefaultHttpClient httpclient = getDefaultHttpClient();
-		HttpGet httpGet = new HttpGet(urlString);
-		httpGet.setHeader("Accept",
-				"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-		try {
-			HttpResponse response = httpclient.execute(httpGet);
-			String result = EntityUtils.toString(response.getEntity());
-			return result;
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			httpGet.releaseConnection();
-		}
-		return null;
-	}
-
-	/**
-	 * 返回一个带验证的默认HTTP CLIENT，用于和Gunonor进行交互
-	 * 
-	 * @return
-	 */
-	private DefaultHttpClient getDefaultHttpClient() {
-		DefaultHttpClient httpclient = new DefaultHttpClient();
-		httpclient.getCredentialsProvider().setCredentials(
-				new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT),
-				new UsernamePasswordCredentials(gunvorServerUser,
-						gunvorServerPwd));
-
-		return httpclient;
-	}
+	
+	
 }

@@ -1,18 +1,28 @@
 package org.openkoala.opencis.trac;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openkoala.opencis.api.CISClient;
 import org.openkoala.opencis.api.Developer;
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.exception.CreateProjectException;
+import org.openkoala.opencis.exception.HostCannotConnectException;
+import org.openkoala.opencis.exception.UserOrPasswordErrorException;
 import org.openkoala.opencis.support.CommandExecutor;
 import org.openkoala.opencis.support.SSHConnectConfig;
 import org.openkoala.opencis.trac.command.TracAssignUserToRoleCommand;
 import org.openkoala.opencis.trac.command.TracCommand;
+import org.openkoala.opencis.trac.command.TracCreatePasswdCommand;
 import org.openkoala.opencis.trac.command.TracCreateProjectCommand;
-import org.openkoala.opencis.trac.command.TracCreateRoleCommand;
+import org.openkoala.opencis.trac.command.TracCreateUserCommand;
+import org.openkoala.opencis.trac.command.TracCreateUserToRoleCommand;
 import org.openkoala.opencis.trac.command.TracRemoveProjectCommand;
+import org.openkoala.opencis.trac.command.TracRemoveUserCommand;
+import org.openkoala.opencis.trac.command.TracRemoveUserFromRoleCommand;
+
+import com.trilead.ssh2.Connection;
 
 
 /**
@@ -30,7 +40,8 @@ public class TracCISClient implements CISClient {
     private static final Logger logger = Logger.getLogger(TracCISClient.class);
 
     private CommandExecutor executor = new CommandExecutor();
-
+    
+    private Connection conn;
     /**
      * 执行结果
      */
@@ -47,57 +58,67 @@ public class TracCISClient implements CISClient {
 
     @Override
     public void close() {
-        // do nothing
+//    	if(conn!=null){
+//			conn.close();
+//			conn=null;
+//		}
     }
 
 
     @Override
     public void createProject(Project project) {
         //使用java SSH来创建项目
-        //1、先检测项目是否存在，如果存在则不需要创建
-        //2、用命令CommandExecutor来执行TracCreateProjecCommand子类
+        //1、创建项目
+    	//2、创建项目路径下的conf/passwd文件
         //初始化命令
-        TracCommand command = new TracCreateProjectCommand(configuration, project);
+        TracCommand createProjectCmd = new TracCreateProjectCommand(configuration, project);
+        TracCommand createPasswdCmd = new TracCreatePasswdCommand(configuration, project);
         try {
-            success = executor.executeSync(command);
+        	executor.addCommand(createProjectCmd);
+        	executor.addCommand(createPasswdCmd);
+            success = executor.executeBatch();
         } catch (Exception e) {
             logger.error(e.getMessage(),e);
+            throw new CreateProjectException("创建Trac项目" + project.getProjectName() + "失败，原因：" 
+            		+ e.getMessage(), e);
         }
 
     }
 
     @Override
     public void createUserIfNecessary(Project project, Developer developer) {
-        //Trac在创建用户时就已经指派了角色了，所以，这里不需要执行了
+    	 //使用java SSH来创建角色
+        //1、读取project的配置信息，包括该角色(用户组)默认的权限
+        //2、用命令CommandExecutor来执行TracCreateRoleCommand子类
+    	TracCommand createUserCommand = new TracCreateUserCommand(configuration, project, developer);
+        TracCommand createUserToRoleCommand = new TracCreateUserToRoleCommand(configuration, developer.getId(), project);
+        
+        try {
+        	executor.addCommand(createUserCommand);
+        	executor.addCommand(createUserToRoleCommand);
+            success = executor.executeBatch();
+        } catch (Exception e) {
+        	logger.error(e.getMessage(),e);
+        }
     }
 
     @Override
     public void createRoleIfNecessary(Project project, String roleName) {
         // TODO Auto-generated method stub
-        //使用java SSH来创建角色
-        //1、读取project的配置信息，包括该角色(用户组)默认的权限
-        //2、用命令CommandExecutor来执行TracCreateRoleCommand子类
-        TracCommand command = new TracCreateRoleCommand(configuration, roleName, project);
-        try {
-            success = executor.executeSync(command);
-        } catch (Exception e) {
-        	logger.error(e.getMessage(),e);
-//            return false;
-        }
-//        return true;
+       
     }
 
     public boolean assignUserToRole(Project project, String usrId, String role) {
         //使用java SSH来分配用户到某个角色，如果是连续分配，个人认为不应该关闭Connection，直到循环完毕才close
         //1、读取project的配置信息
         //2、用命令CommandExecutor来执行TracAssignUserToRoleCommand子类
-        TracCommand command = new TracAssignUserToRoleCommand(usrId, role, configuration, project);
-        try {
-            success = executor.executeSync(command);
-        } catch (Exception e) {
-        	logger.error(e.getMessage(),e);
-            return false;
-        }
+//        TracCommand command = new TracAssignUserToRoleCommand(usrId, role, configuration, project);
+//        try {
+//            success = executor.executeSync(command);
+//        } catch (Exception e) {
+//        	logger.error(e.getMessage(),e);
+//            return false;
+//        }
         return true;
     }
 
@@ -117,14 +138,42 @@ public class TracCISClient implements CISClient {
 	@Override
 	public void removeUser(Project project, Developer developer) {
 		// TODO Auto-generated method stub
-		
+		TracCommand removeUserFromRoleCommand = new TracRemoveUserFromRoleCommand(configuration,developer.getId(),project);
+		TracCommand removeUserCommand = new TracRemoveUserCommand(developer, configuration, project);
+		try {
+			executor.addCommand(removeUserFromRoleCommand);
+			executor.addCommand(removeUserCommand);
+			success = executor.executeBatch();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			logger.error(e.getMessage(),e);
+		}
 	}
 
 
 	@Override
 	public boolean authenticate() {
 		// TODO Auto-generated method stub
-		return false;
+		try {
+            if (conn != null) {
+                return true;
+            }
+            conn = new Connection(configuration.getHost());
+            conn.connect();
+            //登陆linux
+            boolean isAuthenticated = conn.authenticateWithPassword(configuration.getUsername(),
+                    configuration.getPassword());
+            if (!isAuthenticated) {
+                conn.close();
+                conn = null;
+                throw new UserOrPasswordErrorException("账号或密码错误！");
+            }
+            return true;
+        } catch (IOException e) {
+            conn.close();
+            conn = null;
+            throw new HostCannotConnectException("无法连接到主机！");
+        }
 	}
 	
 

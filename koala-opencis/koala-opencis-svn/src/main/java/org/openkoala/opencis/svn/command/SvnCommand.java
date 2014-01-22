@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.support.CommonUtil;
 import org.openkoala.opencis.support.SSHCommand;
 import org.openkoala.opencis.support.SSHConnectConfig;
 
@@ -22,18 +23,8 @@ public abstract class SvnCommand extends SSHCommand {
         this.host = config.getHost();
         this.userName = config.getUsername();
         this.password = config.getPassword();
+        this.storePath = CommonUtil.validatePath(config.getStorePath());
         this.project = project;
 
-    }
-
-    protected String readOutput(InputStream inputStream) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while ((line = br.readLine()) != null) {
-            sb.append(line);
-        }
-        br.close();
-        return sb.toString();
     }
 }

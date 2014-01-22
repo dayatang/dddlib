@@ -122,15 +122,9 @@ body {
 }
 </style>
 <script type="text/javascript">
-	function login() {
-		$('#loginFormId').submit();
-	}
-	
 	function refreshCode(){
-		
 		$('#checkCode').attr('src',"jcaptcha.jpg?time="+new Date().getTime());
 	}
-	
 </script>
 </head>
 <body>
@@ -191,7 +185,7 @@ body {
 					</div>
 				</div>
 				<div class="form-group input-group">
-					<button type="button"  class="btn btn-primary btn-login" onclick="javascript:login()">登录</button>
+					<button type="button"  class="btn btn-primary btn-login">登录</button>
 				</div>
 			</FORM>
 		</div>

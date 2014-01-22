@@ -241,6 +241,7 @@
 				}
 				var value =  self.searchContainer.find('input[data-role="searchValue"]').val().replace(/(^\s*)|(\s*$)/g, "");
 				self.searchCondition[condition] =  value;
+				self.pageNo = 1;
 				self._loadData();
 			});
 		},
@@ -298,7 +299,6 @@
 						self.gridTableBody.find('[data-role="noData"]').remove();
 						self.renderDatas();
 					}
-                    self.$element.trigger('complate', result);
 				}).fail(function(result){
 
 				});
@@ -382,6 +382,7 @@
 			self.renderRows();
 			self.initSelectRowEvent();
 			self.options.isShowPages && self._initPageNo();
+			self.$element.trigger('complate');
 		},
         initSelectRowEvent: function(){
             var self = this;

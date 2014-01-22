@@ -23,7 +23,6 @@ import java.util.List;
 public class ProjectAuthorization {
 
 
-    private String errors;
 
     public ProjectAuthorization() {
     }
@@ -74,25 +73,12 @@ public class ProjectAuthorization {
                             "tr.permission-row[name=\"[" + developer.getName() + "]\"] input[name=\"[hudson.model.Item.Read]\"]"));
             readPermissionCheckbox.click();
 
-            //jenkins数据库没有该用户
-            if (SeleniumUtil.elementExist(driver,
-                    By.cssSelector("tr.permission-row[name=\"[" + developer.getName() + "]\"] img[src*=\"error.png\"]"))) {
-                notExistUsers.add(developer);
-            }
-
-
         }
 
 
         ProjectConfigUtil.submitForm(driver, project.getArtifactId());
 
 
-
-        //创建用户
-        for (Developer developer : notExistUsers) {
-            UserCreator userCreator = new UserCreator();
-            userCreator.createUser(jenkinsBaseUrl, developer, driver);
-        }
     }
 
 

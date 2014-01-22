@@ -30,7 +30,7 @@
 	            <div class="btn-group navbar-right">
 	                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 	                    <i class="glyphicon glyphicon-user"></i>
-	                    <span>&nbsp;<ss3:authentication property="principal.realName" /></span>
+	                    <span>&nbsp;<ss3:authentication property="principal.username" /></span>
 	                    <span class="caret"></span>
 	                </button>
 	                <ul class="dropdown-menu" id="userManager">
@@ -48,7 +48,7 @@
 	       		
 	        </ul>
 	    </div>
-	    <div class="col-xs-10 g-mainc">
+	    <div class="col-xs-10 g-mainc container">
 	        <ul class="nav nav-tabs" id="navTabs">
 	            <li class="active"><a href="#home" data-toggle="tab">主页</a></li>
 	        </ul>

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import org.openkoala.jbpm.application.vo.TaskChoice;
 
 
+
 public class TaskVerifyDTO implements Serializable {
 	/**
 	 * 
