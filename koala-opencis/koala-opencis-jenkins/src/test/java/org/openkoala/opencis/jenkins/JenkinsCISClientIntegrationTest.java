@@ -11,14 +11,14 @@ import org.openkoala.opencis.jenkins.configureImpl.scm.SvnConfig;
 import java.net.MalformedURLException;
 
 
-@Ignore
+//@Ignore
 public class JenkinsCISClientIntegrationTest extends CISClientAbstactIntegrationTest {
 
 
     @Test
     public void test() throws MalformedURLException {
 
-        Project project = getProject("900");
+        Project project = getProject("907");
 
         AuthenticationStrategy au = ownAuthenticationAndCreateWebDriver();
 
@@ -29,7 +29,7 @@ public class JenkinsCISClientIntegrationTest extends CISClientAbstactIntegration
         client.close();
 
         // TODO 添加自动验证
-        Developer developer = getDeveloper("900");
+        Developer developer = getDeveloper("907");
         AuthenticationStrategy driver1 = ownAuthenticationAndCreateWebDriver();
         JenkinsCISClient client1 = new JenkinsCISClient(jenkinsURL, driver1);
         client1.authenticate();
