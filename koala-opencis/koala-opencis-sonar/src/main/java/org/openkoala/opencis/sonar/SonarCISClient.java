@@ -30,7 +30,7 @@ import org.openkoala.opencis.api.Project;
 
 public class SonarCISClient implements CISClient {
 
-    protected static final String SONAN_PERMISSION_USER = "codeviewer";
+    protected static final String SONAN_PERMISSION_USER = "user";
 
     private SonarConnectConfig connectConfig;
 
@@ -67,9 +67,6 @@ public class SonarCISClient implements CISClient {
             UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
             httpPost.setEntity(entity);
             response = httpClient.execute(httpPost, localContext);
-
-            System.out.println(response.getStatusLine().getStatusCode());
-            System.out.println(EntityUtils.toString(response.getEntity()));
 
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK
                     || response.getStatusLine().getStatusCode() == HttpStatus.SC_BAD_REQUEST) {
@@ -219,7 +216,7 @@ public class SonarCISClient implements CISClient {
             response = httpClient.execute(http, localContext);
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 String result = EntityUtils.toString(response.getEntity());
-                return result.contains(developerName) && result.contains("\"active\": true");
+                return result.contains(developerName) && result.contains("\"active\":true");
             }
             return false;
         } catch (IOException e) {

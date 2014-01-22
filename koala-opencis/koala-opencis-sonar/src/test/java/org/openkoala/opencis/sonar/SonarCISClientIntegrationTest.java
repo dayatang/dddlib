@@ -26,14 +26,14 @@ public class SonarCISClientIntegrationTest {
         System.out.println(sonarCISClient.authenticate());
 
         Project project = new Project();
-        project.setProjectName("okok");
-        project.setArtifactId("okok");
+        project.setProjectName("plplh");
+        project.setArtifactId("plplh");
         project.setGroupId("com.grou3");
         project.setDescription("description");
         project.setProjectLead("xxx");
 
         Developer developer = new Developer();
-        developer.setName("okok");
+        developer.setName("plplh");
         developer.setEmail("xxx@dxx.com");
         developer.setPassword("xxxxx");
         developer.setFullName("fullname");
@@ -48,21 +48,16 @@ public class SonarCISClientIntegrationTest {
         SonarCISClient developerClient = new SonarCISClient(new SonarConnectConfig(address2, developer.getName(), developer.getPassword()));
         assert developerClient.authenticate();
         developerClient.close();
-
+        assert sonarCISClient.isActivated(developer.getName());
 
         sonarCISClient.assignUsersToRole(project, "", developer);
 
-
-        //assert !sonarCISClient.isActivated(developer.getName());
-      /*  sonarCISClient.removeUser(project, developer);
+        sonarCISClient.removeUser(project, developer);
         sonarCISClient.removeProject(project);
-*/
+        assert !sonarCISClient.isActivated(developer.getName());
 
 
         sonarCISClient.close();
-
-
-
 
 
     }
