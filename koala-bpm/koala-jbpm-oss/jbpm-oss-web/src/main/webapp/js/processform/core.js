@@ -61,7 +61,7 @@ $(function(){
             identity: 'id',
             columns: cols,
             buttons: buttons,
-            url: '/processform/getDataList.koala'
+            url: contextPath + '/processform/getDataList.koala'
         }).on({
             'add': function(){
                 $('#formManagement').modal({
