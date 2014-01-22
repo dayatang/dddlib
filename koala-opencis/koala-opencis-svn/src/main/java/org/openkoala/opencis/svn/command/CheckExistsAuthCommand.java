@@ -36,7 +36,7 @@ public class CheckExistsAuthCommand extends SvnCommand {
 	public String getCommand() {
 		// TODO Auto-generated method stub
 		String strUsers = CommonUtil.ConvertGroupUserListToString(userNames);
-		String strCommand = "grep '" + project.getProjectName() + "_" +  role + "=" + strUsers + "' " + storePath + "authz"; 
+		String strCommand = "grep '" + project.getProjectName() + "_" +  role + "=rw' " + storePath + "authz"; 
 		return strCommand;
 	}
 
