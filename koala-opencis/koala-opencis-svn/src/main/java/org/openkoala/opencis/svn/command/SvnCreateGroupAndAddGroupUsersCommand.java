@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import org.openkoala.opencis.api.Project;
+import org.openkoala.opencis.support.CommonUtil;
 import org.openkoala.opencis.support.OpencisConstant;
 import org.openkoala.opencis.support.SSHConnectConfig;
 
@@ -32,7 +33,7 @@ public class SvnCreateGroupAndAddGroupUsersCommand extends SvnCommand {
     @Override
     public String getCommand() {
         String groupName = project.getProjectName() + "_" + role;
-        String groupUsers = ConvertGroupUserListToString();
+        String groupUsers = CommonUtil.ConvertGroupUserListToString(userNames);
         StringBuilder assignUserToRoleCommand = new StringBuilder();
         assignUserToRoleCommand.append("grep -q '^\\[groups\\]' ")
                 .append(storePath).append("authz ")
@@ -41,18 +42,6 @@ public class SvnCreateGroupAndAddGroupUsersCommand extends SvnCommand {
                 .append("|| echo -ne '\n[groups]\n").append(groupName).append("=").append(groupUsers).append("' >>  ")
                 .append(storePath).append("authz ");
         return assignUserToRoleCommand.toString();
-    }
-
-    private String ConvertGroupUserListToString() {
-        StringBuffer groupUsersStr = new StringBuffer();
-        for (String groupUser : userNames) {
-            if (groupUsersStr.length() > 0) {
-                groupUsersStr.append("," + groupUser);
-            } else {
-                groupUsersStr.append(groupUser);
-            }
-        }
-        return groupUsersStr.toString();
     }
 
     @Override
