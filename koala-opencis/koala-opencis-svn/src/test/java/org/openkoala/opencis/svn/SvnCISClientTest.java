@@ -23,7 +23,6 @@ import org.openkoala.opencis.exception.UserListBlankException;
 import org.openkoala.opencis.exception.UserOrPasswordErrorException;
 import org.openkoala.opencis.support.SSHConnectConfig;
 
-@Ignore
 public class SvnCISClientTest {
 
     private SSHConnectConfig configuration;
@@ -165,20 +164,20 @@ public class SvnCISClientTest {
     @Test(expected = UserListBlankException.class)
     public void testUserListBlank() {
         instance = new SvnCISClient(configuration);
-        instance.assignUsersToRole(project, null, "Architect");
+        instance.assignUsersToRole(project, "Architect", null);
     }
 
     @Test(expected = UserListBlankException.class)
     public void testUserListBlank2() {
         instance = new SvnCISClient(configuration);
-        instance.assignUsersToRole(project, new ArrayList<String>(), "Architect");
+        instance.assignUsersToRole(project, "Architect");
     }
 
     @Test(expected = RoleBlankException.class)
     public void testRoleBlank() {
         initUserListAndRoleName();
         instance = new SvnCISClient(configuration);
-        instance.assignUsersToRole(project, userNames, null);
+        instance.assignUsersToRole(project, null,developer);
     }
 
     @Test
@@ -187,7 +186,7 @@ public class SvnCISClientTest {
             initUserListAndRoleName();
             instance = new SvnCISClient(configuration);
 //            instance.createProject(project);
-            instance.assignUsersToRole(project, userNames, roleName);
+            instance.assignUsersToRole(project, roleName,developer);
 //            instance.removeProject(project);
             assertTrue(true);
         } catch (Exception e) {

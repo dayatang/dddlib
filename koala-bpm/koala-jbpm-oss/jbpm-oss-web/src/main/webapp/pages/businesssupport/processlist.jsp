@@ -44,7 +44,7 @@
              isShowIndexCol: false,
              //buttons: buttons,
              querys: [{title: '流程名称', value: 'name'}],
-             url: '/businessSupport/getProcesses.koala'
+             url: contextPath + '/businessSupport/getProcesses.koala'
         });/* 
         .on({
                     'add': function(){

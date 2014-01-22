@@ -61,7 +61,7 @@ $(function(){
             identity: 'id',
             columns: cols,
             buttons: buttons,
-            url: '/processform/getDataList.koala'
+            url: contextPath + '/processform/getDataList.koala'
         }).on({
             'add': function(){
                 $('#formManagement').modal({
@@ -90,7 +90,7 @@ $(function(){
                 }
                 $.ajax({
         			type: "GET",
-        			url: "/processform/get.koala",
+        			url: contextPath + "/processform/get.koala",
         			data: {id:indexs[0]},
         			success: function(data){
         				if(!data.result){
@@ -126,7 +126,7 @@ $(function(){
                     callBack: function(){ 
                     	$.ajax({
                 			type: "POST",
-                			url: "/processform/delete.koala",
+                			url: contextPath + "/processform/delete.koala",
                 			data: {id:indexs.join(',')},
                 			success: function(msg){
                 				$('body').message({
@@ -303,7 +303,7 @@ $(function(){
     		form.processKeys = fields;
     		$.ajax({
     			type: "POST",
-    			url: rootPath+"/processform/create.koala",
+    			url: contextPath + "/processform/create.koala",
     			data: {jsondata:JSON.stringify(form)},
     			success: function(data){
     				if(!data.result){
@@ -330,7 +330,7 @@ $(function(){
     		 var dialog = $(data);
     		 dialog.find('.modal-title').html(title+" - 预览");
     		 $.ajax({
-    			 url: '/processform/templatePreview.koala?formId='+formId,
+    			 url: contextPath + '/processform/templatePreview.koala?formId='+formId,
     			 type: 'GET',
     			 dataType: 'html'
     		 }).done(function(data){

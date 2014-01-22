@@ -25,6 +25,7 @@ import org.openkoala.opencis.exception.UserOrPasswordErrorException;
 import org.openkoala.opencis.support.CommandExecutor;
 import org.openkoala.opencis.support.SSHConnectConfig;
 import org.openkoala.opencis.svn.command.CheckExistsAuthCommand;
+import org.openkoala.opencis.svn.command.CheckExistsUserGroupCommand;
 import org.openkoala.opencis.svn.command.SvnAuthzCommand;
 import org.openkoala.opencis.svn.command.SvnClearProjectPasswdFileContentCommand;
 import org.openkoala.opencis.svn.command.SvnCommand;
@@ -160,17 +161,17 @@ public class SvnCISClient implements CISClient {
         return true;
     }
 
-    /**
-     * 该授权分两步：
-     * 1. 创建角色并为用户分配角色
-     * 2. 为角色授予读写权限
-     */
-    public boolean assignUsersToRole(Project project, List<String> userNames, String role) {
-        isAuthInfoNotBlank(project, userNames, role);
-        createGroupAndAddGroupUsers(project, userNames, role);
-        authz(project, role);
-        return true;
-    }
+//    /**
+//     * 该授权分两步：
+//     * 1. 创建角色并为用户分配角色
+//     * 2. 为角色授予读写权限
+//     */
+//    public boolean assignUsersToRole(Project project, List<String> userNames, String role) {
+//        isAuthInfoNotBlank(project, userNames, role);
+//        createGroupAndAddGroupUsers(project, userNames, role);
+//        authz(project, role);
+//        return true;
+//    }
 
     private boolean isAuthInfoNotBlank(Project project, List<String> userNames, String role) {
         isProjectInfoNotBlank(project);
@@ -210,6 +211,26 @@ public class SvnCISClient implements CISClient {
     }
     
     /**
+     * 检查是否重复配置用户-用户组
+     * @param role
+     * @param userNames
+     * @param project
+     * @param config
+     * @return
+     */
+    private boolean checkExistsUserGroup(String role, List<String> userNames, Project project, SSHConnectConfig config){
+    	SvnCommand command = new CheckExistsUserGroupCommand(userNames, role, config, project);
+    	try {
+			success = executor.executeSync(command);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+
+		return true;
+    }
+    
+    /**
      * 检查是否重复授权
      * @param role
      * @param userNames
@@ -217,6 +238,7 @@ public class SvnCISClient implements CISClient {
      * @param config
      * @return
      */
+    
     private boolean checkExistsAuth(String role, List<String> userNames, Project project, SSHConnectConfig config){
     	SvnCommand command = new CheckExistsAuthCommand(userNames, role, config, project);
     	try {
@@ -310,6 +332,10 @@ public class SvnCISClient implements CISClient {
 		
 		//如果条件不满足，则流程结束
 		if(!isAuthInfoNotBlank(project, userNames, role)){
+			return ;
+		}
+		
+		if(!checkExistsUserGroup(role, userNames, project, configuration)){
 			return ;
 		}
 		
