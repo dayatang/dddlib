@@ -35,9 +35,9 @@ public class CheckExistsAuthCommand extends SvnCommand {
 	@Override
 	public String getCommand() {
 		// TODO Auto-generated method stub
-				String strUsers = CommonUtil.ConvertGroupUserListToString(userNames);
-				String strCommand = "grep '" + project.getProjectName() + "_" +  role + "=" + strUsers + "' " + storePath + "authz"; 
-				return strCommand;
+		String strUsers = CommonUtil.ConvertGroupUserListToString(userNames);
+		String strCommand = "grep '" + project.getProjectName() + "_" +  role + "=" + strUsers + "' " + storePath + "authz"; 
+		return strCommand;
 	}
 
 	@Override
