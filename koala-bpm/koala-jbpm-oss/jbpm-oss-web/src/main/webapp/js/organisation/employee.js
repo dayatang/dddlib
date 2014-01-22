@@ -148,6 +148,7 @@ var employee = function(){
     var selectDepartments = function(){
 		$.get( contextPath + '/pages/organisation/selectDepartmentTemplate.html').done(function(data){
 			var departmentTreeDialog = $(data);
+			departmentTreeDialog.find('.modal-dialog').css({width:'780px'});
 			departmentTree = departmentTreeDialog.find('.tree');
             loadDepartmentTree();
 			departmentTreeDialog.find('#confirm').on('click',function(){
