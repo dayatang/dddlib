@@ -801,13 +801,12 @@
 				this.$element.addClass('alert-danger');
 				break;
 		}
-		this.$element.appendTo($('body'))
+		self.$element.appendTo($('body'))
 			.fadeIn(400, function(){
-				var width = self.$element.outerWidth(true)*0.5;
-				var height = self.$element.outerHeight(true)*0.5;
-				var left = self.container.offset().left + self.container.outerWidth(true)*0.5 - width;
-				var top = self.container.offset().top + self.container.outerHeight(true)*0.5 - height;
-				
+				var $this = $(this);
+				var content = $this.find('[data-toggle="content"]');
+				var left = self.container.offset().left + (self.container.outerWidth(true) - content.outerWidth(true) - 20)/2;
+				var top = self.container.offset().top + (self.container.outerHeight(true) - content.outerHeight(true))/2;
 				self.$element.css({'position': 'fixed', 'left': left + 'px', 'top': top + 'px'})
 			});
   		setTimeout(function(){
@@ -816,7 +815,7 @@
   			});
   		}, this.options.delay);
 	};
-	Message.DEFAULTS.TEMPLATE = '<div class="alert message" style="min-width: 120px;max-width: 300px; padding: 8px;text-align: left;z-index: 20000;">' +
+	Message.DEFAULTS.TEMPLATE = '<div class="alert message" style="width:auto;min-width: 120px;max-width: 300px; padding: 8px;text-align: left;z-index: 20000;">' +
 		'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
 		'<span data-toggle="content" style="font-size:14px;"></span>&nbsp;&nbsp;</div>';
 	var old = $.fn.message;
