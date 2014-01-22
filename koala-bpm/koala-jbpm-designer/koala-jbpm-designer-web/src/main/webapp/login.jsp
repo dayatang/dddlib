@@ -122,10 +122,7 @@ body {
 }
 </style>
 <script type="text/javascript">
-<<<<<<< HEAD
-	
-=======
->>>>>>> origin/master
+
 	function refreshCode(){
 		$('#checkCode').attr('src',"jcaptcha.jpg?time="+new Date().getTime());
 	}
