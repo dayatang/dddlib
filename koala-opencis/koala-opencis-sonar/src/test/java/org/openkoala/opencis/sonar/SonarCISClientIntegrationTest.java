@@ -11,6 +11,7 @@ import org.openkoala.opencis.api.Project;
 
 import java.util.UUID;
 
+
 @Ignore
 public class SonarCISClientIntegrationTest {
 
@@ -22,19 +23,19 @@ public class SonarCISClientIntegrationTest {
     @Test
     public void testAuthenticate() {
         SonarCISClient sonarCISClient = new SonarCISClient(new SonarConnectConfig(address2, username, password));
-        assert sonarCISClient.authenticate();
+        System.out.println(sonarCISClient.authenticate());
 
         Project project = new Project();
-        project.setProjectName("projdrr");
-        project.setArtifactId("proffr");
+        project.setProjectName("okok");
+        project.setArtifactId("okok");
         project.setGroupId("com.grou3");
         project.setDescription("description");
         project.setProjectLead("xxx");
 
         Developer developer = new Developer();
-        developer.setName(UUID.randomUUID().toString());
+        developer.setName("okok");
         developer.setEmail("xxx@dxx.com");
-        developer.setPassword("xxxx1111");
+        developer.setPassword("xxxxx");
         developer.setFullName("fullname");
 
 
@@ -44,26 +45,24 @@ public class SonarCISClientIntegrationTest {
 
         assert sonarCISClient.existsUser(developer.getName());
 
-
-        sonarCISClient.assignUsersToRole(project, "", developer);
-
         SonarCISClient developerClient = new SonarCISClient(new SonarConnectConfig(address2, developer.getName(), developer.getPassword()));
         assert developerClient.authenticate();
         developerClient.close();
 
 
-        sonarCISClient.removeUser(project, developer);
+        sonarCISClient.assignUsersToRole(project, "", developer);
 
-        assert !sonarCISClient.isActivated(developer.getName());
 
+        //assert !sonarCISClient.isActivated(developer.getName());
+      /*  sonarCISClient.removeUser(project, developer);
         sonarCISClient.removeProject(project);
+*/
+
 
         sonarCISClient.close();
 
 
-        SonarCISClient developerClient1 = new SonarCISClient(new SonarConnectConfig(address2, developer.getName(), developer.getPassword()));
-        assert !developerClient1.authenticate();
-        developerClient.close();
+
 
 
     }
