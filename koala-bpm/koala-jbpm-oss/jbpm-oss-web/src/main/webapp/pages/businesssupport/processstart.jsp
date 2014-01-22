@@ -52,7 +52,7 @@
 			cancel();
 		</script>
 	</c:if>
-	<form class="form-horizontal processDetail" role="form" id="form1" action="/businessSupport/startProcess.koala" method="post">
+	<form class="form-horizontal processDetail" role="form" id="form1" action="${pageContext.request.contextPath}/businessSupport/startProcess.koala" method="post">
 		<div class="panel panel-primary">
 		   <div class="panel-heading">发起流程</div>
 		  <div class="panel-body">
