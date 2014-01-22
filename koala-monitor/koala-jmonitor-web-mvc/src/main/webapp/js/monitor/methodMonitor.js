@@ -98,7 +98,7 @@ $(function(){
             isShowPages: false,
             searchCondition: searchCondition,
             url: contextPath + '/monitor/Monitor/methodMonitorCount.koala'
-        }).on('complate', function(event, data){
+        }).on('complateRenderData', function(event, data){
                 loadChart(data.Rows);
                 $(window).trigger('resize');
             });

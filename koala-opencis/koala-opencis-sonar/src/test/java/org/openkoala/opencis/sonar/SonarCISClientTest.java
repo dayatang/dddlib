@@ -1,75 +1,87 @@
 package org.openkoala.opencis.sonar;
 
-import static org.junit.Assert.*;
-
-import org.junit.After;
+import com.github.dreamhead.moco.Moco;
+import org.apache.http.client.fluent.Content;
+import org.apache.http.client.fluent.Request;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.openkoala.opencis.api.Developer;
+
+import java.io.IOException;
+
+import com.github.dreamhead.moco.HttpServer;
+import com.github.dreamhead.moco.Runnable;
 import org.openkoala.opencis.api.Project;
 
-import java.util.UUID;
+import static com.github.dreamhead.moco.Moco.*;
+import static com.github.dreamhead.moco.Runner.*;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 
-@Ignore
+
+/**
+ * User: zjzhai
+ * Date: 1/21/14
+ * Time: 9:35 AM
+ */
 public class SonarCISClientTest {
 
-    public static final String NAME = "koala";
-    public static final String address2 = "http://10.108.1.138:9000";
+    public static final String address2 = "http://localhost:12306";
     public static final String username = "admin";
     public static final String password = "admin";
-    public static final String PROJECT_ARTIFACTID = "koala-cas-management";
-    public static final String PROJECT_GROUPID = "org.openkoala.cas";
 
+    private HttpServer server = httpserver(12306);
 
-    @Test
-    public void testAuthenticate() {
-        SonarCISClient sonarCISClient = new SonarCISClient(new SonarConnectConfig(address2, username, password));
-        assert sonarCISClient.authenticate();
+    private SonarCISClient sonarCISClient;
 
-        Project project = new Project();
-        project.setProjectName("projdrr");
-        project.setArtifactId("proffr");
-        project.setGroupId("com.grou3");
-        project.setDescription("description");
-        project.setProjectLead("xxx");
-
-        Developer developer = new Developer();
-        developer.setName(UUID.randomUUID().toString());
-        developer.setEmail("xxx@dxx.com");
-        developer.setPassword("xxxx1111");
-        developer.setFullName("fullname");
-
-
-        sonarCISClient.createProject(project);
-
-        sonarCISClient.createUserIfNecessary(project, developer);
-
-        assert sonarCISClient.existsUser(developer.getName());
-
-
-        sonarCISClient.assignUsersToRole(project, "", developer);
-
-        SonarCISClient developerClient = new SonarCISClient(new SonarConnectConfig(address2, developer.getName(), developer.getPassword()));
-        assert developerClient.authenticate();
-        developerClient.close();
-
-
-        sonarCISClient.removeUser(project, developer);
-
-        assert !sonarCISClient.isActivated(developer.getName());
-
-        sonarCISClient.removeProject(project);
-
-        sonarCISClient.close();
-
-
-        SonarCISClient developerClient1 = new SonarCISClient(new SonarConnectConfig(address2, developer.getName(), developer.getPassword()));
-        assert !developerClient1.authenticate();
-        developerClient.close();
-
+    @Before
+    public void setUp() throws Exception {
+        server.get(by(uri("/api/authentication/validate"))).response(with("{\"validate\":true}"), status(200));
+        running(server, new Runnable() {
+            @Override
+            public void run() throws IOException {
+                sonarCISClient = new SonarCISClient(new SonarConnectConfig(address2, username, password));
+                assert sonarCISClient.authenticate();
+            }
+        });
 
     }
 
+    @Test
+    public void test(){}
+
+    @Ignore
+    @Test
+    public void testCreateProject() throws Exception {
+        server.post(and(by(uri("/api/projects/create")),
+                eq(query("key"), SonarCISClient.getKeyOf(getProject())),
+                eq(query("name"), getProject().getProjectName())))
+                .response(with("{\n" +
+                        "    \"id\":\"12\",\n" +
+                        "    \"k\":\"" + SonarCISClient.getKeyOf(getProject()) + "\",\n" +
+                        "    \"nm\":\"yyy\",\n" +
+                        "    \"sc\":\"PRJ\",\n" +
+                        "    \"qu\":\"TRK\"\n" +
+                        "}"), status(200));
+
+        running(server, new Runnable() {
+            @Override
+            public void run() throws IOException {
+                sonarCISClient.createProject(getProject());
+            }
+        });
+
+    }
+
+    private Project getProject() {
+        Project project = new Project();
+        project.setProjectLead("lead");
+        project.setArtifactId("artifact");
+        project.setDescription("xxx");
+        project.setGroupId("group");
+        project.setProjectName("yyy");
+        project.setPhysicalPath("physical");
+        return project;
+    }
 
 }

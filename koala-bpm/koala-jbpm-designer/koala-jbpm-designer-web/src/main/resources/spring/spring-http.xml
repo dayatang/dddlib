@@ -34,7 +34,37 @@
 		</s:session-management>  -->
 		<s:intercept-url pattern="/**" access="IS_AUTHENTICATED_FULLY" />
 		<s:session-management invalid-session-url="/login.action" />
+		
+		<!-- 设置登录过滤器 -->
+ 		<s:custom-filter before="FORM_LOGIN_FILTER" ref="authenticationFilter" /> 
+
 		<!-- 过滤器，不能修改 -->
 		<s:custom-filter ref="securityFilter" before="FILTER_SECURITY_INTERCEPTOR" />
+
 	</s:http>
+	
+	<!-- 登录成功 -->
+	<bean id="loginLogAuthenticationSuccessHandler"
+		class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+		<property name="defaultTargetUrl" value="/index.jsp" />
+	</bean>
+
+	<!-- 登录失败 -->
+	<bean id="loginFailureHandler" class="org.openkoala.koala.auth.ss3adapter.LoginFailureHandler">
+		<property name="userAccountNotFoundUrl" value="/login.jsp?login_error=1" />
+		<property name="passwordNotCorrectUrl" value="/login.jsp?login_error=2" />
+		<property name="validateCodeNotCorrectUrl" value="/login.jsp?login_error=3" />
+	</bean>
+
+	<!-- 验证码过滤器 -->
+ 	<bean id="authenticationFilter" class="org.openkoala.koala.auth.ss3adapter.AuthenticationFilter">
+		<property name="authenticationSuccessHandler" ref="loginLogAuthenticationSuccessHandler" />
+		<property name="failureHandler" ref="loginFailureHandler" />
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="httpHandlers">
+			<list>
+				<bean class="org.openkoala.koala.auth.ss3adapter.ValidateCodeHandler" />
+			</list>
+		</property>
+	</bean>
 </beans>

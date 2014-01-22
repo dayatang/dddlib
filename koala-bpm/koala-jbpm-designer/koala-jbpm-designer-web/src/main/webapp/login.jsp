@@ -10,7 +10,7 @@
 <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />"></script>	
-<script type="text/javascript" src="<c:url value='/lib/validate.js' />"></script>
+<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
 <style type="text/css">
 @charset "UTF-8";
 /* CSS Document */
@@ -122,10 +122,6 @@ body {
 }
 </style>
 <script type="text/javascript">
-<<<<<<< HEAD
-	
-=======
->>>>>>> origin/master
 	function refreshCode(){
 		$('#checkCode').attr('src',"jcaptcha.jpg?time="+new Date().getTime());
 	}

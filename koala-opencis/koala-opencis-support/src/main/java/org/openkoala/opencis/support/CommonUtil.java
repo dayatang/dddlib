@@ -1,6 +1,7 @@
 package org.openkoala.opencis.support;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * 一些公共方法
@@ -28,5 +29,22 @@ public class CommonUtil {
 	 */
 	public static boolean fileExists(String filePath,String fileName){
 		return new File(filePath,fileName).exists();
+	}
+	
+	/**
+	 * 转换用户列表为一个字符串
+	 * @param userList
+	 * @return
+	 */
+	public static String ConvertGroupUserListToString(List<String> userList){
+		StringBuffer groupUsersStr = new StringBuffer();
+        for (String groupUser : userList) {
+            if (groupUsersStr.length() > 0) {
+                groupUsersStr.append("," + groupUser);
+            } else {
+                groupUsersStr.append(groupUser);
+            }
+        }
+        return groupUsersStr.toString();
 	}
 }

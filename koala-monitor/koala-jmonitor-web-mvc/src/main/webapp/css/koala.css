@@ -1,601 +1,569 @@
 /*
-* 表格组件样式
-*/
+ * 表格组件样式
+ */
 .grid {
-    border-collapse: separate;
+	border-collapse: separate;
 }
 .grid td, .grid th {
-    word-wrap: break-word;
+	word-wrap: break-word;
 }
 .grid th {
-    border-bottom-width: 1px!important;
+	border-bottom-width: 1px !important;
 }
 .grid > thead th {
-    border-color: transparent transparent #DDDDDD transparent!important;
-    border-width: 0 0 1px 0!important;
+	border-color: transparent transparent #DDDDDD transparent !important;
+	border-width: 0 0 1px 0 !important;
 }
 .grid > tbody > tr > td {
-    position: relative;
-    border-color: #DDDDDD transparent transparent!important;
-    border-width: 0!important;
-    padding: 0;
-    margin: 0;
+	position: relative;
+	border-color: #DDDDDD transparent transparent !important;
+	border-width: 0 !important;
+	padding: 0;
+	margin: 0;
 }
 .grid > tfoot > tr > td {
-    border-color: #DDDDDD transparent transparent!important;
-    border-width: 1px 0 0!important;
+	border-color: #DDDDDD transparent transparent !important;
+	border-width: 1px 0 0 !important;
 }
-.grid  .buttons, .grid .records{
-    float: left;
+.grid  .buttons, .grid .records {
+	float: left;
 }
-.grid  .search, .grid .pages{
-    float: right;
+.grid  .search, .grid .pages {
+	float: right;
 }
 .grid .pages .pagination {
-    margin: 0;
+	margin: 0;
 }
 .grid  .search > div:first-child {
-    float: left;
-    padding-right: 4px;
+	float: left;
+	padding-right: 4px;
 }
 .grid  .search > div:last-child {
-    float: right;
+	float: right;
 }
 .grid  th[class*="sorting-"] {
-    background-color: #EFEFEF;
+	background-color: #EFEFEF;
 }
 .grid-body {
-    overflow: hidden;
+	overflow: hidden;
 }
 .grid-table-head {
-    position: relative;
-    overflow: hidden;
-    width: 20000px;
+	position: relative;
+	overflow: hidden;
+	width: 20000px;
 }
 .grid-table-head table, .grid-table-body table {
-    position: relative;
-    table-layout: fixed;
-    max-width: 20000px;
-    margin: 0!important;
-    padding: 0!important;
-    border-collapse: separate;
-    border: 0 solid transparent!important;
+	position: relative;
+	table-layout: fixed;
+	max-width: 20000px;
+	margin: 0 !important;
+	padding: 0 !important;
+	border-collapse: separate;
+	border: 0 solid transparent !important;
 }
-.grid-table-head table th .checker, .grid-table-body table td .checker{
-    position: relative;
-    left: 9px;
+.grid-table-head table th .checker, .grid-table-body table td .checker {
+	position: relative;
+	left: 9px;
 }
 .grid-table-head table th {
-    position: relative;
-    background-color: #efefef;
-    background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#fdfdfd), to(#eaeaea));
-    background-image: -webkit-linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
-    background-image: -moz-linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
-    background-image: -ms-linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
-    background-image: -o-linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
-    background-image: linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#eaeaea',GradientType=0 );
+	position: relative;
+	background-color: #efefef;
+	background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#fdfdfd), to(#eaeaea));
+	background-image: -webkit-linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
+	background-image: -moz-linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
+	background-image: -ms-linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
+	background-image: -o-linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
+	background-image: linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#eaeaea',GradientType=0 );
 }
 .grid-table-head table th .colResize {
-    float: right;
-    position: relative;
-    left: 8px;
-    width: 8px;
-    height: 20px;
-    cursor: col-resize;
+	float: right;
+	position: relative;
+	left: 8px;
+	width: 8px;
+	height: 20px;
+	cursor: col-resize;
 }
 .grid .colResizePointer {
-    display: none;
-    position: absolute;
-    background-color: #747474;
-    width: 1px;
-    height: 100%;
-    cursor: col-resize;
-    z-index: 2000;
+	display: none;
+	position: absolute;
+	background-color: #747474;
+	width: 1px;
+	height: 100%;
+	cursor: col-resize;
+	z-index: 2000;
 }
-.grid-table-head table th, .grid-table-body table td{
-    vertical-align: middle!important;
-    border-color: transparent #DDDDDD #DDDDDD transparent!important;
-    border-width: 0 1px 1px 0!important;
+.grid-table-head table th, .grid-table-body table td {
+	vertical-align: middle !important;
+	border-color: transparent #DDDDDD #DDDDDD transparent !important;
+	border-width: 0 1px 1px 0 !important;
 }
 .grid-table-head .sort:hover {
-    color: #269abc;
-    cursor: pointer;
+	color: #269abc;
+	cursor: pointer;
 }
 .grid-table-head  .sort span {
-    float: right;
-    position: relative;
-    top: 4px;
+	float: right;
+	position: relative;
+	top: 4px;
 }
 .grid-table-head  th[class*="sorting-"] {
-    color: #269abc;
+	color: #269abc;
 }
 .grid-table-body {
-    min-height: 150px;
-    height: 340px;
-    overflow: auto;
+	min-height: 150px;
+	height: 315px;
+	overflow: auto;
 }
 .grid .grid-tree-space {
-    display:inline; 
+	display: inline;
 }
-.grid .grid-tree-space span{
-    cursor: pointer;
+.grid .grid-tree-space span {
+	cursor: pointer;
 }
+
 /**
-*  提示样式
-*/
+ *  提示样式
+ */
 .modal .popover {
-    z-index: 2000;
+	z-index: 2000;
 }
 /*
-*选择框样式
-*/
-.has-error .select button{
-    border-color: #b94a48;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+ *选择框样式
+ */
+.has-error .select button {
+	border-color: #b94a48;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
 }
-.select .disabled, .select .disabled:hover, .select .disabled:focus{
-    background-color: #EEEEEE;
-    cursor: not-allowed;
+.select .disabled, .select .disabled:hover, .select .disabled:focus {
+	background-color: #EEEEEE;
+	cursor: not-allowed;
 }
 
 /* Global Declaration */
 
-div.selector,
-div.selector span,
-div.checker span,
-div.radio span,
-div.uploader,
-div.uploader span.action {
-    background-image: url(../images/sprite.png);
-    background-repeat: no-repeat;
-    -webkit-font-smoothing: antialiased;
+div.selector, div.selector span, div.checker span, div.radio span, div.uploader, div.uploader span.action {
+	background-image: url(../images/sprite.png);
+	background-repeat: no-repeat;
+	-webkit-font-smoothing: antialiased;
 }
 
-.selector,
-.radio,
-.checker,
-.uploader,
-.button,
-.selector *,
-.radio *,
-.checker *,
-.uploader *,
-.button *{
-    margin: 0;
-    padding: 0;
+.selector, .radio, .checker, .uploader, .button, .selector *, .radio *, .checker *, .uploader *, .button * {
+	margin: 0;
+	padding: 0;
 }
 
 /* Checkbox */
 
 div.checker {
-    width: 19px;
-    height: 19px;
+	width: 19px;
+	height: 19px;
 }
 
 div.checker input {
-    width: 19px;
-    height: 19px;
-    position: relative;
-    top: -4px;
+	width: 19px;
+	height: 19px;
+	position: relative;
+	top: -4px;
 }
 
 div.checker span {
-    background-position: 0px -260px;
-    height: 19px;
-    width: 19px;
+	background-position: 0px -260px;
+	height: 19px;
+	width: 19px;
 }
 
-div.checker:active span,
-div.checker.active span {
-    background-position: -19px -260px;
+div.checker:active span, div.checker.active span {
+	background-position: -19px -260px;
 }
 
-div.checker.focus span,
-div.checker:hover span {
-    background-position: -38px -260px;
+div.checker.focus span, div.checker:hover span {
+	background-position: -38px -260px;
 }
 
-div.checker.focus:active span,
-div.checker:active:hover span,
-div.checker.active:hover span,
-div.checker.focus.active span {
-    background-position: -57px -260px;
+div.checker.focus:active span, div.checker:active:hover span, div.checker.active:hover span, div.checker.focus.active span {
+	background-position: -57px -260px;
 }
 
 div.checker span.checked {
-    background-position: -76px -260px;
+	background-position: -76px -260px;
 }
 
-div.checker:active span.checked,
-div.checker.active span.checked {
-    background-position: -95px -260px;
+div.checker:active span.checked, div.checker.active span.checked {
+	background-position: -95px -260px;
 }
 
-div.checker.focus span.checked,
-div.checker:hover span.checked {
-    background-position: -114px -260px;
+div.checker.focus span.checked, div.checker:hover span.checked {
+	background-position: -114px -260px;
 }
 
-div.checker.focus:active span.checked,
-div.checker:hover:active span.checked,
-div.checker.active:hover span.checked,
-div.checker.active.focus span.checked {
-    background-position: -133px -260px;
+div.checker.focus:active span.checked, div.checker:hover:active span.checked, div.checker.active:hover span.checked, div.checker.active.focus span.checked {
+	background-position: -133px -260px;
 }
 
-div.checker.disabled span,
-div.checker.disabled:active span,
-div.checker.disabled.active span {
-    background-position: -152px -260px;
+div.checker.disabled span, div.checker.disabled:active span, div.checker.disabled.active span {
+	background-position: -152px -260px;
 }
 
-div.checker.disabled span.checked,
-div.checker.disabled:active span.checked,
-div.checker.disabled.active span.checked {
-    background-position: -171px -260px;
+div.checker.disabled span.checked, div.checker.disabled:active span.checked, div.checker.disabled.active span.checked {
+	background-position: -171px -260px;
 }
 
 /* Radio */
 
 div.radio {
-    width: 18px;
-    height: 18px;
+	width: 18px;
+	height: 18px;
 }
 
 div.radio input {
-    width: 18px;
-    height: 18px;
-    position: relative;
-    top: -4px;
-    margin-left: 0!important;
+	width: 18px;
+	height: 18px;
+	position: relative;
+	top: -4px;
+	margin-left: 0 !important;
 }
 
 div.radio span {
-    height: 18px;
-    width: 18px;
-    background-position: 0px -279px;
+	height: 18px;
+	width: 18px;
+	background-position: 0px -279px;
 }
 
-div.radio:active span,
-div.radio.active span {
-    background-position: -18px -279px;
+div.radio:active span, div.radio.active span {
+	background-position: -18px -279px;
 }
 
-div.radio.focus span,
-div.radio:hover span {
-    background-position: -36px -279px;
+div.radio.focus span, div.radio:hover span {
+	background-position: -36px -279px;
 }
 
-div.radio.focus:active span,
-div.radio:active:hover span,
-div.radio.active:hover span,
-div.radio.active.focus span {
-    background-position: -54px -279px;
+div.radio.focus:active span, div.radio:active:hover span, div.radio.active:hover span, div.radio.active.focus span {
+	background-position: -54px -279px;
 }
 
 div.radio span.checked {
-    background-position: -72px -279px;
+	background-position: -72px -279px;
 }
 
-div.radio:active span.checked,
-div.radio.active span.checked {
-    background-position: -90px -279px;
+div.radio:active span.checked, div.radio.active span.checked {
+	background-position: -90px -279px;
 }
 
 div.radio.focus span.checked, div.radio:hover span.checked {
-    background-position: -108px -279px;
+	background-position: -108px -279px;
 }
 
-div.radio.focus:active span.checked,
-div.radio:hover:active span.checked,
-div.radio.focus.active span.checked,
-div.radio.active:hover span.checked {
-    background-position: -126px -279px;
+div.radio.focus:active span.checked, div.radio:hover:active span.checked, div.radio.focus.active span.checked, div.radio.active:hover span.checked {
+	background-position: -126px -279px;
 }
 
-div.radio.disabled span,
-div.radio.disabled:active span,
-div.radio.disabled.active span {
-    background-position: -144px -279px;
+div.radio.disabled span, div.radio.disabled:active span, div.radio.disabled.active span {
+	background-position: -144px -279px;
 }
 
-div.radio.disabled span.checked,
-div.radio.disabled:active span.checked,
-div.radio.disabled.active span.checked {
-    background-position: -162px -279px;
+div.radio.disabled span.checked, div.radio.disabled:active span.checked, div.radio.disabled.active span.checked {
+	background-position: -162px -279px;
 }
 
 /* Uploader */
 
 div.uploader {
-    background-position: 0px -297px;
-    height: 28px;
+	background-position: 0px -297px;
+	height: 28px;
 }
 
 div.uploader span.action {
-    background-position: right -409px;
-    height: 24px;
-    line-height: 24px;
+	background-position: right -409px;
+	height: 24px;
+	line-height: 24px;
 }
 
 div.uploader span.filename {
-    height: 24px;
-    /* change this line to adjust positioning of filename area */
-    margin: 2px 0px 2px 2px;
-    line-height: 24px;
+	height: 24px;
+	/* change this line to adjust positioning of filename area */
+	margin: 2px 0px 2px 2px;
+	line-height: 24px;
 }
 
-div.uploader.focus,
-div.uploader.hover,
-div.uploader:hover {
-    background-position: 0px -353px;
+div.uploader.focus, div.uploader.hover, div.uploader:hover {
+	background-position: 0px -353px;
 }
 
-div.uploader.focus span.action,
-div.uploader.hover span.action,
-div.uploader:hover span.action {
-    background-position: right -437px;
+div.uploader.focus span.action, div.uploader.hover span.action, div.uploader:hover span.action {
+	background-position: right -437px;
 }
 
-div.uploader.active span.action,
-div.uploader:active span.action {
-    background-position: right -465px;
+div.uploader.active span.action, div.uploader:active span.action {
+	background-position: right -465px;
 }
 
-div.uploader.focus.active span.action,
-div.uploader:focus.active span.action,
-div.uploader.focus:active span.action,
-div.uploader:focus:active span.action {
-    background-position: right -493px;
+div.uploader.focus.active span.action, div.uploader:focus.active span.action, div.uploader.focus:active span.action, div.uploader:focus:active span.action {
+	background-position: right -493px;
 }
 
 div.uploader.disabled {
-    background-position: 0px -325px;
+	background-position: 0px -325px;
 }
 
 div.uploader.disabled span.action {
-    background-position: right -381px;
+	background-position: right -381px;
 }
 
 /* Checker */
 div.checker {
-    margin-right: 5px;
+	margin-right: 5px;
 }
 
 /* Radio */
 div.radio {
-    margin-right: 3px;
+	margin-right: 3px;
 }
 
 /* Uploader */
 div.uploader {
-    width: 169px;
-    cursor: pointer;
+	width: 169px;
+	cursor: pointer;
 }
 
 div.uploader span.action {
-    width: 85px;
-    text-align: center;
-    text-shadow: #fff 0px 1px 0px;
-    background-color: #fff;
-    font-size: 11px;
-    font-weight: bold;
+	width: 85px;
+	text-align: center;
+	text-shadow: #fff 0px 1px 0px;
+	background-color: #fff;
+	font-size: 11px;
+	font-weight: bold;
 }
 
 div.uploader span.filename {
-    color: #777;
-    width: 82px;
-    border-right: solid 1px #bbb;
-    font-size: 11px;
+	color: #777;
+	width: 82px;
+	border-right: solid 1px #bbb;
+	font-size: 11px;
 }
 
 div.uploader input {
-    width: 190px;
+	width: 190px;
 }
 
 div.uploader.disabled span.action {
-    color: #aaa;
+	color: #aaa;
 }
 
 div.uploader.disabled span.filename {
-    border-color: #ddd;
-    color: #aaa;
+	border-color: #ddd;
+	color: #aaa;
 }
 /*
 
-CORE FUNCTIONALITY
+ CORE FUNCTIONALITY
 
-Not advised to edit stuff below this line
------------------------------------------------------
-*/
+ Not advised to edit stuff below this line
+ -----------------------------------------------------
+ */
 
-.selector,
-.checker,
-.radio,
-.uploader {
-    display: -moz-inline-box;
-    display: inline-block;
-    vertical-align: middle;
-    zoom: 1;
-    *display: inline;
+.selector, .checker, .radio, .uploader {
+	display: -moz-inline-box;
+	display: inline-block;
+	vertical-align: middle;
+	zoom: 1;
+	*display: inline;
 }
 
 .selector select:focus, .radio input:focus, .checker input:focus, .uploader input:focus {
-    outline: 0;
+	outline: 0;
 }
 
 /* Checker */
 
 div.checker {
-    position: relative;
+	position: relative;
 }
 
 div.checker span {
-    display: -moz-inline-box;
-    display: inline-block;
-    text-align: center;
+	display: -moz-inline-box;
+	display: inline-block;
+	text-align: center;
 }
 
 div.checker input {
-    opacity: 0;
-    filter: alpha(opacity:0);
-    display: inline-block;
-    background: none;
+	opacity: 0;
+	filter: alpha(opacity:0);
+	display: inline-block;
+	background: none;
 }
 
 /* Radio */
 
 div.radio {
-    position: relative;
+	position: relative;
 }
 
 div.radio span {
-    display: -moz-inline-box;
-    display: inline-block;
-    text-align: center;
+	display: -moz-inline-box;
+	display: inline-block;
+	text-align: center;
 }
 
 div.radio input {
-    opacity: 0;
-    filter: alpha(opacity:0);
-    text-align: center;
-    display: inline-block;
-    background: none;
+	opacity: 0;
+	filter: alpha(opacity:0);
+	text-align: center;
+	display: inline-block;
+	background: none;
 }
 
 /* Uploader */
 
 div.uploader {
-    position: relative;
-    overflow: hidden;
-    cursor: default;
+	position: relative;
+	overflow: hidden;
+	cursor: default;
 }
 
 div.uploader span.action {
-    float: left;
-    display: inline;
-    padding: 2px 0px;
-    overflow: hidden;
-    cursor: pointer;
+	float: left;
+	display: inline;
+	padding: 2px 0px;
+	overflow: hidden;
+	cursor: pointer;
 }
 
 div.uploader span.filename {
-    padding: 0px 10px;
-    float: left;
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    cursor: default;
-    position:relative;
+	padding: 0px 10px;
+	float: left;
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	cursor: default;
+	position: relative;
 }
 
 div.uploader input {
-    opacity: 0;
-    filter: alpha(opacity:0);
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    float: right;
-    height: 25px;
-    border: none;
-    cursor: default;
+	opacity: 0;
+	filter: alpha(opacity:0);
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	float: right;
+	height: 25px;
+	border: none;
+	cursor: default;
 }
 
 /**
-*Tree
-*/
+ *Tree
+ */
 
-.u-tree  {
-    position: relative;
-    float: left;
-    min-height: 540px;
-    width: 25%;
-    border-right: 1px solid #DDDDDD!important;
+.u-tree {
+	position: relative;
+	float: left;
+	min-height: 540px;
+	width: 25%;
+	border-right: 1px solid #DDDDDD !important;
 }
 
 .tree {
-    position:relative;
-    padding:10px 15px;
-    overflow-x:hidden;
-    overflow-y:auto;
-    border:1px solid #BBBBBB;
-    border-radius:4px 4px 4px 4px;
+	position: relative;
+	padding: 10px 15px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	border: 1px solid #BBBBBB;
+	border-radius: 4px 4px 4px 4px;
 }
 
 .tree .tree-folder {
-    width:100%;
-    min-height:20px;
-    margin-top:1px;
-    cursor:pointer;
+	width: 100%;
+	min-height: 20px;
+	margin-top: 1px;
+	cursor: pointer;
 }
 
 .tree .tree-folder .tree-folder-header {
-    position:relative;
-    height:20px;
-    -webkit-border-radius:6px;
-    -moz-border-radius:6px;
-    border-radius:6px;
+	position: relative;
+	height: 20px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
 }
 
 .tree .tree-folder .tree-folder-header:hover {
-    background-color:#dfeef5;
+	background-color: #dfeef5;
 }
 
 .tree .tree-folder .tree-folder-header i {
-    position:relative;
-    top:-1px;
+	position: relative;
+	top: -1px;
 }
 
 .tree .tree-folder .tree-folder-header .tree-folder-name {
-    display: inline;
-    padding-left:4px;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    font-size: 14px;
+	display: inline;
+	padding-left: 4px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 14px;
 }
 
 .tree .tree-folder .tree-folder-content {
-    margin-left:23px;
+	margin-left: 23px;
 }
 
 .tree .tree-item {
-    position:relative;
-    width:100%;
-    height:20px;
-    margin-top:1px;
-    cursor:pointer;
-    -webkit-border-radius:6px;
-    -moz-border-radius:6px;
-    border-radius:6px;
+	position: relative;
+	width: 100%;
+	height: 20px;
+	margin-top: 1px;
+	cursor: pointer;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
 }
 
 .tree .tree-item:hover {
-    background-color:#dfeef5;
+	background-color: #dfeef5;
 }
 
 .tree .tree-item .tree-item-name {
-    display: inline;
-    position: relative;
-    left:4px;
-    font-size: 14px;
+	display: inline;
+	position: relative;
+	left: 4px;
+	font-size: 14px;
 }
 .tree .tree-selected {
-    background-color:#b9dff1;
+	background-color: #b9dff1;
 }
 
 .tree .tree-selected:hover {
-    background-color:#b9dff1;
+	background-color: #b9dff1;
 }
 
 .tree .checkbox input {
-    height: 20px;
-    margin: 0 0 0 -20px;
+	height: 20px;
+	margin: 0 0 0 -20px;
 }
 .tree .radio, .tree .checkbox {
-    margin-top: 2px;
-    margin-bottom: 2px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+@media (max-width: 1366px) {
+	.btn, .wizard, .dropdown-menu, .select, .tree .tree-folder-name {
+		font-size: 12px!important;
+	}
+	.form-control {
+		height: 30px;
+		padding: 5px 10px;
+		font-size: 12px;
+		line-height: 1.5;
+		border-radius: 3px;
+	}
+	.table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td {
+		padding: 5px;
+	}
+	.grid > tbody > tr > td {
+		padding: 0;
+	}
 }

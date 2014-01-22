@@ -23,7 +23,6 @@ import org.openkoala.opencis.exception.UserListBlankException;
 import org.openkoala.opencis.exception.UserOrPasswordErrorException;
 import org.openkoala.opencis.support.SSHConnectConfig;
 
-
 public class SvnCISClientTest {
 
     private SSHConnectConfig configuration;
@@ -36,7 +35,7 @@ public class SvnCISClientTest {
 
     @Before
     public void setUp() throws Exception {
-        configuration = new SSHConnectConfig("10.108.1.87", "root", "password","/opencis/svn/");
+        configuration = new SSHConnectConfig("10.108.1.106", "root", "password","/opencis/svn/");
         this.initProjectInfo();
         this.initDeveloperInfo();
     }
@@ -165,20 +164,20 @@ public class SvnCISClientTest {
     @Test(expected = UserListBlankException.class)
     public void testUserListBlank() {
         instance = new SvnCISClient(configuration);
-        instance.assignUsersToRole(project, null, "Architect");
+        instance.assignUsersToRole(project, "Architect", null);
     }
 
     @Test(expected = UserListBlankException.class)
     public void testUserListBlank2() {
         instance = new SvnCISClient(configuration);
-        instance.assignUsersToRole(project, new ArrayList<String>(), "Architect");
+        instance.assignUsersToRole(project, "Architect");
     }
 
     @Test(expected = RoleBlankException.class)
     public void testRoleBlank() {
         initUserListAndRoleName();
         instance = new SvnCISClient(configuration);
-        instance.assignUsersToRole(project, userNames, null);
+        instance.assignUsersToRole(project, null,developer);
     }
 
     @Test
@@ -187,7 +186,7 @@ public class SvnCISClientTest {
             initUserListAndRoleName();
             instance = new SvnCISClient(configuration);
 //            instance.createProject(project);
-            instance.assignUsersToRole(project, userNames, roleName);
+            instance.assignUsersToRole(project, roleName,developer);
 //            instance.removeProject(project);
             assertTrue(true);
         } catch (Exception e) {
@@ -213,7 +212,7 @@ public class SvnCISClientTest {
 
     private void initDeveloperInfo() {
         developer = new Developer();
-        developer.setId("zjh");
+        developer.setId("zjh2");
         developer.setName("projectUserTest");
         developer.setPassword("pwdTest");
     }

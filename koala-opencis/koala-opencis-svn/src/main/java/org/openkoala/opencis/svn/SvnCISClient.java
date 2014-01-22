@@ -24,6 +24,7 @@ import org.openkoala.opencis.exception.UserListBlankException;
 import org.openkoala.opencis.exception.UserOrPasswordErrorException;
 import org.openkoala.opencis.support.CommandExecutor;
 import org.openkoala.opencis.support.SSHConnectConfig;
+import org.openkoala.opencis.svn.command.CheckExistsAuthCommand;
 import org.openkoala.opencis.svn.command.SvnAuthzCommand;
 import org.openkoala.opencis.svn.command.SvnClearProjectPasswdFileContentCommand;
 import org.openkoala.opencis.svn.command.SvnCommand;
@@ -159,17 +160,17 @@ public class SvnCISClient implements CISClient {
         return true;
     }
 
-    /**
-     * 该授权分两步：
-     * 1. 创建角色并为用户分配角色
-     * 2. 为角色授予读写权限
-     */
-    public boolean assignUsersToRole(Project project, List<String> userNames, String role) {
-        isAuthInfoNotBlank(project, userNames, role);
-        createGroupAndAddGroupUsers(project, userNames, role);
-        authz(project, role);
-        return true;
-    }
+//    /**
+//     * 该授权分两步：
+//     * 1. 创建角色并为用户分配角色
+//     * 2. 为角色授予读写权限
+//     */
+//    public boolean assignUsersToRole(Project project, List<String> userNames, String role) {
+//        isAuthInfoNotBlank(project, userNames, role);
+//        createGroupAndAddGroupUsers(project, userNames, role);
+//        authz(project, role);
+//        return true;
+//    }
 
     private boolean isAuthInfoNotBlank(Project project, List<String> userNames, String role) {
         isProjectInfoNotBlank(project);
@@ -192,14 +193,40 @@ public class SvnCISClient implements CISClient {
         return true;
     }
 
+    /**
+     * 创建组合添加组用户到authz文件
+     * @param project
+     * @param userNames
+     * @param role
+     */
     private void createGroupAndAddGroupUsers(Project project, List<String> userNames, String role) {
         SvnCommand command = new SvnCreateGroupAndAddGroupUsersCommand(userNames, role, configuration, project);
         try {
             success = executor.executeSync(command);
         } catch (Exception e) {
-            throw new CreateUserGroupException("创建用户组异常", e);
+            throw new CreateUserGroupException("创建用户组到Authz异常", e);
         }
 
+    }
+    
+    /**
+     * 检查是否重复授权
+     * @param role
+     * @param userNames
+     * @param project
+     * @param config
+     * @return
+     */
+    private boolean checkExistsAuth(String role, List<String> userNames, Project project, SSHConnectConfig config){
+    	SvnCommand command = new CheckExistsAuthCommand(userNames, role, config, project);
+    	try {
+			success = executor.executeSync(command);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+
+		return true;
     }
 
     private void authz(Project project, String role) {
@@ -207,7 +234,7 @@ public class SvnCISClient implements CISClient {
         try {
             success = executor.executeSync(command);
         } catch (Exception e) {
-            throw new RemoveProjectException("删除项目异常", e);
+            throw new RuntimeException("授权认证异常", e);
         }
 
     }
@@ -269,6 +296,9 @@ public class SvnCISClient implements CISClient {
         }
 	}
 
+	/**
+	 * 分配多个用户到一个角色里
+	 */
 	@Override
 	public void assignUsersToRole(Project project, String role,Developer... developers) {
 		// TODO Auto-generated method stub
@@ -278,9 +308,26 @@ public class SvnCISClient implements CISClient {
 			userNames.add(developer.getId());
 		}
 		
-		isAuthInfoNotBlank(project, userNames, role);
-        createGroupAndAddGroupUsers(project, userNames, role);
-        authz(project, role);
+		//如果条件不满足，则流程结束
+		if(!isAuthInfoNotBlank(project, userNames, role)){
+			return ;
+		}
+		
+		if(!checkExistsAuth(role, userNames, project, configuration)){
+			return ;
+		}
+		
+		SvnCommand cmdAddUsersGroupAuth = new SvnCreateGroupAndAddGroupUsersCommand(userNames, role, configuration, project);
+		SvnCommand cmdAuthz = new SvnAuthzCommand(role, configuration, project);
+		try {
+			executor.addCommand(cmdAddUsersGroupAuth);
+			executor.addCommand(cmdAuthz);
+			success = executor.executeBatch();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+//        createGroupAndAddGroupUsers(project, userNames, role);
+//        authz(project, role);
 	}
 
 	@Override

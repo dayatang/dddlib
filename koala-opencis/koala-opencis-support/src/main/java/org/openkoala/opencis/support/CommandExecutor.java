@@ -49,6 +49,7 @@ public class CommandExecutor {
 			for(Command command:commands){
 				command.execute();
 			}
+			commands.clear();
 			return true;
 		} catch (Exception e) {
 			return false;
