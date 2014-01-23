@@ -58,7 +58,7 @@
 	
 	<VelocityFileObject>
 		<property name="vm">vm/other/security_config/user-config.properties</property>
-		<property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/user-config.properties</property>
+		<property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/props/user-config.properties</property>
 	</VelocityFileObject>
 	
 	<!--  <VelocityFileObject>
