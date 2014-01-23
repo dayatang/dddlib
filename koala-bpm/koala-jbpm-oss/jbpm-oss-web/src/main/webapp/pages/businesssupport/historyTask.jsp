@@ -129,7 +129,7 @@
 	                	</table>
 	                </div>
 	                <div class="panel-footer">
-	                 	<a class="btn btn-info" target="_blank" href="<c:url value='/businessSupport/viewProcessImage.koala?processInstanceId=${taskInstance.processInstanceId }' />" >查看流程图</a>
+	                 	<a class="btn btn-info" target="_blank" href="<c:url value='${pageContext.request.contextPath}/businessSupport/viewProcessImage.koala?processInstanceId=${taskInstance.processInstanceId }' />" >查看流程图</a>
 	                 </div>
 	            </div>
 	            <%-- <div class="panel panel-default">

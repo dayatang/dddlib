@@ -80,7 +80,7 @@
 		}
 		
 		var view = function(id) {
-			window.open('pages/businesssupport/taskview.html?id=' + id, '查看');
+			window.open('${pageContext.request.contextPath}/pages/businesssupport/taskview.html?id=' + id, '查看');
 		};
 	</script>
 	

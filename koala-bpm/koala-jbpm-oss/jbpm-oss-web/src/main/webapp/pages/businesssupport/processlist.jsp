@@ -28,7 +28,7 @@
             { title:'流程ID', name:'id' , width: '250px'},
             { title:'流程名称', name:'name' , width: '250px'},
             { title:'操作', width: 'auto', render:function(item, name, index){
-                return "<a href='/businessSupport/toStartProcessPage.koala?processId="+item.id+"' target='_blank'><span class='glyphicon glyphicon-transfer'></span>发起流程</a>";
+                return "<a href='${pageContext.request.contextPath}/businessSupport/toStartProcessPage.koala?processId="+item.id+"' target='_blank'><span class='glyphicon glyphicon-transfer'></span>发起流程</a>";
             }}
         ];
        /* 
