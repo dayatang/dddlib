@@ -13,13 +13,12 @@ import org.openkoala.koala.jbpm.designer.application.vo.PublishURLVO;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.GunvorApplication;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.vo.Bpmn2;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.vo.PackageVO;
-import org.openkoala.koala.jbpm.jbpmDesigner.applicationImpl.GunvorApplicationImpl;
-import org.springframework.beans.factory.annotation.Value;
 
 public class JbpmAction {
 
-//	private static final Logger logger = LoggerFactory.getLogger(JbpmAction.class);
-	
+	// private static final Logger logger =
+	// LoggerFactory.getLogger(JbpmAction.class);
+
 	@Inject
 	private GunvorApplication gunvorApplication;
 
@@ -37,33 +36,36 @@ public class JbpmAction {
 	private String bpmnName;
 
 	private int result;
-	
+
 	private String results;
 
 	private List<String> names;
 
 	private List<PublishURLVO> urls;
-	
+
 	private String wsdl;
-	
+
 	private List<ProcessVO> processes;
-	
+
 	private int id;
-	
+
 	private String errors;
-	
+
 	private String gunvorServerUrl;
 
 	public String findPackages() {
-		System.out.println(ServletActionContext.getRequest().getLocalAddr()+":"+ServletActionContext.getRequest().getLocalPort());
+		System.out.println(ServletActionContext.getRequest().getLocalAddr()
+				+ ":" + ServletActionContext.getRequest().getLocalPort());
 		gunvorServerUrl = gunvorApplication.getGunvorServerUrl();
 		packages = gunvorApplication.getPackages();
 		return "json2";
 	}
-	
-	public String createBpmn(){
+
+	public String createBpmn() {
 		try {
-			results = gunvorApplication.createBpm(URLEncoder.encode(packageName, "UTF-8"), URLEncoder.encode(bpmnName, "UTF-8"));
+			results = gunvorApplication.createBpm(
+					URLEncoder.encode(packageName, "UTF-8"),
+					URLEncoder.encode(bpmnName, "UTF-8"));
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
@@ -82,18 +84,30 @@ public class JbpmAction {
 	}
 
 	public String deleteBpmn() {
-		gunvorApplication.deleteBpmn(packageName, bpmnName);
-		result = 1;
+
+		try {
+			gunvorApplication.deleteBpmn(packageName, bpmnName);
+			result = 1;
+		} catch (Exception e) {
+			this.errors = e.getMessage();
+			e.printStackTrace();
+		}
 		return "json2";
 	}
 
 	public String deletePackage() {
-		gunvorApplication.deletePackage(packageName);
-		result = 1;
+		
+		try {
+			gunvorApplication.deletePackage(packageName);
+			result = 1;
+		} catch (Exception e) {
+			this.errors = e.getMessage();
+			e.printStackTrace();
+		}
 		return "json2";
 	}
 
-	public String getPublish(){
+	public String getPublish() {
 		try {
 			this.urls = publishURLApplication.findAllPublishURL();
 		} catch (Exception e) {
@@ -101,12 +115,10 @@ public class JbpmAction {
 		}
 		return "json2";
 	}
-	
-	public String publish(){
+
+	public String publish() {
 		try {
-			
 			this.gunvorApplication.publichJBPM(packageName, bpmnName, wsdl);
-			
 			result = 1;
 		} catch (Exception e) {
 			this.errors = e.getMessage();
@@ -162,19 +174,19 @@ public class JbpmAction {
 	public void setResult(int result) {
 		this.result = result;
 	}
-	
+
 	public String getResults() {
-	
+
 		return results;
 	}
 
 	public void setResults(String results) {
-	
+
 		this.results = results;
 	}
 
-	public String processes(){
-		//TODO 获取某个流程引擎中的所有流程信息
+	public String processes() {
+		// TODO 获取某个流程引擎中的所有流程信息
 		return "json2";
 	}
 
@@ -229,7 +241,5 @@ public class JbpmAction {
 	public String getGunvorServerUrl() {
 		return gunvorServerUrl;
 	}
-	
-	
-	
+
 }

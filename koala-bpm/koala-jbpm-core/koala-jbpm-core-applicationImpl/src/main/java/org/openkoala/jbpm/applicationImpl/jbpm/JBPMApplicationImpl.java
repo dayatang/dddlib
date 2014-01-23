@@ -115,13 +115,13 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	@Inject
 	private JBPMTaskService jbpmTaskService;
 
-	private KoalaBPMSession jbpmSupport;
+	private KoalaBPMSession koalaBPMSession;
 
-	public KoalaBPMSession getJbpmSupport() {
-		if (jbpmSupport == null) {
-			jbpmSupport = InstanceFactory.getInstance(KoalaBPMSession.class);
+	public KoalaBPMSession getKoalaBPMSession() {
+		if (koalaBPMSession == null) {
+			koalaBPMSession = InstanceFactory.getInstance(KoalaBPMSession.class);
 		}
-		return jbpmSupport;
+		return koalaBPMSession;
 	}
 
 	/**
@@ -469,10 +469,10 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		if (processId != null) {
 			if (userGroups.size() > 0) {
 				tasks = jbpmTaskService.findProcessTaskSummaryByGroups(
-						getJbpmSupport().getAllVersionProcess(processId), user,
+						getKoalaBPMSession().getAllVersionProcess(processId), user,
 						userGroups);
 			} else {
-				tasks = jbpmTaskService.findProcessTaskSummary(getJbpmSupport()
+				tasks = jbpmTaskService.findProcessTaskSummary(getKoalaBPMSession()
 						.getAllVersionProcess(processId), user);
 			}
 		} else {
@@ -626,14 +626,14 @@ public class JBPMApplicationImpl implements JBPMApplication {
 		// 读取Global级的变量
 		try {
 			Map<String, Object> params = new HashMap<String, Object>();
-			Map<String, Object> globalMap = getJbpmSupport()
+			Map<String, Object> globalMap = getKoalaBPMSession()
 					.getGlobalVariable();
 			params.put(KoalaBPMVariable.CREATE_USER, creater);
 			Set<String> keys = globalMap.keySet();
 			for (String key : keys) {
 				params.put(key, globalMap.get(key));
 			}
-			String activeProcessName = getJbpmSupport().getActiveProcess(
+			String activeProcessName = getKoalaBPMSession().getActiveProcess(
 					processName);
 
 			org.drools.definition.process.Process process = koalaBPMApiApplication
@@ -641,7 +641,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 			if (process == null) {
 				throw new RuntimeException("不存在的流程，请检查");
 			}
-			Map<String, Object> packageVariaMap = getJbpmSupport()
+			Map<String, Object> packageVariaMap = getKoalaBPMSession()
 					.getPackageVariable(process.getPackageName());
 			// 读取PACKAGE级的变量
 			keys = packageVariaMap.keySet();
@@ -649,7 +649,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 				params.put(key, packageVariaMap.get(key));
 			}
 
-			Map<String, Object> processVariableMap = getJbpmSupport()
+			Map<String, Object> processVariableMap = getKoalaBPMSession()
 					.getProcessVariable(processName);
 			// 读取Process级的变
 			keys = processVariableMap.keySet();
@@ -954,7 +954,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	}
 
 	public List<JBPMNode> getProcessNodes(String processId) {
-		String processIdActual = getJbpmSupport().getActiveProcess(processId);
+		String processIdActual = getKoalaBPMSession().getActiveProcess(processId);
 		List<JBPMNode> jbpmNodes = new ArrayList<JBPMNode>();
 		org.drools.definition.process.Process process = koalaBPMApiApplication
 				.getProcess(processIdActual);
@@ -1130,7 +1130,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 	}
 
 	public List<ProcessInstanceVO> queryAllActiveProcess(String processId) {
-		String processIdActual = getJbpmSupport().getActiveProcess(processId);
+		String processIdActual = getKoalaBPMSession().getActiveProcess(processId);
 		List<ProcessInstanceVO> instances = new ArrayList<ProcessInstanceVO>();
 		List<ProcessInstanceLog> logs = jbpmTaskService
 				.findActiveProcessInstances(processIdActual);
@@ -1245,7 +1245,7 @@ public class JBPMApplicationImpl implements JBPMApplication {
 				processInfo.setPackageName(packageName);
 				processInfo.save();
 			}
-			getJbpmSupport().addProcessToCenter(processInfo, isActive);
+			getKoalaBPMSession().addProcessToCenter(processInfo, isActive);
 			processInfo.publishProcess();
 			this.commitUserTransaction(owner);
 		} catch (RuntimeException e) {

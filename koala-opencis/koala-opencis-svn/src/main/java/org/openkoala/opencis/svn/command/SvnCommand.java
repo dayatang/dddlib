@@ -20,11 +20,8 @@ public abstract class SvnCommand extends SSHCommand {
     }
 
     public SvnCommand(SSHConnectConfig config, Project project) {
-        this.host = config.getHost();
-        this.userName = config.getUsername();
-        this.password = config.getPassword();
+        super(config, project);
         this.storePath = CommonUtil.validatePath(config.getStorePath());
-        this.project = project;
 
     }
 }
