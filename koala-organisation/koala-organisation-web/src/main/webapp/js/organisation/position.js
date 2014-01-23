@@ -52,19 +52,19 @@ var position = function(){
 		    'dataType': 'json'
 		 }).done(function(data){
 			if(data.result == 'success'){
-				$('body').message({
+				dataGrid.message({
 					type: 'success',
 					content: '撤销成功'
 				});
 				dataGrid.grid('refresh');
 			}else{
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
 					content: data.result
 				});
 			}
 		}).fail(function(data){
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
 					content: data.result
 				});
@@ -100,7 +100,7 @@ var position = function(){
 					$(this).remove();
 				},
 				'complete': function(){
-					$('body').message({
+					dataGrid.message({
 						type: 'success',
 						content: '保存成功'
 					});
@@ -213,7 +213,7 @@ var position = function(){
 				setData(id);
 			}
 		}).fail(function(data){
-				$('body').message({
+				dialog.find('.modal-content').message({
 					type: 'error',
 					content: '获取职位信息失败'
 				});
@@ -255,7 +255,7 @@ var position = function(){
 			if(data.result == 'success'){
 				dialog.trigger('complete');
 			}else {
-				dialog.message({
+				dialog.find('.modal-content').message({
 					type: 'error',
 					content: data.result
 				});

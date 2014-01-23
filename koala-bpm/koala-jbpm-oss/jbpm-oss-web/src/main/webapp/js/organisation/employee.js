@@ -61,19 +61,19 @@ var employee = function(){
 		    'dataType': 'json'
 		 }).done(function(data){
 			if(data.result == 'success'){
-				$('body').message({
+				dataGrid.message({
 					type: 'success',
 					content: '解雇成功'
 				});
 				dataGrid.grid('refresh');
 			}else{
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
 					content: data.result
 				});
 			}
 		}).fail(function(data){
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
 					content: '解雇失败'
 				});
@@ -136,7 +136,7 @@ var employee = function(){
 				contents: contents
 			});
 		}).fail(function(data){
-			$('body').message({
+			dialog.find('.modal-content').message({
 				type: 'error',
 				content: '获取性别信息失败'
 			});
@@ -148,7 +148,7 @@ var employee = function(){
     var selectDepartments = function(){
 		$.get( contextPath + '/pages/organisation/selectDepartmentTemplate.html').done(function(data){
 			var departmentTreeDialog = $(data);
-			departmentTreeDialog.find('.modal-dialog').css({width:'780px'});
+			departmentTreeDialog.find('.modal-dialog').css({width:'800px'});
 			departmentTree = departmentTreeDialog.find('.tree');
             loadDepartmentTree();
 			departmentTreeDialog.find('#confirm').on('click',function(){
@@ -243,7 +243,7 @@ var employee = function(){
 				contents: contents
 			});
 		}).fail(function(data){
-			$('body').message({
+			dialog.find('.modal-content').message({
 				type: 'error',
 				content: '获取职位信息失败'
 			});
@@ -305,7 +305,7 @@ var employee = function(){
 			} else if(data.result == '该职务已存在'){
 				showErrorMessage(dataSourceId, '该职务已存在');
 			} else {
-				dialog.message({
+				dialog.find('.modal-content').message({
 					type: 'error',
 					content: data.result
 				});

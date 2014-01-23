@@ -53,7 +53,7 @@ $(function(){
                     editProcess(data.info[0]);
                 }
          });
-    })
+    });
 
     var createRightMenu = function(ev){
         var $element = $(ev.currentTarget);
@@ -70,7 +70,7 @@ $(function(){
             menuData.push({action: 'publishProcess', title:'发布流程'});
         }
         menuTree.tree('createRightMenu', {event:ev, element: $element, data:menuData});
-    }
+    };
 
     var  addPackage = function($element){
         $.get(contextPath + '/pages/jbpm/jbpmPackageTemplate.html').done(function(data){
@@ -89,29 +89,29 @@ $(function(){
                 var params = {
                     packageName: name.val(),
                     description: descript.val()
-                }
+                };
                 $.post(contextPath + '/jbpm-Jbpm-createPackage.action').done(function(data){
                     if(!data.errors){
                         $('body').message({
                             type: 'success',
                             content: '添加成功'
-                        })
+                        });
                         dialog.modal('hide');
                         var menu = {
                             title: name.val(),
                             level: $($element).data('level')+1
-                        }
+                        };
                         menuTree.tree('addChildren', {node: $element, type: 'parent',menu: menu });
                     }else{
-                        dialog.message({
+                        dialog.find('.modal-content').message({
                             type: 'error',
                             content: '添加失败'
-                        })
+                        });
                     }
-                })
-            })
+                });
+            });
         });
-    }
+    };
 
     var addProcess = function($element){
         $.get(contextPath + '/pages/jbpm/jbpmProcessTemplate.html').done(function(data){
@@ -131,7 +131,7 @@ $(function(){
                         title: name.val(),
                         level: $($element).data('level')+1,
                         parent: $($element).data('title')
-                    }
+                    };
                     menuTree.tree('addChildren', {node: $element, type: 'children',menu: menu });
                     menu.url = gunvorServerUrl+'/org.drools.guvnor.Guvnor/standaloneEditorServlet' +
                         '?locale=zh_CN&packageName='+$($element).data('title')+
@@ -141,11 +141,11 @@ $(function(){
                     $('body').message({
                           type: 'success',
                           content: '添加成功'
-                    })
+                    });
                     dialog.modal('hide');
-                })
+                });
         });
-    }
+    };
 
     var deletePackage = function($element){
         var data = $($element).data();
@@ -158,23 +158,23 @@ $(function(){
                         $('body').message({
                             type: 'success',
                             content: '删除成功'
-                        })
+                        });
                         menuTree.tree('removeChildren', $element);
                     }else{
                         $('body').message({
                             type: 'error',
                             content: '删除失败'
-                        })
+                        });
                     }
                 });
             }
         });
-    }
+    };
 
     var editProcess = function(data){
         data.url = gunvorServerUrl+"/org.drools.guvnor.Guvnor/standaloneEditorServlet?locale=zh_CN&assetsUUIDs="+ data.id + "&client=oryx";
         openTab('/pages/jbpm/edit-process.html', data.title, data.title,  data.title, data);
-    }
+    };
 
     var deleteProcess = function($element){
         $('body').confirm({
@@ -187,7 +187,7 @@ $(function(){
                         $('body').message({
                             type: 'success',
                             content: '删除成功'
-                        })
+                        });
                         menuTree.tree('removeChildren', $element);
                         $('#navTabs').find('[href="#home"]').tab('show');
                         $('#navTabs').find('[href="#'+bpmnName+'"]').parent().remove();
@@ -196,12 +196,12 @@ $(function(){
                         $('body').message({
                             type: 'error',
                             content: '删除失败'
-                        })
+                        });
                     }
                 });
             }
         });
-    }
+    };
 
     var publishProcess = function($element){
         $.get(contextPath + '/pages/jbpm/publishProcessTemplate.html').done(function(data){
@@ -209,13 +209,13 @@ $(function(){
             $.get(contextPath + '/jbpm-Jbpm-getPublish.action').done(function(result){
                 var urls = new Array();
                 $.each(result.urls, function(){
-                    urls.push({title: this.name, value: this.url})
+                    urls.push({title: this.name, value: this.url});
                 });
                 dialog.find('#urlList').select({
                     title: '选择发布地址',
                     contents: urls
                 });
-            })
+            });
             dialog.modal({
                 keyboard: true
             }).on('hidden.bs.modal', function(){
@@ -231,24 +231,24 @@ $(function(){
                         bpmnName: data.title,
                         packageName: data.parent,
                         wsdl: urlList.getValue()
-                    }
+                    };
                     $.post(contextPath + '/jbpm-Jbpm-publish.action', params).done(function(data){
                         if(!data.errors){
                             $('body').message({
                                 type: 'success',
                                 content: '发布成功'
-                            })
+                            });
                             dialog.modal('hide');
                         }else{
                             dialog.message({
                                 type: 'error',
                                 content: data.errors
-                            })
+                            });
                         }
-                    })
-                })
+                    });
+                });
         });
-    }
+    };
 
     var openPackage = function(params){
         var $element = $(params.element);
@@ -259,7 +259,7 @@ $(function(){
                 $.each(result.bpmns, function(){
                     menuTree.tree('addChildren', {node: $element, type: 'children',menu: {id:this.uuid, parent:data.id, title: this.text, level: 2} });
                 });
-            })
+            });
         }
-    }
+    };
 });

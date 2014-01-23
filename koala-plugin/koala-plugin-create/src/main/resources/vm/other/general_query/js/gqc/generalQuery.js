@@ -37,19 +37,19 @@ var generalQuery = function(){
 		dataGrid = grid;
 		$.post(baseUrl + 'delete.koala', {ids:ids}).done(function(data){
 			 if(data.result == 'success'){
-				 $('body').message({
+				dataGrid.message({
 					 type: 'success',
 					 content: '删除成功'
 				 }) ;
 				 dataGrid.grid('refresh');
 			 }else{
-				 $('body').message({
+				 dataGrid.message({
 					 type: 'error',
 					 content: '删除失败'
 				 })
 			 }
 		}).fail(function(data){
-			$('body').message({
+			dataGrid.message({
 				type: 'error',
 				content: '删除失败'
 			})
@@ -82,7 +82,7 @@ var generalQuery = function(){
 					$(this).remove();
 				},
 				'complete': function(){
-					$('body').message({
+					dataGrid.message({
 						type: 'success',
 						content: '保存成功'
 					})
@@ -172,7 +172,7 @@ var generalQuery = function(){
 				dialog.find('#generalQuery_queryName').val(generalQueryObject.queryName);
 				dialog.find('#generalQuery_description').val(generalQueryObject.description);
 			}).fail(function(){
-				$('body').message({
+				dialog.find('.modal-content').message({
 					type: 'error',
 					content: '获取信息失败, 可能数据源连接不通'
 				})
@@ -418,7 +418,7 @@ var generalQuery = function(){
 			if(data.result == 'success'){
 				dialog.trigger('complete');
 			}else{
-				dialog.message({
+				dialog.find('.modal-content').message({
 					type: 'error',
 					content: data.result
 				});
@@ -454,7 +454,7 @@ var generalQuery = function(){
 			}
 		});
 		if(showColumnRightTable.find('tr').length == 0){
-			$('body').message({
+			dialog.find('.modal-content').message({
 				type: 'warning',
 				content: '请选择要显示的列！'
 			});

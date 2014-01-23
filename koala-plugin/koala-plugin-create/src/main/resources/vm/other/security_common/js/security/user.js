@@ -40,19 +40,19 @@ var userManager = function(){
 		dataGrid = grid;
 		$.post(baseUrl + 'del.koala', data).done(function(data){
 			if(data.result == 'success'){
-				$('body').message({
+				dataGrid.message({
 					type: 'success',
 					content: '删除成功'
 				});
 				dataGrid.grid('refresh');
 			}else{
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
 					content: data.actionError
 				});
 			}
 		}).fail(function(data){
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
 					content: '删除失败'
 				});
@@ -85,7 +85,7 @@ var userManager = function(){
 					$(this).remove();
 				},
 				'complete': function(){
-					$('body').message({
+					dataGrid.message({
 						type: 'success',
 						content: '保存成功'
 					});
@@ -125,7 +125,7 @@ var userManager = function(){
 			if(data.result == 'success'){
 				dialog.trigger('complete');
 			}else{
-				dialog.message({
+				dialog.find('.modal-content').message({
 					type: 'error',
 					content: data.actionError
 				});
@@ -186,7 +186,7 @@ var userManager = function(){
 			dialog.find('#save').on('click',function(){
 				var indexs = dialog.find('#selectUserGrid').data('koala.grid').selectedRowsIndex();
 				if(indexs.length == 0){
-					$('body').message({
+					dialog.find('.modal-content').message({
 						type: 'warning',
 						content: '请选择要分配的用户'
 					});
@@ -199,20 +199,20 @@ var userManager = function(){
 				}
 				$.post(contextPath + '/auth/Role/assignUsers.koala', data).done(function(data){
 					if(data.result == 'success'){
-						$('body').message({
+						grid.message({
 							type: 'success',
 							content: '保存成功'
 						});
 						dialog.modal('hide');
 						grid.grid('refresh');
 					}else{
-						$('body').message({
+						dialog.find('.modal-content').message({
 							type: 'error',
 							content: data.actionError
 						});
 					}
 				}).fail(function(data){
-					$('body').message({
+					dialog.message({
 						type: 'error',
 						content: '保存失败'
 					});
@@ -227,7 +227,7 @@ var userManager = function(){
 						initSelectUserGrid(roleId, dialog);
 					},
 					'complete': function(){
-						$('body').message({
+						dataGrid.message({
 							type: 'success',
 							content: '保存成功'
 						});
@@ -285,19 +285,19 @@ var userManager = function(){
 		data.roleId = roleId;
 		$.post(baseUrl + 'removeUserForRole.koala', data).done(function(data){
 			if(data.result == 'success'){
-				$('body').message({
+				dataGrid.message({
 					type: 'success',
 					content: '删除成功'
 				});
 				grid.grid('refresh');
 			}else{
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
 					content: data.actionError
 				});
 			}
 		}).fail(function(data){
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
 					content: '删除失败'
 				});

@@ -47,19 +47,19 @@ var job = function(){
 		    'dataType': 'json'
 		 }).done(function(data){
 			if(data.result == 'success'){
-				$('body').message({
+				dataGrid.message({
 					type: 'success',
 					content: '删除成功'
 				});
 				dataGrid.grid('refresh');
 			}else{
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
 					content: '删除失败'
 				});
 			}
 		}).fail(function(data){
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
 					content: '删除失败'
 				});
@@ -83,7 +83,7 @@ var job = function(){
 					$(this).remove();
 				},
 				'complete': function(){
-					$('body').message({
+					dataGrid.message({
 						type: 'success',
 						content: '保存成功'
 					});
@@ -122,7 +122,7 @@ var job = function(){
 			} else if(data.result == '该职务已存在'){
 				showErrorMessage(dataSourceId, '该职务已存在');
 			} else {
-				dialog.message({
+				dialog.find('.modal-content').message({
 					type: 'error',
 					content: data.result
 				});

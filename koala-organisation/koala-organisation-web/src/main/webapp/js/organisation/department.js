@@ -163,13 +163,13 @@ var department = function(){
 			if(data.result == 'success'){
 				dialog.trigger('complete', type);
 			}else{
-				dialog.message({
+				dialog.find('.modal-content').message({
 					type: 'error',
 					content: data.result
 				});	
 			}
 		}).fail(function(data){
-				dialog.message({
+				dialog.find('.modal-content').message({
 					type: 'error',
 					content: '保存失败'
 				});
@@ -385,7 +385,7 @@ var department = function(){
 				$('#updateDepartment').show();
 			}
 		}).fail(function(data){
-				$(window).message({
+				$('body').message({
 					type: 'error',
 					content: '无法获取该部门信息'
 				});
@@ -397,7 +397,7 @@ var department = function(){
 
 			employeeListDialog.find('#deleteRelation').on('click',function(){
 				var grid = employeeListDialog.find('#employeeList');
-				deleteEmployeeRelation(id, grid.data('koala.grid').selectedRows() , grid);
+				deleteEmployeeRelation(employeeListDialog, id, grid.data('koala.grid').selectedRows() , grid);
 			}).end().modal({
 					keyboard: false
 				}).on({
@@ -446,9 +446,9 @@ var department = function(){
 			$span.toggleClass('checked');
 		});
 	};
-	var deleteEmployeeRelation = function(id, items, grid){
+	var deleteEmployeeRelation = function(employeeListDialog, id, items, grid){
 		if(items.length == 0){
-			$('body').message({
+			employeeListDialog.find('.modal-content').message({
 				type: 'warning',
 				content: '请选择要解除关系的员工'
 			});
@@ -475,7 +475,7 @@ var department = function(){
 							});
 							grid.grid('refresh');
 						}else{
-							$('body').message({
+							employeeListDialog.find('.modal-content').message({
 								type: 'error',
 								content: data.result
 							});

@@ -32,7 +32,7 @@ var scheduleManager = {
         $.post( contextPath + "/monitor/ServiceMonitor/updateScheduleConf.koala",params)
         .done(function(result){
             if(result.success){
-               $('body').message({
+               $('#scheduleGrid').message({
                    type: 'success',
                    content: '修改成功'
                })
@@ -60,7 +60,7 @@ var scheduleManager = {
         $.post(contextPath + '/monitor/ServiceMonitor/updateScheduleConf.koala', params)
          .done(function(result){
             if(result.success){
-                $('body').message({
+                $('#scheduleGrid').message({
                     type: 'success',
                     content: '修改成功'
                 })

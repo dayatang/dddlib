@@ -35,19 +35,19 @@ var dataSource = function(){
 		dataGrid = grid;
 		$.post(baseUrl + 'delete.koala', {ids:ids}).done(function(data){
 			if(data.result == 'success'){
-				$('body').message({
+				dataGrid.message({
 					type: 'success',
 					content: '删除成功'
 				});
 				dataGrid.grid('refresh');
 			}else{
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
 					content: '删除失败'
 				});
 			}
 		}).fail(function(data){
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
 					content: '删除失败'
 				});
@@ -76,7 +76,7 @@ var dataSource = function(){
 					$(this).remove();
 				},
 				'complete': function(){
-					$('body').message({
+					dataGrid.message({
 						type: 'success',
 						content: '保存成功'
 					});
@@ -94,7 +94,7 @@ var dataSource = function(){
 		$.post(baseUrl+'checkDataSource.koala', getAllData()).done(function(data){
 			var result = data.result;
 			var type = data.result == '该数据源不可用' ? 'warning' : 'success';
-			dialog.message({
+			dialog.find('.modal-content').message({
 				type: type,
 				content: result
 			});
@@ -107,7 +107,7 @@ var dataSource = function(){
 		$.post(baseUrl+'checkDataSourceById.koala?id='+id).done(function(data){
 			var result = data.result;
 			var type = data.result == '该数据源不可用' ? 'warning' : 'success';
-			$('body').message({
+			dataGrid.message({
 				type: type,
 				content: result
 			});
@@ -148,7 +148,7 @@ var dataSource = function(){
 			}else if(data.result == '该数据源ID已存在'){
 				showErrorMessage(dataSourceId, '该数据源ID已存在');
 			}else{
-				dialog.message({
+				dialog.find('.modal-content').message({
 					type: 'error',
 					content: '系统繁忙'
 				});
