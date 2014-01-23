@@ -1,4 +1,4 @@
-package org.openkoala.koala.auth.ss3adapter;
+package org.openkoala.koala.auth.ss3adapter.filter;
 
 import java.io.IOException;
 import javax.servlet.Filter;

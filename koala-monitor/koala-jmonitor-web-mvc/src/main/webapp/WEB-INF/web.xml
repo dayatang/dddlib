@@ -7,6 +7,10 @@
 	<listener>
 		<listener-class>com.dayatang.spring.webapp.DayatangContextLoaderListener</listener-class>
 	</listener>
+	
+	<listener>
+		<listener-class>org.openkoala.koala.auth.web.InitSuperUserListener</listener-class>
+	</listener>
 
 	<!-- Character Filter -->
 	<filter>

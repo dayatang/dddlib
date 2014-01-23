@@ -16,7 +16,6 @@ import org.openkoala.koala.auth.UserDetails;
 import org.openkoala.koala.auth.core.domain.IdentityResourceAuthorization;
 import org.openkoala.koala.auth.core.domain.Role;
 import org.openkoala.koala.auth.core.domain.User;
-import org.openkoala.koala.auth.password.PasswordEncoder;
 import org.openkoala.koala.auth.vo.DefaultUserDetailsImpl;
 
 /**
@@ -30,18 +29,6 @@ import org.openkoala.koala.auth.vo.DefaultUserDetailsImpl;
 @Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
 public class AuthDataServiceImpl implements AuthDataService {
 	
-	private PasswordEncoder passwordEncoder;
-	
-	private UserConfig userConfig;
-	
-	public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
-		this.passwordEncoder = passwordEncoder;
-	}
-
-	public void setUserConfig(UserConfig userConfig) {
-		this.userConfig = userConfig;
-	}
-
 	@Override
 	public List<String> getAttributes(String res) {
 		return retrieveResourceAndRoles().get(res);
@@ -63,12 +50,6 @@ public class AuthDataServiceImpl implements AuthDataService {
 
 	@Override
 	public UserDetails loadUserByUseraccount(String useraccount) {
-		if (isSuperUser(useraccount)) {
-			return getUserDetails(userConfig.getAdminAccount(), 
-					passwordEncoder.encode(userConfig.getAdminPassword()),
-					userConfig.getAdminAccount(), "administrator@openkoala.com", 
-					userConfig.getAdminAccount(), userConfig.getAdminRealName(), true, true);
-		}
 		
 		User user = User.findByUserAccount(useraccount);
 		
@@ -81,7 +62,7 @@ public class AuthDataServiceImpl implements AuthDataService {
 		}
 		
 		return getUserDetails(user.getUserAccount(), user.getUserPassword(), user.getUserDesc(),
-				user.getEmail(), user.getName(), user.getName(), user.isValid(), false);
+				user.getEmail(), user.getName(), user.getName(), user.isValid(), user.isSuper());
 	}
 	
 	@Override
@@ -90,6 +71,10 @@ public class AuthDataServiceImpl implements AuthDataService {
 			return findAllRoles();
 		}
 		return findRoleByUseraccount(accountName);
+	}
+
+	private boolean isSuperUser(String accountName) {
+		return User.findByUserAccount(accountName).isSuper();
 	}
 
 	private List<String> findRoleByUseraccount(String accountName) {
@@ -121,15 +106,11 @@ public class AuthDataServiceImpl implements AuthDataService {
 		userDetails.setDescription(desc);
 		userDetails.setEmail(email);
 		userDetails.setRealName(name);
+		userDetails.setSuper(isSuper);
 		userDetails.setAuthorities(getUserRoles(useraccount));
 		userDetails.setEnabled(isValid);
-		userDetails.setSuper(isSuper);
 		userDetails.setRealName(realName);
 		return userDetails;
 	}
 
-	private boolean isSuperUser(String useraccount) {
-		return userConfig.getAdminAccount().equals(useraccount);
-	}
-	
 }
