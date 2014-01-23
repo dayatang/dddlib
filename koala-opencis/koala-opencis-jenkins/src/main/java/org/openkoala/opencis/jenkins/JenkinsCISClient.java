@@ -91,14 +91,14 @@ public class JenkinsCISClient implements CISClient {
             return;
         }
 
-        client.createUser(developer.getName(), developer.getPassword(),
-                developer.getEmail(), developer.getFullName());
+        client.createUser(developer.getId(), developer.getPassword(),
+                developer.getEmail(), developer.getName());
 
     }
 
     public boolean existUser(Developer developer) {
         try {
-            client.retrieveUser(developer.getName());
+            client.retrieveUser(developer.getId());
             return true;
         } catch (NoSuchUserException e) {
             return false;
@@ -111,7 +111,7 @@ public class JenkinsCISClient implements CISClient {
     public void removeUser(Project project, Developer developer) {
         try {
             User user =
-                    client.retrieveUser(developer.getName());
+                    client.retrieveUser(developer.getId());
             if (null != user) {
                 client.deleteUser(user);
             }
@@ -169,7 +169,7 @@ public class JenkinsCISClient implements CISClient {
 
 
     private User createByDeveloper(Developer developer) {
-        return new UserImpl(developer.getName(), developer.getEmail());
+        return new UserImpl(developer.getId(), developer.getEmail());
     }
 
 }
