@@ -75,7 +75,7 @@
     <script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
     <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />?time=<%=time%>" ></script>
     <script type="text/javascript" src="<c:url value='/lib/koala-tree.js' />?time=<%=time%>" ></script>
-    <script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
+    <script type="text/javascript" src="<c:url value='/lib/validate.js' />"></script>
     <script type="text/javascript" src="<c:url value='/js/main.js' />?time=<%=time%>" ></script>
     <script type="text/javascript" src="<c:url value='/js/jbpmDesigner/jbpmDesigner.js' />?time=<%=time%>" ></script>
     </body>
