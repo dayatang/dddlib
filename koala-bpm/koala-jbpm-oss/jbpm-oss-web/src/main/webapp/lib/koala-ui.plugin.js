@@ -1036,12 +1036,18 @@
             this.$button.on('click', function(){
                 self.$element.toggleClass('open');
             });
+            this.$item.on('click', function(){
+                self.$element.toggleClass('open');
+            });
 			this.$item.html(self.options.title);
 			var contents = self.options.contents;
 			if(contents && contents.length){
 				self.setItems(contents);
 			}
 			this.setDefaultSelection();
+			self.$items.on('mouseleave', function(){
+				self.$element.removeClass('open');
+			});
 		},
 		setItems: function(contents){
 			var self = this;
