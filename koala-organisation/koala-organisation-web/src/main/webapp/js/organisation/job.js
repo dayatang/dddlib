@@ -75,6 +75,7 @@ var job = function(){
 		jobSn = dialog.find('#jobSn');
 		jobDescription = dialog.find('#jobDescription');
 		dialog.find('#save').on('click',function(){
+			$(this).attr('disabled', 'disabled');
 			save(id);
 		}).end().modal({
 			keyboard: false
@@ -110,6 +111,7 @@ var job = function(){
 	 */
 	var save = function(id){
 		if(!validate()){
+			dialog.find('#save').removeAttr('disabled');
 			return false;
 		}
 		var url = baseUrl + 'create.koala';
@@ -127,6 +129,7 @@ var job = function(){
 					content: data.result
 				});
 			}
+			dialog.find('#save').removeAttr('disabled');			
 		});
 	};
 	/*

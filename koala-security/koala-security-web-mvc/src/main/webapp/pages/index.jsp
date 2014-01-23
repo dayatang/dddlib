@@ -35,7 +35,6 @@
 	                </button>
 	                <ul class="dropdown-menu" id="userManager">
 	                    <li data-target="modifyPwd"><a href="#">修改密码</a></li>
-	                    <li data-target="switchUser"><a href="#">切换用户</a></li>
 	                    <li data-target="loginOut"><a href="#">注销</a></li>
 	                </ul>
 	            </div>

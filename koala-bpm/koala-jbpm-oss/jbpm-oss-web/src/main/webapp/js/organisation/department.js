@@ -97,6 +97,7 @@ var department = function(){
 		departmentName = dialog.find('#name');
 		description = dialog.find('#description');
 		dialog.find('#save').on('click',function(){
+			$(this).attr('disabled', 'disabled');
 			save(id, type, organizationType);
 		}).end().modal({
 				keyboard: false
@@ -141,6 +142,7 @@ var department = function(){
 	 */
 	var save = function(id, type, organizationType){
 		if(!validate()){
+			dialog.find('#save').removeAttr('disabled');
 			return false;
 		}
 		var url = '';
@@ -168,11 +170,13 @@ var department = function(){
 					content: data.result
 				});	
 			}
+			dialog.find('#save').removeAttr('disabled');
 		}).fail(function(data){
 				dialog.find('.modal-content').message({
 					type: 'error',
 					content: '保存失败'
 				});
+				dialog.find('#save').removeAttr('disabled');
 		});
 	};
 	/*

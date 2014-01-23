@@ -74,6 +74,7 @@ var generalQuery = function(){
 		fillWidgetTypeSelect(dialog.find('.select[data-role="queryOperation"]'));
 		fillQueryOperationSelect(dialog.find('.select[data-role="queryOperation"]'));
 		dialog.find('#generalQuerySave').on('click',function(){
+			$(this).attr('disabled', 'disabled');
 			save(id);
 		}).end().modal({
 				keyboard: false
@@ -404,6 +405,7 @@ var generalQuery = function(){
 	 */
 	var save = function(id){
 		if(!validate()){
+			dialog.find('#generalQuerySave').removeAttr('disabled');
 			return false;
 		}
 		var url = baseUrl + 'add.koala';
@@ -423,6 +425,7 @@ var generalQuery = function(){
 					content: data.result
 				});
 			}
+			dialog.find('#generalQuerySave').removeAttr('disabled');
 		});
 	};
 	/*

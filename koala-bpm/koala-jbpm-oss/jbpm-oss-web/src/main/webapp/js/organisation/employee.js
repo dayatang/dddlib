@@ -104,6 +104,7 @@ var employee = function(){
 			post = dialog.find('#employee-post');
 		}
 		dialog.find('#save').on('click',function(){
+			$(this).attr('disabled', 'disabled');
 			save(id);
 		}).end().modal({
 			keyboard: false
@@ -291,6 +292,7 @@ var employee = function(){
 	 */
 	var save = function(id){
 		if(!validate()){
+			dialog.find('#save').removeAttr('disabled');
 			return false;
 		}
 		var url = '';
@@ -310,6 +312,7 @@ var employee = function(){
 					content: data.result
 				});
 			}
+			dialog.find('#save').removeAttr('disabled');
 		});
 	};
 	/*
