@@ -9,81 +9,53 @@
 		<property name="destDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/webapp/
 		</property>
 	</CopyFiles>
-	
+
 	<CopyFiles>
-	   <!--  <property name="express">$Project.mvcProtocol=='SpringMVC'</property>-->
+		<!-- <property name="express">$Project.mvcProtocol=='SpringMVC'</property> -->
 		<property name="srcDir">vm/other/security_web/SpringMVC</property>
 		<property name="destDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/webapp/
 		</property>
 	</CopyFiles>
-	
-	<!-- 
-	<CopyFiles>
-	    <property name="express">$Project.mvcProtocol=='Struts2MVC'</property>
-		<property name="srcDir">vm/other/security_web/SpringMVC</property>
-		<property name="destDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/webapp/
-		</property>
-	</CopyFiles>
-	   -->
-	<VelocityFileObject>
-		<property name="vm">vm/other/security_config/security-db.properties
-		</property>
-		<property name="path">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/props/koala-security-db.properties
-		</property>
-	</VelocityFileObject>
-	
+
 	<VelocityFileObject>
 		<property name="vm">vm/other/security_config/security_zh_CN.properties
 		</property>
 		<property name="path">${Project.path}/${Project.appName}/${Project.appName}-web/src/main/resources/i18n/exception/koalaSecurity_zh_CN.properties
 		</property>
 	</VelocityFileObject>
-	
-<!-- 	<VelocityFileObject>
-		<property name="vm">vm/other/security_config/security-sql.properties
+
+	<VelocityFileObject>
+		<property name="vm">vm/other/security_config/spring-http-springmvc.xml
 		</property>
-		<property name="path">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/props/koala-security-sql.properties
+		<property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/koala-security-http.xml
 		</property>
-	</VelocityFileObject> -->
-	
-	<VelocityFileObject>
-		<property name="vm">vm/other/security_config/spring-http-springmvc.xml</property>
-		<property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/koala-security-http.xml</property>
 	</VelocityFileObject>
-	
+
 	<VelocityFileObject>
-		<property name="vm">vm/other/security_config/security-custom.xml</property>
-		<property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/security-custom.xml</property>
+		<property name="vm">vm/other/security_config/security-custom.xml
+		</property>
+		<property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/security-custom.xml
+		</property>
 	</VelocityFileObject>
-	
+
 	<VelocityFileObject>
-		<property name="vm">vm/other/security_config/user-config.properties</property>
-		<property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/user-config.properties</property>
+		<property name="vm">vm/other/security_config/user-config.properties
+		</property>
+		<property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/user-config.properties
+		</property>
 	</VelocityFileObject>
-	
-	<!--  <VelocityFileObject>
-	    <property name="express">$Project.mvcProtocol=='Struts2MVC'</property>
-		<property name="vm">vm/other/security_config/spring-http.xml</property>
-		<property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/koala-security-http.xml</property>
-	</VelocityFileObject>-->
-	 
+
 	<VelocityDirObject>
-	   <!-- <property name="express">$Project.mvcProtocol=='SpringMVC'</property>-->
 		<property name="vmDir">vm/other/security_action/SpringMVC</property>
 		<property name="pathDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/java/${Module.basePackagePath}/controller/auth/
 		</property>
 	</VelocityDirObject>
-	
-	<!-- <VelocityDirObject>
-	    <property name="express">$Project.mvcProtocol=='Struts2MVC'</property>
-		<property name="vmDir">vm/other/security_action/Struts2MVC</property>
-		<property name="pathDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/java/${Module.basePackagePath}/action/auth/
-		</property>
-	</VelocityDirObject> -->
 
 	<XmlAdd>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/root.xml</property>
-		<property name="uri">http://www.springframework.org/schema/beans</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/root.xml
+		</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
 		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:META-INF/spring/spring-security.xml']]]></property>
 		<property name="xmlContent">
@@ -95,10 +67,12 @@
          ]]>
 		</property>
 	</XmlAdd>
-	
+
 	<XmlAdd>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/root.xml</property>
-		<property name="uri">http://www.springframework.org/schema/beans</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/root.xml
+		</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
 		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath:META-INF/spring/koala-security-http.xml']]]></property>
 		<property name="xmlContent">
@@ -110,10 +84,12 @@
          ]]>
 		</property>
 	</XmlAdd>
-	
+
 	<XmlAdd>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/root.xml</property>
-		<property name="uri">http://www.springframework.org/schema/beans</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/root.xml
+		</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
 		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath:META-INF/spring/security-custom.xml']]]></property>
 		<property name="xmlContent">
@@ -125,11 +101,13 @@
          ]]>
 		</property>
 	</XmlAdd>
-	
+
 	<XmlAdd>
-	    <property name="express">$Security.cacheType=='ehCache'</property>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/root.xml</property>
-		<property name="uri">http://www.springframework.org/schema/beans</property>
+		<property name="express">$Security.cacheType=='ehCache'</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/root.xml
+		</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
 		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:META-INF/spring/spring-ehcache.xml']]]></property>
 		<property name="xmlContent">
@@ -141,17 +119,21 @@
          ]]>
 		</property>
 	</XmlAdd>
-	
+
 	<VelocityFileObject>
-	    <property name="express">$Security.cacheType=='memCached'</property>
-		<property name="vm">vm/other/security_config/security-cache.properties</property>
-		<property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/props/koala-security-cache.properties</property>
+		<property name="express">$Security.cacheType=='memCached'</property>
+		<property name="vm">vm/other/security_config/security-cache.properties
+		</property>
+		<property name="path">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/props/koala-security-cache.properties
+		</property>
 	</VelocityFileObject>
-	
+
 	<XmlAdd>
-	    <property name="express">$Security.cacheType=='memCached'</property>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/root.xml</property>
-		<property name="uri">http://www.springframework.org/schema/beans</property>
+		<property name="express">$Security.cacheType=='memCached'</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/root.xml
+		</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
 		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:META-INF/spring/spring-memcache.xml']]]></property>
 		<property name="xmlContent">
@@ -163,11 +145,13 @@
          ]]>
 		</property>
 	</XmlAdd>
-	
+
 	<XmlAdd>
-	    <property name="express">$Project.dbProtocol=='JPA'</property>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml</property>
-		<property name="uri">http://www.springframework.org/schema/beans</property>
+		<property name="express">$Project.dbProtocol=='JPA'</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml
+		</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
 		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:META-INF/spring/security-shared-context.xml']]]></property>
 		<property name="xmlContent">
@@ -179,11 +163,13 @@
          ]]>
 		</property>
 	</XmlAdd>
-	
+
 	<XmlAdd>
-	    <property name="express">$Project.dbProtocol=='JPA'</property>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/test/resources/META-INF/spring/db-context.xml</property>
-		<property name="uri">http://www.springframework.org/schema/beans</property>
+		<property name="express">$Project.dbProtocol=='JPA'</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/test/resources/META-INF/spring/db-context.xml
+		</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
 		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:META-INF/spring/security-shared-context.xml']]]></property>
 		<property name="xmlContent">
@@ -195,11 +181,13 @@
          ]]>
 		</property>
 	</XmlAdd>
-	
+
 	<XmlAdd>
-	    <property name="express">$Project.dbProtocol=='Mybatis'</property>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml</property>
-		<property name="uri">http://www.springframework.org/schema/beans</property>
+		<property name="express">$Project.dbProtocol=='Mybatis'</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml
+		</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
 		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:META-INF/spring/security-mybatis-shared-context.xml']]]></property>
 		<property name="xmlContent">
@@ -211,17 +199,21 @@
          ]]>
 		</property>
 	</XmlAdd>
-	
+
 	<VelocityFileObject>
-	    <property name="express">$Project.dbProtocol=='Mybatis'</property>
-		<property name="vm">vm/base/conf-mybatis/src/main/resources/META-INF/spring/JPA-persistence-context.xml</property>
-		<property name="path">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/JPA-persistence-context.xml</property>
+		<property name="express">$Project.dbProtocol=='Mybatis'</property>
+		<property name="vm">vm/base/conf-mybatis/src/main/resources/META-INF/spring/JPA-persistence-context.xml
+		</property>
+		<property name="path">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/JPA-persistence-context.xml
+		</property>
 	</VelocityFileObject>
-	
+
 	<XmlAdd>
-	    <property name="express">$Project.dbProtocol=='Mybatis'</property>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml</property>
-		<property name="uri">http://www.springframework.org/schema/beans</property>
+		<property name="express">$Project.dbProtocol=='Mybatis'</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml
+		</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
 		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath:META-INF/spring/JPA-persistence-context.xml']]]></property>
 		<property name="xmlContent">
@@ -233,59 +225,49 @@
          ]]>
 		</property>
 	</XmlAdd>
-	
-	<!--<XmlAdd>
-	    <property name="express">$Project.dbProtocol=='Mybatis'</property>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/test/resources/META-INF/spring/db-context.xml</property>
-		<property name="uri">http://www.springframework.org/schema/beans</property>
-		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
-		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:META-INF/spring/security-mybatis-shared-context.xml']]]></property>
-		<property name="xmlContent">
-         <![CDATA[
-    <?xml version="1.0" encoding="UTF-8"?>
-    <root>
-	  <import resource="classpath*:META-INF/spring/security-mybatis-shared-context.xml"/>
-	</root>
-         ]]>
-		</property>
-	</XmlAdd>
-	  -->
-	  
+
 	<XmlRemove>
-	    <property name="express">$Security.cacheType=='memCached'</property>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/root.xml</property>
-		<property name="uri">http://www.springframework.org/schema/beans</property>
+		<property name="express">$Security.cacheType=='memCached'</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/root.xml
+		</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
 		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:META-INF/spring/spring-ehcache.xml']]]></property>
 	</XmlRemove>
-	
+
 	<XmlRemove>
-	    <property name="express">$Security.cacheType=='ehCache'</property>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/root.xml</property>
-		<property name="uri">http://www.springframework.org/schema/beans</property>
+		<property name="express">$Security.cacheType=='ehCache'</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/META-INF/spring/root.xml
+		</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
 		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:META-INF/spring/spring-memcache.xml']]]></property>
 	</XmlRemove>
-	
-	
+
+
 
 	<CopyFiles>
 		<property name="express">$Security.template=='TemplateA'</property>
-		<property name="srcDir">vm/other/security_web/SpringMVC/pages/index00.jsp</property>
+		<property name="srcDir">vm/other/security_web/SpringMVC/pages/index00.jsp
+		</property>
 		<property name="destDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/webapp/pages/index.jsp
 		</property>
 	</CopyFiles>
 
 	<CopyFiles>
 		<property name="express">$Security.template=='TemplateB'</property>
-		<property name="srcDir">vm/other/security_web/SpringMVC/pagesindex01.jsp</property>
+		<property name="srcDir">vm/other/security_web/SpringMVC/pagesindex01.jsp
+		</property>
 		<property name="destDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/webapp/pages/index.jsp
 		</property>
 	</CopyFiles>
 
 	<CopyFiles>
 		<property name="express">$Security.template=='TemplateC'</property>
-		<property name="srcDir">vm/other/security_web/SpringMVC/pagesindex02.jsp</property>
+		<property name="srcDir">vm/other/security_web/SpringMVC/pagesindex02.jsp
+		</property>
 		<property name="destDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/webapp/pages/index.jsp
 		</property>
 	</CopyFiles>
@@ -313,7 +295,7 @@
          ]]>
 		</property>
 	</XmlAdd>
-	
+
 	<XmlAdd>
 		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/pom.xml
 		</property>
@@ -332,11 +314,13 @@
          ]]>
 		</property>
 	</XmlAdd>
-	
+
 	<XmlAdd>
-	    <property name="express">$Security.connType=="JDBC"</property>
-		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml</property>
-		<property name="uri">http://www.springframework.org/schema/beans</property>
+		<property name="express">$Security.connType=="JDBC"</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml
+		</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
 		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
 		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:META-INF/spring/authDataService-jdbc.xml']]]></property>
 		<property name="xmlContent">
@@ -348,10 +332,10 @@
          ]]>
 		</property>
 	</XmlAdd>
-	
+
 	<!-- 如果是JDBC,则加上koalaSecurity-authJdbcImpl实现 -->
 	<XmlAdd>
-	    <property name="express">$Security.connType=="JDBC"</property>
+		<property name="express">$Security.connType=="JDBC"</property>
 		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/pom.xml
 		</property>
 		<property name="uri">http://maven.apache.org/POM/4.0.0</property>
@@ -369,10 +353,10 @@
          ]]>
 		</property>
 	</XmlAdd>
-	
+
 	<!-- 如果是JDBC,则加上koalaSecurity-applicationImpl -->
 	<XmlAdd>
-	    <property name="express">$Security.connType=="JDBC"</property>
+		<property name="express">$Security.connType=="JDBC"</property>
 		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/pom.xml
 		</property>
 		<property name="uri">http://maven.apache.org/POM/4.0.0</property>
