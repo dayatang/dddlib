@@ -67,6 +67,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 	
 	private static final int HTTP_OK = 200;
 	
+	private static final int HTTP_204 = 204;
 	
 	public void publichJBPM(String packageName, String name, String url) {
 		Assert.isTrue(url.endsWith("?_wadl"));
@@ -113,10 +114,13 @@ public class GunvorApplicationImpl implements GunvorApplication {
 
 		} catch (DocumentException e) {
 			e.printStackTrace();
+			throw new RuntimeException(e.getMessage());
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
+			throw new RuntimeException(e.getMessage());
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new RuntimeException(e.getMessage());
 		} finally {
 			try {
 				httpclient.close();
@@ -189,6 +193,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 		return bpmn2;
 	}
@@ -223,6 +228,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			doHttpDeleteRequest(url);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
+			
 		}
 	}
 
@@ -344,10 +350,10 @@ public class GunvorApplicationImpl implements GunvorApplication {
 	private void doHttpDeleteRequest(String url){
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 		CloseableHttpResponse response = null;
-		HttpDelete httpDelete = new HttpDelete();
+		HttpDelete httpDelete = new HttpDelete(url);
 		try {
-			response = httpclient.execute(httpDelete);
-			if(response.getStatusLine().getStatusCode()!=HTTP_OK){
+			response = httpclient.execute(httpDelete,getCredentialContext());
+			if(response.getStatusLine().getStatusCode()!=HTTP_OK && response.getStatusLine().getStatusCode()!=HTTP_204){
 				throw new RuntimeException("HTTP DELETE请求失败，URL为:"+url+";返回状态码为:"+response.getStatusLine().getStatusCode());
 			}
 		} catch (ClientProtocolException e) {
@@ -371,7 +377,7 @@ public class GunvorApplicationImpl implements GunvorApplication {
 			HttpPost httpPost = new HttpPost(urlString);
 			httpPost.addHeader("Content-Type", "application/xml");
 			httpPost.setEntity(new ByteArrayEntity(bb));
-			response = httpclient.execute(httpPost);
+			response = httpclient.execute(httpPost,getCredentialContext());
 			if(response.getStatusLine().getStatusCode()!=HTTP_OK){
 				throw new RuntimeException("HTTP POST请求失败，URL为:"+urlString+";返回状态码为:"+response.getStatusLine().getStatusCode());
 			}

@@ -90,7 +90,7 @@ $(function(){
                     packageName: name.val(),
                     description: descript.val()
                 }
-                $.post(contextPath + '/jbpm-Jbpm-createPackage.action').done(function(data){
+                $.post(contextPath + '/jbpm-Jbpm-createPackage.action',params).done(function(data){
                     if(!data.errors){
                         $('body').message({
                             type: 'success',
@@ -183,6 +183,7 @@ $(function(){
                 var data = $($element).data();
                 var bpmnName = data.title;
                 $.post(contextPath + '/jbpm-Jbpm-deleteBpmn.action?packageName='+data.parent+'&bpmnName='+bpmnName).done(function(result){
+                    alert(result.errors);
                     if(!result.errors){
                         $('body').message({
                             type: 'success',
@@ -242,7 +243,7 @@ $(function(){
                         }else{
                             dialog.message({
                                 type: 'error',
-                                content: data.errors
+                                content: '发布失败:'+data.errors
                             })
                         }
                     })
