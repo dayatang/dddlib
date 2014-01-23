@@ -550,8 +550,18 @@ div.uploader input {
 }
 
 @media (max-width: 1366px) {
-	.btn, .wizard, .dropdown-menu, .select, .tree .tree-folder-name {
+	.btn, .wizard, 
+	.dropdown-menu, 
+	.select, .tree 
+	.tree-folder-name, 
+	.tree .tree-item .tree-item-name {
 		font-size: 12px!important;
+	}
+	.tree .checkbox input {
+		height: 18px!important;
+	}
+	.tree .tree-folder .tree-folder-header i {
+		top: 1px!important;
 	}
 	.form-control {
 		height: 30px;
