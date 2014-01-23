@@ -339,15 +339,15 @@ public class SvnCISClient implements CISClient {
 			return ;
 		}
 		
-		if(!checkExistsAuth(role, userNames, project, configuration)){
-			return ;
-		}
+		boolean canGroupAuth= checkExistsAuth(role, userNames, project, configuration);
 		
 		SvnCommand cmdAddUsersGroupAuth = new SvnCreateGroupAndAddGroupUsersCommand(userNames, role, configuration, project);
 		SvnCommand cmdAuthz = new SvnAuthzCommand(role, configuration, project);
 		try {
 			executor.addCommand(cmdAddUsersGroupAuth);
-			executor.addCommand(cmdAuthz);
+			if(canGroupAuth){
+				executor.addCommand(cmdAuthz);
+			}
 			success = executor.executeBatch();
 		} catch (Exception e) {
 			// TODO: handle exception
