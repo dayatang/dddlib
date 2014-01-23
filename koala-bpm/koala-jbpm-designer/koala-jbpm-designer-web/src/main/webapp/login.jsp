@@ -10,7 +10,7 @@
 <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />"></script>	
-<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
+<script type="text/javascript" src="<c:url value='/lib/validate.js' />"></script>
 <style type="text/css">
 @charset "UTF-8";
 /* CSS Document */
@@ -108,7 +108,7 @@ body {
     margin-right: auto;
     font-size: 17px;
     font-weight: bold;
-    letter-spacing: 15px;
+    letter-spacing: 5px;
 }
 
 .login_footer {
@@ -197,11 +197,13 @@ body {
     $(function(){
         $('body').keydown(function(e) {
             if (e.keyCode == 13) {
+            	btnLogin.attr('disabled', 'disabled').html('正在登录...');
                 form.submit();
             }
         });
         btnLogin.on('click',function() {
-                form.submit();
+        	btnLogin.attr('disabled', 'disabled').html('正在登录...');
+            form.submit();
         });
     });
     var dologin = function() {
