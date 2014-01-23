@@ -8,13 +8,13 @@ package org.openkoala.opencis.support;
  */
 
 public class SSHConnectConfig {
-    private String host;
+	protected String host;
 
-    private String username;
+	protected String username;
 
-    private String password;
+	protected String password;
     
-    private String storePath;
+	protected String storePath;
 
     public SSHConnectConfig() {
 
