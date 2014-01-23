@@ -18,6 +18,7 @@ public class UserVO extends IdentityVO implements Serializable {
 	private boolean valid;
 	private String email;
 	private String oldPassword;
+	private boolean isSuper;
 
 	public UserVO() {
 
@@ -96,6 +97,14 @@ public class UserVO extends IdentityVO implements Serializable {
 		this.oldPassword = oldPassword;
 	}
 
+	public boolean isSuper() {
+		return isSuper;
+	}
+
+	public void setSuper(boolean isSuper) {
+		this.isSuper = isSuper;
+	}
+
 	public void domain2Vo(User user) {
         this.setId(user.getId());
         this.setLastLoginTime(user.getLastLoginTime() != null ? user.getLastLoginTime().toString() : "");
@@ -109,6 +118,7 @@ public class UserVO extends IdentityVO implements Serializable {
         this.setSerialNumber(user.getSerialNumber());
         this.setSortOrder(user.getSortOrder());
         this.setValid(user.isValid());
+        this.setSuper(user.isSuper());
         this.setEmail(user.getEmail());
 	}
 	
@@ -124,6 +134,7 @@ public class UserVO extends IdentityVO implements Serializable {
         user.setSortOrder(this.getSortOrder());
         user.setValid(this.isValid());
         user.setEmail(this.getEmail());
+        user.setSuper(this.isSuper());
 	}
 	
 }

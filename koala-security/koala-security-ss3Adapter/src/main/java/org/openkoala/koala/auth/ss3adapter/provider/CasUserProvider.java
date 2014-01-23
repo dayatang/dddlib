@@ -1,4 +1,4 @@
-package org.openkoala.koala.auth.ss3adapter;
+package org.openkoala.koala.auth.ss3adapter.provider;
 
 import java.util.Collections;
 
@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.jasig.cas.client.validation.Assertion;
 import org.openkoala.auth.application.UserApplication;
 import org.openkoala.auth.application.vo.UserVO;
+import org.openkoala.koala.auth.ss3adapter.CustomUserDetails;
+import org.openkoala.koala.auth.ss3adapter.EmailNotFoundExction;
 import org.springframework.security.cas.authentication.CasAssertionAuthenticationToken;
 import org.springframework.security.cas.authentication.CasAuthenticationProvider;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,7 +20,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * @date 2014年1月3日 上午11:36:34
  *
  */
-public class CasCreateUserIfNecessaryProvider extends CasAuthenticationProvider {
+public class CasUserProvider extends CasAuthenticationProvider {
 	
 	private static final String EMAIL_ATTRIBUTE = "email";
 

@@ -1,4 +1,4 @@
-package org.openkoala.koala.auth.ss3adapter;
+package org.openkoala.koala.auth.ss3adapter.http.handler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

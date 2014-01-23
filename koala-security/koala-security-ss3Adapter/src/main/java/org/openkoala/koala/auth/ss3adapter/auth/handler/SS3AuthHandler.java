@@ -1,12 +1,14 @@
-package org.openkoala.koala.auth.ss3adapter;
+package org.openkoala.koala.auth.ss3adapter.auth.handler;
 
+import javax.inject.Inject;
+
+import org.openkoala.auth.application.UserApplication;
+import org.openkoala.auth.application.vo.UserVO;
 import org.openkoala.koala.auth.AuthHandler;
 import org.openkoala.koala.auth.UserDetails;
 import org.openkoala.koala.auth.password.PasswordEncoder;
 import org.openkoala.koala.auth.vo.DefaultUserDetailsImpl;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 /**
@@ -19,35 +21,35 @@ public class SS3AuthHandler implements AuthHandler {
 	
 	private PasswordEncoder passwordEncoder;
 	
-	private UserDetailsService userDetailsService;
+	@Inject
+	private UserApplication userApplication;
 	
 	public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
 		this.passwordEncoder = passwordEncoder;
 	}
-	
-	public void setUserDetailsService(UserDetailsService userDetailsService) {
-		this.userDetailsService = userDetailsService;
+
+	public void setUserApplication(UserApplication userApplication) {
+		this.userApplication = userApplication;
 	}
 
 	@Override
 	public UserDetails authenticate(String useraccount, String password) {
-		CustomUserDetails loadedUser = (CustomUserDetails) userDetailsService.loadUserByUsername(useraccount);
+		UserVO loadedUser = userApplication.findByUserAccount(useraccount);
 		
 		if (loadedUser == null) {
 			throw new UsernameNotFoundException("Username not found.");
 		}
 		
-		if (!isPasswordValid(password, loadedUser.getPassword())) {
+		if (!isPasswordValid(password, loadedUser.getUserPassword())) {
 			throw new BadCredentialsException("Password is not correct.");
 		}
 		
 		DefaultUserDetailsImpl result = new DefaultUserDetailsImpl();
-		result.setUseraccount(loadedUser.getUsername());
-		result.setRealName(loadedUser.getRealName());
-		result.setSuper(loadedUser.isSuper());
-		for (GrantedAuthority authority : loadedUser.getAuthorities()) {
-			result.addAuthority(authority.getAuthority());
-		}
+		result.setUseraccount(loadedUser.getUserAccount());
+		result.setRealName(loadedUser.getName());
+		result.setPassword(loadedUser.getUserPassword());
+		result.setEmail(loadedUser.getEmail());
+		
 		return result;
 	}
 	

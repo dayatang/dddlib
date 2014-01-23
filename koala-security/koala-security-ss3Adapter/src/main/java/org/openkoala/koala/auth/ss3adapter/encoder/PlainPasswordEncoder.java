@@ -1,4 +1,4 @@
-package org.openkoala.koala.auth.ss3adapter;
+package org.openkoala.koala.auth.ss3adapter.encoder;
 
 import org.openkoala.koala.auth.password.PasswordEncoder;
 

@@ -15,7 +15,7 @@ import org.openkoala.opencis.exception.CreateUserFailedException;
  * @author 赵健华
  * 2013-9-26 下午4:01:14
  */
-public abstract class SSHCommand implements Command {
+public abstract class SSHCommand extends AbstractCommand {
 
 	protected Project project = null;
 	
@@ -83,15 +83,4 @@ public abstract class SSHCommand implements Command {
 		}
 	}
 
-
-    protected String readOutput(InputStream inputStream) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while ((line = br.readLine()) != null) {
-            sb.append(line);
-        }
-        br.close();
-        return sb.toString();
-    }
 }

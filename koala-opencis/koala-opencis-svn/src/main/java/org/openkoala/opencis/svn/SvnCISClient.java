@@ -351,6 +351,7 @@ public class SvnCISClient implements CISClient {
 			success = executor.executeBatch();
 		} catch (Exception e) {
 			// TODO: handle exception
+			throw new RuntimeException(e);
 		}
 //        createGroupAndAddGroupUsers(project, userNames, role);
 //        authz(project, role);
