@@ -167,7 +167,7 @@ $(function (){
 	    },
 	    add: function(grid){
 	        var self = this;
-	        var dialog = $('<div class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">新增</h4></div><div class="modal-body"><p>One fine body&hellip;</p></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">取消</button><button type="button" class="btn btn-primary" id="save">保存</button></div></div></div></div>');
+	        var dialog = $('<div class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">新增</h4></div><div class="modal-body"><p>One fine body&hellip;</p></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">取消</button><button type="button" class="btn btn-success" id="save">保存</button></div></div></div></div>');
 	        $.get('<%=path%>/${entityName}-add.jsp').done(function(html){
 	            dialog.modal({
 	                keyboard:false
@@ -184,12 +184,12 @@ $(function (){
 	                   if(result.result == 'success'){
 	                        dialog.modal('hide');
 	                        e.data.grid.data('koala.grid').refresh();
-	                        $('body').message({
+	                        e.data.grid.message({
 	                            type: 'success',
 	                            content: '保存成功'
 	                         });
 	                    }else{
-	                        $('body').message({
+	                        dialog.find('.modal-content').message({
 	                            type: 'error',
 	                            content: result.result
 	                        });
@@ -228,12 +228,12 @@ $(function (){
 	                        if(result.result == 'success'){
 	                            dialog.modal('hide');
 	                            e.data.grid.data('koala.grid').refresh();
-	                            $('body').message({
+	                            e.data.grid.message({
 	                            type: 'success',
 	                            content: '保存成功'
 	                            });
 	                        }else{
-	                            $('body').message({
+	                            dialog.find('.modal-content').message({
 	                            type: 'error',
 	                            content: result.actionError
 	                            });
@@ -267,12 +267,12 @@ $(function (){
 	    	$.post('${pageContext.request.contextPath}/${base_url}delete.action', data).done(function(result){
 	                        if(result.result == 'success'){
 	                            grid.data('koala.grid').refresh();
-	                            $('body').message({
+	                            grid.message({
 	                                type: 'success',
 	                                content: '删除成功'
 	                            });
 	                        }else{
-	                            $('body').message({
+	                            grid.message({
 	                                type: 'error',
 	                                content: result.actionError
 	                            });
