@@ -42,6 +42,9 @@ public class User extends Identity {
 	@Column(name = "LAST_MODIFY_TIME")
 	private Date lastModifyTime;
 	
+	@Column(name = "IS_SUPER")
+	private boolean isSuper;
+	
 	public User() {
 		
 	}
@@ -109,6 +112,14 @@ public class User extends Identity {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public boolean isSuper() {
+		return isSuper;
+	}
+
+	public void setSuper(boolean isSuper) {
+		this.isSuper = isSuper;
 	}
 
 	@Override

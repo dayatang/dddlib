@@ -16,7 +16,7 @@
 	<bean id="accessDecisionManager" class="org.openkoala.koala.auth.ss3adapter.AccessDecisionManager"/>
 
 	<!-- 一个自定义的filter，必须包含authenticationManager,accessDecisionManager,securityMetadataSource三个属性。 -->
-	<bean id="securityFilter" class="org.openkoala.koala.auth.ss3adapter.SecurityFilter">
+	<bean id="securityFilter" class="org.openkoala.koala.auth.ss3adapter.filter.SecurityFilter">
 		<!-- 登陆的认证 -->
 		<property name="authenticationManager" ref="authenticationManager" /> 
 		<!-- 资源访问决策 -->
@@ -25,12 +25,10 @@
 		<property name="securityMetadataSource" ref="securityMetadataSource" />
 	</bean>
 	
-	<bean id="loginAuthenticationProvider" class="org.openkoala.koala.auth.ss3adapter.LoginAuthenticationProvider">
+	<bean id="loginAuthenticationProvider" class="org.openkoala.koala.auth.ss3adapter.provider.LoginAuthenticationProvider">
 		<property name="authHandler" ref="authHandler" />
-		<!-- <property name="userDetailsService" ref="userDetailManager" /> -->
+		<property name="userDetailsService" ref="userDetailManager" />
 	</bean>
-	
-
 
 	<s:authentication-manager alias="authenticationManager">
 		<s:authentication-provider ref="loginAuthenticationProvider" />

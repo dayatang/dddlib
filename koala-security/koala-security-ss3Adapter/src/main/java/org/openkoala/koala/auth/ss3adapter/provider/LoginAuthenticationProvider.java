@@ -1,19 +1,21 @@
-package org.openkoala.koala.auth.ss3adapter;
+package org.openkoala.koala.auth.ss3adapter.provider;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.text.MessageFormat;
 
 import javax.inject.Inject;
 
 import org.openkoala.auth.application.UserApplication;
 import org.openkoala.auth.application.vo.UserVO;
+import org.openkoala.exception.extend.ApplicationException;
 import org.openkoala.koala.auth.AuthHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * 登录验证
@@ -23,11 +25,15 @@ import org.springframework.security.core.userdetails.UserDetails;
  * 
  */
 public class LoginAuthenticationProvider implements AuthenticationProvider {
+	
+	private static Logger logger = LoggerFactory.getLogger(LoginAuthenticationProvider.class);
 
 	private AuthHandler authHandler;
 	
 	@Inject
 	private UserApplication userApplication;
+	
+	private UserDetailsService userDetailsService;
 	
 	public void setAuthHandler(AuthHandler authHandler) {
 		this.authHandler = authHandler;
@@ -37,15 +43,41 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
 		this.userApplication = userApplication;
 	}
 
+	public void setUserDetailsService(UserDetailsService userDetailsService) {
+		this.userDetailsService = userDetailsService;
+	}
+
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		org.openkoala.koala.auth.UserDetails loadedUser = authHandler.authenticate(
-				getUseraccount(authentication), 
-				getPassword(authentication));
+		authHandler.authenticate(getUseraccount(authentication), getPassword(authentication));
+		
+		createUserIfNeed(authentication);
 		
 		modifyLastLoginTime(getUseraccount(authentication));
 		
-		return createSuccessAuthentication(authentication, getUserDetails(loadedUser), loadedUser);
+		return createSuccessAuthentication(authentication);
+	}
+
+	private void createUserIfNeed(Authentication authentication) {
+		if (!isUseraccountExisted(authentication)) {
+			UserVO userVO = new UserVO();
+			userVO.setUserAccount(getUseraccount(authentication));
+			userVO.setName(getUseraccount(authentication));
+			userVO.setEmail(MessageFormat.format("{0}@null.com", getUseraccount(authentication)));
+			try {
+				userApplication.saveUser(userVO);
+			} catch (ApplicationException e) {
+				logger.error("保存用户失败：{}", e);
+			}
+		}
+	}
+
+	private boolean isUseraccountExisted(Authentication authentication) {
+		return userApplication.findByUserAccount(getUseraccount(authentication)) != null;
+	}
+
+	private UserDetails getUserDetails(Authentication authentication) {
+		return userDetailsService.loadUserByUsername(getUseraccount(authentication));
 	}
 	
 	private void modifyLastLoginTime(String useraccount) {
@@ -70,39 +102,14 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
 		return authentication.getCredentials().toString();
 	}
 
-	private CustomUserDetails getUserDetails(org.openkoala.koala.auth.UserDetails loadedUser) {
-		CustomUserDetails userDetails = new CustomUserDetails();
-		userDetails.setRealName(loadedUser.getRealName());
-		userDetails.setAuthorities(getAuthorities(loadedUser));
-		userDetails.setUsername(loadedUser.getUseraccount());
-		userDetails.setPassword(loadedUser.getPassword());
-		userDetails.setEnabled(loadedUser.isEnabled());
-		userDetails.setSuper(loadedUser.isSuper());
-		return userDetails;
-	}
-	
-	private Authentication createSuccessAuthentication(Authentication authentication, 
-			UserDetails userDetails, org.openkoala.koala.auth.UserDetails loadedUser) {
-		UsernamePasswordAuthenticationToken result = new UsernamePasswordAuthenticationToken(userDetails,
-				authentication.getCredentials(), getAuthorities(loadedUser));
+	private Authentication createSuccessAuthentication(Authentication authentication) {
+		UsernamePasswordAuthenticationToken result = new UsernamePasswordAuthenticationToken(
+				getUserDetails(authentication),
+				authentication.getCredentials(), 
+				getUserDetails(authentication).getAuthorities());
+		
 		result.setDetails(authentication.getDetails());
 		return result;
-	}
-
-	private Collection<GrantedAuthority> getAuthorities(org.openkoala.koala.auth.UserDetails loadedUser) {
-		Collection<GrantedAuthority> results = new ArrayList<GrantedAuthority>();
-		for (final String authority : loadedUser.getAuthorities()) {
-			results.add(new GrantedAuthority() {
-
-				private static final long serialVersionUID = 4687464060621929687L;
-
-				@Override
-				public String getAuthority() {
-					return authority;
-				}
-			});
-		}
-		return results;
 	}
 
 	@Override

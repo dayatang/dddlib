@@ -7,6 +7,35 @@
 	<listener>
 		<listener-class>com.dayatang.spring.webapp.DayatangContextLoaderListener</listener-class>
 	</listener>
+	
+	<listener>
+		<listener-class>org.openkoala.koala.auth.web.InitSuperUserListener</listener-class>
+	</listener>
+	
+	<context-param>
+		<param-name>useraccount</param-name>
+		<param-value>admin</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>password</param-name>
+		<param-value>admin</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>email</param-name>
+		<param-value>admin@openkoala.org</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>desc</param-name>
+		<param-value>admin</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>name</param-name>
+		<param-value>超级管理员</param-value>
+	</context-param>
 
 	<!-- Character Filter -->
 	<filter>

@@ -40,7 +40,7 @@
 	</s:authentication-manager>
 
 	<bean id="casAuthenticationUserDetailsService"
-		class="org.springframework.security.core.userdetails.UserDetailsByNameServiceWrapper">
+		class="org.openkoala.koala.auth.ss3adapter.provider.CasUserProvider">
 		<property name="userDetailsService">
 			<ref local="userDetailManager" />
 		</property>
