@@ -8,27 +8,14 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	
-	<context:property-placeholder location="classpath*:security-db.properties" ignore-unresolvable="true"/>	
-    <context:property-placeholder location="classpath:user-config.properties" ignore-unresolvable="true"/>       
-     
-	<bean id="passwordEncoder" class="org.openkoala.koala.auth.ss3adapter.SS3PasswordEncoder" />
+	<!-- 加密策略 -->
+	<bean id="passwordEncoder" class="org.openkoala.koala.auth.ss3adapter.encoder.SS3PasswordEncoder" />
 
-	<bean id="authHandler" class="org.openkoala.koala.auth.ss3adapter.SS3AuthHandler">
+    <!-- 自定义登录逻辑 -->
+	<bean id="authHandler" class="org.openkoala.koala.auth.ss3adapter.auth.handler.SS3AuthHandler">
 		<property name="passwordEncoder" ref="passwordEncoder" />
-		<property name="userDetailsService" ref="userDetailManager" />
 	</bean>
 	
+	<bean id="authDataService" class="org.openkoala.koala.auth.impl.AuthDataServiceImpl" />
 	
-	<bean id="userConfig" class="org.openkoala.koala.auth.impl.UserConfig">
-		<property name="adminAccount" value="${security.db.jdbc.adminAccount}" />
-		<property name="adminPassword" value="${security.db.jdbc.adminPass}" />
-		<property name="adminRealName" value="${security.db.jdbc.adminRealName}" />
-		<property name="enabled" value="${security.db.jdbc.useAdmin}" />
-	</bean>
-	
-	<bean id="authDataService" class="org.openkoala.koala.auth.impl.AuthDataServiceImpl">
-		<property name="passwordEncoder" ref="passwordEncoder" />
-		<property name="userConfig" ref="userConfig" />
-	</bean>
-
 </beans>
