@@ -11,6 +11,7 @@ import org.openkoala.opencis.api.Project;
 
 import java.util.UUID;
 
+
 @Ignore
 public class SonarCISClientIntegrationTest {
 
@@ -22,19 +23,19 @@ public class SonarCISClientIntegrationTest {
     @Test
     public void testAuthenticate() {
         SonarCISClient sonarCISClient = new SonarCISClient(new SonarConnectConfig(address2, username, password));
-        assert sonarCISClient.authenticate();
+        System.out.println(sonarCISClient.authenticate());
 
         Project project = new Project();
-        project.setProjectName("projdrr");
-        project.setArtifactId("proffr");
+        project.setProjectName("plplh");
+        project.setArtifactId("plplh");
         project.setGroupId("com.grou3");
         project.setDescription("description");
         project.setProjectLead("xxx");
 
         Developer developer = new Developer();
-        developer.setName(UUID.randomUUID().toString());
+        developer.setName("plplh");
         developer.setEmail("xxx@dxx.com");
-        developer.setPassword("xxxx1111");
+        developer.setPassword("xxxxx");
         developer.setFullName("fullname");
 
 
@@ -44,26 +45,19 @@ public class SonarCISClientIntegrationTest {
 
         assert sonarCISClient.existsUser(developer.getName());
 
-
-        sonarCISClient.assignUsersToRole(project, "", developer);
-
         SonarCISClient developerClient = new SonarCISClient(new SonarConnectConfig(address2, developer.getName(), developer.getPassword()));
         assert developerClient.authenticate();
         developerClient.close();
+        assert sonarCISClient.isActivated(developer.getName());
 
+        sonarCISClient.assignUsersToRole(project, "", developer);
 
         sonarCISClient.removeUser(project, developer);
-
+        sonarCISClient.removeProject(project);
         assert !sonarCISClient.isActivated(developer.getName());
 
-        sonarCISClient.removeProject(project);
 
         sonarCISClient.close();
-
-
-        SonarCISClient developerClient1 = new SonarCISClient(new SonarConnectConfig(address2, developer.getName(), developer.getPassword()));
-        assert !developerClient1.authenticate();
-        developerClient.close();
 
 
     }

@@ -801,20 +801,23 @@
 				this.$element.addClass('alert-danger');
 				break;
 		}
-		var left = ($(window).width()-this.$element.width())/2.2;
-		var top = ($(window).height()-this.$element.height())/2.2;
-		this.$element.appendTo(this.container)
-			.css({'position': 'fixed', 'left': left + 'px', 'top': top + 'px'})
-			.fadeIn();
-		setTimeout(function(){
-			self.$element.fadeOut(1000, function(){
-				$(this).remove();
+		self.$element.appendTo($('body'))
+			.fadeIn(400, function(){
+				var $this = $(this);
+				var content = $this.find('[data-toggle="content"]');
+				var left = self.container.offset().left + (self.container.outerWidth(true) - content.outerWidth(true) - 20)/2;
+				var top = self.container.offset().top + (self.container.outerHeight(true) - content.outerHeight(true))/2;
+				self.$element.css({'position': 'fixed', 'left': left + 'px', 'top': top + 'px'})
 			});
-		}, this.options.delay);
+  		setTimeout(function(){
+  			self.$element.fadeOut(1000, function(){
+  				$(this).remove();
+  			});
+  		}, this.options.delay);
 	};
-	Message.DEFAULTS.TEMPLATE = '<div class="alert message" style="width: auto;min-width: 120px;max-width: 300px; padding: 8px;text-align: left;z-index: 20000;">' +
+	Message.DEFAULTS.TEMPLATE = '<div class="alert message" style="width:auto;min-width: 120px;max-width: 300px; padding: 8px;text-align: left;z-index: 20000;">' +
 		'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
-		'<span data-toggle="content"></span>&nbsp;&nbsp;</div>';
+		'<span data-toggle="content" style="font-size:14px;"></span>&nbsp;&nbsp;</div>';
 	var old = $.fn.message;
 	$.fn.message = function(option){
 		return this.each(function(){

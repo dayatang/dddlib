@@ -1,6 +1,3 @@
-body {
-	font-family: "����","Arial Narrow",HELVETICA;
-}
 a, button{
     outline: none!important;
     text-decoration: none;
@@ -97,7 +94,6 @@ a, button{
 .second-level-menu > li > a {
     border-bottom: 1px dotted #A0BAFF;
     display: block;
-    font-family: "Helvetica Neue",Arial,sans-serif;
     font-size: 15px;
     outline: medium none;
     padding: 4px 0 5px 40px;
@@ -137,7 +133,6 @@ a, button{
 .third-level-menu > li > a {
     border-bottom: 1px dotted #A0BAFF;
     display: block;
-    font-family: "Helvetica Neue",Arial,sans-serif;
     font-size: 15px;
     outline: medium none;
     padding: 4px 0 5px 60px;
@@ -177,7 +172,6 @@ a, button{
     border-color: #DDDDDD;
     padding: 6px 15px;
     font-size: 16px;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     background-image: -moz-linear-gradient(bottom, #FFFFFF, #f5f5f5);
     background-image: -webkit-linear-gradient(bottom, #FFFFFF, #f5f5f5);
     background-image: -o-linear-gradient(bottom, #FFFFFF, #f5f5f5);
@@ -324,7 +318,7 @@ a, button{
 	.second-level-menu > li > a,
 	.first-level-menu > li > a,
 	.g-mainc > ul > li > a {
-		font-size: 13px;
+		font-size: 14px;
 	}
 	.g-head .navbar-brand {
 		padding-top: 10px;

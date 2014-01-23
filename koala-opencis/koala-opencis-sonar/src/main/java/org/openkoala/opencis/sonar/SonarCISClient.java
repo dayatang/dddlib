@@ -1,6 +1,7 @@
 package org.openkoala.opencis.sonar;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import org.apache.http.*;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.AuthCache;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -66,10 +68,12 @@ public class SonarCISClient implements CISClient {
             httpPost.setEntity(entity);
             response = httpClient.execute(httpPost, localContext);
 
-            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK
+                    || response.getStatusLine().getStatusCode() == HttpStatus.SC_BAD_REQUEST) {
+                //删除anyone组的权限
+                removeAnyOnePermission(project);
                 return;
             }
-            // TODO
             throw new CISClientBaseRuntimeException("sonar.createProjectFailure");
         } catch (IOException e) {
             e.printStackTrace();
@@ -83,6 +87,38 @@ public class SonarCISClient implements CISClient {
                 throw new CISClientBaseRuntimeException("sonar.createProject.responseCloseFailure", e);
             }
         }
+    }
+
+    private void removeAnyOnePermission(Project project) {
+        HttpPost httpPost1 = new HttpPost(connectConfig.getAddress() + "/api/permissions/remove");
+        List<NameValuePair> params1 = new ArrayList<NameValuePair>();
+        params1.add(new BasicNameValuePair("permission", "user"));
+        params1.add(new BasicNameValuePair("group", "anyone"));
+        params1.add(new BasicNameValuePair("component", getKeyOf(project)));
+
+        try {
+            UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params1, "UTF-8");
+            httpPost1.setEntity(entity);
+            HttpResponse response1 = httpClient.execute(httpPost1, localContext);
+            if (response1.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+                return;
+            }
+
+            throw new CISClientBaseRuntimeException("sonar.removeAnyOnePermissionFailure : " + response1.getStatusLine());
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            throw new CISClientBaseRuntimeException("sonar.removeAnyOnePermission.UnsupportedEncodingException", e);
+
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+            throw new CISClientBaseRuntimeException("sonar.removeAnyOnePermission.ClientProtocolException", e);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new CISClientBaseRuntimeException("sonar.removeAnyOnePermission.IOException", e);
+
+        }
+
     }
 
     @Override
@@ -128,7 +164,6 @@ public class SonarCISClient implements CISClient {
             UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
             httpPost.setEntity(entity);
             response = httpClient.execute(httpPost, localContext);
-
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 return;
             }
@@ -181,7 +216,7 @@ public class SonarCISClient implements CISClient {
             response = httpClient.execute(http, localContext);
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 String result = EntityUtils.toString(response.getEntity());
-                return result.contains(developerName) && result.contains("\"active\": true");
+                return result.contains(developerName) && result.contains("\"active\":true");
             }
             return false;
         } catch (IOException e) {
@@ -242,12 +277,16 @@ public class SonarCISClient implements CISClient {
             params.add(new BasicNameValuePair("user", each.getName()));
             params.add(new BasicNameValuePair("component", getKeyOf(project)));
             CloseableHttpResponse response = null;
+
+
             try {
                 UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
                 httpPost.setEntity(entity);
                 response = httpClient.execute(httpPost, localContext);
 
-                if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+
+                if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK
+                        || response.getStatusLine().getStatusCode() == HttpStatus.SC_BAD_REQUEST) {
                     return;
                 }
                 // TODO
@@ -284,18 +323,12 @@ public class SonarCISClient implements CISClient {
         CloseableHttpResponse response = null;
         try {
             response = httpClient.execute(targetHost, httpget, localContext);
+            String str = EntityUtils.toString(response.getEntity());
             return response.getStatusLine().getStatusCode() == HttpStatus.SC_OK
-                    && ("{\"validate\":true}".equals(EntityUtils.toString(response.getEntity())));
+                    && str.contains(":true");
         } catch (IOException e) {
             e.printStackTrace();
             throw new CISClientBaseRuntimeException("sonar.authenticateFailure");
-        } finally {
-            try {
-                response.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-                throw new CISClientBaseRuntimeException("sonar.authenticate.responseCloseFailure");
-            }
         }
     }
 

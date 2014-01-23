@@ -94,7 +94,7 @@ var dataSource = function(){
 		$.post(baseUrl+'checkDataSource.koala', getAllData()).done(function(data){
 			var result = data.result;
 			var type = data.result == '该数据源不可用' ? 'warning' : 'success';
-			dialog.message({
+			dialog.find('.modal-content').message({
 				type: type,
 				content: result
 			});
