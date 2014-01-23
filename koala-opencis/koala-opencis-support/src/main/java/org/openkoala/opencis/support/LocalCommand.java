@@ -19,11 +19,11 @@ public abstract class LocalCommand extends AbstractCommand{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public LocalCommand(SvnConfig config,Project project){
+	public LocalCommand(SSHConnectConfig config,Project project){
 		this.project = project;
 		this.userName = config.getUsername();
 		this.password = config.getPassword();
-		this.svnAddress = config.getSvnAddress();
+		this.svnAddress = config.getHost();
 	}
 
 	@Override

@@ -22,21 +22,22 @@ import org.openkoala.opencis.exception.UserBlankException;
 import org.openkoala.opencis.exception.UserListBlankException;
 import org.openkoala.opencis.exception.UserOrPasswordErrorException;
 import org.openkoala.opencis.support.SSHConnectConfig;
+import org.openkoala.opencis.support.SvnConfig;
 
 @Ignore
 public class SvnCISClientTest {
 
-    private SSHConnectConfig configuration;
+    private SvnConfig configuration;
     private SvnCISClient instance;
     private Project project;
     private Developer developer;
-    private String projectName = "projectUnitTest";
+    private String projectName = "ddd";
     private List<String> userNames;
     private String roleName;
 
     @Before
     public void setUp() throws Exception {
-        configuration = new SSHConnectConfig("10.108.1.106", "root", "password","/opencis/svn/");
+        configuration = new SvnConfig("10.108.1.106", "root", "password","/opencis/svn/","http://10.108.1.138/svn/ddd");
         this.initProjectInfo();
         this.initDeveloperInfo();
     }
@@ -208,7 +209,7 @@ public class SvnCISClientTest {
     private void initProjectInfo() {
         project = new Project();
         project.setProjectName(projectName);
-        project.setPhysicalPath("/usr/local/subversion/");
+        project.setPhysicalPath("/home/zjh/projects");
     }
 
     private void initDeveloperInfo() {
