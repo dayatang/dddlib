@@ -46,19 +46,19 @@ var menuManager = function(){
 		dataGrid = grid;
 		$.post(baseUrl + 'del.koala', data).done(function(data){
 			if(data.result == 'success'){
-				$('body').message({
+				dataGrid.message({
 					type: 'success',
 					content: '删除成功'
 				});
 				dataGrid.grid('refresh');
 			}else{
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
-					content: data.result
+					content: data.actionError
 				});
 			}
 		}).fail(function(data){
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
 					content: '删除失败'
 				});
@@ -132,7 +132,7 @@ var menuManager = function(){
 					$(this).remove();
 				},
 				'complete': function(){
-					$('body').message({
+					dataGrid.message({
 						type: 'success',
 						content: '保存成功'
 					});
@@ -172,7 +172,7 @@ var menuManager = function(){
 			if(data.result == 'success'){
 				dialog.trigger('complete');
 			}else{
-				dialog.message({
+				dialog.find('.modal-content').message({
 					type: 'error',
 					content: data.actionError
 				});
@@ -221,14 +221,14 @@ var menuManager = function(){
 		var dataGrid = grid.getGrid();
 		var indexs = dataGrid.selectedRowsNo();
 		if(indexs.length == 0){
-	        $this.message({
+	        grid.message({
 	            type: 'warning',
 	             content: '请选择要操作的记录'
 	        });
 	        return;
 	    }
 		if(indexs.length > 1){
-	        $this.message({
+	        grid.message({
 	            type: 'warning',
 	             content: '只能选择一条记录进行操作'
 	        });
@@ -236,7 +236,7 @@ var menuManager = function(){
 	    }
 		var dataGrid = grid.getGrid();
         if(dataGrid.up(indexs[0])){
-		    changePosition(dataGrid.getAllItems());
+		    changePosition(grid, dataGrid.getAllItems());
         }
 	};
 
@@ -247,14 +247,14 @@ var menuManager = function(){
 		var dataGrid = grid.getGrid();
 		var indexs = dataGrid.selectedRowsNo();
 		if(indexs.length == 0){
-	        $('body').message({
+	        grid.message({
 	            type: 'warning',
 	             content: '请选择要操作的记录'
 	        });
 	        return;
 	    }
 		if(indexs.length > 1){
-            $('body').message({
+            grid.message({
 	            type: 'warning',
 	             content: '只能选择一条记录进行操作'
 	        });
@@ -262,10 +262,10 @@ var menuManager = function(){
 	    }
 		var dataGrid = grid.getGrid();
 		if(dataGrid.down(indexs[0])){
-		    changePosition(dataGrid.getAllItems());
+		    changePosition(grid, dataGrid.getAllItems());
         }
 	};
-	var changePosition = function(items){
+	var changePosition = function(grid, items){
 		var data = {};
 		for(var i=0,j=items.length; i<j; i++){
 			var item = items[i];
@@ -274,12 +274,12 @@ var menuManager = function(){
 		}
 		$.post(contextPath + '/auth/Menu/updateMenuOrder.koala', data).done(function(result){
 			if(data.actionError){
-				$('body').message({
+				grid.message({
 	                type: 'error',
 	                content: data.actionError
 	            });
 			}else{
-				$('body').message({
+				grid.message({
 	                type: 'success',
 	                content: '移动成功'
 	            });

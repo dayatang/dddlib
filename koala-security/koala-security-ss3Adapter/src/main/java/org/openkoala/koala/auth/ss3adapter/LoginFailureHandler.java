@@ -24,7 +24,7 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 	private String passwordNotCorrectUrl;
 	
 	private String validateCodeNotCorrectUrl;
-
+	
 	public String getUserAccountNotFoundUrl() {
 		return userAccountNotFoundUrl;
 	}

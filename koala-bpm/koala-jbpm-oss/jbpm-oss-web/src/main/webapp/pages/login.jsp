@@ -10,7 +10,7 @@
 <script type="text/javascript" src="<c:url value='/lib/respond.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/bootstrap/js/bootstrap.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/lib/koala-ui.plugin.js' />"></script>	
-<script type="text/javascript" src="<c:url value='/js/validation.js' />"></script>
+<script type="text/javascript" src="<c:url value='/lib/validate.js' />"></script>
 <style type="text/css">
 @charset "UTF-8";
 /* CSS Document */
@@ -125,7 +125,6 @@ body {
 	function refreshCode(){
 		$('#checkCode').attr('src',"jcaptcha.jpg?time="+new Date().getTime());
 	}
-	
 </script>
 </head>
 <body>
@@ -142,7 +141,7 @@ body {
 			<h4>登录</h4>
 			 <c:if test="${param.login_error == '1' }">
 		     	<script>
-		     		$('body').message({
+		     		$('.login_con_R').message({
 						type: 'error',
 						content: '用户名错误!'
 					});
@@ -151,7 +150,7 @@ body {
 		    
 			<c:if test="${param.login_error == '2' }">
 		      	<script>
-		     		$('body').message({
+		     		$('.login_con_R').message({
 						type: 'error',
 						content: '密码错误!'
 					});
@@ -160,7 +159,7 @@ body {
 			
 			<c:if test="${param.login_error == '3' }">
 		      	<script>
-		     		$('body').message({
+		     		$('.login_con_R').message({
 						type: 'error',
 						content: '验证码错误!'
 					});

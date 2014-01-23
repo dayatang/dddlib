@@ -44,19 +44,19 @@ var resourceManager = function(){
 		dataGrid = grid;
 		$.post(baseUrl + 'del.koala', data).done(function(data){
 			if(data.result == 'success'){
-				$('body').message({
+				dataGrid.message({
 					type: 'success',
 					content: '删除成功'
 				});
 				dataGrid.grid('refresh');
 			}else{
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
-					content: data.result
+					content: data.actionError
 				});
 			}
 		}).fail(function(data){
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
 					content: '删除失败'
 				});
@@ -96,7 +96,7 @@ var resourceManager = function(){
 					$(this).remove();
 				},
 				'complete': function(){
-					$('body').message({
+					dataGrid.message({
 						type: 'success',
 						content: '保存成功'
 					});
@@ -114,8 +114,8 @@ var resourceManager = function(){
 		name.val(item.name);
 		identifier.val(item.identifier);
 		desc.val(item.desc);
-		resourceType.setValue(item.typeId);
-	};
+		resourceType.setValue(item.typeId)
+	}
 		
 	/*
 	*   保存数据 id存在则为修改 否则为新增
@@ -135,7 +135,7 @@ var resourceManager = function(){
 			if(data.result == 'success'){
 				dialog.trigger('complete');
 			}else{
-				dialog.message({
+				dialog.find('.modal-content').message({
 					type: 'error',
 					content: data.actionError
 				});
@@ -156,7 +156,7 @@ var resourceManager = function(){
 			return false;
 		}
 		return true;
-	};
+	}
 	/*
 	*获取表单数据
 	 */

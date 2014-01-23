@@ -19,7 +19,6 @@ import org.openkoala.koala.auth.core.domain.RoleUserAuthorization;
 import org.openkoala.koala.auth.core.domain.User;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dayatang.domain.InstanceFactory;
 import com.dayatang.querychannel.support.Page;
 
 @Remote

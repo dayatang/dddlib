@@ -64,14 +64,14 @@ var publishUrlList = {
                 $('body').message({
                     type: 'success',
                     content: '保存成功'
-                })
+                });
                 self.dialog.modal('hide');
                 self.grid.grid('refresh');
             }else{
-                self.dialog.message({
+                self.dialog.find('.modal-content').message({
                     type: 'error',
                     content: '保存失败'
-                })
+                });
             }
         });
     },
@@ -85,15 +85,15 @@ var publishUrlList = {
                 $('body').message({
                     type: 'success',
                     content: '删除成功'
-                })
+                });
                 grid.grid('refresh');
             }else{
                 $('body').message({
                     type: 'error',
                     content: '删除失败'
-                })
+                });
             }
-        })
+        });
     },
     view: function(name, url){
         $.get(contextPath + '/pages/jbpm/publishUrlTemplate.html').done(function(data){
@@ -109,7 +109,7 @@ var publishUrlList = {
                     'hidden.bs.modal': function(){
                         $(this).remove();
                     }
-                })
+                });
         });
     },
     browse: function(id){

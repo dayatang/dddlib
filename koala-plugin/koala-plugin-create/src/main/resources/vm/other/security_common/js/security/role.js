@@ -35,7 +35,7 @@ var roleManager = function(){
 		dataGrid = grid;
 		$.post(baseUrl + 'del.koala', data).done(function(data){
 			if(data.result == 'success'){
-				$('body').message({
+				dataGrid.message({
 					type: 'success',
 					content: '删除成功'
 				});
@@ -43,11 +43,11 @@ var roleManager = function(){
 			}else{
 				$('body').message({
 					type: 'error',
-					content: data.result
+					content: data.actionError
 				});
 			}
 		}).fail(function(data){
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
 					content: '删除失败'
 				});
@@ -70,7 +70,7 @@ var roleManager = function(){
 					$(this).remove();
 				},
 				'complete': function(){
-					$('body').message({
+					dataGrid.message({
 						type: 'success',
 						content: '保存成功'
 					});
@@ -103,7 +103,7 @@ var roleManager = function(){
 			if(data.result == 'success'){
 				dialog.trigger('complete');
 			}else{
-				dialog.message({
+				dialog.find('.modal-content').message({
 					type: 'error',
 					content: data.actionError
 				});
@@ -141,7 +141,7 @@ var roleManager = function(){
 			dialog.find('#save').on('click',function(){
 				var indexs = dialog.find('#selectRoleGrid').data('koala.grid').selectedRowsIndex();
 				if(indexs.length == 0){
-					$('body').message({
+					dialog.find('.modal-content').message({
 						type: 'warning',
 						content: '请选择要分配的角色'
 					});
@@ -154,20 +154,20 @@ var roleManager = function(){
 				}
 				$.post(contextPath + '/auth/User/assignRoles.koala', data).done(function(data){
 					if(data.result == 'success'){
-						$('body').message({
+						dataGrid.message({
 							type: 'success',
 							content: '保存成功'
 						});
 						dialog.modal('hide');
 						dataGrid.grid('refresh');
 					}else{
-						$('body').message({
+						dataGrid.message({
 							type: 'error',
 							content: data.actionError
 						});
 					}
 				}).fail(function(data){
-					$('body').message({
+					dataGrid.message({
 						type: 'error',
 						content: '保存失败'
 					});
@@ -182,7 +182,7 @@ var roleManager = function(){
 						initSelectRoleGrid(userId, userAccount, dialog);
 					},
 					'complete': function(){
-						$('body').message({
+						dataGrid.message({
 							type: 'success',
 							content: '保存成功'
 						});
@@ -233,19 +233,19 @@ var roleManager = function(){
 		dataGrid = grid;
 		$.post(baseUrl + 'removeRoleForUser.koala', data).done(function(data){
 			if(data.result == 'success'){
-				$('body').message({
+				dataGrid.message({
 					type: 'success',
 					content: '删除成功'
 				});
 				dataGrid.grid('refresh');
 			}else{
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
-					content: data.result
+					content: data.actionError
 				});
 			}
 		}).fail(function(data){
-				$('body').message({
+				dataGrid.message({
 					type: 'error',
 					content: '删除失败'
 				});
@@ -258,7 +258,7 @@ var roleManager = function(){
 	/**
 	 * 资源授权
 	 */
-	var assignResource = function(roleId){
+	var assignResource = function(grid, roleId){
 		$.get(contextPath + '/pages/auth/assign-resource.html').done(function(data){
 			var dialog = $(data);
             initResourceTree(dialog, roleId);
@@ -272,19 +272,19 @@ var roleManager = function(){
 				}
 				$.post(baseUrl + 'assignMenuResources.koala', data).done(function(data){
 					if(data.result == 'success'){
-						$('body').message({
+						grid.message({
 							type: 'success',
 							content: '保存成功'
 						});
 						dialog.modal('hide');
 					}else{
-						$('body').message({
+						dialog.find('.modal-content').message({
 							type: 'error',
 							content: data.result
 						});
 					}
 				}).fail(function(data){
-						$('body').message({
+						dialog.find('.modal-content').message({
 							type: 'error',
 							content: '保存失败'
 						});
@@ -296,7 +296,7 @@ var roleManager = function(){
 						$(this).remove();
 					},
 					'complete': function(){
-						$('body').message({
+						dataGrid.message({
 							type: 'success',
 							content: '保存成功'
 						});

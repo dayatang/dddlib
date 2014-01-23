@@ -44,14 +44,10 @@ public class UserController {
 		CustomUserDetails current = (CustomUserDetails) SecurityContextHolder
 				.getContext().getAuthentication().getPrincipal();
 		String username = current.getUsername();
-		if (current.isSuper()) {
-			dataMap.put("result", "超级管理员密码不支持页面修改");
-			return dataMap;
-		}
 		UserVO userVO = new UserVO();
 		userVO.setUserAccount(username);
-		userVO.setUserPassword(passwordEncoder.encode(userVO.getUserPassword()));
-		if (userApplication.updatePassword(userVO, passwordEncoder.encode(userVO.getUserPassword()))) {
+		userVO.setUserPassword(passwordEncoder.encode(userPassword));
+		if (userApplication.updatePassword(userVO, passwordEncoder.encode(oldPassword))) {
 			dataMap.put("result", "success");
 			CacheUtil.refreshUserAttributes(username);
 		} else {
@@ -280,3 +276,4 @@ public class UserController {
 	}
 
 }
+

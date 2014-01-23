@@ -18,7 +18,7 @@ var changePost = function(){
             loadDepartmentTree(employeeId);
             dialog.find('#save').on('click',function(){
 				if(selectedPost.find('.principal').length == 0){
-					$('body').message({
+					dialog.find('.modal-content').message({
 						type: 'warning',
 						content: '请设置主岗位'
 				 });
@@ -34,7 +34,7 @@ var changePost = function(){
 				        'Content-Type': 'application/json' 
 				    },
 				    'type': "Post",
-				    'url': '/employee/transform-post.koala?employeeId='+employeeId,
+				    'url': contextPath + '/employee/transform-post.koala?employeeId='+employeeId,
 				    'data': JSON.stringify(items),
 				    'dataType': 'json'
 				 }).done(function(data){
@@ -46,7 +46,7 @@ var changePost = function(){
 						 });
 						 loadData(employeeId);
 					 }else{
-						 $('body').message({
+						 dialog.find('.modal-content').message({
 								type: 'error',
 								content: data.result
 						 }); 
@@ -266,7 +266,7 @@ var changePost = function(){
 						selectedItem[data.postId] = {postId:data.postId, principal: true};                             
 					}else{
 						if(!post.hasClass('principal')){
-							$('body').message({
+							postGrid.message({
 								type: 'error',
 								content: '主岗位已经设置'
 							});
