@@ -89,9 +89,9 @@
             <url>http://www.openkoala.org:8081/content/repositories/snapshots/</url>
         </snapshotRepository>
         <site>
-            <id>mvn-site</id>
+            <id>koala-site</id>
             <name>Maven Project Site</name>
-            <url>dav:http://dev.foreveross.com/projects/koala</url>
+            <url>dav:http://www.openkoala.org/mvnsite/</url>
         </site>
     </distributionManagement>
 
