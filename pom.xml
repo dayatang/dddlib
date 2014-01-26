@@ -8,7 +8,7 @@
     <version>2.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>koala project</name>
-    <url>http://dev.foreveross.com/projects/koala</url>
+    <url>http://www.openkoala.org/mvnsite/</url>
     <description/>
 
     <developers>
