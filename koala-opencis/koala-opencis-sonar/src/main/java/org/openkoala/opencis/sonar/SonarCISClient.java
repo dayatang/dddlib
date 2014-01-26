@@ -315,8 +315,7 @@ public class SonarCISClient implements CISClient {
                 .setDefaultCredentialsProvider(credsProvider)
                 .build();
         AuthCache authCache = new BasicAuthCache();
-        BasicScheme basicAuth = new BasicScheme();
-        authCache.put(targetHost, basicAuth);
+        authCache.put(targetHost, new BasicScheme());
         localContext = HttpClientContext.create();
         localContext.setAuthCache(authCache);
         HttpGet httpget = new HttpGet("/api/authentication/validate");

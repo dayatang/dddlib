@@ -23,7 +23,7 @@ public class JenkinsCISClientIntegrationTest {
     @Test
     public void test() throws MalformedURLException {
 
-        Project project = getProject("xxxyyx");
+        Project project = getProject("hhhhh00");
 
         JenkinsCISClient client = new JenkinsCISClient(jenkinsURL, username, apiToken);
 
@@ -34,13 +34,12 @@ public class JenkinsCISClientIntegrationTest {
         client.createProject(project);
 
 
-        client.createUserIfNecessary(project, getDeveloper("x1"));
-        client.createUserIfNecessary(project, getDeveloper("x2"));
-        client.createUserIfNecessary(project, getDeveloper("x3"));
+        client.createUserIfNecessary(project, getDeveloper("hhh00"));
+        client.createUserIfNecessary(project, getDeveloper("hhh100"));
+        client.createUserIfNecessary(project, getDeveloper("hhh200"));
 
-        client.assignUsersToRole(project, "", getDeveloper("x1"));
-        client.assignUsersToRole(project, "", getDeveloper("x2"));
-        client.removeProject(project);
+        client.assignUsersToRole(project, "", getDeveloper("hhh100"),getDeveloper("hhh200"));
+        //client.removeProject(project);
         client.close();
 
 
@@ -49,7 +48,8 @@ public class JenkinsCISClientIntegrationTest {
     public Developer getDeveloper(String name) {
         Developer developer = new Developer();
         developer.setName(name);
-        developer.setPassword("1111");
+        developer.setId(name);
+        developer.setPassword("admin");
         developer.setEmail(UUID.randomUUID().toString() + "@gmail.com");
         return developer;
     }
