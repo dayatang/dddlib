@@ -117,7 +117,11 @@ var department = function(){
                         elementData.name = departmentName.val();
                         elementData.description = description.val();
                         $element.data(elementData);
-                        $element.find('.tree-item-name, .tree-folder-name').html(elementData.name);
+                        if(type == 'updateCompany'){
+                        	$element.find('.tree-folder-name').html(elementData.name);
+                        }else{
+                        	$element.find('.tree-item-name').html(elementData.name);
+                        }
                     }else{
                         $('#departmentTree').off().empty().data('koala.tree', null)
                         getTree();
