@@ -803,8 +803,8 @@
 		}
 		this.$element.appendTo($('body'))
 			.fadeIn(400, function(){
-				var width = self.$element.outerWidth(true)*0.5;
-				var height = self.$element.outerHeight(true)*0.5;
+				var width = self.$element.find('[data-toggle="content"]').outerWidth(true)*0.5 + 20;
+				var height = self.$element.find('[data-toggle="content"]').outerHeight(true)*0.5 + 20;
 				var left = self.container.offset().left + self.container.outerWidth(true)*0.5 - width;
 				var top = self.container.offset().top + self.container.outerHeight(true)*0.5 - height;
 				
