@@ -106,7 +106,7 @@
     <repositories>
         <repository>
             <id>koala-snapshots</id>
-            <url>http://nexus.openkoala.org/nexus/content/groups/Koala-snapshots/</url>
+            <url>http://nexus.openkoala.org/content/groups/Koala-snapshots/</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -117,7 +117,7 @@
 
         <repository>
             <id>koala-release</id>
-            <url>http://nexus.openkoala.org/nexus/content/groups/Koala-release/</url>
+            <url>http://nexus.openkoala.org/content/groups/Koala-release/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -129,59 +129,34 @@
         <!--  use this repository for stable releases -->
 
         <repository>
-
             <id>jboss-public-repository-group</id>
-
             <name>JBoss Public Maven Repository Group</name>
-
             <url>https://repository.jboss.org/nexus/content/groups/public/</url>
-
             <layout>default</layout>
-
             <releases>
-
                 <enabled>true</enabled>
-
                 <updatePolicy>never</updatePolicy>
-
             </releases>
-
             <snapshots>
-
                 <enabled>false</enabled>
-
             </snapshots>
-
         </repository>
 
         <!-- use this repository for snapshot releases -->
 
         <repository>
-
             <id>jboss-snapshot-repository-group</id>
-
             <name>JBoss SNAPSHOT Maven Repository Group</name>
-
             <url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
-
             <layout>default</layout>
-
             <releases>
-
                 <enabled>false</enabled>
-
             </releases>
-
             <snapshots>
-
                 <enabled>true</enabled>
-
                 <updatePolicy>never</updatePolicy>
-
             </snapshots>
-
         </repository>
-
     </repositories>
 
 
