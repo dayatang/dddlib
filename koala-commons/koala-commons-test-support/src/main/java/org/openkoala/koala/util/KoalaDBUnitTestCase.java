@@ -40,6 +40,9 @@ public abstract class KoalaDBUnitTestCase implements ApplicationContextAware {
 	}
 
 	protected IDataSet getDataSet() throws Exception {
+		if(getDataXmlFile()==null){
+			return null;
+		}
 		return new FlatXmlDataSetBuilder().build(Object.class.getResourceAsStream(getDataXmlFile()));
 	}
 
@@ -67,6 +70,10 @@ public abstract class KoalaDBUnitTestCase implements ApplicationContextAware {
 	@Before
 	public void setUp() throws Exception {
 		
+		if(getDataSet()==null){
+			return;
+		}
+		
 		databaseTester = getIDatabaseTester();
         
 		IDataSet dataSet = getDataSet();
@@ -82,6 +89,9 @@ public abstract class KoalaDBUnitTestCase implements ApplicationContextAware {
 
 	@After
 	public void tearDown() throws Exception {
+		if(getDataSet()==null){
+			return;
+		}
 		databaseTester.onTearDown();
 	}
 
