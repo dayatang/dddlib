@@ -448,6 +448,11 @@ var department = function(){
 			var $span = $(this).find('span');
 			departmentEmployeeGrid.data('koala.grid').search({queryAllChildren: !$span.hasClass('checked')});
 			$span.toggleClass('checked');
+			if ($span.hasClass('checked')) {
+				employeeListDialog.find('#deleteRelation').hide();
+			} else {
+				employeeListDialog.find('#deleteRelation').show();
+			}
 		});
 	};
 	var deleteEmployeeRelation = function(employeeListDialog, id, items, grid){
