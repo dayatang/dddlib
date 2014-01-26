@@ -51,6 +51,9 @@
 	<listener>
 		<listener-class>org.openkoala.bpm.KoalaBPM.web.context.ProcessDynaListener</listener-class>
 	</listener>
+	<listener>
+		<listener-class>org.openkoala.koala.auth.web.InitSuperUserListener</listener-class>
+	</listener>
 
 	<session-config>
 		<session-timeout>120</session-timeout>
