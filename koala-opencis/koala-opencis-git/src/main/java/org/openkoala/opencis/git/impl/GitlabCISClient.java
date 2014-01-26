@@ -3,12 +3,17 @@ package org.openkoala.opencis.git.impl;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.InitCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -51,7 +56,7 @@ public class GitlabCISClient implements CISClient {
     private Set<GitlabUser> currentGitlabUsers;
 
 
-    private GitlabCISClient() {
+    public GitlabCISClient() {
     }
 
     public GitlabCISClient(GitlabConfiguration gitLabConfiguration) {
@@ -216,7 +221,7 @@ public class GitlabCISClient implements CISClient {
         try {
             result = gitlabHTTPRequestor.method("GET").to("/user", GitlabUser.class);
         } catch (IOException e) {
-            throw new CISClientBaseRuntimeException("gitlab.getCurrentUser.IOException");
+            throw new CISClientBaseRuntimeException("gitlab.getCurrentUser.IOException", e);
         }
         return result;
     }
@@ -246,7 +251,29 @@ public class GitlabCISClient implements CISClient {
 
     @Override
     public boolean authenticate() {
-        return true;
+
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpPost post = new HttpPost("http://10.108.1.138:99/api/v3/session");
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("login", "root"));
+        params.add(new BasicNameValuePair("password", "root"));
+
+
+        try {
+
+            UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
+            post.setEntity(entity);
+
+            HttpResponse response = httpClient.execute(post);
+
+            System.out.println(EntityUtils.toString(response.getEntity()));
+
+
+            return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new CISClientBaseRuntimeException("gitlab.getCurrentUser.IOException", e);
+        }
     }
 
     /**

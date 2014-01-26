@@ -10,7 +10,6 @@
 	</parent>
 	<artifactId>koala-opencis-git</artifactId>
 	<name>koala-opencis-git</name>
-	<url>http://maven.apache.org</url>
 	<description>Koala OpenCIS对 GIT 的支持</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,6 +35,11 @@
 			<artifactId>koala-opencis-api</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>

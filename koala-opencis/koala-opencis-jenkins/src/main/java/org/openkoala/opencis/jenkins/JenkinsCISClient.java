@@ -86,24 +86,8 @@ public class JenkinsCISClient implements CISClient {
     @Override
     public void createUserIfNecessary(Project project, Developer developer) {
         developer.validate();
-
-        if (existUser(developer)) {
-            return;
-        }
-
         client.createUser(developer.getId(), developer.getPassword(),
                 developer.getEmail(), developer.getName());
-
-    }
-
-    public boolean existUser(Developer developer) {
-        try {
-            client.retrieveUser(developer.getId());
-            return true;
-        } catch (NoSuchUserException e) {
-            return false;
-        }
-
 
     }
 
@@ -128,7 +112,7 @@ public class JenkinsCISClient implements CISClient {
 
     @Override
     public void assignUsersToRole(Project project, String role, Developer... developers) {
-        Job job = null;
+        Job job ;
         try {
             job = client.retrieveJob(project.getProjectName());
         } catch (NoSuchJobException e) {
