@@ -43,11 +43,11 @@ public class UserApplicationImpl extends BaseImpl implements UserApplication {
 		userVO.vo2Domain(user);
 		
 		if (user.isAccountExisted()) {
-        	throw new ApplicationException("userAccount.exist", null);
+        	throw new ApplicationException("userAccount.exist");
         }
         
         if (user.isEmailExisted()) {
-        	throw new ApplicationException("email.exist", null);
+        	throw new ApplicationException("email.exist");
         }
         
         user.save();

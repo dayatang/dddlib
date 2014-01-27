@@ -22,6 +22,10 @@ public class ApplicationException extends BaseException {
 
 	private static final long serialVersionUID = 5394041231546831105L;
 
+	public ApplicationException(String errorCode) {
+		this(errorCode, null);
+	}
+	
 	public ApplicationException(String errorCode, String defaultMessage) {
 		super(errorCode, defaultMessage);
 	}

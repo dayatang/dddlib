@@ -87,26 +87,20 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping("/pageJson")
-	public Map<String, Object> pageJson(String page, String pagesize,Long roleId ,String userNameForSearch,String userAccountForSearch) {
+	public Map<String, Object> pageJson(int page, int pagesize, Long roleId, 
+			String userNameForSearch, String userAccountForSearch) {
 		Map<String, Object> dataMap = new HashMap<String,Object>();
-		int start = Integer.parseInt(page);
-		int limit = Integer.parseInt(pagesize);
-		QueryConditionVO search = new QueryConditionVO();
-		initSearchCondition(search,userNameForSearch,userAccountForSearch);
-		Page<UserVO> all = null;
-		if (roleId == null) {
-			//all = userApplication.pageQueryUser(start, limit);
-			all = userApplication.pageQueryUserCustom(start, limit, search);
-		} else {
-			RoleVO roleVoForFind = new RoleVO();
-			roleVoForFind.setId(roleId);
-			all = new Page<UserVO>(start, limit, limit,
-					roleApplication.findUserByRole(roleVoForFind));
-		}
+		
+		RoleVO roleVoForFind = new RoleVO();
+		roleVoForFind.setId(roleId);
+		roleVoForFind.setName(userNameForSearch);
+		roleVoForFind.setUseraccount(userAccountForSearch);
+		
+		Page<UserVO> all = roleApplication.pageQueryUserByRole(roleVoForFind, page, pagesize);
 
 		dataMap.put("Rows", all.getResult());
-		dataMap.put("start", start * limit - limit);
-		dataMap.put("limit", limit);
+		dataMap.put("start", page * pagesize - pagesize);
+		dataMap.put("limit", pagesize);
 		dataMap.put("Total", all.getTotalCount());
 		return dataMap;
 	}
@@ -133,16 +127,13 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping("/queryUsersForAssign")
-	public Map<String, Object> queryUsersForAssign(String page, String pagesize,Long roleId,String userNameForSearch,String userAccountForSearch) {
+	public Map<String, Object> queryUsersForAssign(int page, int pagesize,Long roleId,String userNameForSearch,String userAccountForSearch) {
 		Map<String, Object> dataMap = new HashMap<String,Object>();
-		int start = Integer.parseInt(page);
-		int limit = Integer.parseInt(pagesize);
 
 		QueryConditionVO search = new QueryConditionVO();
-		initSearchCondition(search,userNameForSearch,userAccountForSearch);
+		initSearchCondition(search, userNameForSearch, userAccountForSearch);
 
-		Page<UserVO> all = userApplication.pageQueryUserCustom(start, limit,
-				search);
+		Page<UserVO> all = userApplication.pageQueryUserCustom(page, pagesize, search);
 
 		if (roleId != null) {
 			RoleVO role = new RoleVO();
@@ -158,8 +149,8 @@ public class UserController {
 		}
 
 		dataMap.put("Rows", all.getResult());
-		dataMap.put("start", start * limit - limit);
-		dataMap.put("limit", limit);
+		dataMap.put("start", page * pagesize - pagesize);
+		dataMap.put("limit", pagesize);
 		dataMap.put("Total", all.getTotalCount());
 
 		return dataMap;

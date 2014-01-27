@@ -2,10 +2,11 @@ package org.openkoala.koala.auth.ss3adapter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.openkoala.koala.auth.AuthDataService;
 import org.openkoala.koala.auth.vo.DefaultUserDetailsImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
@@ -25,12 +26,13 @@ import com.dayatang.domain.InstanceFactory;
  */
 // @Component("userDetailManager")
 public class UserDetailManager implements UserDetailsService {
+	
+	private static Logger logger = LoggerFactory.getLogger(UserDetailManager.class);
 
 	private AuthDataService provider;
 
 	private Cache cache;
 	
-	private static final Logger LOGGER = Logger.getLogger("UserDetailManager");
 
 	private Cache getCache() {
 		if (cache == null) {
@@ -47,7 +49,7 @@ public class UserDetailManager implements UserDetailsService {
 		try {
 			user = (DefaultUserDetailsImpl) provider.loadUserByUseraccount(username);
 		} catch (Exception e) {
-			LOGGER.info(e.getMessage());
+			logger.error("加载用户失败：{}", e);
 		}
 		if (user == null) {
 			return null;

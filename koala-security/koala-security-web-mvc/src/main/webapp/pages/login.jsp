@@ -165,6 +165,24 @@ body {
 					});
 		     	</script>
 			</c:if>
+			
+			<c:if test="${param.login_error == '4' }">
+		      	<script>
+		     		$('.login_con_R').message({
+						type: 'error',
+						content: '该用户已被禁用!'
+					});
+		     	</script>
+			</c:if>
+			
+			<c:if test="${param.login_error == '4' }">
+		      	<script>
+		     		$('.login_con_R').message({
+						type: 'error',
+						content: '该用户已被禁用!'
+					});
+		     	</script>
+			</c:if>
 			<FORM id="loginFormId" method=post action="j_spring_security_check" onsubmit="return dologin();" class="form-horizontal">
 				<div class="form-group input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
