@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+
 import org.openkoala.auth.application.RoleApplication;
 import org.openkoala.auth.application.UserApplication;
 import org.openkoala.auth.application.vo.QueryConditionVO;
@@ -27,6 +28,8 @@ import com.dayatang.querychannel.support.Page;
 @Controller
 @RequestMapping("/auth/User")
 public class UserController {
+
+	private static final String INIT_PASSWORD = "888888";
 
 	@Inject
 	private UserApplication userApplication;
@@ -114,46 +117,36 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping("/queryNotAssignUserByRole")
-	public Map<String, Object> queryNotAssignUserByRole(String page, String pagesize,Long roleId) {
+	public Map<String, Object> queryNotAssignUserByRole(int page, int pagesize, Long roleId) {
 		
 		Map<String, Object> dataMap = new HashMap<String,Object>();
-		int start = Integer.parseInt(page);
-		int limit = Integer.parseInt(pagesize);
 
 		RoleVO roleVoForFind = new RoleVO();
 		roleVoForFind.setId(roleId);
-		Page<UserVO> all = roleApplication.pageQueryNotAssignUserByRole(start,
-				limit, roleVoForFind);
+		Page<UserVO> all = roleApplication.pageQueryNotAssignUserByRole(page,
+				pagesize, null, roleVoForFind);
 
 		dataMap.put("Rows", all.getResult());
-		dataMap.put("start", start * limit - limit);
-		dataMap.put("limit", limit);
+		dataMap.put("start", page * pagesize - pagesize);
+		dataMap.put("limit", pagesize);
 		dataMap.put("Total", all.getTotalCount());
 		return dataMap;
 	}
 
 	@ResponseBody
 	@RequestMapping("/queryUsersForAssign")
-	public Map<String, Object> queryUsersForAssign(int page, int pagesize,Long roleId,String userNameForSearch,String userAccountForSearch) {
+	public Map<String, Object> queryUsersForAssign(int page, int pagesize, Long roleId,
+			String userNameForSearch, String userAccountForSearch) {
 		Map<String, Object> dataMap = new HashMap<String,Object>();
 
-		QueryConditionVO search = new QueryConditionVO();
-		initSearchCondition(search, userNameForSearch, userAccountForSearch);
-
-		Page<UserVO> all = userApplication.pageQueryUserCustom(page, pagesize, search);
-
-		if (roleId != null) {
-			RoleVO role = new RoleVO();
-			role.setId(roleId);
-			List<UserVO> users = all.getResult();
-			try {
-				for (UserVO user : roleApplication.findUserByRole(role)) {
-					users.remove(user);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+		RoleVO roleVO = new RoleVO();
+		roleVO.setId(roleId);
+		
+		UserVO userVO = new UserVO();
+		userVO.setName(userNameForSearch);
+		userVO.setUserAccount(userAccountForSearch);
+		
+		Page<UserVO> all = roleApplication.pageQueryNotAssignUserByRole(page, pagesize, userVO, roleVO);
 
 		dataMap.put("Rows", all.getResult());
 		dataMap.put("start", page * pagesize - pagesize);
@@ -272,6 +265,17 @@ public class UserController {
 		dataMap.put("result", "success");
 		return dataMap;
 	}
+	
+	@ResponseBody
+	@RequestMapping("/resetPassword")
+	public Map<String, Object> resetPassword(Long userId) {
+		Map<String, Object> dataMap = new HashMap<String,Object>();
+		UserVO userVO = new UserVO();
+		userVO.setId(userId);
+		userVO.setUserPassword(passwordEncoder.encode(INIT_PASSWORD));
+		userApplication.resetPassword(userVO);
+		dataMap.put("result", "success");
+		return dataMap;
+	}
 
 }
-

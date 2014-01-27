@@ -20,6 +20,16 @@ public class RoleVO extends IdentityVO implements Serializable {
 	
 	private String useraccount;
 	
+	public RoleVO() {
+		
+	}
+	
+	public RoleVO(Long id, String name, String desc) {
+		setName(name);
+		setId(id);
+		this.roleDesc = desc;
+	}
+	
 	public String getRoleDesc() {
 		return roleDesc;
 	}

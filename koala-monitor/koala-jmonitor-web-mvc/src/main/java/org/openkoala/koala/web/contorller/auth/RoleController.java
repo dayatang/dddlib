@@ -128,25 +128,19 @@ public class RoleController {
 
 	@ResponseBody
 	@RequestMapping("/queryRolesForAssign")
-	public Map<String, Object> queryRolesForAssign(String page,String pagesize,Long userId,String userAccount,String roleNameForSearch) {
+	public Map<String, Object> queryRolesForAssign(int page, int pagesize,
+			String userAccount, String roleNameForSearch) {
 		Map<String, Object> dataMap = new HashMap<String,Object>();
-		int start = Integer.parseInt(page);
-		int limit = Integer.parseInt(pagesize);
-		QueryConditionVO search = new QueryConditionVO();
-		initSearchCondition(search,roleNameForSearch);
-
-		Page<RoleVO> all = roleApplication.pageQueryByRoleCustom(start, limit, search);
-
-		if (userId != null) {
-			List<RoleVO> roles = all.getResult();
-			for (RoleVO role : roleApplication.findRoleByUserAccount(userAccount)) {
-				roles.remove(role);
-			}
-		}
+		
+		RoleVO roleVO = new RoleVO();
+		roleVO.setName(roleNameForSearch);
+		
+		Page<RoleVO> all = roleApplication.pageQueryNotAssignRoleByUseraccount(page, pagesize, // 
+				userAccount, roleVO);
 
 		dataMap.put("Rows", all.getResult());
-		dataMap.put("start", start * limit - limit);
-		dataMap.put("limit", limit);
+		dataMap.put("start", page * pagesize - pagesize);
+		dataMap.put("limit", pagesize);
 		dataMap.put("Total", all.getTotalCount());
 
 		return dataMap;

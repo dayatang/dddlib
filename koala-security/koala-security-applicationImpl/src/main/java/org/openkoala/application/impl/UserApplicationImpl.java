@@ -93,8 +93,9 @@ public class UserApplicationImpl extends BaseImpl implements UserApplication {
 
     public Page<UserVO> pageQueryUser(int currentPage, int pageSize) {
         List<UserVO> results = new ArrayList<UserVO>();
-        Page<User> pages = queryChannel().queryPagedResultByPageNo("select m from User m where m.abolishDate>?", //
-        		new Object[] { new Date() }, currentPage, pageSize);
+        Page<User> pages = queryChannel().queryPagedResultByPageNo( //
+        		"select m from User m where m.isSuper is false and m.abolishDate>?", //
+        		new Object[] { new Date() }, currentPage, pageSize); //
         for (User each : pages.getResult()) {
             UserVO userVO = new UserVO();
             userVO.domain2Vo(each);
@@ -127,9 +128,9 @@ public class UserApplicationImpl extends BaseImpl implements UserApplication {
         }
     }
 
-    public void resetPassword() {
-        User us = new User();
-        us.resetPassword();
+    public void resetPassword(UserVO userVO) {
+        User user = User.load(User.class, userVO.getId());
+        user.setUserPassword(userVO.getUserPassword());
     }
 
     public void abolishRole(UserVO userVO, List<RoleVO> roles) {

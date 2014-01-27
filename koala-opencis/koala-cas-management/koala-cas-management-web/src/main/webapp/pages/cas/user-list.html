@@ -35,13 +35,8 @@
 					{
 						title : "最后登录时间",
 						name : "lastLoginTime",
-						width : 120
-					}, 
-					{
-						title : "最后更改时间",
-						name : "lastModifyTime",
-						width : 100
-					} 
+						width : 150
+					}
 				];
 		var getButtons = function(){
 			if (roleId) {
@@ -51,10 +46,11 @@
 					];
 			} else {
 				return [
-					{content: '<button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus"><span>创建</button>', action: 'add'},
-		            {content: '<button class="btn btn-success" type="button"><span class="glyphicon glyphicon-edit"></span>&nbsp;修改</button>', action: 'modify'},
-		            {content: '<button class="btn btn-danger" type="button"><span class="glyphicon glyphicon-remove"></span>&nbsp;删除</button>', action: 'delete'},
-		            {content: '<button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-th-large"></span>&nbsp;分配角色</button>', action: 'roleAssign'}
+					{content: '<button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-plus"><span>添加</button>', action: 'add'},
+					{content: '<button class="btn btn-success" type="button"><span class="glyphicon glyphicon-edit"><span>修改</button>', action: 'modify'},
+					{content: '<button class="btn btn-danger" type="button"><span class="glyphicon glyphicon-remove"><span>删除</button>', action: 'delete'},
+		            {content: '<button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-th-large"></span>&nbsp;分配角色</button>', action: 'roleAssign'},
+		            {content: '<button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-th-large"></span>&nbsp;重置密码</button>', action: 'resetPassword'}
 				];
 			}
 		};
@@ -142,6 +138,25 @@
 	                content: '确定要删除所选记录吗?',
 	                callBack: function(){userManager().removeUserForRole(roleId, data.item, $this);}
 	            });
+        	},
+        	'resetPassword': function(event, data){
+        		var indexs = data.data;
+	            var $this = $(this);
+	            if(indexs.length == 0){
+	                $this.message({
+	                    type: 'warning',
+	                    content: '请选择一条记录进行修改'
+	                })
+	                return;
+	            }
+	            if(indexs.length > 1){
+	                $this.message({
+	                    type: 'warning',
+	                    content: '只能选择一条记录进行修改'
+	                })
+	                return;
+	            }
+				userManager().resetPassword(data.item[0], $(this));
         	}
         });
 	})
