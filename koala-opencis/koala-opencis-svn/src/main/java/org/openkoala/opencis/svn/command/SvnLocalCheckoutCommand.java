@@ -26,8 +26,8 @@ public class SvnLocalCheckoutCommand extends LocalCommand {
 	public String getCommand() {
 		// TODO Auto-generated method stub
 		// http://10.108.1.138/svn/ddd    test/test
-		String strCmd = "svn checkout " + CommonUtil.validatePath(project.getPhysicalPath()) 
-//				+ "/" + project.getProjectName()
+		String strCmd = "svn checkout " + svnAddress 
+				+ " " + CommonUtil.validatePath(project.getPhysicalPath()) + project.getProjectName()
 				+ " --username " + userName + " --password " + password;
 		return strCmd;
 	}

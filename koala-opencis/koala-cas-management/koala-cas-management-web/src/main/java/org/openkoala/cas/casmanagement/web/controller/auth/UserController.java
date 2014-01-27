@@ -96,7 +96,14 @@ public class UserController {
 		roleVoForFind.setName(userNameForSearch);
 		roleVoForFind.setUseraccount(userAccountForSearch);
 		
-		Page<UserVO> all = roleApplication.pageQueryUserByRole(roleVoForFind, page, pagesize);
+		Page<UserVO> all = null;
+		
+		if (roleId == null) {
+			all = userApplication.pageQueryUser(page, pagesize);
+		} else {
+			all = roleApplication.pageQueryUserByRole(roleVoForFind, page, pagesize);
+		}
+		
 
 		dataMap.put("Rows", all.getResult());
 		dataMap.put("start", page * pagesize - pagesize);
@@ -267,4 +274,3 @@ public class UserController {
 	}
 
 }
-
