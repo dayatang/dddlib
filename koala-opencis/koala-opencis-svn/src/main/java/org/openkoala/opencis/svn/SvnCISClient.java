@@ -103,7 +103,7 @@ public class SvnCISClient implements CISClient {
     @Override
     public void createProject(Project project) {
         createProjectInSvn(project);
-        commitToServer(project);
+//        commitToServer(project);
     }
     
     /**
@@ -228,7 +228,7 @@ public class SvnCISClient implements CISClient {
      * @param project
      * @return
      */
-    private boolean commitToServer(Project project){
+    public boolean commitToServer(Project project){
     	LocalCommand cmdCheckout = new SvnLocalCheckoutCommand(configuration, project);
     	LocalCommand cmdAdd = new SvnLocalAddCommand(configuration, project);
     	LocalCommand cmdSubmit = new SvnLocalCommitCommand(configuration, project);
