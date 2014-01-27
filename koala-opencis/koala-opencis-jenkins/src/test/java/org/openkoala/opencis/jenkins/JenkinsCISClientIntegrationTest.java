@@ -14,9 +14,9 @@ import java.util.UUID;
 public class JenkinsCISClientIntegrationTest {
 
 
-    public static String jenkinsURL = "http://127.0.0.1:8080/jenkins";
+    public static String jenkinsURL = "http://10.108.1.128:8080/jenkins";
     public static String username = "admin";
-    public static String apiToken = "3235dddf0084d7e70d4190b30d75aeb6";
+    public static String apiToken = "953d04f6c3e5067f79e7e8391c51a093";
 
     public static String svnUrl = "http://10.108.1.138/svn/projec";
 

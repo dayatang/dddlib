@@ -78,14 +78,6 @@ public class SonarCISClient implements CISClient {
         } catch (IOException e) {
             e.printStackTrace();
             throw new CISClientBaseRuntimeException("sonar.createProjectFailure", e);
-        } finally {
-            try {
-                if (null != response) {
-                    response.close();
-                }
-            } catch (IOException e) {
-                throw new CISClientBaseRuntimeException("sonar.createProject.responseCloseFailure", e);
-            }
         }
     }
 
@@ -136,12 +128,6 @@ public class SonarCISClient implements CISClient {
         } catch (IOException e) {
             e.printStackTrace();
             throw new CISClientBaseRuntimeException("sonar.deleteProjectFailure", e);
-        } finally {
-            try {
-                response.close();
-            } catch (IOException e) {
-                throw new CISClientBaseRuntimeException("sonar.deleteProject.responseCloseFailure", e);
-            }
         }
 
     }
@@ -153,6 +139,8 @@ public class SonarCISClient implements CISClient {
             return;
         }
         HttpPost httpPost = new HttpPost(connectConfig.getAddress() + "/api/users/create");
+        StringBuilder builder = new StringBuilder("?");
+        builder.append("login=" + developer.getId());
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("login", developer.getName()));
         params.add(new BasicNameValuePair("password", developer.getPassword()));
@@ -172,12 +160,6 @@ public class SonarCISClient implements CISClient {
         } catch (IOException e) {
             e.printStackTrace();
             throw new CISClientBaseRuntimeException("sonar.createUserIfNecessaryFailure", e);
-        } finally {
-            try {
-                response.close();
-            } catch (IOException e) {
-                throw new CISClientBaseRuntimeException("sonar.createUserIfNecessary.responseCloseFailure", e);
-            }
         }
     }
 
@@ -193,12 +175,6 @@ public class SonarCISClient implements CISClient {
         } catch (IOException e) {
             e.printStackTrace();
             throw new CISClientBaseRuntimeException("sonar.existsUserRequestFailure", e);
-        } finally {
-            try {
-                response.close();
-            } catch (IOException e) {
-                throw new CISClientBaseRuntimeException("sonar.existsUserRequestFailure", e);
-            }
         }
 
     }
@@ -222,14 +198,7 @@ public class SonarCISClient implements CISClient {
         } catch (IOException e) {
             e.printStackTrace();
             throw new CISClientBaseRuntimeException("sonar.existsUserRequestFailure", e);
-        } finally {
-            try {
-                response.close();
-            } catch (IOException e) {
-                throw new CISClientBaseRuntimeException("sonar.existsUserRequestFailure", e);
-            }
         }
-
     }
 
     @Override
@@ -253,12 +222,6 @@ public class SonarCISClient implements CISClient {
         } catch (IOException e) {
             e.printStackTrace();
             throw new CISClientBaseRuntimeException("sonar.removeUserFailure", e);
-        } finally {
-            try {
-                response.close();
-            } catch (IOException e) {
-                throw new CISClientBaseRuntimeException("sonar.removeUser.responseCloseFailure", e);
-            }
         }
     }
 
@@ -294,12 +257,6 @@ public class SonarCISClient implements CISClient {
             } catch (IOException e) {
                 e.printStackTrace();
                 throw new CISClientBaseRuntimeException("sonar.assignUsersToRoleFailure", e);
-            } finally {
-                try {
-                    response.close();
-                } catch (IOException e) {
-                    throw new CISClientBaseRuntimeException("sonar.assignUsersToRole.responseCloseFailure", e);
-                }
             }
         }
 
