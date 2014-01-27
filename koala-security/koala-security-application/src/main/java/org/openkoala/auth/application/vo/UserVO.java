@@ -150,7 +150,7 @@ public class UserVO extends IdentityVO implements Serializable {
         user.setSerialNumber(this.getSerialNumber());
         user.setSortOrder(this.getSortOrder());
         user.setValid(this.isValid());
-        user.setEmail(this.getEmail().trim());
+        user.setEmail(this.getEmail());
         user.setSuper(this.isSuper());
 	}
 	
