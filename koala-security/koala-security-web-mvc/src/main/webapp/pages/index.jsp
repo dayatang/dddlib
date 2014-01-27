@@ -16,7 +16,8 @@
     <link href="<c:url value='/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' />
     " rel="stylesheet">
     <link href="<c:url value='/css/organisation.css' />?time=<%=time%>" rel="stylesheet">
-
+	<link href="<c:url value='/css/gqc.css' />"   rel="stylesheet">
+	<link href="<c:url value='/css/monitor.css' />"   rel="stylesheet">
     <script>
         var contextPath = '${pageContext.request.contextPath}';
     </script>
@@ -35,7 +36,6 @@
 	                </button>
 	                <ul class="dropdown-menu" id="userManager">
 	                    <li data-target="modifyPwd"><a href="#">修改密码</a></li>
-	                    <li data-target="switchUser"><a href="#">切换用户</a></li>
 	                    <li data-target="loginOut"><a href="#">注销</a></li>
 	                </ul>
 	            </div>
@@ -48,7 +48,7 @@
 	       		
 	        </ul>
 	    </div>
-	    <div class="col-xs-10 g-mainc container">
+	    <div class="col-xs-10 g-mainc">
 	        <ul class="nav nav-tabs" id="navTabs">
 	            <li class="active"><a href="#home" data-toggle="tab">主页</a></li>
 	        </ul>

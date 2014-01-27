@@ -7,7 +7,7 @@
 <head>
 <title></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!--<%@ include file="/pages/common/header.jsp"%>--><!--单独打开该页面需引用header.jsp -->
+<%@ include file="/pages/common/header.jsp"%><!--引入权限系统该页面需无须引用header.jsp -->
 <%@ page import="java.util.Date"%>
 <% String formId = "form_" + new Date().getTime();
    String gridId = "grid_" + new Date().getTime();

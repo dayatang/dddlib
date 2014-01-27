@@ -68,6 +68,7 @@ var dataSource = function(){
 		dataSourcePassword = dialog.find('#dataSourcePassword');
 		fillSelectData();
 		dialog.find('#dataSourceSave').on('click',function(){
+			$(this).attr('disabled', 'disabled');
 			save(id);
 		}).end().modal({
 			keyboard: false
@@ -107,7 +108,7 @@ var dataSource = function(){
 		$.post(baseUrl+'checkDataSourceById.koala?id='+id).done(function(data){
 			var result = data.result;
 			var type = data.result == '该数据源不可用' ? 'warning' : 'success';
-			dataGrid.message({
+			$('#dataSourceGrid').message({
 				type: type,
 				content: result
 			});
@@ -136,6 +137,7 @@ var dataSource = function(){
 	 */
 	var save = function(id){
 		if(!validate()){
+			dialog.find('#dataSourceSave').removeAttr('disabled');
 			return false;
 		}
 		var url = baseUrl + 'add.koala';
@@ -153,6 +155,7 @@ var dataSource = function(){
 					content: '系统繁忙'
 				});
 			}
+			dialog.find('#dataSourceSave').removeAttr('disabled');
 		});
 	};
 	/*

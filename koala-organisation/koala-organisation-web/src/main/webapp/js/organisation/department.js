@@ -97,6 +97,7 @@ var department = function(){
 		departmentName = dialog.find('#name');
 		description = dialog.find('#description');
 		dialog.find('#save').on('click',function(){
+			$(this).attr('disabled', 'disabled');
 			save(id, type, organizationType);
 		}).end().modal({
 				keyboard: false
@@ -116,7 +117,11 @@ var department = function(){
                         elementData.name = departmentName.val();
                         elementData.description = description.val();
                         $element.data(elementData);
-                        $element.find('.tree-item-name, .tree-folder-name').html(elementData.name);
+                        if(type == 'updateCompany'){
+                        	$element.find('.tree-folder-name').html(elementData.name);
+                        }else{
+                        	$element.find('.tree-item-name').html(elementData.name);
+                        }
                     }else{
                         $('#departmentTree').off().empty().data('koala.tree', null)
                         getTree();
@@ -141,6 +146,7 @@ var department = function(){
 	 */
 	var save = function(id, type, organizationType){
 		if(!validate()){
+			dialog.find('#save').removeAttr('disabled');
 			return false;
 		}
 		var url = '';
@@ -168,11 +174,13 @@ var department = function(){
 					content: data.result
 				});	
 			}
+			dialog.find('#save').removeAttr('disabled');
 		}).fail(function(data){
 				dialog.find('.modal-content').message({
 					type: 'error',
 					content: '保存失败'
 				});
+				dialog.find('#save').removeAttr('disabled');
 		});
 	};
 	/*

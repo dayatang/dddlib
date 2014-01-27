@@ -62,6 +62,7 @@ var roleManager = function(){
 		roleName = dialog.find('#roleName');
 		roleDescript = dialog.find('#roleDescript');
 		dialog.find('#save').on('click',function(){
+			$(this).attr('disabled', 'disabled');
 			save(item);
 		}).end().modal({
 			keyboard: false
@@ -93,6 +94,7 @@ var roleManager = function(){
 	 */
 	var save = function(item){
 		if(!validate(item)){
+			dialog.find('#save').removeAttr('disabled');
 			return false;
 		}
 		var url = baseUrl + 'add.koala';
@@ -108,6 +110,7 @@ var roleManager = function(){
 					content: data.actionError
 				});
 			}
+			dialog.find('#save').removeAttr('disabled');
 		});
 	};
 	/**

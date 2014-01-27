@@ -39,7 +39,7 @@ public class JiraCISClient implements CISClient {
         project.validate();
 
         if (jiraService.projectExists(project)) {
-            throw new CISClientBaseRuntimeException("jira.projectExists");
+            return;
         }
 
         if (!jiraService.userExists(project.getProjectLead())) {
@@ -167,23 +167,6 @@ public class JiraCISClient implements CISClient {
             throw new CISClientBaseRuntimeException("jira.roleNotExists");
         }
         return true;
-    }
-
-
-    /**
-     * 通过角色名称获取JIRA对应的角色信息（含有角色id）
-     *
-     * @param roleName
-     * @return
-     */
-    private RemoteProjectRole getRemoteProjectRoleId(String roleName) {
-        RemoteProjectRole[] remoteProjectRoleArray = jiraService.getAllRoles();
-        for (RemoteProjectRole remoteProjectRole : remoteProjectRoleArray) {
-            if (remoteProjectRole.getName().equals(roleName)) {
-                return remoteProjectRole;
-            }
-        }
-        return null;
     }
 
 

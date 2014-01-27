@@ -92,6 +92,7 @@ var position = function(){
 			selectDepartments();
 		});
 		dialog.find('#save').on('click',function(){
+			$(this).attr('disabled', 'disabled');
 			save(id);
 		}).end().modal({
 			keyboard: false
@@ -245,6 +246,7 @@ var position = function(){
 	 */
 	var save = function(id){
 		if(!validate()){
+			dialog.find('#save').removeAttr('disabled');
 			return false;
 		}
 		var url = baseUrl + 'create.koala?organizationId='+departmentInput.val();
@@ -260,6 +262,7 @@ var position = function(){
 					content: data.result
 				});
 			}
+			dialog.find('#save').removeAttr('disabled');
 		});
 	};
 	/*

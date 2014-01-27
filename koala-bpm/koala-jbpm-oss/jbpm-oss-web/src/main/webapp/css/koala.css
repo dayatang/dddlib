@@ -28,6 +28,9 @@
 .grid  .buttons, .grid .records {
 	float: left;
 }
+.grid .records .dropdown-menu {
+	min-width: 80px;
+}
 .grid  .search, .grid .pages {
 	float: right;
 }
@@ -513,7 +516,7 @@ div.uploader input {
 
 .tree .tree-item {
 	position: relative;
-	width: 100%;
+	max-width: 200px;
 	height: 20px;
 	margin-top: 1px;
 	cursor: pointer;
@@ -550,8 +553,18 @@ div.uploader input {
 }
 
 @media (max-width: 1366px) {
-	.btn, .wizard, .dropdown-menu, .select, .tree .tree-folder-name {
+	.btn, .wizard, 
+	.dropdown-menu, 
+	.select, .tree 
+	.tree-folder-name, 
+	.tree .tree-item .tree-item-name {
 		font-size: 12px!important;
+	}
+	.tree .checkbox input {
+		height: 18px!important;
+	}
+	.tree .tree-folder .tree-folder-header i {
+		top: 1px!important;
 	}
 	.form-control {
 		height: 30px;

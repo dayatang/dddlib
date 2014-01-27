@@ -23,7 +23,9 @@ import org.openkoala.opencis.exception.UserExistenceException;
 import org.openkoala.opencis.exception.UserListBlankException;
 import org.openkoala.opencis.exception.UserOrPasswordErrorException;
 import org.openkoala.opencis.support.CommandExecutor;
+import org.openkoala.opencis.support.LocalCommand;
 import org.openkoala.opencis.support.SSHConnectConfig;
+import org.openkoala.opencis.support.SvnConfig;
 import org.openkoala.opencis.svn.command.CheckExistsAuthCommand;
 import org.openkoala.opencis.svn.command.CheckExistsUserGroupCommand;
 import org.openkoala.opencis.svn.command.SvnAuthzCommand;
@@ -34,6 +36,9 @@ import org.openkoala.opencis.svn.command.SvnCreateGroupAndAddGroupUsersCommand;
 import org.openkoala.opencis.svn.command.SvnCreateProjectCommand;
 import org.openkoala.opencis.svn.command.SvnCreateUserCommand;
 import org.openkoala.opencis.svn.command.SvnIsUserExistenceCommand;
+import org.openkoala.opencis.svn.command.SvnLocalAddCommand;
+import org.openkoala.opencis.svn.command.SvnLocalCheckoutCommand;
+import org.openkoala.opencis.svn.command.SvnLocalCommitCommand;
 import org.openkoala.opencis.svn.command.SvnRemoveProjectCommand;
 import org.openkoala.opencis.svn.command.SvnRemoveUserCommand;
 
@@ -48,7 +53,7 @@ public class SvnCISClient implements CISClient {
     private final String CONFIGURATION_KEY_USER = "USER";
     private final String CONFIGURATION_KEY_PASSWORD = "PASSWORD";
 
-    private SSHConnectConfig configuration;
+    private SvnConfig configuration;
 
     private Connection conn;
 
@@ -68,7 +73,7 @@ public class SvnCISClient implements CISClient {
 
     }
 
-    public SvnCISClient(SSHConnectConfig configuration) {
+    public SvnCISClient(SvnConfig configuration) {
         this.configuration = configuration;
         isConfigurationNotBlank();
     }
@@ -97,7 +102,16 @@ public class SvnCISClient implements CISClient {
 
     @Override
     public void createProject(Project project) {
-        isProjectInfoNotBlank(project);
+        createProjectInSvn(project);
+        commitToServer(project);
+    }
+    
+    /**
+     * 在SVN服务器上创建项目
+     * @param project
+     */
+    private void createProjectInSvn(Project project){
+    	isProjectInfoNotBlank(project);
         SvnCommand command = new SvnCreateProjectCommand(configuration, project);
         SvnCommand clearProjectPasswdFileContentCommand = new SvnClearProjectPasswdFileContentCommand(configuration, project);
         SvnCommand createAuthzFileCommand = new SvnCreateAuthFileCommand(configuration, project);
@@ -111,7 +125,6 @@ public class SvnCISClient implements CISClient {
         } catch (Exception e) {
             throw new CreateProjectException("创建项目异常", e);
         }
-
     }
 
     @Override
@@ -208,6 +221,28 @@ public class SvnCISClient implements CISClient {
             throw new CreateUserGroupException("创建用户组到Authz异常", e);
         }
 
+    }
+    
+    /**
+     * 提交Maven项目到SVN服务器
+     * @param project
+     * @return
+     */
+    private boolean commitToServer(Project project){
+    	LocalCommand cmdCheckout = new SvnLocalCheckoutCommand(configuration, project);
+    	LocalCommand cmdAdd = new SvnLocalAddCommand(configuration, project);
+    	LocalCommand cmdSubmit = new SvnLocalCommitCommand(configuration, project);
+    	try {
+			executor.addCommand(cmdCheckout);
+			executor.addCommand(cmdAdd);
+			executor.addCommand(cmdSubmit);
+			
+			success = executor.executeBatch();
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new RuntimeException("提交本地Maven项目到SVN服务器时出错：" + e.getMessage());
+		}
+    	return success;
     }
     
     /**

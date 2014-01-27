@@ -60,6 +60,7 @@ var resourceTypeManager = function(){
 		dialog.find('.modal-header').find('.modal-title').html(item ? '修改资源类型':'添加资源类型');
 		resourceTypeName = dialog.find('#resourceTypeName');
 		dialog.find('#save').on('click',function(){
+			$(this).attr('disabled', 'disabled');			
 			save(item);
 		}).end().modal({
 			keyboard: false
@@ -90,6 +91,7 @@ var resourceTypeManager = function(){
 	 */
 	var save = function(item){
 		if(!validate(item)){
+			dialog.find('#save').removeAttr('disabled');			
 			return false;
 		}
 		var url = baseUrl + 'save.koala';
@@ -105,6 +107,7 @@ var resourceTypeManager = function(){
 					content: data.actionError
 				});
 			}
+			dialog.find('#save').removeAttr('disabled');			
 		});
 	};
 	/**

@@ -108,7 +108,7 @@ body {
     margin-right: auto;
     font-size: 17px;
     font-weight: bold;
-    letter-spacing: 15px;
+    letter-spacing: 5px;
 }
 
 .login_footer {
@@ -215,11 +215,13 @@ body {
     $(function(){
         $('body').keydown(function(e) {
             if (e.keyCode == 13) {
+            	btnLogin.attr('disabled', 'disabled').html('正在登录...');
                 form.submit();
             }
         });
         btnLogin.on('click',function() {
-                form.submit();
+        	btnLogin.attr('disabled', 'disabled').html('正在登录...');
+            form.submit();
         });
     });
     var dologin = function() {
