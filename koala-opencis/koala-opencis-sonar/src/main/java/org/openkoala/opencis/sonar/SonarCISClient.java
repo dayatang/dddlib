@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.http.*;
 import org.apache.http.auth.AuthScope;
+import org.apache.http.auth.AuthState;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.AuthCache;
 import org.apache.http.client.ClientProtocolException;
@@ -57,6 +58,7 @@ public class SonarCISClient implements CISClient {
 
     @Override
     public void createProject(Project project) {
+        authenticate();
         project.validate();
         HttpPost httpPost = new HttpPost(connectConfig.getAddress() + "/api/projects/create");
         List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -82,6 +84,7 @@ public class SonarCISClient implements CISClient {
     }
 
     private void removeAnyOnePermission(Project project) {
+        authenticate();
         HttpPost httpPost1 = new HttpPost(connectConfig.getAddress() + "/api/permissions/remove");
         List<NameValuePair> params1 = new ArrayList<NameValuePair>();
         params1.add(new BasicNameValuePair("permission", "user"));
@@ -115,6 +118,7 @@ public class SonarCISClient implements CISClient {
 
     @Override
     public void removeProject(Project project) {
+        authenticate();
         HttpDelete httpDelete = new HttpDelete(connectConfig.getAddress() + "/api/projects/" + getKeyOf(project));
         CloseableHttpResponse response = null;
         try {
@@ -134,19 +138,21 @@ public class SonarCISClient implements CISClient {
 
     @Override
     public void createUserIfNecessary(Project project, Developer developer) {
+
+        authenticate();
+
         developer.validate();
-        if (existsUser(developer.getName())) {
-            return;
-        }
-        HttpPost httpPost = new HttpPost(connectConfig.getAddress() + "/api/users/create");
-        StringBuilder builder = new StringBuilder("?");
-        builder.append("login=" + developer.getId());
+
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("login", developer.getName()));
+        params.add(new BasicNameValuePair("login", developer.getId()));
         params.add(new BasicNameValuePair("password", developer.getPassword()));
         params.add(new BasicNameValuePair("password_confirmation", developer.getPassword()));
-        params.add(new BasicNameValuePair("name", developer.getFullName()));
+        params.add(new BasicNameValuePair("name", developer.getName()));
         params.add(new BasicNameValuePair("email", developer.getEmail()));
+
+
+        HttpPost httpPost = new HttpPost(connectConfig.getAddress() + "/api/users/create");
+
         CloseableHttpResponse response = null;
         try {
             UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
@@ -155,6 +161,12 @@ public class SonarCISClient implements CISClient {
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 return;
             }
+            //已存在用户
+            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_BAD_REQUEST) {
+                return;
+            }
+
+
             // TODO
             throw new CISClientBaseRuntimeException("sonar.createUserIfNecessaryFailure");
         } catch (IOException e) {
@@ -163,13 +175,17 @@ public class SonarCISClient implements CISClient {
         }
     }
 
-    public boolean existsUser(String developerName) {
+    public boolean existsUser(String developerId) {
+        authenticate();
         CloseableHttpResponse response = null;
         try {
-            HttpGet http = new HttpGet(connectConfig.getAddress() + "/api/users/search?includeDeactivated=true&logins=" + URLEncoder.encode(developerName, "UTF-8"));
+            HttpGet http = new HttpGet(connectConfig.getAddress() + "/api/users/search?includeDeactivated=true&logins="
+                    + developerId);
             response = httpClient.execute(http, localContext);
+            String strResult = EntityUtils.toString(response.getEntity());
+            System.out.println(strResult);
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                return EntityUtils.toString(response.getEntity()).contains(developerName);
+                return strResult.contains(developerId);
             }
             return false;
         } catch (IOException e) {
@@ -182,17 +198,18 @@ public class SonarCISClient implements CISClient {
     /**
      * 检测用户是否为激活状态
      *
-     * @param developerName
+     * @param developerId
      * @return
      */
-    public boolean isActivated(String developerName) {
+    public boolean isActivated(String developerId) {
+        authenticate();
         CloseableHttpResponse response = null;
         try {
-            HttpGet http = new HttpGet(connectConfig.getAddress() + "/api/users/search?includeDeactivated=true&logins=" + URLEncoder.encode(developerName, "UTF-8"));
+            HttpGet http = new HttpGet(connectConfig.getAddress() + "/api/users/search?includeDeactivated=true&logins=" + URLEncoder.encode(developerId, "UTF-8"));
             response = httpClient.execute(http, localContext);
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 String result = EntityUtils.toString(response.getEntity());
-                return result.contains(developerName) && result.contains("\"active\":true");
+                return result.contains(developerId) && result.contains("\"active\":true");
             }
             return false;
         } catch (IOException e) {
@@ -203,12 +220,13 @@ public class SonarCISClient implements CISClient {
 
     @Override
     public void removeUser(Project project, Developer developer) {
-        if (!existsUser(developer.getName())) {
+        authenticate();
+        if (!existsUser(developer.getId())) {
             return;
         }
         HttpPost httpPost = new HttpPost(connectConfig.getAddress() + "/api/users/deactivate");
         List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("login", developer.getName()));
+        params.add(new BasicNameValuePair("login", developer.getId()));
         CloseableHttpResponse response = null;
         try {
             UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "UTF-8");
@@ -232,12 +250,13 @@ public class SonarCISClient implements CISClient {
 
     @Override
     public void assignUsersToRole(Project project, String role, Developer... developers) {
+        authenticate();
         project.validate();
         for (Developer each : developers) {
             HttpPost httpPost = new HttpPost(connectConfig.getAddress() + "/api/permissions/add");
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("permission", SONAN_PERMISSION_USER));
-            params.add(new BasicNameValuePair("user", each.getName()));
+            params.add(new BasicNameValuePair("user", each.getId()));
             params.add(new BasicNameValuePair("component", getKeyOf(project)));
             CloseableHttpResponse response = null;
 
@@ -248,10 +267,14 @@ public class SonarCISClient implements CISClient {
                 response = httpClient.execute(httpPost, localContext);
 
 
-                if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK
-                        || response.getStatusLine().getStatusCode() == HttpStatus.SC_BAD_REQUEST) {
+                if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                     return;
                 }
+
+                if (response.getStatusLine().getStatusCode() == HttpStatus.SC_BAD_REQUEST) {
+                    throw new CISClientBaseRuntimeException("sonar.NotFoundUser");
+                }
+
                 // TODO
                 throw new CISClientBaseRuntimeException("sonar.assignUsersToRoleFailure");
             } catch (IOException e) {
