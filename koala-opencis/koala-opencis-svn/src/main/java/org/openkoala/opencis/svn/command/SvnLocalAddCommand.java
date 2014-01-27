@@ -24,8 +24,8 @@ public class SvnLocalAddCommand extends LocalCommand {
 	@Override
 	public String getCommand() {
 		// TODO Auto-generated method stub
-		String strCmd = "svn add " + CommonUtil.validatePath(project.getPhysicalPath()) + "/" + project.getProjectName()
-				+ " *";
+		String strCmd = "svn add " + CommonUtil.validatePath(project.getPhysicalPath()) + project.getProjectName()
+				+ "/*";
 		return strCmd;
 	}
 
