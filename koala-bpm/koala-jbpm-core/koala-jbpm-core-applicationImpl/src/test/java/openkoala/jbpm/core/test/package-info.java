@@ -5,4 +5,4 @@
  * @author lingen
  *
  */
-package org.openkoala.jbpm.core.test;
+package openkoala.jbpm.core.test;
