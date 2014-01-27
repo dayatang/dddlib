@@ -36,6 +36,30 @@ var userManager = function() {
 		});
 	};
 	/*
+	 * 重置密码
+	 */
+	var resetPassword = function(item, grid) {
+		var dataGrid = grid;
+		$.post(baseUrl + 'resetPassword.koala?userId=' + item.id).done(function(data) {
+			if (data.result == 'success') {
+				dataGrid.message({
+					type : 'success',
+					content : '重置密码成功'
+				});
+			} else {
+				dataGrid.message({
+					type : 'error',
+					content : data.actionError
+				});
+			}
+		}).fail(function(data) {
+			dataGrid.message({
+				type : 'error',
+				content : '重置密码失败'
+			});
+		});
+	};
+	/*
 	 删除方法
 	 */
 	var deleteUser = function(users, grid) {
@@ -323,6 +347,7 @@ var userManager = function() {
 		deleteUser : deleteUser,
 		assignRole : assignRole,
 		assignUser : assignUser,
-		removeUserForRole : removeUserForRole
+		removeUserForRole : removeUserForRole,
+		resetPassword : resetPassword
 	};
 }; 

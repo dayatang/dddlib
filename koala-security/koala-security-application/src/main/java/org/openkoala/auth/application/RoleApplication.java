@@ -146,10 +146,11 @@ public interface RoleApplication {
      * 根据角色查找没有被分配的用户
      * @param currentPage
      * @param pageSize
+     * @param userVO
      * @param roleVO
      * @return
      */
-    Page<UserVO> pageQueryNotAssignUserByRole(int currentPage, int pageSize, RoleVO roleVO);
+    Page<UserVO> pageQueryNotAssignUserByRole(int currentPage, int pageSize, UserVO userVO, RoleVO roleVO);
 
     /**
      * 根据查询条件分页查找角色
@@ -179,5 +180,8 @@ public interface RoleApplication {
     Page<UserVO> pageQueryUserByRole(RoleVO roleVO, int currentPage, int pageSize);
     
     void removeRoles(Long[] roleIds);
+    
+    Page<RoleVO> pageQueryNotAssignRoleByUseraccount(int currentPage, int pageSize, 
+			String useraccount, RoleVO roleVO);
     
 }

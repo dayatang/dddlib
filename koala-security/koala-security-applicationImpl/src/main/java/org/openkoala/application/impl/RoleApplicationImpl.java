@@ -224,6 +224,34 @@ public class RoleApplicationImpl extends BaseImpl implements RoleApplication {
 		}
 		return new Page<RoleVO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), result);
 	}
+	
+	public Page<RoleVO> pageQueryNotAssignRoleByUseraccount(int currentPage, int pageSize, 
+			String useraccount, RoleVO roleVO) {
+		
+		List<Object> conditions = new ArrayList<Object>();
+		conditions.add(useraccount);
+		conditions.add(new Date());
+		conditions.add(new Date());
+		
+		StringBuilder jpql = new StringBuilder("select new org.openkoala.auth.application.vo.RoleVO" //
+				+ "(role.id, role.name, role.roleDesc) from Role role " //
+				+ "where role not in (select role from RoleUserAuthorization rua " //
+				+ "join rua.role role join rua.user user where user.userAccount=? " //
+				+ "and rua.abolishDate>?) and role.abolishDate>?");
+		
+		if (!StringUtils.isEmpty(roleVO.getName())) {
+			jpql.append(" and role.name like ? ");
+			conditions.add("%" + roleVO.getName() + "%");
+		}
+		
+		Page<RoleVO> pages = queryChannel().queryPagedResultByPageNo( //
+				jpql.toString(), //
+				conditions.toArray(), //
+				currentPage, pageSize);
+		
+		return new Page<RoleVO>(pages.getCurrentPageNo(), pages.getTotalCount(), //
+				pages.getPageSize(), pages.getResult());
+	}
 
 	public void assignUser(RoleVO roleVO, UserVO userVO) {
 		User us = new User();
@@ -308,18 +336,40 @@ public class RoleApplicationImpl extends BaseImpl implements RoleApplication {
 		return results;
 	}
 
-	public Page<UserVO> pageQueryNotAssignUserByRole(int currentPage, int pageSize, RoleVO roleVO) {
+	public Page<UserVO> pageQueryNotAssignUserByRole(int currentPage, int pageSize, UserVO userVO, RoleVO roleVO) {
 		List<UserVO> result = new ArrayList<UserVO>();
-		Page<User> pages = queryChannel().queryPagedResultByPageNo( //
-				"select user from User user where user.id not in(select user.id from RoleUserAuthorization auth" //
+		List<Object> conditions = new ArrayList<Object>();
+		conditions.add(roleVO.getId());
+		conditions.add(new Date());
+		conditions.add(new Date());
+		
+		StringBuilder jpql = new StringBuilder("select user from User user where user not in("
+				+ "select user from RoleUserAuthorization auth" //
 				+ " join auth.user user join auth.role role where role.id=? and auth.abolishDate>?)" //
-				+ " and user.abolishDate>?", //
-				new Object[] { roleVO.getId(), new Date(), new Date() }, currentPage, pageSize);
-		for (User user : pages.getResult()) {
-			UserVO userVO = new UserVO();
-			userVO.domain2Vo(user);
-			result.add(userVO);
+				+ " and user.abolishDate>?");
+		
+		if (userVO != null && !StringUtils.isEmpty(userVO.getName())) {
+			jpql.append(" and user.name like ? ");
+			conditions.add("%" + userVO.getName() + "%");
 		}
-		return new Page<UserVO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), result);
+		
+		if (userVO != null && !StringUtils.isEmpty(userVO.getUserAccount())) {
+			jpql.append(" and user.userAccount like ? ");
+			conditions.add("%" + userVO.getUserAccount() + "%");
+		}
+		
+		Page<User> pages = queryChannel().queryPagedResultByPageNo( //
+				jpql.toString(), //
+				conditions.toArray(), 
+				currentPage, pageSize);
+		
+		for (User user : pages.getResult()) {
+			UserVO vo = new UserVO();
+			vo.domain2Vo(user);
+			result.add(vo);
+		}
+		
+		return new Page<UserVO>(pages.getCurrentPageNo(), pages.getTotalCount(), 
+				pages.getPageSize(), result);
 	}
 }

@@ -82,8 +82,9 @@ public interface UserApplication {
 
     /**
      * 重置用户密码
+     * @param userVO
      */
-    void resetPassword();
+    void resetPassword(UserVO userVO);
 
     /**
      * 废除角色
