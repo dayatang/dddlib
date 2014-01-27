@@ -17,9 +17,6 @@
 		<module>koala-commons-i18n</module>
 		<module>koala-commons-cache</module>
 		<module>koala-commons-exception</module>
-		<module>koala-commons-ui-support</module>
-		<!-- 取消掉CodeChecker功能 -->
-		<!-- <module>koala-commons-codechecker</module> -->
 		<module>koala-commons-support</module>
 		<module>koala-commons-test-support</module>
 	</modules>

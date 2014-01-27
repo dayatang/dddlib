@@ -28,6 +28,9 @@
 .grid  .buttons, .grid .records {
 	float: left;
 }
+.grid .records .dropdown-menu {
+	min-width: 80px;
+}
 .grid  .search, .grid .pages {
 	float: right;
 }
@@ -513,7 +516,7 @@ div.uploader input {
 
 .tree .tree-item {
 	position: relative;
-	width: 100%;
+	max-width: 200px;
 	height: 20px;
 	margin-top: 1px;
 	cursor: pointer;

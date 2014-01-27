@@ -19,11 +19,12 @@
 
 	<!-- 监控数据处理定时任务 -->
 	<bean id="dataPolicyService"
-		class="org.openkoala.koala.monitor.service.remote.RemoteDataPolicyServerHandler">
+		class="org.openkoala.koala.monitor.service.local.LocalDataPolicyHandler">
 		<property name="triggerName" value="dataPolicyTrigger" />
 		<property name="schedulerName" value="监控数据同步" />
 		<property name="cronExpression" value="0 0/2 * * * ?" />
 	</bean>
+	
 	<bean id="dataPolicySchedulerFactory"
 		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject" ref="dataPolicyService" />

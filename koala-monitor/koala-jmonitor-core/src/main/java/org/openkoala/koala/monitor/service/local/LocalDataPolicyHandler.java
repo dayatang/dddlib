@@ -94,7 +94,7 @@ public class LocalDataPolicyHandler extends BaseSchedulerBean implements DataPol
 				}
 			});
 		} catch (Exception e) {
-			LOG.warn("数据同步服务启动失败["+e.getMessage() + "]");
+			LOG.error("数据同步服务启动失败["+e.getMessage() + "]");
 		}
 		
 	}
