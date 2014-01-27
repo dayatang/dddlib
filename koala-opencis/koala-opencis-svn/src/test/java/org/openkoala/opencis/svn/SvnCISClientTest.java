@@ -31,13 +31,14 @@ public class SvnCISClientTest {
     private SvnCISClient instance;
     private Project project;
     private Developer developer;
-    private String projectName = "ddd";
+    private String projectName = "test";
     private List<String> userNames;
     private String roleName;
 
     @Before
     public void setUp() throws Exception {
-        configuration = new SvnConfig("10.108.1.106", "root", "password","/opencis/svn/","http://10.108.1.138/svn/ddd");
+        configuration = new SvnConfig("10.108.1.106", "root", "password","/opencis/svn/"
+        		,"http://10.108.1.106/svn/test","zjh","password");
         this.initProjectInfo();
         this.initDeveloperInfo();
     }
@@ -99,7 +100,7 @@ public class SvnCISClientTest {
     @Test
     public void testProjectExistence() {
         instance = new SvnCISClient(configuration);
-        instance.createProject(project);
+//        instance.createProject(project);
         try {
             instance.createProject(project);
         } catch (ProjectExistenceException e) {
@@ -107,6 +108,17 @@ public class SvnCISClientTest {
         } finally {
 //            instance.removeProject(project);
         }
+    }
+    
+    @Test
+    public void testCommitToSVN(){
+    	instance = new SvnCISClient(configuration);
+    	try {
+    		instance.commitToServer(project);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
     }
     
     @Test
@@ -209,7 +221,7 @@ public class SvnCISClientTest {
     private void initProjectInfo() {
         project = new Project();
         project.setProjectName(projectName);
-        project.setPhysicalPath("/home/zjh/projects");
+        project.setPhysicalPath("E:/files");
     }
 
     private void initDeveloperInfo() {
