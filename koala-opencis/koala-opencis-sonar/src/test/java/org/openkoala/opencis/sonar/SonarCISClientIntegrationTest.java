@@ -12,7 +12,7 @@ import org.openkoala.opencis.api.Project;
 import java.util.UUID;
 
 
-//@Ignore
+@Ignore
 public class SonarCISClientIntegrationTest {
 
     public static final String address2 = "http://10.108.1.128:9000";
