@@ -12,10 +12,10 @@ import org.openkoala.opencis.api.Project;
 import java.util.UUID;
 
 
-@Ignore
+//@Ignore
 public class SonarCISClientIntegrationTest {
 
-    public static final String address2 = "http://10.108.1.138:9000";
+    public static final String address2 = "http://10.108.1.128:9000";
     public static final String username = "admin";
     public static final String password = "admin";
 
@@ -23,7 +23,7 @@ public class SonarCISClientIntegrationTest {
     @Test
     public void testAuthenticate() {
         SonarCISClient sonarCISClient = new SonarCISClient(new SonarConnectConfig(address2, username, password));
-        System.out.println(sonarCISClient.authenticate());
+        assert sonarCISClient.authenticate();
 
         Project project = new Project();
         project.setProjectName("plplh");
