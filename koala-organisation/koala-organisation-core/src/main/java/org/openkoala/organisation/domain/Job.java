@@ -9,7 +9,12 @@ import javax.persistence.Entity;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.openkoala.organisation.NameExistException;
+import org.openkoala.organisation.OrganizationHasPrincipalYetException;
+import org.openkoala.organisation.PostExistException;
 import org.openkoala.organisation.TheJobHasPostAccountabilityException;
+
+import com.dayatang.domain.QuerySettings;
 
 /**
  * 职务
@@ -58,6 +63,29 @@ public class Job extends Party {
 	private boolean hasPosts(Date date) {
 		List<Post> posts = Post.findByJob(this, date);
 		return !posts.isEmpty();
+	}
+	
+	@Override
+	public void save() {
+		if (nameExist()) {
+			throw new NameExistException();
+		}
+		super.save();
+	}
+	
+	private boolean nameExist() {
+		Date now = new Date();
+		QuerySettings<Job> querySettings = QuerySettings.create(Job.class);
+		querySettings.eq("name", getName())
+			.le("createDate", now)
+			.gt("terminateDate", now);
+		
+		if (getId() != null) {
+			querySettings.notEq("id", getId());
+		}
+		
+		Job job = getRepository().getSingleResult(querySettings);
+		return job != null;
 	}
 	
 	@Override

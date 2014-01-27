@@ -445,7 +445,7 @@ var department = function(){
 			identity: 'id',
 			columns: cols,
 			buttons: buttons,
-			querys: [{title: '姓名', value: 'example.name'}],
+			querys: [{title: '姓名', value: 'name'}],
 			url:  contextPath + '/employee/pagingquery-by-org.koala?organizationId='+id
 		});
 		departmentEmployeeGrid.find('#queryAllChildren').on('click', function(){

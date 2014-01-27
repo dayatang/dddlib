@@ -80,7 +80,7 @@ public class PostIntegrationTest extends AbstractIntegrationTest {
 	@Test(expected = OrganizationHasPrincipalYetException.class)
 	public void testSaveMultiPrincipalPost() {
 		post2.setOrganizationPrincipal(true);
-		Post post3 = new Post("xxx", "POST-XXX3", job2, company2);
+		Post post3 = new Post("xxx", "POST-XXX3", job1, company2);
 		post3.setOrganizationPrincipal(true);
 		post3.save();
 	}

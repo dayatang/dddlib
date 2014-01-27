@@ -18,7 +18,9 @@ import javax.persistence.NamedQuery;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.openkoala.organisation.NameExistException;
 import org.openkoala.organisation.OrganizationHasPrincipalYetException;
+import org.openkoala.organisation.PostExistException;
 import org.openkoala.organisation.TerminateHasEmployeePostException;
 
 import com.dayatang.domain.QuerySettings;
@@ -152,6 +154,13 @@ public class Post extends Party {
 	
 	@Override
 	public void save() {
+		if (postExist()) {
+			throw new PostExistException();
+		}
+		if (nameExist()) {
+			throw new NameExistException();
+		}
+		
 		if (organizationPrincipal && hasPrincipalPostOfOrganization(organization, new Date())) {
 			if (getId() != null) {
 				if (!isOrganizationPrincipalBefore()) {
@@ -166,6 +175,37 @@ public class Post extends Party {
 	
 	private boolean isOrganizationPrincipalBefore() {
 		return getRepository().get(Post.class, getId()).isOrganizationPrincipal();
+	}
+	
+	private boolean nameExist() {
+		Date now = new Date();
+		QuerySettings<Post> querySettings = QuerySettings.create(Post.class);
+		querySettings.eq("name", getName())
+			.le("createDate", now)
+			.gt("terminateDate", now);
+		
+		if (getId() != null) {
+			querySettings.notEq("id", getId());
+		}
+		
+		Post post = getRepository().getSingleResult(querySettings);
+		return post != null;
+	}
+	
+	private boolean postExist() {
+		Date now = new Date();
+		QuerySettings<Post> querySettings = QuerySettings.create(Post.class);
+		querySettings.eq("organization", organization)
+			.eq("job", job)
+			.le("createDate", now)
+			.gt("terminateDate", now);
+		
+		if (getId() != null) {
+			querySettings.notEq("id", getId());
+		}
+		
+		Post post = getRepository().getSingleResult(querySettings);
+		return post != null;
 	}
 	
 	@Override

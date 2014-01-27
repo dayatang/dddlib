@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.openkoala.organisation.NameExistException;
 import org.openkoala.organisation.SnIsExistException;
 import org.openkoala.organisation.application.JobApplication;
 import org.openkoala.organisation.domain.Job;
@@ -77,6 +78,8 @@ public class JobController extends BaseController {
 			dataMap.put("result", "success");
 		} catch (SnIsExistException exception) {
 			dataMap.put("result", "职务编码: " + job.getSn() + " 已被使用！");
+		} catch (NameExistException exception) {
+			dataMap.put("result", "职务名称: " + job.getName() + " 已经存在！");
 		} catch (Exception e) {
 			dataMap.put("result", "保存失败！");
 		}
