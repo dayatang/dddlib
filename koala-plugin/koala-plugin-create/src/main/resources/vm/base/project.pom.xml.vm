@@ -163,7 +163,7 @@
 				<hibernate.show_sql>true</hibernate.show_sql>
 				<hibernate.dialect>org.hibernate.dialect.SybaseDialect</hibernate.dialect>
 				<db.jdbcDriver>net.sourceforge.jtds.jdbc.Driver</db.jdbcDriver>
-				<db.connectionURL>dbc:sybase:Tds:localhost:5000/db_name</db.connectionURL>
+				<db.connectionURL>jdbc:sybase:Tds:localhost:5000/db_name</db.connectionURL>
 				<db.username>root</db.username>
 				<db.password>root</db.password>
 				<db.Type>DB2</db.Type>
@@ -184,10 +184,10 @@
 				<hibernate.show_sql>true</hibernate.show_sql>
 				<hibernate.dialect>org.hibernate.dialect.SQLServer2008Dialect</hibernate.dialect>
 				<db.jdbcDriver>com.microsoft.sqlserver.jdbc.SQLServerDriver</db.jdbcDriver>
-				<db.connectionURL>dbc:sybase:Tds:localhost:5000/db_name</db.connectionURL>
+				<db.connectionURL>jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=db_name</db.connectionURL>
 				<db.username>root</db.username>
 				<db.password>root</db.password>
-				<db.Type>DB2</db.Type>
+				<db.Type>SQL_SERVER</db.Type>
 				<db.generateDdl>true</db.generateDdl>
 				<db.groupId>com.microsoft.sqlserver</db.groupId>
 				<db.artifactId>sqljdbc4</db.artifactId>
