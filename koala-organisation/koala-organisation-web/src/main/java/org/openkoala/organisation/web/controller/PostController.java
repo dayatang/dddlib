@@ -8,7 +8,9 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
+import org.openkoala.organisation.NameExistException;
 import org.openkoala.organisation.OrganizationHasPrincipalYetException;
+import org.openkoala.organisation.PostExistException;
 import org.openkoala.organisation.SnIsExistException;
 import org.openkoala.organisation.TerminateHasEmployeePostException;
 import org.openkoala.organisation.application.PostApplication;
@@ -69,6 +71,10 @@ public class PostController extends BaseController {
 			post.setOrganization(getBaseApplication().getEntity(Organization.class, organizationId));
 			getBaseApplication().saveParty(post);
 			dataMap.put("result", "success");
+		} catch (NameExistException exception) {
+			dataMap.put("result", "岗位名称: " + post.getName() + " 已经存在！");
+		} catch (PostExistException exception) {
+			dataMap.put("result", "该岗位已经存在，请不要在相同机构中创建相同职务的岗位！");
 		} catch (OrganizationHasPrincipalYetException exception) {
 			dataMap.put("result", "该机构已经有负责岗位！");
 		} catch (SnIsExistException exception) {

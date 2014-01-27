@@ -284,7 +284,8 @@ var employee = function(){
 				email.val(data.email);
 				mobilePhone.val(data.mobilePhone);
 				familyPhone.val(data.familyPhone);
-				entryDate.datetimepicker('setValue',data.entryDate);
+				entryDate.find('input').val(data.entryDate);
+//				entryDate.datetimepicker('setValue',data.entryDate);
 			});
 	};
 	/*
