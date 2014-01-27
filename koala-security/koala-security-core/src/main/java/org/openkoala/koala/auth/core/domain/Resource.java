@@ -362,8 +362,9 @@ public class Resource extends Party {
 	 * @return
 	 */
 	public boolean isNameExist() {
-		return !Resource.findByNamedQuery("isResouceNameExist", new Object[] { getName(), new Date() }, Resource.class)
-				.isEmpty();
+		return !Resource.findByNamedQuery("isResouceNameExist", 
+				new Object[] { getName(), new Date() }, 
+				Resource.class).isEmpty();
 	}
 	
 	/**

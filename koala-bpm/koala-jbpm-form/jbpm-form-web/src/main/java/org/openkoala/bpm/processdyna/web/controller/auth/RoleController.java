@@ -19,7 +19,6 @@ import org.openkoala.koala.auth.ss3adapter.ehcache.CacheUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dayatang.querychannel.support.Page;
@@ -90,15 +89,17 @@ public class RoleController {
 
 	@ResponseBody
 	@RequestMapping("/pageJson")
-	public Map<String, Object> pageJson(String page,String pagesize,String userAccount) {
+	public Map<String, Object> pageJson(String page,String pagesize,String userAccount,String roleNameForSearch) {
 		Map<String, Object> dataMap = new HashMap<String,Object>();
 		int start = Integer.parseInt(page);
 		int limit = Integer.parseInt(pagesize);
+		QueryConditionVO search = new QueryConditionVO();
+		initSearchCondition(search,roleNameForSearch);
 		Page<RoleVO> all = null;
 		if (userAccount == null || userAccount.isEmpty()) {
-			all = roleApplication.pageQueryRole(start, limit);
+			all = roleApplication.pageQueryByRoleCustom(start, limit, search);
 		} else {
-			all = new Page<RoleVO>(start, limit, limit, roleApplication.findRoleByUserAccount(userAccount));
+			all = roleApplication.pageQueryRoleByUseraccount(start, limit, userAccount);
 		}
 		dataMap.put("Rows", all.getResult());
 		dataMap.put("start", start * limit - limit);
@@ -203,9 +204,14 @@ public class RoleController {
 	public Map<String, Object> del(ParamsPojo params) {
 		List<RoleVO> roles = params.getRoles();
 		Map<String, Object> dataMap = new HashMap<String,Object>();
+		
+		List<Long> roleIds = new ArrayList<Long>();
+		
 		for (RoleVO role : roles) {
-			roleApplication.removeRole(Long.valueOf(role.getId()));
+			roleIds.add(role.getId());
 		}
+		
+		roleApplication.removeRoles(roleIds.toArray(new Long[] {}));
 		dataMap.put("result", "success");
 		return dataMap;
 

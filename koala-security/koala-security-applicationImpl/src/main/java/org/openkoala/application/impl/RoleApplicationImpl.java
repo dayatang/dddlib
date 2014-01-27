@@ -3,10 +3,13 @@ package org.openkoala.application.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 import javax.interceptor.Interceptors;
+
+import org.apache.commons.lang3.StringUtils;
 import org.openkoala.exception.extend.ApplicationException;
 import org.openkoala.auth.application.RoleApplication;
 import org.openkoala.auth.application.vo.QueryConditionVO;
@@ -19,6 +22,7 @@ import org.openkoala.koala.auth.core.domain.Role;
 import org.openkoala.koala.auth.core.domain.RoleUserAuthorization;
 import org.openkoala.koala.auth.core.domain.User;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.dayatang.dsrouter.context.memory.ContextHolder;
 import com.dayatang.querychannel.support.Page;
 
@@ -41,17 +45,22 @@ public class RoleApplicationImpl extends BaseImpl implements RoleApplication {
 		ContextHolder.setContextType("security");
 		Role role = new Role();
 		roleVO.vo2Domain(role);
-		isRoleExist(role);
+		
+		if (isRoleExist(role)) {
+			throw new ApplicationException("role.exist");
+		}
+		
 		role.save();
 		roleVO.setId(role.getId());
 		ContextHolder.setContextType(cx);
 		return roleVO;
 	}
 
-	private void isRoleExist(Role role) {
+	private boolean isRoleExist(Role role) {
 		if (role.isRoleExist()) {
-			throw new ApplicationException("role.exist", null);
+			return true;
 		}
+		return false;
 	}
 
 	public void updateRole(RoleVO roleVO) {
@@ -66,10 +75,16 @@ public class RoleApplicationImpl extends BaseImpl implements RoleApplication {
 	}
 
 	public void removeRole(Long roleId) {
-		Role role = Role.load(Role.class, roleId);
-		removeUserAuthorizations(role);
-		removeResourceAuthorizations(role);
-		role.setAbolishDate(new Date());
+		removeRoles(new Long[] { roleId });
+	}
+	
+	public void removeRoles(Long[] roleIds) {
+		for (long roleId : roleIds) {
+			Role role = Role.load(Role.class, roleId);
+			removeUserAuthorizations(role);
+			removeResourceAuthorizations(role);
+			role.setAbolishDate(new Date());
+		}
 	}
 
 	/**
@@ -114,9 +129,37 @@ public class RoleApplicationImpl extends BaseImpl implements RoleApplication {
 
 	public List<UserVO> findUserByRole(RoleVO roleVO) {
 		return queryChannel().queryResult(
-				"select new org.openkoala.auth.application.vo.UserVO(user.id,user.name,user.sortOrder,user.userAccount,user.userDesc,user.isValid) " 
+				"select new org.openkoala.auth.application.vo.UserVO(user.id,user.name,"
+				+ "user.sortOrder,user.userAccount,user.userDesc,user.isValid,user.email,user.lastLoginTime) " 
 				+ "from RoleUserAuthorization rua join rua.user user join rua.role role where role.id=? and rua.abolishDate>?",
 				new Object[] { roleVO.getId(), new Date() });
+	}
+	
+	public Page<UserVO> pageQueryUserByRole(RoleVO roleVO, int currentPage, int pageSize) {
+		StringBuilder jpql = new StringBuilder("select new org.openkoala.auth.application.vo.UserVO"
+				+ "(user.id,user.name,user.sortOrder,user.userAccount,user.userDesc,user.isValid,"
+				+ "user.email,user.lastLoginTime) from RoleUserAuthorization rua join rua.user "
+				+ "user join rua.role role where role.id=? and rua.abolishDate>? ");
+		
+		List<Object> conditions = new ArrayList<Object>();
+		conditions.add(roleVO.getId());
+		conditions.add(new Date());
+		
+		if (!StringUtils.isEmpty(roleVO.getUseraccount())) {
+			jpql.append(" and user.userAccount like ? ");
+			conditions.add("%" + roleVO.getUseraccount() + "%");
+		}
+		
+		if (!StringUtils.isEmpty(roleVO.getName())) {
+			jpql.append(" and user.name like ? ");
+			conditions.add("%" + roleVO.getName() + "%");
+		}
+		
+		Page<UserVO> pages = queryChannel().queryPagedResultByPageNo(
+				jpql.toString(), conditions.toArray(),
+				currentPage, pageSize);
+		
+		return new Page<UserVO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), pages.getResult());
 	}
 
 	public List<ResourceVO> findMenuByRole(RoleVO roleVO) {
@@ -145,6 +188,22 @@ public class RoleApplicationImpl extends BaseImpl implements RoleApplication {
 		List<RoleVO> results = new ArrayList<RoleVO>();
 		Page<Role> pages = queryChannel().queryPagedResultByPageNo("select m from Role m where m.abolishDate>?", //
 				new Object[] { new Date() }, //
+				currentPage, pageSize);
+		for (Role each : pages.getResult()) {
+			RoleVO roleVO = new RoleVO();
+			roleVO.domain2Vo(each);
+			results.add(roleVO);
+		}
+		return new Page<RoleVO>(pages.getCurrentPageNo(), pages.getTotalCount(), pages.getPageSize(), results);
+	}
+	
+	public Page<RoleVO> pageQueryRoleByUseraccount(int currentPage, int pageSize, String useraccount) {
+		List<RoleVO> results = new ArrayList<RoleVO>();
+		Page<Role> pages = queryChannel().queryPagedResultByPageNo(
+				"select role from RoleUserAuthorization rau " +
+				"join rau.role role join rau.user user where user.userAccount=? " +
+				"and rau.abolishDate>?", 
+				new Object[] { useraccount, new Date() }, 
 				currentPage, pageSize);
 		for (Role each : pages.getResult()) {
 			RoleVO roleVO = new RoleVO();

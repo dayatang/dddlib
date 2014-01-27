@@ -15,8 +15,11 @@ public class RoleVO extends IdentityVO implements Serializable {
      * 
      */
 	private static final long serialVersionUID = 7192376219578931945L;
+	
 	private String roleDesc;
-
+	
+	private String useraccount;
+	
 	public String getRoleDesc() {
 		return roleDesc;
 	}
@@ -25,6 +28,14 @@ public class RoleVO extends IdentityVO implements Serializable {
 		this.roleDesc = roleDesc;
 	}
 	
+	public String getUseraccount() {
+		return useraccount;
+	}
+
+	public void setUseraccount(String useraccount) {
+		this.useraccount = useraccount;
+	}
+
 	public void domain2Vo(Role role) {
 		DateFormat formater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		this.setAbolishDate(formater.format(role.getAbolishDate()));
@@ -43,7 +54,7 @@ public class RoleVO extends IdentityVO implements Serializable {
 		role.setAbolishDate(DateUtils.MAX_DATE);
 		role.setCreateDate(new Date());
 		role.setCreateOwner(this.getCreateOwner());
-		role.setName(this.getName());
+		role.setName(this.getName().trim());
 		role.setRoleDesc(this.getRoleDesc());
 		role.setSerialNumber(this.getSerialNumber());
 		role.setSortOrder(this.getSortOrder());

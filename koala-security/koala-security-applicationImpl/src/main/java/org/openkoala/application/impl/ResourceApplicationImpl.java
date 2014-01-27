@@ -168,10 +168,10 @@ public class ResourceApplicationImpl extends BaseImpl implements ResourceApplica
 
     public ResourceVO saveResource(ResourceVO resourceVO) {
         if (isNameExist(resourceVO)) {
-            throw new ApplicationException("resource.name.exist", null);
+            throw new ApplicationException("resource.name.exist");
         }
         if (isIdentifierExist(resourceVO)) {
-            throw new ApplicationException("resource.identifier.exist", null);
+            throw new ApplicationException("resource.identifier.exist");
         }
         Resource resource = vo2DomainObject(resourceVO);
         resource.setLevel("1");
@@ -196,13 +196,13 @@ public class ResourceApplicationImpl extends BaseImpl implements ResourceApplica
     	
     	if (!resource.getName().equals(vo.getName())) {
 	        if (isNameExist(vo)) {
-	            throw new ApplicationException("resource.name.exist", null);
+	            throw new ApplicationException("resource.name.exist");
 	        }
     	}
         
     	if (!resource.getIdentifier().equals(vo.getIdentifier())) {
 	        if (isIdentifierExist(vo)) {
-	            throw new ApplicationException("resource.identifier.exist", null);
+	            throw new ApplicationException("resource.identifier.exist");
 	        }
     	}
         

@@ -1,8 +1,11 @@
 package org.openkoala.auth.application.vo;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import org.openkoala.koala.auth.core.domain.User;
+
 import com.dayatang.utils.DateUtils;
 
 public class UserVO extends IdentityVO implements Serializable {
@@ -10,27 +13,41 @@ public class UserVO extends IdentityVO implements Serializable {
      * 
      */
 	private static final long serialVersionUID = -6619649965246109915L;
+	
+	private static final String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
+	
 	private String lastLoginTime;
+	
 	private String userAccount;
+	
 	private String userPassword;
+	
 	private String userDesc;
+	
 	private String lastModifyTime;
+	
 	private boolean valid;
+	
 	private String email;
+	
 	private String oldPassword;
+	
 	private boolean isSuper;
 
 	public UserVO() {
 
 	}
 	
-	public UserVO(Long id, String name, int sortOrder, String userAccount, String userDesc, boolean valid) {
+	public UserVO(Long id, String name, int sortOrder, String userAccount, 
+			String userDesc, boolean valid, String email, Date lastLoginTime) {
 		this.setId(id);
 		this.setName(name);
 		this.setSortOrder(sortOrder);
 		this.setUserAccount(userAccount);
 		this.setUserDesc(userDesc);
 		this.setValid(valid);
+		this.email = email;
+		this.lastLoginTime = lastLoginTime != null ? dateFormat(lastLoginTime) : "";
 	}
 
 	public String getLastModifyTime() {
@@ -107,12 +124,12 @@ public class UserVO extends IdentityVO implements Serializable {
 
 	public void domain2Vo(User user) {
         this.setId(user.getId());
-        this.setLastLoginTime(user.getLastLoginTime() != null ? user.getLastLoginTime().toString() : "");
+        this.setLastLoginTime(user.getLastLoginTime() != null ? dateFormat(user.getLastLoginTime()) : "");
         this.setUserAccount(user.getUserAccount());
         this.setUserPassword(user.getUserPassword());
         this.setUserDesc(user.getUserDesc());
-        this.setAbolishDate(user.getAbolishDate() !=  null ? user.getAbolishDate().toString() : "");
-        this.setCreateDate(user.getCreateDate() != null ? user.getCreateDate().toString() : "");
+        this.setAbolishDate(user.getAbolishDate() !=  null ? dateFormat(user.getAbolishDate()) : "");
+        this.setCreateDate(user.getCreateDate() != null ? dateFormat(user.getCreateDate()) : "");
         this.setCreateOwner(user.getCreateOwner());
         this.setName(user.getName());
         this.setSerialNumber(user.getSerialNumber());
@@ -125,7 +142,7 @@ public class UserVO extends IdentityVO implements Serializable {
 	public void vo2Domain(User user) {
 		user.setAbolishDate(DateUtils.MAX_DATE);
         user.setCreateDate(new Date());
-        user.setUserAccount(this.getUserAccount());
+        user.setUserAccount(this.getUserAccount().trim());
         user.setUserPassword(this.getUserPassword());
         user.setUserDesc(this.getUserDesc());
         user.setCreateOwner(this.getCreateOwner());
@@ -133,8 +150,12 @@ public class UserVO extends IdentityVO implements Serializable {
         user.setSerialNumber(this.getSerialNumber());
         user.setSortOrder(this.getSortOrder());
         user.setValid(this.isValid());
-        user.setEmail(this.getEmail());
+        user.setEmail(this.getEmail().trim());
         user.setSuper(this.isSuper());
+	}
+	
+	private String dateFormat(Date date) {
+		return new SimpleDateFormat(DATE_PATTERN).format(date);
 	}
 	
 }

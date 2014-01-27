@@ -97,10 +97,9 @@ public class RoleController {
 		initSearchCondition(search,roleNameForSearch);
 		Page<RoleVO> all = null;
 		if (userAccount == null || userAccount.isEmpty()) {
-			//all = roleApplication.pageQueryRole(start, limit);
 			all = roleApplication.pageQueryByRoleCustom(start, limit, search);
 		} else {
-			all = new Page<RoleVO>(start, limit, limit, roleApplication.findRoleByUserAccount(userAccount));
+			all = roleApplication.pageQueryRoleByUseraccount(start, limit, userAccount);
 		}
 		dataMap.put("Rows", all.getResult());
 		dataMap.put("start", start * limit - limit);
@@ -205,9 +204,14 @@ public class RoleController {
 	public Map<String, Object> del(ParamsPojo params) {
 		List<RoleVO> roles = params.getRoles();
 		Map<String, Object> dataMap = new HashMap<String,Object>();
+		
+		List<Long> roleIds = new ArrayList<Long>();
+		
 		for (RoleVO role : roles) {
-			roleApplication.removeRole(Long.valueOf(role.getId()));
+			roleIds.add(role.getId());
 		}
+		
+		roleApplication.removeRoles(roleIds.toArray(new Long[] {}));
 		dataMap.put("result", "success");
 		return dataMap;
 

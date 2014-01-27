@@ -159,4 +159,25 @@ public interface RoleApplication {
      * @return
      */
     Page<RoleVO> pageQueryByRoleCustom(int currentPage, int pageSize, QueryConditionVO query);
+    
+    /**
+     * 分页查询用户所拥有的角色
+     * @param currentPage
+     * @param pageSize
+     * @param useraccount
+     * @return
+     */
+    Page<RoleVO> pageQueryRoleByUseraccount(int currentPage, int pageSize, String useraccount);
+    
+    /**
+     * 分页查询角色所拥有的用户
+     * @param roleVO
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
+    Page<UserVO> pageQueryUserByRole(RoleVO roleVO, int currentPage, int pageSize);
+    
+    void removeRoles(Long[] roleIds);
+    
 }

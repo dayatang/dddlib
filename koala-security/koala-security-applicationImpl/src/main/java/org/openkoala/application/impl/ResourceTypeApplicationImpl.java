@@ -36,16 +36,18 @@ public class ResourceTypeApplicationImpl extends BaseImpl implements ResourceTyp
 	}
 
 	public void save(ResourceTypeVO resourceTypeVO) {
-		if (!isExist(resourceTypeVO)) {
-			ResourceType resourceType = new ResourceType();
-			resourceType.setName(resourceTypeVO.getName());
-			resourceType.setCreateDate(new Date());
-			resourceType.setAbolishDate(DateUtils.MAX_DATE);
-			resourceType.setSerialNumber("0");
-			resourceType.setSortOrder(0);
-			resourceType.save();
-			resourceTypeVO.setId(String.valueOf(resourceType.getId()));
+		if (isExist(resourceTypeVO)) {
+			throw new ApplicationException("resourceType.exist");
 		}
+		
+		ResourceType resourceType = new ResourceType();
+		resourceType.setName(resourceTypeVO.getName());
+		resourceType.setCreateDate(new Date());
+		resourceType.setAbolishDate(DateUtils.MAX_DATE);
+		resourceType.setSerialNumber("0");
+		resourceType.setSortOrder(0);
+		resourceType.save();
+		resourceTypeVO.setId(String.valueOf(resourceType.getId()));
 	}
 
 	public void delete(ResourceTypeVO resourceTypeVO) {
@@ -78,7 +80,7 @@ public class ResourceTypeApplicationImpl extends BaseImpl implements ResourceTyp
 		}
 		
 		if (isExist(resourceTypeVO)) {
-			throw new ApplicationException("resourceType.exist", null);
+			throw new ApplicationException("resourceType.exist");
 		}
 		
 		resourceType.setName(resourceTypeVO.getName());

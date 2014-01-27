@@ -10,11 +10,15 @@ import org.openkoala.exception.extend.ApplicationException;
 import org.openkoala.koala.auth.AuthHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsChecker;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
@@ -35,6 +39,8 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
 	
 	private UserDetailsService userDetailsService;
 	
+	private UserDetailsChecker checker = new DefaultPreAuthenticationChecks();
+	
 	public void setAuthHandler(AuthHandler authHandler) {
 		this.authHandler = authHandler;
 	}
@@ -52,6 +58,8 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
 		authHandler.authenticate(getUseraccount(authentication), getPassword(authentication));
 		
 		createUserIfNeed(authentication);
+		
+		checker.check(getUserDetails(authentication));
 		
 		modifyLastLoginTime(getUseraccount(authentication));
 		
@@ -116,5 +124,28 @@ public class LoginAuthenticationProvider implements AuthenticationProvider {
 	public boolean supports(Class<? extends Object> authentication) {
 		return true;
 	}
+	
+	 private class DefaultPreAuthenticationChecks implements UserDetailsChecker {
+		 
+	        public void check(UserDetails user) {
+	            if (!user.isAccountNonLocked()) {
+	                logger.debug("用户已经被锁住...");
+
+	                throw new LockedException("用户已经被锁住...");
+	            }
+
+	            if (!user.isEnabled()) {
+	                logger.debug("用户账号已经被禁用...");
+
+	                throw new DisabledException("用户账号已经被禁用...");
+	            }
+
+	            if (!user.isAccountNonExpired()) {
+	                logger.debug("用户账号已经过期...");
+
+	                throw new AccountExpiredException("用户账号已经过期...");
+	            }
+	        }
+	    }
 
 }

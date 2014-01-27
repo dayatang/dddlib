@@ -6,13 +6,11 @@ import java.util.List;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.interceptor.Interceptors;
 
 import org.openkoala.exception.extend.ApplicationException;
 import org.openkoala.auth.application.MenuApplication;
-import org.openkoala.auth.application.ResourceApplication;
 import org.openkoala.auth.application.vo.ResourceVO;
 import org.openkoala.auth.application.vo.RoleVO;
 import org.openkoala.koala.auth.core.domain.Resource;
@@ -30,9 +28,6 @@ import com.dayatang.utils.DateUtils;
 @Transactional(value="transactionManager_security")
 @Interceptors(value = org.openkoala.koala.util.SpringEJBIntercepter.class)
 public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
-
-	@Inject
-	private ResourceApplication resourceApplication;
 
 	public static Page<ResourceVO> basePageQuery(String query, Object[] params, int currentPage, int pageSize) {
 		List<ResourceVO> result = new ArrayList<ResourceVO>();
@@ -60,26 +55,29 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 		return resourceVO;
 	}
 
-	public ResourceVO saveMenu(ResourceVO vo) {
-		if (resourceApplication.isNameExist(vo)) {
-			throw new ApplicationException("menu.name.exist", null);
-		}
-
-		if (resourceApplication.isIdentifierExist(vo)) {
-			throw new ApplicationException("menu.identifier.exist", null);
-		}
-
-		vo.setAbolishDate(DateFormatUtils.format(new Date()));
-		vo.setCreateDate(DateFormatUtils.format(new Date()));
-		vo.setLevel("1");
-		vo.setSerialNumber("0");
-		vo.setSortOrder(0);
+	public ResourceVO saveMenu(ResourceVO resourceVO) {
 		Resource resource = new Resource();
-		vo.vo2Domain(resource);
+		resource.setName(resourceVO.getName());
+		resource.setIdentifier(resourceVO.getIdentifier());
+		
+		if (resource.isNameExist()) {
+			throw new ApplicationException("menu.name.exist");
+		}
+
+		if (resource.isIdentifierExist()) {
+			throw new ApplicationException("menu.identifier.exist");
+		}
+
+		resourceVO.setAbolishDate(DateFormatUtils.format(new Date()));
+		resourceVO.setCreateDate(DateFormatUtils.format(new Date()));
+		resourceVO.setLevel("1");
+		resourceVO.setSerialNumber("0");
+		resourceVO.setSortOrder(0);
+		resourceVO.vo2Domain(resource);
 		resource.save();
-		saveResourceTypeAssignment(vo, resource);
-		vo.setId(resource.getId());
-		return vo;
+		saveResourceTypeAssignment(resourceVO, resource);
+		resourceVO.setId(resource.getId());
+		return resourceVO;
 	}
 
 	private void saveResourceTypeAssignment(ResourceVO vo, Resource resource) {
@@ -92,12 +90,31 @@ public class MenuApplicationImpl extends BaseImpl implements MenuApplication {
 	}
 
 	public void updateMenu(ResourceVO resourceVO) {
-		Resource resource = Resource.load(Resource.class, resourceVO.getId());
+		Resource loadedResource = Resource.get(Resource.class, resourceVO.getId());
+		
+		Resource resource = new Resource();
 		resource.setName(resourceVO.getName());
 		resource.setIdentifier(resourceVO.getIdentifier());
-		resource.setMenuIcon(resourceVO.getIcon());
-		resource.setDesc(resourceVO.getDesc());
-		ResourceTypeAssignment.findByResource(resourceVO.getId()).setResourceType(ResourceType.load(ResourceType.class, //
+		
+		if (!loadedResource.getName().equals(resourceVO.getName())) {
+			if (resource.isNameExist()) {
+				throw new ApplicationException("menu.name.exist");
+			}
+		}
+		
+		if (!loadedResource.getIdentifier().equals(resourceVO.getIdentifier())) {
+			if (resource.isIdentifierExist()) {
+				throw new ApplicationException("menu.identifier.exist");
+			}
+		}
+		
+		loadedResource.setName(resourceVO.getName());
+		loadedResource.setIdentifier(resourceVO.getIdentifier());
+		loadedResource.setMenuIcon(resourceVO.getIcon());
+		loadedResource.setDesc(resourceVO.getDesc());
+		
+		ResourceTypeAssignment.findByResource(resourceVO.getId()) //
+				.setResourceType(ResourceType.load(ResourceType.class, //
 				Long.valueOf(resourceVO.getMenuType())));
 	}
 

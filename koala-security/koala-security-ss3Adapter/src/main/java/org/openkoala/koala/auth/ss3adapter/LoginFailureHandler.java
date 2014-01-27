@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -24,6 +25,8 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 	private String passwordNotCorrectUrl;
 	
 	private String validateCodeNotCorrectUrl;
+	
+	private String userDisableUrl;
 	
 	public String getUserAccountNotFoundUrl() {
 		return userAccountNotFoundUrl;
@@ -49,6 +52,14 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 		this.validateCodeNotCorrectUrl = validateCodeNotCorrectUrl;
 	}
 
+	public String getUserDisableUrl() {
+		return userDisableUrl;
+	}
+
+	public void setUserDisableUrl(String userDisableUrl) {
+		this.userDisableUrl = userDisableUrl;
+	}
+
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
@@ -64,6 +75,11 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 		
 		if (exception instanceof BadValidateCodeException) {
 			request.getRequestDispatcher(validateCodeNotCorrectUrl).forward(request, response);
+			return;
+		}
+		
+		if (exception instanceof DisabledException) {
+			request.getRequestDispatcher(userDisableUrl).forward(request, response);
 		}
 		
 	}
