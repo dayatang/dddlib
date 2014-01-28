@@ -55,7 +55,7 @@ var job = function(){
 			}else{
 				dataGrid.message({
 					type: 'error',
-					content: '删除失败'
+					content: data.result
 				});
 			}
 		}).fail(function(data){

@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import org.openkoala.organisation.NameExistException;
 import org.openkoala.organisation.SnIsExistException;
+import org.openkoala.organisation.TheJobHasPostAccountabilityException;
 import org.openkoala.organisation.application.JobApplication;
 import org.openkoala.organisation.domain.Job;
 import org.springframework.stereotype.Controller;
@@ -131,8 +132,12 @@ public class JobController extends BaseController {
     @RequestMapping("/terminate")
 	public Map<String, Object> terminateJob(Job job) {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
-		getBaseApplication().terminateParty(job);
-		dataMap.put("result", "success");
+		try {
+			getBaseApplication().terminateParty(job);
+			dataMap.put("result", "success");
+		} catch (TheJobHasPostAccountabilityException exception) {
+			dataMap.put("result", "职务：" + job.getName() + "已经被相关关联岗位，不能被撤销！");
+		}
 		return dataMap;
 	}
 	
@@ -145,8 +150,13 @@ public class JobController extends BaseController {
     @RequestMapping(value = "/terminateJobs", method = RequestMethod.POST, consumes = "application/json")
 	public Map<String, Object> terminateJobs(@RequestBody Job[] jobs) {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
-		getBaseApplication().terminateParties(new HashSet<Job>(Arrays.asList(jobs)));
-		dataMap.put("result", "success");
+		try {
+			getBaseApplication().terminateParties(new HashSet<Job>(Arrays.asList(jobs)));
+			dataMap.put("result", "success");
+		} catch (TheJobHasPostAccountabilityException exception) {
+			dataMap.put("result", "该职务已经被相关关联岗位，不能被撤销！");
+		}
+		
 		return dataMap;
 	}
 	

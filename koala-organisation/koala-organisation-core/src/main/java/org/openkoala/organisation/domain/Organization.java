@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.openkoala.organisation.NameExistException;
 import org.openkoala.organisation.OrganisationException;
 import org.openkoala.organisation.TerminateNotEmptyOrganizationException;
 import org.openkoala.organisation.TerminateRootOrganizationException;
@@ -121,8 +122,16 @@ public abstract class Organization extends Party {
 		if (parent == null) {
 			throw new OrganisationException("Parent organization is not null!");
 		}
+		
+		Date now = new Date();
+		for (Organization each : parent.getChildren(now)) {
+			if (getName().equals(each.getName())) {
+				throw new NameExistException();
+			}
+		}
+		
 		save();
-		new OrganizationLineManagement(parent, this, new Date()).save();
+		new OrganizationLineManagement(parent, this, now).save();
 	}
 
 	/**

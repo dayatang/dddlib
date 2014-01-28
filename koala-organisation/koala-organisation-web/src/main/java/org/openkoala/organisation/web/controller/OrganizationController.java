@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
+import org.openkoala.organisation.NameExistException;
 import org.openkoala.organisation.SnIsExistException;
 import org.openkoala.organisation.TerminateNotEmptyOrganizationException;
 import org.openkoala.organisation.TerminateRootOrganizationException;
@@ -47,12 +48,14 @@ public class OrganizationController extends BaseController {
     @RequestMapping("/create-company")
     public Map<String, Object> createCompany(Long parentId, Company company) {
     	Map<String, Object> dataMap = new HashMap<String, Object>();
+		Company parent = getBaseApplication().getEntity(Company.class, parentId);
     	try {
-    		Company parent = getBaseApplication().getEntity(Company.class, parentId);
         	organizationApplication.createCompany(parent, company);
         	dataMap.put("result", "success");
     	} catch (SnIsExistException exception) {
     		dataMap.put("result", "机构编码: " + company.getSn() + " 已被使用！");
+    	} catch (NameExistException exception) {
+    		dataMap.put("result", parent.getName() + "下已经存在名称为: " + company.getName() + "的机构！");
     	} catch (Exception exception) {
     		dataMap.put("result", "创建公司失败！");
     	}
@@ -71,12 +74,14 @@ public class OrganizationController extends BaseController {
     @RequestMapping("/create-department")
     public Map<String, Object> createDepartment(Long parentId, String parentType, Department department) {
     	Map<String, Object> dataMap = new HashMap<String, Object>();
+		Organization parent = getBaseApplication().getEntity(Organization.class, parentId);
     	try {
-    		Organization parent = getBaseApplication().getEntity(Organization.class, parentId);
         	organizationApplication.createDepartment(parent, department);
         	dataMap.put("result", "success");
     	} catch (SnIsExistException exception) {
     		dataMap.put("result", "机构编码: " + department.getSn() + " 已被使用！");
+    	} catch (NameExistException exception) {
+    		dataMap.put("result", parent.getName() + "下已经存在名称为: " + department.getName() + "的机构！");
     	} catch (Exception exception) {
     		dataMap.put("result", "创建部门失败！");
     	}
