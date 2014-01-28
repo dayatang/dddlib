@@ -217,7 +217,7 @@ public class UserAction extends ActionSupport {
 
 		RoleVO roleVoForFind = new RoleVO();
 		roleVoForFind.setId(roleId);
-		Page<UserVO> all = roleApplication.pageQueryNotAssignUserByRole(start, limit, roleVoForFind);
+		Page<UserVO> all = roleApplication.pageQueryNotAssignUserByRole(start, limit, null,roleVoForFind);
 
 		dataMap.put("Rows", all.getResult());
 		dataMap.put("start", start * limit - limit);

@@ -3,10 +3,7 @@ package org.openkoala.koala.jbpm.designer.jbpmDesigner.web.action.jbpm;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
-
 import javax.inject.Inject;
-
-import org.apache.struts2.ServletActionContext;
 import org.openkoala.jbpm.application.vo.ProcessVO;
 import org.openkoala.koala.jbpm.designer.application.core.BpmDesignerApplication;
 import org.openkoala.koala.jbpm.designer.application.vo.PublishURLVO;
@@ -15,10 +12,7 @@ import org.openkoala.koala.jbpm.jbpmDesigner.application.vo.Bpmn2;
 import org.openkoala.koala.jbpm.jbpmDesigner.application.vo.PackageVO;
 
 public class JbpmAction {
-
-	// private static final Logger logger =
-	// LoggerFactory.getLogger(JbpmAction.class);
-
+	
 	@Inject
 	private GunvorApplication gunvorApplication;
 
@@ -54,10 +48,12 @@ public class JbpmAction {
 	private String gunvorServerUrl;
 
 	public String findPackages() {
-		System.out.println(ServletActionContext.getRequest().getLocalAddr()
-				+ ":" + ServletActionContext.getRequest().getLocalPort());
-		gunvorServerUrl = gunvorApplication.getGunvorServerUrl();
-		packages = gunvorApplication.getPackages();
+		try {
+			gunvorServerUrl = gunvorApplication.getGunvorServerUrl();
+			packages = gunvorApplication.getPackages();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "json2";
 	}
 
@@ -73,18 +69,26 @@ public class JbpmAction {
 	}
 
 	public String findBpmns() {
-		this.bpmns = gunvorApplication.getBpmn2s(packageName);
+		try {
+			this.bpmns = gunvorApplication.getBpmn2s(packageName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "json2";
 	}
 
 	public String createPackage() {
-		gunvorApplication.createPackage(packageName, description);
-		result = 1;
+		try {
+			gunvorApplication.createPackage(packageName, description);
+			result = 1;
+		} catch (Exception e) {
+			this.errors = e.getMessage();
+			e.printStackTrace();
+		}
 		return "json2";
 	}
 
 	public String deleteBpmn() {
-
 		try {
 			gunvorApplication.deleteBpmn(packageName, bpmnName);
 			result = 1;
