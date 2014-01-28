@@ -161,7 +161,6 @@
 
 
     <modules>
-        <module>koala-plugin</module>
         <module>koala-commons</module>
         <module>koala-security</module>
         <module>koala-bpm</module>
@@ -169,6 +168,7 @@
         <module>koala-monitor</module>
         <module>koala-organisation</module>
         <module>koala-businesslog</module>
+		<module>koala-plugin</module>
     </modules>
 
     <properties>

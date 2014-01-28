@@ -10,8 +10,8 @@
 	<groupId>org.openkoala.bpm</groupId>
 	<artifactId>koala-bpm</artifactId>
 	<packaging>pom</packaging>
-	<name>koala jbpm project</name>
-	<description />
+	<name>koala-bpm</name>
+	<description >Koala BPM流程组件 </description>
 
 	<modules>
 		<module>koala-bpm-core</module>
