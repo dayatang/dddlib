@@ -7,5 +7,4 @@
 	<buildpathentry kind="con" path="org.eclipse.vjet.eclipse.core.JSNATIVE_CONTAINER/JS Native Types"/>
 	<buildpathentry kind="con" path="org.eclipse.vjet.eclipse.core.BROWSER_CONTAINER/Browser SDK"/>
 	<buildpathentry external="true" kind="lib" path="C:/Users/jianbing/.m2/repository/org/openkoala/koalacommons/koala-commons-exception/2.1.0-SNAPSHOT/koala-commons-exception-2.1.0-SNAPSHOT.jar"/>
-	<buildpathentry external="true" kind="lib" path="C:/Users/jianbing/.m2/repository/org/openkoala/koalacommons/koala-commons-ui-support/2.1.0-SNAPSHOT/koala-commons-ui-support-2.1.0-SNAPSHOT.jar"/>
 </buildpath>

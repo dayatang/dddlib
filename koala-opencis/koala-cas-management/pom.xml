@@ -481,11 +481,6 @@
 				<version>${koala.framework.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.openkoala.koalacommons</groupId>
-				<artifactId>koala-commons-ui-support</artifactId>
-				<version>${koala.framework.version}</version>
-			</dependency>
-			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>servlet-api</artifactId>
 				<version>2.5</version>
