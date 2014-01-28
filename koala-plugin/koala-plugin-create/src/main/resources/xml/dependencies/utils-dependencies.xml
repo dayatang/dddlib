@@ -3,6 +3,6 @@
 <dependencies>
 	<dependency>
 		<groupId>com.dayatang.commons</groupId>
-		<artifactId>dayatang-commons-org.openkoala.businesslog.utils</artifactId>
+		<artifactId>dayatang-commons-utils</artifactId>
 	</dependency>
 </dependencies>
