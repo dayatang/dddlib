@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">  
+    <modelVersion>4.0.0</modelVersion>  
+    <parent> 
+        <groupId>org.openkoala.bpm.core</groupId>  
+        <artifactId>koala-bpm-core</artifactId>  
+        <version>2.1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>koala-bpm-core-adapterApplication</artifactId>
+    <name>koala-bpm-core-adapterApplication</name>
+    <packaging>jar</packaging>  
+    <url>http://maven.apache.org</url>  
+    <properties> 
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
+        <project.type>applicationInterface</project.type> 
+        <base.package>org.openkoala.jbpm.core.jbpm.applicationInterface</base.package>
+    </properties>  
+    <dependencies> 
+    </dependencies>  
+    <build> 
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+		</resources>
+    </build> 
+</project>
