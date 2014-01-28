@@ -122,12 +122,11 @@
 			<version>1.1.2</version>
 		</dependency>
 
-
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<scope>compile</scope>
+			<groupId>javax.servlet.jsp.jstl</groupId>
+			<artifactId>jstl-api</artifactId>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
