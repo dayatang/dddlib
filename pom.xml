@@ -79,14 +79,14 @@
 
     <distributionManagement>
         <repository>
-            <id>koala-release</id>
-            <name>koala-release</name>
-            <url>http://www.openkoala.org:8081/content/repositories/releases/</url>
+            <id>koala-releases</id>
+            <name>koala-releases</name>
+            <url>http://nexus.openkoala.org:8081/content/repositories/releases/</url>
         </repository>
         <snapshotRepository>
             <id>koala-snapshots</id>
             <name>koala-snapshots</name>
-            <url>http://www.openkoala.org:8081/content/repositories/snapshots/</url>
+            <url>http://nexus.openkoala.org:8081/content/repositories/snapshots/</url>
         </snapshotRepository>
         <site>
             <id>koala-site</id>
@@ -105,56 +105,23 @@
 
     <repositories>
         <repository>
+            <id>koala-releases</id>
+            <url>http://nexus.openkoala.org/content/repositories/public-releases/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
             <id>koala-snapshots</id>
-            <url>http://nexus.openkoala.org/content/groups/Koala-snapshots/</url>
+            <url>http://nexus.openkoala.org/content/repositories/public-snapshots/</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
             <snapshots>
                 <enabled>true</enabled>
-            </snapshots>
-        </repository>
-
-        <repository>
-            <id>koala-release</id>
-            <url>http://nexus.openkoala.org/content/groups/Koala-release/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-
-        <!--  use this repository for stable releases -->
-
-        <repository>
-            <id>jboss-public-repository-group</id>
-            <name>JBoss Public Maven Repository Group</name>
-            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-
-        <!-- use this repository for snapshot releases -->
-
-        <repository>
-            <id>jboss-snapshot-repository-group</id>
-            <name>JBoss SNAPSHOT Maven Repository Group</name>
-            <url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
-            <layout>default</layout>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
             </snapshots>
         </repository>
     </repositories>
