@@ -17,3 +17,6 @@ cas.log
 /koala-opencis/koala-opencis-trac/bin
 /koala-opencis/koala-opencis-sonar/bin
 perfStats.log
+/koala-plugin/koala-plugin-util-core/.classpath
+/koala-plugin/koala-plugin-util-core/.project
+/koala-plugin/koala-plugin-util-core/velocity.log.1
