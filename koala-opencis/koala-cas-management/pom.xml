@@ -344,9 +344,8 @@
 				<version>1.6.12</version>
 			</dependency>
 			<dependency>
-				<groupId>javassist</groupId>
+				<groupId>org.javassist</groupId>
 				<artifactId>javassist</artifactId>
-				<version>3.9.0.GA</version>
 			</dependency>
 			<dependency>
 				<groupId>org.quartz-scheduler</groupId>
@@ -444,11 +443,10 @@
 				<artifactId>dom4j</artifactId>
 				<version>1.6.1</version>
 			</dependency>
-			<dependency>
-				<groupId>javassist</groupId>
-				<artifactId>javassist</artifactId>
-				<version>3.12.1.GA</version>
-			</dependency>
+            <dependency>
+                <groupId>org.javassist</groupId>
+                <artifactId>javassist</artifactId>
+            </dependency>
 			<dependency>
 				<groupId>jsr94</groupId>
 				<artifactId>jsr94</artifactId>
@@ -560,7 +558,7 @@
 			<dependency>
 				<groupId>com.h2database</groupId>
 				<artifactId>h2</artifactId>
-				<version>1.3.168</version>
+				<version>1.3.174</version>
 			</dependency>
 			<dependency>
 				<groupId>mysql</groupId>
