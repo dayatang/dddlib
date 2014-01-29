@@ -6,25 +6,23 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.views.TagLibrary;
+import org.apache.struts2.views.DefaultTagLibrary;
+import org.apache.struts2.views.TagLibraryDirectiveProvider;
+import org.apache.struts2.views.TagLibraryModelProvider;
 import org.apache.struts2.views.velocity.components.HeadDirective;
 
 import com.opensymphony.xwork2.util.ValueStack;
 
-public class ExceptionTagLibrary implements TagLibrary {
+public class ExceptionTagLibrary implements TagLibraryDirectiveProvider, TagLibraryModelProvider {
 
-	  public Object getFreemarkerModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res)
-	  {
-	    return new JqueryModels(stack, req, res);
-	  }
+    @Override
+    public List<Class> getDirectiveClasses() {
+        return Arrays.asList(new Class[] {HeadDirective.class});
+    }
 
-	  @SuppressWarnings("unchecked")
-	  public List<Class> getVelocityDirectiveClasses()
-	  {
-	    Class[] directives = new Class[] {
-	        HeadDirective.class
-	    };
-	    return Arrays.asList(directives);
-	  }
+    @Override
+    public Object getModels(ValueStack stack, HttpServletRequest req, HttpServletResponse res) {
+        return new JqueryModels(stack, req, res);
+    }
 }
 

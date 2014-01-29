@@ -15,8 +15,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
-import org.springframework.security.web.util.AntUrlPathMatcher;
-import org.springframework.security.web.util.UrlMatcher;
 
 import com.dayatang.cache.Cache;
 import com.dayatang.domain.InstanceFactory;
@@ -33,8 +31,6 @@ import com.dayatang.domain.InstanceFactory;
  */
 // @Component("securityMetadataSource")
 public class SecurityMetadataSource implements FilterInvocationSecurityMetadataSource, InitializingBean {
-
-	private UrlMatcher urlMatcher = new AntUrlPathMatcher();
 
 	private Cache resourceCache;
 
@@ -193,14 +189,6 @@ public class SecurityMetadataSource implements FilterInvocationSecurityMetadataS
 	 */
 	public boolean supports(Class<?> arg0) {
 		return true;
-	}
-
-	public UrlMatcher getUrlMatcher() {
-		return urlMatcher;
-	}
-
-	public void setUrlMatcher(UrlMatcher urlMatcher) {
-		this.urlMatcher = urlMatcher;
 	}
 
 	public SecurityMetadataSource() {

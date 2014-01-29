@@ -47,7 +47,7 @@
 	</bean> 
 
 	<bean id="casAuthenticationProvider"
-		class="org.openkoala.koala.auth.ss3adapter.CasCreateUserIfNecessaryProvider">
+		class="org.openkoala.koala.auth.ss3adapter.provider.CasUserProvider">
 		<property name="authenticationUserDetailsService" ref="casAuthenticationUserDetailsService" />
 		<property name="serviceProperties" ref="serviceProperties" />
 		<property name="userDetailsService" ref="userDetailManager" />
@@ -71,7 +71,7 @@
 	<bean id="accessDecisionManager" class="org.openkoala.koala.auth.ss3adapter.AccessDecisionManager"/>
 
 	<!-- 一个自定义的filter，必须包含authenticationManager,accessDecisionManager,securityMetadataSource三个属性。 -->
-	<bean id="securityFilter" class="org.openkoala.koala.auth.ss3adapter.SecurityFilter">
+	<bean id="securityFilter" class="org.openkoala.koala.auth.ss3adapter.filter.SecurityFilter">
 		<!-- 登陆的认证 -->
 		<property name="authenticationManager" ref="authenticationManager" /> 
 		<!-- 资源访问决策 -->

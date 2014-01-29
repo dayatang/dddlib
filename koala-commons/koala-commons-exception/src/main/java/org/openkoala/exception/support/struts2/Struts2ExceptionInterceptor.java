@@ -76,7 +76,7 @@ public class Struts2ExceptionInterceptor extends ExceptionMappingInterceptor {
      * <B>输出Json格式的异常信息到页面，适用于ajax请求</B><br />
      * create by:vakin 
      *             at:2013-1-12
-     * @param String
+     * @param errorMsg
      * @return
      */
     private String buildErrorMsg2Json(String errorMsg){

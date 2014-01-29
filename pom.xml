@@ -467,6 +467,11 @@
 				<artifactId>spring-security-acl</artifactId>
 				<version>${spring.security.version}</version>
 			</dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-cas</artifactId>
+                <version>${spring.security.version}</version>
+            </dependency>
 			<!-- 加入Spring对JPA的支持 -->
 			<dependency>
 				<groupId>org.springframework.data</groupId>
