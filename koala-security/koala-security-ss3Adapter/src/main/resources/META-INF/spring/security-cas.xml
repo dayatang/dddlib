@@ -48,7 +48,7 @@
 
 	<bean id="casAuthenticationProvider"
 		class="org.openkoala.koala.auth.ss3adapter.provider.CasUserProvider">
-		<property name="authenticationUserDetailsService" ref="casAuthenticationUserDetailsService" />
+		<!--<property name="authenticationUserDetailsService" ref="casAuthenticationUserDetailsService" />-->
 		<property name="serviceProperties" ref="serviceProperties" />
 		<property name="userDetailsService" ref="userDetailManager" />
 		<property name="ticketValidator">
