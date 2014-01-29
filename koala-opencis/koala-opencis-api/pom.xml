@@ -22,7 +22,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
-            <version>4.8.2</version>
         </dependency>
 
         <dependency>
