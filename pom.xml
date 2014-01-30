@@ -45,112 +45,106 @@
 		</license>
 	</licenses>
 
-	<ciManagement>
-		<system>hudson</system>
-		<url>http://www.dayatang.com:8080/hudson/job/dddlib/</url>
-		<notifiers>
-			<notifier>
-				<type>mail</type>
-				<configuration>
-					<committers>true</committers>
-				</configuration>
-				<sendOnError>true</sendOnError>
-				<sendOnFailure>true</sendOnFailure>
-				<sendOnWarning>false</sendOnWarning>
-				<sendOnSuccess>false</sendOnSuccess>
-			</notifier>
-			<notifier>
-				<type>mail</type>
-				<configuration>
-					<address>chencao0524@gmail.com</address>
-				</configuration>
-				<sendOnError>true</sendOnError>
-				<sendOnFailure>true</sendOnFailure>
-				<sendOnWarning>true</sendOnWarning>
-				<sendOnSuccess>true</sendOnSuccess>
-			</notifier>
-		</notifiers>
-	</ciManagement>
-        <scm>
-            <connection>scm:git:git://github.com/dayatang/dddlib.git</connection>
-            <developerConnection>scm:git:git@github.com:dayatang/dddlib.git</developerConnection>
-            <url>http://github.com/dayatang/dddlib/tree/master</url>
-        </scm>
+    <ciManagement>
+        <system>hudson</system>
+        <url>http://www.dayatang.org:8080/jenkins/job/dddlib/</url>
+        <notifiers>
+            <notifier>
+                <type>mail</type>
+                <configuration>
+                    <committers>true</committers>
+                </configuration>
+                <sendOnError>true</sendOnError>
+                <sendOnFailure>true</sendOnFailure>
+                <sendOnWarning>false</sendOnWarning>
+                <sendOnSuccess>false</sendOnSuccess>
+            </notifier>
+            <notifier>
+                <type>mail</type>
+                <configuration>
+                    <address>chencao0524@gmail.com</address>
+                </configuration>
+                <sendOnError>true</sendOnError>
+                <sendOnFailure>true</sendOnFailure>
+                <sendOnWarning>true</sendOnWarning>
+                <sendOnSuccess>true</sendOnSuccess>
+            </notifier>
+        </notifiers>
+    </ciManagement>
+    <scm>
+        <connection>scm:git:git://github.com/dayatang/dddlib.git</connection>
+        <developerConnection>scm:git:git@github.com:dayatang/dddlib.git</developerConnection>
+        <url>http://github.com/dayatang/dddlib/tree/master</url>
+        <tag>HEAD</tag>
+    </scm>
 
-	<issueManagement> <system>trac</system> <url>http://www.dayatang.com/trac/dddlib</url> 
-		</issueManagement>
-        <!--
-	<issueManagement>
-		<system>github</system>
-		<url>https://github.com/dayatang/dddlib/issues</url>
-	</issueManagement>
-	-->
+    <!-- <issueManagement> <system>trac</system> <url>http://www.dayatang.org/trac/dddlib</url>
+    </issueManagement> <issueManagement> <system>github</system> <url>https://github.com/dayatang/dddlib/issues</url>
+    </issueManagement> -->
 
-	<distributionManagement>
-		<repository>
-			<id>dayatang.nexus.release</id>
-			<name>Dayatang release repository</name>
-			<url>dav:http://www.dayatang.com/nexus/content/repositories/releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>dayatang.nexus.snapshots</id>
-			<name>Dayatang snapshot repository</name>
-			<url>dav:http://www.dayatang.com/nexus/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<site>
-			<id>dayatang-site</id>
-			<name>Dayatang site</name>
-			<url>dav:http://www.dayatang.com/projects/dddlib</url>
-		</site>
-		<!-- <site> <id>github-project-site</id> <url>gitsite:git@github.com/dayatang/dddlib</url> 
-			</site> -->
-	</distributionManagement>
+    <distributionManagement>
+        <repository>
+            <id>dayatang-releases</id>
+            <name>Dayatang release repository</name>
+            <url>dav:http://nexus.dayatang.org:8083/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>dayatang-snapshots</id>
+            <name>Dayatang snapshot repository</name>
+            <url>dav:http://nexus.dayatang.org:8083/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <site>
+            <id>dayatang-site</id>
+            <name>Koala maven site</name>
+            <url>dav:http://www.dayatang.org/projects/dddlib</url>
+        </site>
+    </distributionManagement>
 
-	<repositories>
-		<repository>
-			<id>dayatang-releases</id>
-			<url>http://www.dayatang.com/nexus/content/groups/public-release/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>dayatang-snapshots</id>
-			<url>http://www.dayatang.com/nexus/content/groups/public-snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+    <repositories>
+        <repository>
+            <id>dayatang-releases</id>
+            <url>http://nexus.dayatang.org/content/groups/public-release</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>dayatang-snapshots</id>
+            <url>http://nexus.dayatang.org/content/groups/public-snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>dayatang-releases</id>
-			<url>http://www.dayatang.com/nexus/content/groups/public-release</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>dayatang-snapshots</id>
-			<url>http://www.dayatang.com/nexus/content/groups/public-snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>dayatang-releases</id>
+            <url>http://nexus.dayatang.org/content/groups/public-release</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>dayatang-snapshots</id>
+            <url>http://nexus.dayatang.org/content/groups/public-snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
 	<dependencyManagement>
 		<dependencies>
