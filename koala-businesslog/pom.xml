@@ -12,7 +12,7 @@
     <artifactId>koala-businesslog</artifactId>
     <version>2.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Business Log</name>
+    <name>Business Log Subsystem</name>
     <description>业务日志子系统，用于记录用户的业务操作</description>
     <modules>
         <module>koala-businesslog-api</module>

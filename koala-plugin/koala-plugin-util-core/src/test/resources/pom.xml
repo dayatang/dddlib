@@ -282,21 +282,6 @@
 
 	</profiles>
 
-	<dependencies>
-
-		<dependency>
-			<groupId>com.puppycrawl.tools</groupId>
-			<artifactId>checkstyle</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>net.sourceforge.pmd</groupId>
-			<artifactId>pmd</artifactId>
-		</dependency>
-
-
-	</dependencies>
-
 	<build>
 		<resources>
 			<resource>
