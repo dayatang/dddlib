@@ -407,6 +407,25 @@
                     <artifactId>maven-source-plugin</artifactId>
                     <version>2.2.1</version>
                 </plugin>
+                <plugin>
+                    <groupId>com.github.github</groupId>
+                    <artifactId>site-maven-plugin</artifactId>
+                    <version>0.8</version>
+                    <configuration>
+                        <message>Creating site for ${project.version}</message>
+                        <server>github</server>
+                        <userName>${github.scm.username}</userName>
+                        <password>${github.scm.password}</password>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>site</goal>
+                            </goals>
+                            <phase>site</phase>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -427,8 +446,8 @@
                 <artifactId>maven-release-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
             </plugin>
         </plugins>
         <extensions>
@@ -529,6 +548,7 @@
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
+            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-changes-plugin</artifactId>
@@ -543,18 +563,15 @@
                 <configuration>
                     <username>${github.scm.username}</username>
                     <password>${github.scm.password}</password>
-                    <githubAPIScheme>https</githubAPIScheme>
-                    <githubAPIPort>443</githubAPIPort>
                     <issueManagementSystems>
                         <issueManagementSystem>GitHub</issueManagementSystem>
                     </issueManagementSystems>
-                   <!--
                     <tracUser>${trac.username}</tracUser>
                     <tracPassword>${trac.password}</tracPassword>
                     <query>status!=closed&amp;order=type</query>
-                    -->
                 </configuration>
             </plugin>
+            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-changelog-plugin</artifactId>
@@ -598,6 +615,7 @@
     </reporting>
 
     <properties>
+        <github.global.server>github</github.global.server>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <slf4j.version>1.7.5</slf4j.version>
@@ -708,7 +726,7 @@
                 <dbunit.dataTypeFactoryName>org.dbunit.ext.oracle.Oracle10DataTypeFactory</dbunit.dataTypeFactoryName>
                 <dbunit.schema>SYSTEM</dbunit.schema>
                 <!-- Make sure to capitalize the schema name -->
-                <hibernate.dialect>org.hibernate.dialect.Oracle9Dialect</hibernate.dialect>
+                <hibernate.dialect>org.hibernate.dialect.Oracle9iDialect</hibernate.dialect>
                 <jdbc.groupId>com.oracle.jdbc</jdbc.groupId>
                 <jdbc.artifactId>ojdbc5</jdbc.artifactId>
                 <jdbc.version>11.2.0.3</jdbc.version>
@@ -787,7 +805,7 @@
                 <jdbc.url>
                     <![CDATA[jdbc:mysql://${db.host}:${db.port}/${db.name}?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url>
                 <jdbc.username>root</jdbc.username>
-                <jdbc.password></jdbc.password>
+                <jdbc.password/>
             </properties>
         </profile>
     </profiles>
