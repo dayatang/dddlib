@@ -543,6 +543,11 @@
                 <configuration>
                     <username>${github.scm.username}</username>
                     <password>${github.scm.password}</password>
+                    <githubAPIScheme>https</githubAPIScheme>
+                    <githubAPIPort>443</githubAPIPort>
+                    <issueManagementSystems>
+                        <issueManagementSystem>GitHub</issueManagementSystem>
+                    </issueManagementSystems>
                    <!--
                     <tracUser>${trac.username}</tracUser>
                     <tracPassword>${trac.password}</tracPassword>
