@@ -287,11 +287,13 @@
 		<dependency>
 			<groupId>com.puppycrawl.tools</groupId>
 			<artifactId>checkstyle</artifactId>
+                        <version>5.6</version>
 		</dependency>
 
 		<dependency>
 			<groupId>net.sourceforge.pmd</groupId>
 			<artifactId>pmd</artifactId>
+                        <version>5.0.5</version>
 		</dependency>
 
 
