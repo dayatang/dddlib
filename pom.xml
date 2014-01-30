@@ -74,8 +74,8 @@
     <scm>
         <connection>scm:git:git://github.com/dayatang/dddlib.git</connection>
         <developerConnection>scm:git:git@github.com:dayatang/dddlib.git</developerConnection>
-        <url>http://github.com/dayatang/dddlib/tree/master</url>
-        <tag>HEAD</tag>
+        <url>http://github.com/dayatang/dddlib/tree/3x</url>
+        <tag>3.x</tag>
     </scm>
 
     <!-- <issueManagement> <system>trac</system> <url>http://www.dayatang.org/trac/dddlib</url>
