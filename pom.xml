@@ -541,6 +541,8 @@
                     </reportSet>
                 </reportSets>
                 <configuration>
+                    <username>${github.scm.username}</username>
+                    <password>${github.scm.password}</password>
                    <!--
                     <tracUser>${trac.username}</tracUser>
                     <tracPassword>${trac.password}</tracPassword>
