@@ -34,7 +34,7 @@
         </cargo.container.url>
         <cargo.container.downloadDir>${env.HOME}</cargo.container.downloadDir>
         <cargo.host>localhost</cargo.host>
-        <cargo.port>8080</cargo.port>
+        <cargo.port>7651</cargo.port>
         <cargo.context></cargo.context>
         <browser>org.openqa.selenium.firefox.FirefoxDriver</browser>
     </properties>
