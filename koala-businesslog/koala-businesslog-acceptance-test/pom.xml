@@ -8,36 +8,8 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>koala-businesslog-acceptance-test</artifactId>
     <packaging>war</packaging>
-    <name>koala-businesslog-acceptance-test</name>
-    <description>用于对koala-businesslog的测试</description>
-
-    <!--<profiles>
-        <profile>
-            <id>bl-mysql</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <hibernate.hbm2ddl.auto>create-drop</hibernate.hbm2ddl.auto>
-                <hibernate.show_sql>true</hibernate.show_sql>
-                <db.generateDdl>true</db.generateDdl>
-                <db.Type>MYSQL</db.Type>
-                <db.port>3306</db.port>
-                <db.name>businesslog_test</db.name>
-                <hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>
-                <db.jdbcDriver>com.mysql.jdbc.Driver</db.jdbcDriver>
-                <db.groupId>mysql</db.groupId>
-                <db.artifactId>mysql-connector-java</db.artifactId>
-                <db.version>5.1.22</db.version>
-                <db.connectionURL>
-                    <![CDATA[jdbc:mysql://127.0.0.1:${db.port}/${db.name}?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8]]></db.connectionURL>
-                <db.username>root</db.username>
-                <db.password></db.password>
-            </properties>
-
-
-        </profile>
-    </profiles>-->
+    <name>Business Log Acceptance Test</name>
+    <description>业务日志子系统验收测试</description>
 
     <dependencies>
         <dependency>
@@ -59,40 +31,33 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>${spring.version}</version>
         </dependency>
 
         <!-- spring -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-            <version>${spring.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
-            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
         </dependency>
 
         <dependency>

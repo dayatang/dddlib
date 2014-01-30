@@ -8,7 +8,9 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>koala-businesslog-web</artifactId>
     <packaging>war</packaging>
-    <name>koala-businesslog-web</name>
+    <name>Business Log Web Application</name>
+    <description>业务日志子系统Web前端</description>
+
     <dependencies>
         <dependency>
             <groupId>org.openkoala.businesslog</groupId>
