@@ -10,21 +10,21 @@ import org.slf4j.LoggerFactory;
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
-public class Slf4jLogger implements com.dayatang.utils.Logger {
+public class Slf4JLogger implements com.dayatang.utils.Logger {
 	private Logger logger;
 	
-	Slf4jLogger(Logger logger) {
+	Slf4JLogger(Logger logger) {
 		this.logger = logger;
 	}
 
-	public static Slf4jLogger getLogger(Class<?> clazz) {
+	public static Slf4JLogger getLogger(Class<?> clazz) {
 		Logger logger = LoggerFactory.getLogger(clazz);
-		return new Slf4jLogger(logger);
+		return new Slf4JLogger(logger);
 	}
 
-	public static Slf4jLogger getLogger(String name) {
+	public static Slf4JLogger getLogger(String name) {
 		Logger logger = LoggerFactory.getLogger(name);
-		return new Slf4jLogger(logger);
+		return new Slf4JLogger(logger);
 	}
 	
 	public void debug(String msg, Object... args) {
