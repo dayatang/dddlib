@@ -8,7 +8,7 @@
 	</parent>
 	<artifactId>dddlib-datasource-router</artifactId>
 	<packaging>jar</packaging>
-	<name>DDD Datasource Router classes for spring</name>
+	<name>DDDLib Datasource Router classes for spring</name>
 	<description>Datasource Router classes for spring</description>
 
 	<dependencies>

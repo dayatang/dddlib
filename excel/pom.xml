@@ -9,8 +9,8 @@
 	</parent>
 	<artifactId>dddlib-excel</artifactId>
 	<packaging>jar</packaging>
-	<name>DDD Excel Date Import and Export Library</name>
-	<description>DDD Excel Date Import and Export Library</description>
+	<name>DDDLib Excel Date Import and Export Library</name>
+	<description>Excel Date Import and Export Library</description>
 
 	<dependencies>
 		<dependency>
