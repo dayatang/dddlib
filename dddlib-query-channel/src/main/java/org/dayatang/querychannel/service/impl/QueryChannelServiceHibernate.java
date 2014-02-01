@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
+import org.dayatang.IocInstanceNotFoundException;
 import org.dayatang.domain.Entity;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.domain.QuerySettings;
@@ -15,31 +16,23 @@ import org.dayatang.querychannel.support.Page;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 @SuppressWarnings("unchecked")
 public class QueryChannelServiceHibernate implements QueryChannelService {
 
 	private static final long serialVersionUID = -2520631490347218114L;
 
-	@Inject
-	private Session session;
-
 	public QueryChannelServiceHibernate() {
 	}
 
-	public QueryChannelServiceHibernate(Session session) {
-		this.session = session;
-	}
-
 	public Session getSession() {
-		if (session == null) {
-			session = InstanceFactory.getInstance(Session.class);
-		}
-		return session;
-	}
-
-	public void setSession(Session session) {
-		this.session = session;
+        try {
+            return InstanceFactory.getInstance(Session.class);
+        } catch (IocInstanceNotFoundException e) {
+            SessionFactory sessionFactory = InstanceFactory.getInstance(SessionFactory.class);
+            return sessionFactory.getCurrentSession();
+        }
 	}
 
 	private Query createQuery(String queryStr, Object[] params) {

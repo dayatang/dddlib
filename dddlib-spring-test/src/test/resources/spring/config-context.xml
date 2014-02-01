@@ -11,11 +11,7 @@
 			http://www.springframework.org/schema/context
 			http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-	<bean id="queryChannelService"
-		class="org.dayatang.querychannel.service.impl.QueryChannelServiceHibernate">
-		<property name="sessionFactory" ref="sessionFactory">
-		</property>
-	</bean>
+	<bean id="queryChannelService" class="org.dayatang.querychannel.service.impl.QueryChannelServiceHibernate"/>
 
 	<bean id="application"
 		class="org.dayatang.springtest.application.impl.MyApplicationImpl">
