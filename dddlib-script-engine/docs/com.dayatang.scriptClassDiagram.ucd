@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="com.dayatang.scriptClassDiagram" id="{UMLID=_0NVpoXOWEd-7oo6bEO82Rg,JavaID=com.dayatang.script}" metadata="uml2-1.0" initialized="true" tag="100" key="3230303730363239206461796174616E672D636F6D6D6F6E732D736372697074">
-  <children xsi:type="editmodel:InterfaceEditModel" name="ScriptType" location="279,50" size="106,86" timstampe="3" id="{UMLID=_8AhSEHOWEd-7oo6bEO82Rg,JavaID=com.dayatang.script/ScriptType}" runTimeClassModel="GROOVY,JS">
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="org.dayatang.scriptClassDiagram" id="{UMLID=_0NVpoXOWEd-7oo6bEO82Rg,JavaID=org.dayatang.script}" metadata="uml2-1.0" initialized="true" tag="100" key="3230303730363239206461796174616E672D636F6D6D6F6E732D736372697074">
+  <children xsi:type="editmodel:InterfaceEditModel" name="ScriptType" location="279,50" size="106,86" timstampe="3" id="{UMLID=_8AhSEHOWEd-7oo6bEO82Rg,JavaID=org.dayatang.script/ScriptType}" runTimeClassModel="GROOVY,JS">
     <children xsi:type="editmodel:CompartmentEditModel" size="75,36">
       <children xsi:type="editmodel:AttributeEditModel" name="GROOVY" size="75,16" id="{UMLID=_8AxwwHOWEd-7oo6bEO82Rg}"/>
       <children xsi:type="editmodel:AttributeEditModel" name="JS" size="41,16" id="{UMLID=_8BpTcnOWEd-7oo6bEO82Rg}"/>
@@ -9,16 +9,16 @@
     <children xsi:type="editmodel:CompartmentEditModel"/>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="ScriptService" location="50,50" size="179,155" timstampe="3" stereotype="" id="{UMLID=_8Cu4kHOWEd-7oo6bEO82Rg,JavaID=com.dayatang.script/ScriptService}" runTimeClassModel="getScriptEngineManager(),ScriptService(),scriptType,getScriptEngineFactory(),ScriptService(Ljava.lang.String;),getEngine()">
+  <children xsi:type="editmodel:ClassEditModel" name="ScriptService" location="50,50" size="179,155" timstampe="3" stereotype="" id="{UMLID=_8Cu4kHOWEd-7oo6bEO82Rg,JavaID=org.dayatang.script/ScriptService}" runTimeClassModel="getScriptEngineManager(),ScriptService(),scriptType,getScriptEngineFactory(),ScriptService(Ljava.lang.String;),getEngine()">
     <children xsi:type="editmodel:CompartmentEditModel" size="77,18">
       <children xsi:type="editmodel:AttributeEditModel" name="scriptType" size="77,16" id="{UMLID=_8C9iEHOWEd-7oo6bEO82Rg}"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="158,90">
-      <children xsi:type="editmodel:MethodEditModel" name="ScriptService" size="102,16" id="{UMLID=_8DbcIHOWEd-7oo6bEO82Rg,JavaID=com.dayatang.script/ScriptService#ScriptService()}"/>
-      <children xsi:type="editmodel:MethodEditModel" name="ScriptService" size="102,16" id="{UMLID=_8DXxwXOWEd-7oo6bEO82Rg,JavaID=com.dayatang.script/ScriptService#ScriptService(Ljava.lang.String;)}"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getEngine" size="88,16" id="{UMLID=_8DZm8HOWEd-7oo6bEO82Rg,JavaID=com.dayatang.script/ScriptService#getEngine()}"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getScriptEngineManager" size="158,16" id="{UMLID=_8DV8kHOWEd-7oo6bEO82Rg,JavaID=com.dayatang.script/ScriptService#getScriptEngineManager()}"/>
-      <children xsi:type="editmodel:MethodEditModel" name="getScriptEngineFactory" size="151,16" id="{UMLID=_8C-wMHOWEd-7oo6bEO82Rg,JavaID=com.dayatang.script/ScriptService#getScriptEngineFactory()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="ScriptService" size="102,16" id="{UMLID=_8DbcIHOWEd-7oo6bEO82Rg,JavaID=org.dayatang.script/ScriptService#ScriptService()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="ScriptService" size="102,16" id="{UMLID=_8DXxwXOWEd-7oo6bEO82Rg,JavaID=org.dayatang.script/ScriptService#ScriptService(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getEngine" size="88,16" id="{UMLID=_8DZm8HOWEd-7oo6bEO82Rg,JavaID=org.dayatang.script/ScriptService#getEngine()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getScriptEngineManager" size="158,16" id="{UMLID=_8DV8kHOWEd-7oo6bEO82Rg,JavaID=org.dayatang.script/ScriptService#getScriptEngineManager()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getScriptEngineFactory" size="151,16" id="{UMLID=_8C-wMHOWEd-7oo6bEO82Rg,JavaID=org.dayatang.script/ScriptService#getScriptEngineFactory()}"/>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel"/>
     <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true"/>

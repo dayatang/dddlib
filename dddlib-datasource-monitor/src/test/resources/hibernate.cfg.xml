@@ -5,7 +5,7 @@
 <hibernate-configuration>
 	<session-factory>
 
-		<mapping class="com.dayatang.dsmonitor.domain.Child" />
+		<mapping class="org.dayatang.dsmonitor.domain.Child" />
 
 	</session-factory>
 </hibernate-configuration>

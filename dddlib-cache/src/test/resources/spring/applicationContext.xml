@@ -9,7 +9,7 @@
             http://www.springframework.org/schema/tx
 			http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
-	<bean id="memcached" class="com.dayatang.cache.memcached.MemCachedBasedCache" >
+	<bean id="memcached" class="org.dayatang.cache.memcached.MemCachedBasedCache" >
 		<property name="servers">
 			<list>
 				<value>localhost:11211</value>

@@ -33,7 +33,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan">
 			<list>
-				<value>com.dayatang.commons.domain</value>
+				<value>org.dayatang.commons.domain</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -62,11 +62,11 @@
 
 	<aop:config>
 		<aop:pointcut id="repositoryOperation"
-			expression="execution(* com.dayatang.domain.EntityRepository.*(..))" />
+			expression="execution(* org.dayatang.domain.EntityRepository.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="repositoryOperation" />
 	</aop:config>
 	
-	<bean id="repository" class="com.dayatang.spring.hibernate.EntityRepositoryHibernate">
+	<bean id="repository" class="org.dayatang.spring.hibernate.EntityRepositoryHibernate">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 

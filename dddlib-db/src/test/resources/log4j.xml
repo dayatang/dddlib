@@ -9,7 +9,7 @@
 		</layout>
 	</appender>
 
-	<category name="com.dayatang.db">
+	<category name="org.dayatang.db">
 		<priority value="info" />
 	</category>
 

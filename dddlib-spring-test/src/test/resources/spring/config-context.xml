@@ -12,20 +12,20 @@
 			http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
 	<bean id="queryChannelService"
-		class="com.dayatang.querychannel.service.impl.QueryChannelServiceHibernate">
+		class="org.dayatang.querychannel.service.impl.QueryChannelServiceHibernate">
 		<property name="sessionFactory" ref="sessionFactory">
 		</property>
 	</bean>
 
 	<bean id="application"
-		class="com.dayatang.springtest.application.impl.MyApplicationImpl">
+		class="org.dayatang.springtest.application.impl.MyApplicationImpl">
 	</bean>
 
-	<bean id="customBean" class="com.dayatang.springtest.test.CustomBean"
+	<bean id="customBean" class="org.dayatang.springtest.test.CustomBean"
 		lazy-init="true">
 	</bean>
 
-	<bean id="customBean2" class="com.dayatang.springtest.test.CustomBean2"
+	<bean id="customBean2" class="org.dayatang.springtest.test.CustomBean2"
 		lazy-init="false">
 	</bean>
 	

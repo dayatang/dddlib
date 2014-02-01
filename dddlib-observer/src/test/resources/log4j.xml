@@ -9,7 +9,7 @@
 		</layout>
 	</appender>
 
-	<category name="com.dayatang.hrm.compensation">
+	<category name="org.dayatang.hrm.compensation">
 		<priority value="debug" />
 	</category>
 
@@ -21,7 +21,7 @@
 		<priority value="warn" />
 	</category>
 
-	<category name="com.dayatang.koala">
+	<category name="org.dayatang.koala">
 		<priority value="warn" />
 	</category>
 	

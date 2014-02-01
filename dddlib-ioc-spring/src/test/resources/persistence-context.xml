@@ -56,7 +56,7 @@
 		</property>
 	</bean>
 
-	<bean id="repository" class="com.dayatang.spring.hibernate.EntityRepositoryHibernate">
+	<bean id="repository" class="org.dayatang.spring.hibernate.EntityRepositoryHibernate">
 		<constructor-arg>
 			<ref bean="sessionFactory" />
 		</constructor-arg>

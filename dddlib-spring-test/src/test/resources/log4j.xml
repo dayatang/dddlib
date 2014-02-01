@@ -9,7 +9,7 @@
 		</layout>
 	</appender>
 
-	<category name="com.dayatang.hrm.compensation">
+	<category name="org.dayatang.hrm.compensation">
 		<priority value="info" />
 	</category>
 

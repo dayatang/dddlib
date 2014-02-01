@@ -1,8 +1,8 @@
 package org.drools.examples
  
-import com.dayatang.rule.examples.Person
-import com.dayatang.rule.examples.Helper
-import com.dayatang.rule.time.Foo
+import org.dayatang.rule.examples.Person
+import org.dayatang.rule.examples.Helper
+import org.dayatang.rule.time.Foo
 import java.util.Date
  
 

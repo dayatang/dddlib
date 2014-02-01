@@ -1,7 +1,7 @@
 package org.drools.examples
  
-import com.dayatang.rule.examples.Person
-import com.dayatang.rule.examples.Helper
+import org.dayatang.rule.examples.Person
+import org.dayatang.rule.examples.Helper
 global java.util.List list
  
 

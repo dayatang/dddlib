@@ -8,14 +8,14 @@
     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
 
-	<bean id="testTable" class="com.dayatang.dsrouter.datasource.examples.TestTable">
+	<bean id="testTable" class="org.dayatang.dsrouter.datasource.examples.TestTable">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
 	<bean id="dataSource"
-		class="com.dayatang.dsrouter.datasource.examples.CustomerRoutingDataSource">
+		class="org.dayatang.dsrouter.datasource.examples.CustomerRoutingDataSource">
 		<property name="targetDataSources">
-			<map key-type="com.dayatang.dsrouter.datasource.examples.CustomerType">
+			<map key-type="org.dayatang.dsrouter.datasource.examples.CustomerType">
 				<entry key="GOLD" value-ref="goldDataSource" />
 				<entry key="SILVER" value-ref="silverDataSource" />
 			</map>

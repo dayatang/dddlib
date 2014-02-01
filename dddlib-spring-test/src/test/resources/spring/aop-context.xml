@@ -35,7 +35,7 @@
 
 	<aop:config>
 		<aop:pointcut id="my-domain-service"
-			expression="execution(* com.dayatang.springtest.application.MyApplication.*(..))" />
+			expression="execution(* org.dayatang.springtest.application.MyApplication.*(..))" />
 
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="my-domain-service" />
 	</aop:config>

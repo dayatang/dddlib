@@ -7,7 +7,7 @@
     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
-	<bean id="baseDao" class="com.dayatang.dsmonitor.dao.impl.HibernateDaoImpl">
+	<bean id="baseDao" class="org.dayatang.dsmonitor.dao.impl.HibernateDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 

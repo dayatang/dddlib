@@ -86,7 +86,7 @@
 
 	<!-- 配置动态路由数据源 供SessionFactory使用 -->
 	<bean id="dataSource"
-		class="com.dayatang.dsrouter.datasource.SimpleDynamicRoutingDataSource">
+		class="org.dayatang.dsrouter.datasource.SimpleDynamicRoutingDataSource">
 		<property name="defaultDataSource" ref="c3p0DefaultDataSource"></property>
 		<property name="dataSourceMapping">
 			<map>

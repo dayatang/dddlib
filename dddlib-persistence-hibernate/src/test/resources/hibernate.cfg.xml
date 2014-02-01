@@ -18,7 +18,7 @@
 		<property name="format_sql">true</property>
 		<property name="hbm2ddl.auto">update</property>
 		
-		<mapping class="com.dayatang.commons.domain.DictionaryCategory"/>
-		<mapping class="com.dayatang.commons.domain.Dictionary"/>
+		<mapping class="org.dayatang.commons.domain.DictionaryCategory"/>
+		<mapping class="org.dayatang.commons.domain.Dictionary"/>
     </session-factory>
  </hibernate-configuration>

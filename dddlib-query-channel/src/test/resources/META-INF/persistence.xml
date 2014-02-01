@@ -4,7 +4,7 @@
 	version="2.0">
 	<persistence-unit name="default">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<class>com.dayatang.querychannel.domain.MyEntity</class>
+		<class>org.dayatang.querychannel.domain.MyEntity</class>
 		<properties>
 			<property name="hibernate.archive.autodetection" value="class" />
 			<property name="hibernate.ejb.cfgfile" value="/hibernate.cfg.xml"/>

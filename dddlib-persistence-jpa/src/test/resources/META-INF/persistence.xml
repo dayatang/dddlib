@@ -5,8 +5,8 @@
 	<persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
 	    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>jdbc/testDS</jta-data-source>
-	    <class>com.dayatang.commons.domain.Dictionary</class>
-		<class>com.dayatang.commons.domain.DictionaryCategory</class>
+	    <class>org.dayatang.commons.domain.Dictionary</class>
+		<class>org.dayatang.commons.domain.DictionaryCategory</class>
 		<properties>
 			<!-- Auto detect annotation model classes -->
 			<property name="hibernate.archive.autodetection" value="class" />

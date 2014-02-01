@@ -4,31 +4,31 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 			http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 			
-	<bean id="dataSource" class="com.dayatang.datasource4saas.SaasDataSource">
+	<bean id="dataSource" class="org.dayatang.datasource4saas.SaasDataSource">
 	    <constructor-arg index="0">
-	        <bean class="com.dayatang.datasource4saas.tenantservice.ThreadLocalTenantService"/>
+	        <bean class="org.dayatang.datasource4saas.tenantservice.ThreadLocalTenantService"/>
 	    </constructor-arg>
 	    <constructor-arg index="1" ref="dataSourceRegistry" />
 	</bean>
 	
-	<bean id="dataSourceRegistry" class="com.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistry">
+	<bean id="dataSourceRegistry" class="org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistry">
 	    <constructor-arg ref="dataSourceCreator"/>
 	</bean>
 
-	<bean id="dataSourceCreator" class="com.dayatang.datasource4saas.dscreator.C3P0DataSourceCreator">
+	<bean id="dataSourceCreator" class="org.dayatang.datasource4saas.dscreator.C3P0DataSourceCreator">
 	    <constructor-arg index="0" ref="urlTranslator"/>
 	    <constructor-arg index="1" ref="dsConfiguration"/>
 	</bean>
 	
-	<bean id="urlTranslator" class="com.dayatang.datasource4saas.dbtype.MySqlUrlTranslator">
+	<bean id="urlTranslator" class="org.dayatang.datasource4saas.dbtype.MySqlUrlTranslator">
 	    <constructor-arg ref="mappingStrategy"/>
 	</bean>
 		
-	<bean id="mappingStrategy" class="com.dayatang.datasource4saas.mappingstrategy.DbNameBasedMappingStrategy">
+	<bean id="mappingStrategy" class="org.dayatang.datasource4saas.mappingstrategy.DbNameBasedMappingStrategy">
 	    <constructor-arg ref="mappingConfiguration"/>
 	</bean>
 	
-	<bean id="configurationFactory" class="com.dayatang.configuration.ConfigurationFactory"/>
+	<bean id="configurationFactory" class="org.dayatang.configuration.ConfigurationFactory"/>
 		
 	<bean id="mappingConfiguration" factory-bean="configurationFactory" factory-method="fromUrl">
 	    <constructor-arg value="http://www.dayatang.com/tenant-db-mapping.properties"/>

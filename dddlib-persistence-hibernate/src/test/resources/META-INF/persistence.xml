@@ -4,8 +4,8 @@
 	version="1.0">
 	<persistence-unit name="default">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<class>com.dayatang.commons.domain.Dictionary</class>
-		<class>com.dayatang.commons.domain.DictionaryCategory</class>
+		<class>org.dayatang.commons.domain.Dictionary</class>
+		<class>org.dayatang.commons.domain.DictionaryCategory</class>
 		<properties>
 			<!-- Auto detect annotation model classes -->
 			<property name="hibernate.archive.autodetection" value="class" />
