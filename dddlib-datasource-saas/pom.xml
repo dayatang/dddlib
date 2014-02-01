@@ -9,7 +9,10 @@
 	<artifactId>dddlib-datasource-saas</artifactId>
 	<packaging>jar</packaging>
 	<name>DDDLib SaaS Datasource</name>
-	<description>A data source implement for SaaS, as a proxy, locate the actual backend data source for a specular tenant. </description>
+    <description>
+        SaaS数据源实现，主类是SaasDataSource，通过代理模式，将数据访问路由到租户对应的数据源。
+        与dddlib-datasource-router的目标一样，只是实现的方式不同。
+    </description>
 
 	<dependencies>
 		<dependency>

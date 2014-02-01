@@ -9,7 +9,10 @@
 	<artifactId>dddlib-ioc-jdk6</artifactId>
 	<packaging>jar</packaging>
 	<name>DDDLib IoC API implemented by JDK6 ServiceLoader</name>
-	<description>Implement IoC interface InstanceProvider with JDK6 ServiceLoader.</description>
+    <description>
+        DDDLib IoC的JDK6实现，通过Jdk6InstanceProvider实现InstanceProvider。
+        JDK6通过ServiceLoader可以实现简化版的IoC，但是有很多限制，例如所有的Bean都必须有无参构造函数。
+    </description>
 
 	<dependencies>
 		<dependency>

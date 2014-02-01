@@ -9,7 +9,9 @@
 	<artifactId>dddlib-domain</artifactId>
 	<packaging>jar</packaging>
 	<name>DDDLib API Interfaces and Base Classes</name>
-	<description> Common Domain APIs of dayatang.com. Includes interfaces and base	classes.</description>
+	<description>
+        DDDLib中最重要的模块，是整个系统的核心。为DDD提供核心接口和基类。
+    </description>
 
 	<dependencies>
 		<dependency>

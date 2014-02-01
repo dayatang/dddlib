@@ -3,14 +3,13 @@ package com.dayatang.h2;
 import java.io.File;
 import java.sql.SQLException;
 
+import com.dayatang.utils.Slf4JLogger;
 import org.h2.tools.DeleteDbFiles;
 import org.h2.tools.Server;
 
-import com.dayatang.utils.Slf4jLogger;
-
 public class H2Server {
 	
-	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(H2Server.class);
+	private static final Slf4JLogger LOGGER = Slf4JLogger.getLogger(H2Server.class);
 	private static final String DEFAULT_DB_FILE = "h2-test-db";
 	private static H2Server instance;
 	

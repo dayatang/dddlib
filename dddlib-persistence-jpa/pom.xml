@@ -9,7 +9,9 @@
 	<artifactId>dddlib-persistence-jpa</artifactId>
 	<packaging>jar</packaging>
 	<name>DDDLib Persistence API implemented by JPA</name>
-	<description>Dayatang Persistence API implemented by JPA.</description>
+    <description>
+        DDDLib仓储接口EntityRepository的JPA实现。
+    </description>
 
 	<dependencies>
 		<dependency>

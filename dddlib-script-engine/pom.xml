@@ -9,7 +9,9 @@
 	<artifactId>dddlib-script-engine</artifactId>
 	<packaging>jar</packaging>
 	<name>DDDLib Script Language API</name>
-	<description> DDDLib Script Language API.</description>
+	<description>
+        脚本引擎的简单封装。
+	</description>
 	
 	<dependencies>
 		<dependency>

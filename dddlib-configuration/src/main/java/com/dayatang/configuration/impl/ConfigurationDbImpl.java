@@ -7,7 +7,7 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import com.dayatang.configuration.WritableConfiguration;
-import com.dayatang.utils.Slf4jLogger;
+import com.dayatang.utils.Slf4JLogger;
 
 /**
  * <P>ConfigurationDbImpl为读取/回写配置信息的工具类，并将配置信息写入数据库， 具体配置大致采用
@@ -24,7 +24,7 @@ import com.dayatang.utils.Slf4jLogger;
  */
 public class ConfigurationDbImpl extends AbstractConfiguration implements WritableConfiguration {
 	
-	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(ConfigurationDbImpl.class);
+	private static final Slf4JLogger LOGGER = Slf4JLogger.getLogger(ConfigurationDbImpl.class);
 	
 	private ConfigurationDbUtils dbUtils;
 	private static final String DEFAULT_TABLE_NAME = "SYS_CONFIG";

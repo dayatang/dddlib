@@ -9,6 +9,9 @@
 	<artifactId>dddlib-i18n</artifactId>
 	<packaging>jar</packaging>
 	<name>DDDLib I18N Interface and Implements</name>
+    <description>
+        国际化和本地化支持。
+    </description>
 
 	<dependencies>
 		<dependency>

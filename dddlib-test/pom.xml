@@ -9,7 +9,9 @@
 	<artifactId>dddlib-test</artifactId>
 	<packaging>jar</packaging>
 	<name>DDDLib Test base classes</name>
-	<description>Test base classes.</description>
+	<description>
+        DDDLib测试模块，为其他模块提供测试支持。
+    </description>
 
 	<dependencies>
 		<dependency>

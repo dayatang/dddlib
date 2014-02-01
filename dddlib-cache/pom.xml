@@ -9,7 +9,9 @@
 	<artifactId>dddlib-cache</artifactId>
 	<packaging>jar</packaging>
 	<name>DDDLib Cache Module</name>
-	<description>DDDLib Cache Module.</description>
+	<description>
+        高速缓存，用Memcached实现。
+	</description>
 
 	<build>
 		<plugins>

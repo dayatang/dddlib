@@ -16,7 +16,13 @@ public abstract class AbstractSubjectEntity extends AbstractEntity implements
 	 */
 	private static final long serialVersionUID = 8696877724719553088L;
 
-	public abstract String getSubjectKey();
+    /**
+     * 获得主题标识。默认返回主题的类名。
+     * @return
+     */
+	public String getSubjectKey() {
+        return getClass().getName();
+    }
 
 	@Override
 	public List<Observer> getObservers() {

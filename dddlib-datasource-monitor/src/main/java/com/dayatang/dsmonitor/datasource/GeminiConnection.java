@@ -3,6 +3,7 @@ package com.dayatang.dsmonitor.datasource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,17 +19,20 @@ public class GeminiConnection extends DelegatingConnection {
 
 	private StopWatch stopWatch;
 
-	private Set<ConnectionMonitor> monitors = new HashSet<ConnectionMonitor>();;
+	private Set<ConnectionMonitor> monitors = new HashSet<ConnectionMonitor>();
 
 	public GeminiConnection(Connection targetConnection,
 			Set<ConnectionMonitor> monitors) throws SQLException {
 		super(targetConnection);
-		Exception exception = new Exception();
+        if (monitors == null) {
+            this.monitors = new HashSet<ConnectionMonitor>();
+        }
+        this.monitors = new HashSet<ConnectionMonitor>(monitors);
+        Exception exception = new Exception();
 		StackTraceElement[] stackTraceElements = exception.getStackTrace();
 		//setCreationTime(System.currentTimeMillis());		//为了安全，不应该在构造函数中调用非final非private的方法。
 		this.creationTime = System.currentTimeMillis();
 		this.stackTraceElements = Arrays.copyOf(stackTraceElements, stackTraceElements.length);
-		this.monitors = monitors;
 		beginStopWatch();
 		notifyOpenConnection();
 	}
@@ -67,12 +71,20 @@ public class GeminiConnection extends DelegatingConnection {
 	}
 
 	public Set<ConnectionMonitor> getMonitors() {
-		return monitors;
+		return Collections.unmodifiableSet(monitors);
 	}
 
 	public void setMonitors(Set<ConnectionMonitor> monitors) {
-		this.monitors = monitors;
+		this.monitors = new HashSet<ConnectionMonitor>(monitors);
 	}
+
+    public void addMonitor(ConnectionMonitor monitor) {
+        monitors.add(monitor);
+    }
+
+    public void removeMonitor(ConnectionMonitor monitor) {
+        monitors.remove(monitor);
+    }
 
 	public long getCreationTime() {
 		return creationTime;
@@ -83,7 +95,7 @@ public class GeminiConnection extends DelegatingConnection {
 	}
 
 	public StackTraceElement[] getStackTraceElements() {
-		return stackTraceElements;
+		return Arrays.copyOf(stackTraceElements, stackTraceElements.length);
 	}
 
 	public void setStackTraceElements(StackTraceElement[] stackTraceElements) {

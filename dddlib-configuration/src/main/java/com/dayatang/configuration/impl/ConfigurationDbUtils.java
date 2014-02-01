@@ -10,11 +10,11 @@ import java.util.Set;
 import javax.sql.DataSource;
 
 import com.dayatang.configuration.ConfigurationException;
-import com.dayatang.utils.Slf4jLogger;
+import com.dayatang.utils.Slf4JLogger;
 
 public class ConfigurationDbUtils {
 	
-	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(ConfigurationDbUtils.class);
+	private static final Slf4JLogger LOGGER = Slf4JLogger.getLogger(ConfigurationDbUtils.class);
 	
 	private DataSource dataSource;
 	private String tableName = "SYS_CONFIG";

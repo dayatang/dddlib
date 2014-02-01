@@ -9,7 +9,7 @@
 	<artifactId>dddlib-db</artifactId>
 	<packaging>jar</packaging>
 	<name>DDDLib Database Utils</name>
-	<description>Database Utils</description>
+	<description>数据库访问工具类</description>
 
 	<dependencies>
 		<dependency>

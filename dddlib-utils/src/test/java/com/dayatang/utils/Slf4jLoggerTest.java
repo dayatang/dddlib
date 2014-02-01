@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 
 public class Slf4jLoggerTest {
 
-	private Slf4jLogger instance;
+	private Slf4JLogger instance;
 	private Logger logger;
 	private String msg = "Hello, {}, {}, and {}";
 	private String errorMsg = "Oh, No!!!";
@@ -19,7 +19,7 @@ public class Slf4jLoggerTest {
 	@Before
 	public void setUp() throws Exception {
 		logger = mock(Logger.class);
-		instance = new Slf4jLogger(logger);
+		instance = new Slf4JLogger(logger);
 	}
 
 	@After

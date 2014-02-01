@@ -65,7 +65,7 @@ public abstract class AbstractGeminiConnectionTimeoutMonitor implements Connecti
 	/**
 	 * 设置超时时间
 	 * 
-	 * @param 超时时间
+	 * @param timeout 超时时间
 	 */
 	public void setTimeout(long timeout) {
 		this.timeout = timeout;

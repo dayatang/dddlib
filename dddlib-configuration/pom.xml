@@ -9,7 +9,9 @@
 	<artifactId>dddlib-configuration</artifactId>
 	<packaging>jar</packaging>
 	<name>DDDLib Configuration</name>
-	<description>Common Configuration interface and various implements.</description>
+	<description>
+        定义配置接口Configuration（只读）及其子接口WritableConfiguration（可读写），并提供它们的各种实现类。
+	</description>
 
 	<dependencies>
 		<dependency>

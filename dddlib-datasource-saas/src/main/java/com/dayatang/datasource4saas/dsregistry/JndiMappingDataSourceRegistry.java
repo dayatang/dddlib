@@ -5,9 +5,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.dayatang.utils.Slf4JLogger;
 import org.apache.commons.lang3.StringUtils;
-
-import com.dayatang.utils.Slf4jLogger;
 
 /**
  * 数据源注册表实现，将租户数据源映射到JNDI
@@ -17,7 +16,7 @@ import com.dayatang.utils.Slf4jLogger;
  */
 public class JndiMappingDataSourceRegistry extends MapBasedDataSourceRegistry {
 
-	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(JndiMappingDataSourceRegistry.class);
+	private static final Slf4JLogger LOGGER = Slf4JLogger.getLogger(JndiMappingDataSourceRegistry.class);
 	private Context context;
 	private String jndiPrefix;
 	private String jndiSuffix;

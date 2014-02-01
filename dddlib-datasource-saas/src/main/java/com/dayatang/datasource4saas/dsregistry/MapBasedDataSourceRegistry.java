@@ -8,11 +8,11 @@ import javax.sql.DataSource;
 
 import com.dayatang.datasource4saas.DataSourceRegistry;
 import com.dayatang.utils.Assert;
-import com.dayatang.utils.Slf4jLogger;
+import com.dayatang.utils.Slf4JLogger;
 
 public abstract class MapBasedDataSourceRegistry implements DataSourceRegistry {
 
-	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(MapBasedDataSourceRegistry.class);
+	private static final Slf4JLogger LOGGER = Slf4JLogger.getLogger(MapBasedDataSourceRegistry.class);
 	
 	private static Map<String, DataSource> dataSources = new HashMap<String, DataSource>();
 	private static Map<String, Date> lastAccess = new HashMap<String, Date>();

@@ -9,7 +9,9 @@
 	<artifactId>dddlib-observer</artifactId>
 	<packaging>jar</packaging>
 	<name>DDDLib Observer</name>
-	<description> Common Observer.</description>
+	<description>
+        观察者模式的持久化实现。一个实体类(Observer)可以注册若干主题(Subject)，当后者发生改变时可以通知前者。
+	</description>
 
 	<dependencies>
 		<dependency>

@@ -9,6 +9,9 @@
 	<artifactId>dddlib-rule-engine</artifactId>
 	<packaging>jar</packaging>
 	<name>DDDLib Rule Engine</name>
+    <description>
+        规则引擎的封装。提供有状态和无状态的规则服务接口和它们的JSR94实现。
+    </description>
 
 	<build>
 		<plugins>

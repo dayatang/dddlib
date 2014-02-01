@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.sql.DataSource;
 
 import com.dayatang.utils.Assert;
-import com.dayatang.utils.Slf4jLogger;
+import com.dayatang.utils.Slf4JLogger;
 
 /**
  * 当还没有对应于指定的租户的数据源时，即时创建一个。
@@ -14,7 +14,7 @@ import com.dayatang.utils.Slf4jLogger;
  */
 public class JdbcDataSourceRegistry extends MapBasedDataSourceRegistry {
 
-	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(JdbcDataSourceRegistry.class);
+	private static final Slf4JLogger LOGGER = Slf4JLogger.getLogger(JdbcDataSourceRegistry.class);
 	
 	private DataSourceCreator dataSourceCreator;
 

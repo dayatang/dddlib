@@ -9,7 +9,7 @@
 	<artifactId>dddlib-utils</artifactId>
 	<packaging>jar</packaging>
 	<name>DDDLib Utils</name>
-	<description> Common Utils.</description>
+	<description>DDDLib工具类库，其中最重要的工具是断言Assert和日志Slf4jLogger</description>
 
 	<dependencies>
 		<dependency>

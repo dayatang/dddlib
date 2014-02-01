@@ -23,14 +23,6 @@ public class DelegatingDataSource implements DataSource {
 	/**
 	 * Create a new DelegatingDataSource.
 	 * 
-	 * @see #setTargetDataSource
-	 */
-	public DelegatingDataSource() {
-	}
-
-	/**
-	 * Create a new DelegatingDataSource.
-	 * 
 	 * @param targetDataSource
 	 *            the target DataSource
 	 */

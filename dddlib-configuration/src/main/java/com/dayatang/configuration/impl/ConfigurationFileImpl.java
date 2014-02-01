@@ -13,12 +13,12 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.Properties;
 
+import com.dayatang.utils.Slf4JLogger;
 import org.apache.commons.lang3.StringUtils;
 
 import com.dayatang.configuration.ConfigurationException;
 import com.dayatang.configuration.WritableConfiguration;
 import com.dayatang.utils.Assert;
-import com.dayatang.utils.Slf4jLogger;
 
 /**
  * <P>ConfigurationFileImpl为读取/回写配置文件的工具类，一个实例大概对应了一个物理配置文件，可以使用
@@ -35,7 +35,7 @@ import com.dayatang.utils.Slf4jLogger;
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  */
 public class ConfigurationFileImpl extends AbstractConfiguration implements WritableConfiguration {
-	private static final Slf4jLogger LOGGER = Slf4jLogger.getLogger(ConfigurationFileImpl.class);
+	private static final Slf4JLogger LOGGER = Slf4JLogger.getLogger(ConfigurationFileImpl.class);
 	private PropertiesFileUtils pfu = new PropertiesFileUtils("utf-8");
 	private File file;
 	/**
