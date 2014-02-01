@@ -649,28 +649,28 @@
     </properties>
 
     <modules>
-        <module>domain</module>
-        <module>jdk6ioc</module>
-        <module>test</module>
-        <module>hibernate</module>
-        <module>jpa</module>
-        <module>tapestry</module>
-        <module>spring</module>
-        <module>guice</module>
-        <module>utils</module>
-        <module>rule</module>
-        <module>observer</module>
-        <module>excel</module>
-        <module>script</module>
-        <module>spring-test</module>
-        <module>db</module>
-        <module>i18n</module>
-        <module>cache</module>
-        <module>dsmonitor</module>
-        <module>querychannel</module>
-        <module>dsrouter</module>
-        <module>ds4saas</module>
-        <module>configuration</module>
+        <module>dddlib-domain</module>
+        <module>dddlib-ioc-tapestry</module>
+        <module>dddlib-ioc-spring</module>
+        <module>dddlib-ioc-guice</module>
+        <module>dddlib-ioc-jdk6</module>
+        <module>dddlib-persistence-hibernate</module>
+        <module>dddlib-persistence-jpa</module>
+        <module>dddlib-utils</module>
+        <module>dddlib-rule-engine</module>
+        <module>dddlib-observer</module>
+        <module>dddlib-excel</module>
+        <module>dddlib-script-engine</module>
+        <module>dddlib-spring-test</module>
+        <module>dddlib-test</module>
+        <module>dddlib-db</module>
+        <module>dddlib-i18n</module>
+        <module>dddlib-cache</module>
+        <module>dddlib-query-channel</module>
+        <module>dddlib-datasource-router</module>
+        <module>dddlib-datasource-saas</module>
+        <module>dddlib-datasource-monitor</module>
+        <module>dddlib-configuration</module>
     </modules>
 
     <profiles>
