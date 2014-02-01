@@ -8,7 +8,7 @@
 	</parent>
 	<artifactId>dddlib-persistence-jpa</artifactId>
 	<packaging>jar</packaging>
-	<name>Dayatang Persistence API implemented by JPA</name>
+	<name>DDDLib Persistence API implemented by JPA</name>
 	<description>Dayatang Persistence API implemented by JPA.</description>
 
 	<dependencies>

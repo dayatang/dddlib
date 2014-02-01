@@ -8,7 +8,7 @@
 	</parent>
 	<artifactId>dddlib-i18n</artifactId>
 	<packaging>jar</packaging>
-	<name>I18N Interface and Implements</name>
+	<name>DDDLib I18N Interface and Implements</name>
 
 	<dependencies>
 		<dependency>
