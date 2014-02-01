@@ -2,19 +2,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.dayatang.commons</groupId>
-		<artifactId>dayatang-commons-project</artifactId>
+		<groupId>org.dayatang.dddlib</groupId>
+		<artifactId>dddlib-project</artifactId>
 		<version>4.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>dayatang-commons-tapestry</artifactId>
+	<artifactId>dddlib-ioc-tapestry</artifactId>
 	<packaging>jar</packaging>
-	<name>Dayatang Common API implemented by Apache Tapestry</name>
-	<description>Common API implemented by Tapestry.</description>
+	<name>DDDLib IoC implemented by Apache Tapestry</name>
+	<description>IoC implemented by Tapestry.</description>
 
 	<dependencies>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>dayatang-commons-domain</artifactId>
+			<artifactId>dddlib-domain</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
@@ -34,7 +34,7 @@
 		</dependency>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>dayatang-commons-test</artifactId>
+			<artifactId>dddlib-test</artifactId>
 			<version>${project.parent.version}</version>
 			<scope>test</scope>
 		</dependency>

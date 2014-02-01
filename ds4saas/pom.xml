@@ -2,24 +2,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.dayatang.commons</groupId>
-		<artifactId>dayatang-commons-project</artifactId>
+		<groupId>org.dayatang.dddlib</groupId>
+		<artifactId>dddlib-project</artifactId>
 		<version>4.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>dayatang-commons-ds4saas</artifactId>
+	<artifactId>dddlib-saas-datasource</artifactId>
 	<packaging>jar</packaging>
-	<name>Dayatang Datasource for SaaS</name>
+	<name>DDDLib SaaS Datasource</name>
 	<description>A data source implement for SaaS, as a proxy, locate the actual backend data source for a specular tenant. </description>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.dayatang.commons</groupId>
-			<artifactId>dayatang-commons-utils</artifactId>
+			<groupId>org.dayatang.dddlib</groupId>
+			<artifactId>dddlib-utils</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.dayatang.commons</groupId>
-			<artifactId>dayatang-commons-configuration</artifactId>
+			<groupId>org.dayatang.dddlib</groupId>
+			<artifactId>dddlib-configuration</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
@@ -55,8 +55,8 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>com.dayatang.commons</groupId>
-			<artifactId>dayatang-commons-spring</artifactId>
+			<groupId>org.dayatang.dddlib</groupId>
+			<artifactId>dddlib-ioc-spring</artifactId>
 			<version>${project.version}</version>
 			<scope>test</scope>
 		</dependency>

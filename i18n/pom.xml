@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.dayatang.commons</groupId>
-		<artifactId>dayatang-commons-project</artifactId>
+		<groupId>org.dayatang.dddlib</groupId>
+		<artifactId>dddlib-project</artifactId>
 		<version>4.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>dayatang-commons-i18n</artifactId>
+	<artifactId>dddlib-i18n</artifactId>
 	<packaging>jar</packaging>
 	<name>I18N Interface and Implements</name>
 

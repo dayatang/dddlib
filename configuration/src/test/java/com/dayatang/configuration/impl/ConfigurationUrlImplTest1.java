@@ -11,7 +11,7 @@ import org.junit.Test;
 import com.dayatang.configuration.impl.ConfigurationUrlImpl;
 import com.dayatang.utils.DateUtils;
 
-public class ConfigurationUrlImplTest extends AbstractConfigurationTest {
+public class ConfigurationUrlImplTest1 extends AbstractConfigurationTest {
 	
 	@Before
 	public void setUp() throws Exception {

@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.dayatang.configuration.impl.ConfigurationDbImpl;
@@ -69,12 +70,14 @@ public class ConfigurationFactoryTest {
 		assertTrue(instance.fromFileSystem(file) instanceof ConfigurationFileImpl);
 	}
 
+    @Ignore
 	@Test
 	public void testFromUrlString() {
 		String url = "http://www.dayatang.com/conf.properties";
 		assertTrue(instance.fromUrl(url) instanceof ConfigurationUrlImpl);
 	}
 
+    @Ignore
 	@Test
 	public void testFromUrlURL() throws MalformedURLException {
 		URL url = new URL("http://www.dayatang.com/conf.properties");

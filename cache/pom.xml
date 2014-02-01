@@ -2,14 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.dayatang.commons</groupId>
-		<artifactId>dayatang-commons-project</artifactId>
+		<groupId>org.dayatang.dddlib</groupId>
+		<artifactId>dddlib-project</artifactId>
 		<version>4.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>dayatang-commons-cache</artifactId>
+	<artifactId>dddlib-cache</artifactId>
 	<packaging>jar</packaging>
-	<name>Dayatang Cache Module</name>
-	<description>Dayatang Cache Module.</description>
+	<name>DDDLib Cache Module</name>
+	<description>DDDLib Cache Module.</description>
 
 	<build>
 		<plugins>
@@ -30,7 +30,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>dayatang-commons-utils</artifactId>
+			<artifactId>dddlib-utils</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
@@ -58,7 +58,7 @@
 		</dependency>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>dayatang-commons-spring-test</artifactId>
+			<artifactId>dddlib-spring-test</artifactId>
 			<version>${project.parent.version}</version>
 			<scope>test</scope>
 		</dependency>
