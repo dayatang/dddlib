@@ -9,8 +9,8 @@
     <name>DDDLib Project</name>
     <url>http://www.dayatang.org/projects/dddlib</url>
     <description>
-        Common Domain APIs, Includes interfaces
-        and base classes.
+        DDDLib是一个领域驱动设计（Domain Driven Design，简称DDD）类库，为DDD开发范式提供基本的接口、基类和实现，
+        另外还提供了一些例如断言、配置、Excel读写等基本工具。
     </description>
     <organization>
         <name>Dayatang Open Source.</name>
@@ -275,7 +275,12 @@
             <dependency>
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
-                <version>1.3.171</version>
+                <version>${h2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.codehaus.btm</groupId>
@@ -624,6 +629,27 @@
         <tapestry.version>5.3.7</tapestry.version>
         <hibernate.version>4.3.0.Final</hibernate.version>
         <!-- Database settings, default to H2 database -->
+        <h2.username>sa</h2.username>
+        <h2.password/>
+        <h2.version>1.3.173</h2.version>
+        <mysql.username>root</mysql.username>
+        <mysql.password/>
+        <mysql.host>localhost</mysql.host>
+        <mysql.version>5.1.21</mysql.version>
+        <derby.username>any</derby.username>
+        <derby.password>value</derby.password>
+        <postgresql.username>postgres</postgresql.username>
+        <postgresql.password>postgres</postgresql.password>
+        <hsqldb.username>sa</hsqldb.username>
+        <hsqldb.password/>
+        <oracle.username>system</oracle.username>
+        <oracle.password>system</oracle.password>
+        <oracle.version>11.2.0.3</oracle.version>
+        <db2.username>db2admin</db2.username>
+        <db2.password>db2admin</db2.password>
+        <sqlserver.username>sa</sqlserver.username>
+        <sqlserver.password>appfuse</sqlserver.password>
+
         <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
         <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
         <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
@@ -632,7 +658,7 @@
         <db.name>testdb</db.name>
         <jdbc.groupId>com.h2database</jdbc.groupId>
         <jdbc.artifactId>h2</jdbc.artifactId>
-        <jdbc.version>1.3.173</jdbc.version>
+        <jdbc.version>${h2.version}</jdbc.version>
         <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
         <jdbc.url><![CDATA[jdbc:h2:mem:testdb]]></jdbc.url>
         <jdbc.username>sa</jdbc.username>
@@ -643,9 +669,6 @@
         <hibernate.hbm2ddl.auto>create-drop</hibernate.hbm2ddl.auto>
         <hibernate.show_sql>true</hibernate.show_sql>
         <hibernate.format_sql>true</hibernate.format_sql>
-        <mysql.host>localhost</mysql.host>
-        <mysql.username>root</mysql.username>
-        <mysql.password/>
     </properties>
 
     <modules>
@@ -678,7 +701,7 @@
             <id>derby</id>
             <properties>
                 <db.type>derby</db.type>
-                <hibernate.dialect>org.hibernate.dialect.DerbyDialect</hibernate.dialect>
+                <hibernate.dialect>org.hibernate.dialect.DerbyTenSevenDialect</hibernate.dialect>
                 <jdbc.groupId>org.apache.derby</jdbc.groupId>
                 <jdbc.artifactId>derbyclient</jdbc.artifactId>
                 <jdbc.version>10.9.1.0</jdbc.version>
@@ -730,7 +753,7 @@
                 <hibernate.dialect>org.hibernate.dialect.Oracle9iDialect</hibernate.dialect>
                 <jdbc.groupId>com.oracle.jdbc</jdbc.groupId>
                 <jdbc.artifactId>ojdbc5</jdbc.artifactId>
-                <jdbc.version>11.2.0.3</jdbc.version>
+                <jdbc.version>${oracle.version}</jdbc.version>
                 <jdbc.driverClassName>oracle.jdbc.OracleDriver</jdbc.driverClassName>
                 <jdbc.url><![CDATA[jdbc:oracle:thin:@${db.host}:${db.port}:${db.instance}]]></jdbc.url>
                 <jdbc.username>system</jdbc.username>
@@ -801,7 +824,7 @@
                 <hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>
                 <jdbc.groupId>mysql</jdbc.groupId>
                 <jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
-                <jdbc.version>5.1.22</jdbc.version>
+                <jdbc.version>${mysql.version}</jdbc.version>
                 <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
                 <jdbc.url>
                     <![CDATA[jdbc:mysql://${db.host}:${db.port}/${db.name}?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url>

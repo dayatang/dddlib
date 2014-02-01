@@ -79,7 +79,7 @@
 		<jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
 		<jdbc.groupId>mysql</jdbc.groupId>
 		<jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
-		<jdbc.version>5.1.21</jdbc.version>
+		<jdbc.version>${mysql.version}</jdbc.version>
 		<jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
 		<database-url-prefix><![CDATA[jdbc:mysql://localhost,127.0.0.1/]]></database-url-prefix>
 		<database-name><![CDATA[test]]></database-name>
