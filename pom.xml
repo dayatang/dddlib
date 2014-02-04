@@ -743,7 +743,7 @@
                 <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
                 <jdbc.groupId>com.h2database</jdbc.groupId>
                 <jdbc.artifactId>h2</jdbc.artifactId>
-                <jdbc.version>1.3.170</jdbc.version>
+                <jdbc.version>${h2.version}</jdbc.version>
                 <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
                 <jdbc.url><![CDATA[jdbc:h2:${basedir}/target/${db.name}]]></jdbc.url>
                 <jdbc.username>sa</jdbc.username>
