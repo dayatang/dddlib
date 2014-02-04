@@ -601,7 +601,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.11</version>
+                <version>2.10</version>
                 <configuration>
                     <configLocation>config/sun_checks.xml</configLocation>
                     <encoding>${project.build.sourceEncoding}</encoding>
