@@ -75,6 +75,7 @@
         <connection>scm:git:git://github.com/dayatang/dddlib.git</connection>
         <developerConnection>scm:git:git@github.com:dayatang/dddlib.git</developerConnection>
         <url>http://github.com/dayatang/dddlib/tree/master</url>
+        <tag>HEAD</tag>
     </scm>
 
     <!-- <issueManagement>
