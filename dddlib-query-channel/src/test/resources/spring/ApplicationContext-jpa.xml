@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+			http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+            http://www.springframework.org/schema/aop
+			http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+            http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="default"/>
+    </bean>
+	<!--
+		Transaction manager for a single Hibernate SessionFactory (alternative
+		to JTA)
+	-->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+	<!-- 支持 @Transactional 标记 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+    <bean id="repository" class="org.dayatang.jpa.EntityRepositoryJpa" depends-on="entityManagerFactory"/>
+
+    <bean id="queryChannelService" class="org.dayatang.querychannel.service.impl.QueryChannelServiceJpa"/>
+
+    <!-- 支持 @Transactional 标记 -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+    <!--
+        支持 @AspectJ 标记 <aop:aspectj-autoproxy proxy-target-class="false"/>
+    -->
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!--
+                tx:method name="save*" propagation="REQUIRES_NEW" timeout="600"
+                timeout="30" read-only="false" rollback-for="Exception" /
+            -->
+            <!-- other methods use the default transaction settings (see below) -->
+
+            <tx:method name="*" propagation="REQUIRED" />
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+        <aop:pointcut id="jpa-service"
+                      expression="execution(* org.dayatang.domain.EntityRepository.*(..))" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="jpa-service" />
+    </aop:config>
+
+</beans>

@@ -18,6 +18,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.dayatang.domain.AbstractEntity;
+import org.dayatang.domain.MapParameters;
 
 
 @Entity
@@ -177,9 +178,8 @@ public class Dictionary extends AbstractEntity {
 	}
 
 	public static List<Dictionary> findByCategory(DictionaryCategory category) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("category", category);
-		return getRepository().findByNamedQuery("findByCategory", params, Dictionary.class);
+		MapParameters params = MapParameters.create().add("category", category);
+		return getRepository().findByNamedQuery("findByCategory", params);
 	}
 
 	@Override

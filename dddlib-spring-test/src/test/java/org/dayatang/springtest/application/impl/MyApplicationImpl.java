@@ -1,44 +1,44 @@
 package org.dayatang.springtest.application.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.dayatang.domain.InstanceFactory;
-import org.dayatang.querychannel.service.QueryChannelService;
 import org.dayatang.springtest.application.MyApplication;
 import org.dayatang.springtest.domain.MyEntity;
 
 public class MyApplicationImpl implements MyApplication {
 
-	private static QueryChannelService service;
-
-	public static QueryChannelService getService() {
-		if (service == null) {
-			service = InstanceFactory.getInstance(QueryChannelService.class);
-		}
-		return service;
-	}
-
-	public static void setService(QueryChannelService service) {
-		MyApplicationImpl.service = service;
-	}
-
 	@Override
 	public List<MyEntity> getMyEntityList() {
-		List<MyEntity> lists = getService().queryResult("from MyEntity",
-				new Object[] {});
+        List<MyEntity> results = new ArrayList<MyEntity>();
+        for (int i = 1; i < 5; i++) {
 
-		for (MyEntity entity : lists) {
-			entity.setName("aaaaaaaaaa");
-		}
+            MyEntity entity = new MyEntity();
 
-		return lists;
+            entity.setName("aaaaaaaaaa");
+            //entity.setName("entity" + i);
+            entity.setVersion(1);
+
+            results.add(entity);
+        }
+
+		return results;
 	}
 	
 	@Override
 	public List<MyEntity> getMyTrueEntityList() {
-		List<MyEntity> lists = getService().queryResult("from MyEntity",
-				new Object[] {});
+        List<MyEntity> results = new ArrayList<MyEntity>();
+        for (int i = 1; i < 5; i++) {
 
-		return lists;
+            MyEntity entity = new MyEntity();
+
+            entity.setName("entity" + i);
+            entity.setVersion(1);
+
+            results.add(entity);
+        }
+
+        return results;
 	}
 }

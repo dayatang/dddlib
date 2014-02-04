@@ -3,17 +3,17 @@ package org.dayatang.domain;
 import java.util.*;
 
 /**
- * Created with IntelliJ IDEA.
+ * 条件查询实现.
  * User: yyang
  * Date: 13-10-17
  * Time: 下午3:07
  * To change this template use File | Settings | File Templates.
  */
-public class QueryImpl<T extends Entity> implements Query<T> {
+public class CriteriaQueryImpl implements CriteriaQuery {
 
     private EntityRepository repository;
     private List<String> selectedProps;
-    private Class<T> entityClass;
+    private Class<? extends Entity> entityClass;
     private int firstResult;
     private int maxResults;
     private Map<String, String> aliases = new LinkedHashMap<String, String>();
@@ -22,193 +22,193 @@ public class QueryImpl<T extends Entity> implements Query<T> {
     private Criterions criterions = Criterions.singleton();
 
 
-    public QueryImpl(EntityRepository repository, Class<T> entityClass) {
+    public CriteriaQueryImpl(EntityRepository repository, Class<? extends Entity> entityClass) {
         this.repository = repository;
         this.entityClass = entityClass;
     }
 
-    public Query<T> select(String... props) {
+    public CriteriaQuery select(String... props) {
         selectedProps = Arrays.asList(props);
         return this;
     }
 
-    public Query<T> eq(String propName, Object value) {
+    public CriteriaQuery eq(String propName, Object value) {
         addCriterion(criterions.eq(propName, value));
         return this;
     }
 
-    public Query<T> notEq(String propName, Object value) {
+    public CriteriaQuery notEq(String propName, Object value) {
         addCriterion(criterions.notEq(propName, value));
         return this;
     }
 
-    public Query<T> gt(String propName, Comparable<?> value) {
+    public CriteriaQuery gt(String propName, Comparable<?> value) {
         addCriterion(criterions.gt(propName, value));
         return this;
     }
 
-    public Query<T> ge(String propName, Comparable<?> value) {
+    public CriteriaQuery ge(String propName, Comparable<?> value) {
         addCriterion(criterions.ge(propName, value));
         return this;
     }
 
-    public Query<T> lt(String propName, Comparable<?> value) {
+    public CriteriaQuery lt(String propName, Comparable<?> value) {
         addCriterion(criterions.lt(propName, value));
         return this;
     }
 
-    public Query<T> le(String propName, Comparable<?> value) {
+    public CriteriaQuery le(String propName, Comparable<?> value) {
         addCriterion(criterions.le(propName, value));
         return this;
     }
 
-    public Query<T> eqProp(String propName, String otherProp) {
+    public CriteriaQuery eqProp(String propName, String otherProp) {
         addCriterion(criterions.eqProp(propName, otherProp));
         return this;
     }
 
-    public Query<T> notEqProp(String propName, String otherProp) {
+    public CriteriaQuery notEqProp(String propName, String otherProp) {
         addCriterion(criterions.notEqProp(propName, otherProp));
         return this;
     }
 
-    public Query<T> gtProp(String propName, String otherProp) {
+    public CriteriaQuery gtProp(String propName, String otherProp) {
         addCriterion(criterions.gtProp(propName, otherProp));
         return this;
     }
 
-    public Query<T> geProp(String propName, String otherProp) {
+    public CriteriaQuery geProp(String propName, String otherProp) {
         addCriterion(criterions.geProp(propName, otherProp));
         return this;
     }
 
-    public Query<T> ltProp(String propName, String otherProp) {
+    public CriteriaQuery ltProp(String propName, String otherProp) {
         addCriterion(criterions.ltProp(propName, otherProp));
         return this;
     }
 
-    public Query<T> leProp(String propName, String otherProp) {
+    public CriteriaQuery leProp(String propName, String otherProp) {
         addCriterion(criterions.leProp(propName, otherProp));
         return this;
     }
 
-    public Query<T> sizeEq(String propName, int size) {
+    public CriteriaQuery sizeEq(String propName, int size) {
         addCriterion(criterions.sizeEq(propName, size));
         return this;
     }
 
-    public Query<T> sizeNotEq(String propName, int size) {
+    public CriteriaQuery sizeNotEq(String propName, int size) {
         addCriterion(criterions.sizeNotEq(propName, size));
         return this;
     }
 
-    public Query<T> sizeGt(String propName, int size) {
+    public CriteriaQuery sizeGt(String propName, int size) {
         addCriterion(criterions.sizeGt(propName, size));
         return this;
     }
 
-    public Query<T> sizeGe(String propName, int size) {
+    public CriteriaQuery sizeGe(String propName, int size) {
         addCriterion(criterions.sizeGe(propName, size));
         return this;
     }
 
-    public Query<T> sizeLt(String propName, int size) {
+    public CriteriaQuery sizeLt(String propName, int size) {
         addCriterion(criterions.sizeLt(propName, size));
         return this;
     }
 
-    public Query<T> sizeLe(String propName, int size) {
+    public CriteriaQuery sizeLe(String propName, int size) {
         addCriterion(criterions.sizeLe(propName, size));
         return this;
     }
 
-    public Query<T> containsText(String propName, String value) {
+    public CriteriaQuery containsText(String propName, String value) {
         addCriterion(criterions.containsText(propName, value));
         return this;
     }
 
-    public Query<T> startsWithText(String propName, String value) {
+    public CriteriaQuery startsWithText(String propName, String value) {
         addCriterion(criterions.startsWithText(propName, value));
         return this;
     }
 
-    public Query<T> in(String propName, Collection<? extends Object> value) {
+    public CriteriaQuery in(String propName, Collection<? extends Object> value) {
         addCriterion(criterions.in(propName, value));
         return this;
     }
 
-    public Query<T> in(String propName, Object[] value) {
+    public CriteriaQuery in(String propName, Object[] value) {
         addCriterion(criterions.in(propName, value));
         return this;
     }
 
-    public Query<T> notIn(String propName, Collection<? extends Object> value) {
+    public CriteriaQuery notIn(String propName, Collection<? extends Object> value) {
         addCriterion(criterions.notIn(propName, value));
         return this;
     }
 
-    public Query<T> notIn(String propName, Object[] value) {
+    public CriteriaQuery notIn(String propName, Object[] value) {
         addCriterion(criterions.notIn(propName, value));
         return this;
     }
 
-    public <E> Query between(String propName, Comparable<E> from, Comparable<E> to) {
+    public <E> CriteriaQuery between(String propName, Comparable<E> from, Comparable<E> to) {
         addCriterion(criterions.between(propName, from, to));
         return this;
     }
 
-    public Query<T> isNull(String propName) {
+    public CriteriaQuery isNull(String propName) {
         addCriterion(criterions.isNull(propName));
         return this;
     }
 
-    public Query<T> notNull(String propName) {
+    public CriteriaQuery notNull(String propName) {
         addCriterion(criterions.notNull(propName));
         return this;
     }
 
-    public Query<T> isEmpty(String propName) {
+    public CriteriaQuery isEmpty(String propName) {
         addCriterion(criterions.isEmpty(propName));
         return this;
     }
 
-    public Query<T> notEmpty(String propName) {
+    public CriteriaQuery notEmpty(String propName) {
         addCriterion(criterions.notEmpty(propName));
         return this;
     }
 
 
-    public Query<T> isTrue(String propName) {
+    public CriteriaQuery isTrue(String propName) {
         addCriterion(criterions.isTrue(propName));
         return this;
     }
 
-    public Query<T> isFalse(String propName) {
+    public CriteriaQuery isFalse(String propName) {
         addCriterion(criterions.isFalse(propName));
         return this;
     }
 
-    public Query<T> isBlank(String propName) {
+    public CriteriaQuery isBlank(String propName) {
         addCriterion(criterions.isBlank(propName));
         return this;
     }
 
-    public Query<T> notBlank(String propName) {
+    public CriteriaQuery notBlank(String propName) {
         addCriterion(criterions.notBlank(propName));
         return this;
     }
 
-    public Query<T> not(QueryCriterion criterion) {
+    public CriteriaQuery not(QueryCriterion criterion) {
         addCriterion(criterions.not(criterion));
         return this;
     }
 
-    public Query<T> and(QueryCriterion... queryCriterions) {
+    public CriteriaQuery and(QueryCriterion... queryCriterions) {
         addCriterion(criterions.and(queryCriterions));
         return this;
     }
 
-    public Query<T> or(QueryCriterion... queryCriterions) {
+    public CriteriaQuery or(QueryCriterion... queryCriterions) {
         addCriterion(criterions.or(queryCriterions));
         return this;
     }
@@ -217,22 +217,22 @@ public class QueryImpl<T extends Entity> implements Query<T> {
         queryCriterions.add(criterion);
     }
 
-    public Query<T> setFirstResult(int firstResult) {
+    public CriteriaQuery setFirstResult(int firstResult) {
         this.firstResult = firstResult;
         return this;
     }
 
-    public Query<T> setMaxResults(int maxResults) {
+    public CriteriaQuery setMaxResults(int maxResults) {
         this.maxResults = maxResults;
         return this;
     }
 
-    public Query<T> asc(String propName) {
+    public CriteriaQuery asc(String propName) {
         orderSettings.add(OrderSetting.asc(propName));
         return this;
     }
 
-    public Query<T> desc(String propName) {
+    public CriteriaQuery desc(String propName) {
         orderSettings.add(OrderSetting.desc(propName));
         return this;
     }
@@ -244,7 +244,7 @@ public class QueryImpl<T extends Entity> implements Query<T> {
     /**
      * @return the entityClass
      */
-    public Class<T> getEntityClass() {
+    public Class getEntityClass() {
         return entityClass;
     }
 
@@ -265,20 +265,12 @@ public class QueryImpl<T extends Entity> implements Query<T> {
     }
 
     @Override
-    public List<T> list() {
+    public <T> List<T> list() {
         return repository.find(this);
     }
 
     @Override
-    public T singleResult() {
+    public <T> T singleResult() {
         return repository.getSingleResult(this);
-    }
-
-    public <E> List<E> list(Class<E> resultClass) {
-         return repository.find(this, resultClass);
-    }
-
-    public <E> E singleResult(Class<E> resultClass) {
-         return repository.getSingleResult(this, resultClass);
     }
 }

@@ -6,20 +6,16 @@ import static org.junit.Assert.*;
 
 import org.dayatang.cache.Cache;
 import org.dayatang.domain.InstanceFactory;
-import org.dayatang.springtest.PureSpringTestCase;
+import org.dayatang.springtest.AbstractSpringIntegrationTest;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MemCachedBasedCacheTest extends PureSpringTestCase {
+import javax.inject.Inject;
 
+public class MemCachedBasedCacheTest extends AbstractSpringIntegrationTest {
+
+    @Inject
     private Cache cache;
-
-    @Before
-    @Override
-    public void setup() {
-        super.setup();
-        cache = InstanceFactory.getInstance(Cache.class, "memcached");
-    }
 
     @Test
     public void notnull() {

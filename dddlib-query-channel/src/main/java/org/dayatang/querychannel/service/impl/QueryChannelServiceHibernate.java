@@ -22,15 +22,23 @@ import org.hibernate.SessionFactory;
 public class QueryChannelServiceHibernate implements QueryChannelService {
 
 	private static final long serialVersionUID = -2520631490347218114L;
+        
+        private SessionFactory sessionFactory;
 
 	public QueryChannelServiceHibernate() {
 	}
+
+    public QueryChannelServiceHibernate(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
 	public Session getSession() {
         try {
             return InstanceFactory.getInstance(Session.class);
         } catch (IocInstanceNotFoundException e) {
-            SessionFactory sessionFactory = InstanceFactory.getInstance(SessionFactory.class);
+            if (sessionFactory == null) {
+                sessionFactory = InstanceFactory.getInstance(SessionFactory.class);
+            }
             return sessionFactory.getCurrentSession();
         }
 	}

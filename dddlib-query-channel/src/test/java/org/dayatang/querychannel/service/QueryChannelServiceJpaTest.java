@@ -1,150 +1,137 @@
 package org.dayatang.querychannel.service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.inject.Inject;
 
-import junit.framework.Assert;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dayatang.btm.BtmUtils;
+import org.dayatang.dbunit.DbUnitUtils;
+import org.dayatang.domain.InstanceFactory;
 import org.dayatang.querychannel.domain.MyEntity;
 import org.dayatang.querychannel.service.impl.QueryChannelServiceJpa;
 import org.dayatang.querychannel.support.Page;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.junit.After;
+import org.dayatang.spring.factory.SpringInstanceProvider;
+import static org.junit.Assert.*;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.context.ApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath*:spring/ApplicationContext-jpa.xml")
+@TransactionConfiguration(defaultRollback = true)
+@Transactional
 public class QueryChannelServiceJpaTest {
 
-	private static EntityManagerFactory entityManagerFactory;
-	private static QueryChannelServiceJpa queryJpa;
-	private static Log logger = LogFactory.getLog("QueryChannelServiceJpaTest");
+    private static final Log logger = LogFactory.getLog("QueryChannelServiceJpaTest");
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-		entityManagerFactory = Persistence.createEntityManagerFactory("default");
-		queryJpa = new QueryChannelServiceJpa(entityManagerFactory.createEntityManager());
+    @Inject
+    private ApplicationContext ctx;
 
-		EntityManager em = queryJpa.getEntityManager();
-		EntityTransaction et = em.getTransaction();
-		et.begin();
+    @Inject
+    private QueryChannelServiceJpa queryJpa;
 
-		Session session = (Session) em.getDelegate();
+    private static BtmUtils btmUtils;
 
-		String hql = "delete from MyEntity";
-		Query query = session.createQuery(hql);
+    @BeforeClass
+    public static void setUpBeforeClass() throws Exception {
+        btmUtils = BtmUtils.readConfigurationFromClasspath("/datasources.properties");
+        btmUtils.setupDataSource();
+        //DbUnitUtils.configFromClasspath("/jdbc.properties").importDataFromClasspath("/sample-data.xml");
+    }
 
-		query.executeUpdate();
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+        btmUtils.closeDataSource();
+        btmUtils = null;
+        System.out.println("================================================");
+        System.out.println("关闭BTM");
+    }
 
-		logger.info("清洗测试数据完毕.");
+    @Before
+    public void setUp() throws Exception {
+        InstanceFactory.setInstanceProvider(new SpringInstanceProvider(ctx));
+        DbUnitUtils.configFromClasspath("/jdbc.properties").importDataFromClasspath("/sample-data.xml");
+    }
 
-		MyEntity entity = null;
-		for (int i = 1; i < 5; i++) {
-			entity = new MyEntity();
-			entity.setName("entity" + i);
-			entity.setVersion(1);
+    @Test
+    public void testQuerySingleResult() {
+        String queryStr = "from MyEntity";
+        Object[] params = null;
+        MyEntity result = queryJpa.querySingleResult(queryStr, params);
+        assertNotNull(result);
+    }
 
-			Long id = (Long) session.save(entity);
+    @Test
+    public void testQueryResultSize() {
+        String queryStr = "from MyEntity e where e.name like ?";
+        Object[] params = new Object[]{"entity"};
+        long result = queryJpa.queryResultSize(queryStr, params);
 
-			logger.info("初始化测试数据:MyEntity[{id=" + id + ",name="
-					+ entity.getName() + ",version=" + entity.getVersion()
-					+ "}]");
-		}
+        assertTrue(result == 0);
+    }
 
-		et.commit();
+    @Test
+    public void testQueryPagedResult() {
+        String queryStr = "from MyEntity e where e.name like ?";
+        Object[] params = new Object[]{"entity%"};
+        int firstRow = 1;
+        int pageSize = 5;
+        Page<MyEntity> result = queryJpa.queryPagedResult(queryStr, params,
+                firstRow, pageSize);
 
-	}
+        assertTrue(result.getTotalCount() > 0);
+    }
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-		entityManagerFactory.close();
-	}
+    @Test
+    public void testQueryPagedResultByPageNo() {
+        String queryStr = "from MyEntity e";
+        Object[] params = null;
+        int currentPage = 1;
+        int pageSize = 5;
+        Page<MyEntity> result = queryJpa.queryPagedResultByPageNo(queryStr,
+                params, currentPage, pageSize);
 
-	@Before
-	public void setUp() throws Exception {
-	}
+        assertTrue(result.getTotalCount() > 0);
+    }
 
-	@After
-	public void tearDown() throws Exception {
-	}
+    @Test
+    public void testQueryMapResult() {
+        // TODO not implemented yet !
 
-	@Test
-	public void testQuerySingleResult() {
-		String queryStr = "from MyEntity";
-		Object[] params = null;
-		MyEntity result = queryJpa.querySingleResult(queryStr, params);
-		Assert.assertNotNull(result);
-	}
+    }
 
-	@Test
-	public void testQueryResultSize() {
-		String queryStr = "from MyEntity e where e.name like ?";
-		Object[] params = new Object[] { "entity" };
-		long result = queryJpa.queryResultSize(queryStr, params);
+    @Test
+    public void testQueryPagedResultByNamedQuery() {
+        // TODO not implemented yet !
+    }
 
-		Assert.assertTrue(result == 0);
-	}
+    @Test
+    public void testQueryPagedResultByPageNoAndNamedQuery() {
+        // TODO not implemented yet !
+    }
 
-	@Test
-	public void testQueryPagedResult() {
-		String queryStr = "from MyEntity e where e.name like ?";
-		Object[] params = new Object[] { "entity%" };
-		int firstRow = 1;
-		int pageSize = 5;
-		Page<MyEntity> result = queryJpa.queryPagedResult(queryStr, params,
-				firstRow, pageSize);
+    @Test
+    public void testQueryPagedMapResult() {
+        // TODO not implemented yet !
 
-		Assert.assertTrue(result.getTotalCount() > 0);
-	}
+    }
 
-	@Test
-	public void testQueryPagedResultByPageNo() {
-		String queryStr = "from MyEntity e";
-		Object[] params = null;
-		int currentPage = 1;
-		int pageSize = 5;
-		Page<MyEntity> result = queryJpa.queryPagedResultByPageNo(queryStr,
-				params, currentPage, pageSize);
+    @Test
+    public void testQueryPagedMapResultByNamedQuery() {
+        // TODO not implemented yet !
+    }
 
-		Assert.assertTrue(result.getTotalCount() > 0);
-	}
-
-	@Test
-	public void testQueryMapResult() {
-		// TODO not implemented yet !
-
-	}
-
-	@Test
-	public void testQueryPagedResultByNamedQuery() {
-		// TODO not implemented yet !
-	}
-
-	@Test
-	public void testQueryPagedResultByPageNoAndNamedQuery() {
-		// TODO not implemented yet !
-	}
-
-	@Test
-	public void testQueryPagedMapResult() {
-		// TODO not implemented yet !
-
-	}
-
-	@Test
-	public void testQueryPagedMapResultByNamedQuery() {
-		// TODO not implemented yet !
-	}
-
-	@Test
-	public void testQueryPagedByQuerySettings() {
-		// TODO not implemented yet !
-	}
+    @Test
+    public void testQueryPagedByQuerySettings() {
+        // TODO not implemented yet !
+    }
 
 }

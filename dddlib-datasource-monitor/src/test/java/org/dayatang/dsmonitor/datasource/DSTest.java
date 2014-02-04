@@ -1,39 +1,41 @@
 package org.dayatang.dsmonitor.datasource;
 
-import org.dayatang.domain.InstanceFactory;
+import javax.inject.Inject;
+import javax.inject.Named;
 import org.dayatang.dsmonitor.dao.Dao;
 import org.dayatang.dsmonitor.monitor.GeminiConnectionLogTimeoutMonitor;
-import org.dayatang.springtest.PureSpringTestCase;
+import org.dayatang.springtest.AbstractSpringIntegrationTest;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
-public class DSTest extends PureSpringTestCase {
+public class DSTest extends AbstractSpringIntegrationTest {
 
-	@Ignore("在jdk 7 中会出错。")
-	@Test
-	public void testApp() throws InterruptedException {
-		GeminiConnectionLogTimeoutMonitor monitor = InstanceFactory
-				.getInstance(GeminiConnectionLogTimeoutMonitor.class,
-						"connectionMonitor");
-		Assert.assertEquals(0, monitor.getTimeoutConnections().size());
-	}
+    @Inject
+    @Named("connectionMonitor")
+    private GeminiConnectionLogTimeoutMonitor monitor;
 
-	@Test
-	public void testAppNotCloseConnection() throws InterruptedException {
-		Dao dao = InstanceFactory.getInstance(Dao.class, "baseDao");
-		dao.listResultWithoutCloseConnection(
-				"from CommonsTestChild", new Object[] {});
+    @Inject
+    private Dao dao;
 
-		Thread.sleep(12000);
+    @Ignore("在jdk 7 中会出错。")
+    @Test
+    public void testApp() throws InterruptedException {
+        Assert.assertEquals(0, monitor.getTimeoutConnections().size());
+    }
 
-		GeminiConnectionLogTimeoutMonitor monitor = InstanceFactory
-				.getInstance(GeminiConnectionLogTimeoutMonitor.class,
-						"connectionMonitor");
-		Assert.assertEquals(1, monitor.getAliveTimeoutConnections().size());
-		Assert.assertEquals(0, monitor.getClosedTimeoutConnections().size());
+    @Test
+    public void testAppNotCloseConnection() throws InterruptedException {
+        dao.listResultWithoutCloseConnection(
+                "from CommonsTestChild", new Object[]{});
 
-		Thread.sleep(10000);
-	}
+        Thread.sleep(12000);
+
+        Assert.assertEquals(2, monitor.getAliveTimeoutConnections().size());
+        //Assert.assertEquals(1, monitor.getAliveTimeoutConnections().size());
+        Assert.assertEquals(0, monitor.getClosedTimeoutConnections().size());
+
+        Thread.sleep(10000);
+    }
 
 }

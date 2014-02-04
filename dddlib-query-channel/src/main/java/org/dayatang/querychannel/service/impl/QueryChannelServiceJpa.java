@@ -28,17 +28,17 @@ public class QueryChannelServiceJpa implements QueryChannelService {
 	@Inject
 	@PersistenceContext
 	private EntityManager entityManager;
+        
+        private EntityManagerFactory entityManagerFactory;
 
 	public EntityManager getEntityManager() {
-		if (entityManager != null) {
-			return entityManager;
-		}
-
 		try {
 			return InstanceFactory.getInstance(EntityManager.class);
-		} catch (IocInstanceNotFoundException e) {
-			EntityManagerFactory entityManagerFactory = InstanceFactory
+		} catch (Exception e) {
+                    if (entityManagerFactory == null) {
+                        entityManagerFactory = InstanceFactory
 					.getInstance(EntityManagerFactory.class);
+                    }
 			return entityManagerFactory.createEntityManager();
 		}
 	}
@@ -46,9 +46,10 @@ public class QueryChannelServiceJpa implements QueryChannelService {
 	public QueryChannelServiceJpa() {
 	}
 
-	public QueryChannelServiceJpa(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
+
+    public QueryChannelServiceJpa(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
+    }
 
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;

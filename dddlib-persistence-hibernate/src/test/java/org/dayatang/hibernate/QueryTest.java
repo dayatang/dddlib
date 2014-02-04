@@ -26,7 +26,7 @@ import org.junit.Test;
  */
 public class QueryTest extends AbstractIntegrationTest {
 
-    private Query instance;
+    private CriteriaQuery instance;
 
     private DictionaryCategory gender;
 
@@ -43,7 +43,7 @@ public class QueryTest extends AbstractIntegrationTest {
     @Before
     public void setUp() throws Exception {
         super.setUp();
-        instance = repository.createQuery(Dictionary.class);
+        instance = repository.createCriteriaQuery(Dictionary.class);
         gender = createCategory("gender", 1);
         education = createCategory("education", 2);
         male = createDictionary("01", "男", gender, 100, "01");
@@ -148,7 +148,7 @@ public class QueryTest extends AbstractIntegrationTest {
 
     @Test
     public void testSizeEq() {
-        instance = repository.createQuery(DictionaryCategory.class).sizeEq("dictionaries", 2);
+        instance = repository.createCriteriaQuery(DictionaryCategory.class).sizeEq("dictionaries", 2);
         List<DictionaryCategory> results = instance.list();
         assertTrue(results.contains(gender));
         assertFalse(results.contains(education));
@@ -156,7 +156,7 @@ public class QueryTest extends AbstractIntegrationTest {
 
     @Test
     public void testSizeNotEq() {
-        instance = repository.createQuery(DictionaryCategory.class).sizeNotEq("dictionaries", 2);
+        instance = repository.createCriteriaQuery(DictionaryCategory.class).sizeNotEq("dictionaries", 2);
         List<DictionaryCategory> results = instance.list();
         assertFalse(results.contains(gender));
         assertTrue(results.contains(education));
@@ -164,7 +164,7 @@ public class QueryTest extends AbstractIntegrationTest {
 
     @Test
     public void testSizeGt() {
-        instance = repository.createQuery(DictionaryCategory.class).sizeGt("dictionaries", 1);
+        instance = repository.createCriteriaQuery(DictionaryCategory.class).sizeGt("dictionaries", 1);
         List<DictionaryCategory> results = instance.list();
         assertTrue(results.contains(gender));
         assertFalse(results.contains(education));
@@ -172,7 +172,7 @@ public class QueryTest extends AbstractIntegrationTest {
 
     @Test
     public void testSizeGe() {
-        instance = repository.createQuery(DictionaryCategory.class).sizeGe("dictionaries", 2);
+        instance = repository.createCriteriaQuery(DictionaryCategory.class).sizeGe("dictionaries", 2);
         List<DictionaryCategory> results = instance.list();
         assertTrue(results.contains(gender));
         assertFalse(results.contains(education));
@@ -180,7 +180,7 @@ public class QueryTest extends AbstractIntegrationTest {
 
     @Test
     public void testSizeLt() {
-        instance = repository.createQuery(DictionaryCategory.class).sizeLt("dictionaries", 2);
+        instance = repository.createCriteriaQuery(DictionaryCategory.class).sizeLt("dictionaries", 2);
         List<DictionaryCategory> results = instance.list();
         assertFalse(results.contains(gender));
         assertTrue(results.contains(education));
@@ -188,7 +188,7 @@ public class QueryTest extends AbstractIntegrationTest {
 
     @Test
     public void testSizeLe() {
-        instance = repository.createQuery(DictionaryCategory.class).sizeLe("dictionaries", 2);
+        instance = repository.createCriteriaQuery(DictionaryCategory.class).sizeLe("dictionaries", 2);
         List<DictionaryCategory> results = instance.list();
         assertTrue(results.contains(gender));
         assertTrue(results.contains(education));
@@ -197,7 +197,7 @@ public class QueryTest extends AbstractIntegrationTest {
     @Test
     public void testIsEmpty() {
         DictionaryCategory empty = createCategory("a", 3);
-        instance = repository.createQuery(DictionaryCategory.class);
+        instance = repository.createCriteriaQuery(DictionaryCategory.class);
         List<DictionaryCategory> results = instance.isEmpty("dictionaries").list();
         assertTrue(results.contains(empty));
         assertFalse(results.contains(gender));
@@ -207,7 +207,7 @@ public class QueryTest extends AbstractIntegrationTest {
     @Test
     public void testNotEmpty() {
         DictionaryCategory empty = createCategory("a", 3);
-        instance = repository.createQuery(DictionaryCategory.class);
+        instance = repository.createCriteriaQuery(DictionaryCategory.class);
         List<DictionaryCategory> results = instance.notEmpty("dictionaries").list();
         assertFalse(results.contains(empty));
         assertTrue(results.contains(gender));
@@ -227,7 +227,7 @@ public class QueryTest extends AbstractIntegrationTest {
         List<Dictionary> results = instance.startsWithText("text", "本").list();
         assertTrue(results.contains(undergraduate));
 
-        instance = repository.createQuery(Dictionary.class).startsWithText("text", "科");
+        instance = repository.createCriteriaQuery(Dictionary.class).startsWithText("text", "科");
         results = instance.list();
         assertFalse(results.contains(undergraduate));
     }
@@ -367,7 +367,7 @@ public class QueryTest extends AbstractIntegrationTest {
         assertTrue(results.indexOf(male) < results.indexOf(female));
         assertTrue(results.indexOf(female) < results.indexOf(undergraduate));
 
-        instance = repository.createQuery(Dictionary.class).desc("sortOrder");
+        instance = repository.createCriteriaQuery(Dictionary.class).desc("sortOrder");
         results = instance.list();
         assertTrue(results.indexOf(male) > results.indexOf(female));
         assertTrue(results.indexOf(female) > results.indexOf(undergraduate));

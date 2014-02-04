@@ -30,7 +30,7 @@ public class JpaCriteriaQueryBuilder {
 	}
 
     public final <T extends Entity> CriteriaQuery<T> createCriteriaQuery(
-            org.dayatang.domain.Query dddQuery, EntityManager entityManager) {
+            org.dayatang.domain.CriteriaQuery dddQuery, EntityManager entityManager) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<T> query = builder.createQuery(dddQuery.getEntityClass());
         Root<T> root = query.from(dddQuery.getEntityClass());

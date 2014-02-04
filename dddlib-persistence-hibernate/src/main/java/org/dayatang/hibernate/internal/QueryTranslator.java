@@ -32,7 +32,7 @@ public class QueryTranslator {
 		return params;
 	}
 
-    public <T extends Entity> QueryTranslator(Query<T> dddQuery) {
+    public <T extends Entity> QueryTranslator(CriteriaQuery dddQuery) {
         queryCriterions = dddQuery.getQueryCriterions();
         entityClass = dddQuery.getEntityClass();
         orderSettings = dddQuery.getOrderSettings();

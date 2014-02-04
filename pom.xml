@@ -153,6 +153,11 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>javax.persistence</groupId>
+                <artifactId>persistence-api</artifactId>
+                <version>2.1</version>
+            </dependency>
+            <dependency>
                 <groupId>javax.inject</groupId>
                 <artifactId>javax.inject</artifactId>
                 <version>1</version>
@@ -161,11 +166,6 @@
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
                 <version>1.1.0.Final</version>
-            </dependency>
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-validator</artifactId>
-                <version>5.0.2.Final</version>
             </dependency>
             <dependency>
                 <groupId>javax.el</groupId>
@@ -178,6 +178,16 @@
                 <version>2.2</version>
             </dependency>
             <dependency>
+                <groupId>antlr</groupId>
+                <artifactId>antlr</artifactId>
+                <version>2.7.7</version>
+            </dependency>
+            <dependency>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr-runtime</artifactId>
+                <version>3.5</version>
+            </dependency>
+            <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
@@ -186,6 +196,11 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
                 <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.17</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -201,6 +216,26 @@
                 <groupId>commons-beanutils</groupId>
                 <artifactId>commons-beanutils</artifactId>
                 <version>1.8.3</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>3.2.1</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-pool</groupId>
+                <artifactId>commons-pool</artifactId>
+                <version>1.5.6</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>5.0.2.Final</version>
             </dependency>
             <dependency>
                 <groupId>org.javassist</groupId>
@@ -633,7 +668,7 @@
         <h2.password/>
         <h2.version>1.3.173</h2.version>
         <mysql.username>root</mysql.username>
-        <mysql.password/>
+        <mysql.password></mysql.password>
         <mysql.host>localhost</mysql.host>
         <mysql.version>5.1.21</mysql.version>
         <derby.username>any</derby.username>
@@ -660,7 +695,8 @@
         <jdbc.artifactId>h2</jdbc.artifactId>
         <jdbc.version>${h2.version}</jdbc.version>
         <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
-        <jdbc.url><![CDATA[jdbc:h2:mem:testdb]]></jdbc.url>
+        <!--<jdbc.url><![CDATA[jdbc:h2:mem:testdb]]></jdbc.url>-->
+        <jdbc.url><![CDATA[jdbc:h2:${basedir}/target/${db.name}]]></jdbc.url>
         <jdbc.username>sa</jdbc.username>
         <jdbc.password/>
         <hibernate.query.substitutions>true 'Y', false 'N'</hibernate.query.substitutions>
@@ -698,20 +734,6 @@
 
     <profiles>
         <profile>
-            <id>derby</id>
-            <properties>
-                <db.type>derby</db.type>
-                <hibernate.dialect>org.hibernate.dialect.DerbyTenSevenDialect</hibernate.dialect>
-                <jdbc.groupId>org.apache.derby</jdbc.groupId>
-                <jdbc.artifactId>derbyclient</jdbc.artifactId>
-                <jdbc.version>10.9.1.0</jdbc.version>
-                <jdbc.driverClassName>org.apache.derby.jdbc.ClientDriver</jdbc.driverClassName>
-                <jdbc.url><![CDATA[jdbc:derby://${db.host}/${db.name};create=true]]></jdbc.url>
-                <jdbc.username>any</jdbc.username>
-                <jdbc.password>value</jdbc.password>
-            </properties>
-        </profile>
-        <profile>
             <id>h2</id>
             <properties>
                 <db.type>h2</db.type>
@@ -724,6 +746,20 @@
                 <jdbc.url><![CDATA[jdbc:h2:${basedir}/target/${db.name}]]></jdbc.url>
                 <jdbc.username>sa</jdbc.username>
                 <jdbc.password/>
+            </properties>
+        </profile>
+        <profile>
+            <id>derby</id>
+            <properties>
+                <db.type>derby</db.type>
+                <hibernate.dialect>org.hibernate.dialect.DerbyTenSevenDialect</hibernate.dialect>
+                <jdbc.groupId>org.apache.derby</jdbc.groupId>
+                <jdbc.artifactId>derbyclient</jdbc.artifactId>
+                <jdbc.version>10.9.1.0</jdbc.version>
+                <jdbc.driverClassName>org.apache.derby.jdbc.ClientDriver</jdbc.driverClassName>
+                <jdbc.url><![CDATA[jdbc:derby://${db.host}/${db.name};create=true]]></jdbc.url>
+                <jdbc.username>any</jdbc.username>
+                <jdbc.password>value</jdbc.password>
             </properties>
         </profile>
         <profile>
@@ -828,8 +864,8 @@
                 <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
                 <jdbc.url>
                     <![CDATA[jdbc:mysql://${db.host}:${db.port}/${db.name}?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url>
-                <jdbc.username>root</jdbc.username>
-                <jdbc.password/>
+                <jdbc.username>${mysql.username}</jdbc.username>
+                <jdbc.password>${mysql.password}</jdbc.password>
             </properties>
         </profile>
     </profiles>

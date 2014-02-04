@@ -6,7 +6,6 @@ import java.net.URL;
 import javax.transaction.TransactionManager;
 import javax.transaction.UserTransaction;
 
-import bitronix.tm.BitronixTransactionManager;
 import bitronix.tm.TransactionManagerServices;
 
 /**

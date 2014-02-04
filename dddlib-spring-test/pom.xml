@@ -42,12 +42,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>dddlib-query-channel</artifactId>
-			<version>${project.parent.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<scope>test</scope>

@@ -1,16 +1,11 @@
 package org.dayatang.hibernate;
 
-import javax.persistence.EntityManager;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
 import org.dayatang.btm.BtmUtils;
-import org.dayatang.configuration.Configuration;
-import org.dayatang.configuration.ConfigurationFactory;
 import org.dayatang.domain.AbstractEntity;
 import org.dayatang.domain.InstanceFactory;
-import org.dayatang.h2.H2Server;
-import org.dayatang.hibernate.EntityRepositoryHibernate;
 import org.hibernate.SessionFactory;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -29,7 +24,6 @@ public class AbstractIntegrationTest {
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-		Configuration configuration = new ConfigurationFactory().fromClasspath("/jdbc.properties");
 		btmUtils = BtmUtils.readConfigurationFromClasspath("/datasources.properties");
 		btmUtils.setupDataSource();
 		sessionFactory = HibernateUtils.getSessionFactory();

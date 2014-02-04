@@ -5,17 +5,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
 
 import org.dayatang.btm.BtmUtils;
-import org.dayatang.commons.domain.Dictionary;
-import org.dayatang.configuration.Configuration;
-import org.dayatang.configuration.ConfigurationFactory;
 import org.dayatang.domain.AbstractEntity;
 import org.dayatang.domain.InstanceFactory;
-import org.dayatang.domain.QuerySettings;
-import org.dayatang.h2.H2Server;
-import org.dayatang.jpa.EntityRepositoryJpa;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

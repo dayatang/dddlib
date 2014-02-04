@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE dataset>
+<dataset>
+    <pay_test_myentity id="1" version="1" name="entity1"/>
+    <pay_test_myentity id="2" version="1" name="entity2"/>
+    <pay_test_myentity id="3" version="1" name="entity3"/>
+    <pay_test_myentity id="4" version="1" name="entity4"/>
+</dataset>

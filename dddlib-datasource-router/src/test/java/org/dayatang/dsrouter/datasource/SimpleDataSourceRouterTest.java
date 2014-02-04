@@ -5,37 +5,42 @@ import static org.junit.Assert.assertNotNull;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.inject.Inject;
 
 import javax.sql.DataSource;
 
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.dsrouter.context.memory.ContextHolder;
-import org.dayatang.springtest.PureSpringTestCase;
+import org.dayatang.spring.factory.SpringInstanceProvider;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.context.ApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
-public class SimpleDataSourceRouterTest extends PureSpringTestCase {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:spring/simpleDataSourceContext.xml")
+@TransactionConfiguration(defaultRollback = true)
+@Transactional
+public class SimpleDataSourceRouterTest {
 
-	// private MultiTenantContext tenantContext;
+    @Inject
+    private ApplicationContext ctx;
 
-	@Before
-	public void setup() {
-		super.setup();
+    @Before
+    public void beforeTest() {
+        InstanceFactory.setInstanceProvider(new SpringInstanceProvider(ctx));
+    }
 
-		// tenantContext = createMock(MultiTenantContext.class);
-	}
+    @After
+    public void afterTest() {
+        InstanceFactory.setInstanceProvider(null);
+    }
 
-	@After
-	public void teardown() {
-		super.teardown();
-
-		// tenantContext = null;
-	}
-
-	protected String[] springXmlPath() {
-		return new String[] { "classpath:spring/simpleDataSourceContext.xml" };
-	}
 
 	@Test
 	public void notNull() {

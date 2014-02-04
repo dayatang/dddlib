@@ -25,19 +25,19 @@
 			<!-- other methods use the default transaction settings (see below) -->
 
 			<tx:method name="*" propagation="REQUIRED" />
-	<tx:method name="get*" read-only="true" />
-	<tx:method name="query*" read-only="true" />
-	<tx:method name="page*" read-only="true" />
-	<tx:method name="find*" read-only="true" />
-
 		</tx:attributes>
 	</tx:advice>
 
 	<aop:config>
-		<aop:pointcut id="my-domain-service"
-			expression="execution(* org.dayatang.springtest.application.MyApplication.*(..))" />
-
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="my-domain-service" />
+		<aop:pointcut id="hibernate-service"
+			expression="execution(* org.dayatang.querychannel.service.impl.QueryChannelServiceHibernate*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="hibernate-service" />
 	</aop:config>
+
+    <aop:config>
+        <aop:pointcut id="jpa-service"
+                      expression="execution(* org.dayatang.querychannel.service.impl.QueryChannelServiceJpa.*(..))" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="jpa-service" />
+    </aop:config>
 
 </beans>
