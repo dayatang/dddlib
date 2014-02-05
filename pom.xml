@@ -450,6 +450,18 @@
                         <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
                         <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
                     </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>commons-logging</groupId>
+                            <artifactId>commons-logging</artifactId>
+                            <version>1.1.2</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.apache.maven.wagon</groupId>
+                            <artifactId>wagon-webdav-jackrabbit</artifactId>
+                            <version>2.6</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
