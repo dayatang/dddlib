@@ -34,16 +34,20 @@ public class GuiceInstanceProvider implements InstanceProvider {
 		this.injector = injector;
 	}
 	
-	/**
-	 * 返回指定类型的实例。
-	 * @param beanClass 实例的类型
-	 * @return 指定类型的实例。
+
+	/*
+	 * (non-Javadoc)
+	 * @see org.dayatang.domain.InstanceProvider#getInstance(java.lang.Class)
 	 */
-        @Override
+	@Override
 	public <T> T getInstance(Class<T> beanClass) {
 		return injector.getInstance(beanClass);
 	}
 
+    /*
+     * (non-Javadoc)
+     * @see org.dayatang.domain.InstanceProvider#getInstance(java.lang.Class, java.lang.String)
+     */
 	@Override
 	public <T> T getInstance(Class<T> beanClass, String beanName) {
 		Key<T> key = Key.get(beanClass, Names.named(beanName));
