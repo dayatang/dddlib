@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * 基于对象查询语言字符串的查询。可以指定定位查询参数或命名查询参数，也可以针对查询结果取子集。
  * @author yyang
  */
 public class JpqlQuery {

@@ -5,7 +5,7 @@ import org.dayatang.utils.Assert;
 import java.util.*;
 
 /**
- * 条件查询接口。T是查询的根实体的类型。
+ * 条件查询。DDDLib支持的三种查询形式之一。通过DSL针对特定实体指定查询条件、排序属性和针对结果取子集等。
  * Created with IntelliJ IDEA.
  * User: yyang
  * Date: 13-10-17

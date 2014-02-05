@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 命名查询
+ * 基于命名查询的查询对象。可以指定定位查询参数或命名查询参数，也可以针对查询结果取子集。
  * @author yyang
  */
 public class NamedQuery {
