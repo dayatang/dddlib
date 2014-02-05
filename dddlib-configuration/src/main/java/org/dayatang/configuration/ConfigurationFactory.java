@@ -2,12 +2,9 @@ package org.dayatang.configuration;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ServiceLoader;
 
 import javax.sql.DataSource;
-
-import org.dayatang.configuration.impl.ConfigurationDbImpl;
-import org.dayatang.configuration.impl.ConfigurationFileImpl;
-import org.dayatang.configuration.impl.ConfigurationUrlImpl;
 
 /**
  * 数据库工厂，用于隐藏配置类的具体实现
@@ -16,13 +13,23 @@ import org.dayatang.configuration.impl.ConfigurationUrlImpl;
  */
 public class ConfigurationFactory {
 
+    private static ConfigurationFactory instance = getInstance();
+
+    private static ConfigurationFactory getInstance() {
+        return ServiceLoader.load(ConfigurationFactory.class).iterator().next();
+    }
+
+    public static ConfigurationFactory singleton() {
+        return instance;
+    }
+
 	/**
 	 * 从JDBC数据源中读取配置
 	 * @param dataSource 数据源
 	 * @return 可写的配置
 	 */
 	public WritableConfiguration fromDatabase(DataSource dataSource) {
-		return new ConfigurationDbImpl(dataSource);
+		return instance.fromDatabase(dataSource);
 	}
 
 	/**
@@ -34,7 +41,7 @@ public class ConfigurationFactory {
 	 * @return 可写的配置
 	 */
 	public WritableConfiguration fromDatabase(DataSource dataSource, String tableName, String keyColumn, String valueColumn) {
-		return new ConfigurationDbImpl(dataSource, tableName, keyColumn, valueColumn);
+		return instance.fromDatabase(dataSource, tableName, keyColumn, valueColumn);
 	}
 
 	/**
@@ -43,7 +50,7 @@ public class ConfigurationFactory {
 	 * @return 可写的配置
 	 */
 	public WritableConfiguration fromClasspath(String fileName) {
-		return ConfigurationFileImpl.fromClasspath(fileName);
+		return instance.fromClasspath(fileName);
 	}
 
 	/**
@@ -52,7 +59,7 @@ public class ConfigurationFactory {
 	 * @return 可写的配置
 	 */
 	public WritableConfiguration fromFileSystem(String fileName) {
-		return ConfigurationFileImpl.fromFileSystem(fileName);
+		return instance.fromFileSystem(fileName);
 	}
 
 	/**
@@ -62,7 +69,7 @@ public class ConfigurationFactory {
 	 * @return 可写的配置
 	 */
 	public WritableConfiguration fromFileSystem(String dirPath, String fileName) {
-		return ConfigurationFileImpl.fromFileSystem(dirPath, fileName);
+		return instance.fromFileSystem(dirPath, fileName);
 	}
 
 	/**
@@ -71,7 +78,7 @@ public class ConfigurationFactory {
 	 * @return 可写的配置
 	 */
 	public WritableConfiguration fromFileSystem(File file) {
-		return ConfigurationFileImpl.fromFileSystem(file);
+		return instance.fromFileSystem(file);
 	}
 
 	/**
@@ -80,7 +87,7 @@ public class ConfigurationFactory {
 	 * @return 只读的配置
 	 */
 	public Configuration fromUrl(String url) {
-		return ConfigurationUrlImpl.fromUrl(url);
+		return instance.fromUrl(url);
 	}
 
 	/**
@@ -89,7 +96,7 @@ public class ConfigurationFactory {
 	 * @return 只读的配置
 	 */
 	public Configuration fromUrl(URL url) {
-		return ConfigurationUrlImpl.fromUrl(url);
+		return instance.fromUrl(url);
 	}
 	
 }

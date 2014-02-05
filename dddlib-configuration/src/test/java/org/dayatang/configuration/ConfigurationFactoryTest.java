@@ -24,7 +24,7 @@ public class ConfigurationFactoryTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		instance = new ConfigurationFactory();
+		instance = ConfigurationFactory.singleton();
 	}
 
 	@After
