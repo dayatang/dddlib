@@ -100,29 +100,6 @@ public class StatefulRuleTemplate {
 			throw new RuleRuntimeException(e);
 		}
 	}
-	
-	/**
-	 * 构造函数
-	 * @param ruleServiceProvider 规则服务提供者实现类，如Drools等。
-	 * @param serviceProviderProperties 具体规则服务提供者所需要的额外属性
-	 * @param ruleSource 规则源，包含规则定义的内容。可能是字符串，Reader, InputStream或其他服务提供者支持的类型。
-	 * @param executionSetProperties 规则的属性Map(如：source=drl/xml dsl=java.io.Reader)
-	 * @param sessionProperties 规则中的上下文（如全局变量等）
-	 */
-	@Deprecated
-	public StatefulRuleTemplate(RuleServiceProvider ruleServiceProvider, Map serviceProviderProperties, 
-			Object ruleSource, Map executionSetProperties, Map sessionProperties) {
-		try {
-			ruleAdministrator = ruleServiceProvider.getRuleAdministrator();
-			ruleExecutionSetProvider = ruleAdministrator.getLocalRuleExecutionSetProvider(serviceProviderProperties);
-			ruleRuntime = ruleServiceProvider.getRuleRuntime();
-			this.ruleExecutionSet = createRuleExecutionSet(ruleSource, executionSetProperties);
-			LOGGER.info("The rule service provider of JSR94 is " + ruleServiceProvider.getClass());
-		} catch (Exception e) {
-			throw new RuleRuntimeException(e);
-		}
-		this.sessionProperties = sessionProperties;
-	}
 
 	private RuleExecutionSet createRuleExecutionSet(Object ruleSource, Map executionSetProperties) {
 		try {

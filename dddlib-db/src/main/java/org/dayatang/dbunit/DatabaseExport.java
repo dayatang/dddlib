@@ -45,39 +45,4 @@ public class DatabaseExport {
 		FlatXmlDataSet.write(dataSet, new FileOutputStream(fileName));
 	}
 
-	@Deprecated
-	public static void exportPartialSet(IDatabaseConnection connection)
-			throws DataSetException, FileNotFoundException, IOException,
-			SQLException {
-		// partial database export
-		QueryDataSet partialDataSet = new QueryDataSet(connection);
-		partialDataSet.addTable("hello", "SELECT * FROM hello");
-		// partialDataSet.addTable("author");
-		FlatXmlDataSet.write(partialDataSet,
-				new FileOutputStream("partial.xml"));
-
-	}
-
-	@Deprecated
-	public static void exportFullDataSet(IDatabaseConnection connection)
-			throws SQLException, DataSetException, FileNotFoundException,
-			IOException {
-		// full database export
-		IDataSet fullDataSet = connection.createDataSet();
-		FlatXmlDataSet.write(fullDataSet, new FileOutputStream("full.xml"));
-	}
-
-	@Deprecated
-	public static void exportAllDependentTables(IDatabaseConnection connection)
-			throws SearchException, DataSetException, FileNotFoundException,
-			IOException, SQLException {
-		// dependent tables database export: export table X and all tables that
-		// have a PK which is a FK on X, in the right order for insertion
-		String[] depTableNames = TablesDependencyHelper.getAllDependentTables(
-				connection, "X");
-		IDataSet depDataSet = connection.createDataSet(depTableNames);
-		FlatXmlDataSet
-				.write(depDataSet, new FileOutputStream("dependents.xml"));
-
-	}
 }

@@ -119,17 +119,6 @@ public abstract class AbstractEntity implements Entity {
 		getRepository().remove(this);
 	}
 
-	/**
-	 * 请改用每个实体对象的实例方法的existed()方法。
-	 * @param clazz
-	 * @param id
-	 * @return
-	 */
-	@Deprecated
-	public static <T extends Entity> boolean exists(Class<T> clazz, Serializable id) {
-		return getRepository().exists(clazz, id);
-	}
-
 	public static <T extends Entity> T get(Class<T> clazz, Serializable id) {
 		return getRepository().get(clazz, id);
 	}
