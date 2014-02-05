@@ -4,10 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.apache.tapestry5.ioc.Registry;
 import org.apache.tapestry5.ioc.RegistryBuilder;
-import org.dayatang.commons.ioc.AbstractInstanceProviderTest;
-import org.dayatang.commons.ioc.Service;
+import org.dayatang.test.ioc.AbstractInstanceProviderTest;
+import org.dayatang.test.ioc.Service;
 import org.dayatang.domain.InstanceProvider;
-import org.dayatang.ioc.tapestry.factory.TapestryInstanceProvider;
 import org.junit.After;
 import org.junit.Test;
 

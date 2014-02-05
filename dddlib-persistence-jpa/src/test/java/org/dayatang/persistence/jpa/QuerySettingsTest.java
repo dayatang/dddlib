@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Set;
 
 
-import org.dayatang.commons.domain.Dictionary;
-import org.dayatang.commons.domain.DictionaryCategory;
+import org.dayatang.test.domain.Dictionary;
+import org.dayatang.test.domain.DictionaryCategory;
 import org.dayatang.domain.Criterions;
 import org.dayatang.domain.QuerySettings;
 import org.junit.Before;

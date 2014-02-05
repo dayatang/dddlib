@@ -1,4 +1,4 @@
-package org.dayatang.commons.domain;
+package org.dayatang.test.domain;
 
 import java.util.HashSet;
 import java.util.List;

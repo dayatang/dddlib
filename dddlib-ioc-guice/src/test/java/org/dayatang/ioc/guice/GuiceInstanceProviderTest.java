@@ -2,12 +2,11 @@ package org.dayatang.ioc.guice;
 
 import static org.junit.Assert.*;
 
-import org.dayatang.commons.ioc.AbstractInstanceProviderTest;
-import org.dayatang.commons.ioc.MyService1;
-import org.dayatang.commons.ioc.MyService2;
-import org.dayatang.commons.ioc.Service;
+import org.dayatang.test.ioc.AbstractInstanceProviderTest;
+import org.dayatang.test.ioc.MyService1;
+import org.dayatang.test.ioc.MyService2;
+import org.dayatang.test.ioc.Service;
 import org.dayatang.domain.InstanceProvider;
-import org.dayatang.ioc.guice.GuiceInstanceProvider;
 import org.junit.Test;
 
 import com.google.inject.Binder;

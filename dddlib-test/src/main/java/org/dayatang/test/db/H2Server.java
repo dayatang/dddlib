@@ -1,4 +1,4 @@
-package org.dayatang.commons.db;
+package org.dayatang.test.db;
 
 import java.io.File;
 import java.sql.SQLException;
@@ -6,9 +6,7 @@ import java.sql.SQLException;
 import org.h2.tools.DeleteDbFiles;
 import org.h2.tools.Server;
 
-import org.junit.ClassRule;
 import org.junit.rules.ExternalResource;
-import org.junit.rules.TemporaryFolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

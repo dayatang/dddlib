@@ -11,8 +11,8 @@ import java.util.Map;
 
 import javax.validation.ValidationException;
 
-import org.dayatang.commons.domain.Dictionary;
-import org.dayatang.commons.domain.DictionaryCategory;
+import org.dayatang.test.domain.Dictionary;
+import org.dayatang.test.domain.DictionaryCategory;
 import org.dayatang.domain.ArrayParameters;
 import org.dayatang.domain.MapParameters;
 import org.dayatang.domain.QueryParameters;

@@ -1,9 +1,9 @@
 package org.dayatang.ioc.spring.factory;
 
-import org.dayatang.commons.ioc.MyService1;
-import org.dayatang.commons.ioc.MyService2;
-import org.dayatang.commons.ioc.MyService3;
-import org.dayatang.commons.ioc.Service;
+import org.dayatang.test.ioc.MyService1;
+import org.dayatang.test.ioc.MyService2;
+import org.dayatang.test.ioc.MyService3;
+import org.dayatang.test.ioc.Service;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

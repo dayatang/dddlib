@@ -2,13 +2,12 @@ package org.dayatang.ioc.spring.factory;
 
 import static org.junit.Assert.assertTrue;
 
-import org.dayatang.commons.ioc.AbstractInstanceProviderTest;
-import org.dayatang.commons.ioc.MyService1;
-import org.dayatang.commons.ioc.Service;
+import org.dayatang.test.ioc.AbstractInstanceProviderTest;
+import org.dayatang.test.ioc.MyService1;
+import org.dayatang.test.ioc.Service;
 import org.dayatang.configuration.Configuration;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.domain.InstanceProvider;
-import org.dayatang.ioc.spring.factory.SpringInstanceProvider;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

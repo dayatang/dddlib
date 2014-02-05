@@ -1,4 +1,4 @@
-package org.dayatang.commons.ioc;
+package org.dayatang.test.ioc;
 
 import javax.inject.Named;
 

@@ -3,14 +3,8 @@ package org.dayatang.persistence.hibernate;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import javax.transaction.UserTransaction;
-
-import org.dayatang.commons.domain.Dictionary;
-import org.dayatang.commons.domain.DictionaryCategory;
-import org.dayatang.domain.AbstractEntity;
-import org.dayatang.domain.InstanceFactory;
-import org.hibernate.SessionFactory;
-import org.junit.After;
+import org.dayatang.test.domain.Dictionary;
+import org.dayatang.test.domain.DictionaryCategory;
 import org.junit.Before;
 import org.junit.Test;
 
