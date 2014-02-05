@@ -1,6 +1,7 @@
 package org.dayatang.querychannel.service;
 
 import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.commons.logging.Log;
@@ -8,11 +9,13 @@ import org.apache.commons.logging.LogFactory;
 import org.dayatang.btm.BtmUtils;
 import org.dayatang.dbunit.DbUnitUtils;
 import org.dayatang.domain.InstanceFactory;
+import org.dayatang.ioc.spring.factory.SpringInstanceProvider;
 import org.dayatang.querychannel.domain.MyEntity;
 import org.dayatang.querychannel.service.impl.QueryChannelServiceHibernate;
 import org.dayatang.querychannel.support.Page;
-import org.dayatang.spring.factory.SpringInstanceProvider;
+
 import static org.junit.Assert.*;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -11,7 +11,7 @@ import org.dayatang.datasource4saas.SaasDataSource;
 import org.dayatang.datasource4saas.springconf.SpringConfiguration;
 import org.dayatang.datasource4saas.tenantservice.ThreadLocalTenantHolder;
 import org.dayatang.domain.InstanceFactory;
-import org.dayatang.spring.factory.SpringIocUtils;
+import org.dayatang.ioc.spring.factory.SpringIocUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

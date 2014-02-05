@@ -5,13 +5,13 @@ import static org.junit.Assert.assertNotNull;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.inject.Inject;
 
+import javax.inject.Inject;
 import javax.sql.DataSource;
 
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.dsrouter.context.memory.ContextHolder;
-import org.dayatang.spring.factory.SpringInstanceProvider;
+import org.dayatang.ioc.spring.factory.SpringInstanceProvider;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

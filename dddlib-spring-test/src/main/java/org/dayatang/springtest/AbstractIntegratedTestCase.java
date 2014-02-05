@@ -3,7 +3,7 @@ package org.dayatang.springtest;
 import org.dayatang.dbunit.DataSetStrategy;
 import org.dayatang.dbunit.Dbunit;
 import org.dayatang.domain.InstanceFactory;
-import org.dayatang.spring.factory.SpringInstanceProvider;
+import org.dayatang.ioc.spring.factory.SpringInstanceProvider;
 import org.dbunit.operation.DatabaseOperation;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

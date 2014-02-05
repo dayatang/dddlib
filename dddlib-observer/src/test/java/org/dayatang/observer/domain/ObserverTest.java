@@ -9,8 +9,8 @@ import java.util.Set;
 
 import org.dayatang.domain.AbstractEntity;
 import org.dayatang.domain.InstanceFactory;
-import org.dayatang.hibernate.EntityRepositoryHibernate;
 import org.dayatang.observer.HibernateUtils;
+import org.dayatang.persistence.hibernate.EntityRepositoryHibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

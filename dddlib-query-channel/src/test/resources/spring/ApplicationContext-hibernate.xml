@@ -45,7 +45,7 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-    <bean id="repoitory" class="org.dayatang.hibernate.EntityRepositoryHibernate"/>
+    <bean id="repoitory" class="org.dayatang.persistence.hibernate.EntityRepositoryHibernate"/>
 
     <bean id="queryChannelService" class="org.dayatang.querychannel.service.impl.QueryChannelServiceHibernate"/>
 
