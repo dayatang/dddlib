@@ -1,5 +1,6 @@
 package org.dayatang;
 
+
 public class InstanceProviderNotFoundException extends IocException {
 
 	private static final long serialVersionUID = -742775077430352894L;

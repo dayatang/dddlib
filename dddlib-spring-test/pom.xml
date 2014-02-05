@@ -10,7 +10,7 @@
 	<packaging>jar</packaging>
 	<name>DDDLib Test classes for spring</name>
 	<description>
-        数据库继承测试基类，通过Spring实现。
+        数据库集成测试基类，通过Spring实现。
 	</description>
 
 	<dependencies>

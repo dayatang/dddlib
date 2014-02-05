@@ -13,6 +13,10 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+/**
+ * 一个集成测试基类，提供了访问IoC容器（通过Spring实现）和访问数据库（通过DBUnit）的能力。
+ *
+ */
 public abstract class AbstractIntegratedTestCase extends Dbunit {
 
 	protected Session session;
