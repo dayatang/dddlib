@@ -201,7 +201,7 @@ public class EntityRepositoryHibernate implements EntityRepository {
 
     @Override
     public <T extends Entity> CriteriaQuery createCriteriaQuery(Class<T> entityClass) {
-        return new CriteriaQueryImpl(this, entityClass);
+        return new CriteriaQuery(this, entityClass);
     }
 
     @Override

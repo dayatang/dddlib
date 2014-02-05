@@ -16,7 +16,6 @@ import org.dayatang.domain.ArrayParameters;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.Entity;
 import org.dayatang.domain.CriteriaQuery;
-import org.dayatang.domain.CriteriaQueryImpl;
 import org.dayatang.domain.ExampleSettings;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.domain.JpqlQuery;
@@ -212,7 +211,7 @@ public class EntityRepositoryJpa implements EntityRepository {
 
     @Override
     public <T extends Entity> CriteriaQuery createCriteriaQuery(Class<T> entityClass) {
-        return new CriteriaQueryImpl(this, entityClass);
+        return new CriteriaQuery(this, entityClass);
     }
 
     @Override
