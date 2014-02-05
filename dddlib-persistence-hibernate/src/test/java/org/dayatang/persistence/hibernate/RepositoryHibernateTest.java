@@ -178,8 +178,7 @@ public class RepositoryHibernateTest extends AbstractIntegrationTest {
     public void testExecuteUpdateArrayParams() throws Exception {
         String description = "abcd";
         String queryString = "update Dictionary o set o.description = ? where o.category = ?";
-        QueryParameters params = ArrayParameters.create(description, gender);
-        repository.executeUpdate(queryString, params);
+        new JpqlQuery(repository, queryString).setParameters(description, gender).executeUpdate();
         sessionFactory.getCurrentSession().clear();
         //session.clear();
         CriteriaQuery criteriaQuery = new CriteriaQuery(repository, Dictionary.class).eq("category", gender);
@@ -194,8 +193,8 @@ public class RepositoryHibernateTest extends AbstractIntegrationTest {
     public void testExecuteUpdateMapParams() {
         String description = "abcd";
         String queryString = "update Dictionary set description = :description where category = :category";
-        MapParameters params = MapParameters.create().add("category", gender).add("description", description);
-        repository.executeUpdate(queryString, params);
+        new JpqlQuery(repository, queryString).addParameter("description", description)
+                .addParameter("category", gender).executeUpdate();
         sessionFactory.getCurrentSession().clear();
         //session.clear();
         CriteriaQuery criteriaQuery = new CriteriaQuery(repository, Dictionary.class).eq("category", gender);

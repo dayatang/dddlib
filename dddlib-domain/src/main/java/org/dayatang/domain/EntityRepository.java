@@ -132,6 +132,13 @@ public interface EntityRepository {
     <T> T getSingleResult(JpqlQuery jpqlQuery);
 
     /**
+     * 执行更新仓储的操作。
+     *
+     * @param jpqlQuery 要执行的JPQL查询。
+     */
+    int executeUpdate(JpqlQuery jpqlQuery);
+
+    /**
      * 创建命名查询
      *
      * @param queryName JPQL语句
@@ -156,6 +163,13 @@ public interface EntityRepository {
      * @return 符合查询条件的单个结果
      */
     <T> T getSingleResult(NamedQuery namedQuery);
+
+    /**
+     * 执行更新仓储的操作。
+     *
+     * @param namedQuery 要执行的命名查询。
+     */
+    int executeUpdate(NamedQuery namedQuery);
 
     /**
      * 按例查询。
@@ -188,14 +202,6 @@ public interface EntityRepository {
      * @return 类型为clazz、多个属性分别等于指定的属性值的实体的集合。
      */
     <T extends Entity> List<T> findByProperties(Class<T> clazz, Map<String, Object> properties);
-
-    /**
-     * 执行更新仓储的操作。
-     *
-     * @param queryString 访问仓储的DSL语句，采用JPA QL的语义，但不一定用JPA实现。
-     * @param params 查询参数
-     */
-    void executeUpdate(String queryString, QueryParameters params);
 
 
     /**

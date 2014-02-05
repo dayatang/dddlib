@@ -11,12 +11,9 @@ import java.util.Map;
 
 import javax.validation.ValidationException;
 
-import org.dayatang.domain.CriteriaQuery;
+import org.dayatang.domain.*;
 import org.dayatang.test.domain.Dictionary;
 import org.dayatang.test.domain.DictionaryCategory;
-import org.dayatang.domain.ArrayParameters;
-import org.dayatang.domain.MapParameters;
-import org.dayatang.domain.QueryParameters;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -170,8 +167,7 @@ public class RepositoryJpaTest extends AbstractIntegrationTest {
     public void testExecuteUpdateArrayParams() {
         String description = "abcd";
         String queryString = "update Dictionary o set o.description = ? where o.category = ?";
-        QueryParameters params = ArrayParameters.create(description, gender);
-        repository.executeUpdate(queryString, params);
+        new JpqlQuery(repository, queryString).setParameters(description, gender).executeUpdate();
         entityManager.clear();
         CriteriaQuery criteriaQuery = new CriteriaQuery(repository, Dictionary.class).eq("category", gender);
         List<Dictionary> results = criteriaQuery.list();
@@ -185,8 +181,8 @@ public class RepositoryJpaTest extends AbstractIntegrationTest {
     public void testExecuteUpdateMapParams() {
         String description = "abcd";
         String queryString = "update Dictionary set description = :description where category = :category";
-        MapParameters params = MapParameters.create().add("category", gender).add("description", description);
-        repository.executeUpdate(queryString, params);
+        new JpqlQuery(repository, queryString).addParameter("description", description)
+                .addParameter("category", gender).executeUpdate();
         entityManager.clear();
         CriteriaQuery criteriaQuery = new CriteriaQuery(repository, Dictionary.class).eq("category", gender);
         List<Dictionary> results = criteriaQuery.list();

@@ -180,6 +180,13 @@ public class EntityRepositoryHibernate implements EntityRepository {
     }
 
     @Override
+    public int executeUpdate(JpqlQuery jpqlQuery) {
+        Query query = getSession().createQuery(jpqlQuery.getJpql());
+        fillParameters(query, jpqlQuery.getParameters());
+        return query.executeUpdate();
+    }
+
+    @Override
     public NamedQuery createNamedQuery(String queryName) {
         return new NamedQuery(this, queryName);
     }
@@ -199,6 +206,13 @@ public class EntityRepositoryHibernate implements EntityRepository {
     public <T> T getSingleResult(NamedQuery namedQuery) {
         List<T> results = find(namedQuery);
         return results == null || results.isEmpty() ? null : results.get(0);
+    }
+
+    @Override
+    public int executeUpdate(NamedQuery namedQuery) {
+        Query query = getSession().getNamedQuery(namedQuery.getQueryName());
+        fillParameters(query, namedQuery.getParameters());
+        return query.executeUpdate();
     }
 
     @Override
@@ -234,13 +248,6 @@ public class EntityRepositoryHibernate implements EntityRepository {
             criteriaQuery = criteriaQuery.eq(each.getKey(), each.getValue());
         }
         return find(criteriaQuery);
-    }
-
-    @Override
-    public void executeUpdate(final String queryString, final QueryParameters params) {
-        Query query = getSession().createQuery(queryString);
-        fillParameters(query, params);
-        query.executeUpdate();
     }
 
     @Override

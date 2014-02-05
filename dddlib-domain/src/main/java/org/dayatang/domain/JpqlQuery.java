@@ -110,4 +110,10 @@ public class JpqlQuery {
         return repository.getSingleResult(this);
     }
 
+    /**
+     * 执行更新仓储的操作。
+     */
+    public int executeUpdate() {
+        return repository.executeUpdate(this);
+    }
 }

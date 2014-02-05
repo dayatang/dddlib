@@ -190,6 +190,14 @@ public class EntityRepositoryJpa implements EntityRepository {
     }
 
     @Override
+    public int executeUpdate(JpqlQuery jpqlQuery) {
+        Query query = getEntityManager().createQuery(jpqlQuery.getJpql());
+        fillParameters(query, jpqlQuery.getParameters());
+        return query.executeUpdate();
+
+    }
+
+    @Override
     public NamedQuery createNamedQuery(String queryName) {
         return new NamedQuery(this, queryName);
     }
@@ -212,6 +220,13 @@ public class EntityRepositoryJpa implements EntityRepository {
     }
 
     @Override
+    public int executeUpdate(NamedQuery namedQuery) {
+        Query query = getEntityManager().createNamedQuery(namedQuery.getQueryName());
+        fillParameters(query, namedQuery.getParameters());
+        return query.executeUpdate();
+    }
+
+    @Override
     public <T extends Entity, E extends T> List<T> findByExample(
             final E example, final ExampleSettings<T> settings) {
         throw new RuntimeException("not implemented yet!");
@@ -229,13 +244,6 @@ public class EntityRepositoryJpa implements EntityRepository {
             criteriaQuery = criteriaQuery.eq(each.getKey(), each.getValue());
         }
         return find(criteriaQuery);
-    }
-
-    @Override
-    public void executeUpdate(final String queryString, final QueryParameters params) {
-        Query query = getEntityManager().createQuery(queryString);
-        fillParameters(query, params);
-        query.executeUpdate();
     }
 
     @Override
