@@ -79,112 +79,6 @@ public interface EntityRepository {
     <T extends Entity> List<T> findAll(Class<T> clazz);
 
     /**
-     * 根据指定的条件查找实体
-     *
-     * @param <T> 结果类型
-     * @param settings 查询的条件及排序信息
-     * @return 符合条件的实体集合
-     */
-    <T extends Entity> List<T> find(QuerySettings<T> settings);
-
-    /**
-     * 根据查询语句和指定的参数从仓储中查询符合条件的结果
-     *
-     * @param <T> 返回值集合中包含的元素的类型
-     * @param queryString 访问仓储的DSL语句，采用JPA QL的语义，但不一定用JPA实现。
-     * @param params 查询参数
-     * @return 符合查询条件的实体的集合.
-     */
-    <T> List<T> find(String queryString, QueryParameters params);
-
-    /**
-     * 根据命名的查询和指定的参数从仓储中查询符合条件的的结果
-     *
-     * @param <T> 返回值集合中包含的元素的类型
-     * @param queryName 命名查询的名字。
-     * @param params 查询参数
-     * @return 符合查询条件的实体的集合.
-     */
-    <T> List<T> findByNamedQuery(String queryName, QueryParameters params);
-
-    /**
-     * 按例查询。
-     *
-     * @param <T> 查询的目标实体类型
-     * @param <E> 查询样例的类型
-     * @param example 查询样例
-     * @param settings 查询设置
-     * @return 与example相似的T类型的范例
-     */
-    <T extends Entity, E extends T> List<T> findByExample(E example, ExampleSettings<T> settings);
-
-    /**
-     * 根据单一属性的值查找实体
-     *
-     * @param <T> 要查询的实体的类型
-     * @param clazz 要查询的实体的类
-     * @param propertyName 要查询的属性
-     * @param propertyValue 匹配的属性值
-     * @return 类型为clazz的、属性propertyName的值等于propertyValue的实体的集合
-     */
-    <T extends Entity> List<T> findByProperty(Class<T> clazz, String propertyName, Object propertyValue);
-
-    /**
-     * 根据多个属性的值查找实体
-     *
-     * @param <T> 要查询的实体的类型
-     * @param clazz 要查询的实体的类
-     * @param properties 一批属性的Map，其中key为属性名，value为要匹配的属性值。
-     * @return 类型为clazz、多个属性分别等于指定的属性值的实体的集合。
-     */
-    <T extends Entity> List<T> findByProperties(Class<T> clazz, Map<String, Object> properties);
-
-    /**
-     * 根据查询设置返回单一结果
-     *
-     * @param <T> 结果类型
-     * @param settings 查询设置
-     * @return 符合查询条件的结果
-     */
-    <T extends Entity> T getSingleResult(QuerySettings<T> settings);
-
-    /**
-     * 根据查询语句和指定的参数访问仓储，返回单一结果。
-     *
-     * @param <T> 结果类型
-     * @param queryString 访问仓储的DSL语句，采用JPA QL的语义，但不一定用JPA实现。
-     * @param params 查询参数
-     * @return 查询的单一结果
-     */
-    <T> T getSingleResult(String queryString, QueryParameters params);
-
-    /**
-     * 执行更新仓储的操作。
-     *
-     * @param queryString 访问仓储的DSL语句，采用JPA QL的语义，但不一定用JPA实现。
-     * @param params 查询参数
-     */
-    void executeUpdate(String queryString, QueryParameters params);
-
-
-    /**
-     * 将内存中的持久化对象状态即时写入数据库
-     */
-    void flush();
-
-    /**
-     * 使用数据库中的最新数据更新实体的当前状态。实体中的任何已改变但未持久化的属性值将被数据库中的最新值覆盖。
-     *
-     * @param entity 要刷新的实体
-     */
-    void refresh(Entity entity);
-
-    /**
-     * 清空持久化缓存
-     */
-    void clear();
-
-    /**
      * 创建条件查询
      *
      * @param entityClass 要查询的实体类
@@ -262,5 +156,63 @@ public interface EntityRepository {
      * @return 符合查询条件的单个结果
      */
     <T> T getSingleResult(NamedQuery namedQuery);
+
+    /**
+     * 按例查询。
+     *
+     * @param <T> 查询的目标实体类型
+     * @param <E> 查询样例的类型
+     * @param example 查询样例
+     * @param settings 查询设置
+     * @return 与example相似的T类型的范例
+     */
+    <T extends Entity, E extends T> List<T> findByExample(E example, ExampleSettings<T> settings);
+
+    /**
+     * 根据单一属性的值查找实体
+     *
+     * @param <T> 要查询的实体的类型
+     * @param clazz 要查询的实体的类
+     * @param propertyName 要查询的属性
+     * @param propertyValue 匹配的属性值
+     * @return 类型为clazz的、属性propertyName的值等于propertyValue的实体的集合
+     */
+    <T extends Entity> List<T> findByProperty(Class<T> clazz, String propertyName, Object propertyValue);
+
+    /**
+     * 根据多个属性的值查找实体
+     *
+     * @param <T> 要查询的实体的类型
+     * @param clazz 要查询的实体的类
+     * @param properties 一批属性的Map，其中key为属性名，value为要匹配的属性值。
+     * @return 类型为clazz、多个属性分别等于指定的属性值的实体的集合。
+     */
+    <T extends Entity> List<T> findByProperties(Class<T> clazz, Map<String, Object> properties);
+
+    /**
+     * 执行更新仓储的操作。
+     *
+     * @param queryString 访问仓储的DSL语句，采用JPA QL的语义，但不一定用JPA实现。
+     * @param params 查询参数
+     */
+    void executeUpdate(String queryString, QueryParameters params);
+
+
+    /**
+     * 将内存中的持久化对象状态即时写入数据库
+     */
+    void flush();
+
+    /**
+     * 使用数据库中的最新数据更新实体的当前状态。实体中的任何已改变但未持久化的属性值将被数据库中的最新值覆盖。
+     *
+     * @param entity 要刷新的实体
+     */
+    void refresh(Entity entity);
+
+    /**
+     * 清空持久化缓存
+     */
+    void clear();
 
 }

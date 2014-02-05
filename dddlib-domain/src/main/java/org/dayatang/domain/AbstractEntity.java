@@ -94,7 +94,7 @@ public abstract class AbstractEntity implements Entity {
 	
 	@Override
 	public boolean existed(String propertyName, Object propertyValue) {
-		List<?> entities = getRepository().find(QuerySettings.create(getClass()).eq(propertyName, propertyValue)); 
+		List<?> entities = getRepository().findByProperty(getClass(), propertyName, propertyValue);
 		return !(entities.isEmpty());
 	}
 
@@ -132,19 +132,15 @@ public abstract class AbstractEntity implements Entity {
 	}
 
 	public static <T extends Entity> List<T> findAll(Class<T> clazz) {
-		return getRepository().find(QuerySettings.create(clazz));
+		return getRepository().createCriteriaQuery(clazz).list();
 	}
 
 	public static <T extends Entity> List<T> findByProperty(Class<T> clazz, String propName, Object value) {
-		return getRepository().find(QuerySettings.create(clazz).eq(propName, value));
+		return getRepository().findByProperty(clazz, propName, value);
 	}
 
 	public static <T extends Entity> List<T> findByProperties(Class<T> clazz, Map<String, Object> propValues) {
-		QuerySettings<T> querySettings = QuerySettings.create(clazz);
-		for (Map.Entry<String, Object> each : propValues.entrySet()) {
-			querySettings.eq(each.getKey(), each.getValue());
-		}
-		return getRepository().find(querySettings);
+		return getRepository().findByProperties(clazz, propValues);
 	}
 
 	@Override

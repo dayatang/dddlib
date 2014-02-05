@@ -22,7 +22,6 @@ import org.dayatang.domain.JpqlQuery;
 import org.dayatang.domain.MapParameters;
 import org.dayatang.domain.NamedQuery;
 import org.dayatang.domain.QueryParameters;
-import org.dayatang.domain.QuerySettings;
 import org.dayatang.persistence.jpa.internal.JpaCriteriaQueryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,14 +30,16 @@ import org.slf4j.LoggerFactory;
  * 通用仓储接口的JPA实现。
  *
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
- *
  */
 @SuppressWarnings({"unchecked", "deprecation"})
 @Named("dddlib_entity_repository_jpa")
 public class EntityRepositoryJpa implements EntityRepository {
 
-    private static final Logger LOGGER = LoggerFactory
-            .getLogger(EntityRepositoryJpa.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EntityRepositoryJpa.class);
+
+    @Inject
+    @PersistenceContext
+    private EntityManager entityManager;
 
     private EntityManagerFactory entityManagerFactory;
 
@@ -47,6 +48,22 @@ public class EntityRepositoryJpa implements EntityRepository {
 
     public EntityRepositoryJpa(EntityManagerFactory entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
+    }
+
+    private EntityManager getEntityManager() {
+        if (entityManager != null) {
+            return entityManager;
+        }
+
+        try {
+            return InstanceFactory.getInstance(EntityManager.class);
+        } catch (IocInstanceNotFoundException e) {
+            if (entityManagerFactory == null) {
+                entityManagerFactory = InstanceFactory
+                        .getInstance(EntityManagerFactory.class);
+            }
+            return entityManagerFactory.createEntityManager();
+        }
     }
 
     /*
@@ -89,7 +106,7 @@ public class EntityRepositoryJpa implements EntityRepository {
      */
     @Override
     public <T extends Entity> boolean exists(final Class<T> clazz,
-            final Serializable id) {
+                                             final Serializable id) {
         T entity = getEntityManager().find(clazz, id);
         return entity != null;
     }
@@ -116,7 +133,7 @@ public class EntityRepositoryJpa implements EntityRepository {
 
     @Override
     public <T extends Entity> T getUnmodified(final Class<T> clazz,
-            final T entity) {
+                                              final T entity) {
         getEntityManager().detach(entity);
         return get(clazz, entity.getId());
     }
@@ -125,88 +142,6 @@ public class EntityRepositoryJpa implements EntityRepository {
     public <T extends Entity> List<T> findAll(final Class<T> clazz) {
         String queryString = "select o from " + clazz.getName() + " as o";
         return getEntityManager().createQuery(queryString).getResultList();
-    }
-
-    @Override
-    public <T extends Entity> List<T> find(final QuerySettings<T> settings) {
-        javax.persistence.criteria.CriteriaQuery criteriaQuery = JpaCriteriaQueryBuilder.getInstance()
-                .createCriteriaQuery(settings, getEntityManager());
-        Query query = getEntityManager().createQuery(criteriaQuery);
-        query.setFirstResult(settings.getFirstResult());
-        if (settings.getMaxResults() > 0) {
-            query.setMaxResults(settings.getMaxResults());
-        }
-        return query.getResultList();
-    }
-
-    @Override
-    public <T> List<T> find(final String queryString, final QueryParameters params) {
-        Query query = getEntityManager().createQuery(queryString);
-        fillParameters(query, params);
-        return query.getResultList();
-    }
-
-    @Override
-    public <T> List<T> findByNamedQuery(final String queryName, final QueryParameters params) {
-        Query query = getEntityManager().createNamedQuery(queryName);
-        fillParameters(query, params);
-        return query.getResultList();
-    }
-
-    @Override
-    public <T extends Entity, E extends T> List<T> findByExample(
-            final E example, final ExampleSettings<T> settings) {
-        throw new RuntimeException("not implemented yet!");
-    }
-
-    @Override
-    public <T extends Entity> List<T> findByProperty(Class<T> clazz, String propertyName, Object propertyValue) {
-        QuerySettings<T> querySettings = QuerySettings.create(clazz).eq(propertyName, propertyValue);
-        return find(querySettings);
-    }
-
-    @Override
-    public <T extends Entity> List<T> findByProperties(Class<T> clazz, Map<String, Object> properties) {
-        QuerySettings<T> querySettings = QuerySettings.create(clazz);
-        for (Map.Entry<String, Object> each : properties.entrySet()) {
-            querySettings = querySettings.eq(each.getKey(), each.getValue());
-        }
-        return find(querySettings);
-    }
-
-    @Override
-    public <T extends Entity> T getSingleResult(QuerySettings<T> settings) {
-        List<T> results = find(settings);
-        return results.isEmpty() ? null : results.get(0);
-    }
-
-    @Override
-    public <T> T getSingleResult(final String queryString, final QueryParameters params) {
-        Query query = getEntityManager().createQuery(queryString);
-        fillParameters(query, params);
-        return (T) query.getSingleResult();
-    }
-
-    @Override
-    public void executeUpdate(final String queryString, final QueryParameters params) {
-        Query query = getEntityManager().createQuery(queryString);
-        fillParameters(query, params);
-        query.executeUpdate();
-    }
-
-    @Override
-    public void flush() {
-        getEntityManager().flush();
-    }
-
-    @Override
-    public void refresh(Entity entity) {
-        getEntityManager().refresh(entity);
-    }
-
-    @Override
-    public void clear() {
-        getEntityManager().clear();
     }
 
     @Override
@@ -276,24 +211,46 @@ public class EntityRepositoryJpa implements EntityRepository {
         return results == null || results.isEmpty() ? null : results.get(0);
     }
 
-    @Inject
-    @PersistenceContext
-    private EntityManager entityManager;
+    @Override
+    public <T extends Entity, E extends T> List<T> findByExample(
+            final E example, final ExampleSettings<T> settings) {
+        throw new RuntimeException("not implemented yet!");
+    }
 
-    private EntityManager getEntityManager() {
-        if (entityManager != null) {
-            return entityManager;
-        }
+    @Override
+    public <T extends Entity> List<T> findByProperty(Class<T> clazz, String propertyName, Object propertyValue) {
+        return find(new CriteriaQuery(this, clazz).eq(propertyName, propertyValue));
+    }
 
-        try {
-            return InstanceFactory.getInstance(EntityManager.class);
-        } catch (IocInstanceNotFoundException e) {
-            if (entityManagerFactory == null) {
-                entityManagerFactory = InstanceFactory
-                        .getInstance(EntityManagerFactory.class);
-            }
-            return entityManagerFactory.createEntityManager();
+    @Override
+    public <T extends Entity> List<T> findByProperties(Class<T> clazz, Map<String, Object> properties) {
+        CriteriaQuery criteriaQuery = new CriteriaQuery(this, clazz);
+        for (Map.Entry<String, Object> each : properties.entrySet()) {
+            criteriaQuery = criteriaQuery.eq(each.getKey(), each.getValue());
         }
+        return find(criteriaQuery);
+    }
+
+    @Override
+    public void executeUpdate(final String queryString, final QueryParameters params) {
+        Query query = getEntityManager().createQuery(queryString);
+        fillParameters(query, params);
+        query.executeUpdate();
+    }
+
+    @Override
+    public void flush() {
+        getEntityManager().flush();
+    }
+
+    @Override
+    public void refresh(Entity entity) {
+        getEntityManager().refresh(entity);
+    }
+
+    @Override
+    public void clear() {
+        getEntityManager().clear();
     }
 
     private void fillParameters(Query query, QueryParameters params) {

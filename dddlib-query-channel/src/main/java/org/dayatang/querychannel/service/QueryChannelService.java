@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.domain.Entity;
-import org.dayatang.domain.QuerySettings;
 import org.dayatang.querychannel.support.Page;
 
 public interface QueryChannelService extends Serializable {
@@ -50,5 +50,5 @@ public interface QueryChannelService extends Serializable {
 	Page<Map<String, Object>> queryPagedMapResultByNamedQuery(String queryName, Object[] params, int currentPage,
 			int pageSize);
 
-	<T extends Entity> Page<T> queryPagedByQuerySettings(QuerySettings<T> settings, int currentPage, int pageSize);
+	<T extends Entity> Page<T> queryPagedByCriteriaQuery(CriteriaQuery criteriaQuery, int currentPage, int pageSize);
 }

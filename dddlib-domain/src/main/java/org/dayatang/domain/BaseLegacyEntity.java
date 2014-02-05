@@ -70,7 +70,7 @@ public abstract class BaseLegacyEntity implements Entity {
 	}
 
 	public static <T extends Entity> List<T> findAll(Class<T> clazz) {
-		return getRepository().find(QuerySettings.create(clazz));
+		return getRepository().createCriteriaQuery(clazz).list();
 	}
 
 	@Override

@@ -176,8 +176,7 @@ public class Dictionary extends AbstractEntity {
 	}
 
 	public static List<Dictionary> findByCategory(DictionaryCategory category) {
-		MapParameters params = MapParameters.create().add("category", category);
-		return getRepository().findByNamedQuery("findByCategory", params);
+		return getRepository().createNamedQuery("findByCategory").addParameter("category", category).list();
 	}
 
 	@Override

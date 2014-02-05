@@ -12,7 +12,6 @@ import javax.persistence.Table;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.domain.AbstractEntity;
-import org.dayatang.domain.QuerySettings;
 
 @Entity
 @Table(name = "categories")
@@ -75,7 +74,7 @@ public class DictionaryCategory extends AbstractEntity {
 	}
 
 	public static DictionaryCategory getByName(String name) {
-		List<DictionaryCategory> results = getRepository().find(QuerySettings.create(DictionaryCategory.class).eq("name", name));
+        List<DictionaryCategory> results = getRepository().findByProperty(DictionaryCategory.class, "name", name);
 		return results.isEmpty() ? null : results.get(0);
 	}
 

@@ -5,12 +5,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.inject.Inject;
-
 import org.dayatang.IocInstanceNotFoundException;
+import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.domain.Entity;
 import org.dayatang.domain.InstanceFactory;
-import org.dayatang.domain.QuerySettings;
 import org.dayatang.querychannel.service.QueryChannelService;
 import org.dayatang.querychannel.support.Page;
 import org.hibernate.Criteria;
@@ -275,7 +273,7 @@ public class QueryChannelServiceHibernate implements QueryChannelService {
 	}
 
 	@Override
-	public <T extends Entity> Page<T> queryPagedByQuerySettings(QuerySettings<T> settings, int currentPage, int pageSize) {
+	public <T extends Entity> Page<T> queryPagedByCriteriaQuery(CriteriaQuery criteriaQuery, int currentPage, int pageSize) {
 		throw new UnsupportedOperationException("还没有实现。");
 	}
 }

@@ -12,10 +12,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.dayatang.IocInstanceNotFoundException;
+import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.domain.Entity;
 import org.dayatang.domain.InstanceFactory;
-import org.dayatang.domain.QuerySettings;
 import org.dayatang.querychannel.service.QueryChannelService;
 import org.dayatang.querychannel.support.Page;
 
@@ -295,8 +294,8 @@ public class QueryChannelServiceJpa implements QueryChannelService {
 	}
 
 	@Override
-	public <T extends Entity> Page<T> queryPagedByQuerySettings(
-			QuerySettings<T> settings, int currentPage, int pageSize) {
+	public <T extends Entity> Page<T> queryPagedByCriteriaQuery(
+            CriteriaQuery criteriaQuery, int currentPage, int pageSize) {
 		throw new UnsupportedOperationException("not implemented yet!");
 	}
 }

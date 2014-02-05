@@ -99,107 +99,6 @@ public class EntityRepositoryHibernate implements EntityRepository {
     }
 
     @Override
-    public <T extends Entity> List<T> find(final QuerySettings<T> settings) {
-        QueryTranslator translator = new QueryTranslator(settings);
-        String queryString = translator.getQueryString();
-        LOGGER.info("QueryString: '" + queryString + "'");
-        List<Object> params = translator.getParams();
-        LOGGER.info("params: " + StringUtils.join(params, ", "));
-        Query query = getSession().createQuery(queryString);
-        fillParameters(query, ArrayParameters.create(params));
-        query.setFirstResult(settings.getFirstResult());
-        if (settings.getMaxResults() > 0) {
-            query.setMaxResults(settings.getMaxResults());
-        }
-        return query.list();
-    }
-
-    @Override
-    public <T> List<T> find(final String queryString, final QueryParameters params) {
-        Query query = getSession().createQuery(queryString);
-        fillParameters(query, params);
-        return query.list();
-    }
-
-    @Override
-    public <T> List<T> findByNamedQuery(final String queryName, final QueryParameters params) {
-        Query query = getSession().getNamedQuery(queryName);
-        fillParameters(query, params);
-        return query.list();
-    }
-
-    @Override
-    public <T extends Entity, E extends T> List<T> findByExample(final E example, final ExampleSettings<T> settings) {
-        Example theExample = Example.create(example);
-        if (settings.isLikeEnabled()) {
-            theExample.enableLike(MatchMode.ANYWHERE);
-        }
-        if (settings.isIgnoreCaseEnabled()) {
-            theExample.ignoreCase();
-        }
-        if (settings.isExcludeNone()) {
-            theExample.excludeNone();
-        }
-        if (settings.isExcludeZeroes()) {
-            theExample.excludeZeroes();
-        }
-        for (String propName : settings.getExcludedProperties()) {
-            theExample.excludeProperty(propName);
-        }
-        return getSession().createCriteria(settings.getEntityClass()).add(theExample).list();
-    }
-
-    @Override
-    public <T extends Entity> List<T> findByProperty(Class<T> clazz, String propertyName, Object propertyValue) {
-        QuerySettings<T> querySettings = QuerySettings.create(clazz).eq(propertyName, propertyValue);
-        return find(querySettings);
-    }
-
-    @Override
-    public <T extends Entity> List<T> findByProperties(Class<T> clazz, Map<String, Object> properties) {
-        QuerySettings<T> querySettings = QuerySettings.create(clazz);
-        for (Map.Entry<String, Object> each : properties.entrySet()) {
-            querySettings = querySettings.eq(each.getKey(), each.getValue());
-        }
-        return find(querySettings);
-    }
-
-    @Override
-    public <T extends Entity> T getSingleResult(QuerySettings<T> settings) {
-        List<T> list = find(settings);
-        return list.isEmpty() ? null : list.get(0);
-    }
-
-    @Override
-    public <T> T getSingleResult(final String queryString, final QueryParameters params) {
-        Query query = getSession().createQuery(queryString);
-        fillParameters(query, params);
-        return (T) query.uniqueResult();
-    }
-
-    @Override
-    public void executeUpdate(final String queryString, final QueryParameters params) {
-        Query query = getSession().createQuery(queryString);
-        fillParameters(query, params);
-        query.executeUpdate();
-    }
-
-    @Override
-    public void flush() {
-        getSession().flush();
-    }
-
-    @Override
-    public void refresh(Entity entity) {
-        getSession().refresh(entity);
-    }
-
-    @Override
-    public void clear() {
-        getSession().clear();
-    }
-
-    @Override
     public <T extends Entity> CriteriaQuery createCriteriaQuery(Class<T> entityClass) {
         return new CriteriaQuery(this, entityClass);
     }
@@ -300,5 +199,62 @@ public class EntityRepositoryHibernate implements EntityRepository {
     public <T> T getSingleResult(NamedQuery namedQuery) {
         List<T> results = find(namedQuery);
         return results == null || results.isEmpty() ? null : results.get(0);
+    }
+
+    @Override
+    public <T extends Entity, E extends T> List<T> findByExample(final E example, final ExampleSettings<T> settings) {
+        Example theExample = Example.create(example);
+        if (settings.isLikeEnabled()) {
+            theExample.enableLike(MatchMode.ANYWHERE);
+        }
+        if (settings.isIgnoreCaseEnabled()) {
+            theExample.ignoreCase();
+        }
+        if (settings.isExcludeNone()) {
+            theExample.excludeNone();
+        }
+        if (settings.isExcludeZeroes()) {
+            theExample.excludeZeroes();
+        }
+        for (String propName : settings.getExcludedProperties()) {
+            theExample.excludeProperty(propName);
+        }
+        return getSession().createCriteria(settings.getEntityClass()).add(theExample).list();
+    }
+
+    @Override
+    public <T extends Entity> List<T> findByProperty(Class<T> clazz, String propertyName, Object propertyValue) {
+        return find(new CriteriaQuery(this, clazz).eq(propertyName, propertyValue));
+    }
+
+    @Override
+    public <T extends Entity> List<T> findByProperties(Class<T> clazz, Map<String, Object> properties) {
+        CriteriaQuery criteriaQuery = new CriteriaQuery(this, clazz);
+        for (Map.Entry<String, Object> each : properties.entrySet()) {
+            criteriaQuery = criteriaQuery.eq(each.getKey(), each.getValue());
+        }
+        return find(criteriaQuery);
+    }
+
+    @Override
+    public void executeUpdate(final String queryString, final QueryParameters params) {
+        Query query = getSession().createQuery(queryString);
+        fillParameters(query, params);
+        query.executeUpdate();
+    }
+
+    @Override
+    public void flush() {
+        getSession().flush();
+    }
+
+    @Override
+    public void refresh(Entity entity) {
+        getSession().refresh(entity);
+    }
+
+    @Override
+    public void clear() {
+        getSession().clear();
     }
 }

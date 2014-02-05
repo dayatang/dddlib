@@ -11,12 +11,12 @@ import java.util.Map;
 
 import javax.validation.ValidationException;
 
+import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.test.domain.Dictionary;
 import org.dayatang.test.domain.DictionaryCategory;
 import org.dayatang.domain.ArrayParameters;
 import org.dayatang.domain.MapParameters;
 import org.dayatang.domain.QueryParameters;
-import org.dayatang.domain.QuerySettings;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -98,8 +98,7 @@ public class RepositoryJpaTest extends AbstractIntegrationTest {
     @Test
     public void testFindQueryStringArrayParams() {
         String queryString = "select o from  Dictionary o where o.category = ?";
-        QueryParameters params = ArrayParameters.create(gender);
-        List<Dictionary> results = repository.find(queryString, params);
+        List<Dictionary> results = repository.createJpqlQuery(queryString).setParameters(gender).list();
         assertTrue(results.contains(male));
         assertFalse(results.contains(undergraduate));
     }
@@ -107,24 +106,21 @@ public class RepositoryJpaTest extends AbstractIntegrationTest {
     @Test
     public void testFindQueryStringMapParams() {
         String queryString = "select o from  Dictionary o where o.category = :category";
-        MapParameters params = MapParameters.create().add("category", gender);
-        List<Dictionary> results = repository.find(queryString, params);
+        List<Dictionary> results = repository.createJpqlQuery(queryString).addParameter("category", gender).list();
         assertTrue(results.contains(male));
         assertFalse(results.contains(undergraduate));
     }
 
     @Test
     public void testFindNamedQueryArrayParams() {
-        QueryParameters params = ArrayParameters.create(gender, "01");
-        List<Dictionary> results = repository.findByNamedQuery("findByCategoryAndCode", params);
+        List<Dictionary> results = repository.createNamedQuery("findByCategoryAndCode").setParameters(gender, "01").list();
         assertTrue(results.contains(male));
         assertFalse(results.contains(undergraduate));
     }
 
     @Test
     public void testFindNamedQueryMapParams() {
-        MapParameters params = MapParameters.create().add("category", gender);
-        List<Dictionary> results = repository.findByNamedQuery("findByCategory", params);
+        List<Dictionary> results = repository.createNamedQuery("findByCategory").addParameter("category", gender).list();
         assertTrue(results.contains(male));
         assertFalse(results.contains(undergraduate));
     }
@@ -150,25 +146,23 @@ public class RepositoryJpaTest extends AbstractIntegrationTest {
 
     @Test
     public void testGetSingleResultSettings() {
-        QuerySettings<Dictionary> settings = QuerySettings.create(Dictionary.class).eq("category", gender)
-                .eq("code", "01");
-        Dictionary dictionary = repository.getSingleResult(settings);
+        Dictionary dictionary = repository.createCriteriaQuery(Dictionary.class).eq("category", gender)
+                .eq("code", "01").singleResult();
         assertEquals(male, dictionary);
     }
 
     @Test
     public void testGetSingleResultArray() {
         String queryString = "select o from  Dictionary o where o.category = ? and o.code = ?";
-        QueryParameters params = ArrayParameters.create(gender, "01");
-        Dictionary dictionary = repository.getSingleResult(queryString, params);
+        Dictionary dictionary = repository.createJpqlQuery(queryString).setParameters(gender, "01").singleResult();
         assertEquals(male, dictionary);
     }
 
     @Test
     public void testGetSingleResultMap() {
         String queryString = "select o from  Dictionary o where o.category = :category and o.code = :code";
-        MapParameters params = MapParameters.create().add("category", gender).add("code", "01");
-        Dictionary dictionary = repository.getSingleResult(queryString, params);
+        Dictionary dictionary = repository.createJpqlQuery(queryString)
+                .addParameter("category", gender).addParameter("code", "01").singleResult();
         assertEquals(male, dictionary);
     }
 
@@ -179,8 +173,8 @@ public class RepositoryJpaTest extends AbstractIntegrationTest {
         QueryParameters params = ArrayParameters.create(description, gender);
         repository.executeUpdate(queryString, params);
         entityManager.clear();
-        QuerySettings<Dictionary> settings = QuerySettings.create(Dictionary.class).eq("category", gender);
-        List<Dictionary> results = repository.find(settings);
+        CriteriaQuery criteriaQuery = new CriteriaQuery(repository, Dictionary.class).eq("category", gender);
+        List<Dictionary> results = criteriaQuery.list();
         assertTrue(results.size() > 0);
         for (Dictionary dictionary : results) {
             assertEquals(description, dictionary.getDescription());
@@ -194,8 +188,8 @@ public class RepositoryJpaTest extends AbstractIntegrationTest {
         MapParameters params = MapParameters.create().add("category", gender).add("description", description);
         repository.executeUpdate(queryString, params);
         entityManager.clear();
-        QuerySettings<Dictionary> settings = QuerySettings.create(Dictionary.class).eq("category", gender);
-        List<Dictionary> results = repository.find(settings);
+        CriteriaQuery criteriaQuery = new CriteriaQuery(repository, Dictionary.class).eq("category", gender);
+        List<Dictionary> results = criteriaQuery.list();
         assertTrue(results.size() > 0);
         for (Dictionary dictionary : results) {
             assertEquals(description, dictionary.getDescription());

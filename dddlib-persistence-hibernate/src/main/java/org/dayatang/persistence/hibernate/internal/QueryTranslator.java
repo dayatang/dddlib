@@ -41,15 +41,6 @@ public class QueryTranslator {
         prepare();
     }
 
-	public QueryTranslator(QuerySettings<?> settings) {
-        queryCriterions = settings.getQueryCriterions();
-        entityClass = settings.getEntityClass();
-        orderSettings = settings.getOrderSettings();
-        firstResult = settings.getFirstResult();
-        maxResults = settings.getMaxResults();
-		prepare();
-	}
-
 	private void prepare() {
 		queryString = "select distinct(o) from " + entityClass.getName() + " as o ";
 		queryString += getWhereClause(queryCriterions);
