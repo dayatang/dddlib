@@ -1,9 +1,11 @@
 package org.dayatang.domain;
 
+import org.dayatang.utils.Assert;
+
 import java.util.*;
 
 /**
- * 条件查询实现.
+ * 条件查询
  * User: yyang
  * Date: 13-10-17
  * Time: 下午3:07
@@ -23,6 +25,8 @@ public class CriteriaQueryImpl implements CriteriaQuery {
 
 
     public CriteriaQueryImpl(EntityRepository repository, Class<? extends Entity> entityClass) {
+        Assert.notNull(repository);
+        Assert.notNull(entityClass);
         this.repository = repository;
         this.entityClass = entityClass;
     }

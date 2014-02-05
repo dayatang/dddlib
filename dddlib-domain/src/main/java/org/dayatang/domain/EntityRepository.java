@@ -185,7 +185,7 @@ public interface EntityRepository {
     void clear();
 
     /**
-     * 创建针对指定实体类的查询
+     * 创建条件查询
      *
      * @param entityClass 要查询的实体类
      * @param <T> 实体的类型
@@ -212,6 +212,14 @@ public interface EntityRepository {
     <T> T getSingleResult(CriteriaQuery criteriaQuery);
 
     /**
+     * 创建JPQL查询
+     *
+     * @param jpql JPQL语句
+     * @return 一个查询对象
+     */
+    JpqlQuery createJpqlQuery(String jpql);
+
+    /**
      * 执行JPQL查询，返回符合条件的实体列表
      *
      * @param jpqlQuery 要执行的查询
@@ -228,6 +236,14 @@ public interface EntityRepository {
      * @return 符合查询条件的单个结果
      */
     <T> T getSingleResult(JpqlQuery jpqlQuery);
+
+    /**
+     * 创建命名查询
+     *
+     * @param queryName JPQL语句
+     * @return 一个查询对象
+     */
+    NamedQuery createNamedQuery(String queryName);
 
     /**
      * 执行命名查询，返回符合条件的实体列表

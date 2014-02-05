@@ -8,7 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.dayatang.IocException;
 import org.dayatang.domain.*;
 import org.dayatang.persistence.hibernate.internal.QueryTranslator;
-import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -230,6 +229,11 @@ public class EntityRepositoryHibernate implements EntityRepository {
         return results == null || results.isEmpty() ? null : results.get(0);
     }
 
+    @Override
+    public JpqlQuery createJpqlQuery(String jpql) {
+        return new JpqlQuery(this, jpql);
+    }
+
     private Session getSession() {
         try {
             return InstanceFactory.getInstance(Session.class);
@@ -262,7 +266,7 @@ public class EntityRepositoryHibernate implements EntityRepository {
     @Override
     public <T> List<T> find(JpqlQuery jpqlQuery) {
         Query query = getSession().createQuery(jpqlQuery.getJpql());
-        fillParameters(query, jpqlQuery.getParams());
+        fillParameters(query, jpqlQuery.getParameters());
         query.setFirstResult(jpqlQuery.getFirstResult());
         if (jpqlQuery.getMaxResults() > 0) {
             query.setMaxResults(jpqlQuery.getMaxResults());
@@ -277,9 +281,14 @@ public class EntityRepositoryHibernate implements EntityRepository {
     }
 
     @Override
+    public NamedQuery createNamedQuery(String queryName) {
+        return new NamedQuery(this, queryName);
+    }
+
+    @Override
     public <T> List<T> find(NamedQuery namedQuery) {
         Query query = getSession().getNamedQuery(namedQuery.getQueryName());
-        fillParameters(query, namedQuery.getParams());
+        fillParameters(query, namedQuery.getParameters());
         query.setFirstResult(namedQuery.getFirstResult());
         if (namedQuery.getMaxResults() > 0) {
             query.setMaxResults(namedQuery.getMaxResults());

@@ -234,9 +234,14 @@ public class EntityRepositoryJpa implements EntityRepository {
     }
 
     @Override
+    public JpqlQuery createJpqlQuery(String jpql) {
+        return new JpqlQuery(this, jpql);
+    }
+
+    @Override
     public <T> List<T> find(JpqlQuery jpqlQuery) {
         Query query = getEntityManager().createQuery(jpqlQuery.getJpql());
-        fillParameters(query, jpqlQuery.getParams());
+        fillParameters(query, jpqlQuery.getParameters());
         query.setFirstResult(jpqlQuery.getFirstResult());
         if (jpqlQuery.getMaxResults() > 0) {
             query.setMaxResults(jpqlQuery.getMaxResults());
@@ -251,9 +256,14 @@ public class EntityRepositoryJpa implements EntityRepository {
     }
 
     @Override
+    public NamedQuery createNamedQuery(String queryName) {
+        return new NamedQuery(this, queryName);
+    }
+
+    @Override
     public <T> List<T> find(NamedQuery namedQuery) {
         Query query = getEntityManager().createNamedQuery(namedQuery.getQueryName());
-        fillParameters(query, namedQuery.getParams());
+        fillParameters(query, namedQuery.getParameters());
         query.setFirstResult(namedQuery.getFirstResult());
         if (namedQuery.getMaxResults() > 0) {
             query.setMaxResults(namedQuery.getMaxResults());
