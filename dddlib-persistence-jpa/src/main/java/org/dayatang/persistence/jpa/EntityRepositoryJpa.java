@@ -66,12 +66,7 @@ public class EntityRepositoryJpa implements EntityRepository {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.dayatang.domain.EntityRepository#save(org.dayatang.domain.Entity)
-     */
+
     @Override
     public <T extends Entity> T save(T entity) {
         if (entity.isNew()) {

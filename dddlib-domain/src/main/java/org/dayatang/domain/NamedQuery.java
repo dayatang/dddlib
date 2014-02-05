@@ -115,6 +115,7 @@ public class NamedQuery {
 
     /**
      * 执行更新仓储的操作。
+     * @return 被更新或删除的实体的数量
      */
     public int executeUpdate() {
         return repository.executeUpdate(this);

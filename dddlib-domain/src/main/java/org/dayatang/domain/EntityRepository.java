@@ -135,6 +135,7 @@ public interface EntityRepository {
      * 执行更新仓储的操作。
      *
      * @param jpqlQuery 要执行的JPQL查询。
+     * @return 被更新或删除的实体的数量
      */
     int executeUpdate(JpqlQuery jpqlQuery);
 
@@ -168,6 +169,7 @@ public interface EntityRepository {
      * 执行更新仓储的操作。
      *
      * @param namedQuery 要执行的命名查询。
+     * @return 被更新或删除的实体的数量
      */
     int executeUpdate(NamedQuery namedQuery);
 
