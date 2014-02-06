@@ -375,7 +375,7 @@ public class QueryTest extends AbstractIntegrationTest {
     //@Test
     public void testAlias() {
         List<Dictionary> results = repository.find(instance.eq("category.name", education));
-        Dictionary graduate = Dictionary.get(4L);
+        Dictionary graduate = repository.get(Dictionary.class, 4L);
         assertTrue(results.contains(graduate));
         Dictionary doctor = Dictionary.get(46L);
         assertFalse(results.contains(doctor));

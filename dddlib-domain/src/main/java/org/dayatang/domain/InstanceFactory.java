@@ -20,10 +20,26 @@ import org.dayatang.IocInstanceNotFoundException;
  */
 public class InstanceFactory {
 
+    //实例提供者，代表真正的IoC容器
     private static InstanceProvider instanceProvider;
+
+    //缺省实例提供者，当没有设置实例提供者时使用。
+    private static InstanceProvider defaultInstanceProvider = new Jdk6InstanceProvider();
 
     private InstanceFactory() {
         super();
+    }
+
+    /**
+     * 获取实例提供者。
+     *
+     * @return 实体提供者的一个实现类。
+     */
+    private static InstanceProvider getInstanceProvider() {
+        if (instanceProvider != null) {
+            return instanceProvider;
+        }
+        return defaultInstanceProvider;
     }
 
     /**
@@ -45,20 +61,19 @@ public class InstanceFactory {
     @SuppressWarnings("unchecked")
     public static <T> T getInstance(Class<T> beanClass) {
         T result = null;
-        result = (T) instances.get(beanClass.getName());
-        if (result != null) {
-            return result;
-        }
-        checkInstanceProviderExists();
         try {
             result = getInstanceProvider().getInstance(beanClass);
         } catch (Exception e) {
             throw new IocException("IoC container exception!", e);
         }
-        if (result == null) {
-            throw new IocInstanceNotFoundException("There's not bean of type '" + beanClass + "' exists in IoC container!");
+        if (result != null) {
+            return result;
         }
-        return result;
+        result = (T) instances.get(beanClass);
+        if (result != null) {
+            return result;
+        }
+        throw new IocInstanceNotFoundException("There's not bean of type '" + beanClass + "' exists in IoC container!");
     }
 
     /**
@@ -71,42 +86,27 @@ public class InstanceFactory {
      */
     @SuppressWarnings("unchecked")
     public static <T> T getInstance(Class<T> beanClass, String beanName) {
-        T result = (T) instances.get(toName(beanClass.getName(), beanName));
-        if (result != null) {
-            return result;
-        }
-        checkInstanceProviderExists();
+        T result = null;
         try {
             result = getInstanceProvider().getInstance(beanClass, beanName);
         } catch (Exception e) {
             throw new IocException("IoC container exception!", e);
         }
-        if (result == null) {
-            throw new IocInstanceNotFoundException("There's not bean '" + beanName + "' of type '" + beanClass + "' exists in IoC container!");
+        if (result != null) {
+            return result;
         }
-        return result;
-    }
-
-    /**
-     * 获取实例提供者。
-     *
-     * @return 实体提供者的一个实现类。
-     */
-    private static InstanceProvider getInstanceProvider() {
-        return instanceProvider;
-    }
-
-    private static void checkInstanceProviderExists() {
-        if (instanceProvider == null) {
-            throw new InstanceProviderNotFoundException("No IoC instance provider exists!");
+        result = (T) instances.get(toName(beanClass.getName(), beanName));
+        if (result != null) {
+            return result;
         }
+        throw new IocInstanceNotFoundException("There's not bean '" + beanName + "' of type '" + beanClass + "' exists in IoC container!");
     }
 
     /**
      * 以下部分仅用于提供代码测试功能，产品代码不要用
      */
 
-    private static Map<String, Object> instances = new HashMap<String, Object>();
+    private static Map<Object, Object> instances = new HashMap<Object, Object>();
 
     /**
      * 将服务绑定到具体实例
@@ -115,7 +115,7 @@ public class InstanceFactory {
      * @param serviceImplementation
      */
     public static <T> void bind(Class<T> serviceInterface, T serviceImplementation) {
-        instances.put(serviceInterface.getName(), serviceImplementation);
+        instances.put(serviceInterface, serviceImplementation);
     }
 
     /**

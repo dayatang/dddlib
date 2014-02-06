@@ -742,7 +742,6 @@
         <module>dddlib-ioc-tapestry</module>
         <module>dddlib-ioc-spring</module>
         <module>dddlib-ioc-guice</module>
-        <module>dddlib-ioc-jdk6</module>
         <module>dddlib-persistence-hibernate</module>
         <module>dddlib-persistence-jpa</module>
         <module>dddlib-utils</module>
