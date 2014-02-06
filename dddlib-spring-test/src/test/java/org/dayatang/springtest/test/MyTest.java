@@ -1,13 +1,13 @@
 package org.dayatang.springtest.test;
 
-import static org.junit.Assert.assertNotNull;
-
 import org.dayatang.dbunit.DataSetStrategy;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.springtest.AbstractIntegratedTestCase;
 import org.dayatang.springtest.application.MyApplication;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.Test;
+
+import static org.junit.Assert.assertNotNull;
 
 public class MyTest extends AbstractIntegratedTestCase {
 

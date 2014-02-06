@@ -1,14 +1,14 @@
 package org.dayatang.dsmonitor.datasource;
 
+import org.apache.commons.lang3.time.StopWatch;
+import org.dayatang.dsmonitor.monitor.ConnectionMonitor;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.apache.commons.lang3.time.StopWatch;
-import org.dayatang.dsmonitor.monitor.ConnectionMonitor;
 
 public class GeminiConnection extends DelegatingConnection {
 

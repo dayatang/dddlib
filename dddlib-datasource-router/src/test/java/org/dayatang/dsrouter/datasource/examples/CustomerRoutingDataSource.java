@@ -1,11 +1,11 @@
 package org.dayatang.dsrouter.datasource.examples;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 
 public class CustomerRoutingDataSource extends AbstractRoutingDataSource {
 

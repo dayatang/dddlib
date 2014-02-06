@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.Properties;
 
-import org.dayatang.mysql.jdbc.GeminiReplicationDriver;
-
 public class ReplicationDriverDemo {
 	public static void main(String[] args) throws Exception {
 		

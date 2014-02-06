@@ -1,15 +1,14 @@
 package org.dayatang.dsrouter.builder;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.sql.DataSource;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Driver;
 import java.util.Map;
 import java.util.Properties;
-
-import javax.sql.DataSource;
-
-import org.apache.commons.beanutils.BeanUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public abstract class AbstractDataSourceBuilder implements DataSourceBuilder {
 

@@ -1,10 +1,9 @@
 package org.dayatang.configuration;
 
+import javax.sql.DataSource;
 import java.io.File;
 import java.net.URL;
 import java.util.ServiceLoader;
-
-import javax.sql.DataSource;
 
 /**
  * 数据库工厂，用于隐藏配置类的具体实现

@@ -1,12 +1,10 @@
 package org.dayatang.excel;
 
-import static org.junit.Assert.*;
-
-import org.dayatang.excel.ExcelUtils;
-import org.dayatang.excel.Version;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 public class ExcelUtilsTest {
 

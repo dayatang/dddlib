@@ -1,16 +1,15 @@
 package org.dayatang.domain;
 
 
-import static org.junit.Assert.assertEquals;
+import org.apache.commons.lang3.time.DateUtils;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
 
-import org.apache.commons.lang3.time.DateUtils;
-import org.dayatang.domain.DataType;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 public class DataTypeTest {
 	

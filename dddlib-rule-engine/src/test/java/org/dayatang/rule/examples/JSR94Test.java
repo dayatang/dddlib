@@ -1,13 +1,13 @@
 package org.dayatang.rule.examples;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.*;
-
 import org.dayatang.rule.StatelessRuleService;
 import org.dayatang.rule.impl.StatelessRuleServiceJsr94;
 import org.drools.jsr94.rules.RuleServiceProviderImpl;
 import org.junit.Test;
+
+import java.util.*;
+
+import static org.junit.Assert.assertEquals;
 
 @SuppressWarnings({ "unchecked", "rawtypes" })
 public class JSR94Test {

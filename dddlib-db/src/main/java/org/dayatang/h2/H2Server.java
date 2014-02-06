@@ -1,11 +1,11 @@
 package org.dayatang.h2;
 
-import java.io.File;
-import java.sql.SQLException;
-
 import org.dayatang.utils.Slf4JLogger;
 import org.h2.tools.DeleteDbFiles;
 import org.h2.tools.Server;
+
+import java.io.File;
+import java.sql.SQLException;
 
 public class H2Server {
 	

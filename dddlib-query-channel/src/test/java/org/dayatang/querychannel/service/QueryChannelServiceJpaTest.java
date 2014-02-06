@@ -1,7 +1,5 @@
 package org.dayatang.querychannel.service;
 
-import javax.inject.Inject;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dayatang.btm.BtmUtils;
@@ -11,9 +9,6 @@ import org.dayatang.ioc.spring.factory.SpringInstanceProvider;
 import org.dayatang.querychannel.domain.MyEntity;
 import org.dayatang.querychannel.service.impl.QueryChannelServiceJpa;
 import org.dayatang.querychannel.support.Page;
-
-import static org.junit.Assert.*;
-
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -24,6 +19,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.inject.Inject;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:spring/ApplicationContext-jpa.xml")

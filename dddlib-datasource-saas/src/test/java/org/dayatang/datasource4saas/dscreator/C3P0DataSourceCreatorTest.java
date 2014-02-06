@@ -1,22 +1,19 @@
 package org.dayatang.datasource4saas.dscreator;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-
-import javax.sql.DataSource;
-
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.apache.commons.beanutils.BeanUtils;
 import org.dayatang.configuration.Configuration;
 import org.dayatang.configuration.impl.SimpleConfiguration;
 import org.dayatang.datasource4saas.Constants;
-import org.dayatang.datasource4saas.dscreator.C3P0DataSourceCreator;
-import org.dayatang.datasource4saas.dscreator.DbType;
-import org.dayatang.datasource4saas.dscreator.TenantDbMappingStrategy;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
+import javax.sql.DataSource;
+
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 
 public class C3P0DataSourceCreatorTest {

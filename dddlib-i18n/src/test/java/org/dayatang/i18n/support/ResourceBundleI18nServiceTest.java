@@ -1,13 +1,12 @@
 package org.dayatang.i18n.support;
 
-import static org.junit.Assert.assertEquals;
+import org.dayatang.i18n.LocaleContextHolder;
+import org.dayatang.i18n.NoSuchMessageException;
+import org.junit.Test;
 
 import java.util.Locale;
 
-import org.dayatang.i18n.LocaleContextHolder;
-import org.dayatang.i18n.NoSuchMessageException;
-import org.dayatang.i18n.support.I18nServiceAccessor;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 public class ResourceBundleI18nServiceTest {
 

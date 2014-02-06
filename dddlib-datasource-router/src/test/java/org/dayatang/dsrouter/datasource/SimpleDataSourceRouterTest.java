@@ -1,14 +1,5 @@
 package org.dayatang.dsrouter.datasource;
 
-import static org.junit.Assert.assertNotNull;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import javax.inject.Inject;
-import javax.sql.DataSource;
-
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.dsrouter.context.memory.ContextHolder;
 import org.dayatang.ioc.spring.factory.SpringInstanceProvider;
@@ -21,6 +12,14 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.inject.Inject;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/simpleDataSourceContext.xml")

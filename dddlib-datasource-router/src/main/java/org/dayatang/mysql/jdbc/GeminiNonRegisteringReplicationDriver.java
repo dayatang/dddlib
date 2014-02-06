@@ -1,13 +1,13 @@
 package org.dayatang.mysql.jdbc;
 
+import com.mysql.jdbc.NonRegisteringDriver;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
 import java.util.Properties;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
-
-import com.mysql.jdbc.NonRegisteringDriver;
 
 public class GeminiNonRegisteringReplicationDriver extends NonRegisteringDriver {
 	

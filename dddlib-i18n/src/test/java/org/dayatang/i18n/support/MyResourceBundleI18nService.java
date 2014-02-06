@@ -1,7 +1,6 @@
 package org.dayatang.i18n.support;
 
 import org.dayatang.i18n.impl.ResourceBundleI18nService;
-import org.dayatang.i18n.support.I18nServiceAccessor;
 
 public class MyResourceBundleI18nService extends ResourceBundleI18nService {
 

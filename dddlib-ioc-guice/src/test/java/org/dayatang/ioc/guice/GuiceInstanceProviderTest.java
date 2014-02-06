@@ -1,20 +1,15 @@
 package org.dayatang.ioc.guice;
 
-import static org.junit.Assert.*;
-
+import com.google.inject.*;
+import com.google.inject.name.Names;
+import org.dayatang.domain.InstanceProvider;
 import org.dayatang.test.ioc.AbstractInstanceProviderTest;
 import org.dayatang.test.ioc.MyService1;
 import org.dayatang.test.ioc.MyService2;
 import org.dayatang.test.ioc.Service;
-import org.dayatang.domain.InstanceProvider;
 import org.junit.Test;
 
-import com.google.inject.Binder;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Module;
-import com.google.inject.Scopes;
-import com.google.inject.name.Names;
+import static org.junit.Assert.assertEquals;
 
 public class GuiceInstanceProviderTest extends AbstractInstanceProviderTest {
 

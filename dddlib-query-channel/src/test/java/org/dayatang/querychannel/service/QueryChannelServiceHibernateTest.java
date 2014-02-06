@@ -1,9 +1,5 @@
 package org.dayatang.querychannel.service;
 
-import java.util.Map;
-
-import javax.inject.Inject;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dayatang.btm.BtmUtils;
@@ -13,20 +9,18 @@ import org.dayatang.ioc.spring.factory.SpringInstanceProvider;
 import org.dayatang.querychannel.domain.MyEntity;
 import org.dayatang.querychannel.service.impl.QueryChannelServiceHibernate;
 import org.dayatang.querychannel.support.Page;
-
-import static org.junit.Assert.*;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.inject.Inject;
+import java.util.Map;
+
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:spring/ApplicationContext-hibernate.xml")

@@ -1,13 +1,13 @@
 package org.dayatang.rule.time;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import org.dayatang.rule.StatelessRuleService;
 import org.dayatang.rule.impl.StatelessRuleServiceJsr94;
 import org.drools.jsr94.rules.RuleServiceProviderImpl;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class FooTest {
 

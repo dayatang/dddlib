@@ -1,7 +1,6 @@
 package org.dayatang.domain;
 
 import org.dayatang.domain.ioc.Service;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

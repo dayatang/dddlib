@@ -1,22 +1,19 @@
 package org.dayatang.configuration.impl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import java.beans.PropertyVetoException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Properties;
-
-import javax.sql.DataSource;
-
-import org.dayatang.configuration.impl.ConfigurationDbImpl;
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
+import javax.sql.DataSource;
+import java.beans.PropertyVetoException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Properties;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ConfigurationDbImplTest extends AbstractConfigurationTest {
 	

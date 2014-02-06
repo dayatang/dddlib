@@ -1,14 +1,14 @@
 package org.dayatang.domain.internal;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.domain.QueryCriterion;
 import org.dayatang.domain.QueryException;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 
 public class NotInCriterion implements QueryCriterion {

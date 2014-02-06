@@ -1,9 +1,9 @@
 package org.dayatang.domain.internal;
 
-import java.util.Collection;
-
 import org.dayatang.domain.Criterions;
 import org.dayatang.domain.QueryCriterion;
+
+import java.util.Collection;
 
 
 /**

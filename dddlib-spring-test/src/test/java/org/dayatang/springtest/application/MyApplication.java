@@ -1,8 +1,8 @@
 package org.dayatang.springtest.application;
 
-import java.util.List;
-
 import org.dayatang.springtest.domain.MyEntity;
+
+import java.util.List;
 
 public interface MyApplication {
 

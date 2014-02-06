@@ -3,13 +3,12 @@
  */
 package org.dayatang.domain;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.persistence.MappedSuperclass;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+
+import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * 抽象实体类，可作为所有遗留系统领域实体的基类。

@@ -1,18 +1,17 @@
 package org.dayatang.dsrouter.datasource.examples.test;
 
-import static org.junit.Assert.*;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.List;
-
-import javax.sql.DataSource;
-
 import org.dayatang.dsrouter.datasource.examples.CustomerContextHolder;
 import org.dayatang.dsrouter.datasource.examples.CustomerType;
 import org.dayatang.dsrouter.datasource.examples.Item;
 import org.dayatang.dsrouter.datasource.examples.TestTable;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class Examples2Test extends AbstractJUnit4SpringContextTests {
 

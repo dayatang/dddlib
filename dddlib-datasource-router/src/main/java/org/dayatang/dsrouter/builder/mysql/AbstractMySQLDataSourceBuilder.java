@@ -1,11 +1,11 @@
 package org.dayatang.dsrouter.builder.mysql;
 
-import java.sql.Driver;
-
 import org.dayatang.dsrouter.builder.AbstractDataSourceBuilder;
 import org.dayatang.mysql.jdbc.GeminiReplicationDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.sql.Driver;
 
 public abstract class AbstractMySQLDataSourceBuilder extends
 		AbstractDataSourceBuilder {

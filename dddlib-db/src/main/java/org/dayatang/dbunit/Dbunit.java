@@ -1,7 +1,6 @@
 package org.dayatang.dbunit;
 
-import java.io.InputStreamReader;
-
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.dayatang.db.PropertiesUtil;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.dataset.CachedDataSet;
@@ -16,7 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
+import java.io.InputStreamReader;
 
 /**
  * @author chencao

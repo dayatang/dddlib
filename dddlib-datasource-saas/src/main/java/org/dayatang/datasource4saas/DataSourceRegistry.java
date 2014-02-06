@@ -1,9 +1,8 @@
 package org.dayatang.datasource4saas;
 
+import javax.sql.DataSource;
 import java.util.Date;
 import java.util.Map;
-
-import javax.sql.DataSource;
 
 /**
  * 租户数据源注册表，为每个租户注册专用的数据源

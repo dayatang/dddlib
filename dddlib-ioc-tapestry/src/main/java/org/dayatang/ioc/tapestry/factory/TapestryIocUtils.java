@@ -2,7 +2,6 @@ package org.dayatang.ioc.tapestry.factory;
 
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.domain.InstanceProvider;
-import org.dayatang.ioc.tapestry.factory.TapestryInstanceProvider;
 
 public class TapestryIocUtils {
 

@@ -1,11 +1,10 @@
 package org.dayatang.dbunit;
 
-import java.sql.SQLException;
-
-import javax.sql.DataSource;
-
 import org.dbunit.database.DatabaseConnection;
 import org.dbunit.database.IDatabaseConnection;
+
+import javax.sql.DataSource;
+import java.sql.SQLException;
 
 /**
  * DBUnit模板类。用于创建数据连接、将数据连接传递给DbUnitCallback使用和关闭数据连接。 

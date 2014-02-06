@@ -1,14 +1,12 @@
 package org.dayatang.datasource4saas.dscreator;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-
 import org.dayatang.configuration.Configuration;
 import org.dayatang.configuration.impl.SimpleConfiguration;
-import org.dayatang.datasource4saas.dscreator.DbInfo;
-import org.dayatang.datasource4saas.dscreator.TenantDbMappingStrategy;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 public class TenantDbMappingStrategyTest {
 	

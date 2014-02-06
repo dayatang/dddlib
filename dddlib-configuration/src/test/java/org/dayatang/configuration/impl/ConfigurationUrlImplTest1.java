@@ -1,15 +1,10 @@
 package org.dayatang.configuration.impl;
 
-import static org.junit.Assert.*;
-
-import java.util.Date;
-import java.util.Hashtable;
-
-import org.dayatang.configuration.impl.ConfigurationUrlImpl;
-import org.dayatang.utils.DateUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertTrue;
 
 public class ConfigurationUrlImplTest1 extends AbstractConfigurationTest {
 	

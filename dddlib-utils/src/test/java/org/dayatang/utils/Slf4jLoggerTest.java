@@ -1,12 +1,11 @@
 package org.dayatang.utils;
 
-import static org.mockito.Mockito.*;
-
-import org.dayatang.utils.Slf4JLogger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
+
+import static org.mockito.Mockito.*;
 
 public class Slf4jLoggerTest {
 

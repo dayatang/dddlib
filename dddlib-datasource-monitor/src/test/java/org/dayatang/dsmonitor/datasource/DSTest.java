@@ -1,13 +1,14 @@
 package org.dayatang.dsmonitor.datasource;
 
-import javax.inject.Inject;
-import javax.inject.Named;
 import org.dayatang.dsmonitor.dao.Dao;
 import org.dayatang.dsmonitor.monitor.GeminiConnectionLogTimeoutMonitor;
 import org.dayatang.springtest.AbstractSpringIntegrationTest;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 public class DSTest extends AbstractSpringIntegrationTest {
 

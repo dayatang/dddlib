@@ -1,13 +1,13 @@
 package org.dayatang.observer.domain;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.dayatang.observer.Observer;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-import org.dayatang.observer.Observer;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

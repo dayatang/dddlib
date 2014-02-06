@@ -1,21 +1,19 @@
 package org.dayatang.datasource4saas.dscreator;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-
-import javax.sql.DataSource;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.dayatang.configuration.Configuration;
 import org.dayatang.configuration.impl.SimpleConfiguration;
 import org.dayatang.datasource4saas.Constants;
-import org.dayatang.datasource4saas.dscreator.DbType;
-import org.dayatang.datasource4saas.dscreator.ProxoolDataSourceCreator;
-import org.dayatang.datasource4saas.dscreator.TenantDbMappingStrategy;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.logicalcobwebs.proxool.ProxoolDataSource;
+
+import javax.sql.DataSource;
+
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 
 public class ProxoolDataSourceCreatorTest {

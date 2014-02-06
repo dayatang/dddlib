@@ -1,12 +1,12 @@
 package org.dayatang.dbunit;
 
-import javax.sql.DataSource;
-
 import org.dbunit.DataSourceDatabaseTester;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.datatype.DefaultDataTypeFactory;
 import org.dbunit.ext.oracle.OracleDataTypeFactory;
+
+import javax.sql.DataSource;
 
 public class OracleDataSourceDatabaseTester extends DataSourceDatabaseTester {
 

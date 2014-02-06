@@ -1,19 +1,18 @@
 package org.dayatang.dsrouter.datasource;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.SQLFeatureNotSupportedException;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.sql.DataSource;
-
 import org.apache.commons.lang.StringUtils;
 import org.dayatang.dsrouter.builder.DataSourceBuilder;
 import org.dayatang.dsrouter.builder.mysql.C3P0MySQLDataSourceBuilder;
 import org.dayatang.dsrouter.context.DataSourceContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.SQLFeatureNotSupportedException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DynamicRoutingDataSource extends AbstractDataSource {
 

@@ -1,12 +1,11 @@
 package org.dayatang.db.mysql;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.dayatang.db.DBManager;
-import org.dayatang.db.mysql.MySQLDBManager;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MySQLDBManagerTest {
 	

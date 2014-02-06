@@ -3,10 +3,10 @@
  */
 package org.dayatang.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Collection;
 import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author chencao

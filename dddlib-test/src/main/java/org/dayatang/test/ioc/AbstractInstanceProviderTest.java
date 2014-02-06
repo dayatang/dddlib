@@ -1,10 +1,10 @@
 package org.dayatang.test.ioc;
 
-import static org.junit.Assert.*;
-
 import org.dayatang.domain.InstanceProvider;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * 公共的InstanceProvider测试

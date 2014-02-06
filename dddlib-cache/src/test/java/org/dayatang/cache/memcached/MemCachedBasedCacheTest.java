@@ -1,16 +1,13 @@
 package org.dayatang.cache.memcached;
 
-import java.util.Date;
-
-import static org.junit.Assert.*;
-
 import org.dayatang.cache.Cache;
-import org.dayatang.domain.InstanceFactory;
 import org.dayatang.springtest.AbstractSpringIntegrationTest;
-import org.junit.Before;
 import org.junit.Test;
 
 import javax.inject.Inject;
+import java.util.Date;
+
+import static org.junit.Assert.*;
 
 public class MemCachedBasedCacheTest extends AbstractSpringIntegrationTest {
 

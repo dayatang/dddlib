@@ -1,13 +1,12 @@
 package org.dayatang.ioc.guice;
 
 
-import org.dayatang.domain.InstanceProvider;
-
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Key;
 import com.google.inject.Module;
 import com.google.inject.name.Names;
+import org.dayatang.domain.InstanceProvider;
 
 /**
  * 实例提供者接口的Google Guice实现。

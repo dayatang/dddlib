@@ -1,15 +1,13 @@
 package org.dayatang.persistence.hibernate.internal;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.apache.commons.lang3.StringUtils;
-import org.dayatang.domain.*;
+import org.dayatang.domain.CriteriaQuery;
+import org.dayatang.domain.Entity;
+import org.dayatang.domain.OrderSetting;
+import org.dayatang.domain.QueryCriterion;
 import org.dayatang.domain.internal.*;
+
+import java.util.*;
 
 public class QueryTranslator {
 

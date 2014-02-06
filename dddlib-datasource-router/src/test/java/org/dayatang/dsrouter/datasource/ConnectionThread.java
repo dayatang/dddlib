@@ -1,11 +1,10 @@
 package org.dayatang.dsrouter.datasource;
 
-import java.sql.Connection;
-
-import javax.sql.DataSource;
-
 import org.dayatang.dsrouter.context.memory.ContextHolder;
 import org.springframework.context.ApplicationContext;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
 
 public class ConnectionThread implements Runnable {
 

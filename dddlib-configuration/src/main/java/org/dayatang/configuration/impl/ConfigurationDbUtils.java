@@ -1,16 +1,15 @@
 package org.dayatang.configuration.impl;
 
+import org.dayatang.configuration.ConfigurationException;
+import org.dayatang.utils.Slf4JLogger;
+
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Hashtable;
 import java.util.Set;
-
-import javax.sql.DataSource;
-
-import org.dayatang.configuration.ConfigurationException;
-import org.dayatang.utils.Slf4JLogger;
 
 public class ConfigurationDbUtils {
 	

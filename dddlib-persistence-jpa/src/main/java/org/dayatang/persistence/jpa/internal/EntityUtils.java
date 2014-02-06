@@ -1,5 +1,7 @@
 package org.dayatang.persistence.jpa.internal;
 
+import org.apache.commons.beanutils.PropertyUtilsBean;
+
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
@@ -9,8 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.beanutils.PropertyUtilsBean;
 
 /**
  * 实体工具类。用来获取实体的属性集，属性类型、属性值等，并对属性值在真实类型和字符串形式之间进行双向转换。

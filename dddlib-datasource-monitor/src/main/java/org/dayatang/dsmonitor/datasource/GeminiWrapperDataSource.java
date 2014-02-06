@@ -1,13 +1,12 @@
 package org.dayatang.dsmonitor.datasource;
 
+import org.dayatang.dsmonitor.monitor.ConnectionMonitor;
+
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.sql.DataSource;
-
-import org.dayatang.dsmonitor.monitor.ConnectionMonitor;
 
 public class GeminiWrapperDataSource extends DelegatingDataSource {
 

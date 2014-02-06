@@ -1,12 +1,5 @@
 package org.dayatang.observer.domain;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.dayatang.domain.AbstractEntity;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.observer.HibernateUtils;
@@ -14,11 +7,14 @@ import org.dayatang.persistence.hibernate.EntityRepositoryHibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ObserverTest {
 

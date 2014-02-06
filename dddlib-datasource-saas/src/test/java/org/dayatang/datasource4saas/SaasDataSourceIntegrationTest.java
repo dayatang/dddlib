@@ -1,13 +1,5 @@
 package org.dayatang.datasource4saas;
 
-import static org.junit.Assert.*;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import org.dayatang.datasource4saas.SaasDataSource;
 import org.dayatang.datasource4saas.springconf.SpringConfiguration;
 import org.dayatang.datasource4saas.tenantservice.ThreadLocalTenantHolder;
 import org.dayatang.domain.InstanceFactory;
@@ -15,6 +7,13 @@ import org.dayatang.ioc.spring.factory.SpringIocUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import static org.junit.Assert.assertEquals;
 
 public class SaasDataSourceIntegrationTest {
 	

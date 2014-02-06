@@ -1,11 +1,11 @@
 package org.dayatang.dsrouter.datasource.examples;
 
+import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
-import org.springframework.jdbc.core.support.JdbcDaoSupport;
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 
 public class TestTable extends JdbcDaoSupport {
 	public List<Item> getItems() {

@@ -1,14 +1,13 @@
 package org.dayatang.dsrouter.builder.mysql;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
-import javax.sql.DataSource;
-
 import org.logicalcobwebs.proxool.ProxoolDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.sql.DataSource;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * 本版本，暂不支持Proxool实现

@@ -1,12 +1,11 @@
 package org.dayatang.dsrouter.datasource;
 
-import java.io.PrintWriter;
-import java.sql.SQLException;
-
-import javax.sql.DataSource;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import javax.sql.DataSource;
+import java.io.PrintWriter;
+import java.sql.SQLException;
 
 /**
  * 来自spring

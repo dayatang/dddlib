@@ -1,13 +1,13 @@
 package org.dayatang.configuration.impl;
 
-import static org.junit.Assert.*;
-
-import java.io.File;
-
-import org.dayatang.configuration.impl.ConfigurationFileImpl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.File;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ConfigurationFileImplTest extends AbstractConfigurationTest {
 	

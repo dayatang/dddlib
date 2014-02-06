@@ -1,23 +1,17 @@
 package org.dayatang.configuration.impl;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStreamWriter;
-import java.net.URL;
-import java.util.Date;
-import java.util.Hashtable;
-import java.util.Map;
-import java.util.Properties;
-
 import org.apache.commons.lang3.StringUtils;
 import org.dayatang.configuration.ConfigurationException;
 import org.dayatang.configuration.WritableConfiguration;
 import org.dayatang.utils.Assert;
 import org.dayatang.utils.Slf4JLogger;
+
+import java.io.*;
+import java.net.URL;
+import java.util.Date;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * <P>ConfigurationFileImpl为读取/回写配置文件的工具类，一个实例大概对应了一个物理配置文件，可以使用

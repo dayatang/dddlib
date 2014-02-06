@@ -3,21 +3,16 @@
  */
 package org.dayatang.persistence.jpa;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
+import org.dayatang.domain.CriteriaQuery;
+import org.dayatang.domain.Criterions;
 import org.dayatang.test.domain.Dictionary;
 import org.dayatang.test.domain.DictionaryCategory;
-import org.dayatang.domain.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.*;
+
+import static org.junit.Assert.*;
 
 /**
  *

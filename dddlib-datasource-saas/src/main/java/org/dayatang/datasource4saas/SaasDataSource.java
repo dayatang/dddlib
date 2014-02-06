@@ -1,14 +1,13 @@
 package org.dayatang.datasource4saas;
 
+import org.dayatang.utils.Assert;
+
+import javax.sql.DataSource;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
 import java.util.logging.Logger;
-
-import javax.sql.DataSource;
-
-import org.dayatang.utils.Assert;
 
 /**
  * 用于SaaS的数据源实现。是本项目的中心类。它作为代理，自动为不同的租户分配不同的实际数据源。

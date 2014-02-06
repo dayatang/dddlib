@@ -1,15 +1,12 @@
 package org.dayatang.domain;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-
-import org.dayatang.domain.AbstractEntity;
-import org.dayatang.domain.Entity;
-import org.dayatang.domain.InstanceFactory;
-import org.dayatang.domain.InstanceProvider;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.stub;
 
 public class InstanceFactoryTest {
 

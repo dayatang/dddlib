@@ -1,12 +1,11 @@
 package org.dayatang.btm;
 
-import java.net.URISyntaxException;
-import java.net.URL;
+import bitronix.tm.TransactionManagerServices;
 
 import javax.transaction.TransactionManager;
 import javax.transaction.UserTransaction;
-
-import bitronix.tm.TransactionManagerServices;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 /**
  * 通过开源JTA实现库BTM创建数据源并绑定到JNDI.

@@ -1,8 +1,7 @@
 package org.dayatang.ioc.guice;
 
-import org.dayatang.domain.InstanceFactory;
-
 import com.google.inject.Module;
+import org.dayatang.domain.InstanceFactory;
 
 public class GuiceIocUtils {
 

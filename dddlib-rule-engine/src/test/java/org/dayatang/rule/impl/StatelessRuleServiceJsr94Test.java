@@ -1,13 +1,9 @@
 package org.dayatang.rule.impl;
 
-import org.dayatang.rule.StatelessRuleService;
 import org.dayatang.rule.examples.Person;
-import org.dayatang.rule.impl.StatelessRuleServiceJsr94;
 import org.drools.jsr94.rules.RuleServiceProviderImpl;
 import org.junit.Before;
 import org.junit.Test;
-
-import javax.rules.StatelessRuleSession;
 
 import java.util.*;
 

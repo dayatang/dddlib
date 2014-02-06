@@ -1,11 +1,11 @@
 package org.dayatang.datasource4saas.dsregistry;
 
-import static org.mockito.Mockito.*;
+import org.dayatang.datasource4saas.DataSourceRegistry;
 
 import javax.naming.Context;
 
-import org.dayatang.datasource4saas.DataSourceRegistry;
-import org.dayatang.datasource4saas.dsregistry.JndiMappingDataSourceRegistry;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class JndiMappingDataSourceRegistryTest extends AbstractDataSourceRegistryTest {
 	

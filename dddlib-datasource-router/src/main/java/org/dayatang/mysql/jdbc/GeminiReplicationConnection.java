@@ -1,15 +1,14 @@
 package org.dayatang.mysql.jdbc;
 
-import java.sql.SQLException;
-import java.util.Properties;
-import java.util.concurrent.Executor;
-
+import com.mysql.jdbc.NonRegisteringDriver;
+import com.mysql.jdbc.ReplicationConnection;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mysql.jdbc.NonRegisteringDriver;
-import com.mysql.jdbc.ReplicationConnection;
+import java.sql.SQLException;
+import java.util.Properties;
+import java.util.concurrent.Executor;
 
 public class GeminiReplicationConnection extends ReplicationConnection {
 

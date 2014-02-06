@@ -1,10 +1,10 @@
 package org.dayatang.dsrouter.context.memory;
 
+import org.dayatang.dsrouter.context.GlobalLoginDataSourceContext;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-
-import org.dayatang.dsrouter.context.GlobalLoginDataSourceContext;
 
 public class InMemoryDataSourceContext extends GlobalLoginDataSourceContext {
 

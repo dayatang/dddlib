@@ -1,12 +1,12 @@
 package org.dayatang.persistence.hibernate;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import org.dayatang.test.domain.Dictionary;
 import org.dayatang.test.domain.DictionaryCategory;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class TheAbstractEntityTest extends AbstractIntegrationTest {
 

@@ -1,11 +1,11 @@
 package org.dayatang.configuration.impl;
 
+import org.dayatang.configuration.ConfigurationException;
+
 import java.io.UnsupportedEncodingException;
 import java.util.Hashtable;
 import java.util.Map.Entry;
 import java.util.Properties;
-
-import org.dayatang.configuration.ConfigurationException;
 
 /**
  * 解决Java Properties文件的编码问题，避免iso8859-1到utf8的相互转义

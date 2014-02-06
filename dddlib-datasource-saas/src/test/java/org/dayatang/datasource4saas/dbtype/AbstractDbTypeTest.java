@@ -1,12 +1,12 @@
 package org.dayatang.datasource4saas.dbtype;
 
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
-
 import org.dayatang.datasource4saas.dscreator.DbInfo;
 import org.dayatang.datasource4saas.dscreator.DbType;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 public abstract class AbstractDbTypeTest {
 	

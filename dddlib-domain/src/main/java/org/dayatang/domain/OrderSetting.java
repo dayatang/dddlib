@@ -1,10 +1,10 @@
 package org.dayatang.domain;
 
-import java.security.InvalidParameterException;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import java.security.InvalidParameterException;
 
 public class OrderSetting {
 

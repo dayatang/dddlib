@@ -1,11 +1,10 @@
 package org.dayatang.springtest.application.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.dayatang.domain.InstanceFactory;
 import org.dayatang.springtest.application.MyApplication;
 import org.dayatang.springtest.domain.MyEntity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyApplicationImpl implements MyApplication {
 

@@ -1,12 +1,11 @@
 package org.dayatang.db.oracle;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.dayatang.db.DBManager;
-import org.dayatang.db.oracle.OracleDBManager;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class OracleDBManagerTest {

@@ -1,16 +1,6 @@
 package org.dayatang.dbunit;
 
-import java.beans.PropertyVetoException;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.util.Properties;
-
-import javax.sql.DataSource;
-
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.dayatang.JdbcConstants;
 import org.dayatang.utils.PropertiesReader;
 import org.dbunit.database.DatabaseSequenceFilter;
@@ -27,7 +17,10 @@ import org.dbunit.dataset.xml.FlatXmlProducer;
 import org.dbunit.operation.DatabaseOperation;
 import org.xml.sax.InputSource;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
+import javax.sql.DataSource;
+import java.beans.PropertyVetoException;
+import java.io.*;
+import java.util.Properties;
 
 
 /**

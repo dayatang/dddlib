@@ -1,9 +1,8 @@
 package org.dayatang.dsrouter.builder;
 
+import javax.sql.DataSource;
 import java.io.Serializable;
 import java.util.Properties;
-
-import javax.sql.DataSource;
 
 public interface DataSourceBuilder extends Serializable {
 

@@ -1,10 +1,5 @@
 package org.dayatang.querychannel.service.impl;
 
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.dayatang.IocInstanceNotFoundException;
 import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.domain.Entity;
@@ -15,6 +10,11 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @SuppressWarnings("unchecked")
 public class QueryChannelServiceHibernate implements QueryChannelService {

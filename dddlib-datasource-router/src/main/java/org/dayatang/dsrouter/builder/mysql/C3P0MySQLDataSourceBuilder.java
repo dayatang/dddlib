@@ -1,15 +1,13 @@
 package org.dayatang.dsrouter.builder.mysql;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
-import javax.sql.DataSource;
-
+import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
+import javax.sql.DataSource;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class C3P0MySQLDataSourceBuilder extends AbstractMySQLDataSourceBuilder {
 

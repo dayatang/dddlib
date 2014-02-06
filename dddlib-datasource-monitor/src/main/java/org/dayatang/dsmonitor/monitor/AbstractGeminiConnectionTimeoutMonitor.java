@@ -1,15 +1,15 @@
 package org.dayatang.dsmonitor.monitor;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.dayatang.dsmonitor.datasource.GeminiConnection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.apache.commons.lang3.time.DateFormatUtils;
-import org.dayatang.dsmonitor.datasource.GeminiConnection;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public abstract class AbstractGeminiConnectionTimeoutMonitor implements ConnectionMonitor {
 

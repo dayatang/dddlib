@@ -1,11 +1,12 @@
 package org.dayatang.utils;
 
-import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.*;
 
-import org.dayatang.utils.CollectionUtils;
-import org.junit.*;
+import static org.junit.Assert.*;
 
 public class CollectionUtilsTest {
 

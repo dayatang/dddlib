@@ -1,19 +1,18 @@
 package org.dayatang.datasource4saas.dsregistry;
 
-import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
+import org.dayatang.datasource4saas.DataSourceRegistry;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
+import javax.sql.DataSource;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import javax.sql.DataSource;
-
-import org.dayatang.datasource4saas.DataSourceRegistry;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
 public abstract class AbstractDataSourceRegistryTest {
 	

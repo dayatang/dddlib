@@ -1,11 +1,11 @@
 package org.dayatang.datasource4saas.dbtype;
 
-import static org.junit.Assert.*;
-
 import org.dayatang.datasource4saas.dscreator.DbType;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class DbTypeDb2Test extends AbstractDbTypeTest {
 	

@@ -16,10 +16,11 @@
 
 package org.dayatang.domain;
 
-import java.util.Collections;
-import java.util.Map;
-import java.util.HashMap;
 import org.dayatang.utils.Assert;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 命名参数形式的查询参数集合

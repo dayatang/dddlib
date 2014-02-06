@@ -1,11 +1,11 @@
 package org.dayatang.i18n.support;
 
-import java.io.Serializable;
-import java.util.Locale;
-
 import org.dayatang.i18n.I18nService;
 import org.dayatang.i18n.LocaleContextHolder;
 import org.dayatang.i18n.NoSuchMessageException;
+
+import java.io.Serializable;
+import java.util.Locale;
 
 public class I18nServiceAccessor implements Serializable {
 

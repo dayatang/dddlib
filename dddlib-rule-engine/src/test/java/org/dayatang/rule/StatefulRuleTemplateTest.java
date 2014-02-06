@@ -1,18 +1,15 @@
 package org.dayatang.rule;
 
-import static org.junit.Assert.*;
-
-import java.io.InputStream;
-
-import javax.rules.StatefulRuleSession;
-
-import org.dayatang.rule.StatefulRuleCallback;
-import org.dayatang.rule.StatefulRuleTemplate;
 import org.dayatang.rule.examples.Person;
 import org.drools.jsr94.rules.RuleServiceProviderImpl;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.rules.StatefulRuleSession;
+import java.io.InputStream;
+
+import static org.junit.Assert.assertEquals;
 
 public class StatefulRuleTemplateTest {
 	

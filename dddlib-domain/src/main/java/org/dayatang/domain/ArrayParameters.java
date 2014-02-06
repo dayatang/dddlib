@@ -16,10 +16,11 @@
 
 package org.dayatang.domain;
 
-import java.util.Arrays;
-import java.util.List;
 import org.apache.commons.lang3.ArrayUtils;
 import org.dayatang.utils.Assert;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * 定位参数形式的查询参数集合

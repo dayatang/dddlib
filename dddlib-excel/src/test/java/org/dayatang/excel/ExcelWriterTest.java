@@ -1,6 +1,8 @@
 package org.dayatang.excel;
 
-import static org.junit.Assert.*;
+import org.apache.commons.lang3.time.DateUtils;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.File;
 import java.text.ParseException;
@@ -9,13 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang3.time.DateUtils;
-import org.dayatang.excel.ExcelCell;
-import org.dayatang.excel.ExcelHandler;
-import org.dayatang.excel.ExcelRange;
-import org.dayatang.excel.ExcelRangeData;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class ExcelWriterTest {
 

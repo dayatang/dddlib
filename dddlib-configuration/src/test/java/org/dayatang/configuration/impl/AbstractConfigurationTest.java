@@ -1,13 +1,13 @@
 package org.dayatang.configuration.impl;
 
-import static org.junit.Assert.*;
+import org.dayatang.configuration.Configuration;
+import org.dayatang.utils.DateUtils;
+import org.junit.Test;
 
 import java.util.Date;
 import java.util.Properties;
 
-import org.dayatang.configuration.Configuration;
-import org.dayatang.utils.DateUtils;
-import org.junit.Test;
+import static org.junit.Assert.*;
 
 public abstract class AbstractConfigurationTest {
 

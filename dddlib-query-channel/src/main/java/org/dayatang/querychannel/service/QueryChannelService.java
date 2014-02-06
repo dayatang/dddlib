@@ -1,12 +1,12 @@
 package org.dayatang.querychannel.service;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
-
 import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.domain.Entity;
 import org.dayatang.querychannel.support.Page;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 public interface QueryChannelService extends Serializable {
 

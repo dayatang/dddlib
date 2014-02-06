@@ -1,8 +1,10 @@
 package org.dayatang.persistence.jpa;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
+import org.dayatang.IocInstanceNotFoundException;
+import org.dayatang.domain.*;
+import org.dayatang.persistence.jpa.internal.JpaCriteriaQueryBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -10,21 +12,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
-import org.dayatang.IocInstanceNotFoundException;
-import org.dayatang.domain.ArrayParameters;
-import org.dayatang.domain.EntityRepository;
-import org.dayatang.domain.Entity;
-import org.dayatang.domain.CriteriaQuery;
-import org.dayatang.domain.ExampleSettings;
-import org.dayatang.domain.InstanceFactory;
-import org.dayatang.domain.JpqlQuery;
-import org.dayatang.domain.MapParameters;
-import org.dayatang.domain.NamedQuery;
-import org.dayatang.domain.QueryParameters;
-import org.dayatang.persistence.jpa.internal.JpaCriteriaQueryBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 通用仓储接口的JPA实现。

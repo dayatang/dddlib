@@ -1,19 +1,18 @@
 package org.dayatang.persistence.jpa;
 
+import org.dayatang.btm.BtmUtils;
+import org.dayatang.domain.AbstractEntity;
+import org.dayatang.domain.InstanceFactory;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.transaction.SystemException;
-
-import org.dayatang.btm.BtmUtils;
-import org.dayatang.domain.AbstractEntity;
-import org.dayatang.domain.InstanceFactory;
-import org.dayatang.persistence.jpa.EntityRepositoryJpa;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 
 public class AbstractIntegrationTest {
 

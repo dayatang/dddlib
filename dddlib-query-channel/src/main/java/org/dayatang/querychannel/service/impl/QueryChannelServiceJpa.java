@@ -1,9 +1,10 @@
 package org.dayatang.querychannel.service.impl;
 
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import org.dayatang.domain.CriteriaQuery;
+import org.dayatang.domain.Entity;
+import org.dayatang.domain.InstanceFactory;
+import org.dayatang.querychannel.service.QueryChannelService;
+import org.dayatang.querychannel.support.Page;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -11,12 +12,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
-import org.dayatang.domain.CriteriaQuery;
-import org.dayatang.domain.Entity;
-import org.dayatang.domain.InstanceFactory;
-import org.dayatang.querychannel.service.QueryChannelService;
-import org.dayatang.querychannel.support.Page;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @SuppressWarnings("unchecked")
 @Named("dddlib_querychannel_service_jpa")

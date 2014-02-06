@@ -1,17 +1,16 @@
 package org.dayatang.persistence.hibernate;
 
-import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
-
 import org.dayatang.btm.BtmUtils;
 import org.dayatang.domain.AbstractEntity;
 import org.dayatang.domain.InstanceFactory;
-import org.dayatang.persistence.hibernate.EntityRepositoryHibernate;
 import org.hibernate.SessionFactory;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 
 public class AbstractIntegrationTest {
 

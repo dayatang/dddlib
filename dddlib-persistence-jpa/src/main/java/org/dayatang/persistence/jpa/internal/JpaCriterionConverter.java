@@ -1,43 +1,13 @@
 package org.dayatang.persistence.jpa.internal;
 
-import java.util.Collection;
+import org.dayatang.domain.QueryCriterion;
+import org.dayatang.domain.internal.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
-import org.dayatang.domain.QueryCriterion;
-import org.dayatang.domain.internal.AndCriterion;
-import org.dayatang.domain.internal.BetweenCriterion;
-import org.dayatang.domain.internal.ContainsTextCriterion;
-import org.dayatang.domain.internal.EqCriterion;
-import org.dayatang.domain.internal.EqPropCriterion;
-import org.dayatang.domain.internal.GeCriterion;
-import org.dayatang.domain.internal.GePropCriterion;
-import org.dayatang.domain.internal.GtCriterion;
-import org.dayatang.domain.internal.GtPropCriterion;
-import org.dayatang.domain.internal.InCriterion;
-import org.dayatang.domain.internal.IsEmptyCriterion;
-import org.dayatang.domain.internal.IsNullCriterion;
-import org.dayatang.domain.internal.LeCriterion;
-import org.dayatang.domain.internal.LePropCriterion;
-import org.dayatang.domain.internal.LtCriterion;
-import org.dayatang.domain.internal.LtPropCriterion;
-import org.dayatang.domain.internal.NotCriterion;
-import org.dayatang.domain.internal.NotEmptyCriterion;
-import org.dayatang.domain.internal.NotEqCriterion;
-import org.dayatang.domain.internal.NotEqPropCriterion;
-import org.dayatang.domain.internal.NotInCriterion;
-import org.dayatang.domain.internal.NotNullCriterion;
-import org.dayatang.domain.internal.OrCriterion;
-import org.dayatang.domain.internal.SizeEqCriterion;
-import org.dayatang.domain.internal.SizeGeCriterion;
-import org.dayatang.domain.internal.SizeGtCriterion;
-import org.dayatang.domain.internal.SizeLeCriterion;
-import org.dayatang.domain.internal.SizeLtCriterion;
-import org.dayatang.domain.internal.SizeNotEqCriterion;
-import org.dayatang.domain.internal.StartsWithTextCriterion;
+import java.util.Collection;
 
 /**
  * 一个工具类,用于将QueryCriterion转换成Hibernate的Criterion

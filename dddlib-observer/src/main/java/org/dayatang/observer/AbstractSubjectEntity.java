@@ -1,10 +1,9 @@
 package org.dayatang.observer;
 
-import java.util.List;
+import org.dayatang.domain.AbstractEntity;
 
 import javax.persistence.MappedSuperclass;
-
-import org.dayatang.domain.AbstractEntity;
+import java.util.List;
 
 @SuppressWarnings("unchecked")
 @MappedSuperclass

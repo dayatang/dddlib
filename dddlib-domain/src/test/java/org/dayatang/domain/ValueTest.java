@@ -1,19 +1,14 @@
 package org.dayatang.domain;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import org.apache.commons.lang3.time.DateUtils;
+import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.apache.commons.lang3.time.DateUtils;
-import org.dayatang.domain.DataType;
-import org.dayatang.domain.Value;
-import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class ValueTest {
 	

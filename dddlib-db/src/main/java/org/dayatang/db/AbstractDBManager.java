@@ -1,9 +1,9 @@
 package org.dayatang.db;
 
-import java.sql.Driver;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.sql.Driver;
 
 /**
  * 此抽象类适用于所有数据库连接信息从classpath下的jdbc.properties文件中读取

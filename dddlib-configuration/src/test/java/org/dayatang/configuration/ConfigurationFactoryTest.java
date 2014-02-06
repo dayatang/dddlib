@@ -1,15 +1,5 @@
 package org.dayatang.configuration;
 
-import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
-
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import javax.sql.DataSource;
-
-import org.dayatang.configuration.ConfigurationFactory;
 import org.dayatang.configuration.impl.ConfigurationDbImpl;
 import org.dayatang.configuration.impl.ConfigurationFileImpl;
 import org.dayatang.configuration.impl.ConfigurationUrlImpl;
@@ -17,6 +7,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import javax.sql.DataSource;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 public class ConfigurationFactoryTest {
 

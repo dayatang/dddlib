@@ -1,14 +1,14 @@
 package org.dayatang.ioc.tapestry.factory;
 
-import static org.junit.Assert.assertEquals;
-
 import org.apache.tapestry5.ioc.Registry;
 import org.apache.tapestry5.ioc.RegistryBuilder;
+import org.dayatang.domain.InstanceProvider;
 import org.dayatang.test.ioc.AbstractInstanceProviderTest;
 import org.dayatang.test.ioc.Service;
-import org.dayatang.domain.InstanceProvider;
 import org.junit.After;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class TapestryInstanceProviderTest extends AbstractInstanceProviderTest {
 

@@ -1,12 +1,12 @@
 package org.dayatang.datasource4saas.dsregistry;
 
+import org.apache.commons.lang3.StringUtils;
+import org.dayatang.utils.Slf4JLogger;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
-import org.apache.commons.lang3.StringUtils;
-import org.dayatang.utils.Slf4JLogger;
 
 /**
  * 数据源注册表实现，将租户数据源映射到JNDI

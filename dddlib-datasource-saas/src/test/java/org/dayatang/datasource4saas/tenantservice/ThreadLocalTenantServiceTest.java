@@ -1,12 +1,11 @@
 package org.dayatang.datasource4saas.tenantservice;
 
-import static org.junit.Assert.*;
-
-import org.dayatang.datasource4saas.tenantservice.ThreadLocalTenantHolder;
-import org.dayatang.datasource4saas.tenantservice.ThreadLocalTenantService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 
 public class ThreadLocalTenantServiceTest {

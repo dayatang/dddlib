@@ -1,20 +1,16 @@
 package org.dayatang.datasource4saas;
 
-import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
+import javax.sql.DataSource;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import javax.sql.DataSource;
-
-import org.dayatang.datasource4saas.DataSourceRegistry;
-import org.dayatang.datasource4saas.SaasDataSource;
-import org.dayatang.datasource4saas.TenantService;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 
 public class SaasDataSourceTest {

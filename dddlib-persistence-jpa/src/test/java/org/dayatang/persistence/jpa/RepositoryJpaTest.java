@@ -3,19 +3,19 @@
  */
 package org.dayatang.persistence.jpa;
 
-import static org.junit.Assert.*;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.validation.ValidationException;
-
-import org.dayatang.domain.*;
+import org.dayatang.domain.CriteriaQuery;
+import org.dayatang.domain.JpqlQuery;
 import org.dayatang.test.domain.Dictionary;
 import org.dayatang.test.domain.DictionaryCategory;
 import org.junit.Before;
 import org.junit.Test;
+
+import javax.validation.ValidationException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.junit.Assert.*;
 
 /**
  *

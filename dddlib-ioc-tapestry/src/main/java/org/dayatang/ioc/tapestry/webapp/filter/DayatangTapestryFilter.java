@@ -1,11 +1,11 @@
 package org.dayatang.ioc.tapestry.webapp.filter;
 
-import javax.servlet.ServletException;
-
 import org.apache.tapestry5.TapestryFilter;
 import org.apache.tapestry5.ioc.Registry;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.ioc.tapestry.factory.TapestryInstanceProvider;
+
+import javax.servlet.ServletException;
 
 public class DayatangTapestryFilter extends TapestryFilter {
 
