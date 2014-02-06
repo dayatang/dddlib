@@ -5,6 +5,7 @@ package org.dayatang.persistence.hibernate;
 
 import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.domain.Criterions;
+import org.dayatang.domain.InstanceFactory;
 import org.dayatang.domain.QueryCriterion;
 import org.dayatang.test.domain.Dictionary;
 import org.dayatang.test.domain.DictionaryCategory;
@@ -37,7 +38,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
 
 	private Dictionary undergraduate;
 	
-	private Criterions criterions = Criterions.singleton();
+	private Criterions criterions = InstanceFactory.getInstance(Criterions.class);
 
 
 	

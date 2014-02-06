@@ -22,7 +22,7 @@ public class CriteriaQuery {
     private Map<String, String> aliases = new LinkedHashMap<String, String>();
     private Set<QueryCriterion> queryCriterions = new HashSet<QueryCriterion>();
     private List<OrderSetting> orderSettings = new ArrayList<OrderSetting>();
-    private Criterions criterions = Criterions.singleton();
+    private Criterions criterions = InstanceFactory.getInstance(Criterions.class);
 
     public CriteriaQuery(EntityRepository repository, Class<? extends Entity> entityClass) {
         Assert.notNull(repository);
