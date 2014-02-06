@@ -4,7 +4,7 @@
 package org.dayatang.persistence.jpa;
 
 import org.dayatang.domain.CriteriaQuery;
-import org.dayatang.domain.Criterions;
+import org.dayatang.domain.CriterionBuilder;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.test.domain.Dictionary;
 import org.dayatang.test.domain.DictionaryCategory;
@@ -35,7 +35,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
 
 	private Dictionary undergraduate;
 
-    private Criterions criterions = InstanceFactory.getInstance(Criterions.class);
+    private CriterionBuilder criterionBuilder = InstanceFactory.getInstance(CriterionBuilder.class);
 
 	@Before
 	public void setUp() {
@@ -353,7 +353,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
 
 	@Test
 	public void testAnd() {
-        instance.and(criterions.eq("code", "01"), criterions.eq("category", gender));
+        instance.and(criterionBuilder.eq("code", "01"), criterionBuilder.eq("category", gender));
 		List<Dictionary> results = repository.find(instance);
 		assertTrue(results.contains(male));
 		assertFalse(results.contains(female));
@@ -362,7 +362,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
 
 	@Test
 	public void testOr() {
-        instance.or(criterions.eq("text", "男"), criterions.eq("sortOrder", 150));
+        instance.or(criterionBuilder.eq("text", "男"), criterionBuilder.eq("sortOrder", 150));
 		List<Dictionary> results = repository.find(instance);
 		assertTrue(results.contains(male));
 		assertTrue(results.contains(female));
@@ -371,7 +371,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
 
 	@Test
 	public void testNot() {
-        instance.not(criterions.eq("code", "01"));
+        instance.not(criterionBuilder.eq("code", "01"));
 		List<Dictionary> results = repository.find(instance);
 		assertFalse(results.contains(male));
 		assertTrue(results.contains(female));

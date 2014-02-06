@@ -1,6 +1,6 @@
 package org.dayatang.domain.internal;
 
-import org.dayatang.domain.Criterions;
+import org.dayatang.domain.CriterionBuilder;
 import org.dayatang.domain.QueryCriterion;
 
 import java.util.Collection;
@@ -11,7 +11,7 @@ import java.util.Collection;
  *
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  */
-public class CriterionsImpl implements Criterions {
+public class CriterionBuilderImpl implements CriterionBuilder {
 
     public QueryCriterion eq(String propName, Object value) {
         return new EqCriterion(propName, value);

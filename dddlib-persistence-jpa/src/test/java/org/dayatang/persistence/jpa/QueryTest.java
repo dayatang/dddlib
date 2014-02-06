@@ -4,7 +4,7 @@
 package org.dayatang.persistence.jpa;
 
 import org.dayatang.domain.CriteriaQuery;
-import org.dayatang.domain.Criterions;
+import org.dayatang.domain.CriterionBuilder;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.test.domain.Dictionary;
 import org.dayatang.test.domain.DictionaryCategory;
@@ -33,7 +33,7 @@ public class QueryTest extends AbstractIntegrationTest {
 
     private Dictionary undergraduate;
 
-    private Criterions criterions = InstanceFactory.getInstance(Criterions.class);
+    private CriterionBuilder criterionBuilder = InstanceFactory.getInstance(CriterionBuilder.class);
 
     @Before
     public void setUp() {
@@ -325,7 +325,7 @@ public class QueryTest extends AbstractIntegrationTest {
 
     @Test
     public void testAnd() {
-        List<Dictionary> results = instance.and(criterions.eq("code", "01"), criterions.eq("category", gender)).list();
+        List<Dictionary> results = instance.and(criterionBuilder.eq("code", "01"), criterionBuilder.eq("category", gender)).list();
         assertTrue(results.contains(male));
         assertFalse(results.contains(female));
         assertFalse(results.contains(undergraduate));
@@ -333,7 +333,7 @@ public class QueryTest extends AbstractIntegrationTest {
 
     @Test
     public void testOr() {
-        List<Dictionary> results = instance.or(criterions.eq("text", "男"), criterions.eq("sortOrder", 150)).list();
+        List<Dictionary> results = instance.or(criterionBuilder.eq("text", "男"), criterionBuilder.eq("sortOrder", 150)).list();
         assertTrue(results.contains(male));
         assertTrue(results.contains(female));
         assertFalse(results.contains(undergraduate));
@@ -341,7 +341,7 @@ public class QueryTest extends AbstractIntegrationTest {
 
     @Test
     public void testNot() {
-        List<Dictionary> results = instance.not(criterions.eq("code", "01")).list();
+        List<Dictionary> results = instance.not(criterionBuilder.eq("code", "01")).list();
         assertFalse(results.contains(male));
         assertTrue(results.contains(female));
         assertFalse(results.contains(undergraduate));

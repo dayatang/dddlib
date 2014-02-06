@@ -8,7 +8,7 @@ import java.util.ServiceLoader;
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
-public interface Criterions {
+public interface CriterionBuilder {
 
 	QueryCriterion eq(String propName, Object value);
 	

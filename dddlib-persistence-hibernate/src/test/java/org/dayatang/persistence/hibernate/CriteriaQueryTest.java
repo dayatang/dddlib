@@ -4,7 +4,7 @@
 package org.dayatang.persistence.hibernate;
 
 import org.dayatang.domain.CriteriaQuery;
-import org.dayatang.domain.Criterions;
+import org.dayatang.domain.CriterionBuilder;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.domain.QueryCriterion;
 import org.dayatang.test.domain.Dictionary;
@@ -38,7 +38,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
 
 	private Dictionary undergraduate;
 	
-	private Criterions criterions = InstanceFactory.getInstance(Criterions.class);
+	private CriterionBuilder criterionBuilder = InstanceFactory.getInstance(CriterionBuilder.class);
 
 
 	
@@ -359,8 +359,8 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
 
 	@Test
 	public void testAnd() {
-		QueryCriterion or = criterions.or(criterions.eq("code", "01"), criterions.eq("code", "02"));
-		instance.and(or, criterions.eq("category", gender));
+		QueryCriterion or = criterionBuilder.or(criterionBuilder.eq("code", "01"), criterionBuilder.eq("code", "02"));
+		instance.and(or, criterionBuilder.eq("category", gender));
 		List<Dictionary> results = repository.find(instance);
 		assertTrue(results.contains(male));
 		assertTrue(results.contains(female));
@@ -370,8 +370,8 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
 
 	@Test
 	public void testOr() {
-		QueryCriterion and = criterions.and(criterions.eq("code", "01"), criterions.eq("category", gender));
-		instance.or(and, criterions.eq("category", education));
+		QueryCriterion and = criterionBuilder.and(criterionBuilder.eq("code", "01"), criterionBuilder.eq("category", gender));
+		instance.or(and, criterionBuilder.eq("category", education));
 		List<Dictionary> results = repository.find(instance);
 		assertTrue(results.contains(male));
 		assertFalse(results.contains(female));
@@ -380,7 +380,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
 
 	@Test
 	public void testNot() {
-		instance.not(criterions.eq("code", "01"));
+		instance.not(criterionBuilder.eq("code", "01"));
 		List<Dictionary> results = repository.find(instance);
 		assertFalse(results.contains(male));
 		assertTrue(results.contains(female));
