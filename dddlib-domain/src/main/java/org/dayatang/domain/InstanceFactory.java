@@ -35,10 +35,7 @@ public class InstanceFactory {
      * @return 实体提供者的一个实现类。
      */
     private static InstanceProvider getInstanceProvider() {
-        if (instanceProvider != null) {
-            return instanceProvider;
-        }
-        return defaultInstanceProvider;
+        return instanceProvider;
     }
 
     /**
@@ -59,12 +56,11 @@ public class InstanceFactory {
      */
     @SuppressWarnings("unchecked")
     public static <T> T getInstance(Class<T> beanClass) {
-        T result = null;
-        try {
-            result = getInstanceProvider().getInstance(beanClass);
-        } catch (Exception e) {
-            throw new IocException("IoC container exception!", e);
+        T result = getInstanceFromInstanceProvider(beanClass);
+        if (result != null) {
+            return result;
         }
+        result = getInstanceFromDefaultInstanceProvider(beanClass);
         if (result != null) {
             return result;
         }
@@ -73,6 +69,17 @@ public class InstanceFactory {
             return result;
         }
         throw new IocInstanceNotFoundException("There's not bean of type '" + beanClass + "' exists in IoC container!");
+    }
+
+    private static <T> T getInstanceFromInstanceProvider(Class<T> beanClass) {
+        if (instanceProvider == null) {
+            return null;
+        }
+        return instanceProvider.getInstance(beanClass);
+    }
+
+    private static <T> T getInstanceFromDefaultInstanceProvider(Class<T> beanClass) {
+        return defaultInstanceProvider.getInstance(beanClass);
     }
 
     /**
