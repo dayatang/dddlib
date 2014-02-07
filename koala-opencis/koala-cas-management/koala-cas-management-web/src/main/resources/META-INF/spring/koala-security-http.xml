@@ -4,24 +4,26 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
             http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
+	<s:http pattern="/login.koala*" security="none" />
+	<s:http pattern="/denied.koala*" security="none" />
+	<s:http pattern="/login.jsp*" security="none" />
+	<s:http pattern="/*.ico" security="none" />
+	<s:http pattern="/" security="none" />
+	<s:http pattern="/lib/**" security="none" />
+	<s:http pattern="/common/**" security="none" />
+	<s:http pattern="/login.jsp" security="none" />
+	<s:http pattern="/favicon.ico" security="none" />
+	<s:http pattern="/**/*.css" security="none" />
+	<s:http pattern="/**/*.js" security="none" />
+	<s:http pattern="/**/*.jpg" security="none" />
+	<s:http pattern="/**/*.png" security="none" />
+	<s:http pattern="/**/*.gif" security="none" />
+
 	<!-- 设置登录页面为login.jsp且不拦截页面login.jsp后面的*防止带了参数 -->
 	<s:http auto-config="true" access-denied-page="/pages/errors/denied.jsp">
 		<s:form-login login-page="/login.koala"
 			default-target-url="/index.koala" always-use-default-target="true" />
-		<s:intercept-url pattern="/login.koala*" filters="none" />
-		<s:intercept-url pattern="/denied.koala*" filters="none" />
-		<s:intercept-url pattern="/login.jsp*" filters="none" />
-		<s:intercept-url pattern="/*.ico" filters="none" />
-		<s:intercept-url pattern="/" filters="none" />
-		<s:intercept-url pattern="/lib/**" filters="none" />
-		<s:intercept-url pattern="/common/**" filters="none" />
-		<s:intercept-url pattern="/login.jsp" filters="none" />
-		<s:intercept-url pattern="/favicon.ico" filters="none" />
-		<s:intercept-url pattern="/**/*.css" filters="none" />
-		<s:intercept-url pattern="/**/*.js" filters="none" />
-		<s:intercept-url pattern="/**/*.jpg" filters="none" />
-		<s:intercept-url pattern="/**/*.png" filters="none" />
-		<s:intercept-url pattern="/**/*.gif" filters="none" />
+
 
 		<s:logout invalidate-session="true" logout-url="/j_spring_security_logout"
 			logout-success-url="/login.koala" />
@@ -32,7 +34,7 @@
 		<s:session-management invalid-session-url="/login.koala" />
 
 		<!-- 设置登录过滤器 -->
- 		<s:custom-filter before="FORM_LOGIN_FILTER" ref="authenticationFilter" /> 
+		<s:custom-filter before="FORM_LOGIN_FILTER" ref="authenticationFilter" />
 
 		<!-- 过滤器，不能修改 -->
 		<s:custom-filter ref="securityFilter" before="FILTER_SECURITY_INTERCEPTOR" />
@@ -55,13 +57,15 @@
 	</bean>
 
 	<!-- 验证码过滤器 -->
- 	<bean id="authenticationFilter" class="org.openkoala.koala.auth.ss3adapter.filter.AuthenticationFilter">
+	<bean id="authenticationFilter"
+		class="org.openkoala.koala.auth.ss3adapter.filter.AuthenticationFilter">
 		<property name="authenticationSuccessHandler" ref="loginLogAuthenticationSuccessHandler" />
 		<property name="failureHandler" ref="loginFailureHandler" />
 		<property name="authenticationManager" ref="authenticationManager" />
 		<property name="httpHandlers">
 			<list>
-				<bean class="org.openkoala.koala.auth.ss3adapter.http.handler.ValidateCodeHandler" />
+				<bean
+					class="org.openkoala.koala.auth.ss3adapter.http.handler.ValidateCodeHandler" />
 			</list>
 		</property>
 	</bean>
