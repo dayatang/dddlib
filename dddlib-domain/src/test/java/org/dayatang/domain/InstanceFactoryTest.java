@@ -4,49 +4,46 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.stub;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 public class InstanceFactoryTest {
 
 	private InstanceProvider instanceProvider;
+    private TheImpl1 impl = new TheImpl1();
 
 	@Before
 	public void setUp() throws Exception {
 		instanceProvider = mock(InstanceProvider.class);
+        when(instanceProvider.getInstance(TheInterface.class)).thenReturn(impl);
 		InstanceFactory.setInstanceProvider(instanceProvider);
 	}
 
 	@After
 	public void tearDown() throws Exception {
+        InstanceFactory.setInstanceProvider(null);
 	}
 
-	@Test
-	public void testGetInstance() {
-		
-		final Entity entity = new AbstractEntity() {
+    private interface TheInterface {
 
-			private static final long serialVersionUID = 4007757659440622574L;
+    }
 
-			@Override
-			public boolean equals(Object other) {
-				return this == other;
-			}
+    private class TheImpl1 implements TheInterface {
 
-			@Override
-			public int hashCode() {
-				return 0;
-			}
+    }
 
-			@Override
-			public String toString() {
-				return null;
-			}
-			
-		};
-		stub(instanceProvider.getInstance(Entity.class)).toReturn(entity);
-		assertEquals(entity, InstanceFactory.getInstance(Entity.class));
-	}
+    private class TheImpl2 implements TheInterface {
+
+    }
+
+    /**
+     * 设置了InstanceProvider，并且
+     */
+    @Test
+    public void GetInstanceByInstanceFactory() {
+        InstanceFactory.setInstanceProvider(instanceProvider);
+        assertSame(impl, InstanceFactory.getInstance(TheInterface.class));
+    }
+
 
 }
