@@ -18,35 +18,7 @@ public class SpringInstanceProviderTest extends AbstractInstanceProviderTest {
 
 	@Override
 	protected InstanceProvider createInstanceProvider() {
-		return new SpringInstanceProvider(new String[] {"classpath:applicationContext-multi-impl.xml"});
-	}
-	
-	@Test
-	public void testConstructorFromXmlPath() {
-		instance = new SpringInstanceProvider(new String[] {"classpath:applicationContext-single-impl.xml"});
-		InstanceFactory.setInstanceProvider(instance);
-		Service service = instance.getInstance(Service.class);
-		assertTrue(MyService1.class.isAssignableFrom(service.getClass()));
-		
-		Configuration configuration = instance.getInstance(Configuration.class);
-		System.out.println(configuration.getString("log4j.rootLogger"));		
-	}
-	
-	@Test
-	public void testConstructorFromApplicationContext() {
-		ApplicationContext applicationContext = new ClassPathXmlApplicationContext(new String[] {"classpath:applicationContext-single-impl.xml"});
-		instance = new SpringInstanceProvider(applicationContext);
-		InstanceFactory.setInstanceProvider(instance);
-		Service service = instance.getInstance(Service.class);
-		assertTrue(MyService1.class.isAssignableFrom(service.getClass()));
-	}
-	
-	@Test
-	public void testConstructorFromConfigurationFiles() {
-		instance = new SpringInstanceProvider(SpringConfiguration.class);
-		InstanceFactory.setInstanceProvider(instance);
-		Service service = instance.getInstance(Service.class, "service1");
-		assertTrue(MyService1.class.isAssignableFrom(service.getClass()));
+		return new SpringInstanceProvider(SpringConfiguration.class);
 	}
 
 }

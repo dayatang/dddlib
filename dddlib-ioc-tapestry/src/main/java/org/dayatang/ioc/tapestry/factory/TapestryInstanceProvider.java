@@ -18,33 +18,45 @@ public class TapestryInstanceProvider implements InstanceProvider {
 		this.registry = registry;
 	}
 
-	public TapestryInstanceProvider(Class<?>... beanTypees) {
+	public TapestryInstanceProvider(Class<?>... modules) {
 		RegistryBuilder builder = new RegistryBuilder();
-		builder.add(beanTypees);
+		builder.add(modules);
 		registry = builder.build();
 		registry.performRegistryStartup();
 	}
 
 	@Override
 	public <T> T getInstance(Class<T> beanType) {
-		return registry.getService(beanType);
+        try {
+            return registry.getService(beanType);
+        } catch (RuntimeException e) {
+            return null;
+        }
 	}
 
 	@Override
 	public <T> T getInstance(Class<T> beanType, String beanName) {
-		return registry.getService(beanName, beanType);
+        try {
+    		return registry.getService(beanName, beanType);
+        } catch (RuntimeException e) {
+            return null;
+        }
 	}
 
     /**
      * 获取指定类型的、含有指定Annotation的对象实例。
      *
      * @param beanType  实例的类型
-     * @param annotation 实现类的annotation
+     * @param annotationType 实现类的annotation
      * @return 指定类型的实例。
      */
     @Override
-    public <T> T getInstance(Class<T> beanType, Annotation annotation) {
-        return registry.getService(beanType, annotation.annotationType());
+    public <T> T getInstance(Class<T> beanType, Class<? extends Annotation> annotationType) {
+        try {
+            return registry.getService(beanType, annotationType);
+        } catch (RuntimeException e) {
+            return null;
+        }
     }
 
     public void shutdown() {

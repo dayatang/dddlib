@@ -3,25 +3,24 @@ package org.dayatang.ioc.guice;
 import com.google.inject.*;
 import com.google.inject.name.Names;
 import org.dayatang.domain.InstanceProvider;
-import org.dayatang.test.ioc.AbstractInstanceProviderTest;
-import org.dayatang.test.ioc.MyService1;
-import org.dayatang.test.ioc.MyService2;
-import org.dayatang.test.ioc.Service;
+import org.dayatang.test.ioc.*;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class GuiceInstanceProviderTest extends AbstractInstanceProviderTest {
 
 	@Test
 	public void testConstructorFromModule() {
-		assertEquals("I am Service 1", provider.getInstance(Service.class).sayHello());
+		assertEquals("I am Service 1", provider.getInstance(Service.class, "service1").sayHello());
 	}
 
 	@Test
 	public void testConstructorFromInjector() {
 		provider = new GuiceInstanceProvider(createInjector());
-		assertEquals("I am Service 1", provider.getInstance(Service.class).sayHello());
+		assertEquals("I am Service 1", provider.getInstance(Service.class, "service1").sayHello());
 	}
 
 	private Injector createInjector() {
@@ -33,10 +32,10 @@ public class GuiceInstanceProviderTest extends AbstractInstanceProviderTest {
 		return new Module() {
 			@Override
 			public void configure(Binder binder) {
-				binder.bind(Service.class).to(MyService1.class).in(Scopes.SINGLETON);
+				binder.bind(Service2.class).to(MyService21.class).in(Scopes.SINGLETON);
 				binder.bind(Service.class).annotatedWith(Names.named("service2")).to(MyService2.class).in(Scopes.SINGLETON);
 				binder.bind(Service.class).annotatedWith(Names.named("service1")).to(MyService1.class).in(Scopes.SINGLETON);
-				binder.bind(Service.class).annotatedWith(Names.named("service3")).to(MyService2.class).in(Scopes.SINGLETON);
+				binder.bind(Service3.class).annotatedWith(MyBindingAnnotation.class).to(MyService31.class).in(Scopes.SINGLETON);
 			}
 		};
 	}
@@ -45,4 +44,11 @@ public class GuiceInstanceProviderTest extends AbstractInstanceProviderTest {
 	protected InstanceProvider createInstanceProvider() {
 		return new GuiceInstanceProvider(createModule());
 	}
+
+    @Override
+    @Test
+    public void testGetInstanceWithAnnotation() {
+        Service3 service = provider.getInstance(Service3.class, MyBindingAnnotation.class);
+        assertNotNull(service);
+    }
 }

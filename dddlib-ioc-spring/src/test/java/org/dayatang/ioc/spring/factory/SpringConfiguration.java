@@ -1,9 +1,6 @@
 package org.dayatang.ioc.spring.factory;
 
-import org.dayatang.test.ioc.MyService1;
-import org.dayatang.test.ioc.MyService2;
-import org.dayatang.test.ioc.MyService3;
-import org.dayatang.test.ioc.Service;
+import org.dayatang.test.ioc.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -24,4 +21,9 @@ public class SpringConfiguration {
 	public Service service3() {
 		return new MyService3();
 	}
+
+    @Bean
+    public Service2 service2_2() {
+         return new MyService21();
+    }
 }

@@ -1,10 +1,12 @@
 package org.dayatang.test.ioc;
 
+import org.dayatang.IocInstanceNotFoundException;
 import org.dayatang.domain.InstanceProvider;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 /**
  * 公共的InstanceProvider测试
@@ -15,7 +17,7 @@ public abstract class AbstractInstanceProviderTest {
 
 	protected InstanceProvider provider;
 	abstract protected InstanceProvider createInstanceProvider();
-	
+
 	@Before
 	public void setUp() {
 		provider = createInstanceProvider();
@@ -23,8 +25,7 @@ public abstract class AbstractInstanceProviderTest {
 	
 	@Test
 	public void testGetInstance() {
-		Service service = provider.getInstance(Service.class);
-		assertEquals("I am Service 1", service.sayHello());
+		assertNotNull(provider.getInstance(Service2.class));
 	}
 
 	@Test
@@ -32,4 +33,15 @@ public abstract class AbstractInstanceProviderTest {
 		Service service = provider.getInstance(Service.class, "service2");
 		assertEquals("I am Service 2", service.sayHello());
 	}
+
+    @Test
+    public void testGetInstanceWithAnnotation() {
+        Service service = provider.getInstance(Service.class, TheAnnotation.class);
+        assertEquals("I am Service 3", service.sayHello());
+    }
+
+    @Test
+    public void testNotFound() {
+        assertNull(provider.getInstance(Long.class));
+    }
 }

@@ -31,4 +31,9 @@ public class Jdk6InstanceProviderTest {
         assertEquals("I am Service 3", service.sayHello());
     }
 
+    @Test
+    public void testNotFound() {
+        assertNull(provider.getInstance(Long.class));
+    }
+
 }
