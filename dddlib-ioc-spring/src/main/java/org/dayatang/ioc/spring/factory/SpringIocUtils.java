@@ -17,11 +17,14 @@ public class SpringIocUtils {
 
 	private static InstanceProvider getInstanceProvider(Class<?>[] annotatedClasses) {
 		SpringInstanceProvider result = providerHolder.get();
-		if (result == null) {
-			result = new SpringInstanceProvider(annotatedClasses);
-			providerHolder.set(result);
-		}
-		return result;
+        if (result != null) {
+            return result;
+        }
+        synchronized (SpringIocUtils.class) {
+            result = new SpringInstanceProvider(annotatedClasses);
+            providerHolder.set(result);
+            return result;
+        }
 	}
 
 	public static void initInstanceProvider(String... acFiles) {
@@ -30,11 +33,14 @@ public class SpringIocUtils {
 
 	private static InstanceProvider getInstanceProvider(String... acFiles) {
 		SpringInstanceProvider result = providerHolder.get();
-		if (result == null) {
+        if (result != null) {
+            return result;
+        }
+        synchronized (SpringIocUtils.class) {
 			result = new SpringInstanceProvider(acFiles);
 			providerHolder.set(result);
+            return result;
 		}
-		return result;
 	}
 
 }

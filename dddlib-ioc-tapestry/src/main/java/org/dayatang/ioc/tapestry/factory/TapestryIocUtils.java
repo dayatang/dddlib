@@ -5,7 +5,7 @@ import org.dayatang.domain.InstanceProvider;
 
 public class TapestryIocUtils {
 
-	private static final ThreadLocal<TapestryInstanceProvider> tapestryProviderHolder = new ThreadLocal<TapestryInstanceProvider>();
+	private static final ThreadLocal<TapestryInstanceProvider> providerHolder = new ThreadLocal<TapestryInstanceProvider>();
 
 	private TapestryIocUtils() {
 		super();
@@ -16,11 +16,14 @@ public class TapestryIocUtils {
 	}
 
 	private static InstanceProvider getInstanceProvider(Class<?>... iocModules) {
-		TapestryInstanceProvider result = tapestryProviderHolder.get();
-		if (result == null) {
+		TapestryInstanceProvider result = providerHolder.get();
+		if (result != null) {
+            return result;
+        }
+        synchronized (TapestryIocUtils.class) {
 			result = new TapestryInstanceProvider(iocModules);
-			tapestryProviderHolder.set(result);
+			providerHolder.set(result);
+            return result;
 		}
-		return result;
 	}
 }
