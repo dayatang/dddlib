@@ -14,9 +14,8 @@ public class Jdk6InstanceProviderTest {
 
     @Test
     public void testGetInstance() {
-        Service service = provider.getInstance(Service.class);
-        assertEquals("I am Service 1", service.sayHello());
-        assertNull(provider.getInstance(Service2.class));
+        Service2 service = provider.getInstance(Service2.class);
+        assertEquals("I am Service 21", service.sayHello());
     }
 
     @Test

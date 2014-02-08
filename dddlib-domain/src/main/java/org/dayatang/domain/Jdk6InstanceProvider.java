@@ -4,7 +4,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.inject.Named;
 import java.lang.annotation.Annotation;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.ServiceLoader;
+import java.util.Set;
 
 /**
  * 用JDK6 ServiceLoader实现的实例提供者。使用它的话，根本不需要任何IoC框架，也不需要配置文件
@@ -34,14 +37,20 @@ public class Jdk6InstanceProvider implements InstanceProvider {
      * @param beanType 实例的类型
      * @return 指定类型的实例。
      */
-	@Override
-	public <T> T getInstance(Class<T> beanType) {
+    @Override
+    public <T> T getInstance(Class<T> beanType) {
+        T result = null;
         ServiceLoader<T> serviceLoader = ServiceLoader.load(beanType);
-        if (serviceLoader.iterator().hasNext()) {
-            return serviceLoader.iterator().next();
+        Iterator<T> iterator = serviceLoader.iterator();
+        if (iterator.hasNext()) {
+            result = iterator.next();
         }
-		return null;
-	}
+        if (iterator.hasNext()) {
+            throw new IocInstanceNotUniqueException("There're more then one bean of type '" + beanType + "'");
+        } else {
+            return result;
+        }
+    }
 
     /**
      * 根据类型和名称获取对象实例。如果找不到该类型的实例则返回null。
@@ -53,19 +62,27 @@ public class Jdk6InstanceProvider implements InstanceProvider {
      * @param beanType 实例的类型
      * @return 指定类型的实例。
      */
-	@Override
-	public <T> T getInstance(Class<T> beanType, String beanName) {
-		if (StringUtils.isEmpty(beanName)) {
-			return getInstance(beanType);
-		}
-		for (T instance : ServiceLoader.load(beanType)) {
-			Named named = instance.getClass().getAnnotation(Named.class);
-			if (named != null && beanName.equals(named.value())) {
-				return instance;
-			}
-		}
-		return null;
-	}
+    @Override
+    public <T> T getInstance(Class<T> beanType, String beanName) {
+        if (StringUtils.isEmpty(beanName)) {
+            return getInstance(beanType);
+        }
+        Set<T> results = new HashSet<T>();
+        for (T instance : ServiceLoader.load(beanType)) {
+            Named named = instance.getClass().getAnnotation(Named.class);
+            if (named != null && beanName.equals(named.value())) {
+                results.add(instance);
+            }
+        }
+        if (results.isEmpty()) {
+            return null;
+        }
+        if (results.size() == 1) {
+            return results.iterator().next();
+        }
+        throw new IocInstanceNotUniqueException("There're more then one bean of type '"
+                + beanType + "' and named '" + beanName + "'");
+    }
 
     /**
      * 根据类型和Annotation获取对象实例。如果找不到该类型的实例则返回null。
@@ -82,13 +99,21 @@ public class Jdk6InstanceProvider implements InstanceProvider {
         if (annotationType == null) {
             return getInstance(beanType);
         }
+        Set<T> results = new HashSet<T>();
         for (T instance : ServiceLoader.load(beanType)) {
             Annotation beanAnnotation = instance.getClass().getAnnotation(annotationType);
             if (beanAnnotation != null && beanAnnotation.annotationType().equals(annotationType)) {
-                return instance;
+                results.add(instance);
             }
         }
-        return null;
+        if (results.isEmpty()) {
+            return null;
+        }
+        if (results.size() == 1) {
+            return results.iterator().next();
+        }
+        throw new IocInstanceNotUniqueException("There're more then one bean of type '"
+                + beanType + "' and annotated with '" + annotationType + "'");
     }
 }
 

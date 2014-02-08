@@ -13,7 +13,7 @@ public class MyService23 implements Service2 {
 
     @Override
 	public String sayHello() {
-		return "I am Service 3";
+		return "I am Service 23";
 	}
 
     /**

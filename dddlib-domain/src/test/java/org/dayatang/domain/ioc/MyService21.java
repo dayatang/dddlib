@@ -9,7 +9,7 @@ public class MyService21 implements Service2 {
 
     @Override
 	public String sayHello() {
-		return "I am Service 1";
+		return "I am Service 21";
 	}
 
     /**

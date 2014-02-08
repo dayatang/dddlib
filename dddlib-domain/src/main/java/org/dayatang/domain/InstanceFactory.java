@@ -58,7 +58,7 @@ public class InstanceFactory {
     public static <T> T getInstance(Class<T> beanType) {
         T result = null;
         if (instanceProvider != null) {
-            result = instanceProvider.getInstance(beanType);
+            result = getInstanceFromProvider(beanType);
         }
         if (result != null) {
             return result;
@@ -74,6 +74,14 @@ public class InstanceFactory {
         throw new IocInstanceNotFoundException("There's not bean of type '" + beanType + "' exists in IoC container!");
     }
 
+    private static <T> T getInstanceFromProvider(Class<T> beanType) {
+        try {
+            return instanceProvider.getInstance(beanType);
+        } catch (IocInstanceNotFoundException e) {
+            return null;
+        }
+    }
+
     /**
      * 根据类型和名称获取对象实例。返回的对象实例所属的类是T或它的实现类或子类。不同的IoC容器用不同的方式解释beanName。
      * 具体的解释方式请参见各种InstanceProvider实现类的Javadoc。
@@ -87,7 +95,7 @@ public class InstanceFactory {
     public static <T> T getInstance(Class<T> beanType, String beanName) {
         T result = null;
         if (instanceProvider != null) {
-            result = instanceProvider.getInstance(beanType, beanName);
+            result = getInstanceFromProvider(beanType, beanName);
         }
         if (result != null) {
             return result;
@@ -103,6 +111,14 @@ public class InstanceFactory {
         throw new IocInstanceNotFoundException("There's not bean '" + beanName + "' of type '" + beanType + "' exists in IoC container!");
     }
 
+    private static <T> T getInstanceFromProvider(Class<T> beanType, String beanName) {
+        try {
+            return instanceProvider.getInstance(beanType, beanName);
+        } catch (IocInstanceNotFoundException e) {
+            return null;
+        }
+    }
+
     /**
      * 根据类型和Annotation获取对象实例。返回的对象实例所属的类是T或它的实现类或子类。不同的IoC容器用不同的方式解释annotation。
      * 具体的解释方式请参见各种InstanceProvider实现类的Javadoc。
@@ -115,7 +131,7 @@ public class InstanceFactory {
     public static <T> T getInstance(Class<T> beanType, Class<? extends Annotation> annotationType) {
         T result = null;
         if (instanceProvider != null) {
-            result = instanceProvider.getInstance(beanType, annotationType);
+            result = getInstanceFromProvider(beanType, annotationType);
         }
         if (result != null) {
             return result;
@@ -129,6 +145,14 @@ public class InstanceFactory {
             return result;
         }
         throw new IocInstanceNotFoundException("There's not bean '" + annotationType + "' of type '" + beanType + "' exists in IoC container!");
+    }
+
+    private static <T> T getInstanceFromProvider(Class<T> beanType, Class<? extends Annotation> annotationType) {
+        try {
+            return instanceProvider.getInstance(beanType, annotationType);
+        } catch (IocInstanceNotFoundException e) {
+            return null;
+        }
     }
 
     /**
