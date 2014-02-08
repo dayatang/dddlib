@@ -1,7 +1,7 @@
 package org.dayatang.domain;
 
-import org.dayatang.IocException;
-import org.dayatang.IocInstanceNotFoundException;
+import org.dayatang.domain.IocException;
+import org.dayatang.domain.IocInstanceNotFoundException;
 
 import java.lang.annotation.Annotation;
 import java.util.HashMap;

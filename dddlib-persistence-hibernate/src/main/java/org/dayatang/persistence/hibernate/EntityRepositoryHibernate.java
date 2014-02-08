@@ -1,7 +1,7 @@
 package org.dayatang.persistence.hibernate;
 
 import org.apache.commons.lang3.StringUtils;
-import org.dayatang.IocException;
+import org.dayatang.domain.IocException;
 import org.dayatang.domain.*;
 import org.dayatang.persistence.hibernate.internal.QueryTranslator;
 import org.hibernate.Query;

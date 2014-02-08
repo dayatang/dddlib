@@ -1,6 +1,6 @@
 package org.dayatang.persistence.jpa;
 
-import org.dayatang.IocInstanceNotFoundException;
+import org.dayatang.domain.IocInstanceNotFoundException;
 import org.dayatang.domain.*;
 import org.dayatang.persistence.jpa.internal.JpaCriteriaQueryBuilder;
 import org.slf4j.Logger;

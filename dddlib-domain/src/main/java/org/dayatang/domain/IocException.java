@@ -1,4 +1,4 @@
-package org.dayatang;
+package org.dayatang.domain;
 
 /**
  * IoC容器异常。当访问IoC容器（Spring，Guice等）发生异常时抛出本异常或其子类实例。

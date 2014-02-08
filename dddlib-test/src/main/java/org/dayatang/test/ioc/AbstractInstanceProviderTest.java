@@ -1,6 +1,6 @@
 package org.dayatang.test.ioc;
 
-import org.dayatang.IocInstanceNotFoundException;
+import org.dayatang.domain.IocInstanceNotFoundException;
 import org.dayatang.domain.InstanceProvider;
 import org.junit.Before;
 import org.junit.BeforeClass;

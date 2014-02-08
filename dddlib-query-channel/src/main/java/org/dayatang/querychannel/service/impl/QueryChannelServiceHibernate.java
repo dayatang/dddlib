@@ -1,6 +1,6 @@
 package org.dayatang.querychannel.service.impl;
 
-import org.dayatang.IocInstanceNotFoundException;
+import org.dayatang.domain.IocInstanceNotFoundException;
 import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.domain.Entity;
 import org.dayatang.domain.InstanceFactory;

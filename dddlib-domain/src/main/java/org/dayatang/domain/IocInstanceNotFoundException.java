@@ -1,4 +1,4 @@
-package org.dayatang;
+package org.dayatang.domain;
 
 /**
  * 当试图获取在IoC容器中不存在的Bean实例时抛出此异常。
