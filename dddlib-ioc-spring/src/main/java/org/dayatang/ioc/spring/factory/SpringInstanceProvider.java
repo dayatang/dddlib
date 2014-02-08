@@ -47,7 +47,7 @@ public class SpringInstanceProvider implements InstanceProvider {
     }
 
     /**
-     * 根据类型获取对象实例。返回的对象实例所属的类是T或它的实现类或子类。如果找不到该类型的实例则抛出异常。
+     * 根据类型获取对象实例。返回的对象实例所属的类是T或它的实现类或子类。如果找不到该类型的实例则返回null。
      * 如果有部署了多个类型为T的Bean则抛出NoUniqueBeanDefinitionException异常。
      * @param <T> 类型参数
      * @param beanType 实例的类型
@@ -63,7 +63,7 @@ public class SpringInstanceProvider implements InstanceProvider {
     }
 
     /**
-     * 根据类型和Bean id获取对象实例。如果找不到该类型的实例则抛出异常。
+     * 根据类型和Bean id获取对象实例。如果找不到该类型的实例则返回null。
      * 假如有两个类MyService1和MyService2都实现了接口Service，在applicationContext中这样部署：
      * <pre>
      * <bean id="service1" class="MyService1"/>
@@ -103,7 +103,7 @@ public class SpringInstanceProvider implements InstanceProvider {
 
 
     /**
-     * 根据类型和Annotation获取对象实例。如果找不到该类型的实例则抛出异常。
+     * 根据类型和Annotation获取对象实例。如果找不到该类型的实例则返回null。
      * 假如有两个类MyService1和MyService2都实现了接口Service，其中MyService2标记为
      * @TheAnnotation，那么getInstance(Service.class, TheAnnotation.class)将返回
      * MyService2的实例。

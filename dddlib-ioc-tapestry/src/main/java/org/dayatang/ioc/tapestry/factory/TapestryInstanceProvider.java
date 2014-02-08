@@ -26,10 +26,8 @@ public class TapestryInstanceProvider implements InstanceProvider {
 	}
 
     /**
-     * 根据类型获取对象实例。返回的对象实例所属的类是T或它的实现类或子类。如果找不到该类型的实例则抛出异常。
-     * 如果有多个类都是T的实例，那么返回哪一个类实例是不确定的。这时建议采用getInstance(Class<T> beanType,
-     * String beanName) 或getInstance(Class<T> beanType, Class<? extends Annotation> annotationType)
-     * 方法缩小筛选范围。
+     * 根据类型获取对象实例。返回的对象实例所属的类是T或它的实现类或子类。
+     * 如果TapestryIoC有没有或者有多个类都是T的实例，将返回null
      * @param <T> 类型参数
      * @param beanType 实例的类型
      * @return 指定类型的实例。
@@ -44,9 +42,13 @@ public class TapestryInstanceProvider implements InstanceProvider {
 	}
 
     /**
-     * 根据类型和名称获取对象实例。如果找不到该类型的实例则抛出异常。
-     * 假如有两个类A和B都实现了接口T(或继承了基类T，或者就是其类型就是T)，而其中A类标注为
-     * @Named("abc")，那么getInstance(T.class, "abc")将返回类A的实例。
+     * 根据类型和名称获取对象实例。如果找不到该类型的实例则返回null。
+     * 假如有两个类MyService1和MyService2都实现了接口Service，而在Tapestry模块中这样注册：
+     * <pre>
+     * binder.bind(Service.class, MyService1.class).withId("service1");
+     * binder.bind(Service.class, MyService2.class).withId("service2");
+     * </pre>
+     * 那么getInstance(Service.class, "service2")将返回MyService2的实例。
      *
      * @param <T> 类型参数
      * @param beanName 实现类在容器中配置的名字
@@ -63,9 +65,11 @@ public class TapestryInstanceProvider implements InstanceProvider {
 	}
 
     /**
-     * 根据类型和Annotation获取对象实例。如果找不到该类型的实例则抛出异常。
-     * 假如有两个类A和B都实现了接口T(或继承了基类T，或者就是其类型就是T)，而其中A类标注为
-     * @a.b.C，那么getInstance(T.class, a.b.C.class)将返回类A的实例。
+     * 根据类型和Annotation获取对象实例。如果找不到该类型的实例则返回null。
+     * 假如有两个类MyService1和MyService2都实现了接口Service，在Tapestry模块中这样注册：
+     * binder.bind(Service.class, MyService1.class).withId("service1");
+     * binder.bind(Service.class, MyService2.class).withMarker(TheAnnotation.class);
+     * 那么getInstance(Service.class, MyAnnotation.class)将返回MyService2的实例。
      *
      * @param <T> 类型参数
      * @param beanType 实例的类型

@@ -26,7 +26,7 @@ import java.util.ServiceLoader;
 public class Jdk6InstanceProvider implements InstanceProvider {
 
     /**
-     * 根据类型获取对象实例。返回的对象实例所属的类是T或它的实现类或子类。如果找不到该类型的实例则抛出异常。
+     * 根据类型获取对象实例。返回的对象实例所属的类是T或它的实现类或子类。如果找不到该类型的实例则返回null。
      * 如果有多个类都是T的实例，那么返回哪一个类实例是不确定的。这时建议采用getInstance(Class beanType,
      * String beanName) 或getInstance(Class beanType, Class annotationType)
      * 方法缩小筛选范围。
@@ -44,7 +44,7 @@ public class Jdk6InstanceProvider implements InstanceProvider {
 	}
 
     /**
-     * 根据类型和名称获取对象实例。如果找不到该类型的实例则抛出异常。
+     * 根据类型和名称获取对象实例。如果找不到该类型的实例则返回null。
      * 假如有两个类A和B都实现了接口T(或继承了基类T，或者就是其类型就是T)，而其中A类标注为
      * @Named("abc")，那么getInstance(T.class, "abc")将返回类A的实例。
      *
@@ -68,7 +68,7 @@ public class Jdk6InstanceProvider implements InstanceProvider {
 	}
 
     /**
-     * 根据类型和Annotation获取对象实例。如果找不到该类型的实例则抛出异常。
+     * 根据类型和Annotation获取对象实例。如果找不到该类型的实例则返回null。
      * 假如有两个类A和B都实现了接口T(或继承了基类T，或者就是其类型就是T)，而其中A类标注为
      * @a.b.C，那么getInstance(T.class, a.b.C.class)将返回类A的实例。
      *

@@ -38,7 +38,7 @@ public class GuiceInstanceProvider implements InstanceProvider {
 
 
     /**
-     * 根据类型获取对象实例。返回的对象实例所属的类是T或它的实现类或子类。如果找不到该类型的实例则抛出异常。
+     * 根据类型获取对象实例。返回的对象实例所属的类是T或它的实现类或子类。如果找不到该类型的实例则返回null。
      * @param <T> 类型参数
      * @param beanType 实例的类型
      * @return 指定类型的实例。
@@ -53,7 +53,7 @@ public class GuiceInstanceProvider implements InstanceProvider {
     }
 
     /**
-     * 根据类型和名称获取对象实例。如果找不到该类型的实例则抛出异常。
+     * 根据类型和名称获取对象实例。如果找不到该类型的实例则返回null。
      * 假如有两个类MyService1和MyService2都实现了接口Service，而在Guice模块中这样注册：
      * <pre>
      * binder.bind(Service.class).to(MyService1.class)
@@ -77,7 +77,7 @@ public class GuiceInstanceProvider implements InstanceProvider {
     }
 
     /**
-     * 根据类型和Annotation获取对象实例。如果找不到该类型的实例则抛出异常。
+     * 根据类型和Annotation获取对象实例。如果找不到该类型的实例则返回null。
      * 假如有两个类MyService1和MyService2都实现了接口Service，其中MyService2标记为@MyAnnotation,
      * 同时MyAnnotation标记为@BindingAnnotation @Retention(RetentionPolicy.RUNTIME) ,
      * 而在Guice模块中这样注册：
