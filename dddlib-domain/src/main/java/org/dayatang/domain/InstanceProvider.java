@@ -2,9 +2,7 @@ package org.dayatang.domain;
 
 
 /**
- * 实例提供者接口。该接口封装了IoC工厂的具体实现。它抽象
- * 出IoC工厂的基本能力：提供某种指定类型（接口/类）的一个
- * 实例。
+ * 实例提供者接口，其实现类以适配器的方式将Bean查找的任务委托给真正的IoC容器，如SpringIoC或Google Guice。
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
