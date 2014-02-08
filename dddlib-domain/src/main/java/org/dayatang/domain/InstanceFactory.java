@@ -3,9 +3,9 @@ package org.dayatang.domain;
 import org.dayatang.domain.IocException;
 import org.dayatang.domain.IocInstanceNotFoundException;
 
+import javax.inject.Named;
 import java.lang.annotation.Annotation;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -28,16 +28,10 @@ public class InstanceFactory {
     //实例提供者，代表真正的IoC容器
     private static InstanceProvider instanceProvider;
 
-    //缺省实例提供者，当没有设置实例提供者时使用。
-    private static InstanceProvider defaultInstanceProvider = new Jdk6InstanceProvider();
-
     private InstanceFactory() {
         super();
     }
 
-    private static InstanceProvider getInstanceProvider() {
-        return instanceProvider;
-    }
 
     /**
      * 设置实例提供者。
@@ -63,7 +57,7 @@ public class InstanceFactory {
         if (result != null) {
             return result;
         }
-        result = defaultInstanceProvider.getInstance(beanType);
+        result = getInstanceFromServiceLoader(beanType);
         if (result != null) {
             return result;
         }
@@ -80,6 +74,20 @@ public class InstanceFactory {
         } catch (IocInstanceNotFoundException e) {
             return null;
         }
+    }
+
+    private static <T> T getInstanceFromServiceLoader(Class<T> beanType) {
+        Set<T> results = new HashSet<T>();
+        for (T instance : ServiceLoader.load(beanType)) {
+            results.add(instance);
+        }
+        if (results.size() > 1) {
+            throw new IocInstanceNotUniqueException("There're more then one bean of type '" + beanType + "'");
+        }
+        if (results.size() == 1) {
+            return results.iterator().next();
+        }
+        return null;
     }
 
     /**
@@ -100,7 +108,7 @@ public class InstanceFactory {
         if (result != null) {
             return result;
         }
-        result = defaultInstanceProvider.getInstance(beanType, beanName);
+        result = getInstanceFromServiceLoader(beanType, beanName);
         if (result != null) {
             return result;
         }
@@ -108,7 +116,8 @@ public class InstanceFactory {
         if (result != null) {
             return result;
         }
-        throw new IocInstanceNotFoundException("There's not bean '" + beanName + "' of type '" + beanType + "' exists in IoC container!");
+        throw new IocInstanceNotUniqueException("There're more then one bean of type '"
+                + beanType + "' and named '" + beanName + "'");
     }
 
     private static <T> T getInstanceFromProvider(Class<T> beanType, String beanName) {
@@ -117,6 +126,25 @@ public class InstanceFactory {
         } catch (IocInstanceNotFoundException e) {
             return null;
         }
+    }
+
+    private static <T> T getInstanceFromServiceLoader(Class<T> beanType, String beanName) {
+        Set<T> results = new HashSet<T>();
+        for (T instance : ServiceLoader.load(beanType)) {
+            Named named = instance.getClass().getAnnotation(Named.class);
+            if (named != null && beanName.equals(named.value())) {
+                results.add(instance);
+            }
+        }
+        if (results.size() > 1) {
+            throw new IocInstanceNotUniqueException("There're more then one bean of type '"
+                    + beanType + "' and named '" + beanName + "'");
+        }
+        if (results.size() == 1) {
+            return results.iterator().next();
+        }
+        return null;
+
     }
 
     /**
@@ -136,7 +164,7 @@ public class InstanceFactory {
         if (result != null) {
             return result;
         }
-        result = defaultInstanceProvider.getInstance(beanType, annotationType);
+        result = getInstanceFromServiceLoader(beanType, annotationType);
         if (result != null) {
             return result;
         }
@@ -153,6 +181,24 @@ public class InstanceFactory {
         } catch (IocInstanceNotFoundException e) {
             return null;
         }
+    }
+
+    private static <T> T getInstanceFromServiceLoader(Class<T> beanType, Class<? extends Annotation> annotationType) {
+        Set<T> results = new HashSet<T>();
+        for (T instance : ServiceLoader.load(beanType)) {
+            Annotation beanAnnotation = instance.getClass().getAnnotation(annotationType);
+            if (beanAnnotation != null && beanAnnotation.annotationType().equals(annotationType)) {
+                results.add(instance);
+            }
+        }
+        if (results.size() > 1) {
+            throw new IocInstanceNotUniqueException("There're more then one bean of type '"
+                    + beanType + "' and annotated with '" + annotationType + "'");
+        }
+        if (results.size() == 1) {
+            return results.iterator().next();
+        }
+        return null;
     }
 
     /**

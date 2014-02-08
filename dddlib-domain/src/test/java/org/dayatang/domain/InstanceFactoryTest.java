@@ -47,7 +47,7 @@ public class InstanceFactoryTest {
      */
     @Test
     public void testGetInstanceByServiceLoaderWithoutInstanceProvider() {
-        assertNotNull(InstanceFactory.getInstance(Service.class));
+        assertNotNull(InstanceFactory.getInstance(Service2.class));
         assertEquals(service2, InstanceFactory.getInstance(Service.class, "service2"));
         assertEquals(service3, InstanceFactory.getInstance(Service.class, TheAnnotation.class));
     }
@@ -61,7 +61,7 @@ public class InstanceFactoryTest {
         when(instanceProvider.getInstance(Service.class)).thenReturn(null);
         when(instanceProvider.getInstance(Service.class, "service2")).thenReturn(null);
         when(instanceProvider.getInstance(Service.class, TheAnnotation.class)).thenReturn(null);
-        assertNotNull(InstanceFactory.getInstance(Service.class));
+        assertNotNull(InstanceFactory.getInstance(Service2.class));
         assertEquals(service2, InstanceFactory.getInstance(Service.class, "service2"));
         assertEquals(service3, InstanceFactory.getInstance(Service.class, TheAnnotation.class));
     }
@@ -76,7 +76,7 @@ public class InstanceFactoryTest {
         MyService22 service22 = new MyService22();
         MyService23 service23 = new MyService23();
         InstanceFactory.bind(Service2.class, service21);
-        assertNotNull(InstanceFactory.getInstance(Service.class));
+        assertNotNull(InstanceFactory.getInstance(Service2.class));
         InstanceFactory.bind(Service2.class, service22, "service2");
         InstanceFactory.bind(Service2.class, service23, "service3");
         InstanceFactory.bind(Service2.class, service23, TheAnnotation.class);
