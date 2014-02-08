@@ -3,16 +3,13 @@ package org.dayatang.domain.ioc;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import javax.inject.Named;
+public class MyService21 implements Service2 {
 
-@Named("service2")
-public class MyService2 implements Service {
+    private int id = 21;
 
-    private int id = 2;
-
-	@Override
+    @Override
 	public String sayHello() {
-		return "I am Service 2";
+		return "I am Service 1";
 	}
 
     /**
@@ -38,10 +35,10 @@ public class MyService2 implements Service {
         if (this == other) {
             return true;
         }
-        if (!(other instanceof MyService2)) {
+        if (!(other instanceof MyService21)) {
             return false;
         }
-        MyService2 that = (MyService2) other;
+        MyService21 that = (MyService21) other;
         return new EqualsBuilder().append(this.id, that.id).isEquals();
     }
 }

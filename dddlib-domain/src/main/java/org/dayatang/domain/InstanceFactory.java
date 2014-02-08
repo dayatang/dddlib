@@ -35,11 +35,6 @@ public class InstanceFactory {
         super();
     }
 
-    /**
-     * 获取实例提供者。
-     *
-     * @return 实体提供者的一个实现类。
-     */
     private static InstanceProvider getInstanceProvider() {
         return instanceProvider;
     }
@@ -54,81 +49,84 @@ public class InstanceFactory {
     }
 
     /**
-     * 获取指定类型的对象实例。如果IoC容器没配置好或者IoC容器中找不到该类型的实例则抛出异常。
+     * 获取指定类型的对象实例。如果找不到该类型的实例则抛出异常。
      *
      * @param <T>       对象的类型
-     * @param beanClass 对象的类
+     * @param beanType 对象所属的类型
      * @return 类型为T的对象实例
      */
     @SuppressWarnings("unchecked")
-    public static <T> T getInstance(Class<T> beanClass) {
-        T result = getInstanceFromInstanceProvider(beanClass);
+    public static <T> T getInstance(Class<T> beanType) {
+        T result = null;
+        if (instanceProvider != null) {
+            result = instanceProvider.getInstance(beanType);
+        }
         if (result != null) {
             return result;
         }
-        result = getInstanceFromDefaultInstanceProvider(beanClass);
+        result = defaultInstanceProvider.getInstance(beanType);
         if (result != null) {
             return result;
         }
-        result = (T) instances.get(beanClass);
+        result = (T) instances.get(beanType);
         if (result != null) {
             return result;
         }
-        throw new IocInstanceNotFoundException("There's not bean of type '" + beanClass + "' exists in IoC container!");
-    }
-
-    private static <T> T getInstanceFromInstanceProvider(Class<T> beanClass) {
-        if (instanceProvider == null) {
-            return null;
-        }
-        return instanceProvider.getInstance(beanClass);
-    }
-
-    private static <T> T getInstanceFromDefaultInstanceProvider(Class<T> beanClass) {
-        return defaultInstanceProvider.getInstance(beanClass);
+        throw new IocInstanceNotFoundException("There's not bean of type '" + beanType + "' exists in IoC container!");
     }
 
     /**
-     * 获取指定类型的对象实例。如果IoC容器没配置好或者IoC容器中找不到该实例则抛出异常。
-     *
-     * @param <T>       对象的类型
-     * @param beanName  实现类在容器中配置的名字
-     * @param beanClass 对象的类
-     * @return 类型为T的对象实例
+     * 获取指定类型的、在IoC容器中标识为beanName或通过Named标注为beanName的对象实例。
+     * 如果找不到该类型的实例则抛出异常。
+     * @param <T> 类型参数
+     * @param beanName 实现类在容器中配置的名字
+     * @param beanType 实例的类型
+     * @return 指定类型的实例。
      */
     @SuppressWarnings("unchecked")
-    public static <T> T getInstance(Class<T> beanClass, String beanName) {
+    public static <T> T getInstance(Class<T> beanType, String beanName) {
         T result = null;
-        try {
-            result = getInstanceProvider().getInstance(beanClass, beanName);
-        } catch (Exception e) {
-            throw new IocException("IoC container exception!", e);
+        if (instanceProvider != null) {
+            result = instanceProvider.getInstance(beanType, beanName);
         }
         if (result != null) {
             return result;
         }
-        result = (T) instances.get(toName(beanClass, beanName));
+        result = defaultInstanceProvider.getInstance(beanType, beanName);
         if (result != null) {
             return result;
         }
-        throw new IocInstanceNotFoundException("There's not bean '" + beanName + "' of type '" + beanClass + "' exists in IoC container!");
+        result = (T) instances.get(toName(beanType, beanName));
+        if (result != null) {
+            return result;
+        }
+        throw new IocInstanceNotFoundException("There's not bean '" + beanName + "' of type '" + beanType + "' exists in IoC container!");
     }
 
-    public static <T> T getInstance(Class<T> beanClass, Annotation annotation) {
+    /**
+     * 获取指定类型的、含有指定Annotation的对象实例。如果找不到该类型的实例则抛出异常。
+     * @param <T> 类型参数
+     * @param beanType 实例的类型
+     * @param annotationType 实现类的annotation
+     * @return 指定类型的实例。
+     */
+    public static <T> T getInstance(Class<T> beanType, Class<? extends Annotation> annotationType) {
         T result = null;
-        try {
-            result = getInstanceProvider().getInstance(beanClass, annotation);
-        } catch (Exception e) {
-            throw new IocException("IoC container exception!", e);
+        if (instanceProvider != null) {
+            result = instanceProvider.getInstance(beanType, annotationType);
         }
         if (result != null) {
             return result;
         }
-        result = (T) instances.get(toName(beanClass, annotation));
+        result = defaultInstanceProvider.getInstance(beanType, annotationType);
         if (result != null) {
             return result;
         }
-        throw new IocInstanceNotFoundException("There's not bean '" + annotation + "' of type '" + beanClass + "' exists in IoC container!");
+        result = (T) instances.get(toName(beanType, annotationType));
+        if (result != null) {
+            return result;
+        }
+        throw new IocInstanceNotFoundException("There's not bean '" + annotationType + "' of type '" + beanType + "' exists in IoC container!");
     }
 
     /**
@@ -140,8 +138,8 @@ public class InstanceFactory {
     /**
      * 将服务绑定到具体实例
      *
-     * @param serviceInterface
-     * @param serviceImplementation
+     * @param serviceInterface 注册类型
+     * @param serviceImplementation 对象实例
      */
     public static <T> void bind(Class<T> serviceInterface, T serviceImplementation) {
         instances.put(serviceInterface, serviceImplementation);
@@ -150,20 +148,37 @@ public class InstanceFactory {
     /**
      * 将服务绑定到具体实例并指定名字
      *
-     * @param serviceInterface
-     * @param serviceImplementation
-     * @param beanName
+     * @param serviceInterface 注册类型
+     * @param serviceImplementation 对象实例
+     * @param beanName 实例名称
      */
     public static <T> void bind(Class<T> serviceInterface, T serviceImplementation, String beanName) {
         instances.put(toName(serviceInterface, beanName), serviceImplementation);
     }
 
-    private static String toName(Class<?> beanClass, String beanName) {
-        return beanClass.getName() + ":" + beanName;
+    /**
+     * 删除缓存的bean实例
+     */
+    public static void clear() {
+        instances.clear();
     }
 
-    private static String toName(Class<?> beanClass, Annotation annotation) {
-        return beanClass.getName() + ":" + annotation.annotationType().getName();
+    /**
+     * 将服务绑定到具体实例并指定Annotation
+     *
+     * @param serviceInterface 注册类型
+     * @param serviceImplementation 对象实例
+     * @param annotationType  标注类型
+     */
+    public static <T> void bind(Class<T> serviceInterface, T serviceImplementation, Class<? extends Annotation> annotationType) {
+        instances.put(toName(serviceInterface, annotationType), serviceImplementation);
     }
 
+    private static String toName(Class<?> beanType, String beanName) {
+        return beanType.getName() + ":" + beanName;
+    }
+
+    private static String toName(Class<?> beanType, Class<? extends Annotation> annotationType) {
+        return beanType.getName() + ":" + annotationType.getName();
+    }
 }

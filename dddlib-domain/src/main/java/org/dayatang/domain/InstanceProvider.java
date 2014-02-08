@@ -13,26 +13,26 @@ public interface InstanceProvider {
 	/**
 	 * 获取指定类型的对象实例
 	 * @param <T> 类型参数
-	 * @param beanClass 实例的类型
+	 * @param beanType 实例的类型
 	 * @return 指定类型的实例。
 	 */
-	<T> T getInstance(Class<T> beanClass);
+	<T> T getInstance(Class<T> beanType);
 
 	/**
      * 获取指定类型的、在IoC容器中标识为beanName的对象实例。
 	 * @param <T> 类型参数
 	 * @param beanName 实现类在容器中配置的名字
-	 * @param beanClass 实例的类型
+	 * @param beanType 实例的类型
 	 * @return 指定类型的实例。
 	 */
-	<T> T getInstance(Class<T> beanClass, String beanName);
+	<T> T getInstance(Class<T> beanType, String beanName);
 
     /**
      * 获取指定类型的、含有指定Annotation的对象实例。
      * @param <T> 类型参数
-     * @param beanClass 实例的类型
-     * @param annotation 实现类的annotation
+     * @param beanType 实例的类型
+     * @param annotationType 实现类的annotation
      * @return 指定类型的实例。
      */
-    <T> T getInstance(Class<T> beanClass, Annotation annotation);
+    <T> T getInstance(Class<T> beanType, Class<? extends Annotation> annotationType);
 }

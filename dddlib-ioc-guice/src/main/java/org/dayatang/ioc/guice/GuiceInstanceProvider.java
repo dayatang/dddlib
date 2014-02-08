@@ -41,8 +41,8 @@ public class GuiceInstanceProvider implements InstanceProvider {
 	 * @see org.dayatang.domain.InstanceProvider#getInstance(java.lang.Class)
 	 */
 	@Override
-	public <T> T getInstance(Class<T> beanClass) {
-		return injector.getInstance(beanClass);
+	public <T> T getInstance(Class<T> beanType) {
+		return injector.getInstance(beanType);
 	}
 
     /*
@@ -50,21 +50,21 @@ public class GuiceInstanceProvider implements InstanceProvider {
      * @see org.dayatang.domain.InstanceProvider#getInstance(java.lang.Class, java.lang.String)
      */
 	@Override
-	public <T> T getInstance(Class<T> beanClass, String beanName) {
-		Key<T> key = Key.get(beanClass, Names.named(beanName));
+	public <T> T getInstance(Class<T> beanType, String beanName) {
+		Key<T> key = Key.get(beanType, Names.named(beanName));
 		return injector.getInstance(key);
 	}
 
     /**
      * 获取指定类型的、含有指定Annotation的对象实例。
      *
-     * @param beanClass  实例的类型
-     * @param annotation 实现类的annotation
+     * @param beanType  实例的类型
+     * @param annotationType 实现类的annotation
      * @return 指定类型的实例。
      */
     @Override
-    public <T> T getInstance(Class<T> beanClass, Annotation annotation) {
-        Key<T> key = Key.get(beanClass, annotation);
+    public <T> T getInstance(Class<T> beanType, Class<? extends Annotation> annotationType) {
+        Key<T> key = Key.get(beanType, annotationType);
         return injector.getInstance(key);
     }
 }

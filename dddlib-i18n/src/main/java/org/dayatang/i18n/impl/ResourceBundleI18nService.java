@@ -12,7 +12,7 @@ public class ResourceBundleI18nService extends AbstractI18nService {
 
 	private ClassLoader bundleClassLoader;
 
-	private ClassLoader beanClassLoader = getDefaultClassLoader();
+	private ClassLoader beanTypeLoader = getDefaultClassLoader();
 
 	/**
 	 * Cache to hold loaded ResourceBundles. This Map is keyed with the bundle
@@ -115,11 +115,11 @@ public class ResourceBundleI18nService extends AbstractI18nService {
 	 */
 	protected ClassLoader getBundleClassLoader() {
 		return (this.bundleClassLoader != null ? this.bundleClassLoader
-				: this.beanClassLoader);
+				: this.beanTypeLoader);
 	}
 
 	public void setBeanClassLoader(ClassLoader classLoader) {
-		this.beanClassLoader = (classLoader != null ? classLoader
+		this.beanTypeLoader = (classLoader != null ? classLoader
 				: getDefaultClassLoader());
 	}
 

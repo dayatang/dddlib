@@ -49,12 +49,12 @@ public class AbstractSpringIntegrationTest {
 
     /**
      * 根据Bean类型获取Spring中的Bean实例。 相比而言，通过@Inject注入Bean实例是更方便的方法。
-     * @param beanClass Bean所属或继承的类
+     * @param beanType Bean所属或继承的类
      * @param <T> Bean的类型
      * @return 类型为T的Bean实例
      */
-    public <T> T getBean(Class<T> beanClass) {
-        return ctx.getBean(beanClass);
+    public <T> T getBean(Class<T> beanType) {
+        return ctx.getBean(beanType);
     }
 
     /**

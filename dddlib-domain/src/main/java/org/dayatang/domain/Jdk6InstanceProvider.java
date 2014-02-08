@@ -12,7 +12,7 @@ import java.util.ServiceLoader;
  * 举例：假如你有一个接口（或抽象类）a.b.c.Xxx和它的一个实现类x.y.z.XxxImpl，那么你只需要在/META-INF/services
  * 目录下创建一个文本文件a.b.c.Xxx，其内容中只包含一行文字：x.y.z.XxxImpl。那么，Jdk6InstanceProvider类的
  * getInstance(a.b.c.Xxx.class)方法就会实例化一个x.y.z.XxxImpl类的实例并返回给调用者。
- * 可以为接口提供多个实现类，只需要在文件a.b.c.Xxx中添加代表其他实现类名的行。这样，getInstance(Class<T> beanClass)
+ * 可以为接口提供多个实现类，只需要在文件a.b.c.Xxx中添加代表其他实现类名的行。这样，getInstance(Class<T> beanType)
  * 方法就会返回列表中的第一个实现类的实例。也可以用getInstance(a.b.c.Xxx.class, "xyz")方法，获得标记为
  * Named("xyz")的实现类的实例。
  * 该方法的灵活性在于：首先你不需要通过配置告诉系统哪个接口由哪个实现类来实现，系统会自行查找接口的实现类；其次，
@@ -26,8 +26,8 @@ import java.util.ServiceLoader;
 public class Jdk6InstanceProvider implements InstanceProvider {
 
 	@Override
-	public <T> T getInstance(Class<T> beanClass) {
-        ServiceLoader<T> serviceLoader = ServiceLoader.load(beanClass);
+	public <T> T getInstance(Class<T> beanType) {
+        ServiceLoader<T> serviceLoader = ServiceLoader.load(beanType);
         if (serviceLoader.iterator().hasNext()) {
             return serviceLoader.iterator().next();
         }
@@ -35,11 +35,11 @@ public class Jdk6InstanceProvider implements InstanceProvider {
 	}
 
 	@Override
-	public <T> T getInstance(Class<T> beanClass, String beanName) {
+	public <T> T getInstance(Class<T> beanType, String beanName) {
 		if (StringUtils.isEmpty(beanName)) {
-			return getInstance(beanClass);
+			return getInstance(beanType);
 		}
-		for (T instance : ServiceLoader.load(beanClass)) {
+		for (T instance : ServiceLoader.load(beanType)) {
 			Named named = instance.getClass().getAnnotation(Named.class);
 			if (named != null && beanName.equals(named.value())) {
 				return instance;
@@ -49,13 +49,13 @@ public class Jdk6InstanceProvider implements InstanceProvider {
 	}
 
     @Override
-    public <T> T getInstance(Class<T> beanClass, Annotation annotation) {
-        if (annotation == null) {
-            return getInstance(beanClass);
+    public <T> T getInstance(Class<T> beanType, Class<? extends Annotation> annotationType) {
+        if (annotationType == null) {
+            return getInstance(beanType);
         }
-        for (T instance : ServiceLoader.load(beanClass)) {
-            Annotation beanAnnotation = instance.getClass().getAnnotation(annotation.annotationType());
-            if (beanAnnotation != null && beanAnnotation.equals(annotation)) {
+        for (T instance : ServiceLoader.load(beanType)) {
+            Annotation beanAnnotation = instance.getClass().getAnnotation(annotationType);
+            if (beanAnnotation != null && beanAnnotation.annotationType().equals(annotationType)) {
                 return instance;
             }
         }

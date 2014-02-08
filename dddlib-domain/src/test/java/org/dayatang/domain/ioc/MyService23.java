@@ -5,14 +5,15 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.inject.Named;
 
-@Named("service2")
-public class MyService2 implements Service {
+@Named("service3")
+@TheAnnotation
+public class MyService23 implements Service2 {
 
-    private int id = 2;
+    private int id = 23;
 
-	@Override
+    @Override
 	public String sayHello() {
-		return "I am Service 2";
+		return "I am Service 3";
 	}
 
     /**
@@ -38,10 +39,10 @@ public class MyService2 implements Service {
         if (this == other) {
             return true;
         }
-        if (!(other instanceof MyService2)) {
+        if (!(other instanceof MyService23)) {
             return false;
         }
-        MyService2 that = (MyService2) other;
+        MyService23 that = (MyService23) other;
         return new EqualsBuilder().append(this.id, that.id).isEquals();
     }
 }
