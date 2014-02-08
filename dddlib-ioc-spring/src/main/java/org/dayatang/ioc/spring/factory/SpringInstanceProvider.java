@@ -47,21 +47,51 @@ public class SpringInstanceProvider implements InstanceProvider {
     }
 
     /**
-     * 返回指定类型的实例。
-     *
+     * 根据类型获取对象实例。返回的对象实例所属的类是T或它的实现类或子类。如果找不到该类型的实例则抛出异常。
+     * 如果有部署了多个类型为T的Bean则抛出NoUniqueBeanDefinitionException异常。
+     * @param <T> 类型参数
      * @param beanType 实例的类型
      * @return 指定类型的实例。
      */
-    @SuppressWarnings("unchecked")
     @Override
     public <T> T getInstance(Class<T> beanType) {
         try {
-            return (T) applicationContext.getBean(beanType);
+            return applicationContext.getBean(beanType);
         } catch (NoSuchBeanDefinitionException e) {
             return null;
         }
     }
 
+    /**
+     * 根据类型和Bean id获取对象实例。如果找不到该类型的实例则抛出异常。
+     * 假如有两个类MyService1和MyService2都实现了接口Service，在applicationContext中这样部署：
+     * <pre>
+     * <bean id="service1" class="MyService1"/>
+     * <bean id="service2" class="MyService2"/>
+     * </pre>
+     * 或者以配置类的方式部署：
+     * <pre>
+     * @Configuration
+     * public class SpringConfiguration {
+
+     *    @Bean(name = "service1")
+     *    public Service service1() {
+     *    return new MyService1();
+     *    }
+     *
+     *    @Bean(name = "service2")
+     *    public Service service2() {
+     *       return new MyService2();
+     *    }
+     * }
+     * </pre>
+     * 那么getInstance(Service.class, "service2")将返回MyService2的实例。
+     *
+     * @param <T> 类型参数
+     * @param beanName 实现类在容器中配置的名字
+     * @param beanType 实例的类型
+     * @return 指定类型的实例。
+     */
     @Override
     public <T> T getInstance(Class<T> beanType, String beanName) {
         try {
@@ -73,10 +103,14 @@ public class SpringInstanceProvider implements InstanceProvider {
 
 
     /**
-     * 获取指定类型的、含有指定Annotation的对象实例。
+     * 根据类型和Annotation获取对象实例。如果找不到该类型的实例则抛出异常。
+     * 假如有两个类MyService1和MyService2都实现了接口Service，其中MyService2标记为
+     * @TheAnnotation，那么getInstance(Service.class, TheAnnotation.class)将返回
+     * MyService2的实例。
      *
-     * @param beanType       实例的类型
-     * @param annotationType 实现类的annotation
+     * @param <T> 类型参数
+     * @param beanType 实例的类型
+     * @param annotationType 实现类的annotation类型
      * @return 指定类型的实例。
      */
     @Override

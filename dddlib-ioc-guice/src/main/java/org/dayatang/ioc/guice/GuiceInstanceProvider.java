@@ -37,9 +37,11 @@ public class GuiceInstanceProvider implements InstanceProvider {
     }
 
 
-    /*
-     * (non-Javadoc)
-     * @see org.dayatang.domain.InstanceProvider#getInstance(java.lang.Class)
+    /**
+     * 根据类型获取对象实例。返回的对象实例所属的类是T或它的实现类或子类。如果找不到该类型的实例则抛出异常。
+     * @param <T> 类型参数
+     * @param beanType 实例的类型
+     * @return 指定类型的实例。
      */
     @Override
     public <T> T getInstance(Class<T> beanType) {
@@ -50,9 +52,19 @@ public class GuiceInstanceProvider implements InstanceProvider {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * @see org.dayatang.domain.InstanceProvider#getInstance(java.lang.Class, java.lang.String)
+    /**
+     * 根据类型和名称获取对象实例。如果找不到该类型的实例则抛出异常。
+     * 假如有两个类MyService1和MyService2都实现了接口Service，而在Guice模块中这样注册：
+     * <pre>
+     * binder.bind(Service.class).to(MyService1.class)
+     * binder.bind(Service.class).annotatedWith(Names.named("service2")).to(MyService2.class)
+     * </pre>
+     * 那么getInstance(Service.class, "service2")将返回MyService2的实例。
+     *
+     * @param <T> 类型参数
+     * @param beanName 实现类在容器中配置的名字
+     * @param beanType 实例的类型
+     * @return 指定类型的实例。
      */
     @Override
     public <T> T getInstance(Class<T> beanType, String beanName) {
@@ -65,10 +77,17 @@ public class GuiceInstanceProvider implements InstanceProvider {
     }
 
     /**
-     * 获取指定类型的、含有指定Annotation的对象实例。
+     * 根据类型和Annotation获取对象实例。如果找不到该类型的实例则抛出异常。
+     * 假如有两个类MyService1和MyService2都实现了接口Service，其中MyService2标记为@MyAnnotation,
+     * 同时MyAnnotation标记为@BindingAnnotation @Retention(RetentionPolicy.RUNTIME) ,
+     * 而在Guice模块中这样注册：
+     * binder.bind(Service.class).to(MyService1.class)
+     * binder.bind(Service.class).annotatedWith(MyAnnotation.class).to(MyService2.class)
+     * 那么getInstance(Service.class, MyAnnotation.class)将返回MyService2的实例。
      *
-     * @param beanType       实例的类型
-     * @param annotationType 实现类的annotation
+     * @param <T> 类型参数
+     * @param beanType 实例的类型
+     * @param annotationType 实现类的annotation类型
      * @return 指定类型的实例。
      */
     @Override
