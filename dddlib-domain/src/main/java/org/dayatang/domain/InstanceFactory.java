@@ -3,6 +3,7 @@ package org.dayatang.domain;
 import org.dayatang.IocException;
 import org.dayatang.IocInstanceNotFoundException;
 
+import java.lang.annotation.Annotation;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -106,11 +107,28 @@ public class InstanceFactory {
         if (result != null) {
             return result;
         }
-        result = (T) instances.get(toName(beanClass.getName(), beanName));
+        result = (T) instances.get(toName(beanClass, beanName));
         if (result != null) {
             return result;
         }
         throw new IocInstanceNotFoundException("There's not bean '" + beanName + "' of type '" + beanClass + "' exists in IoC container!");
+    }
+
+    public static <T> T getInstance(Class<T> beanClass, Annotation annotation) {
+        T result = null;
+        try {
+            result = getInstanceProvider().getInstance(beanClass, annotation);
+        } catch (Exception e) {
+            throw new IocException("IoC container exception!", e);
+        }
+        if (result != null) {
+            return result;
+        }
+        result = (T) instances.get(toName(beanClass, annotation));
+        if (result != null) {
+            return result;
+        }
+        throw new IocInstanceNotFoundException("There's not bean '" + annotation + "' of type '" + beanClass + "' exists in IoC container!");
     }
 
     /**
@@ -137,11 +155,15 @@ public class InstanceFactory {
      * @param beanName
      */
     public static <T> void bind(Class<T> serviceInterface, T serviceImplementation, String beanName) {
-        instances.put(toName(serviceInterface.getName(), beanName), serviceImplementation);
+        instances.put(toName(serviceInterface, beanName), serviceImplementation);
     }
 
-    private static String toName(String className, String beanName) {
-        return className + ":" + beanName;
+    private static String toName(Class<?> beanClass, String beanName) {
+        return beanClass.getName() + ":" + beanName;
+    }
+
+    private static String toName(Class<?> beanClass, Annotation annotation) {
+        return beanClass.getName() + ":" + annotation.annotationType().getName();
     }
 
 }

@@ -8,6 +8,8 @@ import com.google.inject.Module;
 import com.google.inject.name.Names;
 import org.dayatang.domain.InstanceProvider;
 
+import java.lang.annotation.Annotation;
+
 /**
  * 实例提供者接口的Google Guice实现。
  * 
@@ -52,4 +54,17 @@ public class GuiceInstanceProvider implements InstanceProvider {
 		Key<T> key = Key.get(beanClass, Names.named(beanName));
 		return injector.getInstance(key);
 	}
+
+    /**
+     * 获取指定类型的、含有指定Annotation的对象实例。
+     *
+     * @param beanClass  实例的类型
+     * @param annotation 实现类的annotation
+     * @return 指定类型的实例。
+     */
+    @Override
+    public <T> T getInstance(Class<T> beanClass, Annotation annotation) {
+        Key<T> key = Key.get(beanClass, annotation);
+        return injector.getInstance(key);
+    }
 }

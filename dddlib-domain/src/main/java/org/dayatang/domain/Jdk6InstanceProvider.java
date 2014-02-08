@@ -3,6 +3,7 @@ package org.dayatang.domain;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.inject.Named;
+import java.lang.annotation.Annotation;
 import java.util.ServiceLoader;
 
 /**
@@ -47,4 +48,18 @@ public class Jdk6InstanceProvider implements InstanceProvider {
 		return null;
 	}
 
+    @Override
+    public <T> T getInstance(Class<T> beanClass, Annotation annotation) {
+        if (annotation == null) {
+            return getInstance(beanClass);
+        }
+        for (T instance : ServiceLoader.load(beanClass)) {
+            Annotation beanAnnotation = instance.getClass().getAnnotation(annotation.annotationType());
+            if (beanAnnotation != null && beanAnnotation.equals(annotation)) {
+                return instance;
+            }
+        }
+        return null;
+    }
 }
+

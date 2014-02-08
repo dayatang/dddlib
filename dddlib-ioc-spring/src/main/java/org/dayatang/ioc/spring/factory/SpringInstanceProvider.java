@@ -5,6 +5,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.lang.annotation.Annotation;
+import java.util.Map;
+
 /**
  * 实例提供者接口的Spring实现。
  * SpringProvider内部通过Spring IoC的ApplicationContext实现对象创建。
@@ -47,19 +50,36 @@ public class SpringInstanceProvider implements InstanceProvider {
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getInstance(Class<T> beanClass) {
-		String[] beanNames = applicationContext.getBeanNamesForType(beanClass);
-		if (beanNames.length == 0) {
-			return null;
-		}
-		return (T) applicationContext.getBean(beanNames[0]);
+		return (T) applicationContext.getBean(beanClass);
 	}
 
 	@Override
 	public <T> T getInstance(Class<T> beanClass, String beanName) {
 		return (T) applicationContext.getBean(beanName, beanClass);
 	}
-	
-	@SuppressWarnings("unchecked")
+
+    /**
+     * 获取指定类型的、含有指定Annotation的对象实例。
+     *
+     * @param beanClass  实例的类型
+     * @param annotation 实现类的annotation
+     * @return 指定类型的实例。
+     */
+    @Override
+    public <T> T getInstance(Class<T> beanClass, Annotation annotation) {
+        if (annotation == null) {
+            return getInstance(beanClass);
+        }
+        Map<String, T> results = applicationContext.getBeansOfType(beanClass);
+        for (Map.Entry<String, T> entry : results.entrySet()) {
+            if (applicationContext.findAnnotationOnBean(entry.getKey(), annotation.annotationType()) != null) {
+                return entry.getValue();
+            }
+        }
+        return null;
+    }
+
+    @SuppressWarnings("unchecked")
 	public <T> T getByBeanName(String beanName) {
 		return (T) applicationContext.getBean(beanName);
 	}
