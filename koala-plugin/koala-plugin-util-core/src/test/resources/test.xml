@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<person> 
+    <name>test-name</name>  
+    <telephones> 
+        <telephone>123456</telephone>  
+        <telephone>234567</telephone> 
+    </telephones>  
+    <address>china</address> 
+</person>

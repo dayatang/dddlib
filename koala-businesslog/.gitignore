@@ -1,0 +1,11 @@
+/.settings
+/target
+.classpath
+.project
+*.iml
+/.idea
+*/target
+*/.idea
+*/.settings
+jmeter.log
+*.log

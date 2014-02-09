@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task-3.2.xsd">
+
+	<bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="driver" value="${db.jdbc.driver}" />
+		<property name="driverUrl" value="${db.jdbc.connection.url}" />
+		<property name="user" value="${db.jdbc.username}" />
+		<property name="password" value="${db.jdbc.password}" />
+		<property name="prototypeCount" value="5" />
+		<property name="maximumConnectionCount" value="${maximumConnectionCount}" />
+		<property name="minimumConnectionCount" value="${minimumConnectionCount}" />
+		<property name="houseKeepingTestSql" value="select CURRENT_DATE" />
+		<property name="alias" value="default"/>
+	</bean>
+	
+	<tx:annotation-driven />
+
+	<bean id="sqlSessionFactory"
+		class="org.openkoala.koala.mybatis.KoalaSqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:META-INF/spring/mybatis-config.xml" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="basePackage" value="${Project.groupId}"/>
+		<property name="baseScan" value="mappings"/>
+	</bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+
+	<bean id="repository" class="org.openkoala.koala.mybatis.EntityRepositoryMybatis">
+	   <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+
+	<bean id="queryChannel"
+		class="org.openkoala.koala.mybatis.QueryChannelServiceMybatis">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+</beans>

@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<jboss>
+	<!-- impl -->
+	<enterprise-beans>
+		<session>
+			<ejb-name>AccountApplication</ejb-name>
+			<jndi-name>dddDemo/AccountApplication</jndi-name>
+		</session>
+	</enterprise-beans>
+</jboss>

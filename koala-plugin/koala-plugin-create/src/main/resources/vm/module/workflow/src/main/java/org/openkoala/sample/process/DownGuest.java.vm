@@ -1,0 +1,131 @@
+package org.openkoala.sample.process;
+
+import java.io.Serializable;
+/*
+ * 上客实体
+ * */
+@SuppressWarnings("serial")
+public class DownGuest implements Serializable {
+
+	private String airPlanType;// 机型
+	private String flight;// 航线
+	private String flightType;// 航班属性(国内、国际)
+	private int visitingRate;// 客座率
+	private String parkingStand;// 停机位
+	private String checkInGate;// 登机口
+	private String validBegin;// 有效期开始日期
+	private String validEnd;// 有效期开结束日期
+	private int af_beginTime;// 执行轮档前开结时间（分）
+	private int bf_beginTime;// 执行轮档后开结时间（分）
+	private int duration;//执行工期
+	private String resource;//执行资源
+
+	public DownGuest(String airPlanType,String flight,String flightType,int visitingRate,String parkingStand,String checkInGate,String validBegin,String validEnd){
+		this.airPlanType = airPlanType;
+		this.flight = flight;
+		this.flightType = flightType;
+		this.visitingRate = visitingRate;
+		this.parkingStand = parkingStand;
+		this.checkInGate = checkInGate;
+		this.validBegin = validBegin;
+		this.validEnd = validEnd;
+				
+	}
+	
+	public String getAirPlanType() {
+		return airPlanType;
+	}
+
+	public void setAirPlanType(String airPlanType) {
+		this.airPlanType = airPlanType;
+	}
+
+	public String getFlight() {
+		return flight;
+	}
+
+	public void setFlight(String flight) {
+		this.flight = flight;
+	}
+
+	public String getFlightType() {
+		return flightType;
+	}
+
+	public void setFlightType(String flightType) {
+		this.flightType = flightType;
+	}
+
+	public int getVisitingRate() {
+		return visitingRate;
+	}
+
+	public void setVisitingRate(int visitingRate) {
+		this.visitingRate = visitingRate;
+	}
+
+	public String getParkingStand() {
+		return parkingStand;
+	}
+
+	public void setParkingStand(String parkingStand) {
+		this.parkingStand = parkingStand;
+	}
+
+	public String getCheckInGate() {
+		return checkInGate;
+	}
+
+	public void setCheckInGate(String checkInGate) {
+		this.checkInGate = checkInGate;
+	}
+
+	public String getValidBegin() {
+		return validBegin;
+	}
+
+	public void setValidBegin(String validBegin) {
+		this.validBegin = validBegin;
+	}
+
+	public String getValidEnd() {
+		return validEnd;
+	}
+
+	public void setValidEnd(String validEnd) {
+		this.validEnd = validEnd;
+	}
+
+	public int getAf_beginTime() {
+		return af_beginTime;
+	}
+
+	public void setAf_beginTime(int af_beginTime) {
+		this.af_beginTime = af_beginTime;
+	}
+
+	public int getBf_beginTime() {
+		return bf_beginTime;
+	}
+
+	public void setBf_beginTime(int bf_beginTime) {
+		this.bf_beginTime = bf_beginTime;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	public String getResource() {
+		return resource;
+	}
+
+	public void setResource(String resource) {
+		this.resource = resource;
+	}
+
+}

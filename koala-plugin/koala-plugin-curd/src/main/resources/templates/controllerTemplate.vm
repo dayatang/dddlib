@@ -1,0 +1,120 @@
+#set($package = ${entity.className.substring(0, ${entity.className.lastIndexOf(".")})})
+
+package ${controllerClass.packageName}${package.substring(${package.lastIndexOf(".")})};
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.inject.Inject;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PathVariable;
+import com.dayatang.querychannel.support.Page;
+import ${applicationClass.packageName}${package.substring(${package.lastIndexOf(".")})}.${applicationClass.name};
+import ${dtoClass.packageName}.*;
+
+@Controller
+@RequestMapping("/${controllerClass.name.substring(0, 1).toUpperCase()}${controllerClass.name.substring(1, ${controllerClass.name.indexOf("Controller")})}")
+public class ${controllerClass.name} {
+	#set($applicationName = ${applicationClass.name.substring(0, 1).toLowerCase()} + ${applicationClass.name.substring(1)})
+	#set($voType = ${applicationClass.name.substring(0, ${applicationClass.name.indexOf("Application")}).concat("DTO")})
+	#set($voName = ${voType.substring(0, 1).toLowerCase()} + ${voType.substring(1)})
+	#set($domainClass = ${applicationClass.name.substring(0, ${applicationClass.name.indexOf("Application")})})
+	
+	@Inject
+	private ${applicationClass.name} ${applicationName};
+	
+	@ResponseBody
+	@RequestMapping("/add")
+	public Map<String, Object> add(${voType} ${voName}) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		${applicationName}.save${domainClass}(${voName});
+		result.put("result", "success");
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/update")
+	public Map<String, Object> update(${voType} ${voName}) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		${applicationName}.update${domainClass}(${voName});
+		result.put("result", "success");
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/pageJson")
+	public Map<String, Object> pageJson(${voType} ${voName}, @RequestParam int page, @RequestParam int pagesize) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		Page<${voType}> all = ${applicationName}.pageQuery${domainClass}(${voName}, page, pagesize);
+		result.put("Rows", all.getResult());
+		result.put("start", page * pagesize - pagesize);
+		result.put("limit", pagesize);
+		result.put("Total", all.getTotalCount());
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/delete")
+	public Map<String, Object> delete(@RequestParam String ${dtoClass.entityModel.singleIDFieldModel.name}s) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		String[] value = ${dtoClass.entityModel.singleIDFieldModel.name}s.split(",");
+        ${dtoClass.entityModel.singleIDFieldModel.simpleType}[] idArrs = new ${dtoClass.entityModel.singleIDFieldModel.simpleType}[value.length];
+        for (int i = 0; i < value.length; i ++) {
+        	
+        	#if(${dtoClass.entityModel.singleIDFieldModel.simpleType} == "String")
+				idArrs[i] = value[i];
+			#end
+        	#if(${dtoClass.entityModel.singleIDFieldModel.simpleType} == "Long" )
+				idArrs[i] = Long.parseLong(value[i]);
+			#end
+			#if(${dtoClass.entityModel.singleIDFieldModel.simpleType} == "Integer" )
+				idArrs[i] = Integer.parseInt(value[i]);
+			#end
+        	
+        }
+        ${applicationName}.remove${domainClass}s(idArrs);
+		result.put("result", "success");
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/get/{${dtoClass.entityModel.singleIDFieldModel.name}}")
+	public Map<String, Object> get(@PathVariable ${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name}) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("data", ${applicationName}.get${domainClass}(${dtoClass.entityModel.singleIDFieldModel.name}));
+		return result;
+	}
+	
+	#foreach(${relation} in ${applicationClass.relations})
+#set($relationModel = ${relation.relationModel})
+#set($relationType = ${relationModel.type})
+#set($entityName = ${relationModel.entityModel.name})
+#set($relationName = ${relation.name.substring(0, 1).toUpperCase()} + ${relation.name.substring(1)})
+#if(${relationType} == "ManyToOne" || ${relationType} == "OneToOne")
+	@ResponseBody
+	@RequestMapping("/find${relationName}By${domainClass}/{${dtoClass.entityModel.singleIDFieldModel.name}}")
+	public Map<String, Object> find${relationName}By${domainClass}(@PathVariable ${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name}) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("data", ${applicationName}.find${relationName}By${domainClass}(${dtoClass.entityModel.singleIDFieldModel.name}));
+		return result;
+	}
+#end
+
+#if(${relationType} == "OneToMany" || ${relationType} == "ManyToMany")
+	@ResponseBody
+	@RequestMapping("/find${relationName}By${domainClass}/{${dtoClass.entityModel.singleIDFieldModel.name}}")
+	public Map<String, Object> find${relationName}By${domainClass}(@PathVariable ${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name}, @RequestParam int page, @RequestParam int pagesize) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		Page<${entityName}DTO> all = ${applicationName}.find${relationName}By${domainClass}(${dtoClass.entityModel.singleIDFieldModel.name}, page, pagesize);
+		result.put("Rows", all.getResult());
+		result.put("start", page * pagesize - pagesize);
+		result.put("limit", pagesize);
+		result.put("Total", all.getTotalCount());
+		return result;
+	}		
+#end
+#end
+	
+}

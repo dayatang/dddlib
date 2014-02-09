@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<bean id="schedulerFactory"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="dataPolicyTrigger" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- 监控数据处理定时任务 -->
+	<bean id="dataPolicyService"
+		class="org.openkoala.koala.monitor.service.remote.RemoteDataPolicyServerHandler">
+		<property name="triggerName" value="dataPolicyTrigger" />
+		<property name="schedulerName" value="监控数据同步" />
+		<property name="cronExpression" value="0 0/2 * * * ?" />
+	</bean>
+	<bean id="dataPolicySchedulerFactory"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="dataPolicyService" />
+		<property name="targetMethod" value="execute" />
+		<property name="concurrent" value="true" />
+	</bean>
+	<bean id="dataPolicyTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="dataPolicySchedulerFactory" />
+		<property name="cronExpression" value="0 0/2 * * * ?" />
+	</bean> 
+	
+	<!-- 监控数据处理服务 -->
+	<bean id="monitorDataService" class="org.openkoala.koala.monitor.service.MonitorDataServiceImpl" ></bean>
+</beans>

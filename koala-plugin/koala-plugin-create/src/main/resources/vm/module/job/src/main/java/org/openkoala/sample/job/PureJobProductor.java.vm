@@ -1,0 +1,44 @@
+package org.openkoala.sample.job;
+
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
+import static org.quartz.TriggerBuilder.newTrigger;
+
+import java.util.Date;
+
+import org.quartz.JobDetail;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerFactory;
+import org.quartz.Trigger;
+import org.quartz.impl.StdSchedulerFactory;
+
+public class PureJobProductor {
+	public void run(String props) throws Exception {
+		// First we must get a reference to a scheduler
+		SchedulerFactory sf = new StdSchedulerFactory(props);
+		Scheduler sched = sf.getScheduler();
+
+		sched.clear();
+
+		for (int i = 0; i < 10; i++) {
+			JobDetail newJob = newJob(ForceUpdatePageStatefulJob.class)
+					.withIdentity("job12-" + i).requestRecovery().build();
+			Trigger trigger = newTrigger()
+					.withIdentity("trigger12-" + i)
+					.startAt(new Date())
+					.withSchedule(
+							simpleSchedule().withIntervalInSeconds(10)
+									.withRepeatCount(100)).build();
+			sched.scheduleJob(newJob, trigger);
+		}
+
+		sched.start();
+		// sched.shutdown(true);
+	}
+
+	public static void main(String[] args) throws Exception {
+		PureJobProductor job = new PureJobProductor();
+		job.run("quartz_cluster_one.properties");
+	}
+
+}

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT ModuleAdd (property, module)>
+<!ELEMENT property (#PCDATA)>
+<!ELEMENT module (property+)>
+<!ATTLIST property name CDATA #IMPLIED>

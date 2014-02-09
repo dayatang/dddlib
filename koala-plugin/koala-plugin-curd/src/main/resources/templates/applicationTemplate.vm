@@ -1,0 +1,48 @@
+#set($package = ${entity.className.substring(0, ${entity.className.lastIndexOf(".")})})
+
+package ${applicationClass.packageName}${package.substring(${package.lastIndexOf(".")})};
+#set($domainClass = ${applicationClass.name.substring(0, ${applicationClass.name.indexOf("Application")})})
+#set($variableName = ${domainClass.substring(0, 1).toLowerCase()} + ${domainClass.substring(1)})
+#set($currntVO = ${domainClass.concat("DTO")})
+
+import java.util.List;
+import com.dayatang.querychannel.support.Page;
+import ${dtoClass.packageName}.*;
+
+public interface ${applicationClass.name} {
+
+	public ${currntVO} get${domainClass}(${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name});
+	
+	public ${currntVO} save${domainClass}(${currntVO} ${variableName});
+	
+	public void update${domainClass}(${currntVO} ${variableName});
+	
+	public void remove${domainClass}(${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name});
+	
+	public void remove${domainClass}s(${dtoClass.entityModel.singleIDFieldModel.simpleType}[] ${dtoClass.entityModel.singleIDFieldModel.name}s);
+	
+	public List<${currntVO}> findAll${domainClass}();
+	
+	public Page<${currntVO}> pageQuery${domainClass}(${currntVO} ${variableName}, int currentPage, int pageSize);
+	
+#foreach(${relation} in ${applicationClass.relations})
+	#set($relationModel = ${relation.relationModel})
+	#set($relationType = ${relationModel.type})
+	#set($entityName = ${relationModel.entityModel.name})
+	#set($relationName = ${relation.name.substring(0, 1).toUpperCase()} + ${relation.name.substring(1)})
+#if(${relationType} == "ManyToOne" || ${relationType} == "OneToOne")
+	public ${entityName}DTO find${relationName}By${domainClass}(${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name});
+#end
+
+#if(${relationType} == "OneToOne")
+	
+#end
+
+	#if(${relationType} == "OneToMany" || ${relationType} == "ManyToMany")
+		
+	public Page<${entityName}DTO> find${relationName}By${domainClass}(${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name}, int currentPage, int pageSize);		
+	#end
+#end
+
+}
+

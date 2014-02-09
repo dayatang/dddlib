@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ModuleRemove>
+	<!-- 指定此功能的名称 -->
+	<property name="funType">process</property>
+	<property name="files">
+		<value>src/main/java/downguest.bpmn</value>
+		<value>src/main/java/org/openkoala/sample/jbpm/sample.java</value>
+		<value>src/main/java/org/openkoala/sample/process/DatarReading.java</value>
+		<value>src/main/java/org/openkoala/sample/process/downguest.bpmn</value>
+		<value>src/main/java/org/openkoala/sample/process/DownGuest.java</value>
+		<value>src/main/java/org/openkoala/sample/process/DroolsFusionSample.java</value>
+		<value>src/main/java/org/openkoala/sample/process/DroolsFusionSampleTest.java</value>
+		<value>src/main/java/org/openkoala/sample/process/DroolsFusionTest.java</value>
+		<value>src/main/java/org/openkoala/sample/process/FollowUpReading.java</value>
+		<value>src/main/java/org/openkoala/sample/process/FusionTesing.drl</value>
+		<value>src/main/java/org/openkoala/sample/process/Info.java</value>
+		<value>src/main/java/org/openkoala/sample/process/JbpmWorkItemHandler.java</value>
+		<value>src/main/java/org/openkoala/sample/process/Message.java</value>
+		<value>src/main/java/org/openkoala/sample/process/MyEvent.java</value>
+		<value>src/main/java/org/openkoala/sample/process/PersonAtWork.java</value>
+		<value>src/main/java/org/openkoala/sample/process/PersonAtWorkTest.java</value>
+		<value>src/main/java/org/openkoala/sample/process/Sale.java</value>
+		<value>src/main/java/org/openkoala/sample/process/Sales.drl</value>
+		<value>src/main/java/org/openkoala/sample/process/sample.java</value>
+		<value>src/main/java/org/openkoala/sample/process/JbpmProcessTest.java</value>
+		<value>src/main/java/org/openkoala/sample/process/UpWheelChock.java</value>
+		<value>src/main/java/org/openkoala/sample/process/RemoveWheelChock.java</value>
+		<value>src/main/java/org/openkoala/sample/process/TaskInfo.java</value>
+		<value>src/main/resources/Buyer.drl</value>
+		<value>src/main/resources/downguest.bpmn2</value>
+		<value>src/main/resources/downGuest.drl</value>
+		<value>src/main/resources/myflow.rf</value>
+		<value>src/main/resources/Sales.drl</value>
+		<value>src/main/resources/sample.drl</value>
+		<value>src/main/resources/yyyy.bpmn</value>
+		<value>src/main/resources/清洁.bpmn</value>
+		<value>src/main/resources/下客.bpmn</value>
+	</property>
+</ModuleRemove>		

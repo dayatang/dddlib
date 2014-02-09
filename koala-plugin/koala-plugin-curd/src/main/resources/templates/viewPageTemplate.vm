@@ -1,0 +1,16 @@
+#set($entityName = $pageParams.entityModel.name)
+#set($voName  = ${entityName.substring(0, 1).toLowerCase()} + ${entityName.substring(1)} + "DTO")
+#set($base_url = $pageParams.entityModel.lastPackageName + "-" + $entityName +"-")
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<form  class="form-horizontal">
+#foreach( $view in $pageParams.viewModel.views)
+#if(${view.express} !='id')
+	           <div class="form-group">
+                    <label class="col-lg-3 control-label">${view.name}:</label>
+                    <div class="col-lg-9">
+                           <p class="form-control-static" id="${view.express}ID"></p>
+                    </div>
+                </div>
+#end
+#end
+</form>

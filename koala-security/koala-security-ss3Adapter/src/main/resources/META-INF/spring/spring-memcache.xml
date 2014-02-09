@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:s="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+            http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+ 	<bean id="user_cache" class="com.dayatang.cache.memcached.MemCachedBasedCache" >
+		<property name="servers">
+			<list>
+				<value>${security.cache.user.cache}</value>
+			</list>
+		</property>
+		<property name="initConn" value="3"></property>
+		<property name="minConn" value="3"></property>
+		<property name="maxConn" value="5"></property>
+	</bean>
+	<bean id="resource_cache" class="com.dayatang.cache.memcached.MemCachedBasedCache" >
+		<property name="servers">
+			<list>
+				<value>${security.cache.resource.cache}</value>
+			</list>
+		</property>
+		<property name="initConn" value="3"></property>
+		<property name="minConn" value="3"></property>
+		<property name="maxConn" value="5"></property>
+	</bean>
+	
+</beans>

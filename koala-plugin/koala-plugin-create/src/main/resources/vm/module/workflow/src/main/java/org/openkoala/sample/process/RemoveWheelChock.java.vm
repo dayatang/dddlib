@@ -1,0 +1,84 @@
+package org.openkoala.sample.process;
+
+import java.io.Serializable;
+import java.util.Date;
+/*
+ * 撤轮档实体
+ * */
+@SuppressWarnings("serial")
+public class RemoveWheelChock implements Serializable {
+
+	private String airPlanType;// 机型
+	private String flight;// 航线
+	private String flightType;// 航班属性(国内、国际)
+	private int visitingRate;// 客座率
+	private String parkingStand;// 停机位
+	private String checkInGate;// 登机口
+	private Date validBegin;// 有效期开始日期
+	private Date validEnd;// 有效期开结束日期
+
+	public String getAirPlanType() {
+		return airPlanType;
+	}
+
+	public void setAirPlanType(String airPlanType) {
+		this.airPlanType = airPlanType;
+	}
+
+	public String getFlight() {
+		return flight;
+	}
+
+	public void setFlight(String flight) {
+		this.flight = flight;
+	}
+
+	public String getFlightType() {
+		return flightType;
+	}
+
+	public void setFlightType(String flightType) {
+		this.flightType = flightType;
+	}
+
+	public int getVisitingRate() {
+		return visitingRate;
+	}
+
+	public void setVisitingRate(int visitingRate) {
+		this.visitingRate = visitingRate;
+	}
+
+	public String getParkingStand() {
+		return parkingStand;
+	}
+
+	public void setParkingStand(String parkingStand) {
+		this.parkingStand = parkingStand;
+	}
+
+	public String getCheckInGate() {
+		return checkInGate;
+	}
+
+	public void setCheckInGate(String checkInGate) {
+		this.checkInGate = checkInGate;
+	}
+
+	public Date getValidBegin() {
+		return validBegin;
+	}
+
+	public void setValidBegin(Date validBegin) {
+		this.validBegin = validBegin;
+	}
+
+	public Date getValidEnd() {
+		return validEnd;
+	}
+
+	public void setValidEnd(Date validEnd) {
+		this.validEnd = validEnd;
+	}
+
+}

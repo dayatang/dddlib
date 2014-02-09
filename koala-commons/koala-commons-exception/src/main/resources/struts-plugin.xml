@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+   <!--  
+    <bean type="org.apache.struts2.views.TagLibrary" name="ex" class="org.openkoala.exception.support.struts2.tags.ExceptionTagLibrary" />
+   -->
+	<!-- 定义全局package -->
+	<package name="koala-default" extends="json-default">
+		<interceptors>
+			<!-- 异常 -->
+			<interceptor name="processException"
+				class="org.openkoala.exception.support.struts2.Struts2ExceptionInterceptor"></interceptor>
+			<!-- 定义默认拦截器栈 -->
+			<interceptor-stack name="koalaDefaultInterceptor">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="processException" />
+			</interceptor-stack>
+		</interceptors>
+		<!--指定默认拦截器 -->
+		<default-interceptor-ref name="koalaDefaultInterceptor" />
+		<global-results>
+			<result name="biz_exception">/pages/errors/biz_error.jsp</result>
+			<result name="system_exception" type="redirect">/pages/errors/global_error.jsp</result>
+			<!-- JSON -->
+			<result name="json" type="json">
+				<param name="excludeNullProperties">false</param>
+				<param name="ignoreHierarchy">false</param>
+			</result>
+		</global-results>
+		
+		<global-exception-mappings>
+		   <exception-mapping result="biz_exception" exception="org.openkoala.exception.base.BaseException" />
+		   <exception-mapping result="biz_exception" exception="java.lang.RuntimeException" />
+		   <exception-mapping result="system_exception" exception="java.lang.Exception" />
+		</global-exception-mappings>
+	</package>
+
+</struts>

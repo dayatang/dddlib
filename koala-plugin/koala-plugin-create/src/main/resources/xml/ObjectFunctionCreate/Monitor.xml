@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<XmlParse>
+
+	<property name="description">Koala-Monitor</property>
+
+	<CopyFiles>
+		<property name="express">$Monitor.installType=='all'</property>
+		<property name="srcDir">vm/other/monitor/web_common/</property>
+		<property name="destDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/webapp/
+		</property>
+	</CopyFiles>
+
+	<CopyFiles>
+		<property name="express">$Monitor.installType=='all'</property>
+		<property name="srcDir">vm/other/monitor/web_springmvc/</property>
+		<property name="destDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/webapp/</property>
+	</CopyFiles>
+	
+	<CopyFiles>
+		<property name="srcDir">vm/other/monitor/sigar/</property>
+		<property name="destDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/resources/sigar/
+		</property>
+	</CopyFiles>
+
+	<VelocityDirObject>
+		<property name="vmDir">vm/other/monitor/config/monitor/</property>
+		<property name="pathDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/webapp/WEB-INF/monitor/
+		</property>
+	</VelocityDirObject>
+
+	<VelocityDirObject>
+		<property name="express">$Monitor.installType=='all'</property>
+		<property name="vmDir">vm/other/monitor/action/SpringMVC/</property>
+		<property name="pathDir">${Project.path}/${Project.appName}/${Module.moduleName}/src/main/java/${Module.basePackagePath}/controller/monitor/
+		</property>
+	</VelocityDirObject>
+
+
+	<XmlAdd>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/pom.xml
+		</property>
+		<property name="uri">http://maven.apache.org/POM/4.0.0</property>
+		<property name="parentSearch"><![CDATA[/xmlns:project/xmlns:dependencies]]></property>
+		<property name="selfSearch"><![CDATA[/xmlns:project/xmlns:dependencies/xmlns:dependency[xmlns:groupId='org.openkoala.monitor' and xmlns:artifactId='koala-jmonitor-core']]]></property>
+		<property name="xmlContent">
+         <![CDATA[
+    <?xml version="1.0" encoding="UTF-8"?>
+    <root>
+    <dependency>
+			<groupId>org.openkoala.monitor</groupId>
+			<artifactId>koala-jmonitor-core</artifactId>
+			<version>${koala.version}</version>
+		</dependency>
+	</root>
+         ]]>
+		</property>
+	</XmlAdd>
+
+
+	<!-- 集成式部署，需要依赖application用于前端数据管理 -->
+	<XmlAdd>
+		<property name="express">$Monitor.installType=='all'</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Module.moduleName}/pom.xml
+		</property>
+		<property name="uri">http://maven.apache.org/POM/4.0.0</property>
+		<property name="parentSearch"><![CDATA[/xmlns:project/xmlns:dependencies]]></property>
+		<property name="selfSearch"><![CDATA[/xmlns:project/xmlns:dependencies/xmlns:dependency[xmlns:groupId='org.openkoala.monitor' and xmlns:artifactId='koala-jmonitor-applicationImpl']]]></property>
+		<property name="xmlContent">
+         <![CDATA[
+    <?xml version="1.0" encoding="UTF-8"?>
+    <root>
+       <dependency>
+			<groupId>org.openkoala.monitor</groupId>
+			<artifactId>koala-jmonitor-application</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openkoala.monitor</groupId>
+			<artifactId>koala-jmonitor-applicationImpl</artifactId>
+		</dependency>
+	</root>
+         ]]>
+		</property>
+	</XmlAdd>
+
+	<XmlAdd>
+		<property name="express">$Monitor.installType=='all' and
+			$Project.dbProtocol!='JPA'
+		</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml
+		</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
+		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
+		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:META-INF/spring/integrated/standard/root.xml']]]></property>
+		<property name="xmlContent">
+         <![CDATA[
+    <?xml version="1.0" encoding="UTF-8"?>
+    <root>
+	  <import resource="classpath*:META-INF/spring/integrated/mybatis-share/root.xml"/>
+	</root>
+         ]]>
+		</property>
+	</XmlAdd>
+
+	<XmlAdd>
+		<property name="express">$Monitor.installType=='all' and
+			$Project.dbProtocol=='JPA'
+		</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/db-context.xml
+		</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
+		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
+		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath*:META-INF/spring/integrated/share/root.xml']]]></property>
+		<property name="xmlContent">
+         <![CDATA[
+    <?xml version="1.0" encoding="UTF-8"?>
+    <root>
+	  <import resource="classpath*:META-INF/spring/integrated/share/root.xml"/>
+	</root>
+         ]]>
+		</property>
+	</XmlAdd>
+
+	<VelocityFileObject>
+		<property name="express">$Monitor.installType=='all' and
+			$Project.dbProtocol=='Mybatis'
+		</property>
+		<property name="vm">vm/base/conf-mybatis/src/main/resources/META-INF/spring/JPA-persistence-context.xml
+		</property>
+		<property name="path">${Project.path}/${Project.appName}/${Project.appName}-conf/src/main/resources/META-INF/spring/JPA-persistence-context.xml
+		</property>
+	</VelocityFileObject>
+
+	<XmlAdd>
+		<property name="express">$Monitor.installType=='all' and
+			$Project.dbProtocol=='Mybatis'
+		</property>
+		<property name="xmlFile">${Project.path}/${Project.appName}/${Project.appName}-conf/src/test/resources/META-INF/spring/db-context.xml
+		</property>
+		<property name="uri">http://www.springframework.org/schema/beans
+		</property>
+		<property name="parentSearch"><![CDATA[/xmlns:beans]]></property>
+		<property name="selfSearch"><![CDATA[/xmlns:beans/xmlns:import[@resource='classpath:META-INF/spring/JPA-persistence-context.xml']]]></property>
+		<property name="xmlContent">
+         <![CDATA[
+    <?xml version="1.0" encoding="UTF-8"?>
+    <root>
+	  <import resource="classpath:META-INF/spring/JPA-persistence-context.xml"/>
+	</root>
+         ]]>
+		</property>
+	</XmlAdd>
+
+</XmlParse>

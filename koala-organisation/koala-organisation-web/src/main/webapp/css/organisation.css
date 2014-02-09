@@ -1,0 +1,134 @@
+.form-management .modal-dialog{
+    width:960px;
+    padding-top: 30px;
+}
+.form-management .modal-body ,
+.field-management .modal-body{
+    padding-top: 5px!important;
+    max-height: 430px;
+    overflow-y: auto;
+}
+.form-management .grid-table-body {
+    height: 250px;
+}
+.form-management .panel ,
+.field-management .panel {
+    margin-bottom: 0;
+}
+.form-management .form-group {
+    margin-bottom: 5px;
+}
+
+.field-management .modal-body{
+    max-height: 450px;
+}
+.field-management .modal-dialog {
+    padding-top:  80px;
+    width: 850px;
+}
+.field-management .form-group {
+    margin-bottom: 10px;
+}
+
+.form-management .form-control,
+.field-management .form-control{
+    display: inline;
+    width: 94%;
+}
+
+.employee-management .modal-body{
+    max-height: 450px;
+}
+.employee-management .modal-dialog {
+    width: 750px;
+}
+.employee-management .form-group {
+    margin-bottom: 10px;
+}
+.employee-management .form-control{
+    display: inline;
+    width: 94%;
+}
+
+
+/*
+*  部门
+*/
+.u-tree  {
+    position: relative;
+    float: left;
+    min-height: 540px;
+    width: 25%;
+    border-right: 1px solid #DDDDDD!important;
+}
+.right-content {
+    float: left;
+    width: 75%;
+    padding: 15px;
+}
+.department-detail {
+    border: 1px solid #DDDDDD!important;
+    margin-bottom: 4px;
+}
+
+/**
+*岗位调整
+*/
+.changePost .selected-post {
+   background-color: #99CC99;
+   color: #ffffff;
+   float: left;
+   margin-right: 10px;
+   margin-top: 2px;
+   padding: 4px 0;
+   min-width: 65px;
+   text-align: center;
+   cursor: pointer;
+}
+.changePost .selected-post a {
+   position: relative;
+   top: -4px;
+   float: right;
+   outline: none;
+   text-decoration: none;
+   cursor: pointer;
+}
+.changePost .principal {
+	background-color: #428BCA;
+	color: #FFFFFF
+}
+.changePost .selected-post a, .changePost .principal a {
+	color: #FFFFFF;
+	font-size: 12px;
+}
+.changePost .modal-body {
+   padding-top: 4px!important;
+   padding-bottom: 0;;
+}
+.changePost .panel {
+   margin-top: 5px;
+   margin-bottom: 0;
+}
+.changePost .panel-body {
+   min-height: 38px;
+   padding: 6px;
+}
+.changePost .tree {
+   padding-top: 30;
+   height: 348px;
+   min-width: 250px;
+   border: 1px solid #DDDDDD;
+}
+.changePost .postGrid {
+   height: 310px;
+   max-width: 640px;
+}
+.changePost .grid-table-body {
+	height:210px;
+}
+.changePost .grid-table-head th,  .changePost .grid-table-body td {
+	text-align: center;
+}
+.changePost .postGrid a {
+	cursor: pointer;
+}

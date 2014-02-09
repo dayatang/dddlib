@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/data/jpa 
+		http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	<!-- Drives transactions using local JPA APIs -->
+	<tx:annotation-driven transaction-manager="km_transactionManager" />
+	
+	<bean id="km_transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="km_entityManagerFactory" />
+	</bean>
+
+	<!-- Creates a EntityManagerFactory for use with the Hibernate JPA provider 
+		and a simple in-memory data source populated with test data -->
+	<bean id="km_entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceXmlLocation"
+			value="classpath*:META-INF/spring/distributed/jpa.xml" />
+		<property name="dataSource" ref="km_dataSource" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="generateDdl" value="${km.generateDdl}"></property>
+				<property name="showSql" value="${km.hibernate.show_sql}"></property>
+				<property name="databasePlatform" value="${km.hibernate.dialect}"></property>
+			</bean>
+		</property>
+	</bean>
+
+
+
+	<bean id="km_dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="alias" value="monotorDB_POOL" />
+		<property name="driver" value="${km.db.jdbc.driver}" />
+		<property name="driverUrl" value="${km.db.jdbc.connection.url}" />
+		<property name="user" value="${km.db.jdbc.username}" />
+		<property name="password" value="${km.db.jdbc.password}" />
+		<property name="prototypeCount" value="5" />
+		<property name="maximumConnectionCount" value="100" />
+		<property name="simultaneousBuildThrottle" value="50" />
+		<property name="maximumActiveTime" value="180000" />
+		<property name="minimumConnectionCount" value="5" />
+		<property name="houseKeepingTestSql" value="select 1 from dual" />
+	</bean>
+
+	<bean id="km_repository" class="org.openkoala.koala.util.KoalaEntityRepositoryJpa">
+		<property name="entityManager">
+			<bean class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+				<property name="persistenceUnitName" value="monitor" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="km_queryChannel" class="org.openkoala.koala.util.KoalaQueryChannelServiceJpa">
+		<property name="entityManager">
+			<bean class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+				<property name="persistenceUnitName" value="monitor" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="km_jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="km_dataSource" />
+	</bean>
+
+	<bean id="km_transactionTemplate"
+		class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="timeout" value="300" />
+		<property name="transactionManager" ref="km_transactionManager" />
+	</bean>
+
+
+	<!--拦截器事务 -->
+	<tx:advice id="km_txAdvice" transaction-manager="km_transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="km_pointcut"
+			expression="execution(* org.openkoala.koala.monitor..*ApplicationImpl.*(..)) and execution(* org.openkoala.koala.monitor..*.*ServiceImpl.*(..))" />
+		<aop:advisor advice-ref="km_txAdvice" pointcut-ref="km_pointcut" />
+	</aop:config>
+
+	<jpa:repositories base-package="org.openkoala.koala"
+		entity-manager-factory-ref="km_entityManagerFactory"
+		transaction-manager-ref="km_transactionManager" />
+</beans>

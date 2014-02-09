@@ -1,0 +1,88 @@
+package org.openkoala.sample.process;
+
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.concurrent.TimeUnit;
+
+import org.drools.KnowledgeBase;
+import org.drools.KnowledgeBaseConfiguration;
+import org.drools.KnowledgeBaseFactory;
+import org.drools.builder.KnowledgeBuilder;
+import org.drools.builder.KnowledgeBuilderFactory;
+import org.drools.builder.ResourceType;
+import org.drools.compiler.DroolsParserException;
+import org.drools.conf.EventProcessingOption;
+import org.drools.io.ResourceFactory;
+import org.drools.runtime.KnowledgeSessionConfiguration;
+import org.drools.runtime.StatefulKnowledgeSession;
+import org.drools.runtime.conf.ClockTypeOption;
+import org.drools.runtime.rule.FactHandle;
+import org.drools.runtime.rule.WorkingMemoryEntryPoint;
+import org.drools.time.SessionPseudoClock;
+
+public class PersonAtWorkTest {
+   public static void main(String[] args){
+	    StringBuffer sb = new StringBuffer("");
+	    try {
+	        sb.append("package org.openkoala.sample\n");
+	        sb.append("import org.openkoala.sample.fusionrule.PersonAtWork\n");
+	        
+	        sb.append("declare PersonAtWork \n");
+	        sb.append("  @role(event) \n");
+	        sb.append("end\n");
+	
+	        sb.append("rule \"RegularTime\" \n"); 
+	        sb.append("when \n");
+	    	sb.append("	  $personAtWork : PersonAtWork() from entry-point \"Onsite\" \n"); 
+	    	sb.append("	  PersonAtWork(this before [0s, 4s]  $personAtWork) from entry-point \"Onsite\" \n");
+	    	sb.append("then \n");
+	    	sb.append("	  System.out.println($personAtWork.getName() + \" is now getting regular (1x) rate ...\"); \n");
+	    	sb.append("	  $personAtWork.setRate(1); \n"); 
+	    	sb.append("end \n");
+
+	    	sb.append("rule \"OverTime\" \n");
+	    	sb.append("when \n");
+	    	sb.append("	   $personAtWork : PersonAtWork() from entry-point \"Onsite\" \n"); 
+	    	sb.append("	   PersonAtWork(this after [4s, 8s] $personAtWork) from entry-point \"Onsite\" \n");
+	    	sb.append("then \n");
+	    	sb.append("    System.out.println($personAtWork.getName() + \" is now getting overtime (2x) rate ...\"); \n");
+	    	sb.append("    $personAtWork.setRate(2); \n"); 
+	    	sb.append("end \n"); 
+	        
+	        PackageBuilderDrlByStr(sb);
+	    }catch(Throwable t){
+	    	t.printStackTrace();
+	    }
+	   
+   }
+	private static void PackageBuilderDrlByStr(StringBuffer sb) throws DroolsParserException, IOException, InterruptedException{
+	    KnowledgeBuilder kBuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
+	    kBuilder.add(ResourceFactory.newReaderResource(new StringReader(sb.toString())), ResourceType.DRL);
+		 if (kBuilder.hasErrors()) {
+	         System.err.print(kBuilder.getErrors());
+	    }
+	    KnowledgeBaseConfiguration kconfig = KnowledgeBaseFactory.newKnowledgeBaseConfiguration();
+	    kconfig.setOption(EventProcessingOption.STREAM);
+	    KnowledgeBase kBase = KnowledgeBaseFactory.newKnowledgeBase(kconfig);
+	    kBase.addKnowledgePackages(kBuilder.getKnowledgePackages());
+	    
+	    KnowledgeSessionConfiguration conf = KnowledgeBaseFactory.newKnowledgeSessionConfiguration();
+	    conf.setOption( ClockTypeOption.get("pseudo"));    
+	    StatefulKnowledgeSession kSession = kBase.newStatefulKnowledgeSession(conf,null);
+	    SessionPseudoClock clock = (SessionPseudoClock) kSession.getSessionClock();
+	    
+	    PersonAtWork p1 = new PersonAtWork("bob", 12);
+	    PersonAtWork p2 = new PersonAtWork("sara", 14); 
+	    PersonAtWork p3 = new PersonAtWork("bara", 17); 
+	    WorkingMemoryEntryPoint onSite = kSession.getWorkingMemoryEntryPoint("Onsite");
+	    
+	    onSite.insert(p1);
+	    clock.advanceTime(8, TimeUnit.SECONDS); 
+	    onSite.insert(p2);
+	    clock.advanceTime(20, TimeUnit.SECONDS); 
+	    onSite.insert(p3);
+	    clock.advanceTime(30, TimeUnit.SECONDS); 
+
+        kSession.fireAllRules(); 
+	}
+}

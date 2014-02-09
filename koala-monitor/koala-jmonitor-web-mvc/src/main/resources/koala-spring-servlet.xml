@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<context:component-scan base-package="org.openkoala">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" /> 
+  		<context:exclude-filter type="annotation" expression="javax.inject.Named" /> 
+  		<context:exclude-filter type="annotation" expression="javax.inject.Inject" /> 
+	</context:component-scan>
+	
+
+	<!-- 启动SpringMVC的注解功能，它会自动注册HandlerMapping、 HandlerAdapter、ExceptionResolver的相关实例 -->
+	<mvc:annotation-driven />
+
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<util:list id="beanList">
+				<ref bean="mappingJacksonHttpMessageConverter" />
+			</util:list>
+		</property>
+	</bean>
+
+	<!-- JSON转换器 -->
+	<bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/html;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- freemarker的配置 -->  
+    <bean id="freemarkerConfigurer"  
+        class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">  
+        <property name="templateLoaderPath" value="/WEB-INF/template/" />  
+        <property name="defaultEncoding" value="UTF-8" />  
+        <property name="freemarkerSettings">  
+            <props>  
+                <prop key="template_update_delay">10</prop>  
+                <prop key="locale">zh_CN</prop>  
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>  
+                <prop key="date_format">yyyy-MM-dd</prop>  
+                <prop key="number_format">#.##</prop>  
+            </props>  
+        </property>  
+    </bean>  
+    
+    <!-- FreeMarker视图解析器 -->  
+    <bean id="viewResolver"  
+        class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">  
+        <property name="viewClass"  
+            value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />  
+        <property name="suffix" value=".ftl" />  
+        <property name="contentType" value="text/html;charset=UTF-8" />  
+        <property name="exposeRequestAttributes" value="true" />  
+        <property name="exposeSessionAttributes" value="true" />  
+        <property name="exposeSpringMacroHelpers" value="true" />  
+        <property name="requestContextAttribute" value="request" />
+    </bean>  
+
+	<!-- 通用视图解析类 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/pages/" />
+		<property name="suffix" value=".jsp" />
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+	</bean>
+</beans>

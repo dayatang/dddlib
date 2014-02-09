@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.openkoala</groupId>
+		<artifactId>koala-project</artifactId>
+		<version>2.1.0-SNAPSHOT</version>
+	</parent>
+	<groupId>org.openkoala.monitor</groupId>
+	<artifactId>koala-jmonitor</artifactId>
+	<packaging>pom</packaging>
+	<name>${project.artifactId}</name>
+
+	<modules>
+		<module>koala-jmonitor-domain</module>
+		<module>koala-jmonitor-application</module>
+		<module>koala-jmonitor-applicationImpl</module>
+		<module>koala-jmonitor-mina</module>
+		<module>koala-jmonitor-core</module>
+		<module>koala-jmonitor-model</module>
+		<module>koala-jmonitor-web-mvc</module>
+	</modules>
+
+
+	<profiles>
+		<profile>
+			<id>monitor</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<hibernate.show_sql>true</hibernate.show_sql>
+				<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+				<db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
+				<db.connectionURL>jdbc:h2:~/db/monitor</db.connectionURL>
+				<db.username>sa</db.username>
+				<db.password />
+				<db.Type>H2</db.Type>
+				<generateDdl>true</generateDdl>
+			</properties>
+		</profile>
+	</profiles>
+
+
+</project>

@@ -1,0 +1,61 @@
+package org.openkoala.sample.jbpm;
+
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.Arrays;
+
+import org.drools.RuleBase;
+import org.drools.RuleBaseFactory;
+import org.drools.StatelessSession;
+import org.drools.compiler.DroolsParserException;
+import org.drools.compiler.PackageBuilder;
+import org.drools.compiler.PackageBuilderConfiguration;
+import org.drools.rule.builder.dialect.java.JavaDialectConfiguration;
+import org.openkoala.sample.process.Info;
+
+
+public class sample {
+	
+	public static Object PackageBuilderDrlByStr(StringBuffer sb,Object object) throws DroolsParserException, IOException{
+		 PackageBuilderConfiguration config = new PackageBuilderConfiguration();
+		 JavaDialectConfiguration javaConf = (JavaDialectConfiguration)config.getDialectConfiguration("java");
+		 javaConf.setCompiler(JavaDialectConfiguration.ECLIPSE);
+		 PackageBuilder builder = new PackageBuilder(config);
+		 builder.addPackageFromDrl(new StringReader(sb.toString()));
+		 if (builder.hasErrors()) {
+		         System.err.print(builder.getErrors());
+		         return -1;
+		 }
+	     RuleBase ruleBase = RuleBaseFactory.newRuleBase();
+         ruleBase.addPackage(builder.getPackage());
+         StatelessSession session = ruleBase.newStatelessSession();
+         session.execute(Arrays.asList(new Object[] { object }));
+
+         return object;
+	}
+	
+	public static final void main(String[] args) {
+		try {
+			StringBuffer sb=new StringBuffer();
+            sb.append("package org.openkoala.sample \n");
+            sb.append("import org.openkoala.sample.process.Info;\n");
+            sb.append("rule \"First Rule\"\n");
+            sb.append("when\n");
+            sb.append("info:Info(id=='1');\n");
+            sb.append("then \n");
+            sb.append("info.setName(\"wu xiao xue\");\n");
+            sb.append("end\n");
+            
+            Info info = new Info();
+            info.setId("1");
+            info.setName("name1");
+            info.setDescription("desc1");
+            info = (Info)PackageBuilderDrlByStr(sb,info);
+            System.out.println("Info Name IS: " + info.getName());
+		}catch(Throwable t){
+			t.printStackTrace();
+		}
+	}
+
+
+}

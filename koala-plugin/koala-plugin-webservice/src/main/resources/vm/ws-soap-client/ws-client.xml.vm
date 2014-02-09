@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:cxf="http://cxf.apache.org/core"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="  
+        http://www.springframework.org/schema/beans   
+        http://www.springframework.org/schema/beans/spring-beans-2.0.xsd  
+        http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+        http://cxf.apache.org/jaxws   
+        http://cxf.apache.org/schemas/jaxws.xsd 
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<context:property-placeholder location="classpath*:ws-client.properties" />
+    
+	<bean id="httpHeaderInterceptor" class="org.openkoala.koala.client.ws.HttpHeaderInterceptor">
+		<property name="username">
+			<list>
+				<value>${username}</value>
+			</list>
+		</property>
+		<property name="password">
+			<list>
+				<value>${password}</value>
+			</list>
+		</property>
+	</bean>
+	
+ #foreach ($Application in $Applications )
+ 	<jaxws:client id="${Application.applicationName}Service" address="${${Application.applicationName}.ws.url}"
+			serviceClass="${Application.fullApplicationName}" >
+		<jaxws:outInterceptors>
+			<ref bean="httpHeaderInterceptor"/>
+		</jaxws:outInterceptors>
+		<jaxws:features>
+			<bean class="org.apache.cxf.transport.common.gzip.GZIPFeature">
+				<property name="threshold" value="1" />
+			</bean>
+		</jaxws:features>
+	</jaxws:client>
+#end
+</beans>

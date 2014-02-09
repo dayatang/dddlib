@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<businessLogConfigs>
+    <businessLogConfig>
+        <category>project</category>
+        <method>Project[] business.ProjectApplicationImpl.findSomeProjects(List)</method>
+        <template><![CDATA[
+        find
+        <#list names as name1>
+          ${name1},
+        </#list>
+        ]]></template>
+        <queries>
+            <query key="names">
+                <target class="business.Project"></target>
+                <method>getProjectsName(business.Project[])</method>
+                <args>
+                    <arg>${_methodReturn}</arg>
+                </args>
+            </query>
+        </queries>
+    </businessLogConfig>
+
+</businessLogConfigs>

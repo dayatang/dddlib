@@ -1,0 +1,28 @@
+package org.openkoala.sample
+
+import org.openkoala.sample.fusionrule.DownGuest;
+import org.openkoala.sample.fusionrule.TaskInfo;
+
+declare DownGuest
+    @role( event )
+end
+
+declare TaskInfo
+    @role( event )
+end
+
+rule "计划任务创建" 
+when 
+	downGuest:DownGuest(airPlanType=='319',flight matches 'CAN-PEK、CAN-URC.*,flightType=='国内',
+	                    visitingRate==80,parkingStand=='廊桥机位',checkInGate=='廊桥登机口',
+	                    validBegin=='2012-10-08',validEnd=='2012-10-12') from entry-point "flight stream"
+then 
+	System.out.println("计划任务创建... ... ..."); 
+end 
+
+rule "计划任务执行监控" 
+when 
+	TaskInfo(iDuration>5,bf_beginTime>3) from entry-point "taskInfo" 
+then 
+	System.out.println("任务执行预警... ... ...");  
+end 

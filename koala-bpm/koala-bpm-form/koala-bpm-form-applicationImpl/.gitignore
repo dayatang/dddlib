@@ -1,0 +1,12 @@
+*.class
+/target
+/.settings
+/.project
+*.classpath
+# Package Files #
+*.jar
+*.war
+*.ear
+/.classpath
+*.DS_Store
+/target

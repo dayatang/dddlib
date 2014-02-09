@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>process-dyna-web</display-name>
+	
+	<listener>
+		<listener-class>org.openkoala.koala.auth.web.InitSuperUserListener</listener-class>
+	</listener>
+
+	<!-- Character Filter -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	
+	       <!-- ss3过滤器链 -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+      
+	
+
+
+	<!-- Spring Listener -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:META-INF/spring/root.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>com.dayatang.spring.webapp.DayatangContextLoaderListener</listener-class>
+	</listener>
+
+	<session-config>
+		<session-timeout>120</session-timeout>
+	</session-config>
+
+       
+        	<!-- 加入SpringMVC -->
+	 <servlet>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:koala-spring-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+  
+	  <servlet-mapping>
+	  	<servlet-name>spring</servlet-name>
+	  	<url-pattern>*.koala</url-pattern>
+	  </servlet-mapping>
+        
+       <servlet>
+		<servlet-name>DBInit</servlet-name>
+		<servlet-class>org.openkoala.koala.dbinit.SecurityDBInit</servlet-class>
+		<init-param>
+			<param-name>type</param-name>
+			<param-value>SpringMVC</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>DBInit</servlet-name>
+		<url-pattern>/dbinit</url-pattern>
+	</servlet-mapping>
+   
+    <servlet>
+		<servlet-name>koalaUISurpport</servlet-name>
+		<servlet-class>org.openkoala.ui.base.KoalaUISurpport</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>koalaUISurpport</servlet-name>
+		<url-pattern>/koalaUISurpport</url-pattern>
+	</servlet-mapping>
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/404.html</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error/500.html</location>
+	</error-page>
+	
+	<welcome-file-list>
+		<welcome-file>/index.html</welcome-file>
+		<welcome-file>/index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<distributable />
+</web-app>

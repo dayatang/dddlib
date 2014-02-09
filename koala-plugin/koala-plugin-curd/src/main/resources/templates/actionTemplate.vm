@@ -1,0 +1,107 @@
+#set($package = ${entity.className.substring(0, ${entity.className.lastIndexOf(".")})})
+
+package ${actionClass.packageName}${package.substring(${package.lastIndexOf(".")})};
+
+import java.util.HashMap;
+import java.util.Map;
+import com.opensymphony.xwork2.ActionSupport;
+import javax.inject.Inject;
+import com.dayatang.querychannel.support.Page;
+import ${applicationClass.packageName}${package.substring(${package.lastIndexOf(".")})}.${applicationClass.name};
+import ${dtoClass.packageName}.*;
+import ${actionClass.packageName}.BaseAction;
+
+public class ${actionClass.name} extends BaseAction {
+	#set($applicationName = ${applicationClass.name.substring(0, 1).toLowerCase()} + ${applicationClass.name.substring(1)})
+	#set($voType = ${applicationClass.name.substring(0, ${applicationClass.name.indexOf("Application")}).concat("DTO")})
+	#set($voName = ${voType.substring(0, 1).toLowerCase()} + ${voType.substring(1)})
+	#set($domainClass = ${applicationClass.name.substring(0, ${applicationClass.name.indexOf("Application")})})
+	
+	private static final long serialVersionUID = 1L;
+	
+	private ${voType} ${voName} = new ${voType}();
+		
+	@Inject
+	private ${applicationClass.name} ${applicationName};
+	
+	public String add() {
+		${applicationName}.save${domainClass}(${voName});
+		dataMap.put("result", "success");
+		return "JSON";
+	}
+	
+	public String update() {
+		${applicationName}.update${domainClass}(${voName});
+		dataMap.put("result", "success");
+		return "JSON";
+	}
+	
+	public String pageJson() {
+		Page<${voType}> all = ${applicationName}.pageQuery${domainClass}(${voName}, page, pagesize);
+		dataMap.put("Rows", all.getResult());
+		dataMap.put("start", page * pagesize - pagesize);
+		dataMap.put("limit", pagesize);
+		dataMap.put("Total", all.getTotalCount());
+		return "JSON";
+	}
+	
+	public String delete() {
+	    String idsString = getRequest().getParameter("${dtoClass.entityModel.singleIDFieldModel.name}s");
+        if(idsString != null){
+            String[] idArrs = idsString.split(",");
+            ${dtoClass.entityModel.singleIDFieldModel.simpleType}[] ids = new ${dtoClass.entityModel.singleIDFieldModel.simpleType}[idArrs.length];
+            for (int i = 0; i < idArrs.length; i ++) {
+            	#if(${dtoClass.entityModel.singleIDFieldModel.simpleType} == "String")
+				  ids[i] = idArrs[i];
+			    #end
+        	    #if(${dtoClass.entityModel.singleIDFieldModel.simpleType} == "Long" )
+				  ids[i] = Long.parseLong(idArrs[i]);
+			    #end
+			    #if(${dtoClass.entityModel.singleIDFieldModel.simpleType} == "Integer" )
+				  ids[i] = Integer.parseInt(idArrs[i]);
+			    #end
+            }
+            ${applicationName}.remove${domainClass}s(ids);
+        }
+        
+		dataMap.put("result", "success");
+		return "JSON";
+	}
+	
+	public String get() {
+		dataMap.put("data", ${applicationName}.get${domainClass}(${voName}.get${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}()));
+		return "JSON";
+	}
+	
+#foreach(${relation} in ${applicationClass.relations})
+#set($relationModel = ${relation.relationModel})
+#set($relationType = ${relationModel.type})
+#set($entityName = ${relationModel.entityModel.name})
+#set($relationName = ${relation.name.substring(0, 1).toUpperCase()} + ${relation.name.substring(1)})
+#if(${relationType} == "ManyToOne" || ${relationType} == "OneToOne")
+	public String find${relationName}By${domainClass}() {
+		dataMap.put("data", ${applicationName}.find${relationName}By${domainClass}(${voName}.getId()));
+		return "JSON";
+	}
+#end
+
+#if(${relationType} == "OneToMany" || ${relationType} == "ManyToMany")
+	public String find${relationName}By${domainClass}() {
+		Page<${entityName}DTO> all = ${applicationName}.find${relationName}By${domainClass}(${voName}.getId(), page, pagesize);
+		dataMap.put("Rows", all.getResult());
+		dataMap.put("start", page * pagesize - pagesize);
+		dataMap.put("limit", pagesize);
+		dataMap.put("Total", all.getTotalCount());
+		return "JSON";
+	}		
+#end
+#end
+	
+	public void set${voType}(${voType} ${voName}) {
+		this.${voName} = ${voName};
+	}
+	
+	public ${voType} get${voType}() {
+		return this.${voName};
+	}
+}

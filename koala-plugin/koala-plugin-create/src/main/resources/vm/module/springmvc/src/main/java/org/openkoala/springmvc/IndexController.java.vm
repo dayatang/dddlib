@@ -1,0 +1,29 @@
+package org.openkoala.springmvc; 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.openkoala.application.sample.AccountApplication;
+
+@Controller
+public class IndexController {
+	@Autowired 
+	private AccountApplication accountApplication;
+
+	@RequestMapping("query.do")
+	public String doQueryMoney(ModelMap map, String name) {
+		try {
+			map.put("money", accountApplication.queryMoney(name));
+			map.put("name", name);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "query";
+	}
+	
+	@RequestMapping("index.do")
+	public String doIndex() {
+		return "index";
+	}
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.openkoala</groupId>
+		<artifactId>koala-project</artifactId>
+		<version>2.1.0-SNAPSHOT</version>
+	</parent>
+	<groupId>org.openkoala.koalacommons</groupId>
+	<artifactId>koala-commons</artifactId>
+	<packaging>pom</packaging>
+	<name>koala-commons</name>
+	<description>Koala的commons项目，提供一些辅助支持</description>
+	<modules>
+		<module>koala-commons-ftp</module>
+		<module>koala-commons-i18n</module>
+		<module>koala-commons-cache</module>
+		<module>koala-commons-exception</module>
+		<module>koala-commons-support</module>
+		<module>koala-commons-test-support</module>
+	</modules>
+</project>

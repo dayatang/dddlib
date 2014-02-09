@@ -1,0 +1,67 @@
+package org.openkoala.i18n; 
+
+import java.util.Locale;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+import com.dayatang.i18n.impl.ResourceBundleI18nService;
+import com.dayatang.i18n.support.I18nServiceAccessor;
+
+/**
+ * I18n测试
+ * @author Justin
+ * @since 2012-10-25
+ * 
+ */
+public class I18nTest {
+	private I18nServiceAccessor accessor;
+	
+	@Before
+	public void setUp() {
+		accessor = new I18nServiceAccessor(new ResourceBundleI18nService() {
+			{
+				// 设置Bundle的名字，要与国际化资源文件所放的目录名一致，并在后面加上ResourceBundle的baseName
+				setBasename("org.openkoala.i18n.messages");
+			}
+		});
+	}
+
+	/**
+	 * 从资源文件中获取国际化信息
+	 */
+	@Test
+	public void testGetMessage() {
+		// 中文
+		String cnMessage = accessor.getMessage("hello", Locale.getDefault());
+		Assert.assertEquals("你好！", cnMessage);
+		
+		// 英文
+		String enMessage = accessor.getMessage("hello", Locale.ENGLISH);
+		Assert.assertEquals("hello!", enMessage);
+	}
+	
+	/**
+	 * 从资源文件中获取国际化信息（包含格式化参数）
+	 */
+	@Test
+	public void testGetMessageWithFormatArgs() {
+		String cnMessage = accessor.getMessage("sayHello", new Object[] { "Justin" }, Locale.getDefault());
+		Assert.assertEquals("你好，Justin!", cnMessage);
+		
+		String enMessage = accessor.getMessage("sayHello", new Object[] { "Justin" }, Locale.ENGLISH);
+		Assert.assertEquals("hello,Justin!", enMessage);
+	}
+	
+	/**
+	 * 从资源文件中获取国际化信息（包含默认值）
+	 */
+	@Test
+	public void testGetMessageWithDefalutValue() {
+		String cnMessage = accessor.getMessage("defaultValue", "默认值", Locale.getDefault());
+		Assert.assertEquals("默认值", cnMessage);
+	}
+	
+	
+}

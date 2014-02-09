@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.openkoala.organisation</groupId>
+		<artifactId>koala-organisation</artifactId>
+		<version>2.1.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>koala-organisation-web</artifactId>
+	<name>koala organisation web module</name>
+	<packaging>war</packaging>
+	<description>koala组织子系统web模块</description>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.openkoala.organisation</groupId>
+			<artifactId>koala-organisation-conf</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openkoala.organisation</groupId>
+			<artifactId>koala-organisation-core</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openkoala.organisation</groupId>
+			<artifactId>koala-organisation-application</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openkoala.organisation</groupId>
+			<artifactId>koala-organisation-applicationImpl</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.dayatang.commons</groupId>
+			<artifactId>dayatang-commons-spring</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>${db.groupId}</groupId>
+			<artifactId>${db.artifactId}</artifactId>
+			<version>${db.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.openkoala.koalacommons</groupId>
+			<artifactId>koala-commons-test-support</artifactId>
+			<version>${project.parent.version}</version>
+			<scope>test</scope>
+		</dependency>
+		
+	</dependencies>
+
+    <build> 
+        <plugins> 
+            <plugin> 
+                <groupId>org.mortbay.jetty</groupId>  
+                <artifactId>jetty-maven-plugin</artifactId>  
+                <configuration>
+                    <webApp> 
+                        <contextPath>/</contextPath> 
+                    </webApp>
+                </configuration> 
+            </plugin> 
+        </plugins> 
+    </build> 
+</project>

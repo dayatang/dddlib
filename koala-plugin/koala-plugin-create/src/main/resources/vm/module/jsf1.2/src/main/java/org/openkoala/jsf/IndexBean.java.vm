@@ -1,0 +1,39 @@
+package org.openkoala.jsf;
+
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+
+import org.openkoala.application.sample.AccountApplication;
+
+public class IndexBean {
+
+	private AccountApplication accountApplication;
+	
+	private double money;
+	
+	public String getAccountMoney() {
+		try {
+			HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+			money = accountApplication.queryMoney(request.getParameter("name"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "success";
+	}
+
+	public void setAccountApplication(AccountApplication accountApplication) {
+		this.accountApplication = accountApplication;
+	}
+	
+	public AccountApplication getAccountApplication() {
+		return accountApplication;
+	}
+
+	public void setMoney(double money) {
+		this.money = money;
+	}
+	
+	public double getMoney() {
+		return money;
+	}
+}

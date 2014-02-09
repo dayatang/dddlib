@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//Apache//DTD Log4j 1.2//EN"
+                                    "http://logging.apache.org/log4j/docs/api/org/apache/log4j/xml/log4j.dtd">
+<log4j:configuration>
+	<appender class="org.apache.log4j.ConsoleAppender" name="RootConsoleAppender">
+		<param name="Threshold" value="debug" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{1}] %m%n" />
+		</layout>
+	</appender>
+
+	<category name="org.openkoala.koala">
+		<priority value="debug" />
+	</category>
+
+	<category name="org.springframework">
+		<priority value="warn" />
+	</category>
+
+	<category name="org.hibernate">
+		<priority value="warn" />
+	</category>
+	<category name="org.dbunit">
+		<priority value="warn" />
+	</category>
+
+	<category name="com.mchange.v2">
+		<priority value="warn" />
+	</category>
+	<category name="org.apache">
+		<priority value="warn" />
+	</category>
+	<category name="org.logicalcobwebs">
+		<priority value="warn" />
+	</category>
+
+	<root>
+		<level value="debug" />
+		<appender-ref ref="RootConsoleAppender" />
+	</root>
+
+</log4j:configuration>

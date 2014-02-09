@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.openkoala.bpm</groupId>
+		<artifactId>koala-bpm</artifactId>
+		<version>2.1.0-SNAPSHOT</version>
+	</parent>
+	<groupId>org.openkoala.bpm.designer</groupId>
+	<artifactId>koala-bpm-designer</artifactId>
+	<packaging>pom</packaging>
+	<name>koala-bpm-designer</name>
+	<description />
+	<modules>
+		<module>koala-bpm-designer-infra</module>
+		<module>koala-bpm-designer-bizmodel</module>
+		<module>koala-bpm-designer-application</module>
+		<module>koala-bpm-designer-applicationImpl</module>
+		<module>koala-bpm-designer-web</module>
+	</modules>
+
+	<profiles>
+		<profile>
+			<id>jbpmdesigner</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+				<hibernate.show_sql>true</hibernate.show_sql>
+				<hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+				<db.jdbcDriver>org.h2.Driver</db.jdbcDriver>
+				<db.connectionURL>jdbc:h2:~/db/jbpm-desinger</db.connectionURL>
+				<db.username>sa</db.username>
+				<db.password />
+				<db.Type>H2</db.Type>
+				<db.groupId>com.h2database</db.groupId>
+				<db.artifactId>h2</db.artifactId>
+				<gunvor.server.host>localhost</gunvor.server.host>
+				<gunvor.server.port>8080</gunvor.server.port>
+				<gunvor.server.user>admin</gunvor.server.user>
+				<gunvor.server.pwd>admin</gunvor.server.pwd>
+			</properties>
+		</profile>
+	</profiles>
+</project>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DbConfigUtil>
+  <!-- H2数据库的配置 -->
+  <DBConfigVO>
+    <property name="dbType">H2</property>
+    <property name="hbm2ddl">update</property>
+    <property name="showSql">true</property>
+    <property name="dialect">org.hibernate.dialect.H2Dialect</property>
+    <property name="jdbcDriver">org.h2.Driver</property>
+    <property name="connectionURL">jdbc:h2:mem:test;MODE=Oracle;DB_CLOSE_DELAY=-1</property>
+    <property name="username">sa</property>
+    <property name="password"></property>
+    
+    <property name="dbGroupId">com.h2database</property>
+    <property name="dbArtifactId">h2</property>
+  </DBConfigVO>
+  
+  <!-- MySQL数据库的配置 -->
+  <DBConfigVO>
+    <property name="dbType">MYSQL</property>
+    <property name="hbm2ddl">update</property>
+    <property name="showSql">true</property>
+    <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+    <property name="jdbcDriver">com.mysql.jdbc.Driver</property>
+    <property name="connectionURL">jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8</property>
+    <property name="username">root</property>
+    <property name="password">root</property>
+    
+    <property name="dbGroupId">mysql</property>
+    <property name="dbArtifactId">mysql-connector-java</property>
+	
+  </DBConfigVO>
+  
+  <!-- Oracle的配置 -->
+   <DBConfigVO>
+    <property name="dbType">ORACLE</property>
+    <property name="hbm2ddl">update</property>
+    <property name="showSql">true</property>
+    <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+    <property name="jdbcDriver">oracle.jdbc.OracleDriver</property>
+    <property name="connectionURL">jdbc:oracle:thin:@localhost:1521:oa</property>
+    <property name="username">root</property>
+    <property name="password">root</property>
+    
+    <property name="dbGroupId">com.oracle</property>
+    <property name="dbArtifactId">ojdbc14</property>
+    
+  </DBConfigVO>
+  
+   <!-- DB2的配置 -->
+   <DBConfigVO>
+    <property name="dbType">DB2</property>
+    <property name="hbm2ddl">update</property>
+    <property name="showSql">true</property>
+    <property name="dialect">org.hibernate.dialect.DB2Dialect</property>
+    <property name="jdbcDriver">com.ibm.db2.jcc.DB2Driver</property>
+    <property name="connectionURL">jdbc:db2://localhost:50000/db_name</property>
+    <property name="username">root</property>
+    <property name="password">root</property>
+    
+    <property name="dbGroupId">com.ibm</property>
+    <property name="dbArtifactId">db2jcc4</property>
+    
+  </DBConfigVO>
+  
+  <!-- Sybase的配置 -->
+  <DBConfigVO>
+    <property name="dbType">SYBASE</property>
+    <property name="hbm2ddl">update</property>
+    <property name="showSql">true</property>
+    <property name="dialect">org.hibernate.dialect.SybaseDialect</property>
+    <property name="jdbcDriver">net.sourceforge.jtds.jdbc.Driver</property>
+    <property name="connectionURL">jdbc:sybase:Tds:localhost:5000/db_name</property>
+    <property name="username">root</property>
+    <property name="password">root</property>
+    
+    <property name="dbGroupId">net.sourceforge.jtds</property>
+    <property name="dbArtifactId">jtds</property>
+    
+  </DBConfigVO>
+  
+  <!-- SQLServer的配置 -->
+  <DBConfigVO>
+    <property name="dbType">SQL_SERVER</property>
+    <property name="hbm2ddl">update</property>
+    <property name="showSql">true</property>
+    <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+    <property name="jdbcDriver">net.sourceforge.jtds.jdbc.Driver</property>
+    <property name="connectionURL">jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=db_name</property>
+    <property name="username">root</property>
+    <property name="password">root</property>
+    
+    <property name="dbGroupId">net.sourceforge.jtds</property>
+    <property name="dbArtifactId">jtds</property>
+  </DBConfigVO>
+  
+</DbConfigUtil>

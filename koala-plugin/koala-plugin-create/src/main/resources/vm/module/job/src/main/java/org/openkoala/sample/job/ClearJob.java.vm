@@ -1,0 +1,20 @@
+package org.openkoala.sample.job;
+
+import org.quartz.Scheduler;
+import org.quartz.SchedulerFactory;
+import org.quartz.impl.StdSchedulerFactory;
+
+public class ClearJob {
+
+	public void run(String props)  throws Exception{
+		// First we must get a reference to a scheduler
+        SchedulerFactory sf = new StdSchedulerFactory(props);
+        Scheduler sched = sf.getScheduler();
+        sched.clear();
+	}
+	
+	public static void main(String[] args) throws Exception {
+		ClearJob clearJob = new ClearJob();
+		clearJob.run("quartz_cluster_one.properties");
+	}
+}

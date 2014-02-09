@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ModuleRemove>
+	<!-- 指定此功能的名称 -->
+	<property name="funType">excel</property>
+	<property name="files">
+	  <value>src/test/java/org/openkoala/excel/sample/ExcelReaderTest.java</value>
+	  <value>src/test/java/org/openkoala/excel/sample/ExcelWriterTest.java</value>
+	  <value>src/test/resources/export.xls</value>
+	  <value>src/test/resources/import.xls</value>
+	  <value>src/test/resources/log4j.properties</value>
+	</property>
+</ModuleRemove>

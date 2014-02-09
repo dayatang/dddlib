@@ -1,0 +1,162 @@
+package ${dtoClass.packageName};
+
+#set($domainClass = ${dtoClass.name.substring(0, ${dtoClass.name.lastIndexOf("DTO")})})
+#set($variableName = ${domainClass.substring(0, 1).toLowerCase()} + ${domainClass.substring(1)})
+#foreach($import in ${dtoClass.imports})
+import $import;
+#end
+import java.io.Serializable;
+#if (${project.mvcType} == "SpringMVC")
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.openkoala.koala.springmvc.JsonTimestampSerializer;
+import org.openkoala.koala.springmvc.JsonDateSerializer;
+
+#end
+
+public class ${dtoClass.name} implements Serializable {
+
+	private ${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name};
+
+#foreach($entry in ${dtoClass.fieldMap.entrySet()})
+	#if($entry.value.indexOf(".") == -1)
+		#if(${entry.value} == "int")
+			#set($simpleTypeName = "Integer")
+		#elseif(${entry.value} == "short")
+			#set($simpleTypeName = "Short")
+		#elseif(${entry.value} == "long")
+			#set($simpleTypeName = "Long")
+		#elseif(${entry.value} == "float")
+			#set(${entry.value} = "Float")
+		#elseif(${entry.value} == "double")
+			#set($simpleTypeName = "Double")
+		#elseif(${entry.value} == "boolean")
+			#set($simpleTypeName = "Boolean")
+		#end
+	#else
+		#set($index = ${entry.value.lastIndexOf(".")} + 1)
+		#set($simpleTypeName = ${entry.value.substring($index)})
+	#end
+#if($simpleTypeName.indexOf("oolean") > 0)
+	private Boolean ${entry.key};
+    private String ${entry.key}AsString;
+#else
+
+#if(${dtoClass.isDateType(${entry.value})} && ${project.mvcType} == "SpringMVC")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+#end
+	private ${simpleTypeName} ${entry.key};
+#end
+	
+#if(${dtoClass.isDateType(${entry.value})} && ${project.mvcType} == "SpringMVC")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+#end
+#if(${dtoClass.isDateType(${entry.value})})
+	private ${simpleTypeName} ${entry.key}End;
+#end
+#end
+#foreach($entry in ${dtoClass.fieldMap.entrySet()})
+	#if($entry.value.indexOf(".") == -1)
+		#if(${entry.value} == "int")
+			#set($simpleTypeName = "Integer")
+		#elseif(${entry.value} == "short")
+			#set($simpleTypeName = "Short")
+		#elseif(${entry.value} == "long")
+			#set($simpleTypeName = "Long")
+		#elseif(${entry.value} == "float")
+			#set(${entry.value} = "Float")
+		#elseif(${entry.value} == "double")
+			#set($simpleTypeName = "Double")
+		#elseif(${entry.value} == "boolean")
+			#set($simpleTypeName = "Boolean")
+		#end
+		#else
+		#set($index = ${entry.value.lastIndexOf(".")} + 1)
+		#set($simpleTypeName = ${entry.value.substring($index)})
+	#end
+	
+	#set($propertyName = ${entry.key.substring(0, 1).toUpperCase()} + ${entry.key.substring(1)})
+	
+#if($simpleTypeName.indexOf("boolean") > 0)
+	public Boolean get${propertyName}() {
+		return ${entry.key};
+	}
+	
+	public void set${propertyName}(Boolean ${entry.key}) { 
+		this.${entry.key} = ${entry.key};
+		this.${entry.key}AsString = ${entry.key} ? "1" : "0";
+	}
+	
+	public String get${propertyName}AsString() {
+		return this.${entry.key}AsString;
+	}
+	
+	public void set${propertyName}AsString(String ${entry.key}) { 
+		this.${entry.key}AsString = ${entry.key};
+		if(${entry.key} == null || "".equals(${entry.key}.trim()))
+	       this.${entry.key} = null;
+	    else
+	       this.${entry.key} =  "1".equals(${entry.key});
+	}
+#else
+
+	public void set${propertyName}($simpleTypeName ${entry.key}) { 
+		this.${entry.key} = ${entry.key};
+	}
+
+#if(${dtoClass.isDateType(${entry.value})} && ${project.mvcType} == "SpringMVC")
+	@JsonSerialize(using = JsonDateSerializer.class)
+#end
+	public ${simpleTypeName} get${propertyName}() {
+		return this.${entry.key};
+	}
+#end
+	
+#if(${dtoClass.isDateType(${entry.value})})
+	public void set${propertyName}End($simpleTypeName ${entry.key}End) { 
+		this.${entry.key}End = ${entry.key}End;
+	}
+
+#if(${dtoClass.isDateType(${entry.value})} && ${project.mvcType} == "SpringMVC")
+	@JsonSerialize(using = JsonDateSerializer.class)
+#end	
+	public ${simpleTypeName} get${propertyName}End() {
+		return this.${entry.key}End;
+	}
+#end
+#end
+
+	public void set${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}(${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name}) {
+		this.${dtoClass.entityModel.singleIDFieldModel.name} = ${dtoClass.entityModel.singleIDFieldModel.name};
+	}
+	
+	public ${dtoClass.entityModel.singleIDFieldModel.simpleType} get${dtoClass.entityModel.singleIDFieldModel.nameToFirstLetterUpper}() {
+		return ${dtoClass.entityModel.singleIDFieldModel.name};
+	}
+
+    @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((${dtoClass.entityModel.singleIDFieldModel.name} == null) ? 0 : ${dtoClass.entityModel.singleIDFieldModel.name}.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		${dtoClass.name} other = (${dtoClass.name}) obj;
+		if (${dtoClass.entityModel.singleIDFieldModel.name} == null) {
+			if (other.${dtoClass.entityModel.singleIDFieldModel.name} != null)
+				return false;
+		} else if (!${dtoClass.entityModel.singleIDFieldModel.name}.equals(other.${dtoClass.entityModel.singleIDFieldModel.name}))
+			return false;
+		return true;
+	}
+}

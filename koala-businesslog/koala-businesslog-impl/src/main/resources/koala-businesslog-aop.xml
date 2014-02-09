@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+	   		http://www.springframework.org/schema/context 
+	   		http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	   		http://www.springframework.org/schema/beans
+	   		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	   		http://www.springframework.org/schema/aop
+	   		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+    <context:component-scan
+            base-package="org.openkoala.businesslog.applicationImpl,org.openkoala.businesslog.application,org.openkoala.businesslog.impl"/>
+
+
+    <context:annotation-config/>
+
+    <context:property-placeholder
+            location="classpath*:koala-businesslog.properties" ignore-unresolvable="true"/>
+    <bean id="businessLogApplication" class="org.openkoala.businesslog.applicationImpl.BusinessLogApplicationImpl"/>
+    <bean id="businessLogRender" class="${businessLogRender}"/>
+    <bean id="businessLogConfigAdapter" class="${businessLogConfigAdapter}"/>
+    <bean id="businessLogExporter" class="${businessLogExporter}"></bean>
+    <bean id="queryExecutor" class="${businessLogQueryExecutor}"/>
+    <bean id="logInterceptor" class="org.openkoala.businesslog.utils.BusinessLogInterceptor"/>
+
+    <!-- 加了 proxy-target-class="true" 使spring集中制使用cglib的代理 -->
+    <aop:config proxy-target-class="true">
+        <aop:pointcut id="businessBehavior" expression="${pointcut}"/>
+        <aop:aspect id="logAspect" ref="logInterceptor">
+            <aop:after-returning returning="result" method="logAfter" pointcut-ref="businessBehavior"/>
+            <aop:after-throwing method="afterThrowing" pointcut-ref="businessBehavior" throwing="error"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!-- 异步线程池 -->
+    <bean id="threadPoolTaskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <!-- 核心线程数  -->
+        <property name="corePoolSize" value="${log.threadPool.corePoolSize}"/>
+        <!-- 最大线程数 -->
+        <property name="maxPoolSize" value="${log.threadPool.maxPoolSize}"/>
+        <!-- 队列最大长度 >=mainExecutor.maxSize -->
+        <property name="queueCapacity" value="${log.threadPool.queueCapacity}"/>
+        <!-- 线程池维护线程所允许的空闲时间 -->
+        <property name="keepAliveSeconds" value="${log.threadPool.keepAliveSeconds}"/>
+        <!-- 线程池对拒绝任务(无线程可用)的处理策略 -->
+        <property name="rejectedExecutionHandler">
+            <bean class="${log.threadPool.rejectedExecutionHandler}"/>
+        </property>
+    </bean>
+
+
+</beans>

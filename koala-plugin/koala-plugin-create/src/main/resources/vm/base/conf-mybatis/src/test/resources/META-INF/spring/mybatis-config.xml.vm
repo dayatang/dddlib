@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE configuration  
+PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN"  
+"http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="cacheEnabled" value="true" />
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<setting name="useColumnLabel" value="true" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="autoMappingBehavior" value="PARTIAL" />
+		<setting name="defaultExecutorType" value="SIMPLE" />
+		<setting name="defaultStatementTimeout" value="25000" />
+		<setting name="safeRowBoundsEnabled" value="false" />
+		<setting name="mapUnderscoreToCamelCase" value="false" />
+		<setting name="localCacheScope" value="SESSION" />
+		<setting name="jdbcTypeForNull" value="NULL" />
+		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />
+		<!-- changes from the defaults -->
+		<setting name="lazyLoadingEnabled" value="false" />
+	</settings>
+
+	<!-- 给持久层对象配置个别名，能方便调用 -->
+	<!-- Koala会自动扫描所有Entity的实现，任何类继承AbstarctEntity或BaseLegacyEntity都会自动进行Alias  如： -->
+	<!-- Koala会自动扫描所有VO的实现，任何以VO结尾的VO类都会自动进行Alias  如： -->
+	
+	<!--<typeAliases>
+	
+		  <typeAlias type="org.openkoala.koala.demo.domain.Account"
+			alias="Account" />
+	
+		  <typeAlias type="org.openkoala.koala.demo.vo.AccountVO"
+			alias="AccountVO" />
+	</typeAliases>-->
+	
+	<!-- 接口映射文件的位置 -->
+	<!-- Koala会自动扫描所有mappings下的XML文件，自动加载为Mappers,无须再自定义 -->
+	<!-- <mappers>
+		<mapper resource="mappings/AccountRepository.xml" />
+	</mappers>
+	 -->
+</configuration>

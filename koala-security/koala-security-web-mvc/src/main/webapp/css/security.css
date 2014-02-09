@@ -1,0 +1,21 @@
+.form-group .form-control{
+    display: inline;
+    width: 94%;
+}
+
+
+.menu-icon {
+    font-size: 35px;
+    margin: 10px;
+}
+.menu-icon:hover {
+    cursor: pointer;
+    background-color: #FDFDFD;
+    color: #428BCA;
+}
+
+.form-group .menu-icon {
+    position: relative;
+    top: 6px;
+    font-size: 25px;
+}
