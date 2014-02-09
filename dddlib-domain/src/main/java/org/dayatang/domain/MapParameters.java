@@ -21,29 +21,30 @@ import org.dayatang.utils.Assert;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * 命名参数形式的查询参数集合
  * @author yyang
  */
 public class MapParameters implements QueryParameters {
-    private Map<String, Object> params = new HashMap<String, Object>();
+    private Map<String, Object> params;
     
     public static MapParameters create() {
-        return new MapParameters();
+        return new MapParameters(new HashMap<String, Object>());
     }
     
     public static MapParameters create(Map<String, Object> params) {
         return new MapParameters(params);
     }
-    
-    
-    private MapParameters() {
-    }
 
     private MapParameters(Map<String, Object> params) {
-        Assert.notNull(params);
-        this.params = new HashMap<String, Object>(params);
+        if (params == null) {
+            this.params = new HashMap<String, Object>();
+        } else {
+            this.params = new HashMap<String, Object>(params);
+        }
     }
     
     /**
@@ -65,6 +66,28 @@ public class MapParameters implements QueryParameters {
      */
     public Map<String, Object> getParams() {
         return Collections.unmodifiableMap(params);
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 43).append(params).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof MapParameters)) {
+            return false;
+        }
+        MapParameters that = (MapParameters) other;
+        return new EqualsBuilder().append(this.getParams(), that.getParams()).isEquals();
+    }
+
+    @Override
+    public String toString() {
+        return params.toString();
     }
     
 }

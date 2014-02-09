@@ -48,11 +48,6 @@ public class JpqlQuery {
         return parameters;
     }
 
-    public JpqlQuery setParameters(QueryParameters parameters) {
-        this.parameters = parameters;
-        return this;
-    }
-
     public JpqlQuery setParameters(Object... parameters) {
         this.parameters = ArrayParameters.create(parameters);
         return this;

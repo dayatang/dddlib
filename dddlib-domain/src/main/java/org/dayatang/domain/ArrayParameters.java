@@ -16,11 +16,10 @@
 
 package org.dayatang.domain;
 
-import org.apache.commons.lang3.ArrayUtils;
-import org.dayatang.utils.Assert;
-
 import java.util.Arrays;
 import java.util.List;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * 定位参数形式的查询参数集合
@@ -28,10 +27,10 @@ import java.util.List;
  */
 public class ArrayParameters implements QueryParameters {
     
-    private Object[] params = new Object[]{};
+    private Object[] params;
     
     public static ArrayParameters create() {
-        return new ArrayParameters();
+        return new ArrayParameters(new Object[]{});
     }
     
     public static ArrayParameters create(Object... params) {
@@ -42,22 +41,12 @@ public class ArrayParameters implements QueryParameters {
         return new ArrayParameters(params.toArray());
     }
 
-    private ArrayParameters() {
-    }
-
     private ArrayParameters(Object[] params) {
-        Assert.notNull(params);
-        this.params = Arrays.copyOf(params, params.length);
-    }
-
-    /**
-     * 添加一或多个参数
-     * @param params
-     * @return 
-     */
-    public ArrayParameters add(Object... params) {
-        this.params = ArrayUtils.addAll(this.params, params);
-        return this;
+        if (params == null) {
+            this.params = new Object[]{};
+        } else {
+            this.params = Arrays.copyOf(params, params.length);
+        }
     }
 
     /**
@@ -67,5 +56,26 @@ public class ArrayParameters implements QueryParameters {
     public Object[] getParams() {
         return Arrays.copyOf(params, params.length);
     }
-    
-}
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 43).append(params).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof ArrayParameters)) {
+            return false;
+        }
+        ArrayParameters that = (ArrayParameters) other;
+        return new EqualsBuilder().append(this.getParams(), that.getParams()).isEquals();
+    }
+
+    @Override
+    public String toString() {
+        return params.toString();
+    }
+}    

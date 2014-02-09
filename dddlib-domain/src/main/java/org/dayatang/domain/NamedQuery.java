@@ -50,11 +50,6 @@ public class NamedQuery {
         return parameters;
     }
 
-    public NamedQuery setParameters(QueryParameters parameters) {
-        this.parameters = parameters;
-        return this;
-    }
-
     public NamedQuery setParameters(Object... parameters) {
         this.parameters = ArrayParameters.create(parameters);
         return this;
