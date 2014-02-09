@@ -2,9 +2,9 @@ package org.dayatang.cache.memcached;
 
 import com.danga.MemCached.MemCachedClient;
 import com.danga.MemCached.SockIOPool;
+
 import org.apache.commons.lang3.StringUtils;
 import org.dayatang.cache.Cache;
-import org.dayatang.utils.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -152,7 +152,7 @@ public class MemCachedBasedCache implements Cache {
 		return servers;
 	}
 
-	public void setServers(String[] servers) {
+	public void setServers(String... servers) {
 		this.servers = Arrays.copyOf(servers, servers.length);
 	}
 
@@ -256,7 +256,9 @@ public class MemCachedBasedCache implements Cache {
 		if (initialized) {
 			return;
 		}
-		Assert.notEmpty(servers);
+		if (servers == null || servers.length == 0) {
+			throw new IllegalStateException("Must assign memcached server address");
+		}
 
 		for (String server : servers) {
 			info("准备为Memcached服务器{}创建客户端...", server);

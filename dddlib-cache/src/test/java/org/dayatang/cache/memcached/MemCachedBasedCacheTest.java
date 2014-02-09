@@ -1,18 +1,24 @@
 package org.dayatang.cache.memcached;
 
 import org.dayatang.cache.Cache;
-import org.dayatang.springtest.AbstractSpringIntegrationTest;
 import org.junit.Test;
 
-import javax.inject.Inject;
 import java.util.Date;
 
 import static org.junit.Assert.*;
 
-public class MemCachedBasedCacheTest extends AbstractSpringIntegrationTest {
+public class MemCachedBasedCacheTest {
 
-    @Inject
-    private Cache cache;
+    private Cache cache = createCache();
+
+    private Cache createCache() {
+        MemCachedBasedCache result = new MemCachedBasedCache();
+        result.setServers("localhost:11211");
+        result.setInitConn(3);
+        result.setMinConn(3);
+        result.setMaxConn(5);
+        return result;
+    }
 
     @Test
     public void notnull() {
