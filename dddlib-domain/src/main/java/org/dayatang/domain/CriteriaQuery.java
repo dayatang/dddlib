@@ -14,15 +14,14 @@ import java.util.*;
  */
 public class CriteriaQuery {
 
-    private EntityRepository repository;
+    private final EntityRepository repository;
     private List<String> selectedProps;
-    private Class<? extends Entity> entityClass;
+    private final Class<? extends Entity> entityClass;
     private int firstResult;
     private int maxResults;
-    private Map<String, String> aliases = new LinkedHashMap<String, String>();
-    private Set<QueryCriterion> queryCriterions = new HashSet<QueryCriterion>();
-    private List<OrderSetting> orderSettings = new ArrayList<OrderSetting>();
-    private CriterionBuilder criterionBuilder = InstanceFactory.getInstance(CriterionBuilder.class);
+    private final Set<QueryCriterion> queryCriterions = new HashSet<QueryCriterion>();
+    private final List<OrderSetting> orderSettings = new ArrayList<OrderSetting>();
+    private final CriterionBuilder criterionBuilder = InstanceFactory.getInstance(CriterionBuilder.class);
 
     public CriteriaQuery(EntityRepository repository, Class<? extends Entity> entityClass) {
         Assert.notNull(repository);
@@ -92,6 +91,7 @@ public class CriteriaQuery {
     }
 
     /**
+     * 本方法尚未启用
      * 选择要返回的查询结果属性列表。如果props超过一个，查询返回属性数组的列表；
      * 如果props只有一个，查询返回该属性的列表；如果select任何东西，查询返回实体T的列表。
      * @param props 被查询的实体类型的属性的数组，例如Employee的name属性和sn属性

@@ -54,8 +54,8 @@ public class DateRange implements Serializable{
 		if (!(other instanceof DateRange)) {
 			return false;
 		}
-		DateRange castOther = (DateRange) other;
-		return DateUtils.isSameDay(this.from, castOther.from) && DateUtils.isSameDay(this.to, castOther.to); 
+		DateRange that = (DateRange) other;
+		return DateUtils.isSameDay(this.from, that.from) && DateUtils.isSameDay(this.to, that.to); 
 	}
 
 	@Override

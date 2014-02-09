@@ -85,8 +85,8 @@ public class DictionaryCategory extends AbstractEntity {
 		if (!(other instanceof DictionaryCategory)) {
 			return false;
 		}
-		DictionaryCategory castOther = (DictionaryCategory) other;
-		return new EqualsBuilder().append(name, castOther.name).isEquals();
+		DictionaryCategory that = (DictionaryCategory) other;
+		return new EqualsBuilder().append(name, that.name).isEquals();
 	}
 
 	@Override

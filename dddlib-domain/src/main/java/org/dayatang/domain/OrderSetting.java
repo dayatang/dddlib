@@ -43,9 +43,9 @@ public class OrderSetting {
 		if (!(other instanceof OrderSetting)) {
 			return false;
 		}
-		OrderSetting castOther = (OrderSetting) other;
-		return new EqualsBuilder().append(ascending, castOther.ascending)
-				.append(propName, castOther.propName).isEquals();
+		OrderSetting that = (OrderSetting) other;
+		return new EqualsBuilder().append(ascending, that.ascending)
+				.append(propName, that.propName).isEquals();
 	}
 
 	@Override

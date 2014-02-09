@@ -1,73 +1,64 @@
 package org.dayatang.domain.internal;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.domain.QueryCriterion;
-import org.dayatang.domain.QueryException;
-
+import org.dayatang.utils.Assert;
 
 public class BetweenCriterion implements QueryCriterion {
-	
-	private String propName;
 
-	private Comparable<?> from;
-	
-	private Comparable<?> to;
+    private final String propName;
 
-	public BetweenCriterion(String propName, Comparable<?> from, Comparable<?> to) {
-		if (StringUtils.isEmpty(propName)) {
-			throw new QueryException("Property name is null!");
-		}
-		if (from == null) {
-			throw new QueryException("From value is null!");
-		}
-		if (to == null) {
-			throw new QueryException("To value is null!");
-		}
-		this.propName = propName;
-		this.from = from;
-		this.to = to;
-	}
+    private final Comparable<?> from;
 
-	public String getPropName() {
-		return propName;
-	}
+    private Comparable<?> to;
 
-	public Comparable<?> getFrom() {
-		return from;
-	}
+    public BetweenCriterion(String propName, Comparable<?> from, Comparable<?> to) {
+        Assert.notBlank(propName, "Property name is null or blank!");
+        Assert.notNull(from, "From value is null!");
+        Assert.notNull(to, "To value is null!");
+        this.propName = propName;
+        this.from = from;
+        this.to = to;
+    }
 
-	public Comparable<?> getTo() {
-		return to;
-	}
+    public String getPropName() {
+        return propName;
+    }
 
-	@Override
-	public boolean equals(final Object other) {
-		if (this == other) {
-			return true;
-		}
-		if (!(other instanceof BetweenCriterion)) {
-			return false;
-		}
-		BetweenCriterion castOther = (BetweenCriterion) other;
-		return new EqualsBuilder()
-			.append(this.getPropName(), castOther.getPropName())
-			.append(from, castOther.from)
-			.append(this.to, castOther.to)
-			.isEquals();
-	}
+    public Comparable<?> getFrom() {
+        return from;
+    }
 
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder(17, 37).append(getPropName())
-		.append(from).append(to).toHashCode();
-	}
+    public Comparable<?> getTo() {
+        return to;
+    }
 
-	@Override
-	public String toString() {
-		return getPropName() + " between " + from + " and " + to;
-	}
+    @Override
+    public boolean equals(final Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof BetweenCriterion)) {
+            return false;
+        }
+        BetweenCriterion that = (BetweenCriterion) other;
+        return new EqualsBuilder()
+                .append(this.getPropName(), that.getPropName())
+                .append(from, that.from)
+                .append(this.to, that.to)
+                .isEquals();
+    }
 
-	
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(getPropName())
+                .append(from).append(to).toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return getPropName() + " between " + from + " and " + to;
+    }
+
 }
