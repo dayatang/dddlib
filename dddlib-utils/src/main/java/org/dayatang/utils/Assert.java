@@ -22,17 +22,16 @@ public class Assert {
     }
 
     /**
-     * Assert a boolean expression, throwing
-     * <code>IllegalArgumentException</code> if the test result is
-     * <code>false</code>.
+     * 断言表达式{@code expression}的值为真。如果表达式的值为假则抛出
+     * <code>IllegalArgumentException</code>异常。
      *
      * <pre class="code">
      * Assert.isTrue(i &gt; 0, &quot;The value must be greater than zero&quot;);
      * </pre>
      *
-     * @param expression a boolean expression
-     * @param message the exception message to use if the assertion fails
-     * @throws IllegalArgumentException if expression is <code>false</code>
+     * @param expression 一个布尔表达式
+     * @param message 断言失败时呈现的异常消息
+     * @throws IllegalArgumentException 如果表达式的值是<code>false</code>
      */
     public static void isTrue(boolean expression, String message) {
         if (!expression) {
@@ -41,34 +40,31 @@ public class Assert {
     }
 
     /**
-     * Assert a boolean expression, throwing
-     * <code>IllegalArgumentException</code> if the test result is
-     * <code>false</code>.
+     * 断言表达式{@code expression}的值为真。如果表达式的值为假则抛出
+     * <code>IllegalArgumentException</code>异常。
      *
      * <pre class="code">
      * Assert.isTrue(i &gt; 0);
      * </pre>
      *
-     * @param expression a boolean expression
-     * @throws IllegalArgumentException if expression is <code>false</code>
+     * @param expression 一个布尔表达式
+     * @throws IllegalArgumentException 如果表达式的值是<code>false</code>
      */
     public static void isTrue(boolean expression) {
         isTrue(expression, "[Assertion failed] - this expression must be true");
     }
 
     /**
-     * Assert a boolean expression, throwing
-     * <code>IllegalArgumentException</code> if the test result is
-     * <code>true</code>.
+     * 断言表达式{@code expression}的值为假。如果表达式的值为真则抛出
+     * <code>IllegalArgumentException</code>异常。
      *
      * <pre class="code">
-     * Assert.isFalse(i &gt; 0, &quot;The value must be greater than
-     * zero&quot;);
+     * Assert.isFalse(i &gt; 0, &quot;The value must be smaller than zero&quot;);
      * </pre>
      *
-     * @param expression a boolean expression
-     * @param message the exception message to use if the assertion fails
-     * @throws IllegalArgumentException if expression is <code>true</code>
+     * @param expression 一个布尔表达式
+     * @param message 断言失败时呈现的异常消息
+     * @throws IllegalArgumentException 如果表达式的值是<code>true</code>
      */
     public static void isFalse(boolean expression, String message) {
         if (expression) {
@@ -77,16 +73,15 @@ public class Assert {
     }
 
     /**
-     * Assert a boolean expression, throwing
-     * <code>IllegalArgumentException</code> if the test result is
-     * <code>true</code>.
+     * 断言表达式{@code expression}的值为假。如果表达式的值为真则抛出
+     * <code>IllegalArgumentException</code>异常。
      *
      * <pre class="code">
      * Assert.isFalse(i &gt; 0);
      * </pre>
      *
-     * @param expression a boolean expression
-     * @throws IllegalArgumentException if expression is <code>true</code>
+     * @param expression 一个布尔表达式
+     * @throws IllegalArgumentException 如果表达式的值是<code>true</code>
      */
     public static void isFalse(boolean expression) {
         isFalse(expression, "[Assertion failed] - this expression must be false");
