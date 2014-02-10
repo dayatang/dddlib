@@ -198,29 +198,91 @@ public class AssertTest {
     }
 
     /*
-    isEmptyCollection
+    isEmptyArray
     */
 
     @Test(expected = IllegalArgumentException.class)
-    public void testIsEmptyCollectionWithMessageFailure() {
+    public void testIsEmptyArrayWithMessageFailure() {
         Assert.isEmpty(new String[] {"abc"}, "Failure!");
     }
 
     @Test()
-    public void testIsEmptyCollectionWithMessageSuccess() {
+    public void testIsEmptyArrayWithMessageSuccess() {
         String[] array = null;
         Assert.isEmpty(array, "Failure!");
         Assert.isEmpty(new String[] {}, "Failure!");
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testIsEmptyCollectionFailure() {
+    public void testIsEmptyArrayFailure() {
         Assert.isEmpty(new String[] {"abc"});
     }
 
     @Test()
+    public void testIsEmptyArraySuccess() {
+        Assert.isEmpty((Object[]) null);
+    }
+
+    /*
+    notEmptyArray
+    */
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNotEmptyArrayWithMessageFailure() {
+        String[] array = null;
+        Assert.notEmpty(array, "Failure!");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNotEmptyArrayWithMessageFailure1() {
+        Assert.notEmpty(new String[] {}, "Failure!");
+    }
+
+    @Test()
+    public void testNotEmptyArrayWithMessageSuccess() {
+        Assert.notEmpty(new String[] {"abc"}, "Failure!");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNotEmptyArrayFailure() {
+        String[] array = null;
+        Assert.notEmpty(array);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNotEmptyArrayFailure1() {
+        Assert.notEmpty(new String[] {});
+    }
+
+    @Test()
+    public void testNotEmptyArraySuccess() {
+        Assert.notEmpty(new String[] {"abc"});
+    }
+
+    /*
+    isEmptyCollection
+    */
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testIsEmptyCollectionWithMessageFailure() {
+        Assert.isEmpty(Collections.singleton("abc"), "Failure!");
+    }
+
+    @Test()
+    public void testIsEmptyCollectionWithMessageSuccess() {
+        List list = null;
+        Assert.isEmpty(list, "Failure!");
+        Assert.isEmpty(Collections.EMPTY_LIST, "Failure!");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testIsEmptyCollectionFailure() {
+        Assert.isEmpty(Collections.singleton("abc"));
+    }
+
+    @Test()
     public void testIsEmptyCollectionSuccess() {
-        Assert.isEmpty((String) null);
+        Assert.isEmpty((List) null);
     }
 
     /*
@@ -229,34 +291,34 @@ public class AssertTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testNotEmptyCollectionWithMessageFailure() {
-        String[] array = null;
-        Assert.notEmpty(array, "Failure!");
+        List list = null;
+        Assert.notEmpty(list, "Failure!");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNotEmptyCollectionWithMessageFailure1() {
-        Assert.notEmpty(new String[] {}, "Failure!");
+        Assert.notEmpty(Collections.EMPTY_LIST, "Failure!");
     }
 
     @Test()
     public void testNotEmptyCollectionWithMessageSuccess() {
-        Assert.notEmpty(new String[] {"abc"}, "Failure!");
+        Assert.notEmpty(Collections.singleton("abc"), "Failure!");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNotEmptyCollectionFailure() {
-        String[] array = null;
-        Assert.notEmpty(array);
+        List list = null;
+        Assert.notEmpty(list);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNotEmptyCollectionFailure1() {
-        Assert.notEmpty(new String[] {});
+        Assert.notEmpty(Collections.EMPTY_LIST);
     }
 
     @Test()
     public void testNotEmptyCollectionSuccess() {
-        Assert.notEmpty(new String[] {"abc"});
+        Assert.notEmpty(Collections.singleton("abc"));
     }
     
     /*
@@ -647,6 +709,12 @@ public class AssertTest {
         Assert.noNullElements(results, "Failure!");
     }
 
+    @Test
+    public void testNoNullElementsArrayWithMessageSuccess1() {
+        Object[] results = null;
+        Assert.noNullElements(results, "Failure!");
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void testNoNullElementsArrayFailure() {
         Object[] results = {"abc", null};
@@ -672,6 +740,12 @@ public class AssertTest {
     @Test
     public void testNoNullElementsCollectionWithMessageSuccess() {
         List<Object> results = Arrays.asList(new Object[] {"abc", 123});
+        Assert.noNullElements(results, "Failure!");
+    }
+
+    @Test
+    public void testNoNullElementsCollectionWithMessageSuccess1() {
+        List results = null;
         Assert.noNullElements(results, "Failure!");
     }
 
@@ -704,6 +778,12 @@ public class AssertTest {
         Map results = new HashMap();
         results.put("a", "abc");
         results.put("b", 123);
+        Assert.noNullElements(results, "Failure!");
+    }
+
+    @Test
+    public void testNoNullElementsMapWithMessageSuccess1() {
+        Map results = null;
         Assert.noNullElements(results, "Failure!");
     }
 
