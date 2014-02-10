@@ -14,29 +14,29 @@ import javax.transaction.UserTransaction;
 
 public class AbstractIntegrationTest {
 
-	private static BtmUtils btmUtils;
-	
-	protected static SessionFactory sessionFactory;
+    private static BtmUtils btmUtils;
+
+    protected static SessionFactory sessionFactory;
 
     private UserTransaction tx;
 
     protected EntityRepositoryHibernate repository;
 
-	@BeforeClass
-	public static void setUpClass() throws Exception {
-		btmUtils = BtmUtils.readConfigurationFromClasspath("/datasources.properties");
-		btmUtils.setupDataSource();
-		sessionFactory = HibernateUtils.getSessionFactory();
-	}
-	
-	@AfterClass
-	public static void tearDownClass() throws Exception {
-		sessionFactory.close();
-		btmUtils.closeDataSource();
-		btmUtils = null;
-		System.out.println("================================================");
-		System.out.println("关闭BTM");
-	}
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+        btmUtils = BtmUtils.readConfigurationFromClasspath("/datasources.properties");
+        btmUtils.setupDataSource();
+        sessionFactory = HibernateUtils.getSessionFactory();
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+        sessionFactory.close();
+        btmUtils.closeDataSource();
+        btmUtils = null;
+        System.out.println("================================================");
+        System.out.println("关闭BTM");
+    }
 
     @Before
     public void setUp() throws Exception {
@@ -54,8 +54,8 @@ public class AbstractIntegrationTest {
         AbstractEntity.setRepository(null);
     }
 
-	private UserTransaction getTransaction() {
-		return btmUtils.getTransaction();
-	}
-	
+    private UserTransaction getTransaction() {
+        return btmUtils.getTransaction();
+    }
+
 }

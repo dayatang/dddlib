@@ -85,12 +85,6 @@ public abstract class AbstractEntity implements Entity {
 	public boolean notExisted() {
 		return ! existed();
 	}
-	
-	@Override
-	public boolean existed(String propertyName, Object propertyValue) {
-		List<?> entities = getRepository().findByProperty(getClass(), propertyName, propertyValue);
-		return !(entities.isEmpty());
-	}
 
 	private static EntityRepository repository;
 

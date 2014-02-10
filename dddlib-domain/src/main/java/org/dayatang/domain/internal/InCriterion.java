@@ -4,7 +4,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.domain.QueryCriterion;
-import org.dayatang.domain.QueryException;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -13,7 +12,7 @@ import org.dayatang.utils.Assert;
 
 public class InCriterion implements QueryCriterion {
 
-    private String propName;
+    private final String propName;
 
     @SuppressWarnings("unchecked")
     private Collection<? extends Object> value = Collections.EMPTY_SET;
@@ -27,9 +26,7 @@ public class InCriterion implements QueryCriterion {
     }
 
     public InCriterion(String propName, Object[] value) {
-        if (StringUtils.isEmpty(propName)) {
-            throw new QueryException("Property name is null!");
-        }
+        Assert.notBlank(propName, "Property name is null or blank!");
         this.propName = propName;
         if (value != null && value.length > 0) {
             this.value = Arrays.asList(value);

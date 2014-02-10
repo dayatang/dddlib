@@ -29,6 +29,13 @@ import org.dayatang.domain.AbstractEntity;
 public class MyEntity extends AbstractEntity {
     private String name;
 
+    public MyEntity() {
+    }
+
+    public MyEntity(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
@@ -58,5 +65,4 @@ public class MyEntity extends AbstractEntity {
     public String toString() {
         return name;
     }
-    
 }

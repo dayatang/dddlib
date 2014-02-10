@@ -1,16 +1,14 @@
 package org.dayatang.domain.internal;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.domain.QueryCriterion;
-import org.dayatang.domain.QueryException;
 import org.dayatang.utils.Assert;
 
 public class LtPropCriterion implements QueryCriterion {
 
-    private String propName1;
-    private String propName2;
+    private final String propName1;
+    private final String propName2;
 
     public LtPropCriterion(String propName1, String propName2) {
         Assert.notBlank(propName1, "Property 1 is null or blank!");
