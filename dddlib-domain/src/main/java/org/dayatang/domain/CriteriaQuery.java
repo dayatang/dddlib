@@ -15,7 +15,6 @@ import java.util.*;
 public class CriteriaQuery {
 
     private final EntityRepository repository;
-    private List<String> selectedProps;
     private final Class<? extends Entity> entityClass;
     private int firstResult;
     private int maxResults;
@@ -88,18 +87,6 @@ public class CriteriaQuery {
      */
     public List<OrderSetting> getOrderSettings() {
         return orderSettings;
-    }
-
-    /**
-     * 本方法尚未启用
-     * 选择要返回的查询结果属性列表。如果props超过一个，查询返回属性数组的列表；
-     * 如果props只有一个，查询返回该属性的列表；如果select任何东西，查询返回实体T的列表。
-     * @param props 被查询的实体类型的属性的数组，例如Employee的name属性和sn属性
-     * @return 当前查询对象
-     */
-    public CriteriaQuery select(String... props) {
-        selectedProps = Arrays.asList(props);
-        return this;
     }
 
     /**
