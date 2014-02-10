@@ -1,39 +1,37 @@
 package org.dayatang.domain;
 
 /**
- * Specificaiton interface.
- * <p/>
- * Use {@link org.dayatang.domain.AbstractSpecification} as base for creating specifications, and
- * only the method {@link #isSatisfiedBy(Object)} must be implemented.
+ * 规范接口，对应于DDD一书中的“规范”概念
+ * @param <T> 类型参数，表明规范所针对的类型
  */
 public interface Specification<T> {
 
   /**
-   * Check if {@code t} is satisfied by the specification.
+   * 检查 {@code t} 是否由本规范满足.
    *
-   * @param t Object to test.
-   * @return {@code true} if {@code t} satisfies the specification.
+   * @param t 要测试的对象.
+   * @return 如果{@code t}满足此规范则返回{@code true}。
    */
   boolean isSatisfiedBy(T t);
 
   /**
-   * Create a new specification that is the AND operation of {@code this} specification and another specification.
-   * @param specification Specification to AND.
-   * @return A new specification.
+   * 创建一个新规范，作为本规范{@code this}和另一个规范{@code specification}的“与（AND）”操作的结果
+   * @param specification 另一个规范。
+   * @return 一个新规范。
    */
   Specification<T> and(Specification<T> specification);
 
   /**
-   * Create a new specification that is the OR operation of {@code this} specification and another specification.
-   * @param specification Specification to OR.
-   * @return A new specification.
+   * 创建一个新规范，作为本规范{@code this}和另一个规范{@code specification}的“或（OR）”操作的结果
+   * @param specification 另一个规范。
+   * @return 一个新规范。
    */
   Specification<T> or(Specification<T> specification);
 
   /**
-   * Create a new specification that is the NOT operation of {@code this} specification.
-   * @param specification Specification to NOT.
-   * @return A new specification.
+   * 创建一个新规范，作为另一个规范{@code specification}的“非（NOT）”操作的结果
+   * @param specification 另一个规范。
+   * @return 一个新规范。
    */
   Specification<T> not(Specification<T> specification);
 }

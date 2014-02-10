@@ -2,10 +2,11 @@ package org.dayatang.domain;
 
 /**
  * NOT decorator, used to create a new specifcation that is the inverse (NOT) of the given spec.
+ * @param <T>
  */
 public class NotSpecification<T> extends AbstractSpecification<T> {
 
-  private Specification<T> spec1;
+  private final Specification<T> spec1;
 
   /**
    * Create a new NOT specification based on another spec.
@@ -18,7 +19,10 @@ public class NotSpecification<T> extends AbstractSpecification<T> {
 
   /**
    * {@inheritDoc}
+     * @param t
+     * @return 
    */
+  @Override
   public boolean isSatisfiedBy(final T t) {
     return !spec1.isSatisfiedBy(t);
   }
