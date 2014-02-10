@@ -451,7 +451,7 @@ public class Assert {
             String message) {
         if (!StringUtils.isEmpty(textToSearch)
                 && !StringUtils.isEmpty(substring)
-                && textToSearch.indexOf(substring) != -1) {
+                && textToSearch.indexOf(substring) == -1) {
             throw new IllegalArgumentException(message);
         }
     }
@@ -697,6 +697,87 @@ public class Assert {
                 "[Assertion failed] - this array must not contain any null elements");
     }
 
+
+    /**
+     * Assert that an collection has no null elements. Note: Does not complain if the
+     * collection is empty!
+     *
+     * <pre class="code">
+     * Assert.noNullElements(collection, &quot;The collection must have non-null
+     * elements&quot;);
+     * </pre>
+     *
+     * @param collection the collection to check
+     * @param message the exception message to use if the assertion fails
+     * @throws IllegalArgumentException if the object array contains a
+     * <code>null</code> element
+     */
+    public static void noNullElements(Collection collection, String message) {
+        if (collection == null) {
+            return;
+        }
+        for (Object each : collection) {
+            notNull(each, message);
+        }
+    }
+
+    /**
+     * Assert that an collection has no null elements. Note: Does not complain if the
+     * collection is empty!
+     *
+     * <pre class="code">
+     * Assert.noNullElements(collection);
+     * </pre>
+     *
+     * @param collection the collection to check
+     * @throws IllegalArgumentException if the object collection contains a
+     * <code>null</code> element
+     */
+    public static void noNullElements(Collection collection) {
+        noNullElements(collection,
+                "[Assertion failed] - this array must not contain any null elements");
+    }
+
+    /**
+     * Assert that an map has no null elements. Note: Does not complain if the
+     * map is empty!
+     *
+     * <pre class="code">
+     * Assert.noNullElements(map, &quot;The map must have non-null
+     * elements&quot;);
+     * </pre>
+     *
+     * @param map the map to check
+     * @param message the exception message to use if the assertion fails
+     * @throws IllegalArgumentException if the object array contains a
+     * <code>null</code> element
+     */
+    public static void noNullElements(Map map, String message) {
+        if (map == null) {
+            return;
+        }
+        for (Object each : map.values()) {
+            notNull(each, message);
+        }
+    }
+
+    /**
+     * Assert that an map has no null elements. Note: Does not complain if the
+     * map is empty!
+     *
+     * <pre class="code">
+     * Assert.noNullElements(map);
+     * </pre>
+     *
+     * @param map the map to check
+     * @throws IllegalArgumentException if the object map contains a
+     * <code>null</code> element
+     */
+    public static void noNullElements(Map map) {
+        noNullElements(map,
+                "[Assertion failed] - this map must not contain any null elements");
+    }
+
     /**
      * Assert that the provided object is an instance of the provided class.
      *
@@ -746,7 +827,7 @@ public class Assert {
      * <code>true</code>.
      *
      * <pre class="code">
-     * Assert.isAssignable(Number.class, myClass, &quot;The subType must be
+ Assert.isAssignableFrom(Number.class, myClass, &quot;The subType must be
      * instance of the superType&quot;);
      * </pre>
      *
@@ -759,7 +840,7 @@ public class Assert {
      * @throws IllegalArgumentException if the classes are not assignable
      */
     @SuppressWarnings("unchecked")
-    public static void isAssignable(Class superType, Class subType,
+    public static void isAssignableFrom(Class superType, Class subType,
             String message) {
         notNull(superType, "Type to check against must not be null");
         if (subType == null || !superType.isAssignableFrom(subType)) {
@@ -772,15 +853,15 @@ public class Assert {
      * <code>true</code>.
      *
      * <pre class="code">
-     * Assert.isAssignable(Number.class, myClass);
-     * </pre>
+ Assert.isAssignableFrom(Number.class, myClass);
+ </pre>
      *
      * @param superType the super type to check
      * @param subType the sub type to check
      * @throws IllegalArgumentException if the classes are not assignable
      */
-    public static void isAssignable(Class superType, Class subType) {
-        isAssignable(superType, subType, subType
+    public static void isAssignableFrom(Class superType, Class subType) {
+        isAssignableFrom(superType, subType, subType
                 + " must be assignable to " + superType);
     }
 }
