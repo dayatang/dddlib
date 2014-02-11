@@ -1,7 +1,5 @@
 package org.dayatang.domain;
 
-import org.dayatang.domain.IocException;
-import org.dayatang.domain.IocInstanceNotFoundException;
 
 import javax.inject.Named;
 import java.lang.annotation.Annotation;
