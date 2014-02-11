@@ -25,7 +25,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
- * 命名参数形式的查询参数集合
+ * 命名参数形式的查询参数集合。使用一个内部Map保存命名参数。
  * @author yyang
  */
 public class MapParameters implements QueryParameters {

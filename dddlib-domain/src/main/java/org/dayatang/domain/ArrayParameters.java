@@ -76,6 +76,6 @@ public class ArrayParameters implements QueryParameters {
 
     @Override
     public String toString() {
-        return params.toString();
+        return Arrays.toString(params);
     }
 }    
