@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package org.dayatang.domain;
+package org.dayatang.domain.repository;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import org.junit.After;
+import java.util.HashMap;
+import java.util.Map;
+import org.dayatang.domain.MapParameters;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -28,52 +27,58 @@ import static org.junit.Assert.*;
  *
  * @author yyang
  */
-public class ArrayParametersTest {
+public class MapParametersTest {
     
-    private ArrayParameters instance;
-    private Object[] params;
+    private MapParameters instance;
+    private Map<String, Object> params;
     
     @Before
     public void setUp() {
-        params = new Object[] {"abc", 12, new Date()};
+        params = createParams();
     }
 
     @Test
     public void testCreateWithoutParameters() {
-        instance = ArrayParameters.create();
+        instance = MapParameters.create();
         assertNotNull(instance.getParams());
-        assertTrue(instance.getParams().length == 0);
+        assertTrue(instance.getParams().isEmpty());
     }
 
     @Test
-    public void testCreateWithArray() {
-        instance = ArrayParameters.create(params);
-        assertArrayEquals(params, instance.getParams());
+    public void testCreateWithMap() {
+        assertEquals(params, MapParameters.create(params).getParams());
     }
 
     @Test
-    public void testCreateWithList() {
-        instance = ArrayParameters.create(Arrays.asList(params));
-        assertArrayEquals(params, instance.getParams());
+    public void testAdd() {
+        instance = MapParameters.create().add("id", 12).add("name", "abc");
+        assertEquals(params, instance.getParams());
     }
 
     @Test
     public void testEquals() {
-        instance = ArrayParameters.create(params);
+        instance = MapParameters.create(params);
         assertTrue(instance.equals(instance));
         assertFalse(instance.equals(params));
-        ArrayParameters other = ArrayParameters.create(params);
+        MapParameters other = MapParameters.create(params);
         assertTrue(instance.equals(other));
         assertTrue(other.equals(instance));
         
-        other = ArrayParameters.create("name", "abc");
+        other = MapParameters.create().add("name", "abc");
         assertFalse(instance.equals(other));
         assertFalse(other.equals(instance));
     }
 
     @Test
     public void testToString() {
-        assertEquals(Arrays.toString(params), ArrayParameters.create(params).toString());
+        assertEquals(params.toString(), MapParameters.create(params).toString());
+    }
+
+    private Map<String, Object> createParams() {
+        Map<String, Object> results = new HashMap<String, Object>();
+        results.put("name", "abc");
+        results.put("id", 12);
+        return results;
     }
     
 }

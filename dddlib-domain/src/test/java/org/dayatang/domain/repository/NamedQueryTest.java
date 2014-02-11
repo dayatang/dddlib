@@ -14,44 +14,49 @@
  * limitations under the License.
  */
 
-package org.dayatang.domain;
+package org.dayatang.domain.repository;
 
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.dayatang.domain.ArrayParameters;
+import org.dayatang.domain.EntityRepository;
+import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedQuery;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  *
  * @author yyang
  */
-public class JpqlQueryTest {
+public class NamedQueryTest {
     
-    private JpqlQuery instance;
+    private NamedQuery instance;
     private EntityRepository repository;
-    private String jpql = "select o from Employee o";
+    private String queryName = "Employee.findByName";
     
     @Before
     public void setUp() {
         repository = mock(EntityRepository.class);
-        instance = new JpqlQuery(repository, jpql);
-    }
- 
-    /**
-     * Test of getJpql method, of class JpqlQuery.
-     */
-    @Test
-    public void testGetJpql() {
-        assertEquals(jpql, instance.getJpql());
+        instance = new NamedQuery(repository, queryName);
     }
 
     /**
-     * Test of setParameters method, of class JpqlQuery.
+     * Test of getQueryName method, of class NamedQuery.
+     */
+    @Test
+    public void testGetQueryName() {
+        assertEquals(queryName, instance.getQueryName());
+    }
+
+    /**
+     * Test of setParameters method, of class NamedQuery.
      */
     @Test
     public void testSetParameters_ObjectArr() {
@@ -61,7 +66,7 @@ public class JpqlQueryTest {
     }
 
     /**
-     * Test of setParameters method, of class JpqlQuery.
+     * Test of setParameters method, of class NamedQuery.
      */
     @Test
     public void testSetParameters_List() {
@@ -71,7 +76,7 @@ public class JpqlQueryTest {
     }
 
     /**
-     * Test of setParameters method, of class JpqlQuery.
+     * Test of setParameters method, of class NamedQuery.
      */
     @Test
     public void testSetParameters_Map() {
@@ -83,7 +88,7 @@ public class JpqlQueryTest {
     }
 
     /**
-     * Test of addParameter method, of class JpqlQuery.
+     * Test of addParameter method, of class NamedQuery.
      */
     @Test
     public void testAddParameter() {
@@ -98,7 +103,7 @@ public class JpqlQueryTest {
     }
 
     /**
-     * Test of getFirstResult method, of class JpqlQuery.
+     * Test of getFirstResult method, of class NamedQuery.
      */
     @Test
     public void testFirstResult() {
@@ -106,7 +111,7 @@ public class JpqlQueryTest {
     }
 
     /**
-     * Test of getMaxResults method, of class JpqlQuery.
+     * Test of getMaxResults method, of class NamedQuery.
      */
     @Test
     public void testMaxResults() {
@@ -114,7 +119,7 @@ public class JpqlQueryTest {
     }
 
     /**
-     * Test of list method, of class JpqlQuery.
+     * Test of list method, of class NamedQuery.
      */
     @Test
     public void testList() {
@@ -124,7 +129,7 @@ public class JpqlQueryTest {
     }
 
     /**
-     * Test of singleResult method, of class JpqlQuery.
+     * Test of singleResult method, of class NamedQuery.
      */
     @Test
     public void testSingleResult() {
@@ -134,7 +139,7 @@ public class JpqlQueryTest {
     }
 
     /**
-     * Test of executeUpdate method, of class JpqlQuery.
+     * Test of executeUpdate method, of class NamedQuery.
      */
     @Test
     public void testExecuteUpdate() {

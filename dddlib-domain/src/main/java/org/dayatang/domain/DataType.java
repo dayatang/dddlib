@@ -5,136 +5,79 @@ import org.apache.commons.lang3.time.DateUtils;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.Date;
+import org.apache.commons.lang3.StringUtils;
 
 public enum DataType {
-	
-	STRING {
-		@Override
-		public String getDefaultValue() {
-			return "";
-		}
 
-		@Override
-		public String getRealValue(String value) {
-			return value;
-		}
-	},
-	
-	INT {
-		@Override
-		public Integer getDefaultValue() {
-			return 0;
-		}
+    STRING {
+                @Override
+                public String getValue(String value) {
+                    return StringUtils.isBlank(value) ? "" : value;
+                }
+            },
+    INT {
+                @Override
+                public Integer getValue(String value) {
+                    return StringUtils.isBlank(value) ? 0 : Integer.valueOf(value);
+                }
+            },
+    LONG {
+                @Override
+                public Long getValue(String value) {
+                    return StringUtils.isBlank(value) ? 0 : Long.valueOf(value);
+                }
+            },
+    DOUBLE {
+                @Override
+                public Double getValue(String value) {
+                    return StringUtils.isBlank(value) ? 0 : Double.valueOf(value);
+                }
+            },
+    BIG_DECIMAL {
+                @Override
+                public BigDecimal getValue(String value) {
+                    return StringUtils.isBlank(value) ? BigDecimal.ZERO : new BigDecimal(value);
+                }
+            },
+    BOOLEAN {
+                @Override
+                public Boolean getValue(String value) {
+                    return StringUtils.isBlank(value) ? false : Boolean.valueOf(value);
+                }
+            },
+    DATE {
+                @Override
+                public Date getValue(String value) {
+                    try {
+                        return StringUtils.isBlank(value) ? null : DateUtils.parseDate(value, DATE_FORMAT);
+                    } catch (ParseException e) {
+                        throw new IllegalArgumentException("'" + value + "' cannot be converted to Date" + e);
+                    }
+                }
+            },
+    TIME {
+                @Override
+                public Date getValue(String value) {
+                    try {
+                        return StringUtils.isBlank(value) ? null : DateUtils.parseDate(value, TIME_FORMAT);
+                    } catch (ParseException e) {
+                        throw new IllegalArgumentException("'" + value + "' cannot be converted to Time" + e);
+                    }
+                }
+            },
+    DATE_TIME {
+                @Override
+                public Date getValue(String value) {
+                    try {
+                        return StringUtils.isBlank(value) ? null : DateUtils.parseDate(value, DATE_TIME_FORMAT);
+                    } catch (ParseException e) {
+                        throw new IllegalArgumentException("'" + value + "' cannot be converted to DateTime" + e);
+                    }
+                }
+            };
 
-		@Override
-		public Integer getRealValue(String value) {
-			return Integer.valueOf(value);
-		}
-	},
-	
-	DOUBLE {
-		@Override
-		public Double getDefaultValue() {
-			return 0.0;
-		}
-
-		@Override
-		public Double getRealValue(String value) {
-			return Double.valueOf(value);
-		}
-	},
-	
-	BIG_DECIMAL {
-		@Override
-		public BigDecimal getDefaultValue() {
-			return BigDecimal.ZERO;
-		}
-
-		@Override
-		public BigDecimal getRealValue(String value) {
-			return new BigDecimal(value);
-		}
-	},
-	
-	BOOLEAN {
-		@Override
-		public Boolean getDefaultValue() {
-			return false;
-		}
-
-		@Override
-		public Boolean getRealValue(String value) {
-			return Boolean.valueOf(value);
-		}
-	},
-	
-	DATE {
-		@Override
-		public Date getDefaultValue() {
-			try {
-				return DateUtils.parseDate("1000-01-01", new String[] {"yyyy-MM-dd"});
-			} catch (ParseException e) {
-				e.printStackTrace();
-				return null;
-			}
-		}
-
-		@Override
-		public Date getRealValue(String value) {
-			try {
-				return DateUtils.parseDate(value, new String[] {"yyyy-MM-dd"});
-			} catch (ParseException e) {
-				e.printStackTrace();
-				return null;
-			}
-		}
-	},
-	
-	TIME {
-		@Override
-		public Date getDefaultValue() {
-			try {
-				return DateUtils.parseDate("00:00:00", new String[] {"hh:mm:ss"});
-			} catch (ParseException e) {
-				e.printStackTrace();
-				return null;
-			}
-		}
-
-		@Override
-		public Date getRealValue(String value) {
-			try {
-				return DateUtils.parseDate(value, new String[] {"hh:mm:ss"});
-			} catch (ParseException e) {
-				e.printStackTrace();
-				return null;
-			}
-		}
-	},
-	
-	DATE_TIME {
-		@Override
-		public Date getDefaultValue() {
-			try {
-				return DateUtils.parseDate("1000-01-01 00:00:00", new String[] {"yyyy-MM-dd hh:mm:ss"});
-			} catch (ParseException e) {
-				e.printStackTrace();
-				return null;
-			}
-		}
-
-		@Override
-		public Date getRealValue(String value) {
-			try {
-				return DateUtils.parseDate(value, new String[] {"yyyy-MM-dd hh:mm:ss"});
-			} catch (ParseException e) {
-				e.printStackTrace();
-				return null;
-			}
-		}
-	};
-
-	public abstract Object getDefaultValue();
-	
-	public abstract Object getRealValue(String value);
+    public abstract Object getValue(String value);
+    protected static final String DATE_FORMAT = "yyyy-MM-dd";
+    protected static final String TIME_FORMAT = "hh:mm:ss";
+    protected static final String DATE_TIME_FORMAT = "yyyy-MM-dd hh:mm:ss";
 }

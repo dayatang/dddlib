@@ -11,122 +11,205 @@ import javax.persistence.Enumerated;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.Date;
+import org.apache.commons.lang3.StringUtils;
 
-/** 
+/**
  * 值
- * 
+ *
  * @author chencao
  *
  */
 @Embeddable
 public class Value implements ValueObject {
 
-	private static final long serialVersionUID = 4254026874177282302L;
-	
-	private static final String[] DATE_TIME_FORMAT = {
-		"yyyy-MM-dd",
-		"hh:mm",
-		"hh:mm:ss",
-		"yyyy-MM-dd hh:mm",
-		"yyyy-MM-dd hh:mm:ss",
-	};
+    private static final long serialVersionUID = 4254026874177282302L;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "data_type")
-	private DataType dataType;
+    private static final String[] DATE_TIME_FORMAT = {
+        "yyyy-MM-dd",
+        "hh:mm",
+        "hh:mm:ss",
+        "yyyy-MM-dd hh:mm",
+        "yyyy-MM-dd hh:mm:ss",};
 
-	@Column(name = "obj_value")
-	private String value;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "data_type")
+    private DataType dataType;
 
-	public Value() {
-		super();
-	}
+    @Column(name = "obj_value")
+    private String value = "";
 
-	public Value(DataType dataType, String value) {
-		super();
-		this.dataType = dataType;
-		this.value = value;
-	}
+    /**
+     * 创建字符串值
+     *
+     * @param value
+     * @return
+     */
+    public static Value stringValue(String value) {
+        return new Value(DataType.STRING, value);
+    }
 
-	public DataType getDataType() {
-		return dataType;
-	}
+    /**
+     * 创建整数值
+     *
+     * @param value
+     * @return
+     */
+    public static Value intValue(String value) {
+        return new Value(DataType.INT, value);
+    }
 
-	public void setDataType(DataType dataType) {
-		this.dataType = dataType;
-	}
+    /**
+     * 创建长整型值
+     *
+     * @param value
+     * @return
+     */
+    public static Value longValue(String value) {
+        return new Value(DataType.LONG, value);
+    }
 
-	public String getValue() {
-		return value;
-	}
+    /**
+     * 创建浮点值
+     *
+     * @param value
+     * @return
+     */
+    public static Value doubleValue(String value) {
+        return new Value(DataType.DOUBLE, value);
+    }
 
-	public void setValue(String value) {
-		this.value = value;
-	}
+    /**
+     * 创建BigDecimal值
+     *
+     * @param value
+     * @return
+     */
+    public static Value bigDecimalValue(String value) {
+        return new Value(DataType.BIG_DECIMAL, value);
+    }
 
-	public String getString() {
-		return value;
-	}
-	
-	public int getInt() {
-		return value == null ? 0 : Integer.parseInt(value);
-	}
-	
-	public double getDouble() {
-		return value == null ? 0.0 : Double.parseDouble(value);
-	}
-	
-	public BigDecimal getBigDecimal() {
-		return value == null ? null : new BigDecimal(value);
-	}
-	
-	public boolean getBoolean() {
-		return Boolean.parseBoolean(value);
-	}
-	
-	public Date getDate() {
-		if (value == null) {
-			return null;
-		}
-		try {
-			return DateUtils.parseDateStrictly(value, DATE_TIME_FORMAT);
-		} catch (ParseException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		}
-	}
-	
-	public Object getDefaultValue() {
-		return dataType.getDefaultValue();
-	}
-	
-	public Object getRealValue() {
-		return dataType.getRealValue(value);
-	}
-	
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(dataType).append(value).toHashCode();
-	}
+    /**
+     * 创建布尔型值
+     *
+     * @param value
+     * @return
+     */
+    public static Value booleanValue(String value) {
+        return new Value(DataType.BOOLEAN, value);
+    }
 
-	@Override
-	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
-		if (!(other instanceof Value)) {
-			return false;
-		}
-		Value that = (Value) other;
-		return new EqualsBuilder()
-			.append(this.getDataType(), that.getDataType())
-			.append(this.getValue(), that.getValue())
-			.isEquals();
-	}
+    /**
+     * 创建日期型值（无时间部分）
+     *
+     * @param value
+     * @return
+     */
+    public static Value dateValue(String value) {
+        return new Value(DataType.DATE, value);
+    }
 
-	@Override
-	public String toString() {
-		return value;
-	}
+    /**
+     * 创建时间型值（无日期部分）
+     *
+     * @param value
+     * @return
+     */
+    public static Value timeValue(String value) {
+        return new Value(DataType.TIME, value);
+    }
+
+    /**
+     * 创建时间戳型值（包含日期和时间部分）
+     *
+     * @param value
+     * @return
+     */
+    public static Value dateTimeValue(String value) {
+        return new Value(DataType.DATE_TIME, value);
+    }
+
+    protected Value() {
+        super();
+    }
+
+    private Value(DataType dataType, String value) {
+        this.dataType = dataType;
+        if (value != null) {
+            this.value = value;
+        }
+
+    }
+
+    public DataType getDataType() {
+        return dataType;
+    }
+
+    public String getStringValue() {
+        return value;
+    }
+
+    public String getString() {
+        return (String) DataType.STRING.getValue(value);
+    }
+
+    public int getInt() {
+        return (Integer) DataType.INT.getValue(value);
+    }
+
+    public long getLong() {
+        return (Long) DataType.LONG.getValue(value);
+    }
+
+    public double getDouble() {
+        return (Double) DataType.DOUBLE.getValue(value);
+    }
+
+    public BigDecimal getBigDecimal() {
+        return (BigDecimal) DataType.BIG_DECIMAL.getValue(value);
+    }
+
+    public boolean getBoolean() {
+        return (Boolean) DataType.BOOLEAN.getValue(value);
+    }
+
+    public Date getDate() {
+        if (StringUtils.isBlank(value)) {
+            return null;
+        }
+        try {
+            return DateUtils.parseDateStrictly(value, DATE_TIME_FORMAT);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Object getValue() {
+        return dataType.getValue(value);
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(dataType).append(value).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Value)) {
+            return false;
+        }
+        Value that = (Value) other;
+        return new EqualsBuilder()
+                .append(this.getDataType(), that.getDataType())
+                .append(this.getStringValue(), that.getStringValue())
+                .isEquals();
+    }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 
 }
