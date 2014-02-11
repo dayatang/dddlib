@@ -3,10 +3,7 @@ package org.dayatang.domain.datatype;
 import org.junit.Test;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.text.ParseException;
-import java.util.Calendar;
-import java.util.Date;
 import org.dayatang.domain.DataType;
 import org.dayatang.domain.Value;
 import org.dayatang.utils.DateUtils;
@@ -91,6 +88,11 @@ public class ValueTest {
         assertEquals(DateUtils.date(2000, 1, 15, 11, 5, 30), 
                 Value.dateTimeValue("2000-01-15 11:05:30").getDate());
         assertNull(Value.dateValue("").getDate());
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testGetDateParseFailure() {
+        Value.dateValue("cccc-01-15").getDate();
     }
 
     @Test

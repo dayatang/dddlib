@@ -5,7 +5,8 @@ import org.dayatang.utils.Assert;
 import java.util.*;
 
 /**
- * 条件查询。DDDLib支持的三种查询形式之一。通过DSL针对特定实体指定查询条件、排序属性和针对结果取子集等。
+ * 条件查询。DDDLib支持的三种查询形式之一。
+ * 通过DSL针对特定实体指定查询条件、排序属性和针对结果取子集等。
  * Created with IntelliJ IDEA.
  * User: yyang
  * Date: 13-10-17
@@ -505,6 +506,7 @@ public class CriteriaQuery {
 
     /**
      * 以列表形式返回符合条件和排序规则的查询结果。一般而言，没有调用select()方法的查询应该调用此方法返回列表结果。
+     * @param <T> 查询结果列表的元素类型
      * @return 符合查询结果的类型为字段entityClass的实体集合。
      */
     public <T> List<T> list() {
@@ -513,6 +515,7 @@ public class CriteriaQuery {
 
     /**
      * 返回单条查询结果。一般而言，没有调用select()方法的查询应该调用此方法返回单个结果。
+     * @param <T> 查询结果的类型
      * @return 一个符合查询结果的类型为字段entityClass的实体。
      */
     public <T> T singleResult() {

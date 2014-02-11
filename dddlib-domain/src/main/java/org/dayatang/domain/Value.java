@@ -14,7 +14,7 @@ import java.util.Date;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * 值
+ * 值。这个类主要用于实体类的自定义属性，例如动态地给Employee类添加一批属性， 每个属性都记录数据类型和字符串形式的值
  *
  * @author chencao
  *
@@ -129,7 +129,6 @@ public class Value implements ValueObject {
     }
 
     protected Value() {
-        super();
     }
 
     private Value(DataType dataType, String value) {
