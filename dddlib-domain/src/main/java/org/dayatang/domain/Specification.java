@@ -1,8 +1,8 @@
 package org.dayatang.domain;
 
 /**
- * 规范接口，对应于DDD一书中的“规范”概念
- * @param <T> 类型参数，表明规范所针对的类型
+ * 业务规范接口，对应于DDD一书中的“规范”概念，用于判断业务规则是否得到满足。
+ * @param <T> 类型参数，表示规范所应用到的目标对象类型
  */
 public interface Specification<T> {
 
@@ -29,9 +29,8 @@ public interface Specification<T> {
   Specification<T> or(Specification<T> specification);
 
   /**
-   * 创建一个新规范，作为另一个规范{@code specification}的“非（NOT）”操作的结果
-   * @param specification 另一个规范。
+   * 创建一个新规范，作为本规范的“非（NOT）”操作的结果
    * @return 一个新规范。
    */
-  Specification<T> not(Specification<T> specification);
+  Specification<T> not();
 }
