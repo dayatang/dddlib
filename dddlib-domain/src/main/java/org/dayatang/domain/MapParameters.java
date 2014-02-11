@@ -102,6 +102,7 @@ public class MapParameters implements QueryParameters {
             return false;
         }
         MapParameters that = (MapParameters) other;
+        
         return new EqualsBuilder().append(this.getParams(), that.getParams()).isEquals();
     }
 

@@ -28,7 +28,7 @@ public class CollectionUtils {
 		}
 		Collection<Object> results = new ArrayList<Object>();
 		for (Object item : items) {
-			Map<String, Object> propValues = BeanUtils.getPropValues(item);
+			Map<String, Object> propValues = new BeanUtils(item).getPropValues();
 			if (!propValues.containsKey(property)) {
 				throw new IllegalArgumentException("Property " + property  + " not exists!");
 			}

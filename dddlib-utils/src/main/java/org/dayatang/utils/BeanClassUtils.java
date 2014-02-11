@@ -4,8 +4,8 @@ import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
-import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -32,13 +32,23 @@ public class BeanClassUtils {
      */
     public Map<String, Class<?>> getPropTypes() {
         Map<String, Class<?>> results = new HashMap<String, Class<?>>();
-        try {
-            BeanInfo beanInfo = Introspector.getBeanInfo(clazz);
-            for (PropertyDescriptor propertyDescriptor : beanInfo.getPropertyDescriptors()) {
+            for (PropertyDescriptor propertyDescriptor : getPropertyDescriptors()) {
                 String propName = propertyDescriptor.getName();
                 results.put(propName, propertyDescriptor.getPropertyType());
             }
-            results.remove("class");
+        return results;
+    }
+    
+    Set<PropertyDescriptor> getPropertyDescriptors() {
+        Set<PropertyDescriptor> results = new HashSet<PropertyDescriptor>();
+        try {
+            BeanInfo beanInfo = Introspector.getBeanInfo(clazz);
+            for (PropertyDescriptor propertyDescriptor : beanInfo.getPropertyDescriptors()) {
+                if (propertyDescriptor.getName().equals("class")) {
+                    continue;
+                }
+                results.add(propertyDescriptor);
+            }
         } catch (IntrospectionException e) {
             throw new RuntimeException(e);
         }
@@ -52,6 +62,21 @@ public class BeanClassUtils {
      */
     public Set<String> getPropNames() {
         return getPropTypes().keySet();
+    }
+
+    /**
+     * 获得指定JavaBean类型的所有可读属性的名字
+     *
+     * @return JavaBean的属性名的集合
+     */
+    public Set<String> getReadablePropNames() {
+        Set<String> results = new HashSet<String>();
+            for (PropertyDescriptor propertyDescriptor : getPropertyDescriptors()) {
+                if (propertyDescriptor.getReadMethod() != null) {
+                    results.add(propertyDescriptor.getName());
+                }
+            }
+        return results;
     }
 
 }

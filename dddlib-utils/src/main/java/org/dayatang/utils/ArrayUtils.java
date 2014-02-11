@@ -28,7 +28,7 @@ public class ArrayUtils {
         Object[] results = new Object[items.length];
         for (int i = 0; i < items.length; i++) {
             Object item = items[i];
-            Map<String, Object> propValues = BeanUtils.getPropValues(item);
+            Map<String, Object> propValues = new BeanUtils(item).getPropValues();
             if (!propValues.containsKey(property)) {
                 throw new IllegalArgumentException("Property " + property + " not exists!");
             }
