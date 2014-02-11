@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package org.dayatang.domain;
+package org.dayatang.domain.specification;
 
+import org.dayatang.domain.specification.Specification;
 import org.dayatang.domain.specification.LengthSpecification;
 import org.dayatang.domain.specification.StartsSpecification;
 import org.junit.After;

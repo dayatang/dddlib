@@ -16,8 +16,6 @@
 
 package org.dayatang.domain.specification;
 
-import org.dayatang.domain.AbstractSpecification;
-
 /**
  *
  * @author yyang

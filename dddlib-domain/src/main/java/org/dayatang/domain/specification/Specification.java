@@ -1,4 +1,4 @@
-package org.dayatang.domain;
+package org.dayatang.domain.specification;
 
 /**
  * 业务规范接口，对应于DDD一书中的“规范”概念，用于判断业务规则是否得到满足。

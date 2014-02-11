@@ -1,4 +1,4 @@
-package org.dayatang.domain;
+package org.dayatang.domain.specification;
 
 /**
  * 抽象规范实现，实现了规范的“与”、“或”、“非”操作。

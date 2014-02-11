@@ -1,4 +1,4 @@
-package org.dayatang.domain;
+package org.dayatang.domain.specification;
 
 import org.dayatang.utils.Assert;
 
