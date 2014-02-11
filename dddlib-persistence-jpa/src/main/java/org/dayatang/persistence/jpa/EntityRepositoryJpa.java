@@ -59,7 +59,7 @@ public class EntityRepositoryJpa implements EntityRepository {
 
     @Override
     public <T extends Entity> T save(T entity) {
-        if (entity.isNew()) {
+        if (entity.notExisted()) {
             getEntityManager().persist(entity);
             LOGGER.info("create a entity: " + entity.getClass() + "/"
                     + entity.getId() + ".");

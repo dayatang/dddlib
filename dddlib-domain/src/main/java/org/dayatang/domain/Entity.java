@@ -17,12 +17,6 @@ public interface Entity extends Serializable {
 	Serializable getId();
 	
 	/**
-	 * 是否新建实体（未持久化到数据库）
-	 * @return
-	 */
-	boolean isNew();
-	
-	/**
 	 * 是否在数据库中已经存在
 	 * @return
 	 */

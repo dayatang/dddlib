@@ -9,23 +9,18 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 抽象实体类，可作为所有领域实体的基类，提供ID和版本属性。
+ * 一种抽象实体类，提供ID和版本属性，以及基本的持久化方法
  *
  * @author yang
  *
  */
 @MappedSuperclass
-public abstract class AbstractEntity implements Entity {
+public abstract class AbstractEntity extends BaseEntity {
 
     private static final long serialVersionUID = 8882145540383345037L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
     private Long id;
 
-    @Version
-    @Column(name = "VERSION")
     private int version;
 
     /**
@@ -33,6 +28,10 @@ public abstract class AbstractEntity implements Entity {
      *
      * @return 实体的标识
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
+    @Override
     public Long getId() {
         return id;
     }
@@ -51,6 +50,8 @@ public abstract class AbstractEntity implements Entity {
      *
      * @return 实体的版本号
      */
+    @Version
+    @Column(name = "VERSION")
     public int getVersion() {
         return version;
     }
@@ -65,21 +66,12 @@ public abstract class AbstractEntity implements Entity {
     }
 
     /**
-     * 判断是不是新创建的、未持久化到数据库的实体
-     * @return 
-     */
-    @Override
-    public boolean isNew() {
-        return id == null || id.intValue() == 0;
-    }
-
-    /**
      * 判断该实体是否已经存在于数据库中。
      * @return 如果数据库中已经存在拥有该id的实体则返回true，否则返回false。
      */
     @Override
     public boolean existed() {
-        if (isNew()) {
+        if (getId() == null || getId().longValue() == 0) {
             return false;
         }
         return getRepository().exists(getClass(), id);
@@ -194,28 +186,4 @@ public abstract class AbstractEntity implements Entity {
     public static <T extends Entity> List<T> findByProperties(Class<T> clazz, Map<String, Object> propValues) {
         return getRepository().findByProperties(clazz, propValues);
     }
-
-    /**
-     * 获取哈希值。每个实体类都必须覆盖该方法，它与equals()方法成对存在，用于判定两个实体是否等价。
-     * 等价的两个实体的hashCode相同，不等价的两个实体hashCode不同。
-     * @return 实体的哈希值
-     */
-    @Override
-    public abstract int hashCode();
-
-    /**
-     * 判断两个实体是否等价。每个实体类都必须覆盖该方法，hashCode()方法成对存在。
-     * 等价的两个实体的hashCode相同，不等价的两个实体hashCode不同。
-     * @param other 另一个实体
-     * @return 如果本实体和other等价则返回true,否则返回false
-     */
-    @Override
-    public abstract boolean equals(Object other);
-
-    /**
-     * 实体的字符串表示形式
-     * @return 实体的字符串表示形式。
-     */
-    @Override
-    public abstract String toString();
 }

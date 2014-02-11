@@ -47,13 +47,6 @@ public class AbstractEntityTest {
         assertEquals(version, instance.getVersion());
     }
 
-    @Test
-    public void testIsNew() {
-        assertTrue(instance.isNew());
-        instance.setId(3L);
-        assertFalse(instance.isNew());
-    }
-
     /**
      * Test of existed method, of class AbstractEntity.
      */

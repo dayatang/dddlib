@@ -16,7 +16,7 @@ import javax.transaction.SystemException;
 
 public class AbstractIntegrationTest {
 
-	private static BtmUtils btmUtils;
+    private static BtmUtils btmUtils;
 
     private static EntityManagerFactory emf;
 
@@ -26,21 +26,21 @@ public class AbstractIntegrationTest {
 
     protected EntityRepositoryJpa repository;
 
-	@BeforeClass
-	public static void setUpClass() throws Exception {
-		btmUtils = BtmUtils.readConfigurationFromClasspath("/datasources.properties");
-		btmUtils.setupDataSource();
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+        btmUtils = BtmUtils.readConfigurationFromClasspath("/datasources.properties");
+        btmUtils.setupDataSource();
         emf = Persistence.createEntityManagerFactory("default");
-	}
-	
-	@AfterClass
-	public static void tearDownClass() throws Exception {
-		emf.close();
-		btmUtils.closeDataSource();
-		btmUtils = null;
-		System.out.println("================================================");
-		System.out.println("关闭BTM");
-	}
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+        emf.close();
+        btmUtils.closeDataSource();
+        btmUtils = null;
+        System.out.println("================================================");
+        System.out.println("关闭BTM");
+    }
 
     @Before
     public void setUp() {

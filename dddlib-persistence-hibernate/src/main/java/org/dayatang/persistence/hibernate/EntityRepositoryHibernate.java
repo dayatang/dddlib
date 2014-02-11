@@ -33,7 +33,7 @@ public class EntityRepositoryHibernate implements EntityRepository {
      */
     @Override
     public <T extends Entity> T save(T entity) {
-        if (entity.isNew()) {
+        if (entity.notExisted()) {
             getSession().save(entity);
             LOGGER.info("create a entity: " + entity.getClass() + "/" + entity.getId() + ".");
             return entity;

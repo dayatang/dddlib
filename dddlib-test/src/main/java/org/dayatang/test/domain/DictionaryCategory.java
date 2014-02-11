@@ -42,10 +42,8 @@ public class DictionaryCategory extends AbstractEntity {
 
 	private String name;
 	
-	@Column(name = "sort_order")
 	private int sortOrder;
 
-	@OneToMany(mappedBy = "category")
 	private Set<Dictionary> dictionaries = new HashSet<Dictionary>();
 	
 	public String getName() {
@@ -56,6 +54,7 @@ public class DictionaryCategory extends AbstractEntity {
 		this.name = name;
 	}
 	
+	@Column(name = "sort_order")
 	public int getSortOrder() {
 		return sortOrder;
 	}
@@ -64,6 +63,7 @@ public class DictionaryCategory extends AbstractEntity {
 		this.sortOrder = sortOrder;
 	}
 
+	@OneToMany(mappedBy = "category")
 	public Set<Dictionary> getDictionaries() {
 		return dictionaries;
 	}

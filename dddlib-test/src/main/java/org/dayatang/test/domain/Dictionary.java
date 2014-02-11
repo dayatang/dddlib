@@ -26,18 +26,14 @@ public class Dictionary extends AbstractEntity {
 	@Size(min = 1)
 	private String text;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "category_id")
 	private DictionaryCategory category;
 
-	@Column(name = "sort_order")
 	private int sortOrder;
 
 	private boolean disabled = false;
 
 	private String description;
 	
-	@Column(name = "parent_code")
 	private String parentCode;
 
 	public Dictionary() {
@@ -82,6 +78,8 @@ public class Dictionary extends AbstractEntity {
 	/**
 	 * @return the category
 	 */
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "category_id")
 	public DictionaryCategory getCategory() {
 		return category;
 	}
@@ -97,6 +95,7 @@ public class Dictionary extends AbstractEntity {
 	/**
 	 * @return the sortOrder
 	 */
+	@Column(name = "sort_order")
 	public int getSortOrder() {
 		return sortOrder;
 	}
@@ -142,6 +141,7 @@ public class Dictionary extends AbstractEntity {
 	/**
 	 * @return the parentCode
 	 */
+	@Column(name = "parent_code")
 	public String getParentCode() {
 		return parentCode;
 	}
