@@ -102,7 +102,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of exists method, of class EntityRepositoryHibernate.
+     * Test of exists method
      */
     @Test
     public void testExists() {
@@ -111,7 +111,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of get method, of class EntityRepositoryHibernate.
+     * Test of get method
      */
     @Test
     public void testGet() {
@@ -119,7 +119,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of load method, of class EntityRepositoryHibernate.
+     * Test of load method
      */
     @Test
     public void testLoad() {
@@ -127,7 +127,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of getUnmodified method, of class EntityRepositoryHibernate.
+     * Test of getUnmodified method
      */
     @Test
     public void testGetUnmodified() {
@@ -138,7 +138,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of findAll method, of class EntityRepositoryHibernate.
+     * Test of findAll method
      */
     @Test
     public void testFindAll() {
@@ -147,7 +147,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of createCritriaQuery method, of class EntityRepositoryHibernate.
+     * Test of createCritriaQuery method
      */
     @Test
     public void testCreateCriteriaQuery() {
@@ -156,7 +156,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of find method with CriteriaQuery as parameter, of class EntityRepositoryHibernate.
+     * Test of find method with CriteriaQuery as parameter
      */
     @Test
     public void testCriteriaQueryFind() {
@@ -168,7 +168,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of getSingleResult method with CriteriaQuery as parameter, of class EntityRepositoryHibernate.
+     * Test of getSingleResult method with CriteriaQuery as parameter
      */
     @Test
     public void testCriteriaQueryGetSingleResult() {
@@ -179,7 +179,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of createJpqlQuery method, of class EntityRepositoryHibernate.
+     * Test of createJpqlQuery method
      */
     @Test
     public void testCreateJpqlQuery() {
@@ -189,7 +189,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of find method with JpqlQuery as parameter, of class EntityRepositoryHibernate.
+     * Test of find method with JpqlQuery as parameter
      */
     @Test
     public void testJpqlQueryFindWithArrayParameters() {
@@ -202,7 +202,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of find method with JpqlQuery as parameter, of class EntityRepositoryHibernate.
+     * Test of find method with JpqlQuery as parameter
      */
     @Test
     public void testJpqlQueryFindWithMapParameters() {
@@ -215,7 +215,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of getSingleResult method with JpqlQuery as parameter, of class EntityRepositoryHibernate.
+     * Test of getSingleResult method with JpqlQuery as parameter
      */
     @Test
     public void testJpqlQueryGetSingleResult() {
@@ -227,7 +227,21 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of executeUpdate method with JpqlQuery as parameter, of class EntityRepositoryHibernate.
+     * Test of find method with JpqlQuery as parameter and scalar as result
+     */
+    @Test
+    public void testJpqlQueryScalar() {
+        String queryString = "select o.code, o.text from  Dictionary o where o.category = :category";
+        JpqlQuery query = new JpqlQuery(repository, queryString)
+                .addParameter("category", gender);
+        List<Object[]> results = repository.find(query);
+        for (Object[] row : results) {
+            System.out.println(Arrays.toString(row));
+        }
+    }
+
+    /**
+     * Test of executeUpdate method with JpqlQuery as parameter
      */
     @Test
     public void testJpqlQueryExecuteUpdate() {
@@ -247,7 +261,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of createNamedQuery method, of class EntityRepositoryHibernate.
+     * Test of createNamedQuery method
      */
     @Test
     public void testCreateNamedQuery() {
@@ -257,7 +271,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of find method with NamedQuery as parameter, of class EntityRepositoryHibernate.
+     * Test of find method with NamedQuery as parameter
      */
     @Test
     public void testNamedQueryFindWithArrayParameters() {
@@ -269,7 +283,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of find method with NamedQuery as parameter, of class EntityRepositoryHibernate.
+     * Test of find method with NamedQuery as parameter
      */
     @Test
     public void testNamedQueryFindWithMapParameters() {
@@ -281,7 +295,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of getSingleResult method with NamedQuery as parameter, of class EntityRepositoryHibernate.
+     * Test of getSingleResult method with NamedQuery as parameter
      */
     @Test
     public void testNamedQueryGetSingleResult() {
@@ -291,7 +305,20 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of executeUpdate method with NamedQuery as parameter, of class EntityRepositoryHibernate.
+     * Test of find method with NamedQuery as parameter and scalar as result
+     */
+    @Test
+    public void testNamedQueryScalar() {
+        NamedQuery query = new NamedQuery(repository, "Dictionay.findNameAndOrder")
+                .addParameter("category", gender);
+        List<Object[]> results = repository.find(query);
+        for (Object[] row : results) {
+            System.out.println(Arrays.toString(row));
+        }
+    }
+
+    /**
+     * Test of executeUpdate method with NamedQuery as parameter
      */
     @Test
     public void testNamedQueryExecuteUpdate() {
@@ -310,7 +337,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of createSqlQuery method, of class EntityRepositoryHibernate.
+     * Test of createSqlQuery method
      */
     @Test
     public void testCreateSqlQuery() {
@@ -320,7 +347,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of find method with SqlQuery as parameter, of class EntityRepositoryHibernate.
+     * Test of find method with SqlQuery as parameter
      */
     @Test
     public void testSqlQueryFindWithArrayParameters() {
@@ -334,7 +361,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of find method with SqlQuery as parameter, of class EntityRepositoryHibernate.
+     * Test of find method with SqlQuery as parameter
      */
     @Test
     public void testSqlQueryFindWithMapParameters() {
@@ -350,7 +377,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of getSingleResult method with SqlQuery as parameter, of class EntityRepositoryHibernate.
+     * Test of getSingleResult method with SqlQuery as parameter
      */
     @Test
     public void testSqlQueryGetSingleResult() {
@@ -363,7 +390,21 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of executeUpdate method with SqlQuery as parameter, of class EntityRepositoryHibernate.
+     * Test of find method with SqlQuery as parameter and scalar as result
+     */
+    @Test
+    public void testSqlQueryScalar() {
+        String sql = "select o.code, o.text from  dictionaries o where o.category_id = :category";
+        SqlQuery query = new SqlQuery(repository, sql)
+                .addParameter("category", gender);
+        List<Object[]> results = repository.find(query);
+        for (Object[] row : results) {
+            System.out.println(Arrays.toString(row));
+        }
+    }
+
+    /**
+     * Test of executeUpdate method with SqlQuery as parameter
      */
     @Test
     public void testSqlQueryExecuteUpdate() {
@@ -382,7 +423,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
         }
     }
     /**
-     * Test of findByExample method, of class EntityRepositoryHibernate.
+     * Test of findByExample method
      */
     @Test
     public void testFindByExample() {
@@ -396,7 +437,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of findByProperty method, of class EntityRepositoryHibernate.
+     * Test of findByProperty method
      */
     @Test
     public void testFindByProperty() {
@@ -407,7 +448,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of findByProperties method, of class EntityRepositoryHibernate.
+     * Test of findByProperties method
      */
     @Test
     public void testFindByProperties() {
@@ -421,7 +462,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of flush method, of class EntityRepositoryHibernate.
+     * Test of flush method
      */
     @Test
     public void testFlush() {
@@ -433,7 +474,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of refresh method, of class EntityRepositoryHibernate.
+     * Test of refresh method
      */
     @Test
     public void testRefresh() {
@@ -444,7 +485,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     }
 
     /**
-     * Test of clear method, of class EntityRepositoryHibernate.
+     * Test of clear method
      */
     @Test
     public void testClear() {

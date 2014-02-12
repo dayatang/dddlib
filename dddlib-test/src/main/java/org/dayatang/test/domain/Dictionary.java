@@ -15,7 +15,8 @@ import java.util.List;
     @NamedQuery(name = "Dictionay.findByCategory", query = "select o from Dictionary as o where o.disabled = false and o.category = :category order by o.sortOrder"),
     @NamedQuery(name = "Dictionay.findByCategoryArrayParams", query = "select o from Dictionary as o where o.disabled = false and o.category = ? order by o.sortOrder"),
     @NamedQuery(name = "Dictionay.findByCategoryAndCode", query = "select o from Dictionary as o where o.disabled = false and o.category = ? and o.code = ?"),
-    @NamedQuery(name = "Dictionay.updateDescription", query = "update Dictionary set description = :description where category = :category")})
+    @NamedQuery(name = "Dictionay.updateDescription", query = "update Dictionary set description = :description where category = :category"),
+    @NamedQuery(name = "Dictionay.findNameAndOrder", query = "select o.code, o.text from  Dictionary o where o.category = :category")})
 public class Dictionary extends AbstractEntity {
 
     private static final long serialVersionUID = 5429887402331650527L;
