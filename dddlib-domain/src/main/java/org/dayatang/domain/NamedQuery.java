@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 基于命名查询的查询对象。DDDLib支持的三种查询形式之一。
+ * 基于命名查询的查询对象。DDDLib支持的四种查询形式之一。
  * 可以指定定位查询参数或命名查询参数，也可以针对查询结果取子集。
  * @author yyang
  */

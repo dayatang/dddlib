@@ -110,14 +110,14 @@ public class RepositoryJpaTest extends AbstractIntegrationTest {
 
     @Test
     public void testFindNamedQueryArrayParams() {
-        List<Dictionary> results = repository.createNamedQuery("findByCategoryAndCode").setParameters(gender, "01").list();
+        List<Dictionary> results = repository.createNamedQuery("Dictionay.findByCategoryAndCode").setParameters(gender, "01").list();
         assertTrue(results.contains(male));
         assertFalse(results.contains(undergraduate));
     }
 
     @Test
     public void testFindNamedQueryMapParams() {
-        List<Dictionary> results = repository.createNamedQuery("findByCategory").addParameter("category", gender).list();
+        List<Dictionary> results = repository.createNamedQuery("Dictionay.findByCategory").addParameter("category", gender).list();
         assertTrue(results.contains(male));
         assertFalse(results.contains(undergraduate));
     }

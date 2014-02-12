@@ -47,7 +47,7 @@ public class JpqlQueryTest {
     }
  
     /**
-     * Test of getJpql method, of class JpqlQuery.
+     * Test of getSql method, of class JpqlQuery.
      */
     @Test
     public void testGetJpql() {

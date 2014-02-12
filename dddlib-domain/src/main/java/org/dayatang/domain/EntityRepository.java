@@ -83,14 +83,14 @@ public interface EntityRepository {
      *
      * @param entityClass 要查询的实体类
      * @param <T> 实体的类型
-     * @return 一个查询对象
+     * @return 一个条件查询
      */
     <T extends Entity> CriteriaQuery createCriteriaQuery(Class<T> entityClass);
 
     /**
      * 执行条件查询，返回符合条件的实体列表
      *
-     * @param criteriaQuery 要执行的查询
+     * @param criteriaQuery 要执行的条件查询
      * @param <T> 返回结果元素类型
      * @return 符合查询条件的实体列表
      */
@@ -99,7 +99,7 @@ public interface EntityRepository {
     /**
      * 执行条件查询，返回符合条件的单个实体
      *
-     * @param criteriaQuery 要执行的查询
+     * @param criteriaQuery 要执行的条件查询
      * @param <T> 返回结果类型
      * @return 符合查询条件的单个结果
      */
@@ -109,14 +109,14 @@ public interface EntityRepository {
      * 创建JPQL查询
      *
      * @param jpql JPQL语句
-     * @return 一个查询对象
+     * @return 一个JPQL查询
      */
     JpqlQuery createJpqlQuery(String jpql);
 
     /**
      * 执行JPQL查询，返回符合条件的实体列表
      *
-     * @param jpqlQuery 要执行的查询
+     * @param jpqlQuery 要执行的JPQL查询
      * @param <T> 返回结果元素类型
      * @return 符合查询条件的结果列表
      */
@@ -125,7 +125,7 @@ public interface EntityRepository {
     /**
      * 执行JPQL查询，返回符合条件的单个实体
      *
-     * @param jpqlQuery 要执行的查询
+     * @param jpqlQuery 要执行的JPQL查询
      * @param <T> 返回结果类型
      * @return 符合查询条件的单个结果
      */
@@ -142,15 +142,15 @@ public interface EntityRepository {
     /**
      * 创建命名查询
      *
-     * @param queryName JPQL语句
-     * @return 一个查询对象
+     * @param queryName 命名查询的名字
+     * @return 一个命名查询
      */
     NamedQuery createNamedQuery(String queryName);
 
     /**
      * 执行命名查询，返回符合条件的实体列表
      *
-     * @param namedQuery 要执行的查询
+     * @param namedQuery 要执行的命名查询
      * @param <T> 返回结果元素类型
      * @return 符合查询条件的结果列表
      */
@@ -159,19 +159,53 @@ public interface EntityRepository {
     /**
      * 执行命名查询，返回符合条件的单个实体
      *
-     * @param namedQuery 要执行的查询
+     * @param namedQuery 要执行的命名查询
      * @param <T> 返回结果类型
      * @return 符合查询条件的单个结果
      */
     <T> T getSingleResult(NamedQuery namedQuery);
 
     /**
-     * 执行更新仓储的操作。
+     * 使用命名查询执行更新仓储的操作。
      *
      * @param namedQuery 要执行的命名查询。
      * @return 被更新或删除的实体的数量
      */
     int executeUpdate(NamedQuery namedQuery);
+
+    /**
+     * 创建原生SQL查询
+     *
+     * @param sql SQL语句
+     * @return 一个原生SQL查询
+     */
+    SqlQuery createSqlQuery(String sql);
+
+    /**
+     * 执行SQL查询，返回符合条件的实体列表
+     *
+     * @param sqlQuery 要执行的SQL查询。
+     * @param <T> 返回结果元素类型
+     * @return 符合查询条件的结果列表
+     */
+    <T> List<T> find(SqlQuery sqlQuery);
+
+    /**
+     * 执行SQL查询，返回符合条件的单个实体
+     *
+     * @param sqlQuery 要执行的SQL查询。
+     * @param <T> 返回结果类型
+     * @return 符合查询条件的单个结果
+     */
+    <T> T getSingleResult(SqlQuery sqlQuery);
+
+    /**
+     * 使用SQL查询执行更新仓储的操作。
+     *
+     * @param sqlQuery 要执行的SQL查询。
+     * @return 被更新或删除的实体的数量
+     */
+    int executeUpdate(SqlQuery sqlQuery);
 
     /**
      * 按例查询。

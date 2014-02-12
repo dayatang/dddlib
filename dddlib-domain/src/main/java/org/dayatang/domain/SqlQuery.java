@@ -15,43 +15,45 @@
  */
 package org.dayatang.domain;
 
+import java.util.HashMap;
 import org.dayatang.utils.Assert;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * 基于对象查询语言字符串的查询。DDDLib支持的四种查询形式之一。
+ * 基于原生SQL的查询。DDDLib支持的四种查询形式之一。
  * 可以指定定位查询参数或命名查询参数，也可以针对查询结果取子集。
  * @author yyang
  */
-public class JpqlQuery {
+public class SqlQuery {
 
     private final EntityRepository repository;
-    private final String jpql;
+    private final String sql;
     private QueryParameters parameters;
     private final MapParameters mapParameters = MapParameters.create();
     private int firstResult;
     private int maxResults;
+    private Class<? extends Entity> resultEntityClass;
 
     /**
-     * 使用仓储和JPQL语句创建JPQL查询。
+     * 使用仓储和SQL语句创建SQL查询。
      * @param repository 仓储
-     * @param jpql JPQL查询语句
+     * @param sql SQL查询语句
      */
-    public JpqlQuery(EntityRepository repository, String jpql) {
+    public SqlQuery(EntityRepository repository, String sql) {
         Assert.notNull(repository);
-        Assert.notBlank(jpql);
+        Assert.notBlank(sql);
         this.repository = repository;
-        this.jpql = jpql;
+        this.sql = sql;
     }
 
     /**
-     * 获取JPQL查询语句
-     * @return JPQL查询语句
+     * 获取SQL查询语句
+     * @return SQL查询语句
      */
-    public String getJpql() {
-        return jpql;
+    public String getSql() {
+        return sql;
     }
 
     /**
@@ -67,7 +69,7 @@ public class JpqlQuery {
      * @param parameters 要设置的参数
      * @return 该对象本身
      */
-    public JpqlQuery setParameters(Object... parameters) {
+    public SqlQuery setParameters(Object... parameters) {
         this.parameters = ArrayParameters.create(parameters);
         return this;
     }
@@ -77,7 +79,7 @@ public class JpqlQuery {
      * @param parameters 要设置的参数
      * @return 该对象本身
      */
-    public JpqlQuery setParameters(List<Object> parameters) {
+    public SqlQuery setParameters(List<Object> parameters) {
         this.parameters = ArrayParameters.create(parameters);
         return this;
     }
@@ -87,7 +89,7 @@ public class JpqlQuery {
      * @param parameters 要设置的参数
      * @return 该对象本身
      */
-    public JpqlQuery setParameters(Map<String, Object> parameters) {
+    public SqlQuery setParameters(Map<String, Object> parameters) {
         this.parameters = MapParameters.create(parameters);
         return this;
     }
@@ -98,7 +100,7 @@ public class JpqlQuery {
      * @param value 参数值
      * @return 该对象本身
      */
-    public JpqlQuery addParameter(String key, Object value) {
+    public SqlQuery addParameter(String key, Object value) {
         mapParameters.add(key, value);
         this.parameters = mapParameters;
         return this;
@@ -119,7 +121,7 @@ public class JpqlQuery {
      * @param firstResult 要设置的firstResult值。
      * @return 该对象本身
      */
-    public JpqlQuery setFirstResult(int firstResult) {
+    public SqlQuery setFirstResult(int firstResult) {
         Assert.isTrue(firstResult >= 0);
         this.firstResult = firstResult;
         return this;
@@ -140,15 +142,36 @@ public class JpqlQuery {
      * @param maxResults 要设置的maxResults值
      * @return 该对象本身
      */
-    public JpqlQuery setMaxResults(int maxResults) {
+    public SqlQuery setMaxResults(int maxResults) {
         Assert.isTrue(maxResults > 0);
         this.maxResults = maxResults;
         return this;
     }
 
     /**
+     * 返回查询结果实体类型。适用于返回结果是实体或实体列表的情形。
+     * @return 查询结果的实体类型（如果结果是个集合，就是集合元素的类型）
+     */
+    public Class<? extends Entity> getResultEntityClass() {
+        return resultEntityClass;
+    }
+
+    /**
+     * 设置查询的结果实体类型。注意setResultEntityClass()和addScalar()是互斥的，
+     * 分别适用于查询结果是实体和标量两种情形
+     * @param resultEntityClass 要设置的查询结果类型
+     * @return 该对象本身
+     */
+    public SqlQuery setResultEntityClass(Class<? extends Entity> resultEntityClass) {
+        this.resultEntityClass = resultEntityClass;
+        return this;
+    }
+    
+            
+
+    /**
      * 以列表形式返回符合条件和排序规则的查询结果。一般而言，没有调用select()方法的查询应该调用此方法返回列表结果。
-     * @return 符合查询结果的类型为字段entityClass的实体集合。
+     * @return 符合查询结果的类型为字段resultEntityClass的实体集合。
      */
     public <T> List<T> list() {
         return repository.find(this);
@@ -156,7 +179,7 @@ public class JpqlQuery {
 
     /**
      * 返回单条查询结果。一般而言，没有调用select()方法的查询应该调用此方法返回单个结果。
-     * @return 一个符合查询结果的类型为字段entityClass的实体。
+     * @return 一个符合查询结果的类型为字段resultEntityClass的实体。
      */
     public <T> T singleResult() {
         return repository.getSingleResult(this);

@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import org.hibernate.SQLQuery;
 
 /**
  * 通用仓储接口的Hibernate实现。
@@ -258,6 +259,39 @@ public class EntityRepositoryHibernate implements EntityRepository {
     public int executeUpdate(NamedQuery namedQuery) {
         Query query = getSession().getNamedQuery(namedQuery.getQueryName());
         fillParameters(query, namedQuery.getParameters());
+        return query.executeUpdate();
+    }
+
+    @Override
+    public SqlQuery createSqlQuery(String sql) {
+        return new SqlQuery(this, sql);
+    }
+
+    @Override
+    public <T> List<T> find(SqlQuery sqlQuery) {
+        SQLQuery query = getSession().createSQLQuery(sqlQuery.getSql());
+        fillParameters(query, sqlQuery.getParameters());
+        query.setFirstResult(sqlQuery.getFirstResult());
+        if (sqlQuery.getMaxResults() > 0) {
+            query.setMaxResults(sqlQuery.getMaxResults());
+        }
+        Class resultEntityClass = sqlQuery.getResultEntityClass();
+        if (resultEntityClass != null) {
+            query.addEntity(resultEntityClass);
+        }
+        return query.list();
+    }
+
+    @Override
+    public <T> T getSingleResult(SqlQuery sqlQuery) {
+        List<T> results = find(sqlQuery);
+        return results == null || results.isEmpty() ? null : results.get(0);
+    }
+
+    @Override
+    public int executeUpdate(SqlQuery sqlQuery) {
+        Query query = getSession().createSQLQuery(sqlQuery.getSql());
+        fillParameters(query, sqlQuery.getParameters());
         return query.executeUpdate();
     }
 

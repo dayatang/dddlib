@@ -9,187 +9,182 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.List;
 
-
 @Entity
 @Table(name = "dictionaries")
-@NamedQueries( {
-		@NamedQuery(name = "findByCategory", query = "select o from Dictionary as o where o.disabled = false and o.category = :category order by o.sortOrder"),
-		@NamedQuery(name = "findByCategoryArrayParams", query = "select o from Dictionary as o where o.disabled = false and o.category = ? order by o.sortOrder"),
-		@NamedQuery(name = "findByCategoryAndCode", query = "select o from Dictionary as o where o.disabled = false and o.category = ? and o.code = ?") })
+@NamedQueries({
+    @NamedQuery(name = "Dictionay.findByCategory", query = "select o from Dictionary as o where o.disabled = false and o.category = :category order by o.sortOrder"),
+    @NamedQuery(name = "Dictionay.findByCategoryArrayParams", query = "select o from Dictionary as o where o.disabled = false and o.category = ? order by o.sortOrder"),
+    @NamedQuery(name = "Dictionay.findByCategoryAndCode", query = "select o from Dictionary as o where o.disabled = false and o.category = ? and o.code = ?"),
+    @NamedQuery(name = "Dictionay.updateDescription", query = "update Dictionary set description = :description where category = :category")})
 public class Dictionary extends AbstractEntity {
 
-	private static final long serialVersionUID = 5429887402331650527L;
-	
-	@Size(min = 1)
-	private String code;
+    private static final long serialVersionUID = 5429887402331650527L;
 
-	@Size(min = 1)
-	private String text;
+    @Size(min = 1)
+    private String code;
 
-	private DictionaryCategory category;
+    @Size(min = 1)
+    private String text;
 
-	private int sortOrder;
+    private DictionaryCategory category;
 
-	private boolean disabled = false;
+    private int sortOrder;
 
-	private String description;
-	
-	private String parentCode;
+    private boolean disabled = false;
 
-	public Dictionary() {
-	}
+    private String description;
 
-	public Dictionary(String code, String text, DictionaryCategory category) {
-		this.code = code;
-		this.text = text;
-		this.category = category;
-	}
+    private String parentCode;
 
-	/**
-	 * @return the code
-	 */
-	public String getCode() {
-		return code;
-	}
+    public Dictionary() {
+    }
 
-	/**
-	 * @param code
-	 *            the code to set
-	 */
-	public void setCode(String code) {
-		this.code = code;
-	}
+    public Dictionary(String code, String text, DictionaryCategory category) {
+        this.code = code;
+        this.text = text;
+        this.category = category;
+    }
 
-	/**
-	 * @return the text
-	 */
-	public String getText() {
-		return text;
-	}
+    /**
+     * @return the code
+     */
+    public String getCode() {
+        return code;
+    }
 
-	/**
-	 * @param text
-	 *            the text to set
-	 */
-	public void setText(String text) {
-		this.text = text;
-	}
+    /**
+     * @param code the code to set
+     */
+    public void setCode(String code) {
+        this.code = code;
+    }
 
-	/**
-	 * @return the category
-	 */
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "category_id")
-	public DictionaryCategory getCategory() {
-		return category;
-	}
+    /**
+     * @return the text
+     */
+    public String getText() {
+        return text;
+    }
 
-	/**
-	 * @param category
-	 *            the category to set
-	 */
-	public void setCategory(DictionaryCategory category) {
-		this.category = category;
-	}
+    /**
+     * @param text the text to set
+     */
+    public void setText(String text) {
+        this.text = text;
+    }
 
-	/**
-	 * @return the sortOrder
-	 */
-	@Column(name = "sort_order")
-	public int getSortOrder() {
-		return sortOrder;
-	}
+    /**
+     * @return the category
+     */
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "category_id")
+    public DictionaryCategory getCategory() {
+        return category;
+    }
 
-	/**
-	 * @param sortOrder
-	 *            the sortOrder to set
-	 */
-	public void setSortOrder(int sortOrder) {
-		this.sortOrder = sortOrder;
-	}
+    /**
+     * @param category the category to set
+     */
+    public void setCategory(DictionaryCategory category) {
+        this.category = category;
+    }
 
-	/**
-	 * @return the disabled
-	 */
-	public boolean isDisabled() {
-		return disabled;
-	}
+    /**
+     * @return the sortOrder
+     */
+    @Column(name = "sort_order")
+    public int getSortOrder() {
+        return sortOrder;
+    }
 
-	/**
-	 * @param disabled
-	 *            the disabled to set
-	 */
-	public void setDisabled(boolean disabled) {
-		this.disabled = disabled;
-	}
+    /**
+     * @param sortOrder the sortOrder to set
+     */
+    public void setSortOrder(int sortOrder) {
+        this.sortOrder = sortOrder;
+    }
 
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
-	}
+    /**
+     * @return the disabled
+     */
+    @Column(name = "is_disabled")
+    public boolean isDisabled() {
+        return disabled;
+    }
 
-	/**
-	 * @param description
-	 *            the description to set
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    /**
+     * @param disabled the disabled to set
+     */
+    public void setDisabled(boolean disabled) {
+        this.disabled = disabled;
+    }
 
-	/**
-	 * @return the parentCode
-	 */
-	@Column(name = "parent_code")
-	public String getParentCode() {
-		return parentCode;
-	}
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
 
-	/**
-	 * @param parentCode the parentCode to set
-	 */
-	public void setParentCode(String parentCode) {
-		this.parentCode = parentCode;
-	}
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void disable() {
-		setDisabled(true);
-		save();
-	}
+    /**
+     * @return the parentCode
+     */
+    @Column(name = "parent_code")
+    public String getParentCode() {
+        return parentCode;
+    }
 
-	public static Dictionary get(Long id) {
-		return getRepository().get(Dictionary.class, id);
-	}
+    /**
+     * @param parentCode the parentCode to set
+     */
+    public void setParentCode(String parentCode) {
+        this.parentCode = parentCode;
+    }
 
-	public static Dictionary load(Long id) {
-		return getRepository().load(Dictionary.class, id);
-	}
+    public void disable() {
+        setDisabled(true);
+        save();
+    }
 
-	public static List<Dictionary> findByCategory(DictionaryCategory category) {
-		return getRepository().createNamedQuery("findByCategory").addParameter("category", category).list();
-	}
+    public static Dictionary get(Long id) {
+        return getRepository().get(Dictionary.class, id);
+    }
 
-	@Override
-	public boolean equals(final Object other) {
-		if (this == other) {
-			return true;
-		}
-		if (!(other instanceof Dictionary)) {
-			return false;
-		}
-		Dictionary that = (Dictionary) other;
-		return new EqualsBuilder().append(code, that.code).append(category, that.getCategory()).isEquals();
-	}
+    public static Dictionary load(Long id) {
+        return getRepository().load(Dictionary.class, id);
+    }
 
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder().append(code).append(category).toHashCode();
-	}
+    public static List<Dictionary> findByCategory(DictionaryCategory category) {
+        return getRepository().createNamedQuery("Dictionay.findByCategory").addParameter("category", category).list();
+    }
 
-	@Override
-	public String toString() {
-		return new ToStringBuilder(this).append("code", code).append("text", text).toString();
-	}
+    @Override
+    public boolean equals(final Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Dictionary)) {
+            return false;
+        }
+        Dictionary that = (Dictionary) other;
+        return new EqualsBuilder().append(code, that.code).append(category, that.getCategory()).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(code).append(category).toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).append("code", code).append("text", text).toString();
+    }
 
 }

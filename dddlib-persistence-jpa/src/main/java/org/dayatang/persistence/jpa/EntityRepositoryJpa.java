@@ -212,6 +212,35 @@ public class EntityRepositoryJpa implements EntityRepository {
     }
 
     @Override
+    public SqlQuery createSqlQuery(String sql) {
+        return new SqlQuery(this, sql);
+    }
+
+    @Override
+    public <T> List<T> find(SqlQuery sqlQuery) {
+        Query query = getEntityManager().createNativeQuery(sqlQuery.getSql());
+        fillParameters(query, sqlQuery.getParameters());
+        query.setFirstResult(sqlQuery.getFirstResult());
+        if (sqlQuery.getMaxResults() > 0) {
+            query.setMaxResults(sqlQuery.getMaxResults());
+        }
+        return query.getResultList();
+    }
+
+    @Override
+    public <T> T getSingleResult(SqlQuery sqlQuery) {
+        List<T> results = find(sqlQuery);
+        return results == null || results.isEmpty() ? null : results.get(0);
+    }
+
+    @Override
+    public int executeUpdate(SqlQuery sqlQuery) {
+        Query query = getEntityManager().createNativeQuery(sqlQuery.getSql());
+        fillParameters(query, sqlQuery.getParameters());
+        return query.executeUpdate();
+    }
+
+    @Override
     public <T extends Entity, E extends T> List<T> findByExample(
             final E example, final ExampleSettings<T> settings) {
         throw new RuntimeException("not implemented yet!");

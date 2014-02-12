@@ -96,7 +96,7 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
 	public Page<${currntVO}> pageQuery${domainClass}(${currntVO} queryVo, int currentPage, int pageSize) {
 		List<${currntVO}> result = new ArrayList<${currntVO}>();
 		List<Object> conditionVals = new ArrayList<Object>();
-#set($jpql = "select _${variableName} from ${domainClass} _${variableName} ")
+#set($sql = "select _${variableName} from ${domainClass} _${variableName} ")
 #foreach(${relation} in ${applicationClass.relations})
 #set($relationModel = ${relation.relationModel})
 #set($relationType = ${relationModel.type})
@@ -106,37 +106,37 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
 #set($joinClause = $joinClause +  " left join _${variableName}.${relation.name} ")
 #end
 #end
-	   	StringBuilder jpql = new StringBuilder("${jpql} $!{joinClause} where 1=1 ");
+	   	StringBuilder sql = new StringBuilder("${sql} $!{joinClause} where 1=1 ");
 #foreach($field in ${entity.fields})
 #set($propertyName = ${field.name.substring(0, 1).toUpperCase()} + ${field.name.substring(1)})
 #if(${dtoClass.isPrimitiveType(${field.type})} && ${field.name} != "id")
 	   	if (queryVo.get${propertyName}() != null) {
-	   		jpql.append(" and _${variableName}.${field.name}=?");
+	   		sql.append(" and _${variableName}.${field.name}=?");
 	   		conditionVals.add(queryVo.get${propertyName}());
 	   	}	
 #end
 	
 #if(${dtoClass.isBooleanType(${field.type})})
 	   	if (queryVo.get${propertyName}() != null) {
-		   	jpql.append(" and _${variableName}.${field.name} is ?");
+		   	sql.append(" and _${variableName}.${field.name} is ?");
 		   	conditionVals.add(queryVo.get${propertyName}());
 	   	}	
 #end
 #if(${dtoClass.isStringType(${field.type})})
 	   	if (queryVo.get${propertyName}() != null && !"".equals(queryVo.get${propertyName}())) {
-	   		jpql.append(" and _${variableName}.${field.name} like ?");
+	   		sql.append(" and _${variableName}.${field.name} like ?");
 	   		conditionVals.add(MessageFormat.format("%{0}%", queryVo.get${propertyName}()));
 	   	}		
 #end	
 #if(${dtoClass.isDateType(${field.type})})
 	   	if (queryVo.get${propertyName}() != null) {
-	   		jpql.append(" and _${variableName}.${field.name} between ? and ? ");
+	   		sql.append(" and _${variableName}.${field.name} between ? and ? ");
 	   		conditionVals.add(queryVo.get${propertyName}());
 	   		conditionVals.add(queryVo.get${propertyName}End());
 	   	}	
 #end	
 #end
-        Page<${domainClass}> pages = queryChannel.queryPagedResultByPageNo(jpql.toString(), conditionVals.toArray(), currentPage, pageSize);
+        Page<${domainClass}> pages = queryChannel.queryPagedResultByPageNo(sql.toString(), conditionVals.toArray(), currentPage, pageSize);
         for (${domainClass} ${variableName} : pages.getResult()) {
             ${currntVO} ${currntVOVariable} = new ${currntVO}();
             
@@ -169,8 +169,8 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
 #if(${relationType} == "ManyToOne" || ${relationType} == "OneToOne")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ${entityName}DTO find${relationName}By${domainClass}(${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name}) {
-		String jpql = "select e from ${domainClass} o right join o.${relation.name} e where o.${dtoClass.entityModel.singleIDFieldModel.name}=?";
-		${entityName} result = (${entityName}) queryChannel.querySingleResult(jpql, new Object[] { ${dtoClass.entityModel.singleIDFieldModel.name} });
+		String sql = "select e from ${domainClass} o right join o.${relation.name} e where o.${dtoClass.entityModel.singleIDFieldModel.name}=?";
+		${entityName} result = (${entityName}) queryChannel.querySingleResult(sql, new Object[] { ${dtoClass.entityModel.singleIDFieldModel.name} });
 		${entityName}DTO  dto = new ${entityName}DTO();
 		if (result != null) {
 			try {
@@ -187,8 +187,8 @@ public class ${applicationImplClass.name} implements ${applicationClass.name} {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Page<${entityName}DTO> find${relationName}By${domainClass}(${dtoClass.entityModel.singleIDFieldModel.simpleType} ${dtoClass.entityModel.singleIDFieldModel.name}, int currentPage, int pageSize) {
 		List<${entityName}DTO> result = new ArrayList<${entityName}DTO>();
-		String jpql = "select e from ${domainClass} o right join o.${relation.name} e where o.${dtoClass.entityModel.singleIDFieldModel.name}=?";
-		Page<${entityName}> pages = queryChannel.queryPagedResultByPageNo(jpql, new Object[] { ${dtoClass.entityModel.singleIDFieldModel.name} }, currentPage, pageSize);
+		String sql = "select e from ${domainClass} o right join o.${relation.name} e where o.${dtoClass.entityModel.singleIDFieldModel.name}=?";
+		Page<${entityName}> pages = queryChannel.queryPagedResultByPageNo(sql, new Object[] { ${dtoClass.entityModel.singleIDFieldModel.name} }, currentPage, pageSize);
         for (${entityName} entity : pages.getResult()) {
             ${entityName}DTO dto = new ${entityName}DTO();
             try {
