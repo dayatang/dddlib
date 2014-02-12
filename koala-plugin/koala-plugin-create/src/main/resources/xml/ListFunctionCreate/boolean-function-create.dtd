@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!ELEMENT BooleanFunctionCreate (property, VelocityFileObject*, VelocityDirObject*, CopyFiles*)>
-<!ELEMENT property (#PCDATA)>
-<!ATTLIST property name (funType | vm | path | vmDir | pathDir | srcDir | destDir) #REQUIRED>
-<!ELEMENT VelocityFileObject (property+)>
-<!ELEMENT VelocityDirObject (property+)>
-<!ELEMENT CopyFiles (property+)>

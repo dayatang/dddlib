@@ -1,4 +1,0 @@
-org.quartz.scheduler.instanceName = MyScheduler
-org.quartz.threadPool.threadCount = 3
-org.quartz.jobStore.class = org.quartz.simpl.RAMJobStore
-

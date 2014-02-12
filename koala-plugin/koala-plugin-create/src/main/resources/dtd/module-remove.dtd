@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!ELEMENT ModuleRemove (property+)>
-<!ELEMENT property (#PCDATA | value)*>
-<!ATTLIST property name (funType | files) #REQUIRED>
-<!ELEMENT value (#PCDATA)>

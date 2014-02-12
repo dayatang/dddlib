@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!ELEMENT ObjectFunctionCreate (property, VelocityFileObject*)>
-<!ELEMENT property (#PCDATA)>
-<!ELEMENT VelocityFileObject (property+)>
-<!ATTLIST property name (objName | vm | path) #REQUIRED>
