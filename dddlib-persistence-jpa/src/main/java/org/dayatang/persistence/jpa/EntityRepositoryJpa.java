@@ -218,7 +218,14 @@ public class EntityRepositoryJpa implements EntityRepository {
 
     @Override
     public <T> List<T> find(SqlQuery sqlQuery) {
-        Query query = getEntityManager().createNativeQuery(sqlQuery.getSql());
+        Query query;
+        if (sqlQuery.getResultEntityClass() == null) {
+            query = getEntityManager().createNativeQuery(sqlQuery.getSql());
+        } else {
+            query = getEntityManager().createNativeQuery(sqlQuery.getSql(), 
+                    sqlQuery.getResultEntityClass());
+        }
+         
         fillParameters(query, sqlQuery.getParameters());
         query.setFirstResult(sqlQuery.getFirstResult());
         if (sqlQuery.getMaxResults() > 0) {
