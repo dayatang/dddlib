@@ -103,3 +103,7 @@ org.dayatang.domain.specification包中的接口和类代表DDD中“规范”�
 internal包主要包含代表各种查询条件的QueryCriterion接口的实现类，它们属于DDDLib的内部实现，DDDLib的使用者和扩展这既不需要了解、也不能依赖于这个包中的内容。
 
 
+## 设计说明
+
+
+
