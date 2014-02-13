@@ -27,7 +27,7 @@ dddlib-domain的主要API集中在org.dayatang.domain包中，大概可分为五
 
 ### 持久化
 
-* [EntityRepository](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/EntityRepository.html)：这是持久化的核心接口，代表DDD中的“仓储”概念。实体以及从属于实体上的值对象通过仓储接口持久化到仓储（一般是数据库）里面，通过仓储接口可以以各种各样的方式查找实体。仓储接口功能上约等于JPA的EntityManager和Hibernate的Session。dddlib-persistence-jpa和dddlib-persistence-hibernate两个模块分别为该仓储接口提供了不同的实现。
+* [EntityRepository](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/EntityRepository.html)：这是持久化的核心接口，代表DDD中的“仓储”概念。实体以及从属于实体的值对象通过仓储接口持久化到仓储（一般是数据库）里面，通过仓储接口可以以各种各样的方式查找实体。仓储接口功能上约等于JPA的EntityManager和Hibernate的Session。dddlib-persistence-jpa和dddlib-persistence-hibernate两个模块分别为该仓储接口提供了不同的实现。
 
 dddlib支持四种查询方式：条件查询、命名查询、JPQL查询和原生SQL查询，可以分别用EntityRepository的createCriteriaQuery()、createJpqlQuery()、createNamedQuery()和createSqlQuery()方法创建。这些查询分别由下面的类和接口支持：
 
@@ -66,7 +66,7 @@ DDDLib的依赖查找功能由InstanceFactory代表。它通过InstanceProvider�
 
 * [InstanceFactory](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/InstanceFactory.html)：实例工厂，代表DDD中的“工厂”概念。它是IoC容器的门面，为系统中的其他类提供所需的依赖对象的实例。InstanceFactor顺序通过三种途径获取Bean实例。（1）如果已经给InstanceFactory设置了InstanceProvider，那么就通过后者 查找Bean；（2）如果没有设置InstanceProvider，或者通过InstanceProvider无法找到Bean，就通过JDK6的ServiceLoader机制查找（通 过在类路径或jar中的/META-INF/services/a.b.c.Abc文件中设定内容为x.y.z.Xyz，就表明类型a.b.c.Abc将通过类x.y.z.Xyz 的实例提供）；（3）如果仍然没找到Bean实例，那么将返回那些通过bind()方法设置的Bean实例。（4）如果最终仍然找不到，就抛出 IocInstanceNotFoundException异常。
 
-* [InstanceProvider](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/InstanceProvider.html)：实例提供者接口。这是一个策略接口，封装了IoC的功能。DDDLib的另外三个模块dddlib-ioc-spring，dddlib-ioc-guice和dddlib-ioc-tapestry分别为该接口提供了不同的实现类，将Bean实例请求适配到具体的IoC容器，如SpringIoC、Google Guice和TapestryIoC等。
+* [InstanceProvider](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/InstanceProvider.html)：实例提供者接口。这是一个策略接口，封装了IoC的功能。DDDLib的另外三个模块dddlib-ioc-spring，dddlib-ioc-guice和dddlib-ioc-tapestry分别为该接口提供了不同的实现，将Bean实例请求适配到具体的IoC容器，如SpringIoC、Google Guice和TapestryIoC等。
 
 
 
@@ -86,7 +86,7 @@ org.dayatang.domain.specification包中的接口和类代表DDD中“规范”�
 
 * [Specification](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/specification/Specification.html)：规范接口。所有的领域规范都必须实现此接口。
 
-* [AbstractSpecification](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/specification/AbstractSpecification.html)：抽象规范，用来实现规范间的与、或、非操作。
+* [AbstractSpecification](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/specification/AbstractSpecification.html)：抽象规范实现，用来实现规范间的与、或、非操作。
 
 * [AndSpecification](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/specification/AndSpecification.html)：“与”规范，代表两个规范的“与”操作的结果。
 
@@ -105,7 +105,9 @@ internal包主要包含代表各种查询条件的QueryCriterion接口的实现�
 
 ## 设计原则
 
-DDDLIB-DOMAIN的基本设计原则是应用依赖倒置和面向接口编程原则，将技术性内容从领域层中剔除出去。
+DDDLIB-DOMAIN的基本设计原则是：**应用依赖倒置和面向接口编程原则，将技术性内容从领域层中剔除出去，使得领域层只包含领域概念和实现业务规则，不依赖于任何具体的技术实现。**具体来说，领域层只应该依赖于JDK和JCP规范中定义的类和接口，即那些以java.或javax.为包名前缀的类。Apache Commons Lang是对Java语言的补充，slf4j-api是最广为使用的日志，这两者也可以作为领域层的编译时依赖。除此之外，领域层（和应用层）不应依赖于任何第三方类库呵框架。
+
+在DDDLib中，依赖倒置的原则表现在：在领域层org.dayatang.domain中定义持久化接口EntityRepository和IoC接口InstanceProvider，而将它们的技术实现推给其他模块。
 
 
 
