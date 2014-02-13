@@ -7,9 +7,9 @@ DDDLIB-DOMAIN
 dddlib-domain的主要目标是为基于领域驱动设计（Domain Driven Design, 简称DDD）范式的开发提供支持。在分层企业应用架构（表示层、应用层、领域层、基础设施层，其中应用层和领域层往往合称业务逻辑层）中，dddlib-domain直接为领域层服务，为领域对象提供统一的接口和基类，并通过依赖倒置（DI）的方式隔离领域层对基础设施层的IoC容器和持久化技术的依赖。
 
 ## API概述
-dddlib-domain的API大概可分为三大类：
+dddlib-domain的主要API集中在org.dayatang.domain包中，大概可分为三大类：
 
-### 实体接口和基类
+### 实体和值对象
 
 实体相关的接口和基类包括：
 
@@ -25,11 +25,11 @@ dddlib-domain的API大概可分为三大类：
 
 同时为了方便起见，也有很多开发者愿意在实体基类上实现很多公共行为，以最小化具体实体子类需要编写的方法接口的数量。他们或者没有聚合的概念，或者不忌讳打破聚合业务规则不变性。这种情况下，让实体类从AbstractEntity继承是个好的起点。
 
-### 持久化接口和类
+### 持久化
 
 * [EntityRepository](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/EntityRepository.html)：这是持久化的核心接口，代表DDD中的“仓储”概念。实体以及从属于实体上的值对象通过仓储接口持久化到仓储（一般是数据库）里面，通过仓储接口可以以各种各样的方式查找实体。仓储接口功能上约等于JPA的EntityManager和Hibernate的Session。dddlib-persistence-jpa和dddlib-persistence-hibernate两个模块分别为该仓储接口提供了不同的实现。
 
-dddlib支持四种查询方式：条件查询、命名查询、JPQL查询和原生SQL查询。这些查询分别由下面的类和接口支持：
+dddlib支持四种查询方式：条件查询、命名查询、JPQL查询和原生SQL查询，可以分别用EntityRepository的createCriteriaQuery()、createJpqlQuery()、createNamedQuery()和createSqlQuery()方法创建。这些查询分别由下面的类和接口支持：
 
 * [CriteriaQuery](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/CriteriaQuery.html)：条件查询。条件查询是通过面向对象而不是面向查询语言的方式进行查询。为了构造条件查询，我们提供了下面的接口和类：用[QueryCriterion](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/QueryCriterion.html)接口代表单个的查询条件（internal子包中有它的各种各样的实现类，分别代表不同的查询条件），用[CriterionBuilder](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/CriterionBuilder.html)作为QueryCriterion的工厂来生成各种查询条件，用[OrderSetting](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/OrderSetting.html)代表单个的排序字段。
 
@@ -39,6 +39,39 @@ dddlib支持四种查询方式：条件查询、命名查询、JPQL查询和原�
 
 * [SqlQuery](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/SqlQuery.html)：原生SQL查询。根据原生SQL语句进行查询。查询的结果可以是标量的，也可以映射到一个实体类型。
 
-* [QueryParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/QueryParameters.html)：查询参数集。除CriteriaQuery之外，其他三种查询往往需要指定查询参数。几种查询都支持两种形式的参数：定位参数和命名参数，在DDDLib中分别用QueryParameters的两个实现类[ArrayParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/ArrayParameters.html)和[MapParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/MapParameters.html)代表定位参数集和命名参数集。注意：定位参数是落后的形式，建议统一采用命名参数的形式。
+除CriteriaQuery之外，其他三种查询往往需要指定查询参数。查询参数集由下面的接口和类代表：
+
+
+* [QueryParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/QueryParameters.html)：查询参数集接口，代表每个查询的一批参数。几种查询都支持两种形式的参数：定位参数和命名参数，在DDDLib中分别用QueryParameters的两个实现类[ArrayParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/ArrayParameters.html)和[MapParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/MapParameters.html)代表。注意：定位参数是落后的形式，建议统一采用命名参数的形式。
+
+* [ArrayParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/ArrayParameters.html)：代表定位参数集，如"... where e.name = ?"。在对象的内部用一个数组来保存参数。
+
+* [MapParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/MapParameters.html)：代表命名参数集，如"... where name = :name"。在对象内部用一个Map来保存参数，Key代表参数名，Value代表参数值。
+
+每种查询都定义有下面两种方法：
+
+* list()：返回一批结果，用List形式表示。
+* singleResult()：返回单一结果。
+
+除CriteriaQuery之外，其余三种查询还定义有下面的方法：
+
+* executeUpdate()：执行数据库更新操作，返回收到影响的记录的数量。
+
+
+
+
+### IoC依赖查找
+
+DDDLib的依赖查找功能由InstanceFactory代表。它通过InstanceProvider策略接口将对象查找请求委托给具体的后端IoC容器，如Spring或Google Guice等。
+
+* [InstanceFactory](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/InstanceFactory.html)：实例工厂，代表DDD中的“工厂”概念。它是IoC容器的门面，为系统中的其他类提供所需的依赖对象的实例。InstanceFactor顺序通过三种途径获取Bean实例。（1）如果已经给InstanceFactory设置了InstanceProvider，那么就通过后者 查找Bean；（2）如果没有设置InstanceProvider，或者通过InstanceProvider无法找到Bean，就通过JDK6的ServiceLoader查找（通 过在类路径或jar中的/META-INF/services/a.b.c.Abc文件中设定内容为x.y.z.Xyz，就表明类型a.b.c.Abc将通过类x.y.z.Xyz 的实例提供）；（3）如果仍然没找到Bean实例，那么将返回那些通过bind()方法设置的Bean实例。（4）如果最终仍然找不到，就抛出 IocInstanceNotFoundException异常。
+
+* [InstanceProvider](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/InstanceProvider.html)：实例提供者接口。这是一个策略接口，封装了IoC的功能。DDDLib的另外三个模块dddlib-ioc-spring，dddlib-ioc-guice和dddlib-ioc-tapestry分别为该接口提供了不同的实现类，将Bean实例请求适配到具体的IoC容器，如SpringIoC、Google Guice和TapestryIoC等。
+
+
+
+
+
+
 
 
