@@ -35,4 +35,4 @@ DDDLib是一个多模块Maven项目，一共有十多个模块，可以粗略划
 * dddlib-excel：为读写Excel文件内容提供支持。采用Apache POI技术实现，支持.xls和.xlsx两种格式的Excel文件。
 * dddlib-i18n：为国际化和本地化提供支持。
 * dddlib-observer：在实体层面实现观察者模式实现。当一个实体发生某些事件时向注册的观察者实体发送通知。
-* dddlib-rule-engine：为有状态和无状态规则服务提供接口和实现。实现是基于jsr94的
+* dddlib-rule-engine：为有状态和无状态规则服务提供接口和实现。实现是基于规则引擎规范jsr94的。
