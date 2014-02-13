@@ -129,7 +129,14 @@ DDD中的仓储接口（在DDDLib中是EntityReposotory）在作用上是DAO接�
 
 ### 依赖查找 vs 依赖注入
 
-DDDLib中处理对象依赖的基本形式是依赖查找：通过InstanceFactory查找指定类型的对象实例。以依赖查找的方式实现
+DDDLib中处理对象依赖的基本形式是依赖查找：通过InstanceFactory查找指定类型的对象实例。以依赖查找的方式实现依赖管理的优点有下面这些：
+
+* 不需要在IoC配置元数据（例如Spring的ApplicationContext.xml）中定义详细的对象装配细节内容，只需要定义每种类型的实现类即可。当对象A需要它的依赖对象B时再通过InstanceFactory向IoC容器查找，如果对象B又需要依赖对象C，那么它可以再次通过InstanceFactory像IoC容器请求。这样的传递性依赖查找机制消除了需要定义详细的依赖注入装配信息的需要。
+
+* 采用SpringIoC这样的依赖注入框架，如果要求对象A能够自动注入依赖对象B，那么A和B都必须是IoC容器管理的Bean。如果A不是容器托管的Bean就无法注入。由于领域对象一般都不是容器托管的Bean，所以基本上不能获得IoC的功能（后来Spring用一些不太自然的方式做到了领域对象能够注入依赖）。而依赖查找的方式不要求对象A是IoC容器托管的。
+
+另外，DDDLib通过dddlib-ioc-spring、dddlib-ioc-guice和dddlib-tapestry提供了IoC容器的实现。这三种形式的后端技术SpringIoC、Google Guice和TapestryIoC都支持JSR330依赖注入规范，因此采用这些模块作为持久化容器时，DDDLib中的类也可以获得依赖注入的能力。通过JSR330的@Inject注解可以注入依赖对象的实例。不要采用Spring的@Autowire这样的注解，以免将系统耦合到具体的实现技术。
+
 
 
 
