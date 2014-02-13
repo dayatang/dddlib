@@ -32,3 +32,13 @@ dddlib-domain的API大概可分为三大类：
 dddlib支持四种查询方式：条件查询、命名查询、JPQL查询和原生SQL查询。这些查询分别由下面的类和接口支持：
 
 * [CriteriaQuery](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/CriteriaQuery.html)：条件查询。条件查询是通过面向对象而不是面向查询语言的方式进行查询。为了构造条件查询，我们提供了下面的接口和类：用[QueryCriterion](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/QueryCriterion.html)接口代表单个的查询条件（internal子包中有它的各种各样的实现类，分别代表不同的查询条件），用[CriterionBuilder](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/CriterionBuilder.html)作为QueryCriterion的工厂来生成各种查询条件，用[OrderSetting](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/OrderSetting.html)代表单个的排序字段。
+
+* [JpqlQuery](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/JpqlQuery.html)：JPQL查询。JPQL查询支持通过JPA的对象查询语言JPQL进行查询。Hibernate本身也支持通过JPQL进行查询，JPA是持久化的规范，因此我们可以采用JPQL作为通用的查询语言来使用。
+
+* [NamedQuery](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/NamedQuery.html)：命名查询。根据预定义的查询的名称来进行查询。
+
+* [SqlQuery](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/SqlQuery.html)：原生SQL查询。根据原生SQL语句进行查询。查询的结果可以是标量的，也可以映射到一个实体类型。
+
+* [QueryParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/QueryParameters.html)：查询参数集。除CriteriaQuery之外，其他三种查询往往需要指定查询参数。几种查询都支持两种形式的参数：定位参数和命名参数，在DDDLib中分别用QueryParameters的两个实现类[ArrayParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/ArrayParameters.html)和[MapParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/MapParameters.html)代表定位参数集和命名参数集。注意：定位参数是落后的形式，建议统一采用命名参数的形式。
+
+
