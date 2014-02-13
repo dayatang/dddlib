@@ -7,7 +7,7 @@ DDDLIB-DOMAIN
 dddlib-domain的主要目标是为基于领域驱动设计（Domain Driven Design, 简称DDD）范式的开发提供支持。在分层企业应用架构（表示层、应用层、领域层、基础设施层，其中应用层和领域层往往合称业务逻辑层）中，dddlib-domain直接为领域层服务，为领域对象提供统一的接口和基类，并通过依赖倒置（DI）的方式隔离领域层对基础设施层的IoC容器和持久化技术的依赖。
 
 ## API概述
-dddlib-domain的主要API集中在org.dayatang.domain包中，大概可分为三大类：
+dddlib-domain的主要API集中在org.dayatang.domain包中，大概可分为五部分：
 
 ### 实体和值对象
 
@@ -55,7 +55,7 @@ dddlib支持四种查询方式：条件查询、命名查询、JPQL查询和原�
 
 除CriteriaQuery之外，其余三种查询还定义有下面的方法：
 
-* executeUpdate()：执行数据库更新操作，返回收到影响的记录的数量。
+* executeUpdate()：执行数据库批量更新操作，返回收到影响的记录的数量。
 
 
 
@@ -64,14 +64,42 @@ dddlib支持四种查询方式：条件查询、命名查询、JPQL查询和原�
 
 DDDLib的依赖查找功能由InstanceFactory代表。它通过InstanceProvider策略接口将对象查找请求委托给具体的后端IoC容器，如Spring或Google Guice等。
 
-* [InstanceFactory](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/InstanceFactory.html)：实例工厂，代表DDD中的“工厂”概念。它是IoC容器的门面，为系统中的其他类提供所需的依赖对象的实例。InstanceFactor顺序通过三种途径获取Bean实例。（1）如果已经给InstanceFactory设置了InstanceProvider，那么就通过后者 查找Bean；（2）如果没有设置InstanceProvider，或者通过InstanceProvider无法找到Bean，就通过JDK6的ServiceLoader查找（通 过在类路径或jar中的/META-INF/services/a.b.c.Abc文件中设定内容为x.y.z.Xyz，就表明类型a.b.c.Abc将通过类x.y.z.Xyz 的实例提供）；（3）如果仍然没找到Bean实例，那么将返回那些通过bind()方法设置的Bean实例。（4）如果最终仍然找不到，就抛出 IocInstanceNotFoundException异常。
+* [InstanceFactory](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/InstanceFactory.html)：实例工厂，代表DDD中的“工厂”概念。它是IoC容器的门面，为系统中的其他类提供所需的依赖对象的实例。InstanceFactor顺序通过三种途径获取Bean实例。（1）如果已经给InstanceFactory设置了InstanceProvider，那么就通过后者 查找Bean；（2）如果没有设置InstanceProvider，或者通过InstanceProvider无法找到Bean，就通过JDK6的ServiceLoader机制查找（通 过在类路径或jar中的/META-INF/services/a.b.c.Abc文件中设定内容为x.y.z.Xyz，就表明类型a.b.c.Abc将通过类x.y.z.Xyz 的实例提供）；（3）如果仍然没找到Bean实例，那么将返回那些通过bind()方法设置的Bean实例。（4）如果最终仍然找不到，就抛出 IocInstanceNotFoundException异常。
 
 * [InstanceProvider](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/InstanceProvider.html)：实例提供者接口。这是一个策略接口，封装了IoC的功能。DDDLib的另外三个模块dddlib-ioc-spring，dddlib-ioc-guice和dddlib-ioc-tapestry分别为该接口提供了不同的实现类，将Bean实例请求适配到具体的IoC容器，如SpringIoC、Google Guice和TapestryIoC等。
 
 
 
 
+### 值和数据类型
+
+在很多业务领域中(尤其是在SaaS的环境下)，为了适应不同类型租户的需要，除了定义实体类共同的静态属性（即JavaBean属性）之外，每个租户或用户往往需要定义一批自己专用的动态属性，例如给员工Employee类加入Date类型的"转正日期"和String类型的“护照编号”属性。DDDLib对此提供下面的API支持：
+
+* [Value](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/Value.html)：代表一个值类型，可以用来代表一个动态属性值。它包括两部分：代表数据类型的[DataType](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/DataType.html)和代表具体内容的字符串值。
+
+* [DataType](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/DataType.html)：数据类型枚举。代表值的数据类型。它负责将字符串形式的值转换为指定的数据类型。
 
 
+### 领域规范
+
+org.dayatang.domain.specification包中的接口和类代表DDD中“规范”的概念。每种规范都针对一种类型的领域对象，用来判断该类型的对象实例是否满足此规范。例如在航运业务中判断某航线是否满足最低费用规范或最短时间规范。规范之间可以执行与、或、非操作。
+
+* [Specification](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/specification/Specification.html)：规范接口。所有的领域规范都必须实现此接口。
+
+* [AbstractSpecification](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/specification/AbstractSpecification.html)：抽象规范，用来实现规范间的与、或、非操作。
+
+* [AndSpecification](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/specification/AndSpecification.html)：“与”规范，代表两个规范的“与”操作的结果。
+
+* [OrSpecification](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/specification/OrSpecification.html)："或"规范，代表两个规范的“或”操作的结果。
+
+* [NotSpecification](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/specification/NotSpecification.html)：“非”规范，代表当前规范的“非”操作的结果。
+
+
+
+## 其他内容
+
+### org.dayatang.domain.internal包
+
+internal包主要包含代表各种查询条件的QueryCriterion接口的实现类，它们属于DDDLib的内部实现，DDDLib的使用者和扩展这既不需要了解、也不能依赖于这个包中的内容。
 
 
