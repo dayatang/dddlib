@@ -41,8 +41,8 @@ public class Value implements ValueObject {
     /**
      * 创建字符串值
      *
-     * @param value
-     * @return
+     * @param value 字符串形式的值
+     * @return 一个字符串类型的值
      */
     public static Value stringValue(String value) {
         return new Value(DataType.STRING, value);
@@ -51,8 +51,8 @@ public class Value implements ValueObject {
     /**
      * 创建整数值
      *
-     * @param value
-     * @return
+     * @param value 字符串形式的值
+     * @return 一个整数类型的值
      */
     public static Value intValue(String value) {
         return new Value(DataType.INT, value);
@@ -61,8 +61,8 @@ public class Value implements ValueObject {
     /**
      * 创建长整型值
      *
-     * @param value
-     * @return
+     * @param value 字符串形式的值
+     * @return 一个长整数类型的值
      */
     public static Value longValue(String value) {
         return new Value(DataType.LONG, value);
@@ -71,8 +71,8 @@ public class Value implements ValueObject {
     /**
      * 创建浮点值
      *
-     * @param value
-     * @return
+     * @param value 字符串形式的值
+     * @return 一个小数类型的值
      */
     public static Value doubleValue(String value) {
         return new Value(DataType.DOUBLE, value);
@@ -81,8 +81,8 @@ public class Value implements ValueObject {
     /**
      * 创建BigDecimal值
      *
-     * @param value
-     * @return
+     * @param value 字符串形式的值
+     * @return 一个BigDecimal类型的值
      */
     public static Value bigDecimalValue(String value) {
         return new Value(DataType.BIG_DECIMAL, value);
@@ -91,8 +91,8 @@ public class Value implements ValueObject {
     /**
      * 创建布尔型值
      *
-     * @param value
-     * @return
+     * @param value 字符串形式的值
+     * @return 一个布尔类型的值
      */
     public static Value booleanValue(String value) {
         return new Value(DataType.BOOLEAN, value);
@@ -101,8 +101,8 @@ public class Value implements ValueObject {
     /**
      * 创建日期型值（无时间部分）
      *
-     * @param value
-     * @return
+     * @param value 字符串形式的值
+     * @return 一个日期类型的值
      */
     public static Value dateValue(String value) {
         return new Value(DataType.DATE, value);
@@ -111,8 +111,8 @@ public class Value implements ValueObject {
     /**
      * 创建时间型值（无日期部分）
      *
-     * @param value
-     * @return
+     * @param value 字符串形式的值
+     * @return 一个时间类型的值
      */
     public static Value timeValue(String value) {
         return new Value(DataType.TIME, value);
@@ -121,8 +121,8 @@ public class Value implements ValueObject {
     /**
      * 创建时间戳型值（包含日期和时间部分）
      *
-     * @param value
-     * @return
+     * @param value 字符串形式的值
+     * @return 一个时间戳类型的值
      */
     public static Value dateTimeValue(String value) {
         return new Value(DataType.DATE_TIME, value);
@@ -139,38 +139,74 @@ public class Value implements ValueObject {
 
     }
 
+    /**
+     * 获取数据类型
+     * @return 值所属的数据类型
+     */
     public DataType getDataType() {
         return dataType;
     }
 
+    /**
+     * 获取原始字符串值
+     * @return 原始字符串值
+     */
     public String getStringValue() {
         return value;
     }
 
+    /**
+     * 获取字符串值
+     * @return 字符串形式的值
+     */
     public String getString() {
         return (String) DataType.STRING.getValue(value);
     }
 
+    /**
+     * 获取整数值
+     * @return 整数形式的值 
+     */
     public int getInt() {
         return (Integer) DataType.INT.getValue(value);
     }
 
+    /**
+     * 获取长整数值
+     * @return 长整数形式的值
+     */
     public long getLong() {
         return (Long) DataType.LONG.getValue(value);
     }
-
+    
+    /**
+     * 获取浮点数值
+     * @return 浮点数形式的值
+     */
     public double getDouble() {
         return (Double) DataType.DOUBLE.getValue(value);
     }
 
+    /**
+     * 获取BigDecimal值
+     * @return BigDecimal形式的值。
+     */
     public BigDecimal getBigDecimal() {
         return (BigDecimal) DataType.BIG_DECIMAL.getValue(value);
     }
 
+    /**
+     * 获取布尔值
+     * @return 布尔形式的值
+     */
     public boolean getBoolean() {
         return (Boolean) DataType.BOOLEAN.getValue(value);
     }
 
+    /**
+     * 获取日期/时间值
+     * @return 日期形式的值
+     */
     public Date getDate() {
         if (StringUtils.isBlank(value)) {
             return null;
@@ -182,6 +218,10 @@ public class Value implements ValueObject {
         }
     }
 
+    /**
+     * 获得转换为相应数据类型的值
+     * @return 由原始字符串转换为相应数据类型的值。
+     */
     public Object getValue() {
         return dataType.getValue(value);
     }
