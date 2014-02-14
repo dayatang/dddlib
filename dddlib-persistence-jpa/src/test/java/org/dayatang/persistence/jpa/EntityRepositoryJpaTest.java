@@ -16,6 +16,7 @@
 
 package org.dayatang.persistence.jpa;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -227,6 +228,18 @@ public class EntityRepositoryJpaTest extends AbstractIntegrationTest {
     }
 
     /**
+     * Test of getSingleResult method with JpqlQuery as parameter
+     */
+    @Test
+    public void testJpqlQueryGetSingleResultCount() {
+        String queryString = "select count(o) from  Dictionary o where o.category = :category and o.code = :code";
+        JpqlQuery query = new JpqlQuery(repository, queryString)
+                .addParameter("category", gender)
+                .addParameter("code", "01");
+        assertEquals(1L, repository.getSingleResult(query));
+    }
+
+    /**
      * Test of find method with JpqlQuery as parameter and scalar as result
      */
     @Test
@@ -299,6 +312,18 @@ public class EntityRepositoryJpaTest extends AbstractIntegrationTest {
         NamedQuery query = new NamedQuery(repository, "Dictionay.findByCategoryAndCode")
                 .setParameters(gender, "01");
         assertEquals(male, repository.getSingleResult(query));
+    }
+
+    /**
+     * Test of getSingleResult method with JpqlQuery as parameter
+     */
+    @Test
+    public void testNamedQueryGetSingleResultCount() {
+        String queryName = "DictionaryCategory.getCount";
+        NamedQuery query = new NamedQuery(repository, queryName)
+                .addParameter("name", "gender");
+        
+        assertEquals(1L, repository.getSingleResult(query));
     }
 
     /**
@@ -384,6 +409,17 @@ public class EntityRepositoryJpaTest extends AbstractIntegrationTest {
                 .setParameters(gender.getId(), "01")
                 .setResultEntityClass(Dictionary.class);
         assertEquals(male, repository.getSingleResult(query));
+    }
+
+    /**
+     * Test of getSingleResult method with JpqlQuery as parameter
+     */
+    @Test
+    public void testSqlQueryGetSingleResultCount() {
+        String queryString = "select count(*) from  categories o where o.name = :name";
+        SqlQuery query = new SqlQuery(repository, queryString)
+                .addParameter("name", "gender");
+        assertEquals(BigInteger.ONE, repository.getSingleResult(query));
     }
 
     /**

@@ -11,9 +11,14 @@ import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
 @Table(name = "categories")
+@NamedQueries(
+@NamedQuery(name = "DictionaryCategory.getCount", 
+        query = "select count (*) from DictionaryCategory o where o.name =:name"))
 public class DictionaryCategory extends AbstractEntity {
 
     private static final long serialVersionUID = -2820088186350505379L;
