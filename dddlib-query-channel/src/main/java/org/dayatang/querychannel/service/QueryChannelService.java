@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface QueryChannelService extends Serializable {
+    
+    
+    
 
     /**
      * 根据查询语句和查询参数，返回查询结果的数量
