@@ -17,7 +17,11 @@ package org.dayatang.querychannel.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.apache.commons.lang3.StringUtils;
 import org.dayatang.domain.BaseQuery;
+import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.QueryParameters;
 import org.dayatang.querychannel.support.Page;
 import org.dayatang.utils.Assert;
@@ -30,9 +34,14 @@ import org.dayatang.utils.Assert;
  */
 public abstract class ChannelQuery<E extends ChannelQuery> {
 
+    protected EntityRepository repository;
     protected BaseQuery query;
     private int pageIndex;
     private int pageSize;
+
+    public ChannelQuery(EntityRepository repository) {
+        this.repository = repository;
+    }
 
     /**
      * 获取查询参数
@@ -131,6 +140,7 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
 
     /**
      * 获取当前页码（0为第一页）
+     *
      * @return 当前页码
      */
     public int getPageIndex() {
@@ -139,6 +149,7 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
 
     /**
      * 设置当前页码
+     *
      * @param pageIndex 要设置的页码
      * @return 该对象本身
      */
@@ -149,6 +160,7 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
 
     /**
      * 获取每页记录数
+     *
      * @return 每页记录数
      */
     public int getPageSize() {
@@ -157,6 +169,7 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
 
     /**
      * 设置每页记录数
+     *
      * @param pageSize 每页记录数
      * @return 该对象本身
      */
@@ -167,28 +180,105 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
 
     /**
      * 返回查询结果数据页。
+     *
      * @param <T> 查询结果的列表元素类型
      * @return 查询结果。
      */
-    public abstract <T> Page<T> list();
+    public abstract <T> List<T> list();
 
     /**
      * 返回查询结果数据页。
+     *
+     * @param <T> 查询结果的列表元素类型
+     * @return 查询结果。
+     */
+    public abstract <T> Page<T> listAsPage();
+
+    /**
+     * 返回查询结果数据页。
+     *
      * @return 查询结果。
      */
     public abstract Page<Map<String, Object>> listAsMap();
 
     /**
      * 返回单条查询结果。
+     *
      * @param <T> 查询结果的类型
      * @return 查询结果。
      */
     public abstract <T> T singleResult();
-    
+
     /**
      * 获取符合查询条件的记录总数
+     *
      * @return 符合查询条件的记录总数
      */
-    public abstract long queryResultSize();
+    public abstract long queryResultCount();
+
+    /**
+     * 构造一个查询数据条数的语句,不能用于union
+     *
+     * @param queryString 源语句
+     * @return 查询数据条数的语句
+     */
+    protected String buildCountQueryString(String queryString) {
+        String result = removeOrderByClause(queryString);
+
+        int index = StringUtils.indexOfIgnoreCase(result, " from ");
+
+        StringBuilder builder = new StringBuilder("select count(" + stringInCount(result, index) + ") ");
+
+        if (index != -1) {
+            builder.append(result.substring(index));
+        } else {
+            builder.append(result);
+        }
+        return builder.toString();
+    }
+
+    /**
+     * 去除查询语句的orderby 子句
+     *
+     * @param queryString
+     * @return
+     */
+    protected String removeOrderByClause(String queryString) {
+        Matcher m = Pattern.compile("order\\s*by[\\w|\\W|\\s|\\S]*", Pattern.CASE_INSENSITIVE).matcher(queryString);
+        StringBuffer sb = new StringBuffer();
+        while (m.find()) {
+            m.appendReplacement(sb, "");
+        }
+        m.appendTail(sb);
+        return sb.toString();
+    }
+
+    private static String stringInCount(String queryString, int fromIndex) {
+        int distinctIndex = getPositionOfDistinct(queryString);
+        if (distinctIndex == -1) {
+            return "*";
+        }
+        String distinctToFrom = queryString.substring(distinctIndex, fromIndex);
+
+        // 除去“,”之后的语句
+        int commaIndex = distinctToFrom.indexOf(",");
+        String strMayBeWithAs = commaIndex == -1 ? distinctToFrom : distinctToFrom.substring(0, commaIndex);
+
+        // 除去as语句
+        int asIndex = StringUtils.indexOfIgnoreCase(strMayBeWithAs, " as ");
+        String strInCount = asIndex == -1 ? strMayBeWithAs : strMayBeWithAs.substring(0, asIndex);
+
+        // 除去()，因为HQL不支持 select count(distinct (...))，但支持select count(distinct ...)
+        return strInCount.replace("(", " ").replace(")", " ");
+    }
+
+    private static int getPositionOfDistinct(String queryString) {
+        int result = StringUtils.indexOfIgnoreCase(queryString, "distinct(");
+        return result == -1 ? StringUtils.indexOfIgnoreCase(queryString, "distinct (") : result;
+    } 
+
+    protected boolean containGroupByClause(String queryString) {
+        return StringUtils.containsIgnoreCase(queryString, " group by ");
+    }
 
 }

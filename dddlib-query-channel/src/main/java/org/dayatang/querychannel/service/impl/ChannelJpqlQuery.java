@@ -16,20 +16,27 @@
 
 package org.dayatang.querychannel.service.impl;
 
+import java.util.List;
 import java.util.Map;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.JpqlQuery;
 import org.dayatang.querychannel.service.ChannelQuery;
 import org.dayatang.querychannel.support.Page;
+import org.dayatang.utils.Assert;
 
 /**
  * 通道查询的JPQL实现
  * @author yyang
  */
 public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
+    
+    private String jpql;
 
     public ChannelJpqlQuery(EntityRepository repository, String jpql) {
+        super(repository);
         query = new JpqlQuery(repository, jpql);
+        Assert.notBlank(jpql, "JPQL must be set!");
+        this.jpql = jpql;
     }
 
     public JpqlQuery getQuery() {
@@ -37,9 +44,17 @@ public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
     }
 
     @Override
-    public <T> Page<T> list() {
+    public <T> List<T> list() {
+        return query.list();
+    }
+
+    @Override
+    public <T> Page<T> listAsPage() {
+        long count = queryResultCount();
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 
     @Override
     public Page<Map<String, Object>> listAsMap() {
@@ -48,13 +63,20 @@ public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
 
     @Override
     public <T> T singleResult() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (T) query.singleResult();
     }
 
     @Override
-    public long queryResultSize() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public long queryResultCount() {
+        if (containGroupByClause(jpql)) {
+            List rows = repository.createJpqlQuery(removeOrderByClause(jpql)).setParameters(query.getParameters()).list();
+            return rows == null ? 0 : rows.size();
+        } else {
+            Long result = repository.createJpqlQuery(buildCountQueryString(jpql)).setParameters(query.getParameters()).singleResult();
+            return result;
+        }
     }
+
     
     
 }

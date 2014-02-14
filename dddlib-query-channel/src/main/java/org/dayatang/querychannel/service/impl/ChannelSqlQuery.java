@@ -16,6 +16,7 @@
 
 package org.dayatang.querychannel.service.impl;
 
+import java.util.List;
 import java.util.Map;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.SqlQuery;
@@ -29,6 +30,7 @@ import org.dayatang.querychannel.support.Page;
 public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
 
     public ChannelSqlQuery(EntityRepository repository, String sql) {
+        super(repository);
         query = new SqlQuery(repository, sql);
     }
 
@@ -37,7 +39,7 @@ public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
     }
 
     @Override
-    public <T> Page<T> list() {
+    public <T> Page<T> listAsPage() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -52,7 +54,12 @@ public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
     }
 
     @Override
-    public long queryResultSize() {
+    public long queryResultCount() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public <T> List<T> list() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

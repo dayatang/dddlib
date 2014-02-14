@@ -16,6 +16,7 @@
 
 package org.dayatang.querychannel.service.impl;
 
+import java.util.List;
 import java.util.Map;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.NamedQuery;
@@ -29,6 +30,7 @@ import org.dayatang.querychannel.support.Page;
 public class ChannelNamedQuery extends ChannelQuery<ChannelNamedQuery> {
 
     public ChannelNamedQuery(EntityRepository repository, String queryName) {
+        super(repository);
         query = new NamedQuery(repository, queryName);
     }
 
@@ -37,7 +39,7 @@ public class ChannelNamedQuery extends ChannelQuery<ChannelNamedQuery> {
     }
 
     @Override
-    public <T> Page<T> list() {
+    public <T> Page<T> listAsPage() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -52,7 +54,12 @@ public class ChannelNamedQuery extends ChannelQuery<ChannelNamedQuery> {
     }
 
     @Override
-    public long queryResultSize() {
+    public long queryResultCount() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public <T> List<T> list() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

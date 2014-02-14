@@ -88,6 +88,16 @@ public abstract class BaseQuery<E extends BaseQuery> {
     }
 
     /**
+     * 设置命名参数（Map形式，Key是参数名称，Value是参数值）
+     * @param parameters 要设置的参数
+     * @return 该对象本身
+     */
+    public E setParameters(QueryParameters parameters) {
+        this.parameters = parameters;
+        return (E) this;
+    }
+
+    /**
      * 针对分页查询，获取firstResult。
      * firstResult代表从满足查询条件的记录的第firstResult + 1条开始获取数据子集。
      * @return firstResult的设置值，
