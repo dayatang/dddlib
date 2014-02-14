@@ -18,21 +18,14 @@ package org.dayatang.domain;
 import org.dayatang.utils.Assert;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 基于对象查询语言字符串的查询。DDDLib支持的四种查询形式之一。
  * 可以指定定位查询参数或命名查询参数，也可以针对查询结果取子集。
  * @author yyang
  */
-public class JpqlQuery {
-
-    private final EntityRepository repository;
+public class JpqlQuery extends BaseQuery<JpqlQuery> {
     private final String jpql;
-    private QueryParameters parameters;
-    private final MapParameters mapParameters = MapParameters.create();
-    private int firstResult;
-    private int maxResults;
 
     /**
      * 使用仓储和JPQL语句创建JPQL查询。
@@ -40,9 +33,8 @@ public class JpqlQuery {
      * @param jpql JPQL查询语句
      */
     public JpqlQuery(EntityRepository repository, String jpql) {
-        Assert.notNull(repository);
+        super(repository);
         Assert.notBlank(jpql);
-        this.repository = repository;
         this.jpql = jpql;
     }
 
@@ -55,104 +47,13 @@ public class JpqlQuery {
     }
 
     /**
-     * 获取查询参数
-     * @return 查询参数
-     */
-    public QueryParameters getParameters() {
-        return parameters;
-    }
-
-    /**
-     * 设置定位命名参数（数组方式）
-     * @param parameters 要设置的参数
-     * @return 该对象本身
-     */
-    public JpqlQuery setParameters(Object... parameters) {
-        this.parameters = ArrayParameters.create(parameters);
-        return this;
-    }
-
-    /**
-     * 设置定位参数（列表方式）
-     * @param parameters 要设置的参数
-     * @return 该对象本身
-     */
-    public JpqlQuery setParameters(List<Object> parameters) {
-        this.parameters = ArrayParameters.create(parameters);
-        return this;
-    }
-
-    /**
-     * 设置命名参数（Map形式，Key是参数名称，Value是参数值）
-     * @param parameters 要设置的参数
-     * @return 该对象本身
-     */
-    public JpqlQuery setParameters(Map<String, Object> parameters) {
-        this.parameters = MapParameters.create(parameters);
-        return this;
-    }
-
-    /**
-     * 添加一个命名参数，Key是参数名称，Value是参数值。
-     * @param key 命名参数名称
-     * @param value 参数值
-     * @return 该对象本身
-     */
-    public JpqlQuery addParameter(String key, Object value) {
-        mapParameters.add(key, value);
-        this.parameters = mapParameters;
-        return this;
-    }
-
-    /**
-     * 针对分页查询，获取firstResult。
-     * firstResult代表从满足查询条件的记录的第firstResult + 1条开始获取数据子集。
-     * @return firstResult的设置值，
-     */
-    public int getFirstResult() {
-        return firstResult;
-    }
-
-    /**
-     * 针对分页查询，设置firstResult。
-     * firstResult代表从满足查询条件的记录的第firstResult + 1条开始获取数据子集。
-     * @param firstResult 要设置的firstResult值。
-     * @return 该对象本身
-     */
-    public JpqlQuery setFirstResult(int firstResult) {
-        Assert.isTrue(firstResult >= 0);
-        this.firstResult = firstResult;
-        return this;
-    }
-
-    /**
-     * 针对分页查询，获取maxResults设置值。
-     * maxResults代表从满足查询条件的结果中最多获取的数据记录的数量。
-     * @return maxResults的设置值。
-     */
-    public int getMaxResults() {
-        return maxResults;
-    }
-
-    /**
-     * 针对分页查询，设置maxResults的值。
-     * maxResults代表从满足查询条件的结果中最多获取的数据记录的数量。
-     * @param maxResults 要设置的maxResults值
-     * @return 该对象本身
-     */
-    public JpqlQuery setMaxResults(int maxResults) {
-        Assert.isTrue(maxResults > 0);
-        this.maxResults = maxResults;
-        return this;
-    }
-
-    /**
      * 返回查询结果列表。
      * @param <T> 查询结果的列表元素类型
      * @return 查询结果。
      */
+    @Override
     public <T> List<T> list() {
-        return repository.find(this);
+        return getRepository().find(this);
     }
 
     /**
@@ -160,15 +61,17 @@ public class JpqlQuery {
      * @param <T> 查询结果的类型
      * @return 查询结果。
      */
+    @Override
     public <T> T singleResult() {
-        return repository.getSingleResult(this);
+        return getRepository().getSingleResult(this);
     }
 
     /**
      * 执行更新仓储的操作。
      * @return 被更新或删除的实体的数量
      */
+    @Override
     public int executeUpdate() {
-        return repository.executeUpdate(this);
+        return getRepository().executeUpdate(this);
     }
 }

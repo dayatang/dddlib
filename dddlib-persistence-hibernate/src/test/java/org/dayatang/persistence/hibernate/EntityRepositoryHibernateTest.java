@@ -194,8 +194,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
     @Test
     public void testJpqlQueryFindWithArrayParameters() {
         String queryString = "select o from  Dictionary o where o.category = ?";
-        JpqlQuery query = new JpqlQuery(repository, queryString)
-                .setParameters(gender);
+        JpqlQuery query = new JpqlQuery(repository, queryString).setParameters(gender);
         List<Dictionary> results = repository.find(query);
         assertTrue(results.contains(male));
         assertFalse(results.contains(undergraduate));

@@ -18,21 +18,15 @@ package org.dayatang.domain;
 import org.dayatang.utils.Assert;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 基于原生SQL的查询。DDDLib支持的四种查询形式之一。
  * 可以指定定位查询参数或命名查询参数，也可以针对查询结果取子集。
  * @author yyang
  */
-public class SqlQuery {
+public class SqlQuery extends BaseQuery<SqlQuery> {
 
-    private final EntityRepository repository;
     private final String sql;
-    private QueryParameters parameters;
-    private final MapParameters mapParameters = MapParameters.create();
-    private int firstResult;
-    private int maxResults;
     private Class<? extends Entity> resultEntityClass;
 
     /**
@@ -41,9 +35,8 @@ public class SqlQuery {
      * @param sql SQL查询语句
      */
     public SqlQuery(EntityRepository repository, String sql) {
-        Assert.notNull(repository);
+        super(repository);
         Assert.notBlank(sql);
-        this.repository = repository;
         this.sql = sql;
     }
 
@@ -53,98 +46,6 @@ public class SqlQuery {
      */
     public String getSql() {
         return sql;
-    }
-
-    /**
-     * 获取查询参数
-     * @return 查询参数
-     */
-    public QueryParameters getParameters() {
-        return parameters;
-    }
-
-    /**
-     * 设置定位命名参数（数组方式）
-     * @param parameters 要设置的参数
-     * @return 该对象本身
-     */
-    public SqlQuery setParameters(Object... parameters) {
-        this.parameters = ArrayParameters.create(parameters);
-        return this;
-    }
-
-    /**
-     * 设置定位参数（列表方式）
-     * @param parameters 要设置的参数
-     * @return 该对象本身
-     */
-    public SqlQuery setParameters(List<Object> parameters) {
-        this.parameters = ArrayParameters.create(parameters);
-        return this;
-    }
-
-    /**
-     * 设置命名参数（Map形式，Key是参数名称，Value是参数值）
-     * @param parameters 要设置的参数
-     * @return 该对象本身
-     */
-    public SqlQuery setParameters(Map<String, Object> parameters) {
-        this.parameters = MapParameters.create(parameters);
-        return this;
-    }
-
-    /**
-     * 添加一个命名参数，Key是参数名称，Value是参数值。
-     * @param key 命名参数名称
-     * @param value 参数值
-     * @return 该对象本身
-     */
-    public SqlQuery addParameter(String key, Object value) {
-        mapParameters.add(key, value);
-        this.parameters = mapParameters;
-        return this;
-    }
-
-    /**
-     * 针对分页查询，获取firstResult。
-     * firstResult代表从满足查询条件的记录的第firstResult + 1条开始获取数据子集。
-     * @return firstResult的设置值，
-     */
-    public int getFirstResult() {
-        return firstResult;
-    }
-
-    /**
-     * 针对分页查询，设置firstResult。
-     * firstResult代表从满足查询条件的记录的第firstResult + 1条开始获取数据子集。
-     * @param firstResult 要设置的firstResult值。
-     * @return 该对象本身
-     */
-    public SqlQuery setFirstResult(int firstResult) {
-        Assert.isTrue(firstResult >= 0);
-        this.firstResult = firstResult;
-        return this;
-    }
-
-    /**
-     * 针对分页查询，获取maxResults设置值。
-     * maxResults代表从满足查询条件的结果中最多获取的数据记录的数量。
-     * @return maxResults的设置值。
-     */
-    public int getMaxResults() {
-        return maxResults;
-    }
-
-    /**
-     * 针对分页查询，设置maxResults的值。
-     * maxResults代表从满足查询条件的结果中最多获取的数据记录的数量。
-     * @param maxResults 要设置的maxResults值
-     * @return 该对象本身
-     */
-    public SqlQuery setMaxResults(int maxResults) {
-        Assert.isTrue(maxResults > 0);
-        this.maxResults = maxResults;
-        return this;
     }
 
     /**
@@ -171,8 +72,9 @@ public class SqlQuery {
      * @param <T> 查询结果的列表元素类型
      * @return 查询结果。
      */
+    @Override
     public <T> List<T> list() {
-        return repository.find(this);
+        return getRepository().find(this);
     }
 
     /**
@@ -180,15 +82,17 @@ public class SqlQuery {
      * @param <T> 查询结果的类型
      * @return 查询结果。
      */
+    @Override
     public <T> T singleResult() {
-        return repository.getSingleResult(this);
+        return getRepository().getSingleResult(this);
     }
 
     /**
      * 执行更新仓储的操作。
      * @return 被更新或删除的实体的数量
      */
+    @Override
     public int executeUpdate() {
-        return repository.executeUpdate(this);
+        return getRepository().executeUpdate(this);
     }
 }
