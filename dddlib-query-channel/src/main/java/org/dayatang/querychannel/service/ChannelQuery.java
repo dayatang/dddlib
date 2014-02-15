@@ -154,6 +154,7 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      * @return 该对象本身
      */
     public E setPageIndex(int pageIndex) {
+        
         this.pageIndex = pageIndex;
         return (E) this;
     }
@@ -275,10 +276,21 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
     private static int getPositionOfDistinct(String queryString) {
         int result = StringUtils.indexOfIgnoreCase(queryString, "distinct(");
         return result == -1 ? StringUtils.indexOfIgnoreCase(queryString, "distinct (") : result;
-    } 
+    }
 
     protected boolean containGroupByClause(String queryString) {
         return StringUtils.containsIgnoreCase(queryString, " group by ");
+    }
+
+    /**
+     * 获取任一页第一条数据在数据集的位置.
+     *
+     * @param currentPage 从1开始的当前页号
+     * @param pageSize 每页记录条数
+     * @return 该页第一条数据号
+     */
+    protected int getFirstRow(int currentPage, int pageSize) {
+        return Page.getStartOfPage(currentPage, pageSize);
     }
 
 }

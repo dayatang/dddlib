@@ -20,7 +20,7 @@ public class Page<T> implements Serializable {
 	 */
 	private static final long serialVersionUID = 5859907455479273251L;
 
-	public static int DEFAULT_PAGE_SIZE = 10;
+	public static final int DEFAULT_PAGE_SIZE = 10;
 
 	private int pageSize = DEFAULT_PAGE_SIZE; // 每页的记录数
 

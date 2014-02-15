@@ -51,8 +51,11 @@ public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
     @Override
     public <T> Page<T> listAsPage() {
         long count = queryResultCount();
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        long firstRow = query.getFirstResult();
+        if (firstRow == 0) {
+            firstRow = getFirstRow(getPageIndex(), getPageSize());
+        }
+        return new Page<T>(firstRow, count, getPageSize(), query.list());
     }
 
 
