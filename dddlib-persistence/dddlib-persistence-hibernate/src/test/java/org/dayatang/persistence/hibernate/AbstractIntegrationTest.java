@@ -15,11 +15,8 @@ import javax.transaction.UserTransaction;
 public class AbstractIntegrationTest {
 
     private static BtmUtils btmUtils;
-
     protected static SessionFactory sessionFactory;
-
     private UserTransaction tx;
-
     protected EntityRepositoryHibernate repository;
 
     @BeforeClass

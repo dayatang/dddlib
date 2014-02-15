@@ -1,4 +1,4 @@
-package org.dayatang.test.domain;
+package org.dayatang.persistence.test.domain;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;

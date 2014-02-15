@@ -1,7 +1,7 @@
 package org.dayatang.persistence.hibernate;
 
-import org.dayatang.test.domain.Dictionary;
-import org.dayatang.test.domain.DictionaryCategory;
+import org.dayatang.persistence.test.domain.Dictionary;
+import org.dayatang.persistence.test.domain.DictionaryCategory;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;

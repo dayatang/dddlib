@@ -6,8 +6,8 @@ package org.dayatang.persistence.jpa;
 import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.domain.CriterionBuilder;
 import org.dayatang.domain.InstanceFactory;
-import org.dayatang.test.domain.Dictionary;
-import org.dayatang.test.domain.DictionaryCategory;
+import org.dayatang.persistence.test.domain.Dictionary;
+import org.dayatang.persistence.test.domain.DictionaryCategory;
 import org.junit.Before;
 import org.junit.Test;
 
