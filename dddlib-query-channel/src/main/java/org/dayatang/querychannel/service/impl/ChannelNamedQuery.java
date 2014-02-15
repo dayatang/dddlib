@@ -17,11 +17,11 @@
 package org.dayatang.querychannel.service.impl;
 
 import java.util.List;
-import java.util.Map;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.NamedQuery;
 import org.dayatang.querychannel.service.ChannelQuery;
 import org.dayatang.querychannel.support.Page;
+import org.dayatang.utils.Assert;
 
 /**
  * 通道查询的SQL实现
@@ -31,6 +31,7 @@ public class ChannelNamedQuery extends ChannelQuery<ChannelNamedQuery> {
 
     public ChannelNamedQuery(EntityRepository repository, String queryName) {
         super(repository);
+        Assert.notBlank(queryName, "JPQL must be set!");
         query = new NamedQuery(repository, queryName);
     }
 
@@ -39,29 +40,36 @@ public class ChannelNamedQuery extends ChannelQuery<ChannelNamedQuery> {
     }
 
     @Override
-    public <T> Page<T> listAsPage() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public <T> List<T> list() {
+        return query.list();
     }
 
     @Override
-    public Page<Map<String, Object>> listAsMap() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public <T> Page<T> listAsPage() {
+        return new Page<T>(query.getFirstResult(), queryResultCount(), 
+                query.getMaxResults(), query.list());
     }
 
     @Override
     public <T> T singleResult() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (T) query.singleResult();
     }
 
     @Override
     public long queryResultCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String queryString = getQueryString();
+        if (containGroupByClause(queryString)) {
+            List rows = repository.createJpqlQuery(removeOrderByClause(queryString)).setParameters(query.getParameters()).list();
+            return rows == null ? 0 : rows.size();
+        } else {
+            Long result = repository.createJpqlQuery(buildCountQueryString(queryString)).setParameters(query.getParameters()).singleResult();
+            return result;
+        }
     }
 
     @Override
-    public <T> List<T> list() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    protected String getQueryString() {
+        return null;
     }
-    
-    
+
 }

@@ -125,13 +125,13 @@ public class Page<T> implements Serializable {
 	 * 获取任一页第一条数据在数据集的位置.
 	 * 
 	 * @param pageNo
-	 *            从1开始的页号
+	 *            从0开始的页号
 	 * @param pageSize
 	 *            每页记录条数
 	 * @return 该页第一条数据
 	 */
 	public static int getStartOfPage(int pageNo, int pageSize) {
-		return (pageNo - 1) * pageSize;
+		return pageNo * pageSize;
 	}
 
 	@Override

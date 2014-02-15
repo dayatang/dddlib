@@ -44,11 +44,6 @@ public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
     }
 
     @Override
-    public Page<Map<String, Object>> listAsMap() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public <T> T singleResult() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -60,6 +55,11 @@ public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
 
     @Override
     public <T> List<T> list() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected String getQueryString() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -17,7 +17,6 @@
 package org.dayatang.querychannel.service.impl;
 
 import java.util.List;
-import java.util.Map;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.JpqlQuery;
 import org.dayatang.querychannel.service.ChannelQuery;
@@ -30,7 +29,7 @@ import org.dayatang.utils.Assert;
  */
 public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
     
-    private String jpql;
+    private final String jpql;
 
     public ChannelJpqlQuery(EntityRepository repository, String jpql) {
         super(repository);
@@ -50,19 +49,10 @@ public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
 
     @Override
     public <T> Page<T> listAsPage() {
-        long count = queryResultCount();
-        long firstRow = query.getFirstResult();
-        if (firstRow == 0) {
-            firstRow = getFirstRow(getPageIndex(), getPageSize());
-        }
-        return new Page<T>(firstRow, count, getPageSize(), query.list());
+        return new Page<T>(query.getFirstResult(), queryResultCount(), 
+                query.getMaxResults(), query.list());
     }
 
-
-    @Override
-    public Page<Map<String, Object>> listAsMap() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public <T> T singleResult() {
@@ -71,13 +61,19 @@ public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
 
     @Override
     public long queryResultCount() {
-        if (containGroupByClause(jpql)) {
+        
+        if (containGroupByClause(getQueryString())) {
             List rows = repository.createJpqlQuery(removeOrderByClause(jpql)).setParameters(query.getParameters()).list();
             return rows == null ? 0 : rows.size();
         } else {
             Long result = repository.createJpqlQuery(buildCountQueryString(jpql)).setParameters(query.getParameters()).singleResult();
             return result;
         }
+    }
+
+    @Override
+    protected String getQueryString() {
+        return jpql;
     }
 
     

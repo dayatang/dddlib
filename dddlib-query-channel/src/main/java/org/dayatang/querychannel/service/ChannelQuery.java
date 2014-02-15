@@ -37,7 +37,7 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
     protected EntityRepository repository;
     protected BaseQuery query;
     private int pageIndex;
-    private int pageSize;
+    //private int pageSize = Page.DEFAULT_PAGE_SIZE;
 
     public ChannelQuery(EntityRepository repository) {
         this.repository = repository;
@@ -113,28 +113,8 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      * @return 该对象本身
      */
     public E setFirstResult(int firstResult) {
-        Assert.isTrue(firstResult >= 0);
+        Assert.isTrue(firstResult >= 0, "First result must be greater than 0!");
         query.setFirstResult(firstResult);
-        return (E) this;
-    }
-
-    /**
-     * 针对分页查询，获取maxResults设置值。 maxResults代表从满足查询条件的结果中最多获取的数据记录的数量。
-     *
-     * @return maxResults的设置值。
-     */
-    public int getMaxResults() {
-        return query.getMaxResults();
-    }
-
-    /**
-     * 针对分页查询，设置maxResults的值。 maxResults代表从满足查询条件的结果中最多获取的数据记录的数量。
-     *
-     * @param maxResults 要设置的maxResults值
-     * @return 该对象本身
-     */
-    public E setMaxResults(int maxResults) {
-        query.setMaxResults(maxResults);
         return (E) this;
     }
 
@@ -148,14 +128,16 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
     }
 
     /**
-     * 设置当前页码
+     * 设置当前页码。0为第一页
      *
      * @param pageIndex 要设置的页码
      * @return 该对象本身
      */
     public E setPageIndex(int pageIndex) {
-        
+        Assert.isTrue(pageIndex >= 0, "Page index must be greater than 0!");
         this.pageIndex = pageIndex;
+        int pageSize = query.getMaxResults() == 0 ? Page.DEFAULT_PAGE_SIZE : query.getMaxResults();
+        query.setFirstResult(Page.getStartOfPage(pageIndex, pageSize));
         return (E) this;
     }
 
@@ -165,7 +147,7 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      * @return 每页记录数
      */
     public int getPageSize() {
-        return pageSize;
+        return query.getMaxResults();
     }
 
     /**
@@ -175,7 +157,9 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      * @return 该对象本身
      */
     public E setPageSize(int pageSize) {
-        this.pageSize = pageSize;
+        Assert.isTrue(pageSize > 0, "Page size must be greater than 0!");
+        query.setMaxResults(pageSize);
+        query.setFirstResult(Page.getStartOfPage(pageIndex, pageSize));
         return (E) this;
     }
 
@@ -195,13 +179,14 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      */
     public abstract <T> Page<T> listAsPage();
 
-    /**
+    /*
      * 返回查询结果数据页。
      *
      * @return 查询结果。
+     *
+     public abstract Page<Map<String, Object>> listAsMap();
      */
-    public abstract Page<Map<String, Object>> listAsMap();
-
+     
     /**
      * 返回单条查询结果。
      *
@@ -282,15 +267,6 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
         return StringUtils.containsIgnoreCase(queryString, " group by ");
     }
 
-    /**
-     * 获取任一页第一条数据在数据集的位置.
-     *
-     * @param currentPage 从1开始的当前页号
-     * @param pageSize 每页记录条数
-     * @return 该页第一条数据号
-     */
-    protected int getFirstRow(int currentPage, int pageSize) {
-        return Page.getStartOfPage(currentPage, pageSize);
-    }
-
+    protected abstract String getQueryString();
+    
 }
