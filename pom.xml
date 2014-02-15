@@ -781,7 +781,6 @@
         <module>dddlib-excel</module>
         <module>dddlib-script-engine</module>
         <module>dddlib-spring-test</module>
-        <module>dddlib-test</module>
         <module>dddlib-db</module>
         <module>dddlib-i18n</module>
         <module>dddlib-query-channel</module>
