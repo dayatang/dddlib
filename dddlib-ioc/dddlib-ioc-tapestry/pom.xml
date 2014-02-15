@@ -33,10 +33,11 @@
 			<groupId>org.apache.tapestry</groupId>
 			<artifactId>tapestry-hibernate-core</artifactId>
 			<version>${tapestry.version}</version>
+                        <optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>dddlib-test</artifactId>
+			<artifactId>dddlib-ioc-test</artifactId>
 			<version>${project.parent.version}</version>
 			<scope>test</scope>
 		</dependency>

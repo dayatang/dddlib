@@ -3,9 +3,7 @@ package org.dayatang.ioc.tapestry.factory;
 import org.apache.tapestry5.ioc.Registry;
 import org.apache.tapestry5.ioc.RegistryBuilder;
 import org.dayatang.domain.InstanceProvider;
-import org.dayatang.test.ioc.AbstractInstanceProviderTest;
-import org.dayatang.test.ioc.Service;
-import org.dayatang.test.ioc.Service2;
+import org.dayatang.ioc.test.*;
 import org.junit.After;
 import org.junit.Test;
 

@@ -1,7 +1,7 @@
 package org.dayatang.ioc.tapestry.factory;
 
 import org.apache.tapestry5.ioc.ServiceBinder;
-import org.dayatang.test.ioc.*;
+import org.dayatang.ioc.test.*;
 
 public class TapestryModule {
 
