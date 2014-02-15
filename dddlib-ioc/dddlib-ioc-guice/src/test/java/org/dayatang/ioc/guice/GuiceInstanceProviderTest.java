@@ -3,12 +3,11 @@ package org.dayatang.ioc.guice;
 import com.google.inject.*;
 import com.google.inject.name.Names;
 import org.dayatang.domain.InstanceProvider;
-import org.dayatang.test.ioc.*;
+import org.dayatang.ioc.test.*;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 public class GuiceInstanceProviderTest extends AbstractInstanceProviderTest {
 

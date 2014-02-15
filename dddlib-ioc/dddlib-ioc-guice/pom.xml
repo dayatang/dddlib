@@ -26,7 +26,7 @@
 		</dependency>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>dddlib-test</artifactId>
+			<artifactId>dddlib-ioc-test</artifactId>
 			<version>${project.parent.version}</version>
 			<scope>test</scope>
 		</dependency>
