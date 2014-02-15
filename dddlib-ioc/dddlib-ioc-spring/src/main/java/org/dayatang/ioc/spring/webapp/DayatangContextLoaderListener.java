@@ -8,8 +8,13 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.ServletContextEvent;
 
+/**
+ * 一个Web监听器，扩展并取代Spring的ContextLoaderListener，将SpringIoC整合到InstanceFactory中。
+ * @author yyang
+ */
 public class DayatangContextLoaderListener extends ContextLoaderListener {
 
+        @Override
 	public void contextInitialized(ServletContextEvent event) {
 		super.contextInitialized(event);
 		WebApplicationContext applicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(event.getServletContext());

@@ -1,4 +1,4 @@
-package org.dayatang.test.ioc;
+package org.dayatang.ioc.test;
 
 import org.dayatang.domain.InstanceProvider;
 import org.junit.Before;

@@ -24,5 +24,6 @@
             <module>dddlib-ioc-spring</module>
             <module>dddlib-ioc-guice</module>
             <module>dddlib-ioc-tapestry</module>
-        </modules>
+    <module>dddlib-ioc-test</module>
+  </modules>
 </project>

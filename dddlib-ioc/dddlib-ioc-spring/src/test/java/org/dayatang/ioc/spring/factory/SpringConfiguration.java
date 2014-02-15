@@ -1,6 +1,6 @@
 package org.dayatang.ioc.spring.factory;
 
-import org.dayatang.test.ioc.*;
+import org.dayatang.ioc.test.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
