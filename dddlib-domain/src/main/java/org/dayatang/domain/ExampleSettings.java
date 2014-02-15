@@ -3,6 +3,11 @@ package org.dayatang.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * 按例查询设置类。
+ * @author yyang
+ * @param <T> 
+ */
 public class ExampleSettings<T> {
 	private Class<T> entityClass;
 	private final Set<String> excludedProperties = new HashSet<String>();

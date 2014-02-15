@@ -28,10 +28,12 @@ import org.dayatang.utils.Assert;
  * @author yyang
  */
 public class ChannelNamedQuery extends ChannelQuery<ChannelNamedQuery> {
+    
+    private String queryName;
 
     public ChannelNamedQuery(EntityRepository repository, String queryName) {
         super(repository);
-        Assert.notBlank(queryName, "JPQL must be set!");
+        Assert.notBlank(queryName, "Query name must be set!");
         query = new NamedQuery(repository, queryName);
     }
 
