@@ -34,6 +34,12 @@
 			<artifactId>tapestry-hibernate-core</artifactId>
 			<version>${tapestry.version}</version>
                         <optional>true</optional>
+		 <exclusions>
+		  <exclusion>
+		   <artifactId>hibernate-commons-annotations</artifactId>
+		   <groupId>org.hibernate</groupId>
+		  </exclusion>
+		 </exclusions>
 		</dependency>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
