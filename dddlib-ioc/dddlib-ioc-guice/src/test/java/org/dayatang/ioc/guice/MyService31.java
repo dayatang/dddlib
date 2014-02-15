@@ -1,7 +1,5 @@
 package org.dayatang.ioc.guice;
 
-import com.google.inject.BindingAnnotation;
-
 /**
  * Created by yyang on 14-2-8.
  */
