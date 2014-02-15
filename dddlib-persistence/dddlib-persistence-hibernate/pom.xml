@@ -3,31 +3,21 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.dayatang.dddlib</groupId>
-		<artifactId>dddlib-project</artifactId>
+		<artifactId>dddlib-persistence</artifactId>
 		<version>4.0.4-SNAPSHOT</version>
 	</parent>
-	<artifactId>dddlib-persistence-jpa</artifactId>
+	<artifactId>dddlib-persistence-hibernate</artifactId>
 	<packaging>jar</packaging>
-	<name>DDDLib Persistence API implemented by JPA</name>
-    <description>
-        DDDLib仓储接口EntityRepository的JPA实现。
-    </description>
+	<name>DDDLib Persistence API implemented by Hibernate</name>
+	<description>
+        DDDLib仓储接口EntityRepository的Hibernate实现。
+	</description>
 
 	<dependencies>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>dddlib-domain</artifactId>
 			<version>${project.parent.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.el</groupId>
-			<artifactId>el-api</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.web</groupId>
-			<artifactId>el-impl</artifactId>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>
@@ -49,14 +39,23 @@
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
+			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>hibernate-jpa-2.1-api</artifactId>
+					<groupId>org.hibernate.javax.persistence</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>el-api</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>${jdbc.groupId}</groupId>
-			<artifactId>${jdbc.artifactId}</artifactId>
-			<version>${jdbc.version}</version>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>el-impl</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -68,13 +67,15 @@
 			<artifactId>slf4j-log4j12</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<scope>test</scope>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>commons-beanutils</groupId>
-			<artifactId>commons-beanutils</artifactId>
+			<groupId>${jdbc.groupId}</groupId>
+			<artifactId>${jdbc.artifactId}</artifactId>
+			<version>${jdbc.version}</version>
+			<scope>test</scope>
 		</dependency>
         <dependency>
             <groupId>org.codehaus.btm</groupId>
@@ -92,6 +93,7 @@
             <scope>test</scope>
         </dependency>
 	</dependencies>
+
 	<build>
 		<testResources>
 			<testResource>
@@ -100,7 +102,4 @@
 			</testResource>
 		</testResources>
 	</build>
-	<properties>
-		<aspectj.weaver.version>1.6.9</aspectj.weaver.version>
-	</properties>
 </project>

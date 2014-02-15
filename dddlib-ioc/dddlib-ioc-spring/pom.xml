@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.dayatang.dddlib</groupId>
-		<artifactId>dddlib-project</artifactId>
+		<artifactId>dddlib-ioc</artifactId>
 		<version>4.0.4-SNAPSHOT</version>
 	</parent>
 	<artifactId>dddlib-ioc-spring</artifactId>

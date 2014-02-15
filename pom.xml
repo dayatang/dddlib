@@ -73,8 +73,8 @@
     <scm>
         <connection>scm:git:git://github.com/dayatang/dddlib.git</connection>
         <developerConnection>scm:git:git@github.com:dayatang/dddlib.git</developerConnection>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <!-- <issueManagement>
         <system>trac</system> 
@@ -739,12 +739,11 @@
 
     <modules>
         <module>dddlib-domain</module>
-        <module>dddlib-ioc-tapestry</module>
-        <module>dddlib-ioc-spring</module>
-        <module>dddlib-ioc-guice</module>
-        <module>dddlib-persistence-hibernate</module>
-        <module>dddlib-persistence-jpa</module>
+        <module>dddlib-ioc</module>
+        <module>dddlib-persistence</module>
         <module>dddlib-utils</module>
+        <module>dddlib-configuration</module>
+        <module>dddlib-cache</module>
         <module>dddlib-rule-engine</module>
         <module>dddlib-observer</module>
         <module>dddlib-excel</module>
@@ -753,12 +752,10 @@
         <module>dddlib-test</module>
         <module>dddlib-db</module>
         <module>dddlib-i18n</module>
-        <module>dddlib-cache</module>
         <module>dddlib-query-channel</module>
         <module>dddlib-datasource-router</module>
         <module>dddlib-datasource-saas</module>
         <module>dddlib-datasource-monitor</module>
-        <module>dddlib-configuration</module>
     </modules>
 
     <profiles>

@@ -6,13 +6,22 @@
         <artifactId>dddlib-project</artifactId>
         <version>4.0.4-SNAPSHOT</version>
     </parent>
-    <artifactId>dddlib-cache</artifactId>
+    <artifactId>dddlib-persistence</artifactId>
     <packaging>pom</packaging>
-    <name>DDDLib Cache Module</name>
+    <name>DDDLib Persistence API implementes</name>
     <description>
-        高速缓存。
+        DDDLib仓储接口实现。
     </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>dddlib-domain</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
     <modules>
-        <module>dddlib-cache-memcached</module>
+        <module>dddlib-persistence-hibernate</module>
+        <module>dddlib-persistence-jpa</module>
     </modules>
 </project>
