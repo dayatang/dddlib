@@ -6,61 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 一种抽象实体类，提供ID和版本属性，以及基本的持久化方法
+ * 抽象遗留实体类。适用于那些数据库先于程序存在的对象。它的ID的类型是未知的，而且可能没有version属性。
  *
  * @author yang
  *
  */
 @MappedSuperclass
-public abstract class AbstractEntity extends BaseEntity {
+public abstract class LegacyEntity extends BaseEntity {
 
     private static final long serialVersionUID = 8882145540383345037L;
-
-    private Long id;
-
-    private int version;
-
-    /**
-     * 获得实体的标识
-     *
-     * @return 实体的标识
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
-    @Override
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * 设置实体的标识
-     *
-     * @param id 要设置的实体标识
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    /**
-     * 获得实体的版本号。持久化框架以此实现乐观锁。
-     *
-     * @return 实体的版本号
-     */
-    @Version
-    @Column(name = "VERSION")
-    public int getVersion() {
-        return version;
-    }
-
-    /**
-     * 设置实体的版本号。持久化框架以此实现乐观锁。
-     *
-     * @param version 要设置的版本号
-     */
-    public void setVersion(int version) {
-        this.version = version;
-    }
 
     /**
      * 将实体本身持久化到数据库
