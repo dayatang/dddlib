@@ -32,6 +32,8 @@ public class EntityRepositoryJpa implements EntityRepository {
     private EntityManager entityManager;
 
     private EntityManagerFactory entityManagerFactory;
+    
+    private NamedQueryParser namedQueryParser;
 
     public EntityRepositoryJpa() {
     }
@@ -54,6 +56,17 @@ public class EntityRepositoryJpa implements EntityRepository {
             }
             return entityManagerFactory.createEntityManager();
         }
+    }
+
+    public NamedQueryParser getNamedQueryParser() {
+        if (namedQueryParser == null) {
+            namedQueryParser = InstanceFactory.getInstance(NamedQueryParser.class);
+        }
+        return namedQueryParser;
+    }
+
+    public void setNamedQueryParser(NamedQueryParser namedQueryParser) {
+        this.namedQueryParser = namedQueryParser;
     }
 
 
@@ -121,6 +134,12 @@ public class EntityRepositoryJpa implements EntityRepository {
                                               final T entity) {
         getEntityManager().detach(entity);
         return get(clazz, entity.getId());
+    }
+
+    @Override
+    public <T extends Entity> T getByBusinessKeys(Class<T> clazz, MapParameters keyValues) {
+        List<T> results = findByProperties(clazz, keyValues);
+        return results.isEmpty() ? null : results.get(0);
     }
 
     @Override
@@ -259,12 +278,17 @@ public class EntityRepositoryJpa implements EntityRepository {
     }
 
     @Override
-    public <T extends Entity> List<T> findByProperties(Class<T> clazz, Map<String, Object> properties) {
+    public <T extends Entity> List<T> findByProperties(Class<T> clazz, MapParameters properties) {
         CriteriaQuery criteriaQuery = new CriteriaQuery(this, clazz);
-        for (Map.Entry<String, Object> each : properties.entrySet()) {
+        for (Map.Entry<String, Object> each : properties.getParams().entrySet()) {
             criteriaQuery = criteriaQuery.eq(each.getKey(), each.getValue());
         }
         return find(criteriaQuery);
+    }
+
+    @Override
+    public String getQueryStringOfNamedQuery(String queryName) {
+        return getNamedQueryParser().getQueryStringOfNamedQuery(queryName);
     }
 
     @Override

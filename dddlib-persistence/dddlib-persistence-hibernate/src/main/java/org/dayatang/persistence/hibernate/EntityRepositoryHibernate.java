@@ -92,6 +92,12 @@ public class EntityRepositoryHibernate implements EntityRepository {
         return get(clazz, entity.getId());
     }
 
+    @Override
+    public <T extends Entity> T getByBusinessKeys(Class<T> clazz, MapParameters keyValues) {
+        List<T> results = findByProperties(clazz, keyValues);
+        return results.isEmpty() ? null : results.get(0);
+    }
+
     /*
      * (non-Javadoc)
      * @see org.dayatang.domain.EntityRepository#findAll(java.lang.Class)
@@ -334,12 +340,18 @@ public class EntityRepositoryHibernate implements EntityRepository {
      * @see org.dayatang.domain.EntityRepository#findByProperties(java.lang.Class, java.util.Map)
      */
     @Override
-    public <T extends Entity> List<T> findByProperties(Class<T> clazz, Map<String, Object> properties) {
+    public <T extends Entity> List<T> findByProperties(Class<T> clazz, MapParameters properties) {
         CriteriaQuery criteriaQuery = new CriteriaQuery(this, clazz);
-        for (Map.Entry<String, Object> each : properties.entrySet()) {
+        for (Map.Entry<String, Object> each : properties.getParams().entrySet()) {
             criteriaQuery = criteriaQuery.eq(each.getKey(), each.getValue());
         }
         return find(criteriaQuery);
+    }
+
+    @Override
+    public String getQueryStringOfNamedQuery(String queryName) {
+        Query query =  getSession().getNamedQuery(queryName);
+        return query.getQueryString();
     }
 
     /*

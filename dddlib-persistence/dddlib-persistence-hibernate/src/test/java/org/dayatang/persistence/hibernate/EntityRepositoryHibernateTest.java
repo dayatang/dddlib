@@ -18,13 +18,13 @@ package org.dayatang.persistence.hibernate;
 
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.validation.ValidationException;
 import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.domain.ExampleSettings;
 import org.dayatang.domain.JpqlQuery;
+import org.dayatang.domain.MapParameters;
 import org.dayatang.domain.NamedQuery;
 import org.dayatang.domain.SqlQuery;
 import org.dayatang.persistence.test.domain.Dictionary;
@@ -137,6 +137,18 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
         Dictionary unmodified = repository.getUnmodified(Dictionary.class, male);
         assertEquals("男", unmodified.getText());
         assertEquals("xyz", male.getText());
+    }
+
+    /**
+     * Test of getByBusinessKeys method
+     */
+    @Test
+    public void testGetByBusinessKeys() {
+        MapParameters params = MapParameters.create()
+                .add("category", education)
+                .add("code", "02");
+        Dictionary result = repository.getByBusinessKeys(Dictionary.class, params);
+        assertEquals(graduate, result);
     }
 
     /**
@@ -489,15 +501,22 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
      */
     @Test
     public void testFindByProperties() {
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("category", education);
-        params.put("code", "02");
+        MapParameters params = MapParameters.create()
+                .add("category", education)
+                .add("code", "02");
         List<Dictionary> results = repository.findByProperties(Dictionary.class, params);
         assertTrue(results.contains(graduate));
         assertFalse(results.contains(undergraduate));
         assertFalse(results.contains(male));
     }
 
+    
+    @Test
+    public void testGetQueryStringOfNamedQuery() {
+        assertEquals("select o.code, o.text from  Dictionary o where o.category = :category",
+                repository.getQueryStringOfNamedQuery("Dictionay.findNameAndOrder"));
+    }
+    
     /**
      * Test of flush method
      */

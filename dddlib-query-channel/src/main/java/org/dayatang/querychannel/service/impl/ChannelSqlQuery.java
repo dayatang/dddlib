@@ -49,7 +49,7 @@ public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
     }
 
     @Override
-    public <T> Page<T> listAsPage() {
+    public <T> Page<T> pagedList() {
         return new Page<T>(query.getFirstResult(), queryResultCount(), 
                 query.getMaxResults(), query.list());
     }

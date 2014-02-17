@@ -177,7 +177,7 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      * @param <T> 查询结果的列表元素类型
      * @return 查询结果。
      */
-    public abstract <T> Page<T> listAsPage();
+    public abstract <T> Page<T> pagedList();
 
     /*
      * 返回查询结果数据页。

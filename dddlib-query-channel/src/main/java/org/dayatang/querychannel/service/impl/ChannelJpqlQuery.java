@@ -48,7 +48,7 @@ public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
     }
 
     @Override
-    public <T> Page<T> listAsPage() {
+    public <T> Page<T> pagedList() {
         return new Page<T>(query.getFirstResult(), queryResultCount(), 
                 query.getMaxResults(), query.list());
     }

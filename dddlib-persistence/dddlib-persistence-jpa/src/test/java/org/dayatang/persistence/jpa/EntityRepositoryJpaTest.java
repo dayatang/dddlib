@@ -18,19 +18,19 @@ package org.dayatang.persistence.jpa;
 
 import java.math.BigInteger;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.validation.ValidationException;
 import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.domain.ExampleSettings;
 import org.dayatang.domain.JpqlQuery;
+import org.dayatang.domain.MapParameters;
 import org.dayatang.domain.NamedQuery;
 import org.dayatang.domain.SqlQuery;
 import org.dayatang.persistence.test.domain.Dictionary;
 import org.dayatang.persistence.test.domain.DictionaryCategory;
 import org.junit.*;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 /**
  *
@@ -136,6 +136,18 @@ public class EntityRepositoryJpaTest extends AbstractIntegrationTest {
         Dictionary unmodified = repository.getUnmodified(Dictionary.class, male);
         assertEquals("男", unmodified.getText());
         assertEquals("xyz", male.getText());
+    }
+
+    /**
+     * Test of getByBusinessKeys method
+     */
+    @Test
+    public void testGetByBusinessKeys() {
+        MapParameters params = MapParameters.create()
+                .add("category", education)
+                .add("code", "02");
+        Dictionary result = repository.getByBusinessKeys(Dictionary.class, params);
+        assertEquals(graduate, result);
     }
 
     /**
@@ -486,13 +498,23 @@ public class EntityRepositoryJpaTest extends AbstractIntegrationTest {
      */
     @Test
     public void testFindByProperties() {
-        Map<String, Object> params = new HashMap<String, Object>();
-        params.put("category", education);
-        params.put("code", "02");
+        MapParameters params = MapParameters.create()
+                .add("category", education)
+                .add("code", "02");
         List<Dictionary> results = repository.findByProperties(Dictionary.class, params);
         assertTrue(results.contains(graduate));
         assertFalse(results.contains(undergraduate));
         assertFalse(results.contains(male));
+    }
+    
+    @Test
+    public void testGetQueryStringOfNamedQuery() {
+        NamedQueryParser namedQueryParser = mock(NamedQueryParser.class);
+        repository.setNamedQueryParser(namedQueryParser);
+        when(namedQueryParser.getQueryStringOfNamedQuery("Dictionay.findNameAndOrder"))
+                .thenReturn("select o.code, o.text from Dictionary o where o.category = :category");
+        assertEquals("select o.code, o.text from Dictionary o where o.category = :category",
+                repository.getQueryStringOfNamedQuery("Dictionay.findNameAndOrder"));
     }
 
     /**

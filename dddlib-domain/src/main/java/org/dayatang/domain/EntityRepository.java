@@ -68,6 +68,16 @@ public interface EntityRepository {
      * @return 参数entity在仓储中的未修改版本
      */
     <T extends Entity> T getUnmodified(Class<T> clazz, T entity);
+    
+    /**
+     * 根据业务主键从仓储中获取指定类型的实体
+     *
+     * @param <T> 实体类型
+     * @param clazz 实体的类
+     * @param keyValues 代表业务主键值的命名参数。key为主键属性名，value为主键属性值
+     * @return 一个实体实例。
+     */
+    <T extends Entity> T getByBusinessKeys(Class<T> clazz, MapParameters keyValues);
 
     /**
      * 查找指定类型的所有实体
@@ -234,10 +244,17 @@ public interface EntityRepository {
      *
      * @param <T> 要查询的实体的类型
      * @param clazz 要查询的实体的类
-     * @param properties 一批属性的Map，其中key为属性名，value为要匹配的属性值。
+     * @param properties 命名参数，其中key为属性名，value为要匹配的属性值。
      * @return 类型为clazz、多个属性分别等于指定的属性值的实体的集合。
      */
-    <T extends Entity> List<T> findByProperties(Class<T> clazz, Map<String, Object> properties);
+    <T extends Entity> List<T> findByProperties(Class<T> clazz, MapParameters properties);
+    
+    /**
+     * 获取命名查询的查询字符串
+     * @param queryName 命名查询的名字
+     * @return 命名查询对应的JPQL字符串
+     */
+    String getQueryStringOfNamedQuery(String queryName);
 
 
     /**
