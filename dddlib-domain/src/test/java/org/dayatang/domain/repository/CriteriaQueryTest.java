@@ -19,14 +19,16 @@ package org.dayatang.domain.repository;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.OrderSetting;
 import org.dayatang.domain.QueryCriterion;
+import org.dayatang.domain.entity.MyEntity;
 import org.dayatang.domain.internal.*;
-import org.dayatang.domain.repository.MyEntity;
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 

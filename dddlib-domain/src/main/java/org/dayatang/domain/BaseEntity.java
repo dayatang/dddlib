@@ -27,7 +27,6 @@ public abstract class BaseEntity implements Entity {
     @Override
     public boolean existed() {
         Object id = getId();
-                
         if (id == null) {
             return false;
         }

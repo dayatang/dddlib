@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.dayatang.domain.repository;
+package org.dayatang.domain.entity;
 
 import javax.persistence.Entity;
 import org.dayatang.domain.AbstractEntity;
@@ -51,4 +51,5 @@ public class MyEntity extends AbstractEntity {
     public String[] businessKeys() {
         return new String [] {"name"};
     }
+
 }
