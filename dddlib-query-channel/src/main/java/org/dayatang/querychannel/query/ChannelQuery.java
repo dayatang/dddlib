@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.dayatang.querychannel.service;
+package org.dayatang.querychannel.query;
 
 import java.util.List;
 import java.util.Map;
@@ -23,6 +23,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.dayatang.domain.BaseQuery;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.QueryParameters;
+import org.dayatang.querychannel.service.Page;
 import org.dayatang.utils.Assert;
 
 /**

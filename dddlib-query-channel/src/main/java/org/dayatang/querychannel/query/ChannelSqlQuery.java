@@ -20,8 +20,6 @@ import java.math.BigInteger;
 import java.util.List;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.SqlQuery;
-import org.dayatang.querychannel.service.ChannelQuery;
-import org.dayatang.querychannel.service.ChannelQuery;
 import org.dayatang.querychannel.service.Page;
 import org.dayatang.querychannel.service.Page;
 import org.dayatang.utils.Assert;

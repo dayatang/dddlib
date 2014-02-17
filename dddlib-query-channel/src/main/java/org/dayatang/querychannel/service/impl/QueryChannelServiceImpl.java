@@ -22,6 +22,7 @@ import org.dayatang.querychannel.query.ChannelJpqlQuery;
 import java.util.List;
 import javax.inject.Inject;
 import org.dayatang.domain.EntityRepository;
+import org.dayatang.querychannel.query.ChannelQuery;
 import org.dayatang.querychannel.service.Page;
 import org.dayatang.querychannel.service.QueryChannelService;
 import org.springframework.util.Assert;
@@ -46,48 +47,8 @@ public class QueryChannelServiceImpl implements QueryChannelService {
     }
 
     @Override
-    public <T> List<T> list(ChannelJpqlQuery jpqlQuery) {
-        return jpqlQuery.list();
-    }
-
-    @Override
-    public <T> Page<T> pagedList(ChannelJpqlQuery jpqlQuery) {
-        return jpqlQuery.pagedList();
-    }
-
-    @Override
-    public <T> T getSingleResult(ChannelJpqlQuery jpqlQuery) {
-        return jpqlQuery.singleResult();
-    }
-
-    @Override
-    public long getResultCount(ChannelJpqlQuery jpqlQuery) {
-        return jpqlQuery.queryResultCount();
-    }
-
-    @Override
     public ChannelNamedQuery createNamedQuery(String queryName) {
         return new ChannelNamedQuery(repository, queryName);
-    }
-
-    @Override
-    public <T> List<T> list(ChannelNamedQuery namedQuery) {
-        return namedQuery.list();
-    }
-
-    @Override
-    public <T> Page<T> pagedList(ChannelNamedQuery namedQuery) {
-        return namedQuery.pagedList();
-    }
-
-    @Override
-    public <T> T getSingleResult(ChannelNamedQuery namedQuery) {
-        return namedQuery.singleResult();
-    }
-
-    @Override
-    public long getResultCount(ChannelNamedQuery namedQuery) {
-        return namedQuery.queryResultCount();
     }
 
     @Override
@@ -96,23 +57,23 @@ public class QueryChannelServiceImpl implements QueryChannelService {
     }
 
     @Override
-    public <T> List<T> list(ChannelSqlQuery sqlQuery) {
-        return sqlQuery.list();
+    public <T> List<T> list(ChannelQuery query) {
+        return query.list();
     }
 
     @Override
-    public <T> Page<T> pagedList(ChannelSqlQuery sqlQuery) {
-        return sqlQuery.pagedList();
+    public <T> Page<T> pagedList(ChannelQuery query) {
+        return query.pagedList();
     }
 
     @Override
-    public <T> T getSingleResult(ChannelSqlQuery sqlQuery) {
-        return sqlQuery.singleResult();
+    public <T> T getSingleResult(ChannelQuery query) {
+        return (T) query.singleResult();
     }
 
     @Override
-    public long getResultCount(ChannelSqlQuery sqlQuery) {
-        return sqlQuery.queryResultCount();
+    public long getResultCount(ChannelQuery query) {
+        return query.queryResultCount();
     }
     
 }
