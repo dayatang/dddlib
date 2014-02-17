@@ -1,7 +1,5 @@
 package org.dayatang.querychannel.domain;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.dayatang.domain.AbstractEntity;
@@ -14,7 +12,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "pay_test_myentity")
 @NamedQueries({
-    @NamedQuery(name = "MyEntity.findByName", query = "select o from MyEntity o where o.name like ?")})
+    @NamedQuery(name = "MyEntity.findByName", query = "select o from MyEntity o where o.name like ?"),
+    @NamedQuery(name = "MyEntity.findByName1", query = "select o from MyEntity o where o.name like :name")})
 public class MyEntity extends AbstractEntity {
 
     /**
