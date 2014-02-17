@@ -47,7 +47,7 @@
 
     <bean id="repoitory" class="org.dayatang.persistence.hibernate.EntityRepositoryHibernate"/>
 
-    <bean id="queryChannelService" class="org.dayatang.querychannel.service.impl.QueryChannelServiceHibernate"/>
+    <bean id="queryChannelService" class="org.dayatang.querychannel.impl.QueryChannelServiceHibernate"/>
 
 
     <!-- 支持 @Transactional 标记 -->

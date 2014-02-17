@@ -110,9 +110,14 @@
         <dependency>
             <groupId>aopalliance</groupId>
             <artifactId>aopalliance</artifactId>
-            <version>1.0</version>
             <scope>test</scope>
         </dependency>
+        <dependency>  
+            <groupId>com.github.springtestdbunit</groupId>  
+            <artifactId>spring-test-dbunit</artifactId>  
+            <version>1.1.0</version>  
+            <scope>test</scope>  
+        </dependency>    
     </dependencies>
 
     <build>

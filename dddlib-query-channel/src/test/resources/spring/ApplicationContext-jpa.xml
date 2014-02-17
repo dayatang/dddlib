@@ -34,7 +34,7 @@
 
     <bean id="repository" class="org.dayatang.persistence.jpa.EntityRepositoryJpa" depends-on="entityManagerFactory"/>
 
-    <bean id="queryChannelService" class="org.dayatang.querychannel.service.impl.QueryChannelServiceJpa"/>
+    <bean id="queryChannelService" class="org.dayatang.querychannel.impl.QueryChannelServiceJpa"/>
 
     <!-- 支持 @Transactional 标记 -->
     <tx:annotation-driven transaction-manager="transactionManager" />
