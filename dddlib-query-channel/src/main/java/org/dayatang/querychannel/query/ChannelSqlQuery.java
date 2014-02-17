@@ -14,32 +14,35 @@
  * limitations under the License.
  */
 
-package org.dayatang.querychannel.service.impl;
+package org.dayatang.querychannel.query;
 
+import java.math.BigInteger;
 import java.util.List;
 import org.dayatang.domain.EntityRepository;
-import org.dayatang.domain.JpqlQuery;
+import org.dayatang.domain.SqlQuery;
 import org.dayatang.querychannel.service.ChannelQuery;
+import org.dayatang.querychannel.service.ChannelQuery;
+import org.dayatang.querychannel.service.Page;
 import org.dayatang.querychannel.service.Page;
 import org.dayatang.utils.Assert;
 
 /**
- * 通道查询的JPQL实现
+ * 通道查询的SQL实现
  * @author yyang
  */
-public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
+public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
     
-    private final String jpql;
+    private final String sql;
 
-    public ChannelJpqlQuery(EntityRepository repository, String jpql) {
+    public ChannelSqlQuery(EntityRepository repository, String sql) {
         super(repository);
-        query = new JpqlQuery(repository, jpql);
-        Assert.notBlank(jpql, "JPQL must be set!");
-        this.jpql = jpql;
+        Assert.notBlank(sql, "SQL must be set!");
+        this.sql = sql;
+        query = new SqlQuery(repository, sql);
     }
 
-    public JpqlQuery getQuery() {
-        return (JpqlQuery) query;
+    public SqlQuery getQuery() {
+        return (SqlQuery) query;
     }
 
     @Override
@@ -53,7 +56,6 @@ public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
                 query.getMaxResults(), query.list());
     }
 
-
     @Override
     public <T> T singleResult() {
         return (T) query.singleResult();
@@ -66,16 +68,15 @@ public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
             List rows = repository.createJpqlQuery(removeOrderByClause(queryString)).setParameters(query.getParameters()).list();
             return rows == null ? 0 : rows.size();
         } else {
-            Long result = repository.createJpqlQuery(buildCountQueryString(queryString)).setParameters(query.getParameters()).singleResult();
-            return result;
+            BigInteger result = repository.createJpqlQuery(buildCountQueryString(queryString)).setParameters(query.getParameters()).singleResult();
+            return result.longValue();
         }
     }
 
     @Override
     protected String getQueryString() {
-        return jpql;
+        return sql;
     }
-
     
     
 }

@@ -16,6 +16,9 @@
 
 package org.dayatang.querychannel.service.impl;
 
+import org.dayatang.querychannel.query.ChannelNamedQuery;
+import org.dayatang.querychannel.query.ChannelSqlQuery;
+import org.dayatang.querychannel.query.ChannelJpqlQuery;
 import java.util.List;
 import javax.inject.Inject;
 import org.dayatang.domain.EntityRepository;

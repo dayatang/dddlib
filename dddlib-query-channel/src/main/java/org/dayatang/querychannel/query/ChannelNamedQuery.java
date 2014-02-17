@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
-package org.dayatang.querychannel.service.impl;
+package org.dayatang.querychannel.query;
 
-import java.math.BigInteger;
 import java.util.List;
 import org.dayatang.domain.EntityRepository;
-import org.dayatang.domain.SqlQuery;
+import org.dayatang.domain.NamedQuery;
 import org.dayatang.querychannel.service.ChannelQuery;
+import org.dayatang.querychannel.service.ChannelQuery;
+import org.dayatang.querychannel.service.Page;
 import org.dayatang.querychannel.service.Page;
 import org.dayatang.utils.Assert;
 
@@ -28,19 +29,18 @@ import org.dayatang.utils.Assert;
  * 通道查询的SQL实现
  * @author yyang
  */
-public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
+public class ChannelNamedQuery extends ChannelQuery<ChannelNamedQuery> {
     
-    private final String sql;
+    private String queryName;
 
-    public ChannelSqlQuery(EntityRepository repository, String sql) {
+    public ChannelNamedQuery(EntityRepository repository, String queryName) {
         super(repository);
-        Assert.notBlank(sql, "SQL must be set!");
-        this.sql = sql;
-        query = new SqlQuery(repository, sql);
+        Assert.notBlank(queryName, "Query name must be set!");
+        query = new NamedQuery(repository, queryName);
     }
 
-    public SqlQuery getQuery() {
-        return (SqlQuery) query;
+    public NamedQuery getQuery() {
+        return (NamedQuery) query;
     }
 
     @Override
@@ -66,15 +66,14 @@ public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
             List rows = repository.createJpqlQuery(removeOrderByClause(queryString)).setParameters(query.getParameters()).list();
             return rows == null ? 0 : rows.size();
         } else {
-            BigInteger result = repository.createJpqlQuery(buildCountQueryString(queryString)).setParameters(query.getParameters()).singleResult();
-            return result.longValue();
+            Long result = repository.createJpqlQuery(buildCountQueryString(queryString)).setParameters(query.getParameters()).singleResult();
+            return result;
         }
     }
 
     @Override
     protected String getQueryString() {
-        return sql;
+        return repository.getQueryStringOfNamedQuery(queryName);
     }
-    
-    
+
 }

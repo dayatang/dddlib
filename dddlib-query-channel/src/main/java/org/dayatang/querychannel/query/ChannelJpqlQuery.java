@@ -14,31 +14,34 @@
  * limitations under the License.
  */
 
-package org.dayatang.querychannel.service.impl;
+package org.dayatang.querychannel.query;
 
 import java.util.List;
 import org.dayatang.domain.EntityRepository;
-import org.dayatang.domain.NamedQuery;
+import org.dayatang.domain.JpqlQuery;
 import org.dayatang.querychannel.service.ChannelQuery;
+import org.dayatang.querychannel.service.ChannelQuery;
+import org.dayatang.querychannel.service.Page;
 import org.dayatang.querychannel.service.Page;
 import org.dayatang.utils.Assert;
 
 /**
- * 通道查询的SQL实现
+ * 通道查询的JPQL实现
  * @author yyang
  */
-public class ChannelNamedQuery extends ChannelQuery<ChannelNamedQuery> {
+public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
     
-    private String queryName;
+    private final String jpql;
 
-    public ChannelNamedQuery(EntityRepository repository, String queryName) {
+    public ChannelJpqlQuery(EntityRepository repository, String jpql) {
         super(repository);
-        Assert.notBlank(queryName, "Query name must be set!");
-        query = new NamedQuery(repository, queryName);
+        query = new JpqlQuery(repository, jpql);
+        Assert.notBlank(jpql, "JPQL must be set!");
+        this.jpql = jpql;
     }
 
-    public NamedQuery getQuery() {
-        return (NamedQuery) query;
+    public JpqlQuery getQuery() {
+        return (JpqlQuery) query;
     }
 
     @Override
@@ -51,6 +54,7 @@ public class ChannelNamedQuery extends ChannelQuery<ChannelNamedQuery> {
         return new Page<T>(query.getFirstResult(), queryResultCount(), 
                 query.getMaxResults(), query.list());
     }
+
 
     @Override
     public <T> T singleResult() {
@@ -71,7 +75,9 @@ public class ChannelNamedQuery extends ChannelQuery<ChannelNamedQuery> {
 
     @Override
     protected String getQueryString() {
-        return repository.getQueryStringOfNamedQuery(queryName);
+        return jpql;
     }
 
+    
+    
 }

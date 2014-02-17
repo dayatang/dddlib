@@ -1,11 +1,11 @@
 package org.dayatang.querychannel.service;
 
 
+import org.dayatang.querychannel.query.ChannelJpqlQuery;
+import org.dayatang.querychannel.query.ChannelSqlQuery;
+import org.dayatang.querychannel.query.ChannelNamedQuery;
 import java.io.Serializable;
 import java.util.List;
-import org.dayatang.querychannel.service.impl.ChannelJpqlQuery;
-import org.dayatang.querychannel.service.impl.ChannelNamedQuery;
-import org.dayatang.querychannel.service.impl.ChannelSqlQuery;
 
 public interface QueryChannelService extends Serializable {
 
