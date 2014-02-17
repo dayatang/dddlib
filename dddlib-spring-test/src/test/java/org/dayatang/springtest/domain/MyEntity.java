@@ -13,44 +13,33 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "pay_test_myentity")
-@NamedQueries( { @NamedQuery(name = "MyEntity.findByName", query = "select o from MyEntity o where o.name like ?") })
+@NamedQueries({
+    @NamedQuery(name = "MyEntity.findByName", query = "select o from MyEntity o where o.name like ?")})
 public class MyEntity extends AbstractEntity {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -2791539145767570307L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = -2791539145767570307L;
 
-	private String name;
+    private String name;
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof MyEntity == false) {
-			return false;
-		}
-		if (this == obj) {
-			return true;
-		}
-		MyEntity rhs = (MyEntity) obj;
-		return new EqualsBuilder().append(getId(), rhs.getId()).isEquals();
-	}
+    @Override
+    public String[] businessKeys() {
+        return new String[]{"name"};
+    }
 
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder(17, 37).append(getId()).toHashCode();
-	}
-
-	@Override
-	public String toString() {
-		return ToStringBuilder.reflectionToString(this,
-				ToStringStyle.SHORT_PREFIX_STYLE);
-	}
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this,
+                ToStringStyle.SHORT_PREFIX_STYLE);
+    }
 }

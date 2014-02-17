@@ -14,44 +14,37 @@ import javax.persistence.InheritanceType;
 @DiscriminatorValue("1")
 public class MotherObserver extends Observer<Baby> {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6725506578728407946L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 6725506578728407946L;
 
-	private Boolean buyFood = false;
+    private Boolean buyFood = false;
 
-	public Boolean getBuyFood() {
-		return buyFood;
-	}
+    public Boolean getBuyFood() {
+        return buyFood;
+    }
 
-	public void setBuyFood(Boolean buyFood) {
-		this.buyFood = buyFood;
-	}
+    public void setBuyFood(Boolean buyFood) {
+        this.buyFood = buyFood;
+    }
 
-	@Override
-	public boolean equals(Object arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public String[] businessKeys() {
+        return new String[]{"buyFood"};
+    }
 
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this,
+                ToStringStyle.SHORT_PREFIX_STYLE);
+    }
 
-	@Override
-	public String toString() {
-		return ToStringBuilder.reflectionToString(this,
-				ToStringStyle.SHORT_PREFIX_STYLE);
-	}
-
-	@Override
-	public void process(Baby baby) {
-		System.out.println("宝宝哭了。。。设置买食物=true " + baby.getSubjectKey());
-		setBuyFood(true);
-		save();
-	}
+    @Override
+    public void process(Baby baby) {
+        System.out.println("宝宝哭了。。。设置买食物=true " + baby.getSubjectKey());
+        setBuyFood(true);
+        save();
+    }
 
 }

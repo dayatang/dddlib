@@ -17,8 +17,6 @@
 package org.dayatang.domain.repository;
 
 import javax.persistence.Entity;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.domain.AbstractEntity;
 
 /**
@@ -45,24 +43,12 @@ public class MyEntity extends AbstractEntity {
     }
 
     @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17,43).append(name).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-       if (this == other) {
-           return true;
-       }
-       if (!(other instanceof MyEntity)) {
-           return false;
-       }
-       MyEntity that = (MyEntity) other;
-       return new EqualsBuilder().append(this.name, that.name).isEquals();
-    }
-
-    @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public String[] businessKeys() {
+        return new String [] {"name"};
     }
 }

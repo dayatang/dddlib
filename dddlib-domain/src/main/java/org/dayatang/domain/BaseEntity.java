@@ -3,7 +3,11 @@
  */
 package org.dayatang.domain;
 
+import java.util.Map;
 import javax.persistence.*;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.dayatang.utils.BeanUtils;
 
 /**
  * 抽象实体类，可作为所有领域实体的基类。
@@ -62,21 +66,55 @@ public abstract class BaseEntity implements Entity {
     public static void setRepository(EntityRepository repository) {
         BaseEntity.repository = repository;
     }
+    
+    /**
+     * 获取业务主键。业务主键是判断相同类型的两个实体在业务上的等价性的依据。如果相同类型的两个
+     * 实体的业务主键相同，则认为两个实体是相同的，代表同一个实体。
+     * <p>业务主键由实体的一个或多个属性组成。
+     * @return 组成业务主键的属性的数组。
+     */
+    public abstract String[] businessKeys();
 
     /**
-     * 获取哈希值。每个实体类都必须覆盖该方法，它与equals()方法成对存在，用于判定两个实体是否等价。
+     * 依据业务主键获取哈希值。用于判定两个实体是否等价。
      * 等价的两个实体的hashCode相同，不等价的两个实体hashCode不同。
      * @return 实体的哈希值
      */
     @Override
-    public abstract int hashCode();
+    public int hashCode() {
+        HashCodeBuilder builder = new HashCodeBuilder(13, 37);
+        Map<String, Object> propValues = new BeanUtils(this).getPropValues();
+        for (String businessKey : businessKeys()) {
+            builder = builder.append(propValues.get(businessKey));
+        }
+        return builder.toHashCode();
+    }
 
     /**
-     * 判断两个实体是否等价。每个实体类都必须覆盖该方法，hashCode()方法成对存在。
-     * 等价的两个实体的hashCode相同，不等价的两个实体hashCode不同。
+     * 依据业务主键判断两个实体是否等价。
      * @param other 另一个实体
      * @return 如果本实体和other等价则返回true,否则返回false
      */
     @Override
-    public abstract boolean equals(Object other);
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other == null) {
+            return false;
+        }
+        if (businessKeys() == null || businessKeys().length == 0) {
+            return false;
+        }
+        if (!(this.getClass().isAssignableFrom(other.getClass()))) {
+            return false;
+        }
+        Map<String, Object> thisPropValues = new BeanUtils(this).getPropValues();
+        Map<String, Object> otherPropValues = new BeanUtils(other).getPropValues();
+        EqualsBuilder builder = new EqualsBuilder();
+        for (String businessKey : businessKeys()) {
+            builder.append(thisPropValues.get(businessKey), otherPropValues.get(businessKey));
+        }
+        return builder.isEquals();
+    }
 }

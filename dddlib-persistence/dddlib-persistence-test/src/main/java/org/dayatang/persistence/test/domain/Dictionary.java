@@ -167,25 +167,13 @@ public class Dictionary extends AbstractEntity {
     }
 
     @Override
-    public boolean equals(final Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof Dictionary)) {
-            return false;
-        }
-        Dictionary that = (Dictionary) other;
-        return new EqualsBuilder().append(code, that.code).append(category, that.getCategory()).isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder().append(code).append(category).toHashCode();
-    }
-
-    @Override
     public String toString() {
         return new ToStringBuilder(this).append("code", code).append("text", text).toString();
+    }
+
+    @Override
+    public String[] businessKeys() {
+        return new String[] {"code", "category"};
     }
 
 }

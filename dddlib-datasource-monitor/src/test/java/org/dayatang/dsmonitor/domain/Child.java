@@ -23,26 +23,14 @@ public class Child extends AbstractEntity {
 	private String name;
 
 	@Override
-	public boolean equals(Object other) {
-		if (other instanceof Child == false) {
-			return false;
-		}
-		if (this == other) {
-			return true;
-		}
-		Child rhs = (Child) other;
-		return new EqualsBuilder().append(name, rhs.name).isEquals();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder(17, 37).append(name).toHashCode();
-	}
-
-	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this,
 				ToStringStyle.SHORT_PREFIX_STYLE);
 	}
+
+    @Override
+    public String[] businessKeys() {
+        return new String[] {"name"};
+    }
 
 }

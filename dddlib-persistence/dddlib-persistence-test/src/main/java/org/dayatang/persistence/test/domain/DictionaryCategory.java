@@ -83,20 +83,8 @@ public class DictionaryCategory extends AbstractEntity {
     }
 
     @Override
-    public boolean equals(final Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof DictionaryCategory)) {
-            return false;
-        }
-        DictionaryCategory that = (DictionaryCategory) other;
-        return new EqualsBuilder().append(name, that.name).isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(name).toHashCode();
+    public String[] businessKeys() {
+        return new String[] {"name"};
     }
 
     @Override
