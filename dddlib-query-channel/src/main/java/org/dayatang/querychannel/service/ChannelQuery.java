@@ -23,7 +23,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.dayatang.domain.BaseQuery;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.QueryParameters;
-import org.dayatang.querychannel.service.Page;
 import org.dayatang.utils.Assert;
 
 /**
@@ -169,7 +168,9 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      * @param <T> 查询结果的列表元素类型
      * @return 查询结果。
      */
-    public abstract <T> List<T> list();
+    public <T> List<T> list() {
+        return query.list();
+    }
 
     /**
      * 返回查询结果数据页。
@@ -177,15 +178,10 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      * @param <T> 查询结果的列表元素类型
      * @return 查询结果。
      */
-    public abstract <T> Page<T> pagedList();
-
-    /*
-     * 返回查询结果数据页。
-     *
-     * @return 查询结果。
-     *
-     public abstract Page<Map<String, Object>> listAsMap();
-     */
+    public <T> Page<T> pagedList() {
+        return new Page<T>(query.getFirstResult(), queryResultCount(), 
+                query.getMaxResults(), query.list());
+    }
      
     /**
      * 返回单条查询结果。
@@ -193,7 +189,9 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      * @param <T> 查询结果的类型
      * @return 查询结果。
      */
-    public abstract <T> T singleResult();
+    public <T> T singleResult() {
+        return (T) query.singleResult();
+    }
 
     /**
      * 获取符合查询条件的记录总数
@@ -266,7 +264,4 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
     protected boolean containGroupByClause(String queryString) {
         return StringUtils.containsIgnoreCase(queryString, " group by ");
     }
-
-    protected abstract String getQueryString();
-    
 }

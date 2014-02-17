@@ -22,7 +22,6 @@ import java.util.List;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.SqlQuery;
 import org.dayatang.querychannel.service.Page;
-import org.dayatang.querychannel.service.Page;
 import org.dayatang.utils.Assert;
 
 /**
@@ -38,10 +37,6 @@ public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
         Assert.notBlank(sql, "SQL must be set!");
         this.sql = sql;
         query = new SqlQuery(repository, sql);
-    }
-
-    public SqlQuery getQuery() {
-        return (SqlQuery) query;
     }
 
     @Override
@@ -62,19 +57,14 @@ public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
 
     @Override
     public long queryResultCount() {
-        String queryString = getQueryString();
+        String queryString = sql;
         if (containGroupByClause(queryString)) {
             List rows = repository.createJpqlQuery(removeOrderByClause(queryString)).setParameters(query.getParameters()).list();
             return rows == null ? 0 : rows.size();
         } else {
-            BigInteger result = repository.createJpqlQuery(buildCountQueryString(queryString)).setParameters(query.getParameters()).singleResult();
+            Number result = repository.createJpqlQuery(buildCountQueryString(queryString)).setParameters(query.getParameters()).singleResult();
             return result.longValue();
         }
-    }
-
-    @Override
-    protected String getQueryString() {
-        return sql;
     }
     
     

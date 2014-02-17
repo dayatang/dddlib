@@ -38,10 +38,6 @@ public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
         this.jpql = jpql;
     }
 
-    public JpqlQuery getQuery() {
-        return (JpqlQuery) query;
-    }
-
     @Override
     public <T> List<T> list() {
         return query.list();
@@ -53,7 +49,6 @@ public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
                 query.getMaxResults(), query.list());
     }
 
-
     @Override
     public <T> T singleResult() {
         return (T) query.singleResult();
@@ -61,7 +56,7 @@ public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
 
     @Override
     public long queryResultCount() {
-        String queryString = getQueryString();
+        String queryString = jpql;
         if (containGroupByClause(queryString)) {
             List rows = repository.createJpqlQuery(removeOrderByClause(queryString)).setParameters(query.getParameters()).list();
             return rows == null ? 0 : rows.size();
@@ -70,12 +65,5 @@ public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
             return result;
         }
     }
-
-    @Override
-    protected String getQueryString() {
-        return jpql;
-    }
-
-    
     
 }

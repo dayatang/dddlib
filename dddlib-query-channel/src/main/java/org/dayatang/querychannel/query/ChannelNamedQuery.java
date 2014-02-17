@@ -37,10 +37,6 @@ public class ChannelNamedQuery extends ChannelQuery<ChannelNamedQuery> {
         query = new NamedQuery(repository, queryName);
     }
 
-    public NamedQuery getQuery() {
-        return (NamedQuery) query;
-    }
-
     @Override
     public <T> List<T> list() {
         return query.list();
@@ -59,7 +55,7 @@ public class ChannelNamedQuery extends ChannelQuery<ChannelNamedQuery> {
 
     @Override
     public long queryResultCount() {
-        String queryString = getQueryString();
+        String queryString = repository.getQueryStringOfNamedQuery(queryName);
         if (containGroupByClause(queryString)) {
             List rows = repository.createJpqlQuery(removeOrderByClause(queryString)).setParameters(query.getParameters()).list();
             return rows == null ? 0 : rows.size();
@@ -67,11 +63,6 @@ public class ChannelNamedQuery extends ChannelQuery<ChannelNamedQuery> {
             Long result = repository.createJpqlQuery(buildCountQueryString(queryString)).setParameters(query.getParameters()).singleResult();
             return result;
         }
-    }
-
-    @Override
-    protected String getQueryString() {
-        return repository.getQueryStringOfNamedQuery(queryName);
     }
 
 }
