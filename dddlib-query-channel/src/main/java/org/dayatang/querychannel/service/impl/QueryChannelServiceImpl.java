@@ -22,7 +22,7 @@ import org.dayatang.querychannel.query.ChannelJpqlQuery;
 import java.util.List;
 import javax.inject.Inject;
 import org.dayatang.domain.EntityRepository;
-import org.dayatang.querychannel.query.ChannelQuery;
+import org.dayatang.querychannel.service.ChannelQuery;
 import org.dayatang.querychannel.service.Page;
 import org.dayatang.querychannel.service.QueryChannelService;
 import org.springframework.util.Assert;

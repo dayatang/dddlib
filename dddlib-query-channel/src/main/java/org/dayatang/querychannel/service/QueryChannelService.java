@@ -1,16 +1,8 @@
 package org.dayatang.querychannel.service;
 
 
-import org.dayatang.querychannel.query.ChannelJpqlQuery;
-import org.dayatang.querychannel.query.ChannelSqlQuery;
-import org.dayatang.querychannel.query.ChannelNamedQuery;
 import java.io.Serializable;
 import java.util.List;
-import org.dayatang.querychannel.query.ChannelJpqlQuery;
-import org.dayatang.querychannel.query.ChannelNamedQuery;
-import org.dayatang.querychannel.query.ChannelSqlQuery;
-import org.dayatang.querychannel.query.ChannelQuery;
-import org.dayatang.querychannel.service.Page;
 
 public interface QueryChannelService extends Serializable {
 
@@ -20,7 +12,7 @@ public interface QueryChannelService extends Serializable {
      * @param jpql JPQL语句
      * @return 一个JPQL查询
      */
-    ChannelJpqlQuery createJpqlQuery(String jpql);
+    ChannelQuery createJpqlQuery(String jpql);
 
     /**
      * 创建命名查询
@@ -28,7 +20,7 @@ public interface QueryChannelService extends Serializable {
      * @param queryName 命名查询的名字
      * @return 一个命名查询
      */
-    ChannelNamedQuery createNamedQuery(String queryName);
+    ChannelQuery createNamedQuery(String queryName);
 
     /**
      * 创建原生SQL查询
@@ -36,7 +28,7 @@ public interface QueryChannelService extends Serializable {
      * @param sql SQL语句
      * @return 一个原生SQL查询
      */
-    ChannelSqlQuery createSqlQuery(String sql);
+    ChannelQuery createSqlQuery(String sql);
 
     /**
      * 执行查询，返回符合条件的结果列表

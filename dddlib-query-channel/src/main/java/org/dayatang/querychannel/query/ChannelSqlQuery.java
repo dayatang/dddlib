@@ -16,6 +16,7 @@
 
 package org.dayatang.querychannel.query;
 
+import org.dayatang.querychannel.service.ChannelQuery;
 import java.math.BigInteger;
 import java.util.List;
 import org.dayatang.domain.EntityRepository;
