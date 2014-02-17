@@ -23,7 +23,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.dayatang.domain.BaseQuery;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.QueryParameters;
-import org.dayatang.querychannel.support.Page;
 import org.dayatang.utils.Assert;
 
 /**

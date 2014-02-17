@@ -20,7 +20,7 @@ import java.util.List;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.JpqlQuery;
 import org.dayatang.querychannel.service.ChannelQuery;
-import org.dayatang.querychannel.support.Page;
+import org.dayatang.querychannel.service.Page;
 import org.dayatang.utils.Assert;
 
 /**

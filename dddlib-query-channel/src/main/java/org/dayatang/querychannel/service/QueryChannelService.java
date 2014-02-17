@@ -1,55 +1,140 @@
 package org.dayatang.querychannel.service;
 
-import org.dayatang.domain.CriteriaQuery;
-import org.dayatang.domain.Entity;
-import org.dayatang.querychannel.support.Page;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
+import org.dayatang.querychannel.service.impl.ChannelJpqlQuery;
+import org.dayatang.querychannel.service.impl.ChannelNamedQuery;
+import org.dayatang.querychannel.service.impl.ChannelSqlQuery;
 
 public interface QueryChannelService extends Serializable {
-    
-    
-    
 
     /**
-     * 根据查询语句和查询参数，返回查询结果的数量
+     * 创建JPQL查询
      *
-     * @param queryStr 查询语句
-     * @param params 查询参数
-     * @return 查询结果数量
+     * @param jpql JPQL语句
+     * @return 一个JPQL查询
      */
-    long queryResultSize(String queryStr, Object[] params);
-
-    <T> List<T> queryResult(String queryStr, Object[] params, long firstRow, int pageSize);
+    ChannelJpqlQuery createJpqlQuery(String jpql);
 
     /**
-     * 若结果有多个，返回第一个；没有结果返回NULL
+     * 执行JPQL查询，返回符合条件的实体列表
      *
-     * @param <T>
-     * @param queryStr
-     * @param params
-     * @return
+     * @param jpqlQuery 要执行的JPQL查询
+     * @param <T> 返回结果元素类型
+     * @return 符合查询条件的结果列表
      */
-    <T> T querySingleResult(String queryStr, Object[] params);
+    <T> List<T> list(ChannelJpqlQuery jpqlQuery);
 
-    <T> List<T> queryResult(String queryStr, Object[] params);
+    /**
+     * 执行JPQL查询，分页返回符合条件的实体列表
+     *
+     * @param jpqlQuery 要执行的JPQL查询
+     * @param <T> 返回结果元素类型
+     * @return 符合查询条件的结果页
+     */
+    <T> Page<T> pagedList(ChannelJpqlQuery jpqlQuery);
 
-    List<Map<String, Object>> queryMapResult(String queryStr, Object[] params);
+    /**
+     * 执行JPQL查询，返回符合条件的单个实体
+     *
+     * @param jpqlQuery 要执行的JPQL查询
+     * @param <T> 返回结果类型
+     * @return 符合查询条件的单个结果
+     */
+    <T> T getSingleResult(ChannelJpqlQuery jpqlQuery);
 
-    <T> Page<T> queryPagedResult(String queryStr, Object[] params, long firstRow, int pageSize);
+    /**
+     * 获取JPQL查询结果的总数。
+     *
+     * @param jpqlQuery 要执行的JPQL查询。
+     * @return 符合查询条件的结果的总数
+     */
+    long getResultCount(ChannelJpqlQuery jpqlQuery);
 
-    <T> Page<T> queryPagedResultByPageNo(String queryStr, Object[] params, int currentPage, int pageSize);
+    /**
+     * 创建命名查询
+     *
+     * @param queryName 命名查询的名字
+     * @return 一个命名查询
+     */
+    ChannelNamedQuery createNamedQuery(String queryName);
 
-    <T> Page<T> queryPagedResultByNamedQuery(String queryName, Object[] params, long firstRow, int pageSize);
+    /**
+     * 执行命名查询，返回符合条件的实体列表
+     *
+     * @param namedQuery 要执行的命名查询
+     * @param <T> 返回结果元素类型
+     * @return 符合查询条件的结果列表
+     */
+    <T> List<T> list(ChannelNamedQuery namedQuery);
 
-    <T> Page<T> queryPagedResultByPageNoAndNamedQuery(String queryName, Object[] params, int currentPage, int pageSize);
+    /**
+     * 执行命名查询，分页返回符合条件的实体列表
+     *
+     * @param namedQuery 要执行的命名查询
+     * @param <T> 返回结果元素类型
+     * @return 符合查询条件的结果页
+     */
+    <T> Page<T> pagedList(ChannelNamedQuery namedQuery);
 
-    Page<Map<String, Object>> queryPagedMapResult(String queryStr, Object[] params, int currentPage, int pageSize);
+    /**
+     * 执行命名查询，返回符合条件的单个实体
+     *
+     * @param namedQuery 要执行的命名查询
+     * @param <T> 返回结果类型
+     * @return 符合查询条件的单个结果
+     */
+    <T> T getSingleResult(ChannelNamedQuery namedQuery);
 
-    Page<Map<String, Object>> queryPagedMapResultByNamedQuery(String queryName, Object[] params, int currentPage,
-            int pageSize);
+    /**
+     * 获得符合命名查询条件的结果的总数。
+     *
+     * @param namedQuery 要执行的命名查询。
+     * @return 符合查询条件的结果的总数
+     */
+    long getResultCount(ChannelNamedQuery namedQuery);
 
-    <T extends Entity> Page<T> queryPagedByCriteriaQuery(CriteriaQuery criteriaQuery, int currentPage, int pageSize);
+    /**
+     * 创建原生SQL查询
+     *
+     * @param sql SQL语句
+     * @return 一个原生SQL查询
+     */
+    ChannelSqlQuery createSqlQuery(String sql);
+
+    /**
+     * 执行SQL查询，返回符合条件的实体列表
+     *
+     * @param sqlQuery 要执行的SQL查询。
+     * @param <T> 返回结果元素类型
+     * @return 符合查询条件的结果列表
+     */
+    <T> List<T> list(ChannelSqlQuery sqlQuery);
+
+    /**
+     * 执行SQL查询，分页返回符合条件的实体列表
+     *
+     * @param sqlQuery 要执行的SQL查询。
+     * @param <T> 返回结果元素类型
+     * @return 符合查询条件的结果页
+     */
+    <T> Page<T> pagedList(ChannelSqlQuery sqlQuery);
+
+    /**
+     * 执行SQL查询，返回符合条件的单个实体
+     *
+     * @param sqlQuery 要执行的SQL查询。
+     * @param <T> 返回结果类型
+     * @return 符合查询条件的单个结果
+     */
+    <T> T getSingleResult(ChannelSqlQuery sqlQuery);
+
+    /**
+     * 获取符合原生SQL查询条件的结果的总数。
+     *
+     * @param sqlQuery 要执行的原生SQL查询。
+     * @return 符合查询条件的结果的总数
+     */
+    long getResultCount(ChannelSqlQuery sqlQuery);
 }

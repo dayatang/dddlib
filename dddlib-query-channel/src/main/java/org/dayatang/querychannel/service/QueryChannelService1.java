@@ -2,7 +2,6 @@ package org.dayatang.querychannel.service;
 
 import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.domain.Entity;
-import org.dayatang.querychannel.support.Page;
 
 import java.io.Serializable;
 import java.util.List;

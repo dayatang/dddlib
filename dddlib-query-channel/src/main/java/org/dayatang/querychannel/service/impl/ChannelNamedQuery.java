@@ -20,7 +20,7 @@ import java.util.List;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.NamedQuery;
 import org.dayatang.querychannel.service.ChannelQuery;
-import org.dayatang.querychannel.support.Page;
+import org.dayatang.querychannel.service.Page;
 import org.dayatang.utils.Assert;
 
 /**
@@ -71,7 +71,7 @@ public class ChannelNamedQuery extends ChannelQuery<ChannelNamedQuery> {
 
     @Override
     protected String getQueryString() {
-        return null;
+        return repository.getQueryStringOfNamedQuery(queryName);
     }
 
 }

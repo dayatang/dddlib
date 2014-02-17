@@ -4,7 +4,7 @@ import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.domain.Entity;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.querychannel.service.QueryChannelService;
-import org.dayatang.querychannel.support.Page;
+import org.dayatang.querychannel.service.Page;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,10 +16,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.dayatang.querychannel.service.QueryChannelService1;
 
 @SuppressWarnings("unchecked")
 @Named("dddlib_querychannel_service_jpa")
-public class QueryChannelServiceJpa implements QueryChannelService {
+public class QueryChannelServiceJpa implements QueryChannelService1 {
 
 	private static final long serialVersionUID = -2520631490347218114L;
 

@@ -8,7 +8,6 @@ import org.dayatang.domain.InstanceFactory;
 import org.dayatang.ioc.spring.factory.SpringInstanceProvider;
 import org.dayatang.querychannel.domain.MyEntity;
 import org.dayatang.querychannel.service.impl.QueryChannelServiceJpa;
-import org.dayatang.querychannel.support.Page;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
