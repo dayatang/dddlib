@@ -1,4 +1,4 @@
-package org.dayatang.querychannel.service;
+package org.dayatang.querychannel;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

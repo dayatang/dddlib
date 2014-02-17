@@ -1,5 +1,6 @@
-package org.dayatang.querychannel.service;
+package org.dayatang.querychannel;
 
+import org.dayatang.querychannel.Page;
 import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.domain.Entity;
 

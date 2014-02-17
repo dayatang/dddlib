@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.dayatang.querychannel.service.impl;
+package org.dayatang.querychannel.impl;
 
 import org.dayatang.querychannel.query.ChannelNamedQuery;
 import org.dayatang.querychannel.query.ChannelSqlQuery;
@@ -22,9 +22,9 @@ import org.dayatang.querychannel.query.ChannelJpqlQuery;
 import java.util.List;
 import javax.inject.Inject;
 import org.dayatang.domain.EntityRepository;
-import org.dayatang.querychannel.service.ChannelQuery;
-import org.dayatang.querychannel.service.Page;
-import org.dayatang.querychannel.service.QueryChannelService;
+import org.dayatang.querychannel.ChannelQuery;
+import org.dayatang.querychannel.Page;
+import org.dayatang.querychannel.QueryChannelService;
 import org.springframework.util.Assert;
 
 /**

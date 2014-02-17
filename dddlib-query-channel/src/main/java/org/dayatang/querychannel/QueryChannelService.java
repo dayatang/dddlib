@@ -1,4 +1,4 @@
-package org.dayatang.querychannel.service;
+package org.dayatang.querychannel;
 
 
 import java.io.Serializable;
