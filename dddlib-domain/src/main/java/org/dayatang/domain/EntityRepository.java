@@ -2,7 +2,6 @@ package org.dayatang.domain;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 仓储访问接口。用于存取和查询数据库中的各种类型的实体。
