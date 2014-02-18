@@ -2,10 +2,9 @@ package org.dayatang.domain.internal;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.dayatang.domain.QueryCriterion;
 import org.dayatang.utils.Assert;
 
-public class SizeEqCriterion implements QueryCriterion {
+public class SizeEqCriterion extends AbstractCriterion {
 
     private final String propName;
 

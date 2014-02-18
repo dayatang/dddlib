@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.domain.QueryCriterion;
 import org.dayatang.utils.Assert;
 
-public class AndCriterion implements QueryCriterion {
+public class AndCriterion extends AbstractCriterion {
 
     private final QueryCriterion[] criterions;
 
