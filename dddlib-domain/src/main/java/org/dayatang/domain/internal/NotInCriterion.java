@@ -7,6 +7,11 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.dayatang.domain.Entity;
 import org.dayatang.utils.Assert;
 
 public class NotInCriterion extends AbstractCriterion {
@@ -39,6 +44,31 @@ public class NotInCriterion extends AbstractCriterion {
     public Collection<? extends Object> getValue() {
         return value;
     }
+
+	@Override
+	public String toQueryString() {
+		if (value == null || value.isEmpty()) {
+			return "";
+		}
+		return ROOT_ALIAS + getPropName() + " not in (" + createInString(value) + ")";
+	}
+
+	private String createInString(Collection<? extends Object> value) {
+		Set<Object> elements = new HashSet<Object>();
+		for (Object item : value) {
+			Object element;
+			if (item instanceof Entity) {
+				element = ((Entity)item).getId();
+			} else {
+				element = item;
+			}
+			if (element instanceof String || element instanceof Date) {
+				element = "'" + element + "'";
+			}
+			elements.add(element);
+		}
+		return StringUtils.join(elements, ",");
+	}
 
     @Override
     public boolean equals(final Object other) {

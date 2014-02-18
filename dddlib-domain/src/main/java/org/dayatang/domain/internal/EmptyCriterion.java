@@ -28,4 +28,9 @@ public class EmptyCriterion implements QueryCriterion {
 		return true;
 	}
 
+	@Override
+	public String toQueryString() {
+		return "";
+	}
+
 }

@@ -32,4 +32,10 @@ public interface QueryCriterion {
 	 * @return 如果是空条件就返回true，否则返回false
 	 */
 	boolean isEmpty();
+	
+	/**
+	 * 转换成JPQL字符串
+	 * @return
+	 */
+	String toQueryString();
 }

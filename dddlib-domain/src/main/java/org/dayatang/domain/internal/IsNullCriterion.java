@@ -18,6 +18,11 @@ public class IsNullCriterion extends AbstractCriterion {
     }
 
     @Override
+	public String toQueryString() {
+		return ROOT_ALIAS + getPropName() + " is null";
+	}
+
+	@Override
     public boolean equals(final Object other) {
         if (this == other) {
             return true;

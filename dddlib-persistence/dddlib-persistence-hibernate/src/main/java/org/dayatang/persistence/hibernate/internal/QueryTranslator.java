@@ -82,22 +82,22 @@ public class QueryTranslator {
 			return "o." + ((LeCriterion) criterion).getPropName() + " <= ?";
 		}
 		if (criterion instanceof EqPropCriterion) {
-			return "o." + ((EqPropCriterion) criterion).getPropName1() + " = o." + ((EqPropCriterion) criterion).getPropName2();
+			return "o." + ((EqPropCriterion) criterion).getPropName() + " = o." + ((EqPropCriterion) criterion).getOtherPropName();
 		}
 		if (criterion instanceof NotEqPropCriterion) {
-			return "o." + ((NotEqPropCriterion) criterion).getPropName1() + " != o." + ((NotEqPropCriterion) criterion).getPropName2();
+			return "o." + ((NotEqPropCriterion) criterion).getPropName() + " != o." + ((NotEqPropCriterion) criterion).getOtherPropName();
 		}
 		if (criterion instanceof GtPropCriterion) {
-			return "o." + ((GtPropCriterion) criterion).getPropName1() + " > o." + ((GtPropCriterion) criterion).getPropName2();
+			return "o." + ((GtPropCriterion) criterion).getPropName() + " > o." + ((GtPropCriterion) criterion).getOtherPropName();
 		}
 		if (criterion instanceof GePropCriterion) {
-			return "o." + ((GePropCriterion) criterion).getPropName1() + " >= o." + ((GePropCriterion) criterion).getPropName2();
+			return "o." + ((GePropCriterion) criterion).getPropName() + " >= o." + ((GePropCriterion) criterion).getOtherPropName();
 		}
 		if (criterion instanceof LtPropCriterion) {
-			return "o." + ((LtPropCriterion) criterion).getPropName1() + " < o." + ((LtPropCriterion) criterion).getPropName2();
+			return "o." + ((LtPropCriterion) criterion).getPropName() + " < o." + ((LtPropCriterion) criterion).getOtherPropName();
 		}
 		if (criterion instanceof LePropCriterion) {
-			return "o." + ((LePropCriterion) criterion).getPropName1() + " <= o." + ((LePropCriterion) criterion).getPropName2();
+			return "o." + ((LePropCriterion) criterion).getPropName() + " <= o." + ((LePropCriterion) criterion).getOtherPropName();
 		}
 		if (criterion instanceof SizeEqCriterion) {
 			params.add(((SizeEqCriterion) criterion).getValue());

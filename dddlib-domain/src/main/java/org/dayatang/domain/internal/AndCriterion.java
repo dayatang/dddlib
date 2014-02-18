@@ -1,5 +1,8 @@
 package org.dayatang.domain.internal;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -21,6 +24,15 @@ public class AndCriterion extends AbstractCriterion {
     }
 
     @Override
+	public String toQueryString() {
+		List<String> subCriterionsStr = new ArrayList<String>();
+		for (QueryCriterion each : getCriterons()) {
+			subCriterionsStr.add("(" + each.toQueryString() + ")");
+		}
+		return "(" + StringUtils.join(subCriterionsStr, " and ") + ")";
+	}
+
+	@Override
     public boolean equals(final Object other) {
         if (this == other) {
             return true;
@@ -39,7 +51,7 @@ public class AndCriterion extends AbstractCriterion {
         return new HashCodeBuilder(17, 37).append(getCriterons()).toHashCode();
     }
 
-    @Override
+	@Override
     public String toString() {
         return StringUtils.join(criterions, " and ");
     }

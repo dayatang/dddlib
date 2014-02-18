@@ -24,6 +24,11 @@ public class NotEqCriterion extends AbstractCriterion {
         return value;
     }
 
+	@Override
+	public String toQueryString() {
+		return ROOT_ALIAS + getPropName() + " != ?";
+	}
+
     @Override
     public boolean equals(final Object other) {
         if (this == other) {

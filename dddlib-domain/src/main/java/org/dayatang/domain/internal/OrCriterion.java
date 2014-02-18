@@ -1,7 +1,10 @@
 package org.dayatang.domain.internal;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.domain.QueryCriterion;
@@ -20,6 +23,15 @@ public class OrCriterion extends AbstractCriterion {
     public QueryCriterion[] getCriterons() {
         return criterions;
     }
+
+    @Override
+	public String toQueryString() {
+		List<String> subCriterionsStr = new ArrayList<String>();
+		for (QueryCriterion each : getCriterons()) {
+			subCriterionsStr.add("(" + each.toQueryString() + ")");
+		}
+		return "(" + StringUtils.join(subCriterionsStr, " or ") + ")";
+	}
 
     @Override
     public boolean equals(final Object other) {

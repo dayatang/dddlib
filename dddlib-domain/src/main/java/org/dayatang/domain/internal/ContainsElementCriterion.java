@@ -26,6 +26,12 @@ public class ContainsElementCriterion extends AbstractCriterion {
     }
 
     @Override
+	public String toQueryString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
     public boolean equals(final Object other) {
         if (this == other) {
             return true;

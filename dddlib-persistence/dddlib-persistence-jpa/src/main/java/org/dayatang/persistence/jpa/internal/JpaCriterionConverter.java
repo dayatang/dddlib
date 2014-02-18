@@ -62,38 +62,38 @@ public class JpaCriterionConverter {
 		}
 		if (criterion instanceof EqPropCriterion) {
 			EqPropCriterion theCriteron = (EqPropCriterion) criterion;
-			Path path1 = getPropPath(root, theCriteron.getPropName1());
-			Path path2 = getPropPath(root, theCriteron.getPropName2());
+			Path path1 = getPropPath(root, theCriteron.getPropName());
+			Path path2 = getPropPath(root, theCriteron.getOtherPropName());
 			return builder.equal(path1, path2);
 		}
 		if (criterion instanceof NotEqPropCriterion) {
 			NotEqPropCriterion theCriteron = (NotEqPropCriterion) criterion;
-			Path path1 = getPropPath(root, theCriteron.getPropName1());
-			Path path2 = getPropPath(root, theCriteron.getPropName2());
+			Path path1 = getPropPath(root, theCriteron.getPropName());
+			Path path2 = getPropPath(root, theCriteron.getOtherPropName());
 			return builder.notEqual(path1, path2);
 		}
 		if (criterion instanceof GtPropCriterion) {
 			GtPropCriterion theCriteron = (GtPropCriterion) criterion;
-			Path path1 = getPropPath(root, theCriteron.getPropName1());
-			Path path2 = getPropPath(root, theCriteron.getPropName2());
+			Path path1 = getPropPath(root, theCriteron.getPropName());
+			Path path2 = getPropPath(root, theCriteron.getOtherPropName());
 			return builder.greaterThan(path1, path2);
 		}
 		if (criterion instanceof GePropCriterion) {
 			GePropCriterion theCriteron = (GePropCriterion) criterion;
-			Path path1 = getPropPath(root, theCriteron.getPropName1());
-			Path path2 = getPropPath(root, theCriteron.getPropName2());
+			Path path1 = getPropPath(root, theCriteron.getPropName());
+			Path path2 = getPropPath(root, theCriteron.getOtherPropName());
 			return builder.greaterThanOrEqualTo(path1, path2);
 		}
 		if (criterion instanceof LtPropCriterion) {
 			LtPropCriterion theCriteron = (LtPropCriterion) criterion;
-			Path path1 = getPropPath(root, theCriteron.getPropName1());
-			Path path2 = getPropPath(root, theCriteron.getPropName2());
+			Path path1 = getPropPath(root, theCriteron.getPropName());
+			Path path2 = getPropPath(root, theCriteron.getOtherPropName());
 			return builder.lessThan(path1, path2);
 		}
 		if (criterion instanceof LePropCriterion) {
 			LePropCriterion theCriteron = (LePropCriterion) criterion;
-			Path path1 = getPropPath(root, theCriteron.getPropName1());
-			Path path2 = getPropPath(root, theCriteron.getPropName2());
+			Path path1 = getPropPath(root, theCriteron.getPropName());
+			Path path2 = getPropPath(root, theCriteron.getOtherPropName());
 			return builder.lessThanOrEqualTo(path1, path2);
 		}
 		if (criterion instanceof SizeEqCriterion) {

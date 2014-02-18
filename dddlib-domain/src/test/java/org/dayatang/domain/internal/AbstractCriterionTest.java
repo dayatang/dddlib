@@ -8,9 +8,19 @@ import org.junit.Test;
 
 public class AbstractCriterionTest {
 	
-	private AbstractCriterion criterion1 = new AbstractCriterion() {};
+	private AbstractCriterion criterion1 = new AbstractCriterion() {
+
+		@Override
+		public String toQueryString() {
+			return "";
+		}};
 	
-	private AbstractCriterion criterion2 = new AbstractCriterion() {};
+	private AbstractCriterion criterion2 = new AbstractCriterion() {
+
+		@Override
+		public String toQueryString() {
+			return "";
+		}};
 
 	@Before
 	public void setUp() throws Exception {

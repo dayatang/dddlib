@@ -6,23 +6,28 @@ import org.dayatang.utils.Assert;
 
 public class LePropCriterion extends AbstractCriterion {
 
-    private final String propName1;
-    private final String propName2;
+    private final String propName;
+    private final String otherPropName;
 
     public LePropCriterion(String propName1, String propName2) {
         Assert.notBlank(propName1, "Property 1 is null or blank!");
         Assert.notBlank(propName2, "Property 2 is null or blank!");
-        this.propName1 = propName1;
-        this.propName2 = propName2;
+        this.propName = propName1;
+        this.otherPropName = propName2;
     }
 
-    public String getPropName1() {
-        return propName1;
+    public String getPropName() {
+        return propName;
     }
 
-    public String getPropName2() {
-        return propName2;
+    public String getOtherPropName() {
+        return otherPropName;
     }
+
+	@Override
+	public String toQueryString() {
+		return ROOT_ALIAS + getPropName() + " <= " + ROOT_ALIAS + getOtherPropName();
+	}
 
     @Override
     public boolean equals(final Object other) {
@@ -34,18 +39,18 @@ public class LePropCriterion extends AbstractCriterion {
         }
         LePropCriterion that = (LePropCriterion) other;
         return new EqualsBuilder()
-                .append(this.getPropName1(), that.getPropName1())
-                .append(propName2, that.propName2).isEquals();
+                .append(this.getPropName(), that.getPropName())
+                .append(otherPropName, that.otherPropName).isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(getPropName1()).append(propName2).toHashCode();
+        return new HashCodeBuilder(17, 37).append(getPropName()).append(otherPropName).toHashCode();
     }
 
     @Override
     public String toString() {
-        return getPropName1() + " <= " + propName2;
+        return getPropName() + " <= " + otherPropName;
     }
 
 }

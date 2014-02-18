@@ -33,6 +33,11 @@ public class BetweenCriterion extends AbstractCriterion {
         return to;
     }
 
+	@Override
+	public String toQueryString() {
+		return ROOT_ALIAS + getPropName() + " between ? and ?";
+	}
+
     @Override
     public boolean equals(final Object other) {
         if (this == other) {

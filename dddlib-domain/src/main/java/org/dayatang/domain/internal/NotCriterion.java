@@ -1,5 +1,9 @@
 package org.dayatang.domain.internal;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.domain.QueryCriterion;
@@ -18,6 +22,11 @@ public class NotCriterion extends AbstractCriterion {
         return criterion;
     }
 
+    @Override
+	public String toQueryString() {
+		return "(not (" + criterion.toQueryString() + "))";
+	}
+    
     @Override
     public boolean equals(final Object other) {
         if (this == other) {

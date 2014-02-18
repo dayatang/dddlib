@@ -24,6 +24,11 @@ public class SizeGtCriterion extends AbstractCriterion {
         return value;
     }
 
+	@Override
+	public String toQueryString() {
+		return "size(" + ROOT_ALIAS + getPropName() + ") > ?";
+	}
+
     @Override
     public boolean equals(final Object other) {
         if (this == other) {
