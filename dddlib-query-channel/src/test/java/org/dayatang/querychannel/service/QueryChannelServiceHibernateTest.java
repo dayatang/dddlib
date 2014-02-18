@@ -42,7 +42,6 @@ public class QueryChannelServiceHibernateTest {
     public static void setUpBeforeClass() throws Exception {
         btmUtils = BtmUtils.readConfigurationFromClasspath("/datasources.properties");
         btmUtils.setupDataSource();
-        //DbUnitUtils.configFromClasspath("/jdbc.properties").importDataFromClasspath("/sample-data.xml");
     }
 
     @AfterClass

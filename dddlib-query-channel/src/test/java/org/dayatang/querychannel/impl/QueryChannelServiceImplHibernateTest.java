@@ -16,8 +16,6 @@
 
 package org.dayatang.querychannel.impl;
 
-import com.github.springtestdbunit.TransactionDbUnitTestExecutionListener;
-import com.github.springtestdbunit.annotation.DatabaseSetup;
 import javax.inject.Inject;
 import org.dayatang.btm.BtmUtils;
 import org.dayatang.dbunit.DbUnitUtils;
@@ -27,15 +25,11 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
-import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,10 +41,6 @@ import org.springframework.transaction.annotation.Transactional;
 @ContextConfiguration("classpath*:spring/ApplicationContext-hibernate.xml")
 @TransactionConfiguration(defaultRollback = true)
 @Transactional
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
-    DirtiesContextTestExecutionListener.class,
-    TransactionDbUnitTestExecutionListener.class })
-@DatabaseSetup("/sample-data.xml")
 public class QueryChannelServiceImplHibernateTest {
 
     @Inject
