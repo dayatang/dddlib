@@ -1,12 +1,13 @@
 package org.dayatang.domain.internal;
 
 import java.util.Arrays;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.domain.QueryCriterion;
 import org.dayatang.utils.Assert;
 
-public class OrCriterion implements QueryCriterion {
+public class OrCriterion extends AbstractCriterion {
 
     private final QueryCriterion[] criterions;
 

@@ -3,14 +3,13 @@ package org.dayatang.domain.internal;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.dayatang.domain.QueryCriterion;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import org.dayatang.utils.Assert;
 
-public class NotInCriterion implements QueryCriterion {
+public class NotInCriterion extends AbstractCriterion {
 
     private final String propName;
 
