@@ -51,8 +51,6 @@
         <constructor-arg ref="repoitory"/>
     </bean>
 
-    <bean id="queryChannelServiceHibernate" class="org.dayatang.querychannel.impl.QueryChannelServiceHibernate"/>
-
 
     <!-- 支持 @Transactional 标记 -->
     <tx:annotation-driven transaction-manager="transactionManager" />

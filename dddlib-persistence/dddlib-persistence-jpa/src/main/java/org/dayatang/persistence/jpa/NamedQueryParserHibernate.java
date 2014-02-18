@@ -37,8 +37,7 @@ public class NamedQueryParserHibernate implements NamedQueryParser {
 
     private EntityManagerFactory entityManagerFactory;
 
-    public NamedQueryParserHibernate(EntityManagerFactory entityManagerFactory) {
-        this.entityManagerFactory = entityManagerFactory;
+    public NamedQueryParserHibernate() {
     }
 
     private EntityManager getEntityManager() {

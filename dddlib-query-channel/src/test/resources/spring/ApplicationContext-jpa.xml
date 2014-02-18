@@ -32,9 +32,15 @@
 	<!-- 支持 @Transactional 标记 -->
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
-    <bean id="repository" class="org.dayatang.persistence.jpa.EntityRepositoryJpa" depends-on="entityManagerFactory"/>
+    <bean id="repository" class="org.dayatang.persistence.jpa.EntityRepositoryJpa" depends-on="entityManagerFactory">
+        <property name="namedQueryParser">
+            <bean class="org.dayatang.persistence.jpa.NamedQueryParserHibernate"/>
+        </property>
+    </bean>
 
-    <bean id="queryChannelService" class="org.dayatang.querychannel.impl.QueryChannelServiceJpa"/>
+    <bean id="queryChannelService" class="org.dayatang.querychannel.impl.QueryChannelServiceImpl">
+        <constructor-arg ref="repository"/>
+    </bean>
 
     <!-- 支持 @Transactional 标记 -->
     <tx:annotation-driven transaction-manager="transactionManager" />
