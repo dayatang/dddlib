@@ -57,9 +57,9 @@ public class QueryChannelServiceImplHibernateTest {
 
     private String jpqlPosParam =  "select o from MyEntity o where o.name like ? order by o.id";
 
-    private String sqlNamedParam =  "select * from pay_test_myentity as o where o.name like :name order by o.id";
+    private String sqlNamedParam =  "select o.* from pay_test_myentity as o where o.name like :name order by o.id";
 
-    private String sqlPosParam =  "select * from pay_test_myentity as o where o.name like ? order by o.id";
+    private String sqlPosParam =  "select o.* from pay_test_myentity as o where o.name like ? order by o.id";
 
     private String queryNameNamedParam = "MyEntity.findByName1";
 
@@ -183,17 +183,46 @@ public class QueryChannelServiceImplHibernateTest {
 
     @Test
     public void testSqlQueryList() {
+        List<MyEntity> results = instance.createSqlQuery(sqlNamedParam)
+                .setResultEntityClass(MyEntity.class)
+                .addParameter(paramKey, paramValue).list();
+        assertEquals(12, results.size());
     }
 
     @Test
     public void testSqlQueryPagedList() {
+        Page<MyEntity> results = instance.createSqlQuery(sqlNamedParam)
+                .setResultEntityClass(MyEntity.class)
+                .addParameter(paramKey, paramValue)
+                .setFirstResult(3).setPageSize(5).pagedList();
+        assertTrue(results.getData().contains(MyEntity.get(4L)));
+        assertTrue(results.getData().contains(MyEntity.get(8L)));
+        assertFalse(results.getData().contains(MyEntity.get(3L)));
+        assertFalse(results.getData().contains(MyEntity.get(9L)));
+
+        results = instance.createSqlQuery(sqlPosParam)
+                .setResultEntityClass(MyEntity.class)
+                .setParameters(paramValue).setPage(1, 5).pagedList();
+        assertTrue(results.getData().contains(MyEntity.get(6L)));
+        assertTrue(results.getData().contains(MyEntity.get(10L)));
+        assertFalse(results.getData().contains(MyEntity.get(5L)));
+        assertFalse(results.getData().contains(MyEntity.get(11L)));
     }
 
     @Test
     public void testSqlQueryGetSingleResult() {
+        MyEntity result = instance.createSqlQuery(sqlNamedParam)
+                .setResultEntityClass(MyEntity.class)
+                .addParameter(paramKey, paramValue)
+                .setPage(1, 5)
+                .singleResult();
+        assertEquals(MyEntity.get(6L), result);
     }
 
     @Test
     public void testSqlQueryGetResultCount() {
+        assertEquals(12, instance.createSqlQuery(sqlNamedParam)
+            .setResultEntityClass(MyEntity.class)
+            .addParameter(paramKey, paramValue).queryResultCount());
     }
 }
