@@ -63,12 +63,6 @@
         </dependency>
         <dependency>
             <groupId>${project.parent.groupId}</groupId>
-            <artifactId>dddlib-test</artifactId>
-            <version>${project.parent.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>${project.parent.groupId}</groupId>
             <artifactId>dddlib-persistence-jpa</artifactId>
             <version>${project.parent.version}</version>
             <scope>test</scope>
