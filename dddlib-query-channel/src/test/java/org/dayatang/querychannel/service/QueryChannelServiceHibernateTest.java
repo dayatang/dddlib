@@ -93,7 +93,7 @@ public class QueryChannelServiceHibernateTest {
 
         Page<Map<String, Object>> result = queryHibernate.queryPagedMapResult(
                 queryStr, params, currentPage, pageSize);
-        assertEquals(4, result.getTotalCount());
+        assertEquals(12, result.getResultCount());
 
     }
 
@@ -106,7 +106,7 @@ public class QueryChannelServiceHibernateTest {
         Page<MyEntity> result = queryHibernate.queryPagedResult(queryStr,
                 params, firstRow, pageSize);
 
-        assertTrue(result.getTotalCount() == 4);
+        assertTrue(result.getResultCount() == 12);
     }
 
     @Test
@@ -118,7 +118,7 @@ public class QueryChannelServiceHibernateTest {
         Page<MyEntity> result = queryHibernate.queryPagedResultByPageNo(
                 queryStr, params, currentPage, pageSize);
 
-        assertTrue(result.getTotalCount() == 4);
+        assertTrue(result.getResultCount() == 12);
     }
 
     @Test
@@ -131,7 +131,7 @@ public class QueryChannelServiceHibernateTest {
         Page<MyEntity> result = queryHibernate.queryPagedResultByNamedQuery(
                 queryName, params, firstRow, pageSize);
 
-        assertTrue(result.getTotalCount() == 4);
+        assertTrue(result.getResultCount() == 12);
 
     }
 
@@ -146,7 +146,7 @@ public class QueryChannelServiceHibernateTest {
                 .queryPagedResultByPageNoAndNamedQuery(queryName, params,
                         currentPage, pageSize);
 
-        assertTrue(result.getTotalCount() == 4);
+        assertTrue(result.getResultCount() == 12);
 
     }
 
@@ -159,7 +159,7 @@ public class QueryChannelServiceHibernateTest {
 
         Page<Map<String, Object>> result = queryHibernate.queryPagedMapResult(
                 queryStr, params, currentPage, pageSize);
-        assertTrue(result.getTotalCount() == 4);
+        assertTrue(result.getResultCount() == 12);
 
     }
 
@@ -171,7 +171,7 @@ public class QueryChannelServiceHibernateTest {
         int pageSize = 5;
         Page<Map<String, Object>> result = queryHibernate.queryPagedMapResultByNamedQuery(queryName, params, currentPage, pageSize);
 
-        assertTrue(result.getTotalCount() == 4);
+        assertTrue(result.getResultCount() == 12);
     }
 
     @Test

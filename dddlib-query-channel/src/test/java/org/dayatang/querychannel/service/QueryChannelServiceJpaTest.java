@@ -88,7 +88,7 @@ public class QueryChannelServiceJpaTest {
         Page<MyEntity> result = queryJpa.queryPagedResult(queryStr, params,
                 firstRow, pageSize);
 
-        assertTrue(result.getTotalCount() > 0);
+        assertTrue(result.getResultCount() > 0);
     }
 
     @Test
@@ -100,7 +100,7 @@ public class QueryChannelServiceJpaTest {
         Page<MyEntity> result = queryJpa.queryPagedResultByPageNo(queryStr,
                 params, currentPage, pageSize);
 
-        assertTrue(result.getTotalCount() > 0);
+        assertTrue(result.getResultCount() > 0);
     }
 
     @Test

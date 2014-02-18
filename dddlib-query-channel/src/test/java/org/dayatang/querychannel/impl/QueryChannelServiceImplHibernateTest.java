@@ -21,17 +21,19 @@ import org.dayatang.btm.BtmUtils;
 import org.dayatang.dbunit.DbUnitUtils;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.ioc.spring.factory.SpringInstanceProvider;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.BeforeClass;
+import org.dayatang.querychannel.Page;
+import org.dayatang.querychannel.domain.MyEntity;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 /**
  *
@@ -47,9 +49,23 @@ public class QueryChannelServiceImplHibernateTest {
     private ApplicationContext ctx;
 
     @Inject
-    private QueryChannelServiceHibernate instance;
+    private QueryChannelServiceImpl instance;
 
     private static BtmUtils btmUtils;
+
+    private String jpqlNamedParam =  "select o from MyEntity o where o.name like :name order by o.id";
+
+    private String jpqlPosParam =  "select o from MyEntity o where o.name like ? order by o.id";
+
+    private String sqlNamedParam =  "select * from pay_test_myentity as o where o.name like :name order by o.id";
+
+    private String sqlPosParam =  "select * from pay_test_myentity as o where o.name like ? order by o.id";
+
+    private String queryName = "MyEntity.findByName1";
+
+    private String paramKey = "name";
+
+    private String paramValue = "entity%";
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -78,32 +94,81 @@ public class QueryChannelServiceImplHibernateTest {
         InstanceFactory.setInstanceProvider(null);
     }
 
+    //JpqlQuery
+
     @Test
-    public void testCreateJpqlQuery() {
+    public void testJpqlQueryList() {
+        List<MyEntity> results = instance.createJpqlQuery(jpqlNamedParam)
+                .addParameter(paramKey, paramValue).list();
+        assertEquals(12, results.size());
     }
 
     @Test
-    public void testCreateNamedQuery() {
+    public void testJpqlQueryPagedList() {
+        Page<MyEntity> results = instance.createJpqlQuery(jpqlPosParam)
+                .setParameters(paramValue).setFirstResult(3).setPageSize(5).pagedList();
+        assertTrue(results.getData().contains(MyEntity.get(4L)));
+        assertTrue(results.getData().contains(MyEntity.get(8L)));
+        assertFalse(results.getData().contains(MyEntity.get(3L)));
+        assertFalse(results.getData().contains(MyEntity.get(9L)));
+
+        results = instance.createJpqlQuery(jpqlPosParam)
+                .setParameters(paramValue).setPage(1, 5).pagedList();
+        assertTrue(results.getData().contains(MyEntity.get(6L)));
+        assertTrue(results.getData().contains(MyEntity.get(10L)));
+        assertFalse(results.getData().contains(MyEntity.get(5L)));
+        assertFalse(results.getData().contains(MyEntity.get(11L)));
     }
 
     @Test
-    public void testCreateSqlQuery() {
+    public void testJpqlQueryGetSingleResult() {
+        MyEntity result = instance.createJpqlQuery(jpqlNamedParam)
+                .addParameter(paramKey, paramValue)
+                .setPage(1, 5)
+                .singleResult();
+        assertEquals(MyEntity.get(6L), result);
     }
 
     @Test
-    public void testList() {
+    public void testJpqlQueryGetResultCount() {
+        assertEquals(12, instance.createJpqlQuery(jpqlNamedParam)
+            .addParameter(paramKey, paramValue).queryResultCount());
+    }
+
+
+    //NamedQuery
+
+    @Test
+    public void testNamedQueryList() {
     }
 
     @Test
-    public void testPagedList() {
+    public void testNamedQueryPagedList() {
     }
 
     @Test
-    public void testGetSingleResult() {
+    public void testNamedQueryGetSingleResult() {
     }
 
     @Test
-    public void testGetResultCount() {
+    public void testNamedQueryGetResultCount() {
     }
-    
+
+    //SqlQuery
+
+    @Test
+    public void testSqlQueryList() {
+    }
+
+    @Test
+    public void testSqlQueryPagedList() {
+    }
+
+    @Test
+    public void testSqlQueryGetSingleResult() {
+    }
+
+    @Test
+    public void testSqlQueryGetResultCount() {
+    }
 }

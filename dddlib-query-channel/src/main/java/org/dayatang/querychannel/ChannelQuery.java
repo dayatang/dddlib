@@ -127,20 +127,6 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
     }
 
     /**
-     * 设置当前页码。0为第一页
-     *
-     * @param pageIndex 要设置的页码
-     * @return 该对象本身
-     */
-    public E setPageIndex(int pageIndex) {
-        Assert.isTrue(pageIndex >= 0, "Page index must be greater than 0!");
-        this.pageIndex = pageIndex;
-        int pageSize = query.getMaxResults() == 0 ? Page.DEFAULT_PAGE_SIZE : query.getMaxResults();
-        query.setFirstResult(Page.getStartOfPage(pageIndex, pageSize));
-        return (E) this;
-    }
-
-    /**
      * 获取每页记录数
      *
      * @return 每页记录数
@@ -157,6 +143,21 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      */
     public E setPageSize(int pageSize) {
         Assert.isTrue(pageSize > 0, "Page size must be greater than 0!");
+        query.setMaxResults(pageSize);
+        return (E) this;
+    }
+
+    /**
+     * 设置分页信息
+     *
+     * @param pageIndex 要设置的页码
+     * @param pageSize 要设置的页大小
+     * @return 该对象本身
+     */
+    public E setPage(int pageIndex, int pageSize) {
+        Assert.isTrue(pageIndex >= 0, "Page index must be greater than or equals to 0!");
+        Assert.isTrue(pageSize > 0, "Page index must be greater than 0!");
+        this.pageIndex = pageIndex;
         query.setMaxResults(pageSize);
         query.setFirstResult(Page.getStartOfPage(pageIndex, pageSize));
         return (E) this;
