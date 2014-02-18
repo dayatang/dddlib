@@ -16,13 +16,13 @@ import java.util.*;
 public class CriteriaQuery {
 
     private final EntityRepository repository;
-    private final Class<? extends Entity> entityClass;
+    private final CriterionBuilder criterionBuilder = InstanceFactory.getInstance(CriterionBuilder.class);
+   private final Class<? extends Entity> entityClass;
     private int firstResult;
     private int maxResults;
-    private final Set<QueryCriterion> queryCriterions = new HashSet<QueryCriterion>();
-    private final List<OrderSetting> orderSettings = new ArrayList<OrderSetting>();
-    private final CriterionBuilder criterionBuilder = InstanceFactory.getInstance(CriterionBuilder.class);
-
+    private QueryCriterion criterion = criterionBuilder.empty();
+    private final OrderSettings orderSettings = new OrderSettings();
+ 
     public CriteriaQuery(EntityRepository repository, Class<? extends Entity> entityClass) {
         Assert.notNull(repository);
         Assert.notNull(entityClass);
@@ -75,18 +75,18 @@ public class CriteriaQuery {
     }
 
     /**
-     * 获得查询条件的集合
-     * @return  本次查询指定的条件的集合
+     * 获得查询条件
+     * @return  本次查询指定的查询条件
      */
-    public Set<QueryCriterion> getQueryCriterions() {
-        return queryCriterions;
+    public QueryCriterion getQueryCriterion() {
+        return criterion;
     }
 
     /**
-     * 获得排序选项的列表（先按前面的排序选项排序，如果前面的选项相同，再按后面的选项排序）
-     * @return 本次查询指定的排序选项的列表
+     * 获得排序选项
+     * @return 本次查询指定的排序选项
      */
-    public List<OrderSetting> getOrderSettings() {
+    public OrderSettings getOrderSettings() {
         return orderSettings;
     }
 
@@ -97,7 +97,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery eq(String propName, Object value) {
-        addCriterion(criterionBuilder.eq(propName, value));
+    	criterion = criterion.and(criterionBuilder.eq(propName, value));
         return this;
     }
 
@@ -108,7 +108,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery notEq(String propName, Object value) {
-        addCriterion(criterionBuilder.notEq(propName, value));
+    	criterion = criterion.and(criterionBuilder.notEq(propName, value));
         return this;
     }
 
@@ -119,7 +119,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery gt(String propName, Comparable<?> value) {
-        addCriterion(criterionBuilder.gt(propName, value));
+    	criterion = criterion.and(criterionBuilder.gt(propName, value));
         return this;
     }
 
@@ -130,7 +130,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery ge(String propName, Comparable<?> value) {
-        addCriterion(criterionBuilder.ge(propName, value));
+    	criterion = criterion.and(criterionBuilder.ge(propName, value));
         return this;
     }
 
@@ -141,7 +141,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery lt(String propName, Comparable<?> value) {
-        addCriterion(criterionBuilder.lt(propName, value));
+    	criterion = criterion.and(criterionBuilder.lt(propName, value));
         return this;
     }
 
@@ -152,7 +152,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery le(String propName, Comparable<?> value) {
-        addCriterion(criterionBuilder.le(propName, value));
+    	criterion = criterion.and(criterionBuilder.le(propName, value));
         return this;
     }
 
@@ -163,7 +163,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery eqProp(String propName, String otherProp) {
-        addCriterion(criterionBuilder.eqProp(propName, otherProp));
+    	criterion = criterion.and(criterionBuilder.eqProp(propName, otherProp));
         return this;
     }
 
@@ -174,7 +174,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery notEqProp(String propName, String otherProp) {
-        addCriterion(criterionBuilder.notEqProp(propName, otherProp));
+    	criterion = criterion.and(criterionBuilder.notEqProp(propName, otherProp));
         return this;
     }
 
@@ -185,7 +185,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery gtProp(String propName, String otherProp) {
-        addCriterion(criterionBuilder.gtProp(propName, otherProp));
+    	criterion = criterion.and(criterionBuilder.gtProp(propName, otherProp));
         return this;
     }
 
@@ -196,7 +196,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery geProp(String propName, String otherProp) {
-        addCriterion(criterionBuilder.geProp(propName, otherProp));
+    	criterion = criterion.and(criterionBuilder.geProp(propName, otherProp));
         return this;
     }
 
@@ -207,7 +207,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery ltProp(String propName, String otherProp) {
-        addCriterion(criterionBuilder.ltProp(propName, otherProp));
+    	criterion = criterion.and(criterionBuilder.ltProp(propName, otherProp));
         return this;
     }
 
@@ -218,7 +218,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery leProp(String propName, String otherProp) {
-        addCriterion(criterionBuilder.leProp(propName, otherProp));
+    	criterion = criterion.and(criterionBuilder.leProp(propName, otherProp));
         return this;
     }
 
@@ -230,7 +230,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery sizeEq(String propName, int size) {
-        addCriterion(criterionBuilder.sizeEq(propName, size));
+        criterion = criterion.and(criterionBuilder.sizeEq(propName, size));
         return this;
     }
 
@@ -242,7 +242,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery sizeNotEq(String propName, int size) {
-        addCriterion(criterionBuilder.sizeNotEq(propName, size));
+        criterion = criterion.and(criterionBuilder.sizeNotEq(propName, size));
         return this;
     }
 
@@ -254,7 +254,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery sizeGt(String propName, int size) {
-        addCriterion(criterionBuilder.sizeGt(propName, size));
+        criterion = criterion.and(criterionBuilder.sizeGt(propName, size));
         return this;
     }
 
@@ -266,7 +266,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery sizeGe(String propName, int size) {
-        addCriterion(criterionBuilder.sizeGe(propName, size));
+        criterion = criterion.and(criterionBuilder.sizeGe(propName, size));
         return this;
     }
 
@@ -278,7 +278,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery sizeLt(String propName, int size) {
-        addCriterion(criterionBuilder.sizeLt(propName, size));
+        criterion = criterion.and(criterionBuilder.sizeLt(propName, size));
         return this;
     }
 
@@ -290,7 +290,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery sizeLe(String propName, int size) {
-        addCriterion(criterionBuilder.sizeLe(propName, size));
+        criterion = criterion.and(criterionBuilder.sizeLe(propName, size));
         return this;
     }
 
@@ -301,7 +301,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery containsText(String propName, String value) {
-        addCriterion(criterionBuilder.containsText(propName, value));
+        criterion = criterion.and(criterionBuilder.containsText(propName, value));
         return this;
     }
 
@@ -312,7 +312,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery startsWithText(String propName, String value) {
-        addCriterion(criterionBuilder.startsWithText(propName, value));
+        criterion = criterion.and(criterionBuilder.startsWithText(propName, value));
         return this;
     }
 
@@ -323,7 +323,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery in(String propName, Collection<? extends Object> value) {
-        addCriterion(criterionBuilder.in(propName, value));
+        criterion = criterion.and(criterionBuilder.in(propName, value));
         return this;
     }
 
@@ -334,7 +334,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery in(String propName, Object[] value) {
-        addCriterion(criterionBuilder.in(propName, value));
+        criterion = criterion.and(criterionBuilder.in(propName, value));
         return this;
     }
 
@@ -345,7 +345,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery notIn(String propName, Collection<? extends Object> value) {
-        addCriterion(criterionBuilder.notIn(propName, value));
+        criterion = criterion.and(criterionBuilder.notIn(propName, value));
         return this;
     }
 
@@ -356,7 +356,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery notIn(String propName, Object[] value) {
-        addCriterion(criterionBuilder.notIn(propName, value));
+        criterion = criterion.and(criterionBuilder.notIn(propName, value));
         return this;
     }
 
@@ -369,7 +369,7 @@ public class CriteriaQuery {
      * @return
      */
     public <E> CriteriaQuery between(String propName, Comparable<E> from, Comparable<E> to) {
-        addCriterion(criterionBuilder.between(propName, from, to));
+        criterion = criterion.and(criterionBuilder.between(propName, from, to));
         return this;
     }
 
@@ -379,7 +379,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery isNull(String propName) {
-        addCriterion(criterionBuilder.isNull(propName));
+        criterion = criterion.and(criterionBuilder.isNull(propName));
         return this;
     }
 
@@ -389,7 +389,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery notNull(String propName) {
-        addCriterion(criterionBuilder.notNull(propName));
+        criterion = criterion.and(criterionBuilder.notNull(propName));
         return this;
     }
 
@@ -399,7 +399,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery isEmpty(String propName) {
-        addCriterion(criterionBuilder.isEmpty(propName));
+        criterion = criterion.and(criterionBuilder.isEmpty(propName));
         return this;
     }
 
@@ -409,7 +409,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery notEmpty(String propName) {
-        addCriterion(criterionBuilder.notEmpty(propName));
+        criterion = criterion.and(criterionBuilder.notEmpty(propName));
         return this;
     }
 
@@ -419,7 +419,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery isTrue(String propName) {
-        addCriterion(criterionBuilder.isTrue(propName));
+        criterion = criterion.and(criterionBuilder.isTrue(propName));
         return this;
     }
 
@@ -429,7 +429,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery isFalse(String propName) {
-        addCriterion(criterionBuilder.isFalse(propName));
+        criterion = criterion.and(criterionBuilder.isFalse(propName));
         return this;
     }
 
@@ -439,7 +439,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery isBlank(String propName) {
-        addCriterion(criterionBuilder.isBlank(propName));
+        criterion = criterion.and(criterionBuilder.isBlank(propName));
         return this;
     }
 
@@ -449,18 +449,18 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery notBlank(String propName) {
-        addCriterion(criterionBuilder.notBlank(propName));
+        criterion = criterion.and(criterionBuilder.notBlank(propName));
         return this;
     }
 
 
     /**
      * 添加一个“取反”的查询条件
-     * @param criterion 原本的查询条件
+     * @param otherCriterion 原本的查询条件
      * @return 当前查询对象
      */
-    public CriteriaQuery not(QueryCriterion criterion) {
-        addCriterion(criterionBuilder.not(criterion));
+    public CriteriaQuery not(QueryCriterion otherCriterion) {
+        criterion = criterion.and(criterionBuilder.not(otherCriterion));
         return this;
     }
 
@@ -470,7 +470,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery and(QueryCriterion... queryCriterions) {
-        addCriterion(criterionBuilder.and(queryCriterions));
+        criterion = criterion.and(criterionBuilder.and(queryCriterions));
         return this;
     }
 
@@ -480,7 +480,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery or(QueryCriterion... queryCriterions) {
-        addCriterion(criterionBuilder.or(queryCriterions));
+        criterion = criterion.and(criterionBuilder.or(queryCriterions));
         return this;
     }
 
@@ -490,7 +490,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery asc(String propName) {
-        orderSettings.add(OrderSetting.asc(propName));
+        orderSettings.asc(propName);
         return this;
     }
 
@@ -500,7 +500,7 @@ public class CriteriaQuery {
      * @return 当前查询对象
      */
     public CriteriaQuery desc(String propName) {
-        orderSettings.add(OrderSetting.desc(propName));
+        orderSettings.desc(propName);
         return this;
     }
 
@@ -522,7 +522,4 @@ public class CriteriaQuery {
         return repository.getSingleResult(this);
     }
 
-    private void addCriterion(QueryCriterion criterion) {
-        queryCriterions.add(criterion);
-    }
 }

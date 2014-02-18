@@ -82,4 +82,6 @@ public interface CriterionBuilder {
 
     QueryCriterion notBlank(String propName);
 
+	QueryCriterion empty();
+
 }

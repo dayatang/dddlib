@@ -157,4 +157,9 @@ public class CriterionBuilderImpl implements CriterionBuilder {
         return new OrCriterion(criterions);
     }
 
+	@Override
+	public QueryCriterion empty() {
+		return new EmptyCriterion();
+	}
+
 }

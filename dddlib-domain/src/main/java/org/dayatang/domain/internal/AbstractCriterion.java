@@ -7,8 +7,8 @@ import org.dayatang.domain.QueryCriterion;
  * 查询条件的抽象基类，实现了AND、OR、NOT操作。
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  */
-public class AbstractCriterion implements QueryCriterion {
-	
+public abstract class AbstractCriterion implements QueryCriterion {
+
 	/**
 	 * 执行AND操作，返回代表两个QueryCriterion的“与”操作结果的一个新的QueryCriterion
 	 * @param criterion 另一个QueryCriterion
@@ -33,6 +33,11 @@ public class AbstractCriterion implements QueryCriterion {
 	 */
 	public QueryCriterion not() {
 		return new NotCriterion(this);
+	}
+	
+	@Override
+	public boolean isEmpty() {
+		return false;
 	}
 	
 }

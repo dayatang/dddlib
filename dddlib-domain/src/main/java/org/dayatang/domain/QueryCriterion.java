@@ -26,4 +26,10 @@ public interface QueryCriterion {
 	 * @return
 	 */
 	QueryCriterion not();
+	
+	/**
+	 * 是否空条件
+	 * @return 如果是空条件就返回true，否则返回false
+	 */
+	boolean isEmpty();
 }
