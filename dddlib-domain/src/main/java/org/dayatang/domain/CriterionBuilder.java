@@ -22,17 +22,17 @@ public interface CriterionBuilder {
 
     QueryCriterion lt(String propName, Comparable<?> value);
 
-    QueryCriterion eqProp(String propName1, String propName2);
+    QueryCriterion eqProp(String propName, String otherPropName);
 
-    QueryCriterion notEqProp(String propName1, String propName2);
+    QueryCriterion notEqProp(String propName, String otherPropName);
 
-    QueryCriterion gtProp(String propName1, String propName2);
+    QueryCriterion gtProp(String propName, String otherPropName);
 
-    QueryCriterion geProp(String propName1, String propName2);
+    QueryCriterion geProp(String propName, String otherPropName);
 
-    QueryCriterion ltProp(String propName1, String propName2);
+    QueryCriterion ltProp(String propName, String otherPropName);
 
-    QueryCriterion leProp(String propName1, String propName2);
+    QueryCriterion leProp(String propName, String otherPropName);
 
     QueryCriterion sizeEq(String propName, int size);
 

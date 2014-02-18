@@ -37,28 +37,28 @@ public class CriterionBuilderImpl implements CriterionBuilder {
         return new LtCriterion(propName, value);
     }
 
-    public QueryCriterion eqProp(String propName1, String propName2) {
-        return new EqPropCriterion(propName1, propName2);
+    public QueryCriterion eqProp(String propName, String otherPropName) {
+        return new EqPropCriterion(propName, otherPropName);
     }
 
-    public QueryCriterion notEqProp(String propName1, String propName2) {
-        return new NotEqPropCriterion(propName1, propName2);
+    public QueryCriterion notEqProp(String propName, String otherPropName) {
+        return new NotEqPropCriterion(propName, otherPropName);
     }
 
-    public QueryCriterion gtProp(String propName1, String propName2) {
-        return new GtPropCriterion(propName1, propName2);
+    public QueryCriterion gtProp(String propName, String otherPropName) {
+        return new GtPropCriterion(propName, otherPropName);
     }
 
-    public QueryCriterion geProp(String propName1, String propName2) {
-        return new GePropCriterion(propName1, propName2);
+    public QueryCriterion geProp(String propName, String otherPropName) {
+        return new GePropCriterion(propName, otherPropName);
     }
 
-    public QueryCriterion ltProp(String propName1, String propName2) {
-        return new LtPropCriterion(propName1, propName2);
+    public QueryCriterion ltProp(String propName, String otherPropName) {
+        return new LtPropCriterion(propName, otherPropName);
     }
 
-    public QueryCriterion leProp(String propName1, String propName2) {
-        return new LePropCriterion(propName1, propName2);
+    public QueryCriterion leProp(String propName, String otherPropName) {
+        return new LePropCriterion(propName, otherPropName);
     }
 
     public QueryCriterion sizeEq(String propName, int size) {
