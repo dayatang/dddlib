@@ -17,7 +17,6 @@
 package org.dayatang.querychannel.query;
 
 import org.dayatang.querychannel.ChannelQuery;
-import java.math.BigInteger;
 import java.util.List;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.SqlQuery;
@@ -30,13 +29,13 @@ import org.dayatang.utils.Assert;
  */
 public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
     
-    private final String sql;
+    private final SqlQuery query;
 
     public ChannelSqlQuery(EntityRepository repository, String sql) {
         super(repository);
         Assert.notBlank(sql, "SQL must be set!");
-        this.sql = sql;
         query = new SqlQuery(repository, sql);
+        setQuery(query);
     }
 
     @Override
@@ -47,7 +46,7 @@ public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
     @Override
     public <T> Page<T> pagedList() {
         return new Page<T>(query.getFirstResult(), queryResultCount(), 
-                query.getMaxResults(), query.list());
+                query.getMaxResults(), (List<T>) query.list());
     }
 
     @Override
@@ -57,7 +56,7 @@ public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
 
     @Override
     public long queryResultCount() {
-        String queryString = sql;
+        String queryString = query.getSql();
         if (containGroupByClause(queryString)) {
             List rows = repository.createJpqlQuery(removeOrderByClause(queryString)).setParameters(query.getParameters()).list();
             return rows == null ? 0 : rows.size();

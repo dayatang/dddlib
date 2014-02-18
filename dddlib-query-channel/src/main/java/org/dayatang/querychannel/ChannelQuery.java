@@ -34,12 +34,16 @@ import org.dayatang.utils.Assert;
 public abstract class ChannelQuery<E extends ChannelQuery> {
 
     protected EntityRepository repository;
-    protected BaseQuery query;
+    private BaseQuery query;
     private int pageIndex;
     //private int pageSize = Page.DEFAULT_PAGE_SIZE;
 
     public ChannelQuery(EntityRepository repository) {
         this.repository = repository;
+    }
+
+    public void setQuery(BaseQuery query) {
+        this.query = query;
     }
 
     /**

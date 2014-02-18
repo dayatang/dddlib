@@ -29,12 +29,13 @@ import org.dayatang.utils.Assert;
  */
 public class ChannelNamedQuery extends ChannelQuery<ChannelNamedQuery> {
     
-    private String queryName;
+    private NamedQuery query;
 
     public ChannelNamedQuery(EntityRepository repository, String queryName) {
         super(repository);
         Assert.notBlank(queryName, "Query name must be set!");
         query = new NamedQuery(repository, queryName);
+        setQuery(query);
     }
 
     @Override
@@ -45,7 +46,7 @@ public class ChannelNamedQuery extends ChannelQuery<ChannelNamedQuery> {
     @Override
     public <T> Page<T> pagedList() {
         return new Page<T>(query.getFirstResult(), queryResultCount(), 
-                query.getMaxResults(), query.list());
+                query.getMaxResults(), (List<T>) query.list());
     }
 
     @Override
@@ -55,7 +56,7 @@ public class ChannelNamedQuery extends ChannelQuery<ChannelNamedQuery> {
 
     @Override
     public long queryResultCount() {
-        String queryString = repository.getQueryStringOfNamedQuery(queryName);
+        String queryString = repository.getQueryStringOfNamedQuery(query.getQueryName());
         if (containGroupByClause(queryString)) {
             List rows = repository.createJpqlQuery(removeOrderByClause(queryString)).setParameters(query.getParameters()).list();
             return rows == null ? 0 : rows.size();

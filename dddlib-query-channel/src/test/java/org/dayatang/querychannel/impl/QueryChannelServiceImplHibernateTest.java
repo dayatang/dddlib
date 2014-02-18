@@ -61,7 +61,9 @@ public class QueryChannelServiceImplHibernateTest {
 
     private String sqlPosParam =  "select * from pay_test_myentity as o where o.name like ? order by o.id";
 
-    private String queryName = "MyEntity.findByName1";
+    private String queryNameNamedParam = "MyEntity.findByName1";
+
+    private String queryNamePosParam = "MyEntity.findByName";
 
     private String paramKey = "name";
 
@@ -140,18 +142,41 @@ public class QueryChannelServiceImplHibernateTest {
 
     @Test
     public void testNamedQueryList() {
+        List<MyEntity> results = instance.createNamedQuery(queryNameNamedParam)
+                .addParameter(paramKey, paramValue).list();
+        assertEquals(12, results.size());
     }
 
     @Test
     public void testNamedQueryPagedList() {
+        Page<MyEntity> results = instance.createNamedQuery(queryNameNamedParam)
+                .addParameter(paramKey, paramValue).setFirstResult(3).setPageSize(5).pagedList();
+        assertTrue(results.getData().contains(MyEntity.get(4L)));
+        assertTrue(results.getData().contains(MyEntity.get(8L)));
+        assertFalse(results.getData().contains(MyEntity.get(3L)));
+        assertFalse(results.getData().contains(MyEntity.get(9L)));
+
+        results = instance.createNamedQuery(queryNamePosParam)
+                .setParameters(paramValue).setPage(1, 5).pagedList();
+        assertTrue(results.getData().contains(MyEntity.get(6L)));
+        assertTrue(results.getData().contains(MyEntity.get(10L)));
+        assertFalse(results.getData().contains(MyEntity.get(5L)));
+        assertFalse(results.getData().contains(MyEntity.get(11L)));
     }
 
     @Test
     public void testNamedQueryGetSingleResult() {
+        MyEntity result = instance.createNamedQuery(queryNameNamedParam)
+                .addParameter(paramKey, paramValue)
+                .setPage(1, 5)
+                .singleResult();
+        assertEquals(MyEntity.get(6L), result);
     }
 
     @Test
     public void testNamedQueryGetResultCount() {
+        assertEquals(12, instance.createNamedQuery(queryNameNamedParam)
+            .addParameter(paramKey, paramValue).queryResultCount());
     }
 
     //SqlQuery

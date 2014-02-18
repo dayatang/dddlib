@@ -29,13 +29,13 @@ import org.dayatang.utils.Assert;
  */
 public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
     
-    private final String jpql;
+    private final JpqlQuery query;
 
     public ChannelJpqlQuery(EntityRepository repository, String jpql) {
         super(repository);
-        query = new JpqlQuery(repository, jpql);
         Assert.notBlank(jpql, "JPQL must be set!");
-        this.jpql = jpql;
+        query = new JpqlQuery(repository, jpql);
+        setQuery(query);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
     @Override
     public <T> Page<T> pagedList() {
         return new Page<T>(query.getFirstResult(), queryResultCount(), 
-                query.getMaxResults(), query.list());
+                query.getMaxResults(), (List<T>) query.list());
     }
 
     @Override
@@ -56,7 +56,7 @@ public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
 
     @Override
     public long queryResultCount() {
-        String queryString = jpql;
+        String queryString = query.getJpql();
         if (containGroupByClause(queryString)) {
             List rows = repository.createJpqlQuery(removeOrderByClause(queryString)).setParameters(query.getParameters()).list();
             return rows == null ? 0 : rows.size();
