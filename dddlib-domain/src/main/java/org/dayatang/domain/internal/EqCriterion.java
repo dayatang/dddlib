@@ -2,26 +2,39 @@ package org.dayatang.domain.internal;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.dayatang.domain.MapParameters;
 import org.dayatang.utils.Assert;
 
-public class EqCriterion extends AbstractCriterion {
-
-    private final String propName;
+/**
+ * 代表属性为指定值的查询条件
+ * @author yyang
+ */
+public class EqCriterion extends BasicCriterion {
 
     private final Object value;
 
     public EqCriterion(String propName, Object value) {
-        Assert.notBlank(propName, "Property name is null or blank!");
-        this.propName = propName;
+        super(propName);
+        Assert.notNull(value, "Value is null!");
         this.value = value;
     }
 
-    public String getPropName() {
-        return propName;
-    }
-
+    /**
+     * 获取匹配值
+     * @return 匹配值
+     */
     public Object getValue() {
         return value;
+    }
+
+    @Override
+    public String toQueryString() {
+        return getPropNameWithAlias() + " = " + getParamNameWithColon();
+    }
+
+    @Override
+    public MapParameters getParameters() {
+        return MapParameters.create().add(getParamName(), value);
     }
 
     @Override
@@ -46,11 +59,6 @@ public class EqCriterion extends AbstractCriterion {
     @Override
     public String toString() {
         return getPropName() + " = " + value;
-    }
-
-    @Override
-    public String toQueryString() {
-        return ROOT_ALIAS + "." + getPropName() + " = ?";
     }
 
 }

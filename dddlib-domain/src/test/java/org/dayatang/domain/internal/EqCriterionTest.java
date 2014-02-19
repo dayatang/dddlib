@@ -25,13 +25,13 @@ import static org.junit.Assert.*;
  *
  * @author yyang
  */
-public class ContainsTextCriterionTest {
+public class EqCriterionTest {
     
-    private ContainsTextCriterion instance;
+    private EqCriterion instance;
 
     @Before
     public void setUp() {
-        instance = new ContainsTextCriterion("name", "abc");
+        instance = new EqCriterion("name", "abc");
     }
 
     @Test
@@ -41,13 +41,13 @@ public class ContainsTextCriterionTest {
 
     @Test
     public void testToQueryString() {
-        assertEquals("rootEntity.name like :rootEntity_name", 
+        assertEquals("rootEntity.name = :rootEntity_name", 
                 instance.toQueryString());
     }
 
     @Test
     public void testGetParameters() {
-        assertEquals(MapParameters.create().add("rootEntity_name", "%abc%"), 
+        assertEquals(MapParameters.create().add("rootEntity_name", "abc"), 
                 instance.getParameters());
     }
 
@@ -57,7 +57,7 @@ public class ContainsTextCriterionTest {
         assertFalse(instance.equals("abc"));
         assertTrue(instance.equals(instance));
         
-        ContainsTextCriterion other = new ContainsTextCriterion("name", "abc");
+        EqCriterion other = new EqCriterion("name", "abc");
         assertTrue(instance.equals(other));
         assertTrue(other.equals(instance));
     }

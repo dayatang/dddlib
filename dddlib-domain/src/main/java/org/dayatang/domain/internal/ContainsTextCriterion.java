@@ -40,7 +40,7 @@ public class ContainsTextCriterion extends BasicCriterion {
 
     @Override
     public MapParameters getParameters() {
-        return MapParameters.create().add(getParamName(), value);
+        return MapParameters.create().add(getParamName(), "%" + value + "%");
     }
 
     @Override
