@@ -48,9 +48,9 @@ public class EqCriterion extends AbstractCriterion {
         return getPropName() + " = " + value;
     }
 
-	@Override
-	public String toQueryString() {
-		return ROOT_ALIAS + getPropName() + " = ?";
-	}
+    @Override
+    public String toQueryString() {
+        return ROOT_ALIAS + "." + getPropName() + " = ?";
+    }
 
 }

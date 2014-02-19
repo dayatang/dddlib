@@ -26,7 +26,7 @@ public class StartsWithTextCriterion extends AbstractCriterion {
 
 	@Override
 	public String toQueryString() {
-		return ROOT_ALIAS + getPropName() + " like ?";
+		return ROOT_ALIAS + "." + getPropName() + " like ?";
 	}
 
     @Override

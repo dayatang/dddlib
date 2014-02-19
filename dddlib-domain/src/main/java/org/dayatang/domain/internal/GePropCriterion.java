@@ -26,7 +26,7 @@ public class GePropCriterion extends AbstractCriterion {
 
 	@Override
 	public String toQueryString() {
-		return ROOT_ALIAS + getPropName() + " >= " + ROOT_ALIAS + getOtherPropName();
+		return ROOT_ALIAS + "." + getPropName() + " >= " + ROOT_ALIAS + getOtherPropName();
 	}
 
     @Override

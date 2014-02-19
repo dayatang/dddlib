@@ -26,7 +26,7 @@ public class GtCriterion extends AbstractCriterion {
 
 	@Override
 	public String toQueryString() {
-		return ROOT_ALIAS + getPropName() + " > ?";
+		return ROOT_ALIAS + "." + getPropName() + " > ?";
 	}
 
     @Override

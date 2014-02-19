@@ -50,8 +50,17 @@ public class MapParametersTest {
     }
 
     @Test
-    public void testAdd() {
+    public void testAddSingle() {
         instance = MapParameters.create().add("id", 12).add("name", "abc");
+        assertEquals(params, instance.getParams());
+    }
+
+    @Test
+    public void testAddAnother() {
+        MapParameters other = MapParameters.create().add("age", 15);
+        instance = MapParameters.create().add("id", 12).add("name", "abc")
+                .add(other);
+        params.put("age", 15);
         assertEquals(params, instance.getParams());
     }
 

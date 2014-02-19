@@ -38,4 +38,10 @@ public interface QueryCriterion {
 	 * @return
 	 */
 	String toQueryString();
+        
+        /**
+         * 获得查询参数
+         * @return 
+         */
+        MapParameters getParameters();
 }

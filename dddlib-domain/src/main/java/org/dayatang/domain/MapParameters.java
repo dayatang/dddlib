@@ -72,6 +72,17 @@ public class MapParameters implements QueryParameters {
     }
 
     /**
+     * 将另一个MapParameters合并进来。
+     * @param other 要合并的参数集
+     * @return 该对象本身。其参数集是原有的参数集与另一个参数集合并后的结果
+     */
+    public MapParameters add(MapParameters other) {
+        Assert.notNull(other);
+        params.putAll(other.getParams());
+        return this;
+    }
+
+    /**
      * 获得参数Map
      * @return 参数Map
      */

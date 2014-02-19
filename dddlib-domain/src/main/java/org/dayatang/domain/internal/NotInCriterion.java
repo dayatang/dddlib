@@ -50,7 +50,7 @@ public class NotInCriterion extends AbstractCriterion {
 		if (value == null || value.isEmpty()) {
 			return "";
 		}
-		return ROOT_ALIAS + getPropName() + " not in (" + createInString(value) + ")";
+		return ROOT_ALIAS + "." + getPropName() + " not in (" + createInString(value) + ")";
 	}
 
 	private String createInString(Collection<? extends Object> value) {

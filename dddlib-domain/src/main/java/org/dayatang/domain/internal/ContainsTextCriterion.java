@@ -2,33 +2,46 @@ package org.dayatang.domain.internal;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.dayatang.domain.MapParameters;
 import org.dayatang.utils.Assert;
 
-public class ContainsTextCriterion extends AbstractCriterion {
-
-    private final String propName;
+/**
+ * 判断某个属性的值是否包含指定文本内容的查询条件
+ * @author yyang
+ */
+public class ContainsTextCriterion extends BasicCriterion {
 
     private final String value;
 
+    /**
+     * 创建查询条件
+     * @param propName 属性名
+     * @param value 要包含在属性值中的子字符串
+     */
     public ContainsTextCriterion(String propName, String value) {
+        super(propName);
         Assert.notBlank(propName, "Property name is null or blank!");
         Assert.notBlank(value, "value is null or blank!");
-        this.propName = propName;
         this.value = value;
     }
 
-    public String getPropName() {
-        return propName;
-    }
-
+    /**
+     * 获取匹配值
+     * @return 匹配值
+     */
     public String getValue() {
         return value;
     }
 
-	@Override
-	public String toQueryString() {
-		return ROOT_ALIAS + getPropName() + " like ?";
-	}
+    @Override
+    public String toQueryString() {
+        return getPropNameWithAlias() + " like " + getParamNameWithColon();
+    }
+
+    @Override
+    public MapParameters getParameters() {
+        return MapParameters.create().add(getParamName(), value);
+    }
 
     @Override
     public boolean equals(final Object other) {

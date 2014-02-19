@@ -114,8 +114,7 @@ public class InstanceFactory {
         if (result != null) {
             return result;
         }
-        throw new IocInstanceNotUniqueException("There're more then one bean of type '"
-                + beanType + "' and named '" + beanName + "'");
+        throw new IocInstanceNotFoundException("There's not bean of type '" + beanType + "' exists in IoC container!");
     }
 
     private static <T> T getInstanceFromProvider(Class<T> beanType, String beanName) {
@@ -170,7 +169,8 @@ public class InstanceFactory {
         if (result != null) {
             return result;
         }
-        throw new IocInstanceNotFoundException("There's not bean '" + annotationType + "' of type '" + beanType + "' exists in IoC container!");
+        throw new IocInstanceNotFoundException("There's not bean '" 
+                + annotationType + "' of type '" + beanType + "' exists in IoC container!");
     }
 
     private static <T> T getInstanceFromProvider(Class<T> beanType, Class<? extends Annotation> annotationType) {
@@ -202,11 +202,12 @@ public class InstanceFactory {
     /**
      * 以下部分仅用于提供代码测试功能，产品代码不要用
      */
-    private static Map<Object, Object> instances = new HashMap<Object, Object>();
+    private static final Map<Object, Object> instances = new HashMap<Object, Object>();
 
     /**
      * 将服务绑定到具体实例
      *
+     * @param <T> Bean实例的类型
      * @param serviceInterface 注册类型
      * @param serviceImplementation 对象实例
      */
@@ -217,6 +218,7 @@ public class InstanceFactory {
     /**
      * 将服务绑定到具体实例并指定名字
      *
+     * @param <T> Bean实例的类型
      * @param serviceInterface 注册类型
      * @param serviceImplementation 对象实例
      * @param beanName 实例名称
@@ -233,8 +235,9 @@ public class InstanceFactory {
     }
 
     /**
-     * 将服务绑定到具体实例并指定Annotation
+     * 将服务绑定到具体实例并指定关联的Annotation
      *
+     * @param <T> Bean实例的类型
      * @param serviceInterface 注册类型
      * @param serviceImplementation 对象实例
      * @param annotationType 标注类型

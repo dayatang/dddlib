@@ -19,7 +19,7 @@ public class NotNullCriterion extends AbstractCriterion {
 
     @Override
 	public String toQueryString() {
-		return ROOT_ALIAS + getPropName() + " is not null";
+		return ROOT_ALIAS + "." + getPropName() + " is not null";
 	}
 
     @Override

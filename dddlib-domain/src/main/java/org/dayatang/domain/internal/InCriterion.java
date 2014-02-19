@@ -50,7 +50,7 @@ public class InCriterion extends AbstractCriterion {
 		if (value == null || value.isEmpty()) {
 			return "1 > 1";
 		} else {
-			return ROOT_ALIAS + getPropName() + " in (" + createInString(value) + ")";
+			return ROOT_ALIAS + "." + getPropName() + " in (" + createInString(value) + ")";
 		}
 	}
 

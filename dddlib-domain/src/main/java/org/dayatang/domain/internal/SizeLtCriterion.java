@@ -25,7 +25,7 @@ public class SizeLtCriterion extends AbstractCriterion {
 
 	@Override
 	public String toQueryString() {
-		return "size(" + ROOT_ALIAS + getPropName() + ") < ?";
+		return "size(" + ROOT_ALIAS + "." + getPropName() + ") < ?";
 	}
 
     @Override

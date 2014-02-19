@@ -2,8 +2,10 @@ package org.dayatang.domain.internal;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.dayatang.domain.MapParameters;
 import org.dayatang.utils.Assert;
 
+// TODO
 public class ContainsElementCriterion extends AbstractCriterion {
 
     private final String propName;
@@ -53,6 +55,11 @@ public class ContainsElementCriterion extends AbstractCriterion {
     @Override
     public String toString() {
         return getPropName() + " contains " + value;
+    }
+
+    @Override
+    public MapParameters getParameters() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

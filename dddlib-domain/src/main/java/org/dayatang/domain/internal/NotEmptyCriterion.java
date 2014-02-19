@@ -19,7 +19,7 @@ public class NotEmptyCriterion extends AbstractCriterion {
 
     @Override
 	public String toQueryString() {
-		return ROOT_ALIAS + getPropName() + " is not empty";
+		return ROOT_ALIAS + "." + getPropName() + " is not empty";
 	}
 
     @Override
