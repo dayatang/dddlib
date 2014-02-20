@@ -454,7 +454,7 @@ public class CriteriaQueryTest {
                 + "where rootEntity.name = :rootEntity_name "
                 + "and rootEntity.post is empty "
                 + "and rootEntity.birthday is not null "
-                + "and rootEntity.age in (:rootEntity_age)", 
+                + "and rootEntity.age in :rootEntity_age", 
                 instance.getQueryString());
         assertEquals(MapParameters.create()
                 .add("rootEntity_name", "abc")
@@ -468,7 +468,7 @@ public class CriteriaQueryTest {
                 + "where rootEntity.name = :rootEntity_name "
                 + "and rootEntity.post is empty "
                 + "and rootEntity.birthday is not null "
-                + "and rootEntity.age in (:rootEntity_age) "
+                + "and rootEntity.age in :rootEntity_age "
                 + "order by rootEntity.name asc", 
                 instance.eq("name", "abc")
                         .isEmpty("post")

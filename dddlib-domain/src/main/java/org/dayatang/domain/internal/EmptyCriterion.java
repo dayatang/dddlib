@@ -34,6 +34,11 @@ public class EmptyCriterion implements QueryCriterion {
     }
 
     @Override
+    public boolean isCollection() {
+        return false;
+    }
+
+    @Override
     public String toQueryString() {
         return "";
     }

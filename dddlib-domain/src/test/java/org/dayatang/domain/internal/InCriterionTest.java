@@ -42,9 +42,9 @@ public class InCriterionTest {
 
     @Test
     public void testToQueryString() {
-        assertEquals("rootEntity.name in (:rootEntity_name)", 
+        assertEquals("rootEntity.name in :rootEntity_name", 
                 instance.toQueryString());
-        assertEquals("rootEntity.name in (:rootEntity_name)", 
+        assertEquals("rootEntity.name in :rootEntity_name", 
                 new InCriterion("name", Arrays.asList(1, 2)).toQueryString());
     }
 

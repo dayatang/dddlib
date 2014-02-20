@@ -48,6 +48,11 @@ public abstract class AbstractCriterion implements QueryCriterion {
         return false;
     }
 
+    @Override
+    public boolean isCollection() {
+        return false;
+    }
+
     /**
      * 从数组中去除为Null的或EmptyCriterion的成员，返回剩余元素的列表
      * @param criterions

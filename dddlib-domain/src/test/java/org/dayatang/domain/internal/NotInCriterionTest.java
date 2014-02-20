@@ -42,9 +42,9 @@ public class NotInCriterionTest {
 
     @Test
     public void testToQueryString() {
-        assertEquals("rootEntity.name not in (:rootEntity_name)", 
+        assertEquals("rootEntity.name not in :rootEntity_name", 
                 instance.toQueryString());
-        assertEquals("rootEntity.name not in (:rootEntity_name)", 
+        assertEquals("rootEntity.name not in :rootEntity_name", 
                 new NotInCriterion("name", Arrays.asList(1, 2)).toQueryString());
     }
 

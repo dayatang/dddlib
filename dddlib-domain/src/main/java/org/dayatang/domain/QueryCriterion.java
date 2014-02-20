@@ -34,6 +34,12 @@ public interface QueryCriterion {
 	 * @return 如果是空条件就返回true，否则返回false
 	 */
 	boolean isEmpty();
+        
+        /**
+         * 是否集合参数
+         * @return 
+         */
+        boolean isCollection();
 	
 	/**
 	 * 转换成JPQL字符串
@@ -46,4 +52,6 @@ public interface QueryCriterion {
          * @return 
          */
         MapParameters getParameters();
+        
+        
 }
