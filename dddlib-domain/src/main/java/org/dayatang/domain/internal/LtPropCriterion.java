@@ -2,32 +2,46 @@ package org.dayatang.domain.internal;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.dayatang.domain.MapParameters;
+import static org.dayatang.domain.internal.AbstractCriterion.ROOT_ALIAS;
 import org.dayatang.utils.Assert;
 
-public class LtPropCriterion extends AbstractCriterion {
+/**
+ * 代表一个属性等于另一个属性的查询条件
+ * @author yyang
+ */
+public class LtPropCriterion extends BasicCriterion {
 
-    private final String propName;
     private final String otherPropName;
 
-    public LtPropCriterion(String propName1, String propName2) {
-        Assert.notBlank(propName1, "Property 1 is null or blank!");
-        Assert.notBlank(propName2, "Property 2 is null or blank!");
-        this.propName = propName1;
-        this.otherPropName = propName2;
+    /**
+     * 创建查询条件
+     * @param propName 属性名
+     * @param otherPropName 另一个属性名
+     */
+    public LtPropCriterion(String propName, String otherPropName) {
+        super(propName);
+        Assert.notBlank(otherPropName, "Other property name is null or blank!");
+        this.otherPropName = otherPropName;
     }
 
-    public String getPropName() {
-        return propName;
-    }
-
+    /**
+     * 获得另一个属性名
+     * @return 另一个属性名
+     */
     public String getOtherPropName() {
         return otherPropName;
     }
 
-	@Override
-	public String toQueryString() {
-		return ROOT_ALIAS + "." + getPropName() + " < " + ROOT_ALIAS + getOtherPropName();
-	}
+    @Override
+    public String toQueryString() {
+        return getPropNameWithAlias() + " < " + ROOT_ALIAS + "." + otherPropName;
+    }
+
+    @Override
+    public MapParameters getParameters() {
+        return MapParameters.create();
+    }
 
     @Override
     public boolean equals(final Object other) {
@@ -42,10 +56,11 @@ public class LtPropCriterion extends AbstractCriterion {
                 .append(this.getPropName(), that.getPropName())
                 .append(otherPropName, that.otherPropName).isEquals();
     }
-
+    
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(getPropName()).append(otherPropName).toHashCode();
+        return new HashCodeBuilder(17, 37).append(getPropName())
+                .append(otherPropName).toHashCode();
     }
 
     @Override

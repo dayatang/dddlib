@@ -1,74 +1,91 @@
 package org.dayatang.domain.internal;
 
+import java.util.ArrayList;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.dayatang.domain.Entity;
-import org.dayatang.utils.Assert;
+import org.dayatang.domain.MapParameters;
 
-public class NotInCriterion extends AbstractCriterion {
+/**
+ * 代表某个属性的值不包含在指定集合或数组中的查询条件
+ *
+ * @author yyang
+ */
+public class NotInCriterion extends BasicCriterion {
 
-    private final String propName;
+    private Collection<? extends Object> value = new ArrayList<Object>();
 
-    @SuppressWarnings("unchecked")
-    private Collection<? extends Object> value = Collections.EMPTY_SET;
-
+    /**
+     * 创建查询条件
+     * @param propName 属性名
+     * @param value 集合值
+     */
     public NotInCriterion(String propName, Collection<? extends Object> value) {
-        Assert.notBlank(propName, "Property name is null or blank!");
-        this.propName = propName;
+        super(propName);
         if (value != null) {
             this.value = value;
         }
     }
 
+    /**
+     * 创建查询条件
+     * @param propName 属性名
+     * @param value 数组值
+     */
     public NotInCriterion(String propName, Object[] value) {
-        Assert.notBlank(propName, "Property name is null or blank!");
-        this.propName = propName;
+        super(propName);
         if (value != null && value.length > 0) {
             this.value = Arrays.asList(value);
         }
     }
 
-    public String getPropName() {
-        return propName;
-    }
-
+    /**
+     * 获得集合值
+     * @return 
+     */
     public Collection<? extends Object> getValue() {
         return value;
     }
 
-	@Override
-	public String toQueryString() {
-		if (value == null || value.isEmpty()) {
-			return "";
-		}
-		return ROOT_ALIAS + "." + getPropName() + " not in (" + createInString(value) + ")";
-	}
+    @Override
+    public String toQueryString() {
+        if (value == null || value.isEmpty()) {
+            return "1 > 1";
+        } else {
+            //return getPropNameWithAlias() + "in (" + getPropNameWithAlias() + ")";
+            return getPropNameWithAlias() + " not in (" + createInString(value) + ")";
+        }
+    }
 
-	private String createInString(Collection<? extends Object> value) {
-		Set<Object> elements = new HashSet<Object>();
-		for (Object item : value) {
-			Object element;
-			if (item instanceof Entity) {
-				element = ((Entity)item).getId();
-			} else {
-				element = item;
-			}
-			if (element instanceof String || element instanceof Date) {
-				element = "'" + element + "'";
-			}
-			elements.add(element);
-		}
-		return StringUtils.join(elements, ",");
-	}
+    @Override
+    public MapParameters getParameters() {
+        return MapParameters.create();
+    }
+
+    private String createInString(Collection<? extends Object> value) {
+        Set<Object> elements = new HashSet<Object>();
+        for (Object item : value) {
+            Object element;
+            if (item instanceof Entity) {
+                element = ((Entity) item).getId();
+            } else {
+                element = item;
+            }
+            if (element instanceof String || element instanceof Date) {
+                element = "'" + element + "'";
+            }
+            elements.add(element);
+        }
+        return StringUtils.join(elements, ", ");
+    }
 
     @Override
     public boolean equals(final Object other) {
@@ -95,7 +112,7 @@ public class NotInCriterion extends AbstractCriterion {
     }
 
     private String collectionToString(Collection<? extends Object> value) {
-        return StringUtils.join(value, ",");
+        return StringUtils.join(value, ", ");
     }
 
 }

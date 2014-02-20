@@ -6,7 +6,7 @@ import org.dayatang.domain.MapParameters;
 import org.dayatang.utils.Assert;
 
 /**
- * 代表属性为指定值的查询条件
+ * 代表属性等于指定值的查询条件
  * @author yyang
  */
 public class EqCriterion extends BasicCriterion {

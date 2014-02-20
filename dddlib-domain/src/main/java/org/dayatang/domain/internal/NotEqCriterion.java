@@ -2,32 +2,40 @@ package org.dayatang.domain.internal;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.dayatang.domain.MapParameters;
 import org.dayatang.utils.Assert;
 
-public class NotEqCriterion extends AbstractCriterion {
-
-    private final String propName;
+/**
+ * 代表属性不等于指定值的查询条件
+ * @author yyang
+ */
+public class NotEqCriterion extends BasicCriterion {
 
     private final Object value;
 
     public NotEqCriterion(String propName, Object value) {
-        Assert.notBlank(propName, "Property name is null or blank!");
-        this.propName = propName;
+        super(propName);
+        Assert.notNull(value, "Value is null!");
         this.value = value;
     }
 
-    public String getPropName() {
-        return propName;
-    }
-
+    /**
+     * 获取匹配值
+     * @return 匹配值
+     */
     public Object getValue() {
         return value;
     }
 
-	@Override
-	public String toQueryString() {
-		return ROOT_ALIAS + "." + getPropName() + " != ?";
-	}
+    @Override
+    public String toQueryString() {
+        return getPropNameWithAlias() + " != " + getParamNameWithColon();
+    }
+
+    @Override
+    public MapParameters getParameters() {
+        return MapParameters.create().add(getParamName(), value);
+    }
 
     @Override
     public boolean equals(final Object other) {
