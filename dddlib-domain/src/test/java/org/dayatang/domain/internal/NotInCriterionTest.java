@@ -42,15 +42,15 @@ public class NotInCriterionTest {
 
     @Test
     public void testToQueryString() {
-        assertEquals("rootEntity.name not in ('a', 'b')", 
+        assertEquals("rootEntity.name not in (:rootEntity_name)", 
                 instance.toQueryString());
-        assertEquals("rootEntity.name not in (1, 2)", 
+        assertEquals("rootEntity.name not in (:rootEntity_name)", 
                 new NotInCriterion("name", Arrays.asList(1, 2)).toQueryString());
     }
 
     @Test
     public void testGetParameters() {
-        assertEquals(MapParameters.create(), instance.getParameters());
+        assertEquals(MapParameters.create().add("rootEntity_name", Arrays.asList("a", "b")), instance.getParameters());
     }
 
     @Test

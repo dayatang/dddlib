@@ -11,8 +11,6 @@ import org.dayatang.domain.QueryCriterion;
  */
 public abstract class AbstractCriterion implements QueryCriterion {
 
-    public static final String ROOT_ALIAS = "rootEntity";
-
     /**
      * 执行AND操作，返回代表两个QueryCriterion的“与”操作结果的一个新的QueryCriterion
      *

@@ -3,10 +3,9 @@ package org.dayatang.domain.internal;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.domain.MapParameters;
-import org.dayatang.utils.Assert;
 
 /**
- * 判断某个集合属性的记录数小于指定值的查询条件
+ * 判断某个集合属性的记录数小于或等于指定值的查询条件
  * @author yyang
  */
 public class SizeLeCriterion extends BasicCriterion {
@@ -33,7 +32,7 @@ public class SizeLeCriterion extends BasicCriterion {
 
     @Override
     public String toQueryString() {
-        return "size(" + getPropNameWithAlias() + ") < " + getParamNameWithColon();
+        return "size(" + getPropNameWithAlias() + ") <= " + getParamNameWithColon();
     }
 
     @Override

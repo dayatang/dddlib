@@ -60,7 +60,7 @@ public class InCriterion extends BasicCriterion {
         if (value == null || value.isEmpty()) {
             return "1 > 1";
         } else {
-            return getPropNameWithAlias() + "in (" + getPropNameWithAlias() + ")";
+            return getPropNameWithAlias() + " in (" + getParamNameWithColon()+ ")";
             //return getPropNameWithAlias() + " in (" + createInString(value) + ")";
         }
     }

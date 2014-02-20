@@ -60,8 +60,8 @@ public class NotInCriterion extends BasicCriterion {
         if (value == null || value.isEmpty()) {
             return "1 > 1";
         } else {
-            return getPropNameWithAlias() + " not in (" + getPropNameWithAlias() + ")";
-            //return getPropNameWithAlias() + " not in (" + createInString(value) + ")";
+            return getPropNameWithAlias() + " not in (" + getParamNameWithColon()+ ")";
+            //return getPropNameWithAlias() + " in (" + createInString(value) + ")";
         }
     }
 

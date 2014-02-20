@@ -62,7 +62,7 @@ public class AndCriterionTest {
 
     @Test
     public void testToQueryString() {
-        assertEquals("(a = 1) and (b = 2)", instance.toQueryString());
+        assertEquals("a = 1 and b = 2", instance.toQueryString());
     }
 
     @Test

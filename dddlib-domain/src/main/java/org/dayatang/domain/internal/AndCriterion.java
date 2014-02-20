@@ -41,7 +41,7 @@ public class AndCriterion extends AbstractCriterion {
     public String toQueryString() {
         List<String> subCriterionsStr = new ArrayList<String>();
         for (QueryCriterion each : getCriterons()) {
-            subCriterionsStr.add("(" + each.toQueryString() + ")");
+            subCriterionsStr.add(each.toQueryString());
         }
         return StringUtils.join(subCriterionsStr, " and ");
     }

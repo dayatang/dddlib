@@ -25,6 +25,7 @@ import java.util.List;
 
 import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.domain.EntityRepository;
+import org.dayatang.domain.MapParameters;
 import org.dayatang.domain.OrderSettings;
 import org.dayatang.domain.QueryCriterion;
 import org.dayatang.domain.entity.MyEntity;
@@ -442,4 +443,38 @@ public class CriteriaQueryTest {
         assertEquals("abc", instance.singleResult());
     }
     
+    @Test
+    public void testGetQueryString() {
+               instance.eq("name", "abc")
+                        .isEmpty("post")
+                        .notNull("birthday")
+                        .in("age", Arrays.asList(1, 2))
+                        .getQueryString();        
+        assertEquals("select distinct(rootEntity) from org.dayatang.domain.entity.MyEntity as rootEntity  "
+                + "where rootEntity.name = :rootEntity_name "
+                + "and rootEntity.post is empty "
+                + "and rootEntity.birthday is not null "
+                + "and rootEntity.age in (:rootEntity_age)", 
+                instance.getQueryString());
+        assertEquals(MapParameters.create()
+                .add("rootEntity_name", "abc")
+                .add("rootEntity_age", Arrays.asList(1, 2)),
+                instance.getParameters());
+    }
+    
+    @Test
+    public void testGetQueryString2() {
+        assertEquals("select distinct(rootEntity) from org.dayatang.domain.entity.MyEntity as rootEntity  "
+                + "where rootEntity.name = :rootEntity_name "
+                + "and rootEntity.post is empty "
+                + "and rootEntity.birthday is not null "
+                + "and rootEntity.age in (:rootEntity_age) "
+                + "order by rootEntity.name asc", 
+                instance.eq("name", "abc")
+                        .isEmpty("post")
+                        .notNull("birthday")
+                        .in("age", Arrays.asList(1, 2))
+                        .asc("name")
+                        .getQueryString());
+    }
 }
