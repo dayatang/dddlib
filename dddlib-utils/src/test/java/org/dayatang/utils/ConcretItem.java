@@ -15,6 +15,8 @@
  */
 package org.dayatang.utils;
 
+import java.beans.Transient;
+
 /**
  *
  * @author yyang
@@ -31,6 +33,7 @@ public class ConcretItem extends Item {
         super(id, name, disabled);
     }
 
+    @Transient
     public double getPrice() {
         return price;
     }

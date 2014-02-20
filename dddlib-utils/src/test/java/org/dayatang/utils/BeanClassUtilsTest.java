@@ -16,6 +16,7 @@
 
 package org.dayatang.utils;
 
+import java.beans.Transient;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
@@ -56,6 +57,25 @@ public class BeanClassUtilsTest {
         Set<String> results = instance.getReadablePropNames();
         assertTrue(results.containsAll(
                 Arrays.asList("id", "price", "name")));
+        assertFalse(results.contains("disabled"));
+    }
+
+    @Test
+    public void testGetReadablePropNamesexcludeName() {
+        Set<String> results = instance.getReadablePropNamesExclude("id", "price");
+        assertTrue(results.containsAll(
+                Arrays.asList("name")));
+        assertFalse(results.contains("id"));
+        assertFalse(results.contains("price"));
+        assertFalse(results.contains("disabled"));
+    }
+
+    @Test
+    public void testGetReadablePropNamesexcludeAnnotation() {
+        Set<String> results = instance.getReadablePropNamesExclude(Transient.class);
+        assertTrue(results.containsAll(
+                Arrays.asList("name", "id")));
+        assertFalse(results.contains("price"));
         assertFalse(results.contains("disabled"));
     }
 }

@@ -1,5 +1,6 @@
 package org.dayatang.utils;
 
+import java.beans.Transient;
 import org.junit.Test;
 
 import java.util.*;
@@ -28,11 +29,11 @@ public class BeanUtilsTest {
 
     @Test
     public void testGetPropValues() {
-        Map<String, Object> types = instance.getPropValues();
-        assertEquals(1, types.get("id"));
-        assertEquals("abc", types.get("name"));
-        assertNull(types.get("disabled"));
-        assertEquals(12.5, (Double) types.get("price"), 0.001);
+        Map<String, Object> values = instance.getPropValues();
+        assertEquals(1, values.get("id"));
+        assertEquals("abc", values.get("name"));
+        assertNull(values.get("disabled"));
+        assertEquals(12.5, (Double) values.get("price"), 0.001);
     }
 
     @Test
@@ -47,6 +48,29 @@ public class BeanUtilsTest {
         assertTrue(results.containsAll(
                 Arrays.asList("id", "price", "name")));
         assertFalse(results.contains("disabled"));
+    }
+
+    @Test
+    public void testGetPropValuesExcludeName() {
+        Map<String, Object> values = instance.getPropValuesExclude("id");
+        assertFalse(values.containsKey("id"));
+        assertEquals("abc", values.get("name"));
+        assertNull(values.get("disabled"));
+        assertEquals(12.5, (Double) values.get("price"), 0.001);
+    }
+
+    @Test
+    public void testGetPropValuesExcludeAnnotation() {
+        Map<String, Object> values = instance.getPropValuesExclude(Transient.class);
+        assertEquals(1, values.get("id"));
+        assertEquals("abc", values.get("name"));
+        assertNull(values.get("disabled"));
+        assertFalse(values.containsKey("price"));
+    }
+    
+    @Test
+    public void testGetPropValue() {
+        assertEquals("abc", instance.getPropValue("name"));
     }
 
 }
