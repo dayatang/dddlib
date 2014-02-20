@@ -2,25 +2,27 @@ package org.dayatang.domain.internal;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.dayatang.utils.Assert;
+import org.dayatang.domain.MapParameters;
 
-public class NotNullCriterion extends AbstractCriterion {
-
-    private final String propName;
+/**
+ * 判断某个属性值是否为不null的查询条件
+ * @author yyang
+ */
+public class NotNullCriterion extends BasicCriterion {
 
     public NotNullCriterion(String propName) {
-        Assert.notBlank(propName, "Property name is null or blank!");
-        this.propName = propName;
-    }
-
-    public String getPropName() {
-        return propName;
+        super(propName);
     }
 
     @Override
-	public String toQueryString() {
-		return ROOT_ALIAS + "." + getPropName() + " is not null";
-	}
+    public String toQueryString() {
+        return getPropNameWithAlias() + " is not null";
+    }
+
+    @Override
+    public MapParameters getParameters() {
+        return MapParameters.create();
+    }
 
     @Override
     public boolean equals(final Object other) {
@@ -43,7 +45,7 @@ public class NotNullCriterion extends AbstractCriterion {
 
     @Override
     public String toString() {
-        return getPropName() + " is not null ";
+        return getPropName() + " is not null";
     }
 
 }

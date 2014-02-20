@@ -2,25 +2,28 @@ package org.dayatang.domain.internal;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.dayatang.domain.MapParameters;
 import org.dayatang.utils.Assert;
 
-public class NotEmptyCriterion extends AbstractCriterion {
-
-    private final String propName;
+/**
+ * 判断某个集合属性值是否不为空集合的查询条件
+ * @author yyang
+ */
+public class NotEmptyCriterion extends BasicCriterion {
 
     public NotEmptyCriterion(String propName) {
-        Assert.notBlank(propName, "Property name is null or blank!");
-        this.propName = propName;
-    }
-
-    public String getPropName() {
-        return propName;
+        super(propName);
     }
 
     @Override
-	public String toQueryString() {
-		return ROOT_ALIAS + "." + getPropName() + " is not empty";
-	}
+    public String toQueryString() {
+        return getPropNameWithAlias() + " is not empty";
+    }
+
+    @Override
+    public MapParameters getParameters() {
+        return MapParameters.create();
+    }
 
     @Override
     public boolean equals(final Object other) {
