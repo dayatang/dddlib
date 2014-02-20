@@ -1,9 +1,7 @@
 package org.dayatang.domain.internal;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import org.apache.commons.lang3.StringUtils;
 import org.dayatang.domain.QueryCriterion;
 
 /**

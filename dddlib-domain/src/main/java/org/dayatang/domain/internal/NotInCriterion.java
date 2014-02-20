@@ -60,14 +60,14 @@ public class NotInCriterion extends BasicCriterion {
         if (value == null || value.isEmpty()) {
             return "1 > 1";
         } else {
-            //return getPropNameWithAlias() + "in (" + getPropNameWithAlias() + ")";
-            return getPropNameWithAlias() + " not in (" + createInString(value) + ")";
+            return getPropNameWithAlias() + " not in (" + getPropNameWithAlias() + ")";
+            //return getPropNameWithAlias() + " not in (" + createInString(value) + ")";
         }
     }
 
     @Override
     public MapParameters getParameters() {
-        return MapParameters.create();
+        return MapParameters.create().add(getParamName(), value);
     }
 
     private String createInString(Collection<? extends Object> value) {
