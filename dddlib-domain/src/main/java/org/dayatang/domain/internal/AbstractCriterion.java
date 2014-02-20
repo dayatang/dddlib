@@ -1,7 +1,10 @@
 package org.dayatang.domain.internal;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import org.dayatang.domain.MapParameters;
 import org.dayatang.domain.QueryCriterion;
 
 /**
@@ -10,6 +13,10 @@ import org.dayatang.domain.QueryCriterion;
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  */
 public abstract class AbstractCriterion implements QueryCriterion {
+    
+    protected final Map<String, Object> params = new HashMap<String, Object>();
+    
+    protected String queryString;
 
     /**
      * 执行AND操作，返回代表两个QueryCriterion的“与”操作结果的一个新的QueryCriterion
@@ -69,6 +76,25 @@ public abstract class AbstractCriterion implements QueryCriterion {
         return results;
     }
     
+    protected void addParameter(String name, Object value) {
+        params.put(name, value);
+    }
+
+    protected void addParameters(MapParameters parameters) {
+        params.putAll(parameters.getParams());
+    }
+
+    @Override
+    public MapParameters getParameters() {
+        return MapParameters.create(params);
+    }
+
+    @Override
+    public String toQueryString() {
+        return queryString;
+    }
+    
+    
     /**
      * 判断等价性
      * @param other 要用来判等的另一个对象
@@ -83,5 +109,4 @@ public abstract class AbstractCriterion implements QueryCriterion {
      */
     @Override
     public abstract int hashCode();
-
 }

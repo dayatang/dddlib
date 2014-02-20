@@ -50,6 +50,14 @@ public class Page<T> implements Serializable {
     }
 
     /**
+     * 获得第一条记录的截取位置
+     * @return 第一条记录的截取位置
+     */
+    public long getStart() {
+        return start;
+    }
+
+    /**
      * 默认构造方法.
      *
      * @param start 本页数据在数据库中的起始位置

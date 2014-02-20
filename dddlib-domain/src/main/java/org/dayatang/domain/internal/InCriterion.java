@@ -72,7 +72,11 @@ public class InCriterion extends BasicCriterion {
 
     @Override
     public MapParameters getParameters() {
-        return MapParameters.create().add(getParamName(), value);
+        MapParameters result = MapParameters.create();
+        if (!value.isEmpty()) {
+            result = result.add(getParamName(), value);
+        }
+        return result;
     }
 
     private String createInString(Collection<? extends Object> value) {

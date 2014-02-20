@@ -1,8 +1,12 @@
 package org.dayatang.domain.internal;
 
+import java.util.ArrayList;
+import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.QueryCriterion;
 import org.dayatang.utils.Assert;
 
 /**
@@ -17,6 +21,12 @@ public class EqCriterion extends BasicCriterion {
         super(propName);
         Assert.notNull(value, "Value is null!");
         this.value = value;
+        init();
+    }
+
+    private void init() {
+        queryString = getPropNameWithAlias() + " = " + getParamNameWithColon();
+        addParameter(getParamName(), value);
     }
 
     /**
@@ -25,16 +35,6 @@ public class EqCriterion extends BasicCriterion {
      */
     public Object getValue() {
         return value;
-    }
-
-    @Override
-    public String toQueryString() {
-        return getPropNameWithAlias() + " = " + getParamNameWithColon();
-    }
-
-    @Override
-    public MapParameters getParameters() {
-        return MapParameters.create().add(getParamName(), value);
     }
 
     @Override

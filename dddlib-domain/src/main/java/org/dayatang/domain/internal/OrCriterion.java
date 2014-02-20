@@ -28,6 +28,16 @@ public class OrCriterion extends AbstractCriterion {
         Assert.notNull(criterions, "Criterions to \"OR\" is null!");
         this.criterions = removeNullOrEmptyCriterion(criterions);
         Assert.isTrue(criterions.length > 1, "At least two query criterions required!");
+        init();
+    }
+
+    private void init() {
+        List<String> subCriterionsStr = new ArrayList<String>();
+        for (QueryCriterion each : getCriterons()) {
+            subCriterionsStr.add(each.toQueryString());
+            addParameters(each.getParameters());
+        }
+        queryString = "(" + StringUtils.join(subCriterionsStr, " or ") + ")";
     }
 
     /**
@@ -36,24 +46,6 @@ public class OrCriterion extends AbstractCriterion {
      */
     public List<QueryCriterion> getCriterons() {
         return criterions;
-    }
-
-    @Override
-    public String toQueryString() {
-        List<String> subCriterionsStr = new ArrayList<String>();
-        for (QueryCriterion each : getCriterons()) {
-            subCriterionsStr.add("(" + each.toQueryString() + ")");
-        }
-        return "(" + StringUtils.join(subCriterionsStr, " or ") + ")";
-    }
-
-    @Override
-    public MapParameters getParameters() {
-        MapParameters result = MapParameters.create();
-        for (QueryCriterion each : getCriterons()) {
-            result.add(each.getParameters());
-        }
-        return result;
     }
 
     /**

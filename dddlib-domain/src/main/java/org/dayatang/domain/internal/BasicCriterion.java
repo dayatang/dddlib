@@ -42,23 +42,32 @@ public abstract class BasicCriterion extends AbstractCriterion {
 
     /**
      * 获取带别名前缀的属性名
+     *
      * @return 带别名前缀的属性名
      */
     protected String getPropNameWithAlias() {
         return ROOT_ALIAS + "." + propName;
     }
-    
+
     /**
      * 获得参数名
+     *
      * @return 参数名
      */
     protected String getParamName() {
         String result = ROOT_ALIAS + "_" + propName;
-        return result.replace(".", "_");
+        result = result.replace(".", "_");
+        synchronized (params) {
+            if (params.containsKey(result)) {
+                result += "1";
+            }
+        }
+        return result;
     }
 
     /**
      * 获得带冒号前缀的参数名
+     *
      * @return 带冒号前缀的参数名
      */
     protected String getParamNameWithColon() {
