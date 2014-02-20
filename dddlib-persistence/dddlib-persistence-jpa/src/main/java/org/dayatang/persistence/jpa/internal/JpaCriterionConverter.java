@@ -8,6 +8,7 @@ import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * 一个工具类,用于将QueryCriterion转换成Hibernate的Criterion
@@ -187,19 +188,19 @@ public class JpaCriterionConverter {
 		}
 		if (criterion instanceof AndCriterion) {
 			AndCriterion andCriterion = (AndCriterion) criterion;
-			QueryCriterion[] criterions = andCriterion.getCriterons();
-			Predicate predicate = convert(criterions[0]);
-			for (int i = 1; i < criterions.length; i++) {
-				predicate = builder.and(predicate, convert(criterions[i]));
+			List<QueryCriterion> criterions = andCriterion.getCriterons();
+			Predicate predicate = convert(criterions.get(0));
+            for (QueryCriterion each : criterions) {
+				predicate = builder.and(predicate, convert(each));
 			}
 			return predicate;
 		}
 		if (criterion instanceof OrCriterion) {
 			OrCriterion orCriterion = (OrCriterion) criterion;
-			QueryCriterion[] criterions = orCriterion.getCriterons();
-			Predicate predicate = convert(criterions[0]);
-			for (int i = 1; i < criterions.length; i++) {
-				predicate = builder.or(predicate, convert(criterions[i]));
+			List<QueryCriterion> criterions = orCriterion.getCriterons();
+			Predicate predicate = convert(criterions.get(0));
+            for (QueryCriterion each : criterions) {
+                predicate = builder.or(predicate, convert(each));
 			}
 			return predicate;
 		}

@@ -39,22 +39,22 @@ public class OrCriterion extends AbstractCriterion {
     }
 
     @Override
-    public String toQueryString() {
+	public String toQueryString() {
         List<String> subCriterionsStr = new ArrayList<String>();
         for (QueryCriterion each : getCriterons()) {
-            subCriterionsStr.add("(" + each.toQueryString() + ")");
+            subCriterionsStr.add(each.toQueryString());
         }
-        return "(" + StringUtils.join(subCriterionsStr, " or ") + ")";
-    }
+		return "(" + StringUtils.join(subCriterionsStr, " or ") + ")";
+	}
 
-    @Override
-    public MapParameters getParameters() {
-        MapParameters result = MapParameters.create();
+	@Override
+	public MapParameters getParameters() {
+		MapParameters result = MapParameters.create();
         for (QueryCriterion each : getCriterons()) {
-            result.add(each.getParameters());
+        	result.add(each.getParameters());
         }
-        return result;
-    }
+		return result;
+	}
 
     /**
      * 判断等价性

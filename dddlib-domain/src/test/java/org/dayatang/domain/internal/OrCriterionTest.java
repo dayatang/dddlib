@@ -61,7 +61,7 @@ public class OrCriterionTest {
 
     @Test
     public void testToQueryString() {
-        assertEquals("((a = 1) or (b = 2))", instance.toQueryString());
+        assertEquals("(a = 1 or b = 2)", instance.toQueryString());
     }
 
     @Test

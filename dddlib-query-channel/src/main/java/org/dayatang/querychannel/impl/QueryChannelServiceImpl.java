@@ -33,7 +33,6 @@ import org.springframework.util.Assert;
  */
 public class QueryChannelServiceImpl implements QueryChannelService {
     
-    @Inject
     private EntityRepository repository;
 
     public QueryChannelServiceImpl(EntityRepository repository) {

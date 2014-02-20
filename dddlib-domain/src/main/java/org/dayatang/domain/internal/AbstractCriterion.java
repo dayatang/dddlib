@@ -2,6 +2,7 @@ package org.dayatang.domain.internal;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.dayatang.domain.QueryCriterion;
 
 /**
@@ -68,6 +69,7 @@ public abstract class AbstractCriterion implements QueryCriterion {
         }
         return results;
     }
+
     
     /**
      * 判断等价性
@@ -83,5 +85,4 @@ public abstract class AbstractCriterion implements QueryCriterion {
      */
     @Override
     public abstract int hashCode();
-
 }

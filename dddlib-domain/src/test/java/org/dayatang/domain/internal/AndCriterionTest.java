@@ -18,7 +18,6 @@ package org.dayatang.domain.internal;
 
 import org.dayatang.domain.MapParameters;
 import org.dayatang.domain.QueryCriterion;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

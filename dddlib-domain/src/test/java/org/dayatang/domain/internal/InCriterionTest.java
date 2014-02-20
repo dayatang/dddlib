@@ -42,15 +42,18 @@ public class InCriterionTest {
 
     @Test
     public void testToQueryString() {
-        assertEquals("rootEntity.name in :rootEntity_name", 
+        assertEquals("rootEntity.name in :rootEntity_name" + instance.hashCode(), 
                 instance.toQueryString());
-        assertEquals("rootEntity.name in :rootEntity_name", 
-                new InCriterion("name", Arrays.asList(1, 2)).toQueryString());
+        InCriterion other =  new InCriterion("name", Arrays.asList(1, 2));
+        assertEquals("rootEntity.name in :rootEntity_name" + other.hashCode(), 
+               other.toQueryString());
     }
 
     @Test
     public void testGetParameters() {
-        assertEquals(MapParameters.create().add("rootEntity_name", Arrays.asList("a", "b")), instance.getParameters());
+        assertEquals(MapParameters.create()
+        		.add("rootEntity_name" + instance.hashCode(), Arrays.asList("a", "b")), 
+        		instance.getParameters());
     }
 
     @Test

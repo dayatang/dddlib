@@ -52,13 +52,14 @@ public class BetweenCriterionTest {
 
     @Test
     public void testToQueryString() {
-        assertEquals("rootEntity.age between :rootEntity_age_from and :rootEntity_age_to", instance.toQueryString());
+        assertEquals("rootEntity.age between :rootEntity_age" + instance.hashCode() + 
+        		"_from and :rootEntity_age" + instance.hashCode() + "_to", instance.toQueryString());
     }
 
     @Test
     public void testGetParameters() {
-        assertEquals(MapParameters.create().add("rootEntity_age_from", 18)
-                .add("rootEntity_age_to", 22), instance.getParameters());
+        assertEquals(MapParameters.create().add("rootEntity_age" + instance.hashCode() + "_from", 18)
+                .add("rootEntity_age" + instance.hashCode() + "_to", 22), instance.getParameters());
     }
 
     @Test

@@ -11,9 +11,9 @@ import org.dayatang.utils.Assert;
  */
 public class GeCriterion extends BasicCriterion {
 
-    private final Object value;
+    private final Comparable value;
 
-    public GeCriterion(String propName, Object value) {
+    public GeCriterion(String propName, Comparable value) {
         super(propName);
         Assert.notNull(value, "Value is null!");
         this.value = value;
@@ -23,7 +23,7 @@ public class GeCriterion extends BasicCriterion {
      * 获取匹配值
      * @return 匹配值
      */
-    public Object getValue() {
+    public Comparable getValue() {
         return value;
     }
 

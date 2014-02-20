@@ -41,13 +41,13 @@ public class GtCriterionTest {
 
     @Test
     public void testToQueryString() {
-        assertEquals("rootEntity.name > :rootEntity_name", 
+        assertEquals("rootEntity.name > :rootEntity_name" + instance.hashCode(), 
                 instance.toQueryString());
     }
 
     @Test
     public void testGetParameters() {
-        assertEquals(MapParameters.create().add("rootEntity_name", "abc"), 
+        assertEquals(MapParameters.create().add("rootEntity_name" + instance.hashCode(), "abc"), 
                 instance.getParameters());
     }
 

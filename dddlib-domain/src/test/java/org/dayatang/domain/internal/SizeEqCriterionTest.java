@@ -41,13 +41,13 @@ public class SizeEqCriterionTest {
 
     @Test
     public void testToQueryString() {
-        assertEquals("size(rootEntity.name) = :rootEntity_name", 
+        assertEquals("size(rootEntity.name) = :rootEntity_name" + instance.hashCode(), 
                 instance.toQueryString());
     }
 
     @Test
     public void testGetParameters() {
-        assertEquals(MapParameters.create().add("rootEntity_name", 3), 
+        assertEquals(MapParameters.create().add("rootEntity_name" + instance.hashCode(), 3), 
                 instance.getParameters());
     }
 

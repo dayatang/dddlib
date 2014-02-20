@@ -1,5 +1,6 @@
 package org.dayatang.domain.internal;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.domain.MapParameters;
 import org.dayatang.domain.QueryCriterion;
 
@@ -8,7 +9,7 @@ import org.dayatang.domain.QueryCriterion;
  *
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  */
-public class EmptyCriterion implements QueryCriterion {
+public class EmptyCriterion extends AbstractCriterion {
 
     EmptyCriterion() {
     }
@@ -46,6 +47,22 @@ public class EmptyCriterion implements QueryCriterion {
     @Override
     public MapParameters getParameters() {
         return MapParameters.create();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof EmptyCriterion)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 31).toHashCode();
     }
 
 }

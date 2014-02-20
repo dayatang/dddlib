@@ -445,30 +445,36 @@ public class CriteriaQueryTest {
     
     @Test
     public void testGetQueryString() {
-               instance.eq("name", "abc")
+    	EqCriterion criterion1 = new EqCriterion("name", "abc");
+    	InCriterion criterion2 = new InCriterion("age", Arrays.asList(1, 2));
+        instance.eq("name", "abc")
                         .isEmpty("post")
                         .notNull("birthday")
                         .in("age", Arrays.asList(1, 2))
                         .getQueryString();        
         assertEquals("select distinct(rootEntity) from org.dayatang.domain.entity.MyEntity as rootEntity  "
-                + "where rootEntity.name = :rootEntity_name "
+                + "where rootEntity.name = :rootEntity_name" + criterion1.hashCode() + " "
                 + "and rootEntity.post is empty "
                 + "and rootEntity.birthday is not null "
-                + "and rootEntity.age in :rootEntity_age", 
+                + "and rootEntity.age in :rootEntity_age" + criterion2.hashCode(),
                 instance.getQueryString());
         assertEquals(MapParameters.create()
-                .add("rootEntity_name", "abc")
-                .add("rootEntity_age", Arrays.asList(1, 2)),
+                .add("rootEntity_name" + criterion1.hashCode(), "abc")
+                .add("rootEntity_age" + criterion2.hashCode(), Arrays.asList(1, 2)),
                 instance.getParameters());
     }
     
     @Test
     public void testGetQueryString2() {
+    	EqCriterion criterion1 = new EqCriterion("name", "abc");
+    	InCriterion criterion2 = new InCriterion("age", Arrays.asList(1, 2));
+    	
+    	
         assertEquals("select distinct(rootEntity) from org.dayatang.domain.entity.MyEntity as rootEntity  "
-                + "where rootEntity.name = :rootEntity_name "
+                + "where rootEntity.name = :rootEntity_name" + criterion1.hashCode() + " "
                 + "and rootEntity.post is empty "
                 + "and rootEntity.birthday is not null "
-                + "and rootEntity.age in :rootEntity_age "
+                + "and rootEntity.age in :rootEntity_age" + criterion2.hashCode() + " "
                 + "order by rootEntity.name asc", 
                 instance.eq("name", "abc")
                         .isEmpty("post")
