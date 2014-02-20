@@ -83,6 +83,7 @@ public abstract class BaseEntity implements Entity {
     public int hashCode() {
         HashCodeBuilder builder = new HashCodeBuilder(13, 37);
         Map<String, Object> propValues = new BeanUtils(this).getPropValues();
+        
         for (String businessKey : businessKeys()) {
             builder = builder.append(propValues.get(businessKey));
         }
@@ -108,8 +109,8 @@ public abstract class BaseEntity implements Entity {
         if (!(this.getClass().isAssignableFrom(other.getClass()))) {
             return false;
         }
-        Map<String, Object> thisPropValues = new BeanUtils(this).getPropValues();
-        Map<String, Object> otherPropValues = new BeanUtils(other).getPropValues();
+        Map<String, Object> thisPropValues = new BeanUtils(this).getPropValuesExclude(Transient.class);
+        Map<String, Object> otherPropValues = new BeanUtils(other).getPropValuesExclude(Transient.class);
         EqualsBuilder builder = new EqualsBuilder();
         for (String businessKey : businessKeys()) {
             builder.append(thisPropValues.get(businessKey), otherPropValues.get(businessKey));
