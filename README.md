@@ -23,9 +23,17 @@ DDDLib是一个多模块Maven项目，一共有十多个模块，可以粗略划
 * dddlib-ioc-tapestry：实现TapestryIoC容器的封装，为用户项目提供依赖注入能力。在用户项目中作为可选的运行时依赖存在，用户项目在编码时不需要实现、继承或使用dddlib-ioc-tapestry中的接口和类。
 
 ### 持久化模块
+
+dddlib-persistence是持久化模块。它包含下面三个子模块：
+
 * dddlib-persistence-jpa：使用JPA作为后端的持久化实现技术，为用户项目提供持久化能力。在用户项目中作为可选的运行时依赖存在，用户项目在编码时不需要实现、继承或使用dddlib-persistence-jpa中的接口和类。
 
 * dddlib-persistence-hibernate：使用Hibernate作为后端持久化技术，为用户项目提供持久化能力。在用户项目中作为可选的运行时依赖存在，用户项目在编码时不需要实现、继承或使用dddlib-persistence-hibernate中的接口和类。
+
+* dddlib-persistence-test：一个测试模块，为其余的持久化模块提供测试支持。
+
+下面的模块与持久化有关，但作为顶级的模块存在：
+
 
 * dddlib-query-channel：查询通道模块，为分页查询提供扩展的功能。如果用户项目需要使用此功能，必须把该模块添加为编译时依赖。
 
