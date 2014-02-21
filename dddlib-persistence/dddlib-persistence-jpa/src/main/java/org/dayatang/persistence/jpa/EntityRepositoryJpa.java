@@ -155,9 +155,17 @@ public class EntityRepositoryJpa implements EntityRepository {
 
     @Override
     public <T> List<T> find(CriteriaQuery dddQuery) {
+        Query query = getEntityManager().createQuery(dddQuery.getQueryString());
+        Map<String, Object> params = dddQuery.getParameters().getParams();
+        for (Map.Entry<String, Object> entry : params.entrySet()) {
+            query.setParameter(entry.getKey(), entry.getValue());
+        }
+        
+        /*
         javax.persistence.criteria.CriteriaQuery criteriaQuery = JpaCriteriaQueryBuilder.getInstance()
                 .createCriteriaQuery(dddQuery, getEntityManager());
         Query query = getEntityManager().createQuery(criteriaQuery);
+        */
         query.setFirstResult(dddQuery.getFirstResult());
         if (dddQuery.getMaxResults() > 0) {
             query.setMaxResults(dddQuery.getMaxResults());
@@ -166,7 +174,7 @@ public class EntityRepositoryJpa implements EntityRepository {
     }
 
     @Override
-    public <T> T getSingleResult(org.dayatang.domain.CriteriaQuery dddQuery) {
+    public <T> T getSingleResult(CriteriaQuery dddQuery) {
         List<T> results = find(dddQuery);
         return results.isEmpty() ? null : results.get(0);
     }
