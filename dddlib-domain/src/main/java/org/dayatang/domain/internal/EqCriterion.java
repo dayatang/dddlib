@@ -19,6 +19,7 @@ public class EqCriterion extends BasicCriterion {
         this.value = value;
     }
 
+
     @Override
     public String toQueryString() {
         return getPropNameWithAlias() + " = " + getParamNameWithColon();
@@ -28,7 +29,7 @@ public class EqCriterion extends BasicCriterion {
     public MapParameters getParameters() {
         return MapParameters.create().add(getParamName(), value);
     }
-
+    
     /**
      * 获取匹配值
      * @return 匹配值

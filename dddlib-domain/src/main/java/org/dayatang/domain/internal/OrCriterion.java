@@ -56,7 +56,7 @@ public class OrCriterion extends AbstractCriterion {
 		return result;
 	}
 
-    /**
+	/**
      * 判断等价性
      * @param other 要用来判等的另一个对象
      * @return 如果当前对象和other等价，则返回true，否则返回false

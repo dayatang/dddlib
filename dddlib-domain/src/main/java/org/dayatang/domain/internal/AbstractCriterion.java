@@ -11,6 +11,8 @@ import org.dayatang.domain.QueryCriterion;
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  */
 public abstract class AbstractCriterion implements QueryCriterion {
+    
+    protected String queryString;
 
     /**
      * 执行AND操作，返回代表两个QueryCriterion的“与”操作结果的一个新的QueryCriterion
@@ -70,6 +72,12 @@ public abstract class AbstractCriterion implements QueryCriterion {
         return results;
     }
 
+
+    @Override
+    public String toQueryString() {
+        return queryString;
+    }
+    
     
     /**
      * 判断等价性
