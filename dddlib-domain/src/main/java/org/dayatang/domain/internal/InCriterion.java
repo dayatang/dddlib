@@ -64,10 +64,8 @@ public class InCriterion extends BasicCriterion {
     public String toQueryString() {
         if (value == null || value.isEmpty()) {
             return "1 > 1";
-        } else {
-            return getPropNameWithAlias() + " in " + getParamNameWithColon();
-            //return getPropNameWithAlias() + " in (" + createInString(value) + ")";
         }
+        return getPropNameWithAlias() + " in " + getParamNameWithColon();
     }
 
     @Override

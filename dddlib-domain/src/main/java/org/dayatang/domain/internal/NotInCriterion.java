@@ -63,11 +63,9 @@ public class NotInCriterion extends BasicCriterion {
     @Override
     public String toQueryString() {
         if (value == null || value.isEmpty()) {
-            return "1 > 1";
-        } else {
-            return getPropNameWithAlias() + " not in " + getParamNameWithColon();
+            return "";
+        }return getPropNameWithAlias() + " not in " + getParamNameWithColon();
             //return getPropNameWithAlias() + " in (" + createInString(value) + ")";
-        }
     }
 
     @Override

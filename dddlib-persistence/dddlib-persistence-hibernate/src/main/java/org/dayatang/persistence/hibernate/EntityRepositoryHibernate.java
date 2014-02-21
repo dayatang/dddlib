@@ -1,7 +1,6 @@
 package org.dayatang.persistence.hibernate;
 
 import org.apache.commons.lang3.StringUtils;
-import org.dayatang.domain.IocException;
 import org.dayatang.domain.*;
 import org.dayatang.persistence.hibernate.internal.QueryTranslator;
 import org.hibernate.Query;
@@ -13,8 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+
 import org.hibernate.SQLQuery;
 
 /**
@@ -122,15 +123,32 @@ public class EntityRepositoryHibernate implements EntityRepository {
      */
     @Override
     public <T> List<T> find(CriteriaQuery dddQuery) {
-        QueryTranslator translator = new QueryTranslator(dddQuery);
-        String queryString = translator.getQueryString();
-        LOGGER.info("QueryString: '" + queryString + "'");
-        List<Object> params = translator.getParams();
-        LOGGER.info("params: " + StringUtils.join(params, ", "));
+        //QueryTranslator translator = new QueryTranslator(dddQuery);
+        //String queryString = translator.getQueryString();
+        String queryString = dddQuery.getQueryString();
+        LOGGER.info("QueryString: " + queryString);
+        System.out.println("-----------------" + queryString);
+        
+        //List<Object> params = translator.getParams();
+        Map<String, Object> params = dddQuery.getParameters().getParams();
+        LOGGER.info("params: " + params);
+        System.out.println("+++++++++++++++++++" + params);
         Query query = getSession().createQuery(queryString);
+        /*
         for (int i = 0; i < params.size(); i++) {
             System.out.println("==================" + i + ": " + params.get(i));
             query.setParameter(i, params.get(i));
+        }
+        */
+        for (Map.Entry<String, Object> entry : params.entrySet()) {
+        	Object value = entry.getValue();
+        	if (value instanceof Collection) {
+            	query.setParameterList(entry.getKey(), (Collection) value);
+        	} else if (value.getClass().isArray()) {
+        		query.setParameterList(entry.getKey(), (Object[]) value);
+        	} else {
+            	query.setParameter(entry.getKey(), value);
+        	}
         }
         query.setFirstResult(dddQuery.getFirstResult());
         if (dddQuery.getMaxResults() > 0) {

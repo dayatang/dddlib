@@ -11,9 +11,11 @@ import org.dayatang.utils.Assert;
  */
 public class LtCriterion extends BasicCriterion {
 
-    private final Comparable value;
+    @SuppressWarnings("rawtypes")
+	private final Comparable value;
 
-    public LtCriterion(String propName, Comparable value) {
+    @SuppressWarnings("rawtypes")
+	public LtCriterion(String propName, Comparable value) {
         super(propName);
         Assert.notNull(value, "Value is null!");
         this.value = value;
@@ -23,7 +25,8 @@ public class LtCriterion extends BasicCriterion {
      * 获取匹配值
      * @return 匹配值
      */
-    public Comparable getValue() {
+    @SuppressWarnings("rawtypes")
+	public Comparable getValue() {
         return value;
     }
 
