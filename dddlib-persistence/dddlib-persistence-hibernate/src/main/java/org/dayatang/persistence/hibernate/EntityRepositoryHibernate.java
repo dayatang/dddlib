@@ -1,22 +1,30 @@
 package org.dayatang.persistence.hibernate;
 
-import org.apache.commons.lang3.StringUtils;
-import org.dayatang.domain.*;
-import org.dayatang.persistence.hibernate.internal.QueryTranslator;
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+
+import org.dayatang.domain.ArrayParameters;
+import org.dayatang.domain.CriteriaQuery;
+import org.dayatang.domain.Entity;
+import org.dayatang.domain.EntityRepository;
+import org.dayatang.domain.ExampleSettings;
+import org.dayatang.domain.InstanceFactory;
+import org.dayatang.domain.IocException;
+import org.dayatang.domain.JpqlQuery;
+import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedQuery;
+import org.dayatang.domain.QueryParameters;
+import org.dayatang.domain.SqlQuery;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.MatchMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-
-import org.hibernate.SQLQuery;
 
 /**
  * 通用仓储接口的Hibernate实现。
@@ -121,25 +129,14 @@ public class EntityRepositoryHibernate implements EntityRepository {
      * (non-Javadoc)
      * @see org.dayatang.domain.EntityRepository#find(org.dayatang.domain.CriteriaQuery)
      */
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public <T> List<T> find(CriteriaQuery dddQuery) {
-        //QueryTranslator translator = new QueryTranslator(dddQuery);
-        //String queryString = translator.getQueryString();
         String queryString = dddQuery.getQueryString();
         LOGGER.info("QueryString: " + queryString);
-        System.out.println("-----------------" + queryString);
-        
-        //List<Object> params = translator.getParams();
         Map<String, Object> params = dddQuery.getParameters().getParams();
         LOGGER.info("params: " + params);
-        System.out.println("+++++++++++++++++++" + params);
         Query query = getSession().createQuery(queryString);
-        /*
-        for (int i = 0; i < params.size(); i++) {
-            System.out.println("==================" + i + ": " + params.get(i));
-            query.setParameter(i, params.get(i));
-        }
-        */
         for (Map.Entry<String, Object> entry : params.entrySet()) {
         	Object value = entry.getValue();
         	if (value instanceof Collection) {
@@ -291,7 +288,8 @@ public class EntityRepositoryHibernate implements EntityRepository {
         return new SqlQuery(this, sql);
     }
 
-    @Override
+    @SuppressWarnings("rawtypes")
+	@Override
     public <T> List<T> find(SqlQuery sqlQuery) {
         SQLQuery query = getSession().createSQLQuery(sqlQuery.getSql());
         fillParameters(query, sqlQuery.getParameters());
