@@ -2,7 +2,6 @@ package org.dayatang.persistence.jpa;
 
 import org.dayatang.domain.IocInstanceNotFoundException;
 import org.dayatang.domain.*;
-import org.dayatang.persistence.jpa.internal.JpaCriteriaQueryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -160,12 +159,6 @@ public class EntityRepositoryJpa implements EntityRepository {
         for (Map.Entry<String, Object> entry : params.entrySet()) {
             query.setParameter(entry.getKey(), entry.getValue());
         }
-        
-        /*
-        javax.persistence.criteria.CriteriaQuery criteriaQuery = JpaCriteriaQueryBuilder.getInstance()
-                .createCriteriaQuery(dddQuery, getEntityManager());
-        Query query = getEntityManager().createQuery(criteriaQuery);
-        */
         query.setFirstResult(dddQuery.getFirstResult());
         if (dddQuery.getMaxResults() > 0) {
             query.setMaxResults(dddQuery.getMaxResults());
