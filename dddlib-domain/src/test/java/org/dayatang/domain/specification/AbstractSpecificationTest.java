@@ -16,11 +16,6 @@
 
 package org.dayatang.domain.specification;
 
-import org.dayatang.domain.specification.Specification;
-import org.dayatang.domain.specification.LengthSpecification;
-import org.dayatang.domain.specification.StartsSpecification;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
