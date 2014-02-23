@@ -9,15 +9,16 @@ import org.dayatang.utils.BeanUtils;
 import java.util.Map;
 
 /**
- * 代表属性值与指定值比较的一类查询条件
+ * 
+ * 代表判断集合属性的大小比较的一类查询条件
  * Created by yyang on 14-2-23.
  */
-public abstract class ValueCompareCriterion extends BasicCriterion {
-    protected final Object value;
+public abstract class SizeCompareCriterion extends BasicCriterion {
+    protected final int value;
 
     private String operator;
 
-    public ValueCompareCriterion(String propName, Object value) {
+    public SizeCompareCriterion(String propName, int value) {
         super(propName);
         Assert.notNull(value, "Value is null!");
         this.value = value;
@@ -38,7 +39,7 @@ public abstract class ValueCompareCriterion extends BasicCriterion {
 
     @Override
     public String toQueryString() {
-        return getPropNameWithAlias() + operator + getParamNameWithColon();
+        return "size(" + getPropNameWithAlias() + ")" + operator + getParamNameWithColon();
     }
 
     @Override
@@ -75,6 +76,6 @@ public abstract class ValueCompareCriterion extends BasicCriterion {
 
     @Override
     public String toString() {
-        return getPropName() + operator + value;
+        return "size of " + getPropName() + operator + value;
     }
 }

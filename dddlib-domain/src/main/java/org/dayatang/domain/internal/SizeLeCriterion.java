@@ -1,16 +1,10 @@
 package org.dayatang.domain.internal;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.dayatang.domain.MapParameters;
-
 /**
  * 判断某个集合属性的记录数小于或等于指定值的查询条件
  * @author yyang
  */
-public class SizeLeCriterion extends BasicCriterion {
-
-    private final int value;
+public class SizeLeCriterion extends SizeCompareCriterion {
 
     /**
      * 创建查询条件
@@ -18,50 +12,7 @@ public class SizeLeCriterion extends BasicCriterion {
      * @param value 属性值
      */
     public SizeLeCriterion(String propName, int value) {
-        super(propName);
-        this.value = value;
+        super(propName, value);
+        setOperator(" <= ");
     }
-
-    /**
-     * 返回属性值
-     * @return 属性值
-     */
-    public int getValue() {
-        return value;
-    }
-
-    @Override
-    public String toQueryString() {
-        return "size(" + getPropNameWithAlias() + ") <= " + getParamNameWithColon();
-    }
-
-    @Override
-    public MapParameters getParameters() {
-        return MapParameters.create().add(getParamName(), value);
-    }
-
-    @Override
-    public boolean equals(final Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof SizeLeCriterion)) {
-            return false;
-        }
-        SizeLeCriterion that = (SizeLeCriterion) other;
-        return new EqualsBuilder()
-                .append(this.getPropName(), that.getPropName())
-                .append(value, that.value).isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(getPropName()).append(value).toHashCode();
-    }
-
-    @Override
-    public String toString() {
-        return "size of " + getPropName() + " < " + value;
-    }
-
 }

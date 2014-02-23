@@ -9,27 +9,27 @@ import org.dayatang.utils.BeanUtils;
 import java.util.Map;
 
 /**
- * 代表属性值与指定值比较的一类查询条件
+ * 代表属性值与另一个属性值比较的一类查询条件
  * Created by yyang on 14-2-23.
  */
-public abstract class ValueCompareCriterion extends BasicCriterion {
-    protected final Object value;
+public abstract class PropertyCompareCriterion extends BasicCriterion {
+
+    private final String otherPropName;
 
     private String operator;
 
-    public ValueCompareCriterion(String propName, Object value) {
+    public PropertyCompareCriterion(String propName, String otherPropName) {
         super(propName);
-        Assert.notNull(value, "Value is null!");
-        this.value = value;
+        Assert.notBlank(otherPropName, "Other property name is null or blank!");
+        this.otherPropName = otherPropName;
     }
 
     /**
-     * 获取匹配值
-     *
-     * @return 匹配值
+     * 获得另一个属性名
+     * @return 另一个属性名
      */
-    public Object getValue() {
-        return value;
+    public String getOtherPropName() {
+        return otherPropName;
     }
 
     protected final void setOperator(String operator) {
@@ -38,12 +38,12 @@ public abstract class ValueCompareCriterion extends BasicCriterion {
 
     @Override
     public String toQueryString() {
-        return getPropNameWithAlias() + operator + getParamNameWithColon();
+        return getPropNameWithAlias() + operator + ROOT_ALIAS + "." + otherPropName;
     }
 
     @Override
     public MapParameters getParameters() {
-        return MapParameters.create().add(getParamName(), value);
+        return MapParameters.create();
     }
 
     @Override
@@ -61,7 +61,7 @@ public abstract class ValueCompareCriterion extends BasicCriterion {
         Map<String, Object> otherPropValues = new BeanUtils(other).getPropValues();
         return new EqualsBuilder()
                 .append(thisPropValues.get("propName"), otherPropValues.get("propName"))
-                .append(thisPropValues.get("value"), otherPropValues.get("value"))
+                .append(thisPropValues.get("otherPropName"), otherPropValues.get("otherPropName"))
                 .isEquals();
     }
 
@@ -69,12 +69,12 @@ public abstract class ValueCompareCriterion extends BasicCriterion {
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
                 .append(getPropName())
-                .append(getValue())
+                .append(getOtherPropName())
                 .toHashCode();
     }
 
     @Override
     public String toString() {
-        return getPropName() + operator + value;
+        return getPropName() + operator + getOtherPropName();
     }
 }
