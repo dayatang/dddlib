@@ -49,7 +49,7 @@ public class InCriterion extends BasicCriterion {
 
     /**
      * 获得集合值
-     * @return 
+     * @return 集合值
      */
     public Collection<? extends Object> getValue() {
         return value;
