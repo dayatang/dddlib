@@ -10,10 +10,11 @@ import org.junit.Before;
 
 public class BeanUtilsTest {
     private BeanUtils instance;
+    private ConcretItem item;
     
     @Before
     public void setUp() {
-        ConcretItem item = new ConcretItem(1, "abc", true);
+        item = new ConcretItem(1, "abc", true);
         item.setPrice(12.5);
         instance = new BeanUtils(item);
     }
@@ -73,4 +74,22 @@ public class BeanUtilsTest {
         assertEquals("abc", instance.getPropValue("name"));
     }
 
+    @Test
+    public void testSetPropValue() {
+        instance.setPropValue("id", 1000);
+        assertEquals(1, item.getId());
+        instance.setPropValue("price", 2015);
+        assertEquals(2015, item.getPrice(), 0.0001);
+    }
+    
+    @Test
+    public void testPopulateWithMap() {
+        Map<String, Object> properties = new HashMap<String, Object>();
+        properties.put("id", 1000);
+        properties.put("name", "aaaa");
+        instance.populate(properties);
+        assertEquals(1, item.getId());
+        assertEquals("aaaa", item.getName());
+        assertEquals(12.5, item.getPrice(), 0.0001);
+    }
 }

@@ -2,10 +2,13 @@ package org.dayatang.utils;
 
 import java.beans.PropertyDescriptor;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * JavaBean工具类。
@@ -99,7 +102,44 @@ public class BeanUtils {
         return beanClassUtils.getReadablePropNames();
     }
 
+    /**
+     * 获得指定属性的值
+     * @param propName 属性名
+     * @return 属性值
+     */
     public Object getPropValue(String propName) {
         return getPropValues().get(propName);
+    }
+
+    public void setPropValue(String key, Object value) {
+        for (Map.Entry<String, PropertyDescriptor> entry : beanClassUtils.getPropertyDescriptors().entrySet()) {
+            if (!entry.getKey().equals(key)) {
+                continue;
+            }
+            PropertyDescriptor propertyDescriptor = entry.getValue();
+            Method writeMethod = propertyDescriptor.getWriteMethod();
+            if (writeMethod == null) {
+                continue;
+            }
+            try {
+                writeMethod.invoke(bean, value);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(BeanUtils.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalArgumentException ex) {
+                Logger.getLogger(BeanUtils.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InvocationTargetException ex) {
+                Logger.getLogger(BeanUtils.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    /**
+     * 从properties填充属性值
+     * @param properties 
+     */
+    public void populate(Map<String, ? extends Object> properties) {
+        for (Map.Entry<String, ? extends Object> entry : properties.entrySet()) {
+            setPropValue(entry.getKey(), entry.getValue());
+        }
     }
 }
