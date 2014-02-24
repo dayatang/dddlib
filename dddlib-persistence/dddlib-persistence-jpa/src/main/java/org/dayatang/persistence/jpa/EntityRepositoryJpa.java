@@ -2,6 +2,7 @@ package org.dayatang.persistence.jpa;
 
 import org.dayatang.domain.IocInstanceNotFoundException;
 import org.dayatang.domain.*;
+import org.hibernate.SQLQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -179,27 +180,24 @@ public class EntityRepositoryJpa implements EntityRepository {
 
     @Override
     public <T> List<T> find(JpqlQuery jpqlQuery) {
-        Query query = getEntityManager().createQuery(jpqlQuery.getJpql());
-        fillParameters(query, jpqlQuery.getParameters());
-        query.setFirstResult(jpqlQuery.getFirstResult());
-        if (jpqlQuery.getMaxResults() > 0) {
-            query.setMaxResults(jpqlQuery.getMaxResults());
-        }
-        return query.getResultList();
+        return getQuery(jpqlQuery).getResultList();
     }
 
     @Override
     public <T> T getSingleResult(JpqlQuery jpqlQuery) {
-        List<T> results = find(jpqlQuery);
-        return results == null || results.isEmpty() ? null : results.get(0);
+        return (T) getQuery(jpqlQuery).getSingleResult();
     }
 
     @Override
     public int executeUpdate(JpqlQuery jpqlQuery) {
-        Query query = getEntityManager().createQuery(jpqlQuery.getJpql());
-        fillParameters(query, jpqlQuery.getParameters());
-        return query.executeUpdate();
+        return getQuery(jpqlQuery).executeUpdate();
 
+    }
+
+    private Query getQuery(JpqlQuery jpqlQuery) {
+        Query query = getEntityManager().createQuery(jpqlQuery.getJpql());
+        processQuery(query, jpqlQuery);
+        return query;
     }
 
     @Override
@@ -209,26 +207,23 @@ public class EntityRepositoryJpa implements EntityRepository {
 
     @Override
     public <T> List<T> find(NamedQuery namedQuery) {
-        Query query = getEntityManager().createNamedQuery(namedQuery.getQueryName());
-        fillParameters(query, namedQuery.getParameters());
-        query.setFirstResult(namedQuery.getFirstResult());
-        if (namedQuery.getMaxResults() > 0) {
-            query.setMaxResults(namedQuery.getMaxResults());
-        }
-        return query.getResultList();
+        return getQuery(namedQuery).getResultList();
     }
 
     @Override
     public <T> T getSingleResult(NamedQuery namedQuery) {
-        List<T> results = find(namedQuery);
-        return results == null || results.isEmpty() ? null : results.get(0);
+        return (T) getQuery(namedQuery).getSingleResult();
     }
 
     @Override
     public int executeUpdate(NamedQuery namedQuery) {
+        return getQuery(namedQuery).executeUpdate();
+    }
+
+    private Query getQuery(NamedQuery namedQuery) {
         Query query = getEntityManager().createNamedQuery(namedQuery.getQueryName());
-        fillParameters(query, namedQuery.getParameters());
-        return query.executeUpdate();
+        processQuery(query, namedQuery);
+        return query;
     }
 
     @Override
@@ -238,33 +233,30 @@ public class EntityRepositoryJpa implements EntityRepository {
 
     @Override
     public <T> List<T> find(SqlQuery sqlQuery) {
-        Query query;
-        if (sqlQuery.getResultEntityClass() == null) {
-            query = getEntityManager().createNativeQuery(sqlQuery.getSql());
-        } else {
-            query = getEntityManager().createNativeQuery(sqlQuery.getSql(), 
-                    sqlQuery.getResultEntityClass());
-        }
-         
-        fillParameters(query, sqlQuery.getParameters());
-        query.setFirstResult(sqlQuery.getFirstResult());
-        if (sqlQuery.getMaxResults() > 0) {
-            query.setMaxResults(sqlQuery.getMaxResults());
-        }
-        return query.getResultList();
+        return getQuery(sqlQuery).getResultList();
     }
 
     @Override
     public <T> T getSingleResult(SqlQuery sqlQuery) {
-        List<T> results = find(sqlQuery);
-        return results == null || results.isEmpty() ? null : results.get(0);
+        return (T) getQuery(sqlQuery).getSingleResult();
     }
 
     @Override
     public int executeUpdate(SqlQuery sqlQuery) {
-        Query query = getEntityManager().createNativeQuery(sqlQuery.getSql());
-        fillParameters(query, sqlQuery.getParameters());
-        return query.executeUpdate();
+        return getQuery(sqlQuery).executeUpdate();
+    }
+
+    private Query getQuery(SqlQuery sqlQuery) {
+        Query query;
+        if (sqlQuery.getResultEntityClass() == null) {
+            query = getEntityManager().createNativeQuery(sqlQuery.getSql());
+        } else {
+            query = getEntityManager().createNativeQuery(sqlQuery.getSql(),
+                    sqlQuery.getResultEntityClass());
+        }
+        processQuery(query, sqlQuery);
+        Class resultEntityClass = sqlQuery.getResultEntityClass();
+        return query;
     }
 
     @Override
@@ -305,6 +297,14 @@ public class EntityRepositoryJpa implements EntityRepository {
     @Override
     public void clear() {
         getEntityManager().clear();
+    }
+
+    private void processQuery(Query query, BaseQuery originQuery) {
+        fillParameters(query, originQuery.getParameters());
+        query.setFirstResult(originQuery.getFirstResult());
+        if (originQuery.getMaxResults() > 0) {
+            query.setMaxResults(originQuery.getMaxResults());
+        }
     }
 
     private void fillParameters(Query query, QueryParameters params) {
