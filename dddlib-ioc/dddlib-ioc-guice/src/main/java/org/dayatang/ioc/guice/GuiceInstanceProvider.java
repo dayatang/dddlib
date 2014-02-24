@@ -16,7 +16,7 @@ import java.lang.annotation.Annotation;
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  */
 public class GuiceInstanceProvider implements InstanceProvider {
-    private Injector injector;
+    private final Injector injector;
 
     /**
      * 以一批guice模块初始化guice实例提供者。

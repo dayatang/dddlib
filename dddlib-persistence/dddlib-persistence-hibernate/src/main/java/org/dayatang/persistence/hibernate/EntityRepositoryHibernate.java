@@ -5,18 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import org.dayatang.domain.ArrayParameters;
-import org.dayatang.domain.CriteriaQuery;
-import org.dayatang.domain.Entity;
-import org.dayatang.domain.EntityRepository;
-import org.dayatang.domain.ExampleSettings;
-import org.dayatang.domain.InstanceFactory;
-import org.dayatang.domain.IocException;
-import org.dayatang.domain.JpqlQuery;
-import org.dayatang.domain.MapParameters;
-import org.dayatang.domain.NamedQuery;
-import org.dayatang.domain.QueryParameters;
-import org.dayatang.domain.SqlQuery;
+import org.dayatang.domain.*;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -173,48 +162,13 @@ public class EntityRepositoryHibernate implements EntityRepository {
         return new JpqlQuery(this, jpql);
     }
 
-    private Session getSession() {
-        try {
-            return InstanceFactory.getInstance(Session.class);
-        } catch (IocException e) {
-            SessionFactory sessionFactory = InstanceFactory.getInstance(SessionFactory.class);
-            return sessionFactory.getCurrentSession();
-        }
-    }
-
-    private void fillParameters(Query query, QueryParameters params) {
-        if (params == null) {
-            return;
-        }
-        if (params instanceof ArrayParameters) {
-            Object[] paramArray = ((ArrayParameters) params).getParams();
-            for (int i = 0; i < paramArray.length; i++) {
-                query = query.setParameter(i, paramArray[i]);
-            }
-        } else if (params instanceof MapParameters) {
-            Map<String, Object> paramMap = ((MapParameters) params).getParams();
-            for (Map.Entry<String, Object> each : paramMap.entrySet()) {
-                query = query.setParameter(each.getKey(), each.getValue());
-            }
-        } else {
-            throw new UnsupportedOperationException("不支持的参数形式");
-
-        }
-    }
-
     /*
      * (non-Javadoc)
      * @see org.dayatang.domain.EntityRepository#find(org.dayatang.domain.JpqlQuery)
      */
     @Override
     public <T> List<T> find(JpqlQuery jpqlQuery) {
-        Query query = getSession().createQuery(jpqlQuery.getJpql());
-        fillParameters(query, jpqlQuery.getParameters());
-        query.setFirstResult(jpqlQuery.getFirstResult());
-        if (jpqlQuery.getMaxResults() > 0) {
-            query.setMaxResults(jpqlQuery.getMaxResults());
-        }
-        return query.list();
+        return getQuery(jpqlQuery).list();
     }
 
     /*
@@ -223,8 +177,7 @@ public class EntityRepositoryHibernate implements EntityRepository {
      */
     @Override
     public <T> T getSingleResult(JpqlQuery jpqlQuery) {
-        List<T> results = find(jpqlQuery);
-        return results == null || results.isEmpty() ? null : results.get(0);
+        return (T) getQuery(jpqlQuery).uniqueResult();
     }
 
     /*
@@ -233,9 +186,13 @@ public class EntityRepositoryHibernate implements EntityRepository {
      */
     @Override
     public int executeUpdate(JpqlQuery jpqlQuery) {
+        return getQuery(jpqlQuery).executeUpdate();
+    }
+
+    private Query getQuery(JpqlQuery jpqlQuery) {
         Query query = getSession().createQuery(jpqlQuery.getJpql());
-        fillParameters(query, jpqlQuery.getParameters());
-        return query.executeUpdate();
+        processQuery(query, jpqlQuery);
+        return query;
     }
 
     /*
@@ -253,13 +210,7 @@ public class EntityRepositoryHibernate implements EntityRepository {
      */
     @Override
     public <T> List<T> find(NamedQuery namedQuery) {
-        Query query = getSession().getNamedQuery(namedQuery.getQueryName());
-        fillParameters(query, namedQuery.getParameters());
-        query.setFirstResult(namedQuery.getFirstResult());
-        if (namedQuery.getMaxResults() > 0) {
-            query.setMaxResults(namedQuery.getMaxResults());
-        }
-        return query.list();
+        return getQuery(namedQuery).list();
     }
 
     /*
@@ -268,8 +219,7 @@ public class EntityRepositoryHibernate implements EntityRepository {
      */
     @Override
     public <T> T getSingleResult(NamedQuery namedQuery) {
-        List<T> results = find(namedQuery);
-        return results == null || results.isEmpty() ? null : results.get(0);
+        return (T) getQuery(namedQuery).uniqueResult();
     }
 
     /*
@@ -278,9 +228,13 @@ public class EntityRepositoryHibernate implements EntityRepository {
      */
     @Override
     public int executeUpdate(NamedQuery namedQuery) {
+        return getQuery(namedQuery).executeUpdate();
+    }
+
+    private Query getQuery(NamedQuery namedQuery) {
         Query query = getSession().getNamedQuery(namedQuery.getQueryName());
-        fillParameters(query, namedQuery.getParameters());
-        return query.executeUpdate();
+        processQuery(query, namedQuery);
+        return query;
     }
 
     @Override
@@ -291,30 +245,27 @@ public class EntityRepositoryHibernate implements EntityRepository {
     @SuppressWarnings("rawtypes")
 	@Override
     public <T> List<T> find(SqlQuery sqlQuery) {
-        SQLQuery query = getSession().createSQLQuery(sqlQuery.getSql());
-        fillParameters(query, sqlQuery.getParameters());
-        query.setFirstResult(sqlQuery.getFirstResult());
-        if (sqlQuery.getMaxResults() > 0) {
-            query.setMaxResults(sqlQuery.getMaxResults());
-        }
-        Class resultEntityClass = sqlQuery.getResultEntityClass();
-        if (resultEntityClass != null) {
-            query.addEntity(resultEntityClass);
-        }
-        return query.list();
+        return getQuery(sqlQuery).list();
     }
 
     @Override
     public <T> T getSingleResult(SqlQuery sqlQuery) {
-        List<T> results = find(sqlQuery);
-        return results == null || results.isEmpty() ? null : results.get(0);
+        return (T) getQuery(sqlQuery).uniqueResult();
     }
 
     @Override
     public int executeUpdate(SqlQuery sqlQuery) {
-        Query query = getSession().createSQLQuery(sqlQuery.getSql());
-        fillParameters(query, sqlQuery.getParameters());
-        return query.executeUpdate();
+        return getQuery(sqlQuery).executeUpdate();
+    }
+
+    private Query getQuery(SqlQuery sqlQuery) {
+        SQLQuery query = getSession().createSQLQuery(sqlQuery.getSql());
+        processQuery(query, sqlQuery);
+        Class resultEntityClass = sqlQuery.getResultEntityClass();
+        if (resultEntityClass != null) {
+            query.addEntity(resultEntityClass);
+        }
+        return query;
     }
 
     /*
@@ -395,5 +346,42 @@ public class EntityRepositoryHibernate implements EntityRepository {
     @Override
     public void clear() {
         getSession().clear();
+    }
+
+    private Session getSession() {
+        try {
+            return InstanceFactory.getInstance(Session.class);
+        } catch (IocException e) {
+            SessionFactory sessionFactory = InstanceFactory.getInstance(SessionFactory.class);
+            return sessionFactory.getCurrentSession();
+        }
+    }
+
+    private void processQuery(Query query, BaseQuery originQuery) {
+        fillParameters(query, originQuery.getParameters());
+        query.setFirstResult(originQuery.getFirstResult());
+        if (originQuery.getMaxResults() > 0) {
+            query.setMaxResults(originQuery.getMaxResults());
+        }
+    }
+
+    private void fillParameters(Query query, QueryParameters params) {
+        if (params == null) {
+            return;
+        }
+        if (params instanceof ArrayParameters) {
+            Object[] paramArray = ((ArrayParameters) params).getParams();
+            for (int i = 0; i < paramArray.length; i++) {
+                query = query.setParameter(i, paramArray[i]);
+            }
+        } else if (params instanceof MapParameters) {
+            Map<String, Object> paramMap = ((MapParameters) params).getParams();
+            for (Map.Entry<String, Object> each : paramMap.entrySet()) {
+                query = query.setParameter(each.getKey(), each.getValue());
+            }
+        } else {
+            throw new UnsupportedOperationException("不支持的参数形式");
+
+        }
     }
 }

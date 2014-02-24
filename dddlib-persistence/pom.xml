@@ -24,5 +24,6 @@
         <module>dddlib-persistence-hibernate</module>
         <module>dddlib-persistence-jpa</module>
     <module>dddlib-persistence-test</module>
+    <module>dddlib-persistence-nosql</module>
   </modules>
 </project>
