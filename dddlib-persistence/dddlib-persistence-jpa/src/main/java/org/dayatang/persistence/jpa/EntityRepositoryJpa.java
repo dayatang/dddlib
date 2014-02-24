@@ -1,8 +1,6 @@
 package org.dayatang.persistence.jpa;
 
-import org.dayatang.domain.IocInstanceNotFoundException;
 import org.dayatang.domain.*;
-import org.hibernate.SQLQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -308,19 +306,28 @@ public class EntityRepositoryJpa implements EntityRepository {
     }
 
     private void fillParameters(Query query, QueryParameters params) {
+        if (params == null) {
+            return;
+        }
         if (params instanceof ArrayParameters) {
-            Object[] paramArray = ((ArrayParameters) params).getParams();
-            for (int i = 0; i < paramArray.length; i++) {
-                query = query.setParameter(i + 1, paramArray[i]);
-            }
+            fillParameters(query, (ArrayParameters) params);
         } else if (params instanceof MapParameters) {
-            Map<String, Object> paramMap = ((MapParameters) params).getParams();
-            for (Map.Entry<String, Object> each : paramMap.entrySet()) {
-                query = query.setParameter(each.getKey(), each.getValue());
-            }
+            fillParameters(query, (MapParameters) params);
         } else {
             throw new UnsupportedOperationException("不支持的参数形式");
+        }
+    }
 
+    private void fillParameters(Query query, ArrayParameters params) {
+        Object[] paramArray = params.getParams();
+        for (int i = 0; i < paramArray.length; i++) {
+            query = query.setParameter(i + 1, paramArray[i]);
+        }
+    }
+
+    private void fillParameters(Query query, MapParameters params) {
+        for (Map.Entry<String, Object> each : params.getParams().entrySet()) {
+            query = query.setParameter(each.getKey(), each.getValue());
         }
     }
 

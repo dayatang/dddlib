@@ -370,18 +370,31 @@ public class EntityRepositoryHibernate implements EntityRepository {
             return;
         }
         if (params instanceof ArrayParameters) {
-            Object[] paramArray = ((ArrayParameters) params).getParams();
-            for (int i = 0; i < paramArray.length; i++) {
-                query = query.setParameter(i, paramArray[i]);
-            }
+            fillParameters(query, (ArrayParameters) params);
         } else if (params instanceof MapParameters) {
-            Map<String, Object> paramMap = ((MapParameters) params).getParams();
-            for (Map.Entry<String, Object> each : paramMap.entrySet()) {
-                query = query.setParameter(each.getKey(), each.getValue());
-            }
+            fillParameters(query, (MapParameters) params);
         } else {
             throw new UnsupportedOperationException("不支持的参数形式");
+        }
+    }
 
+    private void fillParameters(Query query, ArrayParameters params) {
+        Object[] paramArray = params.getParams();
+        for (int i = 0; i < paramArray.length; i++) {
+            query = query.setParameter(i, paramArray[i]);
+        }
+    }
+
+    private void fillParameters(Query query, MapParameters params) {
+        for (Map.Entry<String, Object> entry : params.getParams().entrySet()) {
+            Object value = entry.getValue();
+            if (value instanceof Collection) {
+                query.setParameterList(entry.getKey(), (Collection) value);
+            } else if (value.getClass().isArray()) {
+                query.setParameterList(entry.getKey(), (Object[]) value);
+            } else {
+                query.setParameter(entry.getKey(), value);
+            }
         }
     }
 }
