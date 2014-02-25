@@ -16,9 +16,9 @@ public abstract class AbstractGeminiConnectionTimeoutMonitor implements Connecti
 
 	private static String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
-	private static Set<GeminiConnection> aliveConnections = Collections.synchronizedSet(new HashSet<GeminiConnection>());
+	private Set<GeminiConnection> aliveConnections = Collections.synchronizedSet(new HashSet<GeminiConnection>());
 
-	private static Set<GeminiConnection> closedTimeoutConnections = Collections.synchronizedSet(new HashSet<GeminiConnection>());
+	private Set<GeminiConnection> closedTimeoutConnections = Collections.synchronizedSet(new HashSet<GeminiConnection>());
 
 	/**
 	 * 单位：毫秒，默认10000毫秒，即10s
@@ -38,7 +38,7 @@ public abstract class AbstractGeminiConnectionTimeoutMonitor implements Connecti
 		}
         LOGGER.debug("关闭数据库连接HashCode【{}】，创建时间【{}】，耗时【{}】",
                 connection.hashCode(), formatTime(connection.getCreationTime()),
-                connection.getStopWatch());
+                connection.getSurvivalTime());
 		aliveConnections.remove(connection);
 	}
 

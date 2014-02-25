@@ -13,9 +13,9 @@ public class GeminiConnection extends DelegatingConnection {
 
 	private long creationTime;
 
-	private StackTraceElement[] stackTraceElements;
+    private long closeTime;
 
-	private StopWatch stopWatch;
+	private StackTraceElement[] stackTraceElements = new StackTraceElement[] {};
 
 	private Set<ConnectionMonitor> monitors = new HashSet<ConnectionMonitor>();
 
@@ -27,14 +27,8 @@ public class GeminiConnection extends DelegatingConnection {
         }
         this.monitors = new HashSet<ConnectionMonitor>(monitors);
 		this.creationTime = System.currentTimeMillis();
-		beginStopWatch();
 		notifyOpenConnection();
 	}
-
-    public final void beginStopWatch() {
-        this.stopWatch = new StopWatch();
-        stopWatch.start();
-    }
 
 	private void notifyOpenConnection() throws SQLException {
 		for (ConnectionMonitor monitor : monitors) {
@@ -50,18 +44,13 @@ public class GeminiConnection extends DelegatingConnection {
 
 	@Override
 	public void close() throws SQLException {
+        closeTime = System.currentTimeMillis();
+        notifyCloseConnection();
 		super.close();
-		if (stopWatch != null) {
-			stopWatch.stop();
-		}
-		notifyCloseConnection();
 	}
 
 	public long getSurvivalTime() {
-		if (stopWatch != null) {
-			return stopWatch.getTime();
-		}
-		return 0;
+        return System.currentTimeMillis() - creationTime;
 	}
 
 	public Set<ConnectionMonitor> getMonitors() {
@@ -84,10 +73,6 @@ public class GeminiConnection extends DelegatingConnection {
 		return creationTime;
 	}
 
-	public void setCreationTime(long creationTime) {
-		this.creationTime = creationTime;
-	}
-
 	public StackTraceElement[] getStackTraceElements() {
 		return Arrays.copyOf(stackTraceElements, stackTraceElements.length);
 	}
@@ -95,13 +80,4 @@ public class GeminiConnection extends DelegatingConnection {
 	public void setStackTraceElements(StackTraceElement[] stackTraceElements) {
 		this.stackTraceElements = Arrays.copyOf(stackTraceElements, stackTraceElements.length);
 	}
-
-	public StopWatch getStopWatch() {
-		return stopWatch;
-	}
-
-	public void setStopWatch(StopWatch stopWatch) {
-		this.stopWatch = stopWatch;
-	}
-
 }
