@@ -1,4 +1,4 @@
-package org.dayatang.dsmonitor.datasource;
+package org.dayatang.dsmonitor;
 
 import org.dayatang.utils.Assert;
 

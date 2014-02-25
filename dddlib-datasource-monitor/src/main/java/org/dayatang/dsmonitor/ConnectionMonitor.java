@@ -1,8 +1,5 @@
-package org.dayatang.dsmonitor.datasource;
+package org.dayatang.dsmonitor;
 
-import org.dayatang.dsmonitor.datasource.GeminiConnection;
-
-import java.sql.Connection;
 import java.sql.SQLException;
 
 public interface ConnectionMonitor {

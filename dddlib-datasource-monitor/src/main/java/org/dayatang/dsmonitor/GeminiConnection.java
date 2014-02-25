@@ -1,11 +1,8 @@
-package org.dayatang.dsmonitor.datasource;
-
-import org.apache.commons.lang3.time.StopWatch;
+package org.dayatang.dsmonitor;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 

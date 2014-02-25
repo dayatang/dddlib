@@ -1,10 +1,8 @@
 package org.dayatang.dsmonitor.monitor;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
-import org.dayatang.dsmonitor.datasource.GeminiConnection;
+import org.dayatang.dsmonitor.GeminiConnection;
 import org.dayatang.utils.Slf4JLogger;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
 import java.util.Set;
