@@ -73,7 +73,7 @@ public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
     }
 
     @Override
-    protected BaseQuery createQueryForCount(String queryString) {
+    protected BaseQuery createBaseQuery(String queryString) {
         return repository.createSqlQuery(queryString);
     }
 

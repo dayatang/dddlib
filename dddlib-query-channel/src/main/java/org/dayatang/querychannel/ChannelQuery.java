@@ -17,13 +17,10 @@ package org.dayatang.querychannel;
 
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import org.apache.commons.lang3.StringUtils;
+
 import org.dayatang.domain.BaseQuery;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.QueryParameters;
-import org.dayatang.querychannel.query.CountQueryStringBuilder;
 import org.dayatang.utils.Assert;
 
 /**
@@ -207,11 +204,13 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      */
     public long queryResultCount() {
         CountQueryStringBuilder builder = new CountQueryStringBuilder(getQueryString());
-        if (containGroupByClause()) {
-            List rows = createQueryForCount(builder.removeOrderByClause()).setParameters(query.getParameters()).list();
+        if (builder.containsGroupByClause()) {
+            List rows = createBaseQuery(builder.removeOrderByClause())
+                    .setParameters(query.getParameters()).list();
             return rows == null ? 0 : rows.size();
         } else {
-            Number result = (Number) createQueryForCount(builder.build()).setParameters(query.getParameters()).singleResult();
+            Number result = (Number) createBaseQuery(builder.buildQueryStringOfCount())
+                    .setParameters(query.getParameters()).singleResult();
             return result.longValue();
         }
     }
@@ -222,9 +221,5 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      */
     protected abstract String getQueryString();
 
-    protected boolean containGroupByClause() {
-        return StringUtils.containsIgnoreCase(getQueryString(), " group by ");
-    }
-
-    protected abstract BaseQuery createQueryForCount(String queryString);
+    protected abstract BaseQuery createBaseQuery(String queryString);
 }

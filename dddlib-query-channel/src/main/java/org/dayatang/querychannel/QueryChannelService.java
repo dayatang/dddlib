@@ -4,6 +4,9 @@ package org.dayatang.querychannel;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * 查询通道接口。可以针对仓储进行分页查询。
+ */
 public interface QueryChannelService extends Serializable {
 
     /**
