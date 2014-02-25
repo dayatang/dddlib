@@ -18,8 +18,6 @@ public abstract class AbstractGeminiConnectionTimeoutMonitor implements Connecti
 
 	private Set<GeminiConnection> aliveConnections = Collections.synchronizedSet(new HashSet<GeminiConnection>());
 
-	private Set<GeminiConnection> closedTimeoutConnections = Collections.synchronizedSet(new HashSet<GeminiConnection>());
-
 	/**
 	 * 单位：毫秒，默认10000毫秒，即10s
 	 */
@@ -33,9 +31,6 @@ public abstract class AbstractGeminiConnectionTimeoutMonitor implements Connecti
 	}
 
 	public void closeConnection(GeminiConnection connection) throws SQLException {
-		if (isTimeout(connection)) {
-			closedTimeoutConnections.add(connection);
-		}
         LOGGER.debug("关闭数据库连接HashCode【{}】，创建时间【{}】，耗时【{}】",
                 connection.hashCode(), formatTime(connection.getCreationTime()),
                 connection.getSurvivalTime());
@@ -79,26 +74,15 @@ public abstract class AbstractGeminiConnectionTimeoutMonitor implements Connecti
 		return results;
 	}
 
-	/**
-	 * 获取已关闭的超时连接集合
-	 * 
-	 * @return 已关闭的超时连接集合
-	 */
-	public Set<GeminiConnection> getClosedTimeoutConnections() {
-		return Collections.unmodifiableSet(closedTimeoutConnections);
-	}
 
-	/**
-	 * 获取所有的超时连接集合（包括活动的和已关闭的）
-	 * 
-	 * @return 所有的超时连接集合（包括活动的和已关闭的）
-	 */
-	public Set<GeminiConnection> getTimeoutConnections() {
-		Set<GeminiConnection> timeoutConnections = new HashSet<GeminiConnection>();
-		timeoutConnections.addAll(getClosedTimeoutConnections());
-		timeoutConnections.addAll(getAliveTimeoutConnections());
-		return timeoutConnections;
-	}
+    /**
+     * 获取活动的连接集合
+     *
+     * @return 活动的连接集合
+     */
+    public Set<GeminiConnection> getAliveConnections() {
+        return Collections.unmodifiableSet(aliveConnections);
+    }
 
 	private String formatTime(long date) {
 		return DateFormatUtils.format(date, DATE_PATTERN);

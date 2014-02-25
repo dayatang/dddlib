@@ -27,33 +27,37 @@ public class GeminiConnection extends DelegatingConnection {
         }
         this.monitors = new HashSet<ConnectionMonitor>(monitors);
 		this.creationTime = System.currentTimeMillis();
-		notifyOpenConnection();
+		notifyOpen();
 	}
 
-	private void notifyOpenConnection() throws SQLException {
+	private void notifyOpen() throws SQLException {
 		for (ConnectionMonitor monitor : monitors) {
 			monitor.openConnection(this);
-		}
-	}
-
-	private void notifyCloseConnection() throws SQLException {
-		for (ConnectionMonitor monitor : monitors) {
-			monitor.closeConnection(this);
 		}
 	}
 
 	@Override
 	public void close() throws SQLException {
         closeTime = System.currentTimeMillis();
-        notifyCloseConnection();
+        notifyClose();
 		super.close();
 	}
+
+    private void notifyClose() throws SQLException {
+        for (ConnectionMonitor monitor : monitors) {
+            monitor.closeConnection(this);
+        }
+    }
 
 	public long getSurvivalTime() {
         return System.currentTimeMillis() - creationTime;
 	}
 
-	public Set<ConnectionMonitor> getMonitors() {
+    public long getCloseTime() {
+        return closeTime;
+    }
+
+    public Set<ConnectionMonitor> getMonitors() {
 		return Collections.unmodifiableSet(monitors);
 	}
 

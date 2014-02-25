@@ -19,7 +19,6 @@ public class GeminiConnectionLogTimeoutMonitor extends
 
 	@Override
 	public void monitor() {
-		logConnections(getClosedTimeoutConnections(), "已关闭的超时数据库连接");
 		logConnections(getAliveTimeoutConnections(), "活动的超时数据库连接");
 	}
 
@@ -45,11 +44,11 @@ public class GeminiConnectionLogTimeoutMonitor extends
 		try {
 			if (conn.isClosed()) {
                 LOGGER.info("数据库连接HashCode【{}】，创建时间【{}】，耗时【{}】", conn.hashCode(),
-                        formatTime(conn.getCreationTime()), conn.getStopWatch());
+                        formatTime(conn.getCreationTime()), conn.getCloseTime());
 			} else {
                 LOGGER.info("数据库连接HashCode【{}】，URL=【{}】，创建时间【{}】，耗时【{}】",
                         conn.hashCode(), conn.getMetaData().getURL(),
-                        formatTime(conn.getCreationTime()), conn.getStopWatch());
+                        formatTime(conn.getCreationTime()), conn.getCloseTime());
 			}
 
             LOGGER.info("调用堆栈为：");
