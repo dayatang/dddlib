@@ -124,11 +124,8 @@ public class QueryChannelServiceImplHibernateTest {
 
     @Test
     public void testJpqlQueryGetSingleResult() {
-        MyEntity result = instance.createJpqlQuery(jpqlNamedParam)
-                .addParameter(paramKey, paramValue)
-                .setPage(1, 5)
-                .singleResult();
-        assertEquals(MyEntity.get(6L), result);
+        MyEntity result = instance.createJpqlQuery("select o from MyEntity o where o.id = 1").singleResult();
+        assertEquals(MyEntity.get(1L), result);
     }
 
     @Test
@@ -166,11 +163,8 @@ public class QueryChannelServiceImplHibernateTest {
 
     @Test
     public void testNamedQueryGetSingleResult() {
-        MyEntity result = instance.createNamedQuery(queryNameNamedParam)
-                .addParameter(paramKey, paramValue)
-                .setPage(1, 5)
-                .singleResult();
-        assertEquals(MyEntity.get(6L), result);
+        MyEntity result = instance.createNamedQuery("MyEntity.single").singleResult();
+        assertEquals(MyEntity.get(1L), result);
     }
 
     @Test
@@ -211,12 +205,10 @@ public class QueryChannelServiceImplHibernateTest {
 
     @Test
     public void testSqlQueryGetSingleResult() {
-        MyEntity result = instance.createSqlQuery(sqlNamedParam)
+        MyEntity result = instance.createSqlQuery("select * from pay_test_myentity o where o.id = 1")
                 .setResultEntityClass(MyEntity.class)
-                .addParameter(paramKey, paramValue)
-                .setPage(1, 5)
                 .singleResult();
-        assertEquals(MyEntity.get(6L), result);
+        assertEquals(MyEntity.get(1L), result);
     }
 
     @Test

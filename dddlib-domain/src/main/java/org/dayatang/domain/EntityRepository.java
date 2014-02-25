@@ -9,7 +9,6 @@ import java.util.List;
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
-@SuppressWarnings("deprecation")
 public interface EntityRepository {
 
     /**

@@ -13,7 +13,8 @@ import javax.persistence.Table;
 @Table(name = "pay_test_myentity")
 @NamedQueries({
     @NamedQuery(name = "MyEntity.findByName", query = "select o from MyEntity o where o.name like ? order by o.id"),
-    @NamedQuery(name = "MyEntity.findByName1", query = "select o from MyEntity o where o.name like :name order by o.id")})
+    @NamedQuery(name = "MyEntity.findByName1", query = "select o from MyEntity o where o.name like :name order by o.id"),
+    @NamedQuery(name = "MyEntity.single", query = "select o from MyEntity o where o.id = 1")})
 public class MyEntity extends AbstractEntity {
 
     /**

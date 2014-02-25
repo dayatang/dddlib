@@ -56,14 +56,19 @@ public class ChannelJpqlQuery extends ChannelQuery<ChannelJpqlQuery> {
 
     @Override
     public long queryResultCount() {
-        String queryString = query.getJpql();
-        if (containGroupByClause(queryString)) {
-            List rows = repository.createJpqlQuery(removeOrderByClause(queryString)).setParameters(query.getParameters()).list();
+        CountQueryStringBuilder builder = new CountQueryStringBuilder(getQueryString());
+        if (containGroupByClause()) {
+            List rows = repository.createJpqlQuery(builder.removeOrderByClause()).setParameters(query.getParameters()).list();
             return rows == null ? 0 : rows.size();
         } else {
-            Long result = repository.createJpqlQuery(buildCountQueryString(queryString)).setParameters(query.getParameters()).singleResult();
+            Long result = repository.createJpqlQuery(builder.build()).setParameters(query.getParameters()).singleResult();
             return result;
         }
     }
-    
+
+    @Override
+    protected String getQueryString() {
+        return query.getJpql();
+    }
+
 }

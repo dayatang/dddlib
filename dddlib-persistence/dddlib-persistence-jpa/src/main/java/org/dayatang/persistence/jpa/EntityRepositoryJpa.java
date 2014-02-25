@@ -4,7 +4,6 @@ import org.dayatang.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,8 +24,6 @@ public class EntityRepositoryJpa implements EntityRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EntityRepositoryJpa.class);
 
-    @Inject
-    @PersistenceContext
     private EntityManager entityManager;
 
     private EntityManagerFactory entityManagerFactory;

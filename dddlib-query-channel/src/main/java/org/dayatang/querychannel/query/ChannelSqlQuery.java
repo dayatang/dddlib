@@ -68,15 +68,20 @@ public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
 
     @Override
     public long queryResultCount() {
-        String queryString = query.getSql();
-        if (containGroupByClause(queryString)) {
-            List rows = repository.createSqlQuery(removeOrderByClause(queryString)).setParameters(query.getParameters()).list();
+        CountQueryStringBuilder builder = new CountQueryStringBuilder(getQueryString());
+        if (containGroupByClause()) {
+            List rows = repository.createSqlQuery(builder.removeOrderByClause()).setParameters(query.getParameters()).list();
             return rows == null ? 0 : rows.size();
         } else {
-            Number result = repository.createSqlQuery(buildCountQueryString(queryString)).setParameters(query.getParameters()).singleResult();
+            Number result = repository.createSqlQuery(builder.build()).setParameters(query.getParameters()).singleResult();
             return result.longValue();
         }
     }
-    
-    
+
+    @Override
+    protected String getQueryString() {
+        return query.getSql();
+    }
+
+
 }
