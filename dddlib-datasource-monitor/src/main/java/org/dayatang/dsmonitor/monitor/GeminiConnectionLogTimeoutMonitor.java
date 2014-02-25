@@ -2,6 +2,7 @@ package org.dayatang.dsmonitor.monitor;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.dayatang.dsmonitor.datasource.GeminiConnection;
+import org.dayatang.utils.Slf4JLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +12,7 @@ import java.util.Set;
 public class GeminiConnectionLogTimeoutMonitor extends
 		AbstractGeminiConnectionTimeoutMonitor {
 
-	protected static final Logger LOGGER = LoggerFactory
+	private final Slf4JLogger LOGGER = Slf4JLogger
 			.getLogger(GeminiConnectionLogTimeoutMonitor.class);
 
 	private static String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
@@ -22,22 +23,20 @@ public class GeminiConnectionLogTimeoutMonitor extends
 		logConnections(getAliveTimeoutConnections(), "活动的超时数据库连接");
 	}
 
-	private void logConnections(Set<GeminiConnection> closedTimeoutConnections,
-			String title) {
-		if (closedTimeoutConnections.isEmpty()) {
-			info("没有【{}】，超时时间为：【{}】ms", title, getTimeout());
+	private void logConnections(Set<GeminiConnection> connections, String title) {
+		if (connections.isEmpty()) {
+            LOGGER.info("没有【{}】，超时时间为：【{}】ms", title, getTimeout());
 			return;
 		}
-		info("=======================================================================================");
-		info("=======================================================================================");
-		info("=============                                                             =============");
-		info("=============            以下是{}，超时时间为：【{}】ms         =============",
-				title, getTimeout());
-		info("=============                                                             =============");
-		info("=======================================================================================");
-		info("=======================================================================================");
+        LOGGER.info("=======================================================================================");
+        LOGGER.info("=======================================================================================");
+        LOGGER.info("=============                                                             =============");
+        LOGGER.info("=============            以下是{}，超时时间为：【{}】ms         =============", title, getTimeout());
+        LOGGER.info("=============                                                             =============");
+        LOGGER.info("=======================================================================================");
+        LOGGER.info("=======================================================================================");
 
-		for (GeminiConnection conn : closedTimeoutConnections) {
+		for (GeminiConnection conn : connections) {
 			logConnection(conn);
 		}
 	}
@@ -45,27 +44,21 @@ public class GeminiConnectionLogTimeoutMonitor extends
 	private void logConnection(GeminiConnection conn) {
 		try {
 			if (conn.isClosed()) {
-				info("数据库连接HashCode【{}】，创建时间【{}】，耗时【{}】", conn.hashCode(),
-						formatTime(conn.getCreationTime()), conn.getStopWatch());
+                LOGGER.info("数据库连接HashCode【{}】，创建时间【{}】，耗时【{}】", conn.hashCode(),
+                        formatTime(conn.getCreationTime()), conn.getStopWatch());
 			} else {
-				info("数据库连接HashCode【{}】，URL=【{}】，创建时间【{}】，耗时【{}】",
-						conn.hashCode(), conn.getMetaData().getURL(),
-						formatTime(conn.getCreationTime()), conn.getStopWatch());
+                LOGGER.info("数据库连接HashCode【{}】，URL=【{}】，创建时间【{}】，耗时【{}】",
+                        conn.hashCode(), conn.getMetaData().getURL(),
+                        formatTime(conn.getCreationTime()), conn.getStopWatch());
 			}
 
-			StackTraceElement[] stackTraceElements = conn
-					.getStackTraceElements();
-			info("调用堆栈为：");
-			for (StackTraceElement ste : stackTraceElements) {
-				info("     " + ste);
+            LOGGER.info("调用堆栈为：");
+			for (StackTraceElement ste : conn.getStackTraceElements()) {
+                LOGGER.info("     " + ste);
 			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
-	}
-
-	private void info(String message, Object... params) {
-		LOGGER.info(message, params);
 	}
 
 	private String formatTime(long date) {

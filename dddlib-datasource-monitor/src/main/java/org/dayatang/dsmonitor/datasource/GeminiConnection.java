@@ -1,7 +1,6 @@
 package org.dayatang.dsmonitor.datasource;
 
 import org.apache.commons.lang3.time.StopWatch;
-import org.dayatang.dsmonitor.monitor.ConnectionMonitor;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -23,18 +22,19 @@ public class GeminiConnection extends DelegatingConnection {
 	public GeminiConnection(Connection targetConnection,
 			Set<ConnectionMonitor> monitors) throws SQLException {
 		super(targetConnection);
-        if (monitors == null) {
+        if (monitors != null) {
             this.monitors = new HashSet<ConnectionMonitor>();
         }
         this.monitors = new HashSet<ConnectionMonitor>(monitors);
-        Exception exception = new Exception();
-		StackTraceElement[] stackTraceElements = exception.getStackTrace();
-		//setCreationTime(System.currentTimeMillis());		//为了安全，不应该在构造函数中调用非final非private的方法。
 		this.creationTime = System.currentTimeMillis();
-		this.stackTraceElements = Arrays.copyOf(stackTraceElements, stackTraceElements.length);
 		beginStopWatch();
 		notifyOpenConnection();
 	}
+
+    public final void beginStopWatch() {
+        this.stopWatch = new StopWatch();
+        stopWatch.start();
+    }
 
 	private void notifyOpenConnection() throws SQLException {
 		for (ConnectionMonitor monitor : monitors) {
@@ -57,12 +57,7 @@ public class GeminiConnection extends DelegatingConnection {
 		notifyCloseConnection();
 	}
 
-	public final void beginStopWatch() {
-		this.stopWatch = new StopWatch();
-		stopWatch.start();
-	}
-
-	public long getTime() {
+	public long getSurvivalTime() {
 		if (stopWatch != null) {
 			return stopWatch.getTime();
 		}

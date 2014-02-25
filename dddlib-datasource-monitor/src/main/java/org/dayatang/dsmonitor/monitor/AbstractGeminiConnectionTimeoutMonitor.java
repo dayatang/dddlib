@@ -1,11 +1,10 @@
 package org.dayatang.dsmonitor.monitor;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
+import org.dayatang.dsmonitor.datasource.ConnectionMonitor;
 import org.dayatang.dsmonitor.datasource.GeminiConnection;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.dayatang.utils.Slf4JLogger;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashSet;
@@ -13,7 +12,7 @@ import java.util.Set;
 
 public abstract class AbstractGeminiConnectionTimeoutMonitor implements ConnectionMonitor {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractGeminiConnectionTimeoutMonitor.class);
+	private final Slf4JLogger LOGGER = Slf4JLogger.getLogger(AbstractGeminiConnectionTimeoutMonitor.class);
 
 	private static String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
@@ -26,30 +25,25 @@ public abstract class AbstractGeminiConnectionTimeoutMonitor implements Connecti
 	 */
 	private long timeout = 1000;
 
-	public void openConnection(Connection conn) throws SQLException {
-		GeminiConnection connection = (GeminiConnection) conn;
-		debug("开启数据库连接HashCode【{}】，URL=【{}】，创建时间【{}】", connection.hashCode(), connection.getMetaData().getURL(),
-				formatTime(connection.getCreationTime()));
-	
+	public void openConnection(GeminiConnection connection) throws SQLException {
+        LOGGER.debug("开启数据库连接HashCode【{}】，URL=【{}】，创建时间【{}】",
+                connection.hashCode(), connection.getMetaData().getURL(),
+                formatTime(connection.getCreationTime()));
 		aliveConnections.add(connection);
 	}
 
-	public void closeConnection(Connection conn) throws SQLException {
-		GeminiConnection connection = (GeminiConnection) conn;
-
+	public void closeConnection(GeminiConnection connection) throws SQLException {
 		if (isTimeout(connection)) {
 			closedTimeoutConnections.add(connection);
 		}
-		debug("关闭数据库连接HashCode【{}】，创建时间【{}】，耗时【{}】", connection.hashCode(), formatTime(connection.getCreationTime()), connection.getStopWatch());
-
+        LOGGER.debug("关闭数据库连接HashCode【{}】，创建时间【{}】，耗时【{}】",
+                connection.hashCode(), formatTime(connection.getCreationTime()),
+                connection.getStopWatch());
 		aliveConnections.remove(connection);
 	}
 
-	private boolean isTimeout(GeminiConnection conn) {
-		if (conn.getTime() > timeout) {
-			return true;
-		}
-		return false;
+	private boolean isTimeout(GeminiConnection connection) {
+        return connection.getSurvivalTime() > timeout;
 	}
 
 	/**
@@ -62,7 +56,7 @@ public abstract class AbstractGeminiConnectionTimeoutMonitor implements Connecti
 	}
 
 	/**
-	 * 设置超时时间
+	 * 设置超时时间，以毫秒为单位
 	 * 
 	 * @param timeout 超时时间
 	 */
@@ -76,13 +70,13 @@ public abstract class AbstractGeminiConnectionTimeoutMonitor implements Connecti
 	 * @return 活动的超时连接集合
 	 */
 	public Set<GeminiConnection> getAliveTimeoutConnections() {
-		Set<GeminiConnection> aliveTimeoutConnections = new HashSet<GeminiConnection>();
+		Set<GeminiConnection> results = new HashSet<GeminiConnection>();
 		for (GeminiConnection conn : aliveConnections) {
 			if (isTimeout(conn)) {
-				aliveTimeoutConnections.add(conn);
+				results.add(conn);
 			}
 		}
-		return aliveTimeoutConnections;
+		return results;
 	}
 
 	/**
@@ -91,7 +85,7 @@ public abstract class AbstractGeminiConnectionTimeoutMonitor implements Connecti
 	 * @return 已关闭的超时连接集合
 	 */
 	public Set<GeminiConnection> getClosedTimeoutConnections() {
-		return closedTimeoutConnections;
+		return Collections.unmodifiableSet(closedTimeoutConnections);
 	}
 
 	/**
@@ -104,14 +98,6 @@ public abstract class AbstractGeminiConnectionTimeoutMonitor implements Connecti
 		timeoutConnections.addAll(getClosedTimeoutConnections());
 		timeoutConnections.addAll(getAliveTimeoutConnections());
 		return timeoutConnections;
-	}
-
-	public abstract void monitor();
-
-	private void debug(String message, Object... params) {
-		if (LOGGER.isDebugEnabled()) {
-			LOGGER.debug(message, params);
-		}
 	}
 
 	private String formatTime(long date) {

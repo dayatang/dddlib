@@ -9,7 +9,7 @@ import java.util.concurrent.Executor;
 
 public class DelegatingConnection implements Connection {
 
-	protected Connection targetConnection;
+	private Connection targetConnection;
 
 	public DelegatingConnection(Connection targetConnection) {
 		Assert.notNull(targetConnection, "'targetConnection' must not be null");

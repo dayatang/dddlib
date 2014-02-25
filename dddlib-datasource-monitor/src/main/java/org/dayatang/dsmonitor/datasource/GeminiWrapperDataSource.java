@@ -1,53 +1,57 @@
 package org.dayatang.dsmonitor.datasource;
 
-import org.dayatang.dsmonitor.monitor.ConnectionMonitor;
+import org.dayatang.utils.Assert;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 public class GeminiWrapperDataSource extends DelegatingDataSource {
 
-	private Set<ConnectionMonitor> monitors = new HashSet<ConnectionMonitor>();
+    private Set<ConnectionMonitor> monitors = new HashSet<ConnectionMonitor>();
 
-	public GeminiWrapperDataSource(DataSource targetDataSource, Set<ConnectionMonitor> monitors) {
-		super(targetDataSource);
-		this.monitors = monitors;
-	}
+    public GeminiWrapperDataSource(DataSource targetDataSource, Set<ConnectionMonitor> monitors) {
+        super(targetDataSource);
+        setMonitors(monitors);
+    }
 
-	public Connection getConnection() throws SQLException {
-		Connection connection = super.getConnection();
-		return buildConnection(connection);
+    public Connection getConnection() throws SQLException {
+        return buildConnection(super.getConnection());
+    }
 
-	}
+    public Connection getConnection(String username, String password)
+            throws SQLException {
+        return buildConnection(super.getConnection(username, password));
+    }
 
-	public Connection getConnection(String username, String password)
-			throws SQLException {
-		Connection connection = super.getConnection(username, password);
-		return buildConnection(connection);
-	}
+    public Set<ConnectionMonitor> getMonitors() {
+        return Collections.unmodifiableSet(monitors);
+    }
 
-	public Set<ConnectionMonitor> getMonitors() {
-		return monitors;
-	}
+    public final void setMonitors(Set<ConnectionMonitor> monitors) {
+        if (monitors != null) {
+            this.monitors = monitors;
+        }
+    }
 
-	public void setMonitors(Set<ConnectionMonitor> monitors) {
-		this.monitors = monitors;
-	}
+    public void addMonitor(ConnectionMonitor monitor) {
+        Assert.notNull(monitor, "Monitor to add cannot be null!");
+        monitors.add(monitor);
+    }
 
-	protected Connection buildConnection(Connection connection)
-			throws SQLException {
-		if (connection == null) {
-			return null;
-		}
+    public void removeMonitor(ConnectionMonitor monitor) {
+        Assert.notNull(monitor, "Monitor to add cannot be null!");
+        monitors.remove(monitor);
+    }
 
-		GeminiConnection wrapperConnection = new GeminiConnection(connection,
-				monitors);
-
-		return wrapperConnection;
-
-	}
+    private Connection buildConnection(Connection connection) throws SQLException {
+        if (connection == null) {
+            return null;
+        }
+        return new GeminiConnection(connection, monitors);
+    }
 
 }

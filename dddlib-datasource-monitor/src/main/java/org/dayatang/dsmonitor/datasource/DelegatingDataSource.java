@@ -1,6 +1,7 @@
 package org.dayatang.dsmonitor.datasource;
 
 import org.dayatang.utils.Assert;
+import org.dayatang.utils.BeanUtils;
 
 import javax.sql.DataSource;
 import java.io.PrintWriter;
@@ -76,7 +77,8 @@ public class DelegatingDataSource implements DataSource {
 
 	//For JDK 7 compatability
 	public Logger getParentLogger() throws SQLFeatureNotSupportedException {
-		return null;
+        BeanUtils beanUtils = new BeanUtils(targetDataSource);
+		return (Logger) beanUtils.getPropValue("parentLogger");
 	}
 
 }
