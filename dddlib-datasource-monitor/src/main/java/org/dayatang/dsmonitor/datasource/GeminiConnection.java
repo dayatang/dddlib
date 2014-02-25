@@ -13,8 +13,6 @@ public class GeminiConnection extends DelegatingConnection {
 
 	private long creationTime;
 
-    private long closeTime;
-
 	private StackTraceElement[] stackTraceElements = new StackTraceElement[] {};
 
 	private Set<ConnectionMonitor> monitors = new HashSet<ConnectionMonitor>();
@@ -38,7 +36,6 @@ public class GeminiConnection extends DelegatingConnection {
 
 	@Override
 	public void close() throws SQLException {
-        closeTime = System.currentTimeMillis();
         notifyClose();
 		super.close();
 	}
@@ -51,18 +48,6 @@ public class GeminiConnection extends DelegatingConnection {
 
 	public long getSurvivalTime() {
         return System.currentTimeMillis() - creationTime;
-	}
-
-    public long getCloseTime() {
-        return closeTime;
-    }
-
-    public Set<ConnectionMonitor> getMonitors() {
-		return Collections.unmodifiableSet(monitors);
-	}
-
-	public void setMonitors(Set<ConnectionMonitor> monitors) {
-		this.monitors = new HashSet<ConnectionMonitor>(monitors);
 	}
 
     public void addMonitor(ConnectionMonitor monitor) {

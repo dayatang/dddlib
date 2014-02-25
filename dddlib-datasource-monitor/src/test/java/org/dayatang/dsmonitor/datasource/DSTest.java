@@ -22,11 +22,13 @@ public class DSTest extends AbstractSpringIntegrationTest {
     @Test
     public void testAppNotCloseConnection() throws InterruptedException {
         dao.listResultWithoutCloseConnection(
-                "from CommonsTestChild", new Object[]{});
+                "select o from CommonsTestChild o", new Object[]{});
 
         Thread.sleep(12000);
 
         Assert.assertEquals(2, monitor.getAliveTimeoutConnections().size());
+
+        Assert.assertEquals(4, monitor.getConnectionCount());
 
         Thread.sleep(10000);
     }

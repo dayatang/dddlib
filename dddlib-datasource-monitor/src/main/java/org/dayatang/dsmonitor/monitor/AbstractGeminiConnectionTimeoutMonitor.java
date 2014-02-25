@@ -18,7 +18,9 @@ public abstract class AbstractGeminiConnectionTimeoutMonitor implements Connecti
 
 	private Set<GeminiConnection> aliveConnections = Collections.synchronizedSet(new HashSet<GeminiConnection>());
 
-	/**
+    private int connectionCount;
+
+    /**
 	 * 单位：毫秒，默认10000毫秒，即10s
 	 */
 	private long timeout = 1000;
@@ -28,10 +30,11 @@ public abstract class AbstractGeminiConnectionTimeoutMonitor implements Connecti
                 connection.hashCode(), connection.getMetaData().getURL(),
                 formatTime(connection.getCreationTime()));
 		aliveConnections.add(connection);
+        connectionCount++;
 	}
 
 	public void closeConnection(GeminiConnection connection) throws SQLException {
-        LOGGER.debug("关闭数据库连接HashCode【{}】，创建时间【{}】，耗时【{}】",
+        LOGGER.debug("关闭数据库连接HashCode【{}】，创建时间【{}】，耗时【{}】ms",
                 connection.hashCode(), formatTime(connection.getCreationTime()),
                 connection.getSurvivalTime());
 		aliveConnections.remove(connection);
@@ -84,7 +87,11 @@ public abstract class AbstractGeminiConnectionTimeoutMonitor implements Connecti
         return Collections.unmodifiableSet(aliveConnections);
     }
 
-	private String formatTime(long date) {
+    public int getConnectionCount() {
+        return connectionCount;
+    }
+
+    private String formatTime(long date) {
 		return DateFormatUtils.format(date, DATE_PATTERN);
 	}
 }

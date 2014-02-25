@@ -40,19 +40,19 @@ public class GeminiConnectionLogTimeoutMonitor extends
 		}
 	}
 
-	private void logConnection(GeminiConnection conn) {
+	private void logConnection(GeminiConnection connection) {
 		try {
-			if (conn.isClosed()) {
-                LOGGER.info("数据库连接HashCode【{}】，创建时间【{}】，耗时【{}】", conn.hashCode(),
-                        formatTime(conn.getCreationTime()), conn.getCloseTime());
+			if (connection.isClosed()) {
+                LOGGER.info("数据库连接HashCode【{}】，创建时间【{}】，耗时【{}】毫秒", connection.hashCode(),
+                        formatTime(connection.getCreationTime()), connection.getSurvivalTime());
 			} else {
-                LOGGER.info("数据库连接HashCode【{}】，URL=【{}】，创建时间【{}】，耗时【{}】",
-                        conn.hashCode(), conn.getMetaData().getURL(),
-                        formatTime(conn.getCreationTime()), conn.getCloseTime());
+                LOGGER.info("数据库连接HashCode【{}】，URL=【{}】，创建时间【{}】，耗时【{}】毫秒",
+                        connection.hashCode(), connection.getMetaData().getURL(),
+                        formatTime(connection.getCreationTime()), connection.getSurvivalTime());
 			}
 
             LOGGER.info("调用堆栈为：");
-			for (StackTraceElement ste : conn.getStackTraceElements()) {
+			for (StackTraceElement ste : connection.getStackTraceElements()) {
                 LOGGER.info("     " + ste);
 			}
 		} catch (SQLException ex) {
