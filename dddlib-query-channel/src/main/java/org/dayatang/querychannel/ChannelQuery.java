@@ -23,6 +23,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.dayatang.domain.BaseQuery;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.QueryParameters;
+import org.dayatang.querychannel.query.CountQueryStringBuilder;
 import org.dayatang.utils.Assert;
 
 /**
@@ -37,6 +38,7 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
     private BaseQuery query;
     private int pageIndex;
     //private int pageSize = Page.DEFAULT_PAGE_SIZE;
+
 
     public ChannelQuery(EntityRepository repository) {
         this.repository = repository;
@@ -203,8 +205,16 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      *
      * @return 符合查询条件的记录总数
      */
-    public abstract long queryResultCount();
-
+    public long queryResultCount() {
+        CountQueryStringBuilder builder = new CountQueryStringBuilder(getQueryString());
+        if (containGroupByClause()) {
+            List rows = createQueryForCount(builder.removeOrderByClause()).setParameters(query.getParameters()).list();
+            return rows == null ? 0 : rows.size();
+        } else {
+            Number result = (Number) createQueryForCount(builder.build()).setParameters(query.getParameters()).singleResult();
+            return result.longValue();
+        }
+    }
 
     /**
      * 获得当前查询对应的查询字符串
@@ -215,4 +225,6 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
     protected boolean containGroupByClause() {
         return StringUtils.containsIgnoreCase(getQueryString(), " group by ");
     }
+
+    protected abstract BaseQuery createQueryForCount(String queryString);
 }

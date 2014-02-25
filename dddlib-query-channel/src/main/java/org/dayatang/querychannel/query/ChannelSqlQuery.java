@@ -16,6 +16,7 @@
 
 package org.dayatang.querychannel.query;
 
+import org.dayatang.domain.BaseQuery;
 import org.dayatang.querychannel.ChannelQuery;
 import java.util.List;
 import org.dayatang.domain.Entity;
@@ -67,20 +68,13 @@ public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
     }
 
     @Override
-    public long queryResultCount() {
-        CountQueryStringBuilder builder = new CountQueryStringBuilder(getQueryString());
-        if (containGroupByClause()) {
-            List rows = repository.createSqlQuery(builder.removeOrderByClause()).setParameters(query.getParameters()).list();
-            return rows == null ? 0 : rows.size();
-        } else {
-            Number result = repository.createSqlQuery(builder.build()).setParameters(query.getParameters()).singleResult();
-            return result.longValue();
-        }
+    protected String getQueryString() {
+        return query.getSql();
     }
 
     @Override
-    protected String getQueryString() {
-        return query.getSql();
+    protected BaseQuery createQueryForCount(String queryString) {
+        return repository.createSqlQuery(queryString);
     }
 
 

@@ -56,20 +56,13 @@ public class ChannelNamedQuery extends ChannelQuery<ChannelNamedQuery> {
     }
 
     @Override
-    public long queryResultCount() {
-        CountQueryStringBuilder builder = new CountQueryStringBuilder(getQueryString());
-        if (containGroupByClause()) {
-            List rows = repository.createJpqlQuery(builder.removeOrderByClause()).setParameters(query.getParameters()).list();
-            return rows == null ? 0 : rows.size();
-        } else {
-            Long result = repository.createJpqlQuery(builder.build()).setParameters(query.getParameters()).singleResult();
-            return result;
-        }
+    protected String getQueryString() {
+        return repository.getQueryStringOfNamedQuery(query.getQueryName());
     }
 
     @Override
-    protected String getQueryString() {
-        return repository.getQueryStringOfNamedQuery(query.getQueryName());
+    protected BaseQuery createQueryForCount(String queryString) {
+        return repository.createJpqlQuery(queryString);
     }
 
 }
