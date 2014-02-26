@@ -57,7 +57,7 @@ public abstract class BasicCriterion extends AbstractCriterion {
     protected String getParamName() {
         String result = ROOT_ALIAS + "_" + propName + hashCode();
         result = result.replace(".", "_");
-        result = result.replace("-", "");
+        result = result.replace("-", "_");
         return result;
     }
 
