@@ -132,7 +132,7 @@ public class EntityRepositoryJpa implements EntityRepository {
     }
 
     @Override
-    public <T extends Entity> T getByBusinessKeys(Class<T> clazz, MapParameters keyValues) {
+    public <T extends Entity> T getByBusinessKeys(Class<T> clazz, NamedParameters keyValues) {
         List<T> results = findByProperties(clazz, keyValues);
         return results.isEmpty() ? null : results.get(0);
     }
@@ -266,7 +266,7 @@ public class EntityRepositoryJpa implements EntityRepository {
     }
 
     @Override
-    public <T extends Entity> List<T> findByProperties(Class<T> clazz, MapParameters properties) {
+    public <T extends Entity> List<T> findByProperties(Class<T> clazz, NamedParameters properties) {
         CriteriaQuery criteriaQuery = new CriteriaQuery(this, clazz);
         for (Map.Entry<String, Object> each : properties.getParams().entrySet()) {
             criteriaQuery = criteriaQuery.eq(each.getKey(), each.getValue());
@@ -306,23 +306,23 @@ public class EntityRepositoryJpa implements EntityRepository {
         if (params == null) {
             return;
         }
-        if (params instanceof ArrayParameters) {
-            fillParameters(query, (ArrayParameters) params);
-        } else if (params instanceof MapParameters) {
-            fillParameters(query, (MapParameters) params);
+        if (params instanceof PositionalParameters) {
+            fillParameters(query, (PositionalParameters) params);
+        } else if (params instanceof NamedParameters) {
+            fillParameters(query, (NamedParameters) params);
         } else {
             throw new UnsupportedOperationException("不支持的参数形式");
         }
     }
 
-    private void fillParameters(Query query, ArrayParameters params) {
+    private void fillParameters(Query query, PositionalParameters params) {
         Object[] paramArray = params.getParams();
         for (int i = 0; i < paramArray.length; i++) {
             query = query.setParameter(i + 1, paramArray[i]);
         }
     }
 
-    private void fillParameters(Query query, MapParameters params) {
+    private void fillParameters(Query query, NamedParameters params) {
         for (Map.Entry<String, Object> each : params.getParams().entrySet()) {
             query = query.setParameter(each.getKey(), each.getValue());
         }

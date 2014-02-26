@@ -25,20 +25,20 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
- * Map形式的查询参数集，用来表示查询语言或命名查询的命名参数。JPA、Hibernate和SQL等都支持定位
+ * 查询语言或命名查询的命名参数集。JPA、Hibernate和SQL等都支持定位
  * 参数(如"... where e.name = ?")和命名参数(如"... where name = :name")两种形式。<br>
  * 尽可能采用命名参数的形式，定位参数是落后的形式。
  * @author yyang
  */
-public class MapParameters implements QueryParameters {
-    private Map<String, Object> params;
+public class NamedParameters implements QueryParameters {
+    private Map<String, Object> params = new HashMap<String, Object>();
     
     /**
      * 创建一个空查询参数集
      * @return 一个基于Map的查询参数集
      */
-    public static MapParameters create() {
-        return new MapParameters(new HashMap<String, Object>());
+    public static NamedParameters create() {
+        return new NamedParameters(new HashMap<String, Object>());
     }
     
     /**
@@ -46,16 +46,13 @@ public class MapParameters implements QueryParameters {
      * @param params 要设置的查询参数的map，Key为参数名，Value为参数值
      * @return 一个基于Map的查询参数集
      */
-    public static MapParameters create(Map<String, Object> params) {
-        return new MapParameters(params);
+    public static NamedParameters create(Map<String, Object> params) {
+        return new NamedParameters(params);
     }
 
-    private MapParameters(Map<String, Object> params) {
-        if (params == null) {
-            this.params = new HashMap<String, Object>();
-        } else {
-            this.params = new HashMap<String, Object>(params);
-        }
+    private NamedParameters(Map<String, Object> params) {
+        Assert.notNull(params, "Parameters cannot be null");
+        this.params = new HashMap<String, Object>(params);
     }
     
     /**
@@ -64,7 +61,7 @@ public class MapParameters implements QueryParameters {
      * @param value 参数值
      * @return 当前对象本身
      */
-    public MapParameters add(String key, Object value) {
+    public NamedParameters add(String key, Object value) {
         Assert.notBlank(key);
         Assert.notNull(value);
         params.put(key, value);
@@ -72,11 +69,11 @@ public class MapParameters implements QueryParameters {
     }
 
     /**
-     * 将另一个MapParameters合并进来。
+     * 将另一个NamedParameters合并进来。
      * @param other 要合并的参数集
      * @return 该对象本身。其参数集是原有的参数集与另一个参数集合并后的结果
      */
-    public MapParameters add(MapParameters other) {
+    public NamedParameters add(NamedParameters other) {
         Assert.notNull(other);
         params.putAll(other.getParams());
         return this;
@@ -100,7 +97,7 @@ public class MapParameters implements QueryParameters {
     }
 
     /**
-     * 判断参数集对象的等价性。当且仅当两个MapParameters包含的参数Map相同时，两个对象才是等价的。
+     * 判断参数集对象的等价性。当且仅当两个NamedParameters包含的参数Map相同时，两个对象才是等价的。
      * @param other 另一个对象
      * @return 如果当前对象等价于other则返回true，否则返回false。
      */
@@ -109,10 +106,10 @@ public class MapParameters implements QueryParameters {
         if (this == other) {
             return true;
         }
-        if (!(other instanceof MapParameters)) {
+        if (!(other instanceof NamedParameters)) {
             return false;
         }
-        MapParameters that = (MapParameters) other;
+        NamedParameters that = (NamedParameters) other;
         
         return new EqualsBuilder().append(this.getParams(), that.getParams()).isEquals();
     }

@@ -2,7 +2,7 @@ package org.dayatang.domain.internal;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedParameters;
 
 /**
  * 判断某个属性值是否为不null的查询条件
@@ -20,8 +20,8 @@ public class NotNullCriterion extends BasicCriterion {
     }
 
     @Override
-    public MapParameters getParameters() {
-        return MapParameters.create();
+    public NamedParameters getParameters() {
+        return NamedParameters.create();
     }
 
     @Override

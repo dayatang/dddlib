@@ -2,7 +2,7 @@ package org.dayatang.domain.internal;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedParameters;
 import org.dayatang.utils.Assert;
 import org.dayatang.utils.BeanUtils;
 
@@ -43,8 +43,8 @@ public abstract class SizeCompareCriterion extends BasicCriterion {
     }
 
     @Override
-    public MapParameters getParameters() {
-        return MapParameters.create().add(getParamName(), value);
+    public NamedParameters getParameters() {
+        return NamedParameters.create().add(getParamName(), value);
     }
 
     @Override

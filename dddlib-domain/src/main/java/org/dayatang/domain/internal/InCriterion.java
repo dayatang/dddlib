@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.dayatang.domain.Entity;
-import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedParameters;
 
 /**
  * 代表某个属性的值包含在指定集合或数组中的查询条件
@@ -69,8 +69,8 @@ public class InCriterion extends BasicCriterion {
     }
 
     @Override
-    public MapParameters getParameters() {
-        MapParameters result = MapParameters.create();
+    public NamedParameters getParameters() {
+        NamedParameters result = NamedParameters.create();
         if (!value.isEmpty()) {
             result = result.add(getParamName(), value);
         }

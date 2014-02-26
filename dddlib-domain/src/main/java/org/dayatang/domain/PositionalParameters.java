@@ -22,12 +22,12 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
- * 数组形式的查询参数集，用来表示查询语言或命名查询的定位参数。JPA、Hibernate和SQL等都支持定位
+ * 查询语言或命名查询的定位参数集。JPA、Hibernate和SQL等都支持定位
  * 参数(如"... where e.name = ?")和命名参数(如"... where name = :name")两种形式。<br>
  * 尽可能采用命名参数的形式，定位参数是落后的形式。
  * @author yyang
  */
-public class ArrayParameters implements QueryParameters {
+public class PositionalParameters implements QueryParameters {
     
     private Object[] params;
     
@@ -35,8 +35,8 @@ public class ArrayParameters implements QueryParameters {
      * 创建一个空查询参数集
      * @return 一个基于数组的查询参数集
      */
-    public static ArrayParameters create() {
-        return new ArrayParameters(new Object[]{});
+    public static PositionalParameters create() {
+        return new PositionalParameters(new Object[]{});
     }
     
     /**
@@ -44,8 +44,8 @@ public class ArrayParameters implements QueryParameters {
      * @param params 参数值数组
      * @return 一个基于数组的参数集
      */
-    public static ArrayParameters create(Object... params) {
-        return new ArrayParameters(params);
+    public static PositionalParameters create(Object... params) {
+        return new PositionalParameters(params);
     }
     
     /**
@@ -53,11 +53,11 @@ public class ArrayParameters implements QueryParameters {
      * @param params 参数值列表
      * @return 一个基于数组的参数集
      */
-    public static ArrayParameters create(List<Object> params) {
-        return new ArrayParameters(params.toArray());
+    public static PositionalParameters create(List<Object> params) {
+        return new PositionalParameters(params.toArray());
     }
 
-    private ArrayParameters(Object[] params) {
+    private PositionalParameters(Object[] params) {
         if (params == null) {
             this.params = new Object[]{};
         } else {
@@ -83,7 +83,7 @@ public class ArrayParameters implements QueryParameters {
     }
 
     /**
-     * 判断参数集对象的等价性。当且仅当两个ArrayParameters包含的参数数组相同时，两个对象才是等价的。
+     * 判断参数集对象的等价性。当且仅当两个PositionalParameters包含的参数数组相同时，两个对象才是等价的。
      * @param other 另一个对象
      * @return 如果当前对象等价于other则返回true，否则返回false。
      */
@@ -92,10 +92,10 @@ public class ArrayParameters implements QueryParameters {
         if (this == other) {
             return true;
         }
-        if (!(other instanceof ArrayParameters)) {
+        if (!(other instanceof PositionalParameters)) {
             return false;
         }
-        ArrayParameters that = (ArrayParameters) other;
+        PositionalParameters that = (PositionalParameters) other;
         return new EqualsBuilder().append(this.getParams(), that.getParams()).isEquals();
     }
 

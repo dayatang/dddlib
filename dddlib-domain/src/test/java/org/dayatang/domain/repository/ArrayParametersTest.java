@@ -19,7 +19,7 @@ package org.dayatang.domain.repository;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import org.dayatang.domain.ArrayParameters;
+import org.dayatang.domain.PositionalParameters;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +31,7 @@ import static org.junit.Assert.*;
  */
 public class ArrayParametersTest {
     
-    private ArrayParameters instance;
+    private PositionalParameters instance;
     private Object[] params;
     
     @Before
@@ -41,40 +41,40 @@ public class ArrayParametersTest {
 
     @Test
     public void testCreateWithoutParameters() {
-        instance = ArrayParameters.create();
+        instance = PositionalParameters.create();
         assertNotNull(instance.getParams());
         assertTrue(instance.getParams().length == 0);
     }
 
     @Test
     public void testCreateWithArray() {
-        instance = ArrayParameters.create(params);
+        instance = PositionalParameters.create(params);
         assertArrayEquals(params, instance.getParams());
     }
 
     @Test
     public void testCreateWithList() {
-        instance = ArrayParameters.create(Arrays.asList(params));
+        instance = PositionalParameters.create(Arrays.asList(params));
         assertArrayEquals(params, instance.getParams());
     }
 
     @Test
     public void testEquals() {
-        instance = ArrayParameters.create(params);
+        instance = PositionalParameters.create(params);
         assertTrue(instance.equals(instance));
         assertFalse(instance.equals(params));
-        ArrayParameters other = ArrayParameters.create(params);
+        PositionalParameters other = PositionalParameters.create(params);
         assertTrue(instance.equals(other));
         assertTrue(other.equals(instance));
         
-        other = ArrayParameters.create("name", "abc");
+        other = PositionalParameters.create("name", "abc");
         assertFalse(instance.equals(other));
         assertFalse(other.equals(instance));
     }
 
     @Test
     public void testToString() {
-        assertEquals(Arrays.toString(params), ArrayParameters.create(params).toString());
+        assertEquals(Arrays.toString(params), PositionalParameters.create(params).toString());
     }
     
 }

@@ -75,7 +75,7 @@ public interface EntityRepository {
      * @param keyValues 代表业务主键值的命名参数。key为主键属性名，value为主键属性值
      * @return 一个实体实例。
      */
-    <T extends Entity> T getByBusinessKeys(Class<T> clazz, MapParameters keyValues);
+    <T extends Entity> T getByBusinessKeys(Class<T> clazz, NamedParameters keyValues);
 
     /**
      * 查找指定类型的所有实体
@@ -245,7 +245,7 @@ public interface EntityRepository {
      * @param properties 命名参数，其中key为属性名，value为要匹配的属性值。
      * @return 类型为clazz、多个属性分别等于指定的属性值的实体的集合。
      */
-    <T extends Entity> List<T> findByProperties(Class<T> clazz, MapParameters properties);
+    <T extends Entity> List<T> findByProperties(Class<T> clazz, NamedParameters properties);
     
     /**
      * 获取命名查询的查询字符串

@@ -2,7 +2,7 @@ package org.dayatang.domain.internal;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedParameters;
 import org.dayatang.utils.Assert;
 
 /**
@@ -21,8 +21,8 @@ public class NotEmptyCriterion extends BasicCriterion {
     }
 
     @Override
-    public MapParameters getParameters() {
-        return MapParameters.create();
+    public NamedParameters getParameters() {
+        return NamedParameters.create();
     }
 
     @Override

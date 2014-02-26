@@ -16,7 +16,7 @@
 
 package org.dayatang.domain.internal;
 
-import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedParameters;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -58,7 +58,7 @@ public class BetweenCriterionTest {
 
     @Test
     public void testGetParameters() {
-        assertEquals(MapParameters.create().add("rootEntity_age" + instance.hashCode() + "_from", 18)
+        assertEquals(NamedParameters.create().add("rootEntity_age" + instance.hashCode() + "_from", 18)
                 .add("rootEntity_age" + instance.hashCode() + "_to", 22), instance.getParameters());
     }
 

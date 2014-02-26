@@ -1,6 +1,6 @@
 package org.dayatang.domain.internal;
 
-import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedParameters;
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -17,7 +17,7 @@ public class AbstractCriterionTest {
         }
 
         @Override
-        public MapParameters getParameters() {
+        public NamedParameters getParameters() {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 
@@ -40,7 +40,7 @@ public class AbstractCriterionTest {
         }
 
         @Override
-        public MapParameters getParameters() {
+        public NamedParameters getParameters() {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 

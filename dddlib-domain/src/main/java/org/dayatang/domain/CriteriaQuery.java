@@ -126,7 +126,7 @@ public class CriteriaQuery {
      *
      * @return 查询参数
      */
-    public MapParameters getParameters() {
+    public NamedParameters getParameters() {
         return criterion.getParameters();
     }
 

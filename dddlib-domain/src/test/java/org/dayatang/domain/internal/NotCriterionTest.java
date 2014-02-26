@@ -16,7 +16,7 @@
 
 package org.dayatang.domain.internal;
 
-import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedParameters;
 import org.dayatang.domain.QueryCriterion;
 import org.junit.After;
 import org.junit.Before;
@@ -39,7 +39,7 @@ public class NotCriterionTest {
         other = mock(QueryCriterion.class);
         when(other.toQueryString()).thenReturn("a = 1");
         when(other.getParameters()).thenReturn(
-                MapParameters.create().add("name", "abc"));
+                NamedParameters.create().add("name", "abc"));
         instance = new NotCriterion(other);
     }
 

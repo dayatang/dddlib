@@ -16,7 +16,7 @@
 
 package org.dayatang.domain.internal;
 
-import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedParameters;
 import org.dayatang.domain.QueryCriterion;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,12 +44,12 @@ public class OrCriterionTest {
         criterion1 = mock(QueryCriterion.class);
         when(criterion1.toQueryString()).thenReturn("a = 1");
         when(criterion1.getParameters()).thenReturn(
-                MapParameters.create().add("name", "abc"));
+                NamedParameters.create().add("name", "abc"));
         
         criterion2 = mock(QueryCriterion.class);
         when(criterion2.toQueryString()).thenReturn("b = 2");
         when(criterion2.getParameters()).thenReturn(
-                MapParameters.create().add("age", 15));
+                NamedParameters.create().add("age", 15));
         
         criterion3 = null;
         
@@ -66,7 +66,7 @@ public class OrCriterionTest {
 
     @Test
     public void testGetParameters() {
-        assertEquals(MapParameters.create().add("name", "abc").add("age", 15),
+        assertEquals(NamedParameters.create().add("name", "abc").add("age", 15),
                 instance.getParameters());
     }
 

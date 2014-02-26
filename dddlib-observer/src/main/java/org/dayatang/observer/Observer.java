@@ -3,7 +3,7 @@ package org.dayatang.observer;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.dayatang.domain.AbstractEntity;
-import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedParameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -63,7 +63,7 @@ public abstract class Observer<T extends Subject> extends AbstractEntity {
 
 	public static List<Observer> findBySubject(Subject subject) {
 		String queryString = "select o from Observer o where :subjectKey in elements(o.subjectKeys))";
-                MapParameters params = MapParameters.create().add("subjectKey", subject.getSubjectKey());
+                NamedParameters params = NamedParameters.create().add("subjectKey", subject.getSubjectKey());
 		List<Object> observers = getRepository().createJpqlQuery(queryString)
                 .addParameter("subjectKey", subject.getSubjectKey()).list();
 

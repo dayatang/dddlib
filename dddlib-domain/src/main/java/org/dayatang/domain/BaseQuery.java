@@ -27,8 +27,8 @@ import org.dayatang.utils.Assert;
  */
 public abstract class BaseQuery<E extends BaseQuery> {
     private final EntityRepository repository;
-    private QueryParameters parameters = ArrayParameters.create();
-    private final MapParameters mapParameters = MapParameters.create();
+    private QueryParameters parameters = PositionalParameters.create();
+    private final NamedParameters mapParameters = NamedParameters.create();
     private int firstResult;
     private int maxResults;
 
@@ -51,7 +51,7 @@ public abstract class BaseQuery<E extends BaseQuery> {
      * @return 该对象本身
      */
     public E setParameters(Object... parameters) {
-        this.parameters = ArrayParameters.create(parameters);
+        this.parameters = PositionalParameters.create(parameters);
         return (E)this;
     }
 
@@ -61,7 +61,7 @@ public abstract class BaseQuery<E extends BaseQuery> {
      * @return 该对象本身
      */
     public E setParameters(List<Object> parameters) {
-        this.parameters = ArrayParameters.create(parameters);
+        this.parameters = PositionalParameters.create(parameters);
         return (E) this;
     }
 
@@ -71,7 +71,7 @@ public abstract class BaseQuery<E extends BaseQuery> {
      * @return 该对象本身
      */
     public E setParameters(Map<String, Object> parameters) {
-        this.parameters = MapParameters.create(parameters);
+        this.parameters = NamedParameters.create(parameters);
         return (E) this;
     }
 

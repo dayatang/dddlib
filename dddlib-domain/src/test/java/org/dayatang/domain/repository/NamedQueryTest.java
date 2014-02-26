@@ -21,9 +21,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.dayatang.domain.ArrayParameters;
+import org.dayatang.domain.PositionalParameters;
 import org.dayatang.domain.EntityRepository;
-import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedParameters;
 import org.dayatang.domain.NamedQuery;
 import org.junit.Before;
 import org.junit.Test;
@@ -62,7 +62,7 @@ public class NamedQueryTest {
     public void testSetParameters_ObjectArr() {
         Object[] params = new Object[] {"Hello", 1234};
         instance.setParameters(params);
-        assertEquals(ArrayParameters.create(params), instance.getParameters());
+        assertEquals(PositionalParameters.create(params), instance.getParameters());
     }
 
     /**
@@ -72,7 +72,7 @@ public class NamedQueryTest {
     public void testSetParameters_List() {
         List<? extends Object> params = Arrays.asList("Hello", 1234);
         instance.setParameters(params);
-        assertEquals(ArrayParameters.create(params), instance.getParameters());
+        assertEquals(PositionalParameters.create(params), instance.getParameters());
     }
 
     /**
@@ -84,7 +84,7 @@ public class NamedQueryTest {
         params.put("name", "abc");
         params.put("created", new Date());
         instance.setParameters(params);
-        assertEquals(MapParameters.create(params), instance.getParameters());
+        assertEquals(NamedParameters.create(params), instance.getParameters());
     }
 
     /**
@@ -96,7 +96,7 @@ public class NamedQueryTest {
         params.put("name", "abc");
         params.put("created", new Date());
         instance.setParameters(params);
-        assertEquals(MapParameters.create(params), 
+        assertEquals(NamedParameters.create(params), 
                 instance.addParameter("name", "abc")
                         .addParameter("created", new Date())
                         .getParameters());

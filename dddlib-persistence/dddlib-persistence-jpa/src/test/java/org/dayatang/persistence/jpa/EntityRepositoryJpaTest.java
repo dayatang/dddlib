@@ -23,7 +23,7 @@ import javax.validation.ValidationException;
 import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.domain.ExampleSettings;
 import org.dayatang.domain.JpqlQuery;
-import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedParameters;
 import org.dayatang.domain.NamedQuery;
 import org.dayatang.domain.SqlQuery;
 import org.dayatang.persistence.test.domain.Dictionary;
@@ -143,7 +143,7 @@ public class EntityRepositoryJpaTest extends AbstractIntegrationTest {
      */
     @Test
     public void testGetByBusinessKeys() {
-        MapParameters params = MapParameters.create()
+        NamedParameters params = NamedParameters.create()
                 .add("category", education)
                 .add("code", "02");
         Dictionary result = repository.getByBusinessKeys(Dictionary.class, params);
@@ -498,7 +498,7 @@ public class EntityRepositoryJpaTest extends AbstractIntegrationTest {
      */
     @Test
     public void testFindByProperties() {
-        MapParameters params = MapParameters.create()
+        NamedParameters params = NamedParameters.create()
                 .add("category", education)
                 .add("code", "02");
         List<Dictionary> results = repository.findByProperties(Dictionary.class, params);

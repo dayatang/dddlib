@@ -2,7 +2,7 @@ package org.dayatang.domain.internal;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedParameters;
 import org.dayatang.domain.QueryCriterion;
 import org.dayatang.utils.Assert;
 
@@ -37,7 +37,7 @@ public class NotCriterion extends AbstractCriterion {
     }
 
     @Override
-    public MapParameters getParameters() {
+    public NamedParameters getParameters() {
         return criterion.getParameters();
     }
 

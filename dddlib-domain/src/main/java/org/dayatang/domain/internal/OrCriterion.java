@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedParameters;
 import org.dayatang.domain.QueryCriterion;
 import org.dayatang.utils.Assert;
 
@@ -48,8 +48,8 @@ public class OrCriterion extends AbstractCriterion {
 	}
 
 	@Override
-	public MapParameters getParameters() {
-		MapParameters result = MapParameters.create();
+	public NamedParameters getParameters() {
+		NamedParameters result = NamedParameters.create();
         for (QueryCriterion each : getCriterons()) {
         	result.add(each.getParameters());
         }

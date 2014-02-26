@@ -16,7 +16,7 @@
 
 package org.dayatang.domain.internal;
 
-import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedParameters;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -47,7 +47,7 @@ public class ContainsTextCriterionTest {
 
     @Test
     public void testGetParameters() {
-        assertEquals(MapParameters.create().add("rootEntity_name" + instance.hashCode(), "%abc%"), 
+        assertEquals(NamedParameters.create().add("rootEntity_name" + instance.hashCode(), "%abc%"), 
                 instance.getParameters());
     }
 

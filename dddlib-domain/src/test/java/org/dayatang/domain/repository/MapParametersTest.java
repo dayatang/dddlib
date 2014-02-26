@@ -18,7 +18,7 @@ package org.dayatang.domain.repository;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedParameters;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -29,7 +29,7 @@ import static org.junit.Assert.*;
  */
 public class MapParametersTest {
     
-    private MapParameters instance;
+    private NamedParameters instance;
     private Map<String, Object> params;
     
     @Before
@@ -39,26 +39,26 @@ public class MapParametersTest {
 
     @Test
     public void testCreateWithoutParameters() {
-        instance = MapParameters.create();
+        instance = NamedParameters.create();
         assertNotNull(instance.getParams());
         assertTrue(instance.getParams().isEmpty());
     }
 
     @Test
     public void testCreateWithMap() {
-        assertEquals(params, MapParameters.create(params).getParams());
+        assertEquals(params, NamedParameters.create(params).getParams());
     }
 
     @Test
     public void testAddSingle() {
-        instance = MapParameters.create().add("id", 12).add("name", "abc");
+        instance = NamedParameters.create().add("id", 12).add("name", "abc");
         assertEquals(params, instance.getParams());
     }
 
     @Test
     public void testAddAnother() {
-        MapParameters other = MapParameters.create().add("age", 15);
-        instance = MapParameters.create().add("id", 12).add("name", "abc")
+        NamedParameters other = NamedParameters.create().add("age", 15);
+        instance = NamedParameters.create().add("id", 12).add("name", "abc")
                 .add(other);
         params.put("age", 15);
         assertEquals(params, instance.getParams());
@@ -66,21 +66,21 @@ public class MapParametersTest {
 
     @Test
     public void testEquals() {
-        instance = MapParameters.create(params);
+        instance = NamedParameters.create(params);
         assertTrue(instance.equals(instance));
         assertFalse(instance.equals(params));
-        MapParameters other = MapParameters.create(params);
+        NamedParameters other = NamedParameters.create(params);
         assertTrue(instance.equals(other));
         assertTrue(other.equals(instance));
         
-        other = MapParameters.create().add("name", "abc");
+        other = NamedParameters.create().add("name", "abc");
         assertFalse(instance.equals(other));
         assertFalse(other.equals(instance));
     }
 
     @Test
     public void testToString() {
-        assertEquals(params.toString(), MapParameters.create(params).toString());
+        assertEquals(params.toString(), NamedParameters.create(params).toString());
     }
 
     private Map<String, Object> createParams() {

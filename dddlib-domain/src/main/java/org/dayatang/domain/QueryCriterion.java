@@ -51,7 +51,7 @@ public interface QueryCriterion {
          * 获得查询参数
          * @return 
          */
-        MapParameters getParameters();
+        NamedParameters getParameters();
         
         
 }

@@ -1,7 +1,7 @@
 package org.dayatang.domain.internal;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedParameters;
 import org.dayatang.domain.QueryCriterion;
 
 /**
@@ -45,8 +45,8 @@ public class EmptyCriterion extends AbstractCriterion {
     }
 
     @Override
-    public MapParameters getParameters() {
-        return MapParameters.create();
+    public NamedParameters getParameters() {
+        return NamedParameters.create();
     }
 
     @Override

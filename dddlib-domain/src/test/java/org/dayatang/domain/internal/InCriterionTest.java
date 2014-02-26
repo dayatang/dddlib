@@ -17,7 +17,7 @@
 package org.dayatang.domain.internal;
 
 import java.util.Arrays;
-import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedParameters;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -51,7 +51,7 @@ public class InCriterionTest {
 
     @Test
     public void testGetParameters() {
-        assertEquals(MapParameters.create()
+        assertEquals(NamedParameters.create()
         		.add("rootEntity_name" + instance.hashCode(), Arrays.asList("a", "b")), 
         		instance.getParameters());
     }

@@ -25,7 +25,7 @@ import java.util.List;
 
 import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.domain.EntityRepository;
-import org.dayatang.domain.MapParameters;
+import org.dayatang.domain.NamedParameters;
 import org.dayatang.domain.OrderSettings;
 import org.dayatang.domain.QueryCriterion;
 import org.dayatang.domain.entity.MyEntity;
@@ -458,7 +458,7 @@ public class CriteriaQueryTest {
                 + "and rootEntity.birthday is not null "
                 + "and rootEntity.age in :rootEntity_age" + criterion2.hashCode(),
                 instance.getQueryString());
-        assertEquals(MapParameters.create()
+        assertEquals(NamedParameters.create()
                 .add("rootEntity_name" + criterion1.hashCode(), "abc")
                 .add("rootEntity_age" + criterion2.hashCode(), Arrays.asList(1, 2)),
                 instance.getParameters());
