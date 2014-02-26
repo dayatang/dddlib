@@ -70,5 +70,5 @@ public interface Cache {
      * @param key 缓存对象的key
      * @return true=存在，false=不存在
      */
-    boolean isKeyInCache(String key);
+    boolean containsKey(String key);
 }

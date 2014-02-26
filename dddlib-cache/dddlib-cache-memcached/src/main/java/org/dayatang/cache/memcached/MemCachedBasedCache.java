@@ -54,7 +54,7 @@ public class MemCachedBasedCache implements Cache {
 		return map;
 	}
 
-	public boolean isKeyInCache(String key) {
+	public boolean containsKey(String key) {
 		init();
 		return mcc.keyExists(key);
 	}

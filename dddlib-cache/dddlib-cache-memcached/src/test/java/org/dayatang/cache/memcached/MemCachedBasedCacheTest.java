@@ -61,11 +61,11 @@ public class MemCachedBasedCacheTest {
     @Test
     public void isKeyInCache() {
 
-        assertFalse(cache.isKeyInCache("no-exist"));
+        assertFalse(cache.containsKey("no-exist"));
 
         Date now = new Date();
         cache.put("time", now);
-        assertTrue(cache.isKeyInCache("time"));
+        assertTrue(cache.containsKey("time"));
 
     }
 }
