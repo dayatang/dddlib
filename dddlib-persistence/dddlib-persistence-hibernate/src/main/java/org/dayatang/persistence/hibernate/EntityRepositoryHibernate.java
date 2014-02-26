@@ -119,27 +119,11 @@ public class EntityRepositoryHibernate implements EntityRepository {
      * @see org.dayatang.domain.EntityRepository#find(org.dayatang.domain.CriteriaQuery)
      */
     @SuppressWarnings("rawtypes")
-	@Override
-    public <T> List<T> find(CriteriaQuery dddQuery) {
-        String queryString = dddQuery.getQueryString();
-        LOGGER.info("QueryString: " + queryString);
-        Map<String, Object> params = dddQuery.getParameters().getParams();
-        LOGGER.info("params: " + params);
-        Query query = getSession().createQuery(queryString);
-        for (Map.Entry<String, Object> entry : params.entrySet()) {
-        	Object value = entry.getValue();
-        	if (value instanceof Collection) {
-            	query.setParameterList(entry.getKey(), (Collection) value);
-        	} else if (value.getClass().isArray()) {
-        		query.setParameterList(entry.getKey(), (Object[]) value);
-        	} else {
-            	query.setParameter(entry.getKey(), value);
-        	}
-        }
-        query.setFirstResult(dddQuery.getFirstResult());
-        if (dddQuery.getMaxResults() > 0) {
-            query.setMaxResults(dddQuery.getMaxResults());
-        }
+    @Override
+    public <T> List<T> find(CriteriaQuery criteriaQuery) {
+        Query query = getSession().createQuery(criteriaQuery.getQueryString());
+        processQuery(query, criteriaQuery.getParameters(), 
+                criteriaQuery.getFirstResult(), criteriaQuery.getMaxResults());
         return query.list();
     }
 
@@ -358,10 +342,21 @@ public class EntityRepositoryHibernate implements EntityRepository {
     }
 
     private void processQuery(Query query, BaseQuery originQuery) {
+        processQuery(query, originQuery.getParameters(), originQuery.getFirstResult(), 
+                originQuery.getMaxResults());
         fillParameters(query, originQuery.getParameters());
         query.setFirstResult(originQuery.getFirstResult());
         if (originQuery.getMaxResults() > 0) {
             query.setMaxResults(originQuery.getMaxResults());
+        }
+    }
+
+    private void processQuery(Query query, QueryParameters parameters, 
+            int firstResult, int maxResults) {
+        fillParameters(query, parameters);
+        query.setFirstResult(firstResult);
+        if (maxResults > 0) {
+            query.setMaxResults(maxResults);
         }
     }
 

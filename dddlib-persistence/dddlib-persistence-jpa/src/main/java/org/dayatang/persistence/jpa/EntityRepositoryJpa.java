@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.io.Serializable;
 import java.util.List;
@@ -149,16 +148,10 @@ public class EntityRepositoryJpa implements EntityRepository {
     }
 
     @Override
-    public <T> List<T> find(CriteriaQuery dddQuery) {
-        Query query = getEntityManager().createQuery(dddQuery.getQueryString());
-        Map<String, Object> params = dddQuery.getParameters().getParams();
-        for (Map.Entry<String, Object> entry : params.entrySet()) {
-            query.setParameter(entry.getKey(), entry.getValue());
-        }
-        query.setFirstResult(dddQuery.getFirstResult());
-        if (dddQuery.getMaxResults() > 0) {
-            query.setMaxResults(dddQuery.getMaxResults());
-        }
+    public <T> List<T> find(CriteriaQuery criteriaQuery) {
+        Query query = getEntityManager().createQuery(criteriaQuery.getQueryString());
+        processQuery(query, criteriaQuery.getParameters(), 
+                criteriaQuery.getFirstResult(), criteriaQuery.getMaxResults());
         return query.getResultList();
     }
 
@@ -295,10 +288,16 @@ public class EntityRepositoryJpa implements EntityRepository {
     }
 
     private void processQuery(Query query, BaseQuery originQuery) {
-        fillParameters(query, originQuery.getParameters());
-        query.setFirstResult(originQuery.getFirstResult());
-        if (originQuery.getMaxResults() > 0) {
-            query.setMaxResults(originQuery.getMaxResults());
+        processQuery(query, originQuery.getParameters(), 
+                originQuery.getFirstResult(), originQuery.getMaxResults());
+    }
+
+    private void processQuery(Query query, QueryParameters parameters, 
+            int firstResult, int maxResults) {
+        fillParameters(query, parameters);
+        query.setFirstResult(firstResult);
+        if (maxResults > 0) {
+            query.setMaxResults(maxResults);
         }
     }
 
