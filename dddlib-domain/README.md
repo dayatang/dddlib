@@ -42,11 +42,11 @@ dddlib支持四种查询方式：条件查询、命名查询、JPQL查询和原�
 除CriteriaQuery之外，其他三种查询往往需要指定查询参数。查询参数集由下面的接口和类代表：
 
 
-* [QueryParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/QueryParameters.html)：查询参数集接口，代表每个查询的一批参数。几种查询都支持两种形式的参数：定位参数和命名参数，在DDDLib中分别用QueryParameters的两个实现类[ArrayParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/ArrayParameters.html)和[MapParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/MapParameters.html)代表。注意：定位参数是落后的形式，建议统一采用命名参数的形式。
+* [QueryParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/QueryParameters.html)：查询参数集接口，代表每个查询的一批参数。几种查询都支持两种形式的参数：定位参数和命名参数，在DDDLib中分别用QueryParameters的两个实现类[PositionalParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/PositionalParameters.html)和[NamedParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/NamedParameters.html)代表。注意：定位参数是落后的形式，建议统一采用命名参数的形式。
 
-* [ArrayParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/ArrayParameters.html)：代表定位参数集，如"... where e.name = ?"。在对象的内部用一个数组来保存参数。
+* [PositionalParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/PositionalParameters.html)：代表定位参数集，如"... where e.name = ?"。在对象的内部用一个数组来保存参数。
 
-* [MapParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/MapParameters.html)：代表命名参数集，如"... where name = :name"。在对象内部用一个Map来保存参数，Key代表参数名，Value代表参数值。
+* [NamedParameters](http://www.dayatang.org/dddlib/apidocs/org/dayatang/domain/NamedParameters.html)：代表命名参数集，如"... where name = :name"。在对象内部用一个Map来保存参数，Key代表参数名，Value代表参数值。
 
 每种查询都定义有下面两种方法：
 
