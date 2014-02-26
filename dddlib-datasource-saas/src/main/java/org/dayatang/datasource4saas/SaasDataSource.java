@@ -1,6 +1,7 @@
 package org.dayatang.datasource4saas;
 
 import org.dayatang.utils.Assert;
+import org.dayatang.utils.BeanUtils;
 
 import javax.sql.DataSource;
 import java.io.PrintWriter;
@@ -73,7 +74,8 @@ public class SaasDataSource implements DataSource {
 
 	//For JDK 7 compatability
 	public Logger getParentLogger() throws SQLFeatureNotSupportedException {
-		return null;
+        BeanUtils beanUtils = new BeanUtils(getActualDataSource());
+        return (Logger) beanUtils.getPropValue("parentLogger");
 	}
 	
 }

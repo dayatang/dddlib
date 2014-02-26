@@ -53,7 +53,4 @@ public abstract class GlobalUrlDataSourceContext implements DataSourceContext {
 		return properties;
 	}
 
-	@Override
-	public abstract String getSchema();
-
 }

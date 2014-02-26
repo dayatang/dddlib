@@ -31,15 +31,6 @@ public abstract class GlobalLoginDataSourceContext implements DataSourceContext 
 		return password;
 	}
 
-	@Override
-	public abstract Properties getProperties();
-
-	@Override
-	public abstract String getSchema();
-
-	@Override
-	public abstract String getUrl();
-
 	public String toString() {
 		return "url = " + getUrl() + " schema = " + getSchema();
 	}
