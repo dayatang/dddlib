@@ -1,5 +1,6 @@
 package org.dayatang.persistence.jpa;
 
+import org.apache.commons.lang3.StringUtils;
 import org.dayatang.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,11 @@ public class EntityRepositoryJpa implements EntityRepository {
     
     private NamedQueryParser namedQueryParser;
 
+    /**
+     * EntityManager或EntityManagerFactory实例在IoC容器中的别名
+     */
+    private String alias;
+
     public EntityRepositoryJpa() {
     }
 
@@ -36,17 +42,30 @@ public class EntityRepositoryJpa implements EntityRepository {
         this.entityManagerFactory = entityManagerFactory;
     }
 
-    private EntityManager getEntityManager() {
-        if (entityManager != null) {
-            return entityManager;
-        }
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
 
+    private EntityManager getEntityManager() {
+        //单一数据源
+        if (StringUtils.isBlank(alias)) {
+            try {
+                return InstanceFactory.getInstance(EntityManager.class);
+            } catch (IocInstanceNotFoundException e) {
+                if (entityManagerFactory == null) {
+                    entityManagerFactory = InstanceFactory
+                            .getInstance(EntityManagerFactory.class);
+                }
+                return entityManagerFactory.createEntityManager();
+            }
+        }
+        //多数据源
         try {
-            return InstanceFactory.getInstance(EntityManager.class);
+            return InstanceFactory.getInstance(EntityManager.class, alias);
         } catch (IocInstanceNotFoundException e) {
             if (entityManagerFactory == null) {
                 entityManagerFactory = InstanceFactory
-                        .getInstance(EntityManagerFactory.class);
+                        .getInstance(EntityManagerFactory.class, alias);
             }
             return entityManagerFactory.createEntityManager();
         }

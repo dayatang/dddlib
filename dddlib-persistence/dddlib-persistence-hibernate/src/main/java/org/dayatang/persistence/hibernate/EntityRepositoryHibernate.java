@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.dayatang.domain.*;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
@@ -25,6 +26,11 @@ import org.slf4j.LoggerFactory;
 public class EntityRepositoryHibernate implements EntityRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EntityRepositoryHibernate.class);
+
+    /**
+     * Session或SessionFactory实例在IoC容器中的别名
+     */
+    private String alias;
 
     /*
      * (non-Javadoc)
@@ -333,10 +339,20 @@ public class EntityRepositoryHibernate implements EntityRepository {
     }
 
     private Session getSession() {
+        //单一数据源的情况
+        if (StringUtils.isBlank(alias)) {
+            try {
+                return InstanceFactory.getInstance(Session.class);
+            } catch (IocInstanceNotFoundException e) {
+                SessionFactory sessionFactory = InstanceFactory.getInstance(SessionFactory.class);
+                return sessionFactory.getCurrentSession();
+            }
+        }
+        //多数据源的情况
         try {
-            return InstanceFactory.getInstance(Session.class);
+            return InstanceFactory.getInstance(Session.class, alias);
         } catch (IocException e) {
-            SessionFactory sessionFactory = InstanceFactory.getInstance(SessionFactory.class);
+            SessionFactory sessionFactory = InstanceFactory.getInstance(SessionFactory.class, alias);
             return sessionFactory.getCurrentSession();
         }
     }
