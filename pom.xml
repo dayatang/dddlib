@@ -633,10 +633,17 @@
                 <artifactId>maven-surefire-report-plugin</artifactId>
                 <version>2.16</version>
             </plugin>
+            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clover-plugin</artifactId>
                 <version>2.4</version>
+            </plugin>
+            -->
+            <plugin>
+                <groupId>com.atlassian.maven.plugins</groupId>
+                <artifactId>maven-clover2-plugin</artifactId>
+                <version>3.2.0</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
