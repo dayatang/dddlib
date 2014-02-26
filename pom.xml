@@ -410,7 +410,6 @@
                     <configuration>
                         <source>${jdk.version}</source>
                         <target>${jdk.version}</target>
-                        <encoding>${project.build.sourceEncoding}</encoding>
                         <fork>true</fork>
                         <meminitial>128m</meminitial>
                         <maxmem>768m</maxmem>
@@ -442,9 +441,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>2.6</version>
-                    <configuration>
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -499,8 +495,6 @@
                     <version>3.3</version>
                     <configuration>
                         <locales>zh_CN</locales>
-                        <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
-                        <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
                     </configuration>
                     <dependencies>
                         <dependency>
@@ -625,8 +619,6 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.9.1</version>
                 <configuration>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                    <charset>${project.build.sourceEncoding}</charset>
                     <minmemory>128m</minmemory>
                     <maxmemory>1024m</maxmemory>
                 </configuration>
@@ -635,10 +627,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jxr-plugin</artifactId>
                 <version>2.3</version>
-                <configuration>
-                    <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
-                    <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -655,7 +643,6 @@
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>3.0.1</version>
                 <configuration>
-                    <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
                     <targetJdk>1.6</targetJdk>
                     <format>xml</format>
                     <linkXRef>true</linkXRef>
@@ -668,7 +655,6 @@
                 <version>2.10</version>
                 <configuration>
                     <configLocation>config/sun_checks.xml</configLocation>
-                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
             <!--
