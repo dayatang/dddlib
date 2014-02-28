@@ -14,6 +14,11 @@
 	</description>
 
 	<dependencies>
+        <dependency>
+            <groupId>org.dayatang.dddlib</groupId>
+            <artifactId>dddlib-cache-api</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>

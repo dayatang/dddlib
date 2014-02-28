@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.dayatang.utils;
+package org.dayatang.utils.beans;
 
 import java.beans.Transient;
 
@@ -21,15 +21,15 @@ import java.beans.Transient;
  *
  * @author yyang
  */
-public class ConcretItem extends Item {
+public class ConcreteItem extends Item {
     
     private double price;
 
-    public ConcretItem(int id, String name) {
+    public ConcreteItem(int id, String name) {
         super(id, name);
     }
 
-    public ConcretItem(int id, String name, boolean disabled) {
+    public ConcreteItem(int id, String name, boolean disabled) {
         super(id, name, disabled);
     }
 

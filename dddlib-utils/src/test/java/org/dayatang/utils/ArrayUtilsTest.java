@@ -1,5 +1,6 @@
 package org.dayatang.utils;
 
+import org.dayatang.utils.beans.Item;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

@@ -103,6 +103,15 @@ public class BeanUtils {
     }
 
     /**
+     * 获得指定JavaBean类型的所有可读属性的名字，包括从父类继承的属性
+     *
+     * @return JavaBean的属性名的集合
+     */
+    public Set<String> getWritablePropNames() {
+        return beanClassUtils.getWritablePropNames();
+    }
+
+    /**
      * 获得指定属性的值
      * @param propName 属性名
      * @return 属性值
@@ -140,6 +149,39 @@ public class BeanUtils {
     public void populate(Map<String, ? extends Object> properties) {
         for (Map.Entry<String, ? extends Object> entry : properties.entrySet()) {
             setPropValue(entry.getKey(), entry.getValue());
+        }
+    }
+
+    /**
+     * 从另一个Bean提取属性值，填充当前Bean的同名属性
+     * @param otherBean 另外的JavaBean
+     */
+    public void copyPropertiesFrom(Object otherBean) {
+        copyProperties(otherBean, bean);
+    }
+
+    /**
+     * 将当前Bean的属性值填充到另一个Bean的同名属性
+     * @param otherBean 另外的JavaBean
+     */
+    public void copyPropertiesTo(Object otherBean) {
+        copyProperties(bean, otherBean);
+        BeanUtils other = new BeanUtils(otherBean);
+    }
+
+    /**
+     * 在两个Bean之间复制属性值
+     * @param fromBean 作为复制源的Bean
+     * @param toBean 作为复制目标的Bean
+     */
+    public static void copyProperties(Object fromBean, Object toBean) {
+        BeanUtils from = new BeanUtils(fromBean);
+        BeanUtils to = new BeanUtils(toBean);
+        Map<String, Object> values = from.getPropValues();
+        for (String prop : to.getWritablePropNames()) {
+            if (values.containsKey(prop)) {
+                to.setPropValue(prop, values.get(prop));
+            }
         }
     }
 }

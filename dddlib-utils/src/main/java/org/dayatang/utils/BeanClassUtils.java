@@ -67,6 +67,22 @@ public class BeanClassUtils {
     }
 
     /**
+     * 获得指定JavaBean类型的所有可写属性的名字，包括从父类继承的属性
+     *
+     * @return JavaBean的属性名的集合
+     */
+    public Set<String> getWritablePropNames() {
+        Set<String> results = new HashSet<String>();
+        for (Map.Entry<String, PropertyDescriptor> each : getPropertyDescriptors().entrySet()) {
+            if (each.getValue().getWriteMethod() == null) {
+                continue;
+            }
+            results.add(each.getKey());
+        }
+        return results;
+    }
+
+    /**
      * 获得JavaBean的属性值的值，包括从父类继承的属性，不包含指定的属性。
      *
      * @param excludePropNames

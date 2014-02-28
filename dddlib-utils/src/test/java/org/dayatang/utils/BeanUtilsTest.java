@@ -1,6 +1,9 @@
 package org.dayatang.utils;
 
 import java.beans.Transient;
+
+import org.dayatang.utils.beans.ConcreteItem;
+import org.dayatang.utils.beans.Item;
 import org.junit.Test;
 
 import java.util.*;
@@ -10,11 +13,11 @@ import org.junit.Before;
 
 public class BeanUtilsTest {
     private BeanUtils instance;
-    private ConcretItem item;
+    private ConcreteItem item;
     
     @Before
     public void setUp() {
-        item = new ConcretItem(1, "abc", true);
+        item = new ConcreteItem(1, "abc", true);
         item.setPrice(12.5);
         instance = new BeanUtils(item);
     }
@@ -91,5 +94,36 @@ public class BeanUtilsTest {
         assertEquals(1, item.getId());
         assertEquals("aaaa", item.getName());
         assertEquals(12.5, item.getPrice(), 0.0001);
+    }
+
+    @Test
+    public void testCopyProperties() {
+        Item item1 = new Item(12, "abc", true);
+        ConcreteItem item2 = new ConcreteItem(20, "xyz", false);
+        item2.setPrice(15.5);
+        BeanUtils.copyProperties(item1, item2);
+        assertEquals("abc", item2.getName());
+        assertEquals(15.5, item2.getPrice(), 0.0001);
+    }
+
+    @Test
+    public void testCopyPropertiesFrom() {
+        Item item1 = new Item(12, "abc", true);
+        ConcreteItem item2 = new ConcreteItem(20, "xyz", false);
+        item2.setPrice(15.5);
+        instance = new BeanUtils(item2);
+        instance.copyPropertiesFrom(item1);
+        assertEquals("abc", item2.getName());
+        assertEquals(15.5, item2.getPrice(), 0.0001);
+    }
+
+    @Test
+    public void testCopyPropertiesTo() {
+        Item item1 = new Item(12, "abc", true);
+        ConcreteItem item2 = new ConcreteItem(20, "xyz", false);
+        item2.setPrice(15.5);
+        instance = new BeanUtils(item2);
+        instance.copyPropertiesTo(item1);
+        assertEquals("xyz", item1.getName());
     }
 }

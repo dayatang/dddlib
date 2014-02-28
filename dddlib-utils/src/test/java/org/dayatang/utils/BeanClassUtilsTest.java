@@ -20,6 +20,8 @@ import java.beans.Transient;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
+
+import org.dayatang.utils.beans.ConcreteItem;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -34,7 +36,7 @@ public class BeanClassUtilsTest {
     
     @Before
     public void setUp() {
-        instance = new BeanClassUtils(ConcretItem.class);
+        instance = new BeanClassUtils(ConcreteItem.class);
     }
 
     @Test

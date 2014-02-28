@@ -1,4 +1,4 @@
-package org.dayatang.utils;
+package org.dayatang.utils.beans;
 
 public class Item {
 

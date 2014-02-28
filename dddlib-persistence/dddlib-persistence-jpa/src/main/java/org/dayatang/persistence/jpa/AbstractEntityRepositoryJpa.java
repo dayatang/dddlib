@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.Query;
 import java.io.Serializable;
 import java.util.List;
@@ -151,7 +152,11 @@ public abstract class AbstractEntityRepositoryJpa implements EntityRepository {
 
     @Override
     public <T> T getSingleResult(JpqlQuery jpqlQuery) {
-        return (T) getQuery(jpqlQuery).getSingleResult();
+        try {
+            return (T) getQuery(jpqlQuery).getSingleResult();
+        } catch (EntityNotFoundException e) {
+            return null;
+        }
     }
 
     @Override
@@ -178,7 +183,11 @@ public abstract class AbstractEntityRepositoryJpa implements EntityRepository {
 
     @Override
     public <T> T getSingleResult(NamedQuery namedQuery) {
-        return (T) getQuery(namedQuery).getSingleResult();
+        try {
+            return (T) getQuery(namedQuery).getSingleResult();
+        } catch (EntityNotFoundException e) {
+            return null;
+        }
     }
 
     @Override
@@ -204,7 +213,11 @@ public abstract class AbstractEntityRepositoryJpa implements EntityRepository {
 
     @Override
     public <T> T getSingleResult(SqlQuery sqlQuery) {
-        return (T) getQuery(sqlQuery).getSingleResult();
+        try {
+            return (T) getQuery(sqlQuery).getSingleResult();
+        } catch (EntityNotFoundException e) {
+            return null;
+        }
     }
 
     @Override
