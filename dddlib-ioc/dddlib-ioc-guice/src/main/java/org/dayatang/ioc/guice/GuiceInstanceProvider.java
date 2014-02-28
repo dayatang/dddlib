@@ -1,10 +1,7 @@
 package org.dayatang.ioc.guice;
 
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Key;
-import com.google.inject.Module;
+import com.google.inject.*;
 import com.google.inject.name.Names;
 import org.dayatang.domain.InstanceProvider;
 
@@ -24,7 +21,7 @@ public class GuiceInstanceProvider implements InstanceProvider {
      * @param modules 一或多个guice模块
      */
     public GuiceInstanceProvider(Module... modules) {
-        injector = Guice.createInjector(modules);
+        injector = Guice.createInjector(Stage.PRODUCTION, modules);
     }
 
     /**

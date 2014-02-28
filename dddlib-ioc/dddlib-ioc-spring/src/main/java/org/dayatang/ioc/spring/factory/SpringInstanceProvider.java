@@ -1,13 +1,18 @@
 package org.dayatang.ioc.spring.factory;
 
 import org.dayatang.domain.InstanceProvider;
+import org.dayatang.domain.IocInstanceNotUniqueException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.lang.annotation.Annotation;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * 实例提供者接口的Spring实现。
@@ -57,6 +62,8 @@ public class SpringInstanceProvider implements InstanceProvider {
     public <T> T getInstance(Class<T> beanType) {
         try {
             return applicationContext.getBean(beanType);
+        } catch (NoUniqueBeanDefinitionException e) {
+            throw new IocInstanceNotUniqueException(e);
         } catch (NoSuchBeanDefinitionException e) {
             return null;
         }
@@ -96,6 +103,8 @@ public class SpringInstanceProvider implements InstanceProvider {
     public <T> T getInstance(Class<T> beanType, String beanName) {
         try {
             return (T) applicationContext.getBean(beanName, beanType);
+        } catch (NoUniqueBeanDefinitionException e) {
+            throw new IocInstanceNotUniqueException(e);
         } catch (NoSuchBeanDefinitionException e) {
             return null;
         }
@@ -119,12 +128,19 @@ public class SpringInstanceProvider implements InstanceProvider {
             return getInstance(beanType);
         }
         Map<String, T> results = applicationContext.getBeansOfType(beanType);
+        List<T> resultsWithAnnotation = new ArrayList<T>();
         for (Map.Entry<String, T> entry : results.entrySet()) {
             if (applicationContext.findAnnotationOnBean(entry.getKey(), annotationType) != null) {
-                return entry.getValue();
+                resultsWithAnnotation.add(entry.getValue());
             }
         }
-        return null;
+        if (resultsWithAnnotation.isEmpty())  {
+            return null;
+        }
+        if (resultsWithAnnotation.size() == 1) {
+            return resultsWithAnnotation.get(0);
+        }
+        throw new IocInstanceNotUniqueException();
     }
 
     @SuppressWarnings("unchecked")

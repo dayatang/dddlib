@@ -80,7 +80,7 @@ public class InstanceFactory {
             results.add(instance);
         }
         if (results.size() > 1) {
-            throw new IocInstanceNotUniqueException("There're more then one bean of type '" + beanType + "'");
+            throw new IocInstanceNotUniqueException("There're more than one bean of type '" + beanType + "'");
         }
         if (results.size() == 1) {
             return results.iterator().next();
@@ -134,7 +134,7 @@ public class InstanceFactory {
             }
         }
         if (results.size() > 1) {
-            throw new IocInstanceNotUniqueException("There're more then one bean of type '"
+            throw new IocInstanceNotUniqueException("There're more than one bean of type '"
                     + beanType + "' and named '" + beanName + "'");
         }
         if (results.size() == 1) {
@@ -190,7 +190,7 @@ public class InstanceFactory {
             }
         }
         if (results.size() > 1) {
-            throw new IocInstanceNotUniqueException("There're more then one bean of type '"
+            throw new IocInstanceNotUniqueException("There're more than one bean of type '"
                     + beanType + "' and annotated with '" + annotationType + "'");
         }
         if (results.size() == 1) {
