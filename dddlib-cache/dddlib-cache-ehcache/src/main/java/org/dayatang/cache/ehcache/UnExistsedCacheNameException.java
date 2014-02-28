@@ -23,8 +23,4 @@ public class UnExistsedCacheNameException extends RuntimeException {
     public UnExistsedCacheNameException(Throwable cause) {
         super(cause);
     }
-
-    protected UnExistsedCacheNameException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
 }
