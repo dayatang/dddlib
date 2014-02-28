@@ -2,14 +2,13 @@ package org.dayatang.persistence.jpa;
 
 import org.apache.commons.lang3.StringUtils;
 import org.dayatang.domain.*;
+import org.dayatang.domain.Entity;
+import org.dayatang.domain.NamedQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.Query;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -154,7 +153,7 @@ public abstract class AbstractEntityRepositoryJpa implements EntityRepository {
     public <T> T getSingleResult(JpqlQuery jpqlQuery) {
         try {
             return (T) getQuery(jpqlQuery).getSingleResult();
-        } catch (EntityNotFoundException e) {
+        } catch (NoResultException e) {
             return null;
         }
     }
@@ -185,7 +184,7 @@ public abstract class AbstractEntityRepositoryJpa implements EntityRepository {
     public <T> T getSingleResult(NamedQuery namedQuery) {
         try {
             return (T) getQuery(namedQuery).getSingleResult();
-        } catch (EntityNotFoundException e) {
+        } catch (NoResultException e) {
             return null;
         }
     }
@@ -215,7 +214,7 @@ public abstract class AbstractEntityRepositoryJpa implements EntityRepository {
     public <T> T getSingleResult(SqlQuery sqlQuery) {
         try {
             return (T) getQuery(sqlQuery).getSingleResult();
-        } catch (EntityNotFoundException e) {
+        } catch (NoResultException e) {
             return null;
         }
     }
