@@ -135,7 +135,7 @@ DDDLib中处理对象依赖的基本形式是依赖查找：通过InstanceFactor
 
 * 采用SpringIoC这样的依赖注入框架，如果要求对象A能够自动注入依赖对象B，那么A和B都必须是IoC容器管理的Bean。如果A不是容器托管的Bean就无法注入。由于领域对象一般都不是容器托管的Bean，所以基本上不能获得IoC的功能（后来Spring用一些不太自然的方式做到了领域对象能够注入依赖）。而依赖查找的方式不要求对象A是IoC容器托管的。
 
-另外，DDDLib通过dddlib-ioc-spring、dddlib-ioc-guice和dddlib-tapestry提供了IoC容器的实现。这三种形式的后端技术SpringIoC、Google Guice和TapestryIoC都支持JSR330依赖注入规范，因此采用这些模块作为持久化容器时，DDDLib中的类也可以获得依赖注入的能力。通过JSR330的@Inject注解可以注入依赖对象的实例。不要采用Spring的@Autowire这样的注解，以免将系统耦合到具体的实现技术。
+另外，DDDLib通过dddlib-ioc-spring、dddlib-ioc-guice和dddlib-ioc-tapestry提供了IoC容器的实现。这三种形式的后端技术SpringIoC、Google Guice和TapestryIoC都支持JSR330依赖注入规范，因此采用这些模块作为持久化容器时，DDDLib中的类也可以获得依赖注入的能力。通过JSR330的@Inject注解可以注入依赖对象的实例。不要采用Spring的@Autowire这样的注解，以免将系统耦合到具体的实现技术。
 
 
 
