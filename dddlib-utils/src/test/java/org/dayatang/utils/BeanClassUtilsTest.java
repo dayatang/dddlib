@@ -16,7 +16,6 @@
 
 package org.dayatang.utils;
 
-import java.beans.Transient;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
@@ -74,7 +73,7 @@ public class BeanClassUtilsTest {
 
     @Test
     public void testGetReadablePropNamesexcludeAnnotation() {
-        Set<String> results = instance.getReadablePropNamesExclude(Transient.class);
+        Set<String> results = instance.getReadablePropNamesExclude(Deprecated.class);
         assertTrue(results.containsAll(
                 Arrays.asList("name", "id")));
         assertFalse(results.contains("price"));

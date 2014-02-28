@@ -1,6 +1,5 @@
 package org.dayatang.utils;
 
-import java.beans.Transient;
 
 import org.dayatang.utils.beans.ConcreteItem;
 import org.dayatang.utils.beans.Item;
@@ -65,7 +64,7 @@ public class BeanUtilsTest {
 
     @Test
     public void testGetPropValuesExcludeAnnotation() {
-        Map<String, Object> values = instance.getPropValuesExclude(Transient.class);
+        Map<String, Object> values = instance.getPropValuesExclude(Deprecated.class);
         assertEquals(1, values.get("id"));
         assertEquals("abc", values.get("name"));
         assertNull(values.get("disabled"));
