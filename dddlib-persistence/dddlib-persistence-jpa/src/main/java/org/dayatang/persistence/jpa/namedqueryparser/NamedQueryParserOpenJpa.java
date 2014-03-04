@@ -14,22 +14,23 @@
  * limitations under the License.
  */
 
-package org.dayatang.persistence.jpa;
+package org.dayatang.persistence.jpa.namedqueryparser;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import org.apache.openjpa.persistence.EntityManagerImpl;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.domain.IocInstanceNotFoundException;
-import org.hibernate.Session;
+import org.dayatang.persistence.jpa.NamedQueryParser;
 
 
 /**
- *
+ * NamedQueryParser接口的OpenJPA实现
  * @author yyang
  */
-public class NamedQueryParserHibernate implements NamedQueryParser {
+public class NamedQueryParserOpenJpa implements NamedQueryParser {
 
     @Inject
     @PersistenceContext
@@ -37,7 +38,8 @@ public class NamedQueryParserHibernate implements NamedQueryParser {
 
     private EntityManagerFactory entityManagerFactory;
 
-    public NamedQueryParserHibernate() {
+    public NamedQueryParserOpenJpa(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
     }
 
     private EntityManager getEntityManager() {
@@ -58,8 +60,8 @@ public class NamedQueryParserHibernate implements NamedQueryParser {
     
     @Override
     public String getQueryStringOfNamedQuery(String queryName) {
-        Session session = (Session) getEntityManager().getDelegate();
-        return session.getNamedQuery(queryName).getQueryString();
+        EntityManagerImpl entityManagerImpl = (EntityManagerImpl) getEntityManager().getDelegate();
+        return entityManagerImpl.createNamedQuery(queryName).getQueryString();
     }
     
 }

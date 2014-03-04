@@ -1,6 +1,5 @@
 package org.dayatang.persistence.jpa;
 
-import org.apache.commons.lang3.StringUtils;
 import org.dayatang.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,10 +9,6 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 通用仓储接口的JPA实现。
@@ -39,6 +34,7 @@ public class EntityRepositoryJpa extends AbstractEntityRepositoryJpa {
         this.entityManagerFactory = entityManagerFactory;
     }
 
+    @Override
     protected EntityManager getEntityManager() {
         if (entityManager != null) {
             return entityManager;
