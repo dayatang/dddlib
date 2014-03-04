@@ -1,25 +1,21 @@
 package org.dayatang.persistence.jpa;
 
-import org.dayatang.domain.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 
+import org.dayatang.domain.InstanceFactory;
+import org.dayatang.domain.IocInstanceNotFoundException;
+
 /**
  * 通用仓储接口的JPA实现。
  *
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  */
-@SuppressWarnings({"unchecked", "deprecation"})
 @Named("dddlib_entity_repository_jpa")
 public class EntityRepositoryJpa extends AbstractEntityRepositoryJpa {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(EntityRepositoryJpa.class);
 
     @Inject
     @PersistenceContext

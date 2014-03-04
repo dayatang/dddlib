@@ -1,24 +1,34 @@
 package org.dayatang.persistence.jpa;
 
-import org.apache.commons.lang3.StringUtils;
-import org.dayatang.domain.*;
-import org.dayatang.domain.Entity;
-import org.dayatang.domain.NamedQuery;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.inject.Named;
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
+
+import org.dayatang.domain.BaseQuery;
+import org.dayatang.domain.CriteriaQuery;
+import org.dayatang.domain.Entity;
+import org.dayatang.domain.EntityRepository;
+import org.dayatang.domain.ExampleSettings;
+import org.dayatang.domain.InstanceFactory;
+import org.dayatang.domain.JpqlQuery;
+import org.dayatang.domain.NamedParameters;
+import org.dayatang.domain.NamedQuery;
+import org.dayatang.domain.PositionalParameters;
+import org.dayatang.domain.QueryParameters;
+import org.dayatang.domain.SqlQuery;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 通用仓储接口的JPA实现。
  *
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  */
-@SuppressWarnings({"unchecked", "deprecation"})
+@SuppressWarnings({"unchecked"})
 public abstract class AbstractEntityRepositoryJpa implements EntityRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractEntityRepositoryJpa.class);
@@ -224,7 +234,7 @@ public abstract class AbstractEntityRepositoryJpa implements EntityRepository {
         return getQuery(sqlQuery).executeUpdate();
     }
 
-    private Query getQuery(SqlQuery sqlQuery) {
+	private Query getQuery(SqlQuery sqlQuery) {
         Query query;
         if (sqlQuery.getResultEntityClass() == null) {
             query = getEntityManager().createNativeQuery(sqlQuery.getSql());
@@ -233,7 +243,6 @@ public abstract class AbstractEntityRepositoryJpa implements EntityRepository {
                     sqlQuery.getResultEntityClass());
         }
         processQuery(query, sqlQuery);
-        Class resultEntityClass = sqlQuery.getResultEntityClass();
         return query;
     }
 
@@ -277,7 +286,7 @@ public abstract class AbstractEntityRepositoryJpa implements EntityRepository {
         getEntityManager().clear();
     }
 
-    private void processQuery(Query query, BaseQuery originQuery) {
+    private void processQuery(Query query, BaseQuery<?> originQuery) {
         processQuery(query, originQuery.getParameters(), 
                 originQuery.getFirstResult(), originQuery.getMaxResults());
     }
