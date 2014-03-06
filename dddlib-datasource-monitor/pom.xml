@@ -105,7 +105,6 @@
         </dependency>
     </dependencies>
     <properties>
-        <quartz.version>1.6.1</quartz.version>
         <dbunit.dataTypeFactoryName>org.dbunit.ext.hsqldb.HsqldbDataTypeFactory</dbunit.dataTypeFactoryName>
         <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
         <jdbc.groupId>com.h2database</jdbc.groupId>
