@@ -1,8 +1,8 @@
 package org.dayatang.datasource4saas.dscreator;
 
-import org.apache.commons.dbcp.BasicDataSource;
 
 import javax.sql.DataSource;
+import org.apache.commons.dbcp2.BasicDataSource;
 
 /**
  * 基于Apache Commons DBCP连接池的数据源创建器

@@ -1,5 +1,6 @@
 package org.dayatang.mysql.jdbc;
 
+import com.mysql.jdbc.LoadBalancedMySQLConnection;
 import com.mysql.jdbc.NonRegisteringDriver;
 import com.mysql.jdbc.ReplicationConnection;
 import org.apache.commons.lang.StringUtils;
@@ -17,8 +18,8 @@ public class GeminiReplicationConnection extends ReplicationConnection {
 	public GeminiReplicationConnection(Properties masterProperties, Properties slaveProperties) throws SQLException {
 		NonRegisteringDriver driver = new NonRegisteringDriver();
 
-		StringBuffer masterUrl = new StringBuffer("jdbc:mysql://");
-		StringBuffer slaveUrl = new StringBuffer("jdbc:mysql://");
+		StringBuilder masterUrl = new StringBuilder("jdbc:mysql://");
+		StringBuilder slaveUrl = new StringBuilder("jdbc:mysql://");
 
 		String masterHost = masterProperties.getProperty(NonRegisteringDriver.HOST_PROPERTY_KEY);
 		if (masterHost != null) {
@@ -44,13 +45,13 @@ public class GeminiReplicationConnection extends ReplicationConnection {
 
 		slaveProperties.setProperty("roundRobinLoadBalance", "true");
 
-		this.masterConnection = (com.mysql.jdbc.Connection) driver.connect(masterUrl.toString(), masterProperties);
+		this.masterConnection = (LoadBalancedMySQLConnection) driver.connect(masterUrl.toString(), masterProperties);
 
 		if (StringUtils.isBlank(slaveHost) && slaveUrl.toString().contains("///")) {
 			info(" ----- the salveUrl contains the '///', that means there is no slaver, make slavesConnection = masterConnection --");
 			slavesConnection = masterConnection;
 		} else {
-			this.slavesConnection = (com.mysql.jdbc.Connection) driver.connect(slaveUrl.toString(), slaveProperties);
+			this.slavesConnection = (LoadBalancedMySQLConnection) driver.connect(slaveUrl.toString(), slaveProperties);
 			this.slavesConnection.setReadOnly(true);
 		}
 

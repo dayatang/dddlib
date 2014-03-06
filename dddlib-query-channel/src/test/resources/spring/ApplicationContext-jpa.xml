@@ -34,7 +34,7 @@
 
     <bean id="repository" class="org.dayatang.persistence.jpa.EntityRepositoryJpa" depends-on="entityManagerFactory">
         <property name="namedQueryParser">
-            <bean class="org.dayatang.persistence.jpa.NamedQueryParserHibernate"/>
+            <bean class="org.dayatang.persistence.jpa.namedqueryparser.NamedQueryParserHibernate"/>
         </property>
     </bean>
 
