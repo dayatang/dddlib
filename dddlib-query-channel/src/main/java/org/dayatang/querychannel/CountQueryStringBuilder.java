@@ -71,8 +71,7 @@ class CountQueryStringBuilder {
     }
 
     private static int getPositionOfDistinct(String queryString) {
-        int result = StringUtils.indexOfIgnoreCase(queryString, "distinct(");
-        return result == -1 ? StringUtils.indexOfIgnoreCase(queryString, "distinct (") : result;
+        return StringUtils.indexOfIgnoreCase(queryString, "distinct");
     }
 
     /**
