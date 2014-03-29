@@ -19,10 +19,7 @@ public class TapestryInstanceProvider implements InstanceProvider {
 	}
 
 	public TapestryInstanceProvider(Class<?>... modules) {
-		RegistryBuilder builder = new RegistryBuilder();
-		builder.add(modules);
-		registry = builder.build();
-		registry.performRegistryStartup();
+            registry = RegistryBuilder.buildAndStartupRegistry(modules);
 	}
 
     /**

@@ -11,38 +11,39 @@ import static org.junit.Assert.assertEquals;
 
 public class TapestryInstanceProviderTest extends AbstractInstanceProviderTest {
 
-	@After
-	public void tearDown() throws Exception {
-        if (provider != null) {
-            ((TapestryInstanceProvider)provider).shutdown();
-        }
-	}
+    private Registry registry;
 
-	@Override
-	protected InstanceProvider createInstanceProvider() {
-		return new TapestryInstanceProvider(TapestryModule.class);
-	}
+    @After
+    public void tearDown() throws Exception {
+        registry.shutdown();
+        registry = null;
+    }
 
-	@Test
-	public void testConstructorFromModule() {
-		Service service = provider.getInstance(Service.class, "service1");
-		assertEquals("I am Service 1", service.sayHello());
-	}
+    @Override
+    protected InstanceProvider createInstanceProvider() {
+        registry = RegistryBuilder.buildAndStartupRegistry(TapestryModule.class);
+        return new TapestryInstanceProvider(registry);
+    }
 
-	@Test
-	public void testConstructorFromRegistry() {
+    @Test
+    public void testConstructorFromModule() {
+        Service service = provider.getInstance(Service.class, "service1");
+        assertEquals("I am Service 1", service.sayHello());
+    }
+
+    @Test
+    public void testConstructorFromRegistry() {
         TapestryInstanceProvider provider2 = new TapestryInstanceProvider(createRegistry(TapestryModule.class));
-		Service2 service = provider2.getInstance(Service2.class);
-		assertEquals("I am Service 21", service.sayHello());
+        Service2 service = provider2.getInstance(Service2.class);
+        assertEquals("I am Service 21", service.sayHello());
         provider2.shutdown();
-	}
+    }
 
-	private Registry createRegistry(Class<?>... moduleClass) {
-		RegistryBuilder builder = new RegistryBuilder();
-		for (Class<?> clazz : moduleClass) {
-			builder.add(clazz);
-		}
-		return builder.build();
-	}
+    private Registry createRegistry(Class<?>... moduleClass) {
+        RegistryBuilder builder = new RegistryBuilder();
+        for (Class<?> clazz : moduleClass) {
+            builder.add(clazz);
+        }
+        return builder.build();
+    }
 }
-
