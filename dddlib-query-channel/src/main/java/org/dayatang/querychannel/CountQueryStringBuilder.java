@@ -23,9 +23,11 @@ class CountQueryStringBuilder {
      */
     public String buildQueryStringOfCount() {
         String result = removeOrderByClause();
-
-        int index = StringUtils.indexOfIgnoreCase(result, " from ");
-
+        Matcher m = Pattern.compile("\\s+from\\s+", Pattern.CASE_INSENSITIVE).matcher(queryString);
+        if (!m.find()) {
+            m = Pattern.compile("^from\\s+", Pattern.CASE_INSENSITIVE).matcher(queryString);
+        }
+        int index = m.start() + 1;
         StringBuilder builder = new StringBuilder("select count(" + stringInCount(result, index) + ") ");
 
         if (index != -1) {
@@ -42,7 +44,7 @@ class CountQueryStringBuilder {
      * @return
      */
     public String removeOrderByClause() {
-        Matcher m = Pattern.compile("order\\s*by[\\w|\\W|\\s|\\S]*", Pattern.CASE_INSENSITIVE).matcher(queryString);
+        Matcher m = Pattern.compile("\\s+order\\s+by\\s+[\\w|\\W|\\s|\\S]*", Pattern.CASE_INSENSITIVE).matcher(queryString);
         StringBuffer sb = new StringBuffer();
         while (m.find()) {
             m.appendReplacement(sb, "");
@@ -51,7 +53,7 @@ class CountQueryStringBuilder {
         return sb.toString();
     }
 
-    private static String stringInCount(String queryString, int fromIndex) {
+    private String stringInCount(String queryString, int fromIndex) {
         int distinctIndex = getPositionOfDistinct(queryString);
         if (distinctIndex == -1) {
             return "*";
@@ -67,11 +69,19 @@ class CountQueryStringBuilder {
         String strInCount = asIndex == -1 ? strMayBeWithAs : strMayBeWithAs.substring(0, asIndex);
 
         // 除去()，因为HQL不支持 select count(distinct (...))，但支持select count(distinct ...)
-        return strInCount.replace("(", " ").replace(")", " ");
+        return strInCount.replace("(", " ").replace(")", " ").trim();
     }
 
-    private static int getPositionOfDistinct(String queryString) {
-        return StringUtils.indexOfIgnoreCase(queryString, "distinct");
+    private int getPositionOfDistinct(String queryString) {
+        Matcher m = Pattern.compile("\\s+distinct\\s+", Pattern.CASE_INSENSITIVE).matcher(queryString);
+        if (m.find()) {
+            return m.start();
+        }
+        m = Pattern.compile("\\s+distinct\\(", Pattern.CASE_INSENSITIVE).matcher(queryString);
+        if (m.find()) {
+            return m.start();
+        }
+        return -1;
     }
 
     /**
@@ -79,7 +89,7 @@ class CountQueryStringBuilder {
      * @return 如果查询语句中包含group by子句，返回true，否则返回false
      */
     public boolean containsGroupByClause() {
-        Matcher m = Pattern.compile("group\\s*by[\\w|\\W|\\s|\\S]*",
+        Matcher m = Pattern.compile("\\s+group\\s+by\\s+[\\w|\\W|\\s|\\S]*",
                 Pattern.CASE_INSENSITIVE).matcher(queryString);
         return m.find();
     }
