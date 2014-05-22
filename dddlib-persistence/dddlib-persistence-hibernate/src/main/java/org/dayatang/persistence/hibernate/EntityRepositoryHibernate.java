@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
 import org.dayatang.domain.*;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
@@ -18,6 +17,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 通用仓储接口的Hibernate实现。
+ * <p> EntityRepositoryHibernate通过SessionProvider获取Session，以保证在当前线程和事务中
+ * 对数据库的多次访问都是由同一个Session来进行，防止出现“会话已关闭”异常。
  *
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
@@ -27,11 +28,21 @@ public class EntityRepositoryHibernate implements EntityRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EntityRepositoryHibernate.class);
 
-    /**
-     * Session或SessionFactory实例在IoC容器中的别名
-     */
-    private String alias;
+    private final SessionProvider sessionProvider;
 
+    public EntityRepositoryHibernate() {
+        sessionProvider = new SessionProvider();
+    }
+
+    public EntityRepositoryHibernate(SessionFactory sessionFactory) {
+        this.sessionProvider = new SessionProvider(sessionFactory);
+    }
+
+    public EntityRepositoryHibernate(Session session) {
+        this.sessionProvider = new SessionProvider(session);
+    }
+    
+    
     /*
      * (non-Javadoc)
      * @see org.dayatang.domain.EntityRepository#save(org.dayatang.domain.Entity)
@@ -338,23 +349,8 @@ public class EntityRepositoryHibernate implements EntityRepository {
         getSession().clear();
     }
 
-    private Session getSession() {
-        //单一数据源的情况
-        if (StringUtils.isBlank(alias)) {
-            try {
-                return InstanceFactory.getInstance(Session.class);
-            } catch (IocInstanceNotFoundException e) {
-                SessionFactory sessionFactory = InstanceFactory.getInstance(SessionFactory.class);
-                return sessionFactory.getCurrentSession();
-            }
-        }
-        //多数据源的情况
-        try {
-            return InstanceFactory.getInstance(Session.class, alias);
-        } catch (IocException e) {
-            SessionFactory sessionFactory = InstanceFactory.getInstance(SessionFactory.class, alias);
-            return sessionFactory.getCurrentSession();
-        }
+    Session getSession() {
+        return sessionProvider.getSession();
     }
 
     private void processQuery(Query query, BaseQuery originQuery) {

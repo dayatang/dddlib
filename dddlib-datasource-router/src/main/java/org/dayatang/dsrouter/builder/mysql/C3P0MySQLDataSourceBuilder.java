@@ -21,9 +21,9 @@ public class C3P0MySQLDataSourceBuilder extends AbstractMySQLDataSourceBuilder {
 
 	private static final String PROP_FILE = "datasource-default-properties-c3p0.properties";
 
-	private static Properties defaultProp = new Properties();
+	private static final Properties defaultProp = new Properties();
 
-	private static InputStream defaultPropIns = C3P0MySQLDataSourceBuilder.class
+	private static final InputStream defaultPropIns = C3P0MySQLDataSourceBuilder.class
 			.getResourceAsStream("/" + PROP_FILE);
 
 	static {
@@ -32,7 +32,6 @@ public class C3P0MySQLDataSourceBuilder extends AbstractMySQLDataSourceBuilder {
 		} catch (IOException e) {
 			error("initial properties error!!");
 			System.err.println("initial properties error!!");
-			e.printStackTrace();
 			System.exit(1);
 		}
 	}

@@ -16,12 +16,7 @@
 
 package org.dayatang.persistence.jpa.namedqueryparser;
 
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
-import org.dayatang.domain.InstanceFactory;
-import org.dayatang.domain.IocInstanceNotFoundException;
+import org.dayatang.persistence.jpa.EntityManagerProvider;
 import org.dayatang.persistence.jpa.NamedQueryParser;
 import org.hibernate.Session;
 
@@ -30,31 +25,13 @@ import org.hibernate.Session;
  * NamedQueryParser接口的Hibernate实现
  * @author yyang
  */
-public class NamedQueryParserHibernate implements NamedQueryParser {
-
-    @Inject
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    private EntityManagerFactory entityManagerFactory;
+public class NamedQueryParserHibernate extends NamedQueryParser {
 
     public NamedQueryParserHibernate() {
     }
 
-    private EntityManager getEntityManager() {
-        if (entityManager != null) {
-            return entityManager;
-        }
-
-        try {
-            return InstanceFactory.getInstance(EntityManager.class);
-        } catch (IocInstanceNotFoundException e) {
-            if (entityManagerFactory == null) {
-                entityManagerFactory = InstanceFactory
-                        .getInstance(EntityManagerFactory.class);
-            }
-            return entityManagerFactory.createEntityManager();
-        }
+    public NamedQueryParserHibernate(EntityManagerProvider entityManagerProvider) {
+        super(entityManagerProvider);
     }
     
     @Override

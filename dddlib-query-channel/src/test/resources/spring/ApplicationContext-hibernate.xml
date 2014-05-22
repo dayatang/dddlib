@@ -45,10 +45,12 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-    <bean id="repoitory" class="org.dayatang.persistence.hibernate.EntityRepositoryHibernate"/>
+    <bean id="repository" class="org.dayatang.persistence.hibernate.EntityRepositoryHibernate">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
 
     <bean id="queryChannelService" class="org.dayatang.querychannel.impl.QueryChannelServiceImpl">
-        <constructor-arg ref="repoitory"/>
+        <constructor-arg ref="repository"/>
     </bean>
 
 

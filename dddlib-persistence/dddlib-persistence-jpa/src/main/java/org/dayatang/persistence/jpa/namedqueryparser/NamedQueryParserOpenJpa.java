@@ -16,13 +16,8 @@
 
 package org.dayatang.persistence.jpa.namedqueryparser;
 
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
 import org.apache.openjpa.persistence.EntityManagerImpl;
-import org.dayatang.domain.InstanceFactory;
-import org.dayatang.domain.IocInstanceNotFoundException;
+import org.dayatang.persistence.jpa.EntityManagerProvider;
 import org.dayatang.persistence.jpa.NamedQueryParser;
 
 
@@ -30,32 +25,13 @@ import org.dayatang.persistence.jpa.NamedQueryParser;
  * NamedQueryParser接口的OpenJPA实现
  * @author yyang
  */
-public class NamedQueryParserOpenJpa implements NamedQueryParser {
+public class NamedQueryParserOpenJpa extends NamedQueryParser {
 
-    @Inject
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    private EntityManagerFactory entityManagerFactory;
-
-    public NamedQueryParserOpenJpa(EntityManagerFactory entityManagerFactory) {
-        this.entityManagerFactory = entityManagerFactory;
+    public NamedQueryParserOpenJpa() {
     }
 
-    private EntityManager getEntityManager() {
-        if (entityManager != null) {
-            return entityManager;
-        }
-
-        try {
-            return InstanceFactory.getInstance(EntityManager.class);
-        } catch (IocInstanceNotFoundException e) {
-            if (entityManagerFactory == null) {
-                entityManagerFactory = InstanceFactory
-                        .getInstance(EntityManagerFactory.class);
-            }
-            return entityManagerFactory.createEntityManager();
-        }
+    public NamedQueryParserOpenJpa(EntityManagerProvider entityManagerProvider) {
+        super(entityManagerProvider);
     }
     
     @Override

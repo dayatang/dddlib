@@ -16,10 +16,7 @@
 
 package org.dayatang.persistence.jpa.namedqueryparser;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import org.dayatang.domain.InstanceFactory;
-import org.dayatang.domain.IocInstanceNotFoundException;
+import org.dayatang.persistence.jpa.EntityManagerProvider;
 import org.dayatang.persistence.jpa.NamedQueryParser;
 import org.eclipse.persistence.jpa.JpaEntityManager;
 
@@ -28,30 +25,13 @@ import org.eclipse.persistence.jpa.JpaEntityManager;
  * NamedQueryParser接口的EclipseLink实现
  * @author yyang
  */
-public class NamedQueryParserEclipseLink implements NamedQueryParser {
+public class NamedQueryParserEclipseLink extends NamedQueryParser {
 
-    private EntityManager entityManager;
-
-    private EntityManagerFactory entityManagerFactory;
-
-    public NamedQueryParserEclipseLink(EntityManagerFactory entityManagerFactory) {
-        this.entityManagerFactory = entityManagerFactory;
+    public NamedQueryParserEclipseLink() {
     }
 
-    private EntityManager getEntityManager() {
-        if (entityManager != null) {
-            return entityManager;
-        }
-
-        try {
-            return InstanceFactory.getInstance(EntityManager.class);
-        } catch (IocInstanceNotFoundException e) {
-            if (entityManagerFactory == null) {
-                entityManagerFactory = InstanceFactory
-                        .getInstance(EntityManagerFactory.class);
-            }
-            return entityManagerFactory.createEntityManager();
-        }
+    public NamedQueryParserEclipseLink(EntityManagerProvider entityManagerProvider) {
+        super(entityManagerProvider);
     }
     
     @Override
