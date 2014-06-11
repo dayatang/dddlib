@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.dayatang.dddlib</groupId>
@@ -10,7 +11,7 @@
     <packaging>jar</packaging>
     <name>DDDLib API Interfaces and Base Classes</name>
     <description>
-        DDDLib中最重要的模块，是整个系统的核心。为DDD提供核心接口和基类。
+        DDDLib中最重要的模块，为基于DDD的开发提供核心接口和基类。
     </description>
 
     <dependencies>
@@ -40,7 +41,23 @@
                 <artifactId>maven-bundle-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
+                    <instructions>
+                        <Export-Package>
+                            org.dayatang.domain,
+                            org.dayatang.domain.specification
+                        </Export-Package>
+                    </instructions>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-manifest</id>
+                        <goals>
+                            <goal>manifest</goal>
+                            <goal>bundle</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

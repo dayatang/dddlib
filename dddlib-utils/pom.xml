@@ -9,7 +9,8 @@
 	<artifactId>dddlib-utils</artifactId>
 	<packaging>jar</packaging>
 	<name>DDDLib Utils</name>
-	<description>DDDLib工具类库，其中最重要的工具是断言Assert和日志Slf4jLogger</description>
+	<description>DDDLib工具类库，其中最重要的工具是断
+        言Assert和日志Slf4jLogger</description>
 
 	<dependencies>
 		<dependency>
@@ -44,5 +45,27 @@
 				<filtering>true</filtering>
 			</testResource>
 		</testResources>
-	</build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Export-Package>org.dayatang.utils</Export-Package>
+                    </instructions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-manifest</id>
+                        <goals>
+                            <goal>manifest</goal>
+                            <goal>bundle</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
