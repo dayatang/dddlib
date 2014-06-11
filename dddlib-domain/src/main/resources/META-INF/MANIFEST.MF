@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Built-By: yyang
+Tool: Bnd-0.0.357
+Bundle-Name: DDDLib - Domain
+Created-By: Apache Maven Bundle Plugin
+Bundle-Vendor: ${organization.name}
+Build-Jdk: 1.7.0_51
+Bundle-Version: 2.2.1.Final
+Bnd-LastModified: 1401417787428
+Bundle-ManifestVersion: 2
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0
+Bundle-Description: ${description}
+
+Bundle-SymbolicName: ${artifactId}
+Import-Package: javax.inject
+Export-Package: org.dayatang.domain
+

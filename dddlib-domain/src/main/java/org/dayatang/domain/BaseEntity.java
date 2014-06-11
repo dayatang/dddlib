@@ -72,7 +72,9 @@ public abstract class BaseEntity implements Entity {
      * <p>业务主键由实体的一个或多个属性组成。
      * @return 组成业务主键的属性的数组。
      */
-    public abstract String[] businessKeys();
+    public String[] businessKeys() {
+        return new String[] {};
+    }
 
     /**
      * 依据业务主键获取哈希值。用于判定两个实体是否等价。
