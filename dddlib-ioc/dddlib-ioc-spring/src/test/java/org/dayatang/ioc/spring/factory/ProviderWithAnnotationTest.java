@@ -3,7 +3,7 @@ package org.dayatang.ioc.spring.factory;
 import org.dayatang.domain.InstanceProvider;
 import org.dayatang.ioc.test.AbstractInstanceProviderTest;
 
-public class SpringInstanceProviderTest extends AbstractInstanceProviderTest {
+public class ProviderWithAnnotationTest extends AbstractInstanceProviderTest {
 	
 	private SpringInstanceProvider instance;
 

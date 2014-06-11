@@ -1,5 +1,6 @@
 package org.dayatang.ioc.spring.factory;
 
+import org.dayatang.ioc.spring.beans.ServiceFactory;
 import org.dayatang.ioc.test.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +10,11 @@ public class SpringConfiguration {
 	
 	@Bean(name = "service1")
 	public Service service1() {
-		return new MyService1();
+        try {
+            return new ServiceFactory().getObject();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 	}
 	
 	@Bean(name = "service2")

@@ -39,6 +39,12 @@ public abstract class AbstractInstanceProviderTest {
     }
 
     @Test
+    public void testGetInstanceByFactoryBean() {
+        Service service = provider.getInstance(MyService1.class);
+        assertEquals("I am Service 1", service.sayHello());
+    }
+
+    @Test
     public void testNotFound() {
         assertNull(provider.getInstance(Long.class));
     }
