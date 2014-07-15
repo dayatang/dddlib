@@ -1,6 +1,7 @@
 package org.dayatang.cache.redis;
 
 import org.dayatang.cache.Cache;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
@@ -8,6 +9,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by lingen on 14-7-15.
  */
+@Ignore("测试此类前，需要先启动一个Redis服务")
 public class RedisCacheBaseCaheTest {
 
     private Cache cache = new RedisCacheBaseCahe("127.0.0.1",6379);

@@ -58,7 +58,7 @@ public class RedisCacheBaseCahe implements Cache {
     @Override
     public void put(String key, Object value, Date expiry) {
         Date now = new Date();
-        long living = expiry.getTime() - now.getTime();
+        long living = (expiry.getTime() - now.getTime()) / 1000;
         put(key, value, living);
     }
 
