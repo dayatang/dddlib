@@ -6,6 +6,7 @@ import org.dayatang.cache.ehcache.EhCacheBasedCache;
 import org.dayatang.cache.redis.RedisCacheBaseCahe;
 import org.dddlib.image.api.ImageAccess;
 import org.dddlib.image.api.pojo.ImageFile;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -33,6 +34,7 @@ public class CacheImageAccessTest {
     }
 
     @Test
+    @Ignore
     public void testRedisCache() throws IOException {
         String file = "/Users/lingen/abc.jpg";
         Cache redisCache = new RedisCacheBaseCahe("127.0.0.1", 6379);
@@ -44,6 +46,5 @@ public class CacheImageAccessTest {
         assertTrue(imageFile.getContent() != null);
         assertTrue(imageFile.getFileName().equals("abc.jpg"));
     }
-
 
 }

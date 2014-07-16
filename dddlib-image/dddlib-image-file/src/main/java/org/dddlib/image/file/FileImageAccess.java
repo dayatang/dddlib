@@ -22,10 +22,9 @@ public class FileImageAccess implements ImageAccess {
         validateDiretor();
     }
 
-
     @Override
     public String saveImageFile(byte[] content, String fileName) {
-        String uuid = UUID.randomUUID().toString();
+        String uuid = UUID.randomUUID().toString().toUpperCase();
         String newFileName = uuid + FILE_SUFFIX + fileName;
         try {
             FileUtils.writeByteArrayToFile(new File(directory + File.separator + newFileName), content);
@@ -41,8 +40,8 @@ public class FileImageAccess implements ImageAccess {
         try {
             if (file.exists()) {
                 byte[] contents = FileUtils.readFileToByteArray(file);
-                String fileName = imageId.substring(imageId.indexOf(FILE_SUFFIX)+FILE_SUFFIX.length());
-                ImageFile imageFile = new ImageFile(contents,fileName);
+                String fileName = imageId.substring(imageId.indexOf(FILE_SUFFIX) + FILE_SUFFIX.length());
+                ImageFile imageFile = new ImageFile(contents, fileName);
                 return imageFile;
             }
         } catch (IOException e) {
