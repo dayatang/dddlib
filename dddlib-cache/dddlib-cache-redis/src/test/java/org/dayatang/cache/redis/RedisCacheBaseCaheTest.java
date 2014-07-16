@@ -45,6 +45,7 @@ public class RedisCacheBaseCaheTest {
     public void testExpired() throws InterruptedException {
         String key = "ABC";
         cache.put(key,"afdsa",5);
+        System.out.print(cache.get(key));
         assertTrue(cache.get(key)!=null);
         Thread.sleep(6*1000);
         assertTrue(cache.get(key)==null);

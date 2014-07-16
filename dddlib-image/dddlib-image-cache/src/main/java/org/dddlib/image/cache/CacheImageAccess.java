@@ -24,7 +24,7 @@ public class CacheImageAccess implements ImageAccess {
         assert filename!=null : "图片文件名不能为空";
 
         ImageFile imageFile = new ImageFile(content,filename);
-        String uuid = UUID.randomUUID().toString();
+        String uuid = UUID.randomUUID().toString().toUpperCase();
         cache.put(uuid, imageFile);
         return uuid;
     }

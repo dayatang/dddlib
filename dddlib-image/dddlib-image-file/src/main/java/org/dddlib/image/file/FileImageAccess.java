@@ -25,7 +25,7 @@ public class FileImageAccess implements ImageAccess {
 
     @Override
     public String saveImageFile(byte[] content, String fileName) {
-        String uuid = UUID.randomUUID().toString();
+        String uuid = UUID.randomUUID().toString().toUpperCase();
         String newFileName = uuid + FILE_SUFFIX + fileName;
         try {
             FileUtils.writeByteArrayToFile(new File(directory + File.separator + newFileName), content);

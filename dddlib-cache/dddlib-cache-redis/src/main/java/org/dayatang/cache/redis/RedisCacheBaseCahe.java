@@ -2,8 +2,11 @@ package org.dayatang.cache.redis;
 
 import org.apache.commons.lang3.SerializationUtils;
 import org.dayatang.cache.Cache;
+import org.dayatang.cache.redis.pool.JedisPoolUtil;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
+import java.awt.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,26 +18,29 @@ import java.util.Map;
  */
 public class RedisCacheBaseCahe implements Cache {
 
-    private Jedis jedis;
+    private JedisPool jedisPool = null;
 
     public RedisCacheBaseCahe(String host, int port) {
-        this.jedis = new Jedis(host, port);
+        jedisPool = new JedisPool(JedisPoolUtil.createJedisPoolConfig(),host,port);
     }
 
     public RedisCacheBaseCahe(String host, int port, String password) {
-        this.jedis = new Jedis(host, port);
-        if (password != null) {
-            jedis.auth(password);
-        }
+        jedisPool = new JedisPool(JedisPoolUtil.createJedisPoolConfig(),host,port, 10000,password);
     }
 
     @Override
     public Object get(String key) {
         byte[] keyBytes = SerializationUtils.serialize(key);
-        if (jedis.exists(keyBytes)) {
-            byte[] valueBytes = jedis.get(keyBytes);
-            return SerializationUtils.deserialize(valueBytes);
+        Jedis jedis = getJedis();
+        try {
+            if (jedis.exists(keyBytes)) {
+                byte[] valueBytes = jedis.get(keyBytes);
+                return SerializationUtils.deserialize(valueBytes);
+            }
+        } finally {
+            returnJedis(jedis);
         }
+
         return null;
     }
 
@@ -49,9 +55,17 @@ public class RedisCacheBaseCahe implements Cache {
 
     @Override
     public void put(String key, Object value) {
-        byte[] keyBytes = SerializationUtils.serialize(key);
-        byte[] valueBytes = SerializationUtils.serialize((Serializable) value);
-        jedis.set(keyBytes, valueBytes);
+        Jedis jedis = null;
+        try {
+            jedis = getJedis();
+            byte[] keyBytes = SerializationUtils.serialize(key);
+            byte[] valueBytes = SerializationUtils.serialize((Serializable) value);
+            jedis.set(keyBytes, valueBytes);
+        } finally {
+            returnJedis(jedis);
+        }
+
+
     }
 
 
@@ -60,24 +74,50 @@ public class RedisCacheBaseCahe implements Cache {
         Date now = new Date();
         long living = (expiry.getTime() - now.getTime()) / 1000;
         put(key, value, living);
+
     }
 
     @Override
     public void put(String key, Object value, long living) {
-        byte[] keyBytes = SerializationUtils.serialize(key);
-        byte[] valueBytes = SerializationUtils.serialize((Serializable) value);
-        jedis.setex(keyBytes, (int) living, valueBytes);
-
+        Jedis jedis = null;
+        try {
+            jedis = getJedis();
+            byte[] keyBytes = SerializationUtils.serialize(key);
+            byte[] valueBytes = SerializationUtils.serialize((Serializable) value);
+            jedis.setex(keyBytes, (int) living, valueBytes);
+        } finally {
+            returnJedis(jedis);
+        }
     }
 
     @Override
     public boolean remove(String key) {
-        jedis.del(SerializationUtils.serialize(key));
+        Jedis jedis = null;
+        try {
+            jedis = getJedis();
+            jedis.del(SerializationUtils.serialize(key));
+        } finally {
+            returnJedis(jedis);
+        }
         return false;
     }
 
     @Override
     public boolean containsKey(String key) {
-        return jedis.exists(SerializationUtils.serialize(key));
+        Jedis jedis = null;
+        try {
+            jedis = getJedis();
+            return jedis.exists(SerializationUtils.serialize(key));
+        } finally {
+            returnJedis(jedis);
+        }
+    }
+
+    private Jedis getJedis() {
+        return jedisPool.getResource();
+    }
+
+    private void returnJedis(Jedis jedis) {
+        jedisPool.returnResourceObject(jedis);
     }
 }
