@@ -13,17 +13,17 @@ public class CacheImageAccess implements ImageAccess {
 
     private Cache cache;
 
-    public CacheImageAccess(Cache cache) {
+    public CacheImageAccess(Cache cache){
         this.cache = cache;
     }
 
     @Override
     public String saveImageFile(byte[] content, String filename) {
-        assert cache != null : "cache不能为空";
-        assert content != null : "图片内容不能为空";
-        assert filename != null : "图片文件名不能为空";
+        assert cache!=null : "cache不能为空";
+        assert content!=null : "图片内容不能为空";
+        assert filename!=null : "图片文件名不能为空";
 
-        ImageFile imageFile = new ImageFile(content, filename);
+        ImageFile imageFile = new ImageFile(content,filename);
         String uuid = UUID.randomUUID().toString().toUpperCase();
         cache.put(uuid, imageFile);
         return uuid;
@@ -31,14 +31,13 @@ public class CacheImageAccess implements ImageAccess {
 
     @Override
     public ImageFile getImageFile(String imageID) {
-        assert cache != null : "cache不能为空";
-        assert imageID != null : "请指定图片ID";
+        assert cache!=null : "cache不能为空";
+        assert imageID!=null :"请指定图片ID";
 
         if (cache.containsKey(imageID)) {
             ImageFile imageFile = (ImageFile) cache.get(imageID);
             return imageFile;
         }
         return null;
-
     }
 }
