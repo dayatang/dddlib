@@ -15,6 +15,7 @@
     <modules>
         <module>dddlib-image-api</module>
         <module>dddlib-image-cache</module>
+        <module>dddlib-image-file</module>
     </modules>
 
 
