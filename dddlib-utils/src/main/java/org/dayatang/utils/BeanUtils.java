@@ -189,10 +189,20 @@ public class BeanUtils {
         }
     }
 
+    /**
+     * 从另一个Bean提取属性值，填充当前Bean的同名属性
+     * @param otherBean 另外的JavaBean
+     * @param excludeProps 不参与复制的属性名
+     */
     public void copyPropertiesFrom(Object otherBean, String... excludeProps) {
         copyProperties(otherBean, bean, excludeProps);
     }
 
+    /**
+     * 将当前Bean的属性值填充到另一个Bean的同名属性
+     * @param otherBean 另外的JavaBean
+     * @param excludeProps 不参与复制的属性名
+     */
     public void copyPropertiesTo(Object otherBean, String... excludeProps) {
         copyProperties(bean, otherBean, excludeProps);
     }
