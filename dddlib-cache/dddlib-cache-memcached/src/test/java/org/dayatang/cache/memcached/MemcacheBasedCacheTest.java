@@ -7,12 +7,12 @@ import java.util.Date;
 
 import static org.junit.Assert.*;
 
-public class MemcachedBasedCacheTest {
+public class MemcacheBasedCacheTest {
 
     private Cache cache = createCache();
 
     private Cache createCache() {
-        MemcachedBasedCache result = new MemcachedBasedCache();
+        MemcacheBasedCache result = new MemcacheBasedCache();
         result.setServers("localhost:11211");
         result.setInitConn(3);
         result.setMinConn(3);
