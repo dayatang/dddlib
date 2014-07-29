@@ -77,7 +77,7 @@ public class EhCacheBasedCache implements Cache {
      * 判定一个KEY值是否在缓存中存在
      */
     public boolean containsKey(String key) {
-        return cache.isKeyInCache(key);
+        return cache.isKeyInCache(key) && cache.get(key)!=null;
     }
 
     /**
@@ -88,18 +88,36 @@ public class EhCacheBasedCache implements Cache {
     }
 
 
-    public void put(String arg0, Object arg1, Date arg2) {
-        throw new UnsupportedOperationException();
+    /**
+     * 向缓存中存入一个键值对，到指定的时间过期
+     *
+     * @param key         指定对象的key
+     * @param obj
+     * @param expiredDate
+     */
+    public void put(String key, Object obj, Date expiredDate) {
+        Date now = new Date();
+        long timeToLiveSeconds = (expiredDate.getTime() - now.getTime()) / 1000;
+        put(key, obj, timeToLiveSeconds);
+
     }
 
-    public void put(String arg0, Object arg1, long arg2) {
-        throw new UnsupportedOperationException();
+    /**
+     * 向缓存中存入一个键值对，指定其生存的秒数
+     *
+     * @param key               指定对象的key
+     * @param obj
+     * @param timeToLiveSeconds
+     */
+    public void put(String key, Object obj, long timeToLiveSeconds) {
+        cache.put(new Element(key, obj, false, (int) timeToLiveSeconds, (int) timeToLiveSeconds));
     }
 
     /**
      * 从缓存中将某一个KEY值移除出去
      */
     public boolean remove(String key) {
+
         return cache.remove(key);
     }
 }

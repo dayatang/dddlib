@@ -1,0 +1,123 @@
+package org.dayatang.cache.redis;
+
+import org.apache.commons.lang3.SerializationUtils;
+import org.dayatang.cache.Cache;
+import org.dayatang.cache.redis.pool.JedisPoolUtil;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+
+import java.awt.*;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Created by lingen on 14-7-15.
+ * cache的redis实现
+ */
+public class RedisCacheBaseCahe implements Cache {
+
+    private JedisPool jedisPool = null;
+
+    public RedisCacheBaseCahe(String host, int port) {
+        jedisPool = new JedisPool(JedisPoolUtil.createJedisPoolConfig(),host,port);
+    }
+
+    public RedisCacheBaseCahe(String host, int port, String password) {
+        jedisPool = new JedisPool(JedisPoolUtil.createJedisPoolConfig(),host,port, 10000,password);
+    }
+
+    @Override
+    public Object get(String key) {
+        byte[] keyBytes = SerializationUtils.serialize(key);
+        Jedis jedis = getJedis();
+        try {
+            if (jedis.exists(keyBytes)) {
+                byte[] valueBytes = jedis.get(keyBytes);
+                return SerializationUtils.deserialize(valueBytes);
+            }
+        } finally {
+            returnJedis(jedis);
+        }
+
+        return null;
+    }
+
+    @Override
+    public Map<String, Object> get(String... keys) {
+        Map<String, Object> values = new HashMap<String, Object>();
+        for (String key : keys) {
+            values.put(key, get(key));
+        }
+        return values;
+    }
+
+    @Override
+    public void put(String key, Object value) {
+        Jedis jedis = null;
+        try {
+            jedis = getJedis();
+            byte[] keyBytes = SerializationUtils.serialize(key);
+            byte[] valueBytes = SerializationUtils.serialize((Serializable) value);
+            jedis.set(keyBytes, valueBytes);
+        } finally {
+            returnJedis(jedis);
+        }
+
+
+    }
+
+
+    @Override
+    public void put(String key, Object value, Date expiry) {
+        Date now = new Date();
+        long living = (expiry.getTime() - now.getTime()) / 1000;
+        put(key, value, living);
+
+    }
+
+    @Override
+    public void put(String key, Object value, long living) {
+        Jedis jedis = null;
+        try {
+            jedis = getJedis();
+            byte[] keyBytes = SerializationUtils.serialize(key);
+            byte[] valueBytes = SerializationUtils.serialize((Serializable) value);
+            jedis.setex(keyBytes, (int) living, valueBytes);
+        } finally {
+            returnJedis(jedis);
+        }
+    }
+
+    @Override
+    public boolean remove(String key) {
+        Jedis jedis = null;
+        try {
+            jedis = getJedis();
+            jedis.del(SerializationUtils.serialize(key));
+        } finally {
+            returnJedis(jedis);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean containsKey(String key) {
+        Jedis jedis = null;
+        try {
+            jedis = getJedis();
+            return jedis.exists(SerializationUtils.serialize(key));
+        } finally {
+            returnJedis(jedis);
+        }
+    }
+
+    private Jedis getJedis() {
+        return jedisPool.getResource();
+    }
+
+    private void returnJedis(Jedis jedis) {
+        jedisPool.returnResourceObject(jedis);
+    }
+}

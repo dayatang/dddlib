@@ -801,6 +801,7 @@
         <module>dddlib-datasource-router</module>
         <module>dddlib-datasource-saas</module>
         <module>dddlib-datasource-monitor</module>
+        <module>dddlib-image</module>
     </modules>
 
     <profiles>
