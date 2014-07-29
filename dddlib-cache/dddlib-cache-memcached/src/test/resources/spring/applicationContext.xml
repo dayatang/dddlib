@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 			http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-	<bean id="memcached" class="org.dayatang.cache.memcached.MemcacheBasedCache" >
+	<bean id="memcached" class="org.dayatang.cache.memcached.MemcachedBasedCache" >
 		<property name="servers">
 			<list>
 				<value>localhost:11211</value>

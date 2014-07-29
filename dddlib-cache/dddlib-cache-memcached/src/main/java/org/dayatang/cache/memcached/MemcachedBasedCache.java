@@ -19,10 +19,10 @@ import java.util.Set;
  * @author chencao
  * 
  */
-public class MemcacheBasedCache implements Cache {
+public class MemcachedBasedCache implements Cache {
 
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(MemcacheBasedCache.class);
+			.getLogger(MemcachedBasedCache.class);
 
 	private MemCachedClient mcc;
 
