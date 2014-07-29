@@ -10,9 +10,9 @@ import static org.junit.Assert.assertTrue;
  * Created by lingen on 14-7-15.
  */
 @Ignore("测试此类前，需要先启动一个Redis服务")
-public class RedisCacheBaseCaheTest {
+public class RedisBasedCacheTest {
 
-    private Cache cache = new RedisCacheBaseCahe("127.0.0.1",6379);
+    private Cache cache = new RedisBasedCache("127.0.0.1",6379);
 
     @Test
     public void test(){

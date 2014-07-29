@@ -28,11 +28,11 @@ public abstract class Observer<T extends Subject> extends AbstractEntity {
 	private static final Logger logger = LoggerFactory
 			.getLogger(Observer.class);
 
+    @ElementCollection
+    @CollectionTable(name = "COMMONS_OBSERVER_SUBJECTKEY", joinColumns = @JoinColumn(name = "OBSERVER_ID"))
+    @Column(name = "SUBJECT_KEY")
 	private Set<String> subjectKeys = new HashSet<String>();
 
-	@ElementCollection
-	@CollectionTable(name = "COMMONS_OBSERVER_SUBJECTKEY", joinColumns = @JoinColumn(name = "OBSERVER_ID"))
-	@Column(name = "SUBJECT_KEY")
 	public Set<String> getSubjectKeys() {
 		return subjectKeys;
 	}

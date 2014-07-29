@@ -3,12 +3,15 @@ package org.dayatang.utils;
 
 import org.dayatang.utils.beans.ConcreteItem;
 import org.dayatang.utils.beans.Item;
+import org.junit.Before;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import static org.junit.Assert.*;
-import org.junit.Before;
 
 public class BeanUtilsTest {
     private BeanUtils instance;
@@ -96,16 +99,6 @@ public class BeanUtilsTest {
     }
 
     @Test
-    public void testCopyProperties() {
-        Item item1 = new Item(12, "abc", true);
-        ConcreteItem item2 = new ConcreteItem(20, "xyz", false);
-        item2.setPrice(15.5);
-        BeanUtils.copyProperties(item1, item2);
-        assertEquals("abc", item2.getName());
-        assertEquals(15.5, item2.getPrice(), 0.0001);
-    }
-
-    @Test
     public void testCopyPropertiesFrom() {
         Item item1 = new Item(12, "abc", true);
         ConcreteItem item2 = new ConcreteItem(20, "xyz", false);
@@ -123,6 +116,29 @@ public class BeanUtilsTest {
         item2.setPrice(15.5);
         instance = new BeanUtils(item2);
         instance.copyPropertiesTo(item1);
+        assertEquals("xyz", item1.getName());
+    }
+
+    @Test
+    public void testCopyPropertiesFromWithExcludes() {
+        Item item1 = new Item(12, "abc", true);
+        ConcreteItem item2 = new ConcreteItem(20, "xyz", false);
+        item2.setPrice(15.5);
+        instance = new BeanUtils(item2);
+        instance.copyPropertiesFrom(item1, "id");
+        assertEquals(20, item2.getId());
+        assertEquals("abc", item2.getName());
+        assertEquals(15.5, item2.getPrice(), 0.0001);
+    }
+
+    @Test
+    public void testCopyPropertiesToWithExcludes() {
+        Item item1 = new Item(12, "abc", true);
+        ConcreteItem item2 = new ConcreteItem(20, "xyz", false);
+        item2.setPrice(15.5);
+        instance = new BeanUtils(item2);
+        instance.copyPropertiesTo(item1, "id");
+        assertEquals(20, item2.getId());
         assertEquals("xyz", item1.getName());
     }
 }

@@ -2,23 +2,22 @@ package org.dddlib.image.file;
 
 import org.apache.commons.io.FileUtils;
 import org.dddlib.image.api.ImageAccess;
+import org.dddlib.image.api.pojo.ImageFile;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
 
 import static org.junit.Assert.assertTrue;
 
-import org.dddlib.image.api.pojo.ImageFile;
-import org.junit.Test;
-
 /**
  * Created by lingen on 14-7-16.
  */
 public class FileImageAccessTest {
 
-    private String file = "/Users/lingen/abc.jpg";
+    private String file = getClass().getResource("/aaa.jpg").getFile();
 
-    private String director = "/Users/lingen/TTT";
+    private String director = new File(file).getParent();
 
     @Test
     public void test() throws IOException {

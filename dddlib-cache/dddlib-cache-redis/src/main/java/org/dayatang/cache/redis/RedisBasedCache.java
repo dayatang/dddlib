@@ -16,15 +16,15 @@ import java.util.Map;
  * Created by lingen on 14-7-15.
  * cache的redis实现
  */
-public class RedisCacheBaseCahe implements Cache {
+public class RedisBasedCache implements Cache {
 
     private JedisPool jedisPool = null;
 
-    public RedisCacheBaseCahe(String host, int port) {
+    public RedisBasedCache(String host, int port) {
         jedisPool = new JedisPool(JedisPoolUtil.createJedisPoolConfig(),host,port);
     }
 
-    public RedisCacheBaseCahe(String host, int port, String password) {
+    public RedisBasedCache(String host, int port, String password) {
         jedisPool = new JedisPool(JedisPoolUtil.createJedisPoolConfig(),host,port, 10000,password);
     }
 

@@ -4,6 +4,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -166,7 +167,6 @@ public class BeanUtils {
      */
     public void copyPropertiesTo(Object otherBean) {
         copyProperties(bean, otherBean);
-        BeanUtils other = new BeanUtils(otherBean);
     }
 
     /**
@@ -174,14 +174,26 @@ public class BeanUtils {
      * @param fromBean 作为复制源的Bean
      * @param toBean 作为复制目标的Bean
      */
-    public static void copyProperties(Object fromBean, Object toBean) {
+    private static void copyProperties(Object fromBean, Object toBean, String... excludeProps) {
         BeanUtils from = new BeanUtils(fromBean);
         BeanUtils to = new BeanUtils(toBean);
         Map<String, Object> values = from.getPropValues();
-        for (String prop : to.getWritablePropNames()) {
+        Set<String> propsToCopy = to.getWritablePropNames();
+        if (excludeProps != null) {
+            propsToCopy.removeAll(Arrays.asList(excludeProps));
+        }
+        for (String prop : propsToCopy) {
             if (values.containsKey(prop)) {
                 to.setPropValue(prop, values.get(prop));
             }
         }
+    }
+
+    public void copyPropertiesFrom(Object otherBean, String... excludeProps) {
+        copyProperties(otherBean, bean, excludeProps);
+    }
+
+    public void copyPropertiesTo(Object otherBean, String... excludeProps) {
+        copyProperties(bean, otherBean, excludeProps);
     }
 }
