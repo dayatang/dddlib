@@ -17,6 +17,10 @@
 package org.dddlib.organisation.application.impl;
 
 import java.util.Date;
+
+import org.dayatang.domain.AbstractEntity;
+import org.dayatang.domain.EntityRepository;
+import org.dddlib.organisation.application.OrganisationApplication;
 import org.dddlib.organisation.domain.Organization;
 import org.dddlib.organisation.domain.Party;
 import org.dddlib.organisation.domain.Post;
@@ -26,6 +30,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+
 import org.junit.Ignore;
 
 /**
@@ -33,24 +39,21 @@ import org.junit.Ignore;
  * @author yyang
  */
 public class OrganisationApplicationImplIntegratedTest {
-    
-    public OrganisationApplicationImplIntegratedTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+
+    private OrganisationApplication instance;
+
+    protected EntityRepository repository;
+
     @Before
     public void setUp() {
+        repository = mock(EntityRepository.class);
+        instance = new OrganisationApplicationImpl(repository);
+        AbstractEntity.setRepository(repository);
     }
-    
+
     @After
     public void tearDown() {
+        AbstractEntity.setRepository(null);
     }
 
     /**
@@ -63,7 +66,6 @@ public class OrganisationApplicationImplIntegratedTest {
         Organization orgToCreate = null;
         Organization parent = null;
         Date date = null;
-        OrganisationApplicationImpl instance = new OrganisationApplicationImpl();
         instance.createOrganization(orgToCreate, parent, date);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -78,7 +80,6 @@ public class OrganisationApplicationImplIntegratedTest {
         System.out.println("terminateParty");
         Party party = null;
         Date date = null;
-        OrganisationApplicationImpl instance = new OrganisationApplicationImpl();
         instance.terminateParty(party, date);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -94,7 +95,6 @@ public class OrganisationApplicationImplIntegratedTest {
         Organization organization = null;
         Organization newParent = null;
         Date date = null;
-        OrganisationApplicationImpl instance = new OrganisationApplicationImpl();
         instance.changeParentOfOrganization(organization, newParent, date);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -110,7 +110,6 @@ public class OrganisationApplicationImplIntegratedTest {
         Post post = null;
         Organization organization = null;
         Date date = null;
-        OrganisationApplicationImpl instance = new OrganisationApplicationImpl();
         instance.createPostUnderOrganization(post, organization, date);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

@@ -45,7 +45,7 @@ public abstract class OrganisationApplicationTest {
 
     private OrganisationApplication instance;
 
-    private EntityRepository repository;
+    protected EntityRepository repository;
 
     @Before
     public void setUp() {

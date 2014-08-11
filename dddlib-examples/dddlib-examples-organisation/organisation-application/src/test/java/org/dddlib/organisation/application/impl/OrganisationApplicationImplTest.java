@@ -27,7 +27,7 @@ public class OrganisationApplicationImplTest extends OrganisationApplicationTest
 
     @Override
     protected OrganisationApplication createInstance() {
-        return new OrganisationApplicationImpl();
+        return new OrganisationApplicationImpl(repository);
     }
  
     
