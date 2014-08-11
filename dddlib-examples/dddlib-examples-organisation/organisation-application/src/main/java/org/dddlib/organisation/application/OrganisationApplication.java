@@ -5,8 +5,11 @@ import org.dddlib.organisation.domain.Party;
 import org.dddlib.organisation.domain.Post;
 
 import java.util.Date;
+import org.dayatang.domain.Entity;
 
 public interface OrganisationApplication {
+
+    public <T extends Entity> T getEntity(Class<T> entityClass, Long entityId);
 
     void createOrganization(Organization orgToCreate, Organization parent,
             Date date);

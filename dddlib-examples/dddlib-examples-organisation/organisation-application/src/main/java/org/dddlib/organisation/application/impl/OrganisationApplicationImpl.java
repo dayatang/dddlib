@@ -7,8 +7,24 @@ import org.dddlib.organisation.domain.Party;
 import org.dddlib.organisation.domain.Post;
 
 import java.util.Date;
+import javax.inject.Inject;
+import org.dayatang.domain.Entity;
+import org.dayatang.domain.EntityRepository;
 
 public class OrganisationApplicationImpl implements OrganisationApplication {
+
+    @Inject
+    private EntityRepository repository;
+
+    public OrganisationApplicationImpl(EntityRepository repository) {
+        this.repository = repository;
+    }
+    
+    
+    @Override
+    public <T extends Entity> T getEntity(Class<T> entityClass, Long entityId) {
+        return repository.get(entityClass, entityId);
+    }
 
     @Override
     public void createOrganization(Organization orgToCreate,

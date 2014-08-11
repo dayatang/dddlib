@@ -9,4 +9,16 @@
     <artifactId>organisation-facade-impl</artifactId>
     <packaging>jar</packaging>
     <name>DDDLib Example - Organization Structure - Facade Implement</name>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>organisation-application</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>organisation-facade</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>
