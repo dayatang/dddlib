@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.dddlib.organisation.application;
 
 import java.util.ArrayList;
@@ -28,6 +27,7 @@ import org.dddlib.organisation.domain.Company;
 import org.dddlib.organisation.domain.Department;
 import org.dddlib.organisation.domain.OrgLineMgmt;
 import org.dddlib.organisation.domain.Organization;
+import org.dddlib.organisation.domain.Party;
 import org.dddlib.organisation.domain.Post;
 import static org.hamcrest.CoreMatchers.*;
 import org.junit.After;
@@ -42,10 +42,9 @@ import static org.mockito.Mockito.*;
  * @author yyang
  */
 public abstract class OrganisationApplicationTest {
-    
-    
+
     private OrganisationApplication instance;
-    
+
     private EntityRepository repository;
 
     @Before
@@ -54,7 +53,7 @@ public abstract class OrganisationApplicationTest {
         repository = mock(EntityRepository.class);
         AbstractEntity.setRepository(repository);
     }
-    
+
     @After
     public void tearDown() {
         AbstractEntity.setRepository(null);
@@ -82,27 +81,15 @@ public abstract class OrganisationApplicationTest {
     @Test
     public void testTerminateParty() {
         System.out.println("terminateParty");
-        Organization party = new Company("headquarter");
-        Organization child = new Company("child");
-        Post post = new Post("GM"); 
-        Date date =  DateUtils.date(2012, 1, 1);
-        NamedQuery namedQuery = mock(NamedQuery.class);
-        Accountability accountability1 = mock(Accountability.class);
-        Accountability accountability2 = mock(Accountability.class);
-        List<Accountability> accountabilities = new ArrayList<Accountability>();
-        accountabilities.add(accountability1);
-        accountabilities.add(accountability2);
-        when(repository.createNamedQuery("Accountability.findAccountabilitiesByParty")).thenReturn(namedQuery);
-        when(namedQuery.addParameter("party", party)).thenReturn(namedQuery);
-        when(namedQuery.addParameter("date", date)).thenReturn(namedQuery);
-        //when(namedQuery.list()).thenReturn(accountabilities);
+        Party party = mock(Party.class);
+        Date date = DateUtils.date(2012, 1, 1);
         instance.terminateParty(party, date);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        verify(party).terminate(date);
     }
 
     /**
-     * Test of changeParentOfOrganization method, of class OrganisationApplication.
+     * Test of changeParentOfOrganization method, of class
+     * OrganisationApplication.
      */
     @Ignore
     @Test
@@ -117,7 +104,8 @@ public abstract class OrganisationApplicationTest {
     }
 
     /**
-     * Test of createPostUnderOrganization method, of class OrganisationApplication.
+     * Test of createPostUnderOrganization method, of class
+     * OrganisationApplication.
      */
     @Ignore
     @Test
