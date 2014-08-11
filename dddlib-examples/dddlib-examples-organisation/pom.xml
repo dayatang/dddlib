@@ -1,86 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.dddlib.examples</groupId>
+        <artifactId>dddlib-examples</artifactId>
+        <version>4.2.1-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.dayatang.dddlib</groupId>
-    <artifactId>dddlib-project</artifactId>
-    <version>4.2.1-SNAPSHOT</version>
+    <groupId>org.dddlib.examples.organisation</groupId>
+    <artifactId>dddlib-examples-organisation</artifactId>
     <packaging>pom</packaging>
-    <name>DDDLib Project</name>
-    <url>http://www.dayatang.org/dddlib</url>
-    <description>
-        DDDLib是一个领域驱动设计（Domain Driven Design，简称DDD）类库，为DDD开发范式提供基本的接口、基类和实现，
-        另外还提供了一些例如断言、配置、Excel读写等基本工具。
-    </description>
-    <organization>
-        <name>Dayatang Open Source.</name>
-        <url>http://www.dayatang.org/</url>
-    </organization>
-    <developers>
-        <developer>
-            <id>gdyangyu</id>
-            <name>Yu Yang</name>
-            <email>gdyangyu@gmail.com</email>
-            <roles>
-                <role>administrator</role>
-                <role>developer</role>
-            </roles>
-        </developer>
-        <developer>
-            <id>cchen</id>
-            <name>Cao Chen</name>
-            <email>chencao0524@hotmail.com</email>
-            <roles>
-                <role>administrator</role>
-                <role>developer</role>
-            </roles>
-        </developer>
-    </developers>
+    <name>DDDLib Example - Organization Structure</name>
+    <modules>
+        <module>organisation-domain</module>
+        <module>organisation-application</module>
+        <module>organisation-facade</module>
+        <module>organisation-facade-impl</module>
+        <module>organisation-webapp</module>
+    </modules>
 
-    <licenses>
-        <license>
-            <name>Apache Software License 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-    <ciManagement>
-        <system>jenkins</system>
-        <url>http://www.dayatang.org:8080/jenkins/job/dddlib/</url>
-        <notifiers>
-            <notifier>
-                <type>mail</type>
-                <configuration>
-                    <committers>true</committers>
-                </configuration>
-                <sendOnError>true</sendOnError>
-                <sendOnFailure>true</sendOnFailure>
-                <sendOnWarning>false</sendOnWarning>
-                <sendOnSuccess>false</sendOnSuccess>
-            </notifier>
-            <notifier>
-                <type>mail</type>
-                <configuration>
-                    <address>chencao0524@gmail.com</address>
-                </configuration>
-                <sendOnError>true</sendOnError>
-                <sendOnFailure>true</sendOnFailure>
-                <sendOnWarning>true</sendOnWarning>
-                <sendOnSuccess>true</sendOnSuccess>
-            </notifier>
-        </notifiers>
-    </ciManagement>
-    
-    <scm>
-        <connection>scm:git:git://github.com/dayatang/dddlib.git</connection>
-        <developerConnection>scm:git:git@github.com:dayatang/dddlib.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
-
-    <issueManagement>
-        <system>GitHub</system>
-        <url>https://github.com/dayatang/dddlib/issues</url>
-    </issueManagement>
 
     <distributionManagement>
         <repository>
@@ -736,9 +673,9 @@
 
         <jdk.version>1.6</jdk.version>
         <slf4j.version>1.7.6</slf4j.version>
-        <spring.version>4.0.6.RELEASE</spring.version>
+        <spring.version>4.0.3.RELEASE</spring.version>
         <tapestry.version>5.3.7</tapestry.version>
-        <hibernate.version>4.3.6.Final</hibernate.version>
+        <hibernate.version>4.3.4.Final</hibernate.version>
         <!-- Database settings, default to H2 database -->
         <h2.username>sa</h2.username>
         <h2.password />
@@ -782,28 +719,6 @@
         <hibernate.show_sql>true</hibernate.show_sql>
         <hibernate.format_sql>true</hibernate.format_sql>
     </properties>
-
-    <modules>
-        <module>dddlib-domain</module>
-        <module>dddlib-ioc</module>
-        <module>dddlib-persistence</module>
-        <module>dddlib-utils</module>
-        <module>dddlib-configuration</module>
-        <module>dddlib-cache</module>
-        <module>dddlib-rule-engine</module>
-        <module>dddlib-observer</module>
-        <module>dddlib-excel</module>
-        <module>dddlib-script-engine</module>
-        <module>dddlib-spring-test</module>
-        <module>dddlib-db</module>
-        <module>dddlib-i18n</module>
-        <module>dddlib-query-channel</module>
-        <module>dddlib-datasource-router</module>
-        <module>dddlib-datasource-saas</module>
-        <module>dddlib-datasource-monitor</module>
-        <module>dddlib-image</module>
-        <module>dddlib-examples</module>
-    </modules>
 
     <profiles>
         <profile>
