@@ -16,15 +16,18 @@
 
 package org.dddlib.organisation.application;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.dayatang.domain.AbstractEntity;
 import org.dayatang.domain.EntityRepository;
+import org.dayatang.domain.NamedQuery;
 import org.dayatang.utils.DateUtils;
+import org.dddlib.organisation.domain.Accountability;
 import org.dddlib.organisation.domain.Company;
 import org.dddlib.organisation.domain.Department;
 import org.dddlib.organisation.domain.OrgLineMgmt;
 import org.dddlib.organisation.domain.Organization;
-import org.dddlib.organisation.domain.Party;
 import org.dddlib.organisation.domain.Post;
 import static org.hamcrest.CoreMatchers.*;
 import org.junit.After;
@@ -79,8 +82,20 @@ public abstract class OrganisationApplicationTest {
     @Test
     public void testTerminateParty() {
         System.out.println("terminateParty");
-        Party party = null;
-        Date date = null;
+        Organization party = new Company("headquarter");
+        Organization child = new Company("child");
+        Post post = new Post("GM"); 
+        Date date =  DateUtils.date(2012, 1, 1);
+        NamedQuery namedQuery = mock(NamedQuery.class);
+        Accountability accountability1 = mock(Accountability.class);
+        Accountability accountability2 = mock(Accountability.class);
+        List<Accountability> accountabilities = new ArrayList<Accountability>();
+        accountabilities.add(accountability1);
+        accountabilities.add(accountability2);
+        when(repository.createNamedQuery("Accountability.findAccountabilitiesByParty")).thenReturn(namedQuery);
+        when(namedQuery.addParameter("party", party)).thenReturn(namedQuery);
+        when(namedQuery.addParameter("date", date)).thenReturn(namedQuery);
+        //when(namedQuery.list()).thenReturn(accountabilities);
         instance.terminateParty(party, date);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
