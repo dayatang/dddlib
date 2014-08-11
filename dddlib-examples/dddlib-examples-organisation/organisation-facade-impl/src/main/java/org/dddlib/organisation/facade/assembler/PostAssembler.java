@@ -10,4 +10,8 @@ public class PostAssembler {
     public Post toEntity(PostDto postDto) {
         return null;
     }
+
+    public PostDto toDto(Post post) {
+        return null;
+    }
 }

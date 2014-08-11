@@ -67,4 +67,10 @@ public class OrganisationFacadeImpl implements OrganisationFacade {
         application.createPostUnderOrganization(post, organization, date);
     }
 
+    @Override
+    public PostDto getPost(long postId) {
+        Post post = application.getEntity(Post.class, postId);
+        return new PostAssembler().toDto(post);
+    }
+
 }
