@@ -1,17 +1,11 @@
 package org.dddlib.organisation.domain;
 
-import java.util.Date;
-
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import org.dayatang.domain.AbstractEntity;
+import org.dayatang.utils.Assert;
 import org.dayatang.utils.DateUtils;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -37,16 +31,17 @@ public abstract class Party extends AbstractEntity {
     public Party() {
     }
 
+    public Party(String name) {
+        Assert.notBlank(name, "Name is blank!");
+        this.name = name;
+    }
+
     public String getSn() {
         return sn;
     }
 
     public void setSn(String sn) {
         this.sn = sn;
-    }
-
-    public Party(String name) {
-        this.name = name;
     }
 
     public String getName() {
