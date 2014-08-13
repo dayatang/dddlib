@@ -1,15 +1,9 @@
 package org.dddlib.organisation.domain;
 
-import java.util.Collections;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import org.dayatang.domain.AbstractEntity;
 
 import javax.persistence.*;
-
-import org.dayatang.domain.AbstractEntity;
+import java.util.*;
 
 @Entity
 @Table(name = "persons")
@@ -35,19 +29,27 @@ public class Person extends AbstractEntity {
 
     @Embedded
     @AttributeOverrides({
-        @AttributeOverride(name = "province", column = @Column(name = "home_province")),
-        @AttributeOverride(name = "city", column = @Column(name = "home_city")),
-        @AttributeOverride(name = "detail", column = @Column(name = "home_detail"))
+            @AttributeOverride(name = "province", column = @Column(name = "home_province")),
+            @AttributeOverride(name = "city", column = @Column(name = "home_city")),
+            @AttributeOverride(name = "detail", column = @Column(name = "home_detail"))
     })
     private Address homeAddress;
 
     @Embedded
     @AttributeOverrides({
-        @AttributeOverride(name = "province", column = @Column(name = "mail_province")),
-        @AttributeOverride(name = "city", column = @Column(name = "mail_city")),
-        @AttributeOverride(name = "detail", column = @Column(name = "mail_detail"))
+            @AttributeOverride(name = "province", column = @Column(name = "mail_province")),
+            @AttributeOverride(name = "city", column = @Column(name = "mail_city")),
+            @AttributeOverride(name = "detail", column = @Column(name = "mail_detail"))
     })
     private Address mailAddress;
+
+    public Person(PersonName name) {
+        this.name = name;
+    }
+
+    public Person(String firstName, String lastName) {
+        this.name = new PersonName(firstName, lastName);
+    }
 
     public PersonName getName() {
         return name;

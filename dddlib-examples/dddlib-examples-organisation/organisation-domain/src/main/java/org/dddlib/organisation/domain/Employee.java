@@ -3,10 +3,7 @@ package org.dddlib.organisation.domain;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.dayatang.utils.Assert;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,16 +14,16 @@ public class Employee extends Party {
 
     private static final long serialVersionUID = -7339118476080239701L;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "person_id")
     private Person person;
 
     protected Employee() {
     }
 
-    public Employee(String name, Person person) {
-        super(name);
+    public Employee(Person person) {
         Assert.notNull(person, "Person is null!");
+        setName(person.getName().toString());
         this.person = person;
     }
 
