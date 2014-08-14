@@ -180,6 +180,11 @@
                 <version>3.5.1</version>
             </dependency>
             <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>17.0</version>
+            </dependency>
+            <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
@@ -828,9 +833,9 @@
                 <hibernate.dialect>org.hibernate.dialect.DerbyTenSevenDialect</hibernate.dialect>
                 <jdbc.groupId>org.apache.derby</jdbc.groupId>
                 <jdbc.artifactId>derbyclient</jdbc.artifactId>
-                <jdbc.version>10.9.1.0</jdbc.version>
+                <jdbc.version>10.10.2.0</jdbc.version>
                 <jdbc.driverClassName>org.apache.derby.jdbc.ClientDriver</jdbc.driverClassName>
-                <jdbc.url><![CDATA[jdbc:derby://${db.host}/${db.name};create=true]]></jdbc.url>
+                <jdbc.url><![CDATA[jdbc:derby:${db.name};create=true]]></jdbc.url>
                 <jdbc.username>any</jdbc.username>
                 <jdbc.password>value</jdbc.password>
             </properties>
