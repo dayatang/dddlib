@@ -1,5 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.dayatang.dddlib</groupId>
 		<artifactId>dddlib-project</artifactId>
@@ -17,8 +18,8 @@
 			<plugin>
 				<groupId>org.kie</groupId>
 				<artifactId>kie-maven-plugin</artifactId>
-				<version>6.0.1.Final</version>
-				<extensions>true</extensions>
+                <version>${drools.version}</version>
+                <extensions>true</extensions>
 			</plugin>
             <plugin>
                 <groupId>org.apache.felix</groupId>
@@ -88,6 +89,6 @@
 	</dependencies>
 
 	<properties>
-		<drools.version>6.0.0.Final</drools.version>
-	</properties>
+        <drools.version>6.1.0.Final</drools.version>
+    </properties>
 </project>
