@@ -45,6 +45,34 @@
         </license>
     </licenses>
 
+    <modules>
+        <module>dddlib-domain</module>
+        <module>dddlib-ioc</module>
+        <module>dddlib-persistence</module>
+        <module>dddlib-utils</module>
+        <module>dddlib-configuration</module>
+        <module>dddlib-cache</module>
+        <module>dddlib-rule-engine</module>
+        <module>dddlib-observer</module>
+        <module>dddlib-excel</module>
+        <module>dddlib-script-engine</module>
+        <module>dddlib-spring-test</module>
+        <module>dddlib-db</module>
+        <module>dddlib-i18n</module>
+        <module>dddlib-query-channel</module>
+        <module>dddlib-datasource-router</module>
+        <module>dddlib-datasource-saas</module>
+        <module>dddlib-datasource-monitor</module>
+        <module>dddlib-image</module>
+        <module>dddlib-examples</module>
+    </modules>
+
+    <scm>
+        <connection>scm:git:git://github.com/dayatang/dddlib.git</connection>
+        <developerConnection>scm:git:git@github.com:dayatang/dddlib.git</developerConnection>
+        <url>http://github.com/dayatang/dddlib/tree/master</url>
+    </scm>
+
     <ciManagement>
         <system>jenkins</system>
         <url>http://www.dayatang.org:8080/jenkins/job/dddlib/</url>
@@ -72,14 +100,8 @@
         </notifiers>
     </ciManagement>
 
-    <scm>
-        <connection>scm:git:git://github.com/dayatang/dddlib.git</connection>
-        <developerConnection>scm:git:git@github.com:dayatang/dddlib.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
-
     <issueManagement>
-        <system>GitHub</system>
+        <system>github</system>
         <url>https://github.com/dayatang/dddlib/issues</url>
     </issueManagement>
 
@@ -100,6 +122,60 @@
             <url>dav:http://www.dayatang.org/dddlib</url>
         </site>
     </distributionManagement>
+
+    <properties>
+        <github.global.server>github</github.global.server>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <jdk.version>1.6</jdk.version>
+        <slf4j.version>1.7.7</slf4j.version>
+        <spring.version>4.0.6.RELEASE</spring.version>
+        <tapestry.version>5.3.7</tapestry.version>
+        <hibernate.version>4.3.6.Final</hibernate.version>
+        <!-- Database settings, default to H2 database -->
+        <h2.username>sa</h2.username>
+        <h2.password/>
+        <h2.version>1.4.180</h2.version>
+        <mysql.username>root</mysql.username>
+        <mysql.password/>
+        <mysql.host>localhost</mysql.host>
+        <mysql.version>5.1.31</mysql.version>
+        <derby.username>any</derby.username>
+        <derby.password>value</derby.password>
+        <postgresql.username>postgres</postgresql.username>
+        <postgresql.password>postgres</postgresql.password>
+        <hsqldb.username>sa</hsqldb.username>
+        <hsqldb.password/>
+        <oracle.username>system</oracle.username>
+        <oracle.password>system</oracle.password>
+        <oracle.version>11.2.0.3</oracle.version>
+        <db2.username>db2admin</db2.username>
+        <db2.password>db2admin</db2.password>
+        <sqlserver.username>sa</sqlserver.username>
+        <sqlserver.password>appfuse</sqlserver.password>
+
+        <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+        <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
+        <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+        <db.type>h2</db.type>
+        <db.host>localhost</db.host>
+        <db.name>testdb</db.name>
+        <jdbc.groupId>com.h2database</jdbc.groupId>
+        <jdbc.artifactId>h2</jdbc.artifactId>
+        <jdbc.version>${h2.version}</jdbc.version>
+        <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
+        <!--<jdbc.url><![CDATA[jdbc:h2:mem:testdb]]></jdbc.url>-->
+        <jdbc.url><![CDATA[jdbc:h2:${basedir}/target/${db.name}]]></jdbc.url>
+        <jdbc.username>sa</jdbc.username>
+        <jdbc.password/>
+        <hibernate.query.substitutions>true 'Y', false 'N'</hibernate.query.substitutions>
+        <hibernate.cache.provider_class>org.hibernate.cache.EhCacheProvider</hibernate.cache.provider_class>
+        <hibernate.cache.use_query_cache>true</hibernate.cache.use_query_cache>
+        <hibernate.hbm2ddl.auto>create-drop</hibernate.hbm2ddl.auto>
+        <hibernate.show_sql>true</hibernate.show_sql>
+        <hibernate.format_sql>true</hibernate.format_sql>
+    </properties>
 
     <repositories>
         <repository>
@@ -397,7 +473,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.1</version>
+                    <version>3.2.3</version>
                     <configuration>
                         <source>${jdk.version}</source>
                         <target>${jdk.version}</target>
@@ -439,7 +515,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.16</version>
+                    <version>2.17</version>
                     <configuration>
                         <includes>
                             <include>**/*Test.java</include>
@@ -452,7 +528,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>2.4</version>
+                    <version>2.5</version>
                     <configuration>
                         <archive>
                             <addMavenDescriptor>false</addMavenDescriptor>
@@ -467,7 +543,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
-                    <version>2.4</version>
+                    <version>2.4.1</version>
                     <configuration>
                         <descriptorRefs>
                             <descriptorRef>jar-with-dependencies</descriptorRef>
@@ -480,7 +556,7 @@
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
-                    <version>2.4.0</version>
+                    <version>2.5.0</version>
                     <extensions>true</extensions>
                     <executions>
                         <execution>
@@ -496,7 +572,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.3</version>
+                    <version>3.4</version>
                     <configuration>
                         <locales>zh_CN</locales>
                     </configuration>
@@ -516,7 +592,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
-                    <version>2.4.2</version>
+                    <version>2.5</version>
                     <configuration>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
                     </configuration>
@@ -524,7 +600,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>2.2.1</version>
+                    <version>2.3</version>
                 </plugin>
                 <plugin>
                     <groupId>com.github.github</groupId>
@@ -575,12 +651,12 @@
             <extension>
                 <groupId>org.apache.maven.scm</groupId>
                 <artifactId>maven-scm-provider-gitexe</artifactId>
-                <version>1.8.1</version>
+                <version>1.9.1</version>
             </extension>
             <extension>
                 <groupId>org.apache.maven.scm</groupId>
                 <artifactId>maven-scm-manager-plexus</artifactId>
-                <version>1.8.1</version>
+                <version>1.9.1</version>
             </extension>
             <extension>
                 <groupId>org.kathrynhuxtable.maven.wagon</groupId>
@@ -630,12 +706,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jxr-plugin</artifactId>
-                <version>2.3</version>
+                <version>2.4</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.16</version>
+                <version>2.17</version>
             </plugin>
             <!--
             <plugin>
@@ -647,12 +723,12 @@
             <plugin>
                 <groupId>com.atlassian.maven.plugins</groupId>
                 <artifactId>maven-clover2-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>4.0.0</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>3.2</version>
                 <configuration>
                     <targetJdk>1.6</targetJdk>
                     <format>xml</format>
@@ -663,7 +739,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.10</version>
+                <version>2.12.1</version>
                 <configuration>
                     <configLocation>config/sun_checks.xml</configLocation>
                 </configuration>
@@ -672,7 +748,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-changes-plugin</artifactId>
-                <version>2.9</version>
+                <version>2.10</version>
                 <reportSets>
                     <reportSet>
                         <reports>
@@ -695,7 +771,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-changelog-plugin</artifactId>
-                <version>2.2</version>
+                <version>2.3</version>
                 <configuration>
                     <passphrase>${passphase}</passphrase>
                     <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
@@ -733,82 +809,6 @@
             </plugin>
         </plugins>
     </reporting>
-
-    <properties>
-        <github.global.server>github</github.global.server>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <jdk.version>1.6</jdk.version>
-        <slf4j.version>1.7.7</slf4j.version>
-        <spring.version>4.0.6.RELEASE</spring.version>
-        <tapestry.version>5.3.7</tapestry.version>
-        <hibernate.version>4.3.6.Final</hibernate.version>
-        <!-- Database settings, default to H2 database -->
-        <h2.username>sa</h2.username>
-        <h2.password/>
-        <h2.version>1.4.180</h2.version>
-        <mysql.username>root</mysql.username>
-        <mysql.password/>
-        <mysql.host>localhost</mysql.host>
-        <mysql.version>5.1.31</mysql.version>
-        <derby.username>any</derby.username>
-        <derby.password>value</derby.password>
-        <postgresql.username>postgres</postgresql.username>
-        <postgresql.password>postgres</postgresql.password>
-        <hsqldb.username>sa</hsqldb.username>
-        <hsqldb.password/>
-        <oracle.username>system</oracle.username>
-        <oracle.password>system</oracle.password>
-        <oracle.version>11.2.0.3</oracle.version>
-        <db2.username>db2admin</db2.username>
-        <db2.password>db2admin</db2.password>
-        <sqlserver.username>sa</sqlserver.username>
-        <sqlserver.password>appfuse</sqlserver.password>
-
-        <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
-        <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
-        <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
-        <db.type>h2</db.type>
-        <db.host>localhost</db.host>
-        <db.name>testdb</db.name>
-        <jdbc.groupId>com.h2database</jdbc.groupId>
-        <jdbc.artifactId>h2</jdbc.artifactId>
-        <jdbc.version>${h2.version}</jdbc.version>
-        <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
-        <!--<jdbc.url><![CDATA[jdbc:h2:mem:testdb]]></jdbc.url>-->
-        <jdbc.url><![CDATA[jdbc:h2:${basedir}/target/${db.name}]]></jdbc.url>
-        <jdbc.username>sa</jdbc.username>
-        <jdbc.password/>
-        <hibernate.query.substitutions>true 'Y', false 'N'</hibernate.query.substitutions>
-        <hibernate.cache.provider_class>org.hibernate.cache.EhCacheProvider</hibernate.cache.provider_class>
-        <hibernate.cache.use_query_cache>true</hibernate.cache.use_query_cache>
-        <hibernate.hbm2ddl.auto>create-drop</hibernate.hbm2ddl.auto>
-        <hibernate.show_sql>true</hibernate.show_sql>
-        <hibernate.format_sql>true</hibernate.format_sql>
-    </properties>
-
-    <modules>
-        <module>dddlib-domain</module>
-        <module>dddlib-ioc</module>
-        <module>dddlib-persistence</module>
-        <module>dddlib-utils</module>
-        <module>dddlib-configuration</module>
-        <module>dddlib-cache</module>
-        <module>dddlib-rule-engine</module>
-        <module>dddlib-observer</module>
-        <module>dddlib-excel</module>
-        <module>dddlib-script-engine</module>
-        <module>dddlib-spring-test</module>
-        <module>dddlib-db</module>
-        <module>dddlib-i18n</module>
-        <module>dddlib-query-channel</module>
-        <module>dddlib-datasource-router</module>
-        <module>dddlib-datasource-saas</module>
-        <module>dddlib-datasource-monitor</module>
-        <module>dddlib-image</module>
-        <module>dddlib-examples</module>
-    </modules>
 
     <profiles>
         <profile>
