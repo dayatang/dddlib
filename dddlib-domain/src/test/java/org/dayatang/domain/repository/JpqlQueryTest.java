@@ -16,19 +16,18 @@
 
 package org.dayatang.domain.repository;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.dayatang.domain.PositionalParameters;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.JpqlQuery;
 import org.dayatang.domain.NamedParameters;
+import org.dayatang.domain.PositionalParameters;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+
+import java.util.*;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -91,13 +90,14 @@ public class JpqlQueryTest {
      */
     @Test
     public void testAddParameter() {
+        Date createdDate = new Date();
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("name", "abc");
-        params.put("created", new Date());
+        params.put("created", createdDate);
         instance.setParameters(params);
         assertEquals(NamedParameters.create(params), 
                 instance.addParameter("name", "abc")
-                        .addParameter("created", new Date())
+                        .addParameter("created", createdDate)
                         .getParameters());
     }
 
