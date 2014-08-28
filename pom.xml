@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.dayatang.dddlib</groupId>
     <artifactId>dddlib-project</artifactId>
-    <version>4.3.1-SNAPSHOT</version>
+    <version>4.2.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>DDDLib Project</name>
     <url>http://www.dayatang.org/dddlib</url>
@@ -70,8 +71,7 @@
         <connection>scm:git:git://github.com/dayatang/dddlib.git</connection>
         <developerConnection>scm:git:git@github.com:dayatang/dddlib.git</developerConnection>
         <url>http://github.com/dayatang/dddlib/tree/master</url>
-      <tag>HEAD</tag>
-  </scm>
+    </scm>
 
     <ciManagement>
         <system>jenkins</system>
@@ -135,10 +135,10 @@
         <hibernate.version>4.3.6.Final</hibernate.version>
         <!-- Database settings, default to H2 database -->
         <h2.username>sa</h2.username>
-        <h2.password />
+        <h2.password/>
         <h2.version>1.4.180</h2.version>
         <mysql.username>root</mysql.username>
-        <mysql.password />
+        <mysql.password/>
         <mysql.host>localhost</mysql.host>
         <mysql.version>5.1.31</mysql.version>
         <derby.username>any</derby.username>
@@ -146,7 +146,7 @@
         <postgresql.username>postgres</postgresql.username>
         <postgresql.password>postgres</postgresql.password>
         <hsqldb.username>sa</hsqldb.username>
-        <hsqldb.password />
+        <hsqldb.password/>
         <oracle.username>system</oracle.username>
         <oracle.password>system</oracle.password>
         <oracle.version>11.2.0.3</oracle.version>
@@ -168,7 +168,7 @@
         <!--<jdbc.url><![CDATA[jdbc:h2:mem:testdb]]></jdbc.url>-->
         <jdbc.url><![CDATA[jdbc:h2:${basedir}/target/${db.name}]]></jdbc.url>
         <jdbc.username>sa</jdbc.username>
-        <jdbc.password />
+        <jdbc.password/>
         <hibernate.query.substitutions>true 'Y', false 'N'</hibernate.query.substitutions>
         <hibernate.cache.provider_class>org.hibernate.cache.EhCacheProvider</hibernate.cache.provider_class>
         <hibernate.cache.use_query_cache>true</hibernate.cache.use_query_cache>
@@ -796,7 +796,7 @@
                 <version>2.6</version>
                 <configuration>
                     <encoding>${project.build.sourceEncoding}</encoding>
-                    <check />
+                    <check/>
                 </configuration>
             </plugin>
             <plugin>
@@ -823,7 +823,7 @@
                 <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
                 <jdbc.url><![CDATA[jdbc:h2:${basedir}/target/${db.name}]]></jdbc.url>
                 <jdbc.username>sa</jdbc.username>
-                <jdbc.password />
+                <jdbc.password/>
             </properties>
         </profile>
         <profile>
@@ -852,7 +852,7 @@
                 <jdbc.driverClassName>org.hsqldb.jdbcDriver</jdbc.driverClassName>
                 <jdbc.url><![CDATA[jdbc:hsqldb:${basedir}/target/${db.name};shutdown=true]]></jdbc.url>
                 <jdbc.username>sa</jdbc.username>
-                <jdbc.password />
+                <jdbc.password/>
             </properties>
         </profile>
         <profile>
@@ -880,7 +880,7 @@
                 <db.type>db2</db.type>
                 <db.port>50000</db.port>
                 <dbunit.dataTypeFactoryName>org.dbunit.ext.db2.Db2DataTypeFactory</dbunit.dataTypeFactoryName>
-                <dbunit.schema />
+                <dbunit.schema/>
                 <hibernate.dialect>org.hibernate.dialect.DB2Dialect</hibernate.dialect>
                 <jdbc.groupId>com.ibm</jdbc.groupId>
                 <jdbc.artifactId>db2jcc4</jdbc.artifactId>
