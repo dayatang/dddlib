@@ -1,48 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.dayatang.dddlib</groupId>
-		<artifactId>dddlib-cache</artifactId>
-		<version>4.2.1-SNAPSHOT</version>
-	</parent>
-	<artifactId>dddlib-cache-memcached</artifactId>
-	<packaging>jar</packaging>
-	<name>DDDLib Cache implemented by memcached</name>
-	<description>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.dayatang.dddlib</groupId>
+        <artifactId>dddlib-cache</artifactId>
+        <version>4.2.1-SNAPSHOT</version>
+    </parent>
+    <artifactId>dddlib-cache-memcached</artifactId>
+    <packaging>jar</packaging>
+    <name>DDDLib Cache implemented by memcached</name>
+    <description>
         高速缓存，用Memcached实现。
-	</description>
+    </description>
 
-	<dependencies>
+    <dependencies>
         <dependency>
             <groupId>org.dayatang.dddlib</groupId>
             <artifactId>dddlib-cache-api</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${project.version}</version>
         </dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.danga</groupId>
-			<artifactId>java-memcached</artifactId>
-			<version>${memcached.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-simple</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.danga</groupId>
+            <artifactId>java-memcached</artifactId>
+            <version>${memcached.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-simple</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -71,8 +72,8 @@
         </plugins>
     </build>
 
-	<properties>
-		<maven.test.skip>true</maven.test.skip>
-		<memcached.version>2.6.3</memcached.version>
-	</properties>
+    <properties>
+        <maven.test.skip>true</maven.test.skip>
+        <memcached.version>2.6.3</memcached.version>
+    </properties>
 </project>

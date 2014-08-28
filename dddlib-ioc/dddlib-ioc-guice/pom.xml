@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.dayatang.dddlib</groupId>
-		<artifactId>dddlib-ioc</artifactId>
-		<version>4.2.1-SNAPSHOT</version>
-	</parent>
-	<artifactId>dddlib-ioc-guice</artifactId>
-	<packaging>jar</packaging>
-	<name>DDDLib IoC implemented by Google Guice</name>
-	<description>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.dayatang.dddlib</groupId>
+        <artifactId>dddlib-ioc</artifactId>
+        <version>4.2.1-SNAPSHOT</version>
+    </parent>
+    <artifactId>dddlib-ioc-guice</artifactId>
+    <packaging>jar</packaging>
+    <name>DDDLib IoC implemented by Google Guice</name>
+    <description>
         DDDLib IoC的Google Guice实现，通过GuiceInstanceProvider实现InstanceProvider
     </description>
 
-	<dependencies>
-		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>dddlib-domain</artifactId>
-			<version>${project.parent.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.inject</groupId>
-			<artifactId>guice</artifactId>
-			<version>${guice.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${project.parent.groupId}</groupId>
-			<artifactId>dddlib-ioc-test</artifactId>
-			<version>${project.parent.version}</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>dddlib-domain</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>dddlib-ioc-test</artifactId>
+            <version>${project.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -59,7 +60,7 @@
         </plugins>
     </build>
 
-	<properties>
-		<guice.version>3.0</guice.version>
-	</properties>
+    <properties>
+        <guice.version>3.0</guice.version>
+    </properties>
 </project>
