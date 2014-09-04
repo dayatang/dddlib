@@ -437,7 +437,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
         String queryString = "select count(*) from  categories o where o.name = :name";
         SqlQuery query = new SqlQuery(repository, queryString)
                 .addParameter("name", "gender");
-        assertEquals(BigInteger.ONE, repository.getSingleResult(query));
+        assertEquals(1, ((Number)repository.getSingleResult(query)).longValue());
     }
 
     /**

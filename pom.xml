@@ -336,7 +336,7 @@
             <dependency>
                 <groupId>org.dbunit</groupId>
                 <artifactId>dbunit</artifactId>
-                <version>2.4.9</version>
+                <version>2.5.0</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -832,10 +832,10 @@
                 <db.type>derby</db.type>
                 <hibernate.dialect>org.hibernate.dialect.DerbyTenSevenDialect</hibernate.dialect>
                 <jdbc.groupId>org.apache.derby</jdbc.groupId>
-                <jdbc.artifactId>derbyclient</jdbc.artifactId>
+                <jdbc.artifactId>derby</jdbc.artifactId>
                 <jdbc.version>10.10.2.0</jdbc.version>
-                <jdbc.driverClassName>org.apache.derby.jdbc.ClientDriver</jdbc.driverClassName>
-                <jdbc.url><![CDATA[jdbc:derby:${db.name};create=true]]></jdbc.url>
+                <jdbc.driverClassName>org.apache.derby.jdbc.EmbeddedDriver</jdbc.driverClassName>
+                <jdbc.url><![CDATA[jdbc:derby:${basedir}/target/${db.name};create=true]]></jdbc.url>
                 <jdbc.username>any</jdbc.username>
                 <jdbc.password>value</jdbc.password>
             </properties>
@@ -864,7 +864,7 @@
                 <dbunit.dataTypeFactoryName>org.dbunit.ext.oracle.Oracle10DataTypeFactory</dbunit.dataTypeFactoryName>
                 <dbunit.schema>SYSTEM</dbunit.schema>
                 <!-- Make sure to capitalize the schema name -->
-                <hibernate.dialect>org.hibernate.dialect.Oracle9iDialect</hibernate.dialect>
+                <hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</hibernate.dialect>
                 <jdbc.groupId>com.oracle.jdbc</jdbc.groupId>
                 <jdbc.artifactId>ojdbc5</jdbc.artifactId>
                 <jdbc.version>${oracle.version}</jdbc.version>
@@ -900,7 +900,7 @@
                 <db.type>postgresql</db.type>
                 <dbunit.dataTypeFactoryName>org.dbunit.ext.postgresql.PostgresqlDataTypeFactory
                 </dbunit.dataTypeFactoryName>
-                <hibernate.dialect>org.hibernate.dialect.PostgresPlusDialect</hibernate.dialect>
+                <hibernate.dialect>org.hibernate.dialect.PostgreSQL9Dialect</hibernate.dialect>
                 <jdbc.groupId>org.postgresql</jdbc.groupId>
                 <jdbc.artifactId>postgresql</jdbc.artifactId>
                 <jdbc.version>9.3-1102-jdbc4</jdbc.version>
