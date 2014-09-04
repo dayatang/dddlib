@@ -425,6 +425,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
         category.setName(name);
         category.setSortOrder(sortOrder);
         repository.save(category);
+        repository.flush();
         return category;
     }
 
@@ -434,6 +435,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
         dictionary.setSortOrder(sortOrder);
         dictionary.setParentCode(parentCode);
         repository.save(dictionary);
+        repository.flush();
         return dictionary;
     }
 }

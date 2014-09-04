@@ -19,7 +19,6 @@ package org.dayatang.persistence.hibernate;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import javax.validation.ValidationException;
 import org.dayatang.domain.CriteriaQuery;
 import org.dayatang.domain.ExampleSettings;
@@ -68,6 +67,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
         category.setName(name);
         category.setSortOrder(sortOrder);
         repository.save(category);
+        repository.flush();
         return category;
     }
 
@@ -77,6 +77,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
         dictionary.setSortOrder(sortOrder);
         dictionary.setParentCode(parentCode);
         repository.save(dictionary);
+        repository.flush();
         return dictionary;
     }
 
@@ -96,6 +97,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
         Dictionary dictionary = new Dictionary("", "", gender);
         try {
             dictionary.save();
+            repository.flush();
             fail("应抛出异常！");
         } catch (ValidationException e) {
             System.out.println(e.getMessage());

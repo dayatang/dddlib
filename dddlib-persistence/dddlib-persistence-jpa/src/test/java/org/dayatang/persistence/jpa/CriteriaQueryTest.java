@@ -414,6 +414,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
         category.setName(name);
         category.setSortOrder(sortOrder);
         entityManager.persist(category);
+        repository.flush();
         return category;
     }
 
@@ -423,6 +424,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
         dictionary.setSortOrder(sortOrder);
         dictionary.setParentCode(parentCode);
         entityManager.persist(dictionary);
+        repository.flush();
         return dictionary;
     }
 }
