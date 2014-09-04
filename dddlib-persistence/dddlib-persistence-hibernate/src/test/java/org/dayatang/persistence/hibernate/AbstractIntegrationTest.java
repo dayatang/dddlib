@@ -45,7 +45,7 @@ public class AbstractIntegrationTest {
     }
 
     @After
-    public void tearDown() throws IllegalStateException, SystemException {
+    public void tearDown() throws Exception {
         tx.rollback();
         repository = null;
         AbstractEntity.setRepository(null);

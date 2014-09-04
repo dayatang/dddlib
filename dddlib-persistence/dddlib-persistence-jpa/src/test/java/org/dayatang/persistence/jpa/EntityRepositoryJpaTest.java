@@ -67,6 +67,7 @@ public class EntityRepositoryJpaTest extends AbstractIntegrationTest {
         category.setName(name);
         category.setSortOrder(sortOrder);
         repository.save(category);
+        repository.flush();
         return category;
     }
 
@@ -76,6 +77,7 @@ public class EntityRepositoryJpaTest extends AbstractIntegrationTest {
         dictionary.setSortOrder(sortOrder);
         dictionary.setParentCode(parentCode);
         repository.save(dictionary);
+        repository.flush();
         return dictionary;
     }
 
@@ -95,6 +97,7 @@ public class EntityRepositoryJpaTest extends AbstractIntegrationTest {
         Dictionary dictionary = new Dictionary("", "", gender);
         try {
             dictionary.save();
+            repository.flush();
             fail("应抛出异常！");
         } catch (ValidationException e) {
             System.out.println(e.getMessage());

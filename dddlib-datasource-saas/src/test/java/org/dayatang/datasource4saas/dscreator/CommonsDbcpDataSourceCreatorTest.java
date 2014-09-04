@@ -1,7 +1,7 @@
 package org.dayatang.datasource4saas.dscreator;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.commons.dbcp.BasicDataSource;
 import org.dayatang.configuration.Configuration;
 import org.dayatang.configuration.impl.SimpleConfiguration;
 import org.dayatang.datasource4saas.Constants;

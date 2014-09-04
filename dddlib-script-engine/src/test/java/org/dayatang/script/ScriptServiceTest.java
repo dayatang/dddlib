@@ -14,8 +14,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.util.HashSet;
+import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 public class ScriptServiceTest {
 	
@@ -70,7 +73,12 @@ public class ScriptServiceTest {
 
 		service = new ScriptService(ScriptType.JS);
 		engineName = service.getEngine().getFactory().getEngineName();
-		assertEquals("Mozilla Rhino", engineName);
+        Set<String> engineNames = new HashSet<String>();
+        engineNames.add("Mozilla Rhino");   //Under JDK8
+        engineNames.add("Oracle Nashorn");  //JDK8
+
+        assertThat(engineNames, hasItem(engineName));
+		//assertEquals("Mozilla Rhino", engineName);
 	}
 
 	
