@@ -7,8 +7,6 @@
             http://www.springframework.org/schema/tx
 			http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
 
-
-
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
@@ -26,6 +24,11 @@
                 <ref bean="connectionMonitor" />
             </set>
         </constructor-arg>
+    </bean>
+
+    <bean id="connectionMonitor"
+          class="org.dayatang.dsmonitor.monitor.GeminiConnectionLogTimeoutMonitor">
+        <property name="timeout" value="10000"/>
     </bean>
 
 	<bean id="sessionFactory"
