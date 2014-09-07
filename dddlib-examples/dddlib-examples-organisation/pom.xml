@@ -226,9 +226,9 @@
             </dependency>
             <!-- -->
             <dependency>
-                <groupId>org.opensymphony.quartz</groupId>
+                <groupId>org.quartz-scheduler</groupId>
                 <artifactId>quartz</artifactId>
-                <version>1.6.5</version>
+                <version>2.2.1</version>
             </dependency>
             <dependency>
                 <groupId>com.h2database</groupId>
