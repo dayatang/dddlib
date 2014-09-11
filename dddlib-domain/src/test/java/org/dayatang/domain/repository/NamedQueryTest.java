@@ -93,12 +93,13 @@ public class NamedQueryTest {
     @Test
     public void testAddParameter() {
         Map<String, Object> params = new HashMap<String, Object>();
+        Date created = new Date();
         params.put("name", "abc");
-        params.put("created", new Date());
+        params.put("created", created);
         instance.setParameters(params);
         assertEquals(NamedParameters.create(params), 
                 instance.addParameter("name", "abc")
-                        .addParameter("created", new Date())
+                        .addParameter("created", created)
                         .getParameters());
     }
 
