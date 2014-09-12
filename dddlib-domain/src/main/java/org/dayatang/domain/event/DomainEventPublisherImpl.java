@@ -1,5 +1,7 @@
 package org.dayatang.domain.event;
 
+import org.dayatang.utils.Assert;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -12,27 +14,41 @@ public class DomainEventPublisherImpl implements DomainEventPublisher {
     private List<DomainEventSubscriber> subscribers = new ArrayList<DomainEventSubscriber>();
 
     @Override
-    public void publish(DomainEvent event) {
-
+    public void publish(final DomainEvent event) {
+        for (DomainEventSubscriber subscriber : subscribers) {
+            subscriber.handleEvent(event);
+        }
     }
 
     @Override
-    public void publishAll(Collection<DomainEvent> events) {
-
+    public void publishAll(final Collection<DomainEvent> events) {
+        if (events == null) {
+            return;
+        }
+        for (DomainEvent event : events) {
+            publish(event);
+        }
     }
 
     @Override
-    public void subscribe(DomainEventSubscriber subscriber) {
-
+    public void subscribe(final DomainEventSubscriber subscriber) {
+        Assert.notNull(subscriber);
+        subscribers.add(subscriber);
     }
 
     @Override
-    public void unsubscribe(DomainEventSubscriber subscriber) {
-
+    public void unsubscribe(final DomainEventSubscriber subscriber) {
+        Assert.notNull(subscriber);
+        subscribers.remove(subscriber);
     }
 
     @Override
     public void clearSubscribers() {
+        subscribers.clear();
+    }
 
+    public boolean contains(final DomainEventSubscriber subscriber) {
+        Assert.notNull(subscriber);
+        return subscribers.contains(subscriber);
     }
 }
