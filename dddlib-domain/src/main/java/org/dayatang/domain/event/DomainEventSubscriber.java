@@ -7,6 +7,6 @@ package org.dayatang.domain.event;
  */
 public interface DomainEventSubscriber {
 
-    public void handleEvent(final DomainEvent domainEvent);
+    void handleEvent(DomainEvent domainEvent);
 
 }

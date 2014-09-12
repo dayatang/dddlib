@@ -47,8 +47,12 @@ public class DomainEventPublisherImpl implements DomainEventPublisher {
         subscribers.clear();
     }
 
-    public boolean contains(final DomainEventSubscriber subscriber) {
+    boolean hasSubscriber(final DomainEventSubscriber subscriber) {
         Assert.notNull(subscriber);
         return subscribers.contains(subscriber);
+    }
+
+    boolean hasSubscribers() {
+        return !subscribers.isEmpty();
     }
 }
