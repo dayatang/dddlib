@@ -3,21 +3,30 @@ package org.dayatang.domain.event;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.utils.Assert;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
 
 /**
  * 事件的存储形式。
  * Created by yyang on 14-9-14.
  */
+@Entity
+@Table(name = "stored_events")
 public class StoredEvent {
 
+    @Id
+    private String eventId;       //事件ID，关联领域事件DomainEvent的ID
     private String typeName;    //事件类型名称
     private Date occurredOn;    //事件发生时间
     private String eventBody;   //用字符串表示的事件体
-    private String eventId;       //事件ID，关联领域事件DomainEvent的ID
+
+    @Transient
     private EventSerializer serializer;
 
-    public StoredEvent(String typeName, Date occurredOn, String eventBody) {
+    protected StoredEvent(String typeName, Date occurredOn, String eventBody) {
         Assert.notNull(occurredOn, "occurredOn is null!");
         Assert.notEmpty(typeName, "typeName is null or empty!");
         this.typeName = typeName;

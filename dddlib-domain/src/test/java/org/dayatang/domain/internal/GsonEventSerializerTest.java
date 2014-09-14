@@ -14,7 +14,7 @@ import static org.junit.Assert.assertNull;
 /**
  * Created by yyang on 14-9-14.
  */
-public class EventSerializerGsonTest {
+public class GsonEventSerializerTest {
 
     private EventSerializerGson instance;
 
