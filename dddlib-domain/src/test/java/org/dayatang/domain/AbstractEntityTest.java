@@ -27,7 +27,7 @@ public class AbstractEntityTest {
     @Before
     public void setUp() throws Exception {
         instance = new MyEntity();
-        MockitoAnnotations.initMocks(repository);
+        MockitoAnnotations.initMocks(this);
         AbstractEntity.setRepository(repository);
     }
 

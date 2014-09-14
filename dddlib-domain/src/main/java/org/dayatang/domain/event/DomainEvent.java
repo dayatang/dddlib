@@ -3,12 +3,15 @@ package org.dayatang.domain.event;
 import org.dayatang.utils.Assert;
 
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * 领域事件基类，领域事件代表具有业务含义的事件，例如员工调动或者机构调整
  * Created by yyang on 14-9-12.
  */
 public abstract class DomainEvent {
+
+    private String id = UUID.randomUUID().toString();
 
     private Date occurredOn = new Date();
 
@@ -26,6 +29,18 @@ public abstract class DomainEvent {
         Assert.notNull(occurredOn);
         this.occurredOn = new Date(occurredOn.getTime());
         this.version = version;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * For test only
+     * @param id
+     */
+    protected void setId(String id) {
+        this.id = id;
     }
 
     public Date getOccurredOn() {

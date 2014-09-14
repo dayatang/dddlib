@@ -1,0 +1,47 @@
+package org.dayatang.domain.internal;
+
+import org.dayatang.domain.event.DomainEventSub;
+import org.dayatang.utils.DateUtils;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.Date;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertNull;
+
+/**
+ * Created by yyang on 14-9-14.
+ */
+public class EventSerializerGsonTest {
+
+    private EventSerializerGson instance;
+
+    private DomainEventSub event;
+
+    @Before
+    public void setUp() throws Exception {
+        instance = new EventSerializerGson();
+        Date occurredOn = DateUtils.date(2002, 4, 11);
+        event = new DomainEventSub(occurredOn, 1);
+        event.setId("anId");
+        event.setProp1("abc");
+    }
+
+    @Test
+    public void testSerialize() throws Exception {
+        String result = "{\"prop1\":\"abc\",\"prop2\":null,\"id\":\"anId\",\"occurredOn\":\"1018454400000\",\"version\":1}";
+        assertThat(instance.serialize(event), is(result));
+    }
+
+    @Test
+    public void testDeserialize() throws Exception {
+        String eventBody = "{\"prop1\":\"abc\",\"prop2\":null,\"id\":\"anId\",\"occurredOn\":\"1018454400000\",\"version\":1}";
+        DomainEventSub result = instance.deserialize(eventBody, DomainEventSub.class);
+        assertThat(result.getOccurredOn(), is(event.getOccurredOn()));
+        assertThat(result.getProp1(), is(event.getProp1()));
+        assertThat(result.getVersion(), is(event.getVersion()));
+        assertNull(result.getProp2());
+    }
+}
