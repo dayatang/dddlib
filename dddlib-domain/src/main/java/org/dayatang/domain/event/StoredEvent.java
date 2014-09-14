@@ -76,4 +76,32 @@ public class StoredEvent {
         }
         return getSerializer().deserialize(eventBody, domainEventClass);
     }
+
+    @Override
+    public boolean equals(Object anObject) {
+        boolean equalObjects = false;
+
+        if (anObject != null && this.getClass() == anObject.getClass()) {
+            StoredEvent typedObject = (StoredEvent) anObject;
+            equalObjects = this.eventId == typedObject.eventId;
+        }
+
+        return equalObjects;
+    }
+
+    @Override
+    public int hashCode() {
+        int hashCodeValue =
+                + (1237 * 233)
+                        + this.eventId.hashCode();
+
+        return hashCodeValue;
+    }
+
+    @Override
+    public String toString() {
+        return "StoredEvent [eventBody=" + eventBody + ", eventId=" + eventId + ", occurredOn=" + occurredOn + ", typeName="
+                + typeName + "]";
+    }
+
 }

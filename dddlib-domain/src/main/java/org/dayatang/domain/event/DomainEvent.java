@@ -37,6 +37,7 @@ public abstract class DomainEvent {
 
     /**
      * For test only
+     *
      * @param id
      */
     protected void setId(String id) {
@@ -49,5 +50,22 @@ public abstract class DomainEvent {
 
     public int getVersion() {
         return version;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof DomainEvent)) {
+            return false;
+        }
+        DomainEvent that = (DomainEvent) other;
+        return this.getId().equals(that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 }
