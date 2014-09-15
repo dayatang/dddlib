@@ -1,0 +1,1 @@
+include 'dddlib-ioc-spring', 'dddlib-ioc-guice', 'dddlib-ioc-tapestry', 'dddlib-ioc-test'

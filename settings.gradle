@@ -1,0 +1,5 @@
+include 'dddlib-utils', 'dddlib-domain', 'dddlib-ioc', 'dddlib-persistence', 'dddlib-query-channel',
+        'dddlib-configuration', 'dddlib-cache', 'dddlib-rule-engine', 'dddlib-observer',
+        'dddlib-excel', 'dddlib-script-engine', 'dddlib-spring-test', 'dddlib-db',
+        'dddlib-i18n', 'dddlib-datasource-router', 'dddlib-datasource-saas',
+        'dddlib-datasource-monitor', 'dddlib-image', 'dddlib-examples'

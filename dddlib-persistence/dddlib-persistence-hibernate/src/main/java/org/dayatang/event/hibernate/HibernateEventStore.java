@@ -16,12 +16,12 @@ public class HibernateEventStore implements EventStore {
     private EntityRepositoryHibernate repository;
 
     @Override
-    public List<StoredEvent> allStoredEventsBetween(Date occurredFrom, Date occurredTo) {
+    public List<StoredEvent> findStoredEventsBetween(Date occurredFrom, Date occurredTo) {
         return null;
     }
 
     @Override
-    public List<StoredEvent> allStoredEventsSince(Date occurredFrom) {
+    public List<StoredEvent> findStoredEventsSince(Date occurredFrom) {
         return null;
     }
 

@@ -15,68 +15,67 @@
  */
 package org.dayatang.event.hibernate;
 
-import java.util.Date;
-import java.util.List;
 import org.dayatang.domain.event.DomainEvent;
 import org.dayatang.domain.event.StoredEvent;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.*;
+
+import java.util.Date;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 /**
- *
  * @author yyang
  */
 public class HibernateEventStoreTest {
-    
+
+
     public HibernateEventStoreTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of allStoredEventsBetween method, of class HibernateEventStore.
+     * Test of findStoredEventsBetween method, of class HibernateEventStore.
      */
     @Test
-    public void testAllStoredEventsBetween() {
-        System.out.println("allStoredEventsBetween");
+    public void testFindStoredEventsBetween() {
+        System.out.println("findStoredEventsBetween");
         Date occurredFrom = null;
         Date occurredTo = null;
         HibernateEventStore instance = new HibernateEventStore();
         List<StoredEvent> expResult = null;
-        List<StoredEvent> result = instance.allStoredEventsBetween(occurredFrom, occurredTo);
+        List<StoredEvent> result = instance.findStoredEventsBetween(occurredFrom, occurredTo);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of allStoredEventsSince method, of class HibernateEventStore.
+     * Test of findStoredEventsSince method, of class HibernateEventStore.
      */
     @Test
-    public void testAllStoredEventsSince() {
-        System.out.println("allStoredEventsSince");
+    public void testFindStoredEventsSince() {
+        System.out.println("findStoredEventsSince");
         Date occurredFrom = null;
         HibernateEventStore instance = new HibernateEventStore();
         List<StoredEvent> expResult = null;
-        List<StoredEvent> result = instance.allStoredEventsSince(occurredFrom);
+        List<StoredEvent> result = instance.findStoredEventsSince(occurredFrom);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -122,5 +121,5 @@ public class HibernateEventStoreTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }

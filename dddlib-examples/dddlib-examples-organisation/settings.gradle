@@ -1,0 +1,2 @@
+include 'organisation-domain', 'organisation-application', 'organisation-facade',
+        'organisation-facade-impl', 'organisation-webapp'
