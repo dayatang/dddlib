@@ -49,6 +49,7 @@
         <module>dddlib-domain</module>
         <module>dddlib-ioc</module>
         <module>dddlib-persistence</module>
+        <module>dddlib-event-store</module>
         <module>dddlib-utils</module>
         <module>dddlib-configuration</module>
         <module>dddlib-cache</module>
