@@ -1,6 +1,6 @@
-package org.dayatang.domain.internal;
+package org.dayatang.utils.internal;
 
-import org.dayatang.domain.event.DomainEventSub;
+import com.google.common.collect.Sets;
 import org.dayatang.utils.DateUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,15 +14,21 @@ import static org.junit.Assert.assertNull;
 /**
  * Created by yyang on 14-9-14.
  */
-public class GsonEventSerializerTest {
+public class GsonObjectSerializerTest {
 
-    private EventSerializerGson instance;
+    private GsonObjectSerializer instance;
+
+    private DictionaryCategory category;
+
+    private Dictionary dictionary1;
+
+    private Dictionary dictionary2;
 
     private DomainEventSub event;
 
     @Before
     public void setUp() throws Exception {
-        instance = new EventSerializerGson();
+        instance = new GsonObjectSerializer();
         Date occurredOn = DateUtils.date(2002, 4, 11);
         event = new DomainEventSub(occurredOn, 1);
         event.setId("anId");
@@ -44,4 +50,18 @@ public class GsonEventSerializerTest {
         assertThat(result.getVersion(), is(event.getVersion()));
         assertNull(result.getProp2());
     }
+
+
+    @Test
+    public void test() {
+        DictionaryCategory category = new DictionaryCategory();
+        category.setName("a category");
+        category.setSortOrder(1);
+        category.setId(3L);
+        Dictionary dictionary1 = new Dictionary("01", "男", category);
+        Dictionary dictionary2 = new Dictionary("01", "男", category);
+        category.setDictionaries(Sets.newHashSet(dictionary1, dictionary2));
+        System.out.println(instance.serialize(category));
+    }
+
 }

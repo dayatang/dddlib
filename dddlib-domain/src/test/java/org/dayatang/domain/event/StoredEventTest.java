@@ -5,7 +5,10 @@ import static org.hamcrest.MatcherAssert.*;
 import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.*;
 
+import org.dayatang.domain.InstanceFactory;
 import org.dayatang.utils.DateUtils;
+import org.dayatang.utils.ObjectSerializer;
+import org.dayatang.utils.internal.GsonObjectSerializer;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -25,7 +28,7 @@ public class StoredEventTest {
     private DomainEventSub event = new DomainEventSub();
 
     @Mock
-    private EventSerializer serializer;
+    private ObjectSerializer serializer;
 
     @Before
     public void setUp() {
@@ -58,6 +61,7 @@ public class StoredEventTest {
 
     @Test
     public void toDomainEvent() {
+        InstanceFactory.bind(ObjectSerializer.class, new GsonObjectSerializer());
         Date occurredOn = DateUtils.date(2002, 4, 11);
         String eventBody = "{\"prop1\":\"abc\",\"prop2\":null,\"id\":\"anId\",\"occurredOn\":\"1018454400000\",\"version\":1}";
         event = new DomainEventSub(occurredOn, 1);

@@ -2,6 +2,7 @@ package org.dayatang.domain.event;
 
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.utils.Assert;
+import org.dayatang.utils.ObjectSerializer;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -24,7 +25,7 @@ public class StoredEvent {
     private String eventBody;   //用字符串表示的事件体
 
     @Transient
-    private EventSerializer serializer;
+    private ObjectSerializer serializer;
 
     protected StoredEvent(String typeName, Date occurredOn, String eventBody) {
         Assert.notNull(occurredOn, "occurredOn is null!");
@@ -39,14 +40,14 @@ public class StoredEvent {
         this.eventId = eventId;
     }
 
-    public final EventSerializer getSerializer() {
+    public final ObjectSerializer getSerializer() {
         if (serializer == null) {
-            serializer = InstanceFactory.getInstance(EventSerializer.class);
+            serializer = InstanceFactory.getInstance(ObjectSerializer.class);
         }
         return serializer;
     }
 
-    public void setSerializer(EventSerializer serializer) {
+    public void setSerializer(ObjectSerializer serializer) {
         this.serializer = serializer;
     }
 
@@ -66,7 +67,7 @@ public class StoredEvent {
         return typeName;
     }
 
-    public static StoredEvent fromDomainEvent(DomainEvent event, EventSerializer serializer) {
+    public static StoredEvent fromDomainEvent(DomainEvent event, ObjectSerializer serializer) {
         Assert.notNull(event);
         Assert.notNull(serializer);
         return new StoredEvent(event.getClass().getName(), event.getOccurredOn(),
