@@ -4,6 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.dayatang.configuration.Configuration;
 import org.dayatang.configuration.ConfigurationException;
 import org.dayatang.utils.Assert;
+import org.dayatang.utils.serializer.GsonObjectSerializer;
+import org.dayatang.utils.ObjectSerializer;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,7 +16,9 @@ public abstract class AbstractConfiguration implements Configuration {
 	private String prefix = "";
 	private static final String DATE_FORMAT_KEY = "DATE_FORMAT";
 	private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
-	protected Hashtable<String, String> hTable;	
+	protected Hashtable<String, String> hTable;
+
+    private ObjectSerializer serializer = new GsonObjectSerializer();
 
 	/**
 	 * 激活配置前缀功能
@@ -180,7 +184,7 @@ public abstract class AbstractConfiguration implements Configuration {
 	 */
 	@Override
 	public Date getDate(String key) {
-		return getDate(key, null);
+		return getDate(key, (Date) null);
 	}
 
 	/* (non-Javadoc)
@@ -195,8 +199,23 @@ public abstract class AbstractConfiguration implements Configuration {
 		setString(key, new SimpleDateFormat(dateFormat).format(value));
 	}
 
+    @Override
+    public <T> T getObject(String key, Class<T> objectClass, T defaultValue) {
+        T result = serializer.deserialize(getString(key), objectClass);
+        return result == null ? defaultValue : result;
+    }
 
-	public Hashtable<String, String> getHashtable() {
+    @Override
+    public <T> T getObject(String key, Class<T> objectClass) {
+        return getObject(key, objectClass, null);
+    }
+
+    @Override
+    public void setObject(String key, Object value) {
+        setString(key, serializer.serialize(value));
+    }
+
+    public Hashtable<String, String> getHashtable() {
 		if (hTable == null) {
 			load();
 		}

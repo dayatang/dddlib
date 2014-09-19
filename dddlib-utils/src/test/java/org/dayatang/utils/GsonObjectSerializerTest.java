@@ -1,6 +1,7 @@
 package org.dayatang.utils;
 
 import com.google.common.collect.Sets;
+import org.dayatang.utils.serializer.GsonObjectSerializer;
 import org.dayatang.utils.support.Dictionary;
 import org.dayatang.utils.support.DictionaryCategory;
 import org.dayatang.utils.support.DomainEventSub;

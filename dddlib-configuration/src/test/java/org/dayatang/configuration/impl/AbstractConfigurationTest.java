@@ -126,6 +126,28 @@ public abstract class AbstractConfigurationTest {
 		assertEquals(newDate, instance.getDate("birthday"));
 	}
 
+    @Test
+    public void testGetObjectWithDefault() {
+        Date orig = DateUtils.parseDate("2002-05-11");
+        Date defaultDate = DateUtils.parseDate("2008-05-11");
+        assertEquals(orig, instance.getObject("theDay", Date.class, defaultDate));
+        assertEquals(defaultDate, instance.getObject("theDay1", Date.class, defaultDate));
+    }
+
+    @Test
+    public void testGetObjectWithoutDefault() {
+        Date orig = DateUtils.parseDate("2002-05-11");
+        assertEquals(orig, instance.getObject("theDay", Date.class));
+        assertEquals(null, instance.getObject("theDay1", Date.class));
+    }
+
+    @Test
+    public void testSetObject() {
+        Date newDate = DateUtils.parseDate("2008-05-11");
+        instance.setObject("theDay", newDate);
+        assertEquals(newDate, instance.getObject("theDay", Date.class));
+    }
+
 	@Test
 	public void testGetProperties() {
 		Properties properties = instance.getProperties();

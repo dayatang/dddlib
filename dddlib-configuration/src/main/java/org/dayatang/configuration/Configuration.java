@@ -112,6 +112,25 @@ public interface Configuration {
 	 */
 	Date getDate(String key);
 
+    /**
+     * 获取指定的键对应的对象型键值。
+     *
+     * @param key 键
+     * @param objectClass 对象的类型
+     * @param defaultValue 默认值
+     * @return 参数key对应的键值。如果键值不存在则返回参数defaultValue代表的默认值。
+     */
+    <T> T getObject(String key, Class<T> objectClass, T defaultValue);
+
+    /**
+     * 获取指定的键对应的对象型键值。
+     *
+     * @param key 键
+     * @param objectClass 对象的类型
+     * @return 参数key对应的键值。如果键值不存在则返回null。
+     */
+    <T> T getObject(String key, Class<T> objectClass);
+
 	/**
 	 * 设置指定配置项的字符串型键值
 	 * 
@@ -159,6 +178,14 @@ public interface Configuration {
 	 * @param value 要配置的值
 	 */
 	void setDate(String key, Date value);
+
+    /**
+     * 设置指定配置项的对象型键值
+     *
+     * @param key 配置项的键
+     * @param value 要配置的值
+     */
+    void setObject(String key, Object value);
 	
 	/**
 	 * 获得所有属性
