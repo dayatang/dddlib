@@ -1,7 +1,4 @@
-package org.dayatang.utils.internal;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import java.util.List;
+package org.dayatang.utils.support;
 
 public class Dictionary {
 

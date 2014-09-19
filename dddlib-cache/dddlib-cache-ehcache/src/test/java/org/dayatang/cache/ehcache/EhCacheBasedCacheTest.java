@@ -20,7 +20,6 @@ public class EhCacheBasedCacheTest {
     public void testCreatedCacheWithName() {
         Cache cache = new EhCacheBasedCache("sampleCache");
         assertTrue(cache != null);
-
     }
 
     /**
@@ -37,6 +36,18 @@ public class EhCacheBasedCacheTest {
     @Test
     public void testCreatedCacheWithParams() {
         Cache cache = new EhCacheBasedCache("mycache", 100000, true, true, 1200000, 200000);
+        assertTrue(cache != null);
+    }
+
+    /**
+     * 使用参数手动构建一个cache
+     */
+    @Test
+    public void testCreatedCacheWithConfiguration() {
+        EhCacheConfiguration configuration = EhCacheConfiguration.builder().name("mycache")
+                .maxElementsInMemory(100000).overflowToDisk(true).eternal(true)
+                .timeToLiveSeconds(1200000).timeToIdleSeconds(200000).build();
+        Cache cache = new EhCacheBasedCache(configuration);
         assertTrue(cache != null);
     }
 

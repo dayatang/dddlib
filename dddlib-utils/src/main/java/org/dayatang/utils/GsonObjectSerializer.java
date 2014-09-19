@@ -1,4 +1,4 @@
-package org.dayatang.utils.internal;
+package org.dayatang.utils;
 
 import com.google.gson.*;
 import org.dayatang.utils.ObjectSerializer;

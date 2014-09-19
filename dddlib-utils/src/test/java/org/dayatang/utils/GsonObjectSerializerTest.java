@@ -1,7 +1,9 @@
-package org.dayatang.utils.internal;
+package org.dayatang.utils;
 
 import com.google.common.collect.Sets;
-import org.dayatang.utils.DateUtils;
+import org.dayatang.utils.support.Dictionary;
+import org.dayatang.utils.support.DictionaryCategory;
+import org.dayatang.utils.support.DomainEventSub;
 import org.junit.Before;
 import org.junit.Test;
 

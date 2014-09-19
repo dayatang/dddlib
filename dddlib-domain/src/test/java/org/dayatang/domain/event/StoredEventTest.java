@@ -8,7 +8,7 @@ import static org.mockito.Mockito.*;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.utils.DateUtils;
 import org.dayatang.utils.ObjectSerializer;
-import org.dayatang.utils.internal.GsonObjectSerializer;
+import org.dayatang.utils.GsonObjectSerializer;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

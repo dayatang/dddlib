@@ -1,7 +1,6 @@
-package org.dayatang.utils.internal;
+package org.dayatang.utils.support;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class DictionaryCategory {

@@ -1,4 +1,4 @@
-package org.dayatang.utils.internal;
+package org.dayatang.utils.support;
 
 import org.dayatang.utils.Assert;
 

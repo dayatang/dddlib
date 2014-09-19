@@ -32,6 +32,24 @@ public class EhCacheBasedCache implements Cache {
 
 
     /**
+     * 指定配置，构建一个缓存对象
+     *
+     * @param configuration EhCache配置信息
+     */
+    public EhCacheBasedCache(EhCacheConfiguration configuration) {
+        if (configuration == null) {
+            throw new IllegalStateException("Configuration is null!");
+        }
+        if (!CacheManager.getInstance().cacheExists(configuration.name())) {
+            cache = new net.sf.ehcache.Cache(configuration.name(), configuration.maxElementsInMemory(),
+                    configuration.overflowToDisk(), configuration.eternal(),
+                    configuration.timeToLiveSeconds(), configuration.timeToIdleSeconds());
+            CacheManager.getInstance().addCache(cache);
+        }
+    }
+
+
+    /**
      * 指定详细的参数，构建一个缓存对象
      *
      * @param name

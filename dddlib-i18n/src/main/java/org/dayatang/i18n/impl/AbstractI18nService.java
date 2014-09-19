@@ -37,7 +37,7 @@ public abstract class AbstractI18nService extends I18nServiceSupport
 	 * <p>
 	 * To be able to work with "useCodeAsDefaultMessage" turned on in the
 	 * parent, AbstractMessageSource and AbstractApplicationContext contain
-	 * special checks to delegate to the internal {@link #getMessageInternal}
+	 * special checks to delegate to the support {@link #getMessageInternal}
 	 * method if available. In general, it is recommended to just use
 	 * "useCodeAsDefaultMessage" during development and not rely on it in
 	 * production in the first place, though.
@@ -165,7 +165,7 @@ public abstract class AbstractI18nService extends I18nServiceSupport
 		I18nService parent = getParentMessageSource();
 		if (parent != null) {
 			if (parent instanceof AbstractI18nService) {
-				// Call internal method to avoid getting the default code back
+				// Call support method to avoid getting the default code back
 				// in case of "useCodeAsDefaultMessage" being activated.
 				return ((AbstractI18nService) parent).getMessageInternal(
 						code, args, locale);
