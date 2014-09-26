@@ -20,10 +20,10 @@ import org.dayatang.querychannel.query.ChannelNamedQuery;
 import org.dayatang.querychannel.query.ChannelSqlQuery;
 import org.dayatang.querychannel.query.ChannelJpqlQuery;
 import java.util.List;
-import javax.inject.Inject;
+
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.querychannel.ChannelQuery;
-import org.dayatang.querychannel.Page;
+import org.dayatang.utils.Page;
 import org.dayatang.querychannel.QueryChannelService;
 import org.springframework.util.Assert;
 

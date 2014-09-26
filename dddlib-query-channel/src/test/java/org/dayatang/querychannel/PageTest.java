@@ -19,6 +19,7 @@ package org.dayatang.querychannel;
 import java.util.Collections;
 import java.util.List;
 import org.dayatang.querychannel.domain.MyEntity;
+import org.dayatang.utils.Page;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

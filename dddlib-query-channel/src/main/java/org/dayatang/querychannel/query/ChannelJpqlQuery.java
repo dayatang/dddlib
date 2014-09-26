@@ -21,7 +21,7 @@ import org.dayatang.querychannel.ChannelQuery;
 import java.util.List;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.JpqlQuery;
-import org.dayatang.querychannel.Page;
+import org.dayatang.utils.Page;
 import org.dayatang.utils.Assert;
 
 /**

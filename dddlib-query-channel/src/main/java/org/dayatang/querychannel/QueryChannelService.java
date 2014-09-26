@@ -1,6 +1,8 @@
 package org.dayatang.querychannel;
 
 
+import org.dayatang.utils.Page;
+
 import java.io.Serializable;
 import java.util.List;
 

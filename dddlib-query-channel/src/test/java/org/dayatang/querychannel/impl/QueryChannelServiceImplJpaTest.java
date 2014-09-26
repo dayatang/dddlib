@@ -21,7 +21,7 @@ import org.dayatang.btm.BtmUtils;
 import org.dayatang.dbunit.DbUnitUtils;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.ioc.spring.factory.SpringInstanceProvider;
-import org.dayatang.querychannel.Page;
+import org.dayatang.utils.Page;
 import org.dayatang.querychannel.domain.MyEntity;
 import org.junit.*;
 import org.junit.runner.RunWith;

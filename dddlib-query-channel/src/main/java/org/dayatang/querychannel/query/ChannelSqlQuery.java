@@ -22,7 +22,7 @@ import java.util.List;
 import org.dayatang.domain.Entity;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.SqlQuery;
-import org.dayatang.querychannel.Page;
+import org.dayatang.utils.Page;
 import org.dayatang.utils.Assert;
 
 /**
