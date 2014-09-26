@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.dayatang.dddlib</groupId>
         <artifactId>dddlib-project</artifactId>
-        <version>4.3.1</version>
+        <version>4.3.2-SNAPSHOT</version>
     </parent>
     <artifactId>dddlib-event-store</artifactId>
     <packaging>jar</packaging>
