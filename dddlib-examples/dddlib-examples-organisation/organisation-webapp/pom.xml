@@ -4,12 +4,12 @@
     <parent>
     <artifactId>dddlib-examples-organisation</artifactId>
     <groupId>org.dddlib.examples.organisation</groupId>
-    <version> zzzzzz</version>
+    <version>4.3.3-SNAPSHOT</version>
   </parent>
 
     <groupId>org.dddlib.examples.organisation</groupId>
     <artifactId>organisation-webapp</artifactId>
-    <version> zzzzzz</version>
+    <version>4.3.3-SNAPSHOT</version>
     <packaging>war</packaging>
 
   <name>DDDLib Example - Organization Structure - Webapp</name>
