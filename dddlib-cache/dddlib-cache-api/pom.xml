@@ -4,7 +4,7 @@
     <parent>
         <artifactId>dddlib-cache</artifactId>
         <groupId>org.dayatang.dddlib</groupId>
-        <version>4.3.2-SNAPSHOT</version>
+        <version>4.3.5</version>
     </parent>
     <artifactId>dddlib-cache-api</artifactId>
     <name>DDDLib Cache API</name>
