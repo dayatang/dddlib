@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.dayatang.dddlib</groupId>
         <artifactId>dddlib-project</artifactId>
-        <version>4.3.2</version>
+        <version>4.3.2-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.dddlib.examples</groupId>
