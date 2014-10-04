@@ -3,6 +3,7 @@ package org.dayatang.domain.event;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.utils.Assert;
 import org.dayatang.utils.ObjectSerializer;
+import org.dayatang.utils.serializer.GsonObjectSerializer;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -24,8 +25,10 @@ public class StoredEvent {
     private Date occurredOn;    //事件发生时间
     private String eventBody;   //用字符串表示的事件体
 
-    @Transient
-    private ObjectSerializer serializer;
+    private static ObjectSerializer serializer;
+
+    protected StoredEvent() {
+    }
 
     protected StoredEvent(String typeName, Date occurredOn, String eventBody) {
         Assert.notNull(occurredOn, "occurredOn is null!");
@@ -35,20 +38,16 @@ public class StoredEvent {
         this.occurredOn = occurredOn;
     }
 
-    public StoredEvent(String typeName, Date occurredOn, String eventBody, String eventId) {
+    private StoredEvent(String typeName, Date occurredOn, String eventBody, String eventId) {
         this(typeName, occurredOn, eventBody);
         this.eventId = eventId;
     }
 
-    public final ObjectSerializer getSerializer() {
+    public static final ObjectSerializer getSerializer() {
         if (serializer == null) {
             serializer = InstanceFactory.getInstance(ObjectSerializer.class);
         }
         return serializer;
-    }
-
-    public void setSerializer(ObjectSerializer serializer) {
-        this.serializer = serializer;
     }
 
     public Date getOccurredOn() {
@@ -67,11 +66,10 @@ public class StoredEvent {
         return typeName;
     }
 
-    public static StoredEvent fromDomainEvent(DomainEvent event, ObjectSerializer serializer) {
+    public static StoredEvent fromDomainEvent(DomainEvent event) {
         Assert.notNull(event);
-        Assert.notNull(serializer);
         return new StoredEvent(event.getClass().getName(), event.getOccurredOn(),
-                serializer.serialize(event), event.getId());
+                getSerializer().serialize(event), event.getId());
     }
 
     public <T extends DomainEvent> T toDomainEvent() {

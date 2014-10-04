@@ -25,7 +25,7 @@ public class StoredEventTest {
 
     private String typeName = DomainEventSub.class.getName();
 
-    private DomainEventSub event = new DomainEventSub();
+    private DomainEventSub event = event();
 
     @Mock
     private ObjectSerializer serializer;
@@ -33,58 +33,36 @@ public class StoredEventTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        when(serializer.deserialize("anEventBody", DomainEventSub.class)).thenReturn(event);
-    }
-
-    @Test
-    public void constructorWithoutEventId() throws ClassNotFoundException {
-        Date occurredOn = new Date();
-        instance = new StoredEvent(typeName, occurredOn, "anEventBody");
-        instance.setSerializer(serializer);
-        assertThat(instance.getEventBody(), is("anEventBody"));
-        assertThat(instance.getOccurredOn(), is(occurredOn));
-        DomainEventSub theEvent = instance.toDomainEvent();
-        assertThat(theEvent, is(event));
-    }
-
-    @Test
-    public void constructorWithEventId() {
-        Date occurredOn = new Date();
-        instance = new StoredEvent(typeName, occurredOn, "anEventBody", "anId");
-        instance.setSerializer(serializer);
-        assertThat(instance.getEventBody(), is("anEventBody"));
-        assertThat(instance.getOccurredOn(), is(occurredOn));
-        assertThat(instance.getEventId(), is("anId"));
-        DomainEventSub theEvent = instance.toDomainEvent();
-        assertThat(theEvent, is(event));
+        when(serializer.deserialize("theEventBody", DomainEventSub.class)).thenReturn(event);
+        when(serializer.serialize(event)).thenReturn("theEventBody");
+        InstanceFactory.bind(ObjectSerializer.class, serializer);
     }
 
     @Test
     public void toDomainEvent() {
-        InstanceFactory.bind(ObjectSerializer.class, new GsonObjectSerializer());
-        Date occurredOn = DateUtils.date(2002, 4, 11);
-        String eventBody = "{\"prop1\":\"abc\",\"prop2\":null,\"id\":\"anId\",\"occurredOn\":\"1018454400000\",\"version\":1}";
-        event = new DomainEventSub(occurredOn, 1);
-        event.setProp1("abc");
-        instance = new StoredEvent(typeName, occurredOn, eventBody, "anId");
-        DomainEventSub result = instance.toDomainEvent();
-        assertThat(result.getOccurredOn(), is(event.getOccurredOn()));
-        assertThat(result.getProp1(), is(event.getProp1()));
-        assertThat(result.getVersion(), is(event.getVersion()));
-        assertNull(result.getProp2());
+        instance = StoredEvent.fromDomainEvent(event);
+        DomainEventSub event1 = instance.toDomainEvent();
+        assertThat(event1.getId(), is(event.getId()));
+        assertThat(event1.getOccurredOn(), is(event.getOccurredOn()));
+        assertThat(event1.getProp1(), is(event.getProp1()));
+        assertThat(event1.getVersion(), is(event.getVersion()));
+        assertNull(event1.getProp2());
     }
 
     @Test
     public void fromDomainEvent() {
-        Date occurredOn = DateUtils.date(2002, 4, 11);
-        event = new DomainEventSub(occurredOn, 1);
-        event.setId("anId");
-        event.setProp1("abc");
-        when(serializer.serialize(event)).thenReturn("theEventBody");
-        instance = StoredEvent.fromDomainEvent(event, serializer);
+        instance = StoredEvent.fromDomainEvent(event);
         assertThat(instance.getEventId(), is(event.getId()));
         assertThat(instance.getOccurredOn(), is(event.getOccurredOn()));
         assertThat(instance.getTypeName(), is(event.getClass().getName()));
         assertThat(instance.getEventBody(), is("theEventBody"));
+    }
+
+    private DomainEventSub event() {
+        Date occurredOn = DateUtils.date(2002, 4, 11);
+        DomainEventSub event = new DomainEventSub(occurredOn, 1);
+        event.setId("anId");
+        event.setProp1("abc");
+        return event;
     }
 }
