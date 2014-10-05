@@ -9,7 +9,6 @@
 
     <groupId>org.dddlib.examples.organisation</groupId>
     <artifactId>organisation-webapp</artifactId>
-    <version>4.3.6-SNAPSHOT</version>
     <packaging>war</packaging>
 
   <name>DDDLib Example - Organization Structure - Webapp</name>
