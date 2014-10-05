@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.dayatang.dddlib</groupId>
         <artifactId>dddlib-ioc</artifactId>
-        <version>4.3.6-SNAPSHOT</version>
+        <version>4.3.6</version>
     </parent>
     <artifactId>dddlib-ioc-test</artifactId>
     <name>DDDLib IoC Test</name>
