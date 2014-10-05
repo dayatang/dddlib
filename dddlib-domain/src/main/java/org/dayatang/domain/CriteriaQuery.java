@@ -97,7 +97,7 @@ public class CriteriaQuery {
     /**
      * 获得JPQL查询字符串
      *
-     * @return
+     * @return 该查询对应的JPQL查询字符串
      */
     public String getQueryString() {
         String result = String.format("select distinct(%s) from %s as %s ",
@@ -155,7 +155,7 @@ public class CriteriaQuery {
     }
 
     /**
-     * 添加一个“属性名 > 属性值”的查询条件
+     * 添加一个“属性名 大于 属性值”的查询条件
      *
      * @param propName 属性名
      * @param value 属性值
@@ -167,7 +167,7 @@ public class CriteriaQuery {
     }
 
     /**
-     * 添加一个“属性名 >= 属性值”的查询条件
+     * 添加一个“属性名 大于或等于 属性值”的查询条件
      *
      * @param propName 属性名
      * @param value 属性值
@@ -179,10 +179,8 @@ public class CriteriaQuery {
     }
 
     /**
-     * 添加一个“属性名 < 属性值”的查询条件
-     * @pa
-     *
-     * ram propName 属性名
+     * 添加一个“属性名 小于 属性值”的查询条件
+     * @param propName 属性名
      * @param value 属性值
      * @return 当前查询对象
      */
@@ -192,10 +190,8 @@ public class CriteriaQuery {
     }
 
     /**
-     * 添加一个“属性名 <= 属性值”的查询条件
-     * @par
-     *
-     * am propName 属性名
+     * 添加一个“属性名 小于或等于 属性值”的查询条件
+     * @param propName 属性名
      * @param value 属性值
      * @return 当前查询对象
      */
@@ -205,7 +201,7 @@ public class CriteriaQuery {
     }
 
     /**
-     * 添加一个“属性1 = 属性2”的查询条件
+     * 添加一个“属性1 等于 属性2”的查询条件
      *
      * @param propName 属性名
      * @param otherProp 另一个属性名
@@ -217,7 +213,7 @@ public class CriteriaQuery {
     }
 
     /**
-     * 添加一个“属性1 != 属性2”的查询条件
+     * 添加一个“属性1 不等于 属性2”的查询条件
      *
      * @param propName 属性名
      * @param otherProp 另一个属性名
@@ -229,7 +225,7 @@ public class CriteriaQuery {
     }
 
     /**
-     * 添加一个“属性1 > 属性2”的查询条件
+     * 添加一个“属性1 大于 属性2”的查询条件
      *
      * @param propName 属性名
      * @param otherProp 另一个属性名
@@ -241,7 +237,7 @@ public class CriteriaQuery {
     }
 
     /**
-     * 添加一个“属性1 >= 属性2”的查询条件
+     * 添加一个“属性1 大于或等于 属性2”的查询条件
      *
      * @param propName 属性名
      * @param otherProp 另一个属性名
@@ -253,10 +249,8 @@ public class CriteriaQuery {
     }
 
     /**
-     * 添加一个“属性1 < 属性2”的查询条件
-     * @pa
-     *
-     * ram propName 属性名
+     * 添加一个“属性1 小于 属性2”的查询条件
+     * @param propName 属性名
      * @param otherProp 另一个属性名
      * @return 当前查询对象
      */
@@ -266,10 +260,8 @@ public class CriteriaQuery {
     }
 
     /**
-     * 添加一个“属性1 <= 属性2”的查询条件
-     * @par
-     *
-     * am propName 属性名
+     * 添加一个“属性1 小于或等于 属性2”的查询条件
+     * @param propName 属性名
      * @param otherProp 另一个属性名
      * @return 当前查询对象
      */
@@ -279,7 +271,7 @@ public class CriteriaQuery {
     }
 
     /**
-     * 添加一个“集合属性的结果数量 = size”的查询条件。例如Order对象有个类型为List<OrderItem>的
+     * 添加一个“集合属性的结果数量 等于 size”的查询条件。例如Order对象有个类型为List&lt;OrderItem&gt;的
      * 集合属性items，我们要查询订购了5种物品的订单，则propName为items，size为5.
      *
      * @param propName 属性名，必须是集合属性（x-to-many或ElementCollection）
@@ -292,7 +284,7 @@ public class CriteriaQuery {
     }
 
     /**
-     * 添加一个“集合属性的结果数量 != size”的查询条件。例如Order对象有个类型为List<OrderItem>的
+     * 添加一个“集合属性的结果数量 不等于 size”的查询条件。例如Order对象有个类型为List&lt;OrderItem&gt;的
      * 集合属性items，我们要查询订购了不是5种物品的订单，则propName为items，size为5.
      *
      * @param propName 属性名，必须是集合属性（x-to-many或ElementCollection）
@@ -305,7 +297,7 @@ public class CriteriaQuery {
     }
 
     /**
-     * 添加一个“集合属性的结果数量 > size”的查询条件。例如Order对象有个类型为List<OrderItem>的
+     * 添加一个“集合属性的结果数量 大于 size”的查询条件。例如Order对象有个类型为List&lt;OrderItem&gt;的
      * 集合属性items，我们要查询订购了超过5种物品的订单，则propName为items，size为5.
      *
      * @param propName 属性名，必须是集合属性（x-to-many或ElementCollection）
@@ -318,7 +310,7 @@ public class CriteriaQuery {
     }
 
     /**
-     * 添加一个“集合属性的结果数量 >= size”的查询条件。例如Order对象有个类型为List<OrderItem>的
+     * 添加一个“集合属性的结果数量 大于或等于 size”的查询条件。例如Order对象有个类型为List&lt;OrderItem&gt;的
      * 集合属性items，我们要查询订购了5种或5种以上物品的订单，则propName为items，size为5.
      *
      * @param propName 属性名，必须是集合属性（x-to-many或ElementCollection）
@@ -331,7 +323,7 @@ public class CriteriaQuery {
     }
 
     /**
-     * 添加一个“集合属性的结果数量 < size”的查询条件。例如Order对象有个类型为List<OrderItem>的
+     * 添加一个“集合属性的结果数量 小于 size”的查询条件。例如Order对象有个类型为List&lt;OrderItem&gt;的
      * 集合属性items，我们要查询订购了少于5种物品的订单，则propName为items，size为5.
      *
      * @param propName 属性名，必须是集合属性（x-to-many或ElementCollection）
@@ -344,7 +336,7 @@ public class CriteriaQuery {
     }
 
     /**
-     * 添加一个“集合属性的结果数量 <= size”的查询条件。例如Order对象有个类型为List<OrderItem>的
+     * 添加一个“集合属性的结果数量 小于或等于 size”的查询条件。例如Order对象有个类型为List&lt;OrderItem&gt;的
      * 集合属性items，我们要查询订购了5种或5种以下物品的订单，则propName为items，size为5.
      *
      * @param propName 属性名，必须是集合属性（x-to-many或ElementCollection）
@@ -435,7 +427,7 @@ public class CriteriaQuery {
      * @param from 第一个边界值
      * @param to 第二个边界值
      * @param <E> 被比较的值的类型，也就是属性的兼容类型
-     * @return
+     * @return 当前查询对象
      */
     public <E> CriteriaQuery between(String propName, Comparable<E> from, Comparable<E> to) {
         criterion = criterion.and(criterionBuilder.between(propName, from, to));

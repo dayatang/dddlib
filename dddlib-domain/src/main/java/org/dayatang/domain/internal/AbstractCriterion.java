@@ -38,28 +38,26 @@ public abstract class AbstractCriterion implements QueryCriterion {
 
     /**
      * 执行NOT操作，返回代表当前对象的“非”操作的一个新的QueryCriterion
-     *
-     * @return
+     * @return 当前对象的“非”操作的结果
      */
     @Override
     public QueryCriterion not() {
         return new NotCriterion(this);
     }
 
+    /**
+     * 判断是否属于“空”条件对象，即EmptyCriterion的实例。主要用于生成查询串时进行判断
+     * @return 除了EmptyCriterion子类返回true外，默认返回false。
+     */
     @Override
     public boolean isEmpty() {
         return false;
     }
 
-    @Override
-    public boolean isCollection() {
-        return false;
-    }
-
     /**
      * 从数组中去除为Null的或EmptyCriterion的成员，返回剩余元素的列表
-     * @param criterions
-     * @return 
+     * @param criterions 原始条件数组
+     * @return 去除空条件对象后的剩余的成员的列表
      */
     protected List<QueryCriterion> removeNullOrEmptyCriterion(QueryCriterion[] criterions) {
         List<QueryCriterion> results = new ArrayList<QueryCriterion>();
@@ -72,7 +70,10 @@ public abstract class AbstractCriterion implements QueryCriterion {
         return results;
     }
 
-
+    /**
+     * 获得查询条件对应的查询字符串
+     * @return 查询字符串
+     */
     @Override
     public String toQueryString() {
         return queryString;

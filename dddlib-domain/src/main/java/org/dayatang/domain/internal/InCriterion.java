@@ -56,11 +56,6 @@ public class InCriterion extends BasicCriterion {
     }
 
     @Override
-    public boolean isCollection() {
-        return true;
-    }
-
-    @Override
     public String toQueryString() {
         if (value == null || value.isEmpty()) {
             return "1 > 1";

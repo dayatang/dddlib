@@ -83,10 +83,22 @@ public enum DataType {
     /**
      * 转换字符串值为相应数据类型形式的值。
      * @param value
-     * @return 
+     * @return 对象值
      */
     public abstract Object getValue(String value);
+
+    /**
+     * 日期格式
+     */
     protected static final String DATE_FORMAT = "yyyy-MM-dd";
+
+    /**
+     * 时间格式
+     */
     protected static final String TIME_FORMAT = "hh:mm:ss";
+
+    /**
+     * 时间戳格式
+     */
     protected static final String DATE_TIME_FORMAT = "yyyy-MM-dd hh:mm:ss";
 }

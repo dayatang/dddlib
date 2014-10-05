@@ -49,15 +49,10 @@ public class NotInCriterion extends BasicCriterion {
 
     /**
      * 获得集合值
-     * @return 
+     * @return 集合值
      */
     public Collection<? extends Object> getValue() {
         return value;
-    }
-
-    @Override
-    public boolean isCollection() {
-        return true;
     }
 
     @Override

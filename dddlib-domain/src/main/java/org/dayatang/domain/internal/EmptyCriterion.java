@@ -35,11 +35,6 @@ public class EmptyCriterion extends AbstractCriterion {
     }
 
     @Override
-    public boolean isCollection() {
-        return false;
-    }
-
-    @Override
     public String toQueryString() {
         return "";
     }

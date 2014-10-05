@@ -18,13 +18,13 @@ public interface Entity extends Serializable {
 	
 	/**
 	 * 是否在数据库中已经存在
-	 * @return
+	 * @return 如果该实体以存在于数据库中，返回true，否则返回false
 	 */
 	boolean existed();
 	
 	/**
 	 * 是否在数据库中不存在
-	 * @return
+     * @return 如果该实体以存在于数据库中，返回false，否则返回true
 	 */
 	boolean notExisted();
 }

@@ -21,33 +21,53 @@ public abstract class DomainEvent {
         this(new Date(), 1);
     }
 
+    /**
+     *
+     * @param occurredOn 发生时间
+     */
     public DomainEvent(Date occurredOn) {
         this(occurredOn, 1);
     }
 
+    /**
+     *
+     * @param occurredOn 发生时间
+     * @param version 版本
+     */
     public DomainEvent(Date occurredOn, int version) {
         Assert.notNull(occurredOn);
         this.occurredOn = new Date(occurredOn.getTime());
         this.version = version;
     }
 
+    /**
+     * 获得事件ID
+     * @return 事件的ID
+     */
     public String getId() {
         return id;
     }
 
     /**
      * For test only
-     *
-     * @param id
+     * @param id 要设置的ID
      */
     protected void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * 获得事件发生时间
+     * @return 事件发生时间
+     */
     public Date getOccurredOn() {
         return occurredOn;
     }
 
+    /**
+     * 获得版本
+     * @return 事件的版本
+     */
     public int getVersion() {
         return version;
     }

@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * 按例查询设置类。
  * @author yyang
- * @param <T> 
+ * @param <T> 范例的类型
  */
 public class ExampleSettings<T> {
 	private Class<T> entityClass;
