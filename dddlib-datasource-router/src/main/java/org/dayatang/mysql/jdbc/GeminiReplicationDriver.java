@@ -25,7 +25,7 @@ public class GeminiReplicationDriver extends GeminiNonRegisteringReplicationDriv
 
 			java.sql.DriverManager.registerDriver(new GeminiNonRegisteringReplicationDriver());
 		} catch (Exception E) {
-			throw new RuntimeException("Can't register driver!");
+			throw new RuntimeException("Can't registerSubscriber driver!");
 		}
 	}
 
@@ -33,7 +33,7 @@ public class GeminiReplicationDriver extends GeminiNonRegisteringReplicationDriv
 	// -----------------------------------------------------------
 
 	/**
-	 * Construct a new driver and register it with DriverManager
+	 * Construct a new driver and registerSubscriber it with DriverManager
 	 * 
 	 * @throws SQLException
 	 *             if a database error occurs.

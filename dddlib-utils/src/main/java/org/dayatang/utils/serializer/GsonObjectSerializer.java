@@ -4,6 +4,7 @@ import com.google.gson.*;
 import org.dayatang.utils.ObjectSerializer;
 
 import java.lang.reflect.Type;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -38,7 +39,17 @@ public class GsonObjectSerializer implements ObjectSerializer {
     private class DateDeserializer implements JsonDeserializer<Date> {
         public Date deserialize(JsonElement json, Type typeOfTarget, JsonDeserializationContext context) throws JsonParseException {
             long time = Long.parseLong(json.getAsJsonPrimitive().getAsString());
-            return new Date(time);
+            if (typeOfTarget == Date.class) {
+                return new Date(time);
+            } else if (typeOfTarget == Timestamp.class) {
+                return new Timestamp(time);
+            } else if (typeOfTarget == java.sql.Date.class) {
+                return new java.sql.Date(time);
+            } else {
+                throw new IllegalArgumentException(getClass() + " cannot deserialize to " + typeOfTarget);
+            }
+
+
         }
     }
 
