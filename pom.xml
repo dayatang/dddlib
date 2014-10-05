@@ -575,7 +575,7 @@
                     <artifactId>maven-site-plugin</artifactId>
                     <version>3.4</version>
                     <configuration>
-                        <locales>zh_CN</locales>
+                        <locales>en_US</locales>
                     </configuration>
                     <dependencies>
                         <dependency>
@@ -702,15 +702,27 @@
                 <configuration>
                     <minmemory>128m</minmemory>
                     <maxmemory>1024m</maxmemory>
+                    <locale>en_US</locale>
                     <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
-
-                    <!-- <docletPath>/path/to/UmlGraph.jar</docletPath> -->
                     <docletArtifact>
                         <groupId>org.umlgraph</groupId>
-                        <artifactId>doclet</artifactId>
-                        <version>5.1</version>
+                        <artifactId>umlgraph</artifactId>
+                        <version>5.6.7</version>
                     </docletArtifact>
-                    <additionalparam>-views</additionalparam>
+                    <additionalparam>
+                        -views
+                        -inferrel
+                        -inferdep
+                        -enumerations
+                        -enumconstants
+                        -qualify
+                        -postfixpackage
+                        -collpackages java.*
+                        -hide java.*
+                        -types
+                        -visibility
+                        -outputencoding UTF-8
+                    </additionalparam>
                     <useStandardDocletOptions>true</useStandardDocletOptions>
                 </configuration>
             </plugin>
@@ -744,7 +756,6 @@
                     <configLocation>config/sun_checks.xml</configLocation>
                 </configuration>
             </plugin>
-            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
@@ -756,6 +767,7 @@
                     <minimumTokens>100</minimumTokens>
                 </configuration>
             </plugin>
+            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-changes-plugin</artifactId>

@@ -82,7 +82,7 @@ public enum DataType {
 
     /**
      * 转换字符串值为相应数据类型形式的值。
-     * @param value
+     * @param value 字符串格式的值
      * @return 对象值
      */
     public abstract Object getValue(String value);
