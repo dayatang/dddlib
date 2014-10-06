@@ -67,10 +67,10 @@ digraph G {
 	c30455:p -> c30339:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 	// org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator NAVASSOC org.dayatang.datasource4saas.dscreator.TenantDbMappingStrategy
 	c30455:p -> c30448:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.configuration.impl.ConfigurationFactoryImpl DEPEND org.dayatang.configuration.WritableConfiguration
-	c30345:p -> c30336:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.configuration.impl.ConfigurationFactoryImpl DEPEND org.dayatang.configuration.Configuration
 	c30345:p -> c30339:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// org.dayatang.configuration.impl.ConfigurationFactoryImpl DEPEND org.dayatang.configuration.WritableConfiguration
+	c30345:p -> c30336:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.datasource4saas.dscreator.TenantDbMappingStrategy DEPEND org.dayatang.configuration.Configuration
 	c30448:p -> c30339:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator DEPEND org.dayatang.configuration.Configuration

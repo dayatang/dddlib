@@ -27,10 +27,10 @@ digraph G {
 	c34385:p -> c34333:p [dir=back,arrowtail=empty];
 	// org.dayatang.springtest.test.MyTest DEPEND org.dayatang.dbunit.DataSetStrategy
 	c34333:p -> c34386:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.springtest.test.MyTest DEPEND org.dayatang.springtest.application.MyApplication
-	c34333:p -> c34330:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.springtest.test.MyTest DEPEND org.dbunit.operation.DatabaseOperation
 	c34333:p -> c34387:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// org.dayatang.springtest.test.MyTest DEPEND org.dayatang.springtest.application.MyApplication
+	c34333:p -> c34330:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.springtest.AbstractIntegratedTestCase
 	c34385 [label=<<table title="org.dayatang.springtest.AbstractIntegratedTestCase" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/springtest/AbstractIntegratedTestCase.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">

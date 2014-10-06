@@ -50,9 +50,9 @@ digraph G {
 	c96320:p -> c96328:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.configuration.impl.ConfigurationDbImpl implements org.dayatang.configuration.WritableConfiguration
 	c96320:p -> c96331:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.configuration.impl.ConfigurationFactoryImpl DEPEND org.dayatang.configuration.WritableConfiguration
-	c96329:p -> c96320:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.configuration.impl.ConfigurationFactoryImpl DEPEND org.dayatang.configuration.Configuration
 	c96329:p -> c96323:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// org.dayatang.configuration.impl.ConfigurationFactoryImpl DEPEND org.dayatang.configuration.WritableConfiguration
+	c96329:p -> c96320:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 }
 
