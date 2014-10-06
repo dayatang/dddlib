@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./MySQLJdbcDatabaseTester.html" title="org.dayatang.dbunit.MySQLJdbcDatabaseTester" alt="" coords="16,119,200,145"/>
+<area shape="rect" id="node1" href="./MySQLJdbcDatabaseTester.html" title="&lt;TABLE&gt;" alt="" coords="5,108,211,156"/>
+<area shape="rect" id="node3_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/database/IDatabaseConnection.html" title="org.dbunit.database.IDatabaseConnection" alt="" coords="36,224,180,284"/>
+<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/database/IDatabaseConnection.html" title="&lt;TABLE&gt;" alt="" coords="25,219,191,289"/>
+<area shape="rect" id="node2_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/JdbcDatabaseTester.html" title="org.dbunit.JdbcDatabaseTester" alt="" coords="38,11,178,53"/>
+<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/JdbcDatabaseTester.html" title="&lt;TABLE&gt;" alt="" coords="27,5,189,59"/>
+</map>

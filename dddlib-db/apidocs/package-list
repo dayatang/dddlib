@@ -1,0 +1,7 @@
+org.dayatang
+org.dayatang.btm
+org.dayatang.db
+org.dayatang.db.mysql
+org.dayatang.db.oracle
+org.dayatang.dbunit
+org.dayatang.h2

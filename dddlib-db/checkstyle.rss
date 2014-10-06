@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>DDDLib Database Utils - Checkstyle report</title>
+    <link>http://www.dayatang.org/dddlib/dddlib-db</link>
+    <description>DDDLib Database Utils - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2014 Dayatang Open Source.</copyright>
+    <item>
+      <title>File: 29,
+             Errors: 1778,
+             Warnings: 0,
+             Infos: 0
+      </title>
+            <link>http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html</link>
+      <description>
+        <p>Click <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.db.DBManagerUtils.java">org/dayatang/db/DBManagerUtils.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  298
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.dbunit.OracleDataSourceDatabaseTester.java">org/dayatang/dbunit/OracleDataSourceDatabaseTester.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  30
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.db.JDBCConnection.java">org/dayatang/db/JDBCConnection.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  80
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.db.DBConnection.java">org/dayatang/db/DBConnection.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  22
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.db.oracle.package-info.java">org/dayatang/db/oracle/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.db.DataObject.java">org/dayatang/db/DataObject.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  35
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.db.mysql.package-info.java">org/dayatang/db/mysql/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.JdbcConstants.java">org/dayatang/JdbcConstants.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  16
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.db.PropertiesUtil.java">org/dayatang/db/PropertiesUtil.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  58
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.dbunit.DbUnitTemplate.java">org/dayatang/dbunit/DbUnitTemplate.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  51
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.dbunit.H2DataSourceDatabaseTester.java">org/dayatang/dbunit/H2DataSourceDatabaseTester.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  17
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.btm.package-info.java">org/dayatang/btm/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.h2.H2Server.java">org/dayatang/h2/H2Server.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  74
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.dbunit.DbUnitUtils.java">org/dayatang/dbunit/DbUnitUtils.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  176
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.h2.package-info.java">org/dayatang/h2/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.dbunit.DatabaseExport.java">org/dayatang/dbunit/DatabaseExport.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  28
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.dbunit.MySQLJdbcDatabaseTester.java">org/dayatang/dbunit/MySQLJdbcDatabaseTester.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  40
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.dbunit.Dbunit.java">org/dayatang/dbunit/Dbunit.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  169
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.dbunit.DbUnitCallback.java">org/dayatang/dbunit/DbUnitCallback.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.package-info.java">org/dayatang/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.db.package-info.java">org/dayatang/db/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.db.mysql.MySQLDBManager.java">org/dayatang/db/mysql/MySQLDBManager.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  192
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.btm.BtmUtils.java">org/dayatang/btm/BtmUtils.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  99
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.db.oracle.OracleDBManager.java">org/dayatang/db/oracle/OracleDBManager.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  178
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.db.DBManager.java">org/dayatang/db/DBManager.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  46
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.dbunit.DataSetStrategy.java">org/dayatang/dbunit/DataSetStrategy.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.dbunit.package-info.java">org/dayatang/dbunit/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.dbunit.MySQLDataSourceDatabaseTester.java">org/dayatang/dbunit/MySQLDataSourceDatabaseTester.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  26
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-db/checkstyle.html#org.dayatang.db.AbstractDBManager.java">org/dayatang/db/AbstractDBManager.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  127
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+

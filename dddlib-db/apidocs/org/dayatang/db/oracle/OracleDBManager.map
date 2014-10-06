@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="../DBConnection.html" title="org.dayatang.db.DBConnection" alt="" coords="16,224,128,284"/>
+<area shape="rect" id="node1" href="../DBConnection.html" title="&lt;TABLE&gt;" alt="" coords="5,219,139,289"/>
+<area shape="rect" id="node2_1" href="../AbstractDBManager.html" title="org.dayatang.db.AbstractDBManager" alt="" coords="100,11,236,53"/>
+<area shape="rect" id="node2" href="../AbstractDBManager.html" title="&lt;TABLE&gt;" alt="" coords="89,5,247,59"/>
+<area shape="rect" id="node3_2" href="./OracleDBManager.html" title="org.dayatang.db.oracle.OracleDBManager" alt="" coords="105,119,231,145"/>
+<area shape="rect" id="node3" href="./OracleDBManager.html" title="&lt;TABLE&gt;" alt="" coords="94,108,242,156"/>
+<area shape="rect" id="node4_3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/commons/logging/Log.html" title="org.apache.commons.logging.Log" alt="" coords="174,224,357,284"/>
+<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/commons/logging/Log.html" title="&lt;TABLE&gt;" alt="" coords="163,219,367,289"/>
+</map>

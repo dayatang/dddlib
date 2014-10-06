@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./JDBCConnection.html" title="org.dayatang.db.JDBCConnection" alt="" coords="127,235,245,261"/>
+<area shape="rect" id="node1" href="./JDBCConnection.html" title="&lt;TABLE&gt;" alt="" coords="117,224,255,272"/>
+<area shape="rect" id="node2_1" href="./DBConnection.html" title="org.dayatang.db.DBConnection" alt="" coords="135,127,237,169"/>
+<area shape="rect" id="node2" href="./DBConnection.html" title="&lt;TABLE&gt;" alt="" coords="125,121,247,175"/>
+<area shape="rect" id="node3_2" href="./mysql/MySQLDBManager.html" title="org.dayatang.db.mysql.MySQLDBManager" alt="" coords="16,11,164,53"/>
+<area shape="rect" id="node3" href="./mysql/MySQLDBManager.html" title="&lt;TABLE&gt;" alt="" coords="5,5,175,59"/>
+<area shape="rect" id="node4_3" href="./oracle/OracleDBManager.html" title="org.dayatang.db.oracle.OracleDBManager" alt="" coords="209,11,357,53"/>
+<area shape="rect" id="node4" href="./oracle/OracleDBManager.html" title="&lt;TABLE&gt;" alt="" coords="199,5,368,59"/>
+</map>
