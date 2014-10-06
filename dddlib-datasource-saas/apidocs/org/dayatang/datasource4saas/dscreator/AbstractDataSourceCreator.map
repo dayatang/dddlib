@@ -1,0 +1,18 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./TenantDbMappingStrategy.html" title="org.dayatang.datasource4saas.dscreator.TenantDbMappingStrategy" alt="" coords="16,241,191,379"/>
+<area shape="rect" id="node1" href="./TenantDbMappingStrategy.html" title="&lt;TABLE&gt;" alt="" coords="5,236,201,384"/>
+<area shape="rect" id="node8_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/configuration/Configuration.html" title="org.dayatang.configuration.Configuration" alt="" coords="1012,452,1179,512"/>
+<area shape="rect" id="node8" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/configuration/Configuration.html" title="&lt;TABLE&gt;" alt="" coords="1001,447,1189,517"/>
+<area shape="rect" id="node2_2" href="./ProxoolDataSourceCreator.html" title="org.dayatang.datasource4saas.dscreator.ProxoolDataSourceCreator" alt="" coords="237,297,407,323"/>
+<area shape="rect" id="node2" href="./ProxoolDataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="226,286,418,334"/>
+<area shape="rect" id="node3_3" href="./DbType.html" title="org.dayatang.datasource4saas.dscreator.DbType" alt="" coords="453,241,565,379"/>
+<area shape="rect" id="node3" href="./DbType.html" title="&lt;TABLE&gt;" alt="" coords="442,236,575,384"/>
+<area shape="rect" id="node4_4" href="./CommonsDbcpDataSourceCreator.html" title="org.dayatang.datasource4saas.dscreator.CommonsDbcpDataSourceCreator" alt="" coords="610,297,829,323"/>
+<area shape="rect" id="node4" href="./CommonsDbcpDataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="599,286,839,334"/>
+<area shape="rect" id="node5_5" href="./C3P0DataSourceCreator.html" title="org.dayatang.datasource4saas.dscreator.C3P0DataSourceCreator" alt="" coords="875,297,1036,323"/>
+<area shape="rect" id="node5" href="./C3P0DataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="864,286,1047,334"/>
+<area shape="rect" id="node6_6" href="./AbstractDataSourceCreator.html" title="org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator" alt="" coords="630,137,809,162"/>
+<area shape="rect" id="node6" href="./AbstractDataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="619,125,819,173"/>
+<area shape="rect" id="node7_7" href="../dsregistry/DataSourceCreator.html" title="org.dayatang.datasource4saas.dsregistry.DataSourceCreator" alt="" coords="593,11,846,71"/>
+<area shape="rect" id="node7" href="../dsregistry/DataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="582,5,857,76"/>
+</map>

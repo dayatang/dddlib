@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./TenantDbMappingStrategyTest.html" title="org.dayatang.datasource4saas.dscreator.TenantDbMappingStrategyTest" alt="" coords="16,17,215,42"/>
+<area shape="rect" id="node1" href="./TenantDbMappingStrategyTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,225,53"/>
+<area shape="rect" id="node2_1" href="./ProxoolDataSourceCreatorTest.html" title="org.dayatang.datasource4saas.dscreator.ProxoolDataSourceCreatorTest" alt="" coords="261,17,455,42"/>
+<area shape="rect" id="node2" href="./ProxoolDataSourceCreatorTest.html" title="&lt;TABLE&gt;" alt="" coords="250,5,466,53"/>
+<area shape="rect" id="node3_2" href="./CommonsDbcpDataSourceCreatorTest.html" title="org.dayatang.datasource4saas.dscreator.CommonsDbcpDataSourceCreatorTest" alt="" coords="501,17,743,42"/>
+<area shape="rect" id="node3" href="./CommonsDbcpDataSourceCreatorTest.html" title="&lt;TABLE&gt;" alt="" coords="490,5,754,53"/>
+<area shape="rect" id="node4_3" href="./C3P0DataSourceCreatorTest.html" title="org.dayatang.datasource4saas.dscreator.C3P0DataSourceCreatorTest" alt="" coords="789,17,975,42"/>
+<area shape="rect" id="node4" href="./C3P0DataSourceCreatorTest.html" title="&lt;TABLE&gt;" alt="" coords="779,5,985,53"/>
+</map>

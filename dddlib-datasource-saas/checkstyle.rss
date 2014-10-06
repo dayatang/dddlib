@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>DDDLib SaaS Datasource - Checkstyle report</title>
+    <link>http://dayatang.github.io/dddlib/dddlib-datasource-saas/</link>
+    <description>DDDLib SaaS Datasource - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2014 Dayatang Open Source.</copyright>
+    <item>
+      <title>File: 24,
+             Errors: 1123,
+             Warnings: 0,
+             Infos: 0
+      </title>
+            <link>http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html</link>
+      <description>
+        <p>Click <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.dsregistry.DataSourceCreator.java">org/dayatang/datasource4saas/dsregistry/DataSourceCreator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.dscreator.DataSourceCreationException.java">org/dayatang/datasource4saas/dscreator/DataSourceCreationException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  22
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.tenantservice.package-info.java">org/dayatang/datasource4saas/tenantservice/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.dscreator.DbType.java">org/dayatang/datasource4saas/dscreator/DbType.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  103
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.Constants.java">org/dayatang/datasource4saas/Constants.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  84
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.tenantservice.TenantNotSettedException.java">org/dayatang/datasource4saas/tenantservice/TenantNotSettedException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  22
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.tenantservice.ThreadLocalTenantService.java">org/dayatang/datasource4saas/tenantservice/ThreadLocalTenantService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.package-info.java">org/dayatang/datasource4saas/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.TenantService.java">org/dayatang/datasource4saas/TenantService.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.dscreator.package-info.java">org/dayatang/datasource4saas/dscreator/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry.java">org/dayatang/datasource4saas/dsregistry/MapBasedDataSourceRegistry.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  108
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator.java">org/dayatang/datasource4saas/dscreator/AbstractDataSourceCreator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  161
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.tenantservice.ThreadLocalTenantHolder.java">org/dayatang/datasource4saas/tenantservice/ThreadLocalTenantHolder.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  30
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.DataSourceRegistry.java">org/dayatang/datasource4saas/DataSourceRegistry.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  71
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.dscreator.ProxoolDataSourceCreator.java">org/dayatang/datasource4saas/dscreator/ProxoolDataSourceCreator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  26
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.SaasDataSource.java">org/dayatang/datasource4saas/SaasDataSource.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  77
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.dsregistry.package-info.java">org/dayatang/datasource4saas/dsregistry/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.dscreator.DbInfo.java">org/dayatang/datasource4saas/dscreator/DbInfo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  118
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.dscreator.CommonsDbcpDataSourceCreator.java">org/dayatang/datasource4saas/dscreator/CommonsDbcpDataSourceCreator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  26
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.dscreator.C3P0DataSourceCreator.java">org/dayatang/datasource4saas/dscreator/C3P0DataSourceCreator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  26
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.dsregistry.DataSourceRegistryException.java">org/dayatang/datasource4saas/dsregistry/DataSourceRegistryException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  22
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.dsregistry.JndiMappingDataSourceRegistry.java">org/dayatang/datasource4saas/dsregistry/JndiMappingDataSourceRegistry.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  75
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistry.java">org/dayatang/datasource4saas/dsregistry/JdbcDataSourceRegistry.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  41
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-datasource-saas//checkstyle.html#org.dayatang.datasource4saas.dscreator.TenantDbMappingStrategy.java">org/dayatang/datasource4saas/dscreator/TenantDbMappingStrategy.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  73
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+
