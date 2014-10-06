@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./NamedQueryParserOpenJpa.html" title="org.dayatang.persistence.jpa.namedqueryparser.NamedQueryParserOpenJpa" alt="" coords="16,17,204,42"/>
+<area shape="rect" id="node1" href="./NamedQueryParserOpenJpa.html" title="&lt;TABLE&gt;" alt="" coords="5,5,215,53"/>
+<area shape="rect" id="node2_1" href="./NamedQueryParserHibernate.html" title="org.dayatang.persistence.jpa.namedqueryparser.NamedQueryParserHibernate" alt="" coords="250,17,437,42"/>
+<area shape="rect" id="node2" href="./NamedQueryParserHibernate.html" title="&lt;TABLE&gt;" alt="" coords="239,5,447,53"/>
+<area shape="rect" id="node3_2" href="./NamedQueryParserEclipseLink.html" title="org.dayatang.persistence.jpa.namedqueryparser.NamedQueryParserEclipseLink" alt="" coords="483,17,679,42"/>
+<area shape="rect" id="node3" href="./NamedQueryParserEclipseLink.html" title="&lt;TABLE&gt;" alt="" coords="472,5,689,53"/>
+</map>

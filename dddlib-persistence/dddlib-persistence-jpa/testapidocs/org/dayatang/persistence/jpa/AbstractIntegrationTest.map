@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./QueryTest.html" title="org.dayatang.persistence.jpa.QueryTest" alt="" coords="16,113,95,138"/>
+<area shape="rect" id="node1" href="./QueryTest.html" title="&lt;TABLE&gt;" alt="" coords="5,101,105,149"/>
+<area shape="rect" id="node2_1" href="./EntityRepositoryJpaTest.html" title="org.dayatang.persistence.jpa.EntityRepositoryJpaTest" alt="" coords="141,113,298,138"/>
+<area shape="rect" id="node2" href="./EntityRepositoryJpaTest.html" title="&lt;TABLE&gt;" alt="" coords="130,101,309,149"/>
+<area shape="rect" id="node3_2" href="./CriteriaQueryTest.html" title="org.dayatang.persistence.jpa.CriteriaQueryTest" alt="" coords="344,113,460,138"/>
+<area shape="rect" id="node3" href="./CriteriaQueryTest.html" title="&lt;TABLE&gt;" alt="" coords="333,101,471,149"/>
+<area shape="rect" id="node4_3" href="./AbstractIntegrationTest.html" title="org.dayatang.persistence.jpa.AbstractIntegrationTest" alt="" coords="145,17,293,42"/>
+<area shape="rect" id="node4" href="./AbstractIntegrationTest.html" title="&lt;TABLE&gt;" alt="" coords="135,5,304,53"/>
+</map>

@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./QueryTest.html" title="org.dayatang.persistence.jpa.QueryTest" alt="" coords="16,113,95,138"/>
+<area shape="rect" id="node1" href="./QueryTest.html" title="&lt;TABLE&gt;" alt="" coords="5,101,105,149"/>
+<area shape="rect" id="node2_1" href="./EntityRepositoryJpaTest.html" title="org.dayatang.persistence.jpa.EntityRepositoryJpaTest" alt="" coords="141,113,298,138"/>
+<area shape="rect" id="node2" href="./EntityRepositoryJpaTest.html" title="&lt;TABLE&gt;" alt="" coords="130,101,309,149"/>
+<area shape="rect" id="node3_2" href="./EntityManagerProviderTest.html" title="org.dayatang.persistence.jpa.EntityManagerProviderTest" alt="" coords="339,17,510,42"/>
+<area shape="rect" id="node3" href="./EntityManagerProviderTest.html" title="&lt;TABLE&gt;" alt="" coords="329,5,521,53"/>
+<area shape="rect" id="node4_3" href="./CriteriaQueryTest.html" title="org.dayatang.persistence.jpa.CriteriaQueryTest" alt="" coords="344,113,460,138"/>
+<area shape="rect" id="node4" href="./CriteriaQueryTest.html" title="&lt;TABLE&gt;" alt="" coords="333,101,471,149"/>
+<area shape="rect" id="node5_4" href="./AliasTest.html" title="org.dayatang.persistence.jpa.AliasTest" alt="" coords="555,17,627,42"/>
+<area shape="rect" id="node5" href="./AliasTest.html" title="&lt;TABLE&gt;" alt="" coords="545,5,638,53"/>
+<area shape="rect" id="node6_5" href="./AbstractIntegrationTest.html" title="org.dayatang.persistence.jpa.AbstractIntegrationTest" alt="" coords="145,17,293,42"/>
+<area shape="rect" id="node6" href="./AbstractIntegrationTest.html" title="&lt;TABLE&gt;" alt="" coords="135,5,304,53"/>
+</map>

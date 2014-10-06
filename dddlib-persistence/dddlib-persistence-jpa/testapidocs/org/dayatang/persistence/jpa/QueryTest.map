@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./QueryTest.html" title="org.dayatang.persistence.jpa.QueryTest" alt="" coords="371,114,450,139"/>
+<area shape="rect" id="node1" href="./QueryTest.html" title="&lt;TABLE&gt;" alt="" coords="361,103,461,151"/>
+<area shape="rect" id="node3_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/CriteriaQuery.html" title="org.dayatang.domain.CriteriaQuery" alt="" coords="16,227,155,270"/>
+<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/CriteriaQuery.html" title="&lt;TABLE&gt;" alt="" coords="5,222,165,275"/>
+<area shape="rect" id="node4_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/test/domain/DictionaryCategory.html" title="org.dayatang.persistence.test.domain.DictionaryCategory" alt="" coords="201,227,429,270"/>
+<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/test/domain/DictionaryCategory.html" title="&lt;TABLE&gt;" alt="" coords="190,222,439,275"/>
+<area shape="rect" id="node5_3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/test/domain/Dictionary.html" title="org.dayatang.persistence.test.domain.Dictionary" alt="" coords="474,227,702,270"/>
+<area shape="rect" id="node5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/test/domain/Dictionary.html" title="&lt;TABLE&gt;" alt="" coords="463,222,713,275"/>
+<area shape="rect" id="node6_4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/CriterionBuilder.html" title="org.dayatang.domain.CriterionBuilder" alt="" coords="748,219,887,279"/>
+<area shape="rect" id="node6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/CriterionBuilder.html" title="&lt;TABLE&gt;" alt="" coords="737,213,897,284"/>
+<area shape="rect" id="node2_5" href="./AbstractIntegrationTest.html" title="org.dayatang.persistence.jpa.AbstractIntegrationTest" alt="" coords="337,17,485,42"/>
+<area shape="rect" id="node2" href="./AbstractIntegrationTest.html" title="&lt;TABLE&gt;" alt="" coords="326,5,495,53"/>
+</map>
