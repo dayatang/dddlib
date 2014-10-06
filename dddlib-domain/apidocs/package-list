@@ -1,0 +1,5 @@
+org.dayatang.annotations
+org.dayatang.domain
+org.dayatang.domain.event
+org.dayatang.domain.internal
+org.dayatang.domain.specification

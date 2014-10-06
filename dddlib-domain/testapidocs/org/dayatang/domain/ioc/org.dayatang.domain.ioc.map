@@ -1,0 +1,20 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./TheAnnotation.html" title="org.dayatang.domain.ioc.TheAnnotation" alt="" coords="16,19,120,45"/>
+<area shape="rect" id="node1" href="./TheAnnotation.html" title="&lt;TABLE&gt;" alt="" coords="5,8,131,56"/>
+<area shape="rect" id="node2_1" href="./Service2.html" title="org.dayatang.domain.ioc.Service2" alt="" coords="166,11,247,53"/>
+<area shape="rect" id="node2" href="./Service2.html" title="&lt;TABLE&gt;" alt="" coords="155,5,258,59"/>
+<area shape="rect" id="node5_2" href="./MyService23.html" title="org.dayatang.domain.ioc.MyService23" alt="" coords="23,118,115,143"/>
+<area shape="rect" id="node5" href="./MyService23.html" title="&lt;TABLE&gt;" alt="" coords="13,107,126,155"/>
+<area shape="rect" id="node6_3" href="./MyService22.html" title="org.dayatang.domain.ioc.MyService22" alt="" coords="161,118,253,143"/>
+<area shape="rect" id="node6" href="./MyService22.html" title="&lt;TABLE&gt;" alt="" coords="150,107,263,155"/>
+<area shape="rect" id="node7_4" href="./MyService21.html" title="org.dayatang.domain.ioc.MyService21" alt="" coords="298,118,390,143"/>
+<area shape="rect" id="node7" href="./MyService21.html" title="&lt;TABLE&gt;" alt="" coords="287,107,401,155"/>
+<area shape="rect" id="node3_5" href="./Service.html" title="org.dayatang.domain.ioc.Service" alt="" coords="569,11,650,53"/>
+<area shape="rect" id="node3" href="./Service.html" title="&lt;TABLE&gt;" alt="" coords="558,5,661,59"/>
+<area shape="rect" id="node4_6" href="./MyService3.html" title="org.dayatang.domain.ioc.MyService3" alt="" coords="436,118,521,143"/>
+<area shape="rect" id="node4" href="./MyService3.html" title="&lt;TABLE&gt;" alt="" coords="425,107,532,155"/>
+<area shape="rect" id="node8_7" href="./MyService2.html" title="org.dayatang.domain.ioc.MyService2" alt="" coords="567,118,652,143"/>
+<area shape="rect" id="node8" href="./MyService2.html" title="&lt;TABLE&gt;" alt="" coords="556,107,663,155"/>
+<area shape="rect" id="node9_8" href="./MyService1.html" title="org.dayatang.domain.ioc.MyService1" alt="" coords="697,118,783,143"/>
+<area shape="rect" id="node9" href="./MyService1.html" title="&lt;TABLE&gt;" alt="" coords="687,107,793,155"/>
+</map>

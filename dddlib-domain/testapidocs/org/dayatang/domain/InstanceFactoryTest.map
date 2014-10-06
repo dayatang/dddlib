@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./InstanceFactoryTest.html" title="org.dayatang.domain.InstanceFactoryTest" alt="" coords="229,17,361,42"/>
+<area shape="rect" id="node1" href="./InstanceFactoryTest.html" title="&lt;TABLE&gt;" alt="" coords="219,5,372,53"/>
+<area shape="rect" id="node2_1" href="./ioc/MyService3.html" title="org.dayatang.domain.ioc.MyService3" alt="" coords="16,121,172,164"/>
+<area shape="rect" id="node2" href="./ioc/MyService3.html" title="&lt;TABLE&gt;" alt="" coords="5,116,183,169"/>
+<area shape="rect" id="node3_2" href="./ioc/MyService2.html" title="org.dayatang.domain.ioc.MyService2" alt="" coords="217,121,373,164"/>
+<area shape="rect" id="node3" href="./ioc/MyService2.html" title="&lt;TABLE&gt;" alt="" coords="207,116,384,169"/>
+<area shape="rect" id="node4_3" href="./ioc/MyService1.html" title="org.dayatang.domain.ioc.MyService1" alt="" coords="419,121,575,164"/>
+<area shape="rect" id="node4" href="./ioc/MyService1.html" title="&lt;TABLE&gt;" alt="" coords="408,116,585,169"/>
+</map>

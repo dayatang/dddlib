@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./LegacyEntity.html" title="org.dayatang.domain.LegacyEntity" alt="" coords="16,214,112,239"/>
+<area shape="rect" id="node1" href="./LegacyEntity.html" title="&lt;TABLE&gt;" alt="" coords="5,203,123,251"/>
+<area shape="rect" id="node2_1" href="./Entity.html" title="org.dayatang.domain.Entity" alt="" coords="95,11,177,53"/>
+<area shape="rect" id="node2" href="./Entity.html" title="&lt;TABLE&gt;" alt="" coords="85,5,187,59"/>
+<area shape="rect" id="node3_2" href="./BaseEntity.html" title="org.dayatang.domain.BaseEntity" alt="" coords="94,118,178,143"/>
+<area shape="rect" id="node3" href="./BaseEntity.html" title="&lt;TABLE&gt;" alt="" coords="83,107,189,155"/>
+<area shape="rect" id="node4_3" href="./AbstractEntity.html" title="org.dayatang.domain.AbstractEntity" alt="" coords="158,214,261,239"/>
+<area shape="rect" id="node4" href="./AbstractEntity.html" title="&lt;TABLE&gt;" alt="" coords="147,203,271,251"/>
+</map>

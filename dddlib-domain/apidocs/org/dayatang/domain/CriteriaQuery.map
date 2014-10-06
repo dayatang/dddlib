@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./QueryCriterion.html" title="org.dayatang.domain.QueryCriterion" alt="" coords="16,121,115,164"/>
+<area shape="rect" id="node1" href="./QueryCriterion.html" title="&lt;TABLE&gt;" alt="" coords="5,116,125,169"/>
+<area shape="rect" id="node2_1" href="./OrderSettings.html" title="org.dayatang.domain.OrderSettings" alt="" coords="160,130,256,155"/>
+<area shape="rect" id="node2" href="./OrderSettings.html" title="&lt;TABLE&gt;" alt="" coords="149,119,267,167"/>
+<area shape="rect" id="node3_2" href="./EntityRepository.html" title="org.dayatang.domain.EntityRepository" alt="" coords="301,121,413,164"/>
+<area shape="rect" id="node3" href="./EntityRepository.html" title="&lt;TABLE&gt;" alt="" coords="291,116,424,169"/>
+<area shape="rect" id="node4_3" href="./CriterionBuilder.html" title="org.dayatang.domain.CriterionBuilder" alt="" coords="459,121,559,164"/>
+<area shape="rect" id="node4" href="./CriterionBuilder.html" title="&lt;TABLE&gt;" alt="" coords="449,116,570,169"/>
+<area shape="rect" id="node5_4" href="./CriteriaQuery.html" title="org.dayatang.domain.CriteriaQuery" alt="" coords="237,17,329,42"/>
+<area shape="rect" id="node5" href="./CriteriaQuery.html" title="&lt;TABLE&gt;" alt="" coords="226,5,339,53"/>
+</map>

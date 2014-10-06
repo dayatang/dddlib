@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./StartsSpecification.html" title="org.dayatang.domain.specification.StartsSpecification" alt="" coords="16,17,139,42"/>
+<area shape="rect" id="node1" href="./StartsSpecification.html" title="&lt;TABLE&gt;" alt="" coords="5,5,149,53"/>
+<area shape="rect" id="node2_1" href="./OrSpecificationTest.html" title="org.dayatang.domain.specification.OrSpecificationTest" alt="" coords="184,17,312,42"/>
+<area shape="rect" id="node2" href="./OrSpecificationTest.html" title="&lt;TABLE&gt;" alt="" coords="173,5,323,53"/>
+<area shape="rect" id="node3_2" href="./NotSpecificationTest.html" title="org.dayatang.domain.specification.NotSpecificationTest" alt="" coords="358,17,490,42"/>
+<area shape="rect" id="node3" href="./NotSpecificationTest.html" title="&lt;TABLE&gt;" alt="" coords="347,5,501,53"/>
+<area shape="rect" id="node4_3" href="./LengthSpecification.html" title="org.dayatang.domain.specification.LengthSpecification" alt="" coords="536,17,664,42"/>
+<area shape="rect" id="node4" href="./LengthSpecification.html" title="&lt;TABLE&gt;" alt="" coords="525,5,675,53"/>
+<area shape="rect" id="node5_4" href="./AndSpecificationTest.html" title="org.dayatang.domain.specification.AndSpecificationTest" alt="" coords="709,17,845,42"/>
+<area shape="rect" id="node5" href="./AndSpecificationTest.html" title="&lt;TABLE&gt;" alt="" coords="699,5,856,53"/>
+<area shape="rect" id="node6_5" href="./AbstractSpecificationTest.html" title="org.dayatang.domain.specification.AbstractSpecificationTest" alt="" coords="891,17,1051,42"/>
+<area shape="rect" id="node6" href="./AbstractSpecificationTest.html" title="&lt;TABLE&gt;" alt="" coords="880,5,1061,53"/>
+</map>
