@@ -42,9 +42,9 @@ digraph G {
 	c133:p -> c130:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.configuration.impl.ConfigurationFactoryImpl extends org.dayatang.configuration.ConfigurationFactory
 	c131:p -> c139:p [dir=back,arrowtail=empty];
-	// org.dayatang.configuration.impl.ConfigurationFactoryImpl DEPEND org.dayatang.configuration.WritableConfiguration
-	c139:p -> c130:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.configuration.impl.ConfigurationFactoryImpl DEPEND org.dayatang.configuration.Configuration
 	c139:p -> c133:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// org.dayatang.configuration.impl.ConfigurationFactoryImpl DEPEND org.dayatang.configuration.WritableConfiguration
+	c139:p -> c130:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 }
 
