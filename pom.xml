@@ -13,7 +13,7 @@
     </description>
     <organization>
         <name>Dayatang Open Source.</name>
-        <url>http://www.dayatang.org/</url>
+        <url>http://dayatang.github.io/dddlib/</url>
     </organization>
     <developers>
         <developer>
@@ -118,9 +118,9 @@
             <url>dav:http://nexus.dayatang.org:8083/content/repositories/snapshots</url>
         </snapshotRepository>
         <site>
-            <id>dayatang-site</id>
-            <name>Koala maven site</name>
-            <url>dav:http://www.dayatang.org/dddlib</url>
+            <id>github</id>
+            <name>Deployment through GitHub's site deployment plugin</name>
+            <url>gitsite:git@github.com/dayatang/dddlib.git</url>
         </site>
     </distributionManagement>
 
@@ -575,7 +575,7 @@
                     <artifactId>maven-site-plugin</artifactId>
                     <version>3.4</version>
                     <configuration>
-                        <locales>en_US</locales>
+                        <locales>zh_CN</locales>
                     </configuration>
                     <dependencies>
                         <dependency>
@@ -584,9 +584,24 @@
                             <version>1.1.2</version>
                         </dependency>
                         <dependency>
-                            <groupId>org.apache.maven.wagon</groupId>
-                            <artifactId>wagon-webdav-jackrabbit</artifactId>
-                            <version>2.6</version>
+                            <groupId>org.apache.maven.scm</groupId>
+                            <artifactId>maven-scm-provider-gitexe</artifactId>
+                            <version>1.9.2</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.apache.maven.scm</groupId>
+                            <artifactId>maven-scm-manager-plexus</artifactId>
+                            <version>1.9.2</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>com.github.stephenc.wagon</groupId>
+                            <artifactId>wagon-gitsite</artifactId>
+                            <version>0.4.1</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.apache.maven.doxia</groupId>
+                            <artifactId>doxia-module-markdown</artifactId>
+                            <version>1.6</version>
                         </dependency>
                     </dependencies>
                 </plugin>
@@ -602,22 +617,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
                     <version>2.3</version>
-                </plugin>
-                <plugin>
-                    <groupId>com.github.github</groupId>
-                    <artifactId>site-maven-plugin</artifactId>
-                    <version>0.10</version>
-                    <configuration>
-                        <message>Creating site for ${project.version}</message>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>site</goal>
-                            </goals>
-                            <phase>site</phase>
-                        </execution>
-                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -638,31 +637,12 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>com.github.github</groupId>
-                <artifactId>site-maven-plugin</artifactId>
-            </plugin>
         </plugins>
         <extensions>
             <extension>
-                <groupId>org.apache.maven.scm</groupId>
-                <artifactId>maven-scm-provider-gitexe</artifactId>
-                <version>1.9.1</version>
-            </extension>
-            <extension>
-                <groupId>org.apache.maven.scm</groupId>
-                <artifactId>maven-scm-manager-plexus</artifactId>
-                <version>1.9.1</version>
-            </extension>
-            <extension>
-                <groupId>org.kathrynhuxtable.maven.wagon</groupId>
-                <artifactId>wagon-gitsite</artifactId>
-                <version>0.3.1</version>
-            </extension>
-            <extension>
                 <groupId>org.apache.maven.wagon</groupId>
                 <artifactId>wagon-webdav-jackrabbit</artifactId>
-                <version>2.6</version>
+                <version>2.7</version>
             </extension>
         </extensions>
 
