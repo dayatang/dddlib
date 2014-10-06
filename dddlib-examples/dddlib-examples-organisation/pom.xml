@@ -677,7 +677,7 @@
         <!-- Database settings, default to H2 database -->
         <h2.username>sa</h2.username>
         <h2.password />
-        <h2.version>1.3.175</h2.version>
+        <h2.version>1.4.180</h2.version>
         <mysql.username>root</mysql.username>
         <mysql.password />
         <mysql.host>localhost</mysql.host>
