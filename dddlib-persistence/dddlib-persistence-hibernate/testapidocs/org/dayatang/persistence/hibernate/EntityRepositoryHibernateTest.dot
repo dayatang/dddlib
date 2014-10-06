@@ -10,40 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest
-	c56 [label=<<table title="org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./EntityRepositoryHibernateTest.html">
+	c50 [label=<<table title="org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./EntityRepositoryHibernateTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EntityRepositoryHibernateTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EntityRepositoryHibernateTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.hibernate.AbstractIntegrationTest
-	c59 [label=<<table title="org.dayatang.persistence.hibernate.AbstractIntegrationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractIntegrationTest.html">
+	c53 [label=<<table title="org.dayatang.persistence.hibernate.AbstractIntegrationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractIntegrationTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AbstractIntegrationTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractIntegrationTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest extends org.dayatang.persistence.hibernate.AbstractIntegrationTest
-	c59:p -> c56:p [dir=back,arrowtail=empty];
-	// org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest NAVASSOC org.dayatang.persistence.test.domain.DictionaryCategory
-	c56:p -> c60:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest NAVASSOC org.dayatang.persistence.test.domain.Dictionary
-	c56:p -> c61:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest DEPEND org.dayatang.persistence.test.domain.Dictionary
-	c56:p -> c61:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest DEPEND org.dayatang.persistence.test.domain.DictionaryCategory
-	c56:p -> c60:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.test.domain.Dictionary
-	c61 [label=<<table title="org.dayatang.persistence.test.domain.Dictionary" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/test/domain/Dictionary.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Dictionary </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.persistence.test.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/test/domain/Dictionary.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.persistence.test.domain.DictionaryCategory
-	c60 [label=<<table title="org.dayatang.persistence.test.domain.DictionaryCategory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/test/domain/DictionaryCategory.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> DictionaryCategory </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.persistence.test.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/test/domain/DictionaryCategory.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	c53:p -> c50:p [dir=back,arrowtail=empty];
 }
 

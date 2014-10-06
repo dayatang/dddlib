@@ -10,15 +10,15 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.persistence.hibernate.HibernateUtils
-	c63 [label=<<table title="org.dayatang.persistence.hibernate.HibernateUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./HibernateUtils.html">
+	c55 [label=<<table title="org.dayatang.persistence.hibernate.HibernateUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./HibernateUtils.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> HibernateUtils </td></tr>
 		</table></td></tr>
 		</table>>, URL="./HibernateUtils.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.hibernate.HibernateUtils DEPEND org.hibernate.SessionFactory
-	c63:p -> c75:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c55:p -> c68:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.hibernate.SessionFactory
-	c75 [label=<<table title="org.hibernate.SessionFactory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/SessionFactory.html">
+	c68 [label=<<table title="org.hibernate.SessionFactory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/SessionFactory.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> SessionFactory </td></tr>
