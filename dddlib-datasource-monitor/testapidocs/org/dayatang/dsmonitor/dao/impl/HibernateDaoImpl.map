@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="../Dao.html" title="org.dayatang.dsmonitor.dao.Dao" alt="" coords="108,11,284,71"/>
+<area shape="rect" id="node1" href="../Dao.html" title="&lt;TABLE&gt;" alt="" coords="97,5,295,76"/>
+<area shape="rect" id="node2_1" href="./HibernateDaoImpl.html" title="org.dayatang.dsmonitor.dao.impl.HibernateDaoImpl" alt="" coords="135,137,257,162"/>
+<area shape="rect" id="node2" href="./HibernateDaoImpl.html" title="&lt;TABLE&gt;" alt="" coords="125,125,267,173"/>
+<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/SessionFactory.html" title="org.hibernate.SessionFactory" alt="" coords="16,241,123,301"/>
+<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/SessionFactory.html" title="&lt;TABLE&gt;" alt="" coords="5,236,133,307"/>
+<area shape="rect" id="node4_3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Session.html" title="org.hibernate.Session" alt="" coords="169,241,261,301"/>
+<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Session.html" title="&lt;TABLE&gt;" alt="" coords="158,236,271,307"/>
+<area shape="rect" id="node5_4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Query.html" title="org.hibernate.Query" alt="" coords="306,241,398,301"/>
+<area shape="rect" id="node5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Query.html" title="&lt;TABLE&gt;" alt="" coords="295,236,409,307"/>
+</map>

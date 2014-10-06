@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./Dao.html" title="org.dayatang.dsmonitor.dao.Dao" alt="" coords="75,127,157,169"/>
+<area shape="rect" id="node1" href="./Dao.html" title="&lt;TABLE&gt;" alt="" coords="65,121,167,175"/>
+<area shape="rect" id="node2_1" href="./impl/HibernateDaoImpl.html" title="org.dayatang.dsmonitor.dao.impl.HibernateDaoImpl" alt="" coords="16,229,216,272"/>
+<area shape="rect" id="node2" href="./impl/HibernateDaoImpl.html" title="&lt;TABLE&gt;" alt="" coords="5,224,227,277"/>
+<area shape="rect" id="node3_2" href="../DSTest.html" title="org.dayatang.dsmonitor.DSTest" alt="" coords="41,11,191,53"/>
+<area shape="rect" id="node3" href="../DSTest.html" title="&lt;TABLE&gt;" alt="" coords="30,5,202,59"/>
+</map>

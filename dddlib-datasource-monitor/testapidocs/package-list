@@ -1,0 +1,4 @@
+org.dayatang.dsmonitor
+org.dayatang.dsmonitor.dao
+org.dayatang.dsmonitor.dao.impl
+org.dayatang.dsmonitor.domain
