@@ -25,9 +25,9 @@ digraph G {
 		</table>>, URL="./MyTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.springtest.test.MyTest extends org.dayatang.springtest.AbstractIntegratedTestCase
 	c34385:p -> c34333:p [dir=back,arrowtail=empty];
-	// org.dayatang.springtest.test.MyTest DEPEND org.dbunit.operation.DatabaseOperation
-	c34333:p -> c34386:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.springtest.test.MyTest DEPEND org.dayatang.dbunit.DataSetStrategy
+	c34333:p -> c34386:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// org.dayatang.springtest.test.MyTest DEPEND org.dbunit.operation.DatabaseOperation
 	c34333:p -> c34387:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.springtest.test.MyTest DEPEND org.dayatang.springtest.application.MyApplication
 	c34333:p -> c34330:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
@@ -39,7 +39,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/springtest/AbstractIntegratedTestCase.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.dbunit.DataSetStrategy
-	c34387 [label=<<table title="org.dayatang.dbunit.DataSetStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/dbunit/DataSetStrategy.html">
+	c34386 [label=<<table title="org.dayatang.dbunit.DataSetStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/dbunit/DataSetStrategy.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> DataSetStrategy </td></tr>
@@ -51,7 +51,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/dbunit/DataSetStrategy.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dbunit.operation.DatabaseOperation
-	c34386 [label=<<table title="org.dbunit.operation.DatabaseOperation" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/operation/DatabaseOperation.html">
+	c34387 [label=<<table title="org.dbunit.operation.DatabaseOperation" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/operation/DatabaseOperation.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> DatabaseOperation </font></td></tr>
 <tr><td align="center" balign="center"> org.dbunit.operation </td></tr>

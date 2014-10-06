@@ -29,9 +29,9 @@ digraph G {
 <tr><td align="center" balign="center"> PostAssembler </td></tr>
 		</table></td></tr>
 		</table>>, URL="./PostAssembler.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.organisation.facade.assembler.PostAssembler DEPEND org.dddlib.organisation.facade.PostDto
-	c78405:p -> c78402:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dddlib.organisation.facade.assembler.PostAssembler DEPEND org.dddlib.organisation.domain.Post
 	c78405:p -> c78382:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// org.dddlib.organisation.facade.assembler.PostAssembler DEPEND org.dddlib.organisation.facade.PostDto
+	c78405:p -> c78402:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 }
 
