@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./SessionProviderTest.html" title="org.dayatang.persistence.hibernate.SessionProviderTest" alt="" coords="16,17,151,42"/>
+<area shape="rect" id="node1" href="./SessionProviderTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,161,53"/>
+<area shape="rect" id="node2_1" href="./HibernateUtils.html" title="org.dayatang.persistence.hibernate.HibernateUtils" alt="" coords="197,17,293,42"/>
+<area shape="rect" id="node2" href="./HibernateUtils.html" title="&lt;TABLE&gt;" alt="" coords="186,5,303,53"/>
+<area shape="rect" id="node3_2" href="./EntityRepositoryHibernateTest.html" title="org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest" alt="" coords="218,113,407,138"/>
+<area shape="rect" id="node3" href="./EntityRepositoryHibernateTest.html" title="&lt;TABLE&gt;" alt="" coords="207,101,418,149"/>
+<area shape="rect" id="node4_3" href="./CriteriaQueryTest.html" title="org.dayatang.persistence.hibernate.CriteriaQueryTest" alt="" coords="453,113,569,138"/>
+<area shape="rect" id="node4" href="./CriteriaQueryTest.html" title="&lt;TABLE&gt;" alt="" coords="443,101,580,149"/>
+<area shape="rect" id="node5_4" href="./AliasTest.html" title="org.dayatang.persistence.hibernate.AliasTest" alt="" coords="533,17,605,42"/>
+<area shape="rect" id="node5" href="./AliasTest.html" title="&lt;TABLE&gt;" alt="" coords="522,5,615,53"/>
+<area shape="rect" id="node6_5" href="./AbstractIntegrationTest.html" title="org.dayatang.persistence.hibernate.AbstractIntegrationTest" alt="" coords="339,17,487,42"/>
+<area shape="rect" id="node6" href="./AbstractIntegrationTest.html" title="&lt;TABLE&gt;" alt="" coords="328,5,497,53"/>
+</map>
