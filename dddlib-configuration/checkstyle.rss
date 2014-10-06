@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>DDDLib Configuration - Checkstyle report</title>
+    <link>http://www.dayatang.org/dddlib/dddlib-configuration</link>
+    <description>DDDLib Configuration - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2014 Dayatang Open Source.</copyright>
+    <item>
+      <title>File: 15,
+             Errors: 1633,
+             Warnings: 0,
+             Infos: 0
+      </title>
+            <link>http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html</link>
+      <description>
+        <p>Click <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.ConfigurationUrlImpl.java">org/dayatang/configuration/impl/ConfigurationUrlImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  68
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.Configuration.java">org/dayatang/configuration/Configuration.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  191
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.WritableConfiguration.java">org/dayatang/configuration/WritableConfiguration.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.AbstractConfiguration.java">org/dayatang/configuration/impl/AbstractConfiguration.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  277
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.SimpleConfiguration.java">org/dayatang/configuration/impl/SimpleConfiguration.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  19
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.ConfigurationDbImpl.java">org/dayatang/configuration/impl/ConfigurationDbImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  65
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.PropertiesFileUtils.java">org/dayatang/configuration/impl/PropertiesFileUtils.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  98
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.StringPropertyReplacer.java">org/dayatang/configuration/impl/StringPropertyReplacer.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  286
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.ConfigurationException.java">org/dayatang/configuration/ConfigurationException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  22
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.ConfigurationDbUtils.java">org/dayatang/configuration/impl/ConfigurationDbUtils.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  220
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.ConfigurationFactoryImpl.java">org/dayatang/configuration/impl/ConfigurationFactoryImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  31
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.ConfigurationFileImpl.java">org/dayatang/configuration/impl/ConfigurationFileImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  242
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.package-info.java">org/dayatang/configuration/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.package-info.java">org/dayatang/configuration/impl/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.ConfigurationFactory.java">org/dayatang/configuration/ConfigurationFactory.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  105
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+
