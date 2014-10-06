@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./Post.html" title="org.dddlib.organisation.domain.Post" alt="" coords="51,114,96,139"/>
+<area shape="rect" id="node1" href="./Post.html" title="&lt;TABLE&gt;" alt="" coords="37,103,109,151"/>
+<area shape="rect" id="node3_1" href="./Organization.html" title="org.dddlib.organisation.domain.Organization" alt="" coords="75,225,167,250"/>
+<area shape="rect" id="node3" href="./Organization.html" title="&lt;TABLE&gt;" alt="" coords="65,213,178,261"/>
+<area shape="rect" id="node2_2" href="./Party.html" title="org.dddlib.organisation.domain.Party" alt="" coords="95,17,145,42"/>
+<area shape="rect" id="node2" href="./Party.html" title="&lt;TABLE&gt;" alt="" coords="84,5,156,53"/>
+<area shape="rect" id="node4_3" href="./Department.html" title="org.dddlib.organisation.domain.Department" alt="" coords="16,322,101,347"/>
+<area shape="rect" id="node4" href="./Department.html" title="&lt;TABLE&gt;" alt="" coords="5,311,112,359"/>
+<area shape="rect" id="node5_4" href="./Company.html" title="org.dddlib.organisation.domain.Company" alt="" coords="147,322,223,347"/>
+<area shape="rect" id="node5" href="./Company.html" title="&lt;TABLE&gt;" alt="" coords="137,311,234,359"/>
+</map>

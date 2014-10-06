@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./Person.html" title="org.dddlib.organisation.domain.Person" alt="" coords="16,28,76,53"/>
+<area shape="rect" id="node1" href="./Person.html" title="&lt;TABLE&gt;" alt="" coords="5,17,87,65"/>
+<area shape="rect" id="node2_1" href="./Address.html" title="org.dddlib.organisation.domain.Address" alt="" coords="85,150,151,175"/>
+<area shape="rect" id="node2" href="./Address.html" title="&lt;TABLE&gt;" alt="" coords="74,139,162,187"/>
+<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/ValueObject.html" title="org.dayatang.domain.ValueObject" alt="" coords="122,11,261,71"/>
+<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/ValueObject.html" title="&lt;TABLE&gt;" alt="" coords="111,5,271,76"/>
+</map>

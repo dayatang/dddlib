@@ -1,0 +1,14 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./PersonTest.html" title="org.dddlib.organisation.domain.PersonTest" alt="" coords="16,139,100,164"/>
+<area shape="rect" id="node1" href="./PersonTest.html" title="&lt;TABLE&gt;" alt="" coords="5,127,111,175"/>
+<area shape="rect" id="node2_1" href="./LineMgmtTest.html" title="org.dddlib.organisation.domain.LineMgmtTest" alt="" coords="145,139,243,164"/>
+<area shape="rect" id="node2" href="./LineMgmtTest.html" title="&lt;TABLE&gt;" alt="" coords="135,127,253,175"/>
+<area shape="rect" id="node3_2" href="./EmploymentTest.html" title="org.dddlib.organisation.domain.EmploymentTest" alt="" coords="288,139,401,164"/>
+<area shape="rect" id="node3" href="./EmploymentTest.html" title="&lt;TABLE&gt;" alt="" coords="277,127,412,175"/>
+<area shape="rect" id="node4_3" href="./AccountabilityTest.html" title="org.dddlib.organisation.domain.AccountabilityTest" alt="" coords="447,139,567,164"/>
+<area shape="rect" id="node4" href="./AccountabilityTest.html" title="&lt;TABLE&gt;" alt="" coords="437,127,578,175"/>
+<area shape="rect" id="node5_4" href="./AbstractIntegrationTest.html" title="org.dddlib.organisation.domain.AbstractIntegrationTest" alt="" coords="271,17,419,42"/>
+<area shape="rect" id="node5" href="./AbstractIntegrationTest.html" title="&lt;TABLE&gt;" alt="" coords="260,5,429,53"/>
+<area shape="rect" id="node6_5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/context/ApplicationContext.html" title="org.springframework.context.ApplicationContext" alt="" coords="613,121,788,181"/>
+<area shape="rect" id="node6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/context/ApplicationContext.html" title="&lt;TABLE&gt;" alt="" coords="603,116,799,187"/>
+</map>
