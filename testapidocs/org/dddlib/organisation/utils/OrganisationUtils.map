@@ -1,16 +1,16 @@
 <map id="G" name="G">
 <area shape="rect" id="node1_0" href="./OrganisationUtils.html" title="org.dddlib.organisation.utils.OrganisationUtils" alt="" coords="635,17,750,42"/>
 <area shape="rect" id="node1" href="./OrganisationUtils.html" title="&lt;TABLE&gt;" alt="" coords="625,5,761,53"/>
-<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Organization.html" title="org.dddlib.organisation.domain.Organization" alt="" coords="16,121,204,164"/>
-<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Organization.html" title="&lt;TABLE&gt;" alt="" coords="5,116,215,169"/>
-<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Department.html" title="org.dddlib.organisation.domain.Department" alt="" coords="249,121,437,164"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Department.html" title="&lt;TABLE&gt;" alt="" coords="239,116,448,169"/>
-<area shape="rect" id="node4_3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Person.html" title="org.dddlib.organisation.domain.Person" alt="" coords="483,121,671,164"/>
-<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Person.html" title="&lt;TABLE&gt;" alt="" coords="472,116,681,169"/>
-<area shape="rect" id="node5_4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Post.html" title="org.dddlib.organisation.domain.Post" alt="" coords="716,121,904,164"/>
-<area shape="rect" id="node5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Post.html" title="&lt;TABLE&gt;" alt="" coords="705,116,915,169"/>
-<area shape="rect" id="node6_5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Company.html" title="org.dddlib.organisation.domain.Company" alt="" coords="949,121,1137,164"/>
-<area shape="rect" id="node6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Company.html" title="&lt;TABLE&gt;" alt="" coords="939,116,1148,169"/>
-<area shape="rect" id="node7_6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Employee.html" title="org.dddlib.organisation.domain.Employee" alt="" coords="1183,121,1371,164"/>
-<area shape="rect" id="node7" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Employee.html" title="&lt;TABLE&gt;" alt="" coords="1172,116,1381,169"/>
+<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Person.html" title="org.dddlib.organisation.domain.Person" alt="" coords="16,121,204,164"/>
+<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Person.html" title="&lt;TABLE&gt;" alt="" coords="5,116,215,169"/>
+<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Post.html" title="org.dddlib.organisation.domain.Post" alt="" coords="249,121,437,164"/>
+<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Post.html" title="&lt;TABLE&gt;" alt="" coords="239,116,448,169"/>
+<area shape="rect" id="node4_3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Organization.html" title="org.dddlib.organisation.domain.Organization" alt="" coords="483,121,671,164"/>
+<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Organization.html" title="&lt;TABLE&gt;" alt="" coords="472,116,681,169"/>
+<area shape="rect" id="node5_4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Department.html" title="org.dddlib.organisation.domain.Department" alt="" coords="716,121,904,164"/>
+<area shape="rect" id="node5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Department.html" title="&lt;TABLE&gt;" alt="" coords="705,116,915,169"/>
+<area shape="rect" id="node6_5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Employee.html" title="org.dddlib.organisation.domain.Employee" alt="" coords="949,121,1137,164"/>
+<area shape="rect" id="node6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Employee.html" title="&lt;TABLE&gt;" alt="" coords="939,116,1148,169"/>
+<area shape="rect" id="node7_6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Company.html" title="org.dddlib.organisation.domain.Company" alt="" coords="1183,121,1371,164"/>
+<area shape="rect" id="node7" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/domain/Company.html" title="&lt;TABLE&gt;" alt="" coords="1172,116,1381,169"/>
 </map>

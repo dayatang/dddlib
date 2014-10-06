@@ -1,12 +1,12 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./GuiceInstanceProviderTest.html" title="org.dayatang.ioc.guice.GuiceInstanceProviderTest" alt="" coords="160,119,329,145"/>
-<area shape="rect" id="node1" href="./GuiceInstanceProviderTest.html" title="&lt;TABLE&gt;" alt="" coords="149,108,340,156"/>
-<area shape="rect" id="node3_1" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Injector.html" title="com.google.inject.Injector" alt="" coords="16,224,129,284"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Injector.html" title="&lt;TABLE&gt;" alt="" coords="5,219,140,289"/>
-<area shape="rect" id="node4_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html" title="org.dayatang.domain.InstanceProvider" alt="" coords="175,224,314,284"/>
-<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="165,219,325,289"/>
-<area shape="rect" id="node5_3" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Module.html" title="com.google.inject.Module" alt="" coords="360,224,473,284"/>
-<area shape="rect" id="node5" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Module.html" title="&lt;TABLE&gt;" alt="" coords="349,219,484,289"/>
-<area shape="rect" id="node2_4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/AbstractInstanceProviderTest.html" title="org.dayatang.ioc.test.AbstractInstanceProviderTest" alt="" coords="149,11,341,53"/>
-<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/AbstractInstanceProviderTest.html" title="&lt;TABLE&gt;" alt="" coords="138,5,351,59"/>
+<area shape="rect" id="node1_0" href="./GuiceInstanceProviderTest.html" title="org.dayatang.ioc.guice.GuiceInstanceProviderTest" alt="" coords="147,119,316,145"/>
+<area shape="rect" id="node1" href="./GuiceInstanceProviderTest.html" title="&lt;TABLE&gt;" alt="" coords="136,108,327,156"/>
+<area shape="rect" id="node3_1" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Module.html" title="com.google.inject.Module" alt="" coords="16,224,129,284"/>
+<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Module.html" title="&lt;TABLE&gt;" alt="" coords="5,219,140,289"/>
+<area shape="rect" id="node4_2" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Injector.html" title="com.google.inject.Injector" alt="" coords="175,224,288,284"/>
+<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Injector.html" title="&lt;TABLE&gt;" alt="" coords="164,219,299,289"/>
+<area shape="rect" id="node5_3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html" title="org.dayatang.domain.InstanceProvider" alt="" coords="334,224,473,284"/>
+<area shape="rect" id="node5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="323,219,483,289"/>
+<area shape="rect" id="node2_4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/AbstractInstanceProviderTest.html" title="org.dayatang.ioc.test.AbstractInstanceProviderTest" alt="" coords="135,11,327,53"/>
+<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/AbstractInstanceProviderTest.html" title="&lt;TABLE&gt;" alt="" coords="125,5,338,59"/>
 </map>
