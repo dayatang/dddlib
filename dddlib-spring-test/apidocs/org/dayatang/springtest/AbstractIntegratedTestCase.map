@@ -1,0 +1,18 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./AbstractIntegratedTestCase.html" title="org.dayatang.springtest.AbstractIntegratedTestCase" alt="" coords="433,119,616,145"/>
+<area shape="rect" id="node1" href="./AbstractIntegratedTestCase.html" title="&lt;TABLE&gt;" alt="" coords="423,108,627,156"/>
+<area shape="rect" id="node3_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Session.html" title="org.hibernate.Session" alt="" coords="16,245,108,305"/>
+<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Session.html" title="&lt;TABLE&gt;" alt="" coords="5,240,119,311"/>
+<area shape="rect" id="node4_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Transaction.html" title="org.hibernate.Transaction" alt="" coords="153,245,245,305"/>
+<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Transaction.html" title="&lt;TABLE&gt;" alt="" coords="143,240,256,311"/>
+<area shape="rect" id="node5_3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/orm/hibernate4/HibernateTransactionManager.html" title="org.springframework.orm.hibernate4.HibernateTransactionManager" alt="" coords="291,254,507,297"/>
+<area shape="rect" id="node5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/orm/hibernate4/HibernateTransactionManager.html" title="&lt;TABLE&gt;" alt="" coords="281,249,518,302"/>
+<area shape="rect" id="node6_4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/transaction/TransactionStatus.html" title="org.springframework.transaction.TransactionStatus" alt="" coords="553,245,749,305"/>
+<area shape="rect" id="node6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/transaction/TransactionStatus.html" title="&lt;TABLE&gt;" alt="" coords="543,240,760,311"/>
+<area shape="rect" id="node7_5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/dbunit/DataSetStrategy.html" title="org.dayatang.dbunit.DataSetStrategy" alt="" coords="795,224,927,327"/>
+<area shape="rect" id="node7" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/dbunit/DataSetStrategy.html" title="&lt;TABLE&gt;" alt="" coords="784,219,937,332"/>
+<area shape="rect" id="node8_6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/operation/DatabaseOperation.html" title="org.dbunit.operation.DatabaseOperation" alt="" coords="973,254,1103,297"/>
+<area shape="rect" id="node8" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/operation/DatabaseOperation.html" title="&lt;TABLE&gt;" alt="" coords="962,249,1114,302"/>
+<area shape="rect" id="node2_7" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/dbunit/Dbunit.html" title="org.dayatang.dbunit.Dbunit" alt="" coords="459,11,591,53"/>
+<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/dbunit/Dbunit.html" title="&lt;TABLE&gt;" alt="" coords="448,5,601,59"/>
+</map>
