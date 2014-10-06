@@ -42,10 +42,10 @@ digraph G {
 	c3801:p -> c3864:p [dir=back,arrowtail=empty,style=dashed];
 	// org.dayatang.domain.internal.NotCriterion NAVASSOC org.dayatang.domain.QueryCriterion
 	c3844:p -> c3801:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.internal.NotCriterion DEPEND org.dayatang.domain.NamedParameters
-	c3844:p -> c3805:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.domain.internal.NotCriterion DEPEND org.dayatang.domain.QueryCriterion
 	c3844:p -> c3801:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// org.dayatang.domain.internal.NotCriterion DEPEND org.dayatang.domain.NamedParameters
+	c3844:p -> c3805:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.domain.internal.AbstractCriterion DEPEND org.dayatang.domain.QueryCriterion
 	c3864:p -> c3801:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.domain.internal.AbstractCriterion DEPEND org.dayatang.domain.QueryCriterion
