@@ -26,14 +26,14 @@ digraph G {
 	c40672:p -> c40719:p [dir=back,arrowtail=empty];
 	// org.dayatang.dbunit.Dbunit NAVASSOC org.dbunit.IDatabaseTester
 	c40672:p -> c40811:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.dbunit.Dbunit DEPEND org.dbunit.operation.DatabaseOperation
-	c40672:p -> c40812:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.dbunit.Dbunit DEPEND org.dbunit.dataset.IDataSet
+	c40672:p -> c40812:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// org.dayatang.dbunit.Dbunit DEPEND org.dbunit.operation.DatabaseOperation
 	c40672:p -> c40813:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.springtest.AbstractIntegratedTestCase DEPEND org.dbunit.operation.DatabaseOperation
-	c40719:p -> c40812:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c40719:p -> c40813:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dbunit.dataset.IDataSet
-	c40813 [label=<<table title="org.dbunit.dataset.IDataSet" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/dataset/IDataSet.html">
+	c40812 [label=<<table title="org.dbunit.dataset.IDataSet" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/dataset/IDataSet.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> IDataSet </td></tr>
@@ -49,7 +49,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/IDatabaseTester.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dbunit.operation.DatabaseOperation
-	c40812 [label=<<table title="org.dbunit.operation.DatabaseOperation" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/operation/DatabaseOperation.html">
+	c40813 [label=<<table title="org.dbunit.operation.DatabaseOperation" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/operation/DatabaseOperation.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> DatabaseOperation </font></td></tr>
 <tr><td align="center" balign="center"> org.dbunit.operation </td></tr>

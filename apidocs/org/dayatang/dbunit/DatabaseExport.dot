@@ -15,12 +15,12 @@ digraph G {
 <tr><td align="center" balign="center"> DatabaseExport </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DatabaseExport.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.dbunit.DatabaseExport DEPEND org.dbunit.database.IDatabaseConnection
-	c37874:p -> c38013:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.dbunit.DatabaseExport DEPEND org.dbunit.dataset.IDataSet
+	c37874:p -> c38011:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// org.dayatang.dbunit.DatabaseExport DEPEND org.dbunit.database.IDatabaseConnection
 	c37874:p -> c38014:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dbunit.database.IDatabaseConnection
-	c38013 [label=<<table title="org.dbunit.database.IDatabaseConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/database/IDatabaseConnection.html">
+	c38014 [label=<<table title="org.dbunit.database.IDatabaseConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/database/IDatabaseConnection.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> IDatabaseConnection </td></tr>
@@ -28,7 +28,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/database/IDatabaseConnection.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dbunit.dataset.IDataSet
-	c38014 [label=<<table title="org.dbunit.dataset.IDataSet" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/dataset/IDataSet.html">
+	c38011 [label=<<table title="org.dbunit.dataset.IDataSet" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/dataset/IDataSet.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> IDataSet </td></tr>
