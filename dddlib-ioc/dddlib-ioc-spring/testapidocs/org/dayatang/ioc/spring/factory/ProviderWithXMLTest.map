@@ -1,8 +1,7 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ProviderWithXMLTest.html" title="org.dayatang.ioc.spring.factory.ProviderWithXMLTest" alt="" coords="42,119,182,145"/>
-<area shape="rect" id="node1" href="./ProviderWithXMLTest.html" title="&lt;TABLE&gt;" alt="" coords="31,108,193,156"/>
-<area shape="rect" id="node3_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html" title="org.dayatang.domain.InstanceProvider" alt="" coords="43,224,181,284"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="32,219,192,289"/>
-<area shape="rect" id="node2_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/AbstractInstanceProviderTest.html" title="org.dayatang.ioc.test.AbstractInstanceProviderTest" alt="" coords="16,11,208,53"/>
-<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/AbstractInstanceProviderTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,219,59"/>
+<area shape="rect" id="node1_0" href="./ProviderWithXMLTest.html" title="org.dayatang.ioc.spring.factory.ProviderWithXMLTest" alt="" coords="38,114,178,139"/>
+<area shape="rect" id="node1" href="./ProviderWithXMLTest.html" title="&lt;TABLE&gt;" alt="" coords="27,103,189,151"/>
+<area shape="rect" id="node3_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html" title="org.dayatang.domain.InstanceProvider" alt="" coords="39,219,177,279"/>
+<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="28,213,188,284"/>
+<area shape="rect" id="node2_2" href="http://java.sun.com/j2se/1.4.2/docs/api//AbstractInstanceProviderTest.html" title="AbstractInstanceProviderTest" alt="" coords="16,17,200,42"/>
 </map>

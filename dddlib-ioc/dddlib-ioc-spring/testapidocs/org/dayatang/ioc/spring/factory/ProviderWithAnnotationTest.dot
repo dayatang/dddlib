@@ -10,29 +10,28 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.ioc.spring.factory.ProviderWithAnnotationTest
-	c22 [label=<<table title="org.dayatang.ioc.spring.factory.ProviderWithAnnotationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ProviderWithAnnotationTest.html">
+	c19 [label=<<table title="org.dayatang.ioc.spring.factory.ProviderWithAnnotationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ProviderWithAnnotationTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ProviderWithAnnotationTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProviderWithAnnotationTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	//org.dayatang.ioc.spring.factory.ProviderWithAnnotationTest extends org.dayatang.ioc.test.AbstractInstanceProviderTest
-	c23:p -> c22:p [dir=back,arrowtail=empty];
+	//org.dayatang.ioc.spring.factory.ProviderWithAnnotationTest extends AbstractInstanceProviderTest
+	c20:p -> c19:p [dir=back,arrowtail=empty];
 	// org.dayatang.ioc.spring.factory.ProviderWithAnnotationTest DEPEND org.dayatang.domain.InstanceProvider
-	c22:p -> c25:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c19:p -> c22:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// AbstractInstanceProviderTest
+	c20[label=<<table title="AbstractInstanceProviderTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api//AbstractInstanceProviderTest.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> AbstractInstanceProviderTest </td></tr>
+		</table></td></tr>
+		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.InstanceProvider
-	c25 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html">
+	c22 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> InstanceProvider </td></tr>
 <tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
 		</table></td></tr>
 		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.ioc.test.AbstractInstanceProviderTest
-	c23 [label=<<table title="org.dayatang.ioc.test.AbstractInstanceProviderTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/AbstractInstanceProviderTest.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractInstanceProviderTest </font></td></tr>
-<tr><td align="center" balign="center"> org.dayatang.ioc.test </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/AbstractInstanceProviderTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 
