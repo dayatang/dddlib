@@ -1,0 +1,20 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="../utils/Page.html" title="org.dayatang.utils.Page" alt="" coords="669,353,787,396"/>
+<area shape="rect" id="node1" href="../utils/Page.html" title="&lt;TABLE&gt;" alt="" coords="658,348,798,401"/>
+<area shape="rect" id="node2_1" href="../domain/QueryParameters.html" title="org.dayatang.domain.QueryParameters" alt="" coords="16,469,155,529"/>
+<area shape="rect" id="node2" href="../domain/QueryParameters.html" title="&lt;TABLE&gt;" alt="" coords="5,464,165,535"/>
+<area shape="rect" id="node3_2" href="../domain/EntityRepository.html" title="org.dayatang.domain.EntityRepository" alt="" coords="1005,469,1144,529"/>
+<area shape="rect" id="node3" href="../domain/EntityRepository.html" title="&lt;TABLE&gt;" alt="" coords="995,464,1155,535"/>
+<area shape="rect" id="node4_3" href="../domain/BaseQuery.html" title="org.dayatang.domain.BaseQuery" alt="" coords="163,353,517,396"/>
+<area shape="rect" id="node4" href="../domain/BaseQuery.html" title="&lt;TABLE&gt;" alt="" coords="153,348,527,401"/>
+<area shape="rect" id="node5_4" href="./ChannelQuery.html" title="org.dayatang.querychannel.ChannelQuery" alt="" coords="487,133,750,158"/>
+<area shape="rect" id="node5" href="./ChannelQuery.html" title="&lt;TABLE&gt;" alt="" coords="477,121,761,169"/>
+<area shape="rect" id="node7_5" href="./query/ChannelSqlQuery.html" title="org.dayatang.querychannel.query.ChannelSqlQuery" alt="" coords="769,237,975,280"/>
+<area shape="rect" id="node7" href="./query/ChannelSqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="758,232,986,285"/>
+<area shape="rect" id="node8_6" href="./query/ChannelNamedQuery.html" title="org.dayatang.querychannel.query.ChannelNamedQuery" alt="" coords="155,237,362,280"/>
+<area shape="rect" id="node8" href="./query/ChannelNamedQuery.html" title="&lt;TABLE&gt;" alt="" coords="145,232,373,285"/>
+<area shape="rect" id="node9_7" href="./query/ChannelJpqlQuery.html" title="org.dayatang.querychannel.query.ChannelJpqlQuery" alt="" coords="462,237,669,280"/>
+<area shape="rect" id="node9" href="./query/ChannelJpqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="451,232,679,285"/>
+<area shape="rect" id="node6_8" href="./impl/QueryChannelServiceImpl.html" title="org.dayatang.querychannel.impl.QueryChannelServiceImpl" alt="" coords="628,11,825,53"/>
+<area shape="rect" id="node6" href="./impl/QueryChannelServiceImpl.html" title="&lt;TABLE&gt;" alt="" coords="617,5,836,59"/>
+</map>

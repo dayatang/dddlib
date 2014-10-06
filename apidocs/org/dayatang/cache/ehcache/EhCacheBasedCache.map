@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="../Cache.html" title="org.dayatang.cache.Cache" alt="" coords="25,11,157,71"/>
+<area shape="rect" id="node1" href="../Cache.html" title="&lt;TABLE&gt;" alt="" coords="14,5,167,76"/>
+<area shape="rect" id="node2_1" href="./EhCacheBasedCache.html" title="org.dayatang.cache.ehcache.EhCacheBasedCache" alt="" coords="16,137,165,162"/>
+<area shape="rect" id="node2" href="./EhCacheBasedCache.html" title="&lt;TABLE&gt;" alt="" coords="5,125,176,173"/>
+<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/net/sf/ehcache/Cache.html" title="net.sf.ehcache.Cache" alt="" coords="41,241,141,284"/>
+<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/net/sf/ehcache/Cache.html" title="&lt;TABLE&gt;" alt="" coords="30,236,151,289"/>
+</map>

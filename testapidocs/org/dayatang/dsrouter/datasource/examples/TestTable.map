@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./TestTable.html" title="org.dayatang.dsrouter.datasource.examples.TestTable" alt="" coords="159,133,235,158"/>
+<area shape="rect" id="node1" href="./TestTable.html" title="&lt;TABLE&gt;" alt="" coords="148,121,245,169"/>
+<area shape="rect" id="node2_1" href="./test/Examples2Test.html" title="org.dayatang.dsrouter.datasource.examples.test.Examples2Test" alt="" coords="16,11,305,53"/>
+<area shape="rect" id="node2" href="./test/Examples2Test.html" title="&lt;TABLE&gt;" alt="" coords="5,5,316,59"/>
+<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/jdbc/core/support/JdbcDaoSupport.html" title="org.springframework.jdbc.core.support.JdbcDaoSupport" alt="" coords="351,11,581,53"/>
+<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/jdbc/core/support/JdbcDaoSupport.html" title="&lt;TABLE&gt;" alt="" coords="340,5,592,59"/>
+</map>

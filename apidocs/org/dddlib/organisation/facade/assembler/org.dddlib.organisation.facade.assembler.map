@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./PostAssembler.html" title="org.dddlib.organisation.facade.assembler.PostAssembler" alt="" coords="16,17,121,42"/>
+<area shape="rect" id="node1" href="./PostAssembler.html" title="&lt;TABLE&gt;" alt="" coords="5,5,132,53"/>
+<area shape="rect" id="node2_1" href="./OrganizationAssembler.html" title="org.dddlib.organisation.facade.assembler.OrganizationAssembler" alt="" coords="167,17,319,42"/>
+<area shape="rect" id="node2" href="./OrganizationAssembler.html" title="&lt;TABLE&gt;" alt="" coords="157,5,330,53"/>
+</map>

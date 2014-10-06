@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh_CN" lang="zh_CN">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>GeminiConnectionLogTimeoutMonitor xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../apidocs/org/dayatang/dsmonitor/monitor/GeminiConnectionLogTimeoutMonitor.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> org.dayatang.dsmonitor.monitor;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> org.apache.commons.lang3.time.DateFormatUtils;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> org.dayatang.dsmonitor.GeminiConnection;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> org.dayatang.utils.Slf4JLogger;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> java.sql.SQLException;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> java.util.Set;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../org/dayatang/dsmonitor/monitor/GeminiConnectionLogTimeoutMonitor.html">GeminiConnectionLogTimeoutMonitor</a> <strong class="jxr_keyword">extends</strong>
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  		AbstractGeminiConnectionTimeoutMonitor {
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../org/dayatang/utils/Slf4JLogger.html">Slf4JLogger</a> LOGGER = <a href="../../../../org/dayatang/utils/Slf4JLogger.html">Slf4JLogger</a>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  			.getLogger(GeminiConnectionLogTimeoutMonitor.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String DATE_PATTERN = <span class="jxr_string">"yyyy-MM-dd HH:mm:ss"</span>;
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  	@Override
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> monitor() {
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  		logConnections(getAliveTimeoutConnections(), <span class="jxr_string">"活动的超时数据库连接"</span>);
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  	}
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> logConnections(Set&lt;GeminiConnection&gt; connections, String title) {
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  		<strong class="jxr_keyword">if</strong> (connections.isEmpty()) {
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>              LOGGER.info(<span class="jxr_string">"没有【{}】，超时时间为：【{}】ms"</span>, title, getTimeout());
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  			<strong class="jxr_keyword">return</strong>;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  		}
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>          LOGGER.info(<span class="jxr_string">"======================================================================================="</span>);
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>          LOGGER.info(<span class="jxr_string">"======================================================================================="</span>);
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>          LOGGER.info(<span class="jxr_string">"=============                                                             ============="</span>);
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>          LOGGER.info(<span class="jxr_string">"=============            以下是{}，超时时间为：【{}】ms         ============="</span>, title, getTimeout());
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>          LOGGER.info(<span class="jxr_string">"=============                                                             ============="</span>);
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>          LOGGER.info(<span class="jxr_string">"======================================================================================="</span>);
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>          LOGGER.info(<span class="jxr_string">"======================================================================================="</span>);
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  		<strong class="jxr_keyword">for</strong> (GeminiConnection conn : connections) {
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  			logConnection(conn);
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  		}
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  	}
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> logConnection(<a href="../../../../org/dayatang/dsmonitor/GeminiConnection.html">GeminiConnection</a> connection) {
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  		<strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  			<strong class="jxr_keyword">if</strong> (connection.isClosed()) {
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>                  LOGGER.info(<span class="jxr_string">"数据库连接HashCode【{}】，创建时间【{}】，耗时【{}】毫秒"</span>, connection.hashCode(),
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>                          formatTime(connection.getCreationTime()), connection.getSurvivalTime());
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  			} <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>                  LOGGER.info(<span class="jxr_string">"数据库连接HashCode【{}】，URL=【{}】，创建时间【{}】，耗时【{}】毫秒"</span>,
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>                          connection.hashCode(), connection.getMetaData().getURL(),
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>                          formatTime(connection.getCreationTime()), connection.getSurvivalTime());
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  			}
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>              LOGGER.info(<span class="jxr_string">"调用堆栈为："</span>);
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  			<strong class="jxr_keyword">for</strong> (StackTraceElement ste : connection.getStackTraceElements()) {
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>                  LOGGER.info(<span class="jxr_string">"     "</span> + ste);
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  			}
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  		} <strong class="jxr_keyword">catch</strong> (SQLException ex) {
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  			ex.printStackTrace();
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  		}
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  	}
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  	<strong class="jxr_keyword">private</strong> String formatTime(<strong class="jxr_keyword">long</strong> date) {
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  		<strong class="jxr_keyword">return</strong> DateFormatUtils.format(date, DATE_PATTERN);
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  	}
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  }
+</pre>
+<hr/>
+<div id="footer">Copyright &#169; 2014 <a href="http://dayatang.github.io/dddlib/">Dayatang Open Source.</a>. All rights reserved.</div>
+</body>
+</html>

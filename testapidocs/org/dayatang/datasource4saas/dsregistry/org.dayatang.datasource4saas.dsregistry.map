@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./JndiMappingDataSourceRegistryTest.html" title="org.dayatang.datasource4saas.dsregistry.JndiMappingDataSourceRegistryTest" alt="" coords="16,114,247,139"/>
+<area shape="rect" id="node1" href="./JndiMappingDataSourceRegistryTest.html" title="&lt;TABLE&gt;" alt="" coords="5,103,257,151"/>
+<area shape="rect" id="node2_1" href="./JdbcDataSourceRegistryTest.html" title="org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistryTest" alt="" coords="293,114,477,139"/>
+<area shape="rect" id="node2" href="./JdbcDataSourceRegistryTest.html" title="&lt;TABLE&gt;" alt="" coords="282,103,487,151"/>
+<area shape="rect" id="node4_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/datasource4saas/dsregistry/DataSourceCreator.html" title="org.dayatang.datasource4saas.dsregistry.DataSourceCreator" alt="" coords="321,219,449,261"/>
+<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/datasource4saas/dsregistry/DataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="310,213,459,267"/>
+<area shape="rect" id="node3_3" href="./AbstractDataSourceRegistryTest.html" title="org.dayatang.datasource4saas.dsregistry.AbstractDataSourceRegistryTest" alt="" coords="97,17,307,42"/>
+<area shape="rect" id="node3" href="./AbstractDataSourceRegistryTest.html" title="&lt;TABLE&gt;" alt="" coords="86,5,318,53"/>
+</map>

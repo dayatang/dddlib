@@ -1,0 +1,20 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./StartsSpecification.html" title="org.dayatang.domain.specification.StartsSpecification" alt="" coords="16,130,139,155"/>
+<area shape="rect" id="node1" href="./StartsSpecification.html" title="&lt;TABLE&gt;" alt="" coords="5,119,149,167"/>
+<area shape="rect" id="node2_1" href="./OrSpecificationTest.html" title="org.dayatang.domain.specification.OrSpecificationTest" alt="" coords="303,17,431,42"/>
+<area shape="rect" id="node2" href="./OrSpecificationTest.html" title="&lt;TABLE&gt;" alt="" coords="292,5,441,53"/>
+<area shape="rect" id="node8_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/Specification.html" title="org.dayatang.domain.specification.Specification" alt="" coords="489,121,599,164"/>
+<area shape="rect" id="node8" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/Specification.html" title="&lt;TABLE&gt;" alt="" coords="478,116,610,169"/>
+<area shape="rect" id="node3_3" href="./NotSpecificationTest.html" title="org.dayatang.domain.specification.NotSpecificationTest" alt="" coords="658,17,790,42"/>
+<area shape="rect" id="node3" href="./NotSpecificationTest.html" title="&lt;TABLE&gt;" alt="" coords="647,5,801,53"/>
+<area shape="rect" id="node9_4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/NotSpecification.html" title="org.dayatang.domain.specification.NotSpecification" alt="" coords="659,130,789,155"/>
+<area shape="rect" id="node9" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/NotSpecification.html" title="&lt;TABLE&gt;" alt="" coords="649,119,799,167"/>
+<area shape="rect" id="node4_5" href="./LengthSpecification.html" title="org.dayatang.domain.specification.LengthSpecification" alt="" coords="184,130,312,155"/>
+<area shape="rect" id="node4" href="./LengthSpecification.html" title="&lt;TABLE&gt;" alt="" coords="173,119,323,167"/>
+<area shape="rect" id="node5_6" href="./AndSpecificationTest.html" title="org.dayatang.domain.specification.AndSpecificationTest" alt="" coords="476,17,612,42"/>
+<area shape="rect" id="node5" href="./AndSpecificationTest.html" title="&lt;TABLE&gt;" alt="" coords="465,5,623,53"/>
+<area shape="rect" id="node6_7" href="./AbstractSpecificationTest.html" title="org.dayatang.domain.specification.AbstractSpecificationTest" alt="" coords="836,17,996,42"/>
+<area shape="rect" id="node6" href="./AbstractSpecificationTest.html" title="&lt;TABLE&gt;" alt="" coords="825,5,1007,53"/>
+<area shape="rect" id="node7_8" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/AbstractSpecification.html" title="org.dayatang.domain.specification.AbstractSpecification" alt="" coords="41,17,209,42"/>
+<area shape="rect" id="node7" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/AbstractSpecification.html" title="&lt;TABLE&gt;" alt="" coords="31,5,220,53"/>
+</map>

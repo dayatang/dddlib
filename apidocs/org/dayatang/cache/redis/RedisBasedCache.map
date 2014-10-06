@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="../Cache.html" title="org.dayatang.cache.Cache" alt="" coords="85,11,217,71"/>
+<area shape="rect" id="node1" href="../Cache.html" title="&lt;TABLE&gt;" alt="" coords="74,5,227,76"/>
+<area shape="rect" id="node2_1" href="./RedisBasedCache.html" title="org.dayatang.cache.redis.RedisBasedCache" alt="" coords="87,137,215,162"/>
+<area shape="rect" id="node2" href="./RedisBasedCache.html" title="&lt;TABLE&gt;" alt="" coords="76,125,225,173"/>
+<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/redis/clients/jedis/JedisPool.html" title="redis.clients.jedis.JedisPool" alt="" coords="16,241,128,284"/>
+<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/redis/clients/jedis/JedisPool.html" title="&lt;TABLE&gt;" alt="" coords="5,236,139,289"/>
+<area shape="rect" id="node4_3" href="http://java.sun.com/j2se/1.4.2/docs/api/redis/clients/jedis/Jedis.html" title="redis.clients.jedis.Jedis" alt="" coords="173,241,285,284"/>
+<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/redis/clients/jedis/Jedis.html" title="&lt;TABLE&gt;" alt="" coords="163,236,296,289"/>
+</map>

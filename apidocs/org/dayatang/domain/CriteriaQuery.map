@@ -1,0 +1,16 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./QueryCriterion.html" title="org.dayatang.domain.QueryCriterion" alt="" coords="16,121,115,164"/>
+<area shape="rect" id="node1" href="./QueryCriterion.html" title="&lt;TABLE&gt;" alt="" coords="5,116,125,169"/>
+<area shape="rect" id="node2_1" href="./OrderSettings.html" title="org.dayatang.domain.OrderSettings" alt="" coords="160,130,256,155"/>
+<area shape="rect" id="node2" href="./OrderSettings.html" title="&lt;TABLE&gt;" alt="" coords="149,119,267,167"/>
+<area shape="rect" id="node3_2" href="./EntityRepository.html" title="org.dayatang.domain.EntityRepository" alt="" coords="501,121,613,164"/>
+<area shape="rect" id="node3" href="./EntityRepository.html" title="&lt;TABLE&gt;" alt="" coords="491,116,624,169"/>
+<area shape="rect" id="node6_3" href="../persistence/hibernate/EntityRepositoryHibernate.html" title="org.dayatang.persistence.hibernate.EntityRepositoryHibernate" alt="" coords="263,224,479,267"/>
+<area shape="rect" id="node6" href="../persistence/hibernate/EntityRepositoryHibernate.html" title="&lt;TABLE&gt;" alt="" coords="252,219,489,272"/>
+<area shape="rect" id="node7_4" href="../persistence/jpa/EntityRepositoryJpa.html" title="org.dayatang.persistence.jpa.EntityRepositoryJpa" alt="" coords="552,224,736,267"/>
+<area shape="rect" id="node7" href="../persistence/jpa/EntityRepositoryJpa.html" title="&lt;TABLE&gt;" alt="" coords="541,219,747,272"/>
+<area shape="rect" id="node4_5" href="./CriterionBuilder.html" title="org.dayatang.domain.CriterionBuilder" alt="" coords="355,121,455,164"/>
+<area shape="rect" id="node4" href="./CriterionBuilder.html" title="&lt;TABLE&gt;" alt="" coords="345,116,466,169"/>
+<area shape="rect" id="node5_6" href="./CriteriaQuery.html" title="org.dayatang.domain.CriteriaQuery" alt="" coords="314,17,406,42"/>
+<area shape="rect" id="node5" href="./CriteriaQuery.html" title="&lt;TABLE&gt;" alt="" coords="303,5,417,53"/>
+</map>

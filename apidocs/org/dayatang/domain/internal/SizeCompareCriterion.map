@@ -1,0 +1,20 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="../NamedParameters.html" title="org.dayatang.domain.NamedParameters" alt="" coords="16,219,155,261"/>
+<area shape="rect" id="node1" href="../NamedParameters.html" title="&lt;TABLE&gt;" alt="" coords="5,213,165,267"/>
+<area shape="rect" id="node2_1" href="./SizeNotEqCriterion.html" title="org.dayatang.domain.internal.SizeNotEqCriterion" alt="" coords="201,227,325,253"/>
+<area shape="rect" id="node2" href="./SizeNotEqCriterion.html" title="&lt;TABLE&gt;" alt="" coords="190,216,335,264"/>
+<area shape="rect" id="node3_2" href="./SizeLtCriterion.html" title="org.dayatang.domain.internal.SizeLtCriterion" alt="" coords="371,227,469,253"/>
+<area shape="rect" id="node3" href="./SizeLtCriterion.html" title="&lt;TABLE&gt;" alt="" coords="360,216,480,264"/>
+<area shape="rect" id="node4_3" href="./SizeLeCriterion.html" title="org.dayatang.domain.internal.SizeLeCriterion" alt="" coords="515,227,618,253"/>
+<area shape="rect" id="node4" href="./SizeLeCriterion.html" title="&lt;TABLE&gt;" alt="" coords="505,216,629,264"/>
+<area shape="rect" id="node5_4" href="./SizeGtCriterion.html" title="org.dayatang.domain.internal.SizeGtCriterion" alt="" coords="663,227,766,253"/>
+<area shape="rect" id="node5" href="./SizeGtCriterion.html" title="&lt;TABLE&gt;" alt="" coords="653,216,777,264"/>
+<area shape="rect" id="node6_5" href="./SizeGeCriterion.html" title="org.dayatang.domain.internal.SizeGeCriterion" alt="" coords="812,227,919,253"/>
+<area shape="rect" id="node6" href="./SizeGeCriterion.html" title="&lt;TABLE&gt;" alt="" coords="801,216,929,264"/>
+<area shape="rect" id="node7_6" href="./SizeEqCriterion.html" title="org.dayatang.domain.internal.SizeEqCriterion" alt="" coords="964,227,1068,253"/>
+<area shape="rect" id="node7" href="./SizeEqCriterion.html" title="&lt;TABLE&gt;" alt="" coords="953,216,1079,264"/>
+<area shape="rect" id="node8_7" href="./SizeCompareCriterion.html" title="org.dayatang.domain.internal.SizeCompareCriterion" alt="" coords="494,114,639,139"/>
+<area shape="rect" id="node8" href="./SizeCompareCriterion.html" title="&lt;TABLE&gt;" alt="" coords="483,103,650,151"/>
+<area shape="rect" id="node9_8" href="./BasicCriterion.html" title="org.dayatang.domain.internal.BasicCriterion" alt="" coords="517,17,617,42"/>
+<area shape="rect" id="node9" href="./BasicCriterion.html" title="&lt;TABLE&gt;" alt="" coords="506,5,627,53"/>
+</map>

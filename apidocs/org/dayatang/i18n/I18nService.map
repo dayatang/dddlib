@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./I18nService.html" title="org.dayatang.i18n.I18nService" alt="" coords="181,127,265,169"/>
+<area shape="rect" id="node1" href="./I18nService.html" title="&lt;TABLE&gt;" alt="" coords="171,121,276,175"/>
+<area shape="rect" id="node2_1" href="./HierarchicalI18nService.html" title="org.dayatang.i18n.HierarchicalI18nService" alt="" coords="16,229,164,272"/>
+<area shape="rect" id="node2" href="./HierarchicalI18nService.html" title="&lt;TABLE&gt;" alt="" coords="5,224,175,277"/>
+<area shape="rect" id="node3_2" href="./impl/AbstractI18nService.html" title="org.dayatang.i18n.impl.AbstractI18nService" alt="" coords="151,332,296,375"/>
+<area shape="rect" id="node3" href="./impl/AbstractI18nService.html" title="&lt;TABLE&gt;" alt="" coords="140,327,307,380"/>
+<area shape="rect" id="node4_3" href="./support/I18nServiceAccessor.html" title="org.dayatang.i18n.support.I18nServiceAccessor" alt="" coords="140,11,307,53"/>
+<area shape="rect" id="node4" href="./support/I18nServiceAccessor.html" title="&lt;TABLE&gt;" alt="" coords="129,5,317,59"/>
+</map>

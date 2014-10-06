@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="../ObjectSerializer.html" title="org.dayatang.utils.ObjectSerializer" alt="" coords="27,11,145,71"/>
+<area shape="rect" id="node1" href="../ObjectSerializer.html" title="&lt;TABLE&gt;" alt="" coords="16,5,156,76"/>
+<area shape="rect" id="node2_1" href="./GsonObjectSerializer.html" title="org.dayatang.utils.serializer.GsonObjectSerializer" alt="" coords="16,137,156,162"/>
+<area shape="rect" id="node2" href="./GsonObjectSerializer.html" title="&lt;TABLE&gt;" alt="" coords="5,125,167,173"/>
+<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/gson/Gson.html" title="com.google.gson.Gson" alt="" coords="29,241,143,284"/>
+<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/gson/Gson.html" title="&lt;TABLE&gt;" alt="" coords="19,236,153,289"/>
+</map>

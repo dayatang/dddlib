@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./PostDto.html" title="org.dddlib.organisation.facade.PostDto" alt="" coords="16,19,81,45"/>
+<area shape="rect" id="node1" href="./PostDto.html" title="&lt;TABLE&gt;" alt="" coords="5,8,92,56"/>
+<area shape="rect" id="node2_1" href="./OrganizationDto.html" title="org.dddlib.organisation.facade.OrganizationDto" alt="" coords="127,19,239,45"/>
+<area shape="rect" id="node2" href="./OrganizationDto.html" title="&lt;TABLE&gt;" alt="" coords="117,8,250,56"/>
+<area shape="rect" id="node3_2" href="./OrganisationFacade.html" title="org.dddlib.organisation.facade.OrganisationFacade" alt="" coords="285,11,420,53"/>
+<area shape="rect" id="node3" href="./OrganisationFacade.html" title="&lt;TABLE&gt;" alt="" coords="275,5,431,59"/>
+</map>

@@ -1,0 +1,18 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./EntityRepository.html" title="org.dayatang.domain.EntityRepository" alt="" coords="442,243,554,285"/>
+<area shape="rect" id="node1" href="./EntityRepository.html" title="&lt;TABLE&gt;" alt="" coords="431,237,565,291"/>
+<area shape="rect" id="node4_1" href="../persistence/hibernate/EntityRepositoryHibernate.html" title="org.dayatang.persistence.hibernate.EntityRepositoryHibernate" alt="" coords="379,359,595,401"/>
+<area shape="rect" id="node4" href="../persistence/hibernate/EntityRepositoryHibernate.html" title="&lt;TABLE&gt;" alt="" coords="369,353,606,407"/>
+<area shape="rect" id="node5_2" href="../persistence/jpa/EntityRepositoryJpa.html" title="org.dayatang.persistence.jpa.EntityRepositoryJpa" alt="" coords="641,359,825,401"/>
+<area shape="rect" id="node5" href="../persistence/jpa/EntityRepositoryJpa.html" title="&lt;TABLE&gt;" alt="" coords="630,353,835,407"/>
+<area shape="rect" id="node2_3" href="./CriteriaQuery.html" title="org.dayatang.domain.CriteriaQuery" alt="" coords="687,481,779,506"/>
+<area shape="rect" id="node2" href="./CriteriaQuery.html" title="&lt;TABLE&gt;" alt="" coords="676,469,789,517"/>
+<area shape="rect" id="node3_4" href="./BaseQuery.html" title="org.dayatang.domain.BaseQuery" alt="" coords="195,481,423,506"/>
+<area shape="rect" id="node3" href="./BaseQuery.html" title="&lt;TABLE&gt;" alt="" coords="184,469,433,517"/>
+<area shape="rect" id="node6_5" href="../querychannel/ChannelQuery.html" title="org.dayatang.querychannel.ChannelQuery" alt="" coords="16,127,439,169"/>
+<area shape="rect" id="node6" href="../querychannel/ChannelQuery.html" title="&lt;TABLE&gt;" alt="" coords="5,121,449,175"/>
+<area shape="rect" id="node7_6" href="../querychannel/impl/QueryChannelServiceImpl.html" title="org.dayatang.querychannel.impl.QueryChannelServiceImpl" alt="" coords="165,11,362,53"/>
+<area shape="rect" id="node7" href="../querychannel/impl/QueryChannelServiceImpl.html" title="&lt;TABLE&gt;" alt="" coords="154,5,373,59"/>
+<area shape="rect" id="node8_7" href="../../dddlib/organisation/application/impl/OrganisationApplicationImpl.html" title="org.dddlib.organisation.application.impl.OrganisationApplicationImpl" alt="" coords="538,127,770,169"/>
+<area shape="rect" id="node8" href="../../dddlib/organisation/application/impl/OrganisationApplicationImpl.html" title="&lt;TABLE&gt;" alt="" coords="527,121,781,175"/>
+</map>

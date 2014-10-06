@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./NoSuchMessageException.html" title="org.dayatang.i18n.NoSuchMessageException" alt="" coords="16,19,191,45"/>
+<area shape="rect" id="node1" href="./NoSuchMessageException.html" title="&lt;TABLE&gt;" alt="" coords="5,8,201,56"/>
+<area shape="rect" id="node2_1" href="./LocaleContextHolder.html" title="org.dayatang.i18n.LocaleContextHolder" alt="" coords="236,19,376,45"/>
+<area shape="rect" id="node2" href="./LocaleContextHolder.html" title="&lt;TABLE&gt;" alt="" coords="225,8,387,56"/>
+<area shape="rect" id="node3_2" href="./I18nService.html" title="org.dayatang.i18n.I18nService" alt="" coords="421,11,505,53"/>
+<area shape="rect" id="node3" href="./I18nService.html" title="&lt;TABLE&gt;" alt="" coords="411,5,516,59"/>
+<area shape="rect" id="node4_3" href="./HierarchicalI18nService.html" title="org.dayatang.i18n.HierarchicalI18nService" alt="" coords="389,112,537,155"/>
+<area shape="rect" id="node4" href="./HierarchicalI18nService.html" title="&lt;TABLE&gt;" alt="" coords="379,107,548,160"/>
+</map>

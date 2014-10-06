@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./ProviderWithAnnotationTest.html" title="org.dayatang.ioc.spring.factory.ProviderWithAnnotationTest" alt="" coords="98,119,271,145"/>
+<area shape="rect" id="node1" href="./ProviderWithAnnotationTest.html" title="&lt;TABLE&gt;" alt="" coords="87,108,282,156"/>
+<area shape="rect" id="node3_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/spring/factory/SpringInstanceProvider.html" title="org.dayatang.ioc.spring.factory.SpringInstanceProvider" alt="" coords="16,241,164,267"/>
+<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/spring/factory/SpringInstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="5,230,175,278"/>
+<area shape="rect" id="node4_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html" title="org.dayatang.domain.InstanceProvider" alt="" coords="210,224,349,284"/>
+<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="199,219,359,289"/>
+<area shape="rect" id="node2_3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/AbstractInstanceProviderTest.html" title="org.dayatang.ioc.test.AbstractInstanceProviderTest" alt="" coords="89,11,281,53"/>
+<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/AbstractInstanceProviderTest.html" title="&lt;TABLE&gt;" alt="" coords="78,5,291,59"/>
+</map>

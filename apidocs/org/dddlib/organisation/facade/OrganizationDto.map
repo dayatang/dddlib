@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./OrganizationDto.html" title="org.dddlib.organisation.facade.OrganizationDto" alt="" coords="221,133,333,158"/>
+<area shape="rect" id="node1" href="./OrganizationDto.html" title="&lt;TABLE&gt;" alt="" coords="211,121,344,169"/>
+<area shape="rect" id="node2_1" href="./assembler/OrganizationAssembler.html" title="org.dddlib.organisation.facade.assembler.OrganizationAssembler" alt="" coords="16,11,264,53"/>
+<area shape="rect" id="node2" href="./assembler/OrganizationAssembler.html" title="&lt;TABLE&gt;" alt="" coords="5,5,275,59"/>
+<area shape="rect" id="node3_2" href="./impl/OrganisationFacadeImpl.html" title="org.dddlib.organisation.facade.impl.OrganisationFacadeImpl" alt="" coords="309,11,520,53"/>
+<area shape="rect" id="node3" href="./impl/OrganisationFacadeImpl.html" title="&lt;TABLE&gt;" alt="" coords="299,5,531,59"/>
+</map>

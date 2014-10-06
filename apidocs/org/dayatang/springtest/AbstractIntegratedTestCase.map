@@ -1,0 +1,18 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="../dbunit/Dbunit.html" title="org.dayatang.dbunit.Dbunit" alt="" coords="745,11,877,53"/>
+<area shape="rect" id="node1" href="../dbunit/Dbunit.html" title="&lt;TABLE&gt;" alt="" coords="735,5,888,59"/>
+<area shape="rect" id="node3_1" href="./AbstractIntegratedTestCase.html" title="org.dayatang.springtest.AbstractIntegratedTestCase" alt="" coords="485,119,668,145"/>
+<area shape="rect" id="node3" href="./AbstractIntegratedTestCase.html" title="&lt;TABLE&gt;" alt="" coords="475,108,679,156"/>
+<area shape="rect" id="node8_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/operation/DatabaseOperation.html" title="org.dbunit.operation.DatabaseOperation" alt="" coords="973,254,1103,297"/>
+<area shape="rect" id="node8" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/operation/DatabaseOperation.html" title="&lt;TABLE&gt;" alt="" coords="962,249,1114,302"/>
+<area shape="rect" id="node2_3" href="../dbunit/DataSetStrategy.html" title="org.dayatang.dbunit.DataSetStrategy" alt="" coords="16,224,148,327"/>
+<area shape="rect" id="node2" href="../dbunit/DataSetStrategy.html" title="&lt;TABLE&gt;" alt="" coords="5,219,159,332"/>
+<area shape="rect" id="node4_4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Session.html" title="org.hibernate.Session" alt="" coords="193,245,285,305"/>
+<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Session.html" title="&lt;TABLE&gt;" alt="" coords="183,240,296,311"/>
+<area shape="rect" id="node5_5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Transaction.html" title="org.hibernate.Transaction" alt="" coords="331,245,423,305"/>
+<area shape="rect" id="node5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Transaction.html" title="&lt;TABLE&gt;" alt="" coords="320,240,433,311"/>
+<area shape="rect" id="node6_6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/orm/hibernate4/HibernateTransactionManager.html" title="org.springframework.orm.hibernate4.HibernateTransactionManager" alt="" coords="469,254,685,297"/>
+<area shape="rect" id="node6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/orm/hibernate4/HibernateTransactionManager.html" title="&lt;TABLE&gt;" alt="" coords="458,249,695,302"/>
+<area shape="rect" id="node7_7" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/transaction/TransactionStatus.html" title="org.springframework.transaction.TransactionStatus" alt="" coords="731,245,927,305"/>
+<area shape="rect" id="node7" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/transaction/TransactionStatus.html" title="&lt;TABLE&gt;" alt="" coords="720,240,937,311"/>
+</map>

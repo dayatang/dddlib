@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh_CN" lang="zh_CN">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>JdbcDataSourceRegistry xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../apidocs/org/dayatang/datasource4saas/dsregistry/JdbcDataSourceRegistry.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> org.dayatang.datasource4saas.dsregistry;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> org.dayatang.utils.Assert;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> org.dayatang.utils.Slf4JLogger;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> javax.sql.DataSource;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> java.util.Date;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_javadoccomment"> * 当还没有对应于指定的租户的数据源时，即时创建一个。</em>
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_javadoccomment"> * @author yyang (&lt;a href="<a href="mailto:gdyangyu@gmail.com" target="alexandria_uri">mailto:gdyangyu@gmail.com</a>"&gt;gdyangyu@gmail.com&lt;/a&gt;)</em>
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../org/dayatang/datasource4saas/dsregistry/JdbcDataSourceRegistry.html">JdbcDataSourceRegistry</a> <strong class="jxr_keyword">extends</strong> <a href="../../../../org/dayatang/datasource4saas/dsregistry/MapBasedDataSourceRegistry.html">MapBasedDataSourceRegistry</a> {
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../org/dayatang/utils/Slf4JLogger.html">Slf4JLogger</a> LOGGER = Slf4JLogger.getLogger(JdbcDataSourceRegistry.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  	
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../org/dayatang/datasource4saas/dsregistry/DataSourceCreator.html">DataSourceCreator</a> dataSourceCreator;
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../org/dayatang/datasource4saas/dsregistry/DataSourceCreator.html">DataSourceCreator</a> getDataSourceCreator() {
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  		Assert.notNull(dataSourceCreator, <span class="jxr_string">"Data Source Creator is null!"</span>);
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  		<strong class="jxr_keyword">return</strong> dataSourceCreator;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  	}
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setDataSourceCreator(<a href="../../../../org/dayatang/datasource4saas/dsregistry/DataSourceCreator.html">DataSourceCreator</a> dataSourceCreator) {
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  		<strong class="jxr_keyword">this</strong>.dataSourceCreator = dataSourceCreator;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  	}
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../org/dayatang/datasource4saas/dsregistry/JdbcDataSourceRegistry.html">JdbcDataSourceRegistry</a>(<a href="../../../../org/dayatang/datasource4saas/dsregistry/DataSourceCreator.html">DataSourceCreator</a> dataSourceCreator) {
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  		<strong class="jxr_keyword">this</strong>.dataSourceCreator = dataSourceCreator;
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  	}
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  	@Override
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  	<strong class="jxr_keyword">protected</strong> DataSource findOrCreateDataSourceForTenant(String tenant) {
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  		Assert.notBlank(tenant, <span class="jxr_string">"Tenant is null or blank!"</span>);
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  		DataSource result = getDataSourceCreator().createDataSourceForTenant(tenant);
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  		Date now = <strong class="jxr_keyword">new</strong> Date();
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  		recordLastAccessTimeOfTenant(tenant, now);
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  		LOGGER.debug(<span class="jxr_string">"Create data source for tenant '{}' at {}"</span>, tenant, now);
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  		<strong class="jxr_keyword">return</strong> result;
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  	}
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  }
+</pre>
+<hr/>
+<div id="footer">Copyright &#169; 2014 <a href="http://dayatang.github.io/dddlib/">Dayatang Open Source.</a>. All rights reserved.</div>
+</body>
+</html>
