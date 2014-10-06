@@ -50,10 +50,10 @@ digraph G {
 	c62424:p -> c62316:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.persistence.hibernate.EntityRepositoryHibernate DEPEND org.dayatang.domain.JpqlQuery
 	c62424:p -> c62304:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa DEPEND org.dayatang.domain.JpqlQuery
-	c62426:p -> c62304:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.persistence.jpa.EntityRepositoryJpa DEPEND org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
 	c62426:p -> c62316:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// org.dayatang.persistence.jpa.EntityRepositoryJpa DEPEND org.dayatang.domain.JpqlQuery
+	c62426:p -> c62304:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.querychannel.query.ChannelJpqlQuery DEPEND org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
 	c62478:p -> c62316:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 }

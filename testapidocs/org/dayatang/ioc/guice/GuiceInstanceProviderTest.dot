@@ -17,11 +17,11 @@ digraph G {
 		</table>>, URL="./GuiceInstanceProviderTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.ioc.guice.GuiceInstanceProviderTest extends org.dayatang.ioc.test.AbstractInstanceProviderTest
 	c27125:p -> c27023:p [dir=back,arrowtail=empty];
-	// org.dayatang.ioc.guice.GuiceInstanceProviderTest DEPEND org.dayatang.domain.InstanceProvider
-	c27023:p -> c27126:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.ioc.guice.GuiceInstanceProviderTest DEPEND com.google.inject.Injector
-	c27023:p -> c27128:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c27023:p -> c27127:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.ioc.guice.GuiceInstanceProviderTest DEPEND com.google.inject.Module
+	c27023:p -> c27128:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// org.dayatang.ioc.guice.GuiceInstanceProviderTest DEPEND org.dayatang.domain.InstanceProvider
 	c27023:p -> c27129:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.ioc.test.AbstractInstanceProviderTest
 	c27125 [label=<<table title="org.dayatang.ioc.test.AbstractInstanceProviderTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/AbstractInstanceProviderTest.html">
@@ -31,7 +31,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/AbstractInstanceProviderTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// com.google.inject.Injector
-	c27128 [label=<<table title="com.google.inject.Injector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Injector.html">
+	c27127 [label=<<table title="com.google.inject.Injector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Injector.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Injector </td></tr>
@@ -39,7 +39,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Injector.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.InstanceProvider
-	c27126 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html">
+	c27129 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> InstanceProvider </td></tr>
@@ -47,7 +47,7 @@ digraph G {
 		</table></td></tr>
 		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// com.google.inject.Module
-	c27129 [label=<<table title="com.google.inject.Module" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Module.html">
+	c27128 [label=<<table title="com.google.inject.Module" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Module.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Module </td></tr>

@@ -77,16 +77,16 @@ digraph G {
 	c76714:p -> c76720:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 	// org.dddlib.organisation.domain.Post NAVASSOC org.dddlib.organisation.domain.Job
 	c76714:p -> c76721:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dddlib.organisation.application.impl.OrganisationApplicationImpl DEPEND org.dddlib.organisation.domain.Party
-	c76732:p -> c76718:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dddlib.organisation.application.impl.OrganisationApplicationImpl DEPEND org.dddlib.organisation.domain.Organization
 	c76732:p -> c76720:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// org.dddlib.organisation.application.impl.OrganisationApplicationImpl DEPEND org.dddlib.organisation.domain.Party
+	c76732:p -> c76718:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dddlib.organisation.application.impl.OrganisationApplicationImpl DEPEND org.dddlib.organisation.domain.Post
 	c76732:p -> c76714:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dddlib.organisation.application.OrganisationApplication DEPEND org.dddlib.organisation.domain.Party
-	c76733:p -> c76718:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dddlib.organisation.application.OrganisationApplication DEPEND org.dddlib.organisation.domain.Organization
 	c76733:p -> c76720:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// org.dddlib.organisation.application.OrganisationApplication DEPEND org.dddlib.organisation.domain.Party
+	c76733:p -> c76718:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dddlib.organisation.application.OrganisationApplication DEPEND org.dddlib.organisation.domain.Post
 	c76733:p -> c76714:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 }

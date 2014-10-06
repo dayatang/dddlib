@@ -66,16 +66,16 @@ digraph G {
 	c29311:p -> c29153:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.querychannel.impl.QueryChannelServiceImpl DEPEND org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery>
 	c29312:p -> c29311:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.querychannel.impl.QueryChannelServiceImpl DEPEND org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery>
-	c29312:p -> c29311:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.querychannel.impl.QueryChannelServiceImpl DEPEND org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery>
-	c29312:p -> c29311:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.querychannel.impl.QueryChannelServiceImpl DEPEND org.dayatang.utils.Page<T>
 	c29312:p -> c29117:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.querychannel.impl.QueryChannelServiceImpl DEPEND org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery>
 	c29312:p -> c29311:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// org.dayatang.querychannel.impl.QueryChannelServiceImpl DEPEND org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery>
+	c29312:p -> c29311:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.querychannel.impl.QueryChannelServiceImpl DEPEND org.dayatang.querychannel.query.ChannelSqlQuery
 	c29312:p -> c29313:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// org.dayatang.querychannel.impl.QueryChannelServiceImpl DEPEND org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery>
+	c29312:p -> c29311:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.querychannel.query.ChannelSqlQuery DEPEND org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
 	c29313:p -> c29153:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.querychannel.query.ChannelSqlQuery DEPEND org.dayatang.utils.Page<T>

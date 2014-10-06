@@ -46,10 +46,10 @@ digraph G {
 	c21979:p -> c22092:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 	// org.dayatang.dbunit.Dbunit DEPEND org.dbunit.operation.DatabaseOperation
 	c21932:p -> c22093:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.springtest.AbstractIntegratedTestCase DEPEND org.dayatang.dbunit.DataSetStrategy
-	c21979:p -> c21933:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.springtest.AbstractIntegratedTestCase DEPEND org.dbunit.operation.DatabaseOperation
 	c21979:p -> c22093:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// org.dayatang.springtest.AbstractIntegratedTestCase DEPEND org.dayatang.dbunit.DataSetStrategy
+	c21979:p -> c21933:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.springframework.orm.hibernate4.HibernateTransactionManager
 	c22089 [label=<<table title="org.springframework.orm.hibernate4.HibernateTransactionManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/orm/hibernate4/HibernateTransactionManager.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
