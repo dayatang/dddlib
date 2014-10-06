@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh_CN" lang="zh_CN">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>RedisBasedCacheTest xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../testapidocs/org/dayatang/cache/redis/RedisBasedCacheTest.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> org.dayatang.cache.redis;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> org.dayatang.cache.Cache;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> org.junit.Ignore;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> org.junit.Test;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.junit.Assert.assertTrue;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_javadoccomment"> * Created by lingen on 14-7-15.</em>
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  @Ignore(<span class="jxr_string">"测试此类前，需要先启动一个Redis服务"</span>)
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../org/dayatang/cache/redis/RedisBasedCacheTest.html">RedisBasedCacheTest</a> {
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>      <strong class="jxr_keyword">private</strong> Cache cache = <strong class="jxr_keyword">new</strong> RedisBasedCache(<span class="jxr_string">"127.0.0.1"</span>,6379);
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>      @Test
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> test(){
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>          cache.put(<span class="jxr_string">"abc"</span>, <span class="jxr_string">"abc"</span>);
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>          assertTrue(cache.get(<span class="jxr_string">"abc"</span>).equals(<span class="jxr_string">"abc"</span>));
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>      }
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>      @Test
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> test2(){
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>          <a href="../../../../org/dayatang/cache/redis/Person.html">Person</a> person = <strong class="jxr_keyword">new</strong> <a href="../../../../org/dayatang/cache/redis/Person.html">Person</a>();
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>          person.setName(<span class="jxr_string">"lingen"</span>);
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>          person.setAge(12);
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>          cache.put(<span class="jxr_string">"A"</span>,person);
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>          <a href="../../../../org/dayatang/cache/redis/Person.html">Person</a> person1 = (Person) cache.get(<span class="jxr_string">"A"</span>);
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>          assertTrue(person1.getName().equals(person.getName()));
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>          assertTrue(person1.getAge()==person.getAge());
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>      }
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>      @Test
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testRemoe(){
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>          String key =<span class="jxr_string">"ABC"</span>;
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>          cache.put(key,<span class="jxr_string">"AAA"</span>);
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>          assertTrue(cache.get(key).equals(<span class="jxr_string">"AAA"</span>));
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>          cache.remove(key);
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>          assertTrue(cache.containsKey(key)==false);
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>      }
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>      @Test
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testExpired() <strong class="jxr_keyword">throws</strong> InterruptedException {
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>          String key = <span class="jxr_string">"ABC"</span>;
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>          cache.put(key,<span class="jxr_string">"afdsa"</span>,5);
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>          System.out.print(cache.get(key));
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>          assertTrue(cache.get(key)!=<strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>          Thread.sleep(6*1000);
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>          assertTrue(cache.get(key)==<strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>      }
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  }
+</pre>
+<hr/>
+<div id="footer">Copyright &#169; 2014 <a href="http://www.dayatang.org/">Dayatang Open Source.</a>. All rights reserved.</div>
+</body>
+</html>
