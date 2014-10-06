@@ -31,10 +31,10 @@ digraph G {
 	c47:p -> c52:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 	// org.dayatang.persistence.jpa.CriteriaQueryTest NAVASSOC org.dayatang.domain.CriterionBuilder
 	c47:p -> c53:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.persistence.jpa.CriteriaQueryTest DEPEND org.dayatang.persistence.test.domain.DictionaryCategory
-	c47:p -> c51:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.persistence.jpa.CriteriaQueryTest DEPEND org.dayatang.persistence.test.domain.Dictionary
 	c47:p -> c52:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// org.dayatang.persistence.jpa.CriteriaQueryTest DEPEND org.dayatang.persistence.test.domain.DictionaryCategory
+	c47:p -> c51:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dayatang.persistence.test.domain.Dictionary
 	c52 [label=<<table title="org.dayatang.persistence.test.domain.Dictionary" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/test/domain/Dictionary.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
