@@ -29,9 +29,9 @@ digraph G {
 <tr><td align="center" balign="center"> OrganizationAssembler </td></tr>
 		</table></td></tr>
 		</table>>, URL="./OrganizationAssembler.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.organisation.facade.assembler.OrganizationAssembler DEPEND org.dddlib.organisation.domain.Organization
-	c75904:p -> c75886:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 	// org.dddlib.organisation.facade.assembler.OrganizationAssembler DEPEND org.dddlib.organisation.facade.OrganizationDto
 	c75904:p -> c75901:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	// org.dddlib.organisation.facade.assembler.OrganizationAssembler DEPEND org.dddlib.organisation.domain.Organization
+	c75904:p -> c75886:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 }
 
