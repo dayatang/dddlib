@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./SpringConfiguration.html" title="org.dayatang.ioc.spring.factory.SpringConfiguration" alt="" coords="16,17,144,42"/>
+<area shape="rect" id="node1" href="./SpringConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="5,5,155,53"/>
+<area shape="rect" id="node2_1" href="./ProviderWithXMLTest.html" title="org.dayatang.ioc.spring.factory.ProviderWithXMLTest" alt="" coords="190,17,330,42"/>
+<area shape="rect" id="node2" href="./ProviderWithXMLTest.html" title="&lt;TABLE&gt;" alt="" coords="179,5,341,53"/>
+<area shape="rect" id="node3_2" href="./ProviderWithAnnotationTest.html" title="org.dayatang.ioc.spring.factory.ProviderWithAnnotationTest" alt="" coords="376,17,549,42"/>
+<area shape="rect" id="node3" href="./ProviderWithAnnotationTest.html" title="&lt;TABLE&gt;" alt="" coords="365,5,560,53"/>
+</map>
