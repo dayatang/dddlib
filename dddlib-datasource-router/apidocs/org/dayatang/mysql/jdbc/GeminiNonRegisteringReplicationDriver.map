@@ -1,0 +1,8 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./GeminiReplicationDriver.html" title="org.dayatang.mysql.jdbc.GeminiReplicationDriver" alt="" coords="59,214,211,239"/>
+<area shape="rect" id="node1" href="./GeminiReplicationDriver.html" title="&lt;TABLE&gt;" alt="" coords="48,203,221,251"/>
+<area shape="rect" id="node2_1" href="./GeminiNonRegisteringReplicationDriver.html" title="org.dayatang.mysql.jdbc.GeminiNonRegisteringReplicationDriver" alt="" coords="16,118,253,143"/>
+<area shape="rect" id="node2" href="./GeminiNonRegisteringReplicationDriver.html" title="&lt;TABLE&gt;" alt="" coords="5,107,264,155"/>
+<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/com/mysql/jdbc/NonRegisteringDriver.html" title="com.mysql.jdbc.NonRegisteringDriver" alt="" coords="67,11,203,53"/>
+<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/com/mysql/jdbc/NonRegisteringDriver.html" title="&lt;TABLE&gt;" alt="" coords="56,5,213,59"/>
+</map>

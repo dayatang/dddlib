@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./TestTable.html" title="org.dayatang.dsrouter.datasource.examples.TestTable" alt="" coords="16,49,92,75"/>
+<area shape="rect" id="node1" href="./TestTable.html" title="&lt;TABLE&gt;" alt="" coords="5,38,103,86"/>
+<area shape="rect" id="node2_1" href="./Item.html" title="org.dayatang.dsrouter.datasource.examples.Item" alt="" coords="142,49,185,75"/>
+<area shape="rect" id="node2" href="./Item.html" title="&lt;TABLE&gt;" alt="" coords="127,38,199,86"/>
+<area shape="rect" id="node3_2" href="./CustomerType.html" title="org.dayatang.dsrouter.datasource.examples.CustomerType" alt="" coords="234,11,338,113"/>
+<area shape="rect" id="node3" href="./CustomerType.html" title="&lt;TABLE&gt;" alt="" coords="223,5,349,119"/>
+<area shape="rect" id="node4_3" href="./CustomerRoutingDataSource.html" title="org.dayatang.dsrouter.datasource.examples.CustomerRoutingDataSource" alt="" coords="383,49,567,75"/>
+<area shape="rect" id="node4" href="./CustomerRoutingDataSource.html" title="&lt;TABLE&gt;" alt="" coords="373,38,578,86"/>
+<area shape="rect" id="node5_4" href="./CustomerContextHolder.html" title="org.dayatang.dsrouter.datasource.examples.CustomerContextHolder" alt="" coords="613,49,765,75"/>
+<area shape="rect" id="node5" href="./CustomerContextHolder.html" title="&lt;TABLE&gt;" alt="" coords="602,38,775,86"/>
+</map>

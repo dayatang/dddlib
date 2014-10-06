@@ -1,0 +1,7 @@
+org.dayatang.dsrouter
+org.dayatang.dsrouter.builder
+org.dayatang.dsrouter.builder.mysql
+org.dayatang.dsrouter.context
+org.dayatang.dsrouter.context.memory
+org.dayatang.dsrouter.datasource
+org.dayatang.mysql.jdbc
