@@ -15,7 +15,6 @@ import java.util.logging.Logger;
  * JavaBean工具类。
  *
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
- *
  */
 public class BeanUtils {
 
@@ -26,6 +25,27 @@ public class BeanUtils {
         Assert.notNull(bean);
         this.bean = bean;
         beanClassUtils = new BeanClassUtils(bean.getClass());
+    }
+
+    /**
+     * 在两个Bean之间复制属性值
+     *
+     * @param fromBean 作为复制源的Bean
+     * @param toBean   作为复制目标的Bean
+     */
+    private static void copyProperties(Object fromBean, Object toBean, String... excludeProps) {
+        BeanUtils from = new BeanUtils(fromBean);
+        BeanUtils to = new BeanUtils(toBean);
+        Map<String, Object> values = from.getPropValues();
+        Set<String> propsToCopy = to.getWritablePropNames();
+        if (excludeProps != null) {
+            propsToCopy.removeAll(Arrays.asList(excludeProps));
+        }
+        for (String prop : propsToCopy) {
+            if (values.containsKey(prop)) {
+                to.setPropValue(prop, values.get(prop));
+            }
+        }
     }
 
     /**
@@ -49,7 +69,7 @@ public class BeanUtils {
     /**
      * 获得JavaBean的属性值的值，包括从父类继承的属性，不包含指定的属性。
      *
-     * @param excludePropNames
+     * @param excludePropNames 要排除的属性名
      * @return 一个Map，其中Key为属性名，Value为属性值。
      */
     public Map<String, Object> getPropValuesExclude(String... excludePropNames) {
@@ -59,13 +79,13 @@ public class BeanUtils {
     /**
      * 获得JavaBean的属性值的值，包括从父类继承的属性，不包含指定的属性。
      *
-     * @param excludeAnnotations
+     * @param excludeAnnotations 一批Annotation，被这些Annotation标注的属性将被排除
      * @return 一个Map，其中Key为属性名，Value为属性值。
      */
     public Map<String, Object> getPropValuesExclude(Class<? extends Annotation>... excludeAnnotations) {
         return getPropValues(beanClassUtils.getReadablePropNamesExclude(excludeAnnotations));
     }
-    
+
     private Map<String, Object> getPropValues(Set<String> propNames) {
         Map<String, Object> results = new HashMap<String, Object>();
         Map<String, PropertyDescriptor> props = beanClassUtils.getPropertyDescriptors();
@@ -114,6 +134,7 @@ public class BeanUtils {
 
     /**
      * 获得指定属性的值
+     *
      * @param propName 属性名
      * @return 属性值
      */
@@ -121,6 +142,12 @@ public class BeanUtils {
         return getPropValues().get(propName);
     }
 
+    /**
+     * 设置属性值
+     *
+     * @param key   要设置值的属性名
+     * @param value 要设置的值
+     */
     public void setPropValue(String key, Object value) {
         for (Map.Entry<String, PropertyDescriptor> entry : beanClassUtils.getPropertyDescriptors().entrySet()) {
             if (!entry.getKey().equals(key)) {
@@ -142,10 +169,11 @@ public class BeanUtils {
             }
         }
     }
-    
+
     /**
      * 从properties填充属性值
-     * @param properties 
+     *
+     * @param properties 表示一批属性值的Map，Key为属性名，Value为属性值
      */
     public void populate(Map<String, ? extends Object> properties) {
         for (Map.Entry<String, ? extends Object> entry : properties.entrySet()) {
@@ -155,6 +183,7 @@ public class BeanUtils {
 
     /**
      * 从另一个Bean提取属性值，填充当前Bean的同名属性
+     *
      * @param otherBean 另外的JavaBean
      */
     public void copyPropertiesFrom(Object otherBean) {
@@ -163,6 +192,7 @@ public class BeanUtils {
 
     /**
      * 将当前Bean的属性值填充到另一个Bean的同名属性
+     *
      * @param otherBean 另外的JavaBean
      */
     public void copyPropertiesTo(Object otherBean) {
@@ -170,28 +200,9 @@ public class BeanUtils {
     }
 
     /**
-     * 在两个Bean之间复制属性值
-     * @param fromBean 作为复制源的Bean
-     * @param toBean 作为复制目标的Bean
-     */
-    private static void copyProperties(Object fromBean, Object toBean, String... excludeProps) {
-        BeanUtils from = new BeanUtils(fromBean);
-        BeanUtils to = new BeanUtils(toBean);
-        Map<String, Object> values = from.getPropValues();
-        Set<String> propsToCopy = to.getWritablePropNames();
-        if (excludeProps != null) {
-            propsToCopy.removeAll(Arrays.asList(excludeProps));
-        }
-        for (String prop : propsToCopy) {
-            if (values.containsKey(prop)) {
-                to.setPropValue(prop, values.get(prop));
-            }
-        }
-    }
-
-    /**
      * 从另一个Bean提取属性值，填充当前Bean的同名属性
-     * @param otherBean 另外的JavaBean
+     *
+     * @param otherBean    另外的JavaBean
      * @param excludeProps 不参与复制的属性名
      */
     public void copyPropertiesFrom(Object otherBean, String... excludeProps) {
@@ -200,7 +211,8 @@ public class BeanUtils {
 
     /**
      * 将当前Bean的属性值填充到另一个Bean的同名属性
-     * @param otherBean 另外的JavaBean
+     *
+     * @param otherBean    另外的JavaBean
      * @param excludeProps 不参与复制的属性名
      */
     public void copyPropertiesTo(Object otherBean, String... excludeProps) {

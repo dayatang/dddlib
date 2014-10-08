@@ -6,23 +6,22 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 针对JavaBean Class的工具类。
  *
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
- *
  */
 public class BeanClassUtils {
 
     private final Class<?> clazz;
 
+    /**
+     * 接受一个类，生成BeanClassUtils实例
+     *
+     * @param clazz 原始类
+     */
     public BeanClassUtils(final Class<?> clazz) {
         Assert.notNull(clazz);
         this.clazz = clazz;
@@ -85,7 +84,7 @@ public class BeanClassUtils {
     /**
      * 获得JavaBean的属性值的值，包括从父类继承的属性，不包含指定的属性。
      *
-     * @param excludePropNames
+     * @param excludePropNames 要排除的属性名
      * @return 一个Map，其中Key为属性名，Value为属性值。
      */
     public Set<String> getReadablePropNamesExclude(String... excludePropNames) {
@@ -103,7 +102,7 @@ public class BeanClassUtils {
     /**
      * 获得JavaBean的属性值的值，包括从父类继承的属性，不包含指定由指定Annotation标记的的属性。
      *
-     * @param excludeAnnotations
+     * @param excludeAnnotations 一批Annotation，被这些Annotation标注的属性将被排除
      * @return 一个Map，其中Key为属性名，Value为属性值。
      */
     public Set<String> getReadablePropNamesExclude(Class<? extends Annotation>... excludeAnnotations) {
@@ -124,6 +123,11 @@ public class BeanClassUtils {
         return results;
     }
 
+    /**
+     * 获得类的属性描述
+     *
+     * @return 类的属性描述的Map，Key为属性名，Value为属性描述对象
+     */
     Map<String, PropertyDescriptor> getPropertyDescriptors() {
         Map<String, PropertyDescriptor> results = new HashMap<String, PropertyDescriptor>();
         try {

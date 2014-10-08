@@ -22,9 +22,9 @@ public class IntRange implements Serializable{
 	private int max;
 
 	/**
-	 * @param min
-	 * @param max
-	 */
+     * @param min 下限
+     * @param max 上限
+     */
 	public IntRange(int min, int max) {
 		super();
 		this.min = min;

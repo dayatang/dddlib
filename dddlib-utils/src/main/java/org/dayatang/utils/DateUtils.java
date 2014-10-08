@@ -7,28 +7,22 @@ import java.util.Date;
 
 public class DateUtils {
 
-    private static final long MILLIS_IN_A_SECOND = 1000;
-
-    private static final long SECONDS_IN_A_MINUTE = 60;
-
-    private static final long MINUTES_IN_AN_HOUR = 60;
-
-    private static final long HOURS_IN_A_DAY = 24;
-
-    private static final int DAYS_IN_A_WEEK = 7;
-
-    private static final int MONTHS_IN_A_YEAR = 12;
-
-	//private static final int[] daysInMonth = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     /**
      * 最小日期，设定为1000年1月1日
      */
     public static final Date MIN_DATE = date(1000, 1, 1);
-
     /**
      * 最大日期，设定为8888年1月1日
      */
     public static final Date MAX_DATE = date(8888, 1, 1);
+    private static final long MILLIS_IN_A_SECOND = 1000;
+    private static final long SECONDS_IN_A_MINUTE = 60;
+    private static final long MINUTES_IN_AN_HOUR = 60;
+    private static final long HOURS_IN_A_DAY = 24;
+
+	//private static final int[] daysInMonth = new int[] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    private static final int DAYS_IN_A_WEEK = 7;
+    private static final int MONTHS_IN_A_YEAR = 12;
 
     private DateUtils() {
         super();
@@ -40,7 +34,7 @@ public class DateUtils {
      * @param year 年
      * @param month 月。注意1代表1月份，依此类推。
      * @param day 日
-     * @return
+     * @return 一个日期
      */
     public static Date date(int year, int month, int day) {
         Calendar calendar = Calendar.getInstance();
@@ -58,7 +52,7 @@ public class DateUtils {
      * @param hour 时
      * @param minute 分
      * @param second 秒
-     * @return
+     * @return 一个日期
      */
     public static Date date(int year, int month, int day,
             int hour, int minute, int second) {
@@ -71,9 +65,9 @@ public class DateUtils {
     /**
      * 计算两个日期（不包括时间）之间相差的周年数
      *
-     * @param date1
-     * @param date2
-     * @return
+     * @param date1 第一个日期
+     * @param date2 第二个日期
+     * @return 两个日期之间相隔的周年数
      */
     public static int getYearDiff(Date date1, Date date2) {
         if (date1 == null || date2 == null) {
@@ -107,9 +101,9 @@ public class DateUtils {
     /**
      * 计算两个日期（不包括时间）之间相差的整月数
      *
-     * @param date1
-     * @param date2
-     * @return
+     * @param date1 第一个日期
+     * @param date2 第二个日期
+     * @return 两个日期之间相隔的整月数
      */
     public static int getMonthDiff(Date date1, Date date2) {
         if (date1 == null || date2 == null) {
@@ -143,9 +137,9 @@ public class DateUtils {
     /**
      * 统计两个日期之间包含的天数。包含date1，但不包含date2
      *
-     * @param date1
-     * @param date2
-     * @return
+     * @param date1 第一个日期
+     * @param date2 第二个日期
+     * @return 两个日期之间相隔的整天数
      */
     public static int getDayDiff(Date date1, Date date2) {
         if (date1 == null || date2 == null) {
@@ -167,9 +161,9 @@ public class DateUtils {
     /**
      * 计算time2比time1晚多少分钟，忽略日期部分
      *
-     * @param time1
-     * @param time2
-     * @return
+     * @param time1 第一个时间
+     * @param time2 第二个时间
+     * @return 两个时间之间相隔的分钟数
      */
     public static int getMinuteDiffByTime(Date time1, Date time2) {
         long startMil = 0;
@@ -187,8 +181,8 @@ public class DateUtils {
     /**
      * 计算指定日期的前一天
      *
-     * @param date
-     * @return
+     * @param date 一个日期
+     * @return 代表date前一天的日期
      */
     public static Date getPrevDay(Date date) {
         return org.apache.commons.lang3.time.DateUtils.addDays(date, -1);
@@ -197,8 +191,8 @@ public class DateUtils {
     /**
      * 计算指定日期的后一天
      *
-     * @param date
-     * @return
+     * @param date 一个日期
+     * @return 代表date后一天的日期
      */
     public static Date getNextDay(Date date) {
         return org.apache.commons.lang3.time.DateUtils.addDays(date, 1);
@@ -207,9 +201,9 @@ public class DateUtils {
     /**
      * 判断date1是否在date2之后，忽略时间部分
      *
-     * @param date1
-     * @param date2
-     * @return
+     * @param date1 第一个日期
+     * @param date2 第二个日期
+     * @return 如果date1处于date2之后，返回true，否则返回false
      */
     public static boolean isDateAfter(Date date1, Date date2) {
         Date theDate1 = org.apache.commons.lang3.time.DateUtils.truncate(date1,
@@ -222,9 +216,9 @@ public class DateUtils {
     /**
      * 判断date1是否在date2之前，忽略时间部分
      *
-     * @param date1
-     * @param date2
-     * @return
+     * @param date1 第一个日期
+     * @param date2 第二个日期
+     * @return 如果date1处于date2之前，返回true，否则返回false
      */
     public static boolean isDateBefore(Date date1, Date date2) {
         return isDateAfter(date2, date1);
@@ -233,9 +227,9 @@ public class DateUtils {
     /**
      * 判断time1是否在time2之后，忽略日期部分
      *
-     * @param time1
-     * @param time2
-     * @return
+     * @param time1 第一个时间
+     * @param time2 第二个时间
+     * @return 如果time1位于time2之后，返回true，否则返回false
      */
     public static boolean isTimeAfter(Date time1, Date time2) {
         Calendar calendar1 = Calendar.getInstance();
@@ -250,9 +244,9 @@ public class DateUtils {
     /**
      * 判断time1是否在time2之前，忽略日期部分
      *
-     * @param time1
-     * @param time2
-     * @return
+     * @param time1 第一个时间
+     * @param time2 第二个时间
+     * @return 如果time1位于time2之前，返回true，否则返回false
      */
     public static boolean isTimeBefore(Date time1, Date time2) {
         return isTimeAfter(time2, time1);
@@ -261,9 +255,9 @@ public class DateUtils {
     /**
      * 判断两个日期是否同一天（忽略时间部分）
      *
-     * @param date1
-     * @param date2
-     * @return
+     * @param date1 第一个日期
+     * @param date2 第二个日期
+     * @return 如果date1和date2代表相同的日期，返回true，否则返回false
      */
     public static boolean isSameDay(Date date1, Date date2) {
         return org.apache.commons.lang3.time.DateUtils.isSameDay(date1, date2);
@@ -272,9 +266,9 @@ public class DateUtils {
     /**
      * 判断两个日历天是否同一天（忽略时间部分）
      *
-     * @param date1
-     * @param date2
-     * @return
+     * @param date1 第一个日期
+     * @param date2 第二个日期
+     * @return 如果date1和date2代表相同的日期，返回true，否则返回false
      */
     public static boolean isSameDay(Calendar date1, Calendar date2) {
         return org.apache.commons.lang3.time.DateUtils.isSameDay(date1, date2);
@@ -283,8 +277,8 @@ public class DateUtils {
     /**
      * 将字符串形式的日期表示解析为日期对象
      *
-     * @param dateString
-     * @return
+     * @param dateString 代表日期的字符串
+     * @return 一个日期
      */
     public static Date parseDate(String dateString) {
         try {
@@ -297,10 +291,10 @@ public class DateUtils {
     }
 
     /**
-     * 将字符串形式的时间表示解析为日期时间对象
+     * 将字符串形式的时间表示解析为时间对象
      *
-     * @param timeString
-     * @return
+     * @param timeString 代表时间的字符串
+     * @return 一个日期
      */
     public static Date parseTime(String timeString) {
         try {
@@ -315,8 +309,8 @@ public class DateUtils {
     /**
      * 将字符串形式的日期时间表示解析为时间对象
      *
-     * @param timeString
-     * @return
+     * @param timeString 代表时间的字符串
+     * @return 一个日期
      */
     public static Date parseDateTime(String timeString) {
         try {
@@ -335,7 +329,7 @@ public class DateUtils {
      * @param fromDate 起始日期
      * @param toDate 结束日期
      * @param dayOfWeek 星期，例如星期三，星期四
-     * @return
+     * @return 两个日期之间包含的星期X的数量
      */
     public static int getWeekDaysBetween(Date fromDate, Date toDate,
             int dayOfWeek) {
@@ -359,7 +353,7 @@ public class DateUtils {
      * @param fromDate 起始日期
      * @param toDate 结束日期
      * @param dayOfWeek 星期，例如星期三，星期四
-     * @return
+     * @return 两个日期之间的第一个星期X
      */
     public static Date getFirstWeekdayBetween(Date fromDate, Date toDate,
             int dayOfWeek) {
@@ -377,8 +371,8 @@ public class DateUtils {
     /**
      * 取得参数year指定的年份的总天数
      *
-     * @param year
-     * @return
+     * @param year 年份
+     * @return 当年的总天数
      */
     public static int getDaysInYear(int year) {
         Calendar aDay = Calendar.getInstance();
@@ -392,9 +386,9 @@ public class DateUtils {
     /**
      * 取得指定年月的总天数
      *
-     * @param year
-     * @param month
-     * @return
+     * @param year 年份
+     * @param month 月份
+     * @return 当月的总天数
      */
     public static int getDaysInMonth(int year, int month) {
         Calendar aDay = Calendar.getInstance();
@@ -412,8 +406,8 @@ public class DateUtils {
     /**
      * 获得指定日期的年份
      *
-     * @param date
-     * @return
+     * @param date 一个日期
+     * @return 日期所属的年份
      */
     public static int getYear(Date date) {
         return getFieldValue(date, Calendar.YEAR);
@@ -422,8 +416,8 @@ public class DateUtils {
     /**
      * 获得指定日期的月份
      *
-     * @param date
-     * @return
+     * @param date 一个日期
+     * @return 日期所属的月份
      */
     public static int getMonth(Date date) {
         return getFieldValue(date, Calendar.MONTH) + 1;
@@ -432,8 +426,8 @@ public class DateUtils {
     /**
      * 获得指定日期是当年的第几天
      *
-     * @param date
-     * @return
+     * @param date 一个日期
+     * @return 日期在当年中是第几天
      */
     public static int getDayOfYear(Date date) {
         return getFieldValue(date, Calendar.DAY_OF_YEAR);
@@ -442,8 +436,8 @@ public class DateUtils {
     /**
      * 获得指定日期是当月的第几天
      *
-     * @param date
-     * @return
+     * @param date 一个日期
+     * @return 日期在当月中是第几天
      */
     public static int getDayOfMonth(Date date) {
         return getFieldValue(date, Calendar.DAY_OF_MONTH);
@@ -452,8 +446,8 @@ public class DateUtils {
     /**
      * 获得指定日期是当周的第几天
      *
-     * @param date
-     * @return
+     * @param date 一个日期
+     * @return 日期在本周中是第几天
      */
     public static int getDayOfWeek(Date date) {
         return getFieldValue(date, Calendar.DAY_OF_WEEK);
@@ -474,7 +468,7 @@ public class DateUtils {
      * @param origDate 基准日期
      * @param amount 时间数量
      * @param timeUnit 时间单位，如年、月、日等。用Calendar中的常量代表
-     * @return
+     * @return 一个日期
      */
     public static final Date dateAfter(Date origDate, int amount, int timeUnit) {
         Calendar calendar = Calendar.getInstance();
@@ -489,7 +483,7 @@ public class DateUtils {
      * @param origDate 基准日期
      * @param amount 时间数量
      * @param timeUnit 时间单位，如年、月、日等。用Calendar中的常量代表
-     * @return
+     * @return 一个日期
      */
     public static final Date dateBefore(Date origDate, int amount, int timeUnit) {
         Calendar calendar = Calendar.getInstance();
