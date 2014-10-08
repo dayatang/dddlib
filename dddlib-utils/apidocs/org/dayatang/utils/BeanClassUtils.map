@@ -1,6 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./BeanUtils.html" title="org.dayatang.utils.BeanUtils" alt="" coords="33,17,107,42"/>
-<area shape="rect" id="node1" href="./BeanUtils.html" title="&lt;TABLE&gt;" alt="" coords="23,5,117,53"/>
-<area shape="rect" id="node2_1" href="./BeanClassUtils.html" title="org.dayatang.utils.BeanClassUtils" alt="" coords="16,127,124,153"/>
-<area shape="rect" id="node2" href="./BeanClassUtils.html" title="&lt;TABLE&gt;" alt="" coords="5,116,135,164"/>
+<area shape="rect" id="node1_0" href="./BeanClassUtils.html" title="org.dayatang.utils.BeanClassUtils" alt="" coords="16,17,124,42"/>
+<area shape="rect" id="node1" href="./BeanClassUtils.html" title="&lt;TABLE&gt;" alt="" coords="5,5,135,53"/>
 </map>

@@ -1,10 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./GsonObjectSerializerTest.html" title="org.dayatang.utils.GsonObjectSerializerTest" alt="" coords="225,17,389,42"/>
-<area shape="rect" id="node1" href="./GsonObjectSerializerTest.html" title="&lt;TABLE&gt;" alt="" coords="215,5,400,53"/>
-<area shape="rect" id="node2_1" href="./support/DomainEventSub.html" title="org.dayatang.utils.support.DomainEventSub" alt="" coords="16,121,180,164"/>
-<area shape="rect" id="node2" href="./support/DomainEventSub.html" title="&lt;TABLE&gt;" alt="" coords="5,116,191,169"/>
-<area shape="rect" id="node3_2" href="./support/DictionaryCategory.html" title="org.dayatang.utils.support.DictionaryCategory" alt="" coords="225,121,389,164"/>
-<area shape="rect" id="node3" href="./support/DictionaryCategory.html" title="&lt;TABLE&gt;" alt="" coords="215,116,400,169"/>
-<area shape="rect" id="node4_3" href="./support/Dictionary.html" title="org.dayatang.utils.support.Dictionary" alt="" coords="325,237,489,280"/>
-<area shape="rect" id="node4" href="./support/Dictionary.html" title="&lt;TABLE&gt;" alt="" coords="315,232,500,285"/>
+<area shape="rect" id="node1_0" href="./GsonObjectSerializerTest.html" title="org.dayatang.utils.GsonObjectSerializerTest" alt="" coords="16,17,180,42"/>
+<area shape="rect" id="node1" href="./GsonObjectSerializerTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,191,53"/>
 </map>

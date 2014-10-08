@@ -1,4 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Page.html" title="org.dayatang.utils.Page" alt="" coords="16,17,88,42"/>
-<area shape="rect" id="node1" href="./Page.html" title="&lt;TABLE&gt;" alt="" coords="5,5,99,53"/>
+<area shape="rect" id="node1_0" href="./Page.html" title="org.dayatang.utils.Page" alt="" coords="22,118,94,143"/>
+<area shape="rect" id="node1" href="./Page.html" title="&lt;TABLE&gt;" alt="" coords="11,107,105,155"/>
+<area shape="rect" id="node2_1" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="java.io.Serializable" alt="" coords="16,11,100,53"/>
+<area shape="rect" id="node2" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="&lt;TABLE&gt;" alt="" coords="5,5,111,59"/>
 </map>

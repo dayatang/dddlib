@@ -35,7 +35,5 @@ digraph G {
 		</table>>, URL="./Dictionary.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.utils.support.DomainEventSub extends org.dayatang.utils.support.DomainEvent
 	c45:p -> c44:p [dir=back,arrowtail=empty];
-	// org.dayatang.utils.support.DictionaryCategory NAVASSOC org.dayatang.utils.support.Dictionary
-	c46:p -> c47:p [taillabel="", label=" "headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

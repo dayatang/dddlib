@@ -9,28 +9,19 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.utils.BeanUtilsTest
-	c157 [label=<<table title="org.dayatang.utils.BeanUtilsTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../BeanUtilsTest.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> BeanUtilsTest </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.utils </td></tr>
-		</table></td></tr>
-		</table>>, URL="../BeanUtilsTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.utils.beans.Item
-	c161 [label=<<table title="org.dayatang.utils.beans.Item" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Item.html">
+	c154 [label=<<table title="org.dayatang.utils.beans.Item" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Item.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Item </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Item.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.utils.beans.ConcreteItem
-	c162 [label=<<table title="org.dayatang.utils.beans.ConcreteItem" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ConcreteItem.html">
+	c155 [label=<<table title="org.dayatang.utils.beans.ConcreteItem" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ConcreteItem.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConcreteItem </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConcreteItem.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.utils.beans.ConcreteItem extends org.dayatang.utils.beans.Item
-	c161:p -> c162:p [dir=back,arrowtail=empty];
-	// org.dayatang.utils.BeanUtilsTest NAVASSOC org.dayatang.utils.beans.ConcreteItem
-	c157:p -> c162:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+	c154:p -> c155:p [dir=back,arrowtail=empty];
 }
 
