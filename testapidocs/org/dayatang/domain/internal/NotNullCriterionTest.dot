@@ -10,18 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.internal.NotNullCriterionTest
-	c35573 [label=<<table title="org.dayatang.domain.internal.NotNullCriterionTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./NotNullCriterionTest.html">
+	c35230 [label=<<table title="org.dayatang.domain.internal.NotNullCriterionTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./NotNullCriterionTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NotNullCriterionTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./NotNullCriterionTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.internal.NotNullCriterionTest NAVASSOC org.dayatang.domain.internal.NotNullCriterion
-	c35573:p -> c35726:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.internal.NotNullCriterion
-	c35726 [label=<<table title="org.dayatang.domain.internal.NotNullCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/internal/NotNullCriterion.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> NotNullCriterion </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/internal/NotNullCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

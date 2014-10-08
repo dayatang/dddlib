@@ -1,14 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../../../../dayatang/domain/EntityRepository.html" title="org.dayatang.domain.EntityRepository" alt="" coords="171,241,309,301"/>
-<area shape="rect" id="node1" href="../../../../dayatang/domain/EntityRepository.html" title="&lt;TABLE&gt;" alt="" coords="160,236,320,307"/>
-<area shape="rect" id="node2_1" href="../../domain/Post.html" title="org.dddlib.organisation.domain.Post" alt="" coords="131,375,319,417"/>
-<area shape="rect" id="node2" href="../../domain/Post.html" title="&lt;TABLE&gt;" alt="" coords="121,369,330,423"/>
-<area shape="rect" id="node4_2" href="../../domain/Organization.html" title="org.dddlib.organisation.domain.Organization" alt="" coords="269,491,457,533"/>
-<area shape="rect" id="node4" href="../../domain/Organization.html" title="&lt;TABLE&gt;" alt="" coords="258,485,467,539"/>
-<area shape="rect" id="node3_3" href="../../domain/Party.html" title="org.dddlib.organisation.domain.Party" alt="" coords="355,250,543,293"/>
-<area shape="rect" id="node3" href="../../domain/Party.html" title="&lt;TABLE&gt;" alt="" coords="345,245,554,298"/>
-<area shape="rect" id="node5_4" href="./OrganisationApplicationImpl.html" title="org.dddlib.organisation.application.impl.OrganisationApplicationImpl" alt="" coords="152,137,328,162"/>
-<area shape="rect" id="node5" href="./OrganisationApplicationImpl.html" title="&lt;TABLE&gt;" alt="" coords="141,125,339,173"/>
-<area shape="rect" id="node6_5" href="../OrganisationApplication.html" title="org.dddlib.organisation.application.OrganisationApplication" alt="" coords="16,11,224,71"/>
-<area shape="rect" id="node6" href="../OrganisationApplication.html" title="&lt;TABLE&gt;" alt="" coords="5,5,235,76"/>
+<area shape="rect" id="node1_0" href="./OrganisationApplicationImpl.html" title="org.dddlib.organisation.application.impl.OrganisationApplicationImpl" alt="" coords="16,118,192,143"/>
+<area shape="rect" id="node1" href="./OrganisationApplicationImpl.html" title="&lt;TABLE&gt;" alt="" coords="5,107,203,155"/>
+<area shape="rect" id="node2_1" href="../OrganisationApplication.html" title="org.dddlib.organisation.application.OrganisationApplication" alt="" coords="27,11,181,53"/>
+<area shape="rect" id="node2" href="../OrganisationApplication.html" title="&lt;TABLE&gt;" alt="" coords="17,5,191,59"/>
 </map>

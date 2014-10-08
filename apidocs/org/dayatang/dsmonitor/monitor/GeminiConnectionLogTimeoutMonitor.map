@@ -1,10 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../../utils/Slf4JLogger.html" title="org.dayatang.utils.Slf4JLogger" alt="" coords="43,219,162,261"/>
-<area shape="rect" id="node1" href="../../utils/Slf4JLogger.html" title="&lt;TABLE&gt;" alt="" coords="32,213,172,267"/>
-<area shape="rect" id="node2_1" href="../GeminiConnection.html" title="org.dayatang.dsmonitor.GeminiConnection" alt="" coords="252,219,403,261"/>
-<area shape="rect" id="node2" href="../GeminiConnection.html" title="&lt;TABLE&gt;" alt="" coords="242,213,414,267"/>
-<area shape="rect" id="node3_2" href="./GeminiConnectionLogTimeoutMonitor.html" title="org.dayatang.dsmonitor.monitor.GeminiConnectionLogTimeoutMonitor" alt="" coords="43,114,268,139"/>
-<area shape="rect" id="node3" href="./GeminiConnectionLogTimeoutMonitor.html" title="&lt;TABLE&gt;" alt="" coords="32,103,279,151"/>
-<area shape="rect" id="node4_3" href="./AbstractGeminiConnectionTimeoutMonitor.html" title="org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor" alt="" coords="144,17,408,42"/>
-<area shape="rect" id="node4" href="./AbstractGeminiConnectionTimeoutMonitor.html" title="&lt;TABLE&gt;" alt="" coords="133,5,418,53"/>
+<area shape="rect" id="node1_0" href="./GeminiConnectionLogTimeoutMonitor.html" title="org.dayatang.dsmonitor.monitor.GeminiConnectionLogTimeoutMonitor" alt="" coords="35,113,261,138"/>
+<area shape="rect" id="node1" href="./GeminiConnectionLogTimeoutMonitor.html" title="&lt;TABLE&gt;" alt="" coords="25,101,271,149"/>
+<area shape="rect" id="node2_1" href="./AbstractGeminiConnectionTimeoutMonitor.html" title="org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor" alt="" coords="16,17,280,42"/>
+<area shape="rect" id="node2" href="./AbstractGeminiConnectionTimeoutMonitor.html" title="&lt;TABLE&gt;" alt="" coords="5,5,291,53"/>
 </map>

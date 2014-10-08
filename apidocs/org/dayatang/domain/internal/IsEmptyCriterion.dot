@@ -9,28 +9,19 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.domain.NamedParameters
-	c60075 [label=<<table title="org.dayatang.domain.NamedParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../NamedParameters.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> NamedParameters </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="../NamedParameters.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.IsEmptyCriterion
-	c60120 [label=<<table title="org.dayatang.domain.internal.IsEmptyCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./IsEmptyCriterion.html">
+	c59888 [label=<<table title="org.dayatang.domain.internal.IsEmptyCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./IsEmptyCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> IsEmptyCriterion </td></tr>
 		</table></td></tr>
 		</table>>, URL="./IsEmptyCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.BasicCriterion
-	c60132 [label=<<table title="org.dayatang.domain.internal.BasicCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BasicCriterion.html">
+	c59900 [label=<<table title="org.dayatang.domain.internal.BasicCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BasicCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BasicCriterion </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./BasicCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.internal.IsEmptyCriterion extends org.dayatang.domain.internal.BasicCriterion
-	c60132:p -> c60120:p [dir=back,arrowtail=empty];
-	// org.dayatang.domain.internal.IsEmptyCriterion DEPEND org.dayatang.domain.NamedParameters
-	c60120:p -> c60075:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c59900:p -> c59888:p [dir=back,arrowtail=empty];
 }
 

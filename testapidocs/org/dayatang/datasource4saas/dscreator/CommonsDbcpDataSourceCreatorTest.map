@@ -1,8 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./CommonsDbcpDataSourceCreatorTest.html" title="org.dayatang.datasource4saas.dscreator.CommonsDbcpDataSourceCreatorTest" alt="" coords="123,17,365,42"/>
-<area shape="rect" id="node1" href="./CommonsDbcpDataSourceCreatorTest.html" title="&lt;TABLE&gt;" alt="" coords="112,5,376,53"/>
-<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/datasource4saas/dscreator/CommonsDbcpDataSourceCreator.html" title="org.dayatang.datasource4saas.dscreator.CommonsDbcpDataSourceCreator" alt="" coords="16,139,235,164"/>
-<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/datasource4saas/dscreator/CommonsDbcpDataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="5,127,245,175"/>
-<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/configuration/Configuration.html" title="org.dayatang.configuration.Configuration" alt="" coords="281,121,447,181"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/configuration/Configuration.html" title="&lt;TABLE&gt;" alt="" coords="270,116,458,187"/>
+<area shape="rect" id="node1_0" href="./CommonsDbcpDataSourceCreatorTest.html" title="org.dayatang.datasource4saas.dscreator.CommonsDbcpDataSourceCreatorTest" alt="" coords="16,17,259,42"/>
+<area shape="rect" id="node1" href="./CommonsDbcpDataSourceCreatorTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,269,53"/>
 </map>

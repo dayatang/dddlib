@@ -1,10 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./EventStore.html" title="org.dayatang.domain.event.EventStore" alt="" coords="16,224,97,267"/>
-<area shape="rect" id="node1" href="./EventStore.html" title="&lt;TABLE&gt;" alt="" coords="5,219,108,272"/>
-<area shape="rect" id="node2_1" href="./DomainEventBusImpl.html" title="org.dayatang.domain.event.DomainEventBusImpl" alt="" coords="75,119,217,145"/>
-<area shape="rect" id="node2" href="./DomainEventBusImpl.html" title="&lt;TABLE&gt;" alt="" coords="64,108,228,156"/>
-<area shape="rect" id="node4_2" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/common/eventbus/EventBus.html" title="com.google.common.eventbus.EventBus" alt="" coords="143,224,331,267"/>
-<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/common/eventbus/EventBus.html" title="&lt;TABLE&gt;" alt="" coords="132,219,341,272"/>
-<area shape="rect" id="node3_3" href="./DomainEventBus.html" title="org.dayatang.domain.event.DomainEventBus" alt="" coords="86,11,206,53"/>
-<area shape="rect" id="node3" href="./DomainEventBus.html" title="&lt;TABLE&gt;" alt="" coords="75,5,217,59"/>
+<area shape="rect" id="node1_0" href="./DomainEventBusImpl.html" title="org.dayatang.domain.event.DomainEventBusImpl" alt="" coords="16,118,159,143"/>
+<area shape="rect" id="node1" href="./DomainEventBusImpl.html" title="&lt;TABLE&gt;" alt="" coords="5,107,169,155"/>
+<area shape="rect" id="node2_1" href="./DomainEventBus.html" title="org.dayatang.domain.event.DomainEventBus" alt="" coords="27,11,147,53"/>
+<area shape="rect" id="node2" href="./DomainEventBus.html" title="&lt;TABLE&gt;" alt="" coords="17,5,158,59"/>
 </map>

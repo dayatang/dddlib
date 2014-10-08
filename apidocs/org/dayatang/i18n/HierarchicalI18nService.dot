@@ -10,33 +10,28 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.i18n.I18nService
-	c55514 [label=<<table title="org.dayatang.i18n.I18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./I18nService.html">
+	c55276 [label=<<table title="org.dayatang.i18n.I18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./I18nService.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> I18nService </td></tr>
 		</table></td></tr>
 		</table>>, URL="./I18nService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.i18n.HierarchicalI18nService
-	c55515 [label=<<table title="org.dayatang.i18n.HierarchicalI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./HierarchicalI18nService.html">
+	c55277 [label=<<table title="org.dayatang.i18n.HierarchicalI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./HierarchicalI18nService.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> HierarchicalI18nService </td></tr>
 		</table></td></tr>
 		</table>>, URL="./HierarchicalI18nService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.i18n.impl.AbstractI18nService
-	c55518 [label=<<table title="org.dayatang.i18n.impl.AbstractI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./impl/AbstractI18nService.html">
+	c55280 [label=<<table title="org.dayatang.i18n.impl.AbstractI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./impl/AbstractI18nService.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractI18nService </font></td></tr>
-<tr><td align="center" balign="center"> org.dayatang.i18n.impl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./impl/AbstractI18nService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.i18n.HierarchicalI18nService implements org.dayatang.i18n.I18nService
-	c55514:p -> c55515:p [dir=back,arrowtail=empty,style=dashed];
+	c55276:p -> c55277:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.i18n.impl.AbstractI18nService implements org.dayatang.i18n.HierarchicalI18nService
-	c55515:p -> c55518:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.i18n.impl.AbstractI18nService NAVASSOC org.dayatang.i18n.I18nService
-	c55518:p -> c55514:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.i18n.impl.AbstractI18nService DEPEND org.dayatang.i18n.I18nService
-	c55518:p -> c55514:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c55277:p -> c55280:p [dir=back,arrowtail=empty,style=dashed];
 }
 

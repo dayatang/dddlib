@@ -1,8 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../api/ImageAccess.html" title="org.dddlib.image.api.ImageAccess" alt="" coords="27,11,158,71"/>
-<area shape="rect" id="node1" href="../api/ImageAccess.html" title="&lt;TABLE&gt;" alt="" coords="17,5,169,76"/>
-<area shape="rect" id="node2_1" href="../api/pojo/ImageFile.html" title="org.dddlib.image.api.pojo.ImageFile" alt="" coords="16,241,175,284"/>
-<area shape="rect" id="node2" href="../api/pojo/ImageFile.html" title="&lt;TABLE&gt;" alt="" coords="5,236,185,289"/>
-<area shape="rect" id="node3_2" href="./FileImageAccess.html" title="org.dddlib.image.file.FileImageAccess" alt="" coords="101,137,215,162"/>
-<area shape="rect" id="node3" href="./FileImageAccess.html" title="&lt;TABLE&gt;" alt="" coords="90,125,226,173"/>
+<area shape="rect" id="node1_0" href="../api/ImageAccess.html" title="org.dddlib.image.api.ImageAccess" alt="" coords="25,11,121,53"/>
+<area shape="rect" id="node1" href="../api/ImageAccess.html" title="&lt;TABLE&gt;" alt="" coords="15,5,132,59"/>
+<area shape="rect" id="node2_1" href="./FileImageAccess.html" title="org.dddlib.image.file.FileImageAccess" alt="" coords="16,118,131,143"/>
+<area shape="rect" id="node2" href="./FileImageAccess.html" title="&lt;TABLE&gt;" alt="" coords="5,107,141,155"/>
 </map>

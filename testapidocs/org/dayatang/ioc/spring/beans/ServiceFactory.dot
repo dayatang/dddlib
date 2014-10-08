@@ -10,29 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.ioc.spring.beans.ServiceFactory
-	c41183 [label=<<table title="org.dayatang.ioc.spring.beans.ServiceFactory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ServiceFactory.html">
+	c40788 [label=<<table title="org.dayatang.ioc.spring.beans.ServiceFactory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ServiceFactory.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ServiceFactory </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ServiceFactory.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.ioc.spring.beans.ServiceFactory implements org.springframework.beans.factory.FactoryBean<T>
-	c41292:p -> c41183:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.ioc.spring.beans.ServiceFactory DEPEND org.dayatang.ioc.test.MyService1
-	c41183:p -> c41293:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c40897:p -> c40788:p [dir=back,arrowtail=empty,style=dashed];
 	// org.springframework.beans.factory.FactoryBean<T>
-	c41292 [label=<<table title="org.springframework.beans.factory.FactoryBean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/beans/factory/FactoryBean.html">
+	c40897 [label=<<table title="org.springframework.beans.factory.FactoryBean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> FactoryBean&lt;T&gt; </td></tr>
-<tr><td align="center" balign="center"> org.springframework.beans.factory </td></tr>
 		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/beans/factory/FactoryBean.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.ioc.test.MyService1
-	c41293 [label=<<table title="org.dayatang.ioc.test.MyService1" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/MyService1.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> MyService1 </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.ioc.test </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/MyService1.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

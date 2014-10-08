@@ -10,28 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.internal.NotCriterionTest
-	c34622 [label=<<table title="org.dayatang.domain.internal.NotCriterionTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./NotCriterionTest.html">
+	c34285 [label=<<table title="org.dayatang.domain.internal.NotCriterionTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./NotCriterionTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NotCriterionTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./NotCriterionTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.internal.NotCriterionTest NAVASSOC org.dayatang.domain.QueryCriterion
-	c34622:p -> c34770:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.internal.NotCriterionTest NAVASSOC org.dayatang.domain.internal.NotCriterion
-	c34622:p -> c34771:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.internal.NotCriterion
-	c34771 [label=<<table title="org.dayatang.domain.internal.NotCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/internal/NotCriterion.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> NotCriterion </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/internal/NotCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.QueryCriterion
-	c34770 [label=<<table title="org.dayatang.domain.QueryCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/QueryCriterion.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> QueryCriterion </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/QueryCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

@@ -75,12 +75,6 @@ digraph G {
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> ImType </td></tr>
 		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> QQ </td></tr>
-<tr><td align="left" balign="left"> MSN </td></tr>
-<tr><td align="left" balign="left"> GTALK </td></tr>
-<tr><td align="left" balign="left"> WANGWANG </td></tr>
-		</table></td></tr>
 		</table>>, URL="./ImType.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.HrException
 	c16939 [label=<<table title="org.dddlib.organisation.domain.HrException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./HrException.html">
@@ -156,19 +150,5 @@ digraph G {
 	c16936:p -> c16944:p [dir=back,arrowtail=empty];
 	//org.dddlib.organisation.domain.Company extends org.dddlib.organisation.domain.Organization
 	c16936:p -> c16945:p [dir=back,arrowtail=empty];
-	// org.dddlib.organisation.domain.Post NAVASSOC org.dddlib.organisation.domain.Organization
-	c16930:p -> c16936:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dddlib.organisation.domain.Post NAVASSOC org.dddlib.organisation.domain.Job
-	c16930:p -> c16937:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dddlib.organisation.domain.Person NAVASSOC org.dddlib.organisation.domain.PersonName
-	c16933:p -> c16931:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dddlib.organisation.domain.Person NAVASSOC org.dddlib.organisation.domain.Email
-	c16933:p -> c16943:p [taillabel="", label=" "headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dddlib.organisation.domain.Person NAVASSOC org.dddlib.organisation.domain.Address
-	c16933:p -> c16946:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dddlib.organisation.domain.EmployeeArchieve NAVASSOC org.dddlib.organisation.domain.Employee
-	c16941:p -> c16942:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dddlib.organisation.domain.Employee NAVASSOC org.dddlib.organisation.domain.Person
-	c16942:p -> c16933:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

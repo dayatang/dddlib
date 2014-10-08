@@ -10,10 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.ioc.TheAnnotation
-	c45384 [label=<<table title="org.dayatang.domain.ioc.TheAnnotation" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./TheAnnotation.html">
+	c44954 [label=<<table title="org.dayatang.domain.ioc.TheAnnotation" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./TheAnnotation.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> TheAnnotation </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./TheAnnotation.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	//org.dayatang.domain.ioc.TheAnnotation implements java.lang.annotation.Annotation
+	c45083:p -> c44954:p [dir=back,arrowtail=empty,style=dashed];
+	// java.lang.annotation.Annotation
+	c45083 [label=<<table title="java.lang.annotation.Annotation" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/lang/annotation/Annotation.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> Annotation </td></tr>
+		</table></td></tr>
+		</table>>, URL="http://download.oracle.com/javase/7/docs/api/java/lang/annotation/Annotation.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

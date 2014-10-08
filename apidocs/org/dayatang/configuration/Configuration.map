@@ -1,14 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./WritableConfiguration.html" title="org.dayatang.configuration.WritableConfiguration" alt="" coords="43,457,181,500"/>
-<area shape="rect" id="node1" href="./WritableConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="32,452,192,505"/>
-<area shape="rect" id="node2_1" href="./Configuration.html" title="org.dayatang.configuration.Configuration" alt="" coords="259,355,351,397"/>
-<area shape="rect" id="node2" href="./Configuration.html" title="&lt;TABLE&gt;" alt="" coords="249,349,362,403"/>
-<area shape="rect" id="node4_2" href="./impl/AbstractConfiguration.html" title="org.dayatang.configuration.impl.AbstractConfiguration" alt="" coords="227,457,419,500"/>
-<area shape="rect" id="node4" href="./impl/AbstractConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="216,452,429,505"/>
-<area shape="rect" id="node3_3" href="./impl/ConfigurationFactoryImpl.html" title="org.dayatang.configuration.impl.ConfigurationFactoryImpl" alt="" coords="16,183,208,225"/>
-<area shape="rect" id="node3" href="./impl/ConfigurationFactoryImpl.html" title="&lt;TABLE&gt;" alt="" coords="5,177,219,231"/>
-<area shape="rect" id="node5_4" href="../datasource4saas/dscreator/TenantDbMappingStrategy.html" title="org.dayatang.datasource4saas.dscreator.TenantDbMappingStrategy" alt="" coords="361,127,613,281"/>
-<area shape="rect" id="node5" href="../datasource4saas/dscreator/TenantDbMappingStrategy.html" title="&lt;TABLE&gt;" alt="" coords="350,121,623,287"/>
-<area shape="rect" id="node6_5" href="../datasource4saas/dscreator/AbstractDataSourceCreator.html" title="org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator" alt="" coords="194,11,446,53"/>
-<area shape="rect" id="node6" href="../datasource4saas/dscreator/AbstractDataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="183,5,457,59"/>
+<area shape="rect" id="node1_0" href="./WritableConfiguration.html" title="org.dayatang.configuration.WritableConfiguration" alt="" coords="16,112,155,155"/>
+<area shape="rect" id="node1" href="./WritableConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="5,107,165,160"/>
+<area shape="rect" id="node2_1" href="./Configuration.html" title="org.dayatang.configuration.Configuration" alt="" coords="133,11,225,53"/>
+<area shape="rect" id="node2" href="./Configuration.html" title="&lt;TABLE&gt;" alt="" coords="122,5,235,59"/>
+<area shape="rect" id="node3_2" href="./impl/AbstractConfiguration.html" title="org.dayatang.configuration.impl.AbstractConfiguration" alt="" coords="200,121,344,146"/>
+<area shape="rect" id="node3" href="./impl/AbstractConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="189,109,355,157"/>
 </map>

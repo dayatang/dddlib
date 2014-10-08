@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Slf4JLogger.html" title="org.dayatang.utils.Slf4JLogger" alt="" coords="16,133,100,158"/>
-<area shape="rect" id="node1" href="./Slf4JLogger.html" title="&lt;TABLE&gt;" alt="" coords="5,121,111,169"/>
+<area shape="rect" id="node1_0" href="./Slf4JLogger.html" title="org.dayatang.utils.Slf4JLogger" alt="" coords="16,118,100,143"/>
+<area shape="rect" id="node1" href="./Slf4JLogger.html" title="&lt;TABLE&gt;" alt="" coords="5,107,111,155"/>
 <area shape="rect" id="node2_1" href="./PropertiesReader.html" title="org.dayatang.utils.PropertiesReader" alt="" coords="145,19,262,45"/>
 <area shape="rect" id="node2" href="./PropertiesReader.html" title="&lt;TABLE&gt;" alt="" coords="134,8,273,56"/>
 <area shape="rect" id="node3_2" href="./Page.html" title="org.dayatang.utils.Page" alt="" coords="307,19,379,45"/>
@@ -19,10 +19,10 @@
 <area shape="rect" id="node9" href="./CollectionUtils.html" title="&lt;TABLE&gt;" alt="" coords="935,8,1053,56"/>
 <area shape="rect" id="node10_9" href="./BeanUtils.html" title="org.dayatang.utils.BeanUtils" alt="" coords="1088,19,1161,45"/>
 <area shape="rect" id="node10" href="./BeanUtils.html" title="&lt;TABLE&gt;" alt="" coords="1077,8,1172,56"/>
-<area shape="rect" id="node11_10" href="./BeanClassUtils.html" title="org.dayatang.utils.BeanClassUtils" alt="" coords="1071,133,1179,158"/>
-<area shape="rect" id="node11" href="./BeanClassUtils.html" title="&lt;TABLE&gt;" alt="" coords="1060,121,1189,169"/>
-<area shape="rect" id="node12_11" href="./Assert.html" title="org.dayatang.utils.Assert" alt="" coords="1207,19,1263,45"/>
-<area shape="rect" id="node12" href="./Assert.html" title="&lt;TABLE&gt;" alt="" coords="1197,8,1274,56"/>
-<area shape="rect" id="node13_12" href="./ArrayUtils.html" title="org.dayatang.utils.ArrayUtils" alt="" coords="1309,19,1381,45"/>
-<area shape="rect" id="node13" href="./ArrayUtils.html" title="&lt;TABLE&gt;" alt="" coords="1298,8,1391,56"/>
+<area shape="rect" id="node11_10" href="./BeanClassUtils.html" title="org.dayatang.utils.BeanClassUtils" alt="" coords="1207,19,1315,45"/>
+<area shape="rect" id="node11" href="./BeanClassUtils.html" title="&lt;TABLE&gt;" alt="" coords="1196,8,1325,56"/>
+<area shape="rect" id="node12_11" href="./Assert.html" title="org.dayatang.utils.Assert" alt="" coords="1361,19,1417,45"/>
+<area shape="rect" id="node12" href="./Assert.html" title="&lt;TABLE&gt;" alt="" coords="1350,8,1427,56"/>
+<area shape="rect" id="node13_12" href="./ArrayUtils.html" title="org.dayatang.utils.ArrayUtils" alt="" coords="1462,19,1534,45"/>
+<area shape="rect" id="node13" href="./ArrayUtils.html" title="&lt;TABLE&gt;" alt="" coords="1451,8,1545,56"/>
 </map>

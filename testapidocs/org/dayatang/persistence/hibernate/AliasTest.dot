@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.persistence.hibernate.AliasTest
-	c13444 [label=<<table title="org.dayatang.persistence.hibernate.AliasTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AliasTest.html">
+	c13233 [label=<<table title="org.dayatang.persistence.hibernate.AliasTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AliasTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AliasTest </td></tr>
 		</table></td></tr>

@@ -1,10 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../domain/event/StoredEvent.html" title="org.dayatang.domain.event.StoredEvent" alt="" coords="16,241,188,284"/>
-<area shape="rect" id="node1" href="../domain/event/StoredEvent.html" title="&lt;TABLE&gt;" alt="" coords="5,236,199,289"/>
-<area shape="rect" id="node2_1" href="../domain/event/EventStore.html" title="org.dayatang.domain.event.EventStore" alt="" coords="124,11,296,71"/>
-<area shape="rect" id="node2" href="../domain/event/EventStore.html" title="&lt;TABLE&gt;" alt="" coords="113,5,307,76"/>
-<area shape="rect" id="node4_2" href="./MySqlEventStore.html" title="org.dayatang.mysql.MySqlEventStore" alt="" coords="151,137,269,162"/>
-<area shape="rect" id="node4" href="./MySqlEventStore.html" title="&lt;TABLE&gt;" alt="" coords="141,125,279,173"/>
-<area shape="rect" id="node3_3" href="../domain/event/DomainEvent.html" title="org.dayatang.domain.event.DomainEvent" alt="" coords="233,241,405,284"/>
-<area shape="rect" id="node3" href="../domain/event/DomainEvent.html" title="&lt;TABLE&gt;" alt="" coords="223,236,416,289"/>
+<area shape="rect" id="node1_0" href="../domain/event/EventStore.html" title="org.dayatang.domain.event.EventStore" alt="" coords="34,11,115,53"/>
+<area shape="rect" id="node1" href="../domain/event/EventStore.html" title="&lt;TABLE&gt;" alt="" coords="23,5,126,59"/>
+<area shape="rect" id="node2_1" href="./MySqlEventStore.html" title="org.dayatang.mysql.MySqlEventStore" alt="" coords="16,118,133,143"/>
+<area shape="rect" id="node2" href="./MySqlEventStore.html" title="&lt;TABLE&gt;" alt="" coords="5,107,144,155"/>
 </map>

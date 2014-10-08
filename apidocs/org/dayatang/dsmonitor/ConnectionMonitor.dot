@@ -9,41 +9,20 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.dsmonitor.GeminiWrapperDataSource
-	c32688 [label=<<table title="org.dayatang.dsmonitor.GeminiWrapperDataSource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GeminiWrapperDataSource.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> GeminiWrapperDataSource </td></tr>
-		</table></td></tr>
-		</table>>, URL="./GeminiWrapperDataSource.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.dsmonitor.GeminiConnection
-	c32689 [label=<<table title="org.dayatang.dsmonitor.GeminiConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GeminiConnection.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> GeminiConnection </td></tr>
-		</table></td></tr>
-		</table>>, URL="./GeminiConnection.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.dsmonitor.ConnectionMonitor
-	c32692 [label=<<table title="org.dayatang.dsmonitor.ConnectionMonitor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ConnectionMonitor.html">
+	c32510 [label=<<table title="org.dayatang.dsmonitor.ConnectionMonitor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ConnectionMonitor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ConnectionMonitor </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConnectionMonitor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor
-	c32694 [label=<<table title="org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./monitor/AbstractGeminiConnectionTimeoutMonitor.html">
+	c32512 [label=<<table title="org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./monitor/AbstractGeminiConnectionTimeoutMonitor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractGeminiConnectionTimeoutMonitor </font></td></tr>
-<tr><td align="center" balign="center"> org.dayatang.dsmonitor.monitor </td></tr>
 		</table></td></tr>
 		</table>>, URL="./monitor/AbstractGeminiConnectionTimeoutMonitor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor implements org.dayatang.dsmonitor.ConnectionMonitor
-	c32692:p -> c32694:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.dsmonitor.GeminiWrapperDataSource NAVASSOC org.dayatang.dsmonitor.ConnectionMonitor
-	c32688:p -> c32692:p [taillabel="", label=" "headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.dsmonitor.GeminiConnection NAVASSOC org.dayatang.dsmonitor.ConnectionMonitor
-	c32689:p -> c32692:p [taillabel="", label=" "headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor NAVASSOC org.dayatang.dsmonitor.GeminiConnection
-	c32694:p -> c32689:p [taillabel="", label=" "headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor DEPEND org.dayatang.dsmonitor.GeminiConnection
-	c32694:p -> c32689:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c32510:p -> c32512:p [dir=back,arrowtail=empty,style=dashed];
 }
 

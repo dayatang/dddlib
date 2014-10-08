@@ -10,76 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dddlib.organisation.domain.Post
-	c78104 [label=<<table title="org.dddlib.organisation.domain.Post" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Post.html">
+	c77868 [label=<<table title="org.dddlib.organisation.domain.Post" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Post.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Post </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Post.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Party
-	c78108 [label=<<table title="org.dddlib.organisation.domain.Party" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Party.html">
+	c77872 [label=<<table title="org.dddlib.organisation.domain.Party" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Party.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Party </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./Party.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.organisation.domain.Organization
-	c78110 [label=<<table title="org.dddlib.organisation.domain.Organization" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Organization.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Organization </font></td></tr>
-		</table></td></tr>
-		</table>>, URL="./Organization.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.organisation.domain.Job
-	c78111 [label=<<table title="org.dddlib.organisation.domain.Job" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Job.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Job </td></tr>
-		</table></td></tr>
-		</table>>, URL="./Job.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.organisation.application.impl.OrganisationApplicationImpl
-	c78122 [label=<<table title="org.dddlib.organisation.application.impl.OrganisationApplicationImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../application/impl/OrganisationApplicationImpl.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> OrganisationApplicationImpl </td></tr>
-<tr><td align="center" balign="center"> org.dddlib.organisation.application.impl </td></tr>
-		</table></td></tr>
-		</table>>, URL="../application/impl/OrganisationApplicationImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.organisation.application.OrganisationApplication
-	c78123 [label=<<table title="org.dddlib.organisation.application.OrganisationApplication" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../application/OrganisationApplication.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> OrganisationApplication </td></tr>
-<tr><td align="center" balign="center"> org.dddlib.organisation.application </td></tr>
-		</table></td></tr>
-		</table>>, URL="../application/OrganisationApplication.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.organisation.facade.assembler.PostAssembler
-	c78127 [label=<<table title="org.dddlib.organisation.facade.assembler.PostAssembler" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../facade/assembler/PostAssembler.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> PostAssembler </td></tr>
-<tr><td align="center" balign="center"> org.dddlib.organisation.facade.assembler </td></tr>
-		</table></td></tr>
-		</table>>, URL="../facade/assembler/PostAssembler.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dddlib.organisation.domain.Post extends org.dddlib.organisation.domain.Party
-	c78108:p -> c78104:p [dir=back,arrowtail=empty];
-	//org.dddlib.organisation.domain.Organization extends org.dddlib.organisation.domain.Party
-	c78108:p -> c78110:p [dir=back,arrowtail=empty];
-	//org.dddlib.organisation.domain.Job extends org.dddlib.organisation.domain.Party
-	c78108:p -> c78111:p [dir=back,arrowtail=empty];
-	//org.dddlib.organisation.application.impl.OrganisationApplicationImpl implements org.dddlib.organisation.application.OrganisationApplication
-	c78123:p -> c78122:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dddlib.organisation.domain.Post NAVASSOC org.dddlib.organisation.domain.Organization
-	c78104:p -> c78110:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dddlib.organisation.domain.Post NAVASSOC org.dddlib.organisation.domain.Job
-	c78104:p -> c78111:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dddlib.organisation.application.impl.OrganisationApplicationImpl DEPEND org.dddlib.organisation.domain.Post
-	c78122:p -> c78104:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dddlib.organisation.application.impl.OrganisationApplicationImpl DEPEND org.dddlib.organisation.domain.Organization
-	c78122:p -> c78110:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dddlib.organisation.application.impl.OrganisationApplicationImpl DEPEND org.dddlib.organisation.domain.Party
-	c78122:p -> c78108:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dddlib.organisation.application.OrganisationApplication DEPEND org.dddlib.organisation.domain.Post
-	c78123:p -> c78104:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dddlib.organisation.application.OrganisationApplication DEPEND org.dddlib.organisation.domain.Organization
-	c78123:p -> c78110:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dddlib.organisation.application.OrganisationApplication DEPEND org.dddlib.organisation.domain.Party
-	c78123:p -> c78108:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dddlib.organisation.facade.assembler.PostAssembler DEPEND org.dddlib.organisation.domain.Post
-	c78127:p -> c78104:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c77872:p -> c77868:p [dir=back,arrowtail=empty];
 }
 

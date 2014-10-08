@@ -21,10 +21,6 @@ digraph G {
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> Version </td></tr>
 		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> XLS </td></tr>
-<tr><td align="left" balign="left"> XLSX </td></tr>
-		</table></td></tr>
 		</table>>, URL="./Version.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.excel.ExcelUtils
 	c9906 [label=<<table title="org.dayatang.excel.ExcelUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ExcelUtils.html">
@@ -62,9 +58,5 @@ digraph G {
 <tr><td align="center" balign="center"> ExcelCell </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ExcelCell.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.excel.ExcelRangeData NAVASSOC org.dayatang.excel.Version
-	c9907:p -> c9905:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.excel.ExcelHandler NAVASSOC org.dayatang.excel.Version
-	c9909:p -> c9905:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

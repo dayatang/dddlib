@@ -1,10 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./PostDto.html" title="org.dddlib.organisation.facade.PostDto" alt="" coords="382,133,447,158"/>
-<area shape="rect" id="node1" href="./PostDto.html" title="&lt;TABLE&gt;" alt="" coords="371,121,458,169"/>
-<area shape="rect" id="node2_1" href="./assembler/PostAssembler.html" title="org.dddlib.organisation.facade.assembler.PostAssembler" alt="" coords="16,11,264,53"/>
-<area shape="rect" id="node2" href="./assembler/PostAssembler.html" title="&lt;TABLE&gt;" alt="" coords="5,5,275,59"/>
-<area shape="rect" id="node3_2" href="./impl/OrganisationFacadeImpl.html" title="org.dddlib.organisation.facade.impl.OrganisationFacadeImpl" alt="" coords="309,11,520,53"/>
-<area shape="rect" id="node3" href="./impl/OrganisationFacadeImpl.html" title="&lt;TABLE&gt;" alt="" coords="299,5,531,59"/>
-<area shape="rect" id="node4_3" href="../webapp/controller/PostController.html" title="org.dddlib.organisation.webapp.controller.PostController" alt="" coords="566,11,813,53"/>
-<area shape="rect" id="node4" href="../webapp/controller/PostController.html" title="&lt;TABLE&gt;" alt="" coords="555,5,823,59"/>
+<area shape="rect" id="node1_0" href="./PostDto.html" title="org.dddlib.organisation.facade.PostDto" alt="" coords="16,17,81,42"/>
+<area shape="rect" id="node1" href="./PostDto.html" title="&lt;TABLE&gt;" alt="" coords="5,5,92,53"/>
 </map>

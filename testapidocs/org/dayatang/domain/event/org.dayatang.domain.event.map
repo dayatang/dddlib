@@ -1,18 +1,11 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./StoredEventTest.html" title="org.dayatang.domain.event.StoredEventTest" alt="" coords="16,130,128,155"/>
-<area shape="rect" id="node1" href="./StoredEventTest.html" title="&lt;TABLE&gt;" alt="" coords="5,119,139,167"/>
-<area shape="rect" id="node3_1" href="./DomainEventSub.html" title="org.dayatang.domain.event.DomainEventSub" alt="" coords="161,243,281,269"/>
-<area shape="rect" id="node3" href="./DomainEventSub.html" title="&lt;TABLE&gt;" alt="" coords="151,232,292,280"/>
-<area shape="rect" id="node6_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/StoredEvent.html" title="org.dayatang.domain.event.StoredEvent" alt="" coords="28,243,116,269"/>
-<area shape="rect" id="node6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/StoredEvent.html" title="&lt;TABLE&gt;" alt="" coords="17,232,127,280"/>
-<area shape="rect" id="node2_3" href="./DomainEventTest.html" title="org.dayatang.domain.event.DomainEventTest" alt="" coords="163,17,283,42"/>
-<area shape="rect" id="node2" href="./DomainEventTest.html" title="&lt;TABLE&gt;" alt="" coords="152,5,293,53"/>
-<area shape="rect" id="node5_4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/DomainEvent.html" title="org.dayatang.domain.event.DomainEvent" alt="" coords="174,130,271,155"/>
-<area shape="rect" id="node5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/DomainEvent.html" title="&lt;TABLE&gt;" alt="" coords="163,119,282,167"/>
-<area shape="rect" id="node4_5" href="./DomainEventBusImplTest.html" title="org.dayatang.domain.event.DomainEventBusImplTest" alt="" coords="395,17,562,42"/>
-<area shape="rect" id="node4" href="./DomainEventBusImplTest.html" title="&lt;TABLE&gt;" alt="" coords="385,5,573,53"/>
-<area shape="rect" id="node7_6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/DomainEventBusImpl.html" title="org.dayatang.domain.event.DomainEventBusImpl" alt="" coords="317,130,459,155"/>
-<area shape="rect" id="node7" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/DomainEventBusImpl.html" title="&lt;TABLE&gt;" alt="" coords="306,119,470,167"/>
-<area shape="rect" id="node8_7" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/EventStore.html" title="org.dayatang.domain.event.EventStore" alt="" coords="505,121,586,164"/>
-<area shape="rect" id="node8" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/EventStore.html" title="&lt;TABLE&gt;" alt="" coords="494,116,597,169"/>
+<area shape="rect" id="node1_0" href="./StoredEventTest.html" title="org.dayatang.domain.event.StoredEventTest" alt="" coords="16,17,128,42"/>
+<area shape="rect" id="node1" href="./StoredEventTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,139,53"/>
+<area shape="rect" id="node2_1" href="./DomainEventTest.html" title="org.dayatang.domain.event.DomainEventTest" alt="" coords="173,17,293,42"/>
+<area shape="rect" id="node2" href="./DomainEventTest.html" title="&lt;TABLE&gt;" alt="" coords="163,5,304,53"/>
+<area shape="rect" id="node3_2" href="./DomainEventSub.html" title="org.dayatang.domain.event.DomainEventSub" alt="" coords="328,113,448,138"/>
+<area shape="rect" id="node3" href="./DomainEventSub.html" title="&lt;TABLE&gt;" alt="" coords="317,101,459,149"/>
+<area shape="rect" id="node4_3" href="./DomainEventBusImplTest.html" title="org.dayatang.domain.event.DomainEventBusImplTest" alt="" coords="482,17,649,42"/>
+<area shape="rect" id="node4" href="./DomainEventBusImplTest.html" title="&lt;TABLE&gt;" alt="" coords="471,5,659,53"/>
+<area shape="rect" id="node5" href="null" title="&lt;TABLE&gt;" alt="" coords="329,5,447,53"/>
 </map>

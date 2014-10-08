@@ -10,59 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.persistence.jpa.QueryTest
-	c39295 [label=<<table title="org.dayatang.persistence.jpa.QueryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./QueryTest.html">
+	c38912 [label=<<table title="org.dayatang.persistence.jpa.QueryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./QueryTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> QueryTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./QueryTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.jpa.AbstractIntegrationTest
-	c39300 [label=<<table title="org.dayatang.persistence.jpa.AbstractIntegrationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractIntegrationTest.html">
+	c38917 [label=<<table title="org.dayatang.persistence.jpa.AbstractIntegrationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractIntegrationTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AbstractIntegrationTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractIntegrationTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.persistence.jpa.QueryTest extends org.dayatang.persistence.jpa.AbstractIntegrationTest
-	c39300:p -> c39295:p [dir=back,arrowtail=empty];
-	// org.dayatang.persistence.jpa.QueryTest NAVASSOC org.dayatang.domain.CriteriaQuery
-	c39295:p -> c39380:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.persistence.jpa.QueryTest NAVASSOC org.dayatang.persistence.test.domain.DictionaryCategory
-	c39295:p -> c39381:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.persistence.jpa.QueryTest NAVASSOC org.dayatang.persistence.test.domain.Dictionary
-	c39295:p -> c39382:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.persistence.jpa.QueryTest NAVASSOC org.dayatang.domain.CriterionBuilder
-	c39295:p -> c39383:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.persistence.jpa.QueryTest DEPEND org.dayatang.persistence.test.domain.DictionaryCategory
-	c39295:p -> c39381:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.jpa.QueryTest DEPEND org.dayatang.persistence.test.domain.Dictionary
-	c39295:p -> c39382:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.domain.CriteriaQuery
-	c39380 [label=<<table title="org.dayatang.domain.CriteriaQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/CriteriaQuery.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> CriteriaQuery </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/CriteriaQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.CriterionBuilder
-	c39383 [label=<<table title="org.dayatang.domain.CriterionBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/CriterionBuilder.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> CriterionBuilder </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/CriterionBuilder.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.persistence.test.domain.DictionaryCategory
-	c39381 [label=<<table title="org.dayatang.persistence.test.domain.DictionaryCategory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/test/domain/DictionaryCategory.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> DictionaryCategory </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.persistence.test.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/test/domain/DictionaryCategory.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.persistence.test.domain.Dictionary
-	c39382 [label=<<table title="org.dayatang.persistence.test.domain.Dictionary" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/test/domain/Dictionary.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Dictionary </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.persistence.test.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/test/domain/Dictionary.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	c38917:p -> c38912:p [dir=back,arrowtail=empty];
 }
 

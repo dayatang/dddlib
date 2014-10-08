@@ -9,28 +9,11 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.rule.examples.Person
-	c43899 [label=<<table title="org.dayatang.rule.examples.Person" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./examples/Person.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Person </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.rule.examples </td></tr>
-		</table></td></tr>
-		</table>>, URL="./examples/Person.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.rule.StatefulRuleTemplateTest
-	c43905 [label=<<table title="org.dayatang.rule.StatefulRuleTemplateTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./StatefulRuleTemplateTest.html">
+	c43491 [label=<<table title="org.dayatang.rule.StatefulRuleTemplateTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./StatefulRuleTemplateTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> StatefulRuleTemplateTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./StatefulRuleTemplateTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.rule.StatefulRuleTemplateTest NAVASSOC org.dayatang.rule.StatefulRuleTemplate
-	c43905:p -> c43979:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.rule.StatefulRuleTemplateTest NAVASSOC org.dayatang.rule.examples.Person
-	c43905:p -> c43899:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.rule.StatefulRuleTemplate
-	c43979 [label=<<table title="org.dayatang.rule.StatefulRuleTemplate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/rule/StatefulRuleTemplate.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> StatefulRuleTemplate </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/rule/StatefulRuleTemplate.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

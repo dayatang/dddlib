@@ -44,7 +44,5 @@ digraph G {
 	c14685:p -> c14686:p [dir=back,arrowtail=empty];
 	//org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistry extends org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry
 	c14685:p -> c14687:p [dir=back,arrowtail=empty];
-	// org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistry NAVASSOC org.dayatang.datasource4saas.dsregistry.DataSourceCreator
-	c14687:p -> c14689:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

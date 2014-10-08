@@ -9,76 +9,19 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.utils.Page<T>
-	c28283 [label=<<table title="org.dayatang.utils.Page" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../utils/Page.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Page&lt;T&gt; </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.utils </td></tr>
-		</table></td></tr>
-		</table>>, URL="../../utils/Page.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.JpqlQuery
-	c28307 [label=<<table title="org.dayatang.domain.JpqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../domain/JpqlQuery.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> JpqlQuery </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="../../domain/JpqlQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
-	c28319 [label=<<table title="org.dayatang.domain.BaseQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../domain/BaseQuery.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BaseQuery&lt;E extends org.dayatang.domain.BaseQuery&gt; </font></td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="../../domain/BaseQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery>
-	c28477 [label=<<table title="org.dayatang.querychannel.ChannelQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../ChannelQuery.html">
+	c28293 [label=<<table title="org.dayatang.querychannel.ChannelQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../ChannelQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> ChannelQuery&lt;E extends org.dayatang.querychannel.ChannelQuery&gt; </font></td></tr>
-<tr><td align="center" balign="center"> org.dayatang.querychannel </td></tr>
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> ChannelQuery&lt;E extends ChannelQuery&gt; </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="../ChannelQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.querychannel.impl.QueryChannelServiceImpl
-	c28478 [label=<<table title="org.dayatang.querychannel.impl.QueryChannelServiceImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../impl/QueryChannelServiceImpl.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> QueryChannelServiceImpl </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.querychannel.impl </td></tr>
-		</table></td></tr>
-		</table>>, URL="../impl/QueryChannelServiceImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.querychannel.query.ChannelJpqlQuery
-	c28481 [label=<<table title="org.dayatang.querychannel.query.ChannelJpqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ChannelJpqlQuery.html">
+	c28297 [label=<<table title="org.dayatang.querychannel.query.ChannelJpqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ChannelJpqlQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ChannelJpqlQuery </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ChannelJpqlQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	//org.dayatang.domain.JpqlQuery extends org.dayatang.domain.BaseQuery<org.dayatang.domain.JpqlQuery>
-	c28319:p -> c28307:p [dir=back,arrowtail=empty];
 	//org.dayatang.querychannel.query.ChannelJpqlQuery extends org.dayatang.querychannel.ChannelQuery<org.dayatang.querychannel.query.ChannelJpqlQuery>
-	c28477:p -> c28481:p [dir=back,arrowtail=empty];
-	// org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery> NAVASSOC org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
-	c28477:p -> c28319:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.querychannel.query.ChannelJpqlQuery NAVASSOC org.dayatang.domain.JpqlQuery
-	c28481:p -> c28307:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery> DEPEND org.dayatang.utils.Page<T>
-	c28477:p -> c28283:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery> DEPEND org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
-	c28477:p -> c28319:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery> DEPEND org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
-	c28477:p -> c28319:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.querychannel.impl.QueryChannelServiceImpl DEPEND org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery>
-	c28478:p -> c28477:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.querychannel.impl.QueryChannelServiceImpl DEPEND org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery>
-	c28478:p -> c28477:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.querychannel.impl.QueryChannelServiceImpl DEPEND org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery>
-	c28478:p -> c28477:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.querychannel.impl.QueryChannelServiceImpl DEPEND org.dayatang.utils.Page<T>
-	c28478:p -> c28283:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.querychannel.impl.QueryChannelServiceImpl DEPEND org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery>
-	c28478:p -> c28477:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.querychannel.impl.QueryChannelServiceImpl DEPEND org.dayatang.querychannel.query.ChannelJpqlQuery
-	c28478:p -> c28481:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.querychannel.query.ChannelJpqlQuery DEPEND org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
-	c28481:p -> c28319:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.querychannel.query.ChannelJpqlQuery DEPEND org.dayatang.utils.Page<T>
-	c28481:p -> c28283:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c28293:p -> c28297:p [dir=back,arrowtail=empty];
 }
 

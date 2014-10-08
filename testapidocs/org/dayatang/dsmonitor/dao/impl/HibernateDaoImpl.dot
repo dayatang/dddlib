@@ -10,52 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.dsmonitor.dao.Dao
-	c27875 [label=<<table title="org.dayatang.dsmonitor.dao.Dao" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../Dao.html">
+	c27569 [label=<<table title="org.dayatang.dsmonitor.dao.Dao" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../Dao.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Dao </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.dsmonitor.dao </td></tr>
 		</table></td></tr>
 		</table>>, URL="../Dao.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.dsmonitor.dao.impl.HibernateDaoImpl
-	c27876 [label=<<table title="org.dayatang.dsmonitor.dao.impl.HibernateDaoImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./HibernateDaoImpl.html">
+	c27570 [label=<<table title="org.dayatang.dsmonitor.dao.impl.HibernateDaoImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./HibernateDaoImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> HibernateDaoImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./HibernateDaoImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.dsmonitor.dao.impl.HibernateDaoImpl implements org.dayatang.dsmonitor.dao.Dao
-	c27875:p -> c27876:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.dsmonitor.dao.impl.HibernateDaoImpl NAVASSOC org.hibernate.SessionFactory
-	c27876:p -> c27890:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.dsmonitor.dao.impl.HibernateDaoImpl DEPEND org.hibernate.Query
-	c27876:p -> c27891:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.dsmonitor.dao.impl.HibernateDaoImpl DEPEND org.hibernate.Session
-	c27876:p -> c27892:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.dsmonitor.dao.impl.HibernateDaoImpl DEPEND org.hibernate.SessionFactory
-	c27876:p -> c27890:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.hibernate.SessionFactory
-	c27890 [label=<<table title="org.hibernate.SessionFactory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/SessionFactory.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> SessionFactory </td></tr>
-<tr><td align="center" balign="center"> org.hibernate </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/SessionFactory.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.hibernate.Session
-	c27892 [label=<<table title="org.hibernate.Session" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Session.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Session </td></tr>
-<tr><td align="center" balign="center"> org.hibernate </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Session.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.hibernate.Query
-	c27891 [label=<<table title="org.hibernate.Query" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Query.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Query </td></tr>
-<tr><td align="center" balign="center"> org.hibernate </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Query.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	c27569:p -> c27570:p [dir=back,arrowtail=empty,style=dashed];
 }
 

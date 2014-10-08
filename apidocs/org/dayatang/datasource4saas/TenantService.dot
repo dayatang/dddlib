@@ -10,28 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.datasource4saas.TenantService
-	c92534 [label=<<table title="org.dayatang.datasource4saas.TenantService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./TenantService.html">
+	c92298 [label=<<table title="org.dayatang.datasource4saas.TenantService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./TenantService.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> TenantService </td></tr>
 		</table></td></tr>
 		</table>>, URL="./TenantService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.datasource4saas.SaasDataSource
-	c92535 [label=<<table title="org.dayatang.datasource4saas.SaasDataSource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SaasDataSource.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> SaasDataSource </td></tr>
-		</table></td></tr>
-		</table>>, URL="./SaasDataSource.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.datasource4saas.tenantservice.ThreadLocalTenantService
-	c92551 [label=<<table title="org.dayatang.datasource4saas.tenantservice.ThreadLocalTenantService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./tenantservice/ThreadLocalTenantService.html">
+	c92315 [label=<<table title="org.dayatang.datasource4saas.tenantservice.ThreadLocalTenantService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./tenantservice/ThreadLocalTenantService.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ThreadLocalTenantService </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.datasource4saas.tenantservice </td></tr>
 		</table></td></tr>
 		</table>>, URL="./tenantservice/ThreadLocalTenantService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.datasource4saas.tenantservice.ThreadLocalTenantService implements org.dayatang.datasource4saas.TenantService
-	c92534:p -> c92551:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.datasource4saas.SaasDataSource NAVASSOC org.dayatang.datasource4saas.TenantService
-	c92535:p -> c92534:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+	c92298:p -> c92315:p [dir=back,arrowtail=empty,style=dashed];
 }
 

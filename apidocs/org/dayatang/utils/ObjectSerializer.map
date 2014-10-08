@@ -1,10 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ObjectSerializer.html" title="org.dayatang.utils.ObjectSerializer" alt="" coords="161,127,269,169"/>
-<area shape="rect" id="node1" href="./ObjectSerializer.html" title="&lt;TABLE&gt;" alt="" coords="151,121,280,175"/>
-<area shape="rect" id="node2_1" href="./serializer/GsonObjectSerializer.html" title="org.dayatang.utils.serializer.GsonObjectSerializer" alt="" coords="131,229,300,272"/>
-<area shape="rect" id="node2" href="./serializer/GsonObjectSerializer.html" title="&lt;TABLE&gt;" alt="" coords="120,224,311,277"/>
-<area shape="rect" id="node3_2" href="../domain/event/StoredEvent.html" title="org.dayatang.domain.event.StoredEvent" alt="" coords="16,11,188,53"/>
-<area shape="rect" id="node3" href="../domain/event/StoredEvent.html" title="&lt;TABLE&gt;" alt="" coords="5,5,199,59"/>
-<area shape="rect" id="node4_3" href="../configuration/impl/AbstractConfiguration.html" title="org.dayatang.configuration.impl.AbstractConfiguration" alt="" coords="234,11,426,53"/>
-<area shape="rect" id="node4" href="../configuration/impl/AbstractConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="223,5,437,59"/>
+<area shape="rect" id="node1_0" href="./ObjectSerializer.html" title="org.dayatang.utils.ObjectSerializer" alt="" coords="32,11,140,53"/>
+<area shape="rect" id="node1" href="./ObjectSerializer.html" title="&lt;TABLE&gt;" alt="" coords="21,5,151,59"/>
+<area shape="rect" id="node2_1" href="./serializer/GsonObjectSerializer.html" title="org.dayatang.utils.serializer.GsonObjectSerializer" alt="" coords="16,118,156,143"/>
+<area shape="rect" id="node2" href="./serializer/GsonObjectSerializer.html" title="&lt;TABLE&gt;" alt="" coords="5,107,167,155"/>
 </map>

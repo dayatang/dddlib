@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.specification.LengthSpecification
-	c30454 [label=<<table title="org.dayatang.domain.specification.LengthSpecification" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./LengthSpecification.html">
+	c30132 [label=<<table title="org.dayatang.domain.specification.LengthSpecification" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./LengthSpecification.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> LengthSpecification </td></tr>
 		</table></td></tr>
 		</table>>, URL="./LengthSpecification.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.specification.LengthSpecification extends org.dayatang.domain.specification.AbstractSpecification<java.lang.String>
-	c30566:p -> c30454:p [dir=back,arrowtail=empty];
+	c30245:p -> c30132:p [dir=back,arrowtail=empty];
 	// org.dayatang.domain.specification.AbstractSpecification<T>
-	c30566 [label=<<table title="org.dayatang.domain.specification.AbstractSpecification" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/AbstractSpecification.html">
+	c30245 [label=<<table title="org.dayatang.domain.specification.AbstractSpecification" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractSpecification&lt;T&gt; </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/AbstractSpecification.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

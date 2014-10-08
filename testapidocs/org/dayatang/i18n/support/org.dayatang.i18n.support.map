@@ -1,8 +1,6 @@
 <map id="G" name="G">
 <area shape="rect" id="node1_0" href="./ResourceBundleI18nServiceTest.html" title="org.dayatang.i18n.support.ResourceBundleI18nServiceTest" alt="" coords="16,17,217,42"/>
 <area shape="rect" id="node1" href="./ResourceBundleI18nServiceTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,228,53"/>
-<area shape="rect" id="node3_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/i18n/support/I18nServiceAccessor.html" title="org.dayatang.i18n.support.I18nServiceAccessor" alt="" coords="49,127,185,153"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/i18n/support/I18nServiceAccessor.html" title="&lt;TABLE&gt;" alt="" coords="38,116,195,164"/>
-<area shape="rect" id="node2_2" href="./MyResourceBundleI18nService.html" title="org.dayatang.i18n.support.MyResourceBundleI18nService" alt="" coords="263,17,459,42"/>
+<area shape="rect" id="node2_1" href="./MyResourceBundleI18nService.html" title="org.dayatang.i18n.support.MyResourceBundleI18nService" alt="" coords="263,17,459,42"/>
 <area shape="rect" id="node2" href="./MyResourceBundleI18nService.html" title="&lt;TABLE&gt;" alt="" coords="252,5,469,53"/>
 </map>

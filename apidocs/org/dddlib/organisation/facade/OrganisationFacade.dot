@@ -10,29 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dddlib.organisation.facade.OrganisationFacade
-	c75068 [label=<<table title="org.dddlib.organisation.facade.OrganisationFacade" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./OrganisationFacade.html">
+	c74830 [label=<<table title="org.dddlib.organisation.facade.OrganisationFacade" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./OrganisationFacade.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> OrganisationFacade </td></tr>
 		</table></td></tr>
 		</table>>, URL="./OrganisationFacade.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.facade.impl.OrganisationFacadeImpl
-	c75071 [label=<<table title="org.dddlib.organisation.facade.impl.OrganisationFacadeImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./impl/OrganisationFacadeImpl.html">
+	c74833 [label=<<table title="org.dddlib.organisation.facade.impl.OrganisationFacadeImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./impl/OrganisationFacadeImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> OrganisationFacadeImpl </td></tr>
-<tr><td align="center" balign="center"> org.dddlib.organisation.facade.impl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./impl/OrganisationFacadeImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.organisation.webapp.controller.BaseController
-	c75073 [label=<<table title="org.dddlib.organisation.webapp.controller.BaseController" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../webapp/controller/BaseController.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> BaseController </td></tr>
-<tr><td align="center" balign="center"> org.dddlib.organisation.webapp.controller </td></tr>
-		</table></td></tr>
-		</table>>, URL="../webapp/controller/BaseController.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dddlib.organisation.facade.impl.OrganisationFacadeImpl implements org.dddlib.organisation.facade.OrganisationFacade
-	c75068:p -> c75071:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dddlib.organisation.webapp.controller.BaseController NAVASSOC org.dddlib.organisation.facade.OrganisationFacade
-	c75073:p -> c75068:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+	c74830:p -> c74833:p [dir=back,arrowtail=empty,style=dashed];
 }
 

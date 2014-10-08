@@ -9,28 +9,19 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.observer.domain.ObserverTest
-	c31646 [label=<<table title="org.dayatang.observer.domain.ObserverTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ObserverTest.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> ObserverTest </td></tr>
-		</table></td></tr>
-		</table>>, URL="./ObserverTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.observer.domain.MotherObserver
-	c31647 [label=<<table title="org.dayatang.observer.domain.MotherObserver" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MotherObserver.html">
+	c31322 [label=<<table title="org.dayatang.observer.domain.MotherObserver" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MotherObserver.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MotherObserver </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MotherObserver.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.observer.domain.MotherObserver extends org.dayatang.observer.Observer<org.dayatang.observer.domain.Baby>
-	c31711:p -> c31647:p [dir=back,arrowtail=empty];
-	// org.dayatang.observer.domain.ObserverTest NAVASSOC org.dayatang.observer.domain.MotherObserver
-	c31646:p -> c31647:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+	c31386:p -> c31322:p [dir=back,arrowtail=empty];
 	// org.dayatang.observer.Observer<T extends org.dayatang.observer.Subject>
-	c31711 [label=<<table title="org.dayatang.observer.Observer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/observer/Observer.html">
+	c31386 [label=<<table title="org.dayatang.observer.Observer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Observer&lt;T extends org.dayatang.observer.Subject&gt; </font></td></tr>
-<tr><td align="center" balign="center"> org.dayatang.observer </td></tr>
+<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Observer&lt;T extends Subject&gt; </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/observer/Observer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

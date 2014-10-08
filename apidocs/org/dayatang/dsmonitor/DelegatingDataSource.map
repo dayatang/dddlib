@@ -1,6 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./GeminiWrapperDataSource.html" title="org.dayatang.dsmonitor.GeminiWrapperDataSource" alt="" coords="16,113,192,138"/>
-<area shape="rect" id="node1" href="./GeminiWrapperDataSource.html" title="&lt;TABLE&gt;" alt="" coords="5,101,203,149"/>
-<area shape="rect" id="node2_1" href="./DelegatingDataSource.html" title="org.dayatang.dsmonitor.DelegatingDataSource" alt="" coords="30,17,178,42"/>
-<area shape="rect" id="node2" href="./DelegatingDataSource.html" title="&lt;TABLE&gt;" alt="" coords="19,5,189,53"/>
+<area shape="rect" id="node1_0" href="./GeminiWrapperDataSource.html" title="org.dayatang.dsmonitor.GeminiWrapperDataSource" alt="" coords="16,214,192,239"/>
+<area shape="rect" id="node1" href="./GeminiWrapperDataSource.html" title="&lt;TABLE&gt;" alt="" coords="5,203,203,251"/>
+<area shape="rect" id="node2_1" href="./DelegatingDataSource.html" title="org.dayatang.dsmonitor.DelegatingDataSource" alt="" coords="30,118,178,143"/>
+<area shape="rect" id="node2" href="./DelegatingDataSource.html" title="&lt;TABLE&gt;" alt="" coords="19,107,189,155"/>
+<area shape="rect" id="node3_2" href="http://download.oracle.com/javase/7/docs/api/javax/sql/DataSource.html" title="javax.sql.DataSource" alt="" coords="60,11,148,53"/>
+<area shape="rect" id="node3" href="http://download.oracle.com/javase/7/docs/api/javax/sql/DataSource.html" title="&lt;TABLE&gt;" alt="" coords="49,5,159,59"/>
 </map>

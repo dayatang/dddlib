@@ -10,18 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.internal.GePropCriterionTest
-	c26223 [label=<<table title="org.dayatang.domain.internal.GePropCriterionTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GePropCriterionTest.html">
+	c25925 [label=<<table title="org.dayatang.domain.internal.GePropCriterionTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GePropCriterionTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GePropCriterionTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./GePropCriterionTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.internal.GePropCriterionTest NAVASSOC org.dayatang.domain.internal.GePropCriterion
-	c26223:p -> c26361:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.internal.GePropCriterion
-	c26361 [label=<<table title="org.dayatang.domain.internal.GePropCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/internal/GePropCriterion.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> GePropCriterion </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/internal/GePropCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

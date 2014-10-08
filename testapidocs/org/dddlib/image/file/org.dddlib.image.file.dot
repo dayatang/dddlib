@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dddlib.image.file.FileImageAccessTest
-	c10694 [label=<<table title="org.dddlib.image.file.FileImageAccessTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileImageAccessTest.html">
+	c10632 [label=<<table title="org.dddlib.image.file.FileImageAccessTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FileImageAccessTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> FileImageAccessTest </td></tr>
 		</table></td></tr>

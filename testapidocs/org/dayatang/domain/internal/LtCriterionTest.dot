@@ -10,18 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.internal.LtCriterionTest
-	c30801 [label=<<table title="org.dayatang.domain.internal.LtCriterionTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./LtCriterionTest.html">
+	c30480 [label=<<table title="org.dayatang.domain.internal.LtCriterionTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./LtCriterionTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> LtCriterionTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./LtCriterionTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.internal.LtCriterionTest NAVASSOC org.dayatang.domain.internal.LtCriterion
-	c30801:p -> c30947:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.internal.LtCriterion
-	c30947 [label=<<table title="org.dayatang.domain.internal.LtCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/internal/LtCriterion.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> LtCriterion </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/internal/LtCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

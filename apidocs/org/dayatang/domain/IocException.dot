@@ -10,26 +10,34 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.IocInstanceNotUniqueException
-	c58967 [label=<<table title="org.dayatang.domain.IocInstanceNotUniqueException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IocInstanceNotUniqueException.html">
+	c58732 [label=<<table title="org.dayatang.domain.IocInstanceNotUniqueException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IocInstanceNotUniqueException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> IocInstanceNotUniqueException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./IocInstanceNotUniqueException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.IocInstanceNotFoundException
-	c58968 [label=<<table title="org.dayatang.domain.IocInstanceNotFoundException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IocInstanceNotFoundException.html">
+	c58733 [label=<<table title="org.dayatang.domain.IocInstanceNotFoundException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IocInstanceNotFoundException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> IocInstanceNotFoundException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./IocInstanceNotFoundException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.IocException
-	c58969 [label=<<table title="org.dayatang.domain.IocException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./IocException.html">
+	c58734 [label=<<table title="org.dayatang.domain.IocException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./IocException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> IocException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./IocException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.IocInstanceNotUniqueException extends org.dayatang.domain.IocException
-	c58969:p -> c58967:p [dir=back,arrowtail=empty];
+	c58734:p -> c58732:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.IocInstanceNotFoundException extends org.dayatang.domain.IocException
-	c58969:p -> c58968:p [dir=back,arrowtail=empty];
+	c58734:p -> c58733:p [dir=back,arrowtail=empty];
+	//org.dayatang.domain.IocException extends java.lang.RuntimeException
+	c58983:p -> c58734:p [dir=back,arrowtail=empty];
+	// java.lang.RuntimeException
+	c58983 [label=<<table title="java.lang.RuntimeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> RuntimeException </td></tr>
+		</table></td></tr>
+		</table>>, URL="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

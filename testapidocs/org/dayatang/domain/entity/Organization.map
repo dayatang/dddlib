@@ -1,12 +1,9 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../BaseEntityTest.html" title="org.dayatang.domain.BaseEntityTest" alt="" coords="16,11,155,53"/>
-<area shape="rect" id="node1" href="../BaseEntityTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,165,59"/>
-<area shape="rect" id="node2_1" href="./Organization.html" title="org.dayatang.domain.entity.Organization" alt="" coords="131,133,223,158"/>
-<area shape="rect" id="node2" href="./Organization.html" title="&lt;TABLE&gt;" alt="" coords="121,121,234,169"/>
-<area shape="rect" id="node3_2" href="./Dept.html" title="org.dayatang.domain.entity.Dept" alt="" coords="99,230,147,255"/>
-<area shape="rect" id="node3" href="./Dept.html" title="&lt;TABLE&gt;" alt="" coords="87,219,159,267"/>
-<area shape="rect" id="node4_3" href="./Company.html" title="org.dayatang.domain.entity.Company" alt="" coords="194,230,270,255"/>
-<area shape="rect" id="node4" href="./Company.html" title="&lt;TABLE&gt;" alt="" coords="183,219,281,267"/>
-<area shape="rect" id="node5_4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/BaseEntity.html" title="org.dayatang.domain.BaseEntity" alt="" coords="200,11,339,53"/>
-<area shape="rect" id="node5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/BaseEntity.html" title="&lt;TABLE&gt;" alt="" coords="189,5,349,59"/>
+<area shape="rect" id="node1_0" href="./Organization.html" title="org.dayatang.domain.entity.Organization" alt="" coords="50,113,142,138"/>
+<area shape="rect" id="node1" href="./Organization.html" title="&lt;TABLE&gt;" alt="" coords="39,101,153,149"/>
+<area shape="rect" id="node2_1" href="./Dept.html" title="org.dayatang.domain.entity.Dept" alt="" coords="17,209,65,234"/>
+<area shape="rect" id="node2" href="./Dept.html" title="&lt;TABLE&gt;" alt="" coords="5,197,77,245"/>
+<area shape="rect" id="node3_2" href="./Company.html" title="org.dayatang.domain.entity.Company" alt="" coords="113,209,189,234"/>
+<area shape="rect" id="node3" href="./Company.html" title="&lt;TABLE&gt;" alt="" coords="102,197,199,245"/>
+<area shape="rect" id="node4" href="null" title="&lt;TABLE&gt;" alt="" coords="43,5,149,53"/>
 </map>

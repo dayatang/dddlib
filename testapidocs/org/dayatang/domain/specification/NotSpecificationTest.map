@@ -1,8 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./NotSpecificationTest.html" title="org.dayatang.domain.specification.NotSpecificationTest" alt="" coords="88,17,220,42"/>
-<area shape="rect" id="node1" href="./NotSpecificationTest.html" title="&lt;TABLE&gt;" alt="" coords="77,5,231,53"/>
-<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/Specification.html" title="org.dayatang.domain.specification.Specification" alt="" coords="16,121,127,164"/>
-<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/Specification.html" title="&lt;TABLE&gt;" alt="" coords="5,116,137,169"/>
-<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/NotSpecification.html" title="org.dayatang.domain.specification.NotSpecification" alt="" coords="172,130,301,155"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/NotSpecification.html" title="&lt;TABLE&gt;" alt="" coords="161,119,312,167"/>
+<area shape="rect" id="node1_0" href="./NotSpecificationTest.html" title="org.dayatang.domain.specification.NotSpecificationTest" alt="" coords="16,17,148,42"/>
+<area shape="rect" id="node1" href="./NotSpecificationTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,159,53"/>
 </map>

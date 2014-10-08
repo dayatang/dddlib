@@ -1,8 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../dscreator/AbstractDataSourceCreator.html" title="org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator" alt="" coords="16,224,268,267"/>
-<area shape="rect" id="node1" href="../dscreator/AbstractDataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="5,219,279,272"/>
-<area shape="rect" id="node2_1" href="./JdbcDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistry" alt="" coords="62,17,222,42"/>
-<area shape="rect" id="node2" href="./JdbcDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="51,5,233,53"/>
-<area shape="rect" id="node3_2" href="./DataSourceCreator.html" title="org.dayatang.datasource4saas.dsregistry.DataSourceCreator" alt="" coords="78,121,206,164"/>
-<area shape="rect" id="node3" href="./DataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="67,116,217,169"/>
+<area shape="rect" id="node1_0" href="../dscreator/AbstractDataSourceCreator.html" title="org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator" alt="" coords="16,118,195,143"/>
+<area shape="rect" id="node1" href="../dscreator/AbstractDataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="5,107,205,155"/>
+<area shape="rect" id="node2_1" href="./DataSourceCreator.html" title="org.dayatang.datasource4saas.dsregistry.DataSourceCreator" alt="" coords="41,11,169,53"/>
+<area shape="rect" id="node2" href="./DataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="31,5,180,59"/>
 </map>

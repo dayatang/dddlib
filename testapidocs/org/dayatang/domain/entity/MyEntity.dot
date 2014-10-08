@@ -9,29 +9,19 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.domain.AbstractEntityTest
-	c32305 [label=<<table title="org.dayatang.domain.AbstractEntityTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../AbstractEntityTest.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> AbstractEntityTest </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="../AbstractEntityTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.entity.MyEntity
-	c32309 [label=<<table title="org.dayatang.domain.entity.MyEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MyEntity.html">
+	c31980 [label=<<table title="org.dayatang.domain.entity.MyEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MyEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MyEntity </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MyEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.entity.MyEntity extends org.dayatang.domain.AbstractEntity
-	c32477:p -> c32309:p [dir=back,arrowtail=empty];
-	// org.dayatang.domain.AbstractEntityTest NAVASSOC org.dayatang.domain.entity.MyEntity
-	c32305:p -> c32309:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+	c32148:p -> c31980:p [dir=back,arrowtail=empty];
 	// org.dayatang.domain.AbstractEntity
-	c32477 [label=<<table title="org.dayatang.domain.AbstractEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/AbstractEntity.html">
+	c32148 [label=<<table title="org.dayatang.domain.AbstractEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractEntity </font></td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
 		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/AbstractEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

@@ -10,18 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.internal.BetweenCriterionTest
-	c15309 [label=<<table title="org.dayatang.domain.internal.BetweenCriterionTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./BetweenCriterionTest.html">
+	c15090 [label=<<table title="org.dayatang.domain.internal.BetweenCriterionTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./BetweenCriterionTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> BetweenCriterionTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./BetweenCriterionTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.internal.BetweenCriterionTest NAVASSOC org.dayatang.domain.internal.BetweenCriterion
-	c15309:p -> c15442:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.internal.BetweenCriterion
-	c15442 [label=<<table title="org.dayatang.domain.internal.BetweenCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/internal/BetweenCriterion.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> BetweenCriterion </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/internal/BetweenCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

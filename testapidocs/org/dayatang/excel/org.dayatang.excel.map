@@ -1,10 +1,8 @@
 <map id="G" name="G">
 <area shape="rect" id="node1_0" href="./ExcelWriterTest.html" title="org.dayatang.excel.ExcelWriterTest" alt="" coords="16,17,121,42"/>
 <area shape="rect" id="node1" href="./ExcelWriterTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,132,53"/>
-<area shape="rect" id="node4_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/excel/ExcelHandler.html" title="org.dayatang.excel.ExcelHandler" alt="" coords="99,127,193,153"/>
-<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/excel/ExcelHandler.html" title="&lt;TABLE&gt;" alt="" coords="89,116,203,164"/>
-<area shape="rect" id="node2_2" href="./ExcelUtilsTest.html" title="org.dayatang.excel.ExcelUtilsTest" alt="" coords="328,17,425,42"/>
-<area shape="rect" id="node2" href="./ExcelUtilsTest.html" title="&lt;TABLE&gt;" alt="" coords="317,5,436,53"/>
-<area shape="rect" id="node3_3" href="./ExcelReaderTest.html" title="org.dayatang.excel.ExcelReaderTest" alt="" coords="167,17,283,42"/>
-<area shape="rect" id="node3" href="./ExcelReaderTest.html" title="&lt;TABLE&gt;" alt="" coords="156,5,293,53"/>
+<area shape="rect" id="node2_1" href="./ExcelUtilsTest.html" title="org.dayatang.excel.ExcelUtilsTest" alt="" coords="167,17,264,42"/>
+<area shape="rect" id="node2" href="./ExcelUtilsTest.html" title="&lt;TABLE&gt;" alt="" coords="156,5,275,53"/>
+<area shape="rect" id="node3_2" href="./ExcelReaderTest.html" title="org.dayatang.excel.ExcelReaderTest" alt="" coords="309,17,425,42"/>
+<area shape="rect" id="node3" href="./ExcelReaderTest.html" title="&lt;TABLE&gt;" alt="" coords="299,5,436,53"/>
 </map>

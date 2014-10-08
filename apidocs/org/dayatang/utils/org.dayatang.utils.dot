@@ -91,7 +91,5 @@ digraph G {
 		</table>>, URL="./ArrayUtils.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.utils.Slf4JLogger implements org.dayatang.utils.Logger
 	c4:p -> c0:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.utils.BeanUtils NAVASSOC org.dayatang.utils.BeanClassUtils
-	c9:p -> c10:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

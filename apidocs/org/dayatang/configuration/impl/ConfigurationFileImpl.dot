@@ -10,36 +10,27 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.configuration.WritableConfiguration
-	c32004 [label=<<table title="org.dayatang.configuration.WritableConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../WritableConfiguration.html">
+	c31822 [label=<<table title="org.dayatang.configuration.WritableConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../WritableConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> WritableConfiguration </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.configuration </td></tr>
 		</table></td></tr>
 		</table>>, URL="../WritableConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.configuration.impl.PropertiesFileUtils
-	c32010 [label=<<table title="org.dayatang.configuration.impl.PropertiesFileUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PropertiesFileUtils.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> PropertiesFileUtils </td></tr>
-		</table></td></tr>
-		</table>>, URL="./PropertiesFileUtils.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.ConfigurationFileImpl
-	c32012 [label=<<table title="org.dayatang.configuration.impl.ConfigurationFileImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ConfigurationFileImpl.html">
+	c31830 [label=<<table title="org.dayatang.configuration.impl.ConfigurationFileImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ConfigurationFileImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationFileImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigurationFileImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.AbstractConfiguration
-	c32016 [label=<<table title="org.dayatang.configuration.impl.AbstractConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractConfiguration.html">
+	c31834 [label=<<table title="org.dayatang.configuration.impl.AbstractConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractConfiguration </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.configuration.impl.ConfigurationFileImpl extends org.dayatang.configuration.impl.AbstractConfiguration
-	c32016:p -> c32012:p [dir=back,arrowtail=empty];
+	c31834:p -> c31830:p [dir=back,arrowtail=empty];
 	//org.dayatang.configuration.impl.ConfigurationFileImpl implements org.dayatang.configuration.WritableConfiguration
-	c32004:p -> c32012:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.configuration.impl.ConfigurationFileImpl NAVASSOC org.dayatang.configuration.impl.PropertiesFileUtils
-	c32012:p -> c32010:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+	c31822:p -> c31830:p [dir=back,arrowtail=empty,style=dashed];
 }
 

@@ -1,12 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../../application/OrganisationApplication.html" title="org.dddlib.organisation.application.OrganisationApplication" alt="" coords="16,241,224,301"/>
-<area shape="rect" id="node1" href="../../application/OrganisationApplication.html" title="&lt;TABLE&gt;" alt="" coords="5,236,235,307"/>
-<area shape="rect" id="node2_1" href="../PostDto.html" title="org.dddlib.organisation.facade.PostDto" alt="" coords="270,250,455,293"/>
-<area shape="rect" id="node2" href="../PostDto.html" title="&lt;TABLE&gt;" alt="" coords="259,245,466,298"/>
-<area shape="rect" id="node3_2" href="../OrganizationDto.html" title="org.dddlib.organisation.facade.OrganizationDto" alt="" coords="501,250,686,293"/>
-<area shape="rect" id="node3" href="../OrganizationDto.html" title="&lt;TABLE&gt;" alt="" coords="490,245,697,298"/>
-<area shape="rect" id="node4_3" href="../OrganisationFacade.html" title="org.dddlib.organisation.facade.OrganisationFacade" alt="" coords="270,11,455,71"/>
-<area shape="rect" id="node4" href="../OrganisationFacade.html" title="&lt;TABLE&gt;" alt="" coords="259,5,466,76"/>
-<area shape="rect" id="node5_4" href="./OrganisationFacadeImpl.html" title="org.dddlib.organisation.facade.impl.OrganisationFacadeImpl" alt="" coords="284,137,441,162"/>
-<area shape="rect" id="node5" href="./OrganisationFacadeImpl.html" title="&lt;TABLE&gt;" alt="" coords="273,125,452,173"/>
+<area shape="rect" id="node1_0" href="../OrganisationFacade.html" title="org.dddlib.organisation.facade.OrganisationFacade" alt="" coords="27,11,162,53"/>
+<area shape="rect" id="node1" href="../OrganisationFacade.html" title="&lt;TABLE&gt;" alt="" coords="17,5,173,59"/>
+<area shape="rect" id="node2_1" href="./OrganisationFacadeImpl.html" title="org.dddlib.organisation.facade.impl.OrganisationFacadeImpl" alt="" coords="16,118,173,143"/>
+<area shape="rect" id="node2" href="./OrganisationFacadeImpl.html" title="&lt;TABLE&gt;" alt="" coords="5,107,184,155"/>
 </map>

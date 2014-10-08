@@ -10,18 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.excel.ExcelWriterTest
-	c25156 [label=<<table title="org.dayatang.excel.ExcelWriterTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ExcelWriterTest.html">
+	c24862 [label=<<table title="org.dayatang.excel.ExcelWriterTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ExcelWriterTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ExcelWriterTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ExcelWriterTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.excel.ExcelWriterTest NAVASSOC org.dayatang.excel.ExcelHandler
-	c25156:p -> c25216:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.excel.ExcelHandler
-	c25216 [label=<<table title="org.dayatang.excel.ExcelHandler" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/excel/ExcelHandler.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> ExcelHandler </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/excel/ExcelHandler.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

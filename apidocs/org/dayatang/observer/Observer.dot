@@ -10,19 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.AbstractEntity
-	c72331 [label=<<table title="org.dayatang.domain.AbstractEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../domain/AbstractEntity.html">
+	c72095 [label=<<table title="org.dayatang.domain.AbstractEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../domain/AbstractEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractEntity </font></td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
 		</table></td></tr>
 		</table>>, URL="../domain/AbstractEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.observer.Observer<T extends org.dayatang.observer.Subject>
-	c72463 [label=<<table title="org.dayatang.observer.Observer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Observer.html">
+	c72227 [label=<<table title="org.dayatang.observer.Observer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Observer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Observer&lt;T extends Subject&gt; </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./Observer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.observer.Observer<T extends org.dayatang.observer.Subject> extends org.dayatang.domain.AbstractEntity
-	c72331:p -> c72463:p [dir=back,arrowtail=empty];
+	c72095:p -> c72227:p [dir=back,arrowtail=empty];
 }
 

@@ -1,10 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../../../dayatang/cache/Cache.html" title="org.dayatang.cache.Cache" alt="" coords="220,241,352,301"/>
-<area shape="rect" id="node1" href="../../../dayatang/cache/Cache.html" title="&lt;TABLE&gt;" alt="" coords="209,236,363,307"/>
-<area shape="rect" id="node2_1" href="../api/ImageAccess.html" title="org.dddlib.image.api.ImageAccess" alt="" coords="65,11,195,71"/>
-<area shape="rect" id="node2" href="../api/ImageAccess.html" title="&lt;TABLE&gt;" alt="" coords="54,5,206,76"/>
-<area shape="rect" id="node3_2" href="../api/pojo/ImageFile.html" title="org.dddlib.image.api.pojo.ImageFile" alt="" coords="16,250,175,293"/>
-<area shape="rect" id="node3" href="../api/pojo/ImageFile.html" title="&lt;TABLE&gt;" alt="" coords="5,245,185,298"/>
-<area shape="rect" id="node4_3" href="./CacheImageAccess.html" title="org.dddlib.image.cache.CacheImageAccess" alt="" coords="136,137,271,162"/>
-<area shape="rect" id="node4" href="./CacheImageAccess.html" title="&lt;TABLE&gt;" alt="" coords="125,125,281,173"/>
+<area shape="rect" id="node1_0" href="../api/ImageAccess.html" title="org.dddlib.image.api.ImageAccess" alt="" coords="35,11,131,53"/>
+<area shape="rect" id="node1" href="../api/ImageAccess.html" title="&lt;TABLE&gt;" alt="" coords="25,5,142,59"/>
+<area shape="rect" id="node2_1" href="./CacheImageAccess.html" title="org.dddlib.image.cache.CacheImageAccess" alt="" coords="16,118,151,143"/>
+<area shape="rect" id="node2" href="./CacheImageAccess.html" title="&lt;TABLE&gt;" alt="" coords="5,107,161,155"/>
 </map>

@@ -9,39 +9,20 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.domain.event.StoredEvent
-	c67884 [label=<<table title="org.dayatang.domain.event.StoredEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../domain/event/StoredEvent.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> StoredEvent </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain.event </td></tr>
-		</table></td></tr>
-		</table>>, URL="../domain/event/StoredEvent.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.event.EventStore
-	c67885 [label=<<table title="org.dayatang.domain.event.EventStore" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../domain/event/EventStore.html">
+	c67648 [label=<<table title="org.dayatang.domain.event.EventStore" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../domain/event/EventStore.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> EventStore </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain.event </td></tr>
 		</table></td></tr>
 		</table>>, URL="../domain/event/EventStore.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.event.DomainEvent
-	c67888 [label=<<table title="org.dayatang.domain.event.DomainEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../domain/event/DomainEvent.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> DomainEvent </font></td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain.event </td></tr>
-		</table></td></tr>
-		</table>>, URL="../domain/event/DomainEvent.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.mysql.MySqlEventStore
-	c67996 [label=<<table title="org.dayatang.mysql.MySqlEventStore" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MySqlEventStore.html">
+	c67759 [label=<<table title="org.dayatang.mysql.MySqlEventStore" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MySqlEventStore.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MySqlEventStore </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MySqlEventStore.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.mysql.MySqlEventStore implements org.dayatang.domain.event.EventStore
-	c67885:p -> c67996:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.mysql.MySqlEventStore DEPEND org.dayatang.domain.event.DomainEvent
-	c67996:p -> c67888:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.mysql.MySqlEventStore DEPEND org.dayatang.domain.event.StoredEvent
-	c67996:p -> c67884:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c67648:p -> c67759:p [dir=back,arrowtail=empty,style=dashed];
 }
 

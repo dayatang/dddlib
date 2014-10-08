@@ -10,30 +10,22 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.ioc.spring.factory.SpringConfiguration
-	c2408 [label=<<table title="org.dayatang.ioc.spring.factory.SpringConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SpringConfiguration.html">
+	c2364 [label=<<table title="org.dayatang.ioc.spring.factory.SpringConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SpringConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SpringConfiguration </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SpringConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.ioc.spring.factory.ProviderWithXMLTest
-	c2409 [label=<<table title="org.dayatang.ioc.spring.factory.ProviderWithXMLTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProviderWithXMLTest.html">
+	c2365 [label=<<table title="org.dayatang.ioc.spring.factory.ProviderWithXMLTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProviderWithXMLTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ProviderWithXMLTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProviderWithXMLTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.ioc.spring.factory.ProviderWithAnnotationTest
-	c2410 [label=<<table title="org.dayatang.ioc.spring.factory.ProviderWithAnnotationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProviderWithAnnotationTest.html">
+	c2366 [label=<<table title="org.dayatang.ioc.spring.factory.ProviderWithAnnotationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProviderWithAnnotationTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ProviderWithAnnotationTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProviderWithAnnotationTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.ioc.spring.factory.ProviderWithAnnotationTest NAVASSOC org.dayatang.ioc.spring.factory.SpringInstanceProvider
-	c2410:p -> c2516:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.ioc.spring.factory.SpringInstanceProvider
-	c2516 [label=<<table title="org.dayatang.ioc.spring.factory.SpringInstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/spring/factory/SpringInstanceProvider.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> SpringInstanceProvider </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/spring/factory/SpringInstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

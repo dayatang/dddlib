@@ -10,30 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.InstanceProvider
-	c87619 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../../domain/InstanceProvider.html">
+	c87381 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../../domain/InstanceProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> InstanceProvider </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
 		</table></td></tr>
 		</table>>, URL="../../../domain/InstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.ioc.spring.factory.SpringInstanceProvider
-	c87688 [label=<<table title="org.dayatang.ioc.spring.factory.SpringInstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SpringInstanceProvider.html">
+	c87450 [label=<<table title="org.dayatang.ioc.spring.factory.SpringInstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SpringInstanceProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SpringInstanceProvider </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SpringInstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.ioc.spring.factory.SpringInstanceProvider implements org.dayatang.domain.InstanceProvider
-	c87619:p -> c87688:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.ioc.spring.factory.SpringInstanceProvider NAVASSOC org.springframework.context.ApplicationContext
-	c87688:p -> c87867:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.springframework.context.ApplicationContext
-	c87867 [label=<<table title="org.springframework.context.ApplicationContext" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/context/ApplicationContext.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> ApplicationContext </td></tr>
-<tr><td align="center" balign="center"> org.springframework.context </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/context/ApplicationContext.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	c87381:p -> c87450:p [dir=back,arrowtail=empty,style=dashed];
 }
 

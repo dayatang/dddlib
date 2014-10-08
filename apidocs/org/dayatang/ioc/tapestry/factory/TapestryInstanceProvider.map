@@ -1,8 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../../../domain/InstanceProvider.html" title="org.dayatang.domain.InstanceProvider" alt="" coords="28,11,167,71"/>
-<area shape="rect" id="node1" href="../../../domain/InstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="17,5,177,76"/>
-<area shape="rect" id="node2_1" href="./TapestryInstanceProvider.html" title="org.dayatang.ioc.tapestry.factory.TapestryInstanceProvider" alt="" coords="16,137,179,162"/>
-<area shape="rect" id="node2" href="./TapestryInstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="5,125,189,173"/>
-<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/tapestry5/ioc/Registry.html" title="org.apache.tapestry5.ioc.Registry" alt="" coords="19,241,176,301"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/tapestry5/ioc/Registry.html" title="&lt;TABLE&gt;" alt="" coords="8,236,187,307"/>
+<area shape="rect" id="node1_0" href="../../../domain/InstanceProvider.html" title="org.dayatang.domain.InstanceProvider" alt="" coords="41,11,153,53"/>
+<area shape="rect" id="node1" href="../../../domain/InstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="31,5,164,59"/>
+<area shape="rect" id="node2_1" href="./TapestryInstanceProvider.html" title="org.dayatang.ioc.tapestry.factory.TapestryInstanceProvider" alt="" coords="16,118,179,143"/>
+<area shape="rect" id="node2" href="./TapestryInstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="5,107,189,155"/>
 </map>

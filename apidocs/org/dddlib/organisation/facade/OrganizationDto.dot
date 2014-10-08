@@ -10,28 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dddlib.organisation.facade.OrganizationDto
-	c76179 [label=<<table title="org.dddlib.organisation.facade.OrganizationDto" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./OrganizationDto.html">
+	c75941 [label=<<table title="org.dddlib.organisation.facade.OrganizationDto" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./OrganizationDto.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> OrganizationDto </td></tr>
 		</table></td></tr>
 		</table>>, URL="./OrganizationDto.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.organisation.facade.assembler.OrganizationAssembler
-	c76182 [label=<<table title="org.dddlib.organisation.facade.assembler.OrganizationAssembler" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./assembler/OrganizationAssembler.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> OrganizationAssembler </td></tr>
-<tr><td align="center" balign="center"> org.dddlib.organisation.facade.assembler </td></tr>
-		</table></td></tr>
-		</table>>, URL="./assembler/OrganizationAssembler.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.organisation.facade.impl.OrganisationFacadeImpl
-	c76183 [label=<<table title="org.dddlib.organisation.facade.impl.OrganisationFacadeImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./impl/OrganisationFacadeImpl.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> OrganisationFacadeImpl </td></tr>
-<tr><td align="center" balign="center"> org.dddlib.organisation.facade.impl </td></tr>
-		</table></td></tr>
-		</table>>, URL="./impl/OrganisationFacadeImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.organisation.facade.assembler.OrganizationAssembler DEPEND org.dddlib.organisation.facade.OrganizationDto
-	c76182:p -> c76179:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dddlib.organisation.facade.impl.OrganisationFacadeImpl DEPEND org.dddlib.organisation.facade.OrganizationDto
-	c76183:p -> c76179:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 }
 

@@ -27,11 +27,5 @@ digraph G {
 <tr><td align="center" balign="center"> EntityManagerProvider </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EntityManagerProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.persistence.jpa.NamedQueryParser NAVASSOC org.dayatang.persistence.jpa.EntityManagerProvider
-	c6819:p -> c6821:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa NAVASSOC org.dayatang.persistence.jpa.NamedQueryParser
-	c6820:p -> c6819:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa NAVASSOC org.dayatang.persistence.jpa.EntityManagerProvider
-	c6820:p -> c6821:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

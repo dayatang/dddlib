@@ -10,28 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.CriterionBuilder
-	c33877 [label=<<table title="org.dayatang.domain.CriterionBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./CriterionBuilder.html">
+	c33695 [label=<<table title="org.dayatang.domain.CriterionBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./CriterionBuilder.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> CriterionBuilder </td></tr>
 		</table></td></tr>
 		</table>>, URL="./CriterionBuilder.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.CriteriaQuery
-	c33878 [label=<<table title="org.dayatang.domain.CriteriaQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CriteriaQuery.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> CriteriaQuery </td></tr>
-		</table></td></tr>
-		</table>>, URL="./CriteriaQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.CriterionBuilderImpl
-	c33918 [label=<<table title="org.dayatang.domain.internal.CriterionBuilderImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./internal/CriterionBuilderImpl.html">
+	c33736 [label=<<table title="org.dayatang.domain.internal.CriterionBuilderImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./internal/CriterionBuilderImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CriterionBuilderImpl </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain.internal </td></tr>
 		</table></td></tr>
 		</table>>, URL="./internal/CriterionBuilderImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.internal.CriterionBuilderImpl implements org.dayatang.domain.CriterionBuilder
-	c33877:p -> c33918:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.domain.CriteriaQuery NAVASSOC org.dayatang.domain.CriterionBuilder
-	c33878:p -> c33877:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+	c33695:p -> c33736:p [dir=back,arrowtail=empty,style=dashed];
 }
 

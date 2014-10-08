@@ -1,18 +1,14 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../../../dayatang/domain/AbstractEntity.html" title="org.dayatang.domain.AbstractEntity" alt="" coords="16,131,155,173"/>
-<area shape="rect" id="node1" href="../../../dayatang/domain/AbstractEntity.html" title="&lt;TABLE&gt;" alt="" coords="5,125,165,179"/>
-<area shape="rect" id="node3_1" href="./Party.html" title="org.dddlib.organisation.domain.Party" alt="" coords="188,253,239,278"/>
-<area shape="rect" id="node3" href="./Party.html" title="&lt;TABLE&gt;" alt="" coords="177,241,249,289"/>
-<area shape="rect" id="node2_2" href="./Post.html" title="org.dddlib.organisation.domain.Post" alt="" coords="343,363,388,389"/>
-<area shape="rect" id="node2" href="./Post.html" title="&lt;TABLE&gt;" alt="" coords="329,352,401,400"/>
-<area shape="rect" id="node4_3" href="./Organization.html" title="org.dddlib.organisation.domain.Organization" alt="" coords="374,474,466,499"/>
-<area shape="rect" id="node4" href="./Organization.html" title="&lt;TABLE&gt;" alt="" coords="363,463,477,511"/>
-<area shape="rect" id="node5_4" href="./Job.html" title="org.dddlib.organisation.domain.Job" alt="" coords="103,474,143,499"/>
-<area shape="rect" id="node5" href="./Job.html" title="&lt;TABLE&gt;" alt="" coords="87,463,159,511"/>
-<area shape="rect" id="node6_5" href="./Employee.html" title="org.dddlib.organisation.domain.Employee" alt="" coords="218,363,294,389"/>
-<area shape="rect" id="node6" href="./Employee.html" title="&lt;TABLE&gt;" alt="" coords="207,352,305,400"/>
-<area shape="rect" id="node7_6" href="../application/impl/OrganisationApplicationImpl.html" title="org.dddlib.organisation.application.impl.OrganisationApplicationImpl" alt="" coords="323,131,555,173"/>
-<area shape="rect" id="node7" href="../application/impl/OrganisationApplicationImpl.html" title="&lt;TABLE&gt;" alt="" coords="312,125,565,179"/>
-<area shape="rect" id="node8_7" href="../application/OrganisationApplication.html" title="org.dddlib.organisation.application.OrganisationApplication" alt="" coords="220,11,428,71"/>
-<area shape="rect" id="node8" href="../application/OrganisationApplication.html" title="&lt;TABLE&gt;" alt="" coords="209,5,439,76"/>
+<area shape="rect" id="node1_0" href="../../../dayatang/domain/AbstractEntity.html" title="org.dayatang.domain.AbstractEntity" alt="" coords="166,17,269,42"/>
+<area shape="rect" id="node1" href="../../../dayatang/domain/AbstractEntity.html" title="&lt;TABLE&gt;" alt="" coords="155,5,279,53"/>
+<area shape="rect" id="node3_1" href="./Party.html" title="org.dddlib.organisation.domain.Party" alt="" coords="192,113,243,138"/>
+<area shape="rect" id="node3" href="./Party.html" title="&lt;TABLE&gt;" alt="" coords="181,101,253,149"/>
+<area shape="rect" id="node2_2" href="./Post.html" title="org.dddlib.organisation.domain.Post" alt="" coords="19,209,64,234"/>
+<area shape="rect" id="node2" href="./Post.html" title="&lt;TABLE&gt;" alt="" coords="5,197,77,245"/>
+<area shape="rect" id="node4_3" href="./Organization.html" title="org.dddlib.organisation.domain.Organization" alt="" coords="113,209,205,234"/>
+<area shape="rect" id="node4" href="./Organization.html" title="&lt;TABLE&gt;" alt="" coords="102,197,215,245"/>
+<area shape="rect" id="node5_4" href="./Job.html" title="org.dddlib.organisation.domain.Job" alt="" coords="256,209,296,234"/>
+<area shape="rect" id="node5" href="./Job.html" title="&lt;TABLE&gt;" alt="" coords="240,197,312,245"/>
+<area shape="rect" id="node6_5" href="./Employee.html" title="org.dddlib.organisation.domain.Employee" alt="" coords="347,209,423,234"/>
+<area shape="rect" id="node6" href="./Employee.html" title="&lt;TABLE&gt;" alt="" coords="337,197,434,245"/>
 </map>

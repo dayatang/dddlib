@@ -1,6 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./GuiceIocUtils.html" title="org.dayatang.ioc.guice.GuiceIocUtils" alt="" coords="27,17,119,42"/>
-<area shape="rect" id="node1" href="./GuiceIocUtils.html" title="&lt;TABLE&gt;" alt="" coords="16,5,129,53"/>
-<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Module.html" title="com.google.inject.Module" alt="" coords="16,121,129,181"/>
-<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Module.html" title="&lt;TABLE&gt;" alt="" coords="5,116,140,187"/>
+<area shape="rect" id="node1_0" href="./GuiceIocUtils.html" title="org.dayatang.ioc.guice.GuiceIocUtils" alt="" coords="16,17,108,42"/>
+<area shape="rect" id="node1" href="./GuiceIocUtils.html" title="&lt;TABLE&gt;" alt="" coords="5,5,119,53"/>
 </map>

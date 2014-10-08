@@ -10,38 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.cache.Cache
-	c82178 [label=<<table title="org.dayatang.cache.Cache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../Cache.html">
+	c81943 [label=<<table title="org.dayatang.cache.Cache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../Cache.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Cache </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.cache </td></tr>
 		</table></td></tr>
 		</table>>, URL="../Cache.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.cache.redis.RedisBasedCache
-	c82186 [label=<<table title="org.dayatang.cache.redis.RedisBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RedisBasedCache.html">
+	c81951 [label=<<table title="org.dayatang.cache.redis.RedisBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RedisBasedCache.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RedisBasedCache </td></tr>
 		</table></td></tr>
 		</table>>, URL="./RedisBasedCache.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.cache.redis.RedisBasedCache implements org.dayatang.cache.Cache
-	c82178:p -> c82186:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.cache.redis.RedisBasedCache NAVASSOC redis.clients.jedis.JedisPool
-	c82186:p -> c82302:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.cache.redis.RedisBasedCache DEPEND redis.clients.jedis.Jedis
-	c82186:p -> c82303:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// redis.clients.jedis.Jedis
-	c82303 [label=<<table title="redis.clients.jedis.Jedis" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/redis/clients/jedis/Jedis.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Jedis </td></tr>
-<tr><td align="center" balign="center"> redis.clients.jedis </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/redis/clients/jedis/Jedis.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// redis.clients.jedis.JedisPool
-	c82302 [label=<<table title="redis.clients.jedis.JedisPool" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/redis/clients/jedis/JedisPool.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> JedisPool </td></tr>
-<tr><td align="center" balign="center"> redis.clients.jedis </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/redis/clients/jedis/JedisPool.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	c81943:p -> c81951:p [dir=back,arrowtail=empty,style=dashed];
 }
 

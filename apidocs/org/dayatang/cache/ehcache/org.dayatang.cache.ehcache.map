@@ -1,10 +1,10 @@
 <map id="G" name="G">
 <area shape="rect" id="node1_0" href="./UnExistsedCacheNameException.html" title="org.dayatang.cache.ehcache.UnExistsedCacheNameException" alt="" coords="16,17,228,42"/>
 <area shape="rect" id="node1" href="./UnExistsedCacheNameException.html" title="&lt;TABLE&gt;" alt="" coords="5,5,239,53"/>
-<area shape="rect" id="node2_1" href="./EhCacheConfiguration.html" title="org.dayatang.cache.ehcache.EhCacheConfiguration" alt="" coords="229,127,375,153"/>
-<area shape="rect" id="node2" href="./EhCacheConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="218,116,386,164"/>
-<area shape="rect" id="node3_2" href="./EhCacheConfiguration.Builder.html" title="org.dayatang.cache.ehcache.EhCacheConfiguration.Builder" alt="" coords="274,17,330,42"/>
-<area shape="rect" id="node3" href="./EhCacheConfiguration.Builder.html" title="&lt;TABLE&gt;" alt="" coords="263,5,341,53"/>
-<area shape="rect" id="node4_3" href="./EhCacheBasedCache.html" title="org.dayatang.cache.ehcache.EhCacheBasedCache" alt="" coords="375,17,525,42"/>
-<area shape="rect" id="node4" href="./EhCacheBasedCache.html" title="&lt;TABLE&gt;" alt="" coords="365,5,535,53"/>
+<area shape="rect" id="node2_1" href="./EhCacheConfiguration.html" title="org.dayatang.cache.ehcache.EhCacheConfiguration" alt="" coords="274,17,421,42"/>
+<area shape="rect" id="node2" href="./EhCacheConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="263,5,431,53"/>
+<area shape="rect" id="node3_2" href="./EhCacheConfiguration.Builder.html" title="org.dayatang.cache.ehcache.EhCacheConfiguration.Builder" alt="" coords="466,17,522,42"/>
+<area shape="rect" id="node3" href="./EhCacheConfiguration.Builder.html" title="&lt;TABLE&gt;" alt="" coords="455,5,533,53"/>
+<area shape="rect" id="node4_3" href="./EhCacheBasedCache.html" title="org.dayatang.cache.ehcache.EhCacheBasedCache" alt="" coords="567,17,717,42"/>
+<area shape="rect" id="node4" href="./EhCacheBasedCache.html" title="&lt;TABLE&gt;" alt="" coords="557,5,727,53"/>
 </map>

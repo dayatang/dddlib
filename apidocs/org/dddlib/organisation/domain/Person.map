@@ -1,14 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../../../dayatang/domain/AbstractEntity.html" title="org.dayatang.domain.AbstractEntity" alt="" coords="35,11,173,53"/>
-<area shape="rect" id="node1" href="../../../dayatang/domain/AbstractEntity.html" title="&lt;TABLE&gt;" alt="" coords="24,5,184,59"/>
-<area shape="rect" id="node3_1" href="./Person.html" title="org.dddlib.organisation.domain.Person" alt="" coords="150,133,210,158"/>
-<area shape="rect" id="node3" href="./Person.html" title="&lt;TABLE&gt;" alt="" coords="139,121,221,169"/>
-<area shape="rect" id="node2_2" href="./PersonName.html" title="org.dddlib.organisation.domain.PersonName" alt="" coords="16,243,109,269"/>
-<area shape="rect" id="node2" href="./PersonName.html" title="&lt;TABLE&gt;" alt="" coords="5,232,120,280"/>
-<area shape="rect" id="node5_3" href="./Email.html" title="org.dddlib.organisation.domain.Email" alt="" coords="155,243,205,269"/>
-<area shape="rect" id="node5" href="./Email.html" title="&lt;TABLE&gt;" alt="" coords="144,232,216,280"/>
-<area shape="rect" id="node6_4" href="./Address.html" title="org.dddlib.organisation.domain.Address" alt="" coords="251,243,317,269"/>
-<area shape="rect" id="node6" href="./Address.html" title="&lt;TABLE&gt;" alt="" coords="240,232,328,280"/>
-<area shape="rect" id="node4_5" href="./Employee.html" title="org.dddlib.organisation.domain.Employee" alt="" coords="219,19,295,45"/>
-<area shape="rect" id="node4" href="./Employee.html" title="&lt;TABLE&gt;" alt="" coords="209,8,306,56"/>
+<area shape="rect" id="node1_0" href="../../../dayatang/domain/AbstractEntity.html" title="org.dayatang.domain.AbstractEntity" alt="" coords="16,17,119,42"/>
+<area shape="rect" id="node1" href="../../../dayatang/domain/AbstractEntity.html" title="&lt;TABLE&gt;" alt="" coords="5,5,129,53"/>
+<area shape="rect" id="node2_1" href="./Person.html" title="org.dddlib.organisation.domain.Person" alt="" coords="37,113,97,138"/>
+<area shape="rect" id="node2" href="./Person.html" title="&lt;TABLE&gt;" alt="" coords="27,101,108,149"/>
 </map>

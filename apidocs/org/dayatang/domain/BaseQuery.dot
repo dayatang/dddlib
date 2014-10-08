@@ -10,160 +10,34 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.SqlQuery
-	c25455 [label=<<table title="org.dayatang.domain.SqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SqlQuery.html">
+	c25334 [label=<<table title="org.dayatang.domain.SqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SqlQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SqlQuery </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SqlQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.QueryParameters
-	c25456 [label=<<table title="org.dayatang.domain.QueryParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryParameters.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> QueryParameters </td></tr>
-		</table></td></tr>
-		</table>>, URL="./QueryParameters.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.NamedQuery
-	c25460 [label=<<table title="org.dayatang.domain.NamedQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NamedQuery.html">
+	c25339 [label=<<table title="org.dayatang.domain.NamedQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NamedQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NamedQuery </td></tr>
 		</table></td></tr>
 		</table>>, URL="./NamedQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.NamedParameters
-	c25461 [label=<<table title="org.dayatang.domain.NamedParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NamedParameters.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> NamedParameters </td></tr>
-		</table></td></tr>
-		</table>>, URL="./NamedParameters.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.JpqlQuery
-	c25464 [label=<<table title="org.dayatang.domain.JpqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JpqlQuery.html">
+	c25343 [label=<<table title="org.dayatang.domain.JpqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JpqlQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JpqlQuery </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JpqlQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.EntityRepository
-	c25471 [label=<<table title="org.dayatang.domain.EntityRepository" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EntityRepository.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> EntityRepository </td></tr>
-		</table></td></tr>
-		</table>>, URL="./EntityRepository.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
-	c25476 [label=<<table title="org.dayatang.domain.BaseQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./BaseQuery.html">
+	c25355 [label=<<table title="org.dayatang.domain.BaseQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./BaseQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BaseQuery&lt;E extends BaseQuery&gt; </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./BaseQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.persistence.hibernate.EntityRepositoryHibernate
-	c25584 [label=<<table title="org.dayatang.persistence.hibernate.EntityRepositoryHibernate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../persistence/hibernate/EntityRepositoryHibernate.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> EntityRepositoryHibernate </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.persistence.hibernate </td></tr>
-		</table></td></tr>
-		</table>>, URL="../persistence/hibernate/EntityRepositoryHibernate.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa
-	c25586 [label=<<table title="org.dayatang.persistence.jpa.EntityRepositoryJpa" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../persistence/jpa/EntityRepositoryJpa.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> EntityRepositoryJpa </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.persistence.jpa </td></tr>
-		</table></td></tr>
-		</table>>, URL="../persistence/jpa/EntityRepositoryJpa.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery>
-	c25634 [label=<<table title="org.dayatang.querychannel.ChannelQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../querychannel/ChannelQuery.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> ChannelQuery&lt;E extends org.dayatang.querychannel.ChannelQuery&gt; </font></td></tr>
-<tr><td align="center" balign="center"> org.dayatang.querychannel </td></tr>
-		</table></td></tr>
-		</table>>, URL="../querychannel/ChannelQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.querychannel.query.ChannelSqlQuery
-	c25636 [label=<<table title="org.dayatang.querychannel.query.ChannelSqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../querychannel/query/ChannelSqlQuery.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> ChannelSqlQuery </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.querychannel.query </td></tr>
-		</table></td></tr>
-		</table>>, URL="../querychannel/query/ChannelSqlQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.querychannel.query.ChannelNamedQuery
-	c25637 [label=<<table title="org.dayatang.querychannel.query.ChannelNamedQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../querychannel/query/ChannelNamedQuery.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> ChannelNamedQuery </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.querychannel.query </td></tr>
-		</table></td></tr>
-		</table>>, URL="../querychannel/query/ChannelNamedQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.querychannel.query.ChannelJpqlQuery
-	c25638 [label=<<table title="org.dayatang.querychannel.query.ChannelJpqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../querychannel/query/ChannelJpqlQuery.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> ChannelJpqlQuery </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.querychannel.query </td></tr>
-		</table></td></tr>
-		</table>>, URL="../querychannel/query/ChannelJpqlQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.SqlQuery extends org.dayatang.domain.BaseQuery<org.dayatang.domain.SqlQuery>
-	c25476:p -> c25455:p [dir=back,arrowtail=empty];
+	c25355:p -> c25334:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.NamedQuery extends org.dayatang.domain.BaseQuery<org.dayatang.domain.NamedQuery>
-	c25476:p -> c25460:p [dir=back,arrowtail=empty];
-	//org.dayatang.domain.NamedParameters implements org.dayatang.domain.QueryParameters
-	c25456:p -> c25461:p [dir=back,arrowtail=empty,style=dashed];
+	c25355:p -> c25339:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.JpqlQuery extends org.dayatang.domain.BaseQuery<org.dayatang.domain.JpqlQuery>
-	c25476:p -> c25464:p [dir=back,arrowtail=empty];
-	//org.dayatang.persistence.hibernate.EntityRepositoryHibernate implements org.dayatang.domain.EntityRepository
-	c25471:p -> c25584:p [dir=back,arrowtail=empty,style=dashed];
-	//org.dayatang.persistence.jpa.EntityRepositoryJpa implements org.dayatang.domain.EntityRepository
-	c25471:p -> c25586:p [dir=back,arrowtail=empty,style=dashed];
-	//org.dayatang.querychannel.query.ChannelSqlQuery extends org.dayatang.querychannel.ChannelQuery<org.dayatang.querychannel.query.ChannelSqlQuery>
-	c25634:p -> c25636:p [dir=back,arrowtail=empty];
-	//org.dayatang.querychannel.query.ChannelNamedQuery extends org.dayatang.querychannel.ChannelQuery<org.dayatang.querychannel.query.ChannelNamedQuery>
-	c25634:p -> c25637:p [dir=back,arrowtail=empty];
-	//org.dayatang.querychannel.query.ChannelJpqlQuery extends org.dayatang.querychannel.ChannelQuery<org.dayatang.querychannel.query.ChannelJpqlQuery>
-	c25634:p -> c25638:p [dir=back,arrowtail=empty];
-	// org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery> NAVASSOC org.dayatang.domain.EntityRepository
-	c25476:p -> c25471:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery> NAVASSOC org.dayatang.domain.QueryParameters
-	c25476:p -> c25456:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery> NAVASSOC org.dayatang.domain.NamedParameters
-	c25476:p -> c25461:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery> NAVASSOC org.dayatang.domain.EntityRepository
-	c25634:p -> c25471:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery> NAVASSOC org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
-	c25634:p -> c25476:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.querychannel.query.ChannelSqlQuery NAVASSOC org.dayatang.domain.SqlQuery
-	c25636:p -> c25455:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.querychannel.query.ChannelNamedQuery NAVASSOC org.dayatang.domain.NamedQuery
-	c25637:p -> c25460:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.querychannel.query.ChannelJpqlQuery NAVASSOC org.dayatang.domain.JpqlQuery
-	c25638:p -> c25464:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.persistence.hibernate.EntityRepositoryHibernate DEPEND org.dayatang.domain.QueryParameters
-	c25584:p -> c25456:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.hibernate.EntityRepositoryHibernate DEPEND org.dayatang.domain.JpqlQuery
-	c25584:p -> c25464:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.hibernate.EntityRepositoryHibernate DEPEND org.dayatang.domain.SqlQuery
-	c25584:p -> c25455:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.hibernate.EntityRepositoryHibernate DEPEND org.dayatang.domain.NamedQuery
-	c25584:p -> c25460:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.hibernate.EntityRepositoryHibernate DEPEND org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
-	c25584:p -> c25476:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.hibernate.EntityRepositoryHibernate DEPEND org.dayatang.domain.NamedParameters
-	c25584:p -> c25461:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa DEPEND org.dayatang.domain.QueryParameters
-	c25586:p -> c25456:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa DEPEND org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
-	c25586:p -> c25476:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa DEPEND org.dayatang.domain.JpqlQuery
-	c25586:p -> c25464:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa DEPEND org.dayatang.domain.SqlQuery
-	c25586:p -> c25455:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa DEPEND org.dayatang.domain.NamedQuery
-	c25586:p -> c25460:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa DEPEND org.dayatang.domain.NamedParameters
-	c25586:p -> c25461:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery> DEPEND org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
-	c25634:p -> c25476:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery> DEPEND org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
-	c25634:p -> c25476:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery> DEPEND org.dayatang.domain.QueryParameters
-	c25634:p -> c25456:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.querychannel.query.ChannelSqlQuery DEPEND org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
-	c25636:p -> c25476:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.querychannel.query.ChannelNamedQuery DEPEND org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
-	c25637:p -> c25476:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.querychannel.query.ChannelJpqlQuery DEPEND org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
-	c25638:p -> c25476:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c25355:p -> c25343:p [dir=back,arrowtail=empty];
 }
 

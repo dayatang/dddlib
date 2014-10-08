@@ -10,47 +10,35 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.cache.Cache
-	c27821 [label=<<table title="org.dayatang.cache.Cache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Cache.html">
+	c27695 [label=<<table title="org.dayatang.cache.Cache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Cache.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Cache </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Cache.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.cache.memcached.MemcachedBasedCache
-	c27822 [label=<<table title="org.dayatang.cache.memcached.MemcachedBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./memcached/MemcachedBasedCache.html">
+	c27696 [label=<<table title="org.dayatang.cache.memcached.MemcachedBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./memcached/MemcachedBasedCache.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MemcachedBasedCache </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.cache.memcached </td></tr>
 		</table></td></tr>
 		</table>>, URL="./memcached/MemcachedBasedCache.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.cache.ehcache.EhCacheBasedCache
-	c27827 [label=<<table title="org.dayatang.cache.ehcache.EhCacheBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ehcache/EhCacheBasedCache.html">
+	c27701 [label=<<table title="org.dayatang.cache.ehcache.EhCacheBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ehcache/EhCacheBasedCache.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EhCacheBasedCache </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.cache.ehcache </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ehcache/EhCacheBasedCache.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.cache.redis.RedisBasedCache
-	c27829 [label=<<table title="org.dayatang.cache.redis.RedisBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./redis/RedisBasedCache.html">
+	c27703 [label=<<table title="org.dayatang.cache.redis.RedisBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./redis/RedisBasedCache.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RedisBasedCache </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.cache.redis </td></tr>
 		</table></td></tr>
 		</table>>, URL="./redis/RedisBasedCache.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.image.cache.CacheImageAccess
-	c27913 [label=<<table title="org.dddlib.image.cache.CacheImageAccess" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../dddlib/image/cache/CacheImageAccess.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> CacheImageAccess </td></tr>
-<tr><td align="center" balign="center"> org.dddlib.image.cache </td></tr>
-		</table></td></tr>
-		</table>>, URL="../../dddlib/image/cache/CacheImageAccess.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.cache.memcached.MemcachedBasedCache implements org.dayatang.cache.Cache
-	c27821:p -> c27822:p [dir=back,arrowtail=empty,style=dashed];
+	c27695:p -> c27696:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.cache.ehcache.EhCacheBasedCache implements org.dayatang.cache.Cache
-	c27821:p -> c27827:p [dir=back,arrowtail=empty,style=dashed];
+	c27695:p -> c27701:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.cache.redis.RedisBasedCache implements org.dayatang.cache.Cache
-	c27821:p -> c27829:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dddlib.image.cache.CacheImageAccess NAVASSOC org.dayatang.cache.Cache
-	c27913:p -> c27821:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+	c27695:p -> c27703:p [dir=back,arrowtail=empty,style=dashed];
 }
 

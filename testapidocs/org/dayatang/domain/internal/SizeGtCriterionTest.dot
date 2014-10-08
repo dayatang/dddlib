@@ -10,18 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.internal.SizeGtCriterionTest
-	c42093 [label=<<table title="org.dayatang.domain.internal.SizeGtCriterionTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SizeGtCriterionTest.html">
+	c41691 [label=<<table title="org.dayatang.domain.internal.SizeGtCriterionTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SizeGtCriterionTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SizeGtCriterionTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SizeGtCriterionTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.internal.SizeGtCriterionTest NAVASSOC org.dayatang.domain.internal.SizeGtCriterion
-	c42093:p -> c42250:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.internal.SizeGtCriterion
-	c42250 [label=<<table title="org.dayatang.domain.internal.SizeGtCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/internal/SizeGtCriterion.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> SizeGtCriterion </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/internal/SizeGtCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

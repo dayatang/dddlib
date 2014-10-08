@@ -10,65 +10,36 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.event.StoredEventTest
-	c1172 [label=<<table title="org.dayatang.domain.event.StoredEventTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./StoredEventTest.html">
+	c1165 [label=<<table title="org.dayatang.domain.event.StoredEventTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./StoredEventTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> StoredEventTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./StoredEventTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.event.DomainEventTest
-	c1173 [label=<<table title="org.dayatang.domain.event.DomainEventTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DomainEventTest.html">
+	c1166 [label=<<table title="org.dayatang.domain.event.DomainEventTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DomainEventTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DomainEventTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DomainEventTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.event.DomainEventSub
-	c1174 [label=<<table title="org.dayatang.domain.event.DomainEventSub" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DomainEventSub.html">
+	c1167 [label=<<table title="org.dayatang.domain.event.DomainEventSub" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DomainEventSub.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DomainEventSub </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DomainEventSub.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.event.DomainEventBusImplTest
-	c1175 [label=<<table title="org.dayatang.domain.event.DomainEventBusImplTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DomainEventBusImplTest.html">
+	c1168 [label=<<table title="org.dayatang.domain.event.DomainEventBusImplTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DomainEventBusImplTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DomainEventBusImplTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DomainEventBusImplTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.event.DomainEventSub extends org.dayatang.domain.event.DomainEvent
-	c1337:p -> c1174:p [dir=back,arrowtail=empty];
-	// org.dayatang.domain.event.StoredEventTest NAVASSOC org.dayatang.domain.event.StoredEvent
-	c1172:p -> c1338:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.event.StoredEventTest NAVASSOC org.dayatang.domain.event.DomainEventSub
-	c1172:p -> c1174:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.event.DomainEventTest NAVASSOC org.dayatang.domain.event.DomainEvent
-	c1173:p -> c1337:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.event.DomainEventBusImplTest NAVASSOC org.dayatang.domain.event.DomainEventBusImpl
-	c1175:p -> c1339:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.event.DomainEventBusImplTest NAVASSOC org.dayatang.domain.event.EventStore
-	c1175:p -> c1340:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.event.StoredEvent
-	c1338 [label=<<table title="org.dayatang.domain.event.StoredEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/StoredEvent.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> StoredEvent </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/StoredEvent.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.event.EventStore
-	c1340 [label=<<table title="org.dayatang.domain.event.EventStore" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/EventStore.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> EventStore </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/EventStore.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.event.DomainEventBusImpl
-	c1339 [label=<<table title="org.dayatang.domain.event.DomainEventBusImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/DomainEventBusImpl.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> DomainEventBusImpl </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/DomainEventBusImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	c1330:p -> c1167:p [dir=back,arrowtail=empty];
 	// org.dayatang.domain.event.DomainEvent
-	c1337 [label=<<table title="org.dayatang.domain.event.DomainEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/DomainEvent.html">
+	c1330 [label=<<table title="org.dayatang.domain.event.DomainEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> DomainEvent </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/DomainEvent.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

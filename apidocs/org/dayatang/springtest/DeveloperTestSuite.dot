@@ -9,21 +9,11 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.db.DBManager
-	c42054 [label=<<table title="org.dayatang.db.DBManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../db/DBManager.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> DBManager </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.db </td></tr>
-		</table></td></tr>
-		</table>>, URL="../db/DBManager.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.springtest.DeveloperTestSuite
-	c42112 [label=<<table title="org.dayatang.springtest.DeveloperTestSuite" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DeveloperTestSuite.html">
+	c41918 [label=<<table title="org.dayatang.springtest.DeveloperTestSuite" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DeveloperTestSuite.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> DeveloperTestSuite </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./DeveloperTestSuite.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.springtest.DeveloperTestSuite DEPEND org.dayatang.db.DBManager
-	c42112:p -> c42054:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 }
 

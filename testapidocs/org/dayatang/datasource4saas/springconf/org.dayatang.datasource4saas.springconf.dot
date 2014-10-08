@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.datasource4saas.springconf.SpringConfiguration
-	c9356 [label=<<table title="org.dayatang.datasource4saas.springconf.SpringConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SpringConfiguration.html">
+	c9295 [label=<<table title="org.dayatang.datasource4saas.springconf.SpringConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SpringConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SpringConfiguration </td></tr>
 		</table></td></tr>

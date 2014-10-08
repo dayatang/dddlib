@@ -10,28 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.db.DBManager
-	c34801 [label=<<table title="org.dayatang.db.DBManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DBManager.html">
+	c34619 [label=<<table title="org.dayatang.db.DBManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DBManager.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> DBManager </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DBManager.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.db.AbstractDBManager
-	c34804 [label=<<table title="org.dayatang.db.AbstractDBManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractDBManager.html">
+	c34622 [label=<<table title="org.dayatang.db.AbstractDBManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractDBManager.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractDBManager </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractDBManager.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.springtest.DeveloperTestSuite
-	c34859 [label=<<table title="org.dayatang.springtest.DeveloperTestSuite" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../springtest/DeveloperTestSuite.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> DeveloperTestSuite </font></td></tr>
-<tr><td align="center" balign="center"> org.dayatang.springtest </td></tr>
-		</table></td></tr>
-		</table>>, URL="../springtest/DeveloperTestSuite.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.db.AbstractDBManager implements org.dayatang.db.DBManager
-	c34801:p -> c34804:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.springtest.DeveloperTestSuite DEPEND org.dayatang.db.DBManager
-	c34859:p -> c34801:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c34619:p -> c34622:p [dir=back,arrowtail=empty,style=dashed];
 }
 

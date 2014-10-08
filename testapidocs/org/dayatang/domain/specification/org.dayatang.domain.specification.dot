@@ -10,71 +10,50 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.specification.StartsSpecification
-	c2018 [label=<<table title="org.dayatang.domain.specification.StartsSpecification" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./StartsSpecification.html">
+	c1976 [label=<<table title="org.dayatang.domain.specification.StartsSpecification" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./StartsSpecification.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> StartsSpecification </td></tr>
 		</table></td></tr>
 		</table>>, URL="./StartsSpecification.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.specification.OrSpecificationTest
-	c2019 [label=<<table title="org.dayatang.domain.specification.OrSpecificationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OrSpecificationTest.html">
+	c1977 [label=<<table title="org.dayatang.domain.specification.OrSpecificationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OrSpecificationTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> OrSpecificationTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./OrSpecificationTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.specification.NotSpecificationTest
-	c2020 [label=<<table title="org.dayatang.domain.specification.NotSpecificationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NotSpecificationTest.html">
+	c1978 [label=<<table title="org.dayatang.domain.specification.NotSpecificationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NotSpecificationTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NotSpecificationTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./NotSpecificationTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.specification.LengthSpecification
-	c2021 [label=<<table title="org.dayatang.domain.specification.LengthSpecification" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./LengthSpecification.html">
+	c1979 [label=<<table title="org.dayatang.domain.specification.LengthSpecification" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./LengthSpecification.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> LengthSpecification </td></tr>
 		</table></td></tr>
 		</table>>, URL="./LengthSpecification.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.specification.AndSpecificationTest
-	c2022 [label=<<table title="org.dayatang.domain.specification.AndSpecificationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AndSpecificationTest.html">
+	c1980 [label=<<table title="org.dayatang.domain.specification.AndSpecificationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AndSpecificationTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AndSpecificationTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./AndSpecificationTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.specification.AbstractSpecificationTest
-	c2023 [label=<<table title="org.dayatang.domain.specification.AbstractSpecificationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractSpecificationTest.html">
+	c1981 [label=<<table title="org.dayatang.domain.specification.AbstractSpecificationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractSpecificationTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AbstractSpecificationTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractSpecificationTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.specification.StartsSpecification extends org.dayatang.domain.specification.AbstractSpecification<java.lang.String>
-	c2133:p -> c2018:p [dir=back,arrowtail=empty];
+	c2091:p -> c1976:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.specification.LengthSpecification extends org.dayatang.domain.specification.AbstractSpecification<java.lang.String>
-	c2133:p -> c2021:p [dir=back,arrowtail=empty];
-	// org.dayatang.domain.specification.OrSpecificationTest NAVASSOC org.dayatang.domain.specification.Specification<T>
-	c2019:p -> c2134:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.specification.NotSpecificationTest NAVASSOC org.dayatang.domain.specification.Specification<T>
-	c2020:p -> c2134:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.specification.NotSpecificationTest NAVASSOC org.dayatang.domain.specification.NotSpecification<T>
-	c2020:p -> c2135:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.specification.AndSpecificationTest NAVASSOC org.dayatang.domain.specification.Specification<T>
-	c2022:p -> c2134:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+	c2091:p -> c1979:p [dir=back,arrowtail=empty];
 	// org.dayatang.domain.specification.AbstractSpecification<T>
-	c2133 [label=<<table title="org.dayatang.domain.specification.AbstractSpecification" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/AbstractSpecification.html">
+	c2091 [label=<<table title="org.dayatang.domain.specification.AbstractSpecification" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractSpecification&lt;T&gt; </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/AbstractSpecification.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.specification.NotSpecification<T>
-	c2135 [label=<<table title="org.dayatang.domain.specification.NotSpecification" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/NotSpecification.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> NotSpecification&lt;T&gt; </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/NotSpecification.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.specification.Specification<T>
-	c2134 [label=<<table title="org.dayatang.domain.specification.Specification" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/Specification.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Specification&lt;T&gt; </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/Specification.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

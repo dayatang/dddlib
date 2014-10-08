@@ -9,21 +9,11 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.domain.InstanceProvider
-	c91513 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../../domain/InstanceProvider.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> InstanceProvider </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="../../../domain/InstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.ioc.tapestry.factory.TapestryIocUtils
-	c91587 [label=<<table title="org.dayatang.ioc.tapestry.factory.TapestryIocUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./TapestryIocUtils.html">
+	c91350 [label=<<table title="org.dayatang.ioc.tapestry.factory.TapestryIocUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./TapestryIocUtils.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TapestryIocUtils </td></tr>
 		</table></td></tr>
 		</table>>, URL="./TapestryIocUtils.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.ioc.tapestry.factory.TapestryIocUtils DEPEND org.dayatang.domain.InstanceProvider
-	c91587:p -> c91513:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 }
 

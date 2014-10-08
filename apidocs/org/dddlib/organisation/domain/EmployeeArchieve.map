@@ -1,8 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../../../dayatang/domain/AbstractEntity.html" title="org.dayatang.domain.AbstractEntity" alt="" coords="16,11,155,53"/>
-<area shape="rect" id="node1" href="../../../dayatang/domain/AbstractEntity.html" title="&lt;TABLE&gt;" alt="" coords="5,5,165,59"/>
-<area shape="rect" id="node2_1" href="./EmployeeArchieve.html" title="org.dddlib.organisation.domain.EmployeeArchieve" alt="" coords="23,119,147,145"/>
-<area shape="rect" id="node2" href="./EmployeeArchieve.html" title="&lt;TABLE&gt;" alt="" coords="13,108,158,156"/>
-<area shape="rect" id="node3_2" href="./Employee.html" title="org.dddlib.organisation.domain.Employee" alt="" coords="47,230,123,255"/>
-<area shape="rect" id="node3" href="./Employee.html" title="&lt;TABLE&gt;" alt="" coords="37,219,134,267"/>
+<area shape="rect" id="node1_0" href="../../../dayatang/domain/AbstractEntity.html" title="org.dayatang.domain.AbstractEntity" alt="" coords="27,17,129,42"/>
+<area shape="rect" id="node1" href="../../../dayatang/domain/AbstractEntity.html" title="&lt;TABLE&gt;" alt="" coords="16,5,140,53"/>
+<area shape="rect" id="node2_1" href="./EmployeeArchieve.html" title="org.dddlib.organisation.domain.EmployeeArchieve" alt="" coords="16,113,140,138"/>
+<area shape="rect" id="node2" href="./EmployeeArchieve.html" title="&lt;TABLE&gt;" alt="" coords="5,101,151,149"/>
 </map>

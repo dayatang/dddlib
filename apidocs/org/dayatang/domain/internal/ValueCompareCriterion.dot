@@ -9,76 +9,67 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.domain.NamedParameters
-	c95121 [label=<<table title="org.dayatang.domain.NamedParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../NamedParameters.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> NamedParameters </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="../NamedParameters.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.ValueCompareCriterion
-	c95144 [label=<<table title="org.dayatang.domain.internal.ValueCompareCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ValueCompareCriterion.html">
+	c94911 [label=<<table title="org.dayatang.domain.internal.ValueCompareCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ValueCompareCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> ValueCompareCriterion </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./ValueCompareCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.NotEqCriterion
-	c95158 [label=<<table title="org.dayatang.domain.internal.NotEqCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NotEqCriterion.html">
+	c94925 [label=<<table title="org.dayatang.domain.internal.NotEqCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NotEqCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NotEqCriterion </td></tr>
 		</table></td></tr>
 		</table>>, URL="./NotEqCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.LtCriterion
-	c95162 [label=<<table title="org.dayatang.domain.internal.LtCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./LtCriterion.html">
+	c94929 [label=<<table title="org.dayatang.domain.internal.LtCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./LtCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> LtCriterion </td></tr>
 		</table></td></tr>
 		</table>>, URL="./LtCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.LeCriterion
-	c95164 [label=<<table title="org.dayatang.domain.internal.LeCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./LeCriterion.html">
+	c94931 [label=<<table title="org.dayatang.domain.internal.LeCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./LeCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> LeCriterion </td></tr>
 		</table></td></tr>
 		</table>>, URL="./LeCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.GtCriterion
-	c95169 [label=<<table title="org.dayatang.domain.internal.GtCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GtCriterion.html">
+	c94936 [label=<<table title="org.dayatang.domain.internal.GtCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GtCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GtCriterion </td></tr>
 		</table></td></tr>
 		</table>>, URL="./GtCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.GeCriterion
-	c95171 [label=<<table title="org.dayatang.domain.internal.GeCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GeCriterion.html">
+	c94938 [label=<<table title="org.dayatang.domain.internal.GeCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GeCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GeCriterion </td></tr>
 		</table></td></tr>
 		</table>>, URL="./GeCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.EqCriterion
-	c95173 [label=<<table title="org.dayatang.domain.internal.EqCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EqCriterion.html">
+	c94940 [label=<<table title="org.dayatang.domain.internal.EqCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EqCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EqCriterion </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EqCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.BasicCriterion
-	c95178 [label=<<table title="org.dayatang.domain.internal.BasicCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BasicCriterion.html">
+	c94945 [label=<<table title="org.dayatang.domain.internal.BasicCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BasicCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BasicCriterion </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./BasicCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.internal.ValueCompareCriterion extends org.dayatang.domain.internal.BasicCriterion
-	c95178:p -> c95144:p [dir=back,arrowtail=empty];
+	c94945:p -> c94911:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.internal.NotEqCriterion extends org.dayatang.domain.internal.ValueCompareCriterion
-	c95144:p -> c95158:p [dir=back,arrowtail=empty];
+	c94911:p -> c94925:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.internal.LtCriterion extends org.dayatang.domain.internal.ValueCompareCriterion
-	c95144:p -> c95162:p [dir=back,arrowtail=empty];
+	c94911:p -> c94929:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.internal.LeCriterion extends org.dayatang.domain.internal.ValueCompareCriterion
-	c95144:p -> c95164:p [dir=back,arrowtail=empty];
+	c94911:p -> c94931:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.internal.GtCriterion extends org.dayatang.domain.internal.ValueCompareCriterion
-	c95144:p -> c95169:p [dir=back,arrowtail=empty];
+	c94911:p -> c94936:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.internal.GeCriterion extends org.dayatang.domain.internal.ValueCompareCriterion
-	c95144:p -> c95171:p [dir=back,arrowtail=empty];
+	c94911:p -> c94938:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.internal.EqCriterion extends org.dayatang.domain.internal.ValueCompareCriterion
-	c95144:p -> c95173:p [dir=back,arrowtail=empty];
-	// org.dayatang.domain.internal.ValueCompareCriterion DEPEND org.dayatang.domain.NamedParameters
-	c95144:p -> c95121:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c94911:p -> c94940:p [dir=back,arrowtail=empty];
 }
 

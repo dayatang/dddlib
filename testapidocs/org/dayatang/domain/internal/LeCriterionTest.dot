@@ -10,18 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.internal.LeCriterionTest
-	c30040 [label=<<table title="org.dayatang.domain.internal.LeCriterionTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./LeCriterionTest.html">
+	c29720 [label=<<table title="org.dayatang.domain.internal.LeCriterionTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./LeCriterionTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> LeCriterionTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./LeCriterionTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.internal.LeCriterionTest NAVASSOC org.dayatang.domain.internal.LeCriterion
-	c30040:p -> c30184:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.internal.LeCriterion
-	c30184 [label=<<table title="org.dayatang.domain.internal.LeCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/internal/LeCriterion.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> LeCriterion </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/internal/LeCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

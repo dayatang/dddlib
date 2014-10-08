@@ -9,76 +9,67 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.domain.NamedParameters
-	c85109 [label=<<table title="org.dayatang.domain.NamedParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../NamedParameters.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> NamedParameters </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="../NamedParameters.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.SizeNotEqCriterion
-	c85134 [label=<<table title="org.dayatang.domain.internal.SizeNotEqCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SizeNotEqCriterion.html">
+	c84897 [label=<<table title="org.dayatang.domain.internal.SizeNotEqCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SizeNotEqCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SizeNotEqCriterion </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SizeNotEqCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.SizeLtCriterion
-	c85135 [label=<<table title="org.dayatang.domain.internal.SizeLtCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SizeLtCriterion.html">
+	c84898 [label=<<table title="org.dayatang.domain.internal.SizeLtCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SizeLtCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SizeLtCriterion </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SizeLtCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.SizeLeCriterion
-	c85136 [label=<<table title="org.dayatang.domain.internal.SizeLeCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SizeLeCriterion.html">
+	c84899 [label=<<table title="org.dayatang.domain.internal.SizeLeCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SizeLeCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SizeLeCriterion </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SizeLeCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.SizeGtCriterion
-	c85137 [label=<<table title="org.dayatang.domain.internal.SizeGtCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SizeGtCriterion.html">
+	c84900 [label=<<table title="org.dayatang.domain.internal.SizeGtCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SizeGtCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SizeGtCriterion </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SizeGtCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.SizeGeCriterion
-	c85138 [label=<<table title="org.dayatang.domain.internal.SizeGeCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SizeGeCriterion.html">
+	c84901 [label=<<table title="org.dayatang.domain.internal.SizeGeCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SizeGeCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SizeGeCriterion </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SizeGeCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.SizeEqCriterion
-	c85139 [label=<<table title="org.dayatang.domain.internal.SizeEqCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SizeEqCriterion.html">
+	c84902 [label=<<table title="org.dayatang.domain.internal.SizeEqCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SizeEqCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SizeEqCriterion </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SizeEqCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.SizeCompareCriterion
-	c85140 [label=<<table title="org.dayatang.domain.internal.SizeCompareCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SizeCompareCriterion.html">
+	c84903 [label=<<table title="org.dayatang.domain.internal.SizeCompareCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SizeCompareCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> SizeCompareCriterion </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./SizeCompareCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.BasicCriterion
-	c85166 [label=<<table title="org.dayatang.domain.internal.BasicCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BasicCriterion.html">
+	c84929 [label=<<table title="org.dayatang.domain.internal.BasicCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BasicCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BasicCriterion </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./BasicCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.internal.SizeNotEqCriterion extends org.dayatang.domain.internal.SizeCompareCriterion
-	c85140:p -> c85134:p [dir=back,arrowtail=empty];
+	c84903:p -> c84897:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.internal.SizeLtCriterion extends org.dayatang.domain.internal.SizeCompareCriterion
-	c85140:p -> c85135:p [dir=back,arrowtail=empty];
+	c84903:p -> c84898:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.internal.SizeLeCriterion extends org.dayatang.domain.internal.SizeCompareCriterion
-	c85140:p -> c85136:p [dir=back,arrowtail=empty];
+	c84903:p -> c84899:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.internal.SizeGtCriterion extends org.dayatang.domain.internal.SizeCompareCriterion
-	c85140:p -> c85137:p [dir=back,arrowtail=empty];
+	c84903:p -> c84900:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.internal.SizeGeCriterion extends org.dayatang.domain.internal.SizeCompareCriterion
-	c85140:p -> c85138:p [dir=back,arrowtail=empty];
+	c84903:p -> c84901:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.internal.SizeEqCriterion extends org.dayatang.domain.internal.SizeCompareCriterion
-	c85140:p -> c85139:p [dir=back,arrowtail=empty];
+	c84903:p -> c84902:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.internal.SizeCompareCriterion extends org.dayatang.domain.internal.BasicCriterion
-	c85166:p -> c85140:p [dir=back,arrowtail=empty];
-	// org.dayatang.domain.internal.SizeCompareCriterion DEPEND org.dayatang.domain.NamedParameters
-	c85140:p -> c85109:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c84929:p -> c84903:p [dir=back,arrowtail=empty];
 }
 

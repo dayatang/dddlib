@@ -1,8 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../../domain/Post.html" title="org.dddlib.organisation.domain.Post" alt="" coords="16,121,204,164"/>
-<area shape="rect" id="node1" href="../../domain/Post.html" title="&lt;TABLE&gt;" alt="" coords="5,116,215,169"/>
-<area shape="rect" id="node2_1" href="../PostDto.html" title="org.dddlib.organisation.facade.PostDto" alt="" coords="249,121,435,164"/>
-<area shape="rect" id="node2" href="../PostDto.html" title="&lt;TABLE&gt;" alt="" coords="239,116,445,169"/>
-<area shape="rect" id="node3_2" href="./PostAssembler.html" title="org.dddlib.organisation.facade.assembler.PostAssembler" alt="" coords="173,17,279,42"/>
-<area shape="rect" id="node3" href="./PostAssembler.html" title="&lt;TABLE&gt;" alt="" coords="163,5,289,53"/>
+<area shape="rect" id="node1_0" href="./PostAssembler.html" title="org.dddlib.organisation.facade.assembler.PostAssembler" alt="" coords="16,17,121,42"/>
+<area shape="rect" id="node1" href="./PostAssembler.html" title="&lt;TABLE&gt;" alt="" coords="5,5,132,53"/>
 </map>

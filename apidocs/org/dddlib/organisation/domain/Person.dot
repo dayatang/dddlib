@@ -10,51 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.AbstractEntity
-	c76782 [label=<<table title="org.dayatang.domain.AbstractEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../../dayatang/domain/AbstractEntity.html">
+	c76545 [label=<<table title="org.dayatang.domain.AbstractEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../../dayatang/domain/AbstractEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractEntity </font></td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
 		</table></td></tr>
 		</table>>, URL="../../../dayatang/domain/AbstractEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.organisation.domain.PersonName
-	c76993 [label=<<table title="org.dddlib.organisation.domain.PersonName" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PersonName.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> PersonName </td></tr>
-		</table></td></tr>
-		</table>>, URL="./PersonName.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Person
-	c76995 [label=<<table title="org.dddlib.organisation.domain.Person" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Person.html">
+	c76758 [label=<<table title="org.dddlib.organisation.domain.Person" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Person.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Person </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Person.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.organisation.domain.Employee
-	c77004 [label=<<table title="org.dddlib.organisation.domain.Employee" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Employee.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Employee </td></tr>
-		</table></td></tr>
-		</table>>, URL="./Employee.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.organisation.domain.Email
-	c77005 [label=<<table title="org.dddlib.organisation.domain.Email" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Email.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Email </td></tr>
-		</table></td></tr>
-		</table>>, URL="./Email.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.organisation.domain.Address
-	c77008 [label=<<table title="org.dddlib.organisation.domain.Address" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Address.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Address </td></tr>
-		</table></td></tr>
-		</table>>, URL="./Address.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dddlib.organisation.domain.Person extends org.dayatang.domain.AbstractEntity
-	c76782:p -> c76995:p [dir=back,arrowtail=empty];
-	// org.dddlib.organisation.domain.Person NAVASSOC org.dddlib.organisation.domain.PersonName
-	c76995:p -> c76993:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dddlib.organisation.domain.Person NAVASSOC org.dddlib.organisation.domain.Email
-	c76995:p -> c77005:p [taillabel="", label=" "headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dddlib.organisation.domain.Person NAVASSOC org.dddlib.organisation.domain.Address
-	c76995:p -> c77008:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dddlib.organisation.domain.Employee NAVASSOC org.dddlib.organisation.domain.Person
-	c77004:p -> c76995:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+	c76545:p -> c76758:p [dir=back,arrowtail=empty];
 }
 

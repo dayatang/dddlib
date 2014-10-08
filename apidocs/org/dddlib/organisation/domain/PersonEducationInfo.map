@@ -1,6 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../../../dayatang/domain/ValueObject.html" title="org.dayatang.domain.ValueObject" alt="" coords="16,11,155,71"/>
-<area shape="rect" id="node1" href="../../../dayatang/domain/ValueObject.html" title="&lt;TABLE&gt;" alt="" coords="5,5,165,76"/>
-<area shape="rect" id="node2_1" href="./PersonEducationInfo.html" title="org.dddlib.organisation.domain.PersonEducationInfo" alt="" coords="17,135,153,161"/>
-<area shape="rect" id="node2" href="./PersonEducationInfo.html" title="&lt;TABLE&gt;" alt="" coords="7,124,164,172"/>
+<area shape="rect" id="node1_0" href="../../../dayatang/domain/ValueObject.html" title="org.dayatang.domain.ValueObject" alt="" coords="16,11,107,53"/>
+<area shape="rect" id="node1" href="../../../dayatang/domain/ValueObject.html" title="&lt;TABLE&gt;" alt="" coords="5,5,117,59"/>
+<area shape="rect" id="node2_1" href="./PersonEducationInfo.html" title="org.dddlib.organisation.domain.PersonEducationInfo" alt="" coords="67,118,203,143"/>
+<area shape="rect" id="node2" href="./PersonEducationInfo.html" title="&lt;TABLE&gt;" alt="" coords="56,107,213,155"/>
+<area shape="rect" id="node3_2" href="http://download.oracle.com/javase/7/docs/api/java/lang/Comparable.html" title="java.lang.Comparable" alt="" coords="152,11,264,53"/>
+<area shape="rect" id="node3" href="http://download.oracle.com/javase/7/docs/api/java/lang/Comparable.html" title="&lt;TABLE&gt;" alt="" coords="141,5,275,59"/>
 </map>

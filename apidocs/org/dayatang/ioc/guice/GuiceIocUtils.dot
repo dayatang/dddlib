@@ -10,22 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.ioc.guice.GuiceIocUtils
-	c54584 [label=<<table title="org.dayatang.ioc.guice.GuiceIocUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GuiceIocUtils.html">
+	c54353 [label=<<table title="org.dayatang.ioc.guice.GuiceIocUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GuiceIocUtils.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GuiceIocUtils </td></tr>
 		</table></td></tr>
 		</table>>, URL="./GuiceIocUtils.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.ioc.guice.GuiceIocUtils DEPEND com.google.inject.Module
-	c54584:p -> c54760:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.ioc.guice.GuiceIocUtils DEPEND com.google.inject.Module
-	c54584:p -> c54760:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// com.google.inject.Module
-	c54760 [label=<<table title="com.google.inject.Module" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Module.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Module </td></tr>
-<tr><td align="center" balign="center"> com.google.inject </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Module.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

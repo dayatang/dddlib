@@ -10,41 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.QueryParameters
-	c77594 [label=<<table title="org.dayatang.domain.QueryParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryParameters.html">
+	c77358 [label=<<table title="org.dayatang.domain.QueryParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryParameters.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> QueryParameters </td></tr>
 		</table></td></tr>
 		</table>>, URL="./QueryParameters.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.PositionalParameters
-	c77596 [label=<<table title="org.dayatang.domain.PositionalParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./PositionalParameters.html">
+	c77360 [label=<<table title="org.dayatang.domain.PositionalParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./PositionalParameters.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PositionalParameters </td></tr>
 		</table></td></tr>
 		</table>>, URL="./PositionalParameters.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.persistence.hibernate.EntityRepositoryHibernate
-	c77722 [label=<<table title="org.dayatang.persistence.hibernate.EntityRepositoryHibernate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../persistence/hibernate/EntityRepositoryHibernate.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> EntityRepositoryHibernate </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.persistence.hibernate </td></tr>
-		</table></td></tr>
-		</table>>, URL="../persistence/hibernate/EntityRepositoryHibernate.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa
-	c77724 [label=<<table title="org.dayatang.persistence.jpa.EntityRepositoryJpa" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../persistence/jpa/EntityRepositoryJpa.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> EntityRepositoryJpa </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.persistence.jpa </td></tr>
-		</table></td></tr>
-		</table>>, URL="../persistence/jpa/EntityRepositoryJpa.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.PositionalParameters implements org.dayatang.domain.QueryParameters
-	c77594:p -> c77596:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.persistence.hibernate.EntityRepositoryHibernate DEPEND org.dayatang.domain.QueryParameters
-	c77722:p -> c77594:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.hibernate.EntityRepositoryHibernate DEPEND org.dayatang.domain.PositionalParameters
-	c77722:p -> c77596:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa DEPEND org.dayatang.domain.QueryParameters
-	c77724:p -> c77594:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa DEPEND org.dayatang.domain.PositionalParameters
-	c77724:p -> c77596:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c77358:p -> c77360:p [dir=back,arrowtail=empty,style=dashed];
 }
 

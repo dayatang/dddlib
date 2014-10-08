@@ -1,10 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./EntityRepositoryHibernateTest.html" title="org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest" alt="" coords="203,114,393,139"/>
-<area shape="rect" id="node1" href="./EntityRepositoryHibernateTest.html" title="&lt;TABLE&gt;" alt="" coords="193,103,403,151"/>
-<area shape="rect" id="node3_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/test/domain/DictionaryCategory.html" title="org.dayatang.persistence.test.domain.DictionaryCategory" alt="" coords="16,219,244,261"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/test/domain/DictionaryCategory.html" title="&lt;TABLE&gt;" alt="" coords="5,213,255,267"/>
-<area shape="rect" id="node4_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/test/domain/Dictionary.html" title="org.dayatang.persistence.test.domain.Dictionary" alt="" coords="289,219,517,261"/>
-<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/test/domain/Dictionary.html" title="&lt;TABLE&gt;" alt="" coords="279,213,528,267"/>
-<area shape="rect" id="node2_3" href="./AbstractIntegrationTest.html" title="org.dayatang.persistence.hibernate.AbstractIntegrationTest" alt="" coords="224,17,372,42"/>
-<area shape="rect" id="node2" href="./AbstractIntegrationTest.html" title="&lt;TABLE&gt;" alt="" coords="213,5,383,53"/>
+<area shape="rect" id="node1_0" href="./EntityRepositoryHibernateTest.html" title="org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest" alt="" coords="16,113,205,138"/>
+<area shape="rect" id="node1" href="./EntityRepositoryHibernateTest.html" title="&lt;TABLE&gt;" alt="" coords="5,101,216,149"/>
+<area shape="rect" id="node2_1" href="./AbstractIntegrationTest.html" title="org.dayatang.persistence.hibernate.AbstractIntegrationTest" alt="" coords="37,17,185,42"/>
+<area shape="rect" id="node2" href="./AbstractIntegrationTest.html" title="&lt;TABLE&gt;" alt="" coords="26,5,195,53"/>
 </map>

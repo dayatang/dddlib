@@ -1,6 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./impl/StatelessRuleServiceJsr94.html" title="org.dayatang.rule.impl.StatelessRuleServiceJsr94" alt="" coords="16,112,185,155"/>
-<area shape="rect" id="node1" href="./impl/StatelessRuleServiceJsr94.html" title="&lt;TABLE&gt;" alt="" coords="5,107,196,160"/>
-<area shape="rect" id="node2_1" href="./StatelessRuleService.html" title="org.dayatang.rule.StatelessRuleService" alt="" coords="31,11,171,53"/>
-<area shape="rect" id="node2" href="./StatelessRuleService.html" title="&lt;TABLE&gt;" alt="" coords="20,5,181,59"/>
+<area shape="rect" id="node1_0" href="./impl/StatelessRuleServiceJsr94.html" title="org.dayatang.rule.impl.StatelessRuleServiceJsr94" alt="" coords="16,219,185,245"/>
+<area shape="rect" id="node1" href="./impl/StatelessRuleServiceJsr94.html" title="&lt;TABLE&gt;" alt="" coords="5,208,196,256"/>
+<area shape="rect" id="node2_1" href="./StatelessRuleService.html" title="org.dayatang.rule.StatelessRuleService" alt="" coords="31,112,171,155"/>
+<area shape="rect" id="node2" href="./StatelessRuleService.html" title="&lt;TABLE&gt;" alt="" coords="20,107,181,160"/>
+<area shape="rect" id="node3_2" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="java.io.Serializable" alt="" coords="59,11,143,53"/>
+<area shape="rect" id="node3" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="&lt;TABLE&gt;" alt="" coords="48,5,153,59"/>
 </map>

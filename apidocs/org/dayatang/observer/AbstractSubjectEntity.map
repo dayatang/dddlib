@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../domain/AbstractEntity.html" title="org.dayatang.domain.AbstractEntity" alt="" coords="16,11,155,53"/>
-<area shape="rect" id="node1" href="../domain/AbstractEntity.html" title="&lt;TABLE&gt;" alt="" coords="5,5,165,59"/>
-<area shape="rect" id="node3_1" href="./AbstractSubjectEntity.html" title="org.dayatang.observer.AbstractSubjectEntity" alt="" coords="89,118,236,143"/>
-<area shape="rect" id="node3" href="./AbstractSubjectEntity.html" title="&lt;TABLE&gt;" alt="" coords="79,107,247,155"/>
-<area shape="rect" id="node2_2" href="./Subject.html" title="org.dayatang.observer.Subject" alt="" coords="201,11,282,53"/>
-<area shape="rect" id="node2" href="./Subject.html" title="&lt;TABLE&gt;" alt="" coords="190,5,293,59"/>
+<area shape="rect" id="node1_0" href="../domain/AbstractEntity.html" title="org.dayatang.domain.AbstractEntity" alt="" coords="16,19,119,45"/>
+<area shape="rect" id="node1" href="../domain/AbstractEntity.html" title="&lt;TABLE&gt;" alt="" coords="5,8,129,56"/>
+<area shape="rect" id="node3_1" href="./AbstractSubjectEntity.html" title="org.dayatang.observer.AbstractSubjectEntity" alt="" coords="62,118,209,143"/>
+<area shape="rect" id="node3" href="./AbstractSubjectEntity.html" title="&lt;TABLE&gt;" alt="" coords="51,107,219,155"/>
+<area shape="rect" id="node2_2" href="./Subject.html" title="org.dayatang.observer.Subject" alt="" coords="164,11,245,53"/>
+<area shape="rect" id="node2" href="./Subject.html" title="&lt;TABLE&gt;" alt="" coords="153,5,256,59"/>
 </map>

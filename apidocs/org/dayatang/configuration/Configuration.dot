@@ -10,70 +10,28 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.configuration.WritableConfiguration
-	c30336 [label=<<table title="org.dayatang.configuration.WritableConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./WritableConfiguration.html">
+	c30152 [label=<<table title="org.dayatang.configuration.WritableConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./WritableConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> WritableConfiguration </td></tr>
 		</table></td></tr>
 		</table>>, URL="./WritableConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.Configuration
-	c30339 [label=<<table title="org.dayatang.configuration.Configuration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Configuration.html">
+	c30155 [label=<<table title="org.dayatang.configuration.Configuration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Configuration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Configuration </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Configuration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.configuration.impl.ConfigurationFactoryImpl
-	c30345 [label=<<table title="org.dayatang.configuration.impl.ConfigurationFactoryImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./impl/ConfigurationFactoryImpl.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> ConfigurationFactoryImpl </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.configuration.impl </td></tr>
-		</table></td></tr>
-		</table>>, URL="./impl/ConfigurationFactoryImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.AbstractConfiguration
-	c30348 [label=<<table title="org.dayatang.configuration.impl.AbstractConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./impl/AbstractConfiguration.html">
+	c30164 [label=<<table title="org.dayatang.configuration.impl.AbstractConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./impl/AbstractConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractConfiguration </font></td></tr>
-<tr><td align="center" balign="center"> org.dayatang.configuration.impl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./impl/AbstractConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.datasource4saas.dscreator.TenantDbMappingStrategy
-	c30448 [label=<<table title="org.dayatang.datasource4saas.dscreator.TenantDbMappingStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../datasource4saas/dscreator/TenantDbMappingStrategy.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
-<tr><td align="center" balign="center"> TenantDbMappingStrategy </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.datasource4saas.dscreator </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> SCHEMA </td></tr>
-<tr><td align="left" balign="left"> DBNAME </td></tr>
-<tr><td align="left" balign="left"> HOST </td></tr>
-<tr><td align="left" balign="left"> PORT </td></tr>
-<tr><td align="left" balign="left"> INSTANCE </td></tr>
-		</table></td></tr>
-		</table>>, URL="../datasource4saas/dscreator/TenantDbMappingStrategy.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator
-	c30455 [label=<<table title="org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../datasource4saas/dscreator/AbstractDataSourceCreator.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractDataSourceCreator </font></td></tr>
-<tr><td align="center" balign="center"> org.dayatang.datasource4saas.dscreator </td></tr>
-		</table></td></tr>
-		</table>>, URL="../datasource4saas/dscreator/AbstractDataSourceCreator.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.configuration.WritableConfiguration implements org.dayatang.configuration.Configuration
-	c30339:p -> c30336:p [dir=back,arrowtail=empty,style=dashed];
+	c30155:p -> c30152:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.configuration.impl.AbstractConfiguration implements org.dayatang.configuration.Configuration
-	c30339:p -> c30348:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator NAVASSOC org.dayatang.configuration.Configuration
-	c30455:p -> c30339:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator NAVASSOC org.dayatang.datasource4saas.dscreator.TenantDbMappingStrategy
-	c30455:p -> c30448:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.configuration.impl.ConfigurationFactoryImpl DEPEND org.dayatang.configuration.Configuration
-	c30345:p -> c30339:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.configuration.impl.ConfigurationFactoryImpl DEPEND org.dayatang.configuration.WritableConfiguration
-	c30345:p -> c30336:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.datasource4saas.dscreator.TenantDbMappingStrategy DEPEND org.dayatang.configuration.Configuration
-	c30448:p -> c30339:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator DEPEND org.dayatang.configuration.Configuration
-	c30455:p -> c30339:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c30155:p -> c30164:p [dir=back,arrowtail=empty,style=dashed];
 }
 

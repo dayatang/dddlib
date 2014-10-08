@@ -1,8 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./OrganisationApplicationImplIntegratedTest.html" title="org.dddlib.organisation.application.impl.OrganisationApplicationImplIntegratedTest" alt="" coords="101,17,357,42"/>
-<area shape="rect" id="node1" href="./OrganisationApplicationImplIntegratedTest.html" title="&lt;TABLE&gt;" alt="" coords="91,5,368,53"/>
-<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/application/OrganisationApplication.html" title="org.dddlib.organisation.application.OrganisationApplication" alt="" coords="16,121,224,181"/>
-<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dddlib/organisation/application/OrganisationApplication.html" title="&lt;TABLE&gt;" alt="" coords="5,116,235,187"/>
-<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/EntityRepository.html" title="org.dayatang.domain.EntityRepository" alt="" coords="269,121,408,181"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/EntityRepository.html" title="&lt;TABLE&gt;" alt="" coords="259,116,419,187"/>
+<area shape="rect" id="node1_0" href="./OrganisationApplicationImplIntegratedTest.html" title="org.dddlib.organisation.application.impl.OrganisationApplicationImplIntegratedTest" alt="" coords="16,17,272,42"/>
+<area shape="rect" id="node1" href="./OrganisationApplicationImplIntegratedTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,283,53"/>
 </map>

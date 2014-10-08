@@ -64,10 +64,6 @@ digraph G {
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> DataSetStrategy </td></tr>
 		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> FlatXml </td></tr>
-<tr><td align="left" balign="left"> Xml </td></tr>
-		</table></td></tr>
 		</table>>, URL="./DataSetStrategy.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.dbunit.DatabaseExport
 	c5701 [label=<<table title="org.dayatang.dbunit.DatabaseExport" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DatabaseExport.html">

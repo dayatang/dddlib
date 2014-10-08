@@ -1,12 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Cache.html" title="org.dayatang.cache.Cache" alt="" coords="315,127,397,169"/>
-<area shape="rect" id="node1" href="./Cache.html" title="&lt;TABLE&gt;" alt="" coords="305,121,407,175"/>
-<area shape="rect" id="node2_1" href="./memcached/MemcachedBasedCache.html" title="org.dayatang.cache.memcached.MemcachedBasedCache" alt="" coords="16,229,219,272"/>
-<area shape="rect" id="node2" href="./memcached/MemcachedBasedCache.html" title="&lt;TABLE&gt;" alt="" coords="5,224,229,277"/>
-<area shape="rect" id="node3_2" href="./ehcache/EhCacheBasedCache.html" title="org.dayatang.cache.ehcache.EhCacheBasedCache" alt="" coords="265,229,447,272"/>
-<area shape="rect" id="node3" href="./ehcache/EhCacheBasedCache.html" title="&lt;TABLE&gt;" alt="" coords="254,224,458,277"/>
-<area shape="rect" id="node4_3" href="./redis/RedisBasedCache.html" title="org.dayatang.cache.redis.RedisBasedCache" alt="" coords="493,229,653,272"/>
-<area shape="rect" id="node4" href="./redis/RedisBasedCache.html" title="&lt;TABLE&gt;" alt="" coords="483,224,664,277"/>
-<area shape="rect" id="node5_4" href="../../dddlib/image/cache/CacheImageAccess.html" title="org.dddlib.image.cache.CacheImageAccess" alt="" coords="283,11,429,53"/>
-<area shape="rect" id="node5" href="../../dddlib/image/cache/CacheImageAccess.html" title="&lt;TABLE&gt;" alt="" coords="272,5,440,59"/>
+<area shape="rect" id="node1_0" href="./Cache.html" title="org.dayatang.cache.Cache" alt="" coords="260,11,341,53"/>
+<area shape="rect" id="node1" href="./Cache.html" title="&lt;TABLE&gt;" alt="" coords="249,5,352,59"/>
+<area shape="rect" id="node2_1" href="./memcached/MemcachedBasedCache.html" title="org.dayatang.cache.memcached.MemcachedBasedCache" alt="" coords="16,118,180,143"/>
+<area shape="rect" id="node2" href="./memcached/MemcachedBasedCache.html" title="&lt;TABLE&gt;" alt="" coords="5,107,191,155"/>
+<area shape="rect" id="node3_2" href="./ehcache/EhCacheBasedCache.html" title="org.dayatang.cache.ehcache.EhCacheBasedCache" alt="" coords="226,118,375,143"/>
+<area shape="rect" id="node3" href="./ehcache/EhCacheBasedCache.html" title="&lt;TABLE&gt;" alt="" coords="215,107,386,155"/>
+<area shape="rect" id="node4_3" href="./redis/RedisBasedCache.html" title="org.dayatang.cache.redis.RedisBasedCache" alt="" coords="421,118,549,143"/>
+<area shape="rect" id="node4" href="./redis/RedisBasedCache.html" title="&lt;TABLE&gt;" alt="" coords="410,107,559,155"/>
 </map>

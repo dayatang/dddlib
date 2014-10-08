@@ -1,10 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Person.html" title="org.dddlib.organisation.domain.Person" alt="" coords="78,238,138,263"/>
-<area shape="rect" id="node1" href="./Person.html" title="&lt;TABLE&gt;" alt="" coords="67,227,149,275"/>
-<area shape="rect" id="node2_1" href="./Party.html" title="org.dddlib.organisation.domain.Party" alt="" coords="16,17,67,42"/>
-<area shape="rect" id="node2" href="./Party.html" title="&lt;TABLE&gt;" alt="" coords="5,5,77,53"/>
-<area shape="rect" id="node4_2" href="./Employee.html" title="org.dddlib.organisation.domain.Employee" alt="" coords="70,127,146,153"/>
-<area shape="rect" id="node4" href="./Employee.html" title="&lt;TABLE&gt;" alt="" coords="59,116,157,164"/>
-<area shape="rect" id="node3_3" href="./EmployeeArchieve.html" title="org.dddlib.organisation.domain.EmployeeArchieve" alt="" coords="113,17,237,42"/>
-<area shape="rect" id="node3" href="./EmployeeArchieve.html" title="&lt;TABLE&gt;" alt="" coords="102,5,247,53"/>
+<area shape="rect" id="node1_0" href="./Party.html" title="org.dddlib.organisation.domain.Party" alt="" coords="29,17,79,42"/>
+<area shape="rect" id="node1" href="./Party.html" title="&lt;TABLE&gt;" alt="" coords="18,5,90,53"/>
+<area shape="rect" id="node2_1" href="./Employee.html" title="org.dddlib.organisation.domain.Employee" alt="" coords="16,113,92,138"/>
+<area shape="rect" id="node2" href="./Employee.html" title="&lt;TABLE&gt;" alt="" coords="5,101,103,149"/>
 </map>

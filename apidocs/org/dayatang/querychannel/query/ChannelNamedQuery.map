@@ -1,14 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../../utils/Page.html" title="org.dayatang.utils.Page" alt="" coords="435,353,553,396"/>
-<area shape="rect" id="node1" href="../../utils/Page.html" title="&lt;TABLE&gt;" alt="" coords="424,348,564,401"/>
-<area shape="rect" id="node2_1" href="../../domain/NamedQuery.html" title="org.dayatang.domain.NamedQuery" alt="" coords="435,456,574,499"/>
-<area shape="rect" id="node2" href="../../domain/NamedQuery.html" title="&lt;TABLE&gt;" alt="" coords="425,451,585,504"/>
-<area shape="rect" id="node3_2" href="../../domain/BaseQuery.html" title="org.dayatang.domain.BaseQuery" alt="" coords="36,353,389,396"/>
-<area shape="rect" id="node3" href="../../domain/BaseQuery.html" title="&lt;TABLE&gt;" alt="" coords="25,348,400,401"/>
-<area shape="rect" id="node4_3" href="../ChannelQuery.html" title="org.dayatang.querychannel.ChannelQuery" alt="" coords="16,127,439,169"/>
-<area shape="rect" id="node4" href="../ChannelQuery.html" title="&lt;TABLE&gt;" alt="" coords="5,121,449,175"/>
-<area shape="rect" id="node6_4" href="./ChannelNamedQuery.html" title="org.dayatang.querychannel.query.ChannelNamedQuery" alt="" coords="535,249,679,274"/>
-<area shape="rect" id="node6" href="./ChannelNamedQuery.html" title="&lt;TABLE&gt;" alt="" coords="525,237,690,285"/>
-<area shape="rect" id="node5_5" href="../impl/QueryChannelServiceImpl.html" title="org.dayatang.querychannel.impl.QueryChannelServiceImpl" alt="" coords="201,11,398,53"/>
-<area shape="rect" id="node5" href="../impl/QueryChannelServiceImpl.html" title="&lt;TABLE&gt;" alt="" coords="190,5,409,59"/>
+<area shape="rect" id="node1_0" href="../ChannelQuery.html" title="org.dayatang.querychannel.ChannelQuery" alt="" coords="16,17,279,42"/>
+<area shape="rect" id="node1" href="../ChannelQuery.html" title="&lt;TABLE&gt;" alt="" coords="5,5,289,53"/>
+<area shape="rect" id="node2_1" href="./ChannelNamedQuery.html" title="org.dayatang.querychannel.query.ChannelNamedQuery" alt="" coords="75,113,219,138"/>
+<area shape="rect" id="node2" href="./ChannelNamedQuery.html" title="&lt;TABLE&gt;" alt="" coords="65,101,230,149"/>
 </map>

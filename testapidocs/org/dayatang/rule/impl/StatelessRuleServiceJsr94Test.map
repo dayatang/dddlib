@@ -1,8 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../examples/Person.html" title="org.dayatang.rule.examples.Person" alt="" coords="16,121,192,164"/>
-<area shape="rect" id="node1" href="../examples/Person.html" title="&lt;TABLE&gt;" alt="" coords="5,116,203,169"/>
-<area shape="rect" id="node2_1" href="./StatelessRuleServiceJsr94Test.html" title="org.dayatang.rule.impl.StatelessRuleServiceJsr94Test" alt="" coords="117,17,310,42"/>
-<area shape="rect" id="node2" href="./StatelessRuleServiceJsr94Test.html" title="&lt;TABLE&gt;" alt="" coords="106,5,321,53"/>
-<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/rule/impl/StatelessRuleServiceJsr94.html" title="org.dayatang.rule.impl.StatelessRuleServiceJsr94" alt="" coords="238,130,407,155"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/rule/impl/StatelessRuleServiceJsr94.html" title="&lt;TABLE&gt;" alt="" coords="227,119,418,167"/>
+<area shape="rect" id="node1_0" href="./StatelessRuleServiceJsr94Test.html" title="org.dayatang.rule.impl.StatelessRuleServiceJsr94Test" alt="" coords="16,17,209,42"/>
+<area shape="rect" id="node1" href="./StatelessRuleServiceJsr94Test.html" title="&lt;TABLE&gt;" alt="" coords="5,5,220,53"/>
 </map>

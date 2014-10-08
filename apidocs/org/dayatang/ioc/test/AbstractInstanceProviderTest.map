@@ -1,6 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../../domain/InstanceProvider.html" title="org.dayatang.domain.InstanceProvider" alt="" coords="43,121,181,181"/>
-<area shape="rect" id="node1" href="../../domain/InstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="32,116,192,187"/>
-<area shape="rect" id="node2_1" href="./AbstractInstanceProviderTest.html" title="org.dayatang.ioc.test.AbstractInstanceProviderTest" alt="" coords="16,17,208,42"/>
-<area shape="rect" id="node2" href="./AbstractInstanceProviderTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,219,53"/>
+<area shape="rect" id="node1_0" href="./AbstractInstanceProviderTest.html" title="org.dayatang.ioc.test.AbstractInstanceProviderTest" alt="" coords="16,17,208,42"/>
+<area shape="rect" id="node1" href="./AbstractInstanceProviderTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,219,53"/>
 </map>

@@ -1,10 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./StoredEventTest.html" title="org.dayatang.domain.event.StoredEventTest" alt="" coords="169,17,281,42"/>
-<area shape="rect" id="node1" href="./StoredEventTest.html" title="&lt;TABLE&gt;" alt="" coords="159,5,292,53"/>
-<area shape="rect" id="node2_1" href="./DomainEventSub.html" title="org.dayatang.domain.event.DomainEventSub" alt="" coords="16,139,136,164"/>
-<area shape="rect" id="node2" href="./DomainEventSub.html" title="&lt;TABLE&gt;" alt="" coords="5,127,147,175"/>
-<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/StoredEvent.html" title="org.dayatang.domain.event.StoredEvent" alt="" coords="181,139,269,164"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/StoredEvent.html" title="&lt;TABLE&gt;" alt="" coords="171,127,280,175"/>
-<area shape="rect" id="node4_3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/utils/ObjectSerializer.html" title="org.dayatang.utils.ObjectSerializer" alt="" coords="315,121,434,181"/>
-<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/utils/ObjectSerializer.html" title="&lt;TABLE&gt;" alt="" coords="305,116,445,187"/>
+<area shape="rect" id="node1_0" href="./StoredEventTest.html" title="org.dayatang.domain.event.StoredEventTest" alt="" coords="16,17,128,42"/>
+<area shape="rect" id="node1" href="./StoredEventTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,139,53"/>
 </map>

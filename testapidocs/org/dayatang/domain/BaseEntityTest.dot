@@ -10,28 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.BaseEntityTest
-	c14694 [label=<<table title="org.dayatang.domain.BaseEntityTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./BaseEntityTest.html">
+	c14479 [label=<<table title="org.dayatang.domain.BaseEntityTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./BaseEntityTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> BaseEntityTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./BaseEntityTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.entity.Organization
-	c14698 [label=<<table title="org.dayatang.domain.entity.Organization" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./entity/Organization.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Organization </font></td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain.entity </td></tr>
-		</table></td></tr>
-		</table>>, URL="./entity/Organization.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.BaseEntityTest NAVASSOC org.dayatang.domain.EntityRepository
-	c14694:p -> c14867:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.BaseEntityTest NAVASSOC org.dayatang.domain.entity.Organization
-	c14694:p -> c14698:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.EntityRepository
-	c14867 [label=<<table title="org.dayatang.domain.EntityRepository" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/EntityRepository.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> EntityRepository </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/EntityRepository.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

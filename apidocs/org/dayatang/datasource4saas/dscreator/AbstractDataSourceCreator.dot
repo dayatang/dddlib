@@ -9,91 +9,44 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.configuration.Configuration
-	c20515 [label=<<table title="org.dayatang.configuration.Configuration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../configuration/Configuration.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Configuration </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.configuration </td></tr>
-		</table></td></tr>
-		</table>>, URL="../../configuration/Configuration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.datasource4saas.dscreator.TenantDbMappingStrategy
-	c20624 [label=<<table title="org.dayatang.datasource4saas.dscreator.TenantDbMappingStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TenantDbMappingStrategy.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
-<tr><td align="center" balign="center"> TenantDbMappingStrategy </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> SCHEMA </td></tr>
-<tr><td align="left" balign="left"> DBNAME </td></tr>
-<tr><td align="left" balign="left"> HOST </td></tr>
-<tr><td align="left" balign="left"> PORT </td></tr>
-<tr><td align="left" balign="left"> INSTANCE </td></tr>
-		</table></td></tr>
-		</table>>, URL="./TenantDbMappingStrategy.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.datasource4saas.dscreator.ProxoolDataSourceCreator
-	c20625 [label=<<table title="org.dayatang.datasource4saas.dscreator.ProxoolDataSourceCreator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProxoolDataSourceCreator.html">
+	c20535 [label=<<table title="org.dayatang.datasource4saas.dscreator.ProxoolDataSourceCreator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProxoolDataSourceCreator.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ProxoolDataSourceCreator </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProxoolDataSourceCreator.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.datasource4saas.dscreator.DbType
-	c20626 [label=<<table title="org.dayatang.datasource4saas.dscreator.DbType" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DbType.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
-<tr><td align="center" balign="center"> DbType </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> MYSQL </td></tr>
-<tr><td align="left" balign="left"> POSTGRESQL </td></tr>
-<tr><td align="left" balign="left"> ORACLE </td></tr>
-<tr><td align="left" balign="left"> DB2 </td></tr>
-<tr><td align="left" balign="left"> SQLSERVER </td></tr>
-		</table></td></tr>
-		</table>>, URL="./DbType.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.datasource4saas.dscreator.CommonsDbcpDataSourceCreator
-	c20629 [label=<<table title="org.dayatang.datasource4saas.dscreator.CommonsDbcpDataSourceCreator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CommonsDbcpDataSourceCreator.html">
+	c20539 [label=<<table title="org.dayatang.datasource4saas.dscreator.CommonsDbcpDataSourceCreator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CommonsDbcpDataSourceCreator.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CommonsDbcpDataSourceCreator </td></tr>
 		</table></td></tr>
 		</table>>, URL="./CommonsDbcpDataSourceCreator.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.datasource4saas.dscreator.C3P0DataSourceCreator
-	c20630 [label=<<table title="org.dayatang.datasource4saas.dscreator.C3P0DataSourceCreator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./C3P0DataSourceCreator.html">
+	c20540 [label=<<table title="org.dayatang.datasource4saas.dscreator.C3P0DataSourceCreator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./C3P0DataSourceCreator.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> C3P0DataSourceCreator </td></tr>
 		</table></td></tr>
 		</table>>, URL="./C3P0DataSourceCreator.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator
-	c20631 [label=<<table title="org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractDataSourceCreator.html">
+	c20541 [label=<<table title="org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractDataSourceCreator.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractDataSourceCreator </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractDataSourceCreator.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.datasource4saas.dsregistry.DataSourceCreator
-	c20636 [label=<<table title="org.dayatang.datasource4saas.dsregistry.DataSourceCreator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../dsregistry/DataSourceCreator.html">
+	c20546 [label=<<table title="org.dayatang.datasource4saas.dsregistry.DataSourceCreator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../dsregistry/DataSourceCreator.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> DataSourceCreator </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.datasource4saas.dsregistry </td></tr>
 		</table></td></tr>
 		</table>>, URL="../dsregistry/DataSourceCreator.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.datasource4saas.dscreator.ProxoolDataSourceCreator extends org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator
-	c20631:p -> c20625:p [dir=back,arrowtail=empty];
+	c20541:p -> c20535:p [dir=back,arrowtail=empty];
 	//org.dayatang.datasource4saas.dscreator.CommonsDbcpDataSourceCreator extends org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator
-	c20631:p -> c20629:p [dir=back,arrowtail=empty];
+	c20541:p -> c20539:p [dir=back,arrowtail=empty];
 	//org.dayatang.datasource4saas.dscreator.C3P0DataSourceCreator extends org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator
-	c20631:p -> c20630:p [dir=back,arrowtail=empty];
+	c20541:p -> c20540:p [dir=back,arrowtail=empty];
 	//org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator implements org.dayatang.datasource4saas.dsregistry.DataSourceCreator
-	c20636:p -> c20631:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator NAVASSOC org.dayatang.configuration.Configuration
-	c20631:p -> c20515:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator NAVASSOC org.dayatang.datasource4saas.dscreator.DbType
-	c20631:p -> c20626:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator NAVASSOC org.dayatang.datasource4saas.dscreator.TenantDbMappingStrategy
-	c20631:p -> c20624:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.datasource4saas.dscreator.TenantDbMappingStrategy DEPEND org.dayatang.configuration.Configuration
-	c20624:p -> c20515:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator DEPEND org.dayatang.configuration.Configuration
-	c20631:p -> c20515:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c20546:p -> c20541:p [dir=back,arrowtail=empty,style=dashed];
 }
 

@@ -1,8 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./JpqlQueryTest.html" title="org.dayatang.domain.repository.JpqlQueryTest" alt="" coords="127,17,228,42"/>
-<area shape="rect" id="node1" href="./JpqlQueryTest.html" title="&lt;TABLE&gt;" alt="" coords="116,5,239,53"/>
-<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/JpqlQuery.html" title="org.dayatang.domain.JpqlQuery" alt="" coords="16,130,155,173"/>
-<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/JpqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="5,125,165,178"/>
-<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/EntityRepository.html" title="org.dayatang.domain.EntityRepository" alt="" coords="200,121,339,181"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/EntityRepository.html" title="&lt;TABLE&gt;" alt="" coords="189,116,349,187"/>
+<area shape="rect" id="node1_0" href="./JpqlQueryTest.html" title="org.dayatang.domain.repository.JpqlQueryTest" alt="" coords="16,17,117,42"/>
+<area shape="rect" id="node1" href="./JpqlQueryTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,128,53"/>
 </map>

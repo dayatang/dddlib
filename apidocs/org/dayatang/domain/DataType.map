@@ -1,6 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Value.html" title="org.dayatang.domain.Value" alt="" coords="44,17,96,42"/>
-<area shape="rect" id="node1" href="./Value.html" title="&lt;TABLE&gt;" alt="" coords="33,5,107,53"/>
-<area shape="rect" id="node2_1" href="./DataType.html" title="org.dayatang.domain.DataType" alt="" coords="16,121,124,328"/>
-<area shape="rect" id="node2" href="./DataType.html" title="&lt;TABLE&gt;" alt="" coords="5,116,135,333"/>
+<area shape="rect" id="node1_0" href="./DataType.html" title="org.dayatang.domain.DataType" alt="" coords="16,11,120,53"/>
+<area shape="rect" id="node1" href="./DataType.html" title="&lt;TABLE&gt;" alt="" coords="5,5,131,59"/>
 </map>

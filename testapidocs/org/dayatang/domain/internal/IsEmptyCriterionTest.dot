@@ -10,18 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.internal.IsEmptyCriterionTest
-	c28705 [label=<<table title="org.dayatang.domain.internal.IsEmptyCriterionTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./IsEmptyCriterionTest.html">
+	c28392 [label=<<table title="org.dayatang.domain.internal.IsEmptyCriterionTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./IsEmptyCriterionTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> IsEmptyCriterionTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./IsEmptyCriterionTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.internal.IsEmptyCriterionTest NAVASSOC org.dayatang.domain.internal.IsEmptyCriterion
-	c28705:p -> c28847:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.internal.IsEmptyCriterion
-	c28847 [label=<<table title="org.dayatang.domain.internal.IsEmptyCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/internal/IsEmptyCriterion.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> IsEmptyCriterion </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/internal/IsEmptyCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

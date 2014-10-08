@@ -10,18 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.rule.impl.StatelessRuleServiceJsr94Test
-	c4920 [label=<<table title="org.dayatang.rule.impl.StatelessRuleServiceJsr94Test" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./StatelessRuleServiceJsr94Test.html">
+	c4872 [label=<<table title="org.dayatang.rule.impl.StatelessRuleServiceJsr94Test" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./StatelessRuleServiceJsr94Test.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> StatelessRuleServiceJsr94Test </td></tr>
 		</table></td></tr>
 		</table>>, URL="./StatelessRuleServiceJsr94Test.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.rule.impl.StatelessRuleServiceJsr94Test NAVASSOC org.dayatang.rule.impl.StatelessRuleServiceJsr94
-	c4920:p -> c4990:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.rule.impl.StatelessRuleServiceJsr94
-	c4990 [label=<<table title="org.dayatang.rule.impl.StatelessRuleServiceJsr94" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/rule/impl/StatelessRuleServiceJsr94.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> StatelessRuleServiceJsr94 </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/rule/impl/StatelessRuleServiceJsr94.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

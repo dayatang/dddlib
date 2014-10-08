@@ -9,29 +9,11 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.querychannel.domain.MyEntity
-	c37795 [label=<<table title="org.dayatang.querychannel.domain.MyEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./domain/MyEntity.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> MyEntity </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.querychannel.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="./domain/MyEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.querychannel.PageTest
-	c37798 [label=<<table title="org.dayatang.querychannel.PageTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./PageTest.html">
+	c37430 [label=<<table title="org.dayatang.querychannel.PageTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./PageTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PageTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./PageTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.querychannel.PageTest NAVASSOC org.dayatang.utils.Page<T>
-	c37798:p -> c37842:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.querychannel.PageTest NAVASSOC org.dayatang.querychannel.domain.MyEntity
-	c37798:p -> c37795:p [taillabel="", label=" "headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.utils.Page<T>
-	c37842 [label=<<table title="org.dayatang.utils.Page" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/utils/Page.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Page&lt;T&gt; </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.utils </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/utils/Page.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

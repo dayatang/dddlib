@@ -1,8 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ServiceFactory.html" title="org.dayatang.ioc.spring.beans.ServiceFactory" alt="" coords="71,137,173,162"/>
-<area shape="rect" id="node1" href="./ServiceFactory.html" title="&lt;TABLE&gt;" alt="" coords="61,125,183,173"/>
-<area shape="rect" id="node3_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/MyService1.html" title="org.dayatang.ioc.test.MyService1" alt="" coords="54,241,190,284"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/MyService1.html" title="&lt;TABLE&gt;" alt="" coords="43,236,201,289"/>
-<area shape="rect" id="node2_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/beans/factory/FactoryBean.html" title="org.springframework.beans.factory.FactoryBean" alt="" coords="16,11,228,71"/>
-<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/beans/factory/FactoryBean.html" title="&lt;TABLE&gt;" alt="" coords="5,5,239,76"/>
+<area shape="rect" id="node1_0" href="./ServiceFactory.html" title="org.dayatang.ioc.spring.beans.ServiceFactory" alt="" coords="21,118,123,143"/>
+<area shape="rect" id="node1" href="./ServiceFactory.html" title="&lt;TABLE&gt;" alt="" coords="11,107,133,155"/>
+<area shape="rect" id="node2" href="null" title="&lt;TABLE&gt;" alt="" coords="5,5,139,59"/>
 </map>

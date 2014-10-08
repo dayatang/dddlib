@@ -10,29 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.cache.Cache
-	c44033 [label=<<table title="org.dayatang.cache.Cache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../Cache.html">
+	c43834 [label=<<table title="org.dayatang.cache.Cache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../Cache.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Cache </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.cache </td></tr>
 		</table></td></tr>
 		</table>>, URL="../Cache.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.cache.ehcache.EhCacheBasedCache
-	c44039 [label=<<table title="org.dayatang.cache.ehcache.EhCacheBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./EhCacheBasedCache.html">
+	c43840 [label=<<table title="org.dayatang.cache.ehcache.EhCacheBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./EhCacheBasedCache.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EhCacheBasedCache </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EhCacheBasedCache.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.cache.ehcache.EhCacheBasedCache implements org.dayatang.cache.Cache
-	c44033:p -> c44039:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.cache.ehcache.EhCacheBasedCache NAVASSOC net.sf.ehcache.Cache
-	c44039:p -> c44157:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// net.sf.ehcache.Cache
-	c44157 [label=<<table title="net.sf.ehcache.Cache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/net/sf/ehcache/Cache.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Cache </td></tr>
-<tr><td align="center" balign="center"> net.sf.ehcache </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/net/sf/ehcache/Cache.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	c43834:p -> c43840:p [dir=back,arrowtail=empty,style=dashed];
 }
 

@@ -10,28 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.querychannel.impl.QueryChannelServiceImplHibernateTest
-	c38946 [label=<<table title="org.dayatang.querychannel.impl.QueryChannelServiceImplHibernateTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./QueryChannelServiceImplHibernateTest.html">
+	c38572 [label=<<table title="org.dayatang.querychannel.impl.QueryChannelServiceImplHibernateTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./QueryChannelServiceImplHibernateTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> QueryChannelServiceImplHibernateTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./QueryChannelServiceImplHibernateTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.querychannel.impl.QueryChannelServiceImplHibernateTest NAVASSOC org.springframework.context.ApplicationContext
-	c38946:p -> c38991:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.querychannel.impl.QueryChannelServiceImplHibernateTest NAVASSOC org.dayatang.querychannel.impl.QueryChannelServiceImpl
-	c38946:p -> c38997:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.querychannel.impl.QueryChannelServiceImpl
-	c38997 [label=<<table title="org.dayatang.querychannel.impl.QueryChannelServiceImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/querychannel/impl/QueryChannelServiceImpl.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> QueryChannelServiceImpl </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/querychannel/impl/QueryChannelServiceImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.springframework.context.ApplicationContext
-	c38991 [label=<<table title="org.springframework.context.ApplicationContext" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/context/ApplicationContext.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> ApplicationContext </td></tr>
-<tr><td align="center" balign="center"> org.springframework.context </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/context/ApplicationContext.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

@@ -1,8 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./DefaultErrorHandler.html" title="org.dayatang.cache.memcached.DefaultErrorHandler" alt="" coords="31,137,159,162"/>
-<area shape="rect" id="node1" href="./DefaultErrorHandler.html" title="&lt;TABLE&gt;" alt="" coords="21,125,170,173"/>
-<area shape="rect" id="node3_1" href="http://java.sun.com/j2se/1.4.2/docs/api/com/danga/MemCached/MemCachedClient.html" title="com.danga.MemCached.MemCachedClient" alt="" coords="16,241,175,284"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/com/danga/MemCached/MemCachedClient.html" title="&lt;TABLE&gt;" alt="" coords="5,236,185,289"/>
-<area shape="rect" id="node2_2" href="http://java.sun.com/j2se/1.4.2/docs/api/com/danga/MemCached/ErrorHandler.html" title="com.danga.MemCached.ErrorHandler" alt="" coords="16,11,175,71"/>
-<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/com/danga/MemCached/ErrorHandler.html" title="&lt;TABLE&gt;" alt="" coords="5,5,185,76"/>
+<area shape="rect" id="node1_0" href="./DefaultErrorHandler.html" title="org.dayatang.cache.memcached.DefaultErrorHandler" alt="" coords="16,118,144,143"/>
+<area shape="rect" id="node1" href="./DefaultErrorHandler.html" title="&lt;TABLE&gt;" alt="" coords="5,107,155,155"/>
+<area shape="rect" id="node2" href="null" title="&lt;TABLE&gt;" alt="" coords="25,5,135,59"/>
 </map>

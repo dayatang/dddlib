@@ -10,54 +10,46 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.persistence.jpa.QueryTest
-	c3954 [label=<<table title="org.dayatang.persistence.jpa.QueryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryTest.html">
+	c3907 [label=<<table title="org.dayatang.persistence.jpa.QueryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> QueryTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./QueryTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.jpa.EntityRepositoryJpaTest
-	c3955 [label=<<table title="org.dayatang.persistence.jpa.EntityRepositoryJpaTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EntityRepositoryJpaTest.html">
+	c3908 [label=<<table title="org.dayatang.persistence.jpa.EntityRepositoryJpaTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EntityRepositoryJpaTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EntityRepositoryJpaTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EntityRepositoryJpaTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.jpa.EntityManagerProviderTest
-	c3956 [label=<<table title="org.dayatang.persistence.jpa.EntityManagerProviderTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EntityManagerProviderTest.html">
+	c3909 [label=<<table title="org.dayatang.persistence.jpa.EntityManagerProviderTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EntityManagerProviderTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EntityManagerProviderTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EntityManagerProviderTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.jpa.CriteriaQueryTest
-	c3957 [label=<<table title="org.dayatang.persistence.jpa.CriteriaQueryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CriteriaQueryTest.html">
+	c3910 [label=<<table title="org.dayatang.persistence.jpa.CriteriaQueryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CriteriaQueryTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CriteriaQueryTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./CriteriaQueryTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.jpa.AliasTest
-	c3958 [label=<<table title="org.dayatang.persistence.jpa.AliasTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AliasTest.html">
+	c3911 [label=<<table title="org.dayatang.persistence.jpa.AliasTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AliasTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AliasTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./AliasTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.jpa.AbstractIntegrationTest
-	c3959 [label=<<table title="org.dayatang.persistence.jpa.AbstractIntegrationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractIntegrationTest.html">
+	c3912 [label=<<table title="org.dayatang.persistence.jpa.AbstractIntegrationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractIntegrationTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AbstractIntegrationTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractIntegrationTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.persistence.jpa.QueryTest extends org.dayatang.persistence.jpa.AbstractIntegrationTest
-	c3959:p -> c3954:p [dir=back,arrowtail=empty];
+	c3912:p -> c3907:p [dir=back,arrowtail=empty];
 	//org.dayatang.persistence.jpa.EntityRepositoryJpaTest extends org.dayatang.persistence.jpa.AbstractIntegrationTest
-	c3959:p -> c3955:p [dir=back,arrowtail=empty];
+	c3912:p -> c3908:p [dir=back,arrowtail=empty];
 	//org.dayatang.persistence.jpa.CriteriaQueryTest extends org.dayatang.persistence.jpa.AbstractIntegrationTest
-	c3959:p -> c3957:p [dir=back,arrowtail=empty];
-	// org.dayatang.persistence.jpa.AbstractIntegrationTest NAVASSOC org.dayatang.persistence.jpa.EntityRepositoryJpa
-	c3959:p -> c4039:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa
-	c4039 [label=<<table title="org.dayatang.persistence.jpa.EntityRepositoryJpa" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/jpa/EntityRepositoryJpa.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> EntityRepositoryJpa </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/persistence/jpa/EntityRepositoryJpa.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	c3912:p -> c3910:p [dir=back,arrowtail=empty];
 }
 

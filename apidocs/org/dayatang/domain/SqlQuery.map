@@ -1,12 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./SqlQuery.html" title="org.dayatang.domain.SqlQuery" alt="" coords="251,230,323,255"/>
-<area shape="rect" id="node1" href="./SqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="240,219,333,267"/>
-<area shape="rect" id="node2_1" href="./BaseQuery.html" title="org.dayatang.domain.BaseQuery" alt="" coords="281,133,509,158"/>
-<area shape="rect" id="node2" href="./BaseQuery.html" title="&lt;TABLE&gt;" alt="" coords="270,121,519,169"/>
-<area shape="rect" id="node3_2" href="../persistence/hibernate/EntityRepositoryHibernate.html" title="org.dayatang.persistence.hibernate.EntityRepositoryHibernate" alt="" coords="16,11,232,53"/>
-<area shape="rect" id="node3" href="../persistence/hibernate/EntityRepositoryHibernate.html" title="&lt;TABLE&gt;" alt="" coords="5,5,243,59"/>
-<area shape="rect" id="node4_3" href="../persistence/jpa/EntityRepositoryJpa.html" title="org.dayatang.persistence.jpa.EntityRepositoryJpa" alt="" coords="277,11,461,53"/>
-<area shape="rect" id="node4" href="../persistence/jpa/EntityRepositoryJpa.html" title="&lt;TABLE&gt;" alt="" coords="267,5,472,59"/>
-<area shape="rect" id="node5_4" href="../querychannel/query/ChannelSqlQuery.html" title="org.dayatang.querychannel.query.ChannelSqlQuery" alt="" coords="507,11,714,53"/>
-<area shape="rect" id="node5" href="../querychannel/query/ChannelSqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="497,5,725,59"/>
+<area shape="rect" id="node1_0" href="./SqlQuery.html" title="org.dayatang.domain.SqlQuery" alt="" coords="94,113,166,138"/>
+<area shape="rect" id="node1" href="./SqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="83,101,177,149"/>
+<area shape="rect" id="node2_1" href="./BaseQuery.html" title="org.dayatang.domain.BaseQuery" alt="" coords="16,17,244,42"/>
+<area shape="rect" id="node2" href="./BaseQuery.html" title="&lt;TABLE&gt;" alt="" coords="5,5,255,53"/>
 </map>

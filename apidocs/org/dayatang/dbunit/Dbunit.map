@@ -1,12 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Dbunit.html" title="org.dayatang.dbunit.Dbunit" alt="" coords="355,17,411,42"/>
-<area shape="rect" id="node1" href="./Dbunit.html" title="&lt;TABLE&gt;" alt="" coords="345,5,422,53"/>
-<area shape="rect" id="node2_1" href="../springtest/AbstractIntegratedTestCase.html" title="org.dayatang.springtest.AbstractIntegratedTestCase" alt="" coords="16,130,199,173"/>
-<area shape="rect" id="node2" href="../springtest/AbstractIntegratedTestCase.html" title="&lt;TABLE&gt;" alt="" coords="5,125,209,178"/>
-<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/IDatabaseTester.html" title="org.dbunit.IDatabaseTester" alt="" coords="244,121,360,181"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/IDatabaseTester.html" title="&lt;TABLE&gt;" alt="" coords="233,116,371,187"/>
-<area shape="rect" id="node4_3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/dataset/IDataSet.html" title="org.dbunit.dataset.IDataSet" alt="" coords="406,121,526,181"/>
-<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/dataset/IDataSet.html" title="&lt;TABLE&gt;" alt="" coords="395,116,537,187"/>
-<area shape="rect" id="node5_4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/operation/DatabaseOperation.html" title="org.dbunit.operation.DatabaseOperation" alt="" coords="394,255,525,297"/>
-<area shape="rect" id="node5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/operation/DatabaseOperation.html" title="&lt;TABLE&gt;" alt="" coords="383,249,535,303"/>
+<area shape="rect" id="node1_0" href="./Dbunit.html" title="org.dayatang.dbunit.Dbunit" alt="" coords="79,17,135,42"/>
+<area shape="rect" id="node1" href="./Dbunit.html" title="&lt;TABLE&gt;" alt="" coords="69,5,146,53"/>
+<area shape="rect" id="node2_1" href="../springtest/AbstractIntegratedTestCase.html" title="org.dayatang.springtest.AbstractIntegratedTestCase" alt="" coords="16,113,199,138"/>
+<area shape="rect" id="node2" href="../springtest/AbstractIntegratedTestCase.html" title="&lt;TABLE&gt;" alt="" coords="5,101,209,149"/>
 </map>

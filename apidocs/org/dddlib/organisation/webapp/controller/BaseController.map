@@ -1,8 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../../facade/OrganisationFacade.html" title="org.dddlib.organisation.facade.OrganisationFacade" alt="" coords="16,121,201,181"/>
-<area shape="rect" id="node1" href="../../facade/OrganisationFacade.html" title="&lt;TABLE&gt;" alt="" coords="5,116,212,187"/>
-<area shape="rect" id="node2_1" href="./PostController.html" title="org.dddlib.organisation.webapp.controller.PostController" alt="" coords="247,139,343,164"/>
-<area shape="rect" id="node2" href="./PostController.html" title="&lt;TABLE&gt;" alt="" coords="237,127,354,175"/>
-<area shape="rect" id="node3_2" href="./BaseController.html" title="org.dddlib.organisation.webapp.controller.BaseController" alt="" coords="151,17,253,42"/>
-<area shape="rect" id="node3" href="./BaseController.html" title="&lt;TABLE&gt;" alt="" coords="141,5,263,53"/>
+<area shape="rect" id="node1_0" href="./PostController.html" title="org.dddlib.organisation.webapp.controller.PostController" alt="" coords="19,113,115,138"/>
+<area shape="rect" id="node1" href="./PostController.html" title="&lt;TABLE&gt;" alt="" coords="8,101,125,149"/>
+<area shape="rect" id="node2_1" href="./BaseController.html" title="org.dddlib.organisation.webapp.controller.BaseController" alt="" coords="16,17,117,42"/>
+<area shape="rect" id="node2" href="./BaseController.html" title="&lt;TABLE&gt;" alt="" coords="5,5,128,53"/>
 </map>

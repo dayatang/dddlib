@@ -10,44 +10,34 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.configuration.impl.ConfigurationUrlImplTest
-	c11737 [label=<<table title="org.dayatang.configuration.impl.ConfigurationUrlImplTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationUrlImplTest.html">
+	c11597 [label=<<table title="org.dayatang.configuration.impl.ConfigurationUrlImplTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationUrlImplTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationUrlImplTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigurationUrlImplTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.ConfigurationFileImplTest
-	c11739 [label=<<table title="org.dayatang.configuration.impl.ConfigurationFileImplTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationFileImplTest.html">
+	c11599 [label=<<table title="org.dayatang.configuration.impl.ConfigurationFileImplTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationFileImplTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationFileImplTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigurationFileImplTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.ConfigurationDbImplTest
-	c11742 [label=<<table title="org.dayatang.configuration.impl.ConfigurationDbImplTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationDbImplTest.html">
+	c11601 [label=<<table title="org.dayatang.configuration.impl.ConfigurationDbImplTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationDbImplTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationDbImplTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigurationDbImplTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.AbstractConfigurationTest
-	c11743 [label=<<table title="org.dayatang.configuration.impl.AbstractConfigurationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractConfigurationTest.html">
+	c11602 [label=<<table title="org.dayatang.configuration.impl.AbstractConfigurationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractConfigurationTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractConfigurationTest </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractConfigurationTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.configuration.impl.ConfigurationUrlImplTest extends org.dayatang.configuration.impl.AbstractConfigurationTest
-	c11743:p -> c11737:p [dir=back,arrowtail=empty];
+	c11602:p -> c11597:p [dir=back,arrowtail=empty];
 	//org.dayatang.configuration.impl.ConfigurationFileImplTest extends org.dayatang.configuration.impl.AbstractConfigurationTest
-	c11743:p -> c11739:p [dir=back,arrowtail=empty];
+	c11602:p -> c11599:p [dir=back,arrowtail=empty];
 	//org.dayatang.configuration.impl.ConfigurationDbImplTest extends org.dayatang.configuration.impl.AbstractConfigurationTest
-	c11743:p -> c11742:p [dir=back,arrowtail=empty];
-	// org.dayatang.configuration.impl.AbstractConfigurationTest NAVASSOC org.dayatang.configuration.Configuration
-	c11743:p -> c11988:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.configuration.Configuration
-	c11988 [label=<<table title="org.dayatang.configuration.Configuration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/configuration/Configuration.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Configuration </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.configuration </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/configuration/Configuration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	c11602:p -> c11601:p [dir=back,arrowtail=empty];
 }
 

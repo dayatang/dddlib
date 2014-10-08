@@ -10,46 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.InstanceFactoryTest
-	c28291 [label=<<table title="org.dayatang.domain.InstanceFactoryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./InstanceFactoryTest.html">
+	c27980 [label=<<table title="org.dayatang.domain.InstanceFactoryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./InstanceFactoryTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> InstanceFactoryTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./InstanceFactoryTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.ioc.MyService3
-	c28339 [label=<<table title="org.dayatang.domain.ioc.MyService3" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ioc/MyService3.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> MyService3 </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain.ioc </td></tr>
-		</table></td></tr>
-		</table>>, URL="./ioc/MyService3.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.ioc.MyService2
-	c28343 [label=<<table title="org.dayatang.domain.ioc.MyService2" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ioc/MyService2.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> MyService2 </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain.ioc </td></tr>
-		</table></td></tr>
-		</table>>, URL="./ioc/MyService2.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.ioc.MyService1
-	c28344 [label=<<table title="org.dayatang.domain.ioc.MyService1" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ioc/MyService1.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> MyService1 </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain.ioc </td></tr>
-		</table></td></tr>
-		</table>>, URL="./ioc/MyService1.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.InstanceFactoryTest NAVASSOC org.dayatang.domain.InstanceProvider
-	c28291:p -> c28465:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.InstanceFactoryTest NAVASSOC org.dayatang.domain.ioc.MyService1
-	c28291:p -> c28344:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.InstanceFactoryTest NAVASSOC org.dayatang.domain.ioc.MyService2
-	c28291:p -> c28343:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.InstanceFactoryTest NAVASSOC org.dayatang.domain.ioc.MyService3
-	c28291:p -> c28339:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.InstanceProvider
-	c28465 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> InstanceProvider </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

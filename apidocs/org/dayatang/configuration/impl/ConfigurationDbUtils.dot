@@ -10,18 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.configuration.impl.ConfigurationDbUtils
-	c30902 [label=<<table title="org.dayatang.configuration.impl.ConfigurationDbUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ConfigurationDbUtils.html">
+	c30718 [label=<<table title="org.dayatang.configuration.impl.ConfigurationDbUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ConfigurationDbUtils.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationDbUtils </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigurationDbUtils.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.configuration.impl.ConfigurationDbImpl
-	c30903 [label=<<table title="org.dayatang.configuration.impl.ConfigurationDbImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationDbImpl.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> ConfigurationDbImpl </td></tr>
-		</table></td></tr>
-		</table>>, URL="./ConfigurationDbImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.configuration.impl.ConfigurationDbImpl NAVASSOC org.dayatang.configuration.impl.ConfigurationDbUtils
-	c30903:p -> c30902:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

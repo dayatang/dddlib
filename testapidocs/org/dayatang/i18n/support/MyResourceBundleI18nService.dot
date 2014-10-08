@@ -10,19 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.i18n.support.MyResourceBundleI18nService
-	c32620 [label=<<table title="org.dayatang.i18n.support.MyResourceBundleI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MyResourceBundleI18nService.html">
+	c32291 [label=<<table title="org.dayatang.i18n.support.MyResourceBundleI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MyResourceBundleI18nService.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MyResourceBundleI18nService </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MyResourceBundleI18nService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.i18n.support.MyResourceBundleI18nService extends org.dayatang.i18n.impl.ResourceBundleI18nService
-	c32672:p -> c32620:p [dir=back,arrowtail=empty];
+	c32340:p -> c32291:p [dir=back,arrowtail=empty];
 	// org.dayatang.i18n.impl.ResourceBundleI18nService
-	c32672 [label=<<table title="org.dayatang.i18n.impl.ResourceBundleI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/i18n/impl/ResourceBundleI18nService.html">
+	c32340 [label=<<table title="org.dayatang.i18n.impl.ResourceBundleI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ResourceBundleI18nService </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.i18n.impl </td></tr>
 		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/i18n/impl/ResourceBundleI18nService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

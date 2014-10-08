@@ -10,19 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.event.DomainEvent
-	c42807 [label=<<table title="org.dayatang.domain.event.DomainEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DomainEvent.html">
+	c42613 [label=<<table title="org.dayatang.domain.event.DomainEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DomainEvent.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> DomainEvent </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./DomainEvent.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.mysql.MySqlEventStore
-	c42915 [label=<<table title="org.dayatang.mysql.MySqlEventStore" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../mysql/MySqlEventStore.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> MySqlEventStore </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.mysql </td></tr>
-		</table></td></tr>
-		</table>>, URL="../../mysql/MySqlEventStore.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.mysql.MySqlEventStore DEPEND org.dayatang.domain.event.DomainEvent
-	c42915:p -> c42807:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 }
 

@@ -9,68 +9,11 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.domain.QueryCriterion
-	c33582 [label=<<table title="org.dayatang.domain.QueryCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryCriterion.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> QueryCriterion </td></tr>
-		</table></td></tr>
-		</table>>, URL="./QueryCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.OrderSettings
-	c33584 [label=<<table title="org.dayatang.domain.OrderSettings" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OrderSettings.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> OrderSettings </td></tr>
-		</table></td></tr>
-		</table>>, URL="./OrderSettings.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.EntityRepository
-	c33596 [label=<<table title="org.dayatang.domain.EntityRepository" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EntityRepository.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> EntityRepository </td></tr>
-		</table></td></tr>
-		</table>>, URL="./EntityRepository.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.CriterionBuilder
-	c33599 [label=<<table title="org.dayatang.domain.CriterionBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CriterionBuilder.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> CriterionBuilder </td></tr>
-		</table></td></tr>
-		</table>>, URL="./CriterionBuilder.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.CriteriaQuery
-	c33600 [label=<<table title="org.dayatang.domain.CriteriaQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./CriteriaQuery.html">
+	c33418 [label=<<table title="org.dayatang.domain.CriteriaQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./CriteriaQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CriteriaQuery </td></tr>
 		</table></td></tr>
 		</table>>, URL="./CriteriaQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.persistence.hibernate.EntityRepositoryHibernate
-	c33709 [label=<<table title="org.dayatang.persistence.hibernate.EntityRepositoryHibernate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../persistence/hibernate/EntityRepositoryHibernate.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> EntityRepositoryHibernate </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.persistence.hibernate </td></tr>
-		</table></td></tr>
-		</table>>, URL="../persistence/hibernate/EntityRepositoryHibernate.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa
-	c33711 [label=<<table title="org.dayatang.persistence.jpa.EntityRepositoryJpa" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../persistence/jpa/EntityRepositoryJpa.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> EntityRepositoryJpa </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.persistence.jpa </td></tr>
-		</table></td></tr>
-		</table>>, URL="../persistence/jpa/EntityRepositoryJpa.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	//org.dayatang.persistence.hibernate.EntityRepositoryHibernate implements org.dayatang.domain.EntityRepository
-	c33596:p -> c33709:p [dir=back,arrowtail=empty,style=dashed];
-	//org.dayatang.persistence.jpa.EntityRepositoryJpa implements org.dayatang.domain.EntityRepository
-	c33596:p -> c33711:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.domain.CriteriaQuery NAVASSOC org.dayatang.domain.EntityRepository
-	c33600:p -> c33596:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.CriteriaQuery NAVASSOC org.dayatang.domain.CriterionBuilder
-	c33600:p -> c33599:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.CriteriaQuery NAVASSOC org.dayatang.domain.QueryCriterion
-	c33600:p -> c33582:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.CriteriaQuery NAVASSOC org.dayatang.domain.OrderSettings
-	c33600:p -> c33584:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.persistence.hibernate.EntityRepositoryHibernate DEPEND org.dayatang.domain.CriteriaQuery
-	c33709:p -> c33600:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa DEPEND org.dayatang.domain.CriteriaQuery
-	c33711:p -> c33600:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
 }
 

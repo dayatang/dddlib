@@ -9,42 +9,20 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.cache.Cache
-	c28157 [label=<<table title="org.dayatang.cache.Cache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../../dayatang/cache/Cache.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Cache </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.cache </td></tr>
-		</table></td></tr>
-		</table>>, URL="../../../dayatang/cache/Cache.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.image.api.ImageAccess
-	c28247 [label=<<table title="org.dddlib.image.api.ImageAccess" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../api/ImageAccess.html">
+	c28063 [label=<<table title="org.dddlib.image.api.ImageAccess" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../api/ImageAccess.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ImageAccess </td></tr>
-<tr><td align="center" balign="center"> org.dddlib.image.api </td></tr>
 		</table></td></tr>
 		</table>>, URL="../api/ImageAccess.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.image.api.pojo.ImageFile
-	c28248 [label=<<table title="org.dddlib.image.api.pojo.ImageFile" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../api/pojo/ImageFile.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> ImageFile </td></tr>
-<tr><td align="center" balign="center"> org.dddlib.image.api.pojo </td></tr>
-		</table></td></tr>
-		</table>>, URL="../api/pojo/ImageFile.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.image.cache.CacheImageAccess
-	c28249 [label=<<table title="org.dddlib.image.cache.CacheImageAccess" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./CacheImageAccess.html">
+	c28065 [label=<<table title="org.dddlib.image.cache.CacheImageAccess" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./CacheImageAccess.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CacheImageAccess </td></tr>
 		</table></td></tr>
 		</table>>, URL="./CacheImageAccess.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dddlib.image.cache.CacheImageAccess implements org.dddlib.image.api.ImageAccess
-	c28247:p -> c28249:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dddlib.image.cache.CacheImageAccess NAVASSOC org.dayatang.cache.Cache
-	c28249:p -> c28157:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dddlib.image.api.ImageAccess DEPEND org.dddlib.image.api.pojo.ImageFile
-	c28247:p -> c28248:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dddlib.image.cache.CacheImageAccess DEPEND org.dddlib.image.api.pojo.ImageFile
-	c28249:p -> c28248:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c28063:p -> c28065:p [dir=back,arrowtail=empty,style=dashed];
 }
 

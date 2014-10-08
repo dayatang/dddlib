@@ -10,29 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.repository.NamedQueryTest
-	c34458 [label=<<table title="org.dayatang.domain.repository.NamedQueryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./NamedQueryTest.html">
+	c34123 [label=<<table title="org.dayatang.domain.repository.NamedQueryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./NamedQueryTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NamedQueryTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./NamedQueryTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.repository.NamedQueryTest NAVASSOC org.dayatang.domain.NamedQuery
-	c34458:p -> c34578:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.repository.NamedQueryTest NAVASSOC org.dayatang.domain.EntityRepository
-	c34458:p -> c34579:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.EntityRepository
-	c34579 [label=<<table title="org.dayatang.domain.EntityRepository" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/EntityRepository.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> EntityRepository </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/EntityRepository.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.NamedQuery
-	c34578 [label=<<table title="org.dayatang.domain.NamedQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/NamedQuery.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> NamedQuery </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/NamedQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

@@ -9,43 +9,20 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dddlib.image.api.ImageAccess
-	c57516 [label=<<table title="org.dddlib.image.api.ImageAccess" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../ImageAccess.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> ImageAccess </td></tr>
-<tr><td align="center" balign="center"> org.dddlib.image.api </td></tr>
-		</table></td></tr>
-		</table>>, URL="../ImageAccess.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.image.api.pojo.ImageFile
-	c57517 [label=<<table title="org.dddlib.image.api.pojo.ImageFile" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ImageFile.html">
+	c57280 [label=<<table title="org.dddlib.image.api.pojo.ImageFile" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ImageFile.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ImageFile </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ImageFile.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.image.cache.CacheImageAccess
-	c57518 [label=<<table title="org.dddlib.image.cache.CacheImageAccess" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../cache/CacheImageAccess.html">
+	//org.dddlib.image.api.pojo.ImageFile implements java.io.Serializable
+	c57313:p -> c57280:p [dir=back,arrowtail=empty,style=dashed];
+	// java.io.Serializable
+	c57313 [label=<<table title="java.io.Serializable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> CacheImageAccess </td></tr>
-<tr><td align="center" balign="center"> org.dddlib.image.cache </td></tr>
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> Serializable </td></tr>
 		</table></td></tr>
-		</table>>, URL="../../cache/CacheImageAccess.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.image.file.FileImageAccess
-	c57519 [label=<<table title="org.dddlib.image.file.FileImageAccess" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../file/FileImageAccess.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> FileImageAccess </td></tr>
-<tr><td align="center" balign="center"> org.dddlib.image.file </td></tr>
-		</table></td></tr>
-		</table>>, URL="../../file/FileImageAccess.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	//org.dddlib.image.cache.CacheImageAccess implements org.dddlib.image.api.ImageAccess
-	c57516:p -> c57518:p [dir=back,arrowtail=empty,style=dashed];
-	//org.dddlib.image.file.FileImageAccess implements org.dddlib.image.api.ImageAccess
-	c57516:p -> c57519:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dddlib.image.api.ImageAccess DEPEND org.dddlib.image.api.pojo.ImageFile
-	c57516:p -> c57517:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dddlib.image.cache.CacheImageAccess DEPEND org.dddlib.image.api.pojo.ImageFile
-	c57518:p -> c57517:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dddlib.image.file.FileImageAccess DEPEND org.dddlib.image.api.pojo.ImageFile
-	c57519:p -> c57517:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+		</table>>, URL="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

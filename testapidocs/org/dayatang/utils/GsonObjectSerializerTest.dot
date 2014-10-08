@@ -10,48 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.utils.GsonObjectSerializerTest
-	c26364 [label=<<table title="org.dayatang.utils.GsonObjectSerializerTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GsonObjectSerializerTest.html">
+	c26063 [label=<<table title="org.dayatang.utils.GsonObjectSerializerTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GsonObjectSerializerTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GsonObjectSerializerTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./GsonObjectSerializerTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.utils.support.DomainEventSub
-	c26374 [label=<<table title="org.dayatang.utils.support.DomainEventSub" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./support/DomainEventSub.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> DomainEventSub </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.utils.support </td></tr>
-		</table></td></tr>
-		</table>>, URL="./support/DomainEventSub.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.utils.support.DictionaryCategory
-	c26376 [label=<<table title="org.dayatang.utils.support.DictionaryCategory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./support/DictionaryCategory.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> DictionaryCategory </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.utils.support </td></tr>
-		</table></td></tr>
-		</table>>, URL="./support/DictionaryCategory.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.utils.support.Dictionary
-	c26377 [label=<<table title="org.dayatang.utils.support.Dictionary" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./support/Dictionary.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Dictionary </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.utils.support </td></tr>
-		</table></td></tr>
-		</table>>, URL="./support/Dictionary.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.utils.GsonObjectSerializerTest NAVASSOC org.dayatang.utils.serializer.GsonObjectSerializer
-	c26364:p -> c26552:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.utils.GsonObjectSerializerTest NAVASSOC org.dayatang.utils.support.DictionaryCategory
-	c26364:p -> c26376:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.utils.GsonObjectSerializerTest NAVASSOC org.dayatang.utils.support.Dictionary
-	c26364:p -> c26377:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.utils.GsonObjectSerializerTest NAVASSOC org.dayatang.utils.support.DomainEventSub
-	c26364:p -> c26374:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.utils.support.DictionaryCategory NAVASSOC org.dayatang.utils.support.Dictionary
-	c26376:p -> c26377:p [taillabel="", label=" "headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.utils.serializer.GsonObjectSerializer
-	c26552 [label=<<table title="org.dayatang.utils.serializer.GsonObjectSerializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/utils/serializer/GsonObjectSerializer.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> GsonObjectSerializer </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.utils.serializer </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/utils/serializer/GsonObjectSerializer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

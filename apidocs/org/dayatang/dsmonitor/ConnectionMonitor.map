@@ -1,10 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./GeminiWrapperDataSource.html" title="org.dayatang.dsmonitor.GeminiWrapperDataSource" alt="" coords="16,17,192,42"/>
-<area shape="rect" id="node1" href="./GeminiWrapperDataSource.html" title="&lt;TABLE&gt;" alt="" coords="5,5,203,53"/>
-<area shape="rect" id="node3_1" href="./ConnectionMonitor.html" title="org.dayatang.dsmonitor.ConnectionMonitor" alt="" coords="43,121,165,164"/>
-<area shape="rect" id="node3" href="./ConnectionMonitor.html" title="&lt;TABLE&gt;" alt="" coords="32,116,176,169"/>
-<area shape="rect" id="node2_2" href="./GeminiConnection.html" title="org.dayatang.dsmonitor.GeminiConnection" alt="" coords="129,346,250,371"/>
-<area shape="rect" id="node2" href="./GeminiConnection.html" title="&lt;TABLE&gt;" alt="" coords="118,335,261,383"/>
-<area shape="rect" id="node4_3" href="./monitor/AbstractGeminiConnectionTimeoutMonitor.html" title="org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor" alt="" coords="93,224,357,267"/>
-<area shape="rect" id="node4" href="./monitor/AbstractGeminiConnectionTimeoutMonitor.html" title="&lt;TABLE&gt;" alt="" coords="83,219,368,272"/>
+<area shape="rect" id="node1_0" href="./ConnectionMonitor.html" title="org.dayatang.dsmonitor.ConnectionMonitor" alt="" coords="87,11,209,53"/>
+<area shape="rect" id="node1" href="./ConnectionMonitor.html" title="&lt;TABLE&gt;" alt="" coords="76,5,220,59"/>
+<area shape="rect" id="node2_1" href="./monitor/AbstractGeminiConnectionTimeoutMonitor.html" title="org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor" alt="" coords="16,118,280,143"/>
+<area shape="rect" id="node2" href="./monitor/AbstractGeminiConnectionTimeoutMonitor.html" title="&lt;TABLE&gt;" alt="" coords="5,107,291,155"/>
 </map>

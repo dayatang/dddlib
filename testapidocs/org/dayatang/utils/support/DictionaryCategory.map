@@ -1,8 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../GsonObjectSerializerTest.html" title="org.dayatang.utils.GsonObjectSerializerTest" alt="" coords="89,11,253,53"/>
-<area shape="rect" id="node1" href="../GsonObjectSerializerTest.html" title="&lt;TABLE&gt;" alt="" coords="79,5,264,59"/>
-<area shape="rect" id="node2_1" href="./DictionaryCategory.html" title="org.dayatang.utils.support.DictionaryCategory" alt="" coords="16,133,143,158"/>
-<area shape="rect" id="node2" href="./DictionaryCategory.html" title="&lt;TABLE&gt;" alt="" coords="5,121,153,169"/>
-<area shape="rect" id="node3_2" href="./Dictionary.html" title="org.dayatang.utils.support.Dictionary" alt="" coords="127,243,202,269"/>
-<area shape="rect" id="node3" href="./Dictionary.html" title="&lt;TABLE&gt;" alt="" coords="117,232,213,280"/>
+<area shape="rect" id="node1_0" href="./DictionaryCategory.html" title="org.dayatang.utils.support.DictionaryCategory" alt="" coords="16,17,143,42"/>
+<area shape="rect" id="node1" href="./DictionaryCategory.html" title="&lt;TABLE&gt;" alt="" coords="5,5,153,53"/>
 </map>

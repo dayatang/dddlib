@@ -10,10 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.i18n.NoSuchMessageException
-	c69976 [label=<<table title="org.dayatang.i18n.NoSuchMessageException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./NoSuchMessageException.html">
+	c69739 [label=<<table title="org.dayatang.i18n.NoSuchMessageException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./NoSuchMessageException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NoSuchMessageException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./NoSuchMessageException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	//org.dayatang.i18n.NoSuchMessageException extends java.lang.RuntimeException
+	c69830:p -> c69739:p [dir=back,arrowtail=empty];
+	// java.lang.RuntimeException
+	c69830 [label=<<table title="java.lang.RuntimeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> RuntimeException </td></tr>
+		</table></td></tr>
+		</table>>, URL="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

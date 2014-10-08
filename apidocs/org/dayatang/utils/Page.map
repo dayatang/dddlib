@@ -1,16 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Page.html" title="org.dayatang.utils.Page" alt="" coords="289,485,361,510"/>
-<area shape="rect" id="node1" href="./Page.html" title="&lt;TABLE&gt;" alt="" coords="278,473,371,521"/>
-<area shape="rect" id="node2_1" href="../querychannel/QueryChannelService.html" title="org.dayatang.querychannel.QueryChannelService" alt="" coords="16,11,188,71"/>
-<area shape="rect" id="node2" href="../querychannel/QueryChannelService.html" title="&lt;TABLE&gt;" alt="" coords="5,5,199,76"/>
-<area shape="rect" id="node4_2" href="../querychannel/impl/QueryChannelServiceImpl.html" title="org.dayatang.querychannel.impl.QueryChannelServiceImpl" alt="" coords="251,131,449,173"/>
-<area shape="rect" id="node4" href="../querychannel/impl/QueryChannelServiceImpl.html" title="&lt;TABLE&gt;" alt="" coords="241,125,459,179"/>
-<area shape="rect" id="node3_3" href="../querychannel/ChannelQuery.html" title="org.dayatang.querychannel.ChannelQuery" alt="" coords="103,247,525,289"/>
-<area shape="rect" id="node3" href="../querychannel/ChannelQuery.html" title="&lt;TABLE&gt;" alt="" coords="92,241,536,295"/>
-<area shape="rect" id="node5_4" href="../querychannel/query/ChannelSqlQuery.html" title="org.dayatang.querychannel.query.ChannelSqlQuery" alt="" coords="123,363,329,405"/>
-<area shape="rect" id="node5" href="../querychannel/query/ChannelSqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="112,357,340,411"/>
-<area shape="rect" id="node6_5" href="../querychannel/query/ChannelNamedQuery.html" title="org.dayatang.querychannel.query.ChannelNamedQuery" alt="" coords="375,363,581,405"/>
-<area shape="rect" id="node6" href="../querychannel/query/ChannelNamedQuery.html" title="&lt;TABLE&gt;" alt="" coords="364,357,592,411"/>
-<area shape="rect" id="node7_6" href="../querychannel/query/ChannelJpqlQuery.html" title="org.dayatang.querychannel.query.ChannelJpqlQuery" alt="" coords="627,363,833,405"/>
-<area shape="rect" id="node7" href="../querychannel/query/ChannelJpqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="616,357,844,411"/>
+<area shape="rect" id="node1_0" href="./Page.html" title="org.dayatang.utils.Page" alt="" coords="22,118,94,143"/>
+<area shape="rect" id="node1" href="./Page.html" title="&lt;TABLE&gt;" alt="" coords="11,107,105,155"/>
+<area shape="rect" id="node2_1" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="java.io.Serializable" alt="" coords="16,11,100,53"/>
+<area shape="rect" id="node2" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="&lt;TABLE&gt;" alt="" coords="5,5,111,59"/>
 </map>

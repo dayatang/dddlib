@@ -10,30 +10,28 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.dsrouter.builder.DataSourceBuilder
-	c35988 [label=<<table title="org.dayatang.dsrouter.builder.DataSourceBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DataSourceBuilder.html">
+	c35806 [label=<<table title="org.dayatang.dsrouter.builder.DataSourceBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DataSourceBuilder.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> DataSourceBuilder </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DataSourceBuilder.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.dsrouter.builder.AbstractDataSourceBuilder
-	c35989 [label=<<table title="org.dayatang.dsrouter.builder.AbstractDataSourceBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractDataSourceBuilder.html">
+	c35807 [label=<<table title="org.dayatang.dsrouter.builder.AbstractDataSourceBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractDataSourceBuilder.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractDataSourceBuilder </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractDataSourceBuilder.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.dsrouter.datasource.DynamicRoutingDataSource
-	c35999 [label=<<table title="org.dayatang.dsrouter.datasource.DynamicRoutingDataSource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../datasource/DynamicRoutingDataSource.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> DynamicRoutingDataSource </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.dsrouter.datasource </td></tr>
-		</table></td></tr>
-		</table>>, URL="../datasource/DynamicRoutingDataSource.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	//org.dayatang.dsrouter.builder.DataSourceBuilder implements java.io.Serializable
+	c35883:p -> c35806:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.dsrouter.builder.AbstractDataSourceBuilder implements org.dayatang.dsrouter.builder.DataSourceBuilder
-	c35988:p -> c35989:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.dsrouter.datasource.DynamicRoutingDataSource NAVASSOC org.dayatang.dsrouter.builder.DataSourceBuilder
-	c35999:p -> c35988:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.dsrouter.datasource.DynamicRoutingDataSource DEPEND org.dayatang.dsrouter.builder.DataSourceBuilder
-	c35999:p -> c35988:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c35806:p -> c35807:p [dir=back,arrowtail=empty,style=dashed];
+	// java.io.Serializable
+	c35883 [label=<<table title="java.io.Serializable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> Serializable </td></tr>
+		</table></td></tr>
+		</table>>, URL="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 
