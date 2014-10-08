@@ -1,8 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./EntityRepository.html" title="org.dayatang.domain.EntityRepository" alt="" coords="109,121,221,164"/>
-<area shape="rect" id="node1" href="./EntityRepository.html" title="&lt;TABLE&gt;" alt="" coords="98,116,231,169"/>
-<area shape="rect" id="node2_1" href="./CriteriaQuery.html" title="org.dayatang.domain.CriteriaQuery" alt="" coords="16,17,108,42"/>
-<area shape="rect" id="node2" href="./CriteriaQuery.html" title="&lt;TABLE&gt;" alt="" coords="5,5,119,53"/>
-<area shape="rect" id="node3_2" href="./BaseQuery.html" title="org.dayatang.domain.BaseQuery" alt="" coords="153,17,381,42"/>
-<area shape="rect" id="node3" href="./BaseQuery.html" title="&lt;TABLE&gt;" alt="" coords="143,5,392,53"/>
+<area shape="rect" id="node1_0" href="./EntityRepository.html" title="org.dayatang.domain.EntityRepository" alt="" coords="16,11,128,53"/>
+<area shape="rect" id="node1" href="./EntityRepository.html" title="&lt;TABLE&gt;" alt="" coords="5,5,139,59"/>
 </map>

@@ -141,17 +141,6 @@ digraph G {
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> DataType </td></tr>
 		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> STRING </td></tr>
-<tr><td align="left" balign="left"> INT </td></tr>
-<tr><td align="left" balign="left"> LONG </td></tr>
-<tr><td align="left" balign="left"> DOUBLE </td></tr>
-<tr><td align="left" balign="left"> BIG_DECIMAL </td></tr>
-<tr><td align="left" balign="left"> BOOLEAN </td></tr>
-<tr><td align="left" balign="left"> DATE </td></tr>
-<tr><td align="left" balign="left"> TIME </td></tr>
-<tr><td align="left" balign="left"> DATE_TIME </td></tr>
-		</table></td></tr>
 		</table>>, URL="./DataType.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.CriterionBuilder
 	c96 [label=<<table title="org.dayatang.domain.CriterionBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CriterionBuilder.html">
@@ -206,23 +195,5 @@ digraph G {
 	c94:p -> c99:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.domain.AbstractEntity extends org.dayatang.domain.BaseEntity
 	c99:p -> c100:p [dir=back,arrowtail=empty];
-	// org.dayatang.domain.Value NAVASSOC org.dayatang.domain.DataType
-	c76:p -> c95:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.OrderSettings NAVASSOC org.dayatang.domain.KeyValue<K, V>
-	c81:p -> c85:p [taillabel="", label=" "headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.CriteriaQuery NAVASSOC org.dayatang.domain.EntityRepository
-	c97:p -> c93:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.CriteriaQuery NAVASSOC org.dayatang.domain.CriterionBuilder
-	c97:p -> c96:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.CriteriaQuery NAVASSOC org.dayatang.domain.QueryCriterion
-	c97:p -> c79:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.CriteriaQuery NAVASSOC org.dayatang.domain.OrderSettings
-	c97:p -> c81:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery> NAVASSOC org.dayatang.domain.EntityRepository
-	c98:p -> c93:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery> NAVASSOC org.dayatang.domain.QueryParameters
-	c98:p -> c78:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery> NAVASSOC org.dayatang.domain.NamedParameters
-	c98:p -> c83:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

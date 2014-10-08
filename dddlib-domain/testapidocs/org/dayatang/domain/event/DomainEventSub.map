@@ -1,7 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./StoredEventTest.html" title="org.dayatang.domain.event.StoredEventTest" alt="" coords="16,17,128,42"/>
-<area shape="rect" id="node1" href="./StoredEventTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,139,53"/>
-<area shape="rect" id="node2_1" href="./DomainEventSub.html" title="org.dayatang.domain.event.DomainEventSub" alt="" coords="87,127,207,153"/>
-<area shape="rect" id="node2" href="./DomainEventSub.html" title="&lt;TABLE&gt;" alt="" coords="76,116,217,164"/>
-<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api//DomainEvent.html" title="DomainEvent" alt="" coords="173,17,269,42"/>
+<area shape="rect" id="node1_0" href="./DomainEventSub.html" title="org.dayatang.domain.event.DomainEventSub" alt="" coords="16,113,136,138"/>
+<area shape="rect" id="node1" href="./DomainEventSub.html" title="&lt;TABLE&gt;" alt="" coords="5,101,147,149"/>
 </map>

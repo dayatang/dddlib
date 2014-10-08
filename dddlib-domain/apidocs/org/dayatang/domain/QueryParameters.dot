@@ -10,37 +10,27 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.QueryParameters
-	c4762 [label=<<table title="org.dayatang.domain.QueryParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./QueryParameters.html">
+	c4746 [label=<<table title="org.dayatang.domain.QueryParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./QueryParameters.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> QueryParameters </td></tr>
 		</table></td></tr>
 		</table>>, URL="./QueryParameters.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.PositionalParameters
-	c4764 [label=<<table title="org.dayatang.domain.PositionalParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PositionalParameters.html">
+	c4748 [label=<<table title="org.dayatang.domain.PositionalParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PositionalParameters.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PositionalParameters </td></tr>
 		</table></td></tr>
 		</table>>, URL="./PositionalParameters.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.NamedParameters
-	c4767 [label=<<table title="org.dayatang.domain.NamedParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NamedParameters.html">
+	c4751 [label=<<table title="org.dayatang.domain.NamedParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NamedParameters.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NamedParameters </td></tr>
 		</table></td></tr>
 		</table>>, URL="./NamedParameters.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
-	c4782 [label=<<table title="org.dayatang.domain.BaseQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BaseQuery.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BaseQuery&lt;E extends BaseQuery&gt; </font></td></tr>
-		</table></td></tr>
-		</table>>, URL="./BaseQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.PositionalParameters implements org.dayatang.domain.QueryParameters
-	c4762:p -> c4764:p [dir=back,arrowtail=empty,style=dashed];
+	c4746:p -> c4748:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.domain.NamedParameters implements org.dayatang.domain.QueryParameters
-	c4762:p -> c4767:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery> NAVASSOC org.dayatang.domain.QueryParameters
-	c4782:p -> c4762:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery> NAVASSOC org.dayatang.domain.NamedParameters
-	c4782:p -> c4767:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+	c4746:p -> c4751:p [dir=back,arrowtail=empty,style=dashed];
 }
 

@@ -9,44 +9,19 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.domain.QueryCriterion
-	c4319 [label=<<table title="org.dayatang.domain.QueryCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../QueryCriterion.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> QueryCriterion </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="../QueryCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.NamedParameters
-	c4323 [label=<<table title="org.dayatang.domain.NamedParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../NamedParameters.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> NamedParameters </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="../NamedParameters.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.OrCriterion
-	c4356 [label=<<table title="org.dayatang.domain.internal.OrCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./OrCriterion.html">
+	c4340 [label=<<table title="org.dayatang.domain.internal.OrCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./OrCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> OrCriterion </td></tr>
 		</table></td></tr>
 		</table>>, URL="./OrCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.AbstractCriterion
-	c4382 [label=<<table title="org.dayatang.domain.internal.AbstractCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractCriterion.html">
+	c4366 [label=<<table title="org.dayatang.domain.internal.AbstractCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractCriterion </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.internal.OrCriterion extends org.dayatang.domain.internal.AbstractCriterion
-	c4382:p -> c4356:p [dir=back,arrowtail=empty];
-	//org.dayatang.domain.internal.AbstractCriterion implements org.dayatang.domain.QueryCriterion
-	c4319:p -> c4382:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.domain.internal.OrCriterion NAVASSOC org.dayatang.domain.QueryCriterion
-	c4356:p -> c4319:p [taillabel="", label=" "headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.internal.OrCriterion DEPEND org.dayatang.domain.NamedParameters
-	c4356:p -> c4323:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.domain.internal.AbstractCriterion DEPEND org.dayatang.domain.QueryCriterion
-	c4382:p -> c4319:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.domain.internal.AbstractCriterion DEPEND org.dayatang.domain.QueryCriterion
-	c4382:p -> c4319:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c4366:p -> c4340:p [dir=back,arrowtail=empty];
 }
 

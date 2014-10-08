@@ -10,20 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.event.StoredEvent
-	c5599 [label=<<table title="org.dayatang.domain.event.StoredEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./StoredEvent.html">
+	c5583 [label=<<table title="org.dayatang.domain.event.StoredEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./StoredEvent.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> StoredEvent </td></tr>
 		</table></td></tr>
 		</table>>, URL="./StoredEvent.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.event.StoredEvent DEPEND org.dayatang.utils.ObjectSerializer
-	c5599:p -> c5646:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.utils.ObjectSerializer
-	c5646 [label=<<table title="org.dayatang.utils.ObjectSerializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/utils/ObjectSerializer.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> ObjectSerializer </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.utils </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/utils/ObjectSerializer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

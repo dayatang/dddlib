@@ -10,12 +10,12 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.specification.StartsSpecification
-	c4567 [label=<<table title="org.dayatang.domain.specification.StartsSpecification" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./StartsSpecification.html">
+	c4553 [label=<<table title="org.dayatang.domain.specification.StartsSpecification" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./StartsSpecification.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> StartsSpecification </td></tr>
 		</table></td></tr>
 		</table>>, URL="./StartsSpecification.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.specification.StartsSpecification extends <any>
-	c4573:p -> c4567:p [dir=back,arrowtail=empty];
+	c4559:p -> c4553:p [dir=back,arrowtail=empty];
 }
 

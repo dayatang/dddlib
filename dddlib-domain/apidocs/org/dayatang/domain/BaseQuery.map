@@ -1,16 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./SqlQuery.html" title="org.dayatang.domain.SqlQuery" alt="" coords="16,130,88,155"/>
-<area shape="rect" id="node1" href="./SqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="5,119,99,167"/>
-<area shape="rect" id="node2_1" href="./QueryParameters.html" title="org.dayatang.domain.QueryParameters" alt="" coords="133,121,253,164"/>
-<area shape="rect" id="node2" href="./QueryParameters.html" title="&lt;TABLE&gt;" alt="" coords="123,116,264,169"/>
-<area shape="rect" id="node4_2" href="./NamedParameters.html" title="org.dayatang.domain.NamedParameters" alt="" coords="317,230,443,255"/>
-<area shape="rect" id="node4" href="./NamedParameters.html" title="&lt;TABLE&gt;" alt="" coords="307,219,453,267"/>
-<area shape="rect" id="node3_3" href="./NamedQuery.html" title="org.dayatang.domain.NamedQuery" alt="" coords="299,130,395,155"/>
-<area shape="rect" id="node3" href="./NamedQuery.html" title="&lt;TABLE&gt;" alt="" coords="288,119,405,167"/>
-<area shape="rect" id="node5_4" href="./JpqlQuery.html" title="org.dayatang.domain.JpqlQuery" alt="" coords="493,130,571,155"/>
-<area shape="rect" id="node5" href="./JpqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="483,119,581,167"/>
-<area shape="rect" id="node6_5" href="./EntityRepository.html" title="org.dayatang.domain.EntityRepository" alt="" coords="616,121,728,164"/>
-<area shape="rect" id="node6" href="./EntityRepository.html" title="&lt;TABLE&gt;" alt="" coords="605,116,739,169"/>
-<area shape="rect" id="node7_6" href="./BaseQuery.html" title="org.dayatang.domain.BaseQuery" alt="" coords="286,17,514,42"/>
-<area shape="rect" id="node7" href="./BaseQuery.html" title="&lt;TABLE&gt;" alt="" coords="275,5,525,53"/>
+<area shape="rect" id="node1_0" href="./SqlQuery.html" title="org.dayatang.domain.SqlQuery" alt="" coords="16,113,88,138"/>
+<area shape="rect" id="node1" href="./SqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="5,101,99,149"/>
+<area shape="rect" id="node2_1" href="./NamedQuery.html" title="org.dayatang.domain.NamedQuery" alt="" coords="133,113,229,138"/>
+<area shape="rect" id="node2" href="./NamedQuery.html" title="&lt;TABLE&gt;" alt="" coords="123,101,240,149"/>
+<area shape="rect" id="node3_2" href="./JpqlQuery.html" title="org.dayatang.domain.JpqlQuery" alt="" coords="275,113,352,138"/>
+<area shape="rect" id="node3" href="./JpqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="264,101,363,149"/>
+<area shape="rect" id="node4_3" href="./BaseQuery.html" title="org.dayatang.domain.BaseQuery" alt="" coords="67,17,295,42"/>
+<area shape="rect" id="node4" href="./BaseQuery.html" title="&lt;TABLE&gt;" alt="" coords="57,5,306,53"/>
 </map>

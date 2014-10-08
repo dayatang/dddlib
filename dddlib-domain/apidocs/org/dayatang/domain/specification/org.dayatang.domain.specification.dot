@@ -48,11 +48,5 @@ digraph G {
 	c369:p -> c368:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.specification.AbstractSpecification<T> implements org.dayatang.domain.specification.Specification<T>
 	c365:p -> c369:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.domain.specification.OrSpecification<T> NAVASSOC org.dayatang.domain.specification.Specification<T>
-	c366:p -> c365:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.specification.NotSpecification<T> NAVASSOC org.dayatang.domain.specification.Specification<T>
-	c367:p -> c365:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.specification.AndSpecification<T> NAVASSOC org.dayatang.domain.specification.Specification<T>
-	c368:p -> c365:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

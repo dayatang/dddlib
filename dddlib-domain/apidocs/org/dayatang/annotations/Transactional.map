@@ -1,4 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Transactional.html" title="org.dayatang.annotations.Transactional" alt="" coords="16,17,113,42"/>
-<area shape="rect" id="node1" href="./Transactional.html" title="&lt;TABLE&gt;" alt="" coords="5,5,124,53"/>
+<area shape="rect" id="node1_0" href="./Transactional.html" title="org.dayatang.annotations.Transactional" alt="" coords="16,118,113,143"/>
+<area shape="rect" id="node1" href="./Transactional.html" title="&lt;TABLE&gt;" alt="" coords="5,107,124,155"/>
+<area shape="rect" id="node2_1" href="http://download.oracle.com/javase/7/docs/api/java/lang/annotation/Annotation.html" title="java.lang.annotation.Annotation" alt="" coords="24,11,105,53"/>
+<area shape="rect" id="node2" href="http://download.oracle.com/javase/7/docs/api/java/lang/annotation/Annotation.html" title="&lt;TABLE&gt;" alt="" coords="13,5,116,59"/>
 </map>

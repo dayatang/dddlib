@@ -9,35 +9,20 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.domain.QueryCriterion
-	c1353 [label=<<table title="org.dayatang.domain.QueryCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../QueryCriterion.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> QueryCriterion </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="../QueryCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.CriterionBuilder
-	c1370 [label=<<table title="org.dayatang.domain.CriterionBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../CriterionBuilder.html">
+	c1357 [label=<<table title="org.dayatang.domain.CriterionBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../CriterionBuilder.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> CriterionBuilder </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
 		</table></td></tr>
 		</table>>, URL="../CriterionBuilder.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.CriterionBuilderImpl
-	c1411 [label=<<table title="org.dayatang.domain.internal.CriterionBuilderImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./CriterionBuilderImpl.html">
+	c1398 [label=<<table title="org.dayatang.domain.internal.CriterionBuilderImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./CriterionBuilderImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CriterionBuilderImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./CriterionBuilderImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.internal.CriterionBuilderImpl implements org.dayatang.domain.CriterionBuilder
-	c1370:p -> c1411:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.domain.internal.CriterionBuilderImpl DEPEND org.dayatang.domain.QueryCriterion
-	c1411:p -> c1353:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.domain.internal.CriterionBuilderImpl DEPEND org.dayatang.domain.QueryCriterion
-	c1411:p -> c1353:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.domain.internal.CriterionBuilderImpl DEPEND org.dayatang.domain.QueryCriterion
-	c1411:p -> c1353:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c1357:p -> c1398:p [dir=back,arrowtail=empty,style=dashed];
 }
 

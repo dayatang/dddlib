@@ -33,7 +33,5 @@ digraph G {
 <tr><td align="center" balign="center"> DomainEventBusImplTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DomainEventBusImplTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.event.StoredEventTest NAVASSOC org.dayatang.domain.event.DomainEventSub
-	c204:p -> c206:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

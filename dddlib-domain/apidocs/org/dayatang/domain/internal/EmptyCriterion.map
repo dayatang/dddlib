@@ -1,10 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../QueryCriterion.html" title="org.dayatang.domain.QueryCriterion" alt="" coords="45,11,183,71"/>
-<area shape="rect" id="node1" href="../QueryCriterion.html" title="&lt;TABLE&gt;" alt="" coords="34,5,194,76"/>
-<area shape="rect" id="node4_1" href="./AbstractCriterion.html" title="org.dayatang.domain.internal.AbstractCriterion" alt="" coords="16,150,132,175"/>
-<area shape="rect" id="node4" href="./AbstractCriterion.html" title="&lt;TABLE&gt;" alt="" coords="5,139,143,187"/>
-<area shape="rect" id="node2_2" href="../NamedParameters.html" title="org.dayatang.domain.NamedParameters" alt="" coords="85,352,223,395"/>
-<area shape="rect" id="node2" href="../NamedParameters.html" title="&lt;TABLE&gt;" alt="" coords="74,347,234,400"/>
-<area shape="rect" id="node3_3" href="./EmptyCriterion.html" title="org.dayatang.domain.internal.EmptyCriterion" alt="" coords="104,247,204,273"/>
-<area shape="rect" id="node3" href="./EmptyCriterion.html" title="&lt;TABLE&gt;" alt="" coords="93,236,215,284"/>
+<area shape="rect" id="node1_0" href="./EmptyCriterion.html" title="org.dayatang.domain.internal.EmptyCriterion" alt="" coords="24,113,124,138"/>
+<area shape="rect" id="node1" href="./EmptyCriterion.html" title="&lt;TABLE&gt;" alt="" coords="13,101,135,149"/>
+<area shape="rect" id="node2_1" href="./AbstractCriterion.html" title="org.dayatang.domain.internal.AbstractCriterion" alt="" coords="16,17,132,42"/>
+<area shape="rect" id="node2" href="./AbstractCriterion.html" title="&lt;TABLE&gt;" alt="" coords="5,5,143,53"/>
 </map>

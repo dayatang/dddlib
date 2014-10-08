@@ -43,7 +43,5 @@ digraph G {
 		</table>>, URL="./DomainEvent.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.event.DomainEventBusImpl implements org.dayatang.domain.event.DomainEventBus
 	c178:p -> c177:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.domain.event.DomainEventBusImpl NAVASSOC org.dayatang.domain.event.EventStore
-	c177:p -> c176:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

@@ -10,19 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.BaseEntityTest
-	c988 [label=<<table title="org.dayatang.domain.BaseEntityTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./BaseEntityTest.html">
+	c981 [label=<<table title="org.dayatang.domain.BaseEntityTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./BaseEntityTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> BaseEntityTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./BaseEntityTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.entity.Organization
-	c992 [label=<<table title="org.dayatang.domain.entity.Organization" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./entity/Organization.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Organization </font></td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain.entity </td></tr>
-		</table></td></tr>
-		</table>>, URL="./entity/Organization.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.BaseEntityTest NAVASSOC org.dayatang.domain.entity.Organization
-	c988:p -> c992:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

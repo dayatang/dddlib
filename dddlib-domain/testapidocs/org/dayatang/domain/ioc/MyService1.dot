@@ -9,29 +9,20 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.domain.InstanceFactoryTest
-	c2882 [label=<<table title="org.dayatang.domain.InstanceFactoryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../InstanceFactoryTest.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> InstanceFactoryTest </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="../InstanceFactoryTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.ioc.Service
-	c2929 [label=<<table title="org.dayatang.domain.ioc.Service" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Service.html">
+	c2915 [label=<<table title="org.dayatang.domain.ioc.Service" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Service.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Service </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Service.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.ioc.MyService1
-	c2935 [label=<<table title="org.dayatang.domain.ioc.MyService1" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MyService1.html">
+	c2921 [label=<<table title="org.dayatang.domain.ioc.MyService1" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MyService1.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MyService1 </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MyService1.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.ioc.MyService1 implements org.dayatang.domain.ioc.Service
-	c2929:p -> c2935:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.domain.InstanceFactoryTest NAVASSOC org.dayatang.domain.ioc.MyService1
-	c2882:p -> c2935:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+	c2915:p -> c2921:p [dir=back,arrowtail=empty,style=dashed];
 }
 

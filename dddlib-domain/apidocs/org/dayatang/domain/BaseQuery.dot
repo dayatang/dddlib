@@ -10,62 +10,34 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.SqlQuery
-	c907 [label=<<table title="org.dayatang.domain.SqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SqlQuery.html">
+	c894 [label=<<table title="org.dayatang.domain.SqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SqlQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SqlQuery </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SqlQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.QueryParameters
-	c908 [label=<<table title="org.dayatang.domain.QueryParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryParameters.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> QueryParameters </td></tr>
-		</table></td></tr>
-		</table>>, URL="./QueryParameters.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.NamedQuery
-	c912 [label=<<table title="org.dayatang.domain.NamedQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NamedQuery.html">
+	c899 [label=<<table title="org.dayatang.domain.NamedQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NamedQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NamedQuery </td></tr>
 		</table></td></tr>
 		</table>>, URL="./NamedQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.NamedParameters
-	c913 [label=<<table title="org.dayatang.domain.NamedParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NamedParameters.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> NamedParameters </td></tr>
-		</table></td></tr>
-		</table>>, URL="./NamedParameters.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.JpqlQuery
-	c916 [label=<<table title="org.dayatang.domain.JpqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JpqlQuery.html">
+	c903 [label=<<table title="org.dayatang.domain.JpqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JpqlQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JpqlQuery </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JpqlQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.EntityRepository
-	c923 [label=<<table title="org.dayatang.domain.EntityRepository" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EntityRepository.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> EntityRepository </td></tr>
-		</table></td></tr>
-		</table>>, URL="./EntityRepository.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
-	c928 [label=<<table title="org.dayatang.domain.BaseQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./BaseQuery.html">
+	c915 [label=<<table title="org.dayatang.domain.BaseQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./BaseQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BaseQuery&lt;E extends BaseQuery&gt; </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./BaseQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.SqlQuery extends org.dayatang.domain.BaseQuery<org.dayatang.domain.SqlQuery>
-	c928:p -> c907:p [dir=back,arrowtail=empty];
+	c915:p -> c894:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.NamedQuery extends org.dayatang.domain.BaseQuery<org.dayatang.domain.NamedQuery>
-	c928:p -> c912:p [dir=back,arrowtail=empty];
-	//org.dayatang.domain.NamedParameters implements org.dayatang.domain.QueryParameters
-	c908:p -> c913:p [dir=back,arrowtail=empty,style=dashed];
+	c915:p -> c899:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.JpqlQuery extends org.dayatang.domain.BaseQuery<org.dayatang.domain.JpqlQuery>
-	c928:p -> c916:p [dir=back,arrowtail=empty];
-	// org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery> NAVASSOC org.dayatang.domain.EntityRepository
-	c928:p -> c923:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery> NAVASSOC org.dayatang.domain.QueryParameters
-	c928:p -> c908:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery> NAVASSOC org.dayatang.domain.NamedParameters
-	c928:p -> c913:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+	c915:p -> c903:p [dir=back,arrowtail=empty];
 }
 

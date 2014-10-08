@@ -9,46 +9,11 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.domain.QueryCriterion
-	c1205 [label=<<table title="org.dayatang.domain.QueryCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryCriterion.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> QueryCriterion </td></tr>
-		</table></td></tr>
-		</table>>, URL="./QueryCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.OrderSettings
-	c1207 [label=<<table title="org.dayatang.domain.OrderSettings" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OrderSettings.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> OrderSettings </td></tr>
-		</table></td></tr>
-		</table>>, URL="./OrderSettings.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.EntityRepository
-	c1219 [label=<<table title="org.dayatang.domain.EntityRepository" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EntityRepository.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> EntityRepository </td></tr>
-		</table></td></tr>
-		</table>>, URL="./EntityRepository.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.CriterionBuilder
-	c1222 [label=<<table title="org.dayatang.domain.CriterionBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CriterionBuilder.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> CriterionBuilder </td></tr>
-		</table></td></tr>
-		</table>>, URL="./CriterionBuilder.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.CriteriaQuery
-	c1223 [label=<<table title="org.dayatang.domain.CriteriaQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./CriteriaQuery.html">
+	c1210 [label=<<table title="org.dayatang.domain.CriteriaQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./CriteriaQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CriteriaQuery </td></tr>
 		</table></td></tr>
 		</table>>, URL="./CriteriaQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.domain.CriteriaQuery NAVASSOC org.dayatang.domain.EntityRepository
-	c1223:p -> c1219:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.CriteriaQuery NAVASSOC org.dayatang.domain.CriterionBuilder
-	c1223:p -> c1222:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.CriteriaQuery NAVASSOC org.dayatang.domain.QueryCriterion
-	c1223:p -> c1205:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.CriteriaQuery NAVASSOC org.dayatang.domain.OrderSettings
-	c1223:p -> c1207:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

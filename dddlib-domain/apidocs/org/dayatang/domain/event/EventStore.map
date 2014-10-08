@@ -1,6 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./EventStore.html" title="org.dayatang.domain.event.EventStore" alt="" coords="47,121,128,164"/>
-<area shape="rect" id="node1" href="./EventStore.html" title="&lt;TABLE&gt;" alt="" coords="36,116,139,169"/>
-<area shape="rect" id="node2_1" href="./DomainEventBusImpl.html" title="org.dayatang.domain.event.DomainEventBusImpl" alt="" coords="16,17,159,42"/>
-<area shape="rect" id="node2" href="./DomainEventBusImpl.html" title="&lt;TABLE&gt;" alt="" coords="5,5,169,53"/>
+<area shape="rect" id="node1_0" href="./EventStore.html" title="org.dayatang.domain.event.EventStore" alt="" coords="16,11,97,53"/>
+<area shape="rect" id="node1" href="./EventStore.html" title="&lt;TABLE&gt;" alt="" coords="5,5,108,59"/>
 </map>

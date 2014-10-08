@@ -9,38 +9,20 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.domain.event.EventStore
-	c1677 [label=<<table title="org.dayatang.domain.event.EventStore" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EventStore.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> EventStore </td></tr>
-		</table></td></tr>
-		</table>>, URL="./EventStore.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.event.DomainEventBusImpl
-	c1678 [label=<<table title="org.dayatang.domain.event.DomainEventBusImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DomainEventBusImpl.html">
+	c1660 [label=<<table title="org.dayatang.domain.event.DomainEventBusImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DomainEventBusImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DomainEventBusImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DomainEventBusImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.event.DomainEventBus
-	c1679 [label=<<table title="org.dayatang.domain.event.DomainEventBus" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DomainEventBus.html">
+	c1661 [label=<<table title="org.dayatang.domain.event.DomainEventBus" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DomainEventBus.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> DomainEventBus </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DomainEventBus.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.event.DomainEventBusImpl implements org.dayatang.domain.event.DomainEventBus
-	c1679:p -> c1678:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.domain.event.DomainEventBusImpl NAVASSOC com.google.common.eventbus.EventBus
-	c1678:p -> c1723:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.domain.event.DomainEventBusImpl NAVASSOC org.dayatang.domain.event.EventStore
-	c1678:p -> c1677:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// com.google.common.eventbus.EventBus
-	c1723 [label=<<table title="com.google.common.eventbus.EventBus" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/common/eventbus/EventBus.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> EventBus </td></tr>
-<tr><td align="center" balign="center"> com.google.common.eventbus </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/com/google/common/eventbus/EventBus.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	c1661:p -> c1660:p [dir=back,arrowtail=empty,style=dashed];
 }
 

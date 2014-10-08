@@ -1,8 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../QueryCriterion.html" title="org.dayatang.domain.QueryCriterion" alt="" coords="16,241,155,301"/>
-<area shape="rect" id="node1" href="../QueryCriterion.html" title="&lt;TABLE&gt;" alt="" coords="5,236,165,307"/>
-<area shape="rect" id="node2_1" href="../CriterionBuilder.html" title="org.dayatang.domain.CriterionBuilder" alt="" coords="16,11,155,71"/>
-<area shape="rect" id="node2" href="../CriterionBuilder.html" title="&lt;TABLE&gt;" alt="" coords="5,5,165,76"/>
-<area shape="rect" id="node3_2" href="./CriterionBuilderImpl.html" title="org.dayatang.domain.internal.CriterionBuilderImpl" alt="" coords="23,137,147,162"/>
-<area shape="rect" id="node3" href="./CriterionBuilderImpl.html" title="&lt;TABLE&gt;" alt="" coords="13,125,158,173"/>
+<area shape="rect" id="node1_0" href="../CriterionBuilder.html" title="org.dayatang.domain.CriterionBuilder" alt="" coords="28,11,128,53"/>
+<area shape="rect" id="node1" href="../CriterionBuilder.html" title="&lt;TABLE&gt;" alt="" coords="17,5,139,59"/>
+<area shape="rect" id="node2_1" href="./CriterionBuilderImpl.html" title="org.dayatang.domain.internal.CriterionBuilderImpl" alt="" coords="16,118,140,143"/>
+<area shape="rect" id="node2" href="./CriterionBuilderImpl.html" title="&lt;TABLE&gt;" alt="" coords="5,107,151,155"/>
 </map>

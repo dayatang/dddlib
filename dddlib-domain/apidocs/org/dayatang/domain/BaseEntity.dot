@@ -10,35 +10,35 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.LegacyEntity
-	c840 [label=<<table title="org.dayatang.domain.LegacyEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./LegacyEntity.html">
+	c827 [label=<<table title="org.dayatang.domain.LegacyEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./LegacyEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> LegacyEntity </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./LegacyEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.Entity
-	c850 [label=<<table title="org.dayatang.domain.Entity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Entity.html">
+	c837 [label=<<table title="org.dayatang.domain.Entity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Entity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Entity </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Entity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.BaseEntity
-	c855 [label=<<table title="org.dayatang.domain.BaseEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./BaseEntity.html">
+	c842 [label=<<table title="org.dayatang.domain.BaseEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./BaseEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BaseEntity </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./BaseEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.AbstractEntity
-	c856 [label=<<table title="org.dayatang.domain.AbstractEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractEntity.html">
+	c843 [label=<<table title="org.dayatang.domain.AbstractEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractEntity </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.LegacyEntity extends org.dayatang.domain.BaseEntity
-	c855:p -> c840:p [dir=back,arrowtail=empty];
+	c842:p -> c827:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.BaseEntity implements org.dayatang.domain.Entity
-	c850:p -> c855:p [dir=back,arrowtail=empty,style=dashed];
+	c837:p -> c842:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.domain.AbstractEntity extends org.dayatang.domain.BaseEntity
-	c855:p -> c856:p [dir=back,arrowtail=empty];
+	c842:p -> c843:p [dir=back,arrowtail=empty];
 }
 

@@ -10,19 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.ioc.Service2
-	c3123 [label=<<table title="org.dayatang.domain.ioc.Service2" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Service2.html">
+	c3109 [label=<<table title="org.dayatang.domain.ioc.Service2" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Service2.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Service2 </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Service2.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.ioc.MyService22
-	c3127 [label=<<table title="org.dayatang.domain.ioc.MyService22" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MyService22.html">
+	c3113 [label=<<table title="org.dayatang.domain.ioc.MyService22" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MyService22.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MyService22 </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MyService22.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.ioc.MyService22 implements org.dayatang.domain.ioc.Service2
-	c3123:p -> c3127:p [dir=back,arrowtail=empty,style=dashed];
+	c3109:p -> c3113:p [dir=back,arrowtail=empty,style=dashed];
 }
 

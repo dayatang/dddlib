@@ -1,18 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./QueryCriterion.html" title="org.dayatang.domain.QueryCriterion" alt="" coords="446,127,545,169"/>
-<area shape="rect" id="node1" href="./QueryCriterion.html" title="&lt;TABLE&gt;" alt="" coords="435,121,555,175"/>
-<area shape="rect" id="node8_1" href="./internal/AbstractCriterion.html" title="org.dayatang.domain.internal.AbstractCriterion" alt="" coords="372,243,552,285"/>
-<area shape="rect" id="node8" href="./internal/AbstractCriterion.html" title="&lt;TABLE&gt;" alt="" coords="361,237,563,291"/>
-<area shape="rect" id="node2_2" href="./CriteriaQuery.html" title="org.dayatang.domain.CriteriaQuery" alt="" coords="305,19,397,45"/>
-<area shape="rect" id="node2" href="./CriteriaQuery.html" title="&lt;TABLE&gt;" alt="" coords="295,8,408,56"/>
-<area shape="rect" id="node3_3" href="./internal/OrCriterion.html" title="org.dayatang.domain.internal.OrCriterion" alt="" coords="467,345,647,388"/>
-<area shape="rect" id="node3" href="./internal/OrCriterion.html" title="&lt;TABLE&gt;" alt="" coords="456,340,657,393"/>
-<area shape="rect" id="node4_4" href="./internal/NotCriterion.html" title="org.dayatang.domain.internal.NotCriterion" alt="" coords="692,345,872,388"/>
-<area shape="rect" id="node4" href="./internal/NotCriterion.html" title="&lt;TABLE&gt;" alt="" coords="681,340,883,393"/>
-<area shape="rect" id="node5_5" href="./internal/EmptyCriterion.html" title="org.dayatang.domain.internal.EmptyCriterion" alt="" coords="16,345,196,388"/>
-<area shape="rect" id="node5" href="./internal/EmptyCriterion.html" title="&lt;TABLE&gt;" alt="" coords="5,340,207,393"/>
-<area shape="rect" id="node6_6" href="./internal/CriterionBuilderImpl.html" title="org.dayatang.domain.internal.CriterionBuilderImpl" alt="" coords="443,11,623,53"/>
-<area shape="rect" id="node6" href="./internal/CriterionBuilderImpl.html" title="&lt;TABLE&gt;" alt="" coords="432,5,633,59"/>
-<area shape="rect" id="node7_7" href="./internal/AndCriterion.html" title="org.dayatang.domain.internal.AndCriterion" alt="" coords="241,345,421,388"/>
-<area shape="rect" id="node7" href="./internal/AndCriterion.html" title="&lt;TABLE&gt;" alt="" coords="231,340,432,393"/>
+<area shape="rect" id="node1_0" href="./QueryCriterion.html" title="org.dayatang.domain.QueryCriterion" alt="" coords="25,11,123,53"/>
+<area shape="rect" id="node1" href="./QueryCriterion.html" title="&lt;TABLE&gt;" alt="" coords="14,5,134,59"/>
+<area shape="rect" id="node2_1" href="./internal/AbstractCriterion.html" title="org.dayatang.domain.internal.AbstractCriterion" alt="" coords="16,118,132,143"/>
+<area shape="rect" id="node2" href="./internal/AbstractCriterion.html" title="&lt;TABLE&gt;" alt="" coords="5,107,143,155"/>
 </map>

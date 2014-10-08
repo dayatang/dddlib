@@ -1,8 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../NamedParameters.html" title="org.dayatang.domain.NamedParameters" alt="" coords="16,219,155,261"/>
-<area shape="rect" id="node1" href="../NamedParameters.html" title="&lt;TABLE&gt;" alt="" coords="5,213,165,267"/>
-<area shape="rect" id="node2_1" href="./BetweenCriterion.html" title="org.dayatang.domain.internal.BetweenCriterion" alt="" coords="28,114,143,139"/>
-<area shape="rect" id="node2" href="./BetweenCriterion.html" title="&lt;TABLE&gt;" alt="" coords="17,103,153,151"/>
-<area shape="rect" id="node3_2" href="./BasicCriterion.html" title="org.dayatang.domain.internal.BasicCriterion" alt="" coords="35,17,135,42"/>
-<area shape="rect" id="node3" href="./BasicCriterion.html" title="&lt;TABLE&gt;" alt="" coords="25,5,146,53"/>
+<area shape="rect" id="node1_0" href="./BetweenCriterion.html" title="org.dayatang.domain.internal.BetweenCriterion" alt="" coords="16,113,131,138"/>
+<area shape="rect" id="node1" href="./BetweenCriterion.html" title="&lt;TABLE&gt;" alt="" coords="5,101,141,149"/>
+<area shape="rect" id="node2_1" href="./BasicCriterion.html" title="org.dayatang.domain.internal.BasicCriterion" alt="" coords="23,17,123,42"/>
+<area shape="rect" id="node2" href="./BasicCriterion.html" title="&lt;TABLE&gt;" alt="" coords="13,5,134,53"/>
 </map>
