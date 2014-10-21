@@ -4,7 +4,7 @@
     <parent>
     <artifactId>dddlib-examples-organisation</artifactId>
     <groupId>org.dddlib.examples.organisation</groupId>
-    <version>4.4.1-SNAPSHOT</version>
+    <version>4.3.7-SNAPSHOT</version>
   </parent>
 
     <groupId>org.dddlib.examples.organisation</groupId>
