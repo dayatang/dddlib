@@ -10,20 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.ioc.spring.factory.SpringIocUtils
-	c42 [label=<<table title="org.dayatang.ioc.spring.factory.SpringIocUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SpringIocUtils.html">
+	c32 [label=<<table title="org.dayatang.ioc.spring.factory.SpringIocUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SpringIocUtils.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SpringIocUtils </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SpringIocUtils.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.ioc.spring.factory.SpringIocUtils DEPEND org.dayatang.domain.InstanceProvider
-	c42:p -> c46:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.domain.InstanceProvider
-	c46 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> InstanceProvider </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

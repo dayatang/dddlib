@@ -20,19 +20,19 @@ under the License.
 <rss version="0.91">
   <channel>
     <title>DDDLib IoC implemented by Springframework - Checkstyle report</title>
-    <link>http://www.dayatang.org/dddlib/dddlib-ioc/dddlib-ioc-spring</link>
+    <link>http://dayatang.github.io/dddlib/dddlib-ioc/dddlib-ioc-spring/</link>
     <description>DDDLib IoC implemented by Springframework - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2014 Dayatang Open Source.</copyright>
     <item>
       <title>File: 6,
-             Errors: 85,
+             Errors: 84,
              Warnings: 0,
              Infos: 0
       </title>
-            <link>http://www.dayatang.org/dddlib/dddlib-ioc/dddlib-ioc-spring/checkstyle.html</link>
+            <link>http://dayatang.github.io/dddlib/dddlib-ioc/dddlib-ioc-spring//checkstyle.html</link>
       <description>
-        <p>Click <a href="http://www.dayatang.org/dddlib/dddlib-ioc/dddlib-ioc-spring/checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="http://dayatang.github.io/dddlib/dddlib-ioc/dddlib-ioc-spring//checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-ioc/dddlib-ioc-spring/checkstyle.html#org.dayatang.ioc.spring.factory.SpringInstanceProvider.java">org/dayatang/ioc/spring/factory/SpringInstanceProvider.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-ioc/dddlib-ioc-spring//checkstyle.html#org.dayatang.ioc.spring.factory.SpringInstanceProvider.java">org/dayatang/ioc/spring/factory/SpringInstanceProvider.java</a>
                 </td>
                 <td>
                   0
@@ -55,12 +55,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  30
+                  29
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-ioc/dddlib-ioc-spring/checkstyle.html#org.dayatang.ioc.spring.webapp.DayatangContextLoaderListener.java">org/dayatang/ioc/spring/webapp/DayatangContextLoaderListener.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-ioc/dddlib-ioc-spring//checkstyle.html#org.dayatang.ioc.spring.webapp.DayatangContextLoaderListener.java">org/dayatang/ioc/spring/webapp/DayatangContextLoaderListener.java</a>
                 </td>
                 <td>
                   0
@@ -74,7 +74,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-ioc/dddlib-ioc-spring/checkstyle.html#org.dayatang.ioc.spring.factory.SpringIocUtils.java">org/dayatang/ioc/spring/factory/SpringIocUtils.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-ioc/dddlib-ioc-spring//checkstyle.html#org.dayatang.ioc.spring.factory.SpringIocUtils.java">org/dayatang/ioc/spring/factory/SpringIocUtils.java</a>
                 </td>
                 <td>
                   0
@@ -88,7 +88,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-ioc/dddlib-ioc-spring/checkstyle.html#org.dayatang.ioc.spring.webapp.IocInitializeListener.java">org/dayatang/ioc/spring/webapp/IocInitializeListener.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-ioc/dddlib-ioc-spring//checkstyle.html#org.dayatang.ioc.spring.webapp.IocInitializeListener.java">org/dayatang/ioc/spring/webapp/IocInitializeListener.java</a>
                 </td>
                 <td>
                   0
@@ -102,7 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-ioc/dddlib-ioc-spring/checkstyle.html#org.dayatang.ioc.spring.factory.package-info.java">org/dayatang/ioc/spring/factory/package-info.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-ioc/dddlib-ioc-spring//checkstyle.html#org.dayatang.ioc.spring.factory.package-info.java">org/dayatang/ioc/spring/factory/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -116,7 +116,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-ioc/dddlib-ioc-spring/checkstyle.html#org.dayatang.ioc.spring.webapp.package-info.java">org/dayatang/ioc/spring/webapp/package-info.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-ioc/dddlib-ioc-spring//checkstyle.html#org.dayatang.ioc.spring.webapp.package-info.java">org/dayatang/ioc/spring/webapp/package-info.java</a>
                 </td>
                 <td>
                   0

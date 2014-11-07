@@ -10,20 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.ioc.spring.beans.ServiceFactory
-	c29 [label=<<table title="org.dayatang.ioc.spring.beans.ServiceFactory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ServiceFactory.html">
+	c24 [label=<<table title="org.dayatang.ioc.spring.beans.ServiceFactory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ServiceFactory.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ServiceFactory </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ServiceFactory.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.ioc.spring.beans.ServiceFactory implements org.springframework.beans.factory.FactoryBean<T>
-	c33:p -> c29:p [dir=back,arrowtail=empty,style=dashed];
+	c28:p -> c24:p [dir=back,arrowtail=empty,style=dashed];
 	// org.springframework.beans.factory.FactoryBean<T>
-	c33 [label=<<table title="org.springframework.beans.factory.FactoryBean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/beans/factory/FactoryBean.html">
+	c28 [label=<<table title="org.springframework.beans.factory.FactoryBean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> FactoryBean&lt;T&gt; </td></tr>
-<tr><td align="center" balign="center"> org.springframework.beans.factory </td></tr>
 		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/beans/factory/FactoryBean.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 
