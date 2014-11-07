@@ -1,10 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./TapestryInstanceProviderTest.html" title="org.dayatang.ioc.tapestry.factory.TapestryInstanceProviderTest" alt="" coords="37,119,224,145"/>
-<area shape="rect" id="node1" href="./TapestryInstanceProviderTest.html" title="&lt;TABLE&gt;" alt="" coords="27,108,235,156"/>
-<area shape="rect" id="node3_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/tapestry5/ioc/Registry.html" title="org.apache.tapestry5.ioc.Registry" alt="" coords="16,224,173,284"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/tapestry5/ioc/Registry.html" title="&lt;TABLE&gt;" alt="" coords="5,219,184,289"/>
-<area shape="rect" id="node4_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html" title="org.dayatang.domain.InstanceProvider" alt="" coords="219,224,357,284"/>
-<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="208,219,368,289"/>
-<area shape="rect" id="node2_3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/AbstractInstanceProviderTest.html" title="org.dayatang.ioc.test.AbstractInstanceProviderTest" alt="" coords="35,11,227,53"/>
-<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/AbstractInstanceProviderTest.html" title="&lt;TABLE&gt;" alt="" coords="24,5,237,59"/>
+<area shape="rect" id="node1_0" href="./TapestryInstanceProviderTest.html" title="org.dayatang.ioc.tapestry.factory.TapestryInstanceProviderTest" alt="" coords="19,113,205,138"/>
+<area shape="rect" id="node1" href="./TapestryInstanceProviderTest.html" title="&lt;TABLE&gt;" alt="" coords="8,101,216,149"/>
+<area shape="rect" id="node2" href="null" title="&lt;TABLE&gt;" alt="" coords="5,5,219,53"/>
 </map>

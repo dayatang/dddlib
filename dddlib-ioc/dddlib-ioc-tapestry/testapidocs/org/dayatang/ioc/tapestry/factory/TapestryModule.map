@@ -1,6 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./TapestryModule.html" title="org.dayatang.ioc.tapestry.factory.TapestryModule" alt="" coords="39,17,150,42"/>
-<area shape="rect" id="node1" href="./TapestryModule.html" title="&lt;TABLE&gt;" alt="" coords="29,5,161,53"/>
-<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/tapestry5/ioc/ServiceBinder.html" title="org.apache.tapestry5.ioc.ServiceBinder" alt="" coords="16,121,173,181"/>
-<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/tapestry5/ioc/ServiceBinder.html" title="&lt;TABLE&gt;" alt="" coords="5,116,184,187"/>
+<area shape="rect" id="node1_0" href="./TapestryModule.html" title="org.dayatang.ioc.tapestry.factory.TapestryModule" alt="" coords="16,17,127,42"/>
+<area shape="rect" id="node1" href="./TapestryModule.html" title="&lt;TABLE&gt;" alt="" coords="5,5,137,53"/>
 </map>

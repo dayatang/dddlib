@@ -10,29 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.ioc.tapestry.webapp.filter.DayatangTapestryFilter
-	c16 [label=<<table title="org.dayatang.ioc.tapestry.webapp.filter.DayatangTapestryFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DayatangTapestryFilter.html">
+	c13 [label=<<table title="org.dayatang.ioc.tapestry.webapp.filter.DayatangTapestryFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DayatangTapestryFilter.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DayatangTapestryFilter </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DayatangTapestryFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.ioc.tapestry.webapp.filter.DayatangTapestryFilter extends org.apache.tapestry5.TapestryFilter
-	c26:p -> c16:p [dir=back,arrowtail=empty];
-	// org.dayatang.ioc.tapestry.webapp.filter.DayatangTapestryFilter DEPEND org.apache.tapestry5.ioc.Registry
-	c16:p -> c28:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.apache.tapestry5.ioc.Registry
-	c28 [label=<<table title="org.apache.tapestry5.ioc.Registry" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/tapestry5/ioc/Registry.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Registry </td></tr>
-<tr><td align="center" balign="center"> org.apache.tapestry5.ioc </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/tapestry5/ioc/Registry.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	c15:p -> c13:p [dir=back,arrowtail=empty];
 	// org.apache.tapestry5.TapestryFilter
-	c26 [label=<<table title="org.apache.tapestry5.TapestryFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/tapestry5/TapestryFilter.html">
+	c15 [label=<<table title="org.apache.tapestry5.TapestryFilter" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TapestryFilter </td></tr>
-<tr><td align="center" balign="center"> org.apache.tapestry5 </td></tr>
 		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/tapestry5/TapestryFilter.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 
