@@ -1,8 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Person.html" title="org.dayatang.rule.examples.Person" alt="" coords="195,133,255,158"/>
-<area shape="rect" id="node1" href="./Person.html" title="&lt;TABLE&gt;" alt="" coords="184,121,265,169"/>
-<area shape="rect" id="node2_1" href="../impl/StatelessRuleServiceJsr94Test.html" title="org.dayatang.rule.impl.StatelessRuleServiceJsr94Test" alt="" coords="16,11,209,53"/>
-<area shape="rect" id="node2" href="../impl/StatelessRuleServiceJsr94Test.html" title="&lt;TABLE&gt;" alt="" coords="5,5,220,59"/>
-<area shape="rect" id="node3_2" href="../StatefulRuleTemplateTest.html" title="org.dayatang.rule.StatefulRuleTemplateTest" alt="" coords="255,11,419,53"/>
-<area shape="rect" id="node3" href="../StatefulRuleTemplateTest.html" title="&lt;TABLE&gt;" alt="" coords="244,5,429,59"/>
+<area shape="rect" id="node1_0" href="./Person.html" title="org.dayatang.rule.examples.Person" alt="" coords="16,17,76,42"/>
+<area shape="rect" id="node1" href="./Person.html" title="&lt;TABLE&gt;" alt="" coords="5,5,87,53"/>
 </map>

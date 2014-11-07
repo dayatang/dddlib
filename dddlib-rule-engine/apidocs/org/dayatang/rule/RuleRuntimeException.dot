@@ -10,18 +10,26 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.rule.UnSupportedRuleFormatException
-	c31 [label=<<table title="org.dayatang.rule.UnSupportedRuleFormatException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UnSupportedRuleFormatException.html">
+	c24 [label=<<table title="org.dayatang.rule.UnSupportedRuleFormatException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UnSupportedRuleFormatException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> UnSupportedRuleFormatException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./UnSupportedRuleFormatException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.rule.RuleRuntimeException
-	c43 [label=<<table title="org.dayatang.rule.RuleRuntimeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RuleRuntimeException.html">
+	c33 [label=<<table title="org.dayatang.rule.RuleRuntimeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RuleRuntimeException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RuleRuntimeException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./RuleRuntimeException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.rule.UnSupportedRuleFormatException extends org.dayatang.rule.RuleRuntimeException
-	c43:p -> c31:p [dir=back,arrowtail=empty];
+	c33:p -> c24:p [dir=back,arrowtail=empty];
+	//org.dayatang.rule.RuleRuntimeException extends java.lang.RuntimeException
+	c35:p -> c33:p [dir=back,arrowtail=empty];
+	// java.lang.RuntimeException
+	c35 [label=<<table title="java.lang.RuntimeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> RuntimeException </td></tr>
+		</table></td></tr>
+		</table>>, URL="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 
