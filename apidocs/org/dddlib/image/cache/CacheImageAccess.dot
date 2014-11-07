@@ -10,19 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dddlib.image.api.ImageAccess
-	c28063 [label=<<table title="org.dddlib.image.api.ImageAccess" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../api/ImageAccess.html">
+	c28164 [label=<<table title="org.dddlib.image.api.ImageAccess" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../api/ImageAccess.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ImageAccess </td></tr>
 		</table></td></tr>
 		</table>>, URL="../api/ImageAccess.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.image.cache.CacheImageAccess
-	c28065 [label=<<table title="org.dddlib.image.cache.CacheImageAccess" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./CacheImageAccess.html">
+	c28166 [label=<<table title="org.dddlib.image.cache.CacheImageAccess" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./CacheImageAccess.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CacheImageAccess </td></tr>
 		</table></td></tr>
 		</table>>, URL="./CacheImageAccess.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dddlib.image.cache.CacheImageAccess implements org.dddlib.image.api.ImageAccess
-	c28063:p -> c28065:p [dir=back,arrowtail=empty,style=dashed];
+	c28164:p -> c28166:p [dir=back,arrowtail=empty,style=dashed];
 }
 

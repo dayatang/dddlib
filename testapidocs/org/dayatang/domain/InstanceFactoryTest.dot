@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.InstanceFactoryTest
-	c27980 [label=<<table title="org.dayatang.domain.InstanceFactoryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./InstanceFactoryTest.html">
+	c28170 [label=<<table title="org.dayatang.domain.InstanceFactoryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./InstanceFactoryTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> InstanceFactoryTest </td></tr>
 		</table></td></tr>

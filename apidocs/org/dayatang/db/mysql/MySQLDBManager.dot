@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.db.AbstractDBManager
-	c65231 [label=<<table title="org.dayatang.db.AbstractDBManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../AbstractDBManager.html">
+	c65466 [label=<<table title="org.dayatang.db.AbstractDBManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../AbstractDBManager.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractDBManager </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="../AbstractDBManager.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.db.mysql.MySQLDBManager
-	c65232 [label=<<table title="org.dayatang.db.mysql.MySQLDBManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MySQLDBManager.html">
+	c65467 [label=<<table title="org.dayatang.db.mysql.MySQLDBManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MySQLDBManager.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MySQLDBManager </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MySQLDBManager.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.db.mysql.MySQLDBManager extends org.dayatang.db.AbstractDBManager
-	c65231:p -> c65232:p [dir=back,arrowtail=empty];
+	c65466:p -> c65467:p [dir=back,arrowtail=empty];
 }
 

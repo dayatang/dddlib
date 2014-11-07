@@ -10,23 +10,23 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.mysql.jdbc.GeminiReplicationDriver
-	c52240 [label=<<table title="org.dayatang.mysql.jdbc.GeminiReplicationDriver" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GeminiReplicationDriver.html">
+	c52428 [label=<<table title="org.dayatang.mysql.jdbc.GeminiReplicationDriver" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GeminiReplicationDriver.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GeminiReplicationDriver </td></tr>
 		</table></td></tr>
 		</table>>, URL="./GeminiReplicationDriver.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.mysql.jdbc.GeminiNonRegisteringReplicationDriver
-	c52242 [label=<<table title="org.dayatang.mysql.jdbc.GeminiNonRegisteringReplicationDriver" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GeminiNonRegisteringReplicationDriver.html">
+	c52430 [label=<<table title="org.dayatang.mysql.jdbc.GeminiNonRegisteringReplicationDriver" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GeminiNonRegisteringReplicationDriver.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GeminiNonRegisteringReplicationDriver </td></tr>
 		</table></td></tr>
 		</table>>, URL="./GeminiNonRegisteringReplicationDriver.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.mysql.jdbc.GeminiReplicationDriver extends org.dayatang.mysql.jdbc.GeminiNonRegisteringReplicationDriver
-	c52242:p -> c52240:p [dir=back,arrowtail=empty];
+	c52430:p -> c52428:p [dir=back,arrowtail=empty];
 	//org.dayatang.mysql.jdbc.GeminiReplicationDriver implements java.sql.Driver
-	c52304:p -> c52240:p [dir=back,arrowtail=empty,style=dashed];
+	c52492:p -> c52428:p [dir=back,arrowtail=empty,style=dashed];
 	// java.sql.Driver
-	c52304 [label=<<table title="java.sql.Driver" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/sql/Driver.html">
+	c52492 [label=<<table title="java.sql.Driver" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/sql/Driver.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Driver </td></tr>

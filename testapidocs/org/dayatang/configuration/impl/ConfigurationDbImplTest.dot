@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.configuration.impl.ConfigurationDbImplTest
-	c16649 [label=<<table title="org.dayatang.configuration.impl.ConfigurationDbImplTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ConfigurationDbImplTest.html">
+	c16839 [label=<<table title="org.dayatang.configuration.impl.ConfigurationDbImplTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ConfigurationDbImplTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationDbImplTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigurationDbImplTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.AbstractConfigurationTest
-	c16650 [label=<<table title="org.dayatang.configuration.impl.AbstractConfigurationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractConfigurationTest.html">
+	c16840 [label=<<table title="org.dayatang.configuration.impl.AbstractConfigurationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractConfigurationTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractConfigurationTest </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractConfigurationTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.configuration.impl.ConfigurationDbImplTest extends org.dayatang.configuration.impl.AbstractConfigurationTest
-	c16650:p -> c16649:p [dir=back,arrowtail=empty];
+	c16840:p -> c16839:p [dir=back,arrowtail=empty];
 }
 

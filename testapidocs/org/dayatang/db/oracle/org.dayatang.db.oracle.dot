@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.db.oracle.OracleDBManagerTest
-	c3520 [label=<<table title="org.dayatang.db.oracle.OracleDBManagerTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OracleDBManagerTest.html">
+	c3710 [label=<<table title="org.dayatang.db.oracle.OracleDBManagerTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OracleDBManagerTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> OracleDBManagerTest </td></tr>
 		</table></td></tr>

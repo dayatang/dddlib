@@ -10,35 +10,35 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.i18n.HierarchicalI18nService
-	c21337 [label=<<table title="org.dayatang.i18n.HierarchicalI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../HierarchicalI18nService.html">
+	c21414 [label=<<table title="org.dayatang.i18n.HierarchicalI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../HierarchicalI18nService.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> HierarchicalI18nService </td></tr>
 		</table></td></tr>
 		</table>>, URL="../HierarchicalI18nService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.i18n.impl.ResourceBundleI18nService
-	c21338 [label=<<table title="org.dayatang.i18n.impl.ResourceBundleI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ResourceBundleI18nService.html">
+	c21415 [label=<<table title="org.dayatang.i18n.impl.ResourceBundleI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ResourceBundleI18nService.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ResourceBundleI18nService </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ResourceBundleI18nService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.i18n.impl.I18nServiceSupport
-	c21339 [label=<<table title="org.dayatang.i18n.impl.I18nServiceSupport" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./I18nServiceSupport.html">
+	c21416 [label=<<table title="org.dayatang.i18n.impl.I18nServiceSupport" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./I18nServiceSupport.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> I18nServiceSupport </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./I18nServiceSupport.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.i18n.impl.AbstractI18nService
-	c21340 [label=<<table title="org.dayatang.i18n.impl.AbstractI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractI18nService.html">
+	c21417 [label=<<table title="org.dayatang.i18n.impl.AbstractI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractI18nService.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractI18nService </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractI18nService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.i18n.impl.ResourceBundleI18nService extends org.dayatang.i18n.impl.AbstractI18nService
-	c21340:p -> c21338:p [dir=back,arrowtail=empty];
+	c21417:p -> c21415:p [dir=back,arrowtail=empty];
 	//org.dayatang.i18n.impl.AbstractI18nService extends org.dayatang.i18n.impl.I18nServiceSupport
-	c21339:p -> c21340:p [dir=back,arrowtail=empty];
+	c21416:p -> c21417:p [dir=back,arrowtail=empty];
 	//org.dayatang.i18n.impl.AbstractI18nService implements org.dayatang.i18n.HierarchicalI18nService
-	c21337:p -> c21340:p [dir=back,arrowtail=empty,style=dashed];
+	c21414:p -> c21417:p [dir=back,arrowtail=empty,style=dashed];
 }
 

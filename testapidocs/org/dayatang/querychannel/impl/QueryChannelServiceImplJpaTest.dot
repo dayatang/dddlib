@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.querychannel.impl.QueryChannelServiceImplJpaTest
-	c38761 [label=<<table title="org.dayatang.querychannel.impl.QueryChannelServiceImplJpaTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./QueryChannelServiceImplJpaTest.html">
+	c38951 [label=<<table title="org.dayatang.querychannel.impl.QueryChannelServiceImplJpaTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./QueryChannelServiceImplJpaTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> QueryChannelServiceImplJpaTest </td></tr>
 		</table></td></tr>

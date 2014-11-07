@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.AbstractEntity
-	c42052 [label=<<table title="org.dayatang.domain.AbstractEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../../domain/AbstractEntity.html">
+	c42204 [label=<<table title="org.dayatang.domain.AbstractEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../../domain/AbstractEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractEntity </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="../../../domain/AbstractEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.test.domain.Dictionary
-	c42120 [label=<<table title="org.dayatang.persistence.test.domain.Dictionary" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Dictionary.html">
+	c42272 [label=<<table title="org.dayatang.persistence.test.domain.Dictionary" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Dictionary.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Dictionary </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Dictionary.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.persistence.test.domain.Dictionary extends org.dayatang.domain.AbstractEntity
-	c42052:p -> c42120:p [dir=back,arrowtail=empty];
+	c42204:p -> c42272:p [dir=back,arrowtail=empty];
 }
 

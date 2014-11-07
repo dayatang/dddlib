@@ -10,15 +10,15 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.observer.domain.Baby
-	c14398 [label=<<table title="org.dayatang.observer.domain.Baby" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Baby.html">
+	c14588 [label=<<table title="org.dayatang.observer.domain.Baby" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Baby.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Baby </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Baby.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.observer.domain.Baby extends org.dayatang.observer.AbstractSubjectEntity
-	c14461:p -> c14398:p [dir=back,arrowtail=empty];
+	c14651:p -> c14588:p [dir=back,arrowtail=empty];
 	// org.dayatang.observer.AbstractSubjectEntity
-	c14461 [label=<<table title="org.dayatang.observer.AbstractSubjectEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c14651 [label=<<table title="org.dayatang.observer.AbstractSubjectEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractSubjectEntity </font></td></tr>
 		</table></td></tr>

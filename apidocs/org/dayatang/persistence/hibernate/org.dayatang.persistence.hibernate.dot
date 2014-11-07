@@ -10,19 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.persistence.hibernate.UppercaseAndUnderscoreNamingStrategy
-	c6538 [label=<<table title="org.dayatang.persistence.hibernate.UppercaseAndUnderscoreNamingStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UppercaseAndUnderscoreNamingStrategy.html">
+	c6562 [label=<<table title="org.dayatang.persistence.hibernate.UppercaseAndUnderscoreNamingStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UppercaseAndUnderscoreNamingStrategy.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> UppercaseAndUnderscoreNamingStrategy </td></tr>
 		</table></td></tr>
 		</table>>, URL="./UppercaseAndUnderscoreNamingStrategy.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.hibernate.SessionProvider
-	c6539 [label=<<table title="org.dayatang.persistence.hibernate.SessionProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SessionProvider.html">
+	c6563 [label=<<table title="org.dayatang.persistence.hibernate.SessionProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SessionProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SessionProvider </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SessionProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.hibernate.EntityRepositoryHibernate
-	c6540 [label=<<table title="org.dayatang.persistence.hibernate.EntityRepositoryHibernate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EntityRepositoryHibernate.html">
+	c6564 [label=<<table title="org.dayatang.persistence.hibernate.EntityRepositoryHibernate" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EntityRepositoryHibernate.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EntityRepositoryHibernate </td></tr>
 		</table></td></tr>

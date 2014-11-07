@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.LegacyEntity
-	c63180 [label=<<table title="org.dayatang.domain.LegacyEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./LegacyEntity.html">
+	c63407 [label=<<table title="org.dayatang.domain.LegacyEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./LegacyEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> LegacyEntity </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./LegacyEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.BaseEntity
-	c63195 [label=<<table title="org.dayatang.domain.BaseEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BaseEntity.html">
+	c63423 [label=<<table title="org.dayatang.domain.BaseEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BaseEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BaseEntity </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./BaseEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.LegacyEntity extends org.dayatang.domain.BaseEntity
-	c63195:p -> c63180:p [dir=back,arrowtail=empty];
+	c63423:p -> c63407:p [dir=back,arrowtail=empty];
 }
 

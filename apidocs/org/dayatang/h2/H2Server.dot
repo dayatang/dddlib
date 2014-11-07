@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.h2.H2Server
-	c54951 [label=<<table title="org.dayatang.h2.H2Server" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./H2Server.html">
+	c55149 [label=<<table title="org.dayatang.h2.H2Server" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./H2Server.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> H2Server </td></tr>
 		</table></td></tr>

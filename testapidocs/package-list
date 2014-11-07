@@ -51,6 +51,7 @@ org.dayatang.springtest.domain
 org.dayatang.springtest.test
 org.dayatang.utils
 org.dayatang.utils.beans
+org.dayatang.utils.serializer
 org.dayatang.utils.support
 org.dddlib.image.cache
 org.dddlib.image.file

@@ -10,13 +10,13 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dddlib.organisation.facade.assembler.PostAssembler
-	c18065 [label=<<table title="org.dddlib.organisation.facade.assembler.PostAssembler" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PostAssembler.html">
+	c18130 [label=<<table title="org.dddlib.organisation.facade.assembler.PostAssembler" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PostAssembler.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PostAssembler </td></tr>
 		</table></td></tr>
 		</table>>, URL="./PostAssembler.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.facade.assembler.OrganizationAssembler
-	c18066 [label=<<table title="org.dddlib.organisation.facade.assembler.OrganizationAssembler" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OrganizationAssembler.html">
+	c18131 [label=<<table title="org.dddlib.organisation.facade.assembler.OrganizationAssembler" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OrganizationAssembler.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> OrganizationAssembler </td></tr>
 		</table></td></tr>

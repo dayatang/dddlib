@@ -10,20 +10,20 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.i18n.I18nService
-	c55833 [label=<<table title="org.dayatang.i18n.I18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./I18nService.html">
+	c56034 [label=<<table title="org.dayatang.i18n.I18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./I18nService.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> I18nService </td></tr>
 		</table></td></tr>
 		</table>>, URL="./I18nService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.i18n.HierarchicalI18nService
-	c55834 [label=<<table title="org.dayatang.i18n.HierarchicalI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./HierarchicalI18nService.html">
+	c56035 [label=<<table title="org.dayatang.i18n.HierarchicalI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./HierarchicalI18nService.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> HierarchicalI18nService </td></tr>
 		</table></td></tr>
 		</table>>, URL="./HierarchicalI18nService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.i18n.HierarchicalI18nService implements org.dayatang.i18n.I18nService
-	c55833:p -> c55834:p [dir=back,arrowtail=empty,style=dashed];
+	c56034:p -> c56035:p [dir=back,arrowtail=empty,style=dashed];
 }
 

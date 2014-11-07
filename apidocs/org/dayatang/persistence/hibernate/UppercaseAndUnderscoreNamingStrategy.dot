@@ -10,15 +10,15 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.persistence.hibernate.UppercaseAndUnderscoreNamingStrategy
-	c94452 [label=<<table title="org.dayatang.persistence.hibernate.UppercaseAndUnderscoreNamingStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./UppercaseAndUnderscoreNamingStrategy.html">
+	c94792 [label=<<table title="org.dayatang.persistence.hibernate.UppercaseAndUnderscoreNamingStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./UppercaseAndUnderscoreNamingStrategy.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> UppercaseAndUnderscoreNamingStrategy </td></tr>
 		</table></td></tr>
 		</table>>, URL="./UppercaseAndUnderscoreNamingStrategy.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.persistence.hibernate.UppercaseAndUnderscoreNamingStrategy implements org.hibernate.cfg.NamingStrategy
-	c94586:p -> c94452:p [dir=back,arrowtail=empty,style=dashed];
+	c94926:p -> c94792:p [dir=back,arrowtail=empty,style=dashed];
 	// org.hibernate.cfg.NamingStrategy
-	c94586 [label=<<table title="org.hibernate.cfg.NamingStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c94926 [label=<<table title="org.hibernate.cfg.NamingStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> NamingStrategy </td></tr>

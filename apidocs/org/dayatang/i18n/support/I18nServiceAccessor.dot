@@ -10,15 +10,15 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.i18n.support.I18nServiceAccessor
-	c56116 [label=<<table title="org.dayatang.i18n.support.I18nServiceAccessor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./I18nServiceAccessor.html">
+	c56318 [label=<<table title="org.dayatang.i18n.support.I18nServiceAccessor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./I18nServiceAccessor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> I18nServiceAccessor </td></tr>
 		</table></td></tr>
 		</table>>, URL="./I18nServiceAccessor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.i18n.support.I18nServiceAccessor implements java.io.Serializable
-	c56200:p -> c56116:p [dir=back,arrowtail=empty,style=dashed];
+	c56402:p -> c56318:p [dir=back,arrowtail=empty,style=dashed];
 	// java.io.Serializable
-	c56200 [label=<<table title="java.io.Serializable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html">
+	c56402 [label=<<table title="java.io.Serializable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Serializable </td></tr>

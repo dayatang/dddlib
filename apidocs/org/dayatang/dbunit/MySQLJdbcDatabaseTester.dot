@@ -10,15 +10,15 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.dbunit.MySQLJdbcDatabaseTester
-	c65792 [label=<<table title="org.dayatang.dbunit.MySQLJdbcDatabaseTester" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MySQLJdbcDatabaseTester.html">
+	c66029 [label=<<table title="org.dayatang.dbunit.MySQLJdbcDatabaseTester" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MySQLJdbcDatabaseTester.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MySQLJdbcDatabaseTester </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MySQLJdbcDatabaseTester.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.dbunit.MySQLJdbcDatabaseTester extends org.dbunit.JdbcDatabaseTester
-	c65937:p -> c65792:p [dir=back,arrowtail=empty];
+	c66174:p -> c66029:p [dir=back,arrowtail=empty];
 	// org.dbunit.JdbcDatabaseTester
-	c65937 [label=<<table title="org.dbunit.JdbcDatabaseTester" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c66174 [label=<<table title="org.dbunit.JdbcDatabaseTester" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JdbcDatabaseTester </td></tr>
 		</table></td></tr>

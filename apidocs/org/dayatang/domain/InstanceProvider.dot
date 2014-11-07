@@ -10,35 +10,35 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.InstanceProvider
-	c58178 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./InstanceProvider.html">
+	c58387 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./InstanceProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> InstanceProvider </td></tr>
 		</table></td></tr>
 		</table>>, URL="./InstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.ioc.spring.factory.SpringInstanceProvider
-	c58247 [label=<<table title="org.dayatang.ioc.spring.factory.SpringInstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../ioc/spring/factory/SpringInstanceProvider.html">
+	c58457 [label=<<table title="org.dayatang.ioc.spring.factory.SpringInstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../ioc/spring/factory/SpringInstanceProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SpringInstanceProvider </td></tr>
 		</table></td></tr>
 		</table>>, URL="../ioc/spring/factory/SpringInstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.ioc.guice.GuiceInstanceProvider
-	c58251 [label=<<table title="org.dayatang.ioc.guice.GuiceInstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../ioc/guice/GuiceInstanceProvider.html">
+	c58461 [label=<<table title="org.dayatang.ioc.guice.GuiceInstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../ioc/guice/GuiceInstanceProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GuiceInstanceProvider </td></tr>
 		</table></td></tr>
 		</table>>, URL="../ioc/guice/GuiceInstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.ioc.tapestry.factory.TapestryInstanceProvider
-	c58253 [label=<<table title="org.dayatang.ioc.tapestry.factory.TapestryInstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../ioc/tapestry/factory/TapestryInstanceProvider.html">
+	c58463 [label=<<table title="org.dayatang.ioc.tapestry.factory.TapestryInstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../ioc/tapestry/factory/TapestryInstanceProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TapestryInstanceProvider </td></tr>
 		</table></td></tr>
 		</table>>, URL="../ioc/tapestry/factory/TapestryInstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.ioc.spring.factory.SpringInstanceProvider implements org.dayatang.domain.InstanceProvider
-	c58178:p -> c58247:p [dir=back,arrowtail=empty,style=dashed];
+	c58387:p -> c58457:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.ioc.guice.GuiceInstanceProvider implements org.dayatang.domain.InstanceProvider
-	c58178:p -> c58251:p [dir=back,arrowtail=empty,style=dashed];
+	c58387:p -> c58461:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.ioc.tapestry.factory.TapestryInstanceProvider implements org.dayatang.domain.InstanceProvider
-	c58178:p -> c58253:p [dir=back,arrowtail=empty,style=dashed];
+	c58387:p -> c58463:p [dir=back,arrowtail=empty,style=dashed];
 }
 

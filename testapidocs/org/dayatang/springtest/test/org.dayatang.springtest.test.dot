@@ -10,25 +10,25 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.springtest.test.SpringTest
-	c6789 [label=<<table title="org.dayatang.springtest.test.SpringTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SpringTest.html">
+	c6979 [label=<<table title="org.dayatang.springtest.test.SpringTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SpringTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SpringTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SpringTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.springtest.test.MyTest
-	c6790 [label=<<table title="org.dayatang.springtest.test.MyTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MyTest.html">
+	c6980 [label=<<table title="org.dayatang.springtest.test.MyTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MyTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MyTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MyTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.springtest.test.CustomBean2
-	c6791 [label=<<table title="org.dayatang.springtest.test.CustomBean2" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CustomBean2.html">
+	c6981 [label=<<table title="org.dayatang.springtest.test.CustomBean2" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CustomBean2.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CustomBean2 </td></tr>
 		</table></td></tr>
 		</table>>, URL="./CustomBean2.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.springtest.test.CustomBean
-	c6792 [label=<<table title="org.dayatang.springtest.test.CustomBean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CustomBean.html">
+	c6982 [label=<<table title="org.dayatang.springtest.test.CustomBean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CustomBean.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CustomBean </td></tr>
 		</table></td></tr>

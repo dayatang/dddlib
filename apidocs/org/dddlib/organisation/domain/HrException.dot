@@ -10,23 +10,23 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dddlib.organisation.domain.TerminateNotEmptyOrganizationException
-	c55613 [label=<<table title="org.dddlib.organisation.domain.TerminateNotEmptyOrganizationException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TerminateNotEmptyOrganizationException.html">
+	c55813 [label=<<table title="org.dddlib.organisation.domain.TerminateNotEmptyOrganizationException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TerminateNotEmptyOrganizationException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TerminateNotEmptyOrganizationException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./TerminateNotEmptyOrganizationException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.HrException
-	c55624 [label=<<table title="org.dddlib.organisation.domain.HrException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./HrException.html">
+	c55824 [label=<<table title="org.dddlib.organisation.domain.HrException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./HrException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> HrException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./HrException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dddlib.organisation.domain.TerminateNotEmptyOrganizationException extends org.dddlib.organisation.domain.HrException
-	c55624:p -> c55613:p [dir=back,arrowtail=empty];
+	c55824:p -> c55813:p [dir=back,arrowtail=empty];
 	//org.dddlib.organisation.domain.HrException extends java.lang.RuntimeException
-	c55643:p -> c55624:p [dir=back,arrowtail=empty];
+	c55843:p -> c55824:p [dir=back,arrowtail=empty];
 	// java.lang.RuntimeException
-	c55643 [label=<<table title="java.lang.RuntimeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html">
+	c55843 [label=<<table title="java.lang.RuntimeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RuntimeException </td></tr>
 		</table></td></tr>

@@ -10,15 +10,15 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.springtest.test.CustomBean
-	c18025 [label=<<table title="org.dayatang.springtest.test.CustomBean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./CustomBean.html">
+	c18215 [label=<<table title="org.dayatang.springtest.test.CustomBean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./CustomBean.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CustomBean </td></tr>
 		</table></td></tr>
 		</table>>, URL="./CustomBean.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.springtest.test.CustomBean implements org.springframework.beans.factory.InitializingBean
-	c18075:p -> c18025:p [dir=back,arrowtail=empty,style=dashed];
+	c18265:p -> c18215:p [dir=back,arrowtail=empty,style=dashed];
 	// org.springframework.beans.factory.InitializingBean
-	c18075 [label=<<table title="org.springframework.beans.factory.InitializingBean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c18265 [label=<<table title="org.springframework.beans.factory.InitializingBean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> InitializingBean </td></tr>

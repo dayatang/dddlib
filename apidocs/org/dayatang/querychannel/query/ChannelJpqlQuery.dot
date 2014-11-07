@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery>
-	c28293 [label=<<table title="org.dayatang.querychannel.ChannelQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../ChannelQuery.html">
+	c28395 [label=<<table title="org.dayatang.querychannel.ChannelQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../ChannelQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> ChannelQuery&lt;E extends ChannelQuery&gt; </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="../ChannelQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.querychannel.query.ChannelJpqlQuery
-	c28297 [label=<<table title="org.dayatang.querychannel.query.ChannelJpqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ChannelJpqlQuery.html">
+	c28399 [label=<<table title="org.dayatang.querychannel.query.ChannelJpqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ChannelJpqlQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ChannelJpqlQuery </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ChannelJpqlQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.querychannel.query.ChannelJpqlQuery extends org.dayatang.querychannel.ChannelQuery<org.dayatang.querychannel.query.ChannelJpqlQuery>
-	c28293:p -> c28297:p [dir=back,arrowtail=empty];
+	c28395:p -> c28399:p [dir=back,arrowtail=empty];
 }
 

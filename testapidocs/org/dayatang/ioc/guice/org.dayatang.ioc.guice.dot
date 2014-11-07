@@ -10,31 +10,31 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.ioc.guice.Service3
-	c2557 [label=<<table title="org.dayatang.ioc.guice.Service3" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Service3.html">
+	c2747 [label=<<table title="org.dayatang.ioc.guice.Service3" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Service3.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Service3 </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Service3.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.ioc.guice.MyService31
-	c2558 [label=<<table title="org.dayatang.ioc.guice.MyService31" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MyService31.html">
+	c2748 [label=<<table title="org.dayatang.ioc.guice.MyService31" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MyService31.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MyService31 </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MyService31.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.ioc.guice.MyBindingAnnotation
-	c2559 [label=<<table title="org.dayatang.ioc.guice.MyBindingAnnotation" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MyBindingAnnotation.html">
+	c2749 [label=<<table title="org.dayatang.ioc.guice.MyBindingAnnotation" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MyBindingAnnotation.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> MyBindingAnnotation </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./MyBindingAnnotation.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.ioc.guice.GuiceInstanceProviderTest
-	c2560 [label=<<table title="org.dayatang.ioc.guice.GuiceInstanceProviderTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GuiceInstanceProviderTest.html">
+	c2750 [label=<<table title="org.dayatang.ioc.guice.GuiceInstanceProviderTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GuiceInstanceProviderTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GuiceInstanceProviderTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./GuiceInstanceProviderTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.ioc.guice.MyService31 implements org.dayatang.ioc.guice.Service3
-	c2557:p -> c2558:p [dir=back,arrowtail=empty,style=dashed];
+	c2747:p -> c2748:p [dir=back,arrowtail=empty,style=dashed];
 }
 

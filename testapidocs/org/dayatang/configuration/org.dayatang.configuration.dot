@@ -10,13 +10,13 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.configuration.EmbeddedHttpServer
-	c2943 [label=<<table title="org.dayatang.configuration.EmbeddedHttpServer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EmbeddedHttpServer.html">
+	c3133 [label=<<table title="org.dayatang.configuration.EmbeddedHttpServer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EmbeddedHttpServer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EmbeddedHttpServer </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EmbeddedHttpServer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.ConfigurationFactoryTest
-	c2944 [label=<<table title="org.dayatang.configuration.ConfigurationFactoryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationFactoryTest.html">
+	c3134 [label=<<table title="org.dayatang.configuration.ConfigurationFactoryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationFactoryTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationFactoryTest </td></tr>
 		</table></td></tr>

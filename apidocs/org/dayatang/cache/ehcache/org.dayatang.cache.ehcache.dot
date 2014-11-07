@@ -10,25 +10,25 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.cache.ehcache.UnExistsedCacheNameException
-	c8219 [label=<<table title="org.dayatang.cache.ehcache.UnExistsedCacheNameException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UnExistsedCacheNameException.html">
+	c8249 [label=<<table title="org.dayatang.cache.ehcache.UnExistsedCacheNameException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./UnExistsedCacheNameException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> UnExistsedCacheNameException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./UnExistsedCacheNameException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.cache.ehcache.EhCacheConfiguration
-	c8220 [label=<<table title="org.dayatang.cache.ehcache.EhCacheConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EhCacheConfiguration.html">
+	c8250 [label=<<table title="org.dayatang.cache.ehcache.EhCacheConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EhCacheConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EhCacheConfiguration </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EhCacheConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.cache.ehcache.EhCacheConfiguration.Builder
-	c8221 [label=<<table title="org.dayatang.cache.ehcache.EhCacheConfiguration.Builder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EhCacheConfiguration.Builder.html">
+	c8251 [label=<<table title="org.dayatang.cache.ehcache.EhCacheConfiguration.Builder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EhCacheConfiguration.Builder.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Builder </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EhCacheConfiguration.Builder.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.cache.ehcache.EhCacheBasedCache
-	c8222 [label=<<table title="org.dayatang.cache.ehcache.EhCacheBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EhCacheBasedCache.html">
+	c8252 [label=<<table title="org.dayatang.cache.ehcache.EhCacheBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EhCacheBasedCache.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EhCacheBasedCache </td></tr>
 		</table></td></tr>

@@ -10,15 +10,15 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.dsmonitor.DSTest
-	c19017 [label=<<table title="org.dayatang.dsmonitor.DSTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DSTest.html">
+	c19207 [label=<<table title="org.dayatang.dsmonitor.DSTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DSTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DSTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DSTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.dsmonitor.DSTest extends org.dayatang.springtest.AbstractSpringIntegrationTest
-	c19029:p -> c19017:p [dir=back,arrowtail=empty];
+	c19219:p -> c19207:p [dir=back,arrowtail=empty];
 	// org.dayatang.springtest.AbstractSpringIntegrationTest
-	c19029 [label=<<table title="org.dayatang.springtest.AbstractSpringIntegrationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c19219 [label=<<table title="org.dayatang.springtest.AbstractSpringIntegrationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AbstractSpringIntegrationTest </td></tr>
 		</table></td></tr>

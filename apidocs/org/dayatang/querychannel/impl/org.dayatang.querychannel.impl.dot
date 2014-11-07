@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.querychannel.impl.QueryChannelServiceImpl
-	c11873 [label=<<table title="org.dayatang.querychannel.impl.QueryChannelServiceImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryChannelServiceImpl.html">
+	c11916 [label=<<table title="org.dayatang.querychannel.impl.QueryChannelServiceImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryChannelServiceImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> QueryChannelServiceImpl </td></tr>
 		</table></td></tr>

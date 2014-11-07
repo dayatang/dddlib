@@ -10,15 +10,15 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.ioc.tapestry.factory.TapestryInstanceProviderTest
-	c44030 [label=<<table title="org.dayatang.ioc.tapestry.factory.TapestryInstanceProviderTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./TapestryInstanceProviderTest.html">
+	c44220 [label=<<table title="org.dayatang.ioc.tapestry.factory.TapestryInstanceProviderTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./TapestryInstanceProviderTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TapestryInstanceProviderTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./TapestryInstanceProviderTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.ioc.tapestry.factory.TapestryInstanceProviderTest extends org.dayatang.ioc.test.AbstractInstanceProviderTest
-	c44130:p -> c44030:p [dir=back,arrowtail=empty];
+	c44320:p -> c44220:p [dir=back,arrowtail=empty];
 	// org.dayatang.ioc.test.AbstractInstanceProviderTest
-	c44130 [label=<<table title="org.dayatang.ioc.test.AbstractInstanceProviderTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c44320 [label=<<table title="org.dayatang.ioc.test.AbstractInstanceProviderTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractInstanceProviderTest </font></td></tr>
 		</table></td></tr>

@@ -10,19 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.InstanceProvider
-	c90998 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../../domain/InstanceProvider.html">
+	c91325 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../../domain/InstanceProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> InstanceProvider </td></tr>
 		</table></td></tr>
 		</table>>, URL="../../../domain/InstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.ioc.tapestry.factory.TapestryInstanceProvider
-	c91073 [label=<<table title="org.dayatang.ioc.tapestry.factory.TapestryInstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./TapestryInstanceProvider.html">
+	c91401 [label=<<table title="org.dayatang.ioc.tapestry.factory.TapestryInstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./TapestryInstanceProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TapestryInstanceProvider </td></tr>
 		</table></td></tr>
 		</table>>, URL="./TapestryInstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.ioc.tapestry.factory.TapestryInstanceProvider implements org.dayatang.domain.InstanceProvider
-	c90998:p -> c91073:p [dir=back,arrowtail=empty,style=dashed];
+	c91325:p -> c91401:p [dir=back,arrowtail=empty,style=dashed];
 }
 

@@ -10,19 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.dsmonitor.dao.Dao
-	c19205 [label=<<table title="org.dayatang.dsmonitor.dao.Dao" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Dao.html">
+	c19395 [label=<<table title="org.dayatang.dsmonitor.dao.Dao" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Dao.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Dao </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Dao.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.dsmonitor.dao.impl.HibernateDaoImpl
-	c19206 [label=<<table title="org.dayatang.dsmonitor.dao.impl.HibernateDaoImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./impl/HibernateDaoImpl.html">
+	c19396 [label=<<table title="org.dayatang.dsmonitor.dao.impl.HibernateDaoImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./impl/HibernateDaoImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> HibernateDaoImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./impl/HibernateDaoImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.dsmonitor.dao.impl.HibernateDaoImpl implements org.dayatang.dsmonitor.dao.Dao
-	c19205:p -> c19206:p [dir=back,arrowtail=empty,style=dashed];
+	c19395:p -> c19396:p [dir=back,arrowtail=empty,style=dashed];
 }
 
