@@ -8,13 +8,15 @@ import javax.sql.DataSource;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 public abstract class MapBasedDataSourceRegistry implements DataSourceRegistry {
 
 	private static final Slf4JLogger LOGGER = Slf4JLogger.getLogger(MapBasedDataSourceRegistry.class);
-	
-	private static Map<String, DataSource> dataSources = new HashMap<String, DataSource>();
-	private static Map<String, Date> lastAccess = new HashMap<String, Date>();
+
+	private ConcurrentMap<String, DataSource> dataSources = new ConcurrentHashMap<String, DataSource>();
+	private ConcurrentMap<String, Date> lastAccess = new ConcurrentHashMap<String, Date>();
 	public MapBasedDataSourceRegistry() {
 	}
 
@@ -26,12 +28,8 @@ public abstract class MapBasedDataSourceRegistry implements DataSourceRegistry {
 		if (result != null) {
 			return result;
 		}
-		synchronized (this) {
-			if (!existsDataSourceOfTenant(tenant)) {
-				result = findOrCreateDataSourceForTenant(tenant);
-				registerDataSourceForTenant(tenant, result);
-			}
-		}
+        result = findOrCreateDataSourceForTenant(tenant);
+        dataSources.putIfAbsent(tenant, result);
 		return result;
 	}
 
@@ -58,7 +56,7 @@ public abstract class MapBasedDataSourceRegistry implements DataSourceRegistry {
 
 	@Override
 	public synchronized void registerDataSources(Map<String, DataSource> dataSources) {
-		MapBasedDataSourceRegistry.dataSources.putAll(dataSources);
+		dataSources.putAll(dataSources);
 		
 	}
 
