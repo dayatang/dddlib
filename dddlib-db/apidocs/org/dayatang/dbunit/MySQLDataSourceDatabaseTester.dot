@@ -10,29 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.dbunit.MySQLDataSourceDatabaseTester
-	c603 [label=<<table title="org.dayatang.dbunit.MySQLDataSourceDatabaseTester" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MySQLDataSourceDatabaseTester.html">
+	c566 [label=<<table title="org.dayatang.dbunit.MySQLDataSourceDatabaseTester" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MySQLDataSourceDatabaseTester.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MySQLDataSourceDatabaseTester </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MySQLDataSourceDatabaseTester.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.dbunit.MySQLDataSourceDatabaseTester extends org.dbunit.DataSourceDatabaseTester
-	c613:p -> c603:p [dir=back,arrowtail=empty];
-	// org.dayatang.dbunit.MySQLDataSourceDatabaseTester DEPEND org.dbunit.database.IDatabaseConnection
-	c603:p -> c614:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dbunit.database.IDatabaseConnection
-	c614 [label=<<table title="org.dbunit.database.IDatabaseConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/database/IDatabaseConnection.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> IDatabaseConnection </td></tr>
-<tr><td align="center" balign="center"> org.dbunit.database </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/database/IDatabaseConnection.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	c576:p -> c566:p [dir=back,arrowtail=empty];
 	// org.dbunit.DataSourceDatabaseTester
-	c613 [label=<<table title="org.dbunit.DataSourceDatabaseTester" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/DataSourceDatabaseTester.html">
+	c576 [label=<<table title="org.dbunit.DataSourceDatabaseTester" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DataSourceDatabaseTester </td></tr>
-<tr><td align="center" balign="center"> org.dbunit </td></tr>
 		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/DataSourceDatabaseTester.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

@@ -1,10 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Dbunit.html" title="org.dayatang.dbunit.Dbunit" alt="" coords="215,17,271,42"/>
-<area shape="rect" id="node1" href="./Dbunit.html" title="&lt;TABLE&gt;" alt="" coords="205,5,282,53"/>
-<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/IDatabaseTester.html" title="org.dbunit.IDatabaseTester" alt="" coords="16,121,132,181"/>
-<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/IDatabaseTester.html" title="&lt;TABLE&gt;" alt="" coords="5,116,143,187"/>
-<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/operation/DatabaseOperation.html" title="org.dbunit.operation.DatabaseOperation" alt="" coords="178,130,309,173"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/operation/DatabaseOperation.html" title="&lt;TABLE&gt;" alt="" coords="167,125,319,178"/>
-<area shape="rect" id="node4_3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/dataset/IDataSet.html" title="org.dbunit.dataset.IDataSet" alt="" coords="354,121,474,181"/>
-<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/dataset/IDataSet.html" title="&lt;TABLE&gt;" alt="" coords="343,116,485,187"/>
+<area shape="rect" id="node1_0" href="./Dbunit.html" title="org.dayatang.dbunit.Dbunit" alt="" coords="16,17,72,42"/>
+<area shape="rect" id="node1" href="./Dbunit.html" title="&lt;TABLE&gt;" alt="" coords="5,5,83,53"/>
 </map>
