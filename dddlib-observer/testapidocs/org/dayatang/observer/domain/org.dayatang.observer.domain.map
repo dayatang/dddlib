@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ObserverTest.html" title="org.dayatang.observer.domain.ObserverTest" alt="" coords="101,17,197,42"/>
-<area shape="rect" id="node1" href="./ObserverTest.html" title="&lt;TABLE&gt;" alt="" coords="90,5,207,53"/>
-<area shape="rect" id="node2_1" href="./MotherObserver.html" title="org.dayatang.observer.domain.MotherObserver" alt="" coords="16,127,127,153"/>
-<area shape="rect" id="node2" href="./MotherObserver.html" title="&lt;TABLE&gt;" alt="" coords="5,116,137,164"/>
-<area shape="rect" id="node3_2" href="./FatherObserver.html" title="org.dayatang.observer.domain.FatherObserver" alt="" coords="172,127,280,153"/>
-<area shape="rect" id="node3" href="./FatherObserver.html" title="&lt;TABLE&gt;" alt="" coords="161,116,291,164"/>
-<area shape="rect" id="node4_3" href="./Baby.html" title="org.dayatang.observer.domain.Baby" alt="" coords="243,17,295,42"/>
-<area shape="rect" id="node4" href="./Baby.html" title="&lt;TABLE&gt;" alt="" coords="232,5,305,53"/>
+<area shape="rect" id="node1_0" href="./ObserverTest.html" title="org.dayatang.observer.domain.ObserverTest" alt="" coords="16,17,112,42"/>
+<area shape="rect" id="node1" href="./ObserverTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,123,53"/>
+<area shape="rect" id="node2_1" href="./MotherObserver.html" title="org.dayatang.observer.domain.MotherObserver" alt="" coords="158,17,269,42"/>
+<area shape="rect" id="node2" href="./MotherObserver.html" title="&lt;TABLE&gt;" alt="" coords="147,5,279,53"/>
+<area shape="rect" id="node3_2" href="./FatherObserver.html" title="org.dayatang.observer.domain.FatherObserver" alt="" coords="314,17,422,42"/>
+<area shape="rect" id="node3" href="./FatherObserver.html" title="&lt;TABLE&gt;" alt="" coords="303,5,433,53"/>
+<area shape="rect" id="node4_3" href="./Baby.html" title="org.dayatang.observer.domain.Baby" alt="" coords="467,17,519,42"/>
+<area shape="rect" id="node4" href="./Baby.html" title="&lt;TABLE&gt;" alt="" coords="457,5,530,53"/>
 </map>

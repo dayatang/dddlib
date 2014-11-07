@@ -33,9 +33,5 @@ digraph G {
 <tr><td align="center" balign="center"> Baby </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Baby.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.observer.domain.ObserverTest NAVASSOC org.dayatang.observer.domain.MotherObserver
-	c0:p -> c1:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.observer.domain.ObserverTest NAVASSOC org.dayatang.observer.domain.FatherObserver
-	c0:p -> c2:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

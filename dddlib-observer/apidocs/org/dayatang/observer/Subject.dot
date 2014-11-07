@@ -10,19 +10,28 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.observer.Subject
-	c24 [label=<<table title="org.dayatang.observer.Subject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Subject.html">
+	c17 [label=<<table title="org.dayatang.observer.Subject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Subject.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Subject </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Subject.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.observer.AbstractSubjectEntity
-	c26 [label=<<table title="org.dayatang.observer.AbstractSubjectEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractSubjectEntity.html">
+	c19 [label=<<table title="org.dayatang.observer.AbstractSubjectEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractSubjectEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractSubjectEntity </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractSubjectEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	//org.dayatang.observer.Subject implements java.io.Serializable
+	c20:p -> c17:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.observer.AbstractSubjectEntity implements org.dayatang.observer.Subject
-	c24:p -> c26:p [dir=back,arrowtail=empty,style=dashed];
+	c17:p -> c19:p [dir=back,arrowtail=empty,style=dashed];
+	// java.io.Serializable
+	c20 [label=<<table title="java.io.Serializable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> Serializable </td></tr>
+		</table></td></tr>
+		</table>>, URL="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

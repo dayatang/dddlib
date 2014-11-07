@@ -10,15 +10,15 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.observer.domain.Baby
-	c23 [label=<<table title="org.dayatang.observer.domain.Baby" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Baby.html">
+	c19 [label=<<table title="org.dayatang.observer.domain.Baby" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Baby.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Baby </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Baby.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.observer.domain.Baby extends AbstractSubjectEntity
-	c27:p -> c23:p [dir=back,arrowtail=empty];
+	c22:p -> c19:p [dir=back,arrowtail=empty];
 	// AbstractSubjectEntity
-	c27[label=<<table title="AbstractSubjectEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api//AbstractSubjectEntity.html">
+	c22[label=<<table title="AbstractSubjectEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AbstractSubjectEntity </td></tr>
 		</table></td></tr>

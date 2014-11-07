@@ -1,6 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Subject.html" title="org.dayatang.observer.Subject" alt="" coords="49,11,130,53"/>
-<area shape="rect" id="node1" href="./Subject.html" title="&lt;TABLE&gt;" alt="" coords="38,5,141,59"/>
-<area shape="rect" id="node2_1" href="./AbstractSubjectEntity.html" title="org.dayatang.observer.AbstractSubjectEntity" alt="" coords="16,118,163,143"/>
-<area shape="rect" id="node2" href="./AbstractSubjectEntity.html" title="&lt;TABLE&gt;" alt="" coords="5,107,173,155"/>
+<area shape="rect" id="node1_0" href="./Subject.html" title="org.dayatang.observer.Subject" alt="" coords="49,112,130,155"/>
+<area shape="rect" id="node1" href="./Subject.html" title="&lt;TABLE&gt;" alt="" coords="38,107,141,160"/>
+<area shape="rect" id="node2_1" href="./AbstractSubjectEntity.html" title="org.dayatang.observer.AbstractSubjectEntity" alt="" coords="16,219,163,245"/>
+<area shape="rect" id="node2" href="./AbstractSubjectEntity.html" title="&lt;TABLE&gt;" alt="" coords="5,208,173,256"/>
+<area shape="rect" id="node3_2" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="java.io.Serializable" alt="" coords="47,11,131,53"/>
+<area shape="rect" id="node3" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="&lt;TABLE&gt;" alt="" coords="37,5,142,59"/>
 </map>

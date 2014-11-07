@@ -1,6 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ObserverTest.html" title="org.dayatang.observer.domain.ObserverTest" alt="" coords="16,17,112,42"/>
-<area shape="rect" id="node1" href="./ObserverTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,123,53"/>
-<area shape="rect" id="node2_1" href="./MotherObserver.html" title="org.dayatang.observer.domain.MotherObserver" alt="" coords="67,127,178,153"/>
-<area shape="rect" id="node2" href="./MotherObserver.html" title="&lt;TABLE&gt;" alt="" coords="57,116,189,164"/>
+<area shape="rect" id="node1_0" href="./MotherObserver.html" title="org.dayatang.observer.domain.MotherObserver" alt="" coords="16,113,127,138"/>
+<area shape="rect" id="node1" href="./MotherObserver.html" title="&lt;TABLE&gt;" alt="" coords="5,101,137,149"/>
 </map>

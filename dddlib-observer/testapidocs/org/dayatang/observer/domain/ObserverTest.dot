@@ -10,46 +10,10 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.observer.domain.ObserverTest
-	c63 [label=<<table title="org.dayatang.observer.domain.ObserverTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ObserverTest.html">
+	c40 [label=<<table title="org.dayatang.observer.domain.ObserverTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ObserverTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ObserverTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ObserverTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.observer.domain.MotherObserver
-	c64 [label=<<table title="org.dayatang.observer.domain.MotherObserver" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MotherObserver.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> MotherObserver </td></tr>
-		</table></td></tr>
-		</table>>, URL="./MotherObserver.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.observer.domain.FatherObserver
-	c65 [label=<<table title="org.dayatang.observer.domain.FatherObserver" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./FatherObserver.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> FatherObserver </td></tr>
-		</table></td></tr>
-		</table>>, URL="./FatherObserver.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.observer.domain.ObserverTest NAVASSOC org.hibernate.Session
-	c63:p -> c68:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.observer.domain.ObserverTest NAVASSOC org.hibernate.Transaction
-	c63:p -> c69:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.observer.domain.ObserverTest NAVASSOC org.dayatang.observer.domain.MotherObserver
-	c63:p -> c64:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.observer.domain.ObserverTest NAVASSOC org.dayatang.observer.domain.FatherObserver
-	c63:p -> c65:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.hibernate.Session
-	c68 [label=<<table title="org.hibernate.Session" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Session.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Session </td></tr>
-<tr><td align="center" balign="center"> org.hibernate </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Session.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.hibernate.Transaction
-	c69 [label=<<table title="org.hibernate.Transaction" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Transaction.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Transaction </td></tr>
-<tr><td align="center" balign="center"> org.hibernate </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Transaction.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 
