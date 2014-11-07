@@ -1,8 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../TestTable.html" title="org.dayatang.dsrouter.datasource.examples.TestTable" alt="" coords="16,224,283,267"/>
-<area shape="rect" id="node1" href="../TestTable.html" title="&lt;TABLE&gt;" alt="" coords="5,219,293,272"/>
-<area shape="rect" id="node2_1" href="./Examples2Test.html" title="org.dayatang.dsrouter.datasource.examples.test.Examples2Test" alt="" coords="95,119,203,145"/>
-<area shape="rect" id="node2" href="./Examples2Test.html" title="&lt;TABLE&gt;" alt="" coords="85,108,214,156"/>
-<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/test/context/junit4/AbstractJUnit4SpringContextTests.html" title="org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests" alt="" coords="35,11,264,53"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/test/context/junit4/AbstractJUnit4SpringContextTests.html" title="&lt;TABLE&gt;" alt="" coords="24,5,275,59"/>
+<area shape="rect" id="node1_0" href="./Examples2Test.html" title="org.dayatang.dsrouter.datasource.examples.test.Examples2Test" alt="" coords="72,113,180,138"/>
+<area shape="rect" id="node1" href="./Examples2Test.html" title="&lt;TABLE&gt;" alt="" coords="61,101,191,149"/>
+<area shape="rect" id="node2" href="null" title="&lt;TABLE&gt;" alt="" coords="5,5,247,53"/>
 </map>
