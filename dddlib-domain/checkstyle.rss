@@ -25,8 +25,8 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2014 Dayatang Open Source.</copyright>
     <item>
-      <title>File: 79,
-             Errors: 1703,
+      <title>File: 80,
+             Errors: 1706,
              Warnings: 0,
              Infos: 0
       </title>
@@ -480,6 +480,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.DomainEvent.java">org/dayatang/domain/DomainEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.GeCriterion.java">org/dayatang/domain/internal/GeCriterion.java</a>
                 </td>
                 <td>
@@ -620,20 +634,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.ContainsTextCriterion.java">org/dayatang/domain/internal/ContainsTextCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  16
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.event.package-info.java">org/dayatang/domain/event/package-info.java</a>
                 </td>
                 <td>
@@ -644,6 +644,20 @@ under the License.
                 </td>
                 <td>
                   1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.ContainsTextCriterion.java">org/dayatang/domain/internal/ContainsTextCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  16
                 </td>
               </tr>
                           <tr>

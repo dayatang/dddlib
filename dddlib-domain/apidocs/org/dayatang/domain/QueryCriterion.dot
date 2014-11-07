@@ -10,19 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.QueryCriterion
-	c4673 [label=<<table title="org.dayatang.domain.QueryCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./QueryCriterion.html">
+	c4736 [label=<<table title="org.dayatang.domain.QueryCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./QueryCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> QueryCriterion </td></tr>
 		</table></td></tr>
 		</table>>, URL="./QueryCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.AbstractCriterion
-	c4736 [label=<<table title="org.dayatang.domain.internal.AbstractCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./internal/AbstractCriterion.html">
+	c4800 [label=<<table title="org.dayatang.domain.internal.AbstractCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./internal/AbstractCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractCriterion </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./internal/AbstractCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.internal.AbstractCriterion implements org.dayatang.domain.QueryCriterion
-	c4673:p -> c4736:p [dir=back,arrowtail=empty,style=dashed];
+	c4736:p -> c4800:p [dir=back,arrowtail=empty,style=dashed];
 }
 

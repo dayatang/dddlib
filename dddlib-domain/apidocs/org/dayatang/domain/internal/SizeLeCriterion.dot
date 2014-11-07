@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.internal.SizeLeCriterion
-	c5148 [label=<<table title="org.dayatang.domain.internal.SizeLeCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SizeLeCriterion.html">
+	c5218 [label=<<table title="org.dayatang.domain.internal.SizeLeCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SizeLeCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SizeLeCriterion </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SizeLeCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.internal.SizeCompareCriterion
-	c5152 [label=<<table title="org.dayatang.domain.internal.SizeCompareCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SizeCompareCriterion.html">
+	c5222 [label=<<table title="org.dayatang.domain.internal.SizeCompareCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SizeCompareCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> SizeCompareCriterion </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./SizeCompareCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.internal.SizeLeCriterion extends org.dayatang.domain.internal.SizeCompareCriterion
-	c5152:p -> c5148:p [dir=back,arrowtail=empty];
+	c5222:p -> c5218:p [dir=back,arrowtail=empty];
 }
 
