@@ -20,7 +20,7 @@ under the License.
 <rss version="0.91">
   <channel>
     <title>DDDLib Persistence API implemented by JPA - Checkstyle report</title>
-    <link>http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-jpa</link>
+    <link>http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-jpa/</link>
     <description>DDDLib Persistence API implemented by JPA - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2014 Dayatang Open Source.</copyright>
@@ -30,9 +30,9 @@ under the License.
              Warnings: 0,
              Infos: 0
       </title>
-            <link>http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-jpa/checkstyle.html</link>
+            <link>http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-jpa//checkstyle.html</link>
       <description>
-        <p>Click <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-jpa/checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-jpa//checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-jpa/checkstyle.html#org.dayatang.persistence.jpa.NamedQueryParser.java">org/dayatang/persistence/jpa/NamedQueryParser.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-jpa//checkstyle.html#org.dayatang.persistence.jpa.NamedQueryParser.java">org/dayatang/persistence/jpa/NamedQueryParser.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-jpa/checkstyle.html#org.dayatang.persistence.jpa.package-info.java">org/dayatang/persistence/jpa/package-info.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-jpa//checkstyle.html#org.dayatang.persistence.jpa.package-info.java">org/dayatang/persistence/jpa/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -74,7 +74,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-jpa/checkstyle.html#org.dayatang.persistence.jpa.namedqueryparser.NamedQueryParserEclipseLink.java">org/dayatang/persistence/jpa/namedqueryparser/NamedQueryParserEclipseLink.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-jpa//checkstyle.html#org.dayatang.persistence.jpa.namedqueryparser.NamedQueryParserEclipseLink.java">org/dayatang/persistence/jpa/namedqueryparser/NamedQueryParserEclipseLink.java</a>
                 </td>
                 <td>
                   0
@@ -88,7 +88,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-jpa/checkstyle.html#org.dayatang.persistence.jpa.namedqueryparser.NamedQueryParserOpenJpa.java">org/dayatang/persistence/jpa/namedqueryparser/NamedQueryParserOpenJpa.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-jpa//checkstyle.html#org.dayatang.persistence.jpa.namedqueryparser.NamedQueryParserOpenJpa.java">org/dayatang/persistence/jpa/namedqueryparser/NamedQueryParserOpenJpa.java</a>
                 </td>
                 <td>
                   0
@@ -102,7 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-jpa/checkstyle.html#org.dayatang.persistence.jpa.namedqueryparser.NamedQueryParserHibernate.java">org/dayatang/persistence/jpa/namedqueryparser/NamedQueryParserHibernate.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-jpa//checkstyle.html#org.dayatang.persistence.jpa.namedqueryparser.NamedQueryParserHibernate.java">org/dayatang/persistence/jpa/namedqueryparser/NamedQueryParserHibernate.java</a>
                 </td>
                 <td>
                   0
@@ -116,7 +116,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-jpa/checkstyle.html#org.dayatang.persistence.jpa.EntityRepositoryJpa.java">org/dayatang/persistence/jpa/EntityRepositoryJpa.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-jpa//checkstyle.html#org.dayatang.persistence.jpa.EntityRepositoryJpa.java">org/dayatang/persistence/jpa/EntityRepositoryJpa.java</a>
                 </td>
                 <td>
                   0
@@ -130,7 +130,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-jpa/checkstyle.html#org.dayatang.persistence.jpa.EntityManagerProvider.java">org/dayatang/persistence/jpa/EntityManagerProvider.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-jpa//checkstyle.html#org.dayatang.persistence.jpa.EntityManagerProvider.java">org/dayatang/persistence/jpa/EntityManagerProvider.java</a>
                 </td>
                 <td>
                   0

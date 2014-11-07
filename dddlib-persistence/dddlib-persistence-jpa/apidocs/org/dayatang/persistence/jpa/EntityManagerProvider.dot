@@ -9,29 +9,11 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.persistence.jpa.NamedQueryParser
-	c18 [label=<<table title="org.dayatang.persistence.jpa.NamedQueryParser" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NamedQueryParser.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> NamedQueryParser </font></td></tr>
-		</table></td></tr>
-		</table>>, URL="./NamedQueryParser.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa
-	c36 [label=<<table title="org.dayatang.persistence.jpa.EntityRepositoryJpa" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EntityRepositoryJpa.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> EntityRepositoryJpa </td></tr>
-		</table></td></tr>
-		</table>>, URL="./EntityRepositoryJpa.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.jpa.EntityManagerProvider
-	c37 [label=<<table title="org.dayatang.persistence.jpa.EntityManagerProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./EntityManagerProvider.html">
+	c18 [label=<<table title="org.dayatang.persistence.jpa.EntityManagerProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./EntityManagerProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EntityManagerProvider </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EntityManagerProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.persistence.jpa.NamedQueryParser NAVASSOC org.dayatang.persistence.jpa.EntityManagerProvider
-	c18:p -> c37:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa NAVASSOC org.dayatang.persistence.jpa.NamedQueryParser
-	c36:p -> c18:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.persistence.jpa.EntityRepositoryJpa NAVASSOC org.dayatang.persistence.jpa.EntityManagerProvider
-	c36:p -> c37:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 
