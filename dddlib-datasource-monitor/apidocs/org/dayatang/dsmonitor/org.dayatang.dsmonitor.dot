@@ -44,9 +44,5 @@ digraph G {
 	c2:p -> c0:p [dir=back,arrowtail=empty];
 	//org.dayatang.dsmonitor.GeminiConnection extends org.dayatang.dsmonitor.DelegatingConnection
 	c3:p -> c1:p [dir=back,arrowtail=empty];
-	// org.dayatang.dsmonitor.GeminiWrapperDataSource NAVASSOC org.dayatang.dsmonitor.ConnectionMonitor
-	c0:p -> c4:p [taillabel="", label=" "headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.dsmonitor.GeminiConnection NAVASSOC org.dayatang.dsmonitor.ConnectionMonitor
-	c1:p -> c4:p [taillabel="", label=" "headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

@@ -1,8 +1,5 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./dao/Dao.html" title="org.dayatang.dsmonitor.dao.Dao" alt="" coords="20,224,196,284"/>
-<area shape="rect" id="node1" href="./dao/Dao.html" title="&lt;TABLE&gt;" alt="" coords="9,219,207,289"/>
-<area shape="rect" id="node2_1" href="./DSTest.html" title="org.dayatang.dsmonitor.DSTest" alt="" coords="77,119,139,145"/>
-<area shape="rect" id="node2" href="./DSTest.html" title="&lt;TABLE&gt;" alt="" coords="66,108,150,156"/>
-<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/springtest/AbstractSpringIntegrationTest.html" title="org.dayatang.springtest.AbstractSpringIntegrationTest" alt="" coords="16,11,200,53"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/springtest/AbstractSpringIntegrationTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,211,59"/>
+<area shape="rect" id="node1_0" href="./DSTest.html" title="org.dayatang.dsmonitor.DSTest" alt="" coords="77,113,139,138"/>
+<area shape="rect" id="node1" href="./DSTest.html" title="&lt;TABLE&gt;" alt="" coords="66,101,150,149"/>
+<area shape="rect" id="node2" href="null" title="&lt;TABLE&gt;" alt="" coords="5,5,211,53"/>
 </map>

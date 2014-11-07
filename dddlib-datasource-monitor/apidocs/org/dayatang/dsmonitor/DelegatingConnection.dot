@@ -10,18 +10,27 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.dsmonitor.GeminiConnection
-	c65 [label=<<table title="org.dayatang.dsmonitor.GeminiConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GeminiConnection.html">
+	c38 [label=<<table title="org.dayatang.dsmonitor.GeminiConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GeminiConnection.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GeminiConnection </td></tr>
 		</table></td></tr>
 		</table>>, URL="./GeminiConnection.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.dsmonitor.DelegatingConnection
-	c67 [label=<<table title="org.dayatang.dsmonitor.DelegatingConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DelegatingConnection.html">
+	c40 [label=<<table title="org.dayatang.dsmonitor.DelegatingConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DelegatingConnection.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DelegatingConnection </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DelegatingConnection.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.dsmonitor.GeminiConnection extends org.dayatang.dsmonitor.DelegatingConnection
-	c67:p -> c65:p [dir=back,arrowtail=empty];
+	c40:p -> c38:p [dir=back,arrowtail=empty];
+	//org.dayatang.dsmonitor.DelegatingConnection implements java.sql.Connection
+	c46:p -> c40:p [dir=back,arrowtail=empty,style=dashed];
+	// java.sql.Connection
+	c46 [label=<<table title="java.sql.Connection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/sql/Connection.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> Connection </td></tr>
+		</table></td></tr>
+		</table>>, URL="http://download.oracle.com/javase/7/docs/api/java/sql/Connection.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

@@ -1,6 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./GeminiConnection.html" title="org.dayatang.dsmonitor.GeminiConnection" alt="" coords="27,113,148,138"/>
-<area shape="rect" id="node1" href="./GeminiConnection.html" title="&lt;TABLE&gt;" alt="" coords="16,101,159,149"/>
-<area shape="rect" id="node2_1" href="./DelegatingConnection.html" title="org.dayatang.dsmonitor.DelegatingConnection" alt="" coords="16,17,159,42"/>
-<area shape="rect" id="node2" href="./DelegatingConnection.html" title="&lt;TABLE&gt;" alt="" coords="5,5,169,53"/>
+<area shape="rect" id="node1_0" href="./GeminiConnection.html" title="org.dayatang.dsmonitor.GeminiConnection" alt="" coords="27,214,148,239"/>
+<area shape="rect" id="node1" href="./GeminiConnection.html" title="&lt;TABLE&gt;" alt="" coords="16,203,159,251"/>
+<area shape="rect" id="node2_1" href="./DelegatingConnection.html" title="org.dayatang.dsmonitor.DelegatingConnection" alt="" coords="16,118,159,143"/>
+<area shape="rect" id="node2" href="./DelegatingConnection.html" title="&lt;TABLE&gt;" alt="" coords="5,107,169,155"/>
+<area shape="rect" id="node3_2" href="http://download.oracle.com/javase/7/docs/api/java/sql/Connection.html" title="java.sql.Connection" alt="" coords="46,11,129,53"/>
+<area shape="rect" id="node3" href="http://download.oracle.com/javase/7/docs/api/java/sql/Connection.html" title="&lt;TABLE&gt;" alt="" coords="35,5,139,59"/>
 </map>

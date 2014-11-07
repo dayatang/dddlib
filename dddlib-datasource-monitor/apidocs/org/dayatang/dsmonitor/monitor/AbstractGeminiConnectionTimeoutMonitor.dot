@@ -9,55 +9,28 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.dsmonitor.GeminiConnection
-	c26 [label=<<table title="org.dayatang.dsmonitor.GeminiConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../GeminiConnection.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> GeminiConnection </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.dsmonitor </td></tr>
-		</table></td></tr>
-		</table>>, URL="../GeminiConnection.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.dsmonitor.ConnectionMonitor
-	c49 [label=<<table title="org.dayatang.dsmonitor.ConnectionMonitor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../ConnectionMonitor.html">
+	c26 [label=<<table title="org.dayatang.dsmonitor.ConnectionMonitor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../ConnectionMonitor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ConnectionMonitor </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.dsmonitor </td></tr>
 		</table></td></tr>
 		</table>>, URL="../ConnectionMonitor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.dsmonitor.monitor.GeminiConnectionLogTimeoutMonitor
-	c51 [label=<<table title="org.dayatang.dsmonitor.monitor.GeminiConnectionLogTimeoutMonitor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GeminiConnectionLogTimeoutMonitor.html">
+	c28 [label=<<table title="org.dayatang.dsmonitor.monitor.GeminiConnectionLogTimeoutMonitor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GeminiConnectionLogTimeoutMonitor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GeminiConnectionLogTimeoutMonitor </td></tr>
 		</table></td></tr>
 		</table>>, URL="./GeminiConnectionLogTimeoutMonitor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor
-	c52 [label=<<table title="org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractGeminiConnectionTimeoutMonitor.html">
+	c29 [label=<<table title="org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractGeminiConnectionTimeoutMonitor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractGeminiConnectionTimeoutMonitor </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractGeminiConnectionTimeoutMonitor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.dsmonitor.monitor.GeminiConnectionLogTimeoutMonitor extends org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor
-	c52:p -> c51:p [dir=back,arrowtail=empty];
+	c29:p -> c28:p [dir=back,arrowtail=empty];
 	//org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor implements org.dayatang.dsmonitor.ConnectionMonitor
-	c49:p -> c52:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.dsmonitor.GeminiConnection NAVASSOC org.dayatang.dsmonitor.ConnectionMonitor
-	c26:p -> c49:p [taillabel="", label=" "headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.dsmonitor.monitor.GeminiConnectionLogTimeoutMonitor NAVASSOC org.dayatang.utils.Slf4JLogger
-	c51:p -> c56:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor NAVASSOC org.dayatang.utils.Slf4JLogger
-	c52:p -> c56:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor NAVASSOC org.dayatang.dsmonitor.GeminiConnection
-	c52:p -> c26:p [taillabel="", label=" "headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.dsmonitor.monitor.GeminiConnectionLogTimeoutMonitor DEPEND org.dayatang.dsmonitor.GeminiConnection
-	c51:p -> c26:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor DEPEND org.dayatang.dsmonitor.GeminiConnection
-	c52:p -> c26:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.utils.Slf4JLogger
-	c56 [label=<<table title="org.dayatang.utils.Slf4JLogger" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/utils/Slf4JLogger.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> Slf4JLogger </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.utils </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/utils/Slf4JLogger.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	c26:p -> c29:p [dir=back,arrowtail=empty,style=dashed];
 }
 

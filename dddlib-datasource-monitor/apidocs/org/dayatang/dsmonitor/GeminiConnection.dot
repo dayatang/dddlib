@@ -10,51 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.dsmonitor.GeminiConnection
-	c79 [label=<<table title="org.dayatang.dsmonitor.GeminiConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GeminiConnection.html">
+	c57 [label=<<table title="org.dayatang.dsmonitor.GeminiConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GeminiConnection.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GeminiConnection </td></tr>
 		</table></td></tr>
 		</table>>, URL="./GeminiConnection.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.dsmonitor.DelegatingConnection
-	c81 [label=<<table title="org.dayatang.dsmonitor.DelegatingConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DelegatingConnection.html">
+	c59 [label=<<table title="org.dayatang.dsmonitor.DelegatingConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DelegatingConnection.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DelegatingConnection </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DelegatingConnection.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.dsmonitor.ConnectionMonitor
-	c82 [label=<<table title="org.dayatang.dsmonitor.ConnectionMonitor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConnectionMonitor.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> ConnectionMonitor </td></tr>
-		</table></td></tr>
-		</table>>, URL="./ConnectionMonitor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.dsmonitor.monitor.GeminiConnectionLogTimeoutMonitor
-	c83 [label=<<table title="org.dayatang.dsmonitor.monitor.GeminiConnectionLogTimeoutMonitor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./monitor/GeminiConnectionLogTimeoutMonitor.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> GeminiConnectionLogTimeoutMonitor </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.dsmonitor.monitor </td></tr>
-		</table></td></tr>
-		</table>>, URL="./monitor/GeminiConnectionLogTimeoutMonitor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor
-	c84 [label=<<table title="org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./monitor/AbstractGeminiConnectionTimeoutMonitor.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractGeminiConnectionTimeoutMonitor </font></td></tr>
-<tr><td align="center" balign="center"> org.dayatang.dsmonitor.monitor </td></tr>
-		</table></td></tr>
-		</table>>, URL="./monitor/AbstractGeminiConnectionTimeoutMonitor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.dsmonitor.GeminiConnection extends org.dayatang.dsmonitor.DelegatingConnection
-	c81:p -> c79:p [dir=back,arrowtail=empty];
-	//org.dayatang.dsmonitor.monitor.GeminiConnectionLogTimeoutMonitor extends org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor
-	c84:p -> c83:p [dir=back,arrowtail=empty];
-	//org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor implements org.dayatang.dsmonitor.ConnectionMonitor
-	c82:p -> c84:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.dsmonitor.GeminiConnection NAVASSOC org.dayatang.dsmonitor.ConnectionMonitor
-	c79:p -> c82:p [taillabel="", label=" "headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor NAVASSOC org.dayatang.dsmonitor.GeminiConnection
-	c84:p -> c79:p [taillabel="", label=" "headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.dsmonitor.monitor.GeminiConnectionLogTimeoutMonitor DEPEND org.dayatang.dsmonitor.GeminiConnection
-	c83:p -> c79:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.dsmonitor.monitor.AbstractGeminiConnectionTimeoutMonitor DEPEND org.dayatang.dsmonitor.GeminiConnection
-	c84:p -> c79:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c59:p -> c57:p [dir=back,arrowtail=empty];
 }
 
