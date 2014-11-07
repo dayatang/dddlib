@@ -10,31 +10,11 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.excel.Version
-	c91 [label=<<table title="org.dayatang.excel.Version" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Version.html">
+	c68 [label=<<table title="org.dayatang.excel.Version" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Version.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> Version </td></tr>
 		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> XLS </td></tr>
-<tr><td align="left" balign="left"> XLSX </td></tr>
-		</table></td></tr>
 		</table>>, URL="./Version.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.excel.ExcelRangeData
-	c93 [label=<<table title="org.dayatang.excel.ExcelRangeData" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ExcelRangeData.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> ExcelRangeData </td></tr>
-		</table></td></tr>
-		</table>>, URL="./ExcelRangeData.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.excel.ExcelHandler
-	c95 [label=<<table title="org.dayatang.excel.ExcelHandler" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ExcelHandler.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> ExcelHandler </td></tr>
-		</table></td></tr>
-		</table>>, URL="./ExcelHandler.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.excel.ExcelRangeData NAVASSOC org.dayatang.excel.Version
-	c93:p -> c91:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.excel.ExcelHandler NAVASSOC org.dayatang.excel.Version
-	c95:p -> c91:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

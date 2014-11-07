@@ -1,18 +1,18 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./WorkbookFactory.html" title="org.dayatang.excel.WorkbookFactory" alt="" coords="16,17,133,42"/>
-<area shape="rect" id="node1" href="./WorkbookFactory.html" title="&lt;TABLE&gt;" alt="" coords="5,5,144,53"/>
-<area shape="rect" id="node2_1" href="./Version.html" title="org.dayatang.excel.Version" alt="" coords="263,121,367,207"/>
-<area shape="rect" id="node2" href="./Version.html" title="&lt;TABLE&gt;" alt="" coords="252,116,377,212"/>
-<area shape="rect" id="node3_2" href="./ExcelUtils.html" title="org.dayatang.excel.ExcelUtils" alt="" coords="483,17,557,42"/>
-<area shape="rect" id="node3" href="./ExcelUtils.html" title="&lt;TABLE&gt;" alt="" coords="473,5,567,53"/>
-<area shape="rect" id="node4_3" href="./ExcelRangeData.html" title="org.dayatang.excel.ExcelRangeData" alt="" coords="179,17,298,42"/>
-<area shape="rect" id="node4" href="./ExcelRangeData.html" title="&lt;TABLE&gt;" alt="" coords="169,5,309,53"/>
-<area shape="rect" id="node5_4" href="./ExcelRange.html" title="org.dayatang.excel.ExcelRange" alt="" coords="602,17,691,42"/>
-<area shape="rect" id="node5" href="./ExcelRange.html" title="&lt;TABLE&gt;" alt="" coords="591,5,702,53"/>
-<area shape="rect" id="node6_5" href="./ExcelHandler.html" title="org.dayatang.excel.ExcelHandler" alt="" coords="344,17,437,42"/>
-<area shape="rect" id="node6" href="./ExcelHandler.html" title="&lt;TABLE&gt;" alt="" coords="333,5,448,53"/>
-<area shape="rect" id="node7_6" href="./ExcelException.html" title="org.dayatang.excel.ExcelException" alt="" coords="737,17,844,42"/>
-<area shape="rect" id="node7" href="./ExcelException.html" title="&lt;TABLE&gt;" alt="" coords="727,5,855,53"/>
-<area shape="rect" id="node8_7" href="./ExcelCell.html" title="org.dayatang.excel.ExcelCell" alt="" coords="889,17,961,42"/>
-<area shape="rect" id="node8" href="./ExcelCell.html" title="&lt;TABLE&gt;" alt="" coords="879,5,972,53"/>
+<area shape="rect" id="node1_0" href="./WorkbookFactory.html" title="org.dayatang.excel.WorkbookFactory" alt="" coords="16,19,133,45"/>
+<area shape="rect" id="node1" href="./WorkbookFactory.html" title="&lt;TABLE&gt;" alt="" coords="5,8,144,56"/>
+<area shape="rect" id="node2_1" href="./Version.html" title="org.dayatang.excel.Version" alt="" coords="179,11,283,53"/>
+<area shape="rect" id="node2" href="./Version.html" title="&lt;TABLE&gt;" alt="" coords="168,5,293,59"/>
+<area shape="rect" id="node3_2" href="./ExcelUtils.html" title="org.dayatang.excel.ExcelUtils" alt="" coords="329,19,402,45"/>
+<area shape="rect" id="node3" href="./ExcelUtils.html" title="&lt;TABLE&gt;" alt="" coords="318,8,413,56"/>
+<area shape="rect" id="node4_3" href="./ExcelRangeData.html" title="org.dayatang.excel.ExcelRangeData" alt="" coords="447,19,566,45"/>
+<area shape="rect" id="node4" href="./ExcelRangeData.html" title="&lt;TABLE&gt;" alt="" coords="437,8,577,56"/>
+<area shape="rect" id="node5_4" href="./ExcelRange.html" title="org.dayatang.excel.ExcelRange" alt="" coords="611,19,701,45"/>
+<area shape="rect" id="node5" href="./ExcelRange.html" title="&lt;TABLE&gt;" alt="" coords="601,8,711,56"/>
+<area shape="rect" id="node6_5" href="./ExcelHandler.html" title="org.dayatang.excel.ExcelHandler" alt="" coords="747,19,840,45"/>
+<area shape="rect" id="node6" href="./ExcelHandler.html" title="&lt;TABLE&gt;" alt="" coords="736,8,851,56"/>
+<area shape="rect" id="node7_6" href="./ExcelException.html" title="org.dayatang.excel.ExcelException" alt="" coords="885,19,992,45"/>
+<area shape="rect" id="node7" href="./ExcelException.html" title="&lt;TABLE&gt;" alt="" coords="875,8,1003,56"/>
+<area shape="rect" id="node8_7" href="./ExcelCell.html" title="org.dayatang.excel.ExcelCell" alt="" coords="1037,19,1109,45"/>
+<area shape="rect" id="node8" href="./ExcelCell.html" title="&lt;TABLE&gt;" alt="" coords="1027,8,1120,56"/>
 </map>

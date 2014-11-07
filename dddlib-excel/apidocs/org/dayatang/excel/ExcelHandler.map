@@ -1,14 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Version.html" title="org.dayatang.excel.Version" alt="" coords="16,121,120,207"/>
-<area shape="rect" id="node1" href="./Version.html" title="&lt;TABLE&gt;" alt="" coords="5,116,131,212"/>
-<area shape="rect" id="node2_1" href="./ExcelHandler.html" title="org.dayatang.excel.ExcelHandler" alt="" coords="405,17,499,42"/>
-<area shape="rect" id="node2" href="./ExcelHandler.html" title="&lt;TABLE&gt;" alt="" coords="395,5,509,53"/>
-<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/poi/ss/usermodel/Workbook.html" title="org.apache.poi.ss.usermodel.Workbook" alt="" coords="166,134,346,194"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/poi/ss/usermodel/Workbook.html" title="&lt;TABLE&gt;" alt="" coords="155,129,357,199"/>
-<area shape="rect" id="node4_3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/poi/ss/usermodel/CellStyle.html" title="org.apache.poi.ss.usermodel.CellStyle" alt="" coords="391,134,571,194"/>
-<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/poi/ss/usermodel/CellStyle.html" title="&lt;TABLE&gt;" alt="" coords="381,129,582,199"/>
-<area shape="rect" id="node5_4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/poi/ss/usermodel/Sheet.html" title="org.apache.poi.ss.usermodel.Sheet" alt="" coords="617,134,797,194"/>
-<area shape="rect" id="node5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/poi/ss/usermodel/Sheet.html" title="&lt;TABLE&gt;" alt="" coords="606,129,807,199"/>
-<area shape="rect" id="node6_5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/poi/ss/usermodel/Cell.html" title="org.apache.poi.ss.usermodel.Cell" alt="" coords="842,134,1022,194"/>
-<area shape="rect" id="node6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/apache/poi/ss/usermodel/Cell.html" title="&lt;TABLE&gt;" alt="" coords="831,129,1033,199"/>
+<area shape="rect" id="node1_0" href="./ExcelHandler.html" title="org.dayatang.excel.ExcelHandler" alt="" coords="16,17,109,42"/>
+<area shape="rect" id="node1" href="./ExcelHandler.html" title="&lt;TABLE&gt;" alt="" coords="5,5,120,53"/>
 </map>
