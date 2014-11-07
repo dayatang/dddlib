@@ -9,29 +9,20 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.datasource4saas.TenantService
-	c394 [label=<<table title="org.dayatang.datasource4saas.TenantService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TenantService.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> TenantService </td></tr>
-		</table></td></tr>
-		</table>>, URL="./TenantService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.datasource4saas.SaasDataSource
-	c395 [label=<<table title="org.dayatang.datasource4saas.SaasDataSource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SaasDataSource.html">
+	c386 [label=<<table title="org.dayatang.datasource4saas.SaasDataSource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SaasDataSource.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SaasDataSource </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SaasDataSource.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.datasource4saas.DataSourceRegistry
-	c396 [label=<<table title="org.dayatang.datasource4saas.DataSourceRegistry" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DataSourceRegistry.html">
+	//org.dayatang.datasource4saas.SaasDataSource implements javax.sql.DataSource
+	c407:p -> c386:p [dir=back,arrowtail=empty,style=dashed];
+	// javax.sql.DataSource
+	c407 [label=<<table title="javax.sql.DataSource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/javax/sql/DataSource.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> DataSourceRegistry </td></tr>
+<tr><td align="center" balign="center"> DataSource </td></tr>
 		</table></td></tr>
-		</table>>, URL="./DataSourceRegistry.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.datasource4saas.SaasDataSource NAVASSOC org.dayatang.datasource4saas.TenantService
-	c395:p -> c394:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.datasource4saas.SaasDataSource NAVASSOC org.dayatang.datasource4saas.DataSourceRegistry
-	c395:p -> c396:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+		</table>>, URL="http://download.oracle.com/javase/7/docs/api/javax/sql/DataSource.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

@@ -1,6 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./DbType.html" title="org.dayatang.datasource4saas.dscreator.DbType" alt="" coords="49,121,161,259"/>
-<area shape="rect" id="node1" href="./DbType.html" title="&lt;TABLE&gt;" alt="" coords="39,116,172,264"/>
-<area shape="rect" id="node2_1" href="./AbstractDataSourceCreator.html" title="org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator" alt="" coords="16,17,195,42"/>
-<area shape="rect" id="node2" href="./AbstractDataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="5,5,205,53"/>
+<area shape="rect" id="node1_0" href="./DbType.html" title="org.dayatang.datasource4saas.dscreator.DbType" alt="" coords="16,11,120,53"/>
+<area shape="rect" id="node1" href="./DbType.html" title="&lt;TABLE&gt;" alt="" coords="5,5,131,59"/>
 </map>

@@ -15,13 +15,6 @@ digraph G {
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> TenantDbMappingStrategy </td></tr>
 		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> SCHEMA </td></tr>
-<tr><td align="left" balign="left"> DBNAME </td></tr>
-<tr><td align="left" balign="left"> HOST </td></tr>
-<tr><td align="left" balign="left"> PORT </td></tr>
-<tr><td align="left" balign="left"> INSTANCE </td></tr>
-		</table></td></tr>
 		</table>>, URL="./TenantDbMappingStrategy.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.datasource4saas.dscreator.ProxoolDataSourceCreator
 	c25 [label=<<table title="org.dayatang.datasource4saas.dscreator.ProxoolDataSourceCreator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProxoolDataSourceCreator.html">
@@ -34,13 +27,6 @@ digraph G {
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> DbType </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> MYSQL </td></tr>
-<tr><td align="left" balign="left"> POSTGRESQL </td></tr>
-<tr><td align="left" balign="left"> ORACLE </td></tr>
-<tr><td align="left" balign="left"> DB2 </td></tr>
-<tr><td align="left" balign="left"> SQLSERVER </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DbType.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.datasource4saas.dscreator.DbInfo
@@ -79,9 +65,5 @@ digraph G {
 	c31:p -> c29:p [dir=back,arrowtail=empty];
 	//org.dayatang.datasource4saas.dscreator.C3P0DataSourceCreator extends org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator
 	c31:p -> c30:p [dir=back,arrowtail=empty];
-	// org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator NAVASSOC org.dayatang.datasource4saas.dscreator.DbType
-	c31:p -> c26:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator NAVASSOC org.dayatang.datasource4saas.dscreator.TenantDbMappingStrategy
-	c31:p -> c24:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

@@ -1,8 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./SaasDataSource.html" title="org.dayatang.datasource4saas.SaasDataSource" alt="" coords="83,17,203,42"/>
-<area shape="rect" id="node1" href="./SaasDataSource.html" title="&lt;TABLE&gt;" alt="" coords="72,5,213,53"/>
-<area shape="rect" id="node2_1" href="./DataSourceRegistry.html" title="org.dayatang.datasource4saas.DataSourceRegistry" alt="" coords="76,121,209,164"/>
-<area shape="rect" id="node2" href="./DataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="65,116,220,169"/>
-<area shape="rect" id="node3_2" href="./dsregistry/MapBasedDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry" alt="" coords="16,224,269,267"/>
-<area shape="rect" id="node3" href="./dsregistry/MapBasedDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="5,219,280,272"/>
+<area shape="rect" id="node1_0" href="./DataSourceRegistry.html" title="org.dayatang.datasource4saas.DataSourceRegistry" alt="" coords="48,11,181,53"/>
+<area shape="rect" id="node1" href="./DataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="37,5,192,59"/>
+<area shape="rect" id="node2_1" href="./dsregistry/MapBasedDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry" alt="" coords="16,118,213,143"/>
+<area shape="rect" id="node2" href="./dsregistry/MapBasedDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="5,107,224,155"/>
 </map>

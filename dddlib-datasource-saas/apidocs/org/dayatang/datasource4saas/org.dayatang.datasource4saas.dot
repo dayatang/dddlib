@@ -36,9 +36,5 @@ digraph G {
 <tr><td align="center" balign="center"> Constants </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Constants.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.datasource4saas.SaasDataSource NAVASSOC org.dayatang.datasource4saas.TenantService
-	c1:p -> c0:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.datasource4saas.SaasDataSource NAVASSOC org.dayatang.datasource4saas.DataSourceRegistry
-	c1:p -> c2:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 
