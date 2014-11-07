@@ -1,8 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./domain/MyEntity.html" title="org.dayatang.querychannel.domain.MyEntity" alt="" coords="16,121,232,164"/>
-<area shape="rect" id="node1" href="./domain/MyEntity.html" title="&lt;TABLE&gt;" alt="" coords="5,116,243,169"/>
-<area shape="rect" id="node2_1" href="./PageTest.html" title="org.dayatang.querychannel.PageTest" alt="" coords="193,17,268,42"/>
-<area shape="rect" id="node2" href="./PageTest.html" title="&lt;TABLE&gt;" alt="" coords="183,5,279,53"/>
-<area shape="rect" id="node3_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/utils/Page.html" title="org.dayatang.utils.Page" alt="" coords="278,121,397,164"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/utils/Page.html" title="&lt;TABLE&gt;" alt="" coords="267,116,407,169"/>
+<area shape="rect" id="node1_0" href="./PageTest.html" title="org.dayatang.querychannel.PageTest" alt="" coords="16,17,91,42"/>
+<area shape="rect" id="node1" href="./PageTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,101,53"/>
 </map>

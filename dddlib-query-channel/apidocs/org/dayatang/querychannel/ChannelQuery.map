@@ -1,20 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ChannelQuery.html" title="org.dayatang.querychannel.ChannelQuery" alt="" coords="642,133,905,158"/>
-<area shape="rect" id="node1" href="./ChannelQuery.html" title="&lt;TABLE&gt;" alt="" coords="632,121,916,169"/>
-<area shape="rect" id="node3_1" href="./query/ChannelSqlQuery.html" title="org.dayatang.querychannel.query.ChannelSqlQuery" alt="" coords="320,246,526,289"/>
-<area shape="rect" id="node3" href="./query/ChannelSqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="309,241,537,294"/>
-<area shape="rect" id="node4_2" href="./query/ChannelNamedQuery.html" title="org.dayatang.querychannel.query.ChannelNamedQuery" alt="" coords="68,246,274,289"/>
-<area shape="rect" id="node4" href="./query/ChannelNamedQuery.html" title="&lt;TABLE&gt;" alt="" coords="57,241,285,294"/>
-<area shape="rect" id="node5_3" href="./query/ChannelJpqlQuery.html" title="org.dayatang.querychannel.query.ChannelJpqlQuery" alt="" coords="572,246,778,289"/>
-<area shape="rect" id="node5" href="./query/ChannelJpqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="561,241,789,294"/>
-<area shape="rect" id="node6_4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/EntityRepository.html" title="org.dayatang.domain.EntityRepository" alt="" coords="1168,237,1307,297"/>
-<area shape="rect" id="node6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/EntityRepository.html" title="&lt;TABLE&gt;" alt="" coords="1158,232,1318,303"/>
-<area shape="rect" id="node7_5" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/BaseQuery.html" title="org.dayatang.domain.BaseQuery" alt="" coords="734,371,1088,413"/>
-<area shape="rect" id="node7" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/BaseQuery.html" title="&lt;TABLE&gt;" alt="" coords="724,365,1098,419"/>
-<area shape="rect" id="node8_6" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/utils/Page.html" title="org.dayatang.utils.Page" alt="" coords="112,371,230,413"/>
-<area shape="rect" id="node8" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/utils/Page.html" title="&lt;TABLE&gt;" alt="" coords="101,365,241,419"/>
-<area shape="rect" id="node9_7" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/QueryParameters.html" title="org.dayatang.domain.QueryParameters" alt="" coords="824,237,963,297"/>
-<area shape="rect" id="node9" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/QueryParameters.html" title="&lt;TABLE&gt;" alt="" coords="814,232,974,303"/>
-<area shape="rect" id="node2_8" href="./impl/QueryChannelServiceImpl.html" title="org.dayatang.querychannel.impl.QueryChannelServiceImpl" alt="" coords="567,11,764,53"/>
-<area shape="rect" id="node2" href="./impl/QueryChannelServiceImpl.html" title="&lt;TABLE&gt;" alt="" coords="556,5,775,59"/>
+<area shape="rect" id="node1_0" href="./ChannelQuery.html" title="org.dayatang.querychannel.ChannelQuery" alt="" coords="122,17,385,42"/>
+<area shape="rect" id="node1" href="./ChannelQuery.html" title="&lt;TABLE&gt;" alt="" coords="111,5,395,53"/>
+<area shape="rect" id="node2_1" href="./query/ChannelSqlQuery.html" title="org.dayatang.querychannel.query.ChannelSqlQuery" alt="" coords="16,113,136,138"/>
+<area shape="rect" id="node2" href="./query/ChannelSqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="5,101,147,149"/>
+<area shape="rect" id="node3_2" href="./query/ChannelNamedQuery.html" title="org.dayatang.querychannel.query.ChannelNamedQuery" alt="" coords="181,113,325,138"/>
+<area shape="rect" id="node3" href="./query/ChannelNamedQuery.html" title="&lt;TABLE&gt;" alt="" coords="171,101,336,149"/>
+<area shape="rect" id="node4_3" href="./query/ChannelJpqlQuery.html" title="org.dayatang.querychannel.query.ChannelJpqlQuery" alt="" coords="371,113,496,138"/>
+<area shape="rect" id="node4" href="./query/ChannelJpqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="360,101,507,149"/>
 </map>
