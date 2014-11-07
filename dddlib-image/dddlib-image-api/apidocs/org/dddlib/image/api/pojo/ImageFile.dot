@@ -9,21 +9,20 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dddlib.image.api.ImageAccess
-	c10 [label=<<table title="org.dddlib.image.api.ImageAccess" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../ImageAccess.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> ImageAccess </td></tr>
-<tr><td align="center" balign="center"> org.dddlib.image.api </td></tr>
-		</table></td></tr>
-		</table>>, URL="../ImageAccess.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.image.api.pojo.ImageFile
-	c11 [label=<<table title="org.dddlib.image.api.pojo.ImageFile" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ImageFile.html">
+	c10 [label=<<table title="org.dddlib.image.api.pojo.ImageFile" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ImageFile.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ImageFile </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ImageFile.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.image.api.ImageAccess DEPEND org.dddlib.image.api.pojo.ImageFile
-	c10:p -> c11:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	//org.dddlib.image.api.pojo.ImageFile implements java.io.Serializable
+	c11:p -> c10:p [dir=back,arrowtail=empty,style=dashed];
+	// java.io.Serializable
+	c11 [label=<<table title="java.io.Serializable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> Serializable </td></tr>
+		</table></td></tr>
+		</table>>, URL="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 
