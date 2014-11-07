@@ -33,7 +33,5 @@ digraph G {
 <tr><td align="center" balign="center"> EhCacheBasedCache </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EhCacheBasedCache.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.cache.ehcache.EhCacheConfiguration.Builder NAVASSOC org.dayatang.cache.ehcache.EhCacheConfiguration
-	c2:p -> c1:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 
