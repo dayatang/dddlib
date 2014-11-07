@@ -10,30 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.ioc.guice.GuiceInstanceProvider
-	c10 [label=<<table title="org.dayatang.ioc.guice.GuiceInstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GuiceInstanceProvider.html">
+	c6 [label=<<table title="org.dayatang.ioc.guice.GuiceInstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GuiceInstanceProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GuiceInstanceProvider </td></tr>
 		</table></td></tr>
 		</table>>, URL="./GuiceInstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.ioc.guice.GuiceInstanceProvider implements org.dayatang.domain.InstanceProvider
-	c11:p -> c10:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.ioc.guice.GuiceInstanceProvider NAVASSOC com.google.inject.Injector
-	c10:p -> c17:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+	c7:p -> c6:p [dir=back,arrowtail=empty,style=dashed];
 	// org.dayatang.domain.InstanceProvider
-	c11 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html">
+	c7 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> InstanceProvider </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.domain </td></tr>
 		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/InstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// com.google.inject.Injector
-	c17 [label=<<table title="com.google.inject.Injector" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Injector.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Injector </td></tr>
-<tr><td align="center" balign="center"> com.google.inject </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/com/google/inject/Injector.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

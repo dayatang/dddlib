@@ -20,7 +20,7 @@ under the License.
 <rss version="0.91">
   <channel>
     <title>DDDLib IoC implemented by Google Guice - Checkstyle report</title>
-    <link>http://www.dayatang.org/dddlib/dddlib-ioc/dddlib-ioc-guice</link>
+    <link>http://dayatang.github.io/dddlib/dddlib-ioc/dddlib-ioc-guice/</link>
     <description>DDDLib IoC implemented by Google Guice - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2014 Dayatang Open Source.</copyright>
@@ -30,9 +30,9 @@ under the License.
              Warnings: 0,
              Infos: 0
       </title>
-            <link>http://www.dayatang.org/dddlib/dddlib-ioc/dddlib-ioc-guice/checkstyle.html</link>
+            <link>http://dayatang.github.io/dddlib/dddlib-ioc/dddlib-ioc-guice//checkstyle.html</link>
       <description>
-        <p>Click <a href="http://www.dayatang.org/dddlib/dddlib-ioc/dddlib-ioc-guice/checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="http://dayatang.github.io/dddlib/dddlib-ioc/dddlib-ioc-guice//checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-ioc/dddlib-ioc-guice/checkstyle.html#org.dayatang.ioc.guice.package-info.java">org/dayatang/ioc/guice/package-info.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-ioc/dddlib-ioc-guice//checkstyle.html#org.dayatang.ioc.guice.package-info.java">org/dayatang/ioc/guice/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-ioc/dddlib-ioc-guice/checkstyle.html#org.dayatang.ioc.guice.GuiceInstanceProvider.java">org/dayatang/ioc/guice/GuiceInstanceProvider.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-ioc/dddlib-ioc-guice//checkstyle.html#org.dayatang.ioc.guice.GuiceInstanceProvider.java">org/dayatang/ioc/guice/GuiceInstanceProvider.java</a>
                 </td>
                 <td>
                   0
@@ -74,7 +74,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-ioc/dddlib-ioc-guice/checkstyle.html#org.dayatang.ioc.guice.GuiceIocUtils.java">org/dayatang/ioc/guice/GuiceIocUtils.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-ioc/dddlib-ioc-guice//checkstyle.html#org.dayatang.ioc.guice.GuiceIocUtils.java">org/dayatang/ioc/guice/GuiceIocUtils.java</a>
                 </td>
                 <td>
                   0
