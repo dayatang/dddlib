@@ -71,11 +71,5 @@ digraph G {
 	c25:p -> c21:p [dir=back,arrowtail=empty];
 	//org.dayatang.configuration.impl.ConfigurationDbImpl extends org.dayatang.configuration.impl.AbstractConfiguration
 	c25:p -> c24:p [dir=back,arrowtail=empty];
-	// org.dayatang.configuration.impl.ConfigurationUrlImpl NAVASSOC org.dayatang.configuration.impl.PropertiesFileUtils
-	c20:p -> c19:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.configuration.impl.ConfigurationFileImpl NAVASSOC org.dayatang.configuration.impl.PropertiesFileUtils
-	c21:p -> c19:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.configuration.impl.ConfigurationDbImpl NAVASSOC org.dayatang.configuration.impl.ConfigurationDbUtils
-	c24:p -> c23:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

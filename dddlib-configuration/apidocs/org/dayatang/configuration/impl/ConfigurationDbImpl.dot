@@ -10,36 +10,27 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.configuration.WritableConfiguration
-	c78 [label=<<table title="org.dayatang.configuration.WritableConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../WritableConfiguration.html">
+	c66 [label=<<table title="org.dayatang.configuration.WritableConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../WritableConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> WritableConfiguration </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.configuration </td></tr>
 		</table></td></tr>
 		</table>>, URL="../WritableConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.configuration.impl.ConfigurationDbUtils
-	c88 [label=<<table title="org.dayatang.configuration.impl.ConfigurationDbUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationDbUtils.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> ConfigurationDbUtils </td></tr>
-		</table></td></tr>
-		</table>>, URL="./ConfigurationDbUtils.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.ConfigurationDbImpl
-	c89 [label=<<table title="org.dayatang.configuration.impl.ConfigurationDbImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ConfigurationDbImpl.html">
+	c77 [label=<<table title="org.dayatang.configuration.impl.ConfigurationDbImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ConfigurationDbImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationDbImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigurationDbImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.AbstractConfiguration
-	c90 [label=<<table title="org.dayatang.configuration.impl.AbstractConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractConfiguration.html">
+	c78 [label=<<table title="org.dayatang.configuration.impl.AbstractConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractConfiguration </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.configuration.impl.ConfigurationDbImpl extends org.dayatang.configuration.impl.AbstractConfiguration
-	c90:p -> c89:p [dir=back,arrowtail=empty];
+	c78:p -> c77:p [dir=back,arrowtail=empty];
 	//org.dayatang.configuration.impl.ConfigurationDbImpl implements org.dayatang.configuration.WritableConfiguration
-	c78:p -> c89:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.configuration.impl.ConfigurationDbImpl NAVASSOC org.dayatang.configuration.impl.ConfigurationDbUtils
-	c89:p -> c88:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
+	c66:p -> c77:p [dir=back,arrowtail=empty,style=dashed];
 }
 

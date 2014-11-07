@@ -10,62 +10,51 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.configuration.Configuration
-	c45 [label=<<table title="org.dayatang.configuration.Configuration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../Configuration.html">
+	c35 [label=<<table title="org.dayatang.configuration.Configuration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../Configuration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Configuration </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.configuration </td></tr>
 		</table></td></tr>
 		</table>>, URL="../Configuration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.SimpleConfiguration
-	c49 [label=<<table title="org.dayatang.configuration.impl.SimpleConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SimpleConfiguration.html">
+	c39 [label=<<table title="org.dayatang.configuration.impl.SimpleConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SimpleConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SimpleConfiguration </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SimpleConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.ConfigurationUrlImpl
-	c53 [label=<<table title="org.dayatang.configuration.impl.ConfigurationUrlImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationUrlImpl.html">
+	c43 [label=<<table title="org.dayatang.configuration.impl.ConfigurationUrlImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationUrlImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationUrlImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigurationUrlImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.ConfigurationFileImpl
-	c56 [label=<<table title="org.dayatang.configuration.impl.ConfigurationFileImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationFileImpl.html">
+	c45 [label=<<table title="org.dayatang.configuration.impl.ConfigurationFileImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationFileImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationFileImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigurationFileImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.ConfigurationDbImpl
-	c62 [label=<<table title="org.dayatang.configuration.impl.ConfigurationDbImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationDbImpl.html">
+	c51 [label=<<table title="org.dayatang.configuration.impl.ConfigurationDbImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationDbImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationDbImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigurationDbImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.AbstractConfiguration
-	c63 [label=<<table title="org.dayatang.configuration.impl.AbstractConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractConfiguration.html">
+	c52 [label=<<table title="org.dayatang.configuration.impl.AbstractConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractConfiguration </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.configuration.impl.SimpleConfiguration extends org.dayatang.configuration.impl.AbstractConfiguration
-	c63:p -> c49:p [dir=back,arrowtail=empty];
+	c52:p -> c39:p [dir=back,arrowtail=empty];
 	//org.dayatang.configuration.impl.ConfigurationUrlImpl extends org.dayatang.configuration.impl.AbstractConfiguration
-	c63:p -> c53:p [dir=back,arrowtail=empty];
+	c52:p -> c43:p [dir=back,arrowtail=empty];
 	//org.dayatang.configuration.impl.ConfigurationFileImpl extends org.dayatang.configuration.impl.AbstractConfiguration
-	c63:p -> c56:p [dir=back,arrowtail=empty];
+	c52:p -> c45:p [dir=back,arrowtail=empty];
 	//org.dayatang.configuration.impl.ConfigurationDbImpl extends org.dayatang.configuration.impl.AbstractConfiguration
-	c63:p -> c62:p [dir=back,arrowtail=empty];
+	c52:p -> c51:p [dir=back,arrowtail=empty];
 	//org.dayatang.configuration.impl.AbstractConfiguration implements org.dayatang.configuration.Configuration
-	c45:p -> c63:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.configuration.impl.AbstractConfiguration NAVASSOC org.dayatang.utils.ObjectSerializer
-	c63:p -> c64:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.utils.ObjectSerializer
-	c64 [label=<<table title="org.dayatang.utils.ObjectSerializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/utils/ObjectSerializer.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> ObjectSerializer </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.utils </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/utils/ObjectSerializer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	c35:p -> c52:p [dir=back,arrowtail=empty,style=dashed];
 }
 

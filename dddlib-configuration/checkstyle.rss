@@ -20,7 +20,7 @@ under the License.
 <rss version="0.91">
   <channel>
     <title>DDDLib Configuration - Checkstyle report</title>
-    <link>http://www.dayatang.org/dddlib/dddlib-configuration</link>
+    <link>http://dayatang.github.io/dddlib/dddlib-configuration/</link>
     <description>DDDLib Configuration - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2014 Dayatang Open Source.</copyright>
@@ -30,9 +30,9 @@ under the License.
              Warnings: 0,
              Infos: 0
       </title>
-            <link>http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html</link>
+            <link>http://dayatang.github.io/dddlib/dddlib-configuration//checkstyle.html</link>
       <description>
-        <p>Click <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="http://dayatang.github.io/dddlib/dddlib-configuration//checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.ConfigurationUrlImpl.java">org/dayatang/configuration/impl/ConfigurationUrlImpl.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-configuration//checkstyle.html#org.dayatang.configuration.impl.ConfigurationUrlImpl.java">org/dayatang/configuration/impl/ConfigurationUrlImpl.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.Configuration.java">org/dayatang/configuration/Configuration.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-configuration//checkstyle.html#org.dayatang.configuration.Configuration.java">org/dayatang/configuration/Configuration.java</a>
                 </td>
                 <td>
                   0
@@ -74,7 +74,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.WritableConfiguration.java">org/dayatang/configuration/WritableConfiguration.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-configuration//checkstyle.html#org.dayatang.configuration.WritableConfiguration.java">org/dayatang/configuration/WritableConfiguration.java</a>
                 </td>
                 <td>
                   0
@@ -88,7 +88,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.AbstractConfiguration.java">org/dayatang/configuration/impl/AbstractConfiguration.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-configuration//checkstyle.html#org.dayatang.configuration.impl.AbstractConfiguration.java">org/dayatang/configuration/impl/AbstractConfiguration.java</a>
                 </td>
                 <td>
                   0
@@ -102,7 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.SimpleConfiguration.java">org/dayatang/configuration/impl/SimpleConfiguration.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-configuration//checkstyle.html#org.dayatang.configuration.impl.SimpleConfiguration.java">org/dayatang/configuration/impl/SimpleConfiguration.java</a>
                 </td>
                 <td>
                   0
@@ -116,7 +116,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.ConfigurationDbImpl.java">org/dayatang/configuration/impl/ConfigurationDbImpl.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-configuration//checkstyle.html#org.dayatang.configuration.impl.ConfigurationDbImpl.java">org/dayatang/configuration/impl/ConfigurationDbImpl.java</a>
                 </td>
                 <td>
                   0
@@ -130,7 +130,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.PropertiesFileUtils.java">org/dayatang/configuration/impl/PropertiesFileUtils.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-configuration//checkstyle.html#org.dayatang.configuration.impl.PropertiesFileUtils.java">org/dayatang/configuration/impl/PropertiesFileUtils.java</a>
                 </td>
                 <td>
                   0
@@ -144,7 +144,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.StringPropertyReplacer.java">org/dayatang/configuration/impl/StringPropertyReplacer.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-configuration//checkstyle.html#org.dayatang.configuration.impl.StringPropertyReplacer.java">org/dayatang/configuration/impl/StringPropertyReplacer.java</a>
                 </td>
                 <td>
                   0
@@ -158,7 +158,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.ConfigurationException.java">org/dayatang/configuration/ConfigurationException.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-configuration//checkstyle.html#org.dayatang.configuration.ConfigurationException.java">org/dayatang/configuration/ConfigurationException.java</a>
                 </td>
                 <td>
                   0
@@ -172,7 +172,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.ConfigurationDbUtils.java">org/dayatang/configuration/impl/ConfigurationDbUtils.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-configuration//checkstyle.html#org.dayatang.configuration.impl.ConfigurationDbUtils.java">org/dayatang/configuration/impl/ConfigurationDbUtils.java</a>
                 </td>
                 <td>
                   0
@@ -186,7 +186,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.ConfigurationFactoryImpl.java">org/dayatang/configuration/impl/ConfigurationFactoryImpl.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-configuration//checkstyle.html#org.dayatang.configuration.impl.ConfigurationFactoryImpl.java">org/dayatang/configuration/impl/ConfigurationFactoryImpl.java</a>
                 </td>
                 <td>
                   0
@@ -200,7 +200,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.ConfigurationFileImpl.java">org/dayatang/configuration/impl/ConfigurationFileImpl.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-configuration//checkstyle.html#org.dayatang.configuration.impl.ConfigurationFileImpl.java">org/dayatang/configuration/impl/ConfigurationFileImpl.java</a>
                 </td>
                 <td>
                   0
@@ -214,7 +214,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.package-info.java">org/dayatang/configuration/package-info.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-configuration//checkstyle.html#org.dayatang.configuration.package-info.java">org/dayatang/configuration/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -228,7 +228,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.impl.package-info.java">org/dayatang/configuration/impl/package-info.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-configuration//checkstyle.html#org.dayatang.configuration.impl.package-info.java">org/dayatang/configuration/impl/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -242,7 +242,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-configuration/checkstyle.html#org.dayatang.configuration.ConfigurationFactory.java">org/dayatang/configuration/ConfigurationFactory.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-configuration//checkstyle.html#org.dayatang.configuration.ConfigurationFactory.java">org/dayatang/configuration/ConfigurationFactory.java</a>
                 </td>
                 <td>
                   0

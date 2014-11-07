@@ -10,40 +10,28 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.configuration.WritableConfiguration
-	c65 [label=<<table title="org.dayatang.configuration.WritableConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./WritableConfiguration.html">
+	c53 [label=<<table title="org.dayatang.configuration.WritableConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./WritableConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> WritableConfiguration </td></tr>
 		</table></td></tr>
 		</table>>, URL="./WritableConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.Configuration
-	c68 [label=<<table title="org.dayatang.configuration.Configuration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Configuration.html">
+	c56 [label=<<table title="org.dayatang.configuration.Configuration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Configuration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Configuration </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Configuration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.configuration.impl.ConfigurationFactoryImpl
-	c74 [label=<<table title="org.dayatang.configuration.impl.ConfigurationFactoryImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./impl/ConfigurationFactoryImpl.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> ConfigurationFactoryImpl </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.configuration.impl </td></tr>
-		</table></td></tr>
-		</table>>, URL="./impl/ConfigurationFactoryImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.AbstractConfiguration
-	c77 [label=<<table title="org.dayatang.configuration.impl.AbstractConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./impl/AbstractConfiguration.html">
+	c65 [label=<<table title="org.dayatang.configuration.impl.AbstractConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./impl/AbstractConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractConfiguration </font></td></tr>
-<tr><td align="center" balign="center"> org.dayatang.configuration.impl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./impl/AbstractConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.configuration.WritableConfiguration implements org.dayatang.configuration.Configuration
-	c68:p -> c65:p [dir=back,arrowtail=empty,style=dashed];
+	c56:p -> c53:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.configuration.impl.AbstractConfiguration implements org.dayatang.configuration.Configuration
-	c68:p -> c77:p [dir=back,arrowtail=empty,style=dashed];
-	// org.dayatang.configuration.impl.ConfigurationFactoryImpl DEPEND org.dayatang.configuration.Configuration
-	c74:p -> c68:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.configuration.impl.ConfigurationFactoryImpl DEPEND org.dayatang.configuration.WritableConfiguration
-	c74:p -> c65:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
+	c56:p -> c65:p [dir=back,arrowtail=empty,style=dashed];
 }
 

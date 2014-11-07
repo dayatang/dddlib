@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ConfigurationFactory.html" title="org.dayatang.configuration.ConfigurationFactory" alt="" coords="45,17,179,42"/>
-<area shape="rect" id="node1" href="./ConfigurationFactory.html" title="&lt;TABLE&gt;" alt="" coords="35,5,189,53"/>
-<area shape="rect" id="node2_1" href="./impl/ConfigurationFactoryImpl.html" title="org.dayatang.configuration.impl.ConfigurationFactoryImpl" alt="" coords="16,107,208,149"/>
-<area shape="rect" id="node2" href="./impl/ConfigurationFactoryImpl.html" title="&lt;TABLE&gt;" alt="" coords="5,101,219,155"/>
+<area shape="rect" id="node1_0" href="./ConfigurationFactory.html" title="org.dayatang.configuration.ConfigurationFactory" alt="" coords="27,17,161,42"/>
+<area shape="rect" id="node1" href="./ConfigurationFactory.html" title="&lt;TABLE&gt;" alt="" coords="17,5,171,53"/>
+<area shape="rect" id="node2_1" href="./impl/ConfigurationFactoryImpl.html" title="org.dayatang.configuration.impl.ConfigurationFactoryImpl" alt="" coords="16,113,172,138"/>
+<area shape="rect" id="node2" href="./impl/ConfigurationFactoryImpl.html" title="&lt;TABLE&gt;" alt="" coords="5,101,183,149"/>
 </map>
