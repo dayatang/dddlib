@@ -10,28 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.i18n.impl.I18nServiceSupport
-	c80 [label=<<table title="org.dayatang.i18n.impl.I18nServiceSupport" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./I18nServiceSupport.html">
+	c72 [label=<<table title="org.dayatang.i18n.impl.I18nServiceSupport" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./I18nServiceSupport.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> I18nServiceSupport </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./I18nServiceSupport.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.i18n.impl.AbstractI18nService
-	c81 [label=<<table title="org.dayatang.i18n.impl.AbstractI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractI18nService.html">
+	c73 [label=<<table title="org.dayatang.i18n.impl.AbstractI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractI18nService.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractI18nService </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractI18nService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.i18n.impl.AbstractI18nService extends org.dayatang.i18n.impl.I18nServiceSupport
-	c80:p -> c81:p [dir=back,arrowtail=empty];
-	// org.dayatang.i18n.impl.I18nServiceSupport NAVASSOC org.slf4j.Logger
-	c80:p -> c83:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.slf4j.Logger
-	c83 [label=<<table title="org.slf4j.Logger" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/slf4j/Logger.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Logger </td></tr>
-<tr><td align="center" balign="center"> org.slf4j </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/slf4j/Logger.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	c72:p -> c73:p [dir=back,arrowtail=empty];
 }
 

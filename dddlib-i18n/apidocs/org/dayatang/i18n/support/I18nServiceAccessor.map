@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../I18nService.html" title="org.dayatang.i18n.I18nService" alt="" coords="24,121,144,181"/>
-<area shape="rect" id="node1" href="../I18nService.html" title="&lt;TABLE&gt;" alt="" coords="13,116,155,187"/>
-<area shape="rect" id="node2_1" href="./I18nServiceAccessor.html" title="org.dayatang.i18n.support.I18nServiceAccessor" alt="" coords="16,17,152,42"/>
-<area shape="rect" id="node2" href="./I18nServiceAccessor.html" title="&lt;TABLE&gt;" alt="" coords="5,5,163,53"/>
+<area shape="rect" id="node1_0" href="./I18nServiceAccessor.html" title="org.dayatang.i18n.support.I18nServiceAccessor" alt="" coords="16,118,152,143"/>
+<area shape="rect" id="node1" href="./I18nServiceAccessor.html" title="&lt;TABLE&gt;" alt="" coords="5,107,163,155"/>
+<area shape="rect" id="node2_1" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="java.io.Serializable" alt="" coords="42,11,126,53"/>
+<area shape="rect" id="node2" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="&lt;TABLE&gt;" alt="" coords="31,5,137,59"/>
 </map>

@@ -18,7 +18,7 @@ digraph G {
 	//org.dayatang.i18n.support.MyResourceBundleI18nService extends ResourceBundleI18nService
 	c7:p -> c6:p [dir=back,arrowtail=empty];
 	// ResourceBundleI18nService
-	c7[label=<<table title="ResourceBundleI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api//ResourceBundleI18nService.html">
+	c7[label=<<table title="ResourceBundleI18nService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ResourceBundleI18nService </td></tr>
 		</table></td></tr>
