@@ -10,81 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.springtest.AbstractIntegratedTestCase
-	c19 [label=<<table title="org.dayatang.springtest.AbstractIntegratedTestCase" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractIntegratedTestCase.html">
+	c9 [label=<<table title="org.dayatang.springtest.AbstractIntegratedTestCase" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractIntegratedTestCase.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractIntegratedTestCase </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractIntegratedTestCase.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.springtest.AbstractIntegratedTestCase extends org.dayatang.dbunit.Dbunit
-	c22:p -> c19:p [dir=back,arrowtail=empty];
-	// org.dayatang.springtest.AbstractIntegratedTestCase NAVASSOC org.hibernate.Session
-	c19:p -> c30:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.springtest.AbstractIntegratedTestCase NAVASSOC org.hibernate.Transaction
-	c19:p -> c33:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.springtest.AbstractIntegratedTestCase NAVASSOC org.springframework.orm.hibernate4.HibernateTransactionManager
-	c19:p -> c46:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.springtest.AbstractIntegratedTestCase NAVASSOC org.springframework.transaction.TransactionStatus
-	c19:p -> c49:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
-	// org.dayatang.springtest.AbstractIntegratedTestCase DEPEND org.dayatang.dbunit.DataSetStrategy
-	c19:p -> c50:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.springtest.AbstractIntegratedTestCase DEPEND org.dbunit.operation.DatabaseOperation
-	c19:p -> c52:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.hibernate.Session
-	c30 [label=<<table title="org.hibernate.Session" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Session.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Session </td></tr>
-<tr><td align="center" balign="center"> org.hibernate </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Session.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dbunit.operation.DatabaseOperation
-	c52 [label=<<table title="org.dbunit.operation.DatabaseOperation" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/operation/DatabaseOperation.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> DatabaseOperation </font></td></tr>
-<tr><td align="center" balign="center"> org.dbunit.operation </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/operation/DatabaseOperation.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.springframework.orm.hibernate4.HibernateTransactionManager
-	c46 [label=<<table title="org.springframework.orm.hibernate4.HibernateTransactionManager" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/orm/hibernate4/HibernateTransactionManager.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> HibernateTransactionManager </td></tr>
-<tr><td align="center" balign="center"> org.springframework.orm.hibernate4 </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/orm/hibernate4/HibernateTransactionManager.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.hibernate.Transaction
-	c33 [label=<<table title="org.hibernate.Transaction" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Transaction.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> Transaction </td></tr>
-<tr><td align="center" balign="center"> org.hibernate </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Transaction.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.springframework.transaction.TransactionStatus
-	c49 [label=<<table title="org.springframework.transaction.TransactionStatus" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/transaction/TransactionStatus.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
-<tr><td align="center" balign="center"> TransactionStatus </td></tr>
-<tr><td align="center" balign="center"> org.springframework.transaction </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/transaction/TransactionStatus.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	c10:p -> c9:p [dir=back,arrowtail=empty];
 	// org.dayatang.dbunit.Dbunit
-	c22 [label=<<table title="org.dayatang.dbunit.Dbunit" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/dbunit/Dbunit.html">
+	c10 [label=<<table title="org.dayatang.dbunit.Dbunit" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Dbunit </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.dbunit </td></tr>
 		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/dbunit/Dbunit.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.dbunit.DataSetStrategy
-	c50 [label=<<table title="org.dayatang.dbunit.DataSetStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/dbunit/DataSetStrategy.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
-<tr><td align="center" balign="center"> DataSetStrategy </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.dbunit </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> FlatXml </td></tr>
-<tr><td align="left" balign="left"> Xml </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/dbunit/DataSetStrategy.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

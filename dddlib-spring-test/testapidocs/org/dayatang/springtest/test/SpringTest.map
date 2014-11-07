@@ -1,9 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./SpringTest.html" title="org.dayatang.springtest.test.SpringTest" alt="" coords="130,114,210,139"/>
-<area shape="rect" id="node1" href="./SpringTest.html" title="&lt;TABLE&gt;" alt="" coords="119,103,221,151"/>
-<area shape="rect" id="node3_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/dbunit/DataSetStrategy.html" title="org.dayatang.dbunit.DataSetStrategy" alt="" coords="16,219,148,321"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/dbunit/DataSetStrategy.html" title="&lt;TABLE&gt;" alt="" coords="5,213,159,327"/>
-<area shape="rect" id="node4_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/operation/DatabaseOperation.html" title="org.dbunit.operation.DatabaseOperation" alt="" coords="194,249,325,291"/>
-<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/operation/DatabaseOperation.html" title="&lt;TABLE&gt;" alt="" coords="183,243,335,297"/>
-<area shape="rect" id="node2_3" href="http://java.sun.com/j2se/1.4.2/docs/api//AbstractIntegratedTestCase.html" title="AbstractIntegratedTestCase" alt="" coords="81,17,259,42"/>
+<area shape="rect" id="node1_0" href="./SpringTest.html" title="org.dayatang.springtest.test.SpringTest" alt="" coords="65,113,145,138"/>
+<area shape="rect" id="node1" href="./SpringTest.html" title="&lt;TABLE&gt;" alt="" coords="54,101,155,149"/>
 </map>

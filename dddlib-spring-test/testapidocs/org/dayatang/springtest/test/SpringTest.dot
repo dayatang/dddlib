@@ -10,41 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.springtest.test.SpringTest
-	c101 [label=<<table title="org.dayatang.springtest.test.SpringTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SpringTest.html">
+	c88 [label=<<table title="org.dayatang.springtest.test.SpringTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./SpringTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SpringTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SpringTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.springtest.test.SpringTest extends AbstractIntegratedTestCase
-	c105:p -> c101:p [dir=back,arrowtail=empty];
-	// org.dayatang.springtest.test.SpringTest DEPEND org.dayatang.dbunit.DataSetStrategy
-	c101:p -> c106:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dayatang.springtest.test.SpringTest DEPEND org.dbunit.operation.DatabaseOperation
-	c101:p -> c107:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open, style=dashed];
-	// org.dbunit.operation.DatabaseOperation
-	c107 [label=<<table title="org.dbunit.operation.DatabaseOperation" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/operation/DatabaseOperation.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"><font face="Helvetica-Oblique"> DatabaseOperation </font></td></tr>
-<tr><td align="center" balign="center"> org.dbunit.operation </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/operation/DatabaseOperation.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	c92:p -> c88:p [dir=back,arrowtail=empty];
 	// AbstractIntegratedTestCase
-	c105[label=<<table title="AbstractIntegratedTestCase" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api//AbstractIntegratedTestCase.html">
+	c92[label=<<table title="AbstractIntegratedTestCase" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AbstractIntegratedTestCase </td></tr>
 		</table></td></tr>
 		</table>>, fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.dbunit.DataSetStrategy
-	c106 [label=<<table title="org.dayatang.dbunit.DataSetStrategy" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/dbunit/DataSetStrategy.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
-<tr><td align="center" balign="center"> DataSetStrategy </td></tr>
-<tr><td align="center" balign="center"> org.dayatang.dbunit </td></tr>
-		</table></td></tr>
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="left" balign="left"> FlatXml </td></tr>
-<tr><td align="left" balign="left"> Xml </td></tr>
-		</table></td></tr>
-		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/dbunit/DataSetStrategy.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 
