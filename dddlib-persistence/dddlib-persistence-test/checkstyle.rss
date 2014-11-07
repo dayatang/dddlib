@@ -20,7 +20,7 @@ under the License.
 <rss version="0.91">
   <channel>
     <title>DDDLib Persistence Test - Checkstyle report</title>
-    <link>http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-test</link>
+    <link>http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-test/</link>
     <description>DDDLib Persistence Test - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2014 Dayatang Open Source.</copyright>
@@ -30,9 +30,9 @@ under the License.
              Warnings: 0,
              Infos: 0
       </title>
-            <link>http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-test/checkstyle.html</link>
+            <link>http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-test//checkstyle.html</link>
       <description>
-        <p>Click <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-test/checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-test//checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-test/checkstyle.html#org.dayatang.persistence.test.domain.Dictionary.java">org/dayatang/persistence/test/domain/Dictionary.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-test//checkstyle.html#org.dayatang.persistence.test.domain.Dictionary.java">org/dayatang/persistence/test/domain/Dictionary.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-test/checkstyle.html#jdbc.properties">jdbc.properties</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-test//checkstyle.html#jdbc.properties">jdbc.properties</a>
                 </td>
                 <td>
                   0
@@ -74,7 +74,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-test/checkstyle.html#log4j.properties">log4j.properties</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-test//checkstyle.html#log4j.properties">log4j.properties</a>
                 </td>
                 <td>
                   0
@@ -88,7 +88,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-test/checkstyle.html#org.dayatang.persistence.test.domain.package-info.java">org/dayatang/persistence/test/domain/package-info.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-test//checkstyle.html#org.dayatang.persistence.test.domain.package-info.java">org/dayatang/persistence/test/domain/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -102,7 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-test/checkstyle.html#commons-logging.properties">commons-logging.properties</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-test//checkstyle.html#commons-logging.properties">commons-logging.properties</a>
                 </td>
                 <td>
                   0
@@ -116,7 +116,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-test/checkstyle.html#datasources.properties">datasources.properties</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-test//checkstyle.html#datasources.properties">datasources.properties</a>
                 </td>
                 <td>
                   0
@@ -130,7 +130,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-test/checkstyle.html#org.dayatang.persistence.test.domain.DictionaryCategory.java">org/dayatang/persistence/test/domain/DictionaryCategory.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-test//checkstyle.html#org.dayatang.persistence.test.domain.DictionaryCategory.java">org/dayatang/persistence/test/domain/DictionaryCategory.java</a>
                 </td>
                 <td>
                   0

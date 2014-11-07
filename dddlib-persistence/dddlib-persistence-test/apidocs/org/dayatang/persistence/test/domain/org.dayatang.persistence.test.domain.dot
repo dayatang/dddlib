@@ -21,7 +21,5 @@ digraph G {
 <tr><td align="center" balign="center"> Dictionary </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Dictionary.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.persistence.test.domain.DictionaryCategory NAVASSOC org.dayatang.persistence.test.domain.Dictionary
-	c0:p -> c1:p [taillabel="", label=" "headlabel="*", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 
