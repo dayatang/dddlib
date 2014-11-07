@@ -27,7 +27,5 @@ digraph G {
 <tr><td align="center" balign="center"> EntityRepositoryHibernate </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EntityRepositoryHibernate.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dayatang.persistence.hibernate.EntityRepositoryHibernate NAVASSOC org.dayatang.persistence.hibernate.SessionProvider
-	c2:p -> c1:p [taillabel="", label=" "headlabel="", fontname="Helvetica", fontcolor="black", fontsize=10.0, color="black", arrowhead=open];
 }
 

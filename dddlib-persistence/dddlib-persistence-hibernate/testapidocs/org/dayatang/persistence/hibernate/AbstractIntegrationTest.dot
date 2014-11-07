@@ -10,26 +10,26 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest
-	c16 [label=<<table title="org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EntityRepositoryHibernateTest.html">
+	c12 [label=<<table title="org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EntityRepositoryHibernateTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EntityRepositoryHibernateTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EntityRepositoryHibernateTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.hibernate.CriteriaQueryTest
-	c21 [label=<<table title="org.dayatang.persistence.hibernate.CriteriaQueryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CriteriaQueryTest.html">
+	c14 [label=<<table title="org.dayatang.persistence.hibernate.CriteriaQueryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CriteriaQueryTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CriteriaQueryTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./CriteriaQueryTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.hibernate.AbstractIntegrationTest
-	c25 [label=<<table title="org.dayatang.persistence.hibernate.AbstractIntegrationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractIntegrationTest.html">
+	c17 [label=<<table title="org.dayatang.persistence.hibernate.AbstractIntegrationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractIntegrationTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AbstractIntegrationTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractIntegrationTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest extends org.dayatang.persistence.hibernate.AbstractIntegrationTest
-	c25:p -> c16:p [dir=back,arrowtail=empty];
+	c17:p -> c12:p [dir=back,arrowtail=empty];
 	//org.dayatang.persistence.hibernate.CriteriaQueryTest extends org.dayatang.persistence.hibernate.AbstractIntegrationTest
-	c25:p -> c21:p [dir=back,arrowtail=empty];
+	c17:p -> c14:p [dir=back,arrowtail=empty];
 }
 

@@ -1,10 +1,4 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./SessionProvider.html" title="org.dayatang.persistence.hibernate.SessionProvider" alt="" coords="45,127,155,153"/>
-<area shape="rect" id="node1" href="./SessionProvider.html" title="&lt;TABLE&gt;" alt="" coords="34,116,166,164"/>
-<area shape="rect" id="node3_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/SessionFactory.html" title="org.hibernate.SessionFactory" alt="" coords="16,232,123,292"/>
-<area shape="rect" id="node3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/SessionFactory.html" title="&lt;TABLE&gt;" alt="" coords="5,227,133,297"/>
-<area shape="rect" id="node4_2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Session.html" title="org.hibernate.Session" alt="" coords="169,232,261,292"/>
-<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/hibernate/Session.html" title="&lt;TABLE&gt;" alt="" coords="158,227,271,297"/>
-<area shape="rect" id="node2_3" href="./EntityRepositoryHibernate.html" title="org.dayatang.persistence.hibernate.EntityRepositoryHibernate" alt="" coords="97,17,263,42"/>
-<area shape="rect" id="node2" href="./EntityRepositoryHibernate.html" title="&lt;TABLE&gt;" alt="" coords="87,5,273,53"/>
+<area shape="rect" id="node1_0" href="./SessionProvider.html" title="org.dayatang.persistence.hibernate.SessionProvider" alt="" coords="16,17,127,42"/>
+<area shape="rect" id="node1" href="./SessionProvider.html" title="&lt;TABLE&gt;" alt="" coords="5,5,137,53"/>
 </map>

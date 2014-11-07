@@ -20,7 +20,7 @@ under the License.
 <rss version="0.91">
   <channel>
     <title>DDDLib Persistence API implemented by Hibernate - Checkstyle report</title>
-    <link>http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-hibernate</link>
+    <link>http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-hibernate/</link>
     <description>DDDLib Persistence API implemented by Hibernate - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2014 Dayatang Open Source.</copyright>
@@ -30,9 +30,9 @@ under the License.
              Warnings: 0,
              Infos: 0
       </title>
-            <link>http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-hibernate/checkstyle.html</link>
+            <link>http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-hibernate//checkstyle.html</link>
       <description>
-        <p>Click <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-hibernate/checkstyle.html">here</a> for the full Checkstyle report.</p>
+        <p>Click <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-hibernate//checkstyle.html">here</a> for the full Checkstyle report.</p>
 
         <table summary="Files" boder="1">
           <thead>
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-hibernate/checkstyle.html#org.dayatang.persistence.hibernate.EntityRepositoryHibernate.java">org/dayatang/persistence/hibernate/EntityRepositoryHibernate.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-hibernate//checkstyle.html#org.dayatang.persistence.hibernate.EntityRepositoryHibernate.java">org/dayatang/persistence/hibernate/EntityRepositoryHibernate.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-hibernate/checkstyle.html#org.dayatang.persistence.hibernate.package-info.java">org/dayatang/persistence/hibernate/package-info.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-hibernate//checkstyle.html#org.dayatang.persistence.hibernate.package-info.java">org/dayatang/persistence/hibernate/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -74,7 +74,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-hibernate/checkstyle.html#org.dayatang.persistence.hibernate.UppercaseAndUnderscoreNamingStrategy.java">org/dayatang/persistence/hibernate/UppercaseAndUnderscoreNamingStrategy.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-hibernate//checkstyle.html#org.dayatang.persistence.hibernate.UppercaseAndUnderscoreNamingStrategy.java">org/dayatang/persistence/hibernate/UppercaseAndUnderscoreNamingStrategy.java</a>
                 </td>
                 <td>
                   0
@@ -88,7 +88,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://www.dayatang.org/dddlib/dddlib-persistence/dddlib-persistence-hibernate/checkstyle.html#org.dayatang.persistence.hibernate.SessionProvider.java">org/dayatang/persistence/hibernate/SessionProvider.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-persistence/dddlib-persistence-hibernate//checkstyle.html#org.dayatang.persistence.hibernate.SessionProvider.java">org/dayatang/persistence/hibernate/SessionProvider.java</a>
                 </td>
                 <td>
                   0
