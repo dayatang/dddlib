@@ -4,7 +4,7 @@
     <parent>
         <artifactId>dddlib-cache</artifactId>
         <groupId>org.dayatang.dddlib</groupId>
-        <version>4.4.1</version>
+        <version>4.4.2-SNAPSHOT</version>
     </parent>
     <artifactId>dddlib-cache-ehcache</artifactId>
     <name>DDDLib Cache implemented by EhCache</name>
