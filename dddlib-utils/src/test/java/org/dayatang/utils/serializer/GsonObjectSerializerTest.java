@@ -1,6 +1,7 @@
-package org.dayatang.utils;
+package org.dayatang.utils.serializer;
 
 import com.google.common.collect.Sets;
+import org.dayatang.utils.DateUtils;
 import org.dayatang.utils.serializer.GsonObjectSerializer;
 import org.dayatang.utils.support.Dictionary;
 import org.dayatang.utils.support.DictionaryCategory;
@@ -41,6 +42,13 @@ public class GsonObjectSerializerTest {
     @Test
     public void testSerialize() throws Exception {
         String result = "{\"prop1\":\"abc\",\"prop2\":null,\"id\":\"anId\",\"occurredOn\":\"1018454400000\",\"version\":1}";
+        assertThat(instance.serialize(event), is(result));
+    }
+
+    @Test
+    public void testSerializeExcludeField() throws Exception {
+        String result = "{\"prop1\":\"abc\",\"prop2\":null,\"id\":\"anId\",\"version\":1}";
+        instance = new GsonObjectSerializer("occurredOn");
         assertThat(instance.serialize(event), is(result));
     }
 

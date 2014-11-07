@@ -5,7 +5,9 @@ import org.dayatang.utils.ObjectSerializer;
 
 import java.lang.reflect.Type;
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by yyang on 14-9-16.
@@ -15,9 +17,21 @@ public class GsonObjectSerializer implements ObjectSerializer {
     private Gson gson;
 
     public GsonObjectSerializer() {
-        gson = new GsonBuilder().registerTypeAdapter(Date.class, new DateSerializer())
+        gson = createBuilder().create();
+    }
+
+    public GsonObjectSerializer(String... excludedProperties) {
+        gson = createBuilder()
+                .addSerializationExclusionStrategy(new FieldNameExclusionStrategy(excludedProperties))
+                .create();
+
+    }
+
+    private GsonBuilder createBuilder() {
+        return new GsonBuilder()
+                .registerTypeAdapter(Date.class, new DateSerializer())
                 .registerTypeAdapter(Date.class, new DateDeserializer())
-                .serializeNulls().create();
+                .serializeNulls();
     }
 
     @Override
@@ -50,6 +64,25 @@ public class GsonObjectSerializer implements ObjectSerializer {
             }
 
 
+        }
+    }
+
+    private static class FieldNameExclusionStrategy implements ExclusionStrategy {
+
+        private List<String> fieldNames;
+
+        private FieldNameExclusionStrategy(String... fieldNames) {
+            this.fieldNames = Arrays.asList(fieldNames);
+        }
+
+        @Override
+        public boolean shouldSkipField(FieldAttributes fieldAttributes) {
+            return fieldNames.contains(fieldAttributes.getName());
+        }
+
+        @Override
+        public boolean shouldSkipClass(Class<?> aClass) {
+            return false;
         }
     }
 
