@@ -6,6 +6,7 @@ import org.dayatang.configuration.ConfigurationException;
 import org.dayatang.utils.Assert;
 import org.dayatang.utils.serializer.GsonObjectSerializer;
 import org.dayatang.utils.ObjectSerializer;
+import org.dayatang.utils.serializer.GsonObjectSerializerBuilder;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,14 +14,23 @@ import java.util.Date;
 import java.util.Hashtable;
 
 public abstract class AbstractConfiguration implements Configuration {
+    private String dateFormat = "yyyy-MM-dd";
 	private String prefix = "";
 	private static final String DATE_FORMAT_KEY = "DATE_FORMAT";
-	private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
+	//private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
 	protected Hashtable<String, String> hTable;
 
-    private ObjectSerializer serializer = new GsonObjectSerializer();
+    private ObjectSerializer serializer = new GsonObjectSerializerBuilder().build();
 
-	/**
+    public String getDateFormat() {
+        return dateFormat;
+    }
+
+    public void setDateFormat(String dateFormat) {
+        this.dateFormat = dateFormat;
+    }
+
+    /**
 	 * 激活配置前缀功能
 	 * 
 	 * @param prefix 如"org.dayatang.mes."
@@ -171,7 +181,6 @@ public abstract class AbstractConfiguration implements Configuration {
 	@Override
 	public Date getDate(String key, Date defaultValue) {
 		String result = getString(key);
-		String dateFormat = getString(DATE_FORMAT_KEY, DEFAULT_DATE_FORMAT);
 		try {
 			return StringUtils.isBlank(result) ? defaultValue : new SimpleDateFormat(dateFormat).parse(result);
 		} catch (ParseException e) {
@@ -195,7 +204,6 @@ public abstract class AbstractConfiguration implements Configuration {
 		if (value == null) {
 			setString(key, "");
 		}
-		String dateFormat = getString(DATE_FORMAT_KEY, DEFAULT_DATE_FORMAT);
 		setString(key, new SimpleDateFormat(dateFormat).format(value));
 	}
 

@@ -4,14 +4,16 @@ import org.dayatang.configuration.Configuration;
 import org.dayatang.utils.DateUtils;
 import org.junit.Test;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Properties;
 
 import static org.junit.Assert.*;
 
 public abstract class AbstractConfigurationTest {
 
-	protected Configuration instance;
+	protected AbstractConfiguration instance;
 
 	@Test
 	public void testGetStringStringString() {
@@ -128,17 +130,17 @@ public abstract class AbstractConfigurationTest {
 
     @Test
     public void testGetObjectWithDefault() {
-        Date orig = DateUtils.parseDate("2002-05-11");
-        Date defaultDate = DateUtils.parseDate("2008-05-11");
-        assertEquals(orig, instance.getObject("theDay", Date.class, defaultDate));
-        assertEquals(defaultDate, instance.getObject("theDay1", Date.class, defaultDate));
+        Item orig = new Item(1, "abc", true);
+        Item defaultItem = new Item(2, "xyz", false);
+        assertEquals(orig, instance.getObject("theItem", Item.class, defaultItem));
+        assertEquals(defaultItem, instance.getObject("theItem1", Item.class, defaultItem));
     }
 
     @Test
     public void testGetObjectWithoutDefault() {
-        Date orig = DateUtils.parseDate("2002-05-11");
-        assertEquals(orig, instance.getObject("theDay", Date.class));
-        assertEquals(null, instance.getObject("theDay1", Date.class));
+        Item orig = new Item(1, "abc", true);
+        assertEquals(orig, instance.getObject("theItem", Item.class));
+        assertNull(instance.getObject("theItem1", Item.class));
     }
 
     @Test
@@ -153,5 +155,76 @@ public abstract class AbstractConfigurationTest {
 		Properties properties = instance.getProperties();
 		assertEquals("15", properties.get("size"));
 	}
+
+    private class Item {
+
+        private int id;
+        private String name;
+        private boolean disabled;
+
+        private Item() {
+        }
+
+        private Item(int id, String name, boolean disabled) {
+            this.id = id;
+            this.name = name;
+            this.disabled = disabled;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public boolean isDisabled() {
+            return disabled;
+        }
+
+        public void setDisabled(boolean disabled) {
+            this.disabled = disabled;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Item item = (Item) o;
+
+            if (disabled != item.disabled) return false;
+            if (id != item.id) return false;
+            if (!name.equals(item.name)) return false;
+
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = id;
+            result = 31 * result + name.hashCode();
+            result = 31 * result + (disabled ? 1 : 0);
+            return result;
+        }
+
+        @Override
+        public String toString() {
+            return "Item{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    ", disabled=" + disabled +
+                    '}';
+        }
+    }
 
 }
