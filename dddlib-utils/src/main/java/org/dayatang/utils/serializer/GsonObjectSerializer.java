@@ -16,22 +16,8 @@ public class GsonObjectSerializer implements ObjectSerializer {
 
     private Gson gson;
 
-    public GsonObjectSerializer() {
-        gson = createBuilder().create();
-    }
-
-    public GsonObjectSerializer(String... excludedProperties) {
-        gson = createBuilder()
-                .addSerializationExclusionStrategy(new FieldNameExclusionStrategy(excludedProperties))
-                .create();
-
-    }
-
-    private GsonBuilder createBuilder() {
-        return new GsonBuilder()
-                .registerTypeAdapter(Date.class, new DateSerializer())
-                .registerTypeAdapter(Date.class, new DateDeserializer())
-                .serializeNulls();
+    GsonObjectSerializer(Gson gson) {
+        this.gson = gson;
     }
 
     @Override
@@ -42,48 +28,6 @@ public class GsonObjectSerializer implements ObjectSerializer {
     @Override
     public <T> T deserialize(String serializedString, Class<T> objectClass) {
         return gson.fromJson(serializedString, objectClass);
-    }
-
-    private class DateSerializer implements JsonSerializer<Date> {
-        public JsonElement serialize(Date source, Type typeOfSource, JsonSerializationContext context) {
-            return new JsonPrimitive(Long.toString(source.getTime()));
-        }
-    }
-
-    private class DateDeserializer implements JsonDeserializer<Date> {
-        public Date deserialize(JsonElement json, Type typeOfTarget, JsonDeserializationContext context) throws JsonParseException {
-            long time = Long.parseLong(json.getAsJsonPrimitive().getAsString());
-            if (typeOfTarget == Date.class) {
-                return new Date(time);
-            } else if (typeOfTarget == Timestamp.class) {
-                return new Timestamp(time);
-            } else if (typeOfTarget == java.sql.Date.class) {
-                return new java.sql.Date(time);
-            } else {
-                throw new IllegalArgumentException(getClass() + " cannot deserialize to " + typeOfTarget);
-            }
-
-
-        }
-    }
-
-    private static class FieldNameExclusionStrategy implements ExclusionStrategy {
-
-        private List<String> fieldNames;
-
-        private FieldNameExclusionStrategy(String... fieldNames) {
-            this.fieldNames = Arrays.asList(fieldNames);
-        }
-
-        @Override
-        public boolean shouldSkipField(FieldAttributes fieldAttributes) {
-            return fieldNames.contains(fieldAttributes.getName());
-        }
-
-        @Override
-        public boolean shouldSkipClass(Class<?> aClass) {
-            return false;
-        }
     }
 
 }

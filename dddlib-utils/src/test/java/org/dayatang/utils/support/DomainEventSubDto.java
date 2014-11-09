@@ -1,11 +1,18 @@
 package org.dayatang.utils.support;
 
 import java.util.Date;
+import java.util.UUID;
 
 /**
- * Created by yyang on 14-9-14.
+ * Created by yyang on 14/11/9.
  */
-public class DomainEventSub extends DomainEvent {
+public class DomainEventSubDto {
+
+    private String id;
+
+    private String occurredOn;
+
+    private String version;
 
     private String prop1;
 
@@ -13,22 +20,28 @@ public class DomainEventSub extends DomainEvent {
 
     private transient String transientField;
 
-    protected Date lastModified;
-
-    public DomainEventSub() {
+    public String getId() {
+        return id;
     }
 
-    public DomainEventSub(Date occurredOn) {
-        super(occurredOn);
-    }
-
-    public DomainEventSub(Date occurredOn, int version) {
-        super(occurredOn, version);
-    }
-
-    @Override
     public void setId(String id) {
-        super.setId(id);
+        this.id = id;
+    }
+
+    public String getOccurredOn() {
+        return occurredOn;
+    }
+
+    public void setOccurredOn(String occurredOn) {
+        this.occurredOn = occurredOn;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
     }
 
     public String getProp1() {
@@ -53,13 +66,5 @@ public class DomainEventSub extends DomainEvent {
 
     public void setTransientField(String transientField) {
         this.transientField = transientField;
-    }
-
-    public Date getLastModified() {
-        return lastModified;
-    }
-
-    public void setLastModified(Date lastModified) {
-        this.lastModified = lastModified;
     }
 }
