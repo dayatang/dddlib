@@ -16,6 +16,10 @@ public class GsonObjectSerializer implements ObjectSerializer {
 
     private Gson gson;
 
+    GsonObjectSerializer() {
+        this.gson = new GsonBuilder().create();
+    }
+
     GsonObjectSerializer(Gson gson) {
         this.gson = gson;
     }
