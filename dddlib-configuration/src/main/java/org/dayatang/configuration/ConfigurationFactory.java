@@ -1,8 +1,11 @@
 package org.dayatang.configuration;
 
+import org.dayatang.utils.Assert;
+
 import javax.sql.DataSource;
 import java.io.File;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.ServiceLoader;
 
 /**
@@ -15,7 +18,11 @@ public class ConfigurationFactory {
     private static ConfigurationFactory instance = getInstance();
 
     private static ConfigurationFactory getInstance() {
-        return ServiceLoader.load(ConfigurationFactory.class).iterator().next();
+		Iterator<ConfigurationFactory> iterator = ServiceLoader.load(ConfigurationFactory.class).iterator();
+		if (iterator.hasNext()) {
+			return iterator.next();
+		}
+		throw new IllegalStateException("ConfigurationFactory implement class not found!");
     }
 
     public static ConfigurationFactory singleton() {

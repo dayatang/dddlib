@@ -1,6 +1,7 @@
 package org.dayatang.configuration.impl;
 
 import org.dayatang.configuration.WritableConfiguration;
+import org.dayatang.utils.Assert;
 import org.dayatang.utils.Slf4JLogger;
 
 import javax.sql.DataSource;
@@ -36,6 +37,10 @@ public class ConfigurationDbImpl extends AbstractConfiguration implements Writab
 	}
 
 	public ConfigurationDbImpl(DataSource dataSource, String tableName, String keyColumn, String valueColumn) {
+		Assert.notNull(dataSource, "Data source is null!");
+		Assert.notEmpty(tableName, "Table name is blank!");
+		Assert.notEmpty(tableName, "Key column is blank!");
+		Assert.notEmpty(tableName, "Value column is blank!");
 		dbUtils = new ConfigurationDbUtils(dataSource, tableName, keyColumn, valueColumn);
 	}
 
