@@ -3,12 +3,10 @@ package org.dayatang.domain.event;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.utils.Assert;
 import org.dayatang.utils.ObjectSerializer;
-import org.dayatang.utils.serializer.GsonObjectSerializer;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.util.Date;
 
 /**

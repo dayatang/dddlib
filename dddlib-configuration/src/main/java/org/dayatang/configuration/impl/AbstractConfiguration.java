@@ -4,9 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.dayatang.configuration.Configuration;
 import org.dayatang.configuration.ConfigurationException;
 import org.dayatang.utils.Assert;
-import org.dayatang.utils.serializer.GsonObjectSerializer;
 import org.dayatang.utils.ObjectSerializer;
-import org.dayatang.utils.serializer.GsonObjectSerializerBuilder;
+import org.dayatang.utils.serializer.GsonSerializerBuilder;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,7 +19,7 @@ public abstract class AbstractConfiguration implements Configuration {
 	//private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
 	protected Hashtable<String, String> hTable;
 
-    private ObjectSerializer serializer = new GsonObjectSerializerBuilder().build();
+    private ObjectSerializer serializer = new GsonSerializerBuilder().build();
 
     public String getDateFormat() {
         return dateFormat;

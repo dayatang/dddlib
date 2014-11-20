@@ -3,7 +3,6 @@ package org.dayatang.utils.serializer;
 import com.google.common.collect.Sets;
 import com.google.gson.*;
 import org.dayatang.utils.DateUtils;
-import org.dayatang.utils.serializer.GsonObjectSerializer;
 import org.dayatang.utils.support.Dictionary;
 import org.dayatang.utils.support.DictionaryCategory;
 import org.dayatang.utils.support.DomainEventSub;
@@ -26,11 +25,11 @@ import static org.junit.Assert.assertNull;
 /**
  * Created by yyang on 14-9-14.
  */
-public class GsonObjectSerializerTest {
+public class GsonSerializerTest {
 
-    private GsonObjectSerializerBuilder builder;
+    private GsonSerializerBuilder builder;
 
-    private GsonObjectSerializer instance;
+    private GsonSerializer instance;
 
     private DictionaryCategory category;
 
@@ -42,7 +41,7 @@ public class GsonObjectSerializerTest {
 
     @Before
     public void setUp() throws Exception {
-        builder = new GsonObjectSerializerBuilder().dateFormat("yyyy-MM-dd");
+        builder = new GsonSerializerBuilder().dateFormat("yyyy-MM-dd");
         instance = builder.build();
         Date occurredOn = DateUtils.date(2002, 4, 11);
         event = new DomainEventSub(occurredOn, 1);

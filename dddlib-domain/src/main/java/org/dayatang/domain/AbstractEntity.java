@@ -18,11 +18,11 @@ public abstract class AbstractEntity extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Long id;
 
     @Version
-    @Column(name = "VERSION")
+    @Column(name = "version")
     private int version;
 
     /**

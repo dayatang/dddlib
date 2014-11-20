@@ -12,11 +12,15 @@ import java.util.List;
 /**
  * Created by yyang on 14-9-16.
  */
-public class GsonObjectSerializer implements ObjectSerializer {
+public class GsonSerializer implements ObjectSerializer {
 
     private Gson gson;
 
-    GsonObjectSerializer(Gson gson) {
+    public GsonSerializer() {
+        this.gson = new GsonBuilder().create();
+    }
+
+    public GsonSerializer(Gson gson) {
         this.gson = gson;
     }
 
