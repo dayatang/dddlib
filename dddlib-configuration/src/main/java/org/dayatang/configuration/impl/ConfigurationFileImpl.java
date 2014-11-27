@@ -51,7 +51,7 @@ public class ConfigurationFileImpl extends AbstractConfiguration implements Writ
 	 */
 	public static ConfigurationFileImpl fromFileSystem(final String pathname) {
 		Assert.notBlank(pathname, String.format("File name %s is empty!", pathname));
-		return fromFileSystem(new File(pathname));
+		return fromFile(new File(pathname));
 	}
 	
 	/**
@@ -63,26 +63,22 @@ public class ConfigurationFileImpl extends AbstractConfiguration implements Writ
 	public static ConfigurationFileImpl fromFileSystem(final String dirPath, final String fileName) {
 		Assert.notBlank(dirPath, String.format("Directory %s is empty!", dirPath));
 		Assert.notBlank(fileName, String.format("File name %s is empty!", fileName));
-		return fromFileSystem(new File(dirPath, fileName));
+		return fromFile(new File(dirPath, fileName));
 	}
 	
-	public static ConfigurationFileImpl fromFileSystem(final File file) {
+	public static ConfigurationFileImpl fromFile(final File file) {
+		return new ConfigurationFileImpl(file);
+	}
+
+	private ConfigurationFileImpl(final File file) {
+		if (file == null) {
+			throw new ConfigurationException("File " + file.getName() + " is null!");
+		}
 		if (!file.exists()) {
 			throw new ConfigurationException("File " + file.getName() + " not found!");
 		}
 		if (!file.canRead()) {
 			throw new ConfigurationException("File " + file.getName() + " is unreadable!");
-		}
-		return new ConfigurationFileImpl(file);
-	}
-
-	private ConfigurationFileImpl(final File file) {
-		this.file = file;
-		if (!file.exists()) {
-			throw new IllegalArgumentException(String.format("File $s not exists!", file.getAbsolutePath()));
-		}
-		if (!file.canRead()) {
-			throw new IllegalStateException("File " + file.getName() + " is unreadable!");
 		}
 		load();
 	}

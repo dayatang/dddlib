@@ -47,7 +47,7 @@ public class ConfigurationFileImplTest extends AbstractConfigurationTest {
 	public void testFromFile() {
 		String pathname = getClass().getResource("/conf.properties").getFile();
 		File file = new File(pathname);
-		instance = ConfigurationFileImpl.fromFileSystem(file);
+		instance = ConfigurationFileImpl.fromFile(file);
 		assertTrue(instance.getProperties().size() > 0);
 	}
 

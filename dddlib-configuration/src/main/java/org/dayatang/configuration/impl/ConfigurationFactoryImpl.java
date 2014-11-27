@@ -68,7 +68,7 @@ public class ConfigurationFactoryImpl extends ConfigurationFactory {
      * @return 可写的配置
      */
     public WritableConfiguration fromFileSystem(File file) {
-        return ConfigurationFileImpl.fromFileSystem(file);
+        return ConfigurationFileImpl.fromFile(file);
     }
 
     /**
