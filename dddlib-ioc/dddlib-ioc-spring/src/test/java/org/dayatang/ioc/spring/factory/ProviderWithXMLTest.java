@@ -20,7 +20,7 @@ public class ProviderWithXMLTest extends AbstractInstanceProviderTest {
 
     @Test
     public void testGetInstanceByFactoryBean() {
-        Service service = provider.getInstance(MyService1.class);
+        Service service = getProvider().getInstance(MyService1.class);
         assertEquals("I am Service 1", service.sayHello());
     }
 }
