@@ -27,7 +27,7 @@ public class TapestryInstanceProviderTest extends AbstractInstanceProviderTest {
 
     @Test
     public void testConstructorFromModule() {
-        Service service = provider.getInstance(Service.class, "service1");
+        Service service = getProvider().getInstance(Service.class, "service1");
         assertEquals("I am Service 1", service.sayHello());
     }
 
