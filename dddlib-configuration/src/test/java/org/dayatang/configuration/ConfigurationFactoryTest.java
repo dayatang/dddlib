@@ -64,6 +64,7 @@ public class ConfigurationFactoryTest {
 	public void testFromFileSystemFile() {
 		String pathname = getClass().getResource("/conf.properties").getFile();
 		File file = new File(pathname);
+		assertTrue(file.canRead());
 		assertTrue(instance.fromFileSystem(file) instanceof ConfigurationFileImpl);
 	}
 

@@ -80,6 +80,7 @@ public class ConfigurationFileImpl extends AbstractConfiguration implements Writ
 		if (!file.canRead()) {
 			throw new ConfigurationException("File " + file.getName() + " is unreadable!");
 		}
+		this.file = file;
 		load();
 	}
 
@@ -94,6 +95,7 @@ public class ConfigurationFileImpl extends AbstractConfiguration implements Writ
 		Properties props = new Properties();
 		InputStream in = null;
 		try {
+			System.out.println(file.getName());
 			in = new FileInputStream(file);
 			props.load(in);
 			hTable = pfu.rectifyProperties(props);
