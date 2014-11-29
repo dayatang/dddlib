@@ -13,12 +13,12 @@ public class GuiceInstanceProviderTest extends AbstractInstanceProviderTest {
 
 	@Test
 	public void testConstructorFromModule() {
-		assertEquals("I am Service 1", provider.getInstance(Service.class, "service1").sayHello());
+		assertEquals("I am Service 1", getProvider().getInstance(Service.class, "service1").sayHello());
 	}
 
 	@Test
 	public void testConstructorFromInjector() {
-		provider = new GuiceInstanceProvider(createInjector());
+		InstanceProvider provider = new GuiceInstanceProvider(createInjector());
 		assertEquals("I am Service 1", provider.getInstance(Service.class, "service1").sayHello());
 	}
 
@@ -47,7 +47,7 @@ public class GuiceInstanceProviderTest extends AbstractInstanceProviderTest {
     @Override
     @Test
     public void testGetInstanceWithAnnotation() {
-        Service3 service = provider.getInstance(Service3.class, MyBindingAnnotation.class);
+        Service3 service = getProvider().getInstance(Service3.class, MyBindingAnnotation.class);
         assertNotNull(service);
     }
 }

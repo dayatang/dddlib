@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  */
 public abstract class AbstractInstanceProviderTest {
 
-	protected InstanceProvider provider;
+	private InstanceProvider provider;
 	abstract protected InstanceProvider createInstanceProvider();
 
 	@Before
@@ -42,4 +42,8 @@ public abstract class AbstractInstanceProviderTest {
     public void testNotFound() {
         assertNull(provider.getInstance(Long.class));
     }
+
+	public InstanceProvider getProvider() {
+		return provider;
+	}
 }
