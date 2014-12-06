@@ -88,6 +88,6 @@
 	</dependencies>
 
 	<properties>
-        <drools.version>6.1.0.Final</drools.version>
+        <drools.version>6.2.0.CR2</drools.version>
     </properties>
 </project>
