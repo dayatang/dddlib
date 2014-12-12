@@ -105,7 +105,7 @@
     </ciManagement>
 
     <issueManagement>
-        <system>github</system>
+        <system>GitHub</system>
         <url>https://github.com/dayatang/dddlib/issues</url>
     </issueManagement>
 
@@ -135,7 +135,7 @@
 
         <jdk.version>1.6</jdk.version>
         <slf4j.version>1.7.7</slf4j.version>
-        <spring.version>4.1.2.RELEASE</spring.version>
+        <spring.version>4.1.3.RELEASE</spring.version>
         <tapestry.version>5.4-beta-22</tapestry.version>
         <hibernate.version>4.3.7.Final</hibernate.version>
         <!-- Database settings, default to H2 database -->
