@@ -92,6 +92,7 @@
                     <url>${jdbc.url}</url>
                     <username>${mysql.username}</username>
                     <password>${mysql.password}</password>
+                    <skip>${maven.test.skip}</skip>
                 </configuration>
                 <executions>
                     <execution>
