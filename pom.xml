@@ -175,7 +175,7 @@
     <repositories>
         <repository>
             <id>dayatang-releases</id>
-            <url>http://nexus.dayatang.org/content/groups/public-release</url>
+            <url>http://nexus.dayatang.org/content/groups/public-releases</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -198,7 +198,7 @@
     <pluginRepositories>
         <pluginRepository>
             <id>dayatang-releases</id>
-            <url>http://nexus.dayatang.org/content/groups/public-release</url>
+            <url>http://nexus.dayatang.org/content/groups/public-releases</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
