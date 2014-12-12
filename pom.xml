@@ -79,7 +79,7 @@
 
     <ciManagement>
         <system>jenkins</system>
-        <url>http://www.dayatang.org:8080/jenkins/job/dddlib/</url>
+        <url>http://jenkins.dayatang.org/job/dddlib/</url>
         <notifiers>
             <notifier>
                 <type>mail</type>
@@ -90,16 +90,6 @@
                 <sendOnFailure>true</sendOnFailure>
                 <sendOnWarning>false</sendOnWarning>
                 <sendOnSuccess>false</sendOnSuccess>
-            </notifier>
-            <notifier>
-                <type>mail</type>
-                <configuration>
-                    <address>chencao0524@gmail.com</address>
-                </configuration>
-                <sendOnError>true</sendOnError>
-                <sendOnFailure>true</sendOnFailure>
-                <sendOnWarning>true</sendOnWarning>
-                <sendOnSuccess>true</sendOnSuccess>
             </notifier>
         </notifiers>
     </ciManagement>
