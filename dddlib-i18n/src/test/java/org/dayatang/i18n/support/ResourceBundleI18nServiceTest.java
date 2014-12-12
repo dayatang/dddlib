@@ -20,7 +20,7 @@ public class ResourceBundleI18nServiceTest {
 		String msg = messages.getMessage("hi", "这是默认消息！", Locale.ENGLISH);
 		assertEquals("hello", msg);
 
-		msg = messages.getMessage("hi", "这是默认消息！");
+		msg = messages.getMessage("hi", "这是默认消息！", Locale.SIMPLIFIED_CHINESE);
 		assertEquals("你好！", msg);
 
 		msg = messages.getMessage("hi_", "这是默认消息！");
@@ -36,10 +36,17 @@ public class ResourceBundleI18nServiceTest {
 	@Test
 	public void getMessage_holder() {
 		LocaleContextHolder.setLocale(Locale.ENGLISH);
-		
 		String msg = messages.getMessage("hi", "这是默认消息！");
 		assertEquals("hello", msg);
-		
+
+		LocaleContextHolder.setLocale(Locale.SIMPLIFIED_CHINESE);
+		msg = messages.getMessage("hi", "这是默认消息！");
+		assertEquals("你好！", msg);
+
+		LocaleContextHolder.setLocale(Locale.CHINESE);
+		msg = messages.getMessage("hi", "这是默认消息！");
+		assertEquals("你好！", msg);
+
 		LocaleContextHolder.resetLocale();
 	}
 }
