@@ -118,60 +118,6 @@
         </site>
     </distributionManagement>
 
-    <properties>
-        <github.global.server>github</github.global.server>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <jdk.version>1.6</jdk.version>
-        <slf4j.version>1.7.7</slf4j.version>
-        <spring.version>4.1.3.RELEASE</spring.version>
-        <tapestry.version>5.4-beta-22</tapestry.version>
-        <hibernate.version>4.3.7.Final</hibernate.version>
-        <!-- Database settings, default to H2 database -->
-        <h2.username>sa</h2.username>
-        <h2.password />
-        <h2.version>1.4.180</h2.version>
-        <mysql.username>root</mysql.username>
-        <mysql.password />
-        <mysql.host>localhost</mysql.host>
-        <mysql.version>5.1.34</mysql.version>
-        <derby.username>any</derby.username>
-        <derby.password>value</derby.password>
-        <postgresql.username>postgres</postgresql.username>
-        <postgresql.password>postgres</postgresql.password>
-        <hsqldb.username>sa</hsqldb.username>
-        <hsqldb.password />
-        <oracle.username>system</oracle.username>
-        <oracle.password>system</oracle.password>
-        <oracle.version>11.2.0.3</oracle.version>
-        <db2.username>db2admin</db2.username>
-        <db2.password>db2admin</db2.password>
-        <sqlserver.username>sa</sqlserver.username>
-        <sqlserver.password>appfuse</sqlserver.password>
-
-        <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
-        <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
-        <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
-        <db.type>h2</db.type>
-        <db.host>localhost</db.host>
-        <db.name>testdb</db.name>
-        <jdbc.groupId>com.h2database</jdbc.groupId>
-        <jdbc.artifactId>h2</jdbc.artifactId>
-        <jdbc.version>${h2.version}</jdbc.version>
-        <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
-        <!--<jdbc.url><![CDATA[jdbc:h2:mem:testdb]]></jdbc.url>-->
-        <jdbc.url><![CDATA[jdbc:h2:${basedir}/target/${db.name}]]></jdbc.url>
-        <jdbc.username>sa</jdbc.username>
-        <jdbc.password />
-        <hibernate.query.substitutions>true 'Y', false 'N'</hibernate.query.substitutions>
-        <hibernate.cache.provider_class>org.hibernate.cache.EhCacheProvider</hibernate.cache.provider_class>
-        <hibernate.cache.use_query_cache>true</hibernate.cache.use_query_cache>
-        <hibernate.hbm2ddl.auto>create-drop</hibernate.hbm2ddl.auto>
-        <hibernate.show_sql>true</hibernate.show_sql>
-        <hibernate.format_sql>true</hibernate.format_sql>
-    </properties>
-
     <repositories>
         <repository>
             <id>dayatang-releases</id>
@@ -952,4 +898,58 @@
             </properties>
         </profile>
     </profiles>
+
+    <properties>
+        <github.global.server>github</github.global.server>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <jdk.version>1.6</jdk.version>
+        <slf4j.version>1.7.7</slf4j.version>
+        <spring.version>4.1.3.RELEASE</spring.version>
+        <tapestry.version>5.4-beta-22</tapestry.version>
+        <hibernate.version>4.3.7.Final</hibernate.version>
+        <!-- Database settings, default to H2 database -->
+        <h2.username>sa</h2.username>
+        <h2.password />
+        <h2.version>1.4.180</h2.version>
+        <mysql.username>root</mysql.username>
+        <mysql.password />
+        <mysql.host>localhost</mysql.host>
+        <mysql.version>5.1.34</mysql.version>
+        <derby.username>any</derby.username>
+        <derby.password>value</derby.password>
+        <postgresql.username>postgres</postgresql.username>
+        <postgresql.password>postgres</postgresql.password>
+        <hsqldb.username>sa</hsqldb.username>
+        <hsqldb.password />
+        <oracle.username>system</oracle.username>
+        <oracle.password>system</oracle.password>
+        <oracle.version>11.2.0.3</oracle.version>
+        <db2.username>db2admin</db2.username>
+        <db2.password>db2admin</db2.password>
+        <sqlserver.username>sa</sqlserver.username>
+        <sqlserver.password>appfuse</sqlserver.password>
+
+        <dbunit.operation.type>CLEAN_INSERT</dbunit.operation.type>
+        <dbunit.dataTypeFactoryName>org.dbunit.ext.h2.H2DataTypeFactory</dbunit.dataTypeFactoryName>
+        <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+        <db.type>h2</db.type>
+        <db.host>localhost</db.host>
+        <db.name>testdb</db.name>
+        <jdbc.groupId>com.h2database</jdbc.groupId>
+        <jdbc.artifactId>h2</jdbc.artifactId>
+        <jdbc.version>${h2.version}</jdbc.version>
+        <jdbc.driverClassName>org.h2.Driver</jdbc.driverClassName>
+        <!--<jdbc.url><![CDATA[jdbc:h2:mem:testdb]]></jdbc.url>-->
+        <jdbc.url><![CDATA[jdbc:h2:${basedir}/target/${db.name}]]></jdbc.url>
+        <jdbc.username>sa</jdbc.username>
+        <jdbc.password />
+        <hibernate.query.substitutions>true 'Y', false 'N'</hibernate.query.substitutions>
+        <hibernate.cache.provider_class>org.hibernate.cache.EhCacheProvider</hibernate.cache.provider_class>
+        <hibernate.cache.use_query_cache>true</hibernate.cache.use_query_cache>
+        <hibernate.hbm2ddl.auto>create-drop</hibernate.hbm2ddl.auto>
+        <hibernate.show_sql>true</hibernate.show_sql>
+        <hibernate.format_sql>true</hibernate.format_sql>
+    </properties>
 </project>
