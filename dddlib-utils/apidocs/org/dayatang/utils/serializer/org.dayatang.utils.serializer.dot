@@ -9,11 +9,17 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.utils.serializer.GsonObjectSerializer
-	c27 [label=<<table title="org.dayatang.utils.serializer.GsonObjectSerializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GsonObjectSerializer.html">
+	// org.dayatang.utils.serializer.GsonSerializerBuilder
+	c28 [label=<<table title="org.dayatang.utils.serializer.GsonSerializerBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GsonSerializerBuilder.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> GsonObjectSerializer </td></tr>
+<tr><td align="center" balign="center"> GsonSerializerBuilder </td></tr>
 		</table></td></tr>
-		</table>>, URL="./GsonObjectSerializer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./GsonSerializerBuilder.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.dayatang.utils.serializer.GsonSerializer
+	c29 [label=<<table title="org.dayatang.utils.serializer.GsonSerializer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GsonSerializer.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> GsonSerializer </td></tr>
+		</table></td></tr>
+		</table>>, URL="./GsonSerializer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 
