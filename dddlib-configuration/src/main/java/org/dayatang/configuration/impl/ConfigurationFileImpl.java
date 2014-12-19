@@ -85,11 +85,6 @@ public class ConfigurationFileImpl extends AbstractConfiguration implements Writ
 	}
 
 	@Override
-	public Properties getProperties() {
-		return pfu.unRectifyProperties(getHashtable());
-	}
-
-	@Override
 	public void load() {
 		hTable = new Hashtable<String, String>();
 		Properties props = new Properties();
@@ -120,9 +115,8 @@ public class ConfigurationFileImpl extends AbstractConfiguration implements Writ
 	public void save() {
 		BufferedWriter out = null;
 		try {
-			Properties props = pfu.unRectifyProperties(getHashtable());
 			out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), PropertiesFileUtils.ISO_8859_1));
-			store(props, out, "Config file for " + file);
+			store(getProperties(), out, "Config file for " + file);
 		} catch (Exception e) {
 			throw new ConfigurationException(e);
 		} finally {

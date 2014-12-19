@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Hashtable;
+import java.util.Properties;
 
 public abstract class AbstractConfiguration implements Configuration {
     private String dateFormat = "yyyy-MM-dd";
@@ -18,6 +19,8 @@ public abstract class AbstractConfiguration implements Configuration {
 	private static final String DATE_FORMAT_KEY = "DATE_FORMAT";
 	//private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
 	protected Hashtable<String, String> hTable;
+
+	private PropertiesFileUtils pfu = new PropertiesFileUtils("utf-8");
 
     private ObjectSerializer serializer = new GsonSerializerBuilder().build();
 
@@ -222,7 +225,12 @@ public abstract class AbstractConfiguration implements Configuration {
         setString(key, serializer.serialize(value));
     }
 
-    public Hashtable<String, String> getHashtable() {
+	@Override
+	public Properties getProperties() {
+		return pfu.unRectifyProperties(getHashtable());
+	}
+
+    private Hashtable<String, String> getHashtable() {
 		if (hTable == null) {
 			load();
 		}

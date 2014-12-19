@@ -44,15 +44,6 @@ public class ConfigurationDbImpl extends AbstractConfiguration implements Writab
 		dbUtils = new ConfigurationDbUtils(dataSource, tableName, keyColumn, valueColumn);
 	}
 
-	@Override
-	public Properties getProperties() {
-		Properties results = new Properties();
-		for (Map.Entry<String, String> each : getHashtable().entrySet()) {
-			results.put(each.getKey(), each.getValue());
-		}
-		return results;
-	}
-
 	//从数据库中取得配置项，更新当前内存中的配置值。
 	@Override
 	public void load() {

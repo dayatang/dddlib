@@ -5,18 +5,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.InputStream;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class ConfigurationFileImplTest extends AbstractConfigurationTest {
+public class ConfigurationInputStreamImplTest extends AbstractConfigurationTest {
 
 	private String fileInClass = "/conf.properties";
 	
 	@Before
 	public void setUp() throws Exception {
-		String fileName = getClass().getResource(fileInClass).getFile();
-		instance = ConfigurationFileImpl.fromFile(new File(fileName));
+		InputStream in = getClass().getResourceAsStream(fileInClass);
+		instance = new ConfigurationInputStreamImpl(in);
 	}
 
 	@After
@@ -56,16 +57,7 @@ public class ConfigurationFileImplTest extends AbstractConfigurationTest {
 
 	@Test
 	public void testUsePrefix() {
-		((ConfigurationFileImpl)instance).usePrefix("org.dayatang");
+		instance.usePrefix("org.dayatang");
 		assertTrue(instance.getBoolean("finished"));
 	}
-
-	@Test
-	public void testSave() {
-		instance.setString("xyz", "yyyy-MM-dd");
-		((ConfigurationFileImpl)instance).save();
-		instance = ConfigurationFileImpl.fromClasspath(fileInClass);
-		assertEquals("yyyy-MM-dd", instance.getString("xyz"));
-	}
-
 }

@@ -48,11 +48,6 @@ public class ConfigurationUrlImpl extends AbstractConfiguration {
 	}
 
 	@Override
-	public Properties getProperties() {
-		return pfu.unRectifyProperties(getHashtable());
-	}
-
-	@Override
 	public void load() {
 		hTable = new Hashtable<String, String>();
 		Properties props = new Properties();

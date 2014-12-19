@@ -12,15 +12,6 @@ public class SimpleConfiguration extends AbstractConfiguration {
 	}
 
 	@Override
-	public Properties getProperties() {
-		Properties results = new Properties();
-		for (Map.Entry<String, String> each : getHashtable().entrySet()) {
-			results.put(each.getKey(), each.getValue());
-		}
-		return results;
-	}
-
-	@Override
 	public void load() {
 	}
 
