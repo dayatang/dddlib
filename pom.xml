@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-         http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0          http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.dayatang.dddlib</groupId>
     <artifactId>dddlib-project</artifactId>
-    <version>4.4.2-SNAPSHOT</version>
+    <version>4.4.2</version>
     <packaging>pom</packaging>
     <name>DDDLib Project</name>
     <url>http://dayatang.github.io/dddlib/</url>
@@ -74,7 +71,7 @@
         <url>http://github.com/dayatang/dddlib/tree/master</url>
         <connection>scm:git:git://github.com/dayatang/dddlib.git</connection>
         <developerConnection>scm:git:git@github.com:dayatang/dddlib.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>dddlib-project-4.4.2</tag>
     </scm>
 
     <ciManagement>
