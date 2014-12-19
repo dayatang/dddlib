@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./DomainEventBusImpl.html" title="org.dayatang.domain.event.DomainEventBusImpl" alt="" coords="16,118,159,143"/>
-<area shape="rect" id="node1" href="./DomainEventBusImpl.html" title="&lt;TABLE&gt;" alt="" coords="5,107,169,155"/>
-<area shape="rect" id="node2_1" href="./DomainEventBus.html" title="org.dayatang.domain.event.DomainEventBus" alt="" coords="27,11,147,53"/>
-<area shape="rect" id="node2" href="./DomainEventBus.html" title="&lt;TABLE&gt;" alt="" coords="17,5,158,59"/>
+<area shape="rect" id="node1_0" href="./DomainEventBusImpl.html" title="org.dayatang.domain.event.DomainEventBusImpl" alt="" coords="16,118,163,143"/>
+<area shape="rect" id="node1" href="./DomainEventBusImpl.html" title="&lt;TABLE&gt;" alt="" coords="5,107,173,155"/>
+<area shape="rect" id="node2_1" href="./DomainEventBus.html" title="org.dayatang.domain.event.DomainEventBus" alt="" coords="29,11,150,53"/>
+<area shape="rect" id="node2" href="./DomainEventBus.html" title="&lt;TABLE&gt;" alt="" coords="18,5,161,59"/>
 </map>

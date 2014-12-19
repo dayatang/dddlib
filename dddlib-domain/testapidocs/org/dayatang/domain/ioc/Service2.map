@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Service2.html" title="org.dayatang.domain.ioc.Service2" alt="" coords="159,11,240,53"/>
-<area shape="rect" id="node1" href="./Service2.html" title="&lt;TABLE&gt;" alt="" coords="148,5,251,59"/>
-<area shape="rect" id="node2_1" href="./MyService23.html" title="org.dayatang.domain.ioc.MyService23" alt="" coords="16,118,108,143"/>
-<area shape="rect" id="node2" href="./MyService23.html" title="&lt;TABLE&gt;" alt="" coords="5,107,119,155"/>
-<area shape="rect" id="node3_2" href="./MyService22.html" title="org.dayatang.domain.ioc.MyService22" alt="" coords="153,118,245,143"/>
-<area shape="rect" id="node3" href="./MyService22.html" title="&lt;TABLE&gt;" alt="" coords="143,107,256,155"/>
-<area shape="rect" id="node4_3" href="./MyService21.html" title="org.dayatang.domain.ioc.MyService21" alt="" coords="291,118,383,143"/>
-<area shape="rect" id="node4" href="./MyService21.html" title="&lt;TABLE&gt;" alt="" coords="280,107,393,155"/>
+<area shape="rect" id="node1_0" href="./Service2.html" title="org.dayatang.domain.ioc.Service2" alt="" coords="163,11,248,53"/>
+<area shape="rect" id="node1" href="./Service2.html" title="&lt;TABLE&gt;" alt="" coords="152,5,259,59"/>
+<area shape="rect" id="node2_1" href="./MyService23.html" title="org.dayatang.domain.ioc.MyService23" alt="" coords="16,118,112,143"/>
+<area shape="rect" id="node2" href="./MyService23.html" title="&lt;TABLE&gt;" alt="" coords="5,107,123,155"/>
+<area shape="rect" id="node3_2" href="./MyService22.html" title="org.dayatang.domain.ioc.MyService22" alt="" coords="157,118,253,143"/>
+<area shape="rect" id="node3" href="./MyService22.html" title="&lt;TABLE&gt;" alt="" coords="147,107,264,155"/>
+<area shape="rect" id="node4_3" href="./MyService21.html" title="org.dayatang.domain.ioc.MyService21" alt="" coords="299,118,395,143"/>
+<area shape="rect" id="node4" href="./MyService21.html" title="&lt;TABLE&gt;" alt="" coords="288,107,405,155"/>
 </map>

@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ValueObject.html" title="org.dayatang.domain.ValueObject" alt="" coords="16,112,107,155"/>
-<area shape="rect" id="node1" href="./ValueObject.html" title="&lt;TABLE&gt;" alt="" coords="5,107,117,160"/>
-<area shape="rect" id="node2_1" href="./Value.html" title="org.dayatang.domain.Value" alt="" coords="35,219,87,245"/>
-<area shape="rect" id="node2" href="./Value.html" title="&lt;TABLE&gt;" alt="" coords="25,208,98,256"/>
-<area shape="rect" id="node3_2" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="java.io.Serializable" alt="" coords="19,11,103,53"/>
-<area shape="rect" id="node3" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="&lt;TABLE&gt;" alt="" coords="9,5,114,59"/>
+<area shape="rect" id="node1_0" href="./ValueObject.html" title="org.dayatang.domain.ValueObject" alt="" coords="16,112,108,155"/>
+<area shape="rect" id="node1" href="./ValueObject.html" title="&lt;TABLE&gt;" alt="" coords="5,107,119,160"/>
+<area shape="rect" id="node2_1" href="./Value.html" title="org.dayatang.domain.Value" alt="" coords="35,219,89,245"/>
+<area shape="rect" id="node2" href="./Value.html" title="&lt;TABLE&gt;" alt="" coords="25,208,99,256"/>
+<area shape="rect" id="node3_2" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="java.io.Serializable" alt="" coords="18,11,106,53"/>
+<area shape="rect" id="node3" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="&lt;TABLE&gt;" alt="" coords="7,5,117,59"/>
 </map>

@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Organization.html" title="org.dayatang.domain.entity.Organization" alt="" coords="16,17,108,42"/>
-<area shape="rect" id="node1" href="./Organization.html" title="&lt;TABLE&gt;" alt="" coords="5,5,119,53"/>
-<area shape="rect" id="node2_1" href="./Dept.html" title="org.dayatang.domain.entity.Dept" alt="" coords="38,113,86,138"/>
-<area shape="rect" id="node2" href="./Dept.html" title="&lt;TABLE&gt;" alt="" coords="26,101,98,149"/>
+<area shape="rect" id="node1_0" href="./Organization.html" title="org.dayatang.domain.entity.Organization" alt="" coords="16,17,111,42"/>
+<area shape="rect" id="node1" href="./Organization.html" title="&lt;TABLE&gt;" alt="" coords="5,5,121,53"/>
+<area shape="rect" id="node2_1" href="./Dept.html" title="org.dayatang.domain.entity.Dept" alt="" coords="40,113,87,138"/>
+<area shape="rect" id="node2" href="./Dept.html" title="&lt;TABLE&gt;" alt="" coords="27,101,99,149"/>
 </map>
