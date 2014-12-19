@@ -1,12 +1,12 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./MapBasedDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry" alt="" coords="135,19,333,45"/>
-<area shape="rect" id="node1" href="./MapBasedDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="125,8,343,56"/>
-<area shape="rect" id="node2_1" href="./JndiMappingDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.JndiMappingDataSourceRegistry" alt="" coords="16,118,223,143"/>
-<area shape="rect" id="node2" href="./JndiMappingDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="5,107,233,155"/>
-<area shape="rect" id="node3_2" href="./JdbcDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistry" alt="" coords="269,118,429,143"/>
-<area shape="rect" id="node3" href="./JdbcDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="258,107,439,155"/>
-<area shape="rect" id="node4_3" href="./DataSourceRegistryException.html" title="org.dayatang.datasource4saas.dsregistry.DataSourceRegistryException" alt="" coords="378,19,567,45"/>
-<area shape="rect" id="node4" href="./DataSourceRegistryException.html" title="&lt;TABLE&gt;" alt="" coords="367,8,578,56"/>
-<area shape="rect" id="node5_4" href="./DataSourceCreator.html" title="org.dayatang.datasource4saas.dsregistry.DataSourceCreator" alt="" coords="613,11,741,53"/>
-<area shape="rect" id="node5" href="./DataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="602,5,751,59"/>
+<area shape="rect" id="node1_0" href="./MapBasedDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry" alt="" coords="139,19,341,45"/>
+<area shape="rect" id="node1" href="./MapBasedDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="129,8,351,56"/>
+<area shape="rect" id="node2_1" href="./JndiMappingDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.JndiMappingDataSourceRegistry" alt="" coords="16,118,229,143"/>
+<area shape="rect" id="node2" href="./JndiMappingDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="5,107,240,155"/>
+<area shape="rect" id="node3_2" href="./JdbcDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistry" alt="" coords="275,118,442,143"/>
+<area shape="rect" id="node3" href="./JdbcDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="265,107,453,155"/>
+<area shape="rect" id="node4_3" href="./DataSourceRegistryException.html" title="org.dayatang.datasource4saas.dsregistry.DataSourceRegistryException" alt="" coords="386,19,582,45"/>
+<area shape="rect" id="node4" href="./DataSourceRegistryException.html" title="&lt;TABLE&gt;" alt="" coords="375,8,593,56"/>
+<area shape="rect" id="node5_4" href="./DataSourceCreator.html" title="org.dayatang.datasource4saas.dsregistry.DataSourceCreator" alt="" coords="628,11,761,53"/>
+<area shape="rect" id="node5" href="./DataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="617,5,772,59"/>
 </map>

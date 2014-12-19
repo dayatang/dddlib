@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../../domain/EntityRepository.html" title="org.dayatang.domain.EntityRepository" alt="" coords="27,11,139,53"/>
-<area shape="rect" id="node1" href="../../domain/EntityRepository.html" title="&lt;TABLE&gt;" alt="" coords="16,5,149,59"/>
-<area shape="rect" id="node2_1" href="./EntityRepositoryJpa.html" title="org.dayatang.persistence.jpa.EntityRepositoryJpa" alt="" coords="16,118,149,143"/>
-<area shape="rect" id="node2" href="./EntityRepositoryJpa.html" title="&lt;TABLE&gt;" alt="" coords="5,107,160,155"/>
+<area shape="rect" id="node1_0" href="../../domain/EntityRepository.html" title="org.dayatang.domain.EntityRepository" alt="" coords="27,11,143,53"/>
+<area shape="rect" id="node1" href="../../domain/EntityRepository.html" title="&lt;TABLE&gt;" alt="" coords="16,5,153,59"/>
+<area shape="rect" id="node2_1" href="./EntityRepositoryJpa.html" title="org.dayatang.persistence.jpa.EntityRepositoryJpa" alt="" coords="16,118,153,143"/>
+<area shape="rect" id="node2" href="./EntityRepositoryJpa.html" title="&lt;TABLE&gt;" alt="" coords="5,107,164,155"/>
 </map>

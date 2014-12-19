@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../../../domain/InstanceProvider.html" title="org.dayatang.domain.InstanceProvider" alt="" coords="34,11,146,53"/>
-<area shape="rect" id="node1" href="../../../domain/InstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="23,5,157,59"/>
-<area shape="rect" id="node2_1" href="./SpringInstanceProvider.html" title="org.dayatang.ioc.spring.factory.SpringInstanceProvider" alt="" coords="16,118,164,143"/>
-<area shape="rect" id="node2" href="./SpringInstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="5,107,175,155"/>
+<area shape="rect" id="node1_0" href="../../../domain/InstanceProvider.html" title="org.dayatang.domain.InstanceProvider" alt="" coords="35,11,154,53"/>
+<area shape="rect" id="node1" href="../../../domain/InstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="25,5,165,59"/>
+<area shape="rect" id="node2_1" href="./SpringInstanceProvider.html" title="org.dayatang.ioc.spring.factory.SpringInstanceProvider" alt="" coords="16,118,173,143"/>
+<area shape="rect" id="node2" href="./SpringInstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="5,107,184,155"/>
 </map>

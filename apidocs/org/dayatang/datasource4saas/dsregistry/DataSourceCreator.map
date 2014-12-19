@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../dscreator/AbstractDataSourceCreator.html" title="org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator" alt="" coords="16,118,195,143"/>
-<area shape="rect" id="node1" href="../dscreator/AbstractDataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="5,107,205,155"/>
-<area shape="rect" id="node2_1" href="./DataSourceCreator.html" title="org.dayatang.datasource4saas.dsregistry.DataSourceCreator" alt="" coords="41,11,169,53"/>
-<area shape="rect" id="node2" href="./DataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="31,5,180,59"/>
+<area shape="rect" id="node1_0" href="../dscreator/AbstractDataSourceCreator.html" title="org.dayatang.datasource4saas.dscreator.AbstractDataSourceCreator" alt="" coords="16,118,199,143"/>
+<area shape="rect" id="node1" href="../dscreator/AbstractDataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="5,107,209,155"/>
+<area shape="rect" id="node2_1" href="./DataSourceCreator.html" title="org.dayatang.datasource4saas.dsregistry.DataSourceCreator" alt="" coords="41,11,174,53"/>
+<area shape="rect" id="node2" href="./DataSourceCreator.html" title="&lt;TABLE&gt;" alt="" coords="30,5,185,59"/>
 </map>

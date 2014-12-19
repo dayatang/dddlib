@@ -10,15 +10,15 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.entity.MyEntity
-	c32170 [label=<<table title="org.dayatang.domain.entity.MyEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MyEntity.html">
+	c32893 [label=<<table title="org.dayatang.domain.entity.MyEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MyEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MyEntity </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MyEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.entity.MyEntity extends org.dayatang.domain.AbstractEntity
-	c32338:p -> c32170:p [dir=back,arrowtail=empty];
+	c33062:p -> c32893:p [dir=back,arrowtail=empty];
 	// org.dayatang.domain.AbstractEntity
-	c32338 [label=<<table title="org.dayatang.domain.AbstractEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c33062 [label=<<table title="org.dayatang.domain.AbstractEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractEntity </font></td></tr>
 		</table></td></tr>

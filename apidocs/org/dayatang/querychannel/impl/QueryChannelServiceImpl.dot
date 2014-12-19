@@ -10,19 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.querychannel.QueryChannelService
-	c81442 [label=<<table title="org.dayatang.querychannel.QueryChannelService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../QueryChannelService.html">
+	c82014 [label=<<table title="org.dayatang.querychannel.QueryChannelService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../QueryChannelService.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> QueryChannelService </td></tr>
 		</table></td></tr>
 		</table>>, URL="../QueryChannelService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.querychannel.impl.QueryChannelServiceImpl
-	c81444 [label=<<table title="org.dayatang.querychannel.impl.QueryChannelServiceImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./QueryChannelServiceImpl.html">
+	c82016 [label=<<table title="org.dayatang.querychannel.impl.QueryChannelServiceImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./QueryChannelServiceImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> QueryChannelServiceImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./QueryChannelServiceImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.querychannel.impl.QueryChannelServiceImpl implements org.dayatang.querychannel.QueryChannelService
-	c81442:p -> c81444:p [dir=back,arrowtail=empty,style=dashed];
+	c82014:p -> c82016:p [dir=back,arrowtail=empty,style=dashed];
 }
 

@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Temp.html" title="org.dayatang.rule.time.Temp" alt="" coords="16,17,68,42"/>
-<area shape="rect" id="node1" href="./Temp.html" title="&lt;TABLE&gt;" alt="" coords="5,5,79,53"/>
-<area shape="rect" id="node2_1" href="./FooTest.html" title="org.dayatang.rule.time.FooTest" alt="" coords="114,17,178,42"/>
-<area shape="rect" id="node2" href="./FooTest.html" title="&lt;TABLE&gt;" alt="" coords="103,5,189,53"/>
-<area shape="rect" id="node3_2" href="./Foo.html" title="org.dayatang.rule.time.Foo" alt="" coords="229,17,269,42"/>
-<area shape="rect" id="node3" href="./Foo.html" title="&lt;TABLE&gt;" alt="" coords="213,5,285,53"/>
+<area shape="rect" id="node1_0" href="./Temp.html" title="org.dayatang.rule.time.Temp" alt="" coords="16,17,69,42"/>
+<area shape="rect" id="node1" href="./Temp.html" title="&lt;TABLE&gt;" alt="" coords="5,5,80,53"/>
+<area shape="rect" id="node2_1" href="./FooTest.html" title="org.dayatang.rule.time.FooTest" alt="" coords="115,17,183,42"/>
+<area shape="rect" id="node2" href="./FooTest.html" title="&lt;TABLE&gt;" alt="" coords="105,5,194,53"/>
+<area shape="rect" id="node3_2" href="./Foo.html" title="org.dayatang.rule.time.Foo" alt="" coords="234,17,275,42"/>
+<area shape="rect" id="node3" href="./Foo.html" title="&lt;TABLE&gt;" alt="" coords="219,5,291,53"/>
 </map>

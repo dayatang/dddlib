@@ -10,31 +10,31 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.entity.Organization
-	c37304 [label=<<table title="org.dayatang.domain.entity.Organization" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Organization.html">
+	c38081 [label=<<table title="org.dayatang.domain.entity.Organization" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Organization.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Organization </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./Organization.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.entity.Dept
-	c37306 [label=<<table title="org.dayatang.domain.entity.Dept" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Dept.html">
+	c38083 [label=<<table title="org.dayatang.domain.entity.Dept" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Dept.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Dept </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Dept.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.entity.Company
-	c37307 [label=<<table title="org.dayatang.domain.entity.Company" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Company.html">
+	c38084 [label=<<table title="org.dayatang.domain.entity.Company" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Company.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Company </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Company.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.entity.Organization extends org.dayatang.domain.BaseEntity
-	c37473:p -> c37304:p [dir=back,arrowtail=empty];
+	c38251:p -> c38081:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.entity.Dept extends org.dayatang.domain.entity.Organization
-	c37304:p -> c37306:p [dir=back,arrowtail=empty];
+	c38081:p -> c38083:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.entity.Company extends org.dayatang.domain.entity.Organization
-	c37304:p -> c37307:p [dir=back,arrowtail=empty];
+	c38081:p -> c38084:p [dir=back,arrowtail=empty];
 	// org.dayatang.domain.BaseEntity
-	c37473 [label=<<table title="org.dayatang.domain.BaseEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c38251 [label=<<table title="org.dayatang.domain.BaseEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BaseEntity </font></td></tr>
 		</table></td></tr>

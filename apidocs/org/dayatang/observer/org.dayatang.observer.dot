@@ -10,25 +10,25 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.observer.Subject
-	c9658 [label=<<table title="org.dayatang.observer.Subject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Subject.html">
+	c9693 [label=<<table title="org.dayatang.observer.Subject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Subject.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Subject </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Subject.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.observer.Observer<T extends org.dayatang.observer.Subject>
-	c9659 [label=<<table title="org.dayatang.observer.Observer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Observer.html">
+	c9694 [label=<<table title="org.dayatang.observer.Observer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Observer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Observer&lt;T extends Subject&gt; </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./Observer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.observer.AbstractSubjectEntity
-	c9660 [label=<<table title="org.dayatang.observer.AbstractSubjectEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractSubjectEntity.html">
+	c9695 [label=<<table title="org.dayatang.observer.AbstractSubjectEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractSubjectEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractSubjectEntity </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractSubjectEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.observer.AbstractSubjectEntity implements org.dayatang.observer.Subject
-	c9658:p -> c9660:p [dir=back,arrowtail=empty,style=dashed];
+	c9693:p -> c9695:p [dir=back,arrowtail=empty,style=dashed];
 }
 

@@ -10,34 +10,34 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dddlib.organisation.domain.Party
-	c75639 [label=<<table title="org.dddlib.organisation.domain.Party" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Party.html">
+	c76190 [label=<<table title="org.dddlib.organisation.domain.Party" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Party.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Party </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./Party.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Organization
-	c75641 [label=<<table title="org.dddlib.organisation.domain.Organization" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Organization.html">
+	c76191 [label=<<table title="org.dddlib.organisation.domain.Organization" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Organization.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Organization </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./Organization.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Department
-	c75649 [label=<<table title="org.dddlib.organisation.domain.Department" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Department.html">
+	c76200 [label=<<table title="org.dddlib.organisation.domain.Department" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Department.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Department </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Department.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Company
-	c75650 [label=<<table title="org.dddlib.organisation.domain.Company" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Company.html">
+	c76201 [label=<<table title="org.dddlib.organisation.domain.Company" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Company.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Company </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Company.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dddlib.organisation.domain.Organization extends org.dddlib.organisation.domain.Party
-	c75639:p -> c75641:p [dir=back,arrowtail=empty];
+	c76190:p -> c76191:p [dir=back,arrowtail=empty];
 	//org.dddlib.organisation.domain.Department extends org.dddlib.organisation.domain.Organization
-	c75641:p -> c75649:p [dir=back,arrowtail=empty];
+	c76191:p -> c76200:p [dir=back,arrowtail=empty];
 	//org.dddlib.organisation.domain.Company extends org.dddlib.organisation.domain.Organization
-	c75641:p -> c75650:p [dir=back,arrowtail=empty];
+	c76191:p -> c76201:p [dir=back,arrowtail=empty];
 }
 

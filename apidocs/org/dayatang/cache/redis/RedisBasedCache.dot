@@ -10,19 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.cache.Cache
-	c82238 [label=<<table title="org.dayatang.cache.Cache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../Cache.html">
+	c82813 [label=<<table title="org.dayatang.cache.Cache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../Cache.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Cache </td></tr>
 		</table></td></tr>
 		</table>>, URL="../Cache.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.cache.redis.RedisBasedCache
-	c82246 [label=<<table title="org.dayatang.cache.redis.RedisBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RedisBasedCache.html">
+	c82820 [label=<<table title="org.dayatang.cache.redis.RedisBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./RedisBasedCache.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RedisBasedCache </td></tr>
 		</table></td></tr>
 		</table>>, URL="./RedisBasedCache.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.cache.redis.RedisBasedCache implements org.dayatang.cache.Cache
-	c82238:p -> c82246:p [dir=back,arrowtail=empty,style=dashed];
+	c82813:p -> c82820:p [dir=back,arrowtail=empty,style=dashed];
 }
 

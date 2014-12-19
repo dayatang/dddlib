@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./PostController.html" title="org.dddlib.organisation.webapp.controller.PostController" alt="" coords="19,113,115,138"/>
-<area shape="rect" id="node1" href="./PostController.html" title="&lt;TABLE&gt;" alt="" coords="8,101,125,149"/>
-<area shape="rect" id="node2_1" href="./BaseController.html" title="org.dddlib.organisation.webapp.controller.BaseController" alt="" coords="16,17,117,42"/>
-<area shape="rect" id="node2" href="./BaseController.html" title="&lt;TABLE&gt;" alt="" coords="5,5,128,53"/>
+<area shape="rect" id="node1_0" href="./PostController.html" title="org.dddlib.organisation.webapp.controller.PostController" alt="" coords="18,113,121,138"/>
+<area shape="rect" id="node1" href="./PostController.html" title="&lt;TABLE&gt;" alt="" coords="7,101,131,149"/>
+<area shape="rect" id="node2_1" href="./BaseController.html" title="org.dddlib.organisation.webapp.controller.BaseController" alt="" coords="16,17,123,42"/>
+<area shape="rect" id="node2" href="./BaseController.html" title="&lt;TABLE&gt;" alt="" coords="5,5,133,53"/>
 </map>

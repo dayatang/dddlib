@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./MapBasedDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry" alt="" coords="21,17,218,42"/>
-<area shape="rect" id="node1" href="./MapBasedDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="10,5,229,53"/>
-<area shape="rect" id="node2_1" href="./JndiMappingDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.JndiMappingDataSourceRegistry" alt="" coords="16,113,223,138"/>
-<area shape="rect" id="node2" href="./JndiMappingDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="5,101,233,149"/>
+<area shape="rect" id="node1_0" href="./MapBasedDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry" alt="" coords="22,17,223,42"/>
+<area shape="rect" id="node1" href="./MapBasedDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="11,5,234,53"/>
+<area shape="rect" id="node2_1" href="./JndiMappingDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.JndiMappingDataSourceRegistry" alt="" coords="16,113,229,138"/>
+<area shape="rect" id="node2" href="./JndiMappingDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="5,101,240,149"/>
 </map>

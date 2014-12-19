@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./QueryChannelService.html" title="org.dayatang.querychannel.QueryChannelService" alt="" coords="27,112,171,155"/>
-<area shape="rect" id="node1" href="./QueryChannelService.html" title="&lt;TABLE&gt;" alt="" coords="17,107,182,160"/>
-<area shape="rect" id="node2_1" href="./impl/QueryChannelServiceImpl.html" title="org.dayatang.querychannel.impl.QueryChannelServiceImpl" alt="" coords="16,219,183,245"/>
-<area shape="rect" id="node2" href="./impl/QueryChannelServiceImpl.html" title="&lt;TABLE&gt;" alt="" coords="5,208,193,256"/>
-<area shape="rect" id="node3_2" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="java.io.Serializable" alt="" coords="57,11,141,53"/>
-<area shape="rect" id="node3" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="&lt;TABLE&gt;" alt="" coords="47,5,152,59"/>
+<area shape="rect" id="node1_0" href="./QueryChannelService.html" title="org.dayatang.querychannel.QueryChannelService" alt="" coords="29,112,178,155"/>
+<area shape="rect" id="node1" href="./QueryChannelService.html" title="&lt;TABLE&gt;" alt="" coords="18,107,189,160"/>
+<area shape="rect" id="node2_1" href="./impl/QueryChannelServiceImpl.html" title="org.dayatang.querychannel.impl.QueryChannelServiceImpl" alt="" coords="16,219,191,245"/>
+<area shape="rect" id="node2" href="./impl/QueryChannelServiceImpl.html" title="&lt;TABLE&gt;" alt="" coords="5,208,201,256"/>
+<area shape="rect" id="node3_2" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="java.io.Serializable" alt="" coords="59,11,147,53"/>
+<area shape="rect" id="node3" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="&lt;TABLE&gt;" alt="" coords="49,5,158,59"/>
 </map>

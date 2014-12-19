@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./QueryTest.html" title="org.dayatang.persistence.jpa.QueryTest" alt="" coords="51,113,129,138"/>
-<area shape="rect" id="node1" href="./QueryTest.html" title="&lt;TABLE&gt;" alt="" coords="40,101,140,149"/>
-<area shape="rect" id="node2_1" href="./AbstractIntegrationTest.html" title="org.dayatang.persistence.jpa.AbstractIntegrationTest" alt="" coords="16,17,164,42"/>
-<area shape="rect" id="node2" href="./AbstractIntegrationTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,175,53"/>
+<area shape="rect" id="node1_0" href="./QueryTest.html" title="org.dayatang.persistence.jpa.QueryTest" alt="" coords="53,113,135,138"/>
+<area shape="rect" id="node1" href="./QueryTest.html" title="&lt;TABLE&gt;" alt="" coords="43,101,145,149"/>
+<area shape="rect" id="node2_1" href="./AbstractIntegrationTest.html" title="org.dayatang.persistence.jpa.AbstractIntegrationTest" alt="" coords="16,17,172,42"/>
+<area shape="rect" id="node2" href="./AbstractIntegrationTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,183,53"/>
 </map>

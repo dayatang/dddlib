@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../../domain/InstanceProvider.html" title="org.dayatang.domain.InstanceProvider" alt="" coords="33,11,145,53"/>
-<area shape="rect" id="node1" href="../../domain/InstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="22,5,155,59"/>
-<area shape="rect" id="node2_1" href="./GuiceInstanceProvider.html" title="org.dayatang.ioc.guice.GuiceInstanceProvider" alt="" coords="16,118,161,143"/>
-<area shape="rect" id="node2" href="./GuiceInstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="5,107,172,155"/>
+<area shape="rect" id="node1_0" href="../../domain/InstanceProvider.html" title="org.dayatang.domain.InstanceProvider" alt="" coords="33,11,152,53"/>
+<area shape="rect" id="node1" href="../../domain/InstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="23,5,163,59"/>
+<area shape="rect" id="node2_1" href="./GuiceInstanceProvider.html" title="org.dayatang.ioc.guice.GuiceInstanceProvider" alt="" coords="16,118,169,143"/>
+<area shape="rect" id="node2" href="./GuiceInstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="5,107,180,155"/>
 </map>

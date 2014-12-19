@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./PostHolding.html" title="org.dddlib.organisation.domain.PostHolding" alt="" coords="129,113,216,138"/>
-<area shape="rect" id="node1" href="./PostHolding.html" title="&lt;TABLE&gt;" alt="" coords="119,101,227,149"/>
+<area shape="rect" id="node1_0" href="./PostHolding.html" title="org.dddlib.organisation.domain.PostHolding" alt="" coords="127,113,218,138"/>
+<area shape="rect" id="node1" href="./PostHolding.html" title="&lt;TABLE&gt;" alt="" coords="117,101,229,149"/>
 <area shape="rect" id="node2_1" href="./Accountability.html" title="org.dddlib.organisation.domain.Accountability" alt="" coords="16,17,329,42"/>
 <area shape="rect" id="node2" href="./Accountability.html" title="&lt;TABLE&gt;" alt="" coords="5,5,340,53"/>
 </map>

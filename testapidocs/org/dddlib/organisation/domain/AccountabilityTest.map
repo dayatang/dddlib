@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./AccountabilityTest.html" title="org.dddlib.organisation.domain.AccountabilityTest" alt="" coords="30,113,150,138"/>
-<area shape="rect" id="node1" href="./AccountabilityTest.html" title="&lt;TABLE&gt;" alt="" coords="19,101,161,149"/>
-<area shape="rect" id="node2_1" href="./AbstractIntegrationTest.html" title="org.dddlib.organisation.domain.AbstractIntegrationTest" alt="" coords="16,17,164,42"/>
-<area shape="rect" id="node2" href="./AbstractIntegrationTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,175,53"/>
+<area shape="rect" id="node1_0" href="./AccountabilityTest.html" title="org.dddlib.organisation.domain.AccountabilityTest" alt="" coords="31,113,157,138"/>
+<area shape="rect" id="node1" href="./AccountabilityTest.html" title="&lt;TABLE&gt;" alt="" coords="20,101,168,149"/>
+<area shape="rect" id="node2_1" href="./AbstractIntegrationTest.html" title="org.dddlib.organisation.domain.AbstractIntegrationTest" alt="" coords="16,17,172,42"/>
+<area shape="rect" id="node2" href="./AbstractIntegrationTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,183,53"/>
 </map>

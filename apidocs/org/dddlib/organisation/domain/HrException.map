@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./TerminateNotEmptyOrganizationException.html" title="org.dddlib.organisation.domain.TerminateNotEmptyOrganizationException" alt="" coords="16,209,273,234"/>
-<area shape="rect" id="node1" href="./TerminateNotEmptyOrganizationException.html" title="&lt;TABLE&gt;" alt="" coords="5,197,284,245"/>
-<area shape="rect" id="node2_1" href="./HrException.html" title="org.dddlib.organisation.domain.HrException" alt="" coords="101,113,189,138"/>
-<area shape="rect" id="node2" href="./HrException.html" title="&lt;TABLE&gt;" alt="" coords="90,101,199,149"/>
-<area shape="rect" id="node3_2" href="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html" title="java.lang.RuntimeException" alt="" coords="84,17,205,42"/>
-<area shape="rect" id="node3" href="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html" title="&lt;TABLE&gt;" alt="" coords="73,5,216,53"/>
+<area shape="rect" id="node1_0" href="./TerminateNotEmptyOrganizationException.html" title="org.dddlib.organisation.domain.TerminateNotEmptyOrganizationException" alt="" coords="16,209,288,234"/>
+<area shape="rect" id="node1" href="./TerminateNotEmptyOrganizationException.html" title="&lt;TABLE&gt;" alt="" coords="5,197,299,245"/>
+<area shape="rect" id="node2_1" href="./HrException.html" title="org.dddlib.organisation.domain.HrException" alt="" coords="106,113,198,138"/>
+<area shape="rect" id="node2" href="./HrException.html" title="&lt;TABLE&gt;" alt="" coords="95,101,209,149"/>
+<area shape="rect" id="node3_2" href="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html" title="java.lang.RuntimeException" alt="" coords="89,17,215,42"/>
+<area shape="rect" id="node3" href="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html" title="&lt;TABLE&gt;" alt="" coords="78,5,226,53"/>
 </map>

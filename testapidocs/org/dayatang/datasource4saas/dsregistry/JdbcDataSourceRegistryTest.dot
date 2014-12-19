@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistryTest
-	c29463 [label=<<table title="org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./JdbcDataSourceRegistryTest.html">
+	c30159 [label=<<table title="org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./JdbcDataSourceRegistryTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JdbcDataSourceRegistryTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JdbcDataSourceRegistryTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.datasource4saas.dsregistry.AbstractDataSourceRegistryTest
-	c29464 [label=<<table title="org.dayatang.datasource4saas.dsregistry.AbstractDataSourceRegistryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractDataSourceRegistryTest.html">
+	c30160 [label=<<table title="org.dayatang.datasource4saas.dsregistry.AbstractDataSourceRegistryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractDataSourceRegistryTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractDataSourceRegistryTest </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractDataSourceRegistryTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistryTest extends org.dayatang.datasource4saas.dsregistry.AbstractDataSourceRegistryTest
-	c29464:p -> c29463:p [dir=back,arrowtail=empty];
+	c30160:p -> c30159:p [dir=back,arrowtail=empty];
 }
 

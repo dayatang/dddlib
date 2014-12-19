@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dddlib.organisation.domain.TerminateNotEmptyOrganizationException
-	c92940 [label=<<table title="org.dddlib.organisation.domain.TerminateNotEmptyOrganizationException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./TerminateNotEmptyOrganizationException.html">
+	c93553 [label=<<table title="org.dddlib.organisation.domain.TerminateNotEmptyOrganizationException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./TerminateNotEmptyOrganizationException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TerminateNotEmptyOrganizationException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./TerminateNotEmptyOrganizationException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.HrException
-	c92951 [label=<<table title="org.dddlib.organisation.domain.HrException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./HrException.html">
+	c93564 [label=<<table title="org.dddlib.organisation.domain.HrException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./HrException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> HrException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./HrException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dddlib.organisation.domain.TerminateNotEmptyOrganizationException extends org.dddlib.organisation.domain.HrException
-	c92951:p -> c92940:p [dir=back,arrowtail=empty];
+	c93564:p -> c93553:p [dir=back,arrowtail=empty];
 }
 

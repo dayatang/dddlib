@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./EntityRepositoryHibernateTest.html" title="org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest" alt="" coords="16,113,205,138"/>
-<area shape="rect" id="node1" href="./EntityRepositoryHibernateTest.html" title="&lt;TABLE&gt;" alt="" coords="5,101,216,149"/>
-<area shape="rect" id="node2_1" href="./AbstractIntegrationTest.html" title="org.dayatang.persistence.hibernate.AbstractIntegrationTest" alt="" coords="37,17,185,42"/>
-<area shape="rect" id="node2" href="./AbstractIntegrationTest.html" title="&lt;TABLE&gt;" alt="" coords="26,5,195,53"/>
+<area shape="rect" id="node1_0" href="./EntityRepositoryHibernateTest.html" title="org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest" alt="" coords="16,113,216,138"/>
+<area shape="rect" id="node1" href="./EntityRepositoryHibernateTest.html" title="&lt;TABLE&gt;" alt="" coords="5,101,227,149"/>
+<area shape="rect" id="node2_1" href="./AbstractIntegrationTest.html" title="org.dayatang.persistence.hibernate.AbstractIntegrationTest" alt="" coords="38,17,194,42"/>
+<area shape="rect" id="node2" href="./AbstractIntegrationTest.html" title="&lt;TABLE&gt;" alt="" coords="27,5,205,53"/>
 </map>

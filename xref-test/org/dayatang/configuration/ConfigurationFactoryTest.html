@@ -10,7 +10,7 @@
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> org.dayatang.configuration.impl.ConfigurationDbImpl;
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> org.dayatang.configuration.impl.ConfigurationFileImpl;
-<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> org.dayatang.configuration.impl.ConfigurationUrlImpl;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> org.dayatang.configuration.impl.ConfigurationInputStreamImpl;
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> org.junit.After;
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> org.junit.Before;
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> org.junit.Test;
@@ -50,7 +50,7 @@
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  	@Test
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testFromClasspathString() {
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  		assertTrue(instance.fromClasspath(<span class="jxr_string">"/conf.properties"</span>) instanceof ConfigurationFileImpl);
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  		assertTrue(instance.fromClasspath(<span class="jxr_string">"/conf.properties"</span>) instanceof ConfigurationInputStreamImpl);
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  	}
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  	@Test
@@ -72,34 +72,35 @@
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testFromFileSystemFile() {
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  		String pathname = getClass().getResource(<span class="jxr_string">"/conf.properties"</span>).getFile();
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  		File file = <strong class="jxr_keyword">new</strong> File(pathname);
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  		assertTrue(instance.fromFileSystem(file) instanceof ConfigurationFileImpl);
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  	}
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  	@Test
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testFromUrlString() <strong class="jxr_keyword">throws</strong> IOException {
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>          String pathname = getClass().getResource(<span class="jxr_string">"/conf.properties"</span>).getFile();
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>          <strong class="jxr_keyword">final</strong> File file = <strong class="jxr_keyword">new</strong> File(pathname);
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>          <a href="../../../org/dayatang/configuration/EmbeddedHttpServer.html">EmbeddedHttpServer</a> httpServer = <strong class="jxr_keyword">new</strong> <a href="../../../org/dayatang/configuration/EmbeddedHttpServer.html">EmbeddedHttpServer</a>(1528);
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>          httpServer.mapping(<span class="jxr_string">"/"</span>, file);
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>          httpServer.start();
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>          String url = <span class="jxr_string">"http://localhost:1528/"</span>;
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>          assertTrue(instance.fromUrl(url) instanceof ConfigurationUrlImpl);
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>          httpServer.shutdown();
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>      }
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>  
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>  	@Test
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testFromUrlURL() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>          String pathname = getClass().getResource(<span class="jxr_string">"/conf.properties"</span>).getFile();
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>          <strong class="jxr_keyword">final</strong> File file = <strong class="jxr_keyword">new</strong> File(pathname);
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>          <a href="../../../org/dayatang/configuration/EmbeddedHttpServer.html">EmbeddedHttpServer</a> httpServer = <strong class="jxr_keyword">new</strong> <a href="../../../org/dayatang/configuration/EmbeddedHttpServer.html">EmbeddedHttpServer</a>(1528);
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>          httpServer.mapping(<span class="jxr_string">"/"</span>, file);
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>          httpServer.start();
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>          URL url = <strong class="jxr_keyword">new</strong> URL(<span class="jxr_string">"http://localhost:1528/"</span>);
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>          assertTrue(instance.fromUrl(url) instanceof ConfigurationUrlImpl);
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>          httpServer.shutdown();
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>      }
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  }
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  		assertTrue(file.canRead());
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  		assertTrue(instance.fromFileSystem(file) instanceof ConfigurationFileImpl);
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  	}
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  	@Test
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testFromUrlString() <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>          String pathname = getClass().getResource(<span class="jxr_string">"/conf.properties"</span>).getFile();
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>          <strong class="jxr_keyword">final</strong> File file = <strong class="jxr_keyword">new</strong> File(pathname);
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>          <a href="../../../org/dayatang/configuration/EmbeddedHttpServer.html">EmbeddedHttpServer</a> httpServer = <strong class="jxr_keyword">new</strong> <a href="../../../org/dayatang/configuration/EmbeddedHttpServer.html">EmbeddedHttpServer</a>(1528);
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>          httpServer.mapping(<span class="jxr_string">"/"</span>, file);
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>          httpServer.start();
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>          String url = <span class="jxr_string">"http://localhost:1528/"</span>;
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>          assertTrue(instance.fromUrl(url) instanceof ConfigurationInputStreamImpl);
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>          httpServer.shutdown();
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>      }
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  	@Test
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testFromUrlURL() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>          String pathname = getClass().getResource(<span class="jxr_string">"/conf.properties"</span>).getFile();
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>          <strong class="jxr_keyword">final</strong> File file = <strong class="jxr_keyword">new</strong> File(pathname);
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>          <a href="../../../org/dayatang/configuration/EmbeddedHttpServer.html">EmbeddedHttpServer</a> httpServer = <strong class="jxr_keyword">new</strong> <a href="../../../org/dayatang/configuration/EmbeddedHttpServer.html">EmbeddedHttpServer</a>(1528);
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>          httpServer.mapping(<span class="jxr_string">"/"</span>, file);
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>          httpServer.start();
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>          URL url = <strong class="jxr_keyword">new</strong> URL(<span class="jxr_string">"http://localhost:1528/"</span>);
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>          assertTrue(instance.fromUrl(url) instanceof ConfigurationInputStreamImpl);
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>          httpServer.shutdown();
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>      }
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2014 <a href="http://www.dayatang.org/">Dayatang Open Source.</a>. All rights reserved.</div>

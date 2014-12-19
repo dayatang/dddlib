@@ -10,15 +10,15 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dddlib.image.api.pojo.ImageFile
-	c57486 [label=<<table title="org.dddlib.image.api.pojo.ImageFile" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ImageFile.html">
+	c57972 [label=<<table title="org.dddlib.image.api.pojo.ImageFile" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ImageFile.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ImageFile </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ImageFile.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dddlib.image.api.pojo.ImageFile implements java.io.Serializable
-	c57519:p -> c57486:p [dir=back,arrowtail=empty,style=dashed];
+	c58005:p -> c57972:p [dir=back,arrowtail=empty,style=dashed];
 	// java.io.Serializable
-	c57519 [label=<<table title="java.io.Serializable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html">
+	c58005 [label=<<table title="java.io.Serializable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Serializable </td></tr>

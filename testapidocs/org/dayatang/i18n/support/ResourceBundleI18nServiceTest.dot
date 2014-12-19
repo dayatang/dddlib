@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.i18n.support.ResourceBundleI18nServiceTest
-	c39708 [label=<<table title="org.dayatang.i18n.support.ResourceBundleI18nServiceTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ResourceBundleI18nServiceTest.html">
+	c40510 [label=<<table title="org.dayatang.i18n.support.ResourceBundleI18nServiceTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ResourceBundleI18nServiceTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ResourceBundleI18nServiceTest </td></tr>
 		</table></td></tr>

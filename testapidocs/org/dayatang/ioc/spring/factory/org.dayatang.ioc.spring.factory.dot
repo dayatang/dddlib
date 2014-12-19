@@ -10,19 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.ioc.spring.factory.SpringConfiguration
-	c2554 [label=<<table title="org.dayatang.ioc.spring.factory.SpringConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SpringConfiguration.html">
+	c2581 [label=<<table title="org.dayatang.ioc.spring.factory.SpringConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SpringConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SpringConfiguration </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SpringConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.ioc.spring.factory.ProviderWithXMLTest
-	c2555 [label=<<table title="org.dayatang.ioc.spring.factory.ProviderWithXMLTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProviderWithXMLTest.html">
+	c2582 [label=<<table title="org.dayatang.ioc.spring.factory.ProviderWithXMLTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProviderWithXMLTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ProviderWithXMLTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ProviderWithXMLTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.ioc.spring.factory.ProviderWithAnnotationTest
-	c2556 [label=<<table title="org.dayatang.ioc.spring.factory.ProviderWithAnnotationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProviderWithAnnotationTest.html">
+	c2583 [label=<<table title="org.dayatang.ioc.spring.factory.ProviderWithAnnotationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ProviderWithAnnotationTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ProviderWithAnnotationTest </td></tr>
 		</table></td></tr>

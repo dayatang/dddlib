@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./SqlQuery.html" title="org.dayatang.domain.SqlQuery" alt="" coords="16,113,88,138"/>
-<area shape="rect" id="node1" href="./SqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="5,101,99,149"/>
-<area shape="rect" id="node2_1" href="./NamedQuery.html" title="org.dayatang.domain.NamedQuery" alt="" coords="133,113,229,138"/>
-<area shape="rect" id="node2" href="./NamedQuery.html" title="&lt;TABLE&gt;" alt="" coords="123,101,240,149"/>
-<area shape="rect" id="node3_2" href="./JpqlQuery.html" title="org.dayatang.domain.JpqlQuery" alt="" coords="275,113,352,138"/>
-<area shape="rect" id="node3" href="./JpqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="264,101,363,149"/>
-<area shape="rect" id="node4_3" href="./BaseQuery.html" title="org.dayatang.domain.BaseQuery" alt="" coords="67,17,295,42"/>
-<area shape="rect" id="node4" href="./BaseQuery.html" title="&lt;TABLE&gt;" alt="" coords="57,5,306,53"/>
+<area shape="rect" id="node1_0" href="./SqlQuery.html" title="org.dayatang.domain.SqlQuery" alt="" coords="16,113,91,138"/>
+<area shape="rect" id="node1" href="./SqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="5,101,101,149"/>
+<area shape="rect" id="node2_1" href="./NamedQuery.html" title="org.dayatang.domain.NamedQuery" alt="" coords="136,113,235,138"/>
+<area shape="rect" id="node2" href="./NamedQuery.html" title="&lt;TABLE&gt;" alt="" coords="125,101,245,149"/>
+<area shape="rect" id="node3_2" href="./JpqlQuery.html" title="org.dayatang.domain.JpqlQuery" alt="" coords="280,113,360,138"/>
+<area shape="rect" id="node3" href="./JpqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="269,101,371,149"/>
+<area shape="rect" id="node4_3" href="./BaseQuery.html" title="org.dayatang.domain.BaseQuery" alt="" coords="70,17,301,42"/>
+<area shape="rect" id="node4" href="./BaseQuery.html" title="&lt;TABLE&gt;" alt="" coords="59,5,311,53"/>
 </map>

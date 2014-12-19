@@ -10,24 +10,24 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.querychannel.QueryChannelService
-	c81162 [label=<<table title="org.dayatang.querychannel.QueryChannelService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./QueryChannelService.html">
+	c81733 [label=<<table title="org.dayatang.querychannel.QueryChannelService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./QueryChannelService.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> QueryChannelService </td></tr>
 		</table></td></tr>
 		</table>>, URL="./QueryChannelService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.querychannel.impl.QueryChannelServiceImpl
-	c81164 [label=<<table title="org.dayatang.querychannel.impl.QueryChannelServiceImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./impl/QueryChannelServiceImpl.html">
+	c81735 [label=<<table title="org.dayatang.querychannel.impl.QueryChannelServiceImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./impl/QueryChannelServiceImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> QueryChannelServiceImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./impl/QueryChannelServiceImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.querychannel.QueryChannelService implements java.io.Serializable
-	c81245:p -> c81162:p [dir=back,arrowtail=empty,style=dashed];
+	c81816:p -> c81733:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.querychannel.impl.QueryChannelServiceImpl implements org.dayatang.querychannel.QueryChannelService
-	c81162:p -> c81164:p [dir=back,arrowtail=empty,style=dashed];
+	c81733:p -> c81735:p [dir=back,arrowtail=empty,style=dashed];
 	// java.io.Serializable
-	c81245 [label=<<table title="java.io.Serializable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html">
+	c81816 [label=<<table title="java.io.Serializable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Serializable </td></tr>

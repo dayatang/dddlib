@@ -28,7 +28,7 @@
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  		String msg = messages.getMessage(<span class="jxr_string">"hi"</span>, <span class="jxr_string">"这是默认消息！"</span>, Locale.ENGLISH);
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  		assertEquals(<span class="jxr_string">"hello"</span>, msg);
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  		msg = messages.getMessage(<span class="jxr_string">"hi"</span>, <span class="jxr_string">"这是默认消息！"</span>);
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  		msg = messages.getMessage(<span class="jxr_string">"hi"</span>, <span class="jxr_string">"这是默认消息！"</span>, Locale.SIMPLIFIED_CHINESE);
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  		assertEquals(<span class="jxr_string">"你好！"</span>, msg);
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  		msg = messages.getMessage(<span class="jxr_string">"hi_"</span>, <span class="jxr_string">"这是默认消息！"</span>);
@@ -44,13 +44,20 @@
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  	@Test
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> getMessage_holder() {
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  		LocaleContextHolder.setLocale(Locale.ENGLISH);
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  		
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  		String msg = messages.getMessage(<span class="jxr_string">"hi"</span>, <span class="jxr_string">"这是默认消息！"</span>);
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  		assertEquals(<span class="jxr_string">"hello"</span>, msg);
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  		
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>  		LocaleContextHolder.resetLocale();
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>  	}
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  }
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  		String msg = messages.getMessage(<span class="jxr_string">"hi"</span>, <span class="jxr_string">"这是默认消息！"</span>);
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  		assertEquals(<span class="jxr_string">"hello"</span>, msg);
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  		LocaleContextHolder.setLocale(Locale.SIMPLIFIED_CHINESE);
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  		msg = messages.getMessage(<span class="jxr_string">"hi"</span>, <span class="jxr_string">"这是默认消息！"</span>);
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  		assertEquals(<span class="jxr_string">"你好！"</span>, msg);
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_comment">//</em>
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_comment">//		LocaleContextHolder.setLocale(Locale.CHINESE);</em>
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_comment">//		msg = messages.getMessage("hi", "这是默认消息！");</em>
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_comment">//		assertEquals("你好！", msg);</em>
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  		LocaleContextHolder.resetLocale();
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  	}
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2014 <a href="http://www.dayatang.org/">Dayatang Open Source.</a>. All rights reserved.</div>

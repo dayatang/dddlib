@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./I18nService.html" title="org.dayatang.i18n.I18nService" alt="" coords="48,11,132,53"/>
-<area shape="rect" id="node1" href="./I18nService.html" title="&lt;TABLE&gt;" alt="" coords="37,5,143,59"/>
-<area shape="rect" id="node2_1" href="./HierarchicalI18nService.html" title="org.dayatang.i18n.HierarchicalI18nService" alt="" coords="16,112,164,155"/>
-<area shape="rect" id="node2" href="./HierarchicalI18nService.html" title="&lt;TABLE&gt;" alt="" coords="5,107,175,160"/>
-<area shape="rect" id="node3_2" href="./impl/AbstractI18nService.html" title="org.dayatang.i18n.impl.AbstractI18nService" alt="" coords="21,219,159,245"/>
-<area shape="rect" id="node3" href="./impl/AbstractI18nService.html" title="&lt;TABLE&gt;" alt="" coords="11,208,169,256"/>
+<area shape="rect" id="node1_0" href="./I18nService.html" title="org.dayatang.i18n.I18nService" alt="" coords="51,11,141,53"/>
+<area shape="rect" id="node1" href="./I18nService.html" title="&lt;TABLE&gt;" alt="" coords="41,5,151,59"/>
+<area shape="rect" id="node2_1" href="./HierarchicalI18nService.html" title="org.dayatang.i18n.HierarchicalI18nService" alt="" coords="16,112,176,155"/>
+<area shape="rect" id="node2" href="./HierarchicalI18nService.html" title="&lt;TABLE&gt;" alt="" coords="5,107,187,160"/>
+<area shape="rect" id="node3_2" href="./impl/AbstractI18nService.html" title="org.dayatang.i18n.impl.AbstractI18nService" alt="" coords="27,219,165,245"/>
+<area shape="rect" id="node3" href="./impl/AbstractI18nService.html" title="&lt;TABLE&gt;" alt="" coords="16,208,176,256"/>
 </map>

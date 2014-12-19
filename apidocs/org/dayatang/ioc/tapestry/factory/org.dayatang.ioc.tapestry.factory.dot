@@ -10,13 +10,13 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.ioc.tapestry.factory.TapestryIocUtils
-	c3174 [label=<<table title="org.dayatang.ioc.tapestry.factory.TapestryIocUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TapestryIocUtils.html">
+	c3186 [label=<<table title="org.dayatang.ioc.tapestry.factory.TapestryIocUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TapestryIocUtils.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TapestryIocUtils </td></tr>
 		</table></td></tr>
 		</table>>, URL="./TapestryIocUtils.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.ioc.tapestry.factory.TapestryInstanceProvider
-	c3175 [label=<<table title="org.dayatang.ioc.tapestry.factory.TapestryInstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TapestryInstanceProvider.html">
+	c3187 [label=<<table title="org.dayatang.ioc.tapestry.factory.TapestryInstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TapestryInstanceProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TapestryInstanceProvider </td></tr>
 		</table></td></tr>

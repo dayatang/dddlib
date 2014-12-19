@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./InstanceFactoryTest.html" title="org.dayatang.domain.InstanceFactoryTest" alt="" coords="16,17,148,42"/>
-<area shape="rect" id="node1" href="./InstanceFactoryTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,159,53"/>
-<area shape="rect" id="node2_1" href="./BaseEntityTest.html" title="org.dayatang.domain.BaseEntityTest" alt="" coords="193,17,299,42"/>
-<area shape="rect" id="node2" href="./BaseEntityTest.html" title="&lt;TABLE&gt;" alt="" coords="183,5,309,53"/>
-<area shape="rect" id="node3_2" href="./AbstractEntityTest.html" title="org.dayatang.domain.AbstractEntityTest" alt="" coords="344,17,465,42"/>
-<area shape="rect" id="node3" href="./AbstractEntityTest.html" title="&lt;TABLE&gt;" alt="" coords="333,5,476,53"/>
+<area shape="rect" id="node1_0" href="./InstanceFactoryTest.html" title="org.dayatang.domain.InstanceFactoryTest" alt="" coords="16,17,156,42"/>
+<area shape="rect" id="node1" href="./InstanceFactoryTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,167,53"/>
+<area shape="rect" id="node2_1" href="./BaseEntityTest.html" title="org.dayatang.domain.BaseEntityTest" alt="" coords="201,17,309,42"/>
+<area shape="rect" id="node2" href="./BaseEntityTest.html" title="&lt;TABLE&gt;" alt="" coords="191,5,320,53"/>
+<area shape="rect" id="node3_2" href="./AbstractEntityTest.html" title="org.dayatang.domain.AbstractEntityTest" alt="" coords="355,17,481,42"/>
+<area shape="rect" id="node3" href="./AbstractEntityTest.html" title="&lt;TABLE&gt;" alt="" coords="344,5,492,53"/>
 </map>

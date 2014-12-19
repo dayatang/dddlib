@@ -10,14 +10,14 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.querychannel.QueryChannelService
-	c11635 [label=<<table title="org.dayatang.querychannel.QueryChannelService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryChannelService.html">
+	c11677 [label=<<table title="org.dayatang.querychannel.QueryChannelService" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryChannelService.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> QueryChannelService </td></tr>
 		</table></td></tr>
 		</table>>, URL="./QueryChannelService.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.querychannel.ChannelQuery<E extends org.dayatang.querychannel.ChannelQuery>
-	c11636 [label=<<table title="org.dayatang.querychannel.ChannelQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ChannelQuery.html">
+	c11678 [label=<<table title="org.dayatang.querychannel.ChannelQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ChannelQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> ChannelQuery&lt;E extends ChannelQuery&gt; </font></td></tr>
 		</table></td></tr>

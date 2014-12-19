@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dddlib.organisation.domain.Post
-	c78148 [label=<<table title="org.dddlib.organisation.domain.Post" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Post.html">
+	c78708 [label=<<table title="org.dddlib.organisation.domain.Post" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Post.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Post </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Post.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Party
-	c78152 [label=<<table title="org.dddlib.organisation.domain.Party" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Party.html">
+	c78712 [label=<<table title="org.dddlib.organisation.domain.Party" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Party.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Party </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./Party.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dddlib.organisation.domain.Post extends org.dddlib.organisation.domain.Party
-	c78152:p -> c78148:p [dir=back,arrowtail=empty];
+	c78712:p -> c78708:p [dir=back,arrowtail=empty];
 }
 

@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./TenantNotSettedException.html" title="org.dayatang.datasource4saas.tenantservice.TenantNotSettedException" alt="" coords="16,113,185,138"/>
-<area shape="rect" id="node1" href="./TenantNotSettedException.html" title="&lt;TABLE&gt;" alt="" coords="5,101,196,149"/>
-<area shape="rect" id="node2_1" href="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html" title="java.lang.RuntimeException" alt="" coords="40,17,161,42"/>
-<area shape="rect" id="node2" href="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html" title="&lt;TABLE&gt;" alt="" coords="29,5,172,53"/>
+<area shape="rect" id="node1_0" href="./TenantNotSettedException.html" title="org.dayatang.datasource4saas.tenantservice.TenantNotSettedException" alt="" coords="16,113,195,138"/>
+<area shape="rect" id="node1" href="./TenantNotSettedException.html" title="&lt;TABLE&gt;" alt="" coords="5,101,205,149"/>
+<area shape="rect" id="node2_1" href="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html" title="java.lang.RuntimeException" alt="" coords="42,17,169,42"/>
+<area shape="rect" id="node2" href="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html" title="&lt;TABLE&gt;" alt="" coords="31,5,179,53"/>
 </map>

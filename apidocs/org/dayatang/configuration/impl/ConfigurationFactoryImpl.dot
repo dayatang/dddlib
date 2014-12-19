@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.configuration.ConfigurationFactory
-	c31659 [label=<<table title="org.dayatang.configuration.ConfigurationFactory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../ConfigurationFactory.html">
+	c31773 [label=<<table title="org.dayatang.configuration.ConfigurationFactory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../ConfigurationFactory.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationFactory </td></tr>
 		</table></td></tr>
 		</table>>, URL="../ConfigurationFactory.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.ConfigurationFactoryImpl
-	c31667 [label=<<table title="org.dayatang.configuration.impl.ConfigurationFactoryImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ConfigurationFactoryImpl.html">
+	c31781 [label=<<table title="org.dayatang.configuration.impl.ConfigurationFactoryImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./ConfigurationFactoryImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationFactoryImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigurationFactoryImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.configuration.impl.ConfigurationFactoryImpl extends org.dayatang.configuration.ConfigurationFactory
-	c31659:p -> c31667:p [dir=back,arrowtail=empty];
+	c31773:p -> c31781:p [dir=back,arrowtail=empty];
 }
 

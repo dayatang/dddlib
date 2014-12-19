@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./WritableConfiguration.html" title="org.dayatang.configuration.WritableConfiguration" alt="" coords="16,112,155,155"/>
-<area shape="rect" id="node1" href="./WritableConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="5,107,165,160"/>
-<area shape="rect" id="node2_1" href="./Configuration.html" title="org.dayatang.configuration.Configuration" alt="" coords="133,11,225,53"/>
-<area shape="rect" id="node2" href="./Configuration.html" title="&lt;TABLE&gt;" alt="" coords="122,5,235,59"/>
-<area shape="rect" id="node3_2" href="./impl/AbstractConfiguration.html" title="org.dayatang.configuration.impl.AbstractConfiguration" alt="" coords="200,121,344,146"/>
-<area shape="rect" id="node3" href="./impl/AbstractConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="189,109,355,157"/>
+<area shape="rect" id="node1_0" href="./WritableConfiguration.html" title="org.dayatang.configuration.WritableConfiguration" alt="" coords="16,112,163,155"/>
+<area shape="rect" id="node1" href="./WritableConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="5,107,173,160"/>
+<area shape="rect" id="node2_1" href="./Configuration.html" title="org.dayatang.configuration.Configuration" alt="" coords="136,11,235,53"/>
+<area shape="rect" id="node2" href="./Configuration.html" title="&lt;TABLE&gt;" alt="" coords="125,5,245,59"/>
+<area shape="rect" id="node3_2" href="./impl/AbstractConfiguration.html" title="org.dayatang.configuration.impl.AbstractConfiguration" alt="" coords="208,121,355,146"/>
+<area shape="rect" id="node3" href="./impl/AbstractConfiguration.html" title="&lt;TABLE&gt;" alt="" coords="197,109,365,157"/>
 </map>

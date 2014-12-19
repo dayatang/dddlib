@@ -10,15 +10,15 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.observer.domain.MotherObserver
-	c31512 [label=<<table title="org.dayatang.observer.domain.MotherObserver" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MotherObserver.html">
+	c32229 [label=<<table title="org.dayatang.observer.domain.MotherObserver" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MotherObserver.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MotherObserver </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MotherObserver.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.observer.domain.MotherObserver extends org.dayatang.observer.Observer<org.dayatang.observer.domain.Baby>
-	c31576:p -> c31512:p [dir=back,arrowtail=empty];
+	c32292:p -> c32229:p [dir=back,arrowtail=empty];
 	// org.dayatang.observer.Observer<T extends org.dayatang.observer.Subject>
-	c31576 [label=<<table title="org.dayatang.observer.Observer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c32292 [label=<<table title="org.dayatang.observer.Observer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Observer&lt;T extends Subject&gt; </font></td></tr>
 		</table></td></tr>

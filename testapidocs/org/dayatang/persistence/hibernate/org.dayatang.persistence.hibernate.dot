@@ -10,44 +10,44 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.persistence.hibernate.SessionProviderTest
-	c3901 [label=<<table title="org.dayatang.persistence.hibernate.SessionProviderTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SessionProviderTest.html">
+	c3943 [label=<<table title="org.dayatang.persistence.hibernate.SessionProviderTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SessionProviderTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SessionProviderTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SessionProviderTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.hibernate.HibernateUtils
-	c3902 [label=<<table title="org.dayatang.persistence.hibernate.HibernateUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./HibernateUtils.html">
+	c3944 [label=<<table title="org.dayatang.persistence.hibernate.HibernateUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./HibernateUtils.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> HibernateUtils </td></tr>
 		</table></td></tr>
 		</table>>, URL="./HibernateUtils.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest
-	c3903 [label=<<table title="org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EntityRepositoryHibernateTest.html">
+	c3945 [label=<<table title="org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EntityRepositoryHibernateTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EntityRepositoryHibernateTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EntityRepositoryHibernateTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.hibernate.CriteriaQueryTest
-	c3904 [label=<<table title="org.dayatang.persistence.hibernate.CriteriaQueryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CriteriaQueryTest.html">
+	c3946 [label=<<table title="org.dayatang.persistence.hibernate.CriteriaQueryTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CriteriaQueryTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CriteriaQueryTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./CriteriaQueryTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.hibernate.AliasTest
-	c3905 [label=<<table title="org.dayatang.persistence.hibernate.AliasTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AliasTest.html">
+	c3947 [label=<<table title="org.dayatang.persistence.hibernate.AliasTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AliasTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AliasTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./AliasTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.hibernate.AbstractIntegrationTest
-	c3906 [label=<<table title="org.dayatang.persistence.hibernate.AbstractIntegrationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractIntegrationTest.html">
+	c3948 [label=<<table title="org.dayatang.persistence.hibernate.AbstractIntegrationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractIntegrationTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AbstractIntegrationTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractIntegrationTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.persistence.hibernate.EntityRepositoryHibernateTest extends org.dayatang.persistence.hibernate.AbstractIntegrationTest
-	c3906:p -> c3903:p [dir=back,arrowtail=empty];
+	c3948:p -> c3945:p [dir=back,arrowtail=empty];
 	//org.dayatang.persistence.hibernate.CriteriaQueryTest extends org.dayatang.persistence.hibernate.AbstractIntegrationTest
-	c3906:p -> c3904:p [dir=back,arrowtail=empty];
+	c3948:p -> c3946:p [dir=back,arrowtail=empty];
 }
 

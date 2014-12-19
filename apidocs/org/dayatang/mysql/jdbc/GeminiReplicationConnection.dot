@@ -10,15 +10,15 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.mysql.jdbc.GeminiReplicationConnection
-	c52147 [label=<<table title="org.dayatang.mysql.jdbc.GeminiReplicationConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GeminiReplicationConnection.html">
+	c52334 [label=<<table title="org.dayatang.mysql.jdbc.GeminiReplicationConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GeminiReplicationConnection.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GeminiReplicationConnection </td></tr>
 		</table></td></tr>
 		</table>>, URL="./GeminiReplicationConnection.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.mysql.jdbc.GeminiReplicationConnection extends com.mysql.jdbc.ReplicationConnection
-	c52212:p -> c52147:p [dir=back,arrowtail=empty];
+	c52399:p -> c52334:p [dir=back,arrowtail=empty];
 	// com.mysql.jdbc.ReplicationConnection
-	c52212 [label=<<table title="com.mysql.jdbc.ReplicationConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c52399 [label=<<table title="com.mysql.jdbc.ReplicationConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ReplicationConnection </td></tr>
 		</table></td></tr>

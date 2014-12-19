@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ObserverTest.html" title="org.dayatang.observer.domain.ObserverTest" alt="" coords="16,17,112,42"/>
-<area shape="rect" id="node1" href="./ObserverTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,123,53"/>
-<area shape="rect" id="node2_1" href="./MotherObserver.html" title="org.dayatang.observer.domain.MotherObserver" alt="" coords="158,17,269,42"/>
-<area shape="rect" id="node2" href="./MotherObserver.html" title="&lt;TABLE&gt;" alt="" coords="147,5,279,53"/>
-<area shape="rect" id="node3_2" href="./FatherObserver.html" title="org.dayatang.observer.domain.FatherObserver" alt="" coords="314,17,422,42"/>
-<area shape="rect" id="node3" href="./FatherObserver.html" title="&lt;TABLE&gt;" alt="" coords="303,5,433,53"/>
-<area shape="rect" id="node4_3" href="./Baby.html" title="org.dayatang.observer.domain.Baby" alt="" coords="467,17,519,42"/>
-<area shape="rect" id="node4" href="./Baby.html" title="&lt;TABLE&gt;" alt="" coords="457,5,530,53"/>
+<area shape="rect" id="node1_0" href="./ObserverTest.html" title="org.dayatang.observer.domain.ObserverTest" alt="" coords="16,17,116,42"/>
+<area shape="rect" id="node1" href="./ObserverTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,127,53"/>
+<area shape="rect" id="node2_1" href="./MotherObserver.html" title="org.dayatang.observer.domain.MotherObserver" alt="" coords="162,17,277,42"/>
+<area shape="rect" id="node2" href="./MotherObserver.html" title="&lt;TABLE&gt;" alt="" coords="151,5,287,53"/>
+<area shape="rect" id="node3_2" href="./FatherObserver.html" title="org.dayatang.observer.domain.FatherObserver" alt="" coords="322,17,434,42"/>
+<area shape="rect" id="node3" href="./FatherObserver.html" title="&lt;TABLE&gt;" alt="" coords="311,5,445,53"/>
+<area shape="rect" id="node4_3" href="./Baby.html" title="org.dayatang.observer.domain.Baby" alt="" coords="480,17,529,42"/>
+<area shape="rect" id="node4" href="./Baby.html" title="&lt;TABLE&gt;" alt="" coords="469,5,541,53"/>
 </map>

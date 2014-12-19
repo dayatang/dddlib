@@ -1,10 +1,12 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ConfigurationUrlImplTest.html" title="org.dayatang.configuration.impl.ConfigurationUrlImplTest" alt="" coords="16,113,169,138"/>
-<area shape="rect" id="node1" href="./ConfigurationUrlImplTest.html" title="&lt;TABLE&gt;" alt="" coords="5,101,180,149"/>
-<area shape="rect" id="node2_1" href="./ConfigurationFileImplTest.html" title="org.dayatang.configuration.impl.ConfigurationFileImplTest" alt="" coords="215,113,373,138"/>
-<area shape="rect" id="node2" href="./ConfigurationFileImplTest.html" title="&lt;TABLE&gt;" alt="" coords="205,101,383,149"/>
-<area shape="rect" id="node3_2" href="./ConfigurationDbImplTest.html" title="org.dayatang.configuration.impl.ConfigurationDbImplTest" alt="" coords="418,113,575,138"/>
-<area shape="rect" id="node3" href="./ConfigurationDbImplTest.html" title="&lt;TABLE&gt;" alt="" coords="407,101,586,149"/>
-<area shape="rect" id="node4_3" href="./AbstractConfigurationTest.html" title="org.dayatang.configuration.impl.AbstractConfigurationTest" alt="" coords="209,17,379,42"/>
-<area shape="rect" id="node4" href="./AbstractConfigurationTest.html" title="&lt;TABLE&gt;" alt="" coords="198,5,390,53"/>
+<area shape="rect" id="node1_0" href="./ConfigurationUrlImplTest.html" title="org.dayatang.configuration.impl.ConfigurationUrlImplTest" alt="" coords="16,113,183,138"/>
+<area shape="rect" id="node1" href="./ConfigurationUrlImplTest.html" title="&lt;TABLE&gt;" alt="" coords="5,101,193,149"/>
+<area shape="rect" id="node2_1" href="./ConfigurationInputStreamImplTest.html" title="org.dayatang.configuration.impl.ConfigurationInputStreamImplTest" alt="" coords="229,113,450,138"/>
+<area shape="rect" id="node2" href="./ConfigurationInputStreamImplTest.html" title="&lt;TABLE&gt;" alt="" coords="218,101,461,149"/>
+<area shape="rect" id="node3_2" href="./ConfigurationFileImplTest.html" title="org.dayatang.configuration.impl.ConfigurationFileImplTest" alt="" coords="495,113,666,138"/>
+<area shape="rect" id="node3" href="./ConfigurationFileImplTest.html" title="&lt;TABLE&gt;" alt="" coords="485,101,677,149"/>
+<area shape="rect" id="node4_3" href="./ConfigurationDbImplTest.html" title="org.dayatang.configuration.impl.ConfigurationDbImplTest" alt="" coords="712,113,879,138"/>
+<area shape="rect" id="node4" href="./ConfigurationDbImplTest.html" title="&lt;TABLE&gt;" alt="" coords="701,101,889,149"/>
+<area shape="rect" id="node5_4" href="./AbstractConfigurationTest.html" title="org.dayatang.configuration.impl.AbstractConfigurationTest" alt="" coords="373,17,546,42"/>
+<area shape="rect" id="node5" href="./AbstractConfigurationTest.html" title="&lt;TABLE&gt;" alt="" coords="362,5,557,53"/>
 </map>

@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../../../domain/AbstractEntity.html" title="org.dayatang.domain.AbstractEntity" alt="" coords="28,17,131,42"/>
-<area shape="rect" id="node1" href="../../../domain/AbstractEntity.html" title="&lt;TABLE&gt;" alt="" coords="17,5,141,53"/>
-<area shape="rect" id="node2_1" href="./DictionaryCategory.html" title="org.dayatang.persistence.test.domain.DictionaryCategory" alt="" coords="16,113,143,138"/>
-<area shape="rect" id="node2" href="./DictionaryCategory.html" title="&lt;TABLE&gt;" alt="" coords="5,101,153,149"/>
+<area shape="rect" id="node1_0" href="../../../domain/AbstractEntity.html" title="org.dayatang.domain.AbstractEntity" alt="" coords="31,17,133,42"/>
+<area shape="rect" id="node1" href="../../../domain/AbstractEntity.html" title="&lt;TABLE&gt;" alt="" coords="21,5,143,53"/>
+<area shape="rect" id="node2_1" href="./DictionaryCategory.html" title="org.dayatang.persistence.test.domain.DictionaryCategory" alt="" coords="16,113,148,138"/>
+<area shape="rect" id="node2" href="./DictionaryCategory.html" title="&lt;TABLE&gt;" alt="" coords="5,101,159,149"/>
 </map>

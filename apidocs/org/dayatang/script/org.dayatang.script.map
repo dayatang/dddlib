@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ScriptType.html" title="org.dayatang.script.ScriptType" alt="" coords="16,11,97,53"/>
-<area shape="rect" id="node1" href="./ScriptType.html" title="&lt;TABLE&gt;" alt="" coords="5,5,108,59"/>
-<area shape="rect" id="node2_1" href="./ScriptService.html" title="org.dayatang.script.ScriptService" alt="" coords="143,19,235,45"/>
-<area shape="rect" id="node2" href="./ScriptService.html" title="&lt;TABLE&gt;" alt="" coords="132,8,245,56"/>
+<area shape="rect" id="node1_0" href="./ScriptType.html" title="org.dayatang.script.ScriptType" alt="" coords="16,11,101,53"/>
+<area shape="rect" id="node1" href="./ScriptType.html" title="&lt;TABLE&gt;" alt="" coords="5,5,112,59"/>
+<area shape="rect" id="node2_1" href="./ScriptService.html" title="org.dayatang.script.ScriptService" alt="" coords="147,19,245,45"/>
+<area shape="rect" id="node2" href="./ScriptService.html" title="&lt;TABLE&gt;" alt="" coords="137,8,255,56"/>
 </map>

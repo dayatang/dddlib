@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./InstanceProvider.html" title="org.dayatang.domain.InstanceProvider" alt="" coords="226,11,338,53"/>
-<area shape="rect" id="node1" href="./InstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="215,5,349,59"/>
-<area shape="rect" id="node2_1" href="../ioc/spring/factory/SpringInstanceProvider.html" title="org.dayatang.ioc.spring.factory.SpringInstanceProvider" alt="" coords="16,118,164,143"/>
-<area shape="rect" id="node2" href="../ioc/spring/factory/SpringInstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="5,107,175,155"/>
-<area shape="rect" id="node3_2" href="../ioc/guice/GuiceInstanceProvider.html" title="org.dayatang.ioc.guice.GuiceInstanceProvider" alt="" coords="209,118,355,143"/>
-<area shape="rect" id="node3" href="../ioc/guice/GuiceInstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="199,107,365,155"/>
-<area shape="rect" id="node4_3" href="../ioc/tapestry/factory/TapestryInstanceProvider.html" title="org.dayatang.ioc.tapestry.factory.TapestryInstanceProvider" alt="" coords="401,118,563,143"/>
-<area shape="rect" id="node4" href="../ioc/tapestry/factory/TapestryInstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="390,107,574,155"/>
+<area shape="rect" id="node1_0" href="./InstanceProvider.html" title="org.dayatang.domain.InstanceProvider" alt="" coords="237,11,355,53"/>
+<area shape="rect" id="node1" href="./InstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="226,5,366,59"/>
+<area shape="rect" id="node2_1" href="../ioc/spring/factory/SpringInstanceProvider.html" title="org.dayatang.ioc.spring.factory.SpringInstanceProvider" alt="" coords="16,118,173,143"/>
+<area shape="rect" id="node2" href="../ioc/spring/factory/SpringInstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="5,107,184,155"/>
+<area shape="rect" id="node3_2" href="../ioc/guice/GuiceInstanceProvider.html" title="org.dayatang.ioc.guice.GuiceInstanceProvider" alt="" coords="219,118,373,143"/>
+<area shape="rect" id="node3" href="../ioc/guice/GuiceInstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="209,107,383,155"/>
+<area shape="rect" id="node4_3" href="../ioc/tapestry/factory/TapestryInstanceProvider.html" title="org.dayatang.ioc.tapestry.factory.TapestryInstanceProvider" alt="" coords="419,118,589,143"/>
+<area shape="rect" id="node4" href="../ioc/tapestry/factory/TapestryInstanceProvider.html" title="&lt;TABLE&gt;" alt="" coords="408,107,600,155"/>
 </map>

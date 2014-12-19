@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ChannelSqlQuery.html" title="org.dayatang.querychannel.query.ChannelSqlQuery" alt="" coords="16,17,136,42"/>
-<area shape="rect" id="node1" href="./ChannelSqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="5,5,147,53"/>
-<area shape="rect" id="node2_1" href="./ChannelNamedQuery.html" title="org.dayatang.querychannel.query.ChannelNamedQuery" alt="" coords="181,17,325,42"/>
-<area shape="rect" id="node2" href="./ChannelNamedQuery.html" title="&lt;TABLE&gt;" alt="" coords="171,5,336,53"/>
-<area shape="rect" id="node3_2" href="./ChannelJpqlQuery.html" title="org.dayatang.querychannel.query.ChannelJpqlQuery" alt="" coords="371,17,496,42"/>
-<area shape="rect" id="node3" href="./ChannelJpqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="360,5,507,53"/>
+<area shape="rect" id="node1_0" href="./ChannelSqlQuery.html" title="org.dayatang.querychannel.query.ChannelSqlQuery" alt="" coords="16,17,140,42"/>
+<area shape="rect" id="node1" href="./ChannelSqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="5,5,151,53"/>
+<area shape="rect" id="node2_1" href="./ChannelNamedQuery.html" title="org.dayatang.querychannel.query.ChannelNamedQuery" alt="" coords="185,17,333,42"/>
+<area shape="rect" id="node2" href="./ChannelNamedQuery.html" title="&lt;TABLE&gt;" alt="" coords="175,5,344,53"/>
+<area shape="rect" id="node3_2" href="./ChannelJpqlQuery.html" title="org.dayatang.querychannel.query.ChannelJpqlQuery" alt="" coords="379,17,508,42"/>
+<area shape="rect" id="node3" href="./ChannelJpqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="368,5,519,53"/>
 </map>

@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Service3.html" title="org.dayatang.ioc.guice.Service3" alt="" coords="21,11,103,53"/>
-<area shape="rect" id="node1" href="./Service3.html" title="&lt;TABLE&gt;" alt="" coords="11,5,113,59"/>
-<area shape="rect" id="node2_1" href="./MyService31.html" title="org.dayatang.ioc.guice.MyService31" alt="" coords="16,118,108,143"/>
-<area shape="rect" id="node2" href="./MyService31.html" title="&lt;TABLE&gt;" alt="" coords="5,107,119,155"/>
-<area shape="rect" id="node3_2" href="./MyBindingAnnotation.html" title="org.dayatang.ioc.guice.MyBindingAnnotation" alt="" coords="148,19,291,45"/>
-<area shape="rect" id="node3" href="./MyBindingAnnotation.html" title="&lt;TABLE&gt;" alt="" coords="137,8,301,56"/>
-<area shape="rect" id="node4_3" href="./GuiceInstanceProviderTest.html" title="org.dayatang.ioc.guice.GuiceInstanceProviderTest" alt="" coords="336,19,505,45"/>
-<area shape="rect" id="node4" href="./GuiceInstanceProviderTest.html" title="&lt;TABLE&gt;" alt="" coords="325,8,516,56"/>
+<area shape="rect" id="node1_0" href="./Service3.html" title="org.dayatang.ioc.guice.Service3" alt="" coords="21,11,107,53"/>
+<area shape="rect" id="node1" href="./Service3.html" title="&lt;TABLE&gt;" alt="" coords="11,5,117,59"/>
+<area shape="rect" id="node2_1" href="./MyService31.html" title="org.dayatang.ioc.guice.MyService31" alt="" coords="16,118,112,143"/>
+<area shape="rect" id="node2" href="./MyService31.html" title="&lt;TABLE&gt;" alt="" coords="5,107,123,155"/>
+<area shape="rect" id="node3_2" href="./MyBindingAnnotation.html" title="org.dayatang.ioc.guice.MyBindingAnnotation" alt="" coords="153,19,298,45"/>
+<area shape="rect" id="node3" href="./MyBindingAnnotation.html" title="&lt;TABLE&gt;" alt="" coords="142,8,309,56"/>
+<area shape="rect" id="node4_3" href="./GuiceInstanceProviderTest.html" title="org.dayatang.ioc.guice.GuiceInstanceProviderTest" alt="" coords="343,19,523,45"/>
+<area shape="rect" id="node4" href="./GuiceInstanceProviderTest.html" title="&lt;TABLE&gt;" alt="" coords="333,8,534,56"/>
 </map>

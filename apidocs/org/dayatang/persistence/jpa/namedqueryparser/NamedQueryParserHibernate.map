@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../NamedQueryParser.html" title="org.dayatang.persistence.jpa.NamedQueryParser" alt="" coords="43,17,176,42"/>
-<area shape="rect" id="node1" href="../NamedQueryParser.html" title="&lt;TABLE&gt;" alt="" coords="32,5,187,53"/>
-<area shape="rect" id="node2_1" href="./NamedQueryParserHibernate.html" title="org.dayatang.persistence.jpa.namedqueryparser.NamedQueryParserHibernate" alt="" coords="16,113,203,138"/>
-<area shape="rect" id="node2" href="./NamedQueryParserHibernate.html" title="&lt;TABLE&gt;" alt="" coords="5,101,213,149"/>
+<area shape="rect" id="node1_0" href="../NamedQueryParser.html" title="org.dayatang.persistence.jpa.NamedQueryParser" alt="" coords="45,17,182,42"/>
+<area shape="rect" id="node1" href="../NamedQueryParser.html" title="&lt;TABLE&gt;" alt="" coords="34,5,193,53"/>
+<area shape="rect" id="node2_1" href="./NamedQueryParserHibernate.html" title="org.dayatang.persistence.jpa.namedqueryparser.NamedQueryParserHibernate" alt="" coords="16,113,211,138"/>
+<area shape="rect" id="node2" href="./NamedQueryParserHibernate.html" title="&lt;TABLE&gt;" alt="" coords="5,101,221,149"/>
 </map>

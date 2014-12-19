@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../AbstractDBManager.html" title="org.dayatang.db.AbstractDBManager" alt="" coords="16,17,152,42"/>
-<area shape="rect" id="node1" href="../AbstractDBManager.html" title="&lt;TABLE&gt;" alt="" coords="5,5,163,53"/>
-<area shape="rect" id="node2_1" href="./OracleDBManager.html" title="org.dayatang.db.oracle.OracleDBManager" alt="" coords="21,113,147,138"/>
-<area shape="rect" id="node2" href="./OracleDBManager.html" title="&lt;TABLE&gt;" alt="" coords="10,101,158,149"/>
+<area shape="rect" id="node1_0" href="../AbstractDBManager.html" title="org.dayatang.db.AbstractDBManager" alt="" coords="16,17,155,42"/>
+<area shape="rect" id="node1" href="../AbstractDBManager.html" title="&lt;TABLE&gt;" alt="" coords="5,5,165,53"/>
+<area shape="rect" id="node2_1" href="./OracleDBManager.html" title="org.dayatang.db.oracle.OracleDBManager" alt="" coords="21,113,150,138"/>
+<area shape="rect" id="node2" href="./OracleDBManager.html" title="&lt;TABLE&gt;" alt="" coords="10,101,161,149"/>
 </map>

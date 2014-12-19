@@ -10,19 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.InstanceProvider
-	c54197 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../domain/InstanceProvider.html">
+	c54672 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../domain/InstanceProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> InstanceProvider </td></tr>
 		</table></td></tr>
 		</table>>, URL="../../domain/InstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.ioc.guice.GuiceInstanceProvider
-	c54271 [label=<<table title="org.dayatang.ioc.guice.GuiceInstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GuiceInstanceProvider.html">
+	c54746 [label=<<table title="org.dayatang.ioc.guice.GuiceInstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./GuiceInstanceProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GuiceInstanceProvider </td></tr>
 		</table></td></tr>
 		</table>>, URL="./GuiceInstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.ioc.guice.GuiceInstanceProvider implements org.dayatang.domain.InstanceProvider
-	c54197:p -> c54271:p [dir=back,arrowtail=empty,style=dashed];
+	c54672:p -> c54746:p [dir=back,arrowtail=empty,style=dashed];
 }
 

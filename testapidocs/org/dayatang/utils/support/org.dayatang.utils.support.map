@@ -1,10 +1,12 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./DomainEventSub.html" title="org.dayatang.utils.support.DomainEventSub" alt="" coords="16,113,136,138"/>
-<area shape="rect" id="node1" href="./DomainEventSub.html" title="&lt;TABLE&gt;" alt="" coords="5,101,147,149"/>
-<area shape="rect" id="node2_1" href="./DomainEvent.html" title="org.dayatang.utils.support.DomainEvent" alt="" coords="27,17,125,42"/>
-<area shape="rect" id="node2" href="./DomainEvent.html" title="&lt;TABLE&gt;" alt="" coords="17,5,135,53"/>
-<area shape="rect" id="node3_2" href="./DictionaryCategory.html" title="org.dayatang.utils.support.DictionaryCategory" alt="" coords="170,17,297,42"/>
-<area shape="rect" id="node3" href="./DictionaryCategory.html" title="&lt;TABLE&gt;" alt="" coords="159,5,307,53"/>
-<area shape="rect" id="node4_3" href="./Dictionary.html" title="org.dayatang.utils.support.Dictionary" alt="" coords="343,17,417,42"/>
-<area shape="rect" id="node4" href="./Dictionary.html" title="&lt;TABLE&gt;" alt="" coords="332,5,428,53"/>
+<area shape="rect" id="node1_0" href="./DomainEventSubDto.html" title="org.dayatang.utils.support.DomainEventSubDto" alt="" coords="16,17,159,42"/>
+<area shape="rect" id="node1" href="./DomainEventSubDto.html" title="&lt;TABLE&gt;" alt="" coords="5,5,169,53"/>
+<area shape="rect" id="node2_1" href="./DomainEventSub.html" title="org.dayatang.utils.support.DomainEventSub" alt="" coords="193,113,315,138"/>
+<area shape="rect" id="node2" href="./DomainEventSub.html" title="&lt;TABLE&gt;" alt="" coords="182,101,326,149"/>
+<area shape="rect" id="node3_2" href="./DomainEvent.html" title="org.dayatang.utils.support.DomainEvent" alt="" coords="205,17,303,42"/>
+<area shape="rect" id="node3" href="./DomainEvent.html" title="&lt;TABLE&gt;" alt="" coords="194,5,314,53"/>
+<area shape="rect" id="node4_3" href="./DictionaryCategory.html" title="org.dayatang.utils.support.DictionaryCategory" alt="" coords="349,17,481,42"/>
+<area shape="rect" id="node4" href="./DictionaryCategory.html" title="&lt;TABLE&gt;" alt="" coords="339,5,492,53"/>
+<area shape="rect" id="node5_4" href="./Dictionary.html" title="org.dayatang.utils.support.Dictionary" alt="" coords="527,17,605,42"/>
+<area shape="rect" id="node5" href="./Dictionary.html" title="&lt;TABLE&gt;" alt="" coords="516,5,616,53"/>
 </map>

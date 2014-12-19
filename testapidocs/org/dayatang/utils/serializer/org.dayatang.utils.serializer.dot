@@ -9,11 +9,11 @@ digraph G {
 	node [fontname="Helvetica",fontsize=10,shape=plaintext];
 	nodesep=0.25;
 	ranksep=0.5;
-	// org.dayatang.utils.serializer.GsonObjectSerializerTest
-	c391 [label=<<table title="org.dayatang.utils.serializer.GsonObjectSerializerTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GsonObjectSerializerTest.html">
+	// org.dayatang.utils.serializer.GsonSerializerTest
+	c395 [label=<<table title="org.dayatang.utils.serializer.GsonSerializerTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GsonSerializerTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> GsonObjectSerializerTest </td></tr>
+<tr><td align="center" balign="center"> GsonSerializerTest </td></tr>
 		</table></td></tr>
-		</table>>, URL="./GsonObjectSerializerTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="./GsonSerializerTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

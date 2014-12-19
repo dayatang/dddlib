@@ -1,12 +1,12 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./GeminiWrapperDataSource.html" title="org.dayatang.dsmonitor.GeminiWrapperDataSource" alt="" coords="16,118,192,143"/>
-<area shape="rect" id="node1" href="./GeminiWrapperDataSource.html" title="&lt;TABLE&gt;" alt="" coords="5,107,203,155"/>
-<area shape="rect" id="node2_1" href="./GeminiConnection.html" title="org.dayatang.dsmonitor.GeminiConnection" alt="" coords="238,118,359,143"/>
-<area shape="rect" id="node2" href="./GeminiConnection.html" title="&lt;TABLE&gt;" alt="" coords="227,107,370,155"/>
-<area shape="rect" id="node3_2" href="./DelegatingDataSource.html" title="org.dayatang.dsmonitor.DelegatingDataSource" alt="" coords="30,19,178,45"/>
-<area shape="rect" id="node3" href="./DelegatingDataSource.html" title="&lt;TABLE&gt;" alt="" coords="19,8,189,56"/>
-<area shape="rect" id="node4_3" href="./DelegatingConnection.html" title="org.dayatang.dsmonitor.DelegatingConnection" alt="" coords="227,19,370,45"/>
-<area shape="rect" id="node4" href="./DelegatingConnection.html" title="&lt;TABLE&gt;" alt="" coords="217,8,381,56"/>
-<area shape="rect" id="node5_4" href="./ConnectionMonitor.html" title="org.dayatang.dsmonitor.ConnectionMonitor" alt="" coords="416,11,539,53"/>
-<area shape="rect" id="node5" href="./ConnectionMonitor.html" title="&lt;TABLE&gt;" alt="" coords="405,5,549,59"/>
+<area shape="rect" id="node1_0" href="./GeminiWrapperDataSource.html" title="org.dayatang.dsmonitor.GeminiWrapperDataSource" alt="" coords="16,118,199,143"/>
+<area shape="rect" id="node1" href="./GeminiWrapperDataSource.html" title="&lt;TABLE&gt;" alt="" coords="5,107,209,155"/>
+<area shape="rect" id="node2_1" href="./GeminiConnection.html" title="org.dayatang.dsmonitor.GeminiConnection" alt="" coords="245,118,373,143"/>
+<area shape="rect" id="node2" href="./GeminiConnection.html" title="&lt;TABLE&gt;" alt="" coords="234,107,383,155"/>
+<area shape="rect" id="node3_2" href="./DelegatingDataSource.html" title="org.dayatang.dsmonitor.DelegatingDataSource" alt="" coords="31,19,184,45"/>
+<area shape="rect" id="node3" href="./DelegatingDataSource.html" title="&lt;TABLE&gt;" alt="" coords="20,8,195,56"/>
+<area shape="rect" id="node4_3" href="./DelegatingConnection.html" title="org.dayatang.dsmonitor.DelegatingConnection" alt="" coords="234,19,383,45"/>
+<area shape="rect" id="node4" href="./DelegatingConnection.html" title="&lt;TABLE&gt;" alt="" coords="223,8,394,56"/>
+<area shape="rect" id="node5_4" href="./ConnectionMonitor.html" title="org.dayatang.dsmonitor.ConnectionMonitor" alt="" coords="429,11,559,53"/>
+<area shape="rect" id="node5" href="./ConnectionMonitor.html" title="&lt;TABLE&gt;" alt="" coords="418,5,570,59"/>
 </map>

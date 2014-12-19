@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.observer.HibernateUtils
-	c5831 [label=<<table title="org.dayatang.observer.HibernateUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./HibernateUtils.html">
+	c5697 [label=<<table title="org.dayatang.observer.HibernateUtils" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./HibernateUtils.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> HibernateUtils </td></tr>
 		</table></td></tr>

@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Employment.html" title="org.dddlib.organisation.domain.Employment" alt="" coords="128,113,217,138"/>
-<area shape="rect" id="node1" href="./Employment.html" title="&lt;TABLE&gt;" alt="" coords="117,101,228,149"/>
+<area shape="rect" id="node1_0" href="./Employment.html" title="org.dddlib.organisation.domain.Employment" alt="" coords="126,113,219,138"/>
+<area shape="rect" id="node1" href="./Employment.html" title="&lt;TABLE&gt;" alt="" coords="115,101,230,149"/>
 <area shape="rect" id="node2_1" href="./Accountability.html" title="org.dddlib.organisation.domain.Accountability" alt="" coords="16,17,329,42"/>
 <area shape="rect" id="node2" href="./Accountability.html" title="&lt;TABLE&gt;" alt="" coords="5,5,340,53"/>
 </map>

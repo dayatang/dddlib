@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./GeminiConnection.html" title="org.dayatang.dsmonitor.GeminiConnection" alt="" coords="27,113,148,138"/>
-<area shape="rect" id="node1" href="./GeminiConnection.html" title="&lt;TABLE&gt;" alt="" coords="16,101,159,149"/>
-<area shape="rect" id="node2_1" href="./DelegatingConnection.html" title="org.dayatang.dsmonitor.DelegatingConnection" alt="" coords="16,17,159,42"/>
-<area shape="rect" id="node2" href="./DelegatingConnection.html" title="&lt;TABLE&gt;" alt="" coords="5,5,169,53"/>
+<area shape="rect" id="node1_0" href="./GeminiConnection.html" title="org.dayatang.dsmonitor.GeminiConnection" alt="" coords="27,113,155,138"/>
+<area shape="rect" id="node1" href="./GeminiConnection.html" title="&lt;TABLE&gt;" alt="" coords="16,101,165,149"/>
+<area shape="rect" id="node2_1" href="./DelegatingConnection.html" title="org.dayatang.dsmonitor.DelegatingConnection" alt="" coords="16,17,165,42"/>
+<area shape="rect" id="node2" href="./DelegatingConnection.html" title="&lt;TABLE&gt;" alt="" coords="5,5,176,53"/>
 </map>

@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./MyApplicationImpl.html" title="org.dayatang.springtest.application.impl.MyApplicationImpl" alt="" coords="16,118,139,143"/>
-<area shape="rect" id="node1" href="./MyApplicationImpl.html" title="&lt;TABLE&gt;" alt="" coords="5,107,149,155"/>
-<area shape="rect" id="node2_1" href="../MyApplication.html" title="org.dayatang.springtest.application.MyApplication" alt="" coords="27,11,127,53"/>
-<area shape="rect" id="node2" href="../MyApplication.html" title="&lt;TABLE&gt;" alt="" coords="17,5,138,59"/>
+<area shape="rect" id="node1_0" href="../MyApplication.html" title="org.dayatang.springtest.application.MyApplication" alt="" coords="29,11,130,53"/>
+<area shape="rect" id="node1" href="../MyApplication.html" title="&lt;TABLE&gt;" alt="" coords="18,5,141,59"/>
+<area shape="rect" id="node2_1" href="./MyApplicationImpl.html" title="org.dayatang.springtest.application.impl.MyApplicationImpl" alt="" coords="16,118,143,143"/>
+<area shape="rect" id="node2" href="./MyApplicationImpl.html" title="&lt;TABLE&gt;" alt="" coords="5,107,153,155"/>
 </map>

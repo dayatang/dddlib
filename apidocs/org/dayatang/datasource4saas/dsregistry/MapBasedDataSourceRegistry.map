@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../DataSourceRegistry.html" title="org.dayatang.datasource4saas.DataSourceRegistry" alt="" coords="167,11,301,53"/>
-<area shape="rect" id="node1" href="../DataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="157,5,311,59"/>
-<area shape="rect" id="node2_1" href="./MapBasedDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry" alt="" coords="135,118,333,143"/>
-<area shape="rect" id="node2" href="./MapBasedDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="125,107,343,155"/>
-<area shape="rect" id="node3_2" href="./JndiMappingDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.JndiMappingDataSourceRegistry" alt="" coords="16,214,223,239"/>
-<area shape="rect" id="node3" href="./JndiMappingDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="5,203,233,251"/>
-<area shape="rect" id="node4_3" href="./JdbcDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistry" alt="" coords="269,214,429,239"/>
-<area shape="rect" id="node4" href="./JdbcDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="258,203,439,251"/>
+<area shape="rect" id="node1_0" href="../DataSourceRegistry.html" title="org.dayatang.datasource4saas.DataSourceRegistry" alt="" coords="171,11,309,53"/>
+<area shape="rect" id="node1" href="../DataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="160,5,320,59"/>
+<area shape="rect" id="node2_1" href="./MapBasedDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry" alt="" coords="139,118,341,143"/>
+<area shape="rect" id="node2" href="./MapBasedDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="129,107,351,155"/>
+<area shape="rect" id="node3_2" href="./JndiMappingDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.JndiMappingDataSourceRegistry" alt="" coords="16,214,229,239"/>
+<area shape="rect" id="node3" href="./JndiMappingDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="5,203,240,251"/>
+<area shape="rect" id="node4_3" href="./JdbcDataSourceRegistry.html" title="org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistry" alt="" coords="275,214,442,239"/>
+<area shape="rect" id="node4" href="./JdbcDataSourceRegistry.html" title="&lt;TABLE&gt;" alt="" coords="265,203,453,251"/>
 </map>

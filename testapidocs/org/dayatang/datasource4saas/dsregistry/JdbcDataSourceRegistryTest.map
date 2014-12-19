@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./JdbcDataSourceRegistryTest.html" title="org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistryTest" alt="" coords="29,113,213,138"/>
-<area shape="rect" id="node1" href="./JdbcDataSourceRegistryTest.html" title="&lt;TABLE&gt;" alt="" coords="19,101,224,149"/>
-<area shape="rect" id="node2_1" href="./AbstractDataSourceRegistryTest.html" title="org.dayatang.datasource4saas.dsregistry.AbstractDataSourceRegistryTest" alt="" coords="16,17,227,42"/>
-<area shape="rect" id="node2" href="./AbstractDataSourceRegistryTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,237,53"/>
+<area shape="rect" id="node1_0" href="./JdbcDataSourceRegistryTest.html" title="org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistryTest" alt="" coords="27,113,219,138"/>
+<area shape="rect" id="node1" href="./JdbcDataSourceRegistryTest.html" title="&lt;TABLE&gt;" alt="" coords="16,101,229,149"/>
+<area shape="rect" id="node2_1" href="./AbstractDataSourceRegistryTest.html" title="org.dayatang.datasource4saas.dsregistry.AbstractDataSourceRegistryTest" alt="" coords="16,17,229,42"/>
+<area shape="rect" id="node2" href="./AbstractDataSourceRegistryTest.html" title="&lt;TABLE&gt;" alt="" coords="5,5,240,53"/>
 </map>

@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../Cache.html" title="org.dayatang.cache.Cache" alt="" coords="50,11,131,53"/>
-<area shape="rect" id="node1" href="../Cache.html" title="&lt;TABLE&gt;" alt="" coords="39,5,142,59"/>
+<area shape="rect" id="node1_0" href="../Cache.html" title="org.dayatang.cache.Cache" alt="" coords="48,11,133,53"/>
+<area shape="rect" id="node1" href="../Cache.html" title="&lt;TABLE&gt;" alt="" coords="37,5,144,59"/>
 <area shape="rect" id="node2_1" href="./EhCacheBasedCache.html" title="org.dayatang.cache.ehcache.EhCacheBasedCache" alt="" coords="16,118,165,143"/>
 <area shape="rect" id="node2" href="./EhCacheBasedCache.html" title="&lt;TABLE&gt;" alt="" coords="5,107,176,155"/>
 </map>

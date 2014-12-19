@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dddlib.organisation.domain.Organization
-	c41862 [label=<<table title="org.dddlib.organisation.domain.Organization" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Organization.html">
+	c42011 [label=<<table title="org.dddlib.organisation.domain.Organization" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Organization.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Organization </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./Organization.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Department
-	c41870 [label=<<table title="org.dddlib.organisation.domain.Department" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Department.html">
+	c42020 [label=<<table title="org.dddlib.organisation.domain.Department" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Department.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Department </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Department.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dddlib.organisation.domain.Department extends org.dddlib.organisation.domain.Organization
-	c41862:p -> c41870:p [dir=back,arrowtail=empty];
+	c42011:p -> c42020:p [dir=back,arrowtail=empty];
 }
 

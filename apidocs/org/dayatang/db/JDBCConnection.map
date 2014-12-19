@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./JDBCConnection.html" title="org.dayatang.db.JDBCConnection" alt="" coords="16,118,133,143"/>
-<area shape="rect" id="node1" href="./JDBCConnection.html" title="&lt;TABLE&gt;" alt="" coords="5,107,144,155"/>
-<area shape="rect" id="node2_1" href="./DBConnection.html" title="org.dayatang.db.DBConnection" alt="" coords="24,11,125,53"/>
-<area shape="rect" id="node2" href="./DBConnection.html" title="&lt;TABLE&gt;" alt="" coords="13,5,136,59"/>
+<area shape="rect" id="node1_0" href="./JDBCConnection.html" title="org.dayatang.db.JDBCConnection" alt="" coords="16,118,137,143"/>
+<area shape="rect" id="node1" href="./JDBCConnection.html" title="&lt;TABLE&gt;" alt="" coords="5,107,148,155"/>
+<area shape="rect" id="node2_1" href="./DBConnection.html" title="org.dayatang.db.DBConnection" alt="" coords="24,11,129,53"/>
+<area shape="rect" id="node2" href="./DBConnection.html" title="&lt;TABLE&gt;" alt="" coords="13,5,140,59"/>
 </map>

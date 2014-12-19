@@ -21,12 +21,12 @@
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>  	@Test
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testConstructorFromModule() {
-<a class="jxr_linenumber" name="L16" href="#L16">16</a>  		assertEquals(<span class="jxr_string">"I am Service 1"</span>, provider.getInstance(Service.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"service1"</span>).sayHello());
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  		assertEquals(<span class="jxr_string">"I am Service 1"</span>, getProvider().getInstance(Service.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"service1"</span>).sayHello());
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  	}
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  	@Test
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testConstructorFromInjector() {
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  		provider = <strong class="jxr_keyword">new</strong> GuiceInstanceProvider(createInjector());
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  		InstanceProvider provider = <strong class="jxr_keyword">new</strong> GuiceInstanceProvider(createInjector());
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  		assertEquals(<span class="jxr_string">"I am Service 1"</span>, provider.getInstance(Service.<strong class="jxr_keyword">class</strong>, <span class="jxr_string">"service1"</span>).sayHello());
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  	}
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  
@@ -55,7 +55,7 @@
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>      @Override
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>      @Test
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testGetInstanceWithAnnotation() {
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>          <a href="../../../../org/dayatang/ioc/guice/Service3.html">Service3</a> service = provider.getInstance(Service3.<strong class="jxr_keyword">class</strong>, MyBindingAnnotation.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>          <a href="../../../../org/dayatang/ioc/guice/Service3.html">Service3</a> service = getProvider().getInstance(Service3.<strong class="jxr_keyword">class</strong>, MyBindingAnnotation.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>          assertNotNull(service);
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>      }
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  }

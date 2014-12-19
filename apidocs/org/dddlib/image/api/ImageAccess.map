@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ImageAccess.html" title="org.dddlib.image.api.ImageAccess" alt="" coords="121,11,217,53"/>
-<area shape="rect" id="node1" href="./ImageAccess.html" title="&lt;TABLE&gt;" alt="" coords="110,5,227,59"/>
-<area shape="rect" id="node2_1" href="../cache/CacheImageAccess.html" title="org.dddlib.image.cache.CacheImageAccess" alt="" coords="16,118,151,143"/>
-<area shape="rect" id="node2" href="../cache/CacheImageAccess.html" title="&lt;TABLE&gt;" alt="" coords="5,107,161,155"/>
-<area shape="rect" id="node3_2" href="../file/FileImageAccess.html" title="org.dddlib.image.file.FileImageAccess" alt="" coords="197,118,311,143"/>
-<area shape="rect" id="node3" href="../file/FileImageAccess.html" title="&lt;TABLE&gt;" alt="" coords="186,107,322,155"/>
+<area shape="rect" id="node1_0" href="./ImageAccess.html" title="org.dddlib.image.api.ImageAccess" alt="" coords="122,11,221,53"/>
+<area shape="rect" id="node1" href="./ImageAccess.html" title="&lt;TABLE&gt;" alt="" coords="111,5,231,59"/>
+<area shape="rect" id="node2_1" href="../cache/CacheImageAccess.html" title="org.dddlib.image.cache.CacheImageAccess" alt="" coords="16,118,153,143"/>
+<area shape="rect" id="node2" href="../cache/CacheImageAccess.html" title="&lt;TABLE&gt;" alt="" coords="5,107,164,155"/>
+<area shape="rect" id="node3_2" href="../file/FileImageAccess.html" title="org.dddlib.image.file.FileImageAccess" alt="" coords="199,118,319,143"/>
+<area shape="rect" id="node3" href="../file/FileImageAccess.html" title="&lt;TABLE&gt;" alt="" coords="189,107,330,155"/>
 </map>

@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dddlib.organisation.domain.Party
-	c62243 [label=<<table title="org.dddlib.organisation.domain.Party" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Party.html">
+	c62746 [label=<<table title="org.dddlib.organisation.domain.Party" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Party.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Party </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./Party.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Job
-	c62246 [label=<<table title="org.dddlib.organisation.domain.Job" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Job.html">
+	c62749 [label=<<table title="org.dddlib.organisation.domain.Job" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Job.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Job </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Job.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dddlib.organisation.domain.Job extends org.dddlib.organisation.domain.Party
-	c62243:p -> c62246:p [dir=back,arrowtail=empty];
+	c62746:p -> c62749:p [dir=back,arrowtail=empty];
 }
 

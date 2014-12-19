@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./NamedQueryParser.html" title="org.dayatang.persistence.jpa.NamedQueryParser" alt="" coords="277,17,410,42"/>
-<area shape="rect" id="node1" href="./NamedQueryParser.html" title="&lt;TABLE&gt;" alt="" coords="266,5,421,53"/>
-<area shape="rect" id="node2_1" href="./namedqueryparser/NamedQueryParserOpenJpa.html" title="org.dayatang.persistence.jpa.namedqueryparser.NamedQueryParserOpenJpa" alt="" coords="16,113,204,138"/>
-<area shape="rect" id="node2" href="./namedqueryparser/NamedQueryParserOpenJpa.html" title="&lt;TABLE&gt;" alt="" coords="5,101,215,149"/>
-<area shape="rect" id="node3_2" href="./namedqueryparser/NamedQueryParserHibernate.html" title="org.dayatang.persistence.jpa.namedqueryparser.NamedQueryParserHibernate" alt="" coords="250,113,437,138"/>
-<area shape="rect" id="node3" href="./namedqueryparser/NamedQueryParserHibernate.html" title="&lt;TABLE&gt;" alt="" coords="239,101,447,149"/>
-<area shape="rect" id="node4_3" href="./namedqueryparser/NamedQueryParserEclipseLink.html" title="org.dayatang.persistence.jpa.namedqueryparser.NamedQueryParserEclipseLink" alt="" coords="483,113,679,138"/>
-<area shape="rect" id="node4" href="./namedqueryparser/NamedQueryParserEclipseLink.html" title="&lt;TABLE&gt;" alt="" coords="472,101,689,149"/>
+<area shape="rect" id="node1_0" href="./NamedQueryParser.html" title="org.dayatang.persistence.jpa.NamedQueryParser" alt="" coords="282,17,419,42"/>
+<area shape="rect" id="node1" href="./NamedQueryParser.html" title="&lt;TABLE&gt;" alt="" coords="271,5,430,53"/>
+<area shape="rect" id="node2_1" href="./namedqueryparser/NamedQueryParserOpenJpa.html" title="org.dayatang.persistence.jpa.namedqueryparser.NamedQueryParserOpenJpa" alt="" coords="16,113,208,138"/>
+<area shape="rect" id="node2" href="./namedqueryparser/NamedQueryParserOpenJpa.html" title="&lt;TABLE&gt;" alt="" coords="5,101,219,149"/>
+<area shape="rect" id="node3_2" href="./namedqueryparser/NamedQueryParserHibernate.html" title="org.dayatang.persistence.jpa.namedqueryparser.NamedQueryParserHibernate" alt="" coords="253,113,448,138"/>
+<area shape="rect" id="node3" href="./namedqueryparser/NamedQueryParserHibernate.html" title="&lt;TABLE&gt;" alt="" coords="243,101,459,149"/>
+<area shape="rect" id="node4_3" href="./namedqueryparser/NamedQueryParserEclipseLink.html" title="org.dayatang.persistence.jpa.namedqueryparser.NamedQueryParserEclipseLink" alt="" coords="493,113,699,138"/>
+<area shape="rect" id="node4" href="./namedqueryparser/NamedQueryParserEclipseLink.html" title="&lt;TABLE&gt;" alt="" coords="483,101,709,149"/>
 </map>

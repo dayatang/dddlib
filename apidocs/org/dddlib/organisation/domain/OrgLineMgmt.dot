@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dddlib.organisation.domain.OrgLineMgmt
-	c74245 [label=<<table title="org.dddlib.organisation.domain.OrgLineMgmt" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./OrgLineMgmt.html">
+	c74792 [label=<<table title="org.dddlib.organisation.domain.OrgLineMgmt" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./OrgLineMgmt.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> OrgLineMgmt </td></tr>
 		</table></td></tr>
 		</table>>, URL="./OrgLineMgmt.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Accountability<C extends org.dddlib.organisation.domain.Party, R extends org.dddlib.organisation.domain.Party>
-	c74257 [label=<<table title="org.dddlib.organisation.domain.Accountability" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Accountability.html">
+	c74803 [label=<<table title="org.dddlib.organisation.domain.Accountability" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Accountability.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Accountability&lt;C extends Party, R extends Party&gt; </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./Accountability.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dddlib.organisation.domain.OrgLineMgmt extends org.dddlib.organisation.domain.Accountability<org.dddlib.organisation.domain.Organization, org.dddlib.organisation.domain.Organization>
-	c74257:p -> c74245:p [dir=back,arrowtail=empty];
+	c74803:p -> c74792:p [dir=back,arrowtail=empty];
 }
 

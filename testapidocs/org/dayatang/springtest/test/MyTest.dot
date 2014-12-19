@@ -10,15 +10,15 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.springtest.test.MyTest
-	c34189 [label=<<table title="org.dayatang.springtest.test.MyTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MyTest.html">
+	c34933 [label=<<table title="org.dayatang.springtest.test.MyTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./MyTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MyTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MyTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.springtest.test.MyTest extends org.dayatang.springtest.AbstractIntegratedTestCase
-	c34242:p -> c34189:p [dir=back,arrowtail=empty];
+	c34986:p -> c34933:p [dir=back,arrowtail=empty];
 	// org.dayatang.springtest.AbstractIntegratedTestCase
-	c34242 [label=<<table title="org.dayatang.springtest.AbstractIntegratedTestCase" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c34986 [label=<<table title="org.dayatang.springtest.AbstractIntegratedTestCase" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractIntegratedTestCase </font></td></tr>
 		</table></td></tr>

@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ResourceBundleI18nService.html" title="org.dayatang.i18n.impl.ResourceBundleI18nService" alt="" coords="16,113,193,138"/>
-<area shape="rect" id="node1" href="./ResourceBundleI18nService.html" title="&lt;TABLE&gt;" alt="" coords="5,101,204,149"/>
-<area shape="rect" id="node2_1" href="./AbstractI18nService.html" title="org.dayatang.i18n.impl.AbstractI18nService" alt="" coords="36,17,173,42"/>
-<area shape="rect" id="node2" href="./AbstractI18nService.html" title="&lt;TABLE&gt;" alt="" coords="25,5,184,53"/>
+<area shape="rect" id="node1_0" href="./ResourceBundleI18nService.html" title="org.dayatang.i18n.impl.ResourceBundleI18nService" alt="" coords="16,113,204,138"/>
+<area shape="rect" id="node1" href="./ResourceBundleI18nService.html" title="&lt;TABLE&gt;" alt="" coords="5,101,215,149"/>
+<area shape="rect" id="node2_1" href="./AbstractI18nService.html" title="org.dayatang.i18n.impl.AbstractI18nService" alt="" coords="41,17,179,42"/>
+<area shape="rect" id="node2" href="./AbstractI18nService.html" title="&lt;TABLE&gt;" alt="" coords="30,5,190,53"/>
 </map>

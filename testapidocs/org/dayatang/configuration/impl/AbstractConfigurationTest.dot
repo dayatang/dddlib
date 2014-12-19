@@ -10,34 +10,42 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.configuration.impl.ConfigurationUrlImplTest
-	c11787 [label=<<table title="org.dayatang.configuration.impl.ConfigurationUrlImplTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationUrlImplTest.html">
+	c11911 [label=<<table title="org.dayatang.configuration.impl.ConfigurationUrlImplTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationUrlImplTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationUrlImplTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigurationUrlImplTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.dayatang.configuration.impl.ConfigurationInputStreamImplTest
+	c11913 [label=<<table title="org.dayatang.configuration.impl.ConfigurationInputStreamImplTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationInputStreamImplTest.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> ConfigurationInputStreamImplTest </td></tr>
+		</table></td></tr>
+		</table>>, URL="./ConfigurationInputStreamImplTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.ConfigurationFileImplTest
-	c11789 [label=<<table title="org.dayatang.configuration.impl.ConfigurationFileImplTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationFileImplTest.html">
+	c11915 [label=<<table title="org.dayatang.configuration.impl.ConfigurationFileImplTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationFileImplTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationFileImplTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigurationFileImplTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.ConfigurationDbImplTest
-	c11791 [label=<<table title="org.dayatang.configuration.impl.ConfigurationDbImplTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationDbImplTest.html">
+	c11917 [label=<<table title="org.dayatang.configuration.impl.ConfigurationDbImplTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationDbImplTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationDbImplTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigurationDbImplTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.AbstractConfigurationTest
-	c11792 [label=<<table title="org.dayatang.configuration.impl.AbstractConfigurationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractConfigurationTest.html">
+	c11918 [label=<<table title="org.dayatang.configuration.impl.AbstractConfigurationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractConfigurationTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractConfigurationTest </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractConfigurationTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.configuration.impl.ConfigurationUrlImplTest extends org.dayatang.configuration.impl.AbstractConfigurationTest
-	c11792:p -> c11787:p [dir=back,arrowtail=empty];
+	c11918:p -> c11911:p [dir=back,arrowtail=empty];
+	//org.dayatang.configuration.impl.ConfigurationInputStreamImplTest extends org.dayatang.configuration.impl.AbstractConfigurationTest
+	c11918:p -> c11913:p [dir=back,arrowtail=empty];
 	//org.dayatang.configuration.impl.ConfigurationFileImplTest extends org.dayatang.configuration.impl.AbstractConfigurationTest
-	c11792:p -> c11789:p [dir=back,arrowtail=empty];
+	c11918:p -> c11915:p [dir=back,arrowtail=empty];
 	//org.dayatang.configuration.impl.ConfigurationDbImplTest extends org.dayatang.configuration.impl.AbstractConfigurationTest
-	c11792:p -> c11791:p [dir=back,arrowtail=empty];
+	c11918:p -> c11917:p [dir=back,arrowtail=empty];
 }
 

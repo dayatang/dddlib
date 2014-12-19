@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.persistence.jpa.EntityRepositoryJpaTest
-	c23696 [label=<<table title="org.dayatang.persistence.jpa.EntityRepositoryJpaTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./EntityRepositoryJpaTest.html">
+	c24330 [label=<<table title="org.dayatang.persistence.jpa.EntityRepositoryJpaTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./EntityRepositoryJpaTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EntityRepositoryJpaTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EntityRepositoryJpaTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.persistence.jpa.AbstractIntegrationTest
-	c23700 [label=<<table title="org.dayatang.persistence.jpa.AbstractIntegrationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractIntegrationTest.html">
+	c24334 [label=<<table title="org.dayatang.persistence.jpa.AbstractIntegrationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractIntegrationTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AbstractIntegrationTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractIntegrationTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.persistence.jpa.EntityRepositoryJpaTest extends org.dayatang.persistence.jpa.AbstractIntegrationTest
-	c23700:p -> c23696:p [dir=back,arrowtail=empty];
+	c24334:p -> c24330:p [dir=back,arrowtail=empty];
 }
 

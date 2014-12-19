@@ -1,8 +1,8 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./EntityRepository.html" title="org.dayatang.domain.EntityRepository" alt="" coords="140,11,252,53"/>
-<area shape="rect" id="node1" href="./EntityRepository.html" title="&lt;TABLE&gt;" alt="" coords="129,5,263,59"/>
-<area shape="rect" id="node2_1" href="../persistence/hibernate/EntityRepositoryHibernate.html" title="org.dayatang.persistence.hibernate.EntityRepositoryHibernate" alt="" coords="16,118,181,143"/>
-<area shape="rect" id="node2" href="../persistence/hibernate/EntityRepositoryHibernate.html" title="&lt;TABLE&gt;" alt="" coords="5,107,192,155"/>
-<area shape="rect" id="node3_2" href="../persistence/jpa/EntityRepositoryJpa.html" title="org.dayatang.persistence.jpa.EntityRepositoryJpa" alt="" coords="227,118,360,143"/>
-<area shape="rect" id="node3" href="../persistence/jpa/EntityRepositoryJpa.html" title="&lt;TABLE&gt;" alt="" coords="216,107,371,155"/>
+<area shape="rect" id="node1_0" href="./EntityRepository.html" title="org.dayatang.domain.EntityRepository" alt="" coords="145,11,261,53"/>
+<area shape="rect" id="node1" href="./EntityRepository.html" title="&lt;TABLE&gt;" alt="" coords="134,5,271,59"/>
+<area shape="rect" id="node2_1" href="../persistence/hibernate/EntityRepositoryHibernate.html" title="org.dayatang.persistence.hibernate.EntityRepositoryHibernate" alt="" coords="16,118,189,143"/>
+<area shape="rect" id="node2" href="../persistence/hibernate/EntityRepositoryHibernate.html" title="&lt;TABLE&gt;" alt="" coords="5,107,200,155"/>
+<area shape="rect" id="node3_2" href="../persistence/jpa/EntityRepositoryJpa.html" title="org.dayatang.persistence.jpa.EntityRepositoryJpa" alt="" coords="235,118,373,143"/>
+<area shape="rect" id="node3" href="../persistence/jpa/EntityRepositoryJpa.html" title="&lt;TABLE&gt;" alt="" coords="225,107,383,155"/>
 </map>

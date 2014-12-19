@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../HierarchicalI18nService.html" title="org.dayatang.i18n.HierarchicalI18nService" alt="" coords="16,11,164,53"/>
-<area shape="rect" id="node1" href="../HierarchicalI18nService.html" title="&lt;TABLE&gt;" alt="" coords="5,5,175,59"/>
-<area shape="rect" id="node4_1" href="./AbstractI18nService.html" title="org.dayatang.i18n.impl.AbstractI18nService" alt="" coords="115,118,252,143"/>
-<area shape="rect" id="node4" href="./AbstractI18nService.html" title="&lt;TABLE&gt;" alt="" coords="104,107,263,155"/>
-<area shape="rect" id="node2_2" href="./ResourceBundleI18nService.html" title="org.dayatang.i18n.impl.ResourceBundleI18nService" alt="" coords="95,214,272,239"/>
-<area shape="rect" id="node2" href="./ResourceBundleI18nService.html" title="&lt;TABLE&gt;" alt="" coords="84,203,283,251"/>
-<area shape="rect" id="node3_3" href="./I18nServiceSupport.html" title="org.dayatang.i18n.impl.I18nServiceSupport" alt="" coords="210,19,343,45"/>
-<area shape="rect" id="node3" href="./I18nServiceSupport.html" title="&lt;TABLE&gt;" alt="" coords="199,8,354,56"/>
+<area shape="rect" id="node1_0" href="../HierarchicalI18nService.html" title="org.dayatang.i18n.HierarchicalI18nService" alt="" coords="16,11,176,53"/>
+<area shape="rect" id="node1" href="../HierarchicalI18nService.html" title="&lt;TABLE&gt;" alt="" coords="5,5,187,59"/>
+<area shape="rect" id="node4_1" href="./AbstractI18nService.html" title="org.dayatang.i18n.impl.AbstractI18nService" alt="" coords="123,118,261,143"/>
+<area shape="rect" id="node4" href="./AbstractI18nService.html" title="&lt;TABLE&gt;" alt="" coords="112,107,272,155"/>
+<area shape="rect" id="node2_2" href="./ResourceBundleI18nService.html" title="org.dayatang.i18n.impl.ResourceBundleI18nService" alt="" coords="98,214,286,239"/>
+<area shape="rect" id="node2" href="./ResourceBundleI18nService.html" title="&lt;TABLE&gt;" alt="" coords="87,203,297,251"/>
+<area shape="rect" id="node3_3" href="./I18nServiceSupport.html" title="org.dayatang.i18n.impl.I18nServiceSupport" alt="" coords="221,19,357,45"/>
+<area shape="rect" id="node3" href="./I18nServiceSupport.html" title="&lt;TABLE&gt;" alt="" coords="211,8,368,56"/>
 </map>

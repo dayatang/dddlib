@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.rule.examples.JSR94Test
-	c29220 [label=<<table title="org.dayatang.rule.examples.JSR94Test" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./JSR94Test.html">
+	c29913 [label=<<table title="org.dayatang.rule.examples.JSR94Test" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./JSR94Test.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JSR94Test </td></tr>
 		</table></td></tr>

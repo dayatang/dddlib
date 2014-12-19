@@ -10,145 +10,145 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dddlib.organisation.domain.TerminateNotEmptyOrganizationException
-	c16989 [label=<<table title="org.dddlib.organisation.domain.TerminateNotEmptyOrganizationException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TerminateNotEmptyOrganizationException.html">
+	c17050 [label=<<table title="org.dddlib.organisation.domain.TerminateNotEmptyOrganizationException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./TerminateNotEmptyOrganizationException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TerminateNotEmptyOrganizationException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./TerminateNotEmptyOrganizationException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.PostHolding
-	c16990 [label=<<table title="org.dddlib.organisation.domain.PostHolding" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PostHolding.html">
+	c17051 [label=<<table title="org.dddlib.organisation.domain.PostHolding" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PostHolding.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PostHolding </td></tr>
 		</table></td></tr>
 		</table>>, URL="./PostHolding.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Post
-	c16991 [label=<<table title="org.dddlib.organisation.domain.Post" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Post.html">
+	c17052 [label=<<table title="org.dddlib.organisation.domain.Post" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Post.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Post </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Post.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.PersonName
-	c16992 [label=<<table title="org.dddlib.organisation.domain.PersonName" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PersonName.html">
+	c17053 [label=<<table title="org.dddlib.organisation.domain.PersonName" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PersonName.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PersonName </td></tr>
 		</table></td></tr>
 		</table>>, URL="./PersonName.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.PersonEducationInfo
-	c16993 [label=<<table title="org.dddlib.organisation.domain.PersonEducationInfo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PersonEducationInfo.html">
+	c17054 [label=<<table title="org.dddlib.organisation.domain.PersonEducationInfo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PersonEducationInfo.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PersonEducationInfo </td></tr>
 		</table></td></tr>
 		</table>>, URL="./PersonEducationInfo.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Person
-	c16994 [label=<<table title="org.dddlib.organisation.domain.Person" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Person.html">
+	c17055 [label=<<table title="org.dddlib.organisation.domain.Person" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Person.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Person </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Person.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Party
-	c16995 [label=<<table title="org.dddlib.organisation.domain.Party" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Party.html">
+	c17056 [label=<<table title="org.dddlib.organisation.domain.Party" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Party.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Party </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./Party.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
-	// org.dddlib.organisation.domain.OrgLineMgmt
-	c16996 [label=<<table title="org.dddlib.organisation.domain.OrgLineMgmt" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OrgLineMgmt.html">
-		<tr><td><table border="0" cellspacing="0" cellpadding="1">
-<tr><td align="center" balign="center"> OrgLineMgmt </td></tr>
-		</table></td></tr>
-		</table>>, URL="./OrgLineMgmt.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Organization
-	c16997 [label=<<table title="org.dddlib.organisation.domain.Organization" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Organization.html">
+	c17057 [label=<<table title="org.dddlib.organisation.domain.Organization" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Organization.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Organization </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./Organization.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.dddlib.organisation.domain.OrgLineMgmt
+	c17058 [label=<<table title="org.dddlib.organisation.domain.OrgLineMgmt" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OrgLineMgmt.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> OrgLineMgmt </td></tr>
+		</table></td></tr>
+		</table>>, URL="./OrgLineMgmt.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Job
-	c16998 [label=<<table title="org.dddlib.organisation.domain.Job" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Job.html">
+	c17059 [label=<<table title="org.dddlib.organisation.domain.Job" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Job.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Job </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Job.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.ImType
-	c16999 [label=<<table title="org.dddlib.organisation.domain.ImType" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ImType.html">
+	c17060 [label=<<table title="org.dddlib.organisation.domain.ImType" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ImType.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> ImType </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ImType.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.HrException
-	c17000 [label=<<table title="org.dddlib.organisation.domain.HrException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./HrException.html">
+	c17061 [label=<<table title="org.dddlib.organisation.domain.HrException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./HrException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> HrException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./HrException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Employment
-	c17001 [label=<<table title="org.dddlib.organisation.domain.Employment" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Employment.html">
+	c17062 [label=<<table title="org.dddlib.organisation.domain.Employment" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Employment.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Employment </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Employment.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.EmployeeArchieve
-	c17002 [label=<<table title="org.dddlib.organisation.domain.EmployeeArchieve" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EmployeeArchieve.html">
+	c17063 [label=<<table title="org.dddlib.organisation.domain.EmployeeArchieve" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EmployeeArchieve.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EmployeeArchieve </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EmployeeArchieve.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Employee
-	c17003 [label=<<table title="org.dddlib.organisation.domain.Employee" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Employee.html">
+	c17064 [label=<<table title="org.dddlib.organisation.domain.Employee" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Employee.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Employee </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Employee.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Email
-	c17004 [label=<<table title="org.dddlib.organisation.domain.Email" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Email.html">
+	c17065 [label=<<table title="org.dddlib.organisation.domain.Email" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Email.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Email </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Email.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Department
-	c17005 [label=<<table title="org.dddlib.organisation.domain.Department" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Department.html">
+	c17066 [label=<<table title="org.dddlib.organisation.domain.Department" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Department.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Department </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Department.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Company
-	c17006 [label=<<table title="org.dddlib.organisation.domain.Company" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Company.html">
+	c17067 [label=<<table title="org.dddlib.organisation.domain.Company" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Company.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Company </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Company.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Address
-	c17007 [label=<<table title="org.dddlib.organisation.domain.Address" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Address.html">
+	c17068 [label=<<table title="org.dddlib.organisation.domain.Address" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Address.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Address </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Address.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.Accountability<C extends org.dddlib.organisation.domain.Party, R extends org.dddlib.organisation.domain.Party>
-	c17008 [label=<<table title="org.dddlib.organisation.domain.Accountability" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Accountability.html">
+	c17069 [label=<<table title="org.dddlib.organisation.domain.Accountability" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Accountability.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Accountability&lt;C extends Party, R extends Party&gt; </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./Accountability.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dddlib.organisation.domain.TerminateNotEmptyOrganizationException extends org.dddlib.organisation.domain.HrException
-	c17000:p -> c16989:p [dir=back,arrowtail=empty];
+	c17061:p -> c17050:p [dir=back,arrowtail=empty];
 	//org.dddlib.organisation.domain.PostHolding extends org.dddlib.organisation.domain.Accountability<org.dddlib.organisation.domain.Post, org.dddlib.organisation.domain.Employee>
-	c17008:p -> c16990:p [dir=back,arrowtail=empty];
+	c17069:p -> c17051:p [dir=back,arrowtail=empty];
 	//org.dddlib.organisation.domain.Post extends org.dddlib.organisation.domain.Party
-	c16995:p -> c16991:p [dir=back,arrowtail=empty];
-	//org.dddlib.organisation.domain.OrgLineMgmt extends org.dddlib.organisation.domain.Accountability<org.dddlib.organisation.domain.Organization, org.dddlib.organisation.domain.Organization>
-	c17008:p -> c16996:p [dir=back,arrowtail=empty];
+	c17056:p -> c17052:p [dir=back,arrowtail=empty];
 	//org.dddlib.organisation.domain.Organization extends org.dddlib.organisation.domain.Party
-	c16995:p -> c16997:p [dir=back,arrowtail=empty];
+	c17056:p -> c17057:p [dir=back,arrowtail=empty];
+	//org.dddlib.organisation.domain.OrgLineMgmt extends org.dddlib.organisation.domain.Accountability<org.dddlib.organisation.domain.Organization, org.dddlib.organisation.domain.Organization>
+	c17069:p -> c17058:p [dir=back,arrowtail=empty];
 	//org.dddlib.organisation.domain.Job extends org.dddlib.organisation.domain.Party
-	c16995:p -> c16998:p [dir=back,arrowtail=empty];
+	c17056:p -> c17059:p [dir=back,arrowtail=empty];
 	//org.dddlib.organisation.domain.Employment extends org.dddlib.organisation.domain.Accountability<org.dddlib.organisation.domain.Company, org.dddlib.organisation.domain.Employee>
-	c17008:p -> c17001:p [dir=back,arrowtail=empty];
+	c17069:p -> c17062:p [dir=back,arrowtail=empty];
 	//org.dddlib.organisation.domain.Employee extends org.dddlib.organisation.domain.Party
-	c16995:p -> c17003:p [dir=back,arrowtail=empty];
+	c17056:p -> c17064:p [dir=back,arrowtail=empty];
 	//org.dddlib.organisation.domain.Department extends org.dddlib.organisation.domain.Organization
-	c16997:p -> c17005:p [dir=back,arrowtail=empty];
+	c17057:p -> c17066:p [dir=back,arrowtail=empty];
 	//org.dddlib.organisation.domain.Company extends org.dddlib.organisation.domain.Organization
-	c16997:p -> c17006:p [dir=back,arrowtail=empty];
+	c17057:p -> c17067:p [dir=back,arrowtail=empty];
 }
 

@@ -1,4 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./GsonObjectSerializer.html" title="org.dayatang.utils.serializer.GsonObjectSerializer" alt="" coords="16,17,156,42"/>
-<area shape="rect" id="node1" href="./GsonObjectSerializer.html" title="&lt;TABLE&gt;" alt="" coords="5,5,167,53"/>
+<area shape="rect" id="node1_0" href="./GsonSerializerBuilder.html" title="org.dayatang.utils.serializer.GsonSerializerBuilder" alt="" coords="16,17,164,42"/>
+<area shape="rect" id="node1" href="./GsonSerializerBuilder.html" title="&lt;TABLE&gt;" alt="" coords="5,5,175,53"/>
+<area shape="rect" id="node2_1" href="./GsonSerializer.html" title="org.dayatang.utils.serializer.GsonSerializer" alt="" coords="210,17,317,42"/>
+<area shape="rect" id="node2" href="./GsonSerializer.html" title="&lt;TABLE&gt;" alt="" coords="199,5,327,53"/>
 </map>

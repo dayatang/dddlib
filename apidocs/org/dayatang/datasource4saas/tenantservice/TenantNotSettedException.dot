@@ -10,15 +10,15 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.datasource4saas.tenantservice.TenantNotSettedException
-	c92369 [label=<<table title="org.dayatang.datasource4saas.tenantservice.TenantNotSettedException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./TenantNotSettedException.html">
+	c92980 [label=<<table title="org.dayatang.datasource4saas.tenantservice.TenantNotSettedException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./TenantNotSettedException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> TenantNotSettedException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./TenantNotSettedException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.datasource4saas.tenantservice.TenantNotSettedException extends java.lang.RuntimeException
-	c92411:p -> c92369:p [dir=back,arrowtail=empty];
+	c93022:p -> c92980:p [dir=back,arrowtail=empty];
 	// java.lang.RuntimeException
-	c92411 [label=<<table title="java.lang.RuntimeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html">
+	c93022 [label=<<table title="java.lang.RuntimeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RuntimeException </td></tr>
 		</table></td></tr>

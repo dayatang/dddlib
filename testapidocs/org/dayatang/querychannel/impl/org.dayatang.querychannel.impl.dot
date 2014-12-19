@@ -10,13 +10,13 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.querychannel.impl.QueryChannelServiceImplJpaTest
-	c7556 [label=<<table title="org.dayatang.querychannel.impl.QueryChannelServiceImplJpaTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryChannelServiceImplJpaTest.html">
+	c7829 [label=<<table title="org.dayatang.querychannel.impl.QueryChannelServiceImplJpaTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryChannelServiceImplJpaTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> QueryChannelServiceImplJpaTest </td></tr>
 		</table></td></tr>
 		</table>>, URL="./QueryChannelServiceImplJpaTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.querychannel.impl.QueryChannelServiceImplHibernateTest
-	c7557 [label=<<table title="org.dayatang.querychannel.impl.QueryChannelServiceImplHibernateTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryChannelServiceImplHibernateTest.html">
+	c7830 [label=<<table title="org.dayatang.querychannel.impl.QueryChannelServiceImplHibernateTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryChannelServiceImplHibernateTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> QueryChannelServiceImplHibernateTest </td></tr>
 		</table></td></tr>

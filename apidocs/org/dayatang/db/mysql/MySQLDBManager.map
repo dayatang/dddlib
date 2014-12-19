@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="../AbstractDBManager.html" title="org.dayatang.db.AbstractDBManager" alt="" coords="16,17,152,42"/>
-<area shape="rect" id="node1" href="../AbstractDBManager.html" title="&lt;TABLE&gt;" alt="" coords="5,5,163,53"/>
-<area shape="rect" id="node2_1" href="./MySQLDBManager.html" title="org.dayatang.db.mysql.MySQLDBManager" alt="" coords="17,113,151,138"/>
-<area shape="rect" id="node2" href="./MySQLDBManager.html" title="&lt;TABLE&gt;" alt="" coords="6,101,162,149"/>
+<area shape="rect" id="node1_0" href="../AbstractDBManager.html" title="org.dayatang.db.AbstractDBManager" alt="" coords="16,17,155,42"/>
+<area shape="rect" id="node1" href="../AbstractDBManager.html" title="&lt;TABLE&gt;" alt="" coords="5,5,165,53"/>
+<area shape="rect" id="node2_1" href="./MySQLDBManager.html" title="org.dayatang.db.mysql.MySQLDBManager" alt="" coords="18,113,153,138"/>
+<area shape="rect" id="node2" href="./MySQLDBManager.html" title="&lt;TABLE&gt;" alt="" coords="7,101,163,149"/>
 </map>

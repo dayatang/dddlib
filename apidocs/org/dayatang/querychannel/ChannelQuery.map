@@ -1,10 +1,10 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./ChannelQuery.html" title="org.dayatang.querychannel.ChannelQuery" alt="" coords="122,17,385,42"/>
-<area shape="rect" id="node1" href="./ChannelQuery.html" title="&lt;TABLE&gt;" alt="" coords="111,5,395,53"/>
-<area shape="rect" id="node2_1" href="./query/ChannelSqlQuery.html" title="org.dayatang.querychannel.query.ChannelSqlQuery" alt="" coords="16,113,136,138"/>
-<area shape="rect" id="node2" href="./query/ChannelSqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="5,101,147,149"/>
-<area shape="rect" id="node3_2" href="./query/ChannelNamedQuery.html" title="org.dayatang.querychannel.query.ChannelNamedQuery" alt="" coords="181,113,325,138"/>
-<area shape="rect" id="node3" href="./query/ChannelNamedQuery.html" title="&lt;TABLE&gt;" alt="" coords="171,101,336,149"/>
-<area shape="rect" id="node4_3" href="./query/ChannelJpqlQuery.html" title="org.dayatang.querychannel.query.ChannelJpqlQuery" alt="" coords="371,113,496,138"/>
-<area shape="rect" id="node4" href="./query/ChannelJpqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="360,101,507,149"/>
+<area shape="rect" id="node1_0" href="./ChannelQuery.html" title="org.dayatang.querychannel.ChannelQuery" alt="" coords="125,17,394,42"/>
+<area shape="rect" id="node1" href="./ChannelQuery.html" title="&lt;TABLE&gt;" alt="" coords="114,5,405,53"/>
+<area shape="rect" id="node2_1" href="./query/ChannelSqlQuery.html" title="org.dayatang.querychannel.query.ChannelSqlQuery" alt="" coords="16,113,140,138"/>
+<area shape="rect" id="node2" href="./query/ChannelSqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="5,101,151,149"/>
+<area shape="rect" id="node3_2" href="./query/ChannelNamedQuery.html" title="org.dayatang.querychannel.query.ChannelNamedQuery" alt="" coords="185,113,333,138"/>
+<area shape="rect" id="node3" href="./query/ChannelNamedQuery.html" title="&lt;TABLE&gt;" alt="" coords="175,101,344,149"/>
+<area shape="rect" id="node4_3" href="./query/ChannelJpqlQuery.html" title="org.dayatang.querychannel.query.ChannelJpqlQuery" alt="" coords="379,113,508,138"/>
+<area shape="rect" id="node4" href="./query/ChannelJpqlQuery.html" title="&lt;TABLE&gt;" alt="" coords="368,101,519,149"/>
 </map>
