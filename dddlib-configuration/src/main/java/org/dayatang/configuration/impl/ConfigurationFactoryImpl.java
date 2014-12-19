@@ -111,4 +111,10 @@ public class ConfigurationFactoryImpl extends ConfigurationFactory {
             throw new ConfigurationException("read url failure!");
         }
     }
+
+
+    @Override
+    public Configuration fromInputStream(InputStream in) {
+        return new ConfigurationInputStreamImpl(in);
+    }
 }
