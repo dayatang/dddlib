@@ -7,12 +7,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
 
 import static org.junit.Assert.assertTrue;
 
 public class ConfigurationUrlImplTest extends AbstractConfigurationTest {
 
     private static EmbeddedHttpServer httpServer;
+    private InputStream in;
 
     @BeforeClass
     public static void classSetUp() throws Exception {
@@ -24,18 +27,23 @@ public class ConfigurationUrlImplTest extends AbstractConfigurationTest {
     }
 
     @AfterClass
-    public static void classTearDown() {
+    public static void classTearDown() throws Exception {
         httpServer.shutdown();
     }
 
 	@Before
 	public void setUp() throws Exception {
-        instance = ConfigurationUrlImpl.fromUrl("http://localhost:1528/");
+        in = new URL("http://localhost:1528/").openStream();
+        instance = new ConfigurationInputStreamImpl(in);
+    }
+
+    public void tearDown() throws Exception {
+        in.close();
     }
 
 	@Test
 	public void testUsePrefix() {
-		((ConfigurationUrlImpl)instance).usePrefix("org.dayatang");
+		instance.usePrefix("org.dayatang");
 		assertTrue(instance.getBoolean("finished"));
 	}
 
