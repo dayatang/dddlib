@@ -2,6 +2,7 @@ package org.dayatang.configuration;
 
 import org.dayatang.configuration.impl.ConfigurationDbImpl;
 import org.dayatang.configuration.impl.ConfigurationFileImpl;
+import org.dayatang.configuration.impl.ConfigurationInputStreamImpl;
 import org.dayatang.configuration.impl.ConfigurationUrlImpl;
 import org.junit.After;
 import org.junit.Before;
@@ -42,7 +43,7 @@ public class ConfigurationFactoryTest {
 
 	@Test
 	public void testFromClasspathString() {
-		assertTrue(instance.fromClasspath("/conf.properties") instanceof ConfigurationFileImpl);
+		assertTrue(instance.fromClasspath("/conf.properties") instanceof ConfigurationInputStreamImpl);
 	}
 
 	@Test

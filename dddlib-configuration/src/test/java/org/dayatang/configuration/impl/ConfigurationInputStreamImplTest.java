@@ -25,37 +25,6 @@ public class ConfigurationInputStreamImplTest extends AbstractConfigurationTest 
 	}
 
 	@Test
-	public void testFromClasspath() {
-		instance = ConfigurationFileImpl.fromClasspath(fileInClass);
-		assertTrue(instance.getProperties().size() > 0);
-	}
-
-	@Test
-	public void testFromPathname() {
-		String pathname = getClass().getResource(fileInClass).getFile();
-		instance = ConfigurationFileImpl.fromFileSystem(pathname);
-		assertTrue(instance.getProperties().size() > 0);
-	}
-
-	@Test
-	public void testFromDirAndFile() {
-		String pathname = getClass().getResource(fileInClass).getFile();
-		File file = new File(pathname);
-		String dir = file.getParent();
-		String fileName = file.getName();
-		instance = ConfigurationFileImpl.fromFileSystem(dir, fileName);
-		assertTrue(instance.getProperties().size() > 0);
-	}
-
-	@Test
-	public void testFromFile() {
-		String pathname = getClass().getResource(fileInClass).getFile();
-		File file = new File(pathname);
-		instance = ConfigurationFileImpl.fromFile(file);
-		assertTrue(instance.getProperties().size() > 0);
-	}
-
-	@Test
 	public void testUsePrefix() {
 		instance.usePrefix("org.dayatang");
 		assertTrue(instance.getBoolean("finished"));

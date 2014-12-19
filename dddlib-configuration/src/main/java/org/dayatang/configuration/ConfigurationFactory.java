@@ -55,7 +55,7 @@ public class ConfigurationFactory {
 	 * @param fileName 类路径资源文件名
 	 * @return 可写的配置
 	 */
-	public WritableConfiguration fromClasspath(String fileName) {
+	public Configuration fromClasspath(String fileName) {
 		return instance.fromClasspath(fileName);
 	}
 

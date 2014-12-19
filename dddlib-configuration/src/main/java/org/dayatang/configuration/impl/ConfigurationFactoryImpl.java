@@ -6,6 +6,7 @@ import org.dayatang.configuration.WritableConfiguration;
 
 import javax.sql.DataSource;
 import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
 
 /**
@@ -39,8 +40,9 @@ public class ConfigurationFactoryImpl extends ConfigurationFactory {
      * @param fileName 类路径资源文件名
      * @return 可写的配置
      */
-    public WritableConfiguration fromClasspath(String fileName) {
-        return ConfigurationFileImpl.fromClasspath(fileName);
+    public Configuration fromClasspath(String fileName) {
+        InputStream in = getClass().getResourceAsStream(fileName);
+        return new ConfigurationInputStreamImpl(in);
     }
 
     /**
@@ -49,7 +51,7 @@ public class ConfigurationFactoryImpl extends ConfigurationFactory {
      * @return 可写的配置
      */
     public WritableConfiguration fromFileSystem(String fileName) {
-        return ConfigurationFileImpl.fromFileSystem(fileName);
+        return new ConfigurationFileImpl(fileName);
     }
 
     /**
@@ -59,7 +61,7 @@ public class ConfigurationFactoryImpl extends ConfigurationFactory {
      * @return 可写的配置
      */
     public WritableConfiguration fromFileSystem(String dirPath, String fileName) {
-        return ConfigurationFileImpl.fromFileSystem(dirPath, fileName);
+        return new ConfigurationFileImpl(dirPath, fileName);
     }
 
     /**

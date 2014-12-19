@@ -24,15 +24,9 @@ public class ConfigurationFileImplTest extends AbstractConfigurationTest {
 	}
 
 	@Test
-	public void testFromClasspath() {
-		instance = ConfigurationFileImpl.fromClasspath(fileInClass);
-		assertTrue(instance.getProperties().size() > 0);
-	}
-
-	@Test
 	public void testFromPathname() {
 		String pathname = getClass().getResource(fileInClass).getFile();
-		instance = ConfigurationFileImpl.fromFileSystem(pathname);
+		instance = new ConfigurationFileImpl(pathname);
 		assertTrue(instance.getProperties().size() > 0);
 	}
 
@@ -42,7 +36,7 @@ public class ConfigurationFileImplTest extends AbstractConfigurationTest {
 		File file = new File(pathname);
 		String dir = file.getParent();
 		String fileName = file.getName();
-		instance = ConfigurationFileImpl.fromFileSystem(dir, fileName);
+		instance = new ConfigurationFileImpl(dir, fileName);
 		assertTrue(instance.getProperties().size() > 0);
 	}
 
@@ -64,7 +58,8 @@ public class ConfigurationFileImplTest extends AbstractConfigurationTest {
 	public void testSave() {
 		instance.setString("xyz", "yyyy-MM-dd");
 		((ConfigurationFileImpl)instance).save();
-		instance = ConfigurationFileImpl.fromClasspath(fileInClass);
+		String fileName = getClass().getResource(fileInClass).getFile();
+		instance = new ConfigurationFileImpl(new File(fileName));
 		assertEquals("yyyy-MM-dd", instance.getString("xyz"));
 	}
 

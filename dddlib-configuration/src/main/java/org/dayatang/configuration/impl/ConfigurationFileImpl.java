@@ -31,46 +31,21 @@ public class ConfigurationFileImpl extends AbstractConfiguration implements Writ
 	private static final Slf4JLogger LOGGER = Slf4JLogger.getLogger(ConfigurationFileImpl.class);
 	private PropertiesFileUtils pfu = new PropertiesFileUtils("utf-8");
 	private File file;
-	/**
-	 * 从类路径读入配置文件
-	 * @param fileName
-	 * @return
-	 */
-	public static ConfigurationFileImpl fromClasspath(final String fileName) {
-		Assert.notBlank(fileName, String.format("File name %s is empty!", fileName));
-		URL url = ConfigurationFileImpl.class.getResource(fileName);
-		Assert.notNull(url, String.format("File {} not found!", fileName));
-		File file = new File(url.getFile());
-		return new ConfigurationFileImpl(file);
-	}
-	
-	/**
-	 * 从文件系统读入配置文件
-	 * @param pathname
-	 * @return
-	 */
-	public static ConfigurationFileImpl fromFileSystem(final String pathname) {
-		Assert.notBlank(pathname, String.format("File name %s is empty!", pathname));
-		return fromFile(new File(pathname));
-	}
-	
-	/**
-	 * 从文件系统读入配置文件
-	 * @param dirPath
-	 * @param fileName
-	 * @return
-	 */
-	public static ConfigurationFileImpl fromFileSystem(final String dirPath, final String fileName) {
-		Assert.notBlank(dirPath, String.format("Directory %s is empty!", dirPath));
-		Assert.notBlank(fileName, String.format("File name %s is empty!", fileName));
-		return fromFile(new File(dirPath, fileName));
-	}
-	
+
 	public static ConfigurationFileImpl fromFile(final File file) {
 		return new ConfigurationFileImpl(file);
 	}
 
-	private ConfigurationFileImpl(final File file) {
+	public ConfigurationFileImpl(final String pathname) {
+		this(new File(pathname));
+	}
+
+	public ConfigurationFileImpl(final String dirPath, final String fileName) {
+		this(new File(dirPath, fileName));
+	}
+
+
+	public ConfigurationFileImpl(final File file) {
 		if (file == null) {
 			throw new ConfigurationException("File " + file.getName() + " is null!");
 		}
