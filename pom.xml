@@ -98,14 +98,14 @@
 
     <distributionManagement>
         <repository>
-            <id>dayatang-releases</id>
-            <name>Dayatang release repository</name>
-            <url>dav:http://nexus.dayatang.org:8083/content/repositories/releases</url>
+            <id>koala-releases</id>
+            <name>koala-releases</name>
+            <url>http://nexus.openkoala.org:8081/content/repositories/releases/</url>
         </repository>
         <snapshotRepository>
-            <id>dayatang-snapshots</id>
-            <name>Dayatang snapshot repository</name>
-            <url>dav:http://nexus.dayatang.org:8083/content/repositories/snapshots</url>
+            <id>koala-snapshots</id>
+            <name>koala-snapshots</name>
+            <url>http://nexus.openkoala.org:8081/content/repositories/snapshots/</url>
         </snapshotRepository>
         <site>
             <id>github</id>
@@ -117,8 +117,8 @@
 
     <repositories>
         <repository>
-            <id>dayatang-releases</id>
-            <url>http://nexus.dayatang.org/content/groups/public-releases</url>
+            <id>koala-releases</id>
+            <url>http://nexus.openkoala.org/content/repositories/public-releases/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -127,8 +127,8 @@
             </snapshots>
         </repository>
         <repository>
-            <id>dayatang-snapshots</id>
-            <url>http://nexus.dayatang.org/content/groups/public-snapshots</url>
+            <id>koala-snapshots</id>
+            <url>http://nexus.openkoala.org/content/repositories/public-snapshots/</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -137,11 +137,10 @@
             </snapshots>
         </repository>
     </repositories>
-
     <pluginRepositories>
         <pluginRepository>
-            <id>dayatang-releases</id>
-            <url>http://nexus.dayatang.org/content/groups/public-releases</url>
+            <id>koala-releases</id>
+            <url>http://nexus.openkoala.org/content/repositories/public-releases/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -150,8 +149,8 @@
             </snapshots>
         </pluginRepository>
         <pluginRepository>
-            <id>dayatang-snapshots</id>
-            <url>http://nexus.dayatang.org/content/groups/public-snapshots</url>
+            <id>koala-snapshots</id>
+            <url>http://nexus.openkoala.org/content/repositories/public-snapshots/</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
