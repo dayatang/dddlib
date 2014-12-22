@@ -3,7 +3,7 @@
     <parent>
         <groupId>org.dddlib.examples</groupId>
         <artifactId>dddlib-examples</artifactId>
-        <version>4.4.3-SNAPSHOT</version>
+        <version>4.4.2-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.dddlib.examples.organisation</groupId>
@@ -21,26 +21,26 @@
 
     <distributionManagement>
         <repository>
-            <id>koala-releases</id>
-            <name>koala-releases</name>
-            <url>http://nexus.openkoala.org:8081/content/repositories/releases/</url>
+            <id>dayatang-releases</id>
+            <name>Dayatang release repository</name>
+            <url>dav:http://nexus.dayatang.org:8083/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
-            <id>koala-snapshots</id>
-            <name>koala-snapshots</name>
-            <url>http://nexus.openkoala.org:8081/content/repositories/snapshots/</url>
+            <id>dayatang-snapshots</id>
+            <name>Dayatang snapshot repository</name>
+            <url>dav:http://nexus.dayatang.org:8083/content/repositories/snapshots</url>
         </snapshotRepository>
         <site>
-            <id>github</id>
-            <name>Deployment through GitHub's site deployment plugin</name>
-            <url>git:ssh://git@github.com/dayatang/dddlib.git?gh-pages#</url>
+            <id>dayatang-site</id>
+            <name>Koala maven site</name>
+            <url>dav:http://www.dayatang.org/dddlib</url>
         </site>
     </distributionManagement>
 
     <repositories>
         <repository>
-            <id>koala-releases</id>
-            <url>http://nexus.openkoala.org/content/repositories/public-releases/</url>
+            <id>dayatang-releases</id>
+            <url>http://nexus.dayatang.org/content/groups/public-release</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -49,8 +49,8 @@
             </snapshots>
         </repository>
         <repository>
-            <id>koala-snapshots</id>
-            <url>http://nexus.openkoala.org/content/repositories/public-snapshots/</url>
+            <id>dayatang-snapshots</id>
+            <url>http://nexus.dayatang.org/content/groups/public-snapshots</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -59,10 +59,11 @@
             </snapshots>
         </repository>
     </repositories>
+
     <pluginRepositories>
         <pluginRepository>
-            <id>koala-releases</id>
-            <url>http://nexus.openkoala.org/content/repositories/public-releases/</url>
+            <id>dayatang-releases</id>
+            <url>http://nexus.dayatang.org/content/groups/public-release</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -71,8 +72,8 @@
             </snapshots>
         </pluginRepository>
         <pluginRepository>
-            <id>koala-snapshots</id>
-            <url>http://nexus.openkoala.org/content/repositories/public-snapshots/</url>
+            <id>dayatang-snapshots</id>
+            <url>http://nexus.dayatang.org/content/groups/public-snapshots</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
