@@ -1,6 +1,6 @@
 <map id="G" name="G">
-<area shape="rect" id="node1_0" href="./Service2.html" title="org.dayatang.ioc.test.Service2" alt="" coords="21,11,103,53"/>
-<area shape="rect" id="node1" href="./Service2.html" title="&lt;TABLE&gt;" alt="" coords="11,5,113,59"/>
-<area shape="rect" id="node2_1" href="./MyService22.html" title="org.dayatang.ioc.test.MyService22" alt="" coords="16,118,108,143"/>
-<area shape="rect" id="node2" href="./MyService22.html" title="&lt;TABLE&gt;" alt="" coords="5,107,119,155"/>
+<area shape="rect" id="node1_0" href="./Service2.html" title="org.dayatang.ioc.test.Service2" alt="" coords="21,11,107,53"/>
+<area shape="rect" id="node1" href="./Service2.html" title="&lt;TABLE&gt;" alt="" coords="11,5,117,59"/>
+<area shape="rect" id="node2_1" href="./MyService22.html" title="org.dayatang.ioc.test.MyService22" alt="" coords="16,118,112,143"/>
+<area shape="rect" id="node2" href="./MyService22.html" title="&lt;TABLE&gt;" alt="" coords="5,107,123,155"/>
 </map>

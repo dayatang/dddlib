@@ -26,7 +26,7 @@ under the License.
     <copyright>&#169;2014 Dayatang Open Source.</copyright>
     <item>
       <title>File: 11,
-             Errors: 98,
+             Errors: 102,
              Warnings: 0,
              Infos: 0
       </title>
@@ -102,20 +102,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://maven.apache.org/checkstyle.html#org.dayatang.ioc.test.TheAnnotation.java">org/dayatang/ioc/test/TheAnnotation.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  2
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="http://maven.apache.org/checkstyle.html#org.dayatang.ioc.test.package-info.java">org/dayatang/ioc/test/package-info.java</a>
                 </td>
                 <td>
@@ -130,6 +116,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="http://maven.apache.org/checkstyle.html#org.dayatang.ioc.test.TheAnnotation.java">org/dayatang/ioc/test/TheAnnotation.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  2
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="http://maven.apache.org/checkstyle.html#org.dayatang.ioc.test.AbstractInstanceProviderTest.java">org/dayatang/ioc/test/AbstractInstanceProviderTest.java</a>
                 </td>
                 <td>
@@ -139,7 +139,7 @@ under the License.
                   0
                 </td>
                 <td>
-                  35
+                  39
                 </td>
               </tr>
                           <tr>
