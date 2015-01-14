@@ -1,5 +1,8 @@
 package org.dayatang.domain;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.inject.Named;
 import java.lang.annotation.Annotation;
 import java.util.*;
@@ -23,6 +26,8 @@ import java.util.*;
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  */
 public class InstanceFactory {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(InstanceFactory.class);
 
     //实例提供者，代表真正的IoC容器
     private static InstanceProvider instanceProvider;
@@ -70,6 +75,7 @@ public class InstanceFactory {
         try {
             return instanceProvider.getInstance(beanType);
         } catch (IocInstanceNotFoundException e) {
+            LOGGER.warn("InstanceProvider cannot found bean of type {}", beanType);
             return null;
         }
     }
@@ -85,6 +91,7 @@ public class InstanceFactory {
         if (results.size() == 1) {
             return results.iterator().next();
         }
+        LOGGER.warn("ServiceLoader cannot found bean of type {}", beanType);
         return null;
     }
 
@@ -121,6 +128,7 @@ public class InstanceFactory {
         try {
             return instanceProvider.getInstance(beanType, beanName);
         } catch (IocInstanceNotFoundException e) {
+            LOGGER.warn("InstanceProvider cannot found bean '{}' of type {}", beanName, beanType);
             return null;
         }
     }
@@ -140,8 +148,8 @@ public class InstanceFactory {
         if (results.size() == 1) {
             return results.iterator().next();
         }
+        LOGGER.warn("ServiceLoader cannot found bean '{}' of type {}", beanName, beanType);
         return null;
-
     }
 
     /**
@@ -177,6 +185,7 @@ public class InstanceFactory {
         try {
             return instanceProvider.getInstance(beanType, annotationType);
         } catch (IocInstanceNotFoundException e) {
+            LOGGER.warn("InstanceProvider cannot found bean of type {} with annotation {}", beanType, annotationType);
             return null;
         }
     }
@@ -196,6 +205,7 @@ public class InstanceFactory {
         if (results.size() == 1) {
             return results.iterator().next();
         }
+        LOGGER.warn("ServiceLoader cannot found bean of type {} with annotation {}", beanType, annotationType);
         return null;
     }
 
