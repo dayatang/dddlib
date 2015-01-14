@@ -29,8 +29,23 @@ public class InstanceFactory {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(InstanceFactory.class);
 
+    /**
+     * 以下部分仅用于提供代码测试功能，产品代码不要用
+     */
+    private static final Map<Object, Object> instances = new HashMap<Object, Object>();
+
+
     //实例提供者，代表真正的IoC容器
     private static InstanceProvider instanceProvider;
+
+    private static InstanceLocatorFactory instanceLocatorFactory = ServiceLoader.load(InstanceLocatorFactory.class).iterator().next();
+
+    private static List<InstanceLocator> instanceLocators = new ArrayList<InstanceLocator>();
+
+    static {
+        instanceLocators.add(instanceLocatorFactory.createByServiceLoader());
+        instanceLocators.add(instanceLocatorFactory.create(instances));
+    }
 
     private InstanceFactory() {
     }
@@ -42,6 +57,10 @@ public class InstanceFactory {
      */
     public static void setInstanceProvider(InstanceProvider provider) {
         instanceProvider = provider;
+        if (instanceProvider == null) {
+            return;
+        }
+        instanceLocators.add(0, instanceLocatorFactory.create(instanceProvider));
     }
 
     /**
@@ -53,46 +72,13 @@ public class InstanceFactory {
      */
     @SuppressWarnings("unchecked")
     public static <T> T getInstance(Class<T> beanType) {
-        T result = null;
-        if (instanceProvider != null) {
-            result = getInstanceFromProvider(beanType);
-        }
-        if (result != null) {
-            return result;
-        }
-        result = getInstanceFromServiceLoader(beanType);
-        if (result != null) {
-            return result;
-        }
-        result = (T) instances.get(beanType);
-        if (result != null) {
-            return result;
+        for (InstanceLocator locator : instanceLocators) {
+            T result = locator.getInstance(beanType);
+            if (result != null) {
+                return result;
+            }
         }
         throw new IocInstanceNotFoundException("There's not bean of type '" + beanType + "' exists in IoC container!");
-    }
-
-    private static <T> T getInstanceFromProvider(Class<T> beanType) {
-        try {
-            return instanceProvider.getInstance(beanType);
-        } catch (IocInstanceNotFoundException e) {
-            LOGGER.warn("InstanceProvider cannot found bean of type {}", beanType);
-            return null;
-        }
-    }
-
-    private static <T> T getInstanceFromServiceLoader(Class<T> beanType) {
-        Set<T> results = new HashSet<T>();
-        for (T instance : ServiceLoader.load(beanType)) {
-            results.add(instance);
-        }
-        if (results.size() > 1) {
-            throw new IocInstanceNotUniqueException("There're more than one bean of type '" + beanType + "'");
-        }
-        if (results.size() == 1) {
-            return results.iterator().next();
-        }
-        LOGGER.warn("ServiceLoader cannot found bean of type {}", beanType);
-        return null;
     }
 
     /**
@@ -106,50 +92,13 @@ public class InstanceFactory {
      */
     @SuppressWarnings("unchecked")
     public static <T> T getInstance(Class<T> beanType, String beanName) {
-        T result = null;
-        if (instanceProvider != null) {
-            result = getInstanceFromProvider(beanType, beanName);
-        }
-        if (result != null) {
-            return result;
-        }
-        result = getInstanceFromServiceLoader(beanType, beanName);
-        if (result != null) {
-            return result;
-        }
-        result = (T) instances.get(toName(beanType, beanName));
-        if (result != null) {
-            return result;
-        }
-        throw new IocInstanceNotFoundException("There's not bean of type '" + beanType + "' exists in IoC container!");
-    }
-
-    private static <T> T getInstanceFromProvider(Class<T> beanType, String beanName) {
-        try {
-            return instanceProvider.getInstance(beanType, beanName);
-        } catch (IocInstanceNotFoundException e) {
-            LOGGER.warn("InstanceProvider cannot found bean '{}' of type {}", beanName, beanType);
-            return null;
-        }
-    }
-
-    private static <T> T getInstanceFromServiceLoader(Class<T> beanType, String beanName) {
-        Set<T> results = new HashSet<T>();
-        for (T instance : ServiceLoader.load(beanType)) {
-            Named named = instance.getClass().getAnnotation(Named.class);
-            if (named != null && beanName.equals(named.value())) {
-                results.add(instance);
+        for (InstanceLocator locator : instanceLocators) {
+            T result = locator.getInstance(beanType, beanName);
+            if (result != null) {
+                return result;
             }
         }
-        if (results.size() > 1) {
-            throw new IocInstanceNotUniqueException("There're more than one bean of type '"
-                    + beanType + "' and named '" + beanName + "'");
-        }
-        if (results.size() == 1) {
-            return results.iterator().next();
-        }
-        LOGGER.warn("ServiceLoader cannot found bean '{}' of type {}", beanName, beanType);
-        return null;
+        throw new IocInstanceNotFoundException("There's not bean of type '" + beanType + "' exists in IoC container!");
     }
 
     /**
@@ -162,57 +111,15 @@ public class InstanceFactory {
      * @return 指定类型的实例。
      */
     public static <T> T getInstance(Class<T> beanType, Class<? extends Annotation> annotationType) {
-        T result = null;
-        if (instanceProvider != null) {
-            result = getInstanceFromProvider(beanType, annotationType);
-        }
-        if (result != null) {
-            return result;
-        }
-        result = getInstanceFromServiceLoader(beanType, annotationType);
-        if (result != null) {
-            return result;
-        }
-        result = (T) instances.get(toName(beanType, annotationType));
-        if (result != null) {
-            return result;
-        }
-        throw new IocInstanceNotFoundException("There's not bean '" 
-                + annotationType + "' of type '" + beanType + "' exists in IoC container!");
-    }
-
-    private static <T> T getInstanceFromProvider(Class<T> beanType, Class<? extends Annotation> annotationType) {
-        try {
-            return instanceProvider.getInstance(beanType, annotationType);
-        } catch (IocInstanceNotFoundException e) {
-            LOGGER.warn("InstanceProvider cannot found bean of type {} with annotation {}", beanType, annotationType);
-            return null;
-        }
-    }
-
-    private static <T> T getInstanceFromServiceLoader(Class<T> beanType, Class<? extends Annotation> annotationType) {
-        Set<T> results = new HashSet<T>();
-        for (T instance : ServiceLoader.load(beanType)) {
-            Annotation beanAnnotation = instance.getClass().getAnnotation(annotationType);
-            if (beanAnnotation != null && beanAnnotation.annotationType().equals(annotationType)) {
-                results.add(instance);
+        for (InstanceLocator locator : instanceLocators) {
+            T result = locator.getInstance(beanType, annotationType);
+            if (result != null) {
+                return result;
             }
         }
-        if (results.size() > 1) {
-            throw new IocInstanceNotUniqueException("There're more than one bean of type '"
-                    + beanType + "' and annotated with '" + annotationType + "'");
-        }
-        if (results.size() == 1) {
-            return results.iterator().next();
-        }
-        LOGGER.warn("ServiceLoader cannot found bean of type {} with annotation {}", beanType, annotationType);
-        return null;
+        throw new IocInstanceNotFoundException("There's not bean '"
+                + annotationType + "' of type '" + beanType + "' exists in IoC container!");
     }
-
-    /**
-     * 以下部分仅用于提供代码测试功能，产品代码不要用
-     */
-    private static final Map<Object, Object> instances = new HashMap<Object, Object>();
 
     /**
      * 将服务绑定到具体实例
