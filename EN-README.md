@@ -9,7 +9,7 @@ DDDLib is a Domain Driven Design(DDD for short) library。It aims to:
 understand dddlib-domain module, and only some classes which is included in dddlib-domain: Entity、EntityRepository、InstanceFactory and 4 kinds of Query class.
 * Provide some common utils for development, such as Exporting/Importing Excel, Configuration Service, Rule Engine wrapper and so on.
 
-## Layout of modules
+## Layout of Modules
 
 DDDLib have multiple modules about ten more. We group them into 4 categories roughly: core module, IoC module, persistance module and periphery module. When developer coding, they need dependent code module directly, and choose a IoC module and a persistance module while deploy it. Periphery module would be convenience for you although it not necessary.
 
@@ -40,8 +40,7 @@ The following module is related to persistence, but it's on top of other persist
 * dddlib-query-channel：provite an extension point for paging query.
 
 
-### 外围模块
-### Utils module
+### Utils Module
 * dddlib-utils: Provide some common utils for processing JavaBean, Array, Collection, Date, Log and so on. The most important of those is Assert class.
 
 * dddlib-configuration: private a unified API and it's implementation for configurating which kind of key-value pair. Currently, configuration source can be from: system file, class path file, database, remote URL. This configuration source can be read/write by dddlib-configuration API except that kind of remote URL just can be read.
