@@ -5,5 +5,6 @@
 <area shape="rect" id="node2" href="./Dept.html" title="&lt;TABLE&gt;" alt="" coords="5,197,77,245"/>
 <area shape="rect" id="node3_2" href="./Company.html" title="org.dayatang.domain.entity.Company" alt="" coords="113,209,189,234"/>
 <area shape="rect" id="node3" href="./Company.html" title="&lt;TABLE&gt;" alt="" coords="102,197,199,245"/>
-<area shape="rect" id="node4" href="null" title="&lt;TABLE&gt;" alt="" coords="44,5,148,53"/>
+<area shape="rect" id="node4_3" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/BaseEntity.html" title="org.dayatang.domain.BaseEntity" alt="" coords="55,17,137,42"/>
+<area shape="rect" id="node4" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/BaseEntity.html" title="&lt;TABLE&gt;" alt="" coords="44,5,148,53"/>
 </map>

@@ -36,10 +36,10 @@ digraph G {
 	//org.dayatang.domain.event.DomainEventSub extends org.dayatang.domain.event.DomainEvent
 	c1536:p -> c1372:p [dir=back,arrowtail=empty];
 	// org.dayatang.domain.event.DomainEvent
-	c1536 [label=<<table title="org.dayatang.domain.event.DomainEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c1536 [label=<<table title="org.dayatang.domain.event.DomainEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/DomainEvent.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> DomainEvent </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/event/DomainEvent.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

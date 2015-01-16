@@ -10,39 +10,39 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.dsmonitor.GeminiWrapperDataSource
-	c15359 [label=<<table title="org.dayatang.dsmonitor.GeminiWrapperDataSource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GeminiWrapperDataSource.html">
+	c15975 [label=<<table title="org.dayatang.dsmonitor.GeminiWrapperDataSource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GeminiWrapperDataSource.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GeminiWrapperDataSource </td></tr>
 		</table></td></tr>
 		</table>>, URL="./GeminiWrapperDataSource.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.dsmonitor.GeminiConnection
-	c15360 [label=<<table title="org.dayatang.dsmonitor.GeminiConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GeminiConnection.html">
+	c15976 [label=<<table title="org.dayatang.dsmonitor.GeminiConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./GeminiConnection.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> GeminiConnection </td></tr>
 		</table></td></tr>
 		</table>>, URL="./GeminiConnection.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.dsmonitor.DelegatingDataSource
-	c15361 [label=<<table title="org.dayatang.dsmonitor.DelegatingDataSource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DelegatingDataSource.html">
+	c15977 [label=<<table title="org.dayatang.dsmonitor.DelegatingDataSource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DelegatingDataSource.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DelegatingDataSource </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DelegatingDataSource.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.dsmonitor.DelegatingConnection
-	c15362 [label=<<table title="org.dayatang.dsmonitor.DelegatingConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DelegatingConnection.html">
+	c15978 [label=<<table title="org.dayatang.dsmonitor.DelegatingConnection" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DelegatingConnection.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DelegatingConnection </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DelegatingConnection.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.dsmonitor.ConnectionMonitor
-	c15363 [label=<<table title="org.dayatang.dsmonitor.ConnectionMonitor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConnectionMonitor.html">
+	c15979 [label=<<table title="org.dayatang.dsmonitor.ConnectionMonitor" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConnectionMonitor.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ConnectionMonitor </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConnectionMonitor.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.dsmonitor.GeminiWrapperDataSource extends org.dayatang.dsmonitor.DelegatingDataSource
-	c15361:p -> c15359:p [dir=back,arrowtail=empty];
+	c15977:p -> c15975:p [dir=back,arrowtail=empty];
 	//org.dayatang.dsmonitor.GeminiConnection extends org.dayatang.dsmonitor.DelegatingConnection
-	c15362:p -> c15360:p [dir=back,arrowtail=empty];
+	c15978:p -> c15976:p [dir=back,arrowtail=empty];
 }
 

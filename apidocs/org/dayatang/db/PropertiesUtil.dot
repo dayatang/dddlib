@@ -10,7 +10,7 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.db.PropertiesUtil
-	c80542 [label=<<table title="org.dayatang.db.PropertiesUtil" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./PropertiesUtil.html">
+	c83986 [label=<<table title="org.dayatang.db.PropertiesUtil" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./PropertiesUtil.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PropertiesUtil </td></tr>
 		</table></td></tr>

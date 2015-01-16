@@ -18,10 +18,10 @@ digraph G {
 	//org.dayatang.ioc.guice.GuiceInstanceProviderTest extends org.dayatang.ioc.test.AbstractInstanceProviderTest
 	c27681:p -> c27578:p [dir=back,arrowtail=empty];
 	// org.dayatang.ioc.test.AbstractInstanceProviderTest
-	c27681 [label=<<table title="org.dayatang.ioc.test.AbstractInstanceProviderTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c27681 [label=<<table title="org.dayatang.ioc.test.AbstractInstanceProviderTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/AbstractInstanceProviderTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractInstanceProviderTest </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/ioc/test/AbstractInstanceProviderTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

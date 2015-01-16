@@ -10,39 +10,39 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry
-	c14791 [label=<<table title="org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MapBasedDataSourceRegistry.html">
+	c15395 [label=<<table title="org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MapBasedDataSourceRegistry.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> MapBasedDataSourceRegistry </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./MapBasedDataSourceRegistry.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.datasource4saas.dsregistry.JndiMappingDataSourceRegistry
-	c14792 [label=<<table title="org.dayatang.datasource4saas.dsregistry.JndiMappingDataSourceRegistry" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JndiMappingDataSourceRegistry.html">
+	c15396 [label=<<table title="org.dayatang.datasource4saas.dsregistry.JndiMappingDataSourceRegistry" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JndiMappingDataSourceRegistry.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JndiMappingDataSourceRegistry </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JndiMappingDataSourceRegistry.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistry
-	c14793 [label=<<table title="org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistry" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JdbcDataSourceRegistry.html">
+	c15397 [label=<<table title="org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistry" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JdbcDataSourceRegistry.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JdbcDataSourceRegistry </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JdbcDataSourceRegistry.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.datasource4saas.dsregistry.DataSourceRegistryException
-	c14794 [label=<<table title="org.dayatang.datasource4saas.dsregistry.DataSourceRegistryException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DataSourceRegistryException.html">
+	c15398 [label=<<table title="org.dayatang.datasource4saas.dsregistry.DataSourceRegistryException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DataSourceRegistryException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DataSourceRegistryException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DataSourceRegistryException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.datasource4saas.dsregistry.DataSourceCreator
-	c14795 [label=<<table title="org.dayatang.datasource4saas.dsregistry.DataSourceCreator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DataSourceCreator.html">
+	c15399 [label=<<table title="org.dayatang.datasource4saas.dsregistry.DataSourceCreator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DataSourceCreator.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> DataSourceCreator </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DataSourceCreator.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.datasource4saas.dsregistry.JndiMappingDataSourceRegistry extends org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry
-	c14791:p -> c14792:p [dir=back,arrowtail=empty];
+	c15395:p -> c15396:p [dir=back,arrowtail=empty];
 	//org.dayatang.datasource4saas.dsregistry.JdbcDataSourceRegistry extends org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry
-	c14791:p -> c14793:p [dir=back,arrowtail=empty];
+	c15395:p -> c15397:p [dir=back,arrowtail=empty];
 }
 

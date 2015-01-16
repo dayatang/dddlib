@@ -10,197 +10,211 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.ValueObject
-	c856 [label=<<table title="org.dayatang.domain.ValueObject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ValueObject.html">
+	c874 [label=<<table title="org.dayatang.domain.ValueObject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ValueObject.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ValueObject </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ValueObject.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.Value
-	c857 [label=<<table title="org.dayatang.domain.Value" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Value.html">
+	c875 [label=<<table title="org.dayatang.domain.Value" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Value.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Value </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Value.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.SqlQuery
-	c858 [label=<<table title="org.dayatang.domain.SqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SqlQuery.html">
+	c876 [label=<<table title="org.dayatang.domain.SqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SqlQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SqlQuery </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SqlQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.QueryParameters
-	c859 [label=<<table title="org.dayatang.domain.QueryParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryParameters.html">
+	c877 [label=<<table title="org.dayatang.domain.QueryParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryParameters.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> QueryParameters </td></tr>
 		</table></td></tr>
 		</table>>, URL="./QueryParameters.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.QueryCriterion
-	c860 [label=<<table title="org.dayatang.domain.QueryCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryCriterion.html">
+	c878 [label=<<table title="org.dayatang.domain.QueryCriterion" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./QueryCriterion.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> QueryCriterion </td></tr>
 		</table></td></tr>
 		</table>>, URL="./QueryCriterion.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.PositionalParameters
-	c861 [label=<<table title="org.dayatang.domain.PositionalParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PositionalParameters.html">
+	c879 [label=<<table title="org.dayatang.domain.PositionalParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PositionalParameters.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PositionalParameters </td></tr>
 		</table></td></tr>
 		</table>>, URL="./PositionalParameters.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.OrderSettings
-	c862 [label=<<table title="org.dayatang.domain.OrderSettings" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OrderSettings.html">
+	c880 [label=<<table title="org.dayatang.domain.OrderSettings" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./OrderSettings.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> OrderSettings </td></tr>
 		</table></td></tr>
 		</table>>, URL="./OrderSettings.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.NamedQuery
-	c863 [label=<<table title="org.dayatang.domain.NamedQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NamedQuery.html">
+	c881 [label=<<table title="org.dayatang.domain.NamedQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NamedQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NamedQuery </td></tr>
 		</table></td></tr>
 		</table>>, URL="./NamedQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.NamedParameters
-	c864 [label=<<table title="org.dayatang.domain.NamedParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NamedParameters.html">
+	c882 [label=<<table title="org.dayatang.domain.NamedParameters" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./NamedParameters.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> NamedParameters </td></tr>
 		</table></td></tr>
 		</table>>, URL="./NamedParameters.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.LegacyEntity
-	c865 [label=<<table title="org.dayatang.domain.LegacyEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./LegacyEntity.html">
+	c883 [label=<<table title="org.dayatang.domain.LegacyEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./LegacyEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> LegacyEntity </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./LegacyEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.KeyValue<K, V>
-	c866 [label=<<table title="org.dayatang.domain.KeyValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./KeyValue.html">
+	c884 [label=<<table title="org.dayatang.domain.KeyValue" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./KeyValue.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> KeyValue&lt;K, V&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./KeyValue.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.JpqlQuery
-	c867 [label=<<table title="org.dayatang.domain.JpqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JpqlQuery.html">
+	c885 [label=<<table title="org.dayatang.domain.JpqlQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./JpqlQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> JpqlQuery </td></tr>
 		</table></td></tr>
 		</table>>, URL="./JpqlQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.IocInstanceNotUniqueException
-	c868 [label=<<table title="org.dayatang.domain.IocInstanceNotUniqueException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IocInstanceNotUniqueException.html">
+	c886 [label=<<table title="org.dayatang.domain.IocInstanceNotUniqueException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IocInstanceNotUniqueException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> IocInstanceNotUniqueException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./IocInstanceNotUniqueException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.IocInstanceNotFoundException
-	c869 [label=<<table title="org.dayatang.domain.IocInstanceNotFoundException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IocInstanceNotFoundException.html">
+	c887 [label=<<table title="org.dayatang.domain.IocInstanceNotFoundException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IocInstanceNotFoundException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> IocInstanceNotFoundException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./IocInstanceNotFoundException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.IocException
-	c870 [label=<<table title="org.dayatang.domain.IocException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IocException.html">
+	c888 [label=<<table title="org.dayatang.domain.IocException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./IocException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> IocException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./IocException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.InstanceProvider
-	c871 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./InstanceProvider.html">
+	c889 [label=<<table title="org.dayatang.domain.InstanceProvider" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./InstanceProvider.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> InstanceProvider </td></tr>
 		</table></td></tr>
 		</table>>, URL="./InstanceProvider.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.dayatang.domain.InstanceLocatorFactory
+	c890 [label=<<table title="org.dayatang.domain.InstanceLocatorFactory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./InstanceLocatorFactory.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> InstanceLocatorFactory </td></tr>
+		</table></td></tr>
+		</table>>, URL="./InstanceLocatorFactory.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+	// org.dayatang.domain.InstanceLocator
+	c891 [label=<<table title="org.dayatang.domain.InstanceLocator" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./InstanceLocator.html">
+		<tr><td><table border="0" cellspacing="0" cellpadding="1">
+<tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
+<tr><td align="center" balign="center"> InstanceLocator </td></tr>
+		</table></td></tr>
+		</table>>, URL="./InstanceLocator.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.InstanceFactory
-	c872 [label=<<table title="org.dayatang.domain.InstanceFactory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./InstanceFactory.html">
+	c892 [label=<<table title="org.dayatang.domain.InstanceFactory" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./InstanceFactory.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> InstanceFactory </td></tr>
 		</table></td></tr>
 		</table>>, URL="./InstanceFactory.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.ExampleSettings<T>
-	c873 [label=<<table title="org.dayatang.domain.ExampleSettings" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ExampleSettings.html">
+	c893 [label=<<table title="org.dayatang.domain.ExampleSettings" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ExampleSettings.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ExampleSettings&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ExampleSettings.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.EntityRepository
-	c874 [label=<<table title="org.dayatang.domain.EntityRepository" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EntityRepository.html">
+	c894 [label=<<table title="org.dayatang.domain.EntityRepository" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./EntityRepository.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> EntityRepository </td></tr>
 		</table></td></tr>
 		</table>>, URL="./EntityRepository.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.Entity
-	c875 [label=<<table title="org.dayatang.domain.Entity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Entity.html">
+	c895 [label=<<table title="org.dayatang.domain.Entity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./Entity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Entity </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Entity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.DomainEvent<T>
-	c876 [label=<<table title="org.dayatang.domain.DomainEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DomainEvent.html">
+	c896 [label=<<table title="org.dayatang.domain.DomainEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DomainEvent.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> DomainEvent&lt;T&gt; </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DomainEvent.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.DataType
-	c877 [label=<<table title="org.dayatang.domain.DataType" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DataType.html">
+	c897 [label=<<table title="org.dayatang.domain.DataType" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./DataType.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;enumeration&#187; </td></tr>
 <tr><td align="center" balign="center"> DataType </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DataType.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.CriterionBuilder
-	c878 [label=<<table title="org.dayatang.domain.CriterionBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CriterionBuilder.html">
+	c898 [label=<<table title="org.dayatang.domain.CriterionBuilder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CriterionBuilder.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> CriterionBuilder </td></tr>
 		</table></td></tr>
 		</table>>, URL="./CriterionBuilder.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.CriteriaQuery
-	c879 [label=<<table title="org.dayatang.domain.CriteriaQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CriteriaQuery.html">
+	c899 [label=<<table title="org.dayatang.domain.CriteriaQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./CriteriaQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> CriteriaQuery </td></tr>
 		</table></td></tr>
 		</table>>, URL="./CriteriaQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.BaseQuery<E extends org.dayatang.domain.BaseQuery>
-	c880 [label=<<table title="org.dayatang.domain.BaseQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BaseQuery.html">
+	c900 [label=<<table title="org.dayatang.domain.BaseQuery" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BaseQuery.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BaseQuery&lt;E extends BaseQuery&gt; </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./BaseQuery.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.BaseEntity
-	c881 [label=<<table title="org.dayatang.domain.BaseEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BaseEntity.html">
+	c901 [label=<<table title="org.dayatang.domain.BaseEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BaseEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BaseEntity </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./BaseEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.domain.AbstractEntity
-	c882 [label=<<table title="org.dayatang.domain.AbstractEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractEntity.html">
+	c902 [label=<<table title="org.dayatang.domain.AbstractEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractEntity </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.domain.Value implements org.dayatang.domain.ValueObject
-	c856:p -> c857:p [dir=back,arrowtail=empty,style=dashed];
+	c874:p -> c875:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.domain.SqlQuery extends org.dayatang.domain.BaseQuery<org.dayatang.domain.SqlQuery>
-	c880:p -> c858:p [dir=back,arrowtail=empty];
+	c900:p -> c876:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.PositionalParameters implements org.dayatang.domain.QueryParameters
-	c859:p -> c861:p [dir=back,arrowtail=empty,style=dashed];
+	c877:p -> c879:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.domain.NamedQuery extends org.dayatang.domain.BaseQuery<org.dayatang.domain.NamedQuery>
-	c880:p -> c863:p [dir=back,arrowtail=empty];
+	c900:p -> c881:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.NamedParameters implements org.dayatang.domain.QueryParameters
-	c859:p -> c864:p [dir=back,arrowtail=empty,style=dashed];
+	c877:p -> c882:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.domain.LegacyEntity extends org.dayatang.domain.BaseEntity
-	c881:p -> c865:p [dir=back,arrowtail=empty];
+	c901:p -> c883:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.JpqlQuery extends org.dayatang.domain.BaseQuery<org.dayatang.domain.JpqlQuery>
-	c880:p -> c867:p [dir=back,arrowtail=empty];
+	c900:p -> c885:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.IocInstanceNotUniqueException extends org.dayatang.domain.IocException
-	c870:p -> c868:p [dir=back,arrowtail=empty];
+	c888:p -> c886:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.IocInstanceNotFoundException extends org.dayatang.domain.IocException
-	c870:p -> c869:p [dir=back,arrowtail=empty];
+	c888:p -> c887:p [dir=back,arrowtail=empty];
 	//org.dayatang.domain.BaseEntity implements org.dayatang.domain.Entity
-	c875:p -> c881:p [dir=back,arrowtail=empty,style=dashed];
+	c895:p -> c901:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.domain.AbstractEntity extends org.dayatang.domain.BaseEntity
-	c881:p -> c882:p [dir=back,arrowtail=empty];
+	c901:p -> c902:p [dir=back,arrowtail=empty];
 }
 

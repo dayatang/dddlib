@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.cache.ehcache.UnExistsedCacheNameException
-	c94864 [label=<<table title="org.dayatang.cache.ehcache.UnExistsedCacheNameException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./UnExistsedCacheNameException.html">
+	c98900 [label=<<table title="org.dayatang.cache.ehcache.UnExistsedCacheNameException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./UnExistsedCacheNameException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> UnExistsedCacheNameException </td></tr>
 		</table></td></tr>
 		</table>>, URL="./UnExistsedCacheNameException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.cache.ehcache.UnExistsedCacheNameException extends java.lang.RuntimeException
-	c94985:p -> c94864:p [dir=back,arrowtail=empty];
+	c99021:p -> c98900:p [dir=back,arrowtail=empty];
 	// java.lang.RuntimeException
-	c94985 [label=<<table title="java.lang.RuntimeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html">
+	c99021 [label=<<table title="java.lang.RuntimeException" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/RuntimeException.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RuntimeException </td></tr>
 		</table></td></tr>
-		</table>>, URL="http://download.oracle.com/javase/7/docs/api/java/lang/RuntimeException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/RuntimeException.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

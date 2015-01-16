@@ -18,11 +18,11 @@ digraph G {
 	//org.dayatang.domain.ioc.TheAnnotation implements java.lang.annotation.Annotation
 	c46133:p -> c46003:p [dir=back,arrowtail=empty,style=dashed];
 	// java.lang.annotation.Annotation
-	c46133 [label=<<table title="java.lang.annotation.Annotation" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/lang/annotation/Annotation.html">
+	c46133 [label=<<table title="java.lang.annotation.Annotation" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/annotation/Annotation.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Annotation </td></tr>
 		</table></td></tr>
-		</table>>, URL="http://download.oracle.com/javase/7/docs/api/java/lang/annotation/Annotation.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/annotation/Annotation.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

@@ -10,51 +10,51 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.configuration.Configuration
-	c18996 [label=<<table title="org.dayatang.configuration.Configuration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../Configuration.html">
+	c19696 [label=<<table title="org.dayatang.configuration.Configuration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../Configuration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Configuration </td></tr>
 		</table></td></tr>
 		</table>>, URL="../Configuration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.SimpleConfiguration
-	c19000 [label=<<table title="org.dayatang.configuration.impl.SimpleConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SimpleConfiguration.html">
+	c19700 [label=<<table title="org.dayatang.configuration.impl.SimpleConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./SimpleConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> SimpleConfiguration </td></tr>
 		</table></td></tr>
 		</table>>, URL="./SimpleConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.ConfigurationInputStreamImpl
-	c19004 [label=<<table title="org.dayatang.configuration.impl.ConfigurationInputStreamImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationInputStreamImpl.html">
+	c19704 [label=<<table title="org.dayatang.configuration.impl.ConfigurationInputStreamImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationInputStreamImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationInputStreamImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigurationInputStreamImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.ConfigurationFileImpl
-	c19006 [label=<<table title="org.dayatang.configuration.impl.ConfigurationFileImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationFileImpl.html">
+	c19706 [label=<<table title="org.dayatang.configuration.impl.ConfigurationFileImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationFileImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationFileImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigurationFileImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.ConfigurationDbImpl
-	c19012 [label=<<table title="org.dayatang.configuration.impl.ConfigurationDbImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationDbImpl.html">
+	c19712 [label=<<table title="org.dayatang.configuration.impl.ConfigurationDbImpl" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ConfigurationDbImpl.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> ConfigurationDbImpl </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ConfigurationDbImpl.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.configuration.impl.AbstractConfiguration
-	c19013 [label=<<table title="org.dayatang.configuration.impl.AbstractConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractConfiguration.html">
+	c19713 [label=<<table title="org.dayatang.configuration.impl.AbstractConfiguration" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractConfiguration.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractConfiguration </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractConfiguration.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.configuration.impl.SimpleConfiguration extends org.dayatang.configuration.impl.AbstractConfiguration
-	c19013:p -> c19000:p [dir=back,arrowtail=empty];
+	c19713:p -> c19700:p [dir=back,arrowtail=empty];
 	//org.dayatang.configuration.impl.ConfigurationInputStreamImpl extends org.dayatang.configuration.impl.AbstractConfiguration
-	c19013:p -> c19004:p [dir=back,arrowtail=empty];
+	c19713:p -> c19704:p [dir=back,arrowtail=empty];
 	//org.dayatang.configuration.impl.ConfigurationFileImpl extends org.dayatang.configuration.impl.AbstractConfiguration
-	c19013:p -> c19006:p [dir=back,arrowtail=empty];
+	c19713:p -> c19706:p [dir=back,arrowtail=empty];
 	//org.dayatang.configuration.impl.ConfigurationDbImpl extends org.dayatang.configuration.impl.AbstractConfiguration
-	c19013:p -> c19012:p [dir=back,arrowtail=empty];
+	c19713:p -> c19712:p [dir=back,arrowtail=empty];
 	//org.dayatang.configuration.impl.AbstractConfiguration implements org.dayatang.configuration.Configuration
-	c18996:p -> c19013:p [dir=back,arrowtail=empty,style=dashed];
+	c19696:p -> c19713:p [dir=back,arrowtail=empty,style=dashed];
 }
 

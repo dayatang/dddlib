@@ -1,6 +1,6 @@
 <map id="G" name="G">
 <area shape="rect" id="node1_0" href="./SaasDataSource.html" title="org.dayatang.datasource4saas.SaasDataSource" alt="" coords="16,118,136,143"/>
 <area shape="rect" id="node1" href="./SaasDataSource.html" title="&lt;TABLE&gt;" alt="" coords="5,107,147,155"/>
-<area shape="rect" id="node2_1" href="http://download.oracle.com/javase/7/docs/api/javax/sql/DataSource.html" title="javax.sql.DataSource" alt="" coords="31,11,121,53"/>
-<area shape="rect" id="node2" href="http://download.oracle.com/javase/7/docs/api/javax/sql/DataSource.html" title="&lt;TABLE&gt;" alt="" coords="21,5,131,59"/>
+<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/javax/sql/DataSource.html" title="javax.sql.DataSource" alt="" coords="31,11,121,53"/>
+<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/javax/sql/DataSource.html" title="&lt;TABLE&gt;" alt="" coords="21,5,131,59"/>
 </map>

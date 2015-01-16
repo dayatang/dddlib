@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dddlib.organisation.webapp.controller.PostController
-	c18758 [label=<<table title="org.dddlib.organisation.webapp.controller.PostController" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PostController.html">
+	c19446 [label=<<table title="org.dddlib.organisation.webapp.controller.PostController" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./PostController.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PostController </td></tr>
 		</table></td></tr>
 		</table>>, URL="./PostController.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.webapp.controller.BaseController
-	c18759 [label=<<table title="org.dddlib.organisation.webapp.controller.BaseController" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BaseController.html">
+	c19447 [label=<<table title="org.dddlib.organisation.webapp.controller.BaseController" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./BaseController.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> BaseController </td></tr>
 		</table></td></tr>
 		</table>>, URL="./BaseController.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dddlib.organisation.webapp.controller.PostController extends org.dddlib.organisation.webapp.controller.BaseController
-	c18759:p -> c18758:p [dir=back,arrowtail=empty];
+	c19447:p -> c19446:p [dir=back,arrowtail=empty];
 }
 

@@ -10,35 +10,35 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.cache.Cache
-	c27895 [label=<<table title="org.dayatang.cache.Cache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Cache.html">
+	c28781 [label=<<table title="org.dayatang.cache.Cache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Cache.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Cache </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Cache.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.cache.memcached.MemcachedBasedCache
-	c27896 [label=<<table title="org.dayatang.cache.memcached.MemcachedBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./memcached/MemcachedBasedCache.html">
+	c28782 [label=<<table title="org.dayatang.cache.memcached.MemcachedBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./memcached/MemcachedBasedCache.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MemcachedBasedCache </td></tr>
 		</table></td></tr>
 		</table>>, URL="./memcached/MemcachedBasedCache.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.cache.ehcache.EhCacheBasedCache
-	c27901 [label=<<table title="org.dayatang.cache.ehcache.EhCacheBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ehcache/EhCacheBasedCache.html">
+	c28787 [label=<<table title="org.dayatang.cache.ehcache.EhCacheBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./ehcache/EhCacheBasedCache.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> EhCacheBasedCache </td></tr>
 		</table></td></tr>
 		</table>>, URL="./ehcache/EhCacheBasedCache.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.cache.redis.RedisBasedCache
-	c27902 [label=<<table title="org.dayatang.cache.redis.RedisBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./redis/RedisBasedCache.html">
+	c28788 [label=<<table title="org.dayatang.cache.redis.RedisBasedCache" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./redis/RedisBasedCache.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> RedisBasedCache </td></tr>
 		</table></td></tr>
 		</table>>, URL="./redis/RedisBasedCache.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.cache.memcached.MemcachedBasedCache implements org.dayatang.cache.Cache
-	c27895:p -> c27896:p [dir=back,arrowtail=empty,style=dashed];
+	c28781:p -> c28782:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.cache.ehcache.EhCacheBasedCache implements org.dayatang.cache.Cache
-	c27895:p -> c27901:p [dir=back,arrowtail=empty,style=dashed];
+	c28781:p -> c28787:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.cache.redis.RedisBasedCache implements org.dayatang.cache.Cache
-	c27895:p -> c27902:p [dir=back,arrowtail=empty,style=dashed];
+	c28781:p -> c28788:p [dir=back,arrowtail=empty,style=dashed];
 }
 

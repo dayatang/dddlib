@@ -18,11 +18,11 @@ digraph G {
 	//org.dayatang.ioc.spring.beans.ServiceFactory implements org.springframework.beans.factory.FactoryBean<T>
 	c41903:p -> c41793:p [dir=back,arrowtail=empty,style=dashed];
 	// org.springframework.beans.factory.FactoryBean<T>
-	c41903 [label=<<table title="org.springframework.beans.factory.FactoryBean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c41903 [label=<<table title="org.springframework.beans.factory.FactoryBean" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/beans/factory/FactoryBean.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> FactoryBean&lt;T&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/beans/factory/FactoryBean.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

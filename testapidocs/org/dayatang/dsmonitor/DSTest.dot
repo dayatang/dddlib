@@ -18,10 +18,10 @@ digraph G {
 	//org.dayatang.dsmonitor.DSTest extends org.dayatang.springtest.AbstractSpringIntegrationTest
 	c19613:p -> c19598:p [dir=back,arrowtail=empty];
 	// org.dayatang.springtest.AbstractSpringIntegrationTest
-	c19613 [label=<<table title="org.dayatang.springtest.AbstractSpringIntegrationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c19613 [label=<<table title="org.dayatang.springtest.AbstractSpringIntegrationTest" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/springtest/AbstractSpringIntegrationTest.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> AbstractSpringIntegrationTest </td></tr>
 		</table></td></tr>
-		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/springtest/AbstractSpringIntegrationTest.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

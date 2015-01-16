@@ -18,10 +18,10 @@ digraph G {
 	//org.dayatang.observer.domain.Baby extends org.dayatang.observer.AbstractSubjectEntity
 	c14805:p -> c14743:p [dir=back,arrowtail=empty];
 	// org.dayatang.observer.AbstractSubjectEntity
-	c14805 [label=<<table title="org.dayatang.observer.AbstractSubjectEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c14805 [label=<<table title="org.dayatang.observer.AbstractSubjectEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/observer/AbstractSubjectEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractSubjectEntity </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/observer/AbstractSubjectEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

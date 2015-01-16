@@ -18,10 +18,10 @@ digraph G {
 	//org.dayatang.observer.domain.FatherObserver extends org.dayatang.observer.Observer<org.dayatang.observer.domain.Baby>
 	c25952:p -> c25890:p [dir=back,arrowtail=empty];
 	// org.dayatang.observer.Observer<T extends org.dayatang.observer.Subject>
-	c25952 [label=<<table title="org.dayatang.observer.Observer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c25952 [label=<<table title="org.dayatang.observer.Observer" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/observer/Observer.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> Observer&lt;T extends Subject&gt; </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/observer/Observer.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

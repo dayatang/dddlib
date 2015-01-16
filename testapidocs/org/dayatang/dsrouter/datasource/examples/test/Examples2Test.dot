@@ -18,10 +18,10 @@ digraph G {
 	//org.dayatang.dsrouter.datasource.examples.test.Examples2Test extends org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests
 	c24991:p -> c24956:p [dir=back,arrowtail=empty];
 	// org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests
-	c24991 [label=<<table title="org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c24991 [label=<<table title="org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/test/context/junit4/AbstractJUnit4SpringContextTests.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractJUnit4SpringContextTests </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/test/context/junit4/AbstractJUnit4SpringContextTests.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

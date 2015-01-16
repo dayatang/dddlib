@@ -1,5 +1,6 @@
 <map id="G" name="G">
 <area shape="rect" id="node1_0" href="./GeminiReplicationConnection.html" title="org.dayatang.mysql.jdbc.GeminiReplicationConnection" alt="" coords="16,113,211,138"/>
 <area shape="rect" id="node1" href="./GeminiReplicationConnection.html" title="&lt;TABLE&gt;" alt="" coords="5,101,221,149"/>
-<area shape="rect" id="node2" href="null" title="&lt;TABLE&gt;" alt="" coords="27,5,200,53"/>
+<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/com/mysql/jdbc/ReplicationConnection.html" title="com.mysql.jdbc.ReplicationConnection" alt="" coords="37,17,189,42"/>
+<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/com/mysql/jdbc/ReplicationConnection.html" title="&lt;TABLE&gt;" alt="" coords="27,5,200,53"/>
 </map>

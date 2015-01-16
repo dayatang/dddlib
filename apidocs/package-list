@@ -19,6 +19,8 @@ org.dayatang.dbunit
 org.dayatang.domain
 org.dayatang.domain.event
 org.dayatang.domain.internal
+org.dayatang.domain.internal.bean
+org.dayatang.domain.internal.repo
 org.dayatang.domain.specification
 org.dayatang.dsmonitor
 org.dayatang.dsmonitor.monitor

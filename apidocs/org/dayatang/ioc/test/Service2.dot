@@ -10,35 +10,35 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.ioc.test.Service2
-	c84710 [label=<<table title="org.dayatang.ioc.test.Service2" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Service2.html">
+	c88244 [label=<<table title="org.dayatang.ioc.test.Service2" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Service2.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Service2 </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Service2.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.ioc.test.MyService23
-	c84713 [label=<<table title="org.dayatang.ioc.test.MyService23" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MyService23.html">
+	c88247 [label=<<table title="org.dayatang.ioc.test.MyService23" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MyService23.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MyService23 </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MyService23.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.ioc.test.MyService22
-	c84714 [label=<<table title="org.dayatang.ioc.test.MyService22" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MyService22.html">
+	c88248 [label=<<table title="org.dayatang.ioc.test.MyService22" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MyService22.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MyService22 </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MyService22.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.ioc.test.MyService21
-	c84715 [label=<<table title="org.dayatang.ioc.test.MyService21" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MyService21.html">
+	c88249 [label=<<table title="org.dayatang.ioc.test.MyService21" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./MyService21.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> MyService21 </td></tr>
 		</table></td></tr>
 		</table>>, URL="./MyService21.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.ioc.test.MyService23 implements org.dayatang.ioc.test.Service2
-	c84710:p -> c84713:p [dir=back,arrowtail=empty,style=dashed];
+	c88244:p -> c88247:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.ioc.test.MyService22 implements org.dayatang.ioc.test.Service2
-	c84710:p -> c84714:p [dir=back,arrowtail=empty,style=dashed];
+	c88244:p -> c88248:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.ioc.test.MyService21 implements org.dayatang.ioc.test.Service2
-	c84710:p -> c84715:p [dir=back,arrowtail=empty,style=dashed];
+	c88244:p -> c88249:p [dir=back,arrowtail=empty,style=dashed];
 }
 

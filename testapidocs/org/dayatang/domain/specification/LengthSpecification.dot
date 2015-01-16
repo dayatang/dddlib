@@ -18,10 +18,10 @@ digraph G {
 	//org.dayatang.domain.specification.LengthSpecification extends org.dayatang.domain.specification.AbstractSpecification<java.lang.String>
 	c31139:p -> c31025:p [dir=back,arrowtail=empty];
 	// org.dayatang.domain.specification.AbstractSpecification<T>
-	c31139 [label=<<table title="org.dayatang.domain.specification.AbstractSpecification" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c31139 [label=<<table title="org.dayatang.domain.specification.AbstractSpecification" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/AbstractSpecification.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractSpecification&lt;T&gt; </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/specification/AbstractSpecification.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

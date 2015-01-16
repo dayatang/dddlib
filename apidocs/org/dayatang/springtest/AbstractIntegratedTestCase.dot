@@ -10,18 +10,18 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.dbunit.Dbunit
-	c21998 [label=<<table title="org.dayatang.dbunit.Dbunit" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../dbunit/Dbunit.html">
+	c22758 [label=<<table title="org.dayatang.dbunit.Dbunit" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../dbunit/Dbunit.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Dbunit </td></tr>
 		</table></td></tr>
 		</table>>, URL="../dbunit/Dbunit.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.springtest.AbstractIntegratedTestCase
-	c22047 [label=<<table title="org.dayatang.springtest.AbstractIntegratedTestCase" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractIntegratedTestCase.html">
+	c22807 [label=<<table title="org.dayatang.springtest.AbstractIntegratedTestCase" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./AbstractIntegratedTestCase.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractIntegratedTestCase </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractIntegratedTestCase.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.springtest.AbstractIntegratedTestCase extends org.dayatang.dbunit.Dbunit
-	c21998:p -> c22047:p [dir=back,arrowtail=empty];
+	c22758:p -> c22807:p [dir=back,arrowtail=empty];
 }
 

@@ -34,10 +34,10 @@ digraph G {
 	//org.dayatang.domain.entity.Company extends org.dayatang.domain.entity.Organization
 	c38081:p -> c38084:p [dir=back,arrowtail=empty];
 	// org.dayatang.domain.BaseEntity
-	c38251 [label=<<table title="org.dayatang.domain.BaseEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c38251 [label=<<table title="org.dayatang.domain.BaseEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/BaseEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> BaseEntity </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/dayatang/domain/BaseEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

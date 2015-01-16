@@ -10,28 +10,28 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.observer.Subject
-	c91794 [label=<<table title="org.dayatang.observer.Subject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Subject.html">
+	c95764 [label=<<table title="org.dayatang.observer.Subject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./Subject.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Subject </td></tr>
 		</table></td></tr>
 		</table>>, URL="./Subject.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.observer.AbstractSubjectEntity
-	c91796 [label=<<table title="org.dayatang.observer.AbstractSubjectEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractSubjectEntity.html">
+	c95766 [label=<<table title="org.dayatang.observer.AbstractSubjectEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./AbstractSubjectEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractSubjectEntity </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./AbstractSubjectEntity.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.observer.Subject implements java.io.Serializable
-	c91901:p -> c91794:p [dir=back,arrowtail=empty,style=dashed];
+	c95871:p -> c95764:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dayatang.observer.AbstractSubjectEntity implements org.dayatang.observer.Subject
-	c91794:p -> c91796:p [dir=back,arrowtail=empty,style=dashed];
+	c95764:p -> c95766:p [dir=back,arrowtail=empty,style=dashed];
 	// java.io.Serializable
-	c91901 [label=<<table title="java.io.Serializable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html">
+	c95871 [label=<<table title="java.io.Serializable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/io/Serializable.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Serializable </td></tr>
 		</table></td></tr>
-		</table>>, URL="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/java/io/Serializable.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

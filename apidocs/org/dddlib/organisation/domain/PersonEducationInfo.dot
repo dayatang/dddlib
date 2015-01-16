@@ -10,28 +10,28 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.domain.ValueObject
-	c77631 [label=<<table title="org.dayatang.domain.ValueObject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../../dayatang/domain/ValueObject.html">
+	c81009 [label=<<table title="org.dayatang.domain.ValueObject" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="../../../dayatang/domain/ValueObject.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> ValueObject </td></tr>
 		</table></td></tr>
 		</table>>, URL="../../../dayatang/domain/ValueObject.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dddlib.organisation.domain.PersonEducationInfo
-	c77869 [label=<<table title="org.dddlib.organisation.domain.PersonEducationInfo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./PersonEducationInfo.html">
+	c81253 [label=<<table title="org.dddlib.organisation.domain.PersonEducationInfo" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./PersonEducationInfo.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> PersonEducationInfo </td></tr>
 		</table></td></tr>
 		</table>>, URL="./PersonEducationInfo.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dddlib.organisation.domain.PersonEducationInfo implements org.dayatang.domain.ValueObject
-	c77631:p -> c77869:p [dir=back,arrowtail=empty,style=dashed];
+	c81009:p -> c81253:p [dir=back,arrowtail=empty,style=dashed];
 	//org.dddlib.organisation.domain.PersonEducationInfo implements java.lang.Comparable<T>
-	c77895:p -> c77869:p [dir=back,arrowtail=empty,style=dashed];
+	c81279:p -> c81253:p [dir=back,arrowtail=empty,style=dashed];
 	// java.lang.Comparable<T>
-	c77895 [label=<<table title="java.lang.Comparable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://download.oracle.com/javase/7/docs/api/java/lang/Comparable.html">
+	c81279 [label=<<table title="java.lang.Comparable" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/Comparable.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> Comparable&lt;T&gt; </td></tr>
 		</table></td></tr>
-		</table>>, URL="http://download.oracle.com/javase/7/docs/api/java/lang/Comparable.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/Comparable.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

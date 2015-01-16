@@ -18,10 +18,10 @@ digraph G {
 	//org.dayatang.dsrouter.datasource.examples.CustomerRoutingDataSource extends org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource
 	c19228:p -> c19190:p [dir=back,arrowtail=empty];
 	// org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource
-	c19228 [label=<<table title="org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c19228 [label=<<table title="org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/jdbc/datasource/lookup/AbstractRoutingDataSource.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> AbstractRoutingDataSource </font></td></tr>
 		</table></td></tr>
-		</table>>, URL="null", fontname="Helvetica", fontcolor="black", fontsize=10.0];
+		</table>>, URL="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/jdbc/datasource/lookup/AbstractRoutingDataSource.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 }
 

@@ -15,7 +15,7 @@ org.dayatang.domain
 org.dayatang.domain.datatype
 org.dayatang.domain.entity
 org.dayatang.domain.event
-org.dayatang.domain.internal
+org.dayatang.domain.internal.repo
 org.dayatang.domain.ioc
 org.dayatang.domain.repository
 org.dayatang.domain.specification

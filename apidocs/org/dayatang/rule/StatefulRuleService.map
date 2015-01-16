@@ -1,6 +1,6 @@
 <map id="G" name="G">
 <area shape="rect" id="node1_0" href="./StatefulRuleService.html" title="org.dayatang.rule.StatefulRuleService" alt="" coords="16,112,152,155"/>
 <area shape="rect" id="node1" href="./StatefulRuleService.html" title="&lt;TABLE&gt;" alt="" coords="5,107,163,160"/>
-<area shape="rect" id="node2_1" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="java.io.Serializable" alt="" coords="40,11,128,53"/>
-<area shape="rect" id="node2" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="&lt;TABLE&gt;" alt="" coords="29,5,139,59"/>
+<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/java/io/Serializable.html" title="java.io.Serializable" alt="" coords="40,11,128,53"/>
+<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/java/io/Serializable.html" title="&lt;TABLE&gt;" alt="" coords="29,5,139,59"/>
 </map>

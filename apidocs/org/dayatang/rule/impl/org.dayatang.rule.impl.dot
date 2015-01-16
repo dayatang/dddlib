@@ -10,13 +10,13 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.rule.impl.StatelessRuleServiceJsr94
-	c9411 [label=<<table title="org.dayatang.rule.impl.StatelessRuleServiceJsr94" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./StatelessRuleServiceJsr94.html">
+	c9901 [label=<<table title="org.dayatang.rule.impl.StatelessRuleServiceJsr94" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./StatelessRuleServiceJsr94.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> StatelessRuleServiceJsr94 </td></tr>
 		</table></td></tr>
 		</table>>, URL="./StatelessRuleServiceJsr94.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.rule.impl.StatelessRuleServiceJsr94.Builder
-	c9412 [label=<<table title="org.dayatang.rule.impl.StatelessRuleServiceJsr94.Builder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./StatelessRuleServiceJsr94.Builder.html">
+	c9902 [label=<<table title="org.dayatang.rule.impl.StatelessRuleServiceJsr94.Builder" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./StatelessRuleServiceJsr94.Builder.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> Builder </td></tr>
 		</table></td></tr>

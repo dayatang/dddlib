@@ -1,5 +1,6 @@
 <map id="G" name="G">
 <area shape="rect" id="node1_0" href="./H2DataSourceDatabaseTester.html" title="org.dayatang.dbunit.H2DataSourceDatabaseTester" alt="" coords="16,113,217,138"/>
 <area shape="rect" id="node1" href="./H2DataSourceDatabaseTester.html" title="&lt;TABLE&gt;" alt="" coords="5,101,228,149"/>
-<area shape="rect" id="node2" href="null" title="&lt;TABLE&gt;" alt="" coords="14,5,219,53"/>
+<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/DataSourceDatabaseTester.html" title="org.dbunit.DataSourceDatabaseTester" alt="" coords="25,17,209,42"/>
+<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/dbunit/DataSourceDatabaseTester.html" title="&lt;TABLE&gt;" alt="" coords="14,5,219,53"/>
 </map>

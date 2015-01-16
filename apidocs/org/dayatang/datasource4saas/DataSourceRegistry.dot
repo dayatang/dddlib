@@ -10,19 +10,19 @@ digraph G {
 	nodesep=0.25;
 	ranksep=0.5;
 	// org.dayatang.datasource4saas.DataSourceRegistry
-	c37205 [label=<<table title="org.dayatang.datasource4saas.DataSourceRegistry" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DataSourceRegistry.html">
+	c38289 [label=<<table title="org.dayatang.datasource4saas.DataSourceRegistry" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" bgcolor="lemonChiffon" href="./DataSourceRegistry.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> &#171;interface&#187; </td></tr>
 <tr><td align="center" balign="center"> DataSourceRegistry </td></tr>
 		</table></td></tr>
 		</table>>, URL="./DataSourceRegistry.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	// org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry
-	c37215 [label=<<table title="org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./dsregistry/MapBasedDataSourceRegistry.html">
+	c38299 [label=<<table title="org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="./dsregistry/MapBasedDataSourceRegistry.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"><font face="Helvetica-Oblique"> MapBasedDataSourceRegistry </font></td></tr>
 		</table></td></tr>
 		</table>>, URL="./dsregistry/MapBasedDataSourceRegistry.html", fontname="Helvetica", fontcolor="black", fontsize=10.0];
 	//org.dayatang.datasource4saas.dsregistry.MapBasedDataSourceRegistry implements org.dayatang.datasource4saas.DataSourceRegistry
-	c37205:p -> c37215:p [dir=back,arrowtail=empty,style=dashed];
+	c38289:p -> c38299:p [dir=back,arrowtail=empty,style=dashed];
 }
 

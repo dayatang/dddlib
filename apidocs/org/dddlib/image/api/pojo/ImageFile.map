@@ -1,6 +1,6 @@
 <map id="G" name="G">
 <area shape="rect" id="node1_0" href="./ImageFile.html" title="org.dddlib.image.api.pojo.ImageFile" alt="" coords="21,118,99,143"/>
 <area shape="rect" id="node1" href="./ImageFile.html" title="&lt;TABLE&gt;" alt="" coords="11,107,109,155"/>
-<area shape="rect" id="node2_1" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="java.io.Serializable" alt="" coords="16,11,104,53"/>
-<area shape="rect" id="node2" href="http://download.oracle.com/javase/7/docs/api/java/io/Serializable.html" title="&lt;TABLE&gt;" alt="" coords="5,5,115,59"/>
+<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/java/io/Serializable.html" title="java.io.Serializable" alt="" coords="16,11,104,53"/>
+<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/java/io/Serializable.html" title="&lt;TABLE&gt;" alt="" coords="5,5,115,59"/>
 </map>

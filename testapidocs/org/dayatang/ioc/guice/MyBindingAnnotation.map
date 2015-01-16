@@ -1,6 +1,6 @@
 <map id="G" name="G">
 <area shape="rect" id="node1_0" href="./MyBindingAnnotation.html" title="org.dayatang.ioc.guice.MyBindingAnnotation" alt="" coords="16,118,161,143"/>
 <area shape="rect" id="node1" href="./MyBindingAnnotation.html" title="&lt;TABLE&gt;" alt="" coords="5,107,172,155"/>
-<area shape="rect" id="node2_1" href="http://download.oracle.com/javase/7/docs/api/java/lang/annotation/Annotation.html" title="java.lang.annotation.Annotation" alt="" coords="46,11,131,53"/>
-<area shape="rect" id="node2" href="http://download.oracle.com/javase/7/docs/api/java/lang/annotation/Annotation.html" title="&lt;TABLE&gt;" alt="" coords="35,5,142,59"/>
+<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/annotation/Annotation.html" title="java.lang.annotation.Annotation" alt="" coords="46,11,131,53"/>
+<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/annotation/Annotation.html" title="&lt;TABLE&gt;" alt="" coords="35,5,142,59"/>
 </map>

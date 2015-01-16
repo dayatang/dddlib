@@ -1,5 +1,6 @@
 <map id="G" name="G">
 <area shape="rect" id="node1_0" href="./CustomBean.html" title="org.dayatang.springtest.test.CustomBean" alt="" coords="22,118,118,143"/>
 <area shape="rect" id="node1" href="./CustomBean.html" title="&lt;TABLE&gt;" alt="" coords="11,107,129,155"/>
-<area shape="rect" id="node2" href="null" title="&lt;TABLE&gt;" alt="" coords="5,5,135,59"/>
+<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/beans/factory/InitializingBean.html" title="org.springframework.beans.factory.InitializingBean" alt="" coords="16,11,124,53"/>
+<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/org/springframework/beans/factory/InitializingBean.html" title="&lt;TABLE&gt;" alt="" coords="5,5,135,59"/>
 </map>
