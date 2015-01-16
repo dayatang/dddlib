@@ -21,14 +21,14 @@
 
     <distributionManagement>
         <repository>
-            <id>koala-releases</id>
-            <name>koala-releases</name>
-            <url>http://nexus.dayatang.org:8083/content/repositories/releases/</url>
+            <id>dayatang-releases</id>
+            <name>Dayatang release repository</name>
+            <url>dav:http://nexus.dayatang.org:8083/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
-            <id>koala-snapshots</id>
-            <name>koala-snapshots</name>
-            <url>http://nexus.dayatang.org:8083/content/repositories/snapshots/</url>
+            <id>dayatang-snapshots</id>
+            <name>Dayatang snapshot repository</name>
+            <url>dav:http://nexus.dayatang.org:8083/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 

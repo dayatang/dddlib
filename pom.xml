@@ -553,6 +553,42 @@
                         </execution>
                     </executions>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.10.1</version>
+                    <configuration>
+                        <minmemory>128m</minmemory>
+                        <maxmemory>1024m</maxmemory>
+                        <locale>en_US</locale>
+                        <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+                        <docletArtifact>
+                            <groupId>org.umlgraph</groupId>
+                            <artifactId>umlgraph</artifactId>
+                            <version>5.6.7</version>
+                        </docletArtifact>
+                        <additionalparam>-enumerations</additionalparam>
+                        <additionalparam>-enumconstants</additionalparam>
+                        <additionalparam>-views</additionalparam>
+                        <additionalparam>-inferrel</additionalparam>
+                        <additionalparam>-inferdep</additionalparam>
+                        <additionalparam>-collapsible</additionalparam>
+                        <additionalparam>-hide java.*</additionalparam>
+                        <additionalparam>-collpackages</additionalparam>
+                        <additionalparam>-qualify</additionalparam>
+                        <additionalparam>-postfixpackage</additionalparam>
+                        <additionalparam>-types</additionalparam>
+                        <additionalparam>-visibility</additionalparam>
+                        <additionalparam>-outputencoding UTF-8</additionalparam>
+                        <additionalparam>-nodefontsize 9</additionalparam>
+                        <additionalparam>-nodefontpackagesize 7</additionalparam>
+                        <additionalparam>-link http://docs.oracle.com/javase/7/docs/jdk/api/javadoc/doclet/
+                        </additionalparam>
+                        <additionalparam>-link http://download.oracle.com/javase/7/docs/api/</additionalparam>
+                        <useStandardDocletOptions>true</useStandardDocletOptions>
+                        <additionalparam>-Xdoclint:none</additionalparam>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
         <extensions>
