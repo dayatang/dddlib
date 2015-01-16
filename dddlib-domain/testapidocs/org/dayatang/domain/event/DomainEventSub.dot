@@ -18,7 +18,7 @@ digraph G {
 	//org.dayatang.domain.event.DomainEventSub extends DomainEvent
 	c1565:p -> c1511:p [dir=back,arrowtail=empty];
 	// DomainEvent
-	c1565[label=<<table title="DomainEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c1565[label=<<table title="DomainEvent" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api//DomainEvent.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> DomainEvent </td></tr>
 		</table></td></tr>

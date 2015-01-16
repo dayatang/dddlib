@@ -23,10 +23,10 @@ under the License.
     <link>http://dayatang.github.io/dddlib/dddlib-domain/</link>
     <description>DDDLib API Interfaces and Base Classes - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2014 Dayatang Open Source.</copyright>
+    <copyright>&#169;2015 Dayatang Open Source.</copyright>
     <item>
-      <title>File: 80,
-             Errors: 1704,
+      <title>File: 86,
+             Errors: 1758,
              Warnings: 0,
              Infos: 0
       </title>
@@ -46,91 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.package-info.java">org/dayatang/domain/package-info.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.event.DomainEvent.java">org/dayatang/domain/event/DomainEvent.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  23
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.QueryCriterion.java">org/dayatang/domain/QueryCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  9
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.PropertyCompareCriterion.java">org/dayatang/domain/internal/PropertyCompareCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  23
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.BetweenCriterion.java">org/dayatang/domain/internal/BetweenCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  24
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.NamedQuery.java">org/dayatang/domain/NamedQuery.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  14
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.LePropCriterion.java">org/dayatang/domain/internal/LePropCriterion.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.SizeLeCriterion.java">org/dayatang/domain/internal/repo/SizeLeCriterion.java</a>
                 </td>
                 <td>
                   0
@@ -140,538 +56,6 @@ under the License.
                 </td>
                 <td>
                   4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.InstanceProvider.java">org/dayatang/domain/InstanceProvider.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  18
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.EqPropCriterion.java">org/dayatang/domain/internal/EqPropCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.specification.AndSpecification.java">org/dayatang/domain/specification/AndSpecification.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  8
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.LtPropCriterion.java">org/dayatang/domain/internal/LtPropCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.BaseEntity.java">org/dayatang/domain/BaseEntity.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  27
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.SizeGtCriterion.java">org/dayatang/domain/internal/SizeGtCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.NotInCriterion.java">org/dayatang/domain/internal/NotInCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  31
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.specification.AbstractSpecification.java">org/dayatang/domain/specification/AbstractSpecification.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.SizeLeCriterion.java">org/dayatang/domain/internal/SizeLeCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.QueryParameters.java">org/dayatang/domain/QueryParameters.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.CriterionBuilderImpl.java">org/dayatang/domain/internal/CriterionBuilderImpl.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  141
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.SizeEqCriterion.java">org/dayatang/domain/internal/SizeEqCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.OrCriterion.java">org/dayatang/domain/internal/OrCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  26
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.LtCriterion.java">org/dayatang/domain/internal/LtCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.JpqlQuery.java">org/dayatang/domain/JpqlQuery.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  14
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.OrderSettings.java">org/dayatang/domain/OrderSettings.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  46
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.ValueObject.java">org/dayatang/domain/ValueObject.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.IocException.java">org/dayatang/domain/IocException.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  22
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.NotEmptyCriterion.java">org/dayatang/domain/internal/NotEmptyCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  11
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.IsEmptyCriterion.java">org/dayatang/domain/internal/IsEmptyCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  10
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.SizeLtCriterion.java">org/dayatang/domain/internal/SizeLtCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.specification.package-info.java">org/dayatang/domain/specification/package-info.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.BaseQuery.java">org/dayatang/domain/BaseQuery.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  52
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.specification.OrSpecification.java">org/dayatang/domain/specification/OrSpecification.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  8
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.DomainEvent.java">org/dayatang/domain/DomainEvent.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.NotEqPropCriterion.java">org/dayatang/domain/internal/NotEqPropCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.GeCriterion.java">org/dayatang/domain/internal/GeCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.NotCriterion.java">org/dayatang/domain/internal/NotCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  15
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.IsNullCriterion.java">org/dayatang/domain/internal/IsNullCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  10
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.BasicCriterion.java">org/dayatang/domain/internal/BasicCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  13
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.ValueCompareCriterion.java">org/dayatang/domain/internal/ValueCompareCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  23
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.DataType.java">org/dayatang/domain/DataType.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  42
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.InstanceFactory.java">org/dayatang/domain/InstanceFactory.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  76
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.EntityRepository.java">org/dayatang/domain/EntityRepository.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  37
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.SizeNotEqCriterion.java">org/dayatang/domain/internal/SizeNotEqCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.event.package-info.java">org/dayatang/domain/event/package-info.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.ContainsTextCriterion.java">org/dayatang/domain/internal/ContainsTextCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  16
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.annotations.package-info.java">org/dayatang/annotations/package-info.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  1
                 </td>
               </tr>
                           <tr>
@@ -690,7 +74,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.NotEqCriterion.java">org/dayatang/domain/internal/NotEqCriterion.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.NotNullCriterion.java">org/dayatang/domain/internal/repo/NotNullCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.SizeGeCriterion.java">org/dayatang/domain/internal/repo/SizeGeCriterion.java</a>
                 </td>
                 <td>
                   0
@@ -704,7 +102,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.event.EventStore.java">org/dayatang/domain/event/EventStore.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.InstanceFactory.java">org/dayatang/domain/InstanceFactory.java</a>
                 </td>
                 <td>
                   0
@@ -713,12 +111,54 @@ under the License.
                   0
                 </td>
                 <td>
-                  11
+                  57
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.SizeCompareCriterion.java">org/dayatang/domain/internal/SizeCompareCriterion.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.EqPropCriterion.java">org/dayatang/domain/internal/repo/EqPropCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.LtPropCriterion.java">org/dayatang/domain/internal/repo/LtPropCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.CriteriaQuery.java">org/dayatang/domain/CriteriaQuery.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  185
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.SizeCompareCriterion.java">org/dayatang/domain/internal/repo/SizeCompareCriterion.java</a>
                 </td>
                 <td>
                   0
@@ -732,7 +172,217 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.PositionalParameters.java">org/dayatang/domain/PositionalParameters.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.IocInstanceNotUniqueException.java">org/dayatang/domain/IocInstanceNotUniqueException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  22
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.EqCriterion.java">org/dayatang/domain/internal/repo/EqCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.NamedQuery.java">org/dayatang/domain/NamedQuery.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.bean.ServiceLoaderInstanceLocator.java">org/dayatang/domain/internal/bean/ServiceLoaderInstanceLocator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  19
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.BasicCriterion.java">org/dayatang/domain/internal/repo/BasicCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  13
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.specification.OrSpecification.java">org/dayatang/domain/specification/OrSpecification.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.specification.Specification.java">org/dayatang/domain/specification/Specification.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.PropertyCompareCriterion.java">org/dayatang/domain/internal/repo/PropertyCompareCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  23
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.ExampleSettings.java">org/dayatang/domain/ExampleSettings.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  90
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.OrCriterion.java">org/dayatang/domain/internal/repo/OrCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  26
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.GePropCriterion.java">org/dayatang/domain/internal/repo/GePropCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.LeCriterion.java">org/dayatang/domain/internal/repo/LeCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.event.StoredEvent.java">org/dayatang/domain/event/StoredEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  45
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.IsNullCriterion.java">org/dayatang/domain/internal/repo/IsNullCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.SizeNotEqCriterion.java">org/dayatang/domain/internal/repo/SizeNotEqCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.BetweenCriterion.java">org/dayatang/domain/internal/repo/BetweenCriterion.java</a>
                 </td>
                 <td>
                   0
@@ -746,7 +396,231 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.NotNullCriterion.java">org/dayatang/domain/internal/NotNullCriterion.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.specification.AndSpecification.java">org/dayatang/domain/specification/AndSpecification.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.bean.InstanceProviderInstanceLocator.java">org/dayatang/domain/internal/bean/InstanceProviderInstanceLocator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  18
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.package-info.java">org/dayatang/domain/internal/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.specification.package-info.java">org/dayatang/domain/specification/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.CriterionBuilder.java">org/dayatang/domain/CriterionBuilder.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  40
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.ValueObject.java">org/dayatang/domain/ValueObject.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.LtCriterion.java">org/dayatang/domain/internal/repo/LtCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.annotations.Transactional.java">org/dayatang/annotations/Transactional.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.NamedParameters.java">org/dayatang/domain/NamedParameters.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  26
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.bean.InstanceLocatorFactoryImpl.java">org/dayatang/domain/internal/bean/InstanceLocatorFactoryImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  6
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.InCriterion.java">org/dayatang/domain/internal/repo/InCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  27
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.ContainsTextCriterion.java">org/dayatang/domain/internal/repo/ContainsTextCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  16
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.specification.NotSpecification.java">org/dayatang/domain/specification/NotSpecification.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  5
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.SizeGtCriterion.java">org/dayatang/domain/internal/repo/SizeGtCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.StartsWithTextCriterion.java">org/dayatang/domain/internal/repo/StartsWithTextCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  15
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.InstanceProvider.java">org/dayatang/domain/InstanceProvider.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  18
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.NotEmptyCriterion.java">org/dayatang/domain/internal/repo/NotEmptyCriterion.java</a>
                 </td>
                 <td>
                   0
@@ -774,7 +648,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.EqCriterion.java">org/dayatang/domain/internal/EqCriterion.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.specification.AbstractSpecification.java">org/dayatang/domain/specification/AbstractSpecification.java</a>
                 </td>
                 <td>
                   0
@@ -788,7 +662,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.GePropCriterion.java">org/dayatang/domain/internal/GePropCriterion.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.NotEqCriterion.java">org/dayatang/domain/internal/repo/NotEqCriterion.java</a>
                 </td>
                 <td>
                   0
@@ -798,6 +672,48 @@ under the License.
                 </td>
                 <td>
                   4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.IocException.java">org/dayatang/domain/IocException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  22
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.JpqlQuery.java">org/dayatang/domain/JpqlQuery.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.InstanceLocatorFactory.java">org/dayatang/domain/InstanceLocatorFactory.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  3
                 </td>
               </tr>
                           <tr>
@@ -816,7 +732,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.CriteriaQuery.java">org/dayatang/domain/CriteriaQuery.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.QueryCriterion.java">org/dayatang/domain/QueryCriterion.java</a>
                 </td>
                 <td>
                   0
@@ -825,12 +741,54 @@ under the License.
                   0
                 </td>
                 <td>
-                  185
+                  9
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.GtPropCriterion.java">org/dayatang/domain/internal/GtPropCriterion.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.IsEmptyCriterion.java">org/dayatang/domain/internal/repo/IsEmptyCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  10
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.NotInCriterion.java">org/dayatang/domain/internal/repo/NotInCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  31
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.event.package-info.java">org/dayatang/domain/event/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.GtPropCriterion.java">org/dayatang/domain/internal/repo/GtPropCriterion.java</a>
                 </td>
                 <td>
                   0
@@ -844,7 +802,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.SizeGeCriterion.java">org/dayatang/domain/internal/SizeGeCriterion.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.ValueCompareCriterion.java">org/dayatang/domain/internal/repo/ValueCompareCriterion.java</a>
                 </td>
                 <td>
                   0
@@ -853,12 +811,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  4
+                  23
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.NamedParameters.java">org/dayatang/domain/NamedParameters.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.DataType.java">org/dayatang/domain/DataType.java</a>
                 </td>
                 <td>
                   0
@@ -867,40 +825,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  26
+                  42
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.IocInstanceNotUniqueException.java">org/dayatang/domain/IocInstanceNotUniqueException.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  22
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.event.DomainEventBus.java">org/dayatang/domain/event/DomainEventBus.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  3
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.StartsWithTextCriterion.java">org/dayatang/domain/internal/StartsWithTextCriterion.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.EmptyCriterion.java">org/dayatang/domain/internal/repo/EmptyCriterion.java</a>
                 </td>
                 <td>
                   0
@@ -914,7 +844,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.event.DomainEventBusImpl.java">org/dayatang/domain/event/DomainEventBusImpl.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.BaseQuery.java">org/dayatang/domain/BaseQuery.java</a>
                 </td>
                 <td>
                   0
@@ -923,7 +853,133 @@ under the License.
                   0
                 </td>
                 <td>
-                  13
+                  52
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.annotations.package-info.java">org/dayatang/annotations/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.GtCriterion.java">org/dayatang/domain/internal/repo/GtCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.AbstractCriterion.java">org/dayatang/domain/internal/repo/AbstractCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  25
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.InstanceLocator.java">org/dayatang/domain/InstanceLocator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.NotEqPropCriterion.java">org/dayatang/domain/internal/repo/NotEqPropCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.OrderSettings.java">org/dayatang/domain/OrderSettings.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  46
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.NotCriterion.java">org/dayatang/domain/internal/repo/NotCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  15
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.PositionalParameters.java">org/dayatang/domain/PositionalParameters.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  24
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.QueryParameters.java">org/dayatang/domain/QueryParameters.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  1
                 </td>
               </tr>
                           <tr>
@@ -942,7 +998,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.LegacyEntity.java">org/dayatang/domain/LegacyEntity.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.LePropCriterion.java">org/dayatang/domain/internal/repo/LePropCriterion.java</a>
                 </td>
                 <td>
                   0
@@ -951,12 +1007,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  28
+                  4
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.AndCriterion.java">org/dayatang/domain/internal/AndCriterion.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.event.DomainEventBus.java">org/dayatang/domain/event/DomainEventBus.java</a>
                 </td>
                 <td>
                   0
@@ -965,12 +1021,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  26
+                  3
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.package-info.java">org/dayatang/domain/internal/package-info.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.SizeEqCriterion.java">org/dayatang/domain/internal/repo/SizeEqCriterion.java</a>
                 </td>
                 <td>
                   0
@@ -979,7 +1035,63 @@ under the License.
                   0
                 </td>
                 <td>
-                  1
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.event.DomainEvent.java">org/dayatang/domain/event/DomainEvent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  23
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.GeCriterion.java">org/dayatang/domain/internal/repo/GeCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.EntityRepository.java">org/dayatang/domain/EntityRepository.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  37
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.CriterionBuilderImpl.java">org/dayatang/domain/internal/repo/CriterionBuilderImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  141
                 </td>
               </tr>
                           <tr>
@@ -998,7 +1110,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.specification.Specification.java">org/dayatang/domain/specification/Specification.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.bean.MapInstanceLocator.java">org/dayatang/domain/internal/bean/MapInstanceLocator.java</a>
                 </td>
                 <td>
                   0
@@ -1007,12 +1119,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  4
+                  20
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.ExampleSettings.java">org/dayatang/domain/ExampleSettings.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.DomainEvent.java">org/dayatang/domain/DomainEvent.java</a>
                 </td>
                 <td>
                   0
@@ -1021,68 +1133,12 @@ under the License.
                   0
                 </td>
                 <td>
-                  90
+                  3
                 </td>
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.GtCriterion.java">org/dayatang/domain/internal/GtCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.AbstractCriterion.java">org/dayatang/domain/internal/AbstractCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  24
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.event.StoredEvent.java">org/dayatang/domain/event/StoredEvent.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  45
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.LeCriterion.java">org/dayatang/domain/internal/LeCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  4
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.annotations.Transactional.java">org/dayatang/annotations/Transactional.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.package-info.java">org/dayatang/domain/package-info.java</a>
                 </td>
                 <td>
                   0
@@ -1096,7 +1152,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.EmptyCriterion.java">org/dayatang/domain/internal/EmptyCriterion.java</a>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.SizeLtCriterion.java">org/dayatang/domain/internal/repo/SizeLtCriterion.java</a>
                 </td>
                 <td>
                   0
@@ -1105,7 +1161,77 @@ under the License.
                   0
                 </td>
                 <td>
-                  15
+                  4
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.LegacyEntity.java">org/dayatang/domain/LegacyEntity.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  28
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.event.EventStore.java">org/dayatang/domain/event/EventStore.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  11
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.event.DomainEventBusImpl.java">org/dayatang/domain/event/DomainEventBusImpl.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  13
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.repo.AndCriterion.java">org/dayatang/domain/internal/repo/AndCriterion.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  26
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.BaseEntity.java">org/dayatang/domain/BaseEntity.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  27
                 </td>
               </tr>
                           <tr>
@@ -1120,48 +1246,6 @@ under the License.
                 </td>
                 <td>
                   24
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.internal.InCriterion.java">org/dayatang/domain/internal/InCriterion.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  27
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.specification.NotSpecification.java">org/dayatang/domain/specification/NotSpecification.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  5
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="http://dayatang.github.io/dddlib/dddlib-domain//checkstyle.html#org.dayatang.domain.CriterionBuilder.java">org/dayatang/domain/CriterionBuilder.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  40
                 </td>
               </tr>
                       </tbody>

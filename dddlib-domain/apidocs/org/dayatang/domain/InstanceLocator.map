@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./InstanceLocator.html" title="org.dayatang.domain.InstanceLocator" alt="" coords="275,11,389,53"/>
+<area shape="rect" id="node1" href="./InstanceLocator.html" title="&lt;TABLE&gt;" alt="" coords="265,5,399,59"/>
+<area shape="rect" id="node2_1" href="./internal/bean/ServiceLoaderInstanceLocator.html" title="org.dayatang.domain.internal.bean.ServiceLoaderInstanceLocator" alt="" coords="16,118,216,143"/>
+<area shape="rect" id="node2" href="./internal/bean/ServiceLoaderInstanceLocator.html" title="&lt;TABLE&gt;" alt="" coords="5,107,227,155"/>
+<area shape="rect" id="node3_2" href="./internal/bean/MapInstanceLocator.html" title="org.dayatang.domain.internal.bean.MapInstanceLocator" alt="" coords="262,118,402,143"/>
+<area shape="rect" id="node3" href="./internal/bean/MapInstanceLocator.html" title="&lt;TABLE&gt;" alt="" coords="251,107,413,155"/>
+<area shape="rect" id="node4_3" href="./internal/bean/InstanceProviderInstanceLocator.html" title="org.dayatang.domain.internal.bean.InstanceProviderInstanceLocator" alt="" coords="448,118,661,143"/>
+<area shape="rect" id="node4" href="./internal/bean/InstanceProviderInstanceLocator.html" title="&lt;TABLE&gt;" alt="" coords="437,107,672,155"/>
+</map>

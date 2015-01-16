@@ -1,0 +1,18 @@
+<map id="G" name="G">
+<area shape="rect" id="node1_0" href="./SizeNotEqCriterion.html" title="org.dayatang.domain.internal.repo.SizeNotEqCriterion" alt="" coords="16,209,148,234"/>
+<area shape="rect" id="node1" href="./SizeNotEqCriterion.html" title="&lt;TABLE&gt;" alt="" coords="5,197,159,245"/>
+<area shape="rect" id="node2_1" href="./SizeLtCriterion.html" title="org.dayatang.domain.internal.repo.SizeLtCriterion" alt="" coords="194,209,301,234"/>
+<area shape="rect" id="node2" href="./SizeLtCriterion.html" title="&lt;TABLE&gt;" alt="" coords="183,197,311,245"/>
+<area shape="rect" id="node3_2" href="./SizeLeCriterion.html" title="org.dayatang.domain.internal.repo.SizeLeCriterion" alt="" coords="346,209,455,234"/>
+<area shape="rect" id="node3" href="./SizeLeCriterion.html" title="&lt;TABLE&gt;" alt="" coords="335,197,466,245"/>
+<area shape="rect" id="node4_3" href="./SizeGtCriterion.html" title="org.dayatang.domain.internal.repo.SizeGtCriterion" alt="" coords="501,209,610,234"/>
+<area shape="rect" id="node4" href="./SizeGtCriterion.html" title="&lt;TABLE&gt;" alt="" coords="490,197,621,245"/>
+<area shape="rect" id="node5_4" href="./SizeGeCriterion.html" title="org.dayatang.domain.internal.repo.SizeGeCriterion" alt="" coords="656,209,769,234"/>
+<area shape="rect" id="node5" href="./SizeGeCriterion.html" title="&lt;TABLE&gt;" alt="" coords="645,197,780,245"/>
+<area shape="rect" id="node6_5" href="./SizeEqCriterion.html" title="org.dayatang.domain.internal.repo.SizeEqCriterion" alt="" coords="815,209,927,234"/>
+<area shape="rect" id="node6" href="./SizeEqCriterion.html" title="&lt;TABLE&gt;" alt="" coords="805,197,938,245"/>
+<area shape="rect" id="node7_6" href="./SizeCompareCriterion.html" title="org.dayatang.domain.internal.repo.SizeCompareCriterion" alt="" coords="403,113,553,138"/>
+<area shape="rect" id="node7" href="./SizeCompareCriterion.html" title="&lt;TABLE&gt;" alt="" coords="393,101,563,149"/>
+<area shape="rect" id="node8_7" href="./BasicCriterion.html" title="org.dayatang.domain.internal.repo.BasicCriterion" alt="" coords="427,17,529,42"/>
+<area shape="rect" id="node8" href="./BasicCriterion.html" title="&lt;TABLE&gt;" alt="" coords="417,5,539,53"/>
+</map>

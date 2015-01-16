@@ -34,7 +34,7 @@ digraph G {
 	//org.dayatang.domain.entity.Company extends org.dayatang.domain.entity.Organization
 	c3913:p -> c3916:p [dir=back,arrowtail=empty];
 	// BaseEntity
-	c3973[label=<<table title="BaseEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p">
+	c3973[label=<<table title="BaseEntity" border="0" cellborder="1" cellspacing="0" cellpadding="2" port="p" href="http://java.sun.com/j2se/1.4.2/docs/api//BaseEntity.html">
 		<tr><td><table border="0" cellspacing="0" cellpadding="1">
 <tr><td align="center" balign="center"> BaseEntity </td></tr>
 		</table></td></tr>

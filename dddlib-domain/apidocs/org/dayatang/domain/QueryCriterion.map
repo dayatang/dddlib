@@ -1,6 +1,6 @@
 <map id="G" name="G">
 <area shape="rect" id="node1_0" href="./QueryCriterion.html" title="org.dayatang.domain.QueryCriterion" alt="" coords="23,11,128,53"/>
 <area shape="rect" id="node1" href="./QueryCriterion.html" title="&lt;TABLE&gt;" alt="" coords="12,5,139,59"/>
-<area shape="rect" id="node2_1" href="./internal/AbstractCriterion.html" title="org.dayatang.domain.internal.AbstractCriterion" alt="" coords="16,118,135,143"/>
-<area shape="rect" id="node2" href="./internal/AbstractCriterion.html" title="&lt;TABLE&gt;" alt="" coords="5,107,145,155"/>
+<area shape="rect" id="node2_1" href="./internal/repo/AbstractCriterion.html" title="org.dayatang.domain.internal.repo.AbstractCriterion" alt="" coords="16,118,135,143"/>
+<area shape="rect" id="node2" href="./internal/repo/AbstractCriterion.html" title="&lt;TABLE&gt;" alt="" coords="5,107,145,155"/>
 </map>

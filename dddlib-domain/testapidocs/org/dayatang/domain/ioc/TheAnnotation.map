@@ -1,6 +1,6 @@
 <map id="G" name="G">
 <area shape="rect" id="node1_0" href="./TheAnnotation.html" title="org.dayatang.domain.ioc.TheAnnotation" alt="" coords="16,118,121,143"/>
 <area shape="rect" id="node1" href="./TheAnnotation.html" title="&lt;TABLE&gt;" alt="" coords="5,107,132,155"/>
-<area shape="rect" id="node2_1" href="http://download.oracle.com/javase/7/docs/api/java/lang/annotation/Annotation.html" title="java.lang.annotation.Annotation" alt="" coords="26,11,111,53"/>
-<area shape="rect" id="node2" href="http://download.oracle.com/javase/7/docs/api/java/lang/annotation/Annotation.html" title="&lt;TABLE&gt;" alt="" coords="15,5,122,59"/>
+<area shape="rect" id="node2_1" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/annotation/Annotation.html" title="java.lang.annotation.Annotation" alt="" coords="26,11,111,53"/>
+<area shape="rect" id="node2" href="http://java.sun.com/j2se/1.4.2/docs/api/java/lang/annotation/Annotation.html" title="&lt;TABLE&gt;" alt="" coords="15,5,122,59"/>
 </map>
