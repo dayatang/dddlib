@@ -22,4 +22,9 @@ public class DayatangContextLoaderListener extends ContextLoaderListener {
 		InstanceFactory.setInstanceProvider(springProvider);
 	}
 
+	@Override
+	public void contextDestroyed(ServletContextEvent event) {
+		InstanceFactory.setInstanceProvider(null);
+		super.contextDestroyed(event);
+	}
 }
