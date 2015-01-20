@@ -108,7 +108,7 @@
             <url>dav:http://nexus.dayatang.org:8083/content/repositories/snapshots</url>
         </snapshotRepository>
         <site>
-            <id>github</id>
+            <id>dayatang-site</id>
             <name>Deployment through GitHub's site deployment plugin</name>
             <!--<url>git:ssh://git@github.com/dayatang/dddlib.git?gh-pages#</url>-->
             <url>dav:http://dddlib.dayatang.org/</url>
