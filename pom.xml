@@ -565,7 +565,7 @@
                         <docletArtifact>
                             <groupId>org.umlgraph</groupId>
                             <artifactId>umlgraph</artifactId>
-                            <version>5.6.7</version>
+                            <version>5.7.2</version>
                         </docletArtifact>
                         <additionalparam>-enumerations</additionalparam>
                         <additionalparam>-enumconstants</additionalparam>
