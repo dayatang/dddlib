@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by yyang on 14-9-14.
  */
-public class DomainEventSub extends DomainEvent {
+public class DomainEventSub extends AbstractDomainEvent {
 
     private String prop1;
 
