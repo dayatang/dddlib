@@ -9,9 +9,9 @@ import static org.mockito.Mockito.*;
 /**
  * Created by yyang on 14-10-4.
  */
-public class DomainEventBusImplTest {
+public class DefaultEventBusTest {
 
-    private DomainEventBusImpl instance;
+    private DefaultEventBus instance;
 
     private EventBus eventBus;
 
@@ -21,13 +21,13 @@ public class DomainEventBusImplTest {
     public void setUp() {
         eventBus = mock(EventBus.class);
         eventStore = mock(EventStore.class);
-        instance = new DomainEventBusImpl(eventBus, eventStore);
+        instance = new DefaultEventBus(eventBus, eventStore);
     }
 
     @Test
     public void publishEvent() {
         DomainEvent event = new DomainEventSub();
-        instance.publishEvent(event);
+        instance.publish(event);
         verify(eventBus).post(event);
         verify(eventStore).append(event);
     }
@@ -35,14 +35,14 @@ public class DomainEventBusImplTest {
     @Test
     public void registerSubscriber() {
         Object subscriber = new String("abc");
-        instance.registerSubscriber(subscriber);
+        instance.register(subscriber);
         verify(eventBus).register(subscriber);
     }
 
     @Test
     public void unregisterSubscriber() {
         Object subscriber = new String("abc");
-        instance.unregisterSubscriber(subscriber);
+        instance.unregister(subscriber);
         verify(eventBus).unregister(subscriber);
     }
 }

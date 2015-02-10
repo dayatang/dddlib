@@ -1,18 +1,17 @@
 package org.dayatang.domain.event;
 
-import com.google.common.eventbus.EventBus;
 import org.dayatang.utils.Assert;
 
 /**
  * Created by yyang on 14-10-4.
  */
-public class DomainEventBusImpl implements DomainEventBus {
+public class DefaultEventBus implements EventBus {
 
-    private EventBus eventBus;
+    private com.google.common.eventbus.EventBus eventBus;
 
     private EventStore eventStore;
 
-    public DomainEventBusImpl(EventBus eventBus, EventStore eventStore) {
+    public DefaultEventBus(com.google.common.eventbus.EventBus eventBus, EventStore eventStore) {
         Assert.notNull(eventBus, "EventBus is null!");
         Assert.notNull(eventStore, "EventStore is null!");
         this.eventBus = eventBus;
@@ -20,18 +19,18 @@ public class DomainEventBusImpl implements DomainEventBus {
     }
 
     @Override
-    public void publishEvent(DomainEvent event) {
+    public void publish(DomainEvent event) {
         eventBus.post(event);
         eventStore.append(event);
     }
 
     @Override
-    public void registerSubscriber(Object subscriber) {
+    public void register(Object subscriber) {
         eventBus.register(subscriber);
     }
 
     @Override
-    public void unregisterSubscriber(Object subscriber) {
+    public void unregister(Object subscriber) {
         eventBus.unregister(subscriber);
     }
 }
