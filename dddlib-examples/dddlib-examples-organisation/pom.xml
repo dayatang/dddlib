@@ -244,7 +244,7 @@
             <dependency>
                 <groupId>org.jboss.logging</groupId>
                 <artifactId>jboss-logging</artifactId>
-                <version>3.2.1.GA</version>
+                <version>3.2.1.Final</version>
             </dependency>
             <!-- Spring-->
             <dependency>
