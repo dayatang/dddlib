@@ -39,7 +39,7 @@ public class DomainEventTest {
         assertThat(instance.getOccurredOn(), is(occurredOn));
     }
 
-    private class SubDomainEvent extends DomainEvent {
+    private class SubDomainEvent extends AbstractDomainEvent {
         public SubDomainEvent() {
         }
 
