@@ -268,7 +268,7 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>2.0.3-beta</version>
+                <version>2.0.5-beta</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -384,8 +384,19 @@
                 <artifactId>aopalliance</artifactId>
                 <version>1.0</version>
             </dependency>
+            <dependency>
+                <groupId>info.cukes</groupId>
+                <artifactId>cucumber-java</artifactId>
+                <version>${cucumber.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>info.cukes</groupId>
+                <artifactId>cucumber-junit</artifactId>
+                <version>${cucumber.version}</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
-
     </dependencyManagement>
 
     <dependencies>
@@ -920,6 +931,7 @@
         <spring.version>4.1.4.RELEASE</spring.version>
         <tapestry.version>5.4-beta-26</tapestry.version>
         <hibernate.version>4.3.8.Final</hibernate.version>
+        <cucumber.version>1.2.2</cucumber.version>
         <!-- Database settings, default to H2 database -->
         <h2.username>sa</h2.username>
         <h2.password />
