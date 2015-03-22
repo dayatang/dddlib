@@ -3,6 +3,7 @@ package org.dayatang.security.domain;
 import org.dayatang.springtest.AbstractSpringIntegrationTest;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.Date;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
+@Ignore
 public class UserTest extends AbstractSpringIntegrationTest {
 
     private SecuritySeedDataHelper helper = new SecuritySeedDataHelper();
