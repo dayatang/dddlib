@@ -11,6 +11,26 @@ import java.util.Set;
 public class SecurityApplicationImpl implements SecurityApplication {
 
     @Override
+    public void createActor(Actor actor) {
+
+    }
+
+    @Override
+    public void disableActor(Actor actor) {
+
+    }
+
+    @Override
+    public void createAuthority(Authority authority) {
+
+    }
+
+    @Override
+    public void disableAuthority(Authority authority) {
+
+    }
+
+    @Override
     public void lockUser(User user) {
 
     }

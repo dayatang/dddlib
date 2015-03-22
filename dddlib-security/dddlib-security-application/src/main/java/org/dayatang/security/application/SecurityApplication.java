@@ -9,6 +9,14 @@ import java.util.Set;
  */
 public interface SecurityApplication {
 
+    void createActor(Actor actor);
+
+    void disableActor(Actor actor);
+
+    void createAuthority(Authority authority);
+
+    void disableAuthority(Authority authority);
+
     /**
      * 锁定用户。被锁定的用户无法登录系统，直至解锁
      * @param user 要锁定的用户
