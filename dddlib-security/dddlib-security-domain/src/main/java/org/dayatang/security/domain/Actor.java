@@ -56,6 +56,21 @@ public abstract class Actor extends AbstractEntity {
         return results;
     }
 
+    public void grantAuthorities(Authority... authorities) {
+        for (Authority authority : authorities) {
+            new Authorization(this, authority).save();
+        }
+    }
+
+    public void withdrawAuthorities(Authority... authorities) {
+        for (Authority authority : authorities) {
+            Authorization authorization = Authorization.get(this, authority);
+            if (authorization != null) {
+                authorization.remove();
+            }
+        }
+    }
+
     public boolean hasRole(Role role) {
         return getRoles().contains(role);
     }

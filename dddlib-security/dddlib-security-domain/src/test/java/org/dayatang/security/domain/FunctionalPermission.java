@@ -9,7 +9,7 @@ import javax.persistence.Entity;
  * Created by yyang on 15/1/29.
  */
 @Entity
-@DiscriminatorValue("FUNC")
+@DiscriminatorValue("FUNC_PERM")
 public class FunctionalPermission extends Permission {
 
     private String systemFunction;

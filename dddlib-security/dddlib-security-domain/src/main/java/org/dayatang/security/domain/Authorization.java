@@ -85,4 +85,11 @@ public class Authorization extends AbstractEntity {
         }
     }
 
+    public static Authorization get(Actor actor, Authority authority) {
+        return getRepository().createCriteriaQuery(Authorization.class)
+                .eq("actor", actor)
+                .eq("authority", authority)
+                .eq("disabled", false)
+                .singleResult();
+    }
 }

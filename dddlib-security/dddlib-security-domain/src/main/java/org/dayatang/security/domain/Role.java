@@ -41,6 +41,7 @@ public class Role extends Authority {
 
     public void addPermissions(Permission... permissions) {
         this.permissions.addAll(Arrays.asList(permissions));
+        save();
     }
 
     public void removePermissions(Permission... permissions) {
@@ -79,5 +80,11 @@ public class Role extends Authority {
     @Override
     public String toString() {
         return getName();
+    }
+
+    public static Role create(String name) {
+        Role role = new Role(name);
+        role.save();
+        return role;
     }
 }

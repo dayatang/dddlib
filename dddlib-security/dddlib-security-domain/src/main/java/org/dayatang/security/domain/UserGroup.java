@@ -26,7 +26,7 @@ public class UserGroup extends Actor {
     @ManyToMany(mappedBy = "parent")
     private Set<UserGroup> children = new HashSet<UserGroup>();
 
-    public UserGroup() {
+    protected UserGroup() {
         super();
     }
 
@@ -94,5 +94,11 @@ public class UserGroup extends Actor {
             child.disable(date);
         }
         super.disable(date);
+    }
+
+    public static UserGroup create(String name) {
+        UserGroup group = new UserGroup(name);
+        group.save();
+        return group;
     }
 }

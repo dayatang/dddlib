@@ -13,7 +13,8 @@ import java.util.*;
  * Created by yyang on 15/1/13.
  */
 @Entity
-public abstract class User extends Actor {
+@DiscriminatorValue("USER")
+public class User extends Actor {
 
     //口令
     private String password;
@@ -113,5 +114,15 @@ public abstract class User extends Actor {
     @Override
     public String toString() {
         return "[User]: " + getName();
+    }
+
+    public static User create(String username) {
+        return create(username, "");
+    }
+
+    public static User create(String username, String password) {
+        User user = new User(username, password);
+        user.save();
+        return user;
     }
 }
