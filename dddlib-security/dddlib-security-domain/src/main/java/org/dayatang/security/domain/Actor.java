@@ -5,8 +5,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import java.util.*;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * 参与者，是用户User和角色Role的共同基类，授权就是将某种权限授予某个参与者
