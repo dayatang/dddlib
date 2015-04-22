@@ -1,10 +1,6 @@
 package org.dayatang.domain.event;
 
-import org.dayatang.utils.Assert;
-
 import java.util.Date;
-import java.util.Objects;
-import java.util.UUID;
 
 /**
  * 领域事件接口，领域事件代表具有业务含义的事件，例如员工调动或者机构调整
