@@ -48,7 +48,7 @@
         <module>dddlib-domain</module>
         <module>dddlib-ioc</module>
         <module>dddlib-persistence</module>
-        <module>dddlib-event-store</module>
+        <module>dddlib-event</module>
         <module>dddlib-utils</module>
         <module>dddlib-configuration</module>
         <module>dddlib-cache</module>
@@ -209,6 +209,11 @@
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
                 <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.reflections</groupId>
+                <artifactId>reflections</artifactId>
+                <version>0.9.9</version>
             </dependency>
             <dependency>
                 <groupId>log4j</groupId>

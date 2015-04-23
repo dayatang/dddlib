@@ -1,14 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>dddlib-project</artifactId>
-        <groupId>org.dayatang.dddlib</groupId>
-        <version>4.4.5-SNAPSHOT</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
-
+    <parent>
+        <groupId>org.dayatang.dddlib</groupId>
+        <artifactId>dddlib-project</artifactId>
+        <version>4.4.3-SNAPSHOT</version>
+    </parent>
     <artifactId>dddlib-event</artifactId>
     <packaging>pom</packaging>
-
     <name>dddlib-event</name>
+    <description>Event Processing Module</description>
+
+    <modules>
+        <module>dddlib-event-api</module>
+    </modules>
 </project>
