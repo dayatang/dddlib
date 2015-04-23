@@ -1,10 +1,11 @@
 package org.dayatang.dddlib.event;
 
+import java.util.Date;
+
 /**
- * 事件存储
  * Created by yyang on 15/4/23.
  */
-public interface EventStore {
+public interface Event {
 
-    void store(Event event);
+    Date occurredAt();
 }

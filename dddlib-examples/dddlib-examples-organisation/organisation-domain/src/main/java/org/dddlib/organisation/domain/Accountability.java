@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 import org.dayatang.domain.AbstractEntity;
 import org.dayatang.utils.DateUtils;
+import org.dddlib.organisation.domain.events.PartyTerminatedEvent;
 
 @Entity
 @Table(name = "accountabilities")
@@ -98,4 +99,11 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
                 .addParameter("party", party).addParameter("date", date).list();
     }
 
+    public static void when(PartyTerminatedEvent event) {
+        Party party = getRepository().get(Party.class, event.getPartyId());
+        for (Accountability each : Accountability.findAccountabilitiesByParty(party, event.occurredAt())) {
+            each.terminate(event.occurredAt());
+        }
+
+    }
 }

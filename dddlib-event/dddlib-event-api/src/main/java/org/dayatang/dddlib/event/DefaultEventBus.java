@@ -43,7 +43,7 @@ public final class DefaultEventBus implements EventBus {
     }
 
     @Override
-    public void post(DomainEvent event) {
+    public void post(Event event) {
         eventStore.store(event);
         for (EventListener listener : listeners) {
             listener.onEvent(event);

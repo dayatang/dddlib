@@ -6,10 +6,10 @@ import com.google.common.reflect.TypeToken;
  * 抽象事件处理器
  * @param <T> 事件类型
  */
-public abstract class AbstractEventListener<T extends DomainEvent> implements EventListener<T> {
+public abstract class AbstractEventListener<T extends Event> implements EventListener<T> {
 
     @Override
-    public void onEvent(DomainEvent event) {
+    public void onEvent(Event event) {
         if (!supports(event)) {
             return;
         }
@@ -17,7 +17,7 @@ public abstract class AbstractEventListener<T extends DomainEvent> implements Ev
     }
 
     //判断是否监听指定的事件类型
-    private boolean supports(DomainEvent event) {
+    private boolean supports(Event event) {
         @SuppressWarnings("serial")
         final TypeToken<T> token = new TypeToken<T>(getClass()) {};
         return token.isAssignableFrom(event.getClass());

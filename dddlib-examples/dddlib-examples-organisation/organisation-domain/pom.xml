@@ -34,7 +34,11 @@
             <artifactId>dddlib-domain</artifactId>
             <version>${project.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.dayatang.dddlib</groupId>
+            <artifactId>dddlib-event-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <!-- Test -->
         <dependency>

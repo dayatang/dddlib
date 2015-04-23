@@ -6,7 +6,7 @@ package org.dayatang.dddlib.event;
  * 如果支持则调用onEvent()方法处理该事件
  * @author ericxin
  */
-public interface EventListener<T extends DomainEvent> {
+public interface EventListener<T extends Event> {
 
     /**
      * 处理事件

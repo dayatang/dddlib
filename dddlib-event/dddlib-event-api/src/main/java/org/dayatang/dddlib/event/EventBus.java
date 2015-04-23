@@ -22,6 +22,6 @@ public interface EventBus {
      * 接收领域事件
      * @param event 要接收的领域事件
      */
-    void post(DomainEvent event);
+    void post(Event event);
 
 }
