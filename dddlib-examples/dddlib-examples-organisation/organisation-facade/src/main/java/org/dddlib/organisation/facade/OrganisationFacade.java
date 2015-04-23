@@ -16,6 +16,9 @@
 
 package org.dddlib.organisation.facade;
 
+import org.dddlib.organisation.facade.dto.OrganizationDto;
+import org.dddlib.organisation.facade.dto.PostDto;
+
 import java.util.Date;
 
 /**

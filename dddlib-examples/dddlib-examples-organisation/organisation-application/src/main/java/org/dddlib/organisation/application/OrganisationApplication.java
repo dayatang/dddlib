@@ -9,7 +9,7 @@ import java.util.Date;
 
 public interface OrganisationApplication {
 
-    public <T extends Entity> T getEntity(Class<T> entityClass, Long entityId);
+    <T extends Entity> T getEntity(Class<T> entityClass, Long entityId);
 
     void createOrganization(Organization orgToCreate, Organization parent, Date date);
 
