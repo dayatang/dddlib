@@ -9,13 +9,6 @@ package org.dayatang.dddlib.event;
 public interface EventListener<T extends DomainEvent> {
 
     /**
-     * 判断是否监听指定的事件
-     * @param event
-     * @return 如果支持监听事件event则返回true，否则返回false
-     */
-    boolean supports(DomainEvent event);
-
-    /**
      * 处理事件
      * @param event 要处理的事件
      */

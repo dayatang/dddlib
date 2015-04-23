@@ -8,20 +8,19 @@ import com.google.common.reflect.TypeToken;
  */
 public abstract class AbstractEventListener<T extends DomainEvent> implements EventListener<T> {
 
-    //获取事件类型
-    @SuppressWarnings("serial")
-    private final TypeToken<T> token = new TypeToken<T>(getClass()) {};
-
-    public boolean supports(DomainEvent event) {
-        return token.isAssignableFrom(event.getClass());
-    }
-
     @Override
     public void onEvent(DomainEvent event) {
         if (!supports(event)) {
             return;
         }
         handle((T) event);
+    }
+
+    //判断是否监听指定的事件类型
+    private boolean supports(DomainEvent event) {
+        @SuppressWarnings("serial")
+        final TypeToken<T> token = new TypeToken<T>(getClass()) {};
+        return token.isAssignableFrom(event.getClass());
     }
 
     /**
