@@ -17,12 +17,17 @@ public final class DefaultEventBus implements EventBus {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DefaultEventBus.class);
 
+    private EventStore eventStore;
+
     private List<EventListener> listeners = new ArrayList<EventListener>();
 
-    public DefaultEventBus() {
+    public DefaultEventBus(EventStore eventStore) {
+        this.eventStore = eventStore;
     }
 
-    public DefaultEventBus(List<EventListener> listeners) {
+    public DefaultEventBus(EventStore eventStore, List<EventListener> listeners) {
+        Assert.notNull(eventStore, "Event Store is null.");
+        this.eventStore = eventStore;
         Assert.notEmpty(listeners, "listeners must not be null or empty.");
         this.listeners = ImmutableList.copyOf(listeners);
     }
@@ -39,6 +44,7 @@ public final class DefaultEventBus implements EventBus {
 
     @Override
     public void post(DomainEvent event) {
+        eventStore.store(event);
         for (EventListener listener : listeners) {
             listener.onEvent(event);
         }
