@@ -94,14 +94,14 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
     }
 
     @SuppressWarnings("rawtypes")
-    public static List<Accountability> findAccountabilitiesByParty(Party party, Date date) {
+    static List<Accountability> findAccountabilitiesByParty(Party party, Date date) {
         return getRepository().createNamedQuery("Accountability.findAccountabilitiesByParty")
                 .addParameter("party", party).addParameter("date", date).list();
     }
 
     public static void when(PartyTerminatedEvent event) {
         Party party = getRepository().get(Party.class, event.getPartyId());
-        for (Accountability each : Accountability.findAccountabilitiesByParty(party, event.occurredAt())) {
+        for (Accountability each : findAccountabilitiesByParty(party, event.occurredAt())) {
             each.terminate(event.occurredAt());
         }
 
