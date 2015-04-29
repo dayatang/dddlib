@@ -60,6 +60,6 @@
     </build>
 
     <properties>
-        <guice.version>3.0</guice.version>
+        <guice.version>4.0</guice.version>
     </properties>
 </project>
