@@ -17,7 +17,7 @@
 package org.dddlib.organisation.facade.assembler;
 
 import org.dddlib.organisation.domain.Organization;
-import org.dddlib.organisation.facade.OrganizationDto;
+import org.dddlib.organisation.facade.dto.OrganizationDto;
 
 /**
  *

@@ -1,7 +1,7 @@
 package org.dddlib.organisation.facade.assembler;
 
 import org.dddlib.organisation.domain.Post;
-import org.dddlib.organisation.facade.PostDto;
+import org.dddlib.organisation.facade.dto.PostDto;
 
 /**
  * Created by yyang on 14-8-12.

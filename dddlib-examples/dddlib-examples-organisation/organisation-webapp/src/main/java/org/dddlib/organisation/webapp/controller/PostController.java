@@ -1,6 +1,6 @@
 package org.dddlib.organisation.webapp.controller;
 
-import org.dddlib.organisation.facade.PostDto;
+import org.dddlib.organisation.facade.dto.PostDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.dddlib.organisation.facade.impl;
+package org.dddlib.organisation.facade;
 
 import org.dddlib.organisation.domain.Party;
 import org.dddlib.organisation.domain.Post;
@@ -23,8 +23,8 @@ import javax.inject.Inject;
 import org.dddlib.organisation.application.OrganisationApplication;
 import org.dddlib.organisation.domain.Organization;
 import org.dddlib.organisation.facade.OrganisationFacade;
-import org.dddlib.organisation.facade.OrganizationDto;
-import org.dddlib.organisation.facade.PostDto;
+import org.dddlib.organisation.facade.dto.OrganizationDto;
+import org.dddlib.organisation.facade.dto.PostDto;
 import org.dddlib.organisation.facade.assembler.PostAssembler;
 
 /**

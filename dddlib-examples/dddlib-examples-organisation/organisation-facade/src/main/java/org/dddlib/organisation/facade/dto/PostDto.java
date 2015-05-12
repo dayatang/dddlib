@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package org.dddlib.organisation.facade;
+package org.dddlib.organisation.facade.dto;
 
 /**
  *
  * @author yyang
  */
-public class OrganizationDto {
+public class PostDto {
     
 }

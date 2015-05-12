@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.dayatang.dddlib</groupId>
         <artifactId>dddlib-project</artifactId>
-        <version>4.4.5-SNAPSHOT</version>
+        <version>4.4.3-SNAPSHOT</version>
     </parent>
     <artifactId>dddlib-datasource-saas</artifactId>
     <packaging>jar</packaging>
@@ -48,10 +48,16 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>commons-dbcp</groupId>-->
+            <!--<artifactId>commons-dbcp</artifactId>-->
+            <!--<optional>true</optional>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
