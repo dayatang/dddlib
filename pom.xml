@@ -599,6 +599,7 @@
                     <version>2.5.2</version>
                     <configuration>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
+                        <goals>deploy</goals>
                     </configuration>
                 </plugin>
                 <plugin>
