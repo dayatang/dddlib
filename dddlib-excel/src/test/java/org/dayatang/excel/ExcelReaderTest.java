@@ -1,6 +1,7 @@
 package org.dayatang.excel;
 
 import org.apache.commons.lang3.time.DateUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,6 +24,10 @@ public class ExcelReaderTest {
 		instance = new ExcelHandler(excelFile);
 	}
 
+	@After
+	public void tearDown() throws Exception {
+		instance.close();
+	}
 
 	@Test
 	public void testReadColumnIndexRange() throws Exception {

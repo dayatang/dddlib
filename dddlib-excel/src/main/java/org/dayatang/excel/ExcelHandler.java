@@ -307,6 +307,10 @@ public class ExcelHandler {
 		return result;
 	}
 
+	/**
+	 * 将工作簿内容输出到输出流中
+	 * @param out 要输出到的输出流
+	 */
 	public void outputTo(OutputStream out) {
 		try {
 			workbook.write(out);
@@ -315,6 +319,10 @@ public class ExcelHandler {
 		}
 	}
 
+	/**
+	 * 将工作簿内容输出到excel文件中
+	 * @param file 要输出到的文件
+	 */
 	public void outputTo(File file) {
 		OutputStream out = null;
 		try {
@@ -332,8 +340,23 @@ public class ExcelHandler {
 			}
 		}
 	}
-	
+
+	/**
+	 * 获取工作簿中工作表的数量
+	 * @return 工作表数量
+	 */
 	public int getSheetCount() {
 		return workbook.getNumberOfSheets();
+	}
+
+	/**
+	 * 关闭Excel处理器，在内部关闭工作簿
+	 */
+	public void close() {
+		try {
+			workbook.close();
+		} catch (IOException e) {
+			throw new ExcelException("Could not close workbook!", e);
+		}
 	}
 }
