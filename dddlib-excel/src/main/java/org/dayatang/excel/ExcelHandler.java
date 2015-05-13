@@ -10,7 +10,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * Excel读写类
+ * Excel读写类。记得使用完后要调用close()方法关闭。
  * 
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  * 
