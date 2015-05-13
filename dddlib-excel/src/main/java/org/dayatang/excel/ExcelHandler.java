@@ -274,7 +274,8 @@ public class ExcelHandler {
 	 * @param value
 	 */
 	public void writeCell(ExcelCell excelCell, Object value) {
-		Row row = getSheet(excelCell).createRow(excelCell.getRowIndex());
+        Sheet sheet = getSheet(excelCell);
+		Row row = sheet.createRow(excelCell.getRowIndex());
 		Cell cell = row.createCell(excelCell.getColumnIndex());
 		setCellValue(cell, value);
 	}
@@ -297,7 +298,7 @@ public class ExcelHandler {
 			cell.setCellValue(((Number) data).doubleValue());
 			return;
 		}
-		cell.setCellValue(data.toString());
+        cell.setCellValue(data.toString());
 	}
 
 	private CellStyle getDateStyle(String dateFormat, Workbook workbook) {
