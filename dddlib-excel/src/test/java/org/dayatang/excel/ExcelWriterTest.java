@@ -1,6 +1,7 @@
 package org.dayatang.excel;
 
 import org.apache.commons.lang3.time.DateUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,6 +27,11 @@ public class ExcelWriterTest {
 		instance = new ExcelHandler(inputFile);
 		String outFileName = getClass().getResource("/export.xls").getFile();
 		outputFile = new File(outFileName);
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		instance.close();
 	}
 
 	@Test
