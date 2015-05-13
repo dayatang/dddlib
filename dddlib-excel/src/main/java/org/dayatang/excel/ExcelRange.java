@@ -3,7 +3,8 @@ package org.dayatang.excel;
 import org.dayatang.utils.Assert;
 
 /**
- * Excel工作表范围，代表指定工作表中的一个矩形区域
+ * Excel工作表范围，代表指定工作表中的一个矩形区域，行从rowFrom到rowTo，列从columnFrom到columnTo。行和列都是从0开始，即0代表第一行/列
+ * 如果没指定rowTo，则从rowFrom开始往下读，一直到遇到第一个空行为止。
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *
  */
