@@ -1,4 +1,4 @@
-package org.dayatang.dddlib.event;
+package org.dayatang.dddlib.event.api;
 
 import org.reflections.Reflections;
 import org.slf4j.Logger;

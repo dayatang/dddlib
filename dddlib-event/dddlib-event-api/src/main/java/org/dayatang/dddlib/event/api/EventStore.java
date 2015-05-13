@@ -1,4 +1,4 @@
-package org.dayatang.dddlib.event;
+package org.dayatang.dddlib.event.api;
 
 /**
  * 事件存储

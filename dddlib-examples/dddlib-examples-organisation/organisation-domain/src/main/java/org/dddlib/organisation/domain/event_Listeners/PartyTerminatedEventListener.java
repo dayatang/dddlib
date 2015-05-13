@@ -1,8 +1,7 @@
 package org.dddlib.organisation.domain.event_Listeners;
 
-import org.dayatang.dddlib.event.AbstractEventListener;
+import org.dayatang.dddlib.event.api.AbstractEventListener;
 import org.dddlib.organisation.domain.Accountability;
-import org.dddlib.organisation.domain.Party;
 import org.dddlib.organisation.domain.events.PartyTerminatedEvent;
 
 /**

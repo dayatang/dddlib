@@ -1,7 +1,6 @@
 package org.dddlib.organisation.domain.events;
 
-import org.dayatang.dddlib.event.DomainEvent;
-import org.dayatang.dddlib.event.Event;
+import org.dayatang.dddlib.event.api.DomainEvent;
 
 import java.util.Date;
 

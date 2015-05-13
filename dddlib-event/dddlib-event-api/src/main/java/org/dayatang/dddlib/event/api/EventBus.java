@@ -1,4 +1,4 @@
-package org.dayatang.dddlib.event;
+package org.dayatang.dddlib.event.api;
 
 /**
  * 事件总线接口。当接收到领域事件时调用合适的事件处理器处理这些事件。

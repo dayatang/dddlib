@@ -1,4 +1,4 @@
-package org.dayatang.dddlib.event;
+package org.dayatang.dddlib.event.api;
 
 /**
  * 事件监听器。所有的实现类必须拥有默认无参构造函数
