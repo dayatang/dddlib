@@ -1,6 +1,7 @@
 package org.dayatang.security.domain;
 
-import org.dayatang.domain.event.AbstractDomainEvent;
+
+import org.dayatang.dddlib.event.api.AbstractDomainEvent;
 
 import java.util.Date;
 

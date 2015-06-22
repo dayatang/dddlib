@@ -1,6 +1,6 @@
 package org.dddlib.organisation.domain.events;
 
-import org.dayatang.dddlib.event.api.DomainEvent;
+import org.dayatang.dddlib.event.api.AbstractDomainEvent;
 
 import java.util.Date;
 
@@ -8,16 +8,16 @@ import java.util.Date;
  * 当事人终止事件
  * Created by yyang on 15/4/23.
  */
-public class PartyTerminatedEvent extends DomainEvent {
+public class PartyTerminatedEvent extends AbstractDomainEvent {
+
     private Long partyId;
-    private Date occurredAt;
 
     public PartyTerminatedEvent(Long partyId) {
         this.partyId = partyId;
     }
 
-    public PartyTerminatedEvent(Date occurredAt, Long partyId) {
-        super(occurredAt);
+    public PartyTerminatedEvent(Date occurredOn, Long partyId) {
+        super(occurredOn);
         this.partyId = partyId;
     }
 

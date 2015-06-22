@@ -101,8 +101,8 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
 
     public static void when(PartyTerminatedEvent event) {
         Party party = getRepository().get(Party.class, event.getPartyId());
-        for (Accountability each : findAccountabilitiesByParty(party, event.occurredAt())) {
-            each.terminate(event.occurredAt());
+        for (Accountability each : findAccountabilitiesByParty(party, event.occurredOn())) {
+            each.terminate(event.occurredOn());
         }
 
     }

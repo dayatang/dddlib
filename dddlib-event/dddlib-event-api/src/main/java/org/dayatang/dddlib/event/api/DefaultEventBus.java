@@ -1,11 +1,11 @@
 package org.dayatang.dddlib.event.api;
 
-import com.google.common.collect.ImmutableList;
 import org.dayatang.utils.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -29,7 +29,7 @@ public final class DefaultEventBus implements EventBus {
         Assert.notNull(eventStore, "Event Store is null.");
         this.eventStore = eventStore;
         Assert.notEmpty(listeners, "listeners must not be null or empty.");
-        this.listeners = ImmutableList.copyOf(listeners);
+        this.listeners = Collections.unmodifiableList(listeners);
     }
 
     @Override

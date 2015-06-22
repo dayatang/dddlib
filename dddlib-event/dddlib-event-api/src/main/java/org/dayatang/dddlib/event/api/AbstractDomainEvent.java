@@ -1,4 +1,4 @@
-package org.dayatang.domain.event;
+package org.dayatang.dddlib.event.api;
 
 import org.dayatang.utils.Assert;
 
@@ -9,7 +9,7 @@ import java.util.UUID;
  * 领域事件基类，领域事件代表具有业务含义的事件，例如员工调动或者机构调整
  * Created by yyang on 14-9-12.
  */
-public abstract class AbstractDomainEvent implements DomainEvent {
+public abstract class AbstractDomainEvent implements Event {
 
     private String id = UUID.randomUUID().toString();
 
@@ -22,7 +22,6 @@ public abstract class AbstractDomainEvent implements DomainEvent {
     }
 
     /**
-     *
      * @param occurredOn 发生时间
      */
     public AbstractDomainEvent(Date occurredOn) {
@@ -30,9 +29,8 @@ public abstract class AbstractDomainEvent implements DomainEvent {
     }
 
     /**
-     *
      * @param occurredOn 发生时间
-     * @param version 版本
+     * @param version    版本
      */
     public AbstractDomainEvent(Date occurredOn, int version) {
         Assert.notNull(occurredOn);
@@ -42,33 +40,31 @@ public abstract class AbstractDomainEvent implements DomainEvent {
 
     /**
      * 获得事件ID
+     *
      * @return 事件的ID
      */
-    public String getId() {
+    @Override
+    public String id() {
         return id;
     }
 
     /**
-     * For test only
-     * @param id 要设置的ID
-     */
-    protected void setId(String id) {
-        this.id = id;
-    }
-
-    /**
      * 获得事件发生时间
+     *
      * @return 事件发生时间
      */
-    public Date getOccurredOn() {
+    @Override
+    public Date occurredOn() {
         return occurredOn;
     }
 
     /**
      * 获得版本
+     *
      * @return 事件的版本
      */
-    public int getVersion() {
+    @Override
+    public int version() {
         return version;
     }
 
@@ -81,7 +77,7 @@ public abstract class AbstractDomainEvent implements DomainEvent {
             return false;
         }
         AbstractDomainEvent that = (AbstractDomainEvent) other;
-        return this.getId().equals(that.getId());
+        return this.id().equals(that.id());
     }
 
     @Override

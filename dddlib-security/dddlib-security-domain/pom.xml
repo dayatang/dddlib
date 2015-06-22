@@ -18,6 +18,11 @@
         </dependency>
         <dependency>
             <groupId>org.dayatang.dddlib</groupId>
+            <artifactId>dddlib-event-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dayatang.dddlib</groupId>
             <artifactId>dddlib-spring-test</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>

@@ -1,6 +1,5 @@
 package org.dayatang.utils.serializer;
 
-import com.google.common.collect.Sets;
 import com.google.gson.*;
 import org.dayatang.utils.DateUtils;
 import org.dayatang.utils.support.Dictionary;
@@ -12,9 +11,7 @@ import org.junit.Test;
 
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -107,7 +104,10 @@ public class GsonSerializerTest {
         category.setId(3L);
         Dictionary dictionary1 = new Dictionary("01", "男", category);
         Dictionary dictionary2 = new Dictionary("01", "男", category);
-        category.setDictionaries(Sets.newHashSet(dictionary1, dictionary2));
+        Set<Dictionary> dictionaries = new HashSet<Dictionary>();
+        dictionaries.add(dictionary1);
+        dictionaries.add(dictionary2);
+        category.setDictionaries(dictionaries);
         System.out.println(instance.serialize(category));
     }
 

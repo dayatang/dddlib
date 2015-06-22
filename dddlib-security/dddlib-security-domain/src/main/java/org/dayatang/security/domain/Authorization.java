@@ -81,7 +81,7 @@ public class Authorization extends AbstractEntity {
 
     public static void when(ActorDisabledEvent event) {
         for (Authorization authorization : Authorization.findByActor(event.getActor())) {
-            authorization.disable(event.getOccurredOn());
+            authorization.disable(event.occurredOn());
         }
     }
 
