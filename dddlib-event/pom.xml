@@ -12,5 +12,8 @@
 
     <modules>
         <module>dddlib-event-api</module>
+        <module>dddlib-event-bus</module>
+        <module>dddlib-event-sourcing</module>
+        <module>dddlib-event-storage</module>
     </modules>
 </project>
