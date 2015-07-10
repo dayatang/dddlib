@@ -127,66 +127,6 @@
     <build>
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>org.codehaus.cargo</groupId>
-                    <artifactId>cargo-maven2-plugin</artifactId>
-                    <version>1.4.14</version>
-                    <configuration>
-                        <skip>${maven.skip.test}</skip>
-                        <container>
-                            <type>embedded</type><!--有installed, embedded 和 remote三种选择-->
-                            <containerId>jetty9x</containerId>
-                            <zipUrlInstaller>
-                                <url>http://download.eclipse.org/jetty/stable-9/dist/jetty-distribution-9.3.0.v20150612.zip</url>
-                            </zipUrlInstaller>
-                            <output>${project.build.directory}/logs</output>
-                            <timeout>300000</timeout><!-- 5 minutes -->
-                            <systemProperties>
-                                <jboss.server.log.threshold>INFO</jboss.server.log.threshold>
-                            </systemProperties>
-                            <dependencies>
-                            </dependencies>
-                        </container>
-                        <configuration>
-                            <type>standalone</type><!--有standalone, existing和runtime三种选择-->
-                            <properties>
-                                <cargo.servlet.port>8688</cargo.servlet.port>
-                                <cargo.rmi.port>1099</cargo.rmi.port>
-                                <cargo.logging>high</cargo.logging>
-                                <cargo.jvmargs>
-                                    -XX:PermSize=256m
-                                    -XX:MaxPermSize=512m
-                                    -XX:+UseConcMarkSweepGC
-                                    -XX:+CMSPermGenSweepingEnabled
-                                    -XX:+CMSClassUnloadingEnabled
-                                </cargo.jvmargs>
-                            </properties>
-                        </configuration>
-                        <!--<deployables>-->
-                            <!--<deployable>-->
-                                <!--<groupId>cn.com.pzhsteel.mes</groupId>-->
-                                <!--<artifactId>mes-prototype</artifactId>-->
-                                <!--<type>ejb</type>-->
-                            <!--</deployable>-->
-                        <!--</deployables>-->
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>start</id>
-                            <phase>pre-integration-test</phase>
-                            <goals>
-                                <goal>start</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>stop</id>
-                            <phase>post-integration-test</phase>
-                            <goals>
-                                <goal>stop</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -241,7 +181,7 @@
                 <version>9.3.0.v20150612</version>
                 <configuration>
                     <httpConnector>
-                        <port>8888</port>
+                        <port>${jetty.port}</port>
                         <idleTimeout>60000</idleTimeout>
                     </httpConnector>
                     <scanIntervalSeconds>3</scanIntervalSeconds>
@@ -259,6 +199,66 @@
                         -XX:+CMSClassUnloadingEnabled
                     </jvmArgs>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
+                <version>1.4.14</version>
+                <configuration>
+                    <skip>${maven.skip.test}</skip>
+                    <container>
+                        <type>embedded</type><!--有installed, embedded 和 remote三种选择-->
+                        <containerId>jetty9x</containerId>
+                        <zipUrlInstaller>
+                            <url>http://download.eclipse.org/jetty/stable-9/dist/jetty-distribution-9.3.0.v20150612.zip</url>
+                        </zipUrlInstaller>
+                        <output>${project.build.directory}/logs</output>
+                        <timeout>300000</timeout><!-- 5 minutes -->
+                        <systemProperties>
+                            <jboss.server.log.threshold>INFO</jboss.server.log.threshold>
+                        </systemProperties>
+                        <dependencies>
+                        </dependencies>
+                    </container>
+                    <configuration>
+                        <type>standalone</type><!--有standalone, existing和runtime三种选择-->
+                        <properties>
+                            <cargo.servlet.port>${jetty.port}</cargo.servlet.port>
+                            <cargo.rmi.port>1099</cargo.rmi.port>
+                            <cargo.logging>high</cargo.logging>
+                            <cargo.jvmargs>
+                                -XX:PermSize=256m
+                                -XX:MaxPermSize=512m
+                                -XX:+UseConcMarkSweepGC
+                                -XX:+CMSPermGenSweepingEnabled
+                                -XX:+CMSClassUnloadingEnabled
+                            </cargo.jvmargs>
+                        </properties>
+                    </configuration>
+                    <!--<deployables>-->
+                    <!--<deployable>-->
+                    <!--<groupId>cn.com.pzhsteel.mes</groupId>-->
+                    <!--<artifactId>mes-prototype</artifactId>-->
+                    <!--<type>ejb</type>-->
+                    <!--</deployable>-->
+                    <!--</deployables>-->
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>stop</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
