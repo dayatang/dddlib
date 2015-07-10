@@ -11,6 +11,7 @@
        http://www.springframework.org/schema/aop 
        http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
 
+    <import resource="application-shiro.xml"/>
     <!-- SessionFactory, DataSource, etc. omitted -->
 
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
@@ -60,5 +61,13 @@
 
     <bean id="repository" class="org.dayatang.persistence.hibernate.EntityRepositoryHibernate">
         <constructor-arg ref="sessionFactory"/>
+    </bean>
+
+    <bean id="organizationApplication" class="org.dddlib.organisation.application.impl.OrganisationApplicationImpl">
+        <constructor-arg ref="repository"/>
+    </bean>
+
+    <bean id="organizationFacade" class="org.dddlib.organisation.facade.OrganisationFacadeImpl">
+        <constructor-arg ref="organizationApplication"/>
     </bean>
 </beans>

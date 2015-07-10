@@ -15,21 +15,15 @@
  */
 package org.dddlib.organisation.application;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
 import org.dayatang.domain.AbstractEntity;
 import org.dayatang.domain.EntityRepository;
-import org.dayatang.domain.NamedQuery;
 import org.dayatang.utils.DateUtils;
-import org.dddlib.organisation.domain.Accountability;
-import org.dddlib.organisation.domain.Company;
-import org.dddlib.organisation.domain.Department;
-import org.dddlib.organisation.domain.OrgLineMgmt;
-import org.dddlib.organisation.domain.Organization;
-import org.dddlib.organisation.domain.Party;
-import org.dddlib.organisation.domain.Post;
+
 import static org.hamcrest.CoreMatchers.*;
+
+import org.dddlib.organisation.domain.*;
 import org.junit.After;
 import static org.junit.Assert.*;
 import org.junit.Before;

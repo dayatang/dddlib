@@ -15,6 +15,7 @@
         <module>organisation-application</module>
         <module>organisation-facade</module>
         <module>organisation-facade-impl</module>
+        <module>organisation-security</module>
         <module>organisation-webapp</module>
     </modules>
 
@@ -110,6 +111,11 @@
                 <groupId>org.antlr</groupId>
                 <artifactId>antlr-runtime</artifactId>
                 <version>3.5.1</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.ehcache</groupId>
+                <artifactId>ehcache-core</artifactId>
+                <version>2.6.11</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -209,6 +215,26 @@
                 <groupId>commons-configuration</groupId>
                 <artifactId>commons-configuration</artifactId>
                 <version>1.10</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-core</artifactId>
+                <version>1.2.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>1.2.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-web</artifactId>
+                <version>1.2.3</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-quartz</artifactId>
+                <version>1.2.3</version>
             </dependency>
             <dependency>
                 <groupId>org.aspectj</groupId>
@@ -680,7 +706,7 @@
 
         <jdk.version>1.6</jdk.version>
         <slf4j.version>1.7.10</slf4j.version>
-        <spring.version>4.1.4.RELEASE</spring.version>
+        <spring.version>4.1.6.RELEASE</spring.version>
         <hibernate.version>4.3.8.Final</hibernate.version>
         <!-- Database settings, default to H2 database -->
         <h2.username>sa</h2.username>

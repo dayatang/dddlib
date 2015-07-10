@@ -15,14 +15,13 @@
  */
 package org.dddlib.organisation.facade;
 
+import org.dddlib.organisation.domain.Organization;
 import org.dddlib.organisation.domain.Party;
 import org.dddlib.organisation.domain.Post;
 import org.dddlib.organisation.facade.assembler.OrganizationAssembler;
 import java.util.Date;
 import javax.inject.Inject;
 import org.dddlib.organisation.application.OrganisationApplication;
-import org.dddlib.organisation.domain.Organization;
-import org.dddlib.organisation.facade.OrganisationFacade;
 import org.dddlib.organisation.facade.dto.OrganizationDto;
 import org.dddlib.organisation.facade.dto.PostDto;
 import org.dddlib.organisation.facade.assembler.PostAssembler;
