@@ -192,6 +192,31 @@
                 <version>2.2</version>
             </dependency>
             <dependency>
+                <groupId>asm</groupId>
+                <artifactId>asm</artifactId>
+                <version>3.3.1</version>
+            </dependency>
+            <dependency>
+                <groupId>asm</groupId>
+                <artifactId>asm-commons</artifactId>
+                <version>3.3.1</version>
+            </dependency>
+            <dependency>
+                <groupId>asm</groupId>
+                <artifactId>asm-analysis</artifactId>
+                <version>3.3.1</version>
+            </dependency>
+            <dependency>
+                <groupId>asm</groupId>
+                <artifactId>asm-tree</artifactId>
+                <version>3.3.1</version>
+            </dependency>
+            <dependency>
+                <groupId>asm</groupId>
+                <artifactId>asm-util</artifactId>
+                <version>3.3.1</version>
+            </dependency>
+            <dependency>
                 <groupId>org.antlr</groupId>
                 <artifactId>antlr-runtime</artifactId>
                 <version>3.5.2</version>
@@ -418,24 +443,25 @@
                 <version>1.0-groovy-2.4</version>
                 <scope>test</scope>
             </dependency>
-            <!-- Optional dependencies for using Spock -->
-            <dependency> <!-- use a specific Groovy version rather than the one specified by spock-core -->
+            <dependency>
                 <groupId>org.codehaus.groovy</groupId>
                 <artifactId>groovy-all</artifactId>
                 <version>2.4.1</version>
-                <scope>test</scope>
             </dependency>
-            <dependency> <!-- enables mocking of classes (in addition to interfaces) -->
+            <dependency>
                 <groupId>cglib</groupId>
                 <artifactId>cglib-nodep</artifactId>
                 <version>3.1</version>
-                <scope>test</scope>
             </dependency>
-            <dependency> <!-- enables mocking of classes without default constructor (together with CGLIB) -->
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>3.1</version>
+            </dependency>
+            <dependency>
                 <groupId>org.objenesis</groupId>
                 <artifactId>objenesis</artifactId>
                 <version>2.1</version>
-                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -999,6 +1025,7 @@
         <tapestry.version>5.4-beta-26</tapestry.version>
         <hibernate.version>4.3.9.Final</hibernate.version>
         <cucumber.version>1.2.2</cucumber.version>
+        <asm.version>3.3.1</asm.version>
         <!-- Database settings, default to H2 database -->
         <h2.username>sa</h2.username>
         <h2.password />
