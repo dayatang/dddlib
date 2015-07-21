@@ -13,10 +13,19 @@
         另外还提供了一些例如断言、配置、Excel读写等基本工具。
     </description>
 
+    <licenses>
+        <license>
+            <name>Apache Software License 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <organization>
         <name>Dayatang Open Source.</name>
         <url>http://www.dayatang.org/</url>
     </organization>
+
     <developers>
         <developer>
             <id>gdyangyu</id>
@@ -37,14 +46,6 @@
             </roles>
         </developer>
     </developers>
-
-    <licenses>
-        <license>
-            <name>Apache Software License 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
 
     <modules>
         <module>dddlib-domain</module>
