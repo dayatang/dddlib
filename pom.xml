@@ -104,12 +104,12 @@
         <repository>
             <id>dayatang-releases</id>
             <name>Dayatang release repository</name>
-            <url>dav:http://nexus.dayatang.org:8083/content/repositories/releases</url>
+            <url>http://nexus.dayatang.org/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
             <id>dayatang-snapshots</id>
             <name>Dayatang snapshot repository</name>
-            <url>dav:http://nexus.dayatang.org:8083/content/repositories/snapshots</url>
+            <url>http://nexus.dayatang.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <site>
             <id>dayatang-site</id>
@@ -517,11 +517,6 @@
                             <artifactId>commons-logging</artifactId>
                             <version>1.2</version>
                         </dependency>
-                        <dependency>
-                            <groupId>org.apache.maven.wagon</groupId>
-                            <artifactId>wagon-webdav-jackrabbit</artifactId>
-                            <version>2.6</version>
-                        </dependency>
                     </dependencies>
                 </plugin>
                 <plugin>
@@ -678,11 +673,6 @@
             </plugins>
         </pluginManagement>
         <extensions>
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-webdav-jackrabbit</artifactId>
-                <version>2.9</version>
-            </extension>
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>
                 <artifactId>wagon-ssh</artifactId>
