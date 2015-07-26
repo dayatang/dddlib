@@ -5,8 +5,9 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * JavaBean工具类。
@@ -14,6 +15,8 @@ import java.util.logging.Logger;
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  */
 public class BeanUtils {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(BeanUtils.class);
 
     private final Object bean;
     private final BeanClassUtils beanClassUtils;
@@ -166,12 +169,8 @@ public class BeanUtils {
             }
             try {
                 writeMethod.invoke(bean, value);
-            } catch (IllegalAccessException ex) {
-                Logger.getLogger(BeanUtils.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalArgumentException ex) {
-                Logger.getLogger(BeanUtils.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InvocationTargetException ex) {
-                Logger.getLogger(BeanUtils.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+
             }
         }
     }
