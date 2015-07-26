@@ -48,4 +48,9 @@ public abstract class Organization extends BaseEntity {
 	public void enable() {
 		disabled = false;
 	}
+
+	@Override
+	public String[] businessKeys() {
+		return new String[] {"name", "level"};
+	}
 }

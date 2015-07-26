@@ -104,6 +104,7 @@ public abstract class Accountability<C extends Party, R extends Party> extends A
         for (Accountability each : findAccountabilitiesByParty(party, event.occurredOn())) {
             each.terminate(event.occurredOn());
         }
-
     }
+
+
 }

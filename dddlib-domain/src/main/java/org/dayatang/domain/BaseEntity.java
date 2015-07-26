@@ -5,6 +5,7 @@ package org.dayatang.domain;
 
 import java.util.Map;
 import javax.persistence.*;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.utils.BeanUtils;
@@ -74,5 +75,58 @@ public abstract class BaseEntity implements Entity {
      */
     public String[] businessKeys() {
         return new String[] {};
+    }
+
+    /**
+     * 依据业务主键获取哈希值。用于判定两个实体是否等价。
+     * 等价的两个实体的hashCode相同，不等价的两个实体hashCode不同。
+     * @return 实体的哈希值
+     */
+    @Override
+    public int hashCode() {
+        HashCodeBuilder builder = new HashCodeBuilder(13, 37);
+        Map<String, Object> propValues = new BeanUtils(this).getPropValues();
+        if (businessKeys() == null || businessKeys().length == 0) {
+            return builder.append(getId()).toHashCode();
+        }
+        for (String businessKey : businessKeys()) {
+            builder = builder.append(propValues.get(businessKey));
+        }
+        return builder.toHashCode();
+    }
+
+    /**
+     * 依据业务主键判断两个实体是否等价。
+     * @param other 另一个实体
+     * @return 如果本实体和other等价则返回true,否则返回false
+     */
+    @Override
+    public boolean equals(Object other) {
+        System.out.println("=============== type is: " + this.getClass());
+        return EntityEqualsBuilder.isEquals(this, other);
+    }
+
+    private static class EntityEqualsBuilder {
+        public static boolean isEquals(BaseEntity entity, Object other) {
+            if (entity == other) {
+                return true;
+            }
+            if (other == null) {
+                return false;
+            }
+            if (!(entity.getClass().isAssignableFrom(other.getClass()))) {
+                return false;
+            }
+            if (entity.businessKeys() == null || entity.businessKeys().length == 0) {
+                return entity.getId().equals(((BaseEntity)other).getId());
+            }
+            Map<String, Object> thisPropValues = new BeanUtils(entity).getPropValuesExclude(Transient.class);
+            Map<String, Object> otherPropValues = new BeanUtils(other).getPropValuesExclude(Transient.class);
+            EqualsBuilder builder = new EqualsBuilder();
+            for (String businessKey : entity.businessKeys()) {
+                builder.append(thisPropValues.get(businessKey), otherPropValues.get(businessKey));
+            }
+            return builder.isEquals();
+        }
     }
 }

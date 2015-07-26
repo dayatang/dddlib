@@ -18,27 +18,4 @@ public class Company extends Organization {
 	public void setLevel(int level) {
 		this.level = level;
 	}
-
-	@Override
-	public String[] businessKeys() {
-		return new String[] { "name", "level" };
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (!(o instanceof Company)) {
-			return false;
-		}
-		Company that = (Company) o;
-		return Objects.equals(getName(), that.getName()) && Objects.equals(getLevel(), that.getLevel());
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(getName(), getLevel());
-	}
-
 }
