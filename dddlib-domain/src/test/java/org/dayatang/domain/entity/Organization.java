@@ -1,5 +1,6 @@
 package org.dayatang.domain.entity;
 
+import java.util.Objects;
 import java.util.Random;
 
 import org.dayatang.domain.BaseEntity;
