@@ -4,10 +4,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -55,6 +52,15 @@ public class BeanUtils {
      */
     public Map<String, Class<?>> getPropTypes() {
         return beanClassUtils.getPropTypes();
+    }
+
+    /**
+     * 获得指定的JavaBean类型的所有属性的类型，包括从父类继承的属性
+     *
+     * @return 一个Map，Key为属性名， Value为属性所属的类
+     */
+    public Class<?> getPropType(String propName) {
+        return getPropTypes().get(propName);
     }
 
     /**
@@ -217,5 +223,17 @@ public class BeanUtils {
      */
     public void copyPropertiesTo(Object otherBean, String... excludeProps) {
         copyProperties(bean, otherBean, excludeProps);
+    }
+
+    public Map<String, PropertyInfo> getPropInfos() {
+        Map<String, PropertyInfo> results = new HashMap<String, PropertyInfo>();
+        for (String propName : getPropNames()) {
+            results.put(propName, new PropertyInfo(propName, getPropType(propName), getPropValue(propName)));
+        }
+        return results;
+    }
+
+    public PropertyInfo getPropInfo(String propName) {
+        return getPropInfos().get(propName);
     }
 }

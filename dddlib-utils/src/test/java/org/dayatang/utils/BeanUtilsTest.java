@@ -141,4 +141,16 @@ public class BeanUtilsTest {
         assertEquals(20, item2.getId());
         assertEquals("xyz", item1.getName());
     }
+
+    @Test
+    public void testGetPropertyInfos() {
+        Item item1 = new Item(12, "abc", true);
+        ConcreteItem item2 = new ConcreteItem(20, "xyz", false);
+        item2.setPrice(15.5);
+        instance = new BeanUtils(item2);
+        assertEquals(new PropertyInfo("id", int.class, 20), instance.getPropInfo("id"));
+        assertEquals(new PropertyInfo("name", String.class, "xyz"), instance.getPropInfo("name"));
+        //assertEquals(new PropertyInfo("disabled", boolean.class, false), instance.getPropInfo("disabled"));
+        assertEquals(new PropertyInfo("price", double.class, 15.5), instance.getPropInfo("price"));
+    }
 }
