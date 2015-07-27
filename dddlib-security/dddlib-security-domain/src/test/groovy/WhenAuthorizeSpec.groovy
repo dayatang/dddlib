@@ -43,7 +43,6 @@ class WhenAuthorizeSpec extends Specification {
         when:
             user1.grantAuthorities(role1, role2)
         then:
-            user1.hasAllRoles(role1, role2)
             user1.hasRole(role3) == false
     }
 
@@ -57,7 +56,6 @@ class WhenAuthorizeSpec extends Specification {
         when:
             user1.grantAuthorities(permission1, permission2)
         then:
-            user1.hasAllPermissions(permission1, permission2)
             user1.hasPermission(permission3) == false
     }
 
@@ -78,7 +76,6 @@ class WhenAuthorizeSpec extends Specification {
         when:
             user1.grantAuthorities(role1, role2, permission3)
         then:
-            //user1.hasAllPermissions(permission1, permission2, permission3)
             user1.hasPermission(permission1)
             user1.hasPermission(permission2)
             user1.hasPermission(permission3)
