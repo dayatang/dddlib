@@ -14,7 +14,11 @@ public class SecurityService {
     }
 
     public void disableActor(Actor actor) {
-        actor.disable(new Date());
+        disableActor(actor, new Date());
+    }
+
+    public void disableActor(Actor actor, Date date) {
+        actor.disable(date);
     }
 
     public void createAuthority(Authority authority) {
@@ -22,7 +26,11 @@ public class SecurityService {
     }
 
     public void disableAuthority(Authority authority) {
-        authority.disable(new Date());
+        disableAuthority(authority, new Date());
+    }
+
+    public void disableAuthority(Authority authority, Date date) {
+        authority.disable(date);
     }
 
     public void lockUser(User user) {
