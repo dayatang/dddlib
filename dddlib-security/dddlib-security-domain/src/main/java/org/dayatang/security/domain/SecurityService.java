@@ -73,6 +73,10 @@ public class SecurityService {
         return AbstractEntity.get(Role.class, id);
     }
 
+    public Role getRoleByName(String roleName) {
+        return Role.getByName(roleName);
+    }
+
     public void authorize(Actor actor, Authority... authorities) {
         for (Authority authority : authorities) {
             Authorization.authorize(actor, authority);
