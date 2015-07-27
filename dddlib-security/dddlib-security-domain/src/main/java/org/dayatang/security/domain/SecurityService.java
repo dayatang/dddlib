@@ -77,21 +77,21 @@ public class SecurityService {
         return Role.getByName(roleName);
     }
 
-    public void authorize(Actor actor, Authority... authorities) {
+    public void grantAuthorities(Actor actor, Authority... authorities) {
         for (Authority authority : authorities) {
             Authorization.authorize(actor, authority);
         }
     }
 
-    public void authorize(Actor actor, AuthorityScope scope, Authority... authorities) {
+    public void grantAuthorities(Actor actor, AuthorityScope scope, Authority... authorities) {
         actor.grantAuthorities(scope, authorities);
     }
 
-    public void withdrawAuthority(Actor actor, Authority... authorities) {
+    public void withdrawAuthorities(Actor actor, Authority... authorities) {
         actor.withdrawAuthorities(authorities);
     }
 
-    public void withdrawAuthority(Actor actor, AuthorityScope scope, Authority... authorities) {
+    public void withdrawAuthorities(Actor actor, AuthorityScope scope, Authority... authorities) {
         actor.withdrawAuthorities(scope, authorities);
     }
 
