@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.utils.Assert;
 
 import javax.persistence.*;
+import java.security.Principal;
 import java.util.*;
 
 /**
@@ -14,7 +15,7 @@ import java.util.*;
  */
 @Entity
 @DiscriminatorValue("USER")
-public class User extends Actor {
+public class User extends Actor implements Principal {
 
     //口令
     private String password;
