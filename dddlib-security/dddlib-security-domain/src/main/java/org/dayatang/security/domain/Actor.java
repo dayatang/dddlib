@@ -94,13 +94,13 @@ public abstract class Actor extends AbstractEntity {
 
     public void grantAuthorities(AuthorityScope scope, Authority... authorities) {
         for (Authority authority : authorities) {
-            Authorization.authorize(this, authority, scope);
+            Authorization.grantAuthority(this, authority, scope);
         }
     }
 
     public void withdrawAuthorities(AuthorityScope scope, Authority... authorities) {
         for (Authority authority : authorities) {
-            Authorization.withdraw(this, authority, scope);
+            Authorization.withdrawAuthority(this, authority, scope);
         }
     }
 

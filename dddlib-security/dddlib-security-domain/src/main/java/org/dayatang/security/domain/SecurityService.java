@@ -79,7 +79,7 @@ public class SecurityService {
 
     public void grantAuthorities(Actor actor, Authority... authorities) {
         for (Authority authority : authorities) {
-            Authorization.authorize(actor, authority);
+            Authorization.grantAuthority(actor, authority);
         }
     }
 

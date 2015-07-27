@@ -121,22 +121,22 @@ public class Authorization extends AbstractEntity {
                 .singleResult();
     }
 
-    static void authorize(Actor actor, Authority authority) {
-        authorize(actor, authority, GlobalAuthorityScope.get());
+    static void grantAuthority(Actor actor, Authority authority) {
+        grantAuthority(actor, authority, GlobalAuthorityScope.get());
     }
 
-    static void authorize(Actor actor, Authority authority, AuthorityScope scope) {
+    static void grantAuthority(Actor actor, Authority authority, AuthorityScope scope) {
         if (Authorization.get(actor, authority, scope) != null) {
             throw new AuthorizationExistedException();
         }
         new Authorization(actor, authority, scope).save();
     }
 
-    static void withdraw(Actor actor, Authority authority) {
-        withdraw(actor, authority, GlobalAuthorityScope.get());
+    static void withdrawAuthority(Actor actor, Authority authority) {
+        withdrawAuthority(actor, authority, GlobalAuthorityScope.get());
     }
 
-    static void withdraw(Actor actor, Authority authority, AuthorityScope scope) {
+    static void withdrawAuthority(Actor actor, Authority authority, AuthorityScope scope) {
         Authorization authorization = Authorization.get(actor, authority, scope);
         if (authorization != null) {
             authorization.remove();
