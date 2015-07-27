@@ -96,6 +96,23 @@ public class User extends Actor implements Principal {
     }
 
     @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 23).append(getName()).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof User)) {
+            return false;
+        }
+        User that = (User) other;
+        return new EqualsBuilder().append(this.getName(), that.getName()).isEquals();
+    }
+
+    @Override
     public String toString() {
         return getName();
     }
