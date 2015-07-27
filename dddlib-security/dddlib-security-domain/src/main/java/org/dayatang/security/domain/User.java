@@ -140,6 +140,9 @@ public class User extends Actor implements Principal {
     }
 
     public static User create(String username, String password) {
+        if (existsUsername(username)) {
+            throw new DuplicateUsernameException();
+        }
         User user = new User(username, password);
         user.save();
         return user;

@@ -1,6 +1,5 @@
 package org.dayatang.security.domain;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -59,8 +58,13 @@ public class Authorization extends AbstractEntity {
      * @return 参与者的所有有效授权信息
      */
     static List<Authorization> findByActor(Actor actor) {
+        return findByActor(actor, GlobalAuthorityScope.get());
+    }
+
+    static List<Authorization> findByActor(Actor actor, AuthorityScope scope) {
         return getRepository().createCriteriaQuery(Authorization.class)
                 .eq("actor", actor)
+                .eq("scope", scope)
                 .eq("disabled", false)
                 .list();
     }
@@ -82,9 +86,17 @@ public class Authorization extends AbstractEntity {
      * @param actor 参与者
      * @return 参与者的权限
      */
-    public static List<Authority> findAuthoritiesByActor(Actor actor) {
+    static List<Authority> findAuthoritiesByActor(Actor actor) {
         List<Authority> results = new ArrayList<Authority>();
         for (Authorization authorization : findByActor(actor)) {
+            results.add(authorization.getAuthority());
+        }
+        return results;
+    }
+
+    static List<Authority> findAuthoritiesByActor(Actor actor, AuthorityScope scope) {
+        List<Authority> results = new ArrayList<Authority>();
+        for (Authorization authorization : findByActor(actor, scope)) {
             results.add(authorization.getAuthority());
         }
         return results;
@@ -96,16 +108,38 @@ public class Authorization extends AbstractEntity {
         }
     }
 
-    public static Authorization get(Actor actor, Authority authority) {
+    static Authorization get(Actor actor, Authority authority) {
         return get(actor, authority, GlobalAuthorityScope.get());
     }
 
-    public static Authorization get(Actor actor, Authority authority, AuthorityScope scope) {
+    static Authorization get(Actor actor, Authority authority, AuthorityScope scope) {
         return getRepository().createCriteriaQuery(Authorization.class)
                 .eq("actor", actor)
                 .eq("authority", authority)
                 .eq("scope", scope)
                 .eq("disabled", false)
                 .singleResult();
+    }
+
+    static void authorize(Actor actor, Authority authority) {
+        authorize(actor, authority, GlobalAuthorityScope.get());
+    }
+
+    static void authorize(Actor actor, Authority authority, AuthorityScope scope) {
+        if (Authorization.get(actor, authority, scope) != null) {
+            throw new AuthorizationExistedException();
+        }
+        new Authorization(actor, authority, scope).save();
+    }
+
+    static void withdraw(Actor actor, Authority authority) {
+        withdraw(actor, authority, GlobalAuthorityScope.get());
+    }
+
+    static void withdraw(Actor actor, Authority authority, AuthorityScope scope) {
+        Authorization authorization = Authorization.get(actor, authority, scope);
+        if (authorization != null) {
+            authorization.remove();
+        }
     }
 }

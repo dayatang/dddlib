@@ -49,41 +49,22 @@ public abstract class Actor extends AbstractEntity {
         return new String[] {"name"};
     }
 
+    /*=====================================全局范围的=============================*/
+
     public Set<Role> getRoles() {
-        Set<Role> results = new HashSet<Role>();
-        for (Authority authority : Authorization.findAuthoritiesByActor(this)) {
-            if (authority instanceof Role) {
-                results.add((Role) authority);
-            }
-        }
-        return results;
+        return getRoles(GlobalAuthorityScope.get());
     }
 
     public void grantAuthorities(Authority... authorities) {
-        for (Authority authority : authorities) {
-            new Authorization(this, authority).save();
-        }
+        grantAuthorities(GlobalAuthorityScope.get(), authorities);
     }
 
     public void withdrawAuthorities(Authority... authorities) {
-        for (Authority authority : authorities) {
-            Authorization authorization = Authorization.get(this, authority);
-            if (authorization != null) {
-                authorization.remove();
-            }
-        }
+        withdrawAuthorities(GlobalAuthorityScope.get(), authorities);
     }
 
     public boolean hasRole(Role role) {
-        return getRoles().contains(role);
-    }
-
-    public boolean hasAllRoles(Role... roles) {
-        return hasAllRoles(Arrays.asList(roles));
-    }
-
-    public boolean hasAllRoles(Collection<Role> roles) {
-        return getRoles().containsAll(roles);
+        return getRoles(GlobalAuthorityScope.get()).contains(role);
     }
 
     /**
@@ -92,12 +73,53 @@ public abstract class Actor extends AbstractEntity {
      * @return 如果拥有指定的权限则返回true，否则返回false
      */
     public boolean hasPermission(Permission permission) {
-        return getPermissions().contains(permission);
+        return getPermissions(GlobalAuthorityScope.get()).contains(permission);
     }
 
     public Set<Permission> getPermissions() {
+        return getPermissions(GlobalAuthorityScope.get());
+    }
+
+    /*=====================================带范围的=============================*/
+
+    public Set<Role> getRoles(AuthorityScope scope) {
+        Set<Role> results = new HashSet<Role>();
+        for (Authority authority : Authorization.findAuthoritiesByActor(this, scope)) {
+            if (authority instanceof Role) {
+                results.add((Role) authority);
+            }
+        }
+        return results;
+    }
+
+    public void grantAuthorities(AuthorityScope scope, Authority... authorities) {
+        for (Authority authority : authorities) {
+            Authorization.authorize(this, authority, scope);
+        }
+    }
+
+    public void withdrawAuthorities(AuthorityScope scope, Authority... authorities) {
+        for (Authority authority : authorities) {
+            Authorization.withdraw(this, authority, scope);
+        }
+    }
+
+    public boolean hasRole(Role role, AuthorityScope scope) {
+        return getRoles(scope).contains(role);
+    }
+
+    /**
+     * 判断是否拥有指定的权限
+     * @param permission 权限
+     * @return 如果拥有指定的权限则返回true，否则返回false
+     */
+    public boolean hasPermission(Permission permission, AuthorityScope scope) {
+        return getPermissions(scope).contains(permission);
+    }
+
+    public Set<Permission> getPermissions(AuthorityScope scope) {
         Set<Permission> results = new HashSet<Permission>();
-        for (Authorization authorization : Authorization.findByActor(this)) {
+        for (Authorization authorization : Authorization.findByActor(this, scope)) {
             Authority authority = authorization.getAuthority();
             if (authority instanceof Permission) {
                 results.add((Permission) authority);
@@ -107,14 +129,6 @@ public abstract class Actor extends AbstractEntity {
             }
         }
         return results;
-    }
-
-    public boolean hasAllPermissions(Collection<Permission> permissions) {
-        return getPermissions().containsAll(permissions);
-    }
-
-    public boolean hasAllPermissions(Permission... permissions) {
-        return getPermissions().containsAll(Arrays.asList(permissions));
     }
 
     /**

@@ -59,4 +59,5 @@ public class Authority extends AbstractEntity {
         }
         super.remove();
     }
+
 }
