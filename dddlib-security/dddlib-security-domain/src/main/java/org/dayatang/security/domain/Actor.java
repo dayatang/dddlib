@@ -55,16 +55,16 @@ public abstract class Actor extends AbstractEntity {
         return getRoles(GlobalAuthorityScope.get());
     }
 
+    public boolean hasRole(Role role) {
+        return getRoles(GlobalAuthorityScope.get()).contains(role);
+    }
+
     public void grantAuthorities(Authority... authorities) {
         grantAuthorities(GlobalAuthorityScope.get(), authorities);
     }
 
     public void withdrawAuthorities(Authority... authorities) {
         withdrawAuthorities(GlobalAuthorityScope.get(), authorities);
-    }
-
-    public boolean hasRole(Role role) {
-        return getRoles(GlobalAuthorityScope.get()).contains(role);
     }
 
     /**
@@ -92,18 +92,6 @@ public abstract class Actor extends AbstractEntity {
         return results;
     }
 
-    public void grantAuthorities(AuthorityScope scope, Authority... authorities) {
-        for (Authority authority : authorities) {
-            Authorization.grantAuthority(this, authority, scope);
-        }
-    }
-
-    public void withdrawAuthorities(AuthorityScope scope, Authority... authorities) {
-        for (Authority authority : authorities) {
-            Authorization.withdrawAuthority(this, authority, scope);
-        }
-    }
-
     public boolean hasRole(Role role, AuthorityScope scope) {
         return getRoles(scope).contains(role);
     }
@@ -129,6 +117,18 @@ public abstract class Actor extends AbstractEntity {
             }
         }
         return results;
+    }
+
+    public void grantAuthorities(AuthorityScope scope, Authority... authorities) {
+        for (Authority authority : authorities) {
+            Authorization.grantAuthority(this, authority, scope);
+        }
+    }
+
+    public void withdrawAuthorities(AuthorityScope scope, Authority... authorities) {
+        for (Authority authority : authorities) {
+            Authorization.withdrawAuthority(this, authority, scope);
+        }
     }
 
     /**
