@@ -86,15 +86,6 @@ public class User extends Actor implements Principal {
         save();
     }
 
-    /**
-     * 根据用户名获取用户。此用户有可能处于失效状态。
-     * @param name 用户名
-     * @return 如果找到指定名字的用户则返回该用户，否则返回null
-     */
-    public static User getByName(String name) {
-        return AbstractEntity.getByProperty(User.class, "name", name);
-    }
-
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 23).append(getName()).toHashCode();
@@ -115,6 +106,24 @@ public class User extends Actor implements Principal {
     @Override
     public String toString() {
         return getName();
+    }
+
+    /**
+     * 判断口令是否匹配
+     * @param password
+     * @return
+     */
+    public boolean matchPassword(String password) {
+        return this.password.equals(password);
+    }
+
+    /**
+     * 根据用户名获取用户。此用户有可能处于失效状态。
+     * @param name 用户名
+     * @return 如果找到指定名字的用户则返回该用户，否则返回null
+     */
+    public static User getByName(String name) {
+        return AbstractEntity.getByProperty(User.class, "name", name);
     }
 
     public static User create(String username) {
