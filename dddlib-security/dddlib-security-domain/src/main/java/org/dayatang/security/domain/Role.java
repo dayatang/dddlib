@@ -61,23 +61,6 @@ public class Role extends Authority {
     }
 
     @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 23).append(getName()).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof Role)) {
-            return false;
-        }
-        Role that = (Role) other;
-        return new EqualsBuilder().append(this.getName(), that.getName()).isEquals();
-    }
-
-    @Override
     public String toString() {
         return getName();
     }

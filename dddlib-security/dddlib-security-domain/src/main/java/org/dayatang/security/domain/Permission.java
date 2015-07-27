@@ -24,26 +24,4 @@ public class Permission extends Authority {
         permission.save();
         return permission;
     }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 23).append(getName()).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof Permission)) {
-            return false;
-        }
-        Permission that = (Permission) other;
-        return new EqualsBuilder().append(this.getName(), that.getName()).isEquals();
-    }
-
-    @Override
-    public String toString() {
-        return getName();
-    }
 }

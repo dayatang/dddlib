@@ -44,6 +44,11 @@ public abstract class Actor extends AbstractEntity {
         this.remark = remark;
     }
 
+    @Override
+    public String[] businessKeys() {
+        return new String[] {"name"};
+    }
+
     public Set<Role> getRoles() {
         Set<Role> results = new HashSet<Role>();
         for (Authority authority : Authorization.findAuthoritiesByActor(this)) {

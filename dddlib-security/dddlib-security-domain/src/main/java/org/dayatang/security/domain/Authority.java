@@ -32,6 +32,11 @@ public class Authority extends AbstractEntity {
         this.name = name;
     }
 
+    @Override
+    public String[] businessKeys() {
+        return new String[] {"name"};
+    }
+
     /**
      * 失效Permission，同时失效与其有关的授权信息
      * @param date 失效日期

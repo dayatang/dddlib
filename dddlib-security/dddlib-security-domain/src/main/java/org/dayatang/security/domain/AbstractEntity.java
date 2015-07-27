@@ -145,7 +145,7 @@ public abstract class AbstractEntity extends BaseEntity {
     }
 
     /**
-     * 是实体重新生效，等价于恢复实体的有效状态
+     * 使实体重新生效，等价于恢复实体的有效状态
      */
     public void enable() {
         disabled = false;

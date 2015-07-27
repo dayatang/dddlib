@@ -1,5 +1,6 @@
 package org.dayatang.security.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -30,8 +31,13 @@ public class Authorization extends AbstractEntity {
     }
 
     public Authorization(Actor actor, Authority authority) {
+        this(actor, authority, GlobalAuthorityScope.get());
+    }
+
+    public Authorization(Actor actor, Authority authority, AuthorityScope scope) {
         this.actor = actor;
         this.authority = authority;
+        this.scope = scope;
     }
 
     public Actor getActor() {
@@ -40,6 +46,11 @@ public class Authorization extends AbstractEntity {
 
     public Authority getAuthority() {
         return authority;
+    }
+
+    @Override
+    public String[] businessKeys() {
+        return new String[] {"actor", "authority", "scope"};
     }
 
     /**
@@ -86,9 +97,14 @@ public class Authorization extends AbstractEntity {
     }
 
     public static Authorization get(Actor actor, Authority authority) {
+        return get(actor, authority, GlobalAuthorityScope.get());
+    }
+
+    public static Authorization get(Actor actor, Authority authority, AuthorityScope scope) {
         return getRepository().createCriteriaQuery(Authorization.class)
                 .eq("actor", actor)
                 .eq("authority", authority)
+                .eq("scope", scope)
                 .eq("disabled", false)
                 .singleResult();
     }
