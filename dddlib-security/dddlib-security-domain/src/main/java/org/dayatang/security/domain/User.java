@@ -118,6 +118,15 @@ public class User extends Actor implements Principal {
     }
 
     /**
+     * 判断系统中是否已存在指定名字的用户
+     * @param username 要检查的用户名
+     * @return 如果已存在返回true，否则返回false
+     */
+    public static boolean existsUsername(String username) {
+        return getByName(username) != null;
+    }
+
+    /**
      * 根据用户名获取用户。此用户有可能处于失效状态。
      * @param name 用户名
      * @return 如果找到指定名字的用户则返回该用户，否则返回null
