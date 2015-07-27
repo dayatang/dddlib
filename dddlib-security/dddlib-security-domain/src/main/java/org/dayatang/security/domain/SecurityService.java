@@ -21,6 +21,10 @@ public class SecurityService {
         actor.disable(date);
     }
 
+    public void enableActor(Actor actor) {
+        actor.enable();
+    }
+
     public void createAuthority(Authority authority) {
         authority.save();
     }
