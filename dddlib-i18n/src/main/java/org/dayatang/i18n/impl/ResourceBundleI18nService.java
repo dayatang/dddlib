@@ -40,7 +40,7 @@ public class ResourceBundleI18nService extends AbstractI18nService {
 	 * it will be resolved from the classpath root.
 	 * <p>
 	 * Messages will normally be held in the "/lib" or "/classes" directory of a
-	 * web application's WAR structure. They can also be held in jar files on
+	 * web shiro's WAR structure. They can also be held in jar files on
 	 * the class path.
 	 * <p>
 	 * Note that ResourceBundle names are effectively classpath locations: As a

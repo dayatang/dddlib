@@ -1,2 +1,2 @@
-include 'organisation-domain', 'organisation-application', 'organisation-facade',
+include 'organisation-domain', 'organisation-shiro', 'organisation-facade',
         'organisation-facade-impl', 'organisation-webapp'
