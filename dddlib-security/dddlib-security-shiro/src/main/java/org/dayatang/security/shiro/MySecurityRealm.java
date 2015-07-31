@@ -16,8 +16,6 @@ import javax.inject.Inject;
  */
 public class MySecurityRealm extends AuthorizingRealm {
 
-    protected SecurityService securityService = new SecurityService();
-    
     @Inject
     public MySecurityRealm(CredentialsMatcher credentialsMatcher) {
         setName("MySecurityRealm");
@@ -56,10 +54,11 @@ public class MySecurityRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         UsernamePasswordToken usernamePasswordToken = (UsernamePasswordToken) token;
-        User user = securityService.getUserByUsername(usernamePasswordToken.getUsername());
-        if (user == null) {
+        if (!User.authenticate(usernamePasswordToken.getUsername(),
+                new String(usernamePasswordToken.getPassword()))) {
             return null;
         }
+        User user = User.getByName(usernamePasswordToken.getUsername());
         return new SimpleAuthenticationInfo(user, user.getPassword(), getName());
     }
 }

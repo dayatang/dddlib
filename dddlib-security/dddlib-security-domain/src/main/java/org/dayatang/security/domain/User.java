@@ -86,21 +86,12 @@ public class User extends Actor implements Principal {
         save();
     }
 
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 23).append(getName()).toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
+    public void changePassword(String origPassword, String newPassword) {
+        if (!matchPassword(origPassword)) {
+            throw new PasswordUnmatchException();
         }
-        if (!(other instanceof User)) {
-            return false;
-        }
-        User that = (User) other;
-        return new EqualsBuilder().append(this.getName(), that.getName()).isEquals();
+        setPassword(newPassword);
+        save();
     }
 
     @Override
@@ -127,12 +118,43 @@ public class User extends Actor implements Principal {
     }
 
     /**
+     * 根据ID获取用户。此用户有可能处于失效状态。
+     * @param id 用户ID
+     * @return 如果找到指定ID的用户则返回该用户，否则返回null
+     */
+    public static User get(String id) {
+        return get(User.class, id);
+    }
+
+    /**
      * 根据用户名获取用户。此用户有可能处于失效状态。
      * @param name 用户名
      * @return 如果找到指定名字的用户则返回该用户，否则返回null
      */
     public static User getByName(String name) {
-        return AbstractEntity.getByProperty(User.class, "name", name);
+        return getByName(User.class, name);
+    }
+
+    /**
+     * 列出系统全部用户
+     * @return 系统的全部用户
+     */
+    public static List<User> list() {
+        return findAll(User.class);
+    }
+
+    /**
+     * 根据提供的用户名和口令验证用户的有效性
+     * @param username 用户名
+     * @param password 口令
+     * @return 如果用户存在，口令匹配，而且没有失效或锁定，则验证成功，返回true；否则验证失败，返回false
+     */
+    public static boolean authenticate(String username, String password) {
+        User user = getByName(username);
+        if (user == null || user.isDisabled() || user.isLocked()) {
+            return false;
+        }
+        return user.matchPassword(password);
     }
 
     public static User create(String username) {
@@ -146,5 +168,22 @@ public class User extends Actor implements Principal {
         User user = new User(username, password);
         user.save();
         return user;
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 23).append(getName()).toHashCode();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof User)) {
+            return false;
+        }
+        User that = (User) other;
+        return new EqualsBuilder().append(this.getName(), that.getName()).isEquals();
     }
 }

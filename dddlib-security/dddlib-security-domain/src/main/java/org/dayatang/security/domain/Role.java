@@ -7,10 +7,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 用户角色。角色是许可Permission的集合。如果一批Permission总是作为一个整体授予某个
@@ -57,8 +54,16 @@ public class Role extends Authority {
         return getPermissions().contains(permission);
     }
 
+    public static Role get(String id) {
+        return get(Role.class, id);
+    }
+
     public static Role getByName(String name) {
-        return getRepository().createCriteriaQuery(Role.class).eq("name", name).singleResult();
+        return getByName(Role.class, name);
+    }
+
+    public static List<Role> list() {
+        return findAll(Role.class);
     }
 
     @Override

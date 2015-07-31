@@ -3,10 +3,7 @@ package org.dayatang.security.domain;
 import com.google.common.collect.ImmutableSet;
 
 import javax.persistence.*;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 用户组。用户组可以包含用户和其他用户组
@@ -100,5 +97,23 @@ public class UserGroup extends Actor {
         UserGroup group = new UserGroup(name);
         group.save();
         return group;
+    }
+
+    /**
+     * 根据ID获取用户组。
+     * @param id 用户组ID
+     * @return 如果找到指定组ID的用户则返回该用户组，否则返回null
+     */
+    public static UserGroup get(String id) {
+        return get(UserGroup.class, id);
+    }
+
+    /**
+     * 根据名称获取用户组。
+     * @param name 名称
+     * @return 如果找到指定名字的用户组则返回该用户组，否则返回null
+     */
+    public static UserGroup getByName(String name) {
+        return getByName(UserGroup.class, name);
     }
 }

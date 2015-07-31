@@ -5,6 +5,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 权限，是许可Permission与角色Role的共同基类。可以将Authority授予给参与者Actor（是用户User和用户组UserGroup的共同基类）
@@ -58,6 +59,17 @@ public class Authority extends AbstractEntity {
             authorization.remove();
         }
         super.remove();
+    }
+
+    /**
+     * 根据名字获取某种类型的Authority
+     * @param authorityClass Authority的类
+     * @param name 名称
+     * @param <T> Authority的类型
+     * @return 如果找到，返回该Authority，否则返回null
+     */
+    public static <T extends Authority> T getByName(Class<T> authorityClass, String name) {
+        return AbstractEntity.getByProperty(authorityClass, "name", name);
     }
 
 }

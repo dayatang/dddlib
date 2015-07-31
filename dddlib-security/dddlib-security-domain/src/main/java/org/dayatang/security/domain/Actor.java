@@ -153,4 +153,15 @@ public abstract class Actor extends AbstractEntity {
         }
         super.remove();
     }
+
+    /**
+     * 根据名字获取某种类型的Actor
+     * @param actorClass Actor的类
+     * @param name 名称
+     * @param <T> Actor的类型
+     * @return 如果找到，返回该Actor，否则返回null
+     */
+    public static <T extends Actor> T getByName(Class<T> actorClass, String name) {
+        return AbstractEntity.getByProperty(actorClass, "name", name);
+    }
 }
