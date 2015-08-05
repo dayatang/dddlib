@@ -127,7 +127,7 @@ public class Authorization extends AbstractEntity {
 
     static void grantAuthority(Actor actor, Authority authority, AuthorityScope scope) {
         if (Authorization.get(actor, authority, scope) != null) {
-            throw new AuthorizationExistedException();
+            throw new DuplicateAuthorizationException();
         }
         new Authorization(actor, authority, scope).save();
     }

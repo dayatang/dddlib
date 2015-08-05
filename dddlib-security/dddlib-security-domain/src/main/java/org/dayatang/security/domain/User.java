@@ -108,6 +108,10 @@ public class User extends Actor implements Principal {
         return this.password.equals(password);
     }
 
+    public boolean unmatchPassword(String password) {
+        return !matchPassword(password);
+    }
+
     /**
      * 判断系统中是否已存在指定名字的用户
      * @param username 要检查的用户名
