@@ -9,18 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
-import org.dayatang.domain.BaseQuery;
-import org.dayatang.domain.CriteriaQuery;
-import org.dayatang.domain.Entity;
-import org.dayatang.domain.EntityRepository;
-import org.dayatang.domain.ExampleSettings;
-import org.dayatang.domain.InstanceFactory;
-import org.dayatang.domain.JpqlQuery;
-import org.dayatang.domain.NamedParameters;
-import org.dayatang.domain.NamedQuery;
-import org.dayatang.domain.PositionalParameters;
-import org.dayatang.domain.QueryParameters;
-import org.dayatang.domain.SqlQuery;
+import org.dayatang.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -167,9 +156,19 @@ public class EntityRepositoryJpa implements EntityRepository {
     }
 
     @Override
-    public <T> T getSingleResult(CriteriaQuery dddQuery) {
-        List<T> results = find(dddQuery);
+    public <T> T getSingleResult(CriteriaQuery criteriaQuery) {
+        List<T> results = find(criteriaQuery);
         return results.isEmpty() ? null : results.get(0);
+    }
+
+    @Override
+    public <T extends Entity> List<T> find(Class<T> entityClass, QueryCriterion criterion) {
+        return find(createCriteriaQuery(entityClass).and(criterion));
+    }
+
+    @Override
+    public <T extends Entity> T getSingleResult(Class<T> entityClass, QueryCriterion criterion) {
+        return getSingleResult(createCriteriaQuery(entityClass).and(criterion));
     }
 
     @Override

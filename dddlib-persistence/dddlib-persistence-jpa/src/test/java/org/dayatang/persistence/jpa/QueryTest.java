@@ -325,7 +325,7 @@ public class QueryTest extends AbstractIntegrationTest {
 
     @Test
     public void testAnd() {
-        List<Dictionary> results = instance.and(criterionBuilder.eq("code", "01"), criterionBuilder.eq("category", gender)).list();
+        List<Dictionary> results = instance.and(criterionBuilder.eq("code", "01")).and(criterionBuilder.eq("category", gender)).list();
         assertTrue(results.contains(male));
         assertFalse(results.contains(female));
         assertFalse(results.contains(undergraduate));
@@ -333,7 +333,7 @@ public class QueryTest extends AbstractIntegrationTest {
 
     @Test
     public void testOr() {
-        List<Dictionary> results = instance.or(criterionBuilder.eq("text", "男"), criterionBuilder.eq("sortOrder", 150)).list();
+        List<Dictionary> results = instance.or(criterionBuilder.eq("text", "男")).or(criterionBuilder.eq("sortOrder", 150)).list();
         assertTrue(results.contains(male));
         assertTrue(results.contains(female));
         assertFalse(results.contains(undergraduate));

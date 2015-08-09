@@ -151,9 +151,19 @@ public class EntityRepositoryHibernate implements EntityRepository {
      * @see org.dayatang.domain.EntityRepository#getSingleResult(org.dayatang.domain.CriteriaQuery)
      */
     @Override
-    public <T> T getSingleResult(CriteriaQuery dddQuery) {
-        List<T> results = find(dddQuery);
+    public <T> T getSingleResult(CriteriaQuery criteriaQuery) {
+        List<T> results = find(criteriaQuery);
         return results == null || results.isEmpty() ? null : results.get(0);
+    }
+
+    @Override
+    public <T extends Entity> List<T> find(Class<T> entityClass, QueryCriterion criterion) {
+        return find(createCriteriaQuery(entityClass).and(criterion));
+    }
+
+    @Override
+    public <T extends Entity> T getSingleResult(Class<T> entityClass, QueryCriterion criterion) {
+        return getSingleResult(createCriteriaQuery(entityClass).and(criterion));
     }
 
     /*

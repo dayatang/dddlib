@@ -360,13 +360,8 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
     @Test
     public void testAnd() {
         QueryCriterion or = criterionBuilder.or(criterionBuilder.eq("code", "01"), criterionBuilder.eq("code", "02"));
-        instance.and(or, criterionBuilder.eq("category", gender));
-        
-        System.out.println("--------------------------------");
-        System.out.println(instance.getQueryString());
-        System.out.println(instance.getParameters().getParams());
+        instance.eq("category", gender).and(or);
         List<Dictionary> results = repository.find(instance);
-        System.out.println("Records: " + results.size());
         assertTrue(results.contains(male));
         assertTrue(results.contains(female));
         assertFalse(results.contains(unknownGender));
@@ -376,7 +371,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
     @Test
     public void testOr() {
         QueryCriterion and = criterionBuilder.and(criterionBuilder.eq("code", "01"), criterionBuilder.eq("category", gender));
-        instance.or(and, criterionBuilder.eq("category", education));
+        instance.eq("category", education).or(and);
         List<Dictionary> results = repository.find(instance);
         assertTrue(results.contains(male));
         assertFalse(results.contains(female));

@@ -114,6 +114,26 @@ public interface EntityRepository {
     <T> T getSingleResult(CriteriaQuery criteriaQuery);
 
     /**
+     * 根据指定的条件执行条件查询，返回符合条件的实体列表
+     *
+     * @param entityClass 查询的目标实体类
+     * @param criterion 查询条件
+     * @param <T> 返回结果元素类型
+     * @return 符合查询条件的实体列表
+     */
+    <T extends Entity> List<T> find(Class<T> entityClass, QueryCriterion criterion);
+
+    /**
+     * 根据指定的条件执行条件查询，返回符合条件的单个实体
+     *
+     * @param entityClass 查询的目标实体类
+     * @param criterion 查询条件
+     * @param <T> 返回结果类型
+     * @return 符合查询条件的单个结果
+     */
+    <T extends Entity> T getSingleResult(Class<T> entityClass, QueryCriterion criterion);
+
+    /**
      * 创建JPQL查询
      *
      * @param jpql JPQL语句

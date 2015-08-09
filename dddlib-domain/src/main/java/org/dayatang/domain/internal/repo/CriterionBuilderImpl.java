@@ -159,7 +159,7 @@ public class CriterionBuilderImpl implements CriterionBuilder {
 
 	@Override
 	public QueryCriterion empty() {
-		return new EmptyCriterion();
+		return EmptyCriterion.singleton();
 	}
 
 }

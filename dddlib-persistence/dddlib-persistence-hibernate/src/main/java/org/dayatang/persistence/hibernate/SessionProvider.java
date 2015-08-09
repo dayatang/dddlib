@@ -57,13 +57,12 @@ public class SessionProvider {
     }
       
     private Session getSessionFromIoC() {
-        try {
-            return InstanceFactory.getInstance(Session.class);
-        } catch (IocInstanceNotFoundException e) {
-            if (sessionFactory == null) {
-                sessionFactory = InstanceFactory.getInstance(SessionFactory.class);
-            }
+        if (sessionFactory == null) {
+            sessionFactory = InstanceFactory.getInstance(SessionFactory.class);
+        }
+        if (sessionFactory != null) {
             return sessionFactory.getCurrentSession();
         }
+        return InstanceFactory.getInstance(Session.class);
     }
 }

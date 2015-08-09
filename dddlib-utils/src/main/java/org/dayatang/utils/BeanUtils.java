@@ -43,7 +43,8 @@ public class BeanUtils {
         }
         for (String prop : propsToCopy) {
             if (values.containsKey(prop)) {
-                to.setPropValue(prop, values.get(prop));
+                Object value = values.get(prop);
+                to.setPropValue(prop, value);
             }
         }
     }

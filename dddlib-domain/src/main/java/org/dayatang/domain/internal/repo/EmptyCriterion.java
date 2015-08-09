@@ -11,7 +11,13 @@ import org.dayatang.domain.QueryCriterion;
  */
 public class EmptyCriterion extends AbstractCriterion {
 
-    EmptyCriterion() {
+    private static final EmptyCriterion INSTANCE = new EmptyCriterion();
+
+    public static final EmptyCriterion singleton() {
+        return INSTANCE;
+    }
+
+    private EmptyCriterion() {
     }
 
     @Override

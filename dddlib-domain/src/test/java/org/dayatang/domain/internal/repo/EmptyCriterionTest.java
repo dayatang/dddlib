@@ -35,7 +35,7 @@ public class EmptyCriterionTest {
     
     @Before
     public void setUp() {
-        instance = new EmptyCriterion();
+        instance = EmptyCriterion.singleton();
         other = mock(QueryCriterion.class);
     }
 

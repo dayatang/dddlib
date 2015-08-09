@@ -19,13 +19,10 @@ package org.dayatang.persistence.jpa;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ServiceLoader;
 import javax.validation.ValidationException;
-import org.dayatang.domain.CriteriaQuery;
-import org.dayatang.domain.ExampleSettings;
-import org.dayatang.domain.JpqlQuery;
-import org.dayatang.domain.NamedParameters;
-import org.dayatang.domain.NamedQuery;
-import org.dayatang.domain.SqlQuery;
+
+import org.dayatang.domain.*;
 import org.dayatang.persistence.test.domain.Dictionary;
 import org.dayatang.persistence.test.domain.DictionaryCategory;
 import org.junit.*;
@@ -192,6 +189,29 @@ public class EntityRepositoryJpaTest extends AbstractIntegrationTest {
                 .eq("category", gender)
                 .eq("code", "01");
         assertEquals(male, repository.getSingleResult(query));
+    }
+
+    /**
+     * Test of find method with entity class and a criterion as parameters
+     */
+    @Test
+    public void testFindByCriterion() {
+        CriterionBuilder criterionBuilder = ServiceLoader.load(CriterionBuilder.class).iterator().next();
+        QueryCriterion criterion = criterionBuilder.eq("category", education);
+        List<Dictionary> results = repository.find(Dictionary.class, criterion);
+        assertTrue(results.contains(graduate));
+        assertTrue(results.contains(undergraduate));
+    }
+
+    /**
+     * Test of getSingleResult method with entity class and a criterion as parameters
+     */
+    @Test
+    public void testGetSingleResultByCriterion() {
+        CriterionBuilder criterionBuilder = ServiceLoader.load(CriterionBuilder.class).iterator().next();
+        QueryCriterion criterion = criterionBuilder.eq("category", education).and(criterionBuilder.eq("code", "01"));
+        Dictionary result = repository.getSingleResult(Dictionary.class, criterion);
+        assertEquals(undergraduate, result);
     }
 
     /**

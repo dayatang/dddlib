@@ -536,22 +536,28 @@ public class CriteriaQuery {
     /**
      * 添加一个“与”的查询条件，即同时符合指定的几个查询条件
      *
-     * @param queryCriterions 多个基本查询条件
+     * @param aCriterion 另一个查询条件
      * @return 当前查询对象
      */
-    public CriteriaQuery and(QueryCriterion... queryCriterions) {
-        criterion = criterion.and(criterionBuilder.and(queryCriterions));
+    public CriteriaQuery and(QueryCriterion aCriterion) {
+        if (aCriterion == null) {
+            return this;
+        }
+        criterion = criterion.and(aCriterion);
         return this;
     }
 
     /**
      * 添加一个“或”的查询条件，即符合指定的几个查询条件之一
      *
-     * @param queryCriterions 多个基本查询条件
+     * @param aCriterion 另一个查询条件
      * @return 当前查询对象
      */
-    public CriteriaQuery or(QueryCriterion... queryCriterions) {
-        criterion = criterion.and(criterionBuilder.or(queryCriterions));
+    public CriteriaQuery or(QueryCriterion aCriterion) {
+        if (aCriterion == null) {
+            return this;
+        }
+        criterion = criterion.or(aCriterion);
         return this;
     }
 
