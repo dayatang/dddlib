@@ -32,14 +32,14 @@ public class AndCriterion extends AbstractCriterion {
      * 获得要用来执行AND操作的查询条件
      * @return 要用来执行AND操作的查询条件，去除了Null和EmptyCriterion类型的元素。
      */
-    public List<QueryCriterion> getCriterons() {
+    public List<QueryCriterion> getCriteria() {
         return criteria;
     }
 
     @Override
 	public String toQueryString() {
         List<String> subCriteriaStr = new ArrayList<String>();
-        for (QueryCriterion each : getCriterons()) {
+        for (QueryCriterion each : getCriteria()) {
             subCriteriaStr.add(each.toQueryString());
         }
 		return StringUtils.join(subCriteriaStr, " and ");
@@ -48,7 +48,7 @@ public class AndCriterion extends AbstractCriterion {
 	@Override
 	public NamedParameters getParameters() {
 		NamedParameters result = NamedParameters.create();
-        for (QueryCriterion each : getCriterons()) {
+        for (QueryCriterion each : getCriteria()) {
         	result.add(each.getParameters());
         }
 		return result;
