@@ -3,8 +3,8 @@
  */
 package org.dayatang.persistence.hibernate;
 
+import org.dayatang.domain.Criteria;
 import org.dayatang.domain.CriteriaQuery;
-import org.dayatang.domain.CriterionBuilder;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.domain.QueryCriterion;
 import org.dayatang.persistence.test.domain.Dictionary;
@@ -37,8 +37,6 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
     private Dictionary unknownGender;
 
     private Dictionary undergraduate;
-
-    private final CriterionBuilder criterionBuilder = InstanceFactory.getInstance(CriterionBuilder.class);
 
     @Before
     @Override
@@ -359,7 +357,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
 
     @Test
     public void testAnd() {
-        QueryCriterion or = criterionBuilder.or(criterionBuilder.eq("code", "01"), criterionBuilder.eq("code", "02"));
+        QueryCriterion or = Criteria.or(Criteria.eq("code", "01"), Criteria.eq("code", "02"));
         instance.eq("category", gender).and(or);
         List<Dictionary> results = repository.find(instance);
         assertTrue(results.contains(male));
@@ -370,7 +368,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
 
     @Test
     public void testOr() {
-        QueryCriterion and = criterionBuilder.and(criterionBuilder.eq("code", "01"), criterionBuilder.eq("category", gender));
+        QueryCriterion and = Criteria.and(Criteria.eq("code", "01"), Criteria.eq("category", gender));
         instance.eq("category", education).or(and);
         List<Dictionary> results = repository.find(instance);
         assertTrue(results.contains(male));
@@ -380,7 +378,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
 
     @Test
     public void testNot() {
-        instance.not(criterionBuilder.eq("code", "01"));
+        instance.not(Criteria.eq("code", "01"));
         List<Dictionary> results = repository.find(instance);
         assertFalse(results.contains(male));
         assertTrue(results.contains(female));

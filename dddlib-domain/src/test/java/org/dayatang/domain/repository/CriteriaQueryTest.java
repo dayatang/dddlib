@@ -23,42 +23,8 @@ import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.List;
 
-import org.dayatang.domain.CriteriaQuery;
-import org.dayatang.domain.EntityRepository;
-import org.dayatang.domain.NamedParameters;
-import org.dayatang.domain.OrderSettings;
-import org.dayatang.domain.QueryCriterion;
+import org.dayatang.domain.*;
 import org.dayatang.domain.entity.MyEntity;
-import org.dayatang.domain.internal.repo.AndCriterion;
-import org.dayatang.domain.internal.repo.BetweenCriterion;
-import org.dayatang.domain.internal.repo.ContainsTextCriterion;
-import org.dayatang.domain.internal.repo.EqCriterion;
-import org.dayatang.domain.internal.repo.EqPropCriterion;
-import org.dayatang.domain.internal.repo.GeCriterion;
-import org.dayatang.domain.internal.repo.GePropCriterion;
-import org.dayatang.domain.internal.repo.GtCriterion;
-import org.dayatang.domain.internal.repo.GtPropCriterion;
-import org.dayatang.domain.internal.repo.InCriterion;
-import org.dayatang.domain.internal.repo.IsEmptyCriterion;
-import org.dayatang.domain.internal.repo.IsNullCriterion;
-import org.dayatang.domain.internal.repo.LeCriterion;
-import org.dayatang.domain.internal.repo.LePropCriterion;
-import org.dayatang.domain.internal.repo.LtCriterion;
-import org.dayatang.domain.internal.repo.LtPropCriterion;
-import org.dayatang.domain.internal.repo.NotCriterion;
-import org.dayatang.domain.internal.repo.NotEmptyCriterion;
-import org.dayatang.domain.internal.repo.NotEqCriterion;
-import org.dayatang.domain.internal.repo.NotEqPropCriterion;
-import org.dayatang.domain.internal.repo.NotInCriterion;
-import org.dayatang.domain.internal.repo.NotNullCriterion;
-import org.dayatang.domain.internal.repo.OrCriterion;
-import org.dayatang.domain.internal.repo.SizeEqCriterion;
-import org.dayatang.domain.internal.repo.SizeGeCriterion;
-import org.dayatang.domain.internal.repo.SizeGtCriterion;
-import org.dayatang.domain.internal.repo.SizeLeCriterion;
-import org.dayatang.domain.internal.repo.SizeLtCriterion;
-import org.dayatang.domain.internal.repo.SizeNotEqCriterion;
-import org.dayatang.domain.internal.repo.StartsWithTextCriterion;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -70,6 +36,7 @@ public class CriteriaQueryTest {
     private CriteriaQuery instance;
     private EntityRepository repository;
     private Class<MyEntity> entityClass = MyEntity.class;
+
     
     @Before
     public void setUp() {
@@ -118,7 +85,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testEq() {
-    	assertEquals(new EqCriterion("name", "abc"), instance.eq("name", "abc").getQueryCriterion());
+    	assertEquals(Criteria.eq("name", "abc"), instance.eq("name", "abc").getQueryCriterion());
     }
 
     /**
@@ -126,7 +93,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testNotEq() {
-    	assertEquals(new NotEqCriterion("name", "abc"), instance.notEq("name", "abc").getQueryCriterion());
+    	assertEquals(Criteria.notEq("name", "abc"), instance.notEq("name", "abc").getQueryCriterion());
     }
 
     /**
@@ -134,7 +101,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testGt() {
-    	assertEquals(new GtCriterion("id", 5), instance.gt("id", 5).getQueryCriterion());
+    	assertEquals(Criteria.gt("id", 5), instance.gt("id", 5).getQueryCriterion());
     }
 
     /**
@@ -142,7 +109,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testGe() {
-    	assertEquals(new GeCriterion("id", 5), instance.ge("id", 5).getQueryCriterion());
+    	assertEquals(Criteria.ge("id", 5), instance.ge("id", 5).getQueryCriterion());
     }
 
     /**
@@ -150,7 +117,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testLt() {
-    	assertEquals(new LtCriterion("id", 5), instance.lt("id", 5).getQueryCriterion());
+    	assertEquals(Criteria.lt("id", 5), instance.lt("id", 5).getQueryCriterion());
     }
 
     /**
@@ -158,7 +125,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testLe() {
-    	assertEquals(new LeCriterion("id", 5), instance.le("id", 5).getQueryCriterion());
+    	assertEquals(Criteria.le("id", 5), instance.le("id", 5).getQueryCriterion());
     }
 
     /**
@@ -166,7 +133,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testEqProp() {
-    	assertEquals(new EqPropCriterion("id", "name"), instance.eqProp("id", "name").getQueryCriterion());
+    	assertEquals(Criteria.eqProp("id", "name"), instance.eqProp("id", "name").getQueryCriterion());
     }
 
     /**
@@ -174,7 +141,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testNotEqProp() {
-    	assertEquals(new NotEqPropCriterion("id", "name"), instance.notEqProp("id", "name").getQueryCriterion());
+    	assertEquals(Criteria.notEqProp("id", "name"), instance.notEqProp("id", "name").getQueryCriterion());
     }
 
     /**
@@ -182,7 +149,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testGtProp() {
-    	assertEquals(new GtPropCriterion("id", "name"), instance.gtProp("id", "name").getQueryCriterion());
+    	assertEquals(Criteria.gtProp("id", "name"), instance.gtProp("id", "name").getQueryCriterion());
     }
 
     /**
@@ -190,7 +157,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testGeProp() {
-    	assertEquals(new GePropCriterion("id", "name"), instance.geProp("id", "name").getQueryCriterion());
+    	assertEquals(Criteria.geProp("id", "name"), instance.geProp("id", "name").getQueryCriterion());
     }
 
     /**
@@ -198,7 +165,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testLtProp() {
-    	assertEquals(new LtPropCriterion("id", "name"), instance.ltProp("id", "name").getQueryCriterion());
+    	assertEquals(Criteria.ltProp("id", "name"), instance.ltProp("id", "name").getQueryCriterion());
     }
 
     /**
@@ -206,7 +173,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testLeProp() {
-    	assertEquals(new LePropCriterion("id", "name"), instance.leProp("id", "name").getQueryCriterion());
+    	assertEquals(Criteria.leProp("id", "name"), instance.leProp("id", "name").getQueryCriterion());
     }
 
     /**
@@ -214,7 +181,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testSizeEq() {
-    	assertEquals(new SizeEqCriterion("id", 3), instance.sizeEq("id", 3).getQueryCriterion());
+    	assertEquals(Criteria.sizeEq("id", 3), instance.sizeEq("id", 3).getQueryCriterion());
     }
 
     /**
@@ -222,7 +189,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testSizeNotEq() {
-    	assertEquals(new SizeNotEqCriterion("id", 3), instance.sizeNotEq("id", 3).getQueryCriterion());
+    	assertEquals(Criteria.sizeNotEq("id", 3), instance.sizeNotEq("id", 3).getQueryCriterion());
     }
 
     /**
@@ -230,7 +197,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testSizeGt() {
-    	assertEquals(new SizeGtCriterion("id", 3), instance.sizeGt("id", 3).getQueryCriterion());
+    	assertEquals(Criteria.sizeGt("id", 3), instance.sizeGt("id", 3).getQueryCriterion());
     }
 
     /**
@@ -238,7 +205,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testSizeGe() {
-    	assertEquals(new SizeGeCriterion("id", 3), instance.sizeGe("id", 3).getQueryCriterion());
+    	assertEquals(Criteria.sizeGe("id", 3), instance.sizeGe("id", 3).getQueryCriterion());
     }
 
     /**
@@ -246,7 +213,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testSizeLt() {
-    	assertEquals(new SizeLtCriterion("id", 3), instance.sizeLt("id", 3).getQueryCriterion());
+    	assertEquals(Criteria.sizeLt("id", 3), instance.sizeLt("id", 3).getQueryCriterion());
     }
 
     /**
@@ -254,7 +221,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testSizeLe() {
-    	assertEquals(new SizeLeCriterion("id", 3), instance.sizeLe("id", 3).getQueryCriterion());
+    	assertEquals(Criteria.sizeLe("id", 3), instance.sizeLe("id", 3).getQueryCriterion());
     }
 
     /**
@@ -262,7 +229,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testContainsText() {
-    	assertEquals(new ContainsTextCriterion("name", "a"), instance.containsText("name", "a").getQueryCriterion());
+    	assertEquals(Criteria.containsText("name", "a"), instance.containsText("name", "a").getQueryCriterion());
     }
 
     /**
@@ -270,7 +237,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testStartsWithText() {
-    	assertEquals(new StartsWithTextCriterion("name", "a"), instance.startsWithText("name", "a").getQueryCriterion());
+    	assertEquals(Criteria.startsWithText("name", "a"), instance.startsWithText("name", "a").getQueryCriterion());
     }
 
     /**
@@ -278,8 +245,8 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testInCollection() {
-        List<?> criterions = Arrays.asList("a", "b");
-    	assertEquals(new InCriterion("name", criterions), instance.in("name", criterions).getQueryCriterion());
+        List<?> criteria = Arrays.asList("a", "b");
+    	assertEquals(Criteria.in("name", criteria), instance.in("name", criteria).getQueryCriterion());
     }
 
     /**
@@ -287,8 +254,8 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testInArray() {
-        Object[] criterions = new Object[] {"a", "b"};
-    	assertEquals(new InCriterion("name", criterions), instance.in("name", criterions).getQueryCriterion());
+        Object[] criteria = new Object[] {"a", "b"};
+    	assertEquals(Criteria.in("name", criteria), instance.in("name", criteria).getQueryCriterion());
     }
 
     /**
@@ -296,8 +263,8 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testNotInCollection() {
-        List<?> criterions = Arrays.asList("a", "b");
-    	assertEquals(new NotInCriterion("name", criterions), instance.notIn("name", criterions).getQueryCriterion());
+        List<?> criteria = Arrays.asList("a", "b");
+    	assertEquals(Criteria.notIn("name", criteria), instance.notIn("name", criteria).getQueryCriterion());
     }
 
     /**
@@ -305,8 +272,8 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testNotInArray() {
-        Object[] criterions = new Object[] {"a", "b"};
-    	assertEquals(new NotInCriterion("name", criterions), instance.notIn("name", criterions).getQueryCriterion());
+        Object[] criteria = new Object[] {"a", "b"};
+    	assertEquals(Criteria.notIn("name", criteria), instance.notIn("name", criteria).getQueryCriterion());
     }
 
     /**
@@ -314,7 +281,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testBetween() {
-    	assertEquals(new BetweenCriterion("name", "a", "b"), instance.between("name", "a", "b").getQueryCriterion());
+    	assertEquals(Criteria.between("name", "a", "b"), instance.between("name", "a", "b").getQueryCriterion());
     }
 
     /**
@@ -322,7 +289,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testIsNull() {
-    	assertEquals(new IsNullCriterion("name"), instance.isNull("name").getQueryCriterion());
+    	assertEquals(Criteria.isNull("name"), instance.isNull("name").getQueryCriterion());
     }
 
     /**
@@ -330,7 +297,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testNotNull() {
-    	assertEquals(new NotNullCriterion("name"), instance.notNull("name").getQueryCriterion());
+    	assertEquals(Criteria.notNull("name"), instance.notNull("name").getQueryCriterion());
     }
 
     /**
@@ -338,7 +305,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testIsEmpty() {
-    	assertEquals(new IsEmptyCriterion("name"), instance.isEmpty("name").getQueryCriterion());
+    	assertEquals(Criteria.isEmpty("name"), instance.isEmpty("name").getQueryCriterion());
     }
 
     /**
@@ -346,7 +313,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testNotEmpty() {
-    	assertEquals(new NotEmptyCriterion("name"), instance.notEmpty("name").getQueryCriterion());
+    	assertEquals(Criteria.notEmpty("name"), instance.notEmpty("name").getQueryCriterion());
     }
 
     /**
@@ -354,7 +321,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testIsTrue() {
-    	assertEquals(new EqCriterion("name", true), instance.isTrue("name").getQueryCriterion());
+    	assertEquals(Criteria.eq("name", true), instance.isTrue("name").getQueryCriterion());
     }
 
     /**
@@ -362,7 +329,7 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testIsFalse() {
-    	assertEquals(new EqCriterion("name", false), instance.isFalse("name").getQueryCriterion());
+    	assertEquals(Criteria.eq("name", false), instance.isFalse("name").getQueryCriterion());
     }
 
     /**
@@ -370,9 +337,9 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testIsBlank() {
-        QueryCriterion criterion1 = new IsNullCriterion("name");
-        QueryCriterion criterion2 = new EqCriterion("name", "");
-        QueryCriterion criterion3 = new OrCriterion(criterion1, criterion2);
+        QueryCriterion criterion1 = Criteria.isNull("name");
+        QueryCriterion criterion2 = Criteria.eq("name", "");
+        QueryCriterion criterion3 = Criteria.or(criterion1, criterion2);
         
         assertEquals(criterion3, instance.isBlank("name").getQueryCriterion());
     }
@@ -382,9 +349,9 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testNotBlank() {
-        QueryCriterion criterion1 = new NotNullCriterion("name");
-        QueryCriterion criterion2 = new NotEqCriterion("name", "");
-        QueryCriterion criterion3 = new AndCriterion(criterion1, criterion2);
+        QueryCriterion criterion1 = Criteria.notNull("name");
+        QueryCriterion criterion2 = Criteria.notEq("name", "");
+        QueryCriterion criterion3 = Criteria.and(criterion1, criterion2);
         
         assertEquals(criterion3, instance.notBlank("name").getQueryCriterion());
     }
@@ -394,8 +361,8 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testNot() {
-        QueryCriterion criterion1 = new EqCriterion("name", "abc");
-        QueryCriterion criterion2 = new NotCriterion(criterion1);
+        QueryCriterion criterion1 = Criteria.eq("name", "abc");
+        QueryCriterion criterion2 = Criteria.not(criterion1);
         
         assertEquals(criterion2, instance.not(criterion1).getQueryCriterion());
     }
@@ -405,9 +372,9 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testAnd() {
-        QueryCriterion criterion1 = new EqCriterion("name", "abc");
-        QueryCriterion criterion2 = new GtCriterion("id", 5);
-        QueryCriterion criterion3 = new AndCriterion(criterion1, criterion2);
+        QueryCriterion criterion1 = Criteria.eq("name", "abc");
+        QueryCriterion criterion2 = Criteria.gt("id", 5);
+        QueryCriterion criterion3 = Criteria.and(criterion1, criterion2);
         assertEquals(criterion3, instance.and(criterion1).and(criterion2).getQueryCriterion());
     }
 
@@ -416,9 +383,9 @@ public class CriteriaQueryTest {
      */
     @Test
     public void testOr() {
-        QueryCriterion criterion1 = new EqCriterion("name", "abc");
-        QueryCriterion criterion2 = new GtCriterion("id", 5);
-        QueryCriterion criterion3 = new OrCriterion(criterion1, criterion2);
+        QueryCriterion criterion1 = Criteria.eq("name", "abc");
+        QueryCriterion criterion2 = Criteria.gt("id", 5);
+        QueryCriterion criterion3 = Criteria.or(criterion1, criterion2);
         assertEquals(criterion3, instance.or(criterion1).or(criterion2).getQueryCriterion());
     }
 
@@ -443,8 +410,8 @@ public class CriteriaQueryTest {
     
     @Test
     public void testGetQueryString() {
-    	EqCriterion criterion1 = new EqCriterion("name", "abc");
-    	InCriterion criterion2 = new InCriterion("age", Arrays.asList(1, 2));
+    	QueryCriterion criterion1 = Criteria.eq("name", "abc");
+        QueryCriterion criterion2 = Criteria.in("age", Arrays.asList(1, 2));
         instance.eq("name", "abc")
                         .isEmpty("post")
                         .notNull("birthday")
@@ -464,8 +431,8 @@ public class CriteriaQueryTest {
     
     @Test
     public void testGetQueryString2() {
-    	EqCriterion criterion1 = new EqCriterion("name", "abc");
-    	InCriterion criterion2 = new InCriterion("age", Arrays.asList(1, 2));
+    	QueryCriterion criterion1 = Criteria.eq("name", "abc");
+    	QueryCriterion criterion2 = Criteria.in("age", Arrays.asList(1, 2));
     	
     	
         assertEquals("select distinct(rootEntity) from org.dayatang.domain.entity.MyEntity as rootEntity  "

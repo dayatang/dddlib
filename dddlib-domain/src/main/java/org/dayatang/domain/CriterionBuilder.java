@@ -3,7 +3,8 @@ package org.dayatang.domain;
 import java.util.Collection;
 
 /**
- * 一个工具类，作为各种查询条件的工厂
+ * 查询条件生成器，生成各种查询条件。
+ * 该类主要用于DDDLib的内部实现机制。DDDLib用户请使用Criteria代替CriterionBuilder
  *
  * @author yyang (<a href="mailto:gdyangyu@gmail.com">gdyangyu@gmail.com</a>)
  *

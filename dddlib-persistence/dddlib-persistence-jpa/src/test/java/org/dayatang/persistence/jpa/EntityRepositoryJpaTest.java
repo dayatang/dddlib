@@ -196,8 +196,7 @@ public class EntityRepositoryJpaTest extends AbstractIntegrationTest {
      */
     @Test
     public void testFindByCriterion() {
-        CriterionBuilder criterionBuilder = ServiceLoader.load(CriterionBuilder.class).iterator().next();
-        QueryCriterion criterion = criterionBuilder.eq("category", education);
+        QueryCriterion criterion = Criteria.eq("category", education);
         List<Dictionary> results = repository.find(Dictionary.class, criterion);
         assertTrue(results.contains(graduate));
         assertTrue(results.contains(undergraduate));
@@ -208,8 +207,7 @@ public class EntityRepositoryJpaTest extends AbstractIntegrationTest {
      */
     @Test
     public void testGetSingleResultByCriterion() {
-        CriterionBuilder criterionBuilder = ServiceLoader.load(CriterionBuilder.class).iterator().next();
-        QueryCriterion criterion = criterionBuilder.eq("category", education).and(criterionBuilder.eq("code", "01"));
+        QueryCriterion criterion = Criteria.eq("category", education).and(Criteria.eq("code", "01"));
         Dictionary result = repository.getSingleResult(Dictionary.class, criterion);
         assertEquals(undergraduate, result);
     }
