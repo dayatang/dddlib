@@ -15,17 +15,17 @@ import java.util.List;
  */
 public class AndCriterion extends AbstractCriterion {
 
-    private final List<QueryCriterion> criterions;
+    private final List<QueryCriterion> criteria;
 
     /**
      * 根据多个查询条件创建AND查询条件。创建过程中会去除为null或EmptyCriterion的查询条件。如果
      * 剩余查询条件不足两个，则抛出异常。
-     * @param criterions 要用来执行AND操作的查询条件
+     * @param criteria 要用来执行AND操作的查询条件
      */
-    public AndCriterion(QueryCriterion... criterions) {
-        Assert.notNull(criterions, "Criterions to \"AND\" is null!");
-        this.criterions = removeNullOrEmptyCriterion(criterions);
-        Assert.isTrue(criterions.length > 1, "At least two query criterions required!");
+    public AndCriterion(QueryCriterion... criteria) {
+        Assert.notNull(criteria, "Criteria to \"AND\" is null!");
+        this.criteria = removeNullOrEmptyCriterion(criteria);
+        Assert.isTrue(criteria.length > 1, "At least two query criteria required!");
     }
 
     /**
@@ -33,16 +33,16 @@ public class AndCriterion extends AbstractCriterion {
      * @return 要用来执行AND操作的查询条件，去除了Null和EmptyCriterion类型的元素。
      */
     public List<QueryCriterion> getCriterons() {
-        return criterions;
+        return criteria;
     }
 
     @Override
 	public String toQueryString() {
-        List<String> subCriterionsStr = new ArrayList<String>();
+        List<String> subCriteriaStr = new ArrayList<String>();
         for (QueryCriterion each : getCriterons()) {
-            subCriterionsStr.add(each.toQueryString());
+            subCriteriaStr.add(each.toQueryString());
         }
-		return StringUtils.join(subCriterionsStr, " and ");
+		return StringUtils.join(subCriteriaStr, " and ");
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class AndCriterion extends AbstractCriterion {
             return false;
         }
         AndCriterion that = (AndCriterion) other;
-        return this.criterions.containsAll(that.criterions) && that.criterions.containsAll(this.criterions);
+        return this.criteria.containsAll(that.criteria) && that.criteria.containsAll(this.criteria);
     }
 
     /**
@@ -78,7 +78,7 @@ public class AndCriterion extends AbstractCriterion {
     @Override
     public int hashCode() {
         HashCodeBuilder builder = new HashCodeBuilder(17, 37);
-        for (QueryCriterion criterion : criterions) {
+        for (QueryCriterion criterion : criteria) {
             builder = builder.append(criterion);
         }
         return builder.toHashCode();

@@ -149,12 +149,12 @@ public class CriterionBuilderImpl implements CriterionBuilder {
         return new NotCriterion(criterion);
     }
 
-    public QueryCriterion and(QueryCriterion... criterions) {
-        return new AndCriterion(criterions);
+    public QueryCriterion and(QueryCriterion... criteria) {
+        return new AndCriterion(criteria);
     }
 
-    public QueryCriterion or(QueryCriterion... criterions) {
-        return new OrCriterion(criterions);
+    public QueryCriterion or(QueryCriterion... criteria) {
+        return new OrCriterion(criteria);
     }
 
 	@Override

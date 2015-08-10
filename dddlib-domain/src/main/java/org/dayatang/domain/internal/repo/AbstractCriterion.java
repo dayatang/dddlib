@@ -62,12 +62,12 @@ public abstract class AbstractCriterion implements QueryCriterion {
 
     /**
      * 从数组中去除为Null的或EmptyCriterion的成员，返回剩余元素的列表
-     * @param criterions 原始条件数组
+     * @param criteria 原始条件数组
      * @return 去除空条件对象后的剩余的成员的列表
      */
-    protected List<QueryCriterion> removeNullOrEmptyCriterion(QueryCriterion[] criterions) {
+    protected List<QueryCriterion> removeNullOrEmptyCriterion(QueryCriterion[] criteria) {
         List<QueryCriterion> results = new ArrayList<QueryCriterion>();
-        for (QueryCriterion each : criterions) {
+        for (QueryCriterion each : criteria) {
             if (each == null || each.isEmpty()) {
                 continue;
             }
