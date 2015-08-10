@@ -265,7 +265,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
         params.add("男");
         params.add("女");
         instance.in("text", params);
-        System.out.println("");
+
         List<Dictionary> results = repository.find(instance);
         assertTrue(results.contains(male));
         assertTrue(results.contains(female));

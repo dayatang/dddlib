@@ -56,7 +56,7 @@ public class ExcelWriterTest {
 		assertTrue(DateUtils.isSameDay(results.getDate(1, 2), parseDate(2002, 7, 1)));
 		assertTrue(DateUtils.isSameDay(results.getDate(1, 3), parseDate(8888, 1, 1)));
 		assertEquals(1, results.getInt(1, 4).intValue());
-		System.out.println();
+
 		assertNull(results.getString(1, 5));
 		assertFalse(results.getBoolean(1, 6));
 		

@@ -102,7 +102,6 @@ public abstract class BaseEntity implements Entity {
      */
     @Override
     public boolean equals(Object other) {
-        System.out.println("=============== type is: " + this.getClass());
         return EntityEqualsBuilder.isEquals(this, other);
     }
 

@@ -68,11 +68,6 @@ public class AndCriterion extends AbstractCriterion {
             return false;
         }
         AndCriterion that = (AndCriterion) other;
-        System.out.println("==================+++++++++++++++++++");
-        System.out.println(this.criterions);
-        System.out.println(this.criterions.containsAll(that.criterions));
-        System.out.println(that.criterions);
-        System.out.println(that.criterions.containsAll(this.criterions));
         return this.criterions.containsAll(that.criterions) && that.criterions.containsAll(this.criterions);
     }
 

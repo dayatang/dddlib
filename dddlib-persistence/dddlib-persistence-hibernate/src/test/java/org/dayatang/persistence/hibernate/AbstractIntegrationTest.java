@@ -31,8 +31,6 @@ public class AbstractIntegrationTest {
         sessionFactory.close();
         btmUtils.closeDataSource();
         btmUtils = null;
-        System.out.println("================================================");
-        System.out.println("关闭BTM");
     }
 
     @Before

@@ -15,13 +15,11 @@ public class ConnectionThread implements Runnable {
 	}
 
 	public void run() {
-		System.out.println("我运行啦。。。");
 		ContextHolder.setContextType("1");
 		DataSource ds = (DataSource) context.getBean("dataSource");
 		try {
 			Connection connection = ds.getConnection();
 			connection.setReadOnly(true);
-			System.out.println(connection.getCatalog());
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
