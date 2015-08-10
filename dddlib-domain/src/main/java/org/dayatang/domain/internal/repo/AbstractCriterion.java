@@ -1,9 +1,9 @@
 package org.dayatang.domain.internal.repo;
 
+import org.dayatang.domain.QueryCriterion;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.dayatang.domain.QueryCriterion;
 
 /**
  * 查询条件的抽象基类，实现了AND、OR、NOT操作。

@@ -1,14 +1,13 @@
 package org.dayatang.domain.internal.repo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.domain.NamedParameters;
 import org.dayatang.domain.QueryCriterion;
 import org.dayatang.utils.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 代表两个或两个以上的查询条件AND操作结果的查询条件
@@ -69,9 +68,12 @@ public class AndCriterion extends AbstractCriterion {
             return false;
         }
         AndCriterion that = (AndCriterion) other;
-        return new EqualsBuilder()
-                .append(this.getCriterons(), that.getCriterons())
-                .isEquals();
+        System.out.println("==================+++++++++++++++++++");
+        System.out.println(this.criterions);
+        System.out.println(this.criterions.containsAll(that.criterions));
+        System.out.println(that.criterions);
+        System.out.println(that.criterions.containsAll(this.criterions));
+        return this.criterions.containsAll(that.criterions) && that.criterions.containsAll(this.criterions);
     }
 
     /**
@@ -80,7 +82,11 @@ public class AndCriterion extends AbstractCriterion {
      */
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(getCriterons()).toHashCode();
+        HashCodeBuilder builder = new HashCodeBuilder(17, 37);
+        for (QueryCriterion criterion : criterions) {
+            builder = builder.append(criterion);
+        }
+        return builder.toHashCode();
     }
 
 }

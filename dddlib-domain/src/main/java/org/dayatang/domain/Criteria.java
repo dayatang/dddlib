@@ -3,7 +3,7 @@ package org.dayatang.domain;
 import java.util.Collection;
 
 /**
- * 查询条件的工厂类。
+ * 各种查询条件的静态工厂。
  * 将查询条件创建委托给CriterionBuilder实现。
  * Created by yyang on 15/8/10.
  */
@@ -127,19 +127,19 @@ public class Criteria {
     }
 
     public static QueryCriterion isTrue(String propName) {
-        return eq(propName, true);
+        return BUILDER.isTrue(propName);
     }
 
     public static QueryCriterion isFalse(String propName) {
-        return eq(propName, false);
+        return BUILDER.isFalse(propName);
     }
 
     public static QueryCriterion isBlank(String propName) {
-        return or(isNull(propName), eq(propName, ""));
+        return BUILDER.isBlank(propName);
     }
 
     public static QueryCriterion notBlank(String propName) {
-        return and(notNull(propName), notEq(propName, ""));
+        return BUILDER.notBlank(propName);
     }
 
     public static QueryCriterion not(QueryCriterion criterion) {

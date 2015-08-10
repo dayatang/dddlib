@@ -10,4 +10,5 @@ public class EqCriterion extends ValueCompareCriterion {
         super(propName, value);
         setOperator(" = ");
     }
+
 }

@@ -1,14 +1,13 @@
 package org.dayatang.domain.internal.repo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.domain.NamedParameters;
 import org.dayatang.domain.QueryCriterion;
 import org.dayatang.utils.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -70,9 +69,7 @@ public class OrCriterion extends AbstractCriterion {
             return false;
         }
         OrCriterion that = (OrCriterion) other;
-        return new EqualsBuilder()
-                .append(this.getCriterons(), that.getCriterons())
-                .isEquals();
+        return (this.criterions.containsAll(that.criterions)) && that.criterions.containsAll(this.criterions);
     }
 
     /**
@@ -81,6 +78,10 @@ public class OrCriterion extends AbstractCriterion {
      */
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(getCriterons()).toHashCode();
+        HashCodeBuilder builder = new HashCodeBuilder(17, 37);
+        for (QueryCriterion criterion : criterions) {
+            builder = builder.append(criterion);
+        }
+        return builder.toHashCode();
     }
 }
