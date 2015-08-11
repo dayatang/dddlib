@@ -5,6 +5,7 @@ import java.util.Collection;
 /**
  * 各种查询条件的静态工厂。
  * 将查询条件创建委托给CriterionBuilder实现。
+ * 如果在Java类中频繁用到Criteria的多个方法，建议使用静态导入: import static org.dayatang.domain.Criteria.*;
  * Created by yyang on 15/8/10.
  */
 public class Criteria {

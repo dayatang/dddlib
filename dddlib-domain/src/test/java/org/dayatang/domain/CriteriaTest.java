@@ -1,7 +1,7 @@
 package org.dayatang.domain;
 
 import junit.framework.TestCase;
-import org.dayatang.domain.internal.repo.*;
+import org.dayatang.domain.internal.criterion.*;
 
 import java.util.Arrays;
 
