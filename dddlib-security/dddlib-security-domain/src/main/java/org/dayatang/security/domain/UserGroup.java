@@ -18,7 +18,9 @@ public class UserGroup extends Actor {
     private Set<User> users = new HashSet<User>();
 
     @ManyToOne
-    @JoinTable(name = "security_group_group")
+    @JoinTable(name = "security_group_group",
+            joinColumns = @JoinColumn(name = "child_id"),
+            inverseJoinColumns = @JoinColumn(name = "parent_id"))
     private UserGroup parent;
 
     @ManyToMany(mappedBy = "parent")
