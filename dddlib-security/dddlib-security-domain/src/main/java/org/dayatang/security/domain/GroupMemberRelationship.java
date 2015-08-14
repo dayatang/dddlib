@@ -75,20 +75,9 @@ class GroupMemberRelationship extends AbstractEntity {
      * @param actor 用户
      * @return 包含actor作为其直属成员的用户组
      */
-    public static Set<UserGroup> getGroupsOfMember(Actor actor) {
+    public static Set<UserGroup> getGroupsOf(Actor actor) {
         String jpql = "select o.group from GroupMemberRelationship o where o.member = :actor";
         List<UserGroup> results = getRepository().createJpqlQuery(jpql).addParameter("actor", actor).list();
-        return new HashSet<UserGroup>(results);
-    }
-
-    /**
-     * 查找用户直属的组
-     * @param user 用户
-     * @return 包含用户作为其直属成员的用户组
-     */
-    public static Set<UserGroup> getGroupsOf(User user) {
-        String jpql = "select o.group from GroupMemberRelationship o where o.member = :user";
-        List<UserGroup> results = getRepository().createJpqlQuery(jpql).addParameter("user", user).list();
         return new HashSet<UserGroup>(results);
     }
 

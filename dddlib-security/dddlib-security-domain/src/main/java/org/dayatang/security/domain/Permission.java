@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +19,22 @@ public class Permission extends Authority {
 
     public Permission(String name) {
         super(name);
+    }
+
+    @Override
+    public void remove() {
+        for (RolePermissionRelationship each : RolePermissionRelationship.findByPermission(this)) {
+            each.remove();
+        }
+        super.remove();
+    }
+
+    @Override
+    public void disable(Date date) {
+        for (RolePermissionRelationship each : RolePermissionRelationship.findByPermission(this)) {
+            each.remove();
+        }
+        super.disable(date);
     }
 
     public static Permission create(String name) {

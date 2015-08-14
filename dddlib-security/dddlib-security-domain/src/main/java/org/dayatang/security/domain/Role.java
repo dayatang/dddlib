@@ -18,10 +18,6 @@ import java.util.*;
 @DiscriminatorValue("ROLE")
 public class Role extends Authority {
 
-    @ManyToMany
-    @JoinTable(name = "security_role_permission")
-    private Set<Permission> permissions = new HashSet<Permission>();
-
     protected Role() {
     }
 
@@ -30,28 +26,42 @@ public class Role extends Authority {
     }
 
     public Set<Permission> getPermissions() {
-        return new HashSet<Permission>(permissions);
+        return RolePermissionRelationship.getPermissionsOf(this);
     }
 
-    public void setPermissions(Set<Permission> permissions) {
-        this.permissions = new HashSet<Permission>(permissions);
-    }
-
-    public void addPermissions(Permission... permissions) {
-        this.permissions.addAll(Arrays.asList(permissions));
-        save();
-    }
-
-    public void removePermissions(Permission... permissions) {
-        this.permissions.removeAll(Arrays.asList(permissions));
-    }
-
-    public void clearPermissions() {
-        permissions.clear();
+    public void assignPermissions(Set<Permission> permissions) {
+        Set<Permission> currentPermissions = getPermissions();
+        for (RolePermissionRelationship each : RolePermissionRelationship.findByRole(this)) {
+            if (!permissions.contains(each.getPermission())) {
+                each.remove();
+            }
+        }
+        for (Permission each : permissions) {
+            if (currentPermissions.contains(each)) {
+                continue;
+            }
+            new RolePermissionRelationship(this, each).save();
+        }
     }
 
     public boolean hasPermission(Permission permission) {
         return getPermissions().contains(permission);
+    }
+
+    @Override
+    public void remove() {
+        for (RolePermissionRelationship each : RolePermissionRelationship.findByRole(this)) {
+            each.remove();
+        }
+        super.remove();
+    }
+
+    @Override
+    public void disable(Date date) {
+        for (RolePermissionRelationship each : RolePermissionRelationship.findByRole(this)) {
+            each.remove();
+        }
+        super.disable(date);
     }
 
     public static Role get(String id) {
