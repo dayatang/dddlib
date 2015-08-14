@@ -26,11 +26,11 @@ public class UserGroup extends Actor {
     }
 
     public UserGroup getParent() {
-        return UserGroupRelationship.getParentOf(this);
+        return GroupMemberRelationship.getParentOf(this);
     }
 
     public Set<Actor> getMembers() {
-        return ImmutableSet.copyOf(UserGroupRelationship.findChildrenOf(this));
+        return ImmutableSet.copyOf(GroupMemberRelationship.findChildrenOf(this));
     }
 
     public Set<User> getUsers() {
@@ -62,13 +62,13 @@ public class UserGroup extends Actor {
             if (hasMember(actor)) {
                 continue;
             }
-            new UserGroupRelationship(this, actor).save();
+            new GroupMemberRelationship(this, actor).save();
         }
     }
 
     public void removeMembers(Actor... actors) {
         List<Actor> actorsToRemove = Arrays.asList(actors);
-        for (UserGroupRelationship relationship : UserGroupRelationship.findByParent(this)) {
+        for (GroupMemberRelationship relationship : GroupMemberRelationship.findByParent(this)) {
             if (actorsToRemove.contains(relationship.getChild())) {
                 relationship.remove();
             }
@@ -80,10 +80,10 @@ public class UserGroup extends Actor {
         for (UserGroup each : getChildGroups()) {
             each.remove();
         }
-        for (UserGroupRelationship each : UserGroupRelationship.findByParent(this)) {
+        for (GroupMemberRelationship each : GroupMemberRelationship.findByParent(this)) {
             each.remove();
         }
-        for (UserGroupRelationship each : UserGroupRelationship.findByChild(this)) {
+        for (GroupMemberRelationship each : GroupMemberRelationship.findByChild(this)) {
             each.remove();
         }
         super.remove();
@@ -94,10 +94,10 @@ public class UserGroup extends Actor {
         for (UserGroup each : getChildGroups()) {
             each.disable(date);
         }
-        for (UserGroupRelationship each : UserGroupRelationship.findByParent(this)) {
+        for (GroupMemberRelationship each : GroupMemberRelationship.findByParent(this)) {
             each.disable(date);
         }
-        for (UserGroupRelationship each : UserGroupRelationship.findByChild(this)) {
+        for (GroupMemberRelationship each : GroupMemberRelationship.findByChild(this)) {
             each.disable(date);
         }
         super.disable(date);

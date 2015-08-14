@@ -3,7 +3,6 @@ package org.dayatang.security.domain;
 import com.google.common.collect.ImmutableSet;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.dayatang.utils.Assert;
 
 import javax.persistence.*;
 import java.security.Principal;
@@ -59,7 +58,7 @@ public class User extends Actor implements Principal {
     }
 
     public Set<UserGroup> getGroups() {
-        return ImmutableSet.copyOf(UserGroupRelationship.getGroupsOf(this));
+        return ImmutableSet.copyOf(GroupMemberRelationship.getGroupsOf(this));
     }
 
     @Override
@@ -109,18 +108,18 @@ public class User extends Actor implements Principal {
      * @param groups
      */
     public void joinGroups(UserGroup... groups) {
-        List<UserGroup> currentGroups = UserGroupRelationship.getGroupsOf(this);
+        List<UserGroup> currentGroups = GroupMemberRelationship.getGroupsOf(this);
         for (UserGroup group : groups) {
             if (currentGroups.contains(group)) {
                 continue;
             }
-            new UserGroupRelationship(group, this).save();
+            new GroupMemberRelationship(group, this).save();
         }
     }
 
     @Override
     public void remove() {
-        for (UserGroupRelationship each : UserGroupRelationship.findByChild(this)) {
+        for (GroupMemberRelationship each : GroupMemberRelationship.findByChild(this)) {
             each.remove();
         }
         super.remove();
@@ -128,7 +127,7 @@ public class User extends Actor implements Principal {
 
     @Override
     public void disable(Date date) {
-        for (UserGroupRelationship each : UserGroupRelationship.findByChild(this)) {
+        for (GroupMemberRelationship each : GroupMemberRelationship.findByChild(this)) {
             each.remove();
         }
         super.disable(date);
