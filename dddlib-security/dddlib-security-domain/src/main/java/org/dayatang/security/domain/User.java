@@ -58,7 +58,7 @@ public class User extends Actor implements Principal {
     }
 
     public Set<UserGroup> getGroups() {
-        return ImmutableSet.copyOf(GroupMemberRelationship.getGroupsOf(this));
+        return GroupMemberRelationship.getGroupsOf(this);
     }
 
     @Override
@@ -108,7 +108,7 @@ public class User extends Actor implements Principal {
      * @param groups
      */
     public void joinGroups(UserGroup... groups) {
-        List<UserGroup> currentGroups = GroupMemberRelationship.getGroupsOf(this);
+        Set<UserGroup> currentGroups = GroupMemberRelationship.getGroupsOf(this);
         for (UserGroup group : groups) {
             if (currentGroups.contains(group)) {
                 continue;

@@ -3,7 +3,9 @@ package org.dayatang.security.domain;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 用户组关系。记录用户与用户组、以及用户组之间的归属关系
@@ -62,9 +64,10 @@ class GroupMemberRelationship extends AbstractEntity {
      * @param group
      * @return
      */
-    public static List<Actor> findMembersOf(UserGroup group) {
+    public static Set<Actor> getMembersOf(UserGroup group) {
         String jpql = "select o.member from GroupMemberRelationship o where o.group = :group";
-        return getRepository().createJpqlQuery(jpql).addParameter("group", group).list();
+        List<Actor> results = getRepository().createJpqlQuery(jpql).addParameter("group", group).list();
+        return new HashSet<Actor>(results);
     }
 
     /**
@@ -72,20 +75,21 @@ class GroupMemberRelationship extends AbstractEntity {
      * @param actor 用户
      * @return 包含actor作为其直属成员的用户组
      */
-    public static List<UserGroup> getGroupsOfMember(Actor actor) {
+    public static Set<UserGroup> getGroupsOfMember(Actor actor) {
         String jpql = "select o.group from GroupMemberRelationship o where o.member = :actor";
-        return getRepository().createJpqlQuery(jpql).addParameter("actor", actor).list();
+        List<UserGroup> results = getRepository().createJpqlQuery(jpql).addParameter("actor", actor).list();
+        return new HashSet<UserGroup>(results);
     }
-
 
     /**
      * 查找用户直属的组
      * @param user 用户
      * @return 包含用户作为其直属成员的用户组
      */
-    public static List<UserGroup> getGroupsOf(User user) {
+    public static Set<UserGroup> getGroupsOf(User user) {
         String jpql = "select o.group from GroupMemberRelationship o where o.member = :user";
-        return getRepository().createJpqlQuery(jpql).addParameter("user", user).list();
+        List<UserGroup> results = getRepository().createJpqlQuery(jpql).addParameter("user", user).list();
+        return new HashSet<UserGroup>(results);
     }
 
     /**

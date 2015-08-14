@@ -30,7 +30,7 @@ public class UserGroup extends Actor {
     }
 
     public Set<Actor> getMembers() {
-        return ImmutableSet.copyOf(GroupMemberRelationship.findMembersOf(this));
+        return ImmutableSet.copyOf(GroupMemberRelationship.getMembersOf(this));
     }
 
     public Set<User> getUsers() {
@@ -136,21 +136,11 @@ public class UserGroup extends Actor {
             return false;
         }
         UserGroup that = (UserGroup) o;
-        if (!this.getName().equals(that.getName())) {
-            return false;
-        }
-        return isEqual(this.getParent(), that.getParent());
-    }
-
-    private boolean isEqual(Object obj1, Object obj2) {
-        if (obj1 == null) {
-            return obj2 == null;
-        }
-        return obj1.equals(obj2);
+        return Objects.equals(this.getId(), that.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), getName());
+        return Objects.hash(getId(), getName());
     }
 }

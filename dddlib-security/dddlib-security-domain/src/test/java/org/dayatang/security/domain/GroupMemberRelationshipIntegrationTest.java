@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -34,14 +35,14 @@ public class GroupMemberRelationshipIntegrationTest extends AbstractSpringIntegr
 
     @Test
     public void testFindChildrenOf() throws Exception {
-        List<Actor> children = GroupMemberRelationship.findMembersOf(group2);
+        Set<Actor> children = GroupMemberRelationship.getMembersOf(group2);
         assertThat(children, hasItem(user2));
         assertThat(children, not(hasItem(user1)));
     }
 
     @Test
     public void testGetGroupsOf() throws Exception {
-        List<UserGroup> groups = GroupMemberRelationship.getGroupsOf(user1);
+        Set<UserGroup> groups = GroupMemberRelationship.getGroupsOf(user1);
         assertThat(groups, hasItem(group1));
         assertThat(groups, not(hasItem(group2)));
     }
