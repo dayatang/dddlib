@@ -17,15 +17,6 @@ public class UserGroup extends Actor {
     @JoinTable(name = "security_group_user")
     private Set<User> users = new HashSet<User>();
 
-    @ManyToOne
-    @JoinTable(name = "security_group_group",
-            joinColumns = @JoinColumn(name = "child_id"),
-            inverseJoinColumns = @JoinColumn(name = "parent_id"))
-    private UserGroup parent;
-
-    @ManyToMany(mappedBy = "parent")
-    private Set<UserGroup> children = new HashSet<UserGroup>();
-
     protected UserGroup() {
         super();
     }
@@ -34,64 +25,80 @@ public class UserGroup extends Actor {
         super(name);
     }
 
-    public Set<User> getUsers() {
-        return ImmutableSet.copyOf(users);
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = new HashSet<User>(users);
-    }
-
-    public void addUser(User... users) {
-        this.users.addAll(Arrays.asList(users));
-    }
-
-    public void removeUser(User... users) {
-        this.users.removeAll(Arrays.asList(users));
-    }
-
     public UserGroup getParent() {
-        return parent;
+        return UserGroupRelationship.getParentOf(this);
     }
 
-    public void setParent(UserGroup parent) {
-        this.parent = parent;
+    public Set<Actor> getMembers() {
+        return ImmutableSet.copyOf(UserGroupRelationship.findChildrenOf(this));
     }
 
-    public Set<UserGroup> getChildren() {
-        return ImmutableSet.copyOf(children);
+    public Set<User> getUsers() {
+        Set<User> results = new HashSet<User>();
+        for (Actor actor : getMembers()) {
+            if (actor instanceof User) {
+                results.add((User) actor);
+            }
+        }
+        return results;
     }
 
-    public void addChild(UserGroup... groups) {
-        children.addAll(Arrays.asList(groups));
-        for (UserGroup each : groups) {
-            each.setParent(this);
+    public Set<UserGroup> getChildGroups() {
+        Set<UserGroup> results = new HashSet<UserGroup>();
+        for (Actor actor : getMembers()) {
+            if (actor instanceof UserGroup) {
+                results.add((UserGroup) actor);
+            }
+        }
+        return results;
+    }
+
+    private boolean hasMember(Actor actor) {
+        return getMembers().contains(actor);
+    }
+
+    public void addMembers(Actor... actors) {
+        for (Actor actor : actors) {
+            if (hasMember(actor)) {
+                continue;
+            }
+            new UserGroupRelationship(this, actor).save();
         }
     }
 
-    public void removeChild(UserGroup... groups) {
-        children.removeAll(Arrays.asList(groups));
-    }
-
-    public void setChildren(Set<UserGroup> children) {
-        this.children = new HashSet<UserGroup>(children);
-        for (UserGroup each : children) {
-            each.setParent(this);
+    public void removeMembers(Actor... actors) {
+        List<Actor> actorsToRemove = Arrays.asList(actors);
+        for (UserGroupRelationship relationship : UserGroupRelationship.findByParent(this)) {
+            if (actorsToRemove.contains(relationship.getChild())) {
+                relationship.remove();
+            }
         }
     }
 
     @Override
     public void remove() {
-        for (UserGroup child : children) {
-            child.remove();
+        for (UserGroup each : getChildGroups()) {
+            each.remove();
+        }
+        for (UserGroupRelationship each : UserGroupRelationship.findByParent(this)) {
+            each.remove();
+        }
+        for (UserGroupRelationship each : UserGroupRelationship.findByChild(this)) {
+            each.remove();
         }
         super.remove();
     }
 
     @Override
     public void disable(Date date) {
-        for (UserGroup child : children) {
-            child.disable(date);
+        for (UserGroup each : getChildGroups()) {
+            each.disable(date);
+        }
+        for (UserGroupRelationship each : UserGroupRelationship.findByParent(this)) {
+            each.disable(date);
+        }
+        for (UserGroupRelationship each : UserGroupRelationship.findByChild(this)) {
+            each.disable(date);
         }
         super.disable(date);
     }
@@ -118,5 +125,32 @@ public class UserGroup extends Actor {
      */
     public static UserGroup getByName(String name) {
         return getByName(UserGroup.class, name);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof UserGroup)) {
+            return false;
+        }
+        UserGroup that = (UserGroup) o;
+        if (!this.getName().equals(that.getName())) {
+            return false;
+        }
+        return isEqual(this.getParent(), that.getParent());
+    }
+
+    private boolean isEqual(Object obj1, Object obj2) {
+        if (obj1 == null) {
+            return obj2 == null;
+        }
+        return obj1.equals(obj2);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getName());
     }
 }

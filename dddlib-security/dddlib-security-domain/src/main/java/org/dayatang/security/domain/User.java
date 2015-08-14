@@ -26,9 +26,6 @@ public class User extends Actor implements Principal {
     //是否已被锁定。被锁定的用户无法登录，直至解锁
     private boolean locked = false;
 
-    @ManyToMany(mappedBy = "users")
-    private Set<UserGroup> groups = new HashSet<UserGroup>();
-
     public User() {
     }
 
@@ -62,7 +59,7 @@ public class User extends Actor implements Principal {
     }
 
     public Set<UserGroup> getGroups() {
-        return ImmutableSet.copyOf(groups);
+        return ImmutableSet.copyOf(UserGroupRelationship.getGroupsOf(this));
     }
 
     @Override
@@ -94,11 +91,6 @@ public class User extends Actor implements Principal {
         save();
     }
 
-    @Override
-    public String toString() {
-        return getName();
-    }
-
     /**
      * 判断口令是否匹配
      * @param password
@@ -110,6 +102,36 @@ public class User extends Actor implements Principal {
 
     public boolean unmatchPassword(String password) {
         return !matchPassword(password);
+    }
+
+    /**
+     * 加入用户组
+     * @param groups
+     */
+    public void joinGroups(UserGroup... groups) {
+        List<UserGroup> currentGroups = UserGroupRelationship.getGroupsOf(this);
+        for (UserGroup group : groups) {
+            if (currentGroups.contains(group)) {
+                continue;
+            }
+            new UserGroupRelationship(group, this).save();
+        }
+    }
+
+    @Override
+    public void remove() {
+        for (UserGroupRelationship each : UserGroupRelationship.findByChild(this)) {
+            each.remove();
+        }
+        super.remove();
+    }
+
+    @Override
+    public void disable(Date date) {
+        for (UserGroupRelationship each : UserGroupRelationship.findByChild(this)) {
+            each.remove();
+        }
+        super.disable(date);
     }
 
     /**
@@ -189,5 +211,10 @@ public class User extends Actor implements Principal {
         }
         User that = (User) other;
         return new EqualsBuilder().append(this.getName(), that.getName()).isEquals();
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }
