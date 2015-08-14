@@ -1,5 +1,6 @@
 package org.dayatang.security.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -15,10 +16,10 @@ import java.util.Set;
 @Table(name = "role_perm_relationship")
 class RolePermissionRelationship extends AbstractEntity {
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Role role;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Permission permission;
 
     protected RolePermissionRelationship() {

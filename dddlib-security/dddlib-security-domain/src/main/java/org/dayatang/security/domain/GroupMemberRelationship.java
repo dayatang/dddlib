@@ -1,5 +1,6 @@
 package org.dayatang.security.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -15,10 +16,10 @@ import java.util.Set;
 @Table(name = "group_member_relationship")
 class GroupMemberRelationship extends AbstractEntity {
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private UserGroup group;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Actor member;
 
     public GroupMemberRelationship() {
