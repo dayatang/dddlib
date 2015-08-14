@@ -12,7 +12,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 @Ignore
-public class RoleTest extends AbstractSpringIntegrationTest {
+public class RoleIntegrationTest extends AbstractSpringIntegrationTest {
 
     private SecuritySeedDataHelper helper = new SecuritySeedDataHelper();
 
