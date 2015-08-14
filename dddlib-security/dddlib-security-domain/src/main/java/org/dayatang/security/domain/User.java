@@ -119,7 +119,7 @@ public class User extends Actor implements Principal {
 
     @Override
     public void remove() {
-        for (GroupMemberRelationship each : GroupMemberRelationship.findByChild(this)) {
+        for (GroupMemberRelationship each : GroupMemberRelationship.findByMember(this)) {
             each.remove();
         }
         super.remove();
@@ -127,7 +127,7 @@ public class User extends Actor implements Principal {
 
     @Override
     public void disable(Date date) {
-        for (GroupMemberRelationship each : GroupMemberRelationship.findByChild(this)) {
+        for (GroupMemberRelationship each : GroupMemberRelationship.findByMember(this)) {
             each.remove();
         }
         super.disable(date);

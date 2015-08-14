@@ -34,7 +34,7 @@ public class GroupMemberRelationshipIntegrationTest extends AbstractSpringIntegr
 
     @Test
     public void testFindChildrenOf() throws Exception {
-        List<Actor> children = GroupMemberRelationship.findChildrenOf(group2);
+        List<Actor> children = GroupMemberRelationship.findMembersOf(group2);
         assertThat(children, hasItem(user2));
         assertThat(children, not(hasItem(user1)));
     }

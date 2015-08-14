@@ -10,29 +10,29 @@ import java.util.List;
  * Created by yyang on 15/8/14.
  */
 @Entity
-@Table(name = "user_group_relationship")
+@Table(name = "group_member_relationship")
 class GroupMemberRelationship extends AbstractEntity {
 
     @ManyToOne
-    private UserGroup parent;
+    private UserGroup group;
 
     @ManyToOne
-    private Actor child;
+    private Actor member;
 
     public GroupMemberRelationship() {
     }
 
-    public GroupMemberRelationship(UserGroup parent, Actor child) {
-        this.parent = parent;
-        this.child = child;
+    public GroupMemberRelationship(UserGroup group, Actor member) {
+        this.group = group;
+        this.member = member;
     }
 
-    public UserGroup getParent() {
-        return parent;
+    public UserGroup getGroup() {
+        return group;
     }
 
-    public Actor getChild() {
-        return child;
+    public Actor getMember() {
+        return member;
     }
 
     /**
@@ -40,9 +40,9 @@ class GroupMemberRelationship extends AbstractEntity {
      * @param group 上级
      * @return
      */
-    public static List<GroupMemberRelationship> findByParent(UserGroup group) {
+    public static List<GroupMemberRelationship> findByGroup(UserGroup group) {
         return getRepository().createCriteriaQuery(GroupMemberRelationship.class)
-                .eq("parent", group)
+                .eq("group", group)
                 .list();
     }
 
@@ -51,9 +51,9 @@ class GroupMemberRelationship extends AbstractEntity {
      * @param actor 下级
      * @return
      */
-    public static List<GroupMemberRelationship> findByChild(Actor actor) {
+    public static List<GroupMemberRelationship> findByMember(Actor actor) {
         return getRepository().createCriteriaQuery(GroupMemberRelationship.class)
-                .eq("child", actor)
+                .eq("member", actor)
                 .list();
     }
 
@@ -62,8 +62,8 @@ class GroupMemberRelationship extends AbstractEntity {
      * @param group
      * @return
      */
-    public static List<Actor> findChildrenOf(UserGroup group) {
-        String jpql = "select o.child from GroupMemberRelationship o where o.parent = :group";
+    public static List<Actor> findMembersOf(UserGroup group) {
+        String jpql = "select o.member from GroupMemberRelationship o where o.group = :group";
         return getRepository().createJpqlQuery(jpql).addParameter("group", group).list();
     }
 
@@ -72,8 +72,8 @@ class GroupMemberRelationship extends AbstractEntity {
      * @param actor 用户
      * @return 包含actor作为其直属成员的用户组
      */
-    public static List<UserGroup> getParentsOf(Actor actor) {
-        String jpql = "select o.parent from GroupMemberRelationship o where o.child = :actor";
+    public static List<UserGroup> getGroupsOfMember(Actor actor) {
+        String jpql = "select o.group from GroupMemberRelationship o where o.member = :actor";
         return getRepository().createJpqlQuery(jpql).addParameter("actor", actor).list();
     }
 
@@ -84,7 +84,7 @@ class GroupMemberRelationship extends AbstractEntity {
      * @return 包含用户作为其直属成员的用户组
      */
     public static List<UserGroup> getGroupsOf(User user) {
-        String jpql = "select o.parent from GroupMemberRelationship o where o.child = :user";
+        String jpql = "select o.group from GroupMemberRelationship o where o.member = :user";
         return getRepository().createJpqlQuery(jpql).addParameter("user", user).list();
     }
 
@@ -94,7 +94,7 @@ class GroupMemberRelationship extends AbstractEntity {
      * @return 包含用户作为其直属成员的用户组
      */
     public static UserGroup getParentOf(UserGroup group) {
-        String jpql = "select o.parent from GroupMemberRelationship o where o.child = :group";
+        String jpql = "select o.group from GroupMemberRelationship o where o.member = :group";
         return getRepository().createJpqlQuery(jpql).addParameter("group", group).singleResult();
     }
 }

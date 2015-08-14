@@ -30,7 +30,7 @@ public class UserGroup extends Actor {
     }
 
     public Set<Actor> getMembers() {
-        return ImmutableSet.copyOf(GroupMemberRelationship.findChildrenOf(this));
+        return ImmutableSet.copyOf(GroupMemberRelationship.findMembersOf(this));
     }
 
     public Set<User> getUsers() {
@@ -68,8 +68,8 @@ public class UserGroup extends Actor {
 
     public void removeMembers(Actor... actors) {
         List<Actor> actorsToRemove = Arrays.asList(actors);
-        for (GroupMemberRelationship relationship : GroupMemberRelationship.findByParent(this)) {
-            if (actorsToRemove.contains(relationship.getChild())) {
+        for (GroupMemberRelationship relationship : GroupMemberRelationship.findByGroup(this)) {
+            if (actorsToRemove.contains(relationship.getMember())) {
                 relationship.remove();
             }
         }
@@ -80,10 +80,10 @@ public class UserGroup extends Actor {
         for (UserGroup each : getChildGroups()) {
             each.remove();
         }
-        for (GroupMemberRelationship each : GroupMemberRelationship.findByParent(this)) {
+        for (GroupMemberRelationship each : GroupMemberRelationship.findByGroup(this)) {
             each.remove();
         }
-        for (GroupMemberRelationship each : GroupMemberRelationship.findByChild(this)) {
+        for (GroupMemberRelationship each : GroupMemberRelationship.findByMember(this)) {
             each.remove();
         }
         super.remove();
@@ -94,10 +94,10 @@ public class UserGroup extends Actor {
         for (UserGroup each : getChildGroups()) {
             each.disable(date);
         }
-        for (GroupMemberRelationship each : GroupMemberRelationship.findByParent(this)) {
+        for (GroupMemberRelationship each : GroupMemberRelationship.findByGroup(this)) {
             each.disable(date);
         }
-        for (GroupMemberRelationship each : GroupMemberRelationship.findByChild(this)) {
+        for (GroupMemberRelationship each : GroupMemberRelationship.findByMember(this)) {
             each.disable(date);
         }
         super.disable(date);
