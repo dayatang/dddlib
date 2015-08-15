@@ -44,6 +44,10 @@ public class Role extends Authority {
         }
     }
 
+    public void assignPermissions(Permission... permissions) {
+        assignPermissions(new HashSet<Permission>(Arrays.asList(permissions)));
+    }
+
     public boolean hasPermission(Permission permission) {
         return getPermissions().contains(permission);
     }
