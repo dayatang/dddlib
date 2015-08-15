@@ -13,6 +13,7 @@ public class SecuritySeedDataHelper {
     private Map<String, FunctionalPermission> permissionMap = new HashMap<String, FunctionalPermission>();
     private Map<String, Role> roleMap = new HashMap<String, Role>();
     private Map<String, User> userMap = new HashMap<String, User>();
+    private Map<String, UserGroup> groupMap = new HashMap<String, UserGroup>();
     private Map<String, Authorization> authorizationMap = new HashMap<String, Authorization>();
 
     private FunctionalPermission getOrCreateFunctionalPermission(String functionalPermission) {
@@ -53,6 +54,21 @@ public class SecuritySeedDataHelper {
             userMap.put(userName, user);
         }
         return user;
+    }
+
+    public SecuritySeedDataHelper createGroup(String userGroup) {
+        getOrCreateGroup(userGroup);
+        return this;
+    }
+
+    private SecuritySeedDataHelper getOrCreateGroup(String userGroup) {
+        UserGroup group = groupMap.get(userGroup);
+        if (group == null) {
+            group = UserGroup.create(userGroup);
+            group.save();
+            groupMap.put(userGroup, group);
+        }
+        return this;
     }
 
     public SecuritySeedDataHelper authorizeRoleToUser(String roleName, String userName) {
