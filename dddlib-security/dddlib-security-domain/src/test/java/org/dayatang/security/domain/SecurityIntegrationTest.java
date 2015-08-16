@@ -11,6 +11,9 @@ import static org.junit.Assert.assertThat;
  */
 public class SecurityIntegrationTest extends AbstractSpringIntegrationTest {
 
+    /**
+     * 用户应用有直接分配给他的角色和权限，以及从用户组及上级用户组继承而来的角色和权限
+     */
     @Test
     public void userShouldInheritItsRoleAndGroupsPermission() {
         UserGroup grandGroup = UserGroup.create("grand");
@@ -57,9 +60,16 @@ public class SecurityIntegrationTest extends AbstractSpringIntegrationTest {
         ));
 
         assertThat(user1.getAllPermissions(), hasItems(
-                grandPermission, parentPermission, group1Permission, group2Permission,
-                grandRolePermission, parentRolePermission, group1RolePermission,
-                group2RolePermission, userRolePermission, userPermission
+                grandPermission,
+                parentPermission,
+                group1Permission,
+                group2Permission,
+                grandRolePermission,
+                parentRolePermission,
+                group1RolePermission,
+                group2RolePermission,
+                userRolePermission,
+                userPermission
         ));
     }
 
