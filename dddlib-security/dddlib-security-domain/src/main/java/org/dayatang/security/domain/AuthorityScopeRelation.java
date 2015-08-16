@@ -14,7 +14,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "security_scope_relationship")
-public class ScopeRelation extends AbstractEntity {
+class AuthorityScopeRelation extends AbstractEntity {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private AuthorityScope parent;
@@ -22,10 +22,10 @@ public class ScopeRelation extends AbstractEntity {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private AuthorityScope child;
 
-    protected ScopeRelation() {
+    protected AuthorityScopeRelation() {
     }
 
-    public ScopeRelation(AuthorityScope parent, AuthorityScope child) {
+    public AuthorityScopeRelation(AuthorityScope parent, AuthorityScope child) {
         this.parent = parent;
         this.child = child;
     }
@@ -43,8 +43,8 @@ public class ScopeRelation extends AbstractEntity {
      * @param scope 上级
      * @return
      */
-    public static List<ScopeRelation> findByParent(AuthorityScope scope) {
-        return getRepository().createCriteriaQuery(ScopeRelation.class)
+    static List<AuthorityScopeRelation> findByParent(AuthorityScope scope) {
+        return getRepository().createCriteriaQuery(AuthorityScopeRelation.class)
                 .eq("parent", scope)
                 .isFalse("disabled")
                 .list();
@@ -55,8 +55,8 @@ public class ScopeRelation extends AbstractEntity {
      * @param scope 下级
      * @return
      */
-    public static ScopeRelation getByChild(AuthorityScope scope) {
-        return getRepository().createCriteriaQuery(ScopeRelation.class)
+    static AuthorityScopeRelation getByChild(AuthorityScope scope) {
+        return getRepository().createCriteriaQuery(AuthorityScopeRelation.class)
                 .eq("child", scope)
                 .isFalse("disabled")
                 .singleResult();
@@ -67,9 +67,9 @@ public class ScopeRelation extends AbstractEntity {
      * @param scope
      * @return
      */
-    public static Set<AuthorityScope> getChildrenOf(AuthorityScope scope) {
+    static Set<AuthorityScope> getChildrenOf(AuthorityScope scope) {
         Set<AuthorityScope> results = new HashSet<AuthorityScope>();
-        for (ScopeRelation each : findByParent(scope)) {
+        for (AuthorityScopeRelation each : findByParent(scope)) {
             results.add(each.getChild());
         }
         return results;
@@ -80,8 +80,8 @@ public class ScopeRelation extends AbstractEntity {
      * @param scope
      * @return
      */
-    public static AuthorityScope getParentOf(AuthorityScope scope) {
-        ScopeRelation relation = getByChild(scope);
+    static AuthorityScope getParentOf(AuthorityScope scope) {
+        AuthorityScopeRelation relation = getByChild(scope);
         return relation == null ? null : relation.getParent();
     }
 
