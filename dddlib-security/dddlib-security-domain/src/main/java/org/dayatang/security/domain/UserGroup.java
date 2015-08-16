@@ -15,6 +15,12 @@ import java.util.*;
 @DiscriminatorValue("GROUP")
 public class UserGroup extends Actor {
 
+    @ManyToMany
+    @JoinTable(name = "security_group_member_relationship",
+        joinColumns = @JoinColumn(name = "group_id"),
+        inverseJoinColumns = @JoinColumn(name = "member_id"))
+    private Set<Actor> members = new HashSet<Actor>();
+
     protected UserGroup() {
         super();
     }
@@ -23,12 +29,20 @@ public class UserGroup extends Actor {
         super(name);
     }
 
-    public UserGroup getParent() {
-        return GroupMemberRelationship.getParentOf(this);
+    public Set<Actor> getMembers() {
+        return members;
     }
 
-    public Set<Actor> getMembers() {
-        return ImmutableSet.copyOf(GroupMemberRelationship.getMembersOf(this));
+    public void addMember(Actor actor) {
+        members.add(actor);
+        actor.addParentGroup(this);
+        save();
+    }
+
+    public void removeMember(Actor actor) {
+        members.remove(actor);
+        actor.removeParentGroup(this);
+        save();
     }
 
     public Set<User> getUsers() {
@@ -55,33 +69,9 @@ public class UserGroup extends Actor {
         return getMembers().contains(actor);
     }
 
-    public void addMembers(Actor... actors) {
-        for (Actor actor : actors) {
-            if (hasMember(actor)) {
-                continue;
-            }
-            new GroupMemberRelationship(this, actor).save();
-        }
-    }
-
-    public void removeMembers(Actor... actors) {
-        List<Actor> actorsToRemove = Arrays.asList(actors);
-        for (GroupMemberRelationship relationship : GroupMemberRelationship.findByGroup(this)) {
-            if (actorsToRemove.contains(relationship.getMember())) {
-                relationship.remove();
-            }
-        }
-    }
-
     @Override
     public void remove() {
         for (UserGroup each : getChildGroups()) {
-            each.remove();
-        }
-        for (GroupMemberRelationship each : GroupMemberRelationship.findByGroup(this)) {
-            each.remove();
-        }
-        for (GroupMemberRelationship each : GroupMemberRelationship.findByMember(this)) {
             each.remove();
         }
         super.remove();
@@ -92,18 +82,12 @@ public class UserGroup extends Actor {
         for (UserGroup each : getChildGroups()) {
             each.disable(date);
         }
-        for (GroupMemberRelationship each : GroupMemberRelationship.findByGroup(this)) {
-            each.disable(date);
-        }
-        for (GroupMemberRelationship each : GroupMemberRelationship.findByMember(this)) {
-            each.disable(date);
-        }
         super.disable(date);
     }
 
     public UserGroup createChild(String childGroupName) {
         UserGroup child = create(childGroupName);
-        this.addMembers(child);
+        this.addMember(child);
         return child;
     }
 

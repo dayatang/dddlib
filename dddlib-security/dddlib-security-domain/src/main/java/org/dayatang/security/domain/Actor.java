@@ -1,9 +1,6 @@
 package org.dayatang.security.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.*;
 
 /**
@@ -20,6 +17,9 @@ public abstract class Actor extends AbstractEntity {
 
     //说明
     private String remark;
+
+    @ManyToMany(mappedBy = "members")
+    private Set<UserGroup> parentGroups = new HashSet<UserGroup>();
 
     public Actor() {
     }
@@ -42,6 +42,18 @@ public abstract class Actor extends AbstractEntity {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public Set<UserGroup> getParentGroups() {
+        return parentGroups;
+    }
+
+    public void addParentGroup(UserGroup group) {
+        parentGroups.add(group);
+    }
+
+    public void removeParentGroup(UserGroup group) {
+        parentGroups.remove(group);
     }
 
     @Override
@@ -169,7 +181,7 @@ public abstract class Actor extends AbstractEntity {
     public Set<Role> getAllRoles(AuthorityScope scope) {
         Set<Role> results = new HashSet<Role>();
         results.addAll(getRoles(scope));
-        for (UserGroup group : GroupMemberRelationship.getGroupsOf(this)) {
+        for (UserGroup group : getParentGroups()) {
             results.addAll(group.getAllRoles(scope));
         }
         return results;
@@ -204,7 +216,7 @@ public abstract class Actor extends AbstractEntity {
         for (Role role : getRoles(scope)) {
             results.addAll(role.getPermissions());
         }
-        for (UserGroup group : GroupMemberRelationship.getGroupsOf(this)) {
+        for (UserGroup group : getParentGroups()) {
             results.addAll(group.getAllPermissions(scope));
         }
         return results;
@@ -228,6 +240,9 @@ public abstract class Actor extends AbstractEntity {
         for (Authorization authorization : Authorization.findByActor(this)) {
             authorization.disable(date);
         }
+        for (UserGroup group : getParentGroups()) {
+            group.removeMember(this);
+        }
         super.disable(date);
     }
 
@@ -238,6 +253,9 @@ public abstract class Actor extends AbstractEntity {
     public void remove() {
         for (Authorization authorization : Authorization.findByActor(this)) {
             authorization.remove();
+        }
+        for (UserGroup group : getParentGroups()) {
+            group.removeMember(this);
         }
         super.remove();
     }

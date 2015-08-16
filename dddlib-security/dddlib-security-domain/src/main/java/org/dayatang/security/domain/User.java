@@ -57,10 +57,6 @@ public class User extends Actor implements Principal {
         this.locked = locked;
     }
 
-    public Set<UserGroup> getGroups() {
-        return GroupMemberRelationship.getGroupsOf(this);
-    }
-
     @Override
     public String[] businessKeys() {
         return new String[] {"name"};
@@ -101,36 +97,6 @@ public class User extends Actor implements Principal {
 
     public boolean unmatchPassword(String password) {
         return !matchPassword(password);
-    }
-
-    /**
-     * 加入用户组
-     * @param groups
-     */
-    public void joinGroups(UserGroup... groups) {
-        Set<UserGroup> currentGroups = GroupMemberRelationship.getGroupsOf(this);
-        for (UserGroup group : groups) {
-            if (currentGroups.contains(group)) {
-                continue;
-            }
-            new GroupMemberRelationship(group, this).save();
-        }
-    }
-
-    @Override
-    public void remove() {
-        for (GroupMemberRelationship each : GroupMemberRelationship.findByMember(this)) {
-            each.remove();
-        }
-        super.remove();
-    }
-
-    @Override
-    public void disable(Date date) {
-        for (GroupMemberRelationship each : GroupMemberRelationship.findByMember(this)) {
-            each.remove();
-        }
-        super.disable(date);
     }
 
     /**
