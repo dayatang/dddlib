@@ -42,11 +42,11 @@ public class SecurityIntegrationTest extends AbstractSpringIntegrationTest {
 
         user1.joinGroups(group1, group2);
 
-        grandRole.assignPermissions(grandRolePermission);
-        parentRole.assignPermissions(parentRolePermission);
-        group1Role.assignPermissions(group1RolePermission);
-        group2Role.assignPermissions(group2RolePermission);
-        userRole.assignPermissions(userRolePermission);
+        grandRole.addPermissions(grandRolePermission);
+        parentRole.addPermissions(parentRolePermission);
+        group1Role.addPermissions(group1RolePermission);
+        group2Role.addPermissions(group2RolePermission);
+        userRole.addPermissions(userRolePermission);
 
         grandGroup.grantAuthorities(grandRole, grandPermission);
         parentGroup.grantAuthorities(parentRole, parentPermission);

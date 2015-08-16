@@ -18,6 +18,10 @@ import java.util.*;
 @DiscriminatorValue("ROLE")
 public class Role extends Authority {
 
+    @ManyToMany
+    @JoinTable(name = "security_role_permission")
+    private Set<Permission> permissions = new HashSet<Permission>();
+
     protected Role() {
     }
 
@@ -26,46 +30,44 @@ public class Role extends Authority {
     }
 
     public Set<Permission> getPermissions() {
-        return RolePermissionRelationship.getPermissionsOf(this);
+        return permissions;
     }
 
-    public void assignPermissions(Set<Permission> permissions) {
-        Set<Permission> currentPermissions = getPermissions();
-        for (RolePermissionRelationship each : RolePermissionRelationship.findByRole(this)) {
-            if (!permissions.contains(each.getPermission())) {
-                each.remove();
+    public void setPermissions(Set<Permission> permissions) {
+        for (Permission permission : this.permissions) {
+            if (!permissions.contains(permission)) {
+                removePermissions(permission);
             }
         }
-        for (Permission each : permissions) {
-            if (currentPermissions.contains(each)) {
-                continue;
-            }
-            new RolePermissionRelationship(this, each).save();
-        }
+        addPermissions(permissions);
     }
 
-    public void assignPermissions(Permission... permissions) {
-        assignPermissions(new HashSet<Permission>(Arrays.asList(permissions)));
+    public void addPermissions(Permission... permissions) {
+        addPermissions(Arrays.asList(permissions));
+    }
+
+    private void addPermissions(Collection<Permission> permissions) {
+        for (Permission permission : permissions) {
+            this.permissions.add(permission);
+            permission.addRole(this);
+        }
+        save();
+    }
+
+    public void removePermissions(Permission... permissions) {
+        removePermissions(Arrays.asList(permissions));
+    }
+
+    private void removePermissions(Collection<Permission> permissions) {
+        for (Permission permission : permissions) {
+            this.permissions.remove(permission);
+            permission.removeRole(this);
+        }
+        save();
     }
 
     public boolean hasPermission(Permission permission) {
         return getPermissions().contains(permission);
-    }
-
-    @Override
-    public void remove() {
-        for (RolePermissionRelationship each : RolePermissionRelationship.findByRole(this)) {
-            each.remove();
-        }
-        super.remove();
-    }
-
-    @Override
-    public void disable(Date date) {
-        for (RolePermissionRelationship each : RolePermissionRelationship.findByRole(this)) {
-            each.remove();
-        }
-        super.disable(date);
     }
 
     public static Role get(String id) {

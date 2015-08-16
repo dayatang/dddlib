@@ -90,7 +90,7 @@ public class SecuritySeedDataHelper {
     public void authorizeFunctionToRole(String function, String roleName) {
         FunctionalPermission permission = getOrCreateFunctionalPermission(function);
         Role role = getOrCreateRole(roleName);
-        role.assignPermissions(permission);
+        role.addPermissions(permission);
         role.save();
     }
 

@@ -4,9 +4,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * 许可基类
@@ -15,6 +13,10 @@ import java.util.Objects;
 @Entity
 @DiscriminatorValue("PERM")
 public class Permission extends Authority {
+
+    @ManyToMany(mappedBy = "permissions")
+    private Set<Role> roles = new HashSet<Role>();
+
     protected Permission() {
     }
 
@@ -22,20 +24,20 @@ public class Permission extends Authority {
         super(name);
     }
 
-    @Override
-    public void remove() {
-        for (RolePermissionRelationship each : RolePermissionRelationship.findByPermission(this)) {
-            each.remove();
-        }
-        super.remove();
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    @Override
-    public void disable(Date date) {
-        for (RolePermissionRelationship each : RolePermissionRelationship.findByPermission(this)) {
-            each.remove();
-        }
-        super.disable(date);
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void addRole(Role role) {
+        roles.add(role);
+    }
+
+    public void removeRole(Role role) {
+        roles.remove(role);
     }
 
     public static Permission create(String name) {
