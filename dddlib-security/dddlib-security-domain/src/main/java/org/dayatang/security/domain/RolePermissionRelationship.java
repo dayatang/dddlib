@@ -14,7 +14,7 @@ import java.util.Set;
  * Created by yyang on 15/8/14.
  */
 @Entity
-@Table(name = "role_perm_relationship")
+@Table(name = "security_role_perm_relationship")
 class RolePermissionRelationship extends AbstractEntity {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})

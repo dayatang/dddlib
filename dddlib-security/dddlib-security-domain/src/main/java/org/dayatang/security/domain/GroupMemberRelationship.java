@@ -14,7 +14,7 @@ import java.util.Set;
  * Created by yyang on 15/8/14.
  */
 @Entity
-@Table(name = "group_member_relationship")
+@Table(name = "security_group_member_relationship")
 class GroupMemberRelationship extends AbstractEntity {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -78,6 +78,7 @@ class GroupMemberRelationship extends AbstractEntity {
     public static List<GroupMemberRelationship> findByGroup(UserGroup group) {
         return getRepository().createCriteriaQuery(GroupMemberRelationship.class)
                 .eq("group", group)
+                .isFalse("disabled")
                 .list();
     }
 
@@ -89,6 +90,7 @@ class GroupMemberRelationship extends AbstractEntity {
     public static List<GroupMemberRelationship> findByMember(Actor actor) {
         return getRepository().createCriteriaQuery(GroupMemberRelationship.class)
                 .eq("member", actor)
+                .isFalse("disabled")
                 .list();
     }
 
@@ -98,9 +100,11 @@ class GroupMemberRelationship extends AbstractEntity {
      * @return
      */
     public static Set<Actor> getMembersOf(UserGroup group) {
-        String jpql = "select o.member from GroupMemberRelationship o where o.group = :group";
-        List<Actor> results = getRepository().createJpqlQuery(jpql).addParameter("group", group).list();
-        return new HashSet<Actor>(results);
+        Set<Actor> results = new HashSet<Actor>();
+        for (GroupMemberRelationship each : findByGroup(group)) {
+            results.add(each.getMember());
+        }
+        return results;
     }
 
     /**
@@ -109,9 +113,11 @@ class GroupMemberRelationship extends AbstractEntity {
      * @return 包含actor作为其直属成员的用户组
      */
     public static Set<UserGroup> getGroupsOf(Actor actor) {
-        String jpql = "select o.group from GroupMemberRelationship o where o.member = :actor";
-        List<UserGroup> results = getRepository().createJpqlQuery(jpql).addParameter("actor", actor).list();
-        return new HashSet<UserGroup>(results);
+        Set<UserGroup> results = new HashSet<UserGroup>();
+        for (GroupMemberRelationship each : findByMember(actor)) {
+            results.add(each.getGroup());
+        }
+        return results;
     }
 
     /**
@@ -120,7 +126,10 @@ class GroupMemberRelationship extends AbstractEntity {
      * @return 包含用户作为其直属成员的用户组
      */
     public static UserGroup getParentOf(UserGroup group) {
-        String jpql = "select o.group from GroupMemberRelationship o where o.member = :group";
-        return getRepository().createJpqlQuery(jpql).addParameter("group", group).singleResult();
+        GroupMemberRelationship relationship = getRepository().createCriteriaQuery(GroupMemberRelationship.class)
+                .eq("member", group)
+                .isFalse("disabled")
+                .singleResult();
+        return relationship == null ? null : relationship.getGroup();
     }
 }
