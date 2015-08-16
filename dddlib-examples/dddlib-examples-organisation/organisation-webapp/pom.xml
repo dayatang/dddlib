@@ -235,30 +235,23 @@
                             </cargo.jvmargs>
                         </properties>
                     </configuration>
-                    <!--<deployables>-->
-                    <!--<deployable>-->
-                    <!--<groupId>cn.com.pzhsteel.mes</groupId>-->
-                    <!--<artifactId>mes-prototype</artifactId>-->
-                    <!--<type>ejb</type>-->
-                    <!--</deployable>-->
-                    <!--</deployables>-->
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>start</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>start</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>stop</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>stop</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>start</id>-->
+                        <!--<phase>pre-integration-test</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>start</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                    <!--<execution>-->
+                        <!--<id>stop</id>-->
+                        <!--<phase>post-integration-test</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>stop</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
             </plugin>
             <plugin>
                 <!-- You'll probably want to remove this for your project. I'm just using it here

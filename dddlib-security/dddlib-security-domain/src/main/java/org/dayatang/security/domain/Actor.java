@@ -76,11 +76,11 @@ public abstract class Actor extends AbstractEntity {
     }
 
     /**
-     * 在全局范围内设置直接授予Actor的权限。此前已经授予的权限如果不在此范围内则自动撤销
-     * @param permissions 要设置的权限
+     * 获取在全局范围内设置直接授予Actor的角色，不包括从用户组及用户组的所有上级用户组继承下来的角色。
+     * @return 用户的全部角色
      */
-    public void setPermissions(Set<Permission> permissions) {
-        setPermissions(GlobalAuthorityScope.get(), permissions);
+    public Set<Role> getRoles() {
+        return getRoles(GlobalAuthorityScope.get());
     }
 
     /**
@@ -98,6 +98,22 @@ public abstract class Actor extends AbstractEntity {
      */
     public boolean hasRole(Role role) {
         return getAllRoles(GlobalAuthorityScope.get()).contains(role);
+    }
+
+    /**
+     * 在全局范围内设置直接授予Actor的权限。此前已经授予的权限如果不在此范围内则自动撤销
+     * @param permissions 要设置的权限
+     */
+    public void setPermissions(Set<Permission> permissions) {
+        setPermissions(GlobalAuthorityScope.get(), permissions);
+    }
+
+    /**
+     * 获取在全局范围内设置直接授予Actor的权限，不包括从角色和用户组中继承下来的权限
+     * @return 用户拥有的全部权限
+     */
+    public Set<Permission> getPermissions() {
+        return getPermissions(GlobalAuthorityScope.get());
     }
 
     /**
@@ -131,23 +147,6 @@ public abstract class Actor extends AbstractEntity {
         }
     }
 
-    public Set<Role> getAllRoles(AuthorityScope scope) {
-        Set<Role> results = new HashSet<Role>();
-        results.addAll(getRoles(scope));
-        for (UserGroup group : GroupMemberRelationship.getGroupsOf(this)) {
-            results.addAll(group.getAllRoles(scope));
-        }
-        return results;
-    }
-
-    public boolean hasRole(Role role, AuthorityScope scope) {
-        return getAllRoles(scope).contains(role);
-    }
-
-    public Set<Role> getRoles(AuthorityScope scope) {
-        return Authorization.getAuthoritiesOfActor(this, scope, Role.class);
-    }
-
     public void setRoles(AuthorityScope scope, Role... roles) {
         setRoles(scope, new HashSet<Role>(Arrays.asList(roles)));
     }
@@ -161,6 +160,42 @@ public abstract class Actor extends AbstractEntity {
         for (Role role : roles) {
             Authorization.grantAuthority(this, role, scope);
         }
+    }
+
+    public Set<Role> getRoles(AuthorityScope scope) {
+        return Authorization.getAuthoritiesOfActor(this, scope, Role.class);
+    }
+
+    public Set<Role> getAllRoles(AuthorityScope scope) {
+        Set<Role> results = new HashSet<Role>();
+        results.addAll(getRoles(scope));
+        for (UserGroup group : GroupMemberRelationship.getGroupsOf(this)) {
+            results.addAll(group.getAllRoles(scope));
+        }
+        return results;
+    }
+
+    public boolean hasRole(Role role, AuthorityScope scope) {
+        return getAllRoles(scope).contains(role);
+    }
+
+    public void setPermissions(AuthorityScope scope, Permission... permissions) {
+        setPermissions(scope, new HashSet<Permission>(Arrays.asList(permissions)));
+    }
+
+    public void setPermissions(AuthorityScope scope, Set<Permission> permissions) {
+        for (Authorization authorization : Authorization.findByActor(this, scope)) {
+            if (!permissions.contains(authorization.getAuthority())) {
+                authorization.remove();
+            }
+        }
+        for (Permission permission : permissions) {
+            Authorization.grantAuthority(this, permission, scope);
+        }
+    }
+
+    public Set<Permission> getPermissions(AuthorityScope scope) {
+        return Authorization.getAuthoritiesOfActor(this, scope, Permission.class);
     }
 
     public Set<Permission> getAllPermissions(AuthorityScope scope) {
@@ -182,25 +217,6 @@ public abstract class Actor extends AbstractEntity {
      */
     public boolean hasPermission(Permission permission, AuthorityScope scope) {
         return getAllPermissions(scope).contains(permission);
-    }
-
-    public Set<Permission> getPermissions(AuthorityScope scope) {
-        return Authorization.getAuthoritiesOfActor(this, scope, Permission.class);
-    }
-
-    public void setPermissions(AuthorityScope scope, Permission... permissions) {
-        setPermissions(scope, new HashSet<Permission>(Arrays.asList(permissions)));
-    }
-
-    public void setPermissions(AuthorityScope scope, Set<Permission> permissions) {
-        for (Authorization authorization : Authorization.findByActor(this, scope)) {
-            if (!permissions.contains(authorization.getAuthority())) {
-                authorization.remove();
-            }
-        }
-        for (Permission permission : permissions) {
-            Authorization.grantAuthority(this, permission, scope);
-        }
     }
 
     /**
