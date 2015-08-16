@@ -42,10 +42,10 @@ public class MySecurityRealm extends AuthorizingRealm {
         if (user == null)
             return null;
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        for (Role role : user.getRoles()) {
+        for (Role role : user.getAllRoles()) {
             info.addRole(role.getName());
         }
-        for (Permission permission : user.getPermissions()) {
+        for (Permission permission : user.getAllPermissions()) {
             info.addStringPermission(permission.getName());
         }
         return info;

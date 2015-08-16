@@ -1,7 +1,6 @@
 package org.dayatang.security.domain;
 
 import org.dayatang.springtest.AbstractSpringIntegrationTest;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.hasItems;
@@ -53,11 +52,11 @@ public class SecurityIntegrationTest extends AbstractSpringIntegrationTest {
 
         user1.grantAuthorities(userRole, userPermission);
 
-        assertThat(user1.getRoles(), hasItems(
+        assertThat(user1.getAllRoles(), hasItems(
                 grandRole, parentRole, group2Role, group2Role, userRole
         ));
 
-        assertThat(user1.getPermissions(), hasItems(
+        assertThat(user1.getAllPermissions(), hasItems(
                 grandPermission, parentPermission, group1Permission, group2Permission,
                 grandRolePermission, parentRolePermission, group1RolePermission,
                 group2RolePermission, userRolePermission, userPermission

@@ -149,7 +149,16 @@ public class BeanUtils {
      * @return 属性值
      */
     public Object getPropValue(String propName) {
-        return getPropValues().get(propName);
+        try {
+            PropertyDescriptor propertyDescriptor = beanClassUtils.getPropertyDescriptors().get(propName);
+            Method readMethod = propertyDescriptor.getReadMethod();
+            if (readMethod == null) {
+                return null;
+            }
+            return readMethod.invoke(bean, new Object[]{});
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**

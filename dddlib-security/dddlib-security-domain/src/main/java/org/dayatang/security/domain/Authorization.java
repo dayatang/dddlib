@@ -3,9 +3,7 @@ package org.dayatang.security.domain;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * 授权信息，记录对参与者的权限授予
@@ -59,7 +57,10 @@ public class Authorization extends AbstractEntity {
      * @return 参与者的所有有效授权信息
      */
     static List<Authorization> findByActor(Actor actor) {
-        return findByActor(actor, GlobalAuthorityScope.get());
+        return getRepository().createCriteriaQuery(Authorization.class)
+                .eq("actor", actor)
+                .eq("disabled", false)
+                .list();
     }
 
     static List<Authorization> findByActor(Actor actor, AuthorityScope scope) {
@@ -83,34 +84,22 @@ public class Authorization extends AbstractEntity {
     }
 
     /**
-     * 查找直接授予指定参与者的权限
+     * 查找指定范围内被授予指定参与者的指定类型的所有权力
      * @param actor 参与者
-     * @return 参与者的权限
+     * @param scope 授权范围
+     * @param authorityClass 权力的类
+     * @param <T> 权力的类型
+     * @return 该参与者的权限集合
      */
-    static List<Authority> findAuthoritiesByActor(Actor actor) {
-        List<Authority> results = new ArrayList<Authority>();
-        for (Authorization authorization : findByActor(actor)) {
-            results.add(authorization.getAuthority());
-        }
-        return results;
-    }
-
-    static List<Authority> findAuthoritiesByActor(Actor actor, AuthorityScope scope) {
-        List<Authority> results = new ArrayList<Authority>();
+    static <T extends Authority> Set<T> getAuthoritiesOfActor(Actor actor, AuthorityScope scope, Class<T> authorityClass) {
+        Set<T> results = new HashSet<T>();
         for (Authorization authorization : findByActor(actor, scope)) {
-            results.add(authorization.getAuthority());
+            Authority authority = authorization.getAuthority();
+            if (authorityClass.isInstance(authority)) {
+                results.add((T) authority);
+            }
         }
         return results;
-    }
-
-    public static void when(ActorDisabledEvent event) {
-        for (Authorization authorization : Authorization.findByActor(event.getActor())) {
-            authorization.disable(event.occurredOn());
-        }
-    }
-
-    static Authorization get(Actor actor, Authority authority) {
-        return get(actor, authority, GlobalAuthorityScope.get());
     }
 
     static Authorization get(Actor actor, Authority authority, AuthorityScope scope) {
@@ -122,19 +111,11 @@ public class Authorization extends AbstractEntity {
                 .singleResult();
     }
 
-    static void grantAuthority(Actor actor, Authority authority) {
-        grantAuthority(actor, authority, GlobalAuthorityScope.get());
-    }
-
     static void grantAuthority(Actor actor, Authority authority, AuthorityScope scope) {
         if (Authorization.get(actor, authority, scope) != null) {
             throw new DuplicateAuthorizationException();
         }
         new Authorization(actor, authority, scope).save();
-    }
-
-    static void withdrawAuthority(Actor actor, Authority authority) {
-        withdrawAuthority(actor, authority, GlobalAuthorityScope.get());
     }
 
     static void withdrawAuthority(Actor actor, Authority authority, AuthorityScope scope) {
