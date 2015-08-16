@@ -2,6 +2,7 @@ package org.dayatang.security.domain;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.util.Objects;
 
 /**
  * 功能权限，每一个功能权限权限代表一个细粒度的系统功能，例如服务号消息群发、员工导入、应用下架……等等等等。
@@ -31,22 +32,19 @@ public class FunctionalPermission extends Permission {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof FunctionalPermission)) return false;
-        if (!super.equals(o)) return false;
-
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof FunctionalPermission)) {
+            return false;
+        }
         FunctionalPermission that = (FunctionalPermission) o;
-
-        if (!systemFunction.equals(that.systemFunction)) return false;
-
-        return true;
+        return Objects.equals(this.getSystemFunction(), that.getSystemFunction());
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + systemFunction.hashCode();
-        return result;
+        return Objects.hash(getSystemFunction());
     }
 
     public static FunctionalPermission getByFunction(String systemFunction) {

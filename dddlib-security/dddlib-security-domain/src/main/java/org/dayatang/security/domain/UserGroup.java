@@ -1,6 +1,8 @@
 package org.dayatang.security.domain;
 
 import com.google.common.collect.ImmutableSet;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
 import java.util.*;
@@ -103,6 +105,12 @@ public class UserGroup extends Actor {
         super.disable(date);
     }
 
+    public UserGroup createChild(String childGroupName) {
+        UserGroup child = create(childGroupName);
+        this.addMembers(child);
+        return child;
+    }
+
     public static UserGroup create(String name) {
         UserGroup group = new UserGroup(name);
         group.save();
@@ -128,19 +136,25 @@ public class UserGroup extends Actor {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof UserGroup)) {
-            return false;
-        }
-        UserGroup that = (UserGroup) o;
-        return Objects.equals(this.getId(), that.getId());
+    public int hashCode() {
+        return new HashCodeBuilder(17, 23).append(getName()).toHashCode();
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getName());
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof UserGroup)) {
+            return false;
+        }
+        UserGroup that = (UserGroup) other;
+        return new EqualsBuilder().append(this.getName(), that.getName()).isEquals();
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
+
 }

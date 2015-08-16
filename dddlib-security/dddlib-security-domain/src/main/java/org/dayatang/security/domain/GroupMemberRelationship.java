@@ -6,6 +6,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -36,6 +37,37 @@ class GroupMemberRelationship extends AbstractEntity {
 
     public Actor getMember() {
         return member;
+    }
+
+    @Override
+    public String[] businessKeys() {
+        return new String[] {"group", "member"};
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof GroupMemberRelationship)) {
+            return false;
+        }
+        GroupMemberRelationship that = (GroupMemberRelationship) o;
+        return Objects.equals(getGroup(), that.getGroup()) &&
+                Objects.equals(getMember(), that.getMember());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getGroup(), getMember());
+    }
+
+    @Override
+    public String toString() {
+        return "GroupMemberRelationship{" +
+                "group=" + group +
+                ", member=" + member +
+                '}';
     }
 
     /**

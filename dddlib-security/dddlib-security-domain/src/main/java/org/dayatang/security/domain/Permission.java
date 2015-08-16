@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 许可基类
@@ -53,5 +54,27 @@ public class Permission extends Authority {
 
     public static List<Permission> list() {
         return findAll(Permission.class);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Permission)) {
+            return false;
+        }
+        Permission that = (Permission) o;
+        return Objects.equals(getName(), that.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName());
+    }
+
+    @Override
+    public String toString() {
+        return "Permission{" + getName() + "}";
     }
 }

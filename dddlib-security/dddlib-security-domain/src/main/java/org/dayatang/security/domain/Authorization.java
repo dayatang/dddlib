@@ -5,6 +5,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 授权信息，记录对参与者的权限授予
@@ -141,5 +142,24 @@ public class Authorization extends AbstractEntity {
         if (authorization != null) {
             authorization.remove();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Authorization)) {
+            return false;
+        }
+        Authorization that = (Authorization) o;
+        return Objects.equals(getActor(), that.getActor()) &&
+                Objects.equals(getAuthority(), that.getAuthority()) &&
+                Objects.equals(scope, that.scope);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getActor(), getAuthority(), scope);
     }
 }

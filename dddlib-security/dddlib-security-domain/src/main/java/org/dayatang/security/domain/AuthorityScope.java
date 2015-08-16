@@ -17,7 +17,7 @@ public abstract class AuthorityScope extends AbstractEntity {
 
     private String name;
 
-    public AuthorityScope() {
+    protected AuthorityScope() {
     }
 
     public AuthorityScope(String name) {
@@ -29,24 +29,8 @@ public abstract class AuthorityScope extends AbstractEntity {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof AuthorityScope)) {
-            return false;
-        }
-        AuthorityScope that = (AuthorityScope) o;
-        return Objects.equals(getName(), that.getName());
+    public String[] businessKeys() {
+        return new String[] {"name"};
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), getName());
-    }
-
-    @Override
-    public String toString() {
-        return name;
-    }
 }

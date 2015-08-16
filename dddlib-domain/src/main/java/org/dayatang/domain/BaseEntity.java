@@ -74,7 +74,7 @@ public abstract class BaseEntity implements Entity {
      * @return 组成业务主键的属性的数组。
      */
     public String[] businessKeys() {
-        return new String[] {};
+        return new String[] {"id"};
     }
 
     /**
@@ -85,12 +85,12 @@ public abstract class BaseEntity implements Entity {
     @Override
     public int hashCode() {
         HashCodeBuilder builder = new HashCodeBuilder(13, 37);
-        Map<String, Object> propValues = new BeanUtils(this).getPropValues();
         if (businessKeys() == null || businessKeys().length == 0) {
             return builder.append(getId()).toHashCode();
         }
+        BeanUtils thisBeanUtils = new BeanUtils(this);
         for (String businessKey : businessKeys()) {
-            builder = builder.append(propValues.get(businessKey));
+            builder = builder.append(thisBeanUtils.getPropValue(businessKey));
         }
         return builder.toHashCode();
     }
@@ -116,14 +116,14 @@ public abstract class BaseEntity implements Entity {
             if (!(entity.getClass().isAssignableFrom(other.getClass()))) {
                 return false;
             }
-            if (entity.businessKeys() == null || entity.businessKeys().length == 0) {
-                return entity.getId().equals(((BaseEntity)other).getId());
-            }
-            Map<String, Object> thisPropValues = new BeanUtils(entity).getPropValuesExclude(Transient.class);
-            Map<String, Object> otherPropValues = new BeanUtils(other).getPropValuesExclude(Transient.class);
+            BeanUtils thisBeanUtils = new BeanUtils(entity);
+            BeanUtils thatBeanUtils = new BeanUtils(other);
             EqualsBuilder builder = new EqualsBuilder();
+            if (entity.businessKeys() == null || entity.businessKeys().length == 0) {
+                return builder.append(entity.getId(), ((BaseEntity)other).getId()).isEquals();
+            }
             for (String businessKey : entity.businessKeys()) {
-                builder.append(thisPropValues.get(businessKey), otherPropValues.get(businessKey));
+                builder.append(thisBeanUtils.getPropValue(businessKey), thatBeanUtils.getPropValue(businessKey));
             }
             return builder.isEquals();
         }

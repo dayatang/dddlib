@@ -6,6 +6,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -38,6 +39,11 @@ class RolePermissionRelationship extends AbstractEntity {
         return permission;
     }
 
+    @Override
+    public String[] businessKeys() {
+        return new String[] {"role", "permission"};
+    }
+
     public static List<RolePermissionRelationship> findByRole(Role role) {
         return getRepository().createCriteriaQuery(RolePermissionRelationship.class)
                 .eq("role", role)
@@ -64,5 +70,23 @@ class RolePermissionRelationship extends AbstractEntity {
             results.add(each.getRole());
         }
         return results;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof RolePermissionRelationship)) {
+            return false;
+        }
+        RolePermissionRelationship that = (RolePermissionRelationship) o;
+        return Objects.equals(getRole(), that.getRole()) &&
+                Objects.equals(getPermission(), that.getPermission());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getRole(), getPermission());
     }
 }
