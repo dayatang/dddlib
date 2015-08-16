@@ -15,10 +15,6 @@ import java.util.*;
 @DiscriminatorValue("GROUP")
 public class UserGroup extends Actor {
 
-    @ManyToMany
-    @JoinTable(name = "security_group_user")
-    private Set<User> users = new HashSet<User>();
-
     protected UserGroup() {
         super();
     }

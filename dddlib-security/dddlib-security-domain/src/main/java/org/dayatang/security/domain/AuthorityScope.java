@@ -37,15 +37,30 @@ public abstract class AuthorityScope extends AbstractEntity {
      * 获取所属的上级范围
      * @return 如果找到，返回之，否则返回null
      */
-    public AuthorityScope getParent() {
-        return AuthorityScopeRelation.getParentOf(this);
-    }
+    public abstract AuthorityScope getParent();
 
     /**
      * 获取下属范围
      * @return 下属范围。
      */
-    public Set<AuthorityScope> getChildren() {
-        return AuthorityScopeRelation.getChildrenOf(this);
+    public abstract Set<? extends AuthorityScope> getChildren();
+
+    /**
+     * 是否包含指定的范围
+     * @param scope 授权范围
+     * @return 如果包含，返回true;否则返回false
+     */
+    public boolean contains(AuthorityScope scope) {
+        if (scope == null) {
+            return false;
+        }
+        AuthorityScope parent = scope.getParent();
+        while (parent != null) {
+            if (parent.equals(this)) {
+                return true;
+            }
+            parent = parent.getParent();
+        }
+        return false;
     }
 }

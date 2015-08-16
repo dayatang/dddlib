@@ -2,7 +2,9 @@ package org.dayatang.security.domain;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Created by yyang on 15/7/27.
@@ -18,6 +20,16 @@ public class GlobalAuthorityScope extends AuthorityScope {
     @Override
     public String toString() {
         return "GlobalAuthorityScope{}";
+    }
+
+    @Override
+    public AuthorityScope getParent() {
+        return null;
+    }
+
+    @Override
+    public Set<AuthorityScope> getChildren() {
+        return new HashSet<AuthorityScope>();
     }
 
     public static final GlobalAuthorityScope get() {
