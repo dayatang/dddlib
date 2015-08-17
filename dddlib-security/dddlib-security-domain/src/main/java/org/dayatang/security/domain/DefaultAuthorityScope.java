@@ -66,4 +66,10 @@ public class DefaultAuthorityScope extends AuthorityScope {
         addChildren(child);
         return child;
     }
+
+    public static DefaultAuthorityScope create(String scopeName) {
+        DefaultAuthorityScope scope = new DefaultAuthorityScope(scopeName);
+        scope.save();
+        return scope;
+    }
 }
