@@ -2,6 +2,7 @@ package org.dayatang.security.domain;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -29,7 +30,7 @@ public class GlobalAuthorizationScope extends AuthorizationScope {
 
     @Override
     public Set<AuthorizationScope> getChildren() {
-        return new HashSet<AuthorizationScope>();
+        return Collections.emptySet();
     }
 
     public static final GlobalAuthorizationScope get() {
