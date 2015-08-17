@@ -111,9 +111,9 @@ public class SecurityIntegrationTest extends AbstractSpringIntegrationTest {
      */
     public void scopedAuthorization() {
 
-        DefaultAuthorityScope grandScope = DefaultAuthorityScope.create("grandScope");
-        DefaultAuthorityScope parentScope = grandScope.createChild("parentScope");
-        DefaultAuthorityScope childScope = parentScope.createChild("childScope");
+        DefaultAuthorizationScope grandScope = DefaultAuthorizationScope.create("grandScope");
+        DefaultAuthorizationScope parentScope = grandScope.createChild("parentScope");
+        DefaultAuthorizationScope childScope = parentScope.createChild("childScope");
 
         grandGroup.grantAuthorities(grandScope, grandRole, grandPermission);
         parentGroup.grantAuthorities(parentScope, parentRole, parentPermission);

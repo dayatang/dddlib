@@ -255,7 +255,7 @@
             </plugin>
             <plugin>
                 <!-- You'll probably want to remove this for your project. I'm just using it here
-                     so that dropwizard-example doesn't get deployed as a library. -->
+                     so that dropwizard-example doesn't getByOrganization deployed as a library. -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
                 <configuration>
@@ -264,7 +264,7 @@
             </plugin>
             <plugin>
                 <!-- You'll probably want to remove this for your project. I'm just using it here
-                     so that dropwizard-example site doesn't get staged and deployed. -->
+                     so that dropwizard-example site doesn't getByOrganization staged and deployed. -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
                 <configuration>

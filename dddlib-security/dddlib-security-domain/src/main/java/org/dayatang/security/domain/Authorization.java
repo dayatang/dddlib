@@ -23,16 +23,16 @@ public class Authorization extends AbstractEntity {
 
     //授权范围
     @ManyToOne
-    private AuthorityScope scope;
+    private AuthorizationScope scope;
 
     protected Authorization() {
     }
 
     public Authorization(Actor actor, Authority authority) {
-        this(actor, authority, GlobalAuthorityScope.get());
+        this(actor, authority, GlobalAuthorizationScope.get());
     }
 
-    public Authorization(Actor actor, Authority authority, AuthorityScope scope) {
+    public Authorization(Actor actor, Authority authority, AuthorizationScope scope) {
         this.actor = actor;
         this.authority = authority;
         this.scope = scope;
@@ -63,7 +63,7 @@ public class Authorization extends AbstractEntity {
                 .list();
     }
 
-    static List<Authorization> findByActor(Actor actor, AuthorityScope scope) {
+    static List<Authorization> findByActor(Actor actor, AuthorizationScope scope) {
         return getRepository().createCriteriaQuery(Authorization.class)
                 .eq("actor", actor)
                 .eq("scope", scope)
@@ -91,7 +91,7 @@ public class Authorization extends AbstractEntity {
      * @param <T> 权力的类型
      * @return 该参与者的权限集合
      */
-    static <T extends Authority> Set<T> getAuthoritiesOfActor(Actor actor, AuthorityScope scope, Class<T> authorityClass) {
+    static <T extends Authority> Set<T> getAuthoritiesOfActor(Actor actor, AuthorizationScope scope, Class<T> authorityClass) {
         Set<T> results = new HashSet<T>();
         for (Authorization authorization : findByActor(actor, scope)) {
             Authority authority = authorization.getAuthority();
@@ -102,7 +102,7 @@ public class Authorization extends AbstractEntity {
         return results;
     }
 
-    static Authorization get(Actor actor, Authority authority, AuthorityScope scope) {
+    static Authorization get(Actor actor, Authority authority, AuthorizationScope scope) {
         return getRepository().createCriteriaQuery(Authorization.class)
                 .eq("actor", actor)
                 .eq("authority", authority)
@@ -111,14 +111,14 @@ public class Authorization extends AbstractEntity {
                 .singleResult();
     }
 
-    static void grantAuthority(Actor actor, Authority authority, AuthorityScope scope) {
+    static void grantAuthority(Actor actor, Authority authority, AuthorizationScope scope) {
         if (Authorization.get(actor, authority, scope) != null) {
             throw new DuplicateAuthorizationException();
         }
         new Authorization(actor, authority, scope).save();
     }
 
-    static void withdrawAuthority(Actor actor, Authority authority, AuthorityScope scope) {
+    static void withdrawAuthority(Actor actor, Authority authority, AuthorizationScope scope) {
         Authorization authorization = Authorization.get(actor, authority, scope);
         if (authorization != null) {
             authorization.remove();
