@@ -26,7 +26,6 @@ import java.util.Date;
  */
 public interface OrganisationFacade {
 
-
     void createOrganization(OrganizationDto orgToCreate, Long parentOrgId, Date date);
 
     void terminateParty(Long partyId, Date date);

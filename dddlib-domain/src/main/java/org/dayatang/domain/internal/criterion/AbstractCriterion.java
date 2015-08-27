@@ -22,10 +22,7 @@ public abstract class AbstractCriterion implements QueryCriterion {
      */
     @Override
     public QueryCriterion and(QueryCriterion criterion) {
-        if (criterion instanceof EmptyCriterion) {
-            return this;
-        }
-        return new AndCriterion(this, criterion);
+        return criterion.isEmpty() ? this : new AndCriterion(this, criterion);
     }
 
     /**
@@ -36,10 +33,7 @@ public abstract class AbstractCriterion implements QueryCriterion {
      */
     @Override
     public QueryCriterion or(QueryCriterion criterion) {
-        if (criterion instanceof EmptyCriterion) {
-            return this;
-        }
-        return new OrCriterion(this, criterion);
+        return criterion.isEmpty() ? this : new OrCriterion(this, criterion);
     }
 
     /**
