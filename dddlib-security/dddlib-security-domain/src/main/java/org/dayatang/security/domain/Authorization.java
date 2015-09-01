@@ -46,6 +46,10 @@ public class Authorization extends AbstractEntity {
         return authority;
     }
 
+    public AuthorizationScope getScope() {
+        return scope;
+    }
+
     @Override
     public String[] businessKeys() {
         return new String[] {"actor", "authority", "scope"};
