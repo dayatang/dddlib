@@ -61,6 +61,21 @@ public abstract class Actor extends AbstractEntity {
         return new String[] {"name"};
     }
 
+    /**
+     * 获取所有的授权范围，以便可以获取每个范围内授予当前actor的角色和权限
+     * @return 当前actor的所有授权范围
+     */
+    public Set<AuthorizationScope> getScopes() {
+        Set<AuthorizationScope> results = new HashSet<AuthorizationScope>();
+        for (Authorization authorization : Authorization.findByActor(this)) {
+            results.add(authorization.getScope());
+        }
+        for (UserGroup group : getParentGroups()) {
+            results.addAll(group.getScopes());
+        }
+        return results;
+    }
+
     /*=====================================全局范围的=============================*/
 
     /**
