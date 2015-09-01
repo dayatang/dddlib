@@ -62,19 +62,7 @@ public class OrgAuthorizationScope extends AuthorizationScope {
     }
 
     /**
-     * 根据机构获取机构授权范围。
-     * @param organization 机构
-     * @return 机构授权范围。如果不存在则返回null
-     */
-    public static OrgAuthorizationScope getByOrganization(Organization organization) {
-        return createCriteriaQuery(OrgAuthorizationScope.class)
-                .eq("organization", organization)
-                .isFalse("disabled")
-                .singleResult();
-    }
-
-    /**
-     * 根据代表指定机构的机构授权范围。如果不存在则创建一个
+     * 获取代表指定机构的授权范围。如果不存在则创建一个
      * @param organization 机构
      * @return 代表该机构的机构授权范围
      */
