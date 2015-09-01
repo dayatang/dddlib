@@ -12,6 +12,6 @@
     <name>DDDLib Examples</name>
     <description>DDDLib usage examples.</description>
     <modules>
-        <module>dddlib-examples-organisation</module>
+        <module>organisation-project</module>
     </modules>
 </project>

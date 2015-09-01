@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-    <artifactId>dddlib-examples-organisation</artifactId>
-    <groupId>org.dddlib.examples.organisation</groupId>
-    <version>5.0.0-SNAPSHOT</version>
-  </parent>
+        <groupId>org.dddlib.organisation</groupId>
+        <artifactId>organisation-project</artifactId>
+        <version>5.0.0-SNAPSHOT</version>
+    </parent>
 
-    <groupId>org.dddlib.examples.organisation</groupId>
     <artifactId>organisation-webapp</artifactId>
     <packaging>war</packaging>
 
-  <name>DDDLib Example - Organization Structure - Webapp</name>
+    <name>DDDLib Example - Organization Structure - Webapp</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jetty.port>8688</jetty.port>
     </properties>
-    
+
     <dependencies>
         <!--Compile-->
         <dependency>
@@ -207,13 +207,17 @@
                 <configuration>
                     <skip>${maven.skip.test}</skip>
                     <container>
-                        <type>embedded</type><!--有installed, embedded 和 remote三种选择-->
+                        <type>embedded</type>
+                        <!--有installed, embedded 和 remote三种选择-->
                         <containerId>jetty9x</containerId>
                         <zipUrlInstaller>
-                            <url>http://download.eclipse.org/jetty/stable-9/dist/jetty-distribution-9.3.0.v20150612.zip</url>
+                            <url>
+                                http://download.eclipse.org/jetty/stable-9/dist/jetty-distribution-9.3.0.v20150612.zip
+                            </url>
                         </zipUrlInstaller>
                         <output>${project.build.directory}/logs</output>
-                        <timeout>300000</timeout><!-- 5 minutes -->
+                        <timeout>300000</timeout>
+                        <!-- 5 minutes -->
                         <systemProperties>
                             <jboss.server.log.threshold>INFO</jboss.server.log.threshold>
                         </systemProperties>
@@ -221,7 +225,8 @@
                         </dependencies>
                     </container>
                     <configuration>
-                        <type>standalone</type><!--有standalone, existing和runtime三种选择-->
+                        <type>standalone</type>
+                        <!--有standalone, existing和runtime三种选择-->
                         <properties>
                             <cargo.servlet.port>${jetty.port}</cargo.servlet.port>
                             <cargo.rmi.port>1099</cargo.rmi.port>
@@ -237,20 +242,20 @@
                     </configuration>
                 </configuration>
                 <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>start</id>-->
-                        <!--<phase>pre-integration-test</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>start</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                    <!--<execution>-->
-                        <!--<id>stop</id>-->
-                        <!--<phase>post-integration-test</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>stop</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
+                <!--<execution>-->
+                <!--<id>start</id>-->
+                <!--<phase>pre-integration-test</phase>-->
+                <!--<goals>-->
+                <!--<goal>start</goal>-->
+                <!--</goals>-->
+                <!--</execution>-->
+                <!--<execution>-->
+                <!--<id>stop</id>-->
+                <!--<phase>post-integration-test</phase>-->
+                <!--<goals>-->
+                <!--<goal>stop</goal>-->
+                <!--</goals>-->
+                <!--</execution>-->
                 <!--</executions>-->
             </plugin>
             <plugin>
