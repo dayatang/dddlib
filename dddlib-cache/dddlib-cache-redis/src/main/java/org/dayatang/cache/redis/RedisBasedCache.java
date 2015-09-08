@@ -6,7 +6,6 @@ import org.dayatang.cache.redis.pool.JedisPoolUtil;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
-import java.awt.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,93 +19,97 @@ public class RedisBasedCache implements Cache {
 
     private JedisPool jedisPool = null;
 
+    private JedisTemplate template;
+
     public RedisBasedCache(String host, int port) {
-        jedisPool = new JedisPool(JedisPoolUtil.createJedisPoolConfig(),host,port);
+        jedisPool = new JedisPool(JedisPoolUtil.createJedisPoolConfig(), host, port);
+        template = new JedisTemplate(jedisPool);
     }
 
     public RedisBasedCache(String host, int port, String password) {
-        jedisPool = new JedisPool(JedisPoolUtil.createJedisPoolConfig(),host,port, 10000,password);
+        jedisPool = new JedisPool(JedisPoolUtil.createJedisPoolConfig(), host, port, 10000, password);
+        template = new JedisTemplate(jedisPool);
     }
 
     @Override
-    public Object get(String key) {
-        byte[] keyBytes = SerializationUtils.serialize(key);
-        Jedis jedis = jedisPool.getResource();
-        try {
-            if (jedis.exists(keyBytes)) {
-                byte[] valueBytes = jedis.get(keyBytes);
-                return SerializationUtils.deserialize(valueBytes);
+    public Object get(final String key) {
+        return template.execute(new JedisFunction<Object>() {
+            @Override
+            public Object doInRedis(Jedis jedis) {
+                final byte[] keyBytes = SerializationUtils.serialize(key);
+                return SerializationUtils.deserialize(jedis.get(keyBytes));
             }
-        } finally {
-            jedis.close();
-        }
-
-        return null;
+        });
     }
 
     @Override
-    public Map<String, Object> get(String... keys) {
-        Map<String, Object> values = new HashMap<String, Object>();
-        for (String key : keys) {
-            values.put(key, get(key));
-        }
-        return values;
+    public Map<String, Object> get(final String... keys) {
+        return template.execute(new JedisFunction<Map<String, Object>>() {
+            @Override
+            public Map<String, Object> doInRedis(Jedis jedis) {
+                final Map<String, Object> values = new HashMap<String, Object>();
+                for (String key : keys) {
+                    byte[] keyBytes = SerializationUtils.serialize(key);
+                    values.put(key, SerializationUtils.deserialize(jedis.get(keyBytes)));
+                }
+                return values;
+            }
+        });
     }
 
     @Override
-    public void put(String key, Object value) {
-        Jedis jedis = null;
-        try {
-            jedis = jedisPool.getResource();
-            byte[] keyBytes = SerializationUtils.serialize(key);
-            byte[] valueBytes = SerializationUtils.serialize((Serializable) value);
-            jedis.set(keyBytes, valueBytes);
-        } finally {
-            jedis.close();
-        }
+    public void put(final String key, final Object value) {
+        template.execute(new JedisAction() {
+            @Override
+            public void doInRedis(Jedis jedis) {
+                byte[] keyBytes = SerializationUtils.serialize(key);
+                byte[] valueBytes = SerializationUtils.serialize((Serializable) value);
+                jedis.set(keyBytes, valueBytes);
+            }
+        });
     }
 
 
     @Override
     public void put(String key, Object value, Date expiry) {
-        Date now = new Date();
-        long living = (expiry.getTime() - now.getTime()) / 1000;
-        put(key, value, living);
+        long livingSeconds = (expiry.getTime() - new Date().getTime()) / 1000;
+        put(key, value, livingSeconds);
     }
 
     @Override
-    public void put(String key, Object value, long living) {
-        Jedis jedis = null;
-        try {
-            jedis = jedisPool.getResource();
-            byte[] keyBytes = SerializationUtils.serialize(key);
-            byte[] valueBytes = SerializationUtils.serialize((Serializable) value);
-            jedis.setex(keyBytes, (int) living, valueBytes);
-        } finally {
-            jedis.close();
-        }
+    public void put(final String key, final Object value, final long livingSeconds) {
+        template.execute(new JedisAction() {
+            @Override
+            public void doInRedis(Jedis jedis) {
+                byte[] keyBytes = SerializationUtils.serialize(key);
+                byte[] valueBytes = SerializationUtils.serialize((Serializable) value);
+                jedis.setex(keyBytes, (int) livingSeconds, valueBytes);
+            }
+        });
     }
 
     @Override
-    public boolean remove(String key) {
-        Jedis jedis = null;
-        try {
-            jedis = jedisPool.getResource();
-            jedis.del(SerializationUtils.serialize(key));
-        } finally {
-            jedis.close();
-        }
-        return false;
+    public boolean remove(final String key) {
+        return template.execute(new JedisFunction<Boolean>() {
+            @Override
+            public Boolean doInRedis(Jedis jedis) {
+                try {
+                    jedis.del(SerializationUtils.serialize(key));
+                    return true;
+                } catch (Exception e) {
+                    return false;
+                }
+            }
+        });
     }
 
     @Override
-    public boolean containsKey(String key) {
-        Jedis jedis = null;
-        try {
-            jedis = jedisPool.getResource();
-            return jedis.exists(SerializationUtils.serialize(key));
-        } finally {
-            jedis.close();
-        }
+    public boolean containsKey(final String key) {
+        return template.execute(new JedisFunction<Boolean>() {
+            @Override
+            public Boolean doInRedis(Jedis jedis) {
+                return jedis.exists(SerializationUtils.serialize(key));
+            }
+        });
     }
 }
