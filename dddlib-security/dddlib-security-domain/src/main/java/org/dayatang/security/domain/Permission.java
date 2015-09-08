@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.*;
 
 /**
- * 许可基类
+ * 许可，代表对系统一项细粒度功能的访问权限。或者不太精确地说，代表一项具体的系统功能
  * Created by yyang on 15/1/13.
  */
 @Entity
