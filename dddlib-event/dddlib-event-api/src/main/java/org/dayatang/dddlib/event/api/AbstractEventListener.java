@@ -9,7 +9,7 @@ import com.google.common.reflect.TypeToken;
 public abstract class AbstractEventListener<T extends Event> implements EventListener<T> {
 
     @Override
-    public void onEvent(Event event) {
+    public void onEvent(T event) {
         if (!supports(event)) {
             return;
         }
