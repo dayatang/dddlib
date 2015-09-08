@@ -14,30 +14,11 @@ import java.util.*;
 @DiscriminatorValue("PERM")
 public class Permission extends Authority {
 
-    @ManyToMany(mappedBy = "permissions")
-    private Set<Role> roles = new HashSet<Role>();
-
     protected Permission() {
     }
 
     public Permission(String name) {
         super(name);
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    public void addRole(Role role) {
-        roles.add(role);
-    }
-
-    public void removeRole(Role role) {
-        roles.remove(role);
     }
 
     public static Permission create(String name) {

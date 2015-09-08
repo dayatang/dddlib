@@ -38,7 +38,7 @@ public class RedisBasedCache implements Cache {
                 return SerializationUtils.deserialize(valueBytes);
             }
         } finally {
-            returnJedis(jedis);
+            jedis.close();
         }
 
         return null;
@@ -62,7 +62,7 @@ public class RedisBasedCache implements Cache {
             byte[] valueBytes = SerializationUtils.serialize((Serializable) value);
             jedis.set(keyBytes, valueBytes);
         } finally {
-            returnJedis(jedis);
+            jedis.close();
         }
 
 
@@ -74,7 +74,6 @@ public class RedisBasedCache implements Cache {
         Date now = new Date();
         long living = (expiry.getTime() - now.getTime()) / 1000;
         put(key, value, living);
-
     }
 
     @Override
@@ -86,7 +85,7 @@ public class RedisBasedCache implements Cache {
             byte[] valueBytes = SerializationUtils.serialize((Serializable) value);
             jedis.setex(keyBytes, (int) living, valueBytes);
         } finally {
-            returnJedis(jedis);
+            jedis.close();
         }
     }
 
@@ -97,7 +96,7 @@ public class RedisBasedCache implements Cache {
             jedis = getJedis();
             jedis.del(SerializationUtils.serialize(key));
         } finally {
-            returnJedis(jedis);
+            jedis.close();
         }
         return false;
     }
@@ -109,15 +108,11 @@ public class RedisBasedCache implements Cache {
             jedis = getJedis();
             return jedis.exists(SerializationUtils.serialize(key));
         } finally {
-            returnJedis(jedis);
+            jedis.close();
         }
     }
 
     private Jedis getJedis() {
         return jedisPool.getResource();
-    }
-
-    private void returnJedis(Jedis jedis) {
-        jedisPool.returnResourceObject(jedis);
     }
 }

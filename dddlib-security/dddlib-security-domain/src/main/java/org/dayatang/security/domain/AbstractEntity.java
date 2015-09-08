@@ -261,6 +261,6 @@ public abstract class AbstractEntity extends BaseEntity {
      * @return 针对某种实体类的条件查询
      */
     public static <T extends AbstractEntity> CriteriaQuery createCriteriaQuery(Class<T> entityClass) {
-        return getRepository().createCriteriaQuery(entityClass).eq("disabled", false);
+        return getRepository().createCriteriaQuery(entityClass).isFalse("disabled");
     }
 }

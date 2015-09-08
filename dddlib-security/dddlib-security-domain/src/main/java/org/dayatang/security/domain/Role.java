@@ -29,41 +29,21 @@ public class Role extends Authority {
         super(name);
     }
 
+    public Role(String name, Set<Permission> permissions) {
+        super(name);
+        this.permissions = permissions;
+    }
+
     public Set<Permission> getPermissions() {
         return permissions;
     }
 
     public void setPermissions(Set<Permission> permissions) {
-        for (Permission permission : this.permissions) {
-            if (!permissions.contains(permission)) {
-                removePermissions(permission);
-            }
-        }
-        addPermissions(permissions);
+        this.permissions = permissions;
     }
 
-    public void addPermissions(Permission... permissions) {
-        addPermissions(Arrays.asList(permissions));
-    }
-
-    private void addPermissions(Collection<Permission> permissions) {
-        for (Permission permission : permissions) {
-            this.permissions.add(permission);
-            permission.addRole(this);
-        }
-        save();
-    }
-
-    public void removePermissions(Permission... permissions) {
-        removePermissions(Arrays.asList(permissions));
-    }
-
-    private void removePermissions(Collection<Permission> permissions) {
-        for (Permission permission : permissions) {
-            this.permissions.remove(permission);
-            permission.removeRole(this);
-        }
-        save();
+    public void setPermissions(Permission... permissions) {
+        this.permissions = new HashSet<Permission>(Arrays.asList(permissions));
     }
 
     public boolean hasPermission(Permission permission) {
