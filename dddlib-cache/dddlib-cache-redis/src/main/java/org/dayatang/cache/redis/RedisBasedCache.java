@@ -31,7 +31,7 @@ public class RedisBasedCache implements Cache {
     @Override
     public Object get(String key) {
         byte[] keyBytes = SerializationUtils.serialize(key);
-        Jedis jedis = getJedis();
+        Jedis jedis = jedisPool.getResource();
         try {
             if (jedis.exists(keyBytes)) {
                 byte[] valueBytes = jedis.get(keyBytes);
@@ -57,15 +57,13 @@ public class RedisBasedCache implements Cache {
     public void put(String key, Object value) {
         Jedis jedis = null;
         try {
-            jedis = getJedis();
+            jedis = jedisPool.getResource();
             byte[] keyBytes = SerializationUtils.serialize(key);
             byte[] valueBytes = SerializationUtils.serialize((Serializable) value);
             jedis.set(keyBytes, valueBytes);
         } finally {
             jedis.close();
         }
-
-
     }
 
 
@@ -80,7 +78,7 @@ public class RedisBasedCache implements Cache {
     public void put(String key, Object value, long living) {
         Jedis jedis = null;
         try {
-            jedis = getJedis();
+            jedis = jedisPool.getResource();
             byte[] keyBytes = SerializationUtils.serialize(key);
             byte[] valueBytes = SerializationUtils.serialize((Serializable) value);
             jedis.setex(keyBytes, (int) living, valueBytes);
@@ -93,7 +91,7 @@ public class RedisBasedCache implements Cache {
     public boolean remove(String key) {
         Jedis jedis = null;
         try {
-            jedis = getJedis();
+            jedis = jedisPool.getResource();
             jedis.del(SerializationUtils.serialize(key));
         } finally {
             jedis.close();
@@ -105,14 +103,10 @@ public class RedisBasedCache implements Cache {
     public boolean containsKey(String key) {
         Jedis jedis = null;
         try {
-            jedis = getJedis();
+            jedis = jedisPool.getResource();
             return jedis.exists(SerializationUtils.serialize(key));
         } finally {
             jedis.close();
         }
-    }
-
-    private Jedis getJedis() {
-        return jedisPool.getResource();
     }
 }
