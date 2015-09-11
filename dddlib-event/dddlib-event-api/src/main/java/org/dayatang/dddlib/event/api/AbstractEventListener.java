@@ -2,6 +2,8 @@ package org.dayatang.dddlib.event.api;
 
 import com.google.common.reflect.TypeToken;
 
+import java.lang.reflect.ParameterizedType;
+
 /**
  * 抽象事件处理器
  * @param <T> 事件类型
@@ -18,9 +20,10 @@ public abstract class AbstractEventListener<T extends Event> implements EventLis
 
     //判断是否监听指定的事件类型
     private boolean supports(Event event) {
-        @SuppressWarnings("serial")
-        final TypeToken<T> token = new TypeToken<T>(getClass()) {};
-        return token.isAssignableFrom(event.getClass());
+        ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
+        Class<?> eventClass = (Class<?>) parameterizedType.getActualTypeArguments()[0];
+        //System.out.println("Event class is: " + eventClass);
+        return eventClass.isAssignableFrom(event.getClass());
     }
 
     /**

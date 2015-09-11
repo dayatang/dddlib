@@ -9,7 +9,7 @@ import java.util.UUID;
  * 领域事件基类，领域事件代表具有业务含义的事件，例如员工调动或者机构调整
  * Created by yyang on 14-9-12.
  */
-public abstract class AbstractDomainEvent implements Event {
+public abstract class AbstractEvent implements Event {
 
     private String id = UUID.randomUUID().toString();
 
@@ -17,14 +17,14 @@ public abstract class AbstractDomainEvent implements Event {
 
     private int version = 1;
 
-    public AbstractDomainEvent() {
+    public AbstractEvent() {
         this(new Date(), 1);
     }
 
     /**
      * @param occurredOn 发生时间
      */
-    public AbstractDomainEvent(Date occurredOn) {
+    public AbstractEvent(Date occurredOn) {
         this(occurredOn, 1);
     }
 
@@ -32,7 +32,7 @@ public abstract class AbstractDomainEvent implements Event {
      * @param occurredOn 发生时间
      * @param version    版本
      */
-    public AbstractDomainEvent(Date occurredOn, int version) {
+    public AbstractEvent(Date occurredOn, int version) {
         Assert.notNull(occurredOn);
         this.occurredOn = new Date(occurredOn.getTime());
         this.version = version;
@@ -73,10 +73,10 @@ public abstract class AbstractDomainEvent implements Event {
         if (this == other) {
             return true;
         }
-        if (!(other instanceof AbstractDomainEvent)) {
+        if (!(other instanceof AbstractEvent)) {
             return false;
         }
-        AbstractDomainEvent that = (AbstractDomainEvent) other;
+        AbstractEvent that = (AbstractEvent) other;
         return this.id().equals(that.id());
     }
 

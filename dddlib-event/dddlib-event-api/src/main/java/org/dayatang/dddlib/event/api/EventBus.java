@@ -8,15 +8,15 @@ public interface EventBus {
 
     /**
      * 注册事件处理器
-     * @param handler 要注册的事件处理器
+     * @param handlers 要注册的事件处理器
      */
-    void register(EventListener handler);
+    void register(EventListener... handlers);
 
     /**
      * 卸载事件处理器
-     * @param handler 要卸载的事件处理器
+     * @param handlers 要卸载的事件处理器
      */
-    void unregister(EventListener handler);
+    void unregister(EventListener... handlers);
 
     /**
      * 接收领域事件
