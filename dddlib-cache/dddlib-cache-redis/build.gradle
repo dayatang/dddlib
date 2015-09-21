@@ -1,4 +1,5 @@
 
 dependencies {
+    compile(project(":dddlib-cache-api"))
     compile('redis.clients:jedis:2.7.3')
 }

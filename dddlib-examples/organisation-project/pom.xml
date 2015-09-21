@@ -706,8 +706,8 @@
 
         <jdk.version>1.6</jdk.version>
         <slf4j.version>1.7.10</slf4j.version>
-        <spring.version>4.1.6.RELEASE</spring.version>
-        <hibernate.version>4.3.8.Final</hibernate.version>
+        <spring.version>4.2.1.RELEASE</spring.version>
+        <hibernate.version>4.3.10.Final</hibernate.version>
         <!-- Database settings, default to H2 database -->
         <h2.username>sa</h2.username>
         <h2.password />
