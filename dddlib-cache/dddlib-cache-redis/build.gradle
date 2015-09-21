@@ -1,0 +1,4 @@
+
+dependencies {
+    compile('redis.clients:jedis:2.7.3')
+}
