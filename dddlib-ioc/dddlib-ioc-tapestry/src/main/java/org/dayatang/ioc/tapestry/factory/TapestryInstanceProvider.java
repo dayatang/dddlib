@@ -5,6 +5,7 @@ import org.apache.tapestry5.ioc.RegistryBuilder;
 import org.dayatang.domain.InstanceProvider;
 
 import java.lang.annotation.Annotation;
+import java.util.Set;
 
 /**
  * IoC实例提供者接口InstanceProvider的TapestryIoC实现。
@@ -80,6 +81,12 @@ public class TapestryInstanceProvider implements InstanceProvider {
         } catch (RuntimeException e) {
             return null;
         }
+    }
+
+    //暂不支持
+    @Override
+    public <T> Set<T> getInstances(Class<T> beanType) {
+        throw new UnsupportedOperationException();
     }
 
     public void shutdown() {

@@ -9,9 +9,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.lang.annotation.Annotation;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 实例提供者接口的Spring实现。
@@ -144,6 +142,11 @@ public class SpringInstanceProvider implements InstanceProvider {
             return resultsWithAnnotation.get(0);
         }
         throw new IocInstanceNotUniqueException();
+    }
+
+    @Override
+    public <T> Set<T> getInstances(Class<T> beanType) {
+        return new HashSet<T>(applicationContext.getBeansOfType(beanType).values());
     }
 
     @SuppressWarnings("unchecked")

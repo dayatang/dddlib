@@ -3,9 +3,15 @@ package org.dayatang.ioc.test;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-public class MyService21 implements Service2 {
+import javax.inject.Named;
 
-    private int id = 21;
+@Named("service21")
+public class MyService21 extends MyService2 {
+
+    @Override
+    public String name() {
+        return "MyService21";
+    }
 
     @Override
 	public String sayHello() {
@@ -19,7 +25,7 @@ public class MyService21 implements Service2 {
      */
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 43).append(id).toHashCode();
+        return new HashCodeBuilder(17, 43).append(name()).toHashCode();
     }
 
     /**
@@ -39,6 +45,6 @@ public class MyService21 implements Service2 {
             return false;
         }
         MyService21 that = (MyService21) other;
-        return new EqualsBuilder().append(this.id, that.id).isEquals();
+        return new EqualsBuilder().append(this.name(), that.name()).isEquals();
     }
 }

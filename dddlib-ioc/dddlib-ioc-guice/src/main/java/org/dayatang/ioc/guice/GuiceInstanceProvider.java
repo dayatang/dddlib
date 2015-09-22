@@ -6,6 +6,9 @@ import com.google.inject.name.Names;
 import org.dayatang.domain.InstanceProvider;
 
 import java.lang.annotation.Annotation;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 实例提供者接口的Google Guice实现。
@@ -95,5 +98,20 @@ public class GuiceInstanceProvider implements InstanceProvider {
         } catch (com.google.inject.ConfigurationException e) {
             return null;
         }
+    }
+
+    @Override
+    public <T> Set<T> getInstances(Class<T> beanType) {
+        Map<Key<?>, Binding<?>> allBindings = injector.getAllBindings();
+        Set<T> results = new HashSet<T>();
+        for (Map.Entry<Key<?>, Binding<?>> entry : allBindings.entrySet()) {
+            Key<?> key = entry.getKey();
+            System.out.println("Key: " + key.getTypeLiteral().getRawType());
+            if (beanType.isAssignableFrom(key.getTypeLiteral().getRawType())) {
+                System.out.println("True");
+                results.add((T) entry.getValue().getProvider().get());
+            }
+        }
+        return results;
     }
 }

@@ -2,6 +2,7 @@ package org.dayatang.domain;
 
 
 import java.lang.annotation.Annotation;
+import java.util.Set;
 
 /**
  * 实例提供者接口，其实现类以适配器的方式将Bean查找的任务委托给真正的IoC容器，如SpringIoC或Google Guice。
@@ -39,4 +40,13 @@ public interface InstanceProvider {
      * @return 指定类型的实例。
      */
     <T> T getInstance(Class<T> beanType, Class<? extends Annotation> annotationType);
+
+	/**
+	 * 获取指定类型的实例的集合
+	 * @param beanType 实例的类型
+	 * @param <T> 类型参数
+	 * @return 指定类型的实例的集合
+	 */
+	<T> Set<T> getInstances(Class<T> beanType);
+
 }

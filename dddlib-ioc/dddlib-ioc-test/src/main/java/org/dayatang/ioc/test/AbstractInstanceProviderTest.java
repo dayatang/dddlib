@@ -4,6 +4,9 @@ import org.dayatang.domain.InstanceProvider;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.Set;
+
 import static org.junit.Assert.*;
 
 /**
@@ -14,6 +17,7 @@ import static org.junit.Assert.*;
 public abstract class AbstractInstanceProviderTest {
 
 	private InstanceProvider provider;
+
 	abstract protected InstanceProvider createInstanceProvider();
 
 	@Before
@@ -23,19 +27,21 @@ public abstract class AbstractInstanceProviderTest {
 	
 	@Test
 	public void testGetInstance() {
-		assertNotNull(provider.getInstance(Service2.class));
+		Service1 service = provider.getInstance(Service1.class);
+		assertNotNull(service);
+		assertEquals("MyService1", service.name());
 	}
 
 	@Test
 	public void testGetInstanceWithName() {
-		Service service = provider.getInstance(Service.class, "service2");
-		assertEquals("I am Service 2", service.sayHello());
+		assertEquals("MyService21", provider.getInstance(Service2.class, "service21").name());
+		assertEquals("MyService22", provider.getInstance(Service2.class, "service22").name());
 	}
 
     @Test
     public void testGetInstanceWithAnnotation() {
-        Service service = provider.getInstance(Service.class, TheAnnotation.class);
-        assertEquals("I am Service 3", service.sayHello());
+        Service2 service = provider.getInstance(Service2.class, TheAnnotation.class);
+		assertEquals("MyService23", service.name());
     }
 
     @Test

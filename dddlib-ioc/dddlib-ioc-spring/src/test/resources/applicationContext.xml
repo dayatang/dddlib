@@ -6,9 +6,11 @@
 
     <bean id="service1" class="org.dayatang.ioc.spring.beans.ServiceFactory"/>
 
-    <bean id="service2" class="org.dayatang.ioc.test.MyService2"/>
+    <bean id="service21" class="org.dayatang.ioc.test.MyService21"/>
+
+    <bean id="service22" class="org.dayatang.ioc.test.MyService22"/>
+
+    <bean id="service23" class="org.dayatang.ioc.test.MyService23"/>
 
     <bean id="service3" class="org.dayatang.ioc.test.MyService3"/>
-
-    <bean id="service2_2" class="org.dayatang.ioc.test.MyService21"/>
 </beans>

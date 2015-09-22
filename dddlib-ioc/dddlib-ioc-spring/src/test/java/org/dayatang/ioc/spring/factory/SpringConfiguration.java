@@ -8,27 +8,32 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringConfiguration {
 	
-	@Bean(name = "service1")
-	public Service service1() {
+	@Bean
+	public Service1 service1() {
         try {
             return new ServiceFactory().getObject();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 	}
-	
-	@Bean(name = "service2")
-	public Service service2() {
-		return new MyService2();
+
+	@Bean(name = "service21")
+	public Service2 service21() {
+		return new MyService21();
 	}
 	
-	@Bean(name = "service3")
-	public Service service3() {
-		return new MyService3();
+	@Bean(name = "service22")
+	public Service2 service22() {
+		return new MyService22();
 	}
 
-    @Bean
-    public Service2 service2_2() {
-         return new MyService21();
-    }
+	@Bean
+	public Service2 service23() {
+		return new MyService23();
+	}
+
+	@Bean
+	public Service3 service3() {
+		return new MyService3();
+	}
 }

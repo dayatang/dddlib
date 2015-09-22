@@ -5,11 +5,13 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.inject.Named;
 
-@Named("service3")
 @TheAnnotation
-public class MyService23 implements Service2 {
+public class MyService23 extends MyService2 {
 
-    private int id = 23;
+    @Override
+    public String name() {
+        return "MyService23";
+    }
 
     @Override
 	public String sayHello() {
@@ -23,7 +25,7 @@ public class MyService23 implements Service2 {
      */
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 43).append(id).toHashCode();
+        return new HashCodeBuilder(17, 43).append(name()).toHashCode();
     }
 
     /**
@@ -43,6 +45,6 @@ public class MyService23 implements Service2 {
             return false;
         }
         MyService23 that = (MyService23) other;
-        return new EqualsBuilder().append(this.id, that.id).isEquals();
+        return new EqualsBuilder().append(this.name(), that.name()).isEquals();
     }
 }

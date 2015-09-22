@@ -8,6 +8,7 @@ import org.junit.After;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TapestryInstanceProviderTest extends AbstractInstanceProviderTest {
 
@@ -27,15 +28,15 @@ public class TapestryInstanceProviderTest extends AbstractInstanceProviderTest {
 
     @Test
     public void testConstructorFromModule() {
-        Service service = getProvider().getInstance(Service.class, "service1");
-        assertEquals("I am Service 1", service.sayHello());
+        Service1 service = getProvider().getInstance(Service1.class);
+        assertEquals("MyService1", service.name());
     }
 
     @Test
     public void testConstructorFromRegistry() {
         TapestryInstanceProvider provider2 = new TapestryInstanceProvider(createRegistry(TapestryModule.class));
-        Service2 service = provider2.getInstance(Service2.class);
-        assertEquals("I am Service 21", service.sayHello());
+        Service1 service = provider2.getInstance(Service1.class);
+        assertEquals("MyService1", service.name());
         provider2.shutdown();
     }
 
