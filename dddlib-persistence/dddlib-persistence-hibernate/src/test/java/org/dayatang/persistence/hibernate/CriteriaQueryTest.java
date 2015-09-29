@@ -9,12 +9,15 @@ import org.dayatang.domain.InstanceFactory;
 import org.dayatang.domain.QueryCriterion;
 import org.dayatang.persistence.test.domain.Dictionary;
 import org.dayatang.persistence.test.domain.DictionaryCategory;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertTrue;
+
 
 /**
  *
@@ -56,9 +59,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
     public void testEq() {
         instance.eq("category", gender);
         List<Dictionary> results = repository.find(instance);
-        assertTrue(results.contains(male));
-        assertTrue(results.contains(female));
-        assertFalse(results.contains(undergraduate));
+        assertThat(results).contains(male, female).doesNotContain(undergraduate);
     }
 
     @Test
@@ -66,145 +67,119 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
         instance.notEq("category", gender);
         List<Dictionary> results = repository.find(instance);
         Dictionary dictionary = results.get(0);
-        assertEquals(education, dictionary.getCategory());
+        assertThat(dictionary.getCategory()).isEqualTo(education);
     }
 
     @Test
     public void testGe() {
         instance.ge("sortOrder", 150);
         List<Dictionary> results = repository.find(instance);
-        assertFalse(results.contains(male));
-        assertTrue(results.contains(female));
-        assertTrue(results.contains(undergraduate));
+        assertThat(results).contains(female, undergraduate).doesNotContain(male);
     }
 
     @Test
     public void testGt() {
         instance.gt("sortOrder", 150);
         List<Dictionary> results = repository.find(instance);
-        assertFalse(results.contains(male));
-        assertFalse(results.contains(female));
-        assertTrue(results.contains(undergraduate));
+        assertThat(results).contains(undergraduate).doesNotContain(male, female);
     }
 
     @Test
     public void testLe() {
         instance.le("sortOrder", 150);
         List<Dictionary> results = repository.find(instance);
-        assertTrue(results.contains(male));
-        assertTrue(results.contains(female));
-        assertFalse(results.contains(undergraduate));
+        assertThat(results).contains(male, female).doesNotContain(undergraduate);
     }
 
     @Test
     public void testLt() {
         instance.lt("sortOrder", 150);
         List<Dictionary> results = repository.find(instance);
-        assertTrue(results.contains(male));
-        assertFalse(results.contains(female));
-        assertFalse(results.contains(undergraduate));
+        assertThat(results).contains(male).doesNotContain(female, undergraduate);
     }
 
     @Test
     public void testEqProp() {
         instance.eqProp("code", "parentCode");
         List<Dictionary> results = repository.find(instance);
-        assertTrue(results.contains(male));
-        assertFalse(results.contains(female));
-        assertFalse(results.contains(undergraduate));
+        assertThat(results).contains(male).doesNotContain(female, undergraduate);
     }
 
     @Test
     public void testNotEqProp() {
         instance.notEqProp("code", "parentCode");
         List<Dictionary> results = repository.find(instance);
-        assertFalse(results.contains(male));
-        assertTrue(results.contains(female));
-        assertTrue(results.contains(undergraduate));
+        assertThat(results).contains(female, undergraduate).doesNotContain(male);
     }
 
     @Test
     public void testGtProp() {
         instance.gtProp("code", "parentCode");
         List<Dictionary> results = repository.find(instance);
-        assertFalse(results.contains(male));
-        assertTrue(results.contains(female));
-        assertFalse(results.contains(undergraduate));
+        assertThat(results).contains(female).doesNotContain(male, undergraduate);
     }
 
     @Test
     public void testGeProp() {
         instance.geProp("code", "parentCode");
         List<Dictionary> results = repository.find(instance);
-        assertTrue(results.contains(male));
-        assertTrue(results.contains(female));
-        assertFalse(results.contains(undergraduate));
+        assertThat(results).contains(male, female).doesNotContain(undergraduate);
     }
 
     @Test
     public void testLtProp() {
         instance.ltProp("code", "parentCode");
         List<Dictionary> results = repository.find(instance);
-        assertFalse(results.contains(male));
-        assertFalse(results.contains(female));
-        assertTrue(results.contains(undergraduate));
+        assertThat(results).contains(undergraduate).doesNotContain(male, female);
     }
 
     @Test
     public void testLeProp() {
         instance.leProp("code", "parentCode");
         List<Dictionary> results = repository.find(instance);
-        assertTrue(results.contains(male));
-        assertFalse(results.contains(female));
-        assertTrue(results.contains(undergraduate));
+        assertThat(results).contains(male, undergraduate).doesNotContain(female);
     }
 
     @Test
     public void testSizeEq() {
         instance2.sizeEq("dictionaries", 3);
         List<DictionaryCategory> results = repository.find(instance2);
-        assertTrue(results.contains(gender));
-        assertFalse(results.contains(education));
+        assertThat(results).contains(gender).doesNotContain(education);
     }
 
     @Test
     public void testSizeNotEq() {
         instance2.sizeNotEq("dictionaries", 3);
         List<DictionaryCategory> results = repository.find(instance2);
-        assertFalse(results.contains(gender));
-        assertTrue(results.contains(education));
+        assertThat(results).contains(education).doesNotContain(gender);
     }
 
     @Test
     public void testSizeGt() {
         instance2.sizeGt("dictionaries", 1);
         List<DictionaryCategory> results = repository.find(instance2);
-        assertTrue(results.contains(gender));
-        assertFalse(results.contains(education));
+        assertThat(results).contains(gender).doesNotContain(education);
     }
 
     @Test
     public void testSizeGe() {
         instance2.sizeGe("dictionaries", 3);
         List<DictionaryCategory> results = repository.find(instance2);
-        assertTrue(results.contains(gender));
-        assertFalse(results.contains(education));
+        assertThat(results).contains(gender).doesNotContain(education);
     }
 
     @Test
     public void testSizeLt() {
         instance2.sizeLt("dictionaries", 3);
         List<DictionaryCategory> results = repository.find(instance2);
-        assertFalse(results.contains(gender));
-        assertTrue(results.contains(education));
+        assertThat(results).contains(education).doesNotContain(gender);
     }
 
     @Test
     public void testSizeLe() {
         instance2.sizeLe("dictionaries", 3);
         List<DictionaryCategory> results = repository.find(instance2);
-        assertTrue(results.contains(gender));
-        assertTrue(results.contains(education));
+        assertThat(results).contains(gender, education);
     }
 
     @Test
@@ -212,9 +187,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
         DictionaryCategory empty = createCategory("a", 3);
         instance2.isEmpty("dictionaries");
         List<DictionaryCategory> results = repository.find(instance2);
-        assertTrue(results.contains(empty));
-        assertFalse(results.contains(gender));
-        assertFalse(results.contains(education));
+        assertThat(results).contains(empty).doesNotContain(gender, education);
     }
 
     @Test
@@ -222,29 +195,25 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
         DictionaryCategory empty = createCategory("a", 3);
         instance2.notEmpty("dictionaries");
         List<DictionaryCategory> results = repository.find(instance2);
-        assertFalse(results.contains(empty));
-        assertTrue(results.contains(gender));
-        assertTrue(results.contains(education));
+        assertThat(results).contains(gender, education).doesNotContain(empty);
     }
 
     @Test
     public void testContainsText() {
         instance.containsText("text", "科");
         List<Dictionary> results = repository.find(instance);
-        assertTrue(results.contains(undergraduate));
-        assertFalse(results.contains(male));
-        assertFalse(results.contains(female));
+        assertThat(results).contains(undergraduate).doesNotContain(male, female);
     }
 
     @Test
     public void testStartsWithText() {
         instance.startsWithText("text", "本");
         List<Dictionary> results = repository.find(instance);
-        assertTrue(results.contains(undergraduate));
+        assertThat(results).contains(undergraduate);
 
         instance = new CriteriaQuery(repository, Dictionary.class).startsWithText("text", "科");
         results = repository.find(instance);
-        assertFalse(results.contains(undergraduate));
+        assertThat(results).doesNotContain(undergraduate);
     }
 
     @Test
@@ -254,9 +223,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
         params.add(gender);
         instance.in("category", params);
         List<Dictionary> results = repository.find(instance);
-        assertTrue(results.contains(male));
-        assertTrue(results.contains(female));
-        assertTrue(results.contains(undergraduate));
+        assertThat(results).contains(male, female, undergraduate);
     }
 
     @Test
@@ -267,9 +234,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
         instance.in("text", params);
 
         List<Dictionary> results = repository.find(instance);
-        assertTrue(results.contains(male));
-        assertTrue(results.contains(female));
-        assertFalse(results.contains(undergraduate));
+        assertThat(results).contains(male, female).doesNotContain(undergraduate);
     }
 
     @Test
@@ -277,7 +242,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
         Collection<Object> value = null;
         instance.in("id", value);
         List<Dictionary> results = repository.find(instance);
-        assertTrue(results.isEmpty());
+        assertThat(results).isEmpty();
     }
 
     @SuppressWarnings("unchecked")
@@ -285,7 +250,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
     public void testInEmpty() {
         instance.in("id", Collections.EMPTY_LIST);
         List<Dictionary> results = repository.find(instance);
-        assertTrue(results.isEmpty());
+        assertThat(results).isEmpty();
     }
 
     @Test
@@ -295,9 +260,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
         params.add(female.getId());
         instance.notIn("id", params);
         List<Dictionary> results = repository.find(instance);
-        assertFalse(results.contains(male));
-        assertFalse(results.contains(female));
-        assertTrue(results.contains(undergraduate));
+        assertThat(results).contains(undergraduate).doesNotContain(male, female);
     }
 
     @Test
@@ -307,9 +270,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
         params.add("女");
         instance.notIn("text", params);
         List<Dictionary> results = repository.find(instance);
-        assertFalse(results.contains(male));
-        assertFalse(results.contains(female));
-        assertTrue(results.contains(undergraduate));
+        assertThat(results).contains(undergraduate).doesNotContain(male, female);
     }
 
     @Test
@@ -317,7 +278,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
         Collection<Object> value = null;
         instance.notIn("id", value);
         List<Dictionary> results = repository.find(instance);
-        assertFalse(results.isEmpty());
+        assertThat(results).isNotEmpty();
     }
 
     @SuppressWarnings("unchecked")
@@ -325,34 +286,28 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
     public void testNotInEmpty() {
         instance.notIn("id", Collections.EMPTY_LIST);
         List<Dictionary> results = repository.find(instance);
-        assertFalse(results.isEmpty());
+        assertThat(results).isNotEmpty();
     }
 
     @Test
     public void testIsNull() {
         instance.isNull("description");
         List<Dictionary> results = repository.find(instance);
-        assertTrue(results.contains(male));
-        assertTrue(results.contains(female));
-        assertTrue(results.contains(undergraduate));
+        assertThat(results).contains(male, female, undergraduate);
     }
 
     @Test
     public void testNotNull() {
         instance.notNull("text");
         List<Dictionary> results = repository.find(instance);
-        assertTrue(results.contains(male));
-        assertTrue(results.contains(female));
-        assertTrue(results.contains(undergraduate));
+        assertThat(results).contains(male, female, undergraduate);
     }
 
     @Test
     public void testBetween() {
         instance.between("parentCode", "01", "02");
         List<Dictionary> results = repository.find(instance);
-        assertTrue(results.contains(male));
-        assertTrue(results.contains(female));
-        assertFalse(results.contains(undergraduate));
+        assertThat(results).contains(male, female).doesNotContain(undergraduate);
     }
 
     @Test
@@ -360,10 +315,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
         QueryCriterion or = Criteria.or(Criteria.eq("code", "01"), Criteria.eq("code", "02"));
         instance.eq("category", gender).and(or);
         List<Dictionary> results = repository.find(instance);
-        assertTrue(results.contains(male));
-        assertTrue(results.contains(female));
-        assertFalse(results.contains(unknownGender));
-        assertFalse(results.contains(undergraduate));
+        assertThat(results).contains(male, female).doesNotContain(unknownGender, undergraduate);
     }
 
     @Test
@@ -371,18 +323,14 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
         QueryCriterion and = Criteria.and(Criteria.eq("code", "01"), Criteria.eq("category", gender));
         instance.eq("category", education).or(and);
         List<Dictionary> results = repository.find(instance);
-        assertTrue(results.contains(male));
-        assertFalse(results.contains(female));
-        assertTrue(results.contains(undergraduate));
+        assertThat(results).contains(male, undergraduate).doesNotContain(female);
     }
 
     @Test
     public void testNot() {
         instance.not(Criteria.eq("code", "01"));
         List<Dictionary> results = repository.find(instance);
-        assertFalse(results.contains(male));
-        assertTrue(results.contains(female));
-        assertFalse(results.contains(undergraduate));
+        assertThat(results).contains(female).doesNotContain(male, undergraduate);
     }
 
     @Test
@@ -391,7 +339,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
         createDictionary("09", "xyy", education, 160, "02");
         instance.setFirstResult(1).setMaxResults(2);
         List<Dictionary> results = repository.find(instance);
-        assertEquals(2, results.size());
+        assertThat(results).hasSize(2);
     }
 
     @Test
@@ -410,7 +358,7 @@ public class CriteriaQueryTest extends AbstractIntegrationTest {
     @Test
     public void testAlias() {
         List<Dictionary> results = repository.find(instance.eq("category.name", "education"));
-        assertTrue(results.contains(undergraduate));
+        assertThat(results).contains(undergraduate);
     }
 
     private DictionaryCategory createCategory(String name, int sortOrder) {
