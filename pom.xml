@@ -764,9 +764,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>2.16</version>
-                <configuration>
-                    <configLocation>config/sun_checks.xml</configLocation>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -779,30 +776,6 @@
                     <minimumTokens>100</minimumTokens>
                 </configuration>
             </plugin>
-            <!--
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-changes-plugin</artifactId>
-                <version>2.11</version>
-                <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>github-report</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
-                <configuration>
-                    <username>${github.scm.username}</username>
-                    <password>${github.scm.password}</password>
-                    <issueManagementSystems>
-                        <issueManagementSystem>GitHub</issueManagementSystem>
-                    </issueManagementSystems>
-                    <tracUser>${trac.username}</tracUser>
-                    <tracPassword>${trac.password}</tracPassword>
-                    <query>status!=closed&amp;order=type</query>
-                </configuration>
-            </plugin>
-            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-changelog-plugin</artifactId>
