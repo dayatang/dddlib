@@ -937,7 +937,7 @@
                 <hibernate.dialect>org.hibernate.dialect.PostgreSQL9Dialect</hibernate.dialect>
                 <jdbc.groupId>org.postgresql</jdbc.groupId>
                 <jdbc.artifactId>postgresql</jdbc.artifactId>
-                <jdbc.version>9.3-1102-jdbc4</jdbc.version>
+                <jdbc.version>9.4-1203-jdbc42</jdbc.version>
                 <jdbc.driverClassName>org.postgresql.Driver</jdbc.driverClassName>
                 <jdbc.url><![CDATA[jdbc:postgresql://${db.host}/${db.name}]]></jdbc.url>
                 <jdbc.username>postgres</jdbc.username>
