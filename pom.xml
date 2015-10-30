@@ -104,12 +104,12 @@
         <repository>
             <id>dayatang-releases</id>
             <name>Dayatang release repository</name>
-            <url>http://nexus.dayatang.org/content/repositories/releases</url>
+            <url>http://nexus.dddlib.org/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
             <id>dayatang-snapshots</id>
             <name>Dayatang snapshot repository</name>
-            <url>http://nexus.dayatang.org/content/repositories/snapshots</url>
+            <url>http://nexus.dddlib.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <site>
             <id>dayatang-site</id>
@@ -122,7 +122,7 @@
     <repositories>
         <repository>
             <id>dayatang-releases</id>
-            <url>http://nexus.dayatang.org/content/groups/public-release</url>
+            <url>http://nexus.dddlib.org/content/groups/public-releases</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -132,7 +132,7 @@
         </repository>
         <repository>
             <id>dayatang-snapshots</id>
-            <url>http://nexus.dayatang.org/content/groups/public-snapshots</url>
+            <url>http://nexus.dddlib.org/content/groups/public-snapshots</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -145,7 +145,7 @@
     <pluginRepositories>
         <pluginRepository>
             <id>dayatang-releases</id>
-            <url>http://nexus.dayatang.org/content/groups/public-release</url>
+            <url>http://nexus.dddlib.org/content/groups/public-release</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -155,7 +155,7 @@
         </pluginRepository>
         <pluginRepository>
             <id>dayatang-snapshots</id>
-            <url>http://nexus.dayatang.org/content/groups/public-snapshots</url>
+            <url>http://nexus.dddlib.org/content/groups/public-snapshots</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
