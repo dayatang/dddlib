@@ -22,12 +22,12 @@
 
     <distributionManagement>
         <repository>
-            <id>dayatang-releases</id>
+            <id>dddlib-releases</id>
             <name>Dayatang release repository</name>
             <url>dav:http://nexus.dddlib.org/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
-            <id>dayatang-snapshots</id>
+            <id>dddlib-snapshots</id>
             <name>Dayatang snapshot repository</name>
             <url>dav:http://nexus.dddlib.org/content/repositories/snapshots</url>
         </snapshotRepository>
@@ -35,8 +35,8 @@
 
     <repositories>
         <repository>
-            <id>dayatang-releases</id>
-            <url>http://nexus.dddlib.org/content/groups/public-release</url>
+            <id>dddlib-releases</id>
+            <url>http://nexus.dddlib.org/content/groups/public-releases</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -45,7 +45,7 @@
             </snapshots>
         </repository>
         <repository>
-            <id>dayatang-snapshots</id>
+            <id>dddlib-snapshots</id>
             <url>http://nexus.dddlib.org/content/groups/public-snapshots</url>
             <releases>
                 <enabled>false</enabled>
@@ -58,8 +58,8 @@
 
     <pluginRepositories>
         <pluginRepository>
-            <id>dayatang-releases</id>
-            <url>http://nexus.dddlib.org/content/groups/public-release</url>
+            <id>dddlib-releases</id>
+            <url>http://nexus.dddlib.org/content/groups/public-releases</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -68,7 +68,7 @@
             </snapshots>
         </pluginRepository>
         <pluginRepository>
-            <id>dayatang-snapshots</id>
+            <id>dddlib-snapshots</id>
             <url>http://nexus.dddlib.org/content/groups/public-snapshots</url>
             <releases>
                 <enabled>false</enabled>
