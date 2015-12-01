@@ -3,10 +3,7 @@ package org.dayatang.security.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.*;
 
 /**
@@ -19,7 +16,9 @@ import java.util.*;
 public class Role extends Authority {
 
     @ManyToMany
-    @JoinTable(name = "security_role_permission")
+    @JoinTable(name = "security_role_permission",
+            joinColumns = @JoinColumn(name = "permission_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Permission> permissions = new HashSet<Permission>();
 
     protected Role() {
