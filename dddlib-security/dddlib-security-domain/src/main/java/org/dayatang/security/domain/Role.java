@@ -17,8 +17,8 @@ public class Role extends Authority {
 
     @ManyToMany
     @JoinTable(name = "security_role_permission",
-            joinColumns = @JoinColumn(name = "permission_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "permission_id"))
     private Set<Permission> permissions = new HashSet<Permission>();
 
     protected Role() {
