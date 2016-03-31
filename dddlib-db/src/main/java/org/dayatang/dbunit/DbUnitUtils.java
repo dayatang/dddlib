@@ -5,10 +5,7 @@ import org.dayatang.JdbcConstants;
 import org.dayatang.utils.PropertiesReader;
 import org.dbunit.database.DatabaseSequenceFilter;
 import org.dbunit.database.IDatabaseConnection;
-import org.dbunit.dataset.CachedDataSet;
-import org.dbunit.dataset.DataSetException;
-import org.dbunit.dataset.FilteredDataSet;
-import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.*;
 import org.dbunit.dataset.stream.IDataSetProducer;
 import org.dbunit.dataset.stream.StreamingDataSet;
 import org.dbunit.dataset.xml.FlatDtdDataSet;
@@ -80,14 +77,16 @@ public class DbUnitUtils {
 		new DbUnitTemplate(dataSource).execute(new DbUnitCallback() {
 			@Override
 			public void doInDbUnit(IDatabaseConnection connection) throws Exception {
-				IDataSet dataSet = new FilteredDataSet(new DatabaseSequenceFilter(connection), 
+				FilteredDataSet dataSet = new FilteredDataSet(
+						new DatabaseSequenceFilter(connection),
 						connection.createDataSet());
 				File parent = new File(dir);
 				if (!parent.exists()) {
 					parent.mkdirs();
 				}
-				OutputStream out = new FileOutputStream(new File(dir, fileName));
-				FlatXmlDataSet.write(dataSet, out);
+				Writer out = new FileWriter(new File(dir, fileName));
+				//OutputStream out = new FileOutputStream(new File(dir, fileName));
+				FlatXmlDataSet.write(new SortedDataSet(dataSet), out, "UTF-8");
 			}
 		});
 	}
@@ -108,7 +107,7 @@ public class DbUnitUtils {
 					parent.mkdirs();
 				}
 		        Writer out = new OutputStreamWriter(new FileOutputStream(new File(dir, fileName)));
-		        FlatDtdDataSet.write(dataSet, out);
+		        FlatDtdDataSet.write(new SortedDataSet(dataSet), out);
 			}
 		});
 	}
