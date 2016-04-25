@@ -106,7 +106,7 @@
         </dependency>
 
         <!-- Hibernate OGM部分，为NoSQL持久化提供支持-->
-        <!-- 
+        <!--
         <dependency>
             <groupId>org.hibernate.ogm</groupId>
             <artifactId>hibernate-ogm-core</artifactId>
