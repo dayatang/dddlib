@@ -195,27 +195,27 @@
             <dependency>
                 <groupId>asm</groupId>
                 <artifactId>asm</artifactId>
-                <version>3.3.1</version>
+                <version>${asm.version}</version>
             </dependency>
             <dependency>
                 <groupId>asm</groupId>
                 <artifactId>asm-commons</artifactId>
-                <version>3.3.1</version>
+                <version>${asm.version}</version>
             </dependency>
             <dependency>
                 <groupId>asm</groupId>
                 <artifactId>asm-analysis</artifactId>
-                <version>3.3.1</version>
+                <version>${asm.version}</version>
             </dependency>
             <dependency>
                 <groupId>asm</groupId>
                 <artifactId>asm-tree</artifactId>
-                <version>3.3.1</version>
+                <version>${asm.version}</version>
             </dependency>
             <dependency>
                 <groupId>asm</groupId>
                 <artifactId>asm-util</artifactId>
-                <version>3.3.1</version>
+                <version>${asm.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.antlr</groupId>
@@ -225,7 +225,7 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>18.0</version>
+                <version>19.0</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -240,7 +240,7 @@
             <dependency>
                 <groupId>org.reflections</groupId>
                 <artifactId>reflections</artifactId>
-                <version>0.9.9</version>
+                <version>0.9.10</version>
             </dependency>
             <dependency>
                 <groupId>log4j</groupId>
@@ -281,7 +281,7 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-validator</artifactId>
-                <version>5.1.3.Final</version>
+                <version>5.2.4.Final</version>
             </dependency>
             <dependency>
                 <groupId>org.javassist</groupId>
@@ -303,19 +303,19 @@
             <dependency>
                 <groupId>org.assertj</groupId>
                 <artifactId>assertj-core</artifactId>
-                <version>3.1.0</version>
+                <version>3.4.1</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>2.0.5-beta</version>
+                <version>2.0.50-beta</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.dbunit</groupId>
                 <artifactId>dbunit</artifactId>
-                <version>2.5.0</version>
+                <version>2.5.2</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -341,12 +341,12 @@
             <dependency>
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjrt</artifactId>
-                <version>1.8.5</version>
+                <version>1.8.9</version>
             </dependency>
             <dependency>
                 <groupId>org.aspectj</groupId>
                 <artifactId>aspectjweaver</artifactId>
-                <version>1.8.5</version>
+                <version>1.8.9</version>
             </dependency>
             <!-- -->
             <dependency>
@@ -495,7 +495,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.3</version>
+                    <version>3.5.1</version>
                     <configuration>
                         <source>${jdk.version}</source>
                         <target>${jdk.version}</target>
@@ -532,7 +532,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.18.1</version>
+                    <version>2.19.1</version>
                     <configuration>
                         <includes>
                             <include>**/*Test.java</include>
@@ -561,7 +561,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
-                    <version>2.5.5</version>
+                    <version>2.6</version>
                     <configuration>
                         <descriptorRefs>
                             <descriptorRef>jar-with-dependencies</descriptorRef>
@@ -574,7 +574,7 @@
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
-                    <version>2.5.4</version>
+                    <version>3.0.1</version>
                     <extensions>true</extensions>
                     <executions>
                         <execution>
@@ -590,7 +590,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.4</version>
+                    <version>3.5.1</version>
                     <configuration>
                         <locales>zh_CN</locales>
                     </configuration>
@@ -598,7 +598,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
-                    <version>2.5.2</version>
+                    <version>2.5.3</version>
                     <configuration>
                         <autoVersionSubmodules>true</autoVersionSubmodules>
                         <goals>deploy</goals>
@@ -607,7 +607,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>2.4</version>
+                    <version>3.0.0</version>
                     <executions>
                         <execution>
                             <id>attach-sources</id>
@@ -744,7 +744,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>2.19.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -959,7 +959,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <jdk.version>1.6</jdk.version>
-        <slf4j.version>1.7.12</slf4j.version>
+        <slf4j.version>1.7.21</slf4j.version>
         <spring.version>4.2.0.RELEASE</spring.version>
         <tapestry.version>5.4-beta-35</tapestry.version>
         <hibernate.version>4.3.11.Final</hibernate.version>
