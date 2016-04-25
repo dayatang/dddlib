@@ -1,7 +1,10 @@
 package org.dayatang.security.domain;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 参与者，是用户User和角色Role的共同基类，授权就是将某种权限授予某个参与者

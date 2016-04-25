@@ -3,11 +3,9 @@ package org.dayatang.configuration.impl;
 import org.apache.commons.lang3.StringUtils;
 import org.dayatang.configuration.ConfigurationException;
 import org.dayatang.configuration.WritableConfiguration;
-import org.dayatang.utils.Assert;
 import org.dayatang.utils.Slf4JLogger;
 
 import java.io.*;
-import java.net.URL;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.Map;

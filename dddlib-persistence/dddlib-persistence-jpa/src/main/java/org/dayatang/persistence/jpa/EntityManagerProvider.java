@@ -16,9 +16,10 @@
 package org.dayatang.persistence.jpa;
 
 import org.dayatang.domain.InstanceFactory;
+import org.dayatang.domain.IocInstanceNotFoundException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import org.dayatang.domain.IocInstanceNotFoundException;
 
 /**
  * JPA 实体管理器提供者。如果当前线程中尚未存在entityManager线程变量，则从IoC容器中获取一个并存入当前线程，

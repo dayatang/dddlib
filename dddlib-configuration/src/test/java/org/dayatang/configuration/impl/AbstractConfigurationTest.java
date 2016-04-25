@@ -1,12 +1,9 @@
 package org.dayatang.configuration.impl;
 
-import org.dayatang.configuration.Configuration;
 import org.dayatang.utils.DateUtils;
 import org.junit.Test;
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Properties;
 
 import static org.junit.Assert.*;

@@ -6,7 +6,6 @@ import org.dayatang.utils.Slf4JLogger;
 
 import javax.sql.DataSource;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;

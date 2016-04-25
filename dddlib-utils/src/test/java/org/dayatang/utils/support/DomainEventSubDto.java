@@ -1,8 +1,5 @@
 package org.dayatang.utils.support;
 
-import java.util.Date;
-import java.util.UUID;
-
 /**
  * Created by yyang on 14/11/9.
  */

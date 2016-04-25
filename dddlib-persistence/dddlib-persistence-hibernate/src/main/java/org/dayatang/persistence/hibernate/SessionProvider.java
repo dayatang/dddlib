@@ -16,7 +16,6 @@
 package org.dayatang.persistence.hibernate;
 
 import org.dayatang.domain.InstanceFactory;
-import org.dayatang.domain.IocInstanceNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 

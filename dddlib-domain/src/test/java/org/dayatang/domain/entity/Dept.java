@@ -1,7 +1,5 @@
 package org.dayatang.domain.entity;
 
-import java.util.Objects;
-
 public class Dept extends Organization {
 
 	private int level;

@@ -1,9 +1,8 @@
 package org.dayatang.domain.entity;
 
-import java.util.Objects;
-import java.util.Random;
-
 import org.dayatang.domain.BaseEntity;
+
+import java.util.Random;
 
 public abstract class Organization extends BaseEntity {
 

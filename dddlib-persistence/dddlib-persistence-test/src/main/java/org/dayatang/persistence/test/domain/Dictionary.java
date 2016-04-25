@@ -1,7 +1,5 @@
 package org.dayatang.persistence.test.domain;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.dayatang.domain.AbstractEntity;
 

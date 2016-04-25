@@ -9,7 +9,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 
-import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
 public class AbstractIntegrationTest {

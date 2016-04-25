@@ -1,13 +1,12 @@
 package org.dddlib.organisation.domain;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.Date;
-
+import org.dayatang.utils.DateUtils;
 import org.dddlib.organisation.utils.OrganisationUtils;
 import org.junit.Test;
 
-import org.dayatang.utils.DateUtils;
+import java.util.Date;
+
+import static org.junit.Assert.assertTrue;
 
 public class LineMgmtTest extends AbstractIntegrationTest {
 

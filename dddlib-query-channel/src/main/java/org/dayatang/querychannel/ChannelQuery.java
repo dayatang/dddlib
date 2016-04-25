@@ -15,14 +15,14 @@
  */
 package org.dayatang.querychannel;
 
-import java.util.List;
-import java.util.Map;
-
 import org.dayatang.domain.BaseQuery;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.QueryParameters;
 import org.dayatang.utils.Assert;
 import org.dayatang.utils.Page;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 查询通道查询

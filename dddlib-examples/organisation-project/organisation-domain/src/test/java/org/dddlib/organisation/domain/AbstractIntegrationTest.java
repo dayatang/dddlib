@@ -1,7 +1,5 @@
 package org.dddlib.organisation.domain;
 
-import javax.inject.Inject;
-
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.ioc.spring.factory.SpringInstanceProvider;
 import org.junit.After;
@@ -12,6 +10,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.inject.Inject;
 
 /**
  * 集成测试基类。用于管理持久化和IoC基础设施

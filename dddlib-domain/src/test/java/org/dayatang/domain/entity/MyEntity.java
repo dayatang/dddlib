@@ -16,8 +16,9 @@
 
 package org.dayatang.domain.entity;
 
-import javax.persistence.Entity;
 import org.dayatang.domain.AbstractEntity;
+
+import javax.persistence.Entity;
 
 /**
  *

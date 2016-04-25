@@ -1,13 +1,12 @@
 package org.dddlib.organisation.domain;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import javax.persistence.Entity;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import javax.persistence.Entity;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Entity
 public abstract class Organization extends Party {

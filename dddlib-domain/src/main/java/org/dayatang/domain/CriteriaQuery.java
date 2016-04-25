@@ -1,9 +1,11 @@
 package org.dayatang.domain;
 
+import org.apache.commons.lang3.StringUtils;
 import org.dayatang.utils.Assert;
 
-import java.util.*;
-import org.apache.commons.lang3.StringUtils;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * 条件查询。DDDLib支持的四种查询形式之一。 通过DSL针对特定实体指定查询条件、排序属性和针对结果取子集等。 Created with

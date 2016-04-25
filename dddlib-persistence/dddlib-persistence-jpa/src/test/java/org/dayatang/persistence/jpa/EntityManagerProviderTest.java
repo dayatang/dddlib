@@ -16,13 +16,16 @@
 
 package org.dayatang.persistence.jpa;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import org.dayatang.domain.InstanceFactory;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
+import static org.junit.Assert.assertSame;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  *

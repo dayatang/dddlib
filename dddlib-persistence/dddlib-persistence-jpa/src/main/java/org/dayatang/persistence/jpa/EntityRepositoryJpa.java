@@ -1,17 +1,16 @@
 package org.dayatang.persistence.jpa;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
+import org.dayatang.domain.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
-
-import org.dayatang.domain.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 通用仓储接口的JPA实现。

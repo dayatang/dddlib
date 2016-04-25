@@ -5,11 +5,9 @@ package org.dayatang.persistence.hibernate;
 
 import org.dayatang.domain.Criteria;
 import org.dayatang.domain.CriteriaQuery;
-import org.dayatang.domain.InstanceFactory;
 import org.dayatang.domain.QueryCriterion;
 import org.dayatang.persistence.test.domain.Dictionary;
 import org.dayatang.persistence.test.domain.DictionaryCategory;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 

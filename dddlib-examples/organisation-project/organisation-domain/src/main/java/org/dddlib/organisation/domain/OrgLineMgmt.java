@@ -1,12 +1,11 @@
 package org.dddlib.organisation.domain;
 
-import java.util.Date;
-import java.util.List;
-
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import java.util.Date;
+import java.util.List;
 
 
 @Entity

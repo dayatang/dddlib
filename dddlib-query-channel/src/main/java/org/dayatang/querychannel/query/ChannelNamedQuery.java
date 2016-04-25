@@ -17,12 +17,13 @@
 package org.dayatang.querychannel.query;
 
 import org.dayatang.domain.BaseQuery;
-import org.dayatang.querychannel.ChannelQuery;
-import java.util.List;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.NamedQuery;
-import org.dayatang.utils.Page;
+import org.dayatang.querychannel.ChannelQuery;
 import org.dayatang.utils.Assert;
+import org.dayatang.utils.Page;
+
+import java.util.List;
 
 /**
  * 通道查询的SQL实现

@@ -3,7 +3,6 @@ package org.dayatang.security.domain;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 

@@ -7,7 +7,9 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.dayatang.security.domain.*;
+import org.dayatang.security.domain.Permission;
+import org.dayatang.security.domain.Role;
+import org.dayatang.security.domain.User;
 
 import javax.inject.Inject;
 

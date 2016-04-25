@@ -3,12 +3,11 @@
  */
 package org.dayatang.domain;
 
-import java.util.Map;
-import javax.persistence.*;
-
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.utils.BeanUtils;
+
+import javax.persistence.MappedSuperclass;
 
 /**
  * 抽象实体类，可作为所有领域实体的基类。

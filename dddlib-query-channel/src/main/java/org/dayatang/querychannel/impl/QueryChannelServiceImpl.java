@@ -16,16 +16,16 @@
 
 package org.dayatang.querychannel.impl;
 
-import org.dayatang.querychannel.query.ChannelNamedQuery;
-import org.dayatang.querychannel.query.ChannelSqlQuery;
-import org.dayatang.querychannel.query.ChannelJpqlQuery;
-import java.util.List;
-
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.querychannel.ChannelQuery;
-import org.dayatang.utils.Page;
 import org.dayatang.querychannel.QueryChannelService;
+import org.dayatang.querychannel.query.ChannelJpqlQuery;
+import org.dayatang.querychannel.query.ChannelNamedQuery;
+import org.dayatang.querychannel.query.ChannelSqlQuery;
+import org.dayatang.utils.Page;
 import org.springframework.util.Assert;
+
+import java.util.List;
 
 /**
  *

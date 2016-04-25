@@ -2,7 +2,6 @@ package org.dayatang.cache.memcached;
 
 import com.danga.MemCached.MemCachedClient;
 import com.danga.MemCached.SockIOPool;
-
 import org.apache.commons.lang3.StringUtils;
 import org.dayatang.cache.Cache;
 import org.slf4j.Logger;

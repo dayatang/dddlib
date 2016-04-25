@@ -16,11 +16,13 @@
 
 package org.dayatang.domain.repository;
 
-import java.util.HashMap;
-import java.util.Map;
 import org.dayatang.domain.NamedParameters;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 /**

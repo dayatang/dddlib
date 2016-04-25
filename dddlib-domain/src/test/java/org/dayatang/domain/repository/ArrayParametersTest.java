@@ -16,11 +16,13 @@
 
 package org.dayatang.domain.repository;
 
-import java.util.Arrays;
-import java.util.Date;
 import org.dayatang.domain.PositionalParameters;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.Date;
+
 import static org.junit.Assert.*;
 
 /**

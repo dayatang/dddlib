@@ -19,10 +19,12 @@ package org.dayatang.persistence.hibernate;
 import org.dayatang.domain.InstanceFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
+
+import static org.junit.Assert.assertSame;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  *

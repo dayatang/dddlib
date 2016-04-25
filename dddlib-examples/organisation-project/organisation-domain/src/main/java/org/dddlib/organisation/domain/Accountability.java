@@ -1,13 +1,12 @@
 package org.dddlib.organisation.domain;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.*;
-
 import org.dayatang.domain.AbstractEntity;
 import org.dayatang.utils.DateUtils;
 import org.dddlib.organisation.domain.events.PartyTerminatedEvent;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "accountabilities")

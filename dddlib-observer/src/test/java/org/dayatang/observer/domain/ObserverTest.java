@@ -4,6 +4,7 @@ import org.dayatang.domain.AbstractEntity;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.observer.HibernateUtils;
 import org.dayatang.persistence.hibernate.EntityRepositoryHibernate;
+import org.dayatang.persistence.hibernate.SessionProvider;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -12,7 +13,6 @@ import org.junit.*;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import org.dayatang.persistence.hibernate.SessionProvider;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

@@ -1,7 +1,5 @@
 package org.dayatang.dddlib.event.api;
 
-import com.google.common.reflect.TypeToken;
-
 import java.lang.reflect.ParameterizedType;
 
 /**

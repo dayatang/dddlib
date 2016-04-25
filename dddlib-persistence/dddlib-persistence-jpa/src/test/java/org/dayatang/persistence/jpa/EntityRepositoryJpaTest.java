@@ -16,18 +16,20 @@
 
 package org.dayatang.persistence.jpa;
 
-import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ServiceLoader;
-import javax.validation.ValidationException;
-
 import org.dayatang.domain.*;
 import org.dayatang.persistence.test.domain.Dictionary;
 import org.dayatang.persistence.test.domain.DictionaryCategory;
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import javax.validation.ValidationException;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  *

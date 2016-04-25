@@ -1,5 +1,6 @@
 package org.dayatang.domain;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.time.DateUtils;
@@ -11,7 +12,6 @@ import javax.persistence.Enumerated;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.Date;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 值。这个类主要用于实体类的自定义属性，例如动态地给Employee类添加一批属性， 每个属性都记录数据类型和字符串形式的值

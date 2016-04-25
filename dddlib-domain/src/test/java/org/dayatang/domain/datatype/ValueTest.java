@@ -1,12 +1,12 @@
 package org.dayatang.domain.datatype;
 
+import org.dayatang.domain.DataType;
+import org.dayatang.domain.Value;
+import org.dayatang.utils.DateUtils;
 import org.junit.Test;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
-import org.dayatang.domain.DataType;
-import org.dayatang.domain.Value;
-import org.dayatang.utils.DateUtils;
 
 import static org.junit.Assert.*;
 

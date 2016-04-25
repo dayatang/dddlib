@@ -1,7 +1,5 @@
 package org.dayatang.dsrouter.context;
 
-import java.util.Properties;
-
 public abstract class GlobalLoginDataSourceContext implements DataSourceContext {
 
 	/**

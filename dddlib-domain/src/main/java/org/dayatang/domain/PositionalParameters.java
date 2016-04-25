@@ -16,10 +16,11 @@
 
 package org.dayatang.domain;
 
-import java.util.Arrays;
-import java.util.List;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * 查询语言或命名查询的定位参数集。JPA、Hibernate和SQL等都支持定位

@@ -1,13 +1,8 @@
 package org.dayatang.utils.serializer;
 
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.dayatang.utils.ObjectSerializer;
-
-import java.lang.reflect.Type;
-import java.sql.Timestamp;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created by yyang on 14-9-16.

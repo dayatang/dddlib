@@ -16,19 +16,21 @@
 
 package org.dddlib.organisation.application.impl;
 
-import java.util.Date;
-
 import org.dayatang.domain.AbstractEntity;
 import org.dayatang.domain.EntityRepository;
 import org.dddlib.organisation.application.OrganisationApplication;
-import org.dddlib.organisation.domain.*;
+import org.dddlib.organisation.domain.Organization;
+import org.dddlib.organisation.domain.Party;
+import org.dddlib.organisation.domain.Post;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-
 import org.junit.Ignore;
+import org.junit.Test;
+
+import java.util.Date;
+
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.mock;
 
 /**
  *

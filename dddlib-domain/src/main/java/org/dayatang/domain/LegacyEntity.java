@@ -1,6 +1,6 @@
 package org.dayatang.domain;
 
-import javax.persistence.*;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;

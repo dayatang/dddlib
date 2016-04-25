@@ -1,11 +1,10 @@
 package org.dddlib.organisation.domain;
 
-import javax.persistence.Embeddable;
-
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
-
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.domain.ValueObject;
+
+import javax.persistence.Embeddable;
 
 @Embeddable
 public class PersonName implements ValueObject {

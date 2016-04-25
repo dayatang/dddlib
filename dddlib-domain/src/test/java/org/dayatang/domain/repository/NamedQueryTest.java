@@ -16,18 +16,16 @@
 
 package org.dayatang.domain.repository;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.dayatang.domain.PositionalParameters;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.domain.NamedParameters;
 import org.dayatang.domain.NamedQuery;
+import org.dayatang.domain.PositionalParameters;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import java.util.*;
+
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

@@ -6,8 +6,6 @@ import org.dayatang.utils.Slf4JLogger;
 
 import javax.sql.DataSource;
 import java.util.Date;
-import java.util.Map;
-import java.util.Properties;
 
 /**
  * <P>ConfigurationDbImpl为读取/回写配置信息的工具类，并将配置信息写入数据库， 具体配置大致采用

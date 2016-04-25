@@ -16,10 +16,12 @@
 
 package org.dayatang.domain.internal.criterion;
 
-import java.util.Arrays;
 import org.dayatang.domain.NamedParameters;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 /**

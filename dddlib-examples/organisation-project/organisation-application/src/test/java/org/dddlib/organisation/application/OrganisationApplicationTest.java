@@ -15,21 +15,22 @@
  */
 package org.dddlib.organisation.application;
 
-import java.util.Date;
-
 import org.dayatang.domain.AbstractEntity;
 import org.dayatang.domain.EntityRepository;
 import org.dayatang.utils.DateUtils;
-
-import static org.hamcrest.CoreMatchers.*;
-
 import org.dddlib.organisation.domain.*;
 import org.junit.After;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
+
+import java.util.Date;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 /**
  *

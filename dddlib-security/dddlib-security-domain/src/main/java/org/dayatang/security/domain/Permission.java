@@ -1,10 +1,9 @@
 package org.dayatang.security.domain;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import javax.persistence.*;
-import java.util.*;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * 许可，代表对系统一项细粒度功能的访问权限。或者不太精确地说，代表一项具体的系统功能

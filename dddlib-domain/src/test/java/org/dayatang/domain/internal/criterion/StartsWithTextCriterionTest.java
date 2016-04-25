@@ -19,6 +19,7 @@ package org.dayatang.domain.internal.criterion;
 import org.dayatang.domain.NamedParameters;
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 /**

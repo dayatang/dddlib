@@ -1,12 +1,12 @@
 package org.dayatang.security.domain;
 
-import com.google.common.collect.ImmutableSet;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import javax.persistence.*;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import java.security.Principal;
-import java.util.*;
+import java.util.List;
 
 /**
  * 系统用户。系统用户常常对应于一个员工

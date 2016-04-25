@@ -6,7 +6,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import org.dayatang.utils.Assert;
 
 /**
  * 功能描述: 分页对象. 包含当前页数据及分页信息如总记录数.

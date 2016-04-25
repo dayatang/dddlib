@@ -16,9 +16,10 @@
 
 package org.dayatang.domain;
 
+import org.dayatang.utils.Assert;
+
 import java.util.List;
 import java.util.Map;
-import org.dayatang.utils.Assert;
 
 /**
  * 查询基类，为NamedQuery、JpqlQuery和SqlQuery提供共同行为。

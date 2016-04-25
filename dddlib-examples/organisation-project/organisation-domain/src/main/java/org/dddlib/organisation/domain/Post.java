@@ -1,18 +1,12 @@
 package org.dddlib.organisation.domain;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Entity
 @DiscriminatorValue("Post")

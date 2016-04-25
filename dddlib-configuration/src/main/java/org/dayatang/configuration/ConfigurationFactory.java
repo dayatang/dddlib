@@ -1,7 +1,5 @@
 package org.dayatang.configuration;
 
-import org.dayatang.utils.Assert;
-
 import javax.sql.DataSource;
 import java.io.File;
 import java.io.InputStream;

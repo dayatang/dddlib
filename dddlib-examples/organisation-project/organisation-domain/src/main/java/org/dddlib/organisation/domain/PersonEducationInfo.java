@@ -1,14 +1,12 @@
 package org.dddlib.organisation.domain;
 
-import java.util.Date;
+import org.apache.commons.lang3.builder.CompareToBuilder;
+import org.dayatang.domain.ValueObject;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.apache.commons.lang3.builder.CompareToBuilder;
-
-import org.dayatang.domain.ValueObject;
+import java.util.Date;
 
 @Embeddable
 public class PersonEducationInfo implements ValueObject,

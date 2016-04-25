@@ -1,18 +1,12 @@
 package org.dayatang.domain.internal.criterion;
 
-import java.util.ArrayList;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.dayatang.domain.Entity;
 import org.dayatang.domain.NamedParameters;
+
+import java.util.*;
 
 /**
  * 代表某个属性的值不包含在指定集合或数组中的查询条件

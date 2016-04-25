@@ -16,13 +16,12 @@
 
 package org.dayatang.querychannel.impl;
 
-import javax.inject.Inject;
 import org.dayatang.btm.BtmUtils;
 import org.dayatang.dbunit.DbUnitUtils;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.ioc.spring.factory.SpringInstanceProvider;
-import org.dayatang.utils.Page;
 import org.dayatang.querychannel.domain.MyEntity;
+import org.dayatang.utils.Page;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
@@ -31,6 +30,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.inject.Inject;
 import java.util.List;
 
 import static org.junit.Assert.*;

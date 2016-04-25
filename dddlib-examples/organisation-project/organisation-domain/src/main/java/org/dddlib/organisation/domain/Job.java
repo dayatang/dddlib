@@ -1,9 +1,9 @@
 package org.dddlib.organisation.domain;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @Entity
 @DiscriminatorValue("Job")

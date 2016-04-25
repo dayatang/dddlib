@@ -20,8 +20,10 @@ import org.dayatang.domain.NamedParameters;
 import org.dayatang.domain.QueryCriterion;
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  *

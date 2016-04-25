@@ -6,10 +6,11 @@
 
 package org.dddlib.organisation.domain;
 
+import org.dayatang.domain.AbstractEntity;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import org.dayatang.domain.AbstractEntity;
 
 /**
  *

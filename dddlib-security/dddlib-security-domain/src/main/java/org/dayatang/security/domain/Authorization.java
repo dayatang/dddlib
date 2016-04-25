@@ -3,7 +3,10 @@ package org.dayatang.security.domain;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * 授权信息，记录对参与者的权限授予
