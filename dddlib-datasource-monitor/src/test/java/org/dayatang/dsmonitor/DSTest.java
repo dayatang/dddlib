@@ -25,9 +25,9 @@ public class DSTest extends AbstractSpringIntegrationTest {
 
         Thread.sleep(12000);
 
-        Assert.assertEquals(2, monitor.getAliveTimeoutConnections().size());
+        Assert.assertEquals(1, monitor.getAliveTimeoutConnections().size());
 
-        Assert.assertEquals(5, monitor.getConnectionCount());
+        Assert.assertEquals(4, monitor.getConnectionCount());
 
         Thread.sleep(10000);
     }
