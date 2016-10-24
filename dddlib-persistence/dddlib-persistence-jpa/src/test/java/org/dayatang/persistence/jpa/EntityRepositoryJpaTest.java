@@ -229,7 +229,7 @@ public class EntityRepositoryJpaTest extends AbstractIntegrationTest {
      */
     @Test
     public void testJpqlQueryFindWithArrayParameters() {
-        String queryString = "select o from  Dictionary o where o.category = ?";
+        String queryString = "select o from  Dictionary o where o.category = ?1";
         JpqlQuery query = new JpqlQuery(repository, queryString)
                 .setParameters(gender);
         List<Dictionary> results = repository.find(query);

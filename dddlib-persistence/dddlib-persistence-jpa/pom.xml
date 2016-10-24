@@ -50,8 +50,7 @@
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate.version}</version>
+            <artifactId>hibernate-core</artifactId>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -105,27 +104,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Hibernate OGM部分，为NoSQL持久化提供支持-->
-        <!--
-        <dependency>
-            <groupId>org.hibernate.ogm</groupId>
-            <artifactId>hibernate-ogm-core</artifactId>
-            <version>4.1.0.Beta1</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate.ogm</groupId>
-            <artifactId>hibernate-ogm-infinispan</artifactId>
-            <version>4.1.1.Final</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate.ogm</groupId>
-            <artifactId>hibernate-ogm-mongodb</artifactId>
-            <version>4.1.1.Final</version>
-            <optional>true</optional>
-        </dependency>
-         -->
         <dependency>
             <groupId>org.jboss.spec.javax.transaction</groupId>
             <artifactId>jboss-transaction-api_1.2_spec</artifactId>

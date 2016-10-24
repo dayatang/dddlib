@@ -226,7 +226,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
      */
     @Test
     public void testJpqlQueryFindWithArrayParameters() {
-        String queryString = "select o from  Dictionary o where o.category = ?";
+        String queryString = "select o from  Dictionary o where o.category = ?1";
         JpqlQuery query = new JpqlQuery(repository, queryString).setParameters(gender);
         List<Dictionary> results = repository.find(query);
         assertTrue(results.contains(male));
@@ -408,7 +408,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
      */
     @Test
     public void testSqlQueryFindWithArrayParameters() {
-        String sql = "select * from dictionaries as o where o.is_disabled = ? and o.category_id = ? order by o.sort_order";
+        String sql = "select * from dictionaries as o where o.is_disabled = ?1 and o.category_id = ?2 order by o.sort_order";
         SqlQuery query = new SqlQuery(repository, sql)
                 .setParameters(false, gender.getId())
                 .setResultEntityClass(Dictionary.class);
@@ -438,8 +438,8 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
      */
     @Test
     public void testSqlQueryGetSingleResult() {
-        String sql = "select * from dictionaries as o where o.is_disabled = ? "
-                + "and o.category_id = ? and o.code = ?";
+        String sql = "select * from dictionaries as o where o.is_disabled = ?1 "
+                + "and o.category_id = ?2 and o.code = ?3";
         SqlQuery query = new SqlQuery(repository, sql)
                 .setParameters(false, gender.getId(), "01")
                 .setResultEntityClass(Dictionary.class);

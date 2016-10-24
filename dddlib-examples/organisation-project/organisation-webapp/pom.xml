@@ -55,10 +55,6 @@
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-quartz</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-        </dependency>
         <!--Runtime-->
         <dependency>
             <groupId>${project.groupId}</groupId>

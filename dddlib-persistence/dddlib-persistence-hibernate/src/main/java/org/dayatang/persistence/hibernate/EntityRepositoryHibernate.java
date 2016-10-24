@@ -1,12 +1,12 @@
 package org.dayatang.persistence.hibernate;
 
 import org.dayatang.domain.*;
-import org.hibernate.Query;
-import org.hibernate.SQLQuery;
+import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.query.NativeQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -272,7 +272,7 @@ public class EntityRepositoryHibernate implements EntityRepository {
     }
 
     private Query getQuery(SqlQuery sqlQuery) {
-        SQLQuery query = getSession().createSQLQuery(sqlQuery.getSql());
+        NativeQuery query = getSession().createNativeQuery(sqlQuery.getSql());
         processQuery(query, sqlQuery);
         Class resultEntityClass = sqlQuery.getResultEntityClass();
         if (resultEntityClass != null) {
@@ -400,7 +400,7 @@ public class EntityRepositoryHibernate implements EntityRepository {
     private void fillParameters(Query query, PositionalParameters params) {
         Object[] paramArray = params.getParams();
         for (int i = 0; i < paramArray.length; i++) {
-            query = query.setParameter(i, paramArray[i]);
+            query = query.setParameter(i + 1, paramArray[i]);
         }
     }
 

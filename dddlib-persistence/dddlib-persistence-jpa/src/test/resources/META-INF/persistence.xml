@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence xmlns="http://java.sun.com/xml/ns/persistence"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
-             http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
-             version="2.0">
+<persistence
+        version="2.1"
+        xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                            http://xmlns.jcp.org/xml/ns/persistence_2_1.xsd">
     <persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>jdbc/testDS</jta-data-source>
         <class>org.dayatang.persistence.test.domain.Dictionary</class>
         <class>org.dayatang.persistence.test.domain.DictionaryCategory</class>
         <properties>
+            <property
+                    name="javax.persistence.schema-generation.database.action"
+                    value="drop-and-create"/>
             <!-- Auto detect annotation model classes -->
             <property name="hibernate.archive.autodetection" value="class" />
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.dialect" value="${hibernate.dialect}"/>
-            <property name="hibernate.jndi.class" value="bitronix.tm.jndi.BitronixInitialContextFactory"/>
-            <property name="hibernate.transaction.factory_class" value="org.hibernate.engine.transaction.internal.jta.JtaTransactionFactory"/>
-            <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.BitronixJtaPlatform"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
             <!--
-   <property name="hibernate.connection.release_mode" value="after_statement"/>
-           <property name="hibernate.transaction.factory_class" value="org.hibernate.transaction.JTATransactionFactory"/>
-   <property name="hibernate.current_session_context_class" value="jta"/>
+            <property name="hibernate.jndi.class" value="bitronix.tm.jndi.BitronixInitialContextFactory"/>
+            <property name="hibernate.transaction.coordinator_class" value="jta"/>
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.BitronixJtaPlatform"/>
             -->
         </properties>
     </persistence-unit>

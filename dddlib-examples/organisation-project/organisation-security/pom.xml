@@ -36,7 +36,7 @@
         </dependency>
         <dependency>
             <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache-core</artifactId>
+            <artifactId>ehcache</artifactId>
         </dependency>
         <!-- Test -->
         <dependency>

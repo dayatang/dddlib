@@ -3,32 +3,31 @@ package org.dayatang.persistence.hibernate;
 import org.dayatang.persistence.test.domain.Dictionary;
 import org.dayatang.persistence.test.domain.DictionaryCategory;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.tool.hbm2ddl.SchemaExport;
+import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtils {
     private static SessionFactory sessionFactory = buildSessionFactory();
 
     @SuppressWarnings("deprecation")
 	private static SessionFactory buildSessionFactory() {
+        final ServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure() // configures settings from hibernate.cfg.xml
+                .build();
         try {
-
-            Configuration configuration = new Configuration()
+            return new MetadataSources( registry )
                     .addAnnotatedClass(DictionaryCategory.class)
                     .addAnnotatedClass(Dictionary.class)
-                    .configure();
-            StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
-                    .applySettings(configuration.getProperties());
-            new SchemaExport(configuration).create(false, true);
-            return configuration.buildSessionFactory(builder.build());
+                    .buildMetadata()
+                    .buildSessionFactory();
         }
-        catch (Exception ex) {
-            // Make sure you log the exception, as it might be swallowed
-            System.err.println("Initial SessionFactory creation failed." + ex);
-            throw new ExceptionInInitializerError(ex);
+        catch (Exception e) {
+            // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
+            // so destroy it manually.
+            StandardServiceRegistryBuilder.destroy( registry );
+            throw new RuntimeException(e);
         }
-       
     }
 
     public static synchronized SessionFactory getSessionFactory() {
@@ -39,6 +38,7 @@ public class HibernateUtils {
     }
 
     public static void close() {
+        javax.transaction.SystemException e;
     	sessionFactory.close();
     }
 

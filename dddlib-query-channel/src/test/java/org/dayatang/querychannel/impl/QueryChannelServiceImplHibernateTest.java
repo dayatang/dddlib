@@ -55,11 +55,11 @@ public class QueryChannelServiceImplHibernateTest {
 
     private String jpqlNamedParam =  "select o from MyEntity o where o.name like :name order by o.id";
 
-    private String jpqlPosParam =  "select o from MyEntity o where o.name like ? order by o.id";
+    private String jpqlPosParam =  "select o from MyEntity o where o.name like ?1 order by o.id";
 
     private String sqlNamedParam =  "select o.* from pay_test_myentity as o where o.name like :name order by o.id";
 
-    private String sqlPosParam =  "select o.* from pay_test_myentity as o where o.name like ? order by o.id";
+    private String sqlPosParam =  "select o.* from pay_test_myentity as o where o.name like ?1 order by o.id";
 
     private String queryNameNamedParam = "MyEntity.findByName1";
 

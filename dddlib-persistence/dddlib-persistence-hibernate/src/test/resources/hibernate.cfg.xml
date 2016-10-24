@@ -10,7 +10,12 @@
         <property name="jndi.class">bitronix.tm.jndi.BitronixInitialContextFactory</property>
         <property name="connection.release_mode">after_statement</property>
         <property name="current_session_context_class">jta</property>
+        <!--
         <property name="transaction.factory_class">org.hibernate.engine.transaction.internal.jta.JtaTransactionFactory</property>
+        <property name="transaction.factory_class">org.hibernate.engine.transaction.internal.TransactionImpl</property>
+         -->
+
+        <property name="transaction.coordinator_class">jta</property>
         <property name="transaction.jta.platform">org.hibernate.service.jta.platform.internal.BitronixJtaPlatform</property>
         
         <property name="dialect">${hibernate.dialect}</property>
@@ -22,3 +27,4 @@
 		<mapping class="org.dayatang.persistence.test.domain.Dictionary"/>
     </session-factory>
  </hibernate-configuration>
+

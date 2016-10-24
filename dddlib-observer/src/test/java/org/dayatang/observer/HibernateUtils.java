@@ -3,36 +3,42 @@ package org.dayatang.observer;
 import org.dayatang.observer.domain.FatherObserver;
 import org.dayatang.observer.domain.MotherObserver;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.tool.hbm2ddl.SchemaExport;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtils {
-	private static Configuration cfg;
-	private static SessionFactory sessionFactory = buildSessionFactory();
+    private static SessionFactory sessionFactory = buildSessionFactory();
 
-	private static SessionFactory buildSessionFactory() {
-		try {
-			cfg = new Configuration()
-					.addAnnotatedClass(FatherObserver.class)
-					.addAnnotatedClass(MotherObserver.class)
-					.configure();
-			new SchemaExport(cfg).create(true, true);
-			return cfg.buildSessionFactory();
-		} catch (Exception ex) {
-			System.err.println("Initial SessionFactory creation failed." + ex);
-			throw new ExceptionInInitializerError(ex);
-		}
-	}
+    @SuppressWarnings("deprecation")
+    private static SessionFactory buildSessionFactory() {
+        final ServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure() // configures settings from hibernate.cfg.xml
+                .build();
+        try {
+            return new MetadataSources(registry)
+                    .addAnnotatedClass(FatherObserver.class)
+                    .addAnnotatedClass(MotherObserver.class)
+                    .buildMetadata()
+                    .buildSessionFactory();
+        } catch (Exception e) {
+            // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
+            // so destroy it manually.
+            StandardServiceRegistryBuilder.destroy(registry);
+            throw new RuntimeException(e);
+        }
+    }
 
-	public static synchronized SessionFactory getSessionFactory() {
-		if (sessionFactory == null || sessionFactory.isClosed()) {
-			sessionFactory = buildSessionFactory();
-		}
-		return sessionFactory;
-	}
+    public static synchronized SessionFactory getSessionFactory() {
+        if (sessionFactory == null || sessionFactory.isClosed()) {
+            sessionFactory = buildSessionFactory();
+        }
+        return sessionFactory;
+    }
 
-	public static void close() {
-		sessionFactory.close();
-	}
+    public static void close() {
+        sessionFactory.close();
+    }
+
 
 }
