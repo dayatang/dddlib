@@ -104,12 +104,12 @@
         <repository>
             <id>dddlib-releases</id>
             <name>DDDLib release repository</name>
-            <url>http://nexus.dddlib.org/content/repositories/releases</url>
+            <url>scp://nexus.dddlib.org/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
             <id>dddlib-snapshots</id>
             <name>DDDLib snapshot repository</name>
-            <url>http://nexus.dddlib.org/content/repositories/snapshots</url>
+            <url>scp://nexus.dddlib.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <site>
             <id>dddlib-site</id>
