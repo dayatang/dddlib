@@ -104,12 +104,12 @@
         <repository>
             <id>dddlib-releases</id>
             <name>DDDLib release repository</name>
-            <url>scp://nexus.dddlib.org/content/repositories/releases</url>
+            <url>dav:http://nexus.dddlib.org/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
             <id>dddlib-snapshots</id>
             <name>DDDLib snapshot repository</name>
-            <url>scp://nexus.dddlib.org/content/repositories/snapshots</url>
+            <url>dav:http://nexus.dddlib.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <site>
             <id>dddlib-site</id>
@@ -701,6 +701,11 @@
         </pluginManagement>
 
         <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav-jackrabbit</artifactId>
+                <version>2.10</version>
+            </extension>
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>
                 <artifactId>wagon-ssh</artifactId>
