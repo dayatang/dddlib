@@ -1,6 +1,5 @@
 package org.dayatang.mysql.jdbc;
 
-import com.mysql.jdbc.JDBC4ReplicationMySQLConnection;
 import com.mysql.jdbc.LoadBalancedMySQLConnection;
 import com.mysql.jdbc.NonRegisteringDriver;
 import com.mysql.jdbc.ReplicationConnection;
@@ -12,7 +11,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 import java.util.concurrent.Executor;
 
-public class GeminiReplicationConnection extends JDBC4ReplicationMySQLConnection {
+public class GeminiReplicationConnection extends ReplicationConnection {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(GeminiReplicationConnection.class);
 

@@ -56,9 +56,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>${jdbc.groupId}</groupId>
-            <artifactId>${jdbc.artifactId}</artifactId>
-            <version>${jdbc.version}</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.35</version>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -113,8 +113,7 @@
         <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
         <database-url-prefix><![CDATA[jdbc:mysql://localhost,127.0.0.1/]]></database-url-prefix>
         <database-name><![CDATA[test]]></database-name>
-        <jdbc.url>${database-url-prefix}${database-name}
-            <![CDATA[?characterEncoding=UTF-8&amp;useUnicode=true]]></jdbc.url>
+        <jdbc.url>${database-url-prefix}${database-name}<![CDATA[?characterEncoding=UTF-8&amp;useUnicode=true]]></jdbc.url>
         <!-- <jdbc.url><![CDATA[jdbc:mysql://localhost,127.0.0.1/test?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url> -->
         <pool1.jdbc.url>
             <![CDATA[jdbc:mysql://localhost/test?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></pool1.jdbc.url>

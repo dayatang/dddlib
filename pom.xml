@@ -988,7 +988,7 @@
         <mysql.password />
         <mysql.host>localhost</mysql.host>
         <mysql.port>3306</mysql.port>
-        <mysql.version>5.1.40</mysql.version>
+        <mysql.version>6.0.5</mysql.version>
         <derby.username>any</derby.username>
         <derby.password>value</derby.password>
         <postgresql.host>localhost</postgresql.host>
