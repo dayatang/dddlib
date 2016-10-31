@@ -14,6 +14,7 @@
 
     <modules>
         <module>dddlib-security-domain</module>
+        <module>dddlib-security-service</module>
         <module>dddlib-security-shiro</module>
     </modules>
 
