@@ -30,13 +30,14 @@ public class GuiceInstanceProviderTest extends AbstractInstanceProviderTest {
 	}
 
 	private Module createModule() {
-		return new Module() {
+		return new AbstractModule() {
+
 			@Override
-			public void configure(Binder binder) {
-				binder.bind(Service1.class).to(MyService1.class).in(Scopes.SINGLETON);
-				binder.bind(Service2.class).annotatedWith(Names.named("service21")).to(MyService21.class).in(Scopes.SINGLETON);
-				binder.bind(Service2.class).annotatedWith(Names.named("service22")).to(MyService22.class).in(Scopes.SINGLETON);
-				binder.bind(Service3.class).annotatedWith(MyBindingAnnotation.class).to(MyService31.class).in(Scopes.SINGLETON);
+			protected void configure() {
+				bind(Service1.class).to(MyService1.class).in(Scopes.SINGLETON);
+				bind(Service2.class).annotatedWith(Names.named("service21")).to(MyService21.class).in(Scopes.SINGLETON);
+				bind(Service2.class).annotatedWith(Names.named("service22")).to(MyService22.class).in(Scopes.SINGLETON);
+				bind(Service3.class).annotatedWith(MyBindingAnnotation.class).to(MyService31.class).in(Scopes.SINGLETON);
 			}
 		};
 	}
