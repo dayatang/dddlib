@@ -59,6 +59,12 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.26</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
             <groupId>org.dayatang.dddlib</groupId>
             <artifactId>dddlib-ioc-spring</artifactId>
             <version>${project.version}</version>
