@@ -9,9 +9,9 @@
     <artifactId>dddlib-ioc-guice</artifactId>
     <packaging>jar</packaging>
     <name>DDDLib IoC implemented by Google Guice</name>
-    <description>
+    <remark>
         DDDLib IoC的Google Guice实现，通过GuiceInstanceProvider实现InstanceProvider
-    </description>
+    </remark>
 
     <dependencies>
         <dependency>

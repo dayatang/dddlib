@@ -8,7 +8,7 @@
     <artifactId>dddlib-event-api</artifactId>
     <packaging>jar</packaging>
     <name>dddlib-event-api</name>
-    <description>Domain Event API Module</description>
+    <remark>Domain Event API Module</remark>
 
     <dependencies>
         <dependency>

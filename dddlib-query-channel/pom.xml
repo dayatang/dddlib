@@ -8,9 +8,9 @@
     <artifactId>dddlib-query-channel</artifactId>
     <packaging>jar</packaging>
     <name>DDDLib Query Channel</name>
-    <description>
+    <remark>
         查询通道。针对大数据量的查询返回结果，提供分页功能。
-    </description>
+    </remark>
 
     <dependencies>
         <dependency>

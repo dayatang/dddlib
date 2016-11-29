@@ -8,7 +8,7 @@
     <artifactId>dddlib-event-sourcing</artifactId>
     <packaging>jar</packaging>
     <name>dddlib-event-sourcing</name>
-    <description>Domain Event Sourcing Module</description>
+    <remark>Domain Event Sourcing Module</remark>
 
     <dependencies>
         <dependency>

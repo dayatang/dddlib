@@ -10,9 +10,9 @@
     <artifactId>dddlib-domain</artifactId>
     <packaging>jar</packaging>
     <name>DDDLib API Interfaces and Base Classes</name>
-    <description>
+    <remark>
         DDDLib中最重要的模块，为基于DDD的开发提供核心接口和基类。
-    </description>
+    </remark>
 
     <dependencies>
         <dependency>

@@ -9,9 +9,9 @@
     <artifactId>dddlib-datasource-router</artifactId>
     <packaging>jar</packaging>
     <name>DDDLib Datasource Router classes for spring</name>
-    <description>
+    <remark>
         数据源路由，主要用在SaaS环境，通过代理模式，将数据访问路由到租户对应的数据源。
-    </description>
+    </remark>
 
     <dependencies>
         <dependency>

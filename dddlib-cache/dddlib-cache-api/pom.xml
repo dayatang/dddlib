@@ -8,9 +8,9 @@
     </parent>
     <artifactId>dddlib-cache-api</artifactId>
     <name>DDDLib Cache API</name>
-    <description>
+    <remark>
         高速缓存API
-    </description>
+    </remark>
 
     <build>
         <plugins>

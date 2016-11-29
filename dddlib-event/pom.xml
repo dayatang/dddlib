@@ -8,7 +8,7 @@
     <artifactId>dddlib-event</artifactId>
     <packaging>pom</packaging>
     <name>dddlib-event</name>
-    <description>Event Processing Module</description>
+    <remark>Event Processing Module</remark>
 
     <modules>
         <module>dddlib-event-api</module>

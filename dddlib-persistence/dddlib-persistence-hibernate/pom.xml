@@ -9,9 +9,9 @@
     <artifactId>dddlib-persistence-hibernate</artifactId>
     <packaging>jar</packaging>
     <name>DDDLib Persistence API implemented by Hibernate</name>
-    <description>
+    <remark>
         DDDLib仓储接口EntityRepository的Hibernate实现。
-    </description>
+    </remark>
 
     <dependencies>
         <dependency>
