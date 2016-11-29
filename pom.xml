@@ -8,10 +8,10 @@
     <packaging>pom</packaging>
     <name>DDDLib Project</name>
     <url>http://dddlib.dayatang.org/</url>
-    <remark>
+    <description>
         DDDLib是一个领域驱动设计（Domain Driven Design，简称DDD）类库，为DDD开发范式提供基本的接口、基类和实现，
         另外还提供了一些例如断言、配置、Excel读写等基本工具。
-    </remark>
+    </description>
 
     <licenses>
         <license>
