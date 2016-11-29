@@ -9,9 +9,9 @@
     <artifactId>dddlib-ioc</artifactId>
     <packaging>pom</packaging>
     <name>DDDLib IoC implements</name>
-    <description>
+    <remark>
         DDDLib IoC实现。
-    </description>
+    </remark>
 
     <dependencies>
         <dependency>

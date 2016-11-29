@@ -5,17 +5,15 @@ import java.util.Date;
 /**
  * Created by yyang on 2016/11/29.
  */
-public class UserInfo {
+public class UserGroupInfo {
     private String id;
     private int version;
 
-    private String username;
+    private String name;
     private String remark;
 
     private Date created;
     private Date lastModified;
-    private Date expired;
-    private boolean locked;
     private boolean disabled;
 
     public String getId() {
@@ -34,12 +32,12 @@ public class UserInfo {
         this.version = version;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getRemark() {
@@ -66,22 +64,6 @@ public class UserInfo {
         this.lastModified = lastModified;
     }
 
-    public Date getExpired() {
-        return expired;
-    }
-
-    public void setExpired(Date expired) {
-        this.expired = expired;
-    }
-
-    public boolean isLocked() {
-        return locked;
-    }
-
-    public void setLocked(boolean locked) {
-        this.locked = locked;
-    }
-
     public boolean isDisabled() {
         return disabled;
     }
@@ -95,24 +77,24 @@ public class UserInfo {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof UserInfo)) {
+        if (!(o instanceof UserGroupInfo)) {
             return false;
         }
 
-        UserInfo userInfo = (UserInfo) o;
+        UserGroupInfo that = (UserGroupInfo) o;
 
-        return getUsername().equals(userInfo.getUsername());
+        return getName().equals(that.getName());
     }
 
     @Override
     public int hashCode() {
-        return getUsername().hashCode();
+        return getName().hashCode();
     }
 
     @Override
     public String toString() {
-        return "UserInfo{" +
-                "username='" + username + '\'' +
+        return "UserGroupInfo{" +
+                "name='" + name + '\'' +
                 '}';
     }
 }

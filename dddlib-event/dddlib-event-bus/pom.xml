@@ -8,7 +8,7 @@
     <artifactId>dddlib-event-bus</artifactId>
     <packaging>jar</packaging>
     <name>dddlib-event-bus</name>
-    <description>Domain Event Bus Module</description>
+    <remark>Domain Event Bus Module</remark>
 
     <dependencies>
         <dependency>

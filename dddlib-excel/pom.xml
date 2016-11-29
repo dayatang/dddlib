@@ -10,7 +10,7 @@
 	<artifactId>dddlib-excel</artifactId>
 	<packaging>jar</packaging>
 	<name>DDDLib Excel Date Import and Export Library</name>
-	<description>Excel读写工具</description>
+	<remark>Excel读写工具</remark>
 
 	<dependencies>
 		<dependency>

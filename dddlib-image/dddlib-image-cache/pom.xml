@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dddlib-image-cache</artifactId>
-    <description>使用缓存做为图片存取的介质</description>
+    <remark>使用缓存做为图片存取的介质</remark>
 
     <dependencies>
         <dependency>

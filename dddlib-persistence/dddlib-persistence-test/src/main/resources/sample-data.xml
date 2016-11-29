@@ -64,7 +64,7 @@
 		<column>id</column>
 		<column>version</column>
 		<column>code</column>
-		<column>description</column>
+		<column>remark</column>
 		<column>disabled</column>
 		<column>parent_code</column>
 		<column>sort_order</column>

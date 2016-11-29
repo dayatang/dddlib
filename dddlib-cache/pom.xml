@@ -9,9 +9,9 @@
     <artifactId>dddlib-cache</artifactId>
     <packaging>pom</packaging>
     <name>DDDLib Cache Module </name>
-    <description>
+    <remark>
         高速缓存。
-    </description>
+    </remark>
     <modules>
         <module>dddlib-cache-memcached</module>
         <module>dddlib-cache-api</module>

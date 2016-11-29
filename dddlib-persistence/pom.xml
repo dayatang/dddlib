@@ -9,9 +9,9 @@
     <artifactId>dddlib-persistence</artifactId>
     <packaging>pom</packaging>
     <name>DDDLib Persistence API implementes</name>
-    <description>
+    <remark>
         DDDLib仓储接口实现。
-    </description>
+    </remark>
 
     <dependencies>
         <dependency>
