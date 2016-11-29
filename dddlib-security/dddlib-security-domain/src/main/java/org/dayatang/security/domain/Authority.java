@@ -17,7 +17,7 @@ public class Authority extends AbstractEntity {
 
     private String name;
 
-    private String description;
+    private String remark;
 
     protected Authority() {
     }
@@ -34,12 +34,12 @@ public class Authority extends AbstractEntity {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     @Override
