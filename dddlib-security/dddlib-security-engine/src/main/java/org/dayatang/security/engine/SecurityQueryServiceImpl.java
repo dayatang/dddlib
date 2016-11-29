@@ -1,10 +1,10 @@
-package org.dayatang.security.service.impl;
+package org.dayatang.security.engine;
 
+import org.dayatang.security.api.SecurityQueryService;
 import org.dayatang.security.domain.AuthorizationScope;
 import org.dayatang.security.domain.Permission;
 import org.dayatang.security.domain.Role;
 import org.dayatang.security.domain.User;
-import org.dayatang.security.service.SecurityQueryService;
 
 /**
  * Created by yyang on 2016/10/31.
