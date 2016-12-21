@@ -10,6 +10,7 @@ import java.util.Set;
  * Created by yyang on 2016/12/21.
  */
 public abstract class ClassDefinition {
+    private DomainType domainType;
     private String packageName;
     private String className;
     private String description;
@@ -17,6 +18,14 @@ public abstract class ClassDefinition {
     private Set<String> pkProps = new HashSet<String>();
     private Set<String> uniqueProps = new HashSet<String>();
     private List<FieldDefinition> props = new ArrayList<FieldDefinition>();
+
+    public DomainType getDomainType() {
+        return domainType;
+    }
+
+    public void setDomainType(DomainType domainType) {
+        this.domainType = domainType;
+    }
 
     public String getPackageName() {
         return packageName;
