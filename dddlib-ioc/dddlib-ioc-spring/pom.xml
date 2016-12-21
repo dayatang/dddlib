@@ -9,9 +9,9 @@
     <artifactId>dddlib-ioc-spring</artifactId>
     <packaging>jar</packaging>
     <name>DDDLib IoC implemented by Springframework</name>
-    <remark>
+    <description>
         DDDLib IoC的Spring实现，通过SpringInstanceProvider实现InstanceProvider。
-    </remark>
+    </description>
 
     <dependencies>
         <dependency>

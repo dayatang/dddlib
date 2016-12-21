@@ -1,7 +1,5 @@
 package org.dayatang.domain;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.utils.Assert;
 
 import java.util.ArrayList;
@@ -26,20 +24,21 @@ public class OrderSettings {
 	}
 
 	@Override
-	public boolean equals(final Object other) {
+	public boolean equals(Object other) {
 		if (this == other) {
 			return true;
 		}
 		if (!(other instanceof OrderSettings)) {
 			return false;
 		}
+
 		OrderSettings that = (OrderSettings) other;
-		return new EqualsBuilder().append(this.orderBy, that.orderBy).isEquals();
+
+		return this.getOrderBy().equals(that.getOrderBy());
 	}
 
 	@Override
 	public int hashCode() {
-		return new HashCodeBuilder(17, 37).append(orderBy).toHashCode();
+		return getOrderBy().hashCode();
 	}
-
 }

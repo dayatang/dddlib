@@ -9,9 +9,9 @@
     <artifactId>dddlib-spring-test</artifactId>
     <packaging>jar</packaging>
     <name>DDDLib Test classes for spring</name>
-    <remark>
+    <description>
         数据库集成测试基类，通过Spring实现。
-    </remark>
+    </description>
 
     <dependencies>
         <dependency>

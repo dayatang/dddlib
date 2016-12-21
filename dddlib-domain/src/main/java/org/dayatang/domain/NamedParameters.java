@@ -16,8 +16,6 @@
 
 package org.dayatang.domain;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.dayatang.utils.Assert;
 
 import java.util.Collections;
@@ -87,20 +85,6 @@ public class NamedParameters implements QueryParameters {
         return Collections.unmodifiableMap(params);
     }
 
-    /**
-     * 获得对象的哈希值
-     * @return 对象的哈希值
-     */
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 43).append(params).toHashCode();
-    }
-
-    /**
-     * 判断参数集对象的等价性。当且仅当两个NamedParameters包含的参数Map相同时，两个对象才是等价的。
-     * @param other 另一个对象
-     * @return 如果当前对象等价于other则返回true，否则返回false。
-     */
     @Override
     public boolean equals(Object other) {
         if (this == other) {
@@ -109,9 +93,15 @@ public class NamedParameters implements QueryParameters {
         if (!(other instanceof NamedParameters)) {
             return false;
         }
+
         NamedParameters that = (NamedParameters) other;
-        
-        return new EqualsBuilder().append(this.getParams(), that.getParams()).isEquals();
+
+        return this.getParams().equals(that.getParams());
+    }
+
+    @Override
+    public int hashCode() {
+        return getParams().hashCode();
     }
 
     /**

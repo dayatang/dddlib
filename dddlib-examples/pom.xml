@@ -10,7 +10,7 @@
     <artifactId>dddlib-examples</artifactId>
     <packaging>pom</packaging>
     <name>DDDLib Examples</name>
-    <remark>DDDLib usage examples.</remark>
+    <description>DDDLib usage examples.</description>
     <modules>
         <module>organisation-project</module>
     </modules>

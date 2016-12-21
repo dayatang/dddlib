@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dddlib-image-file</artifactId>
-    <remark>Image存储的file本地实现</remark>
+    <description>Image存储的file本地实现</description>
 
     <dependencies>
 

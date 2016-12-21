@@ -9,9 +9,9 @@
     <artifactId>dddlib-ioc-tapestry</artifactId>
     <packaging>jar</packaging>
     <name>DDDLib IoC implemented by Apache Tapestry</name>
-    <remark>
+    <description>
         DDDLib IoC的Tapestry实现，通过TapestryInstanceProvider实现InstanceProvider。
-    </remark>
+    </description>
 
     <dependencies>
         <dependency>

@@ -8,7 +8,7 @@
     <artifactId>dddlib-event-storage</artifactId>
     <packaging>jar</packaging>
     <name>dddlib-event-storage</name>
-    <remark>Domain Event Storage Module</remark>
+    <description>Domain Event Storage Module</description>
 
     <dependencies>
         <dependency>

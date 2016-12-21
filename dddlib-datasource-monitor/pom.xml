@@ -9,9 +9,9 @@
     <artifactId>dddlib-datasource-monitor</artifactId>
     <packaging>jar</packaging>
     <name>DDDLib DataSource Monitor</name>
-    <remark>
+    <description>
         数据源监控
-    </remark>
+    </description>
 
     <build>
         <plugins>

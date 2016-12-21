@@ -8,6 +8,6 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dddlib-image-api</artifactId>
-    <remark>image api接口</remark>
+    <description>image api接口</description>
 
 </project>

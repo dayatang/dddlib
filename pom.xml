@@ -69,6 +69,7 @@
         <module>dddlib-image</module>
         <module>dddlib-security</module>
         <module>dddlib-examples</module>
+        <module>dddlib-codegen</module>
     </modules>
 
     <scm>

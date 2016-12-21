@@ -9,9 +9,9 @@
     <artifactId>dddlib-cache-memcached</artifactId>
     <packaging>jar</packaging>
     <name>DDDLib Cache implemented by memcached</name>
-    <remark>
+    <description>
         高速缓存，用Memcached实现。
-    </remark>
+    </description>
 
     <dependencies>
         <dependency>

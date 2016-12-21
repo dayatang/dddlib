@@ -9,7 +9,7 @@
 
     <artifactId>dddlib-image</artifactId>
     <packaging>pom</packaging>
-    <remark>提供针对图片的存取工具类</remark>
+    <description>提供针对图片的存取工具类</description>
     <modules>
         <module>dddlib-image-api</module>
         <module>dddlib-image-cache</module>
