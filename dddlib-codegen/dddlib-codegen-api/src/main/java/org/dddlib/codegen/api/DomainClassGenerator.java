@@ -18,7 +18,7 @@ public interface DomainClassGenerator {
      */
     Set<JavaSourceFile> generate(File file);
 
-    Set<JavaSourceFile> generate(InputStream in);
+    Set<JavaSourceFile> generate(String filePath);
 
     Set<JavaSourceFile> generate(Reader in);
 }

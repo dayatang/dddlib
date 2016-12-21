@@ -1,4 +1,4 @@
-package org.dddlib.codegen.engine;
+package org.dddlib.codegen.engine.definitions;
 
 /**
  * Created by yyang on 2016/12/21.

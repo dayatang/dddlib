@@ -1,4 +1,4 @@
-package org.dddlib.codegen.engine;
+package org.dddlib.codegen.engine.definitions;
 
 import java.util.ArrayList;
 import java.util.HashSet;
