@@ -28,7 +28,7 @@ public class DefaultDomainClassGenerator implements DomainClassGenerator {
         try {
             in = new FileReader(file);
         } catch (FileNotFoundException e) {
-            throw new ParseException("File '" + file + "' not found!");
+            throw new ParsingException("File '" + file + "' not found!");
         }
         return generate(in);
     }
@@ -39,7 +39,7 @@ public class DefaultDomainClassGenerator implements DomainClassGenerator {
         try {
             in = new FileReader(filePath);
         } catch (FileNotFoundException e) {
-            throw new ParseException("File '" + filePath + "' not found!");
+            throw new ParsingException("File '" + filePath + "' not found!");
         }
         return generate(in);
     }
