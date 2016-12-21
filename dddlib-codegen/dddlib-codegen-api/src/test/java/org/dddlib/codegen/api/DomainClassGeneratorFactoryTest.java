@@ -11,7 +11,7 @@ public class DomainClassGeneratorFactoryTest {
 
     @Test
     public void getInstance() throws Exception {
-        DomainClassGenerator generator = DomainClassGeneratorFactory.getInstance();
+        DomainClassGenerator generator = DomainClassGeneratorFactory.getGenerator();
         assertThat(generator).isInstanceOf(MockDomainClassGenerator.class);
     }
 

@@ -6,7 +6,7 @@ import java.util.ServiceLoader;
  * Created by yyang on 2016/12/21.
  */
 public class DomainClassGeneratorFactory {
-    public static DomainClassGenerator getInstance() {
+    public static DomainClassGenerator getGenerator() {
         ServiceLoader<DomainClassGenerator> loader = ServiceLoader.load(DomainClassGenerator.class);
         if (loader.iterator().hasNext()) {
             return loader.iterator().next();
