@@ -11,4 +11,6 @@ import java.util.Set;
  */
 public interface DefinitionParser {
     PackageDefinition parse(Reader in);
+    PackageDefinition parseClasspath(String file);
+    PackageDefinition parseFile(String file);
 }

@@ -41,4 +41,14 @@ public class YmlParser implements DefinitionParser {
             throw new ParsingException("Cannot parse reader!");
         }
     }
+
+    @Override
+    public PackageDefinition parseClasspath(String file) {
+        return null;
+    }
+
+    @Override
+    public PackageDefinition parseFile(String file) {
+        return null;
+    }
 }
