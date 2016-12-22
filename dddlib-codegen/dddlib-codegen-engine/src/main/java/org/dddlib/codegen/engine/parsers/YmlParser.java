@@ -2,10 +2,12 @@ package org.dddlib.codegen.engine.parsers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.TreeTraversingParser;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import org.dddlib.codegen.engine.DefinitionParser;
 import org.dddlib.codegen.engine.ParsingException;
 import org.dddlib.codegen.engine.definitions.ClassDefinition;
+import org.dddlib.codegen.engine.definitions.PackageDefinition;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -16,17 +18,27 @@ import java.util.Set;
  */
 public class YmlParser implements DefinitionParser {
 
-    private YAMLFactory yamlFactory = new YAMLFactory();
+    private YAMLFactory yamlFactory;
     private ObjectMapper objectMapper;
 
+    public YmlParser() {
+        yamlFactory = new YAMLFactory();
+        objectMapper = new ObjectMapper(yamlFactory);
+    }
+
+    public YmlParser(YAMLFactory yamlFactory, ObjectMapper objectMapper) {
+        this.yamlFactory = yamlFactory;
+        this.objectMapper = objectMapper;
+    }
+
     @Override
-    public Set<ClassDefinition> parse(Reader in) {
+    public PackageDefinition parse(Reader in) {
         final JsonNode node;
         try {
             node = objectMapper.readTree(yamlFactory.createParser(in));
+            return objectMapper.readValue(new TreeTraversingParser(node), PackageDefinition.class);
         } catch (IOException e) {
             throw new ParsingException("Cannot parse reader!");
         }
-        return null;
     }
 }
