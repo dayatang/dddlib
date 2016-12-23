@@ -4,14 +4,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.TreeTraversingParser;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import org.dddlib.codegen.engine.DefinitionParser;
-import org.dddlib.codegen.engine.ParsingException;
-import org.dddlib.codegen.engine.definitions.ClassDefinition;
+import org.dddlib.codegen.api.DefinitionParser;
+import org.dddlib.codegen.api.ParsingException;
 import org.dddlib.codegen.engine.definitions.PackageDefinition;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Set;
 
 /**
  * Created by yyang on 2016/12/21.
