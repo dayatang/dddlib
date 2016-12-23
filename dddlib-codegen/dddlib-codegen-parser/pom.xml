@@ -7,10 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dddlib-codegen-engine</artifactId>
+    <artifactId>dddlib-codegen-parser</artifactId>
     <packaging>jar</packaging>
 
-    <name>dddlib-codegen-engine</name>
+    <name>dddlib-codegen-jackson</name>
 
     <dependencies>
         <dependency>
@@ -19,9 +19,9 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.squareup</groupId>
-            <artifactId>javapoet</artifactId>
-            <version>1.8.0</version>
+            <groupId>org.dayatang.dddlib</groupId>
+            <artifactId>dddlib-codegen-classdef</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>

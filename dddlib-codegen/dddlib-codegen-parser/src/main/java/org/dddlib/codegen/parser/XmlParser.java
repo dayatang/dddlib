@@ -1,11 +1,11 @@
-package org.dddlib.codegen.engine.parsers;
+package org.dddlib.codegen.parser;
 
 import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
 import com.fasterxml.jackson.dataformat.xml.XmlFactory;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.dddlib.codegen.api.DefinitionParser;
 import org.dddlib.codegen.api.ParsingException;
-import org.dddlib.codegen.engine.definitions.PackageDefinition;
+import org.dddlib.codegen.parser.definitions.PackageDefinition;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;

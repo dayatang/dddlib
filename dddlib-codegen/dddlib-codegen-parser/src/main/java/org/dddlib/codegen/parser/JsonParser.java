@@ -1,15 +1,17 @@
-package org.dddlib.codegen.engine.parsers;
+package org.dddlib.codegen.parser;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.TreeTraversingParser;
+import org.dddlib.codegen.api.ClassDefinition;
 import org.dddlib.codegen.api.DefinitionParser;
 import org.dddlib.codegen.api.ParsingException;
-import org.dddlib.codegen.engine.definitions.PackageDefinition;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Set;
 
 /**
  * Created by yyang on 2016/12/21.
@@ -45,7 +47,17 @@ public class JsonParser implements DefinitionParser {
     }
 
     @Override
+    public Set<ClassDefinition> parseReader(Reader in) {
+        return null;
+    }
+
+    @Override
     public PackageDefinition parseFile(String file) {
+        return null;
+    }
+
+    @Override
+    public Set<ClassDefinition> parseFile(File file) {
         return null;
     }
 }

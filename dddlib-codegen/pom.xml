@@ -13,8 +13,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>dddlib-codegen-api</module>
-        <module>dddlib-codegen-engine</module>
-        <module>dddlib-codegen-jackson</module>
+        <module>dddlib-codegen-generator</module>
+        <module>dddlib-codegen-classdef</module>
+        <module>dddlib-codegen-parser</module>
     </modules>
 
 

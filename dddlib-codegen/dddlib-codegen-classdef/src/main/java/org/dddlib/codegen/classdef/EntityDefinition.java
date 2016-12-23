@@ -1,4 +1,4 @@
-package org.dddlib.codegen.engine.definitions;
+package org.dddlib.codegen.classdef;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -9,7 +9,7 @@ import java.util.Set;
  *领域类定义
  * Created by yyang on 2016/12/21.
  */
-public abstract class ClassDefinition {
+public abstract class EntityDefinition extends BaseDefinition {
     private DomainType domainType;
     private String packageName;
     private String className;
@@ -88,11 +88,11 @@ public abstract class ClassDefinition {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof ClassDefinition)) {
+        if (!(o instanceof EntityDefinition)) {
             return false;
         }
 
-        ClassDefinition that = (ClassDefinition) o;
+        EntityDefinition that = (EntityDefinition) o;
 
         if (!getPackageName().equals(that.getPackageName())) {
             return false;

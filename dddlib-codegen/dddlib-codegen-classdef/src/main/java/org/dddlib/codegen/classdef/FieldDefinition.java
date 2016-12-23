@@ -1,4 +1,4 @@
-package org.dddlib.codegen.engine.definitions;
+package org.dddlib.codegen.classdef;
 
 /**
  * 字段定义

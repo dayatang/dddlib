@@ -1,7 +1,7 @@
-package org.dddlib.codegen.engine.generators;
+package org.dddlib.codegen.generators;
 
 import org.dddlib.codegen.api.JavaSourceFile;
-import org.dddlib.codegen.engine.definitions.FieldDefinition;
+import org.dddlib.codegen.classdef.FieldDefinition;
 
 /**
  * Created by yyang on 2016/12/21.
