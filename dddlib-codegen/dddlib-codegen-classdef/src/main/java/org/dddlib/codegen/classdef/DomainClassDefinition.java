@@ -1,6 +1,5 @@
 package org.dddlib.codegen.classdef;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.dddlib.codegen.api.ClassDefinition;
 
 import java.util.ArrayList;
@@ -13,8 +12,7 @@ import java.util.Set;
  */
 public class DomainClassDefinition implements ClassDefinition {
 
-    @JsonProperty("package")
-    private String packageName;
+    private String pkg;
     private String name;
     private String description;
     private boolean isAbstract = false;
@@ -23,12 +21,12 @@ public class DomainClassDefinition implements ClassDefinition {
     private List<String> annotations = new ArrayList<String>();
     private List<FieldDefinition> fields = new ArrayList<FieldDefinition>();
 
-    public String getPackageName() {
-        return packageName;
+    public String getPkg() {
+        return pkg;
     }
 
-    public void setPackageName(String packageName) {
-        this.packageName = packageName;
+    public void setPkg(String pkg) {
+        this.pkg = pkg;
     }
 
     public String getName() {
@@ -98,7 +96,7 @@ public class DomainClassDefinition implements ClassDefinition {
 
         DomainClassDefinition that = (DomainClassDefinition) o;
 
-        if (!getPackageName().equals(that.getPackageName())) {
+        if (!getPkg().equals(that.getPkg())) {
             return false;
         }
         return getName().equals(that.getName());
@@ -106,7 +104,7 @@ public class DomainClassDefinition implements ClassDefinition {
 
     @Override
     public int hashCode() {
-        int result = getPackageName().hashCode();
+        int result = getPkg().hashCode();
         result = 31 * result + getName().hashCode();
         return result;
     }

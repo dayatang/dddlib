@@ -4,7 +4,7 @@
   description: 产品模块
   mappedSuperClasses:
     - name: AbstractEntity
-      package: io.ooad.ishop.domain
+      pkg: io.ooad.ishop.domain
       description: 领域实体基类
       fields:
         - name: id
