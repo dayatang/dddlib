@@ -10,29 +10,32 @@ import java.util.Set;
  */
 public final class DomainClassGenerator {
 
-    private DefinitionParser parser;
+    private Set<DefinitionParser> parsers;
 
     private ClassGenerator generator;
 
-    public DomainClassGenerator(DefinitionParser parser, ClassGenerator generator) {
-        this.parser = parser;
+    public DomainClassGenerator(Set<DefinitionParser> parsers, ClassGenerator generator) {
+        this.parsers = parsers;
         this.generator = generator;
     }
 
     public Set<JavaSourceFile> generateFromFile(String file) {
-        return generateFrom(parser.parseFile(file));
+        String ext = getExtOfFile(file);
+        return generateFrom(parserOf(ext).parseFile(file));
     }
 
     public Set<JavaSourceFile> generateFromFile(File file) {
-        return generateFrom(parser.parseFile(file));
+        String ext = getExtOfFile(file.getName());
+        return generateFrom(parserOf(ext).parseFile(file));
     }
 
     public Set<JavaSourceFile> generateFromClasspath(String filePath) {
-        return generateFrom(parser.parseClasspath(filePath));
+        String ext = getExtOfFile(filePath);
+        return generateFrom(parserOf(ext).parseClasspath(filePath));
     }
 
-    public Set<JavaSourceFile> generateFromReader(Reader in) {
-        return generateFrom(parser.parseReader(in));
+    public Set<JavaSourceFile> generateFromReader(Reader in, String type) {
+        return generateFrom(parserOf(type).parseReader(in));
     }
 
     private Set<JavaSourceFile> generateFrom(Set<ClassDefinition> definitions) {
@@ -41,5 +44,22 @@ public final class DomainClassGenerator {
             results.add(generator.generate(definition));
         }
         return results;
+    }
+
+    private DefinitionParser parserOf(String ext) {
+        for (DefinitionParser parser : parsers) {
+            if (parser.accept(ext)) {
+                return parser;
+            }
+        }
+        throw new UnsupportedFileFormatException("没有解析器支持文件类型." + ext);
+    }
+
+    private String getExtOfFile(String filename) {
+        int pos = filename.lastIndexOf(".");
+        if (pos < 0) {
+            return "";
+        }
+        return filename.substring(pos + 1);
     }
 }

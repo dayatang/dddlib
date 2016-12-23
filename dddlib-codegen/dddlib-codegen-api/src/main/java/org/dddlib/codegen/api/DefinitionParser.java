@@ -12,4 +12,6 @@ public interface DefinitionParser {
     Set<ClassDefinition> parseFile(File file);
     Set<ClassDefinition> parseClasspath(String filePath);
     Set<ClassDefinition> parseReader(Reader in);
+
+    boolean accept(String ext);
 }

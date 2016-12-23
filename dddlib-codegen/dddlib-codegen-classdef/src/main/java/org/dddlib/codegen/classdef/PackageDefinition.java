@@ -12,7 +12,7 @@ import java.util.Set;
 public class PackageDefinition implements ClassDefinition {
     private String name;
     private String description;
-    private Set<EntityDefinition> classes = new HashSet<EntityDefinition>();
+    private Set<BaseDefinition> classes = new HashSet<BaseDefinition>();
 
     public PackageDefinition(String name) {
         this.name = name;
@@ -31,7 +31,7 @@ public class PackageDefinition implements ClassDefinition {
         return description;
     }
 
-    public Set<EntityDefinition> getClasses() {
+    public Set<BaseDefinition> getClasses() {
         return Collections.unmodifiableSet(classes);
     }
 

@@ -9,6 +9,7 @@ import org.mockito.MockitoAnnotations;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.Collections;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,9 +47,10 @@ public class DomainClassGeneratorTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        instance = new DomainClassGenerator(parser, generator);
+        instance = new DomainClassGenerator(Collections.singleton(parser), generator);
         definitions = Sets.newHashSet(definition1, definition2);
         sourceFiles = Sets.newHashSet(sourceFile1, sourceFile2);
+        when(parser.accept("yml")).thenReturn(true);
     }
 
     @Test
@@ -89,7 +91,7 @@ public class DomainClassGeneratorTest {
         when(parser.parseReader(in)).thenReturn(definitions);
         when(generator.generate(definition1)).thenReturn(sourceFile1);
         when(generator.generate(definition2)).thenReturn(sourceFile2);
-        Set<JavaSourceFile> results = instance.generateFromReader(in);
+        Set<JavaSourceFile> results = instance.generateFromReader(in, "yml");
         assertThat(results).containsExactlyInAnyOrder(sourceFile1, sourceFile2);
     }
 
