@@ -1,31 +1,27 @@
 package org.dddlib.codegen.classdef;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.dddlib.codegen.api.ClassDefinition;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 /**
- *领域类定义
- * Created by yyang on 2016/12/21.
+ * Created by yyang on 2016/12/23.
  */
-public abstract class EntityDefinition extends BaseDefinition {
-    private DomainType domainType;
+public class DomainClassDefinition implements ClassDefinition {
+
+    @JsonProperty("package")
     private String packageName;
-    private String className;
+    private String name;
     private String description;
     private boolean isAbstract = false;
     private Set<String> pkProps = new HashSet<String>();
     private Set<String> uniqueProps = new HashSet<String>();
-    private List<FieldDefinition> props = new ArrayList<FieldDefinition>();
-
-    public DomainType getDomainType() {
-        return domainType;
-    }
-
-    public void setDomainType(DomainType domainType) {
-        this.domainType = domainType;
-    }
+    private List<String> annotations = new ArrayList<String>();
+    private List<FieldDefinition> fields = new ArrayList<FieldDefinition>();
 
     public String getPackageName() {
         return packageName;
@@ -35,12 +31,12 @@ public abstract class EntityDefinition extends BaseDefinition {
         this.packageName = packageName;
     }
 
-    public String getClassName() {
-        return className;
+    public String getName() {
+        return name;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -75,12 +71,20 @@ public abstract class EntityDefinition extends BaseDefinition {
         this.uniqueProps = uniqueProps;
     }
 
-    public List<FieldDefinition> getProps() {
-        return props;
+    public List<String> getAnnotations() {
+        return annotations;
     }
 
-    public void setProps(List<FieldDefinition> props) {
-        this.props = props;
+    public void setAnnotations(List<String> annotations) {
+        this.annotations = annotations;
+    }
+
+    public List<FieldDefinition> getFields() {
+        return fields;
+    }
+
+    public void setFields(List<FieldDefinition> fields) {
+        this.fields = fields;
     }
 
     @Override
@@ -88,22 +92,22 @@ public abstract class EntityDefinition extends BaseDefinition {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof EntityDefinition)) {
+        if (!(o instanceof DomainClassDefinition)) {
             return false;
         }
 
-        EntityDefinition that = (EntityDefinition) o;
+        DomainClassDefinition that = (DomainClassDefinition) o;
 
         if (!getPackageName().equals(that.getPackageName())) {
             return false;
         }
-        return getClassName().equals(that.getClassName());
+        return getName().equals(that.getName());
     }
 
     @Override
     public int hashCode() {
         int result = getPackageName().hashCode();
-        result = 31 * result + getClassName().hashCode();
+        result = 31 * result + getName().hashCode();
         return result;
     }
 }

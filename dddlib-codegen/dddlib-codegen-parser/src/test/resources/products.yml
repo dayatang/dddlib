@@ -1,0 +1,57 @@
+---
+
+- name: io.ooad.ishop.products.domain
+  description: 产品模块
+  mappedSuperClasses:
+    - name: AbstractEntity
+      package: io.ooad.ishop.domain
+      description: 领域实体基类
+      fields:
+        - name: id
+          type: String
+          defaultValue: java.util.UUID.randomUUID().toString()
+          annotations:
+            - Id
+          description: 持久化ID
+        - name: version
+          type: int
+          annotations:
+            - Version
+          description: 版本。持久化框架据此进行乐观锁控制。
+  entities:
+    - name: ProductCategory
+      description: 产品类别，可形成层级关系
+      pkProps:
+        - name
+        - parent
+      fields:
+        - name: name
+          type: String
+          description: 类别名称
+        - name: description
+          type: String
+          description: 类别描述
+        - name: leftValue
+          type: long
+          defaultValue: 0
+          description: 左值
+        - name: writeValue
+          type: long
+          defaultValue: 10000000
+          description: 右值
+    - name: Product
+      description: 产品
+      pkProps:
+        - name
+        - category
+      fields:
+        - name: name
+          type: String
+          description: 产品名称
+        - name: description
+          type: String
+          description: 产品描述
+        - name: category
+          type: Category
+          relation: many-to-one
+          description: 产品类别

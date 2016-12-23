@@ -1,44 +1,34 @@
 package org.dddlib.codegen.classdef;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 字段定义
  * Created by yyang on 2016/12/21.
  */
 public class FieldDefinition {
 
-    //字段类别
-    private FieldCategory type;
-
-    //多重性（to_one还是to_many）
-    private Cardinality cardinality;
-
     //字段名
     private String name;
-
-    //数据类型
-    private String dataType;
-
-    //缺省值
-    private String defaultValue;
 
     //字段说明
     private String description;
 
-    public FieldCategory getType() {
-        return type;
-    }
+    //字段类型
+    private String type;
 
-    public void setType(FieldCategory type) {
-        this.type = type;
-    }
+    //关系类型
+    private RelationType relation = RelationType.VALUE;
 
-    public Cardinality getCardinality() {
-        return cardinality;
-    }
+    //集合类型
+    private CollectionType collectionType = CollectionType.NONE;
 
-    public void setCardinality(Cardinality cardinality) {
-        this.cardinality = cardinality;
-    }
+    //缺省值
+    private String defaultValue;
+
+    //注解
+    private List<String> annotations = new ArrayList<String>();
 
     public String getName() {
         return name;
@@ -48,12 +38,36 @@ public class FieldDefinition {
         this.name = name;
     }
 
-    public String getDataType() {
-        return dataType;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public RelationType getRelation() {
+        return relation;
+    }
+
+    public void setRelation(RelationType relation) {
+        this.relation = relation;
+    }
+
+    public CollectionType getCollectionType() {
+        return collectionType;
+    }
+
+    public void setCollectionType(CollectionType collectionType) {
+        this.collectionType = collectionType;
     }
 
     public String getDefaultValue() {
@@ -64,12 +78,12 @@ public class FieldDefinition {
         this.defaultValue = defaultValue;
     }
 
-    public String getDescription() {
-        return description;
+    public List<String> getAnnotations() {
+        return annotations;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAnnotations(List<String> annotations) {
+        this.annotations = annotations;
     }
 
     @Override

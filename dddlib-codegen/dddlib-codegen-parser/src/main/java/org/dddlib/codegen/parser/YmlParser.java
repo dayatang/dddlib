@@ -8,6 +8,7 @@ import org.dddlib.codegen.api.ClassDefinition;
 import org.dddlib.codegen.api.ParsingException;
 import org.dddlib.codegen.classdef.PackageDefinition;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.Set;
@@ -50,6 +51,11 @@ public class YmlParser extends DefaultDefinitionParser {
     @Override
     public Set<ClassDefinition> parseFile(String file) {
         return null;
+    }
+
+    @Override
+    public Set<ClassDefinition> parseFile(File file) {
+        return super.parseFile(file);
     }
 
     @Override
