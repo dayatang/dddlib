@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.node.TreeTraversingParser;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import org.dddlib.codegen.api.ClassDefinition;
 import org.dddlib.codegen.api.ParsingException;
-import org.dddlib.codegen.classdef.PackageDefinition;
+import org.dddlib.codegen.api.PackageDefinition;
 
 import java.io.File;
 import java.io.IOException;

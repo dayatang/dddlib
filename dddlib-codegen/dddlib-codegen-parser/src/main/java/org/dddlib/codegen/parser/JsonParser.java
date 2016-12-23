@@ -6,12 +6,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.TreeTraversingParser;
 import org.dddlib.codegen.api.ClassDefinition;
 import org.dddlib.codegen.api.ParsingException;
-import org.dddlib.codegen.classdef.PackageDefinition;
+import org.dddlib.codegen.api.PackageDefinition;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.HashSet;
 import java.util.Set;
 
 /**

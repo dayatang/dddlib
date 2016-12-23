@@ -5,7 +5,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlFactory;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.dddlib.codegen.api.ClassDefinition;
 import org.dddlib.codegen.api.ParsingException;
-import org.dddlib.codegen.classdef.PackageDefinition;
+import org.dddlib.codegen.api.PackageDefinition;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;

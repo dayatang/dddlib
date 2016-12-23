@@ -2,7 +2,7 @@ package org.dddlib.codegen.parser;
 
 import org.dddlib.codegen.api.ClassDefinition;
 import org.dddlib.codegen.api.DefinitionParser;
-import org.dddlib.codegen.classdef.PackageDefinition;
+import org.dddlib.codegen.api.PackageDefinition;
 
 import java.io.File;
 import java.io.Reader;
