@@ -50,11 +50,6 @@ public class JsonParser extends DefaultDefinitionParser {
 
 
     @Override
-    public boolean accept(String ext) {
-        return "yml".equals(ext);
-    }
-
-    @Override
     public Set<ClassDefinition> parseFile(String file) {
         return null;
     }
@@ -64,10 +59,8 @@ public class JsonParser extends DefaultDefinitionParser {
         return null;
     }
 
-    private Set<ClassDefinition> toClassDefinitions(PackageDefinition packageDefinition) {
-        Set<ClassDefinition> results = new HashSet<ClassDefinition>();
-        results.add(packageDefinition);
-        results.addAll(packageDefinition.getClasses());
-        return results;
+    @Override
+    public boolean accept(String ext) {
+        return "json".equals(ext);
     }
 }
