@@ -1,6 +1,7 @@
 package org.dayatang.security.engine;
 
 import org.dayatang.security.api.SecurityQueryService;
+import org.dayatang.security.api.UserInfo;
 import org.dayatang.security.domain.AuthorizationScope;
 import org.dayatang.security.domain.Permission;
 import org.dayatang.security.domain.Role;
@@ -11,12 +12,12 @@ import org.dayatang.security.domain.User;
  */
 public class SecurityQueryServiceImpl implements SecurityQueryService {
     @Override
-    public User getUser(String id) {
+    public UserInfo getUser(String id) {
         return null;
     }
 
     @Override
-    public User getUserByUsername(String username) {
+    public UserInfo getUserByUsername(String username) {
         return null;
     }
 
@@ -26,27 +27,27 @@ public class SecurityQueryServiceImpl implements SecurityQueryService {
     }
 
     @Override
-    public User login(String username, String password) {
+    public UserInfo login(String username, String password) {
         return null;
     }
 
     @Override
-    public boolean hasRole(User user, Role role) {
+    public boolean hasRole(String username, String role) {
         return false;
     }
 
     @Override
-    public boolean hasPermission(User user, Permission permission) {
+    public boolean hasPermission(String username, String permission) {
         return false;
     }
 
     @Override
-    public boolean hasRoleInScope(User user, Role role, AuthorizationScope scope) {
+    public boolean hasRoleInScope(String username, String role, String scope) {
         return false;
     }
 
     @Override
-    public boolean hasPermissionInScope(User user, Permission permission, AuthorizationScope scope) {
+    public boolean hasPermissionInScope(String username, String permission, String scope) {
         return false;
     }
 }
