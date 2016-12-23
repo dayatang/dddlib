@@ -20,27 +20,24 @@ public final class DomainClassGenerator {
     }
 
     public Set<JavaSourceFile> generateFromFile(String file) {
-        return generateFromFile(new File(file));
+        return generateFrom(parser.parseFile(file));
     }
 
     public Set<JavaSourceFile> generateFromFile(File file) {
-        FileReader in = null;
-        try {
-            in = new FileReader(file);
-        } catch (FileNotFoundException e) {
-            throw new ParsingException("File '" + file + "' not found!");
-        }
-        return generateFromReader(in);
+        return generateFrom(parser.parseFile(file));
     }
 
     public Set<JavaSourceFile> generateFromClasspath(String filePath) {
-        Reader in = new InputStreamReader(getClass().getResourceAsStream(filePath));
-        return generateFromReader(in);
+        return generateFrom(parser.parseClasspath(filePath));
     }
 
     public Set<JavaSourceFile> generateFromReader(Reader in) {
+        return generateFrom(parser.parseReader(in));
+    }
+
+    private Set<JavaSourceFile> generateFrom(Set<ClassDefinition> definitions) {
         Set<JavaSourceFile> results = new HashSet<JavaSourceFile>();
-        for (ClassDefinition definition : parser.parseReader(in)) {
+        for (ClassDefinition definition : definitions) {
             results.add(generator.generate(definition));
         }
         return results;
