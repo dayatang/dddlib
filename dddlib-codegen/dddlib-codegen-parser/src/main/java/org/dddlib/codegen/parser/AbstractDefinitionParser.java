@@ -12,7 +12,7 @@ import java.util.Set;
 /**
  * Created by yyang on 2016/12/23.
  */
-public abstract class DefaultDefinitionParser implements DefinitionParser {
+public abstract class AbstractDefinitionParser implements DefinitionParser {
     @Override
     public Set<ClassDefinition> parseFile(String file) {
         return null;

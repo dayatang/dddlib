@@ -16,7 +16,7 @@ import java.util.Set;
 /**
  * Created by yyang on 2016/12/21.
  */
-public class YmlParser extends DefaultDefinitionParser {
+public class YmlParser extends AbstractDefinitionParser {
 
     private YAMLFactory yamlFactory;
     private ObjectMapper objectMapper;

@@ -16,7 +16,7 @@ import java.util.Set;
 /**
  * Created by yyang on 2016/12/21.
  */
-public class JsonParser extends DefaultDefinitionParser {
+public class JsonParser extends AbstractDefinitionParser {
     private JsonFactory jsonFactory;
     private ObjectMapper objectMapper;
 
