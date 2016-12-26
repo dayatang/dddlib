@@ -9,9 +9,9 @@ import java.util.Set;
 public class PackageDefinition implements ClassDefinition {
     private String name;
     private String description;
-    private Set<DomainClassDefinition> mappedSuperClasses = new HashSet<DomainClassDefinition>();
-    private Set<DomainClassDefinition> entities = new HashSet<DomainClassDefinition>();
-    private Set<DomainClassDefinition> valueObjects = new HashSet<DomainClassDefinition>();
+    private Set<MspDefinition> mappedSuperClasses = new HashSet<MspDefinition>();
+    private Set<EntityDefinition> entities = new HashSet<EntityDefinition>();
+    private Set<ValueObjectDefinition> valueObjects = new HashSet<ValueObjectDefinition>();
 
     public String getName() {
         return name;
@@ -29,27 +29,46 @@ public class PackageDefinition implements ClassDefinition {
         this.description = description;
     }
 
-    public Set<DomainClassDefinition> getMappedSuperClasses() {
+    public Set<MspDefinition> getMappedSuperClasses() {
         return mappedSuperClasses;
     }
 
-    public void setMappedSuperClasses(Set<DomainClassDefinition> mappedSuperClasses) {
+    public void setMappedSuperClasses(Set<MspDefinition> mappedSuperClasses) {
         this.mappedSuperClasses = mappedSuperClasses;
     }
 
-    public Set<DomainClassDefinition> getEntities() {
+    public Set<EntityDefinition> getEntities() {
         return entities;
     }
 
-    public void setEntities(Set<DomainClassDefinition> entities) {
+    public void setEntities(Set<EntityDefinition> entities) {
         this.entities = entities;
     }
 
-    public Set<DomainClassDefinition> getValueObjects() {
+    public Set<ValueObjectDefinition> getValueObjects() {
         return valueObjects;
     }
 
-    public void setValueObjects(Set<DomainClassDefinition> valueObjects) {
+    public void setValueObjects(Set<ValueObjectDefinition> valueObjects) {
         this.valueObjects = valueObjects;
     }
+
+    public Set<ClassDefinition> toClassDefinitions() {
+        Set<ClassDefinition> results = new HashSet<ClassDefinition>();
+        results.add(this);
+        for (MspDefinition each: getMappedSuperClasses()) {
+            each.setPkg(getName());
+            results.add(each);
+        }
+        for (EntityDefinition each: getEntities()) {
+            each.setPkg(getName());
+            results.add(each);
+        }
+        for (ValueObjectDefinition each: getValueObjects()) {
+            each.setPkg(getName());
+            results.add(each);
+        }
+        return results;
+    }
+
 }
