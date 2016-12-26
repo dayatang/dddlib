@@ -11,17 +11,5 @@
     <packaging>jar</packaging>
 
     <name>dddlib-codegen-classdef</name>
-    <url>http://maven.apache.org</url>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.dayatang.dddlib</groupId>
-            <artifactId>dddlib-codegen-api</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
 </project>

@@ -1,6 +1,7 @@
 package org.dddlib.codegen.api;
 
 import com.google.common.collect.Sets;
+import org.dddlib.codegen.classdef.ClassDefinition;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

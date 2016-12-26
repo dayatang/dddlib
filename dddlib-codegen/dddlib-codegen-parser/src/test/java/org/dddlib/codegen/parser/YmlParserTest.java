@@ -1,13 +1,12 @@
 package org.dddlib.codegen.parser;
 
-import org.dddlib.codegen.api.ClassDefinition;
+import org.dddlib.codegen.classdef.ClassDefinition;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.in;
 
 
 /**

@@ -1,5 +1,7 @@
 package org.dddlib.codegen.api;
 
+import org.dddlib.codegen.classdef.ClassDefinition;
+
 import java.io.*;
 import java.util.HashSet;
 import java.util.Set;

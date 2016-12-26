@@ -1,5 +1,7 @@
 package org.dddlib.codegen.api;
 
+import org.dddlib.codegen.classdef.ClassDefinition;
+
 import java.io.File;
 import java.io.Reader;
 import java.util.Set;

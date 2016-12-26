@@ -1,8 +1,8 @@
 package org.dddlib.codegen.parser;
 
-import org.dddlib.codegen.api.ClassDefinition;
 import org.dddlib.codegen.api.DefinitionParser;
-import org.dddlib.codegen.api.PackageDefinition;
+import org.dddlib.codegen.classdef.ClassDefinition;
+import org.dddlib.codegen.classdef.PackageDefinition;
 
 import java.io.File;
 import java.io.Reader;
@@ -36,7 +36,9 @@ public abstract class DefaultDefinitionParser implements DefinitionParser {
     protected Set<ClassDefinition> toClassDefinitions(PackageDefinition packageDefinition) {
         Set<ClassDefinition> results = new HashSet<ClassDefinition>();
         results.add(packageDefinition);
-        results.addAll(packageDefinition.getClasses());
+        results.addAll(packageDefinition.getMappedSuperClasses());
+        results.addAll(packageDefinition.getEntities());
+        results.addAll(packageDefinition.getValueObjects());
         return results;
     }
 }
