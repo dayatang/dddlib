@@ -55,7 +55,7 @@ public class YmlParser extends AbstractDefinitionParser {
 
     @Override
     public Set<ClassDefinition> parseFile(File file) {
-        return super.parseFile(file);
+        return null;
     }
 
     @Override
