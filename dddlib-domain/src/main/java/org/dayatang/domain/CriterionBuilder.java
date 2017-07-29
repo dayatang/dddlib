@@ -140,7 +140,7 @@ public interface CriterionBuilder {
     QueryCriterion sizeGe(String propName, int size);
 
     /**
-     * 创建一个代表“集合属性元素数量 &lt; 值”的查询条件（例如：查找子女数量&l;t;2的人）
+     * 创建一个代表“集合属性元素数量 &lt; 值”的查询条件（例如：查找子女数量&lt;2的人）
      * @param propName 集合属性名
      * @param size 集合元素的数量
      * @return 一个查询条件
