@@ -14,6 +14,7 @@ public interface HierarchicalI18nService extends I18nService {
 
 	/**
 	 * Return the parent of this I18nService, or <code>null</code> if none.
+	 * @return I18nService
 	 */
 	I18nService getParentMessageSource();
 }

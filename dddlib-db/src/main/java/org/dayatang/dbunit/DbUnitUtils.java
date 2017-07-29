@@ -33,8 +33,8 @@ public class DbUnitUtils {
 	
 	/**
 	 * 从类路径属性文件中读入JDBC连接信息
-	 * @param resourceFile
-	 * @return
+	 * @param resourceFile 属性文件
+	 * @return DbUnitUtils
 	 */
 	public static DbUnitUtils configFromClasspath(String resourceFile) {
 		Properties jdbcProperties = PropertiesReader.readPropertiesFromClasspath(resourceFile);
@@ -43,8 +43,8 @@ public class DbUnitUtils {
 
 	/**
 	 * 从磁盘文件中读入JDBC连接信息
-	 * @param configFile
-	 * @return
+	 * @param configFile 属性文件
+	 * @return DbUnitUtils
 	 */
 	public static DbUnitUtils configFromFile(String configFile) {
 		Properties jdbcProperties = PropertiesReader.readPropertiesFromFile(configFile);

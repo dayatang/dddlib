@@ -20,7 +20,7 @@ public class BtmUtils {
 	/**
 	 * 从类路径读入数据源配置文件
 	 * @param resourceFile
-	 * @return
+	 * @return BtmUtils
 	 */
 	public static BtmUtils readConfigurationFromClasspath(String resourceFile) {
 		return new BtmUtils(getAbsolutePathOfClasspathResource(resourceFile));
@@ -42,7 +42,7 @@ public class BtmUtils {
 	/**
 	 * 从文件系统读入数据源配置文件
 	 * @param confFile
-	 * @return
+	 * @return BtmUtils
 	 */
 	public static BtmUtils readConfigurationFromFile(String confFile) {
 		return new BtmUtils(confFile);
@@ -63,7 +63,6 @@ public class BtmUtils {
 	
 	/**
 	 * 根据数据源配置设置JNDI和事务管理器
-	 * @throws Exception
 	 */
 	public void setupDataSource() {
         TransactionManagerServices.getConfiguration().setResourceConfigurationFilename(confFile);
@@ -72,7 +71,6 @@ public class BtmUtils {
 
 	/**
 	 * 关闭BTM服务并释放资源
-	 * @throws Exception
 	 */
     public void closeDataSource() {
     	TransactionManagerServices.getTransactionManager().shutdown();

@@ -22,6 +22,8 @@ public class PropertiesFileUtils {
 
 	/**
 	 * 将Properties文件，其中含有原生的UTF8等编码字符，转换为编码正确的Hashtable
+	 * @param p 属性文件
+	 * @return 哈希表形式的属性
 	 */
 	public Hashtable<String, String> rectifyProperties(Properties p) {
 		if (p == null) {
@@ -38,6 +40,8 @@ public class PropertiesFileUtils {
 
 	/**
 	 * 将编码正确的Hashtable, 转换为待写入Properties文件的对象
+	 * @param h 哈希表
+	 * @return Properties
 	 */
 	public Properties unRectifyProperties(Hashtable<String, String> h) {
 		if (h == null) {
@@ -54,6 +58,8 @@ public class PropertiesFileUtils {
 
 	/**
 	 * 修正Properities中原生字符串为正确的编码
+	 * @param raw 原始字符串
+	 * @return 修正后的字符串
 	 */
 	public String rectifyStr(String raw) {
 		if (raw == null) {
@@ -71,6 +77,8 @@ public class PropertiesFileUtils {
 
 	/**
 	 * 还原正确的字符串编码为ISO编码
+	 * @param validStr 原始字符串
+	 * @return 编码后的字符串
 	 */
 	public String unRectifyStr(String validStr) {
 		if (validStr == null) {

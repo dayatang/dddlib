@@ -25,7 +25,7 @@ public class EhCacheBasedCacheTest {
     /**
      * 测试使用一个不存在的名称创建参数，则会抛出
      */
-    @Test(expected = UnExistsedCacheNameException.class)
+    @Test(expected = UnExistedCacheNameException.class)
     public void testCreatedCacheWithName2() {
         new EhCacheBasedCache("notExistsCacheName");
     }

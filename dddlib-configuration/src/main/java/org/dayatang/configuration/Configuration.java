@@ -115,8 +115,9 @@ public interface Configuration {
     /**
      * 获取指定的键对应的对象型键值。
      *
+	 * @param <T> 配置值的类型
      * @param key 键
-     * @param objectClass 对象的类型
+     * @param objectClass 对象的类
      * @param defaultValue 默认值
      * @return 参数key对应的键值。如果键值不存在则返回参数defaultValue代表的默认值。
      */
@@ -125,6 +126,7 @@ public interface Configuration {
     /**
      * 获取指定的键对应的对象型键值。
      *
+	 * @param <T> 配置值的类型
      * @param key 键
      * @param objectClass 对象的类型
      * @return 参数key对应的键值。如果键值不存在则返回null。
@@ -189,7 +191,7 @@ public interface Configuration {
 	
 	/**
 	 * 获得所有属性
-	 * @return
+	 * @return Properties形式的配置
 	 */
 	Properties getProperties();
 	

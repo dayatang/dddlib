@@ -13,20 +13,17 @@ import java.util.Map;
  */
 public class EhCacheBasedCache implements Cache {
 
-    /**
-     * cache属性
-     */
     private net.sf.ehcache.Cache cache;
 
     /**
      * 使用指定的名字构建一个缓存，name对应ehcache.xml中的配置
      *
-     * @param name
+     * @param name 名称
      */
     public EhCacheBasedCache(String name) {
         cache = CacheManager.getInstance().getCache(name);
         if (cache == null) {
-            throw new UnExistsedCacheNameException();
+            throw new UnExistedCacheNameException();
         }
     }
 
@@ -49,16 +46,6 @@ public class EhCacheBasedCache implements Cache {
     }
 
 
-    /**
-     * 指定详细的参数，构建一个缓存对象
-     *
-     * @param name
-     * @param maxElementsInMemory
-     * @param overflowToDisk
-     * @param eternal
-     * @param timeToLiveSeconds
-     * @param timeToIdleSeconds
-     */
     public EhCacheBasedCache(String name, int maxElementsInMemory, boolean overflowToDisk, boolean eternal, long timeToLiveSeconds, long timeToIdleSeconds) {
         if (!CacheManager.getInstance().cacheExists(name)) {
             cache = new net.sf.ehcache.Cache(name, maxElementsInMemory, overflowToDisk, eternal,
@@ -67,9 +54,6 @@ public class EhCacheBasedCache implements Cache {
         }
     }
 
-    /**
-     * 从缓存中获取一个KEY值
-     */
     public Object get(String key) {
         Element el = (Element) cache.get(key);
         if (el != null) {
@@ -78,9 +62,6 @@ public class EhCacheBasedCache implements Cache {
         return null;
     }
 
-    /**
-     * 传入一系列的KEY值，返回一个MAP
-     */
     public Map<String, Object> get(String... keys) {
         Map<String, Object> result = new HashMap<String, Object>();
         for (String key : keys) {
@@ -91,28 +72,15 @@ public class EhCacheBasedCache implements Cache {
     }
 
 
-    /**
-     * 判定一个KEY值是否在缓存中存在
-     */
     public boolean containsKey(String key) {
         return cache.isKeyInCache(key) && cache.get(key)!=null;
     }
 
-    /**
-     * 向缓存中存入一个键值对
-     */
     public void put(String key, Object obj) {
         cache.put(new Element(key, obj));
     }
 
 
-    /**
-     * 向缓存中存入一个键值对，到指定的时间过期
-     *
-     * @param key         指定对象的key
-     * @param obj
-     * @param expiredDate
-     */
     public void put(String key, Object obj, Date expiredDate) {
         Date now = new Date();
         long timeToLiveSeconds = (expiredDate.getTime() - now.getTime()) / 1000;
@@ -120,20 +88,10 @@ public class EhCacheBasedCache implements Cache {
 
     }
 
-    /**
-     * 向缓存中存入一个键值对，指定其生存的秒数
-     *
-     * @param key               指定对象的key
-     * @param obj
-     * @param timeToLiveSeconds
-     */
     public void put(String key, Object obj, long timeToLiveSeconds) {
         cache.put(new Element(key, obj, false, (int) timeToLiveSeconds, (int) timeToLiveSeconds));
     }
 
-    /**
-     * 从缓存中将某一个KEY值移除出去
-     */
     public boolean remove(String key) {
 
         return cache.remove(key);

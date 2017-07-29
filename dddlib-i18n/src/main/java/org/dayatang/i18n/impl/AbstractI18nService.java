@@ -43,7 +43,8 @@ public abstract class AbstractI18nService extends I18nServiceSupport
 	 * production in the first place, though.
 	 * 
 	 * @see #getMessage(String, Object[], Locale)
-	 * @see org.springframework.validation.FieldError
+	 *
+	 * @param useCodeAsDefaultMessage x
 	 */
 	public void setUseCodeAsDefaultMessage(boolean useCodeAsDefaultMessage) {
 		this.useCodeAsDefaultMessage = useCodeAsDefaultMessage;

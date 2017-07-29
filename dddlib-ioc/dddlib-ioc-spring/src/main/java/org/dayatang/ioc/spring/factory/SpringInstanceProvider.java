@@ -69,36 +69,10 @@ public class SpringInstanceProvider implements InstanceProvider {
 
     /**
      * 根据类型和Bean id获取对象实例。如果找不到该类型的实例则返回null。
-     * 假如有两个类MyService1和MyService2都实现了接口Service，在applicationContext中这样部署：
-     * <blockquote>
-     * <pre>
-     * <bean id="service1" class="MyService1"/>
-     * <bean id="service2" class="MyService2"/>
-     * </pre>
-     * </blockquote>
-     * 或者以配置类的方式部署：
-     * <blockquote>
-     * <pre>
-     *
      * @param <T>      类型参数
      * @param beanName 实现类在容器中配置的名字
      * @param beanType 实例的类型
      * @return 指定类型的实例。
-     * @Configuration public class SpringConfiguration {
-     * <p/>
-     * @Bean(name = "service1")
-     * public Service service1() {
-     * return new MyService1();
-     * }
-     * <p/>
-     * @Bean(name = "service2")
-     * public Service service2() {
-     * return new MyService2();
-     * }
-     * }
-     * </pre>
-     * </blockquote>
-     * 那么getInstance(Service.class, "service2")将返回MyService2的实例。
      */
     @Override
     public <T> T getInstance(Class<T> beanType, String beanName) {

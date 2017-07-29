@@ -40,19 +40,10 @@ public class JDBCConnection implements DBConnection{
 		return conn.getMetaData().getImportedKeys(null, null, tableName);
 	}
 
-	/**
-	 * 查询所有的表和视图, 返回ResultSet
-	 */
 	public ResultSet queryTables() throws Exception {
 		return conn.getMetaData().getTables(null,null,null,new String[] { "TABLE", "VIEW" });
 	}
 
-	/**
-	 * 返回数据库中所有的表和视图的名字集合
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
 	public List<String> getTableNames() throws Exception {
 		List<String> result = new ArrayList<String>();
 		ResultSet rs = queryTables();

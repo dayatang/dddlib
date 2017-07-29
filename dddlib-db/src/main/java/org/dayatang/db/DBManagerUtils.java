@@ -19,8 +19,9 @@ public class DBManagerUtils {
 
 	/**
 	 * 从数据库中获取所有表的集合
-	 * 
-	 * @return
+	 *
+	 * @param jConn 数据库连接
+	 * @return 表的集合
 	 */
 	public static List<DataObject> getAllTableNames(DBConnection jConn)
 			throws Exception {
@@ -54,9 +55,10 @@ public class DBManagerUtils {
 	
 	/**
 	 * 根据传入的表名集合, 删除表或者视图
-	 * 
-	 * @param tableNames
-	 * @throws Exception
+	 *
+	 * @param jConn 数据库连接
+	 * @param tableNames 表名
+	 * @throws Exception 异常
 	 */
 	public static void dropTables(DBConnection jConn,List<DataObject> tableNames) throws Exception {
 
@@ -97,7 +99,7 @@ public class DBManagerUtils {
 	/**
 	 * 将集合中的表名转换成String形式，以','分隔
 	 * @param list 表名集合
-	 * @return
+	 * @return 逗号分隔到表名
 	 */
 	public static String getString(List<String> list){
 		return StringUtils.join(list, ", ");
@@ -105,8 +107,9 @@ public class DBManagerUtils {
 	
 	/**
 	 * 获取以指定前缀开头的表名
+	 * @param jConn 数据库连接
 	 * @param includedTablePrefixs 表名前缀
-	 * @return
+	 * @return 表名的集合
 	 */
 	public static List<String> loadIncludedTableName(DBConnection jConn,List<String> includedTablePrefixs) throws Exception{
 		
@@ -134,8 +137,9 @@ public class DBManagerUtils {
 	
 	/**
 	 * 获取不以指定前缀开头的表名
+	 * @param jConn 数据库连接
 	 * @param excludedTablePrefixs 表名前缀
-	 * @return
+	 * @return 表名的集合
 	 */
 	public static List<String> loadExcludedTableName(DBConnection jConn,List<String> excludedTablePrefixs) throws Exception{
 		
@@ -168,7 +172,7 @@ public class DBManagerUtils {
 	
 	/**
 	 * 生成日期格式的唯一字符串
-	 * @return
+	 * @return 日期字符串
 	 */
 	public static String generateUniqueName(){
 		Calendar c = Calendar.getInstance();

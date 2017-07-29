@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * <P>ConfigurationDbImpl为读取/回写配置信息的工具类，并将配置信息写入数据库， 具体配置大致采用
  * ConfigurationFileImpl.getXxx(key)的方式读取。</P>
- * <P>每个配置项用key --> value 的方式组织，推荐采用点分字符串的方式编制key部分。 usePrefix()激活
+ * <P>每个配置项用key --&gt; value 的方式组织，推荐采用点分字符串的方式编制key部分。 usePrefix()激活
  * 配置项前缀功能，你可以通过usePrefix("xxx.xxx")设置某个具体实例的前缀。</P>
  * <P>前缀的作用在于减少复杂性，如果我们在配置文件里有org.dayatang.smbserverhost=smbserverhost.com
  * 这一项，并且不更改默认前缀的话，getXxx("smbserverhost")和get("org.dayatang.smbserverhost")
