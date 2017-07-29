@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.dayatang.dddlib</groupId>
         <artifactId>dddlib-security</artifactId>
-        <version>5.0.0-SNAPSHOT</version>
+        <version>4.6.1</version>
     </parent>
     <artifactId>dddlib-security-shiro</artifactId>
     <name>dddlib-security-shiro</name>
