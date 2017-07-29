@@ -59,6 +59,7 @@ public abstract class AbstractI18nService extends I18nServiceSupport
 	 * to return a custom fallback message for an unresolvable code.
 	 * 
 	 * @see #getDefaultMessage(String)
+	 * @return x
 	 */
 	protected boolean isUseCodeAsDefaultMessage() {
 		return this.useCodeAsDefaultMessage;
@@ -102,12 +103,11 @@ public abstract class AbstractI18nService extends I18nServiceSupport
 	 * @param args
 	 *            array of arguments that will be filled in for params within
 	 *            the message
-	 * @param locale
+	 * @param theLocale
 	 *            the Locale in which to do the lookup
 	 * @return the resolved message, or <code>null</code> if not found
 	 * @see #getMessage(String, Object[], String, Locale)
 	 * @see #getMessage(String, Object[], Locale)
-	 * @see #getMessage(MessageSourceResolvable, Locale)
 	 * @see #setUseCodeAsDefaultMessage
 	 */
 	protected String getMessageInternal(String code, Object[] args,

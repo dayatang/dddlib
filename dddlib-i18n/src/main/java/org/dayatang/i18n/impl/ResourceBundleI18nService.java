@@ -51,6 +51,8 @@ public class ResourceBundleI18nService extends AbstractI18nService {
 	 * 
 	 * @see #setBasenames
 	 * @see java.util.ResourceBundle#getBundle(String)
+	 *
+	 * @param basename x
 	 */
 	public void setBasename(String basename) {
 		setBasenames(new String[] { basename });
@@ -76,6 +78,8 @@ public class ResourceBundleI18nService extends AbstractI18nService {
 	 * 
 	 * @see #setBasename
 	 * @see java.util.ResourceBundle#getBundle(String)
+	 *
+	 * @param names x
 	 */
 	public void setBasenames(String[] names) {
 		if (names == null) {
@@ -95,12 +99,8 @@ public class ResourceBundleI18nService extends AbstractI18nService {
 
 	/**
 	 * Set the ClassLoader to load resource bundles with.
-	 * <p>
-	 * Default is the containing BeanFactory's
-	 * {@link org.springframework.beans.factory.BeanClassLoaderAware bean
-	 * ClassLoader}, or the default ClassLoader determined by
-	 * {@link org.springframework.util.ClassUtils#getDefaultClassLoader()} if
-	 * not running within a BeanFactory.
+	 *
+	 * @param classLoader x
 	 */
 	public void setBundleClassLoader(ClassLoader classLoader) {
 		this.bundleClassLoader = classLoader;
@@ -112,6 +112,8 @@ public class ResourceBundleI18nService extends AbstractI18nService {
 	 * Default is the containing BeanFactory's bean ClassLoader.
 	 * 
 	 * @see #setBundleClassLoader
+	 *
+	 * @return x
 	 */
 	protected ClassLoader getBundleClassLoader() {
 		return (this.bundleClassLoader != null ? this.bundleClassLoader
@@ -127,6 +129,10 @@ public class ResourceBundleI18nService extends AbstractI18nService {
 	 * Resolves the given message code as key in the registered resource
 	 * bundles, returning the value found in the bundle as-is (without
 	 * MessageFormat parsing).
+	 *
+	 * @param code
+	 * @param locale
+	 * @return x
 	 */
 	@Override
 	protected String resolveCodeWithoutArguments(String code, Locale locale) {
@@ -143,6 +149,9 @@ public class ResourceBundleI18nService extends AbstractI18nService {
 	/**
 	 * Resolves the given message code as key in the registered resource
 	 * bundles, using a cached MessageFormat instance per message code.
+	 * @param code
+	 * @param locale
+	 * @return x
 	 */
 	@Override
 	protected MessageFormat resolveCode(String code, Locale locale) {
@@ -298,6 +307,7 @@ public class ResourceBundleI18nService extends AbstractI18nService {
 
 	/**
 	 * Show the configuration of this MessageSource.
+	 * @return x
 	 */
 	@Override
 	public String toString() {

@@ -51,8 +51,6 @@ public class I18nServiceAccessor implements Serializable {
 	 * corresponding constructor, or LocaleContextHolder's locale as fallback.
 	 * Can be overridden in subclasses.
 	 * 
-	 * @see #I18nServiceAccessor(org.dayatang.i18n.i18nService,
-	 *      java.util.Locale)
 	 * @see org.dayatang.i18n.LocaleContextHolder#getLocale()
 	 */
 	protected Locale getDefaultLocale() {

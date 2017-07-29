@@ -38,6 +38,7 @@ public abstract class I18nServiceSupport {
 	 * with MessageFormat escaping.
 	 * 
 	 * @see java.text.MessageFormat
+	 * @param alwaysUseMessageFormat x
 	 */
 	public void setAlwaysUseMessageFormat(boolean alwaysUseMessageFormat) {
 		this.alwaysUseMessageFormat = alwaysUseMessageFormat;
@@ -46,6 +47,7 @@ public abstract class I18nServiceSupport {
 	/**
 	 * Return whether to always apply the MessageFormat rules, parsing even
 	 * messages without arguments.
+	 * @return x
 	 */
 	protected boolean isAlwaysUseMessageFormat() {
 		return this.alwaysUseMessageFormat;
