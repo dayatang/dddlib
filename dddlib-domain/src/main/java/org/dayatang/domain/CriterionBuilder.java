@@ -12,7 +12,7 @@ import java.util.Collection;
 public interface CriterionBuilder {
 
     /**
-     * 创建一个代表“属性名 = 值”的查询条件
+     * <pre>创建一个代表“属性名 = 值”的查询条件</pre>
      * @param propName 属性名
      * @param value 值
      * @return 一个查询条件
@@ -20,7 +20,7 @@ public interface CriterionBuilder {
     QueryCriterion eq(String propName, Object value);
 
     /**
-     * 创建一个代表“属性名 != 值”的查询条件
+     * <pre>创建一个代表“属性名 != 值”的查询条件</pre>
      * @param propName 属性名
      * @param value 值
      * @return 一个查询条件
@@ -28,7 +28,7 @@ public interface CriterionBuilder {
     QueryCriterion notEq(String propName, Object value);
 
     /**
-     * 创建一个代表“属性名 >= 值”的查询条件
+     * <pre>创建一个代表“属性名 >= 值”的查询条件</pre>
      * @param propName 属性名
      * @param value 值
      * @return 一个查询条件
@@ -36,7 +36,7 @@ public interface CriterionBuilder {
     QueryCriterion ge(String propName, Comparable<?> value);
 
     /**
-     * 创建一个代表“属性名 > 值”的查询条件
+     * <pre>创建一个代表“属性名 > 值”的查询条件</pre>
      * @param propName 属性名
      * @param value 值
      * @return 一个查询条件
@@ -44,7 +44,7 @@ public interface CriterionBuilder {
     QueryCriterion gt(String propName, Comparable<?> value);
 
     /**
-     * 创建一个代表“属性名 <= 值”的查询条件
+     * <pre>创建一个代表“属性名 <= 值”的查询条件</pre>
      * @param propName 属性名
      * @param value 值
      * @return 一个查询条件
@@ -52,7 +52,7 @@ public interface CriterionBuilder {
     QueryCriterion le(String propName, Comparable<?> value);
 
     /**
-     * 创建一个代表“属性名 < 值”的查询条件
+     * <pre>创建一个代表“属性名 < 值”的查询条件</pre>
      * @param propName 属性名
      * @param value 值
      * @return 一个查询条件
@@ -60,7 +60,7 @@ public interface CriterionBuilder {
     QueryCriterion lt(String propName, Comparable<?> value);
 
     /**
-     * 创建一个代表“属性1 = 属性2”的查询条件
+     * <pre>创建一个代表“属性1 = 属性2”的查询条件</pre>
      * @param propName 属性名
      * @param otherPropName 另一个属性名
      * @return 一个查询条件
@@ -68,7 +68,7 @@ public interface CriterionBuilder {
     QueryCriterion eqProp(String propName, String otherPropName);
 
     /**
-     * 创建一个代表“属性1 != 属性2”的查询条件
+     * <pre>创建一个代表“属性1 != 属性2”的查询条件</pre>
      * @param propName 属性名
      * @param otherPropName 另一个属性名
      * @return 一个查询条件
@@ -76,7 +76,7 @@ public interface CriterionBuilder {
     QueryCriterion notEqProp(String propName, String otherPropName);
 
     /**
-     * 创建一个代表“属性1 > 属性2”的查询条件
+     * <pre>创建一个代表“属性1 > 属性2”的查询条件</pre>
      * @param propName 属性名
      * @param otherPropName 另一个属性名
      * @return 一个查询条件
@@ -84,7 +84,7 @@ public interface CriterionBuilder {
     QueryCriterion gtProp(String propName, String otherPropName);
 
     /**
-     * 创建一个代表“属性1 >= 属性2”的查询条件
+     * <pre>创建一个代表“属性1 >= 属性2”的查询条件</pre>
      * @param propName 属性名
      * @param otherPropName 另一个属性名
      * @return 一个查询条件
@@ -92,7 +92,7 @@ public interface CriterionBuilder {
     QueryCriterion geProp(String propName, String otherPropName);
 
     /**
-     * 创建一个代表“属性1 < 属性2”的查询条件
+     * <pre>创建一个代表“属性1 < 属性2”的查询条件</pre>
      * @param propName 属性名
      * @param otherPropName 另一个属性名
      * @return 一个查询条件
@@ -100,7 +100,7 @@ public interface CriterionBuilder {
     QueryCriterion ltProp(String propName, String otherPropName);
 
     /**
-     * 创建一个代表“属性1 <= 属性2”的查询条件
+     * <pre>创建一个代表“属性1 <= 属性2”的查询条件</pre>
      * @param propName 属性名
      * @param otherPropName 另一个属性名
      * @return 一个查询条件
@@ -108,7 +108,7 @@ public interface CriterionBuilder {
     QueryCriterion leProp(String propName, String otherPropName);
 
     /**
-     * 创建一个代表“集合属性元素数量 = 值”的查询条件（例如：查找子女数量=2的人）
+     * <pre>创建一个代表“集合属性元素数量 = 值”的查询条件（例如：查找子女数量=2的人）</pre>
      * @param propName 集合属性名
      * @param size 集合元素的数量
      * @return 一个查询条件
@@ -116,7 +116,7 @@ public interface CriterionBuilder {
     QueryCriterion sizeEq(String propName, int size);
 
     /**
-     * 创建一个代表“集合属性元素数量 != 值”的查询条件（例如：查找子女数量!=2的人）
+     * <pre>创建一个代表“集合属性元素数量 != 值”的查询条件（例如：查找子女数量!=2的人）</pre>
      * @param propName 集合属性名
      * @param size 集合元素的数量
      * @return 一个查询条件
@@ -124,7 +124,7 @@ public interface CriterionBuilder {
     QueryCriterion sizeNotEq(String propName, int size);
 
     /**
-     * 创建一个代表“集合属性元素数量 > 值”的查询条件（例如：查找子女数量>2的人）
+     * <pre>创建一个代表“集合属性元素数量 > 值”的查询条件（例如：查找子女数量>2的人）</pre>
      * @param propName 集合属性名
      * @param size 集合元素的数量
      * @return 一个查询条件
@@ -132,7 +132,7 @@ public interface CriterionBuilder {
     QueryCriterion sizeGt(String propName, int size);
 
     /**
-     * 创建一个代表“集合属性元素数量 >= 值”的查询条件（例如：查找子女数量>=2的人）
+     * <pre>创建一个代表“集合属性元素数量 >= 值”的查询条件（例如：查找子女数量>=2的人）</pre>
      * @param propName 集合属性名
      * @param size 集合元素的数量
      * @return 一个查询条件
@@ -140,7 +140,7 @@ public interface CriterionBuilder {
     QueryCriterion sizeGe(String propName, int size);
 
     /**
-     * 创建一个代表“集合属性元素数量 < 值”的查询条件（例如：查找子女数量<2的人）
+     * <pre>创建一个代表“集合属性元素数量 < 值”的查询条件（例如：查找子女数量<2的人）</pre>
      * @param propName 集合属性名
      * @param size 集合元素的数量
      * @return 一个查询条件
@@ -148,7 +148,7 @@ public interface CriterionBuilder {
     QueryCriterion sizeLt(String propName, int size);
 
     /**
-     * 创建一个代表“集合属性元素数量 <= 值”的查询条件（例如：查找子女数量<=2的人）
+     * <pre>创建一个代表“集合属性元素数量 <= 值”的查询条件（例如：查找子女数量<=2的人）</pre>
      * @param propName 集合属性名
      * @param size 集合元素的数量
      * @return 一个查询条件
@@ -156,7 +156,7 @@ public interface CriterionBuilder {
     QueryCriterion sizeLe(String propName, int size);
 
     /**
-     * 创建一个代表“文本属性包含某段文字”的查询条件
+     * <pre>创建一个代表“文本属性包含某段文字”的查询条件</pre>
      * @param propName 文本属性名
      * @param value 被匹配的文本
      * @return 一个查询条件
@@ -164,7 +164,7 @@ public interface CriterionBuilder {
     QueryCriterion containsText(String propName, String value);
 
     /**
-     * 创建一个代表“文本属性以某段文字开头”的查询条件
+     * <pre>创建一个代表“文本属性以某段文字开头”的查询条件</pre>
      * @param propName 文本属性名
      * @param value 被匹配的文本
      * @return 一个查询条件
@@ -172,7 +172,7 @@ public interface CriterionBuilder {
     QueryCriterion startsWithText(String propName, String value);
 
     /**
-     * 创建一个代表“属性值包含在某个集合中”的查询条件
+     * <pre></pre>创建一个代表“属性值包含在某个集合中”的查询条件</pre>
      * @param propName 属性名
      * @param value 值的集合
      * @return 一个查询条件
