@@ -37,10 +37,10 @@ public class ExcelWriterTest {
 	@Test
 	public void testExportDataRange() throws Exception {
 		List<Object[]> data = createData();
-		ExcelCell excelCell = ExcelCell.sheetName("Company").row(0).column(0);
+		ExcelCell excelCell = ExcelCell.newBuilder().sheet("Company").row(0).column(0).build();
 		instance.writeRange(excelCell, data);
 		instance.outputTo(outputFile);
-		ExcelRange range = ExcelRange.sheetName("Company").rowFrom(0).columnRange(0, 6);
+		ExcelRange range = ExcelRange.newBuilder().sheet("Company").rowFrom(0).columnRange(0, 6).build();
 		instance = new ExcelHandler(outputFile);
 		ExcelRangeData results = instance.readRange(range);
 		assertEquals("编号", results.getString(0, 0));
@@ -100,7 +100,7 @@ public class ExcelWriterTest {
 
 	@Test
 	public void testExportDataCell() throws Exception {
-		ExcelCell excelCell = ExcelCell.sheetName("Company").row(2).column(1);
+		ExcelCell excelCell = ExcelCell.newBuilder().sheet("Company").row(2).column(1).build();
 		instance.writeCell(excelCell, parseDate(2012, 2, 5));
 		instance.outputTo(outputFile);
 		instance = new ExcelHandler(outputFile);

@@ -1,5 +1,6 @@
 package org.dayatang.excel;
 
+import org.apache.commons.lang3.StringUtils;
 import org.dayatang.utils.Assert;
 
 /**
@@ -12,36 +13,17 @@ public class ExcelCell {
 	private String sheetName;
 	private int rowIndex;
 	private int columnIndex;
-	
-	/**
-	 * 指定工作表序号，生成ExcelCell实例
-	 * @param sheetIndex
-	 * @return
-	 */
-	public static ExcelCell sheetIndex(int sheetIndex) {
-		return new ExcelCell(sheetIndex);
-	}
-	
-	private ExcelCell(int sheetIndex) {
-		if (sheetIndex < 0) {
-			throw new IllegalArgumentException("Sheet index cannot less than 0!");
-		}
+
+	private ExcelCell(int sheetIndex, int rowIndex, int columnIndex) {
 		this.sheetIndex = sheetIndex;
-	}
-	
-	/**
-	 * 指定工作表名称，生成ExcelCell实例
-	 * @param sheetName
-	 * @return
-	 */
-	public static ExcelCell sheetName(String sheetName) {
-		return new ExcelCell(sheetName);
+		this.rowIndex = rowIndex;
+		this.columnIndex = columnIndex;
 	}
 
-	private ExcelCell(String sheetName) {
-		Assert.notBlank(sheetName, "Sheet name cannot be null or blank!");
+	public ExcelCell(String sheetName, int rowIndex, int columnIndex) {
 		this.sheetName = sheetName;
-		this.sheetIndex = -1;
+		this.rowIndex = rowIndex;
+		this.columnIndex = columnIndex;
 	}
 
 	public int getSheetIndex() {
@@ -60,23 +42,55 @@ public class ExcelCell {
 		return columnIndex;
 	}
 
-	public ExcelCell rowIndex(int rowIndex) {
-		this.rowIndex = rowIndex;
-		return this;
-	}
-	
-	public ExcelCell row(int rowIndex) {
-		this.rowIndex = rowIndex;
-		return this;
-		
+	public static Builder newBuilder() {
+		return new Builder();
 	}
 
-	public ExcelCell column(int columnIndex) {
-		this.columnIndex = columnIndex;
-		return this;
-	}
+	public static class Builder {
+		private int sheetIndex = 0;
+		private String sheetName;
+		private int rowIndex;
+		private int columnIndex;
 
-	public ExcelCell column(String columnName) {
-		return column(ExcelUtils.convertColumnNameToIndex(columnName));
+		public Builder sheet(int SheetIndex) {
+			this.sheetIndex = sheetIndex;
+			return this;
+		}
+
+		public Builder sheet(String sheetName) {
+			this.sheetName = sheetName;
+			return this;
+		}
+
+		public Builder row(int row) {
+			this.rowIndex = row;
+			return this;
+		}
+
+		public Builder column(int columnIndex) {
+			this.columnIndex = columnIndex;
+			return this;
+		}
+
+		public Builder column(String columnName) {
+			this.columnIndex = ExcelUtils.convertColumnNameToIndex(columnName);
+			return this;
+		}
+
+		public ExcelCell build() {
+			if (StringUtils.isBlank(sheetName) && sheetIndex < 0) {
+				throw new ExcelException("sheet name not defined, and sheet index < 0");
+			}
+			if (rowIndex < 0) {
+				throw new ExcelException("row index must >= 0");
+			}
+			if (columnIndex < 0) {
+				throw new ExcelException("column index must >= 0");
+			}
+			if (StringUtils.isBlank(sheetName)) {
+				return new ExcelCell(sheetIndex, rowIndex, columnIndex);
+			}
+			return new ExcelCell(sheetName, rowIndex, columnIndex);
+		}
 	}
 }

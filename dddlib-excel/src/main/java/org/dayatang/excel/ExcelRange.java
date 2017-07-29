@@ -1,5 +1,6 @@
 package org.dayatang.excel;
 
+import org.apache.commons.lang3.StringUtils;
 import org.dayatang.utils.Assert;
 
 /**
@@ -15,26 +16,21 @@ public class ExcelRange {
 	private int rowTo = -1;
 	private int columnFrom;
 	private int columnTo;
-	
-	public static ExcelRange sheetIndex(int sheetIndex) {
-		return new ExcelRange(sheetIndex);
-	}
-	
-	private ExcelRange(int sheetIndex) {
-		if (sheetIndex < 0) {
-			throw new IllegalArgumentException("Sheet index cannot less than 0!");
-		}
+
+	private ExcelRange(int sheetIndex, int rowFrom, int rowTo, int columnFrom, int columnTo) {
 		this.sheetIndex = sheetIndex;
-	}
-	
-	public static ExcelRange sheetName(String sheetName) {
-		return new ExcelRange(sheetName);
+		this.rowFrom = rowFrom;
+		this.rowTo = rowTo;
+		this.columnFrom = columnFrom;
+		this.columnTo = columnTo;
 	}
 
-	private ExcelRange(String sheetName) {
-		Assert.notBlank(sheetName, "Sheet name cannot be null or blank!");
+	private ExcelRange(String sheetName, int rowFrom, int rowTo, int columnFrom, int columnTo) {
 		this.sheetName = sheetName;
-		this.sheetIndex = -1;
+		this.rowFrom = rowFrom;
+		this.rowTo = rowTo;
+		this.columnFrom = columnFrom;
+		this.columnTo = columnTo;
 	}
 
 	public int getSheetIndex() {
@@ -61,50 +57,104 @@ public class ExcelRange {
 		return columnTo;
 	}
 
-	public ExcelRange rowFrom(int rowFrom) {
-		this.rowFrom = rowFrom;
-		return this;
+	public static Builder newBuilder() {
+		return new Builder();
 	}
-	
-	public ExcelRange rowTo(int rowTo) {
-		this.rowTo = rowTo;
-		return this;
-	}
-	
-	public ExcelRange rowRange(int rowFrom, int rowTo) {
-		if (rowTo < rowFrom) {
-			throw new IllegalArgumentException("Last row is less than first row!");
+
+	public static class Builder {
+		private int sheetIndex = 0;
+		private String sheetName;
+		private int rowFrom;
+		private int rowTo = -1;
+		private int columnFrom;
+		private int columnTo;
+
+		public Builder sheet(int SheetIndex) {
+			this.sheetIndex = sheetIndex;
+			return this;
 		}
-		this.rowFrom = rowFrom;
-		this.rowTo = rowTo;
-		return this;
+
+		public Builder sheet(String sheetName) {
+			this.sheetName = sheetName;
+			return this;
+		}
 		
-	}
-
-	public ExcelRange columnRange(int columnFrom, int columnTo) {
-		if (columnTo < columnFrom) {
-			throw new IllegalArgumentException("Last column is less than first column!");
+		public Builder rowFrom(int row) {
+			this.rowFrom = row;
+			return this;
 		}
-		this.columnFrom = columnFrom;
-		this.columnTo = columnTo;
-		return this;
-	}
-
-	public ExcelRange columnRange(String columnFrom, String columnTo) {
-		return columnRange(convertColumnLabelToIndex(columnFrom), convertColumnLabelToIndex(columnTo));
-	}
-
-	private int convertColumnLabelToIndex(String columnLabel) {
-		if (columnLabel.length() > 2) {
-			throw new IllegalArgumentException("Column index too large!");
+		
+		public Builder rowTo(int row) {
+			this.rowTo = row;
+			return this;
 		}
-		String theColumn = columnLabel.toUpperCase();
-		if (theColumn.length() == 1) {
-			int letter = theColumn.charAt(0);
-			return letter - 65;
+		
+		public Builder columnFrom(int column) {
+			this.columnFrom = column;
+			return this;
 		}
-		int firstLetter = theColumn.charAt(0);
-		int lastLetter = theColumn.charAt(1);
-		return (firstLetter - 64) * 26 + lastLetter - 65;
+		
+		public Builder columnFrom(String columnName) {
+			this.columnFrom = ExcelUtils.convertColumnNameToIndex(columnName);
+			return this;
+		}
+
+		public Builder columnTo(int column) {
+			this.columnTo = column;
+			return this;
+		}
+
+		public Builder columnTo(String columnName) {
+			this.columnTo = ExcelUtils.convertColumnNameToIndex(columnName);
+			return this;
+		}
+
+		public Builder rowRange(int rowFrom, int rowTo) {
+			this.rowFrom = rowFrom;
+			this.rowTo = rowTo;
+			return this;
+
+		}
+
+		public Builder columnRange(int columnFrom, int columnTo) {
+			this.columnFrom = columnFrom;
+			this.columnTo = columnTo;
+			return this;
+		}
+
+		public Builder columnRange(String columnFrom, String columnTo) {
+			return columnRange(ExcelUtils.convertColumnNameToIndex(columnFrom), ExcelUtils.convertColumnNameToIndex(columnTo));
+		}
+
+		public ExcelRange build() {
+			if (StringUtils.isBlank(sheetName) && sheetIndex < 0) {
+				throw new ExcelException("sheet name not defined, and sheet index < 0");
+			}
+			if (rowFrom < 0) {
+				throw new ExcelException("rowFrom must >= 0");
+			}
+//			if (rowTo < 0) {
+//				throw new ExcelException("rowTo must >= 0");
+//			}
+			if (columnFrom < 0) {
+				throw new ExcelException("columnFrom must >= 0");
+			}
+			if (columnTo < 0) {
+				throw new ExcelException("columnTo must >= 0");
+			}
+//			if (rowTo < rowFrom) {
+//				System.out.println("rowFrom: " + rowFrom);
+//				System.out.println("rowTo:" + rowTo);
+//				throw new IllegalArgumentException("Last row is less than first row!");
+//			}
+			if (columnTo < columnFrom) {
+				throw new IllegalArgumentException("Last column is less than first column!");
+			}
+			if (StringUtils.isBlank(sheetName)) {
+				return new ExcelRange(sheetIndex, rowFrom, rowTo, columnFrom, columnTo);
+			}
+			return new ExcelRange(sheetName, rowFrom, rowTo, columnFrom, columnTo);
+		}
+		
 	}
 }

@@ -31,7 +31,7 @@ public class ExcelReaderTest {
 
 	@Test
 	public void testReadColumnIndexRange() throws Exception {
-		ExcelRange range = ExcelRange.sheetIndex(0).rowFrom(1).columnRange(0, 6);
+		ExcelRange range = ExcelRange.newBuilder().sheet(0).rowFrom(1).columnRange(0, 6).build();
 		ExcelRangeData data = instance.readRange(range);
 		assertEquals(3, data.getRowCount());
 		
@@ -50,7 +50,7 @@ public class ExcelReaderTest {
 
 	@Test
 	public void testReadColumnNameRange() throws Exception {
-		ExcelRange range = ExcelRange.sheetIndex(0).rowFrom(1).columnRange("A", "G");
+		ExcelRange range = ExcelRange.newBuilder().sheet(0).rowFrom(1).columnRange("A", "G").build();
 		ExcelRangeData data = instance.readRange(range);
 		assertEquals(3, data.getRowCount());
 		assertEquals("suilink", data.getString(0, 0));
@@ -68,7 +68,7 @@ public class ExcelReaderTest {
 	
 	@Test
 	public void testReadFixedRows() throws Exception {
-		ExcelRange range = ExcelRange.sheetIndex(0).rowFrom(1).rowTo(2).columnRange("A", "G");
+		ExcelRange range = ExcelRange.newBuilder().sheet(0).rowFrom(1).rowTo(2).columnRange("A", "G").build();
 		ExcelRangeData data = instance.readRange(range);
 		assertEquals(2, data.getRowCount());
 		
@@ -92,21 +92,21 @@ public class ExcelReaderTest {
 	
 	@Test(expected = IllegalStateException.class)
 	public void testWrongNumeric() {
-		ExcelRange range = ExcelRange.sheetIndex(0).rowFrom(1).rowTo(2).columnRange("A", "G");
+		ExcelRange range = ExcelRange.newBuilder().sheet(0).rowFrom(1).rowTo(2).columnRange("A", "G").build();
 		ExcelRangeData data = instance.readRange(range);
 		data.getDouble(0, 1);
 	}
 	
 	@Test(expected = IllegalStateException.class)
 	public void testWrongBoolean() {
-		ExcelRange range = ExcelRange.sheetIndex(0).rowFrom(1).rowTo(2).columnRange("A", "G");
+		ExcelRange range = ExcelRange.newBuilder().sheet(0).rowFrom(1).rowTo(2).columnRange("A", "G").build();
 		ExcelRangeData data = instance.readRange(range);
 		data.getBoolean(0, 1);
 	}
 	
 	@Test(expected = IllegalStateException.class)
 	public void testWrongDate() {
-		ExcelRange range = ExcelRange.sheetIndex(0).rowFrom(1).rowTo(2).columnRange("A", "G");
+		ExcelRange range = ExcelRange.newBuilder().sheet(0).rowFrom(1).rowTo(2).columnRange("A", "G").build();
 		ExcelRangeData data = instance.readRange(range);
 		data.getDate(0, 1);
 	}

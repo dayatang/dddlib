@@ -217,21 +217,21 @@ public class ExcelHandler {
 			return null;
 		}
 		try {
-			if (cell.getCellType() == Cell.CELL_TYPE_ERROR) {
+			if (cell.getCellTypeEnum() == CellType.ERROR) {
 				LOGGER.error("Cell content is error. Sheet: {}, row: {}, column: {}",
 						new Object[] { cell.getSheet().getSheetName(), cell.getRowIndex(), cell.getColumnIndex() });
 				return null;
 			}
-			if (cell.getCellType() == Cell.CELL_TYPE_BLANK) {
+			if (cell.getCellTypeEnum() == CellType.BLANK) {
 				return null;
 			}
-			if (cell.getCellType() == Cell.CELL_TYPE_BOOLEAN) {
+			if (cell.getCellTypeEnum() == CellType.BOOLEAN) {
 				return cell.getBooleanCellValue();
 			}
-			if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+			if (cell.getCellTypeEnum() == CellType.NUMERIC) {
 				return cell.getNumericCellValue();
 			}
-			if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
+			if (cell.getCellTypeEnum() == CellType.STRING) {
 				return cell.getStringCellValue();
 			}
 		} catch (IllegalStateException e) {
