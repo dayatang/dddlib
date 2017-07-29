@@ -13,7 +13,7 @@ public class Criteria {
     private static final CriterionBuilder BUILDER = InstanceFactory.getInstance(CriterionBuilder.class);
 
     /**
-     * <pre>创建一个代表“属性名 = 值”的查询条件</pre>
+     * 创建一个代表“属性名 = 值”的查询条件
      * @param propName 属性名
      * @param value 值
      * @return 一个查询条件
@@ -23,7 +23,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表"属性名 != 值"的查询条件</pre>
+     * 创建一个代表“属性名 != 值”的查询条件
      * @param propName 属性名
      * @param value 值
      * @return 一个查询条件
@@ -33,7 +33,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性名 >= 值”的查询条件</pre>
+     * 创建一个代表“属性名 &gt;= 值”的查询条件
      * @param propName 属性名
      * @param value 值
      * @return 一个查询条件
@@ -43,7 +43,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性名 > 值”的查询条件</pre>
+     * 创建一个代表“属性名 &gt; 值”的查询条件
      * @param propName 属性名
      * @param value 值
      * @return 一个查询条件
@@ -53,7 +53,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性名 <= 值”的查询条件</pre>
+     * 创建一个代表“属性名 &lt;= 值”的查询条件
      * @param propName 属性名
      * @param value 值
      * @return 一个查询条件
@@ -63,7 +63,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性名 < 值”的查询条件</pre>
+     * 创建一个代表“属性名 &lt; 值”的查询条件
      * @param propName 属性名
      * @param value 值
      * @return 一个查询条件
@@ -73,7 +73,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性1 = 属性2”的查询条件</pre>
+     * 创建一个代表“属性1 = 属性2”的查询条件
      * @param propName 属性名
      * @param otherPropName 另一个属性名
      * @return 一个查询条件
@@ -83,7 +83,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性1 != 属性2”的查询条件</pre>
+     * 创建一个代表“属性1 != 属性2”的查询条件
      * @param propName 属性名
      * @param otherPropName 另一个属性名
      * @return 一个查询条件
@@ -93,7 +93,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性1 > 属性2”的查询条件</pre>
+     * 创建一个代表“属性1 &gt; 属性2”的查询条件
      * @param propName 属性名
      * @param otherPropName 另一个属性名
      * @return 一个查询条件
@@ -103,7 +103,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性1 >= 属性2”的查询条件</pre>
+     * 创建一个代表“属性1 &gt;= 属性2”的查询条件
      * @param propName 属性名
      * @param otherPropName 另一个属性名
      * @return 一个查询条件
@@ -113,7 +113,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性1 < 属性2”的查询条件</pre>
+     * 创建一个代表“属性1 &lt; 属性2”的查询条件
      * @param propName 属性名
      * @param otherPropName 另一个属性名
      * @return 一个查询条件
@@ -123,7 +123,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性1 <= 属性2”的查询条件</pre>
+     * 创建一个代表“属性1 &lt;= 属性2”的查询条件
      * @param propName 属性名
      * @param otherPropName 另一个属性名
      * @return 一个查询条件
@@ -133,7 +133,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“集合属性元素数量 = 值”的查询条件（例如：查找子女数量=2的人）</pre>
+     * 创建一个代表“集合属性元素数量 = 值”的查询条件（例如：查找子女数量=2的人）
      * @param propName 集合属性名
      * @param size 集合元素的数量
      * @return 一个查询条件
@@ -143,7 +143,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“集合属性元素数量 != 值”的查询条件（例如：查找子女数量!=2的人）</pre>
+     * 创建一个代表“集合属性元素数量 != 值”的查询条件（例如：查找子女数量!=2的人）
      * @param propName 集合属性名
      * @param size 集合元素的数量
      * @return 一个查询条件
@@ -153,7 +153,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“集合属性元素数量 > 值”的查询条件（例如：查找子女数量>2的人）</pre>
+     * 创建一个代表“集合属性元素数量 &gt; 值”的查询条件（例如：查找子女数量&gt;2的人）
      * @param propName 集合属性名
      * @param size 集合元素的数量
      * @return 一个查询条件
@@ -163,7 +163,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“集合属性元素数量 >= 值”的查询条件（例如：查找子女数量>=2的人）</pre>
+     * 创建一个代表“集合属性元素数量 &gt;= 值”的查询条件（例如：查找子女数量&gt;=2的人）
      * @param propName 集合属性名
      * @param size 集合元素的数量
      * @return 一个查询条件
@@ -173,7 +173,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“集合属性元素数量 < 值”的查询条件（例如：查找子女数量<2的人）</pre>
+     * 创建一个代表“集合属性元素数量 &lt; 值”的查询条件（例如：查找子女数量&lt;2的人）
      * @param propName 集合属性名
      * @param size 集合元素的数量
      * @return 一个查询条件
@@ -183,7 +183,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“集合属性元素数量 <= 值”的查询条件（例如：查找子女数量<=2的人）</pre>
+     * 创建一个代表“集合属性元素数量 &lt;= 值”的查询条件（例如：查找子女数量&lt;=2的人）
      * @param propName 集合属性名
      * @param size 集合元素的数量
      * @return 一个查询条件
@@ -193,7 +193,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“文本属性包含某段文字”的查询条件</pre>
+     * 创建一个代表“文本属性包含某段文字”的查询条件
      * @param propName 文本属性名
      * @param value 被匹配的文本
      * @return 一个查询条件
@@ -203,7 +203,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“文本属性以某段文字开头”的查询条件</pre>
+     * 创建一个代表“文本属性以某段文字开头”的查询条件
      * @param propName 文本属性名
      * @param value 被匹配的文本
      * @return 一个查询条件
@@ -213,7 +213,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性值包含在某个集合中”的查询条件</pre>
+     * 创建一个代表“属性值包含在某个集合中”的查询条件
      * @param propName 属性名
      * @param value 值的集合
      * @return 一个查询条件
@@ -223,7 +223,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性值包含在某个数组中”的查询条件</pre>
+     * 创建一个代表“属性值包含在某个数组中”的查询条件
      * @param propName 属性名
      * @param value 值的数组
      * @return 一个查询条件
@@ -233,7 +233,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性值不包含在某个集合中”的查询条件</pre>
+     * 创建一个代表“属性值不包含在某个集合中”的查询条件
      * @param propName 属性名
      * @param value 值的集合
      * @return 一个查询条件
@@ -243,7 +243,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性值包含在某个数组中”的查询条件</pre>
+     * 创建一个代表“属性值包含在某个数组中”的查询条件
      * @param propName 属性名
      * @param value 值的数组
      * @return 一个查询条件
@@ -253,7 +253,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性值位于某个区间范围”的查询条件。结果包含下限，不包含上限。</pre>
+     * 创建一个代表“属性值位于某个区间范围”的查询条件。结果包含下限，不包含上限。
      * @param propName 属性名
      * @param from 区间下限
      * @param to 区间上限
@@ -264,7 +264,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性值为null”的查询条件</pre>
+     * 创建一个代表“属性值为null”的查询条件
      * @param propName 属性名
      * @return 一个查询条件
      */
@@ -273,7 +273,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性值不为null”的查询条件</pre>
+     * 创建一个代表“属性值不为null”的查询条件
      * @param propName 属性名
      * @return 一个查询条件
      */
@@ -282,7 +282,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“集合属性值为空集”的查询条件</pre>
+     * 创建一个代表“集合属性值为空集”的查询条件
      * @param propName 属性名
      * @return 一个查询条件
      */
@@ -291,7 +291,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“集合属性值不为空集”的查询条件</pre>
+     * 创建一个代表“集合属性值不为空集”的查询条件
      * @param propName 属性名
      * @return 一个查询条件
      */
@@ -300,7 +300,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性值为true”的查询条件</pre>
+     * 创建一个代表“属性值为true”的查询条件
      * @param propName 属性名
      * @return 一个查询条件
      */
@@ -309,7 +309,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“属性值为false”的查询条件</pre>
+     * 创建一个代表“属性值为false”的查询条件
      * @param propName 属性名
      * @return 一个查询条件
      */
@@ -318,7 +318,7 @@ public class Criteria {
     }
 
     /**
-     * <pre>创建一个代表“文本属性值为null或空字符串”的查询条件</pre>
+     * 创建一个代表“文本属性值为null或空字符串”的查询条件
      * @param propName 属性名
      * @return 一个查询条件
      */
