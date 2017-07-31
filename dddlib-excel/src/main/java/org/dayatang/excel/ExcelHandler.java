@@ -3,6 +3,7 @@ package org.dayatang.excel;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,6 +42,11 @@ public class ExcelHandler {
 	public ExcelHandler(InputStream excelStream, Version version) {
 		workbook = WorkbookFactory.createWorkbook(excelStream, version);
 		this.version = version;
+	}
+
+	public ExcelHandler(Workbook workbook) {
+		this.workbook = workbook;
+		this.version = workbook instanceof HSSFWorkbook ? Version.XLS : Version.XLSX;
 	}
 
 	public Workbook getWorkbook() {
