@@ -22,21 +22,21 @@
 
     <distributionManagement>
         <repository>
-            <id>dddlib-releases</id>
+            <id>dayatang-releases</id>
             <name>Dayatang release repository</name>
-            <url>dav:http://nexus.dddlib.org/content/repositories/releases</url>
+            <url>dav:http://nexus.dayatang.org/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
-            <id>dddlib-snapshots</id>
+            <id>dayatang-snapshots</id>
             <name>Dayatang snapshot repository</name>
-            <url>dav:http://nexus.dddlib.org/content/repositories/snapshots</url>
+            <url>dav:http://nexus.dayatang.org/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
     <repositories>
         <repository>
-            <id>dddlib-releases</id>
-            <url>http://nexus.dddlib.org/content/groups/public-releases</url>
+            <id>dayatang-releases</id>
+            <url>http://nexus.dayatang.org/content/groups/public-releases</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -45,8 +45,8 @@
             </snapshots>
         </repository>
         <repository>
-            <id>dddlib-snapshots</id>
-            <url>http://nexus.dddlib.org/content/groups/public-snapshots</url>
+            <id>dayatang-snapshots</id>
+            <url>http://nexus.dayatang.org/content/groups/public-snapshots</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -58,8 +58,8 @@
 
     <pluginRepositories>
         <pluginRepository>
-            <id>dddlib-releases</id>
-            <url>http://nexus.dddlib.org/content/groups/public-releases</url>
+            <id>dayatang-releases</id>
+            <url>http://nexus.dayatang.org/content/groups/public-releases</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -68,8 +68,8 @@
             </snapshots>
         </pluginRepository>
         <pluginRepository>
-            <id>dddlib-snapshots</id>
-            <url>http://nexus.dddlib.org/content/groups/public-snapshots</url>
+            <id>dayatang-snapshots</id>
+            <url>http://nexus.dayatang.org/content/groups/public-snapshots</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
