@@ -63,7 +63,7 @@ public abstract class Observer<T extends Subject> extends AbstractEntity {
 
 	public static List<Observer> findBySubject(Subject subject) {
 		String queryString = "select o from Observer o where :subjectKey in elements(o.subjectKeys))";
-                NamedParameters params = NamedParameters.create().add("subjectKey", subject.getSubjectKey());
+		//NamedParameters params = NamedParameters.create().add("subjectKey", subject.getSubjectKey());
 		List<Object> observers = getRepository().createJpqlQuery(queryString)
                 .addParameter("subjectKey", subject.getSubjectKey()).list();
 

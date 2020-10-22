@@ -52,8 +52,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.oracle.jdbc</groupId>
-            <artifactId>ojdbc5</artifactId>
+            <groupId>com.oracle.ojdbc</groupId>
+            <artifactId>ojdbc10</artifactId>
             <version>${oracle.version}</version>
             <optional>true</optional>
         </dependency>

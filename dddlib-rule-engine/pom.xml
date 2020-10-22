@@ -66,15 +66,9 @@
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>jsr94</groupId>
-			<artifactId>jsr94</artifactId>
-			<version>1.1</version>
-		</dependency>
-		<dependency>
 			<groupId>org.drools</groupId>
 			<artifactId>drools-jsr94</artifactId>
-			<version>${drools.version}</version>
-			<scope>test</scope>
+			<version>7.2.0.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -88,6 +82,6 @@
 	</dependencies>
 
 	<properties>
-        <drools.version>6.4.0.Final</drools.version>
+        <drools.version>7.44.0.Final</drools.version>
     </properties>
 </project>

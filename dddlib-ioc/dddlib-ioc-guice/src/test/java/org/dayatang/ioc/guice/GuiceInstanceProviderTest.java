@@ -1,6 +1,7 @@
 package org.dayatang.ioc.guice;
 
 import com.google.inject.*;
+import com.google.inject.Module;
 import com.google.inject.name.Names;
 import org.dayatang.domain.InstanceProvider;
 import org.dayatang.ioc.test.*;

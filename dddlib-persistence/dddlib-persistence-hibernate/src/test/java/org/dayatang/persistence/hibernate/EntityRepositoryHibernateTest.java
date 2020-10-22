@@ -267,7 +267,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
         JpqlQuery query = new JpqlQuery(repository, queryString)
                 .addParameter("category", gender)
                 .addParameter("code", "01");
-        assertEquals(1L, repository.getSingleResult(query));
+        assertEquals(1, ((Long)repository.getSingleResult(query)).longValue());
     }
     
     
@@ -358,7 +358,7 @@ public class EntityRepositoryHibernateTest extends AbstractIntegrationTest {
         NamedQuery query = new NamedQuery(repository, queryName)
                 .addParameter("name", "gender");
         
-        assertEquals(1L, repository.getSingleResult(query));
+        assertEquals(1L, ((Long)repository.getSingleResult(query)).longValue());
     }
 
     /**

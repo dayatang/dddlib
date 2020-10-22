@@ -61,6 +61,6 @@
     </build>
 
     <properties>
-        <guice.version>4.1.0</guice.version>
+        <guice.version>4.2.3</guice.version>
     </properties>
 </project>

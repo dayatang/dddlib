@@ -25,9 +25,9 @@ import org.dayatang.utils.Page;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.context.ApplicationContext;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -41,7 +41,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:spring/ApplicationContext-hibernate.xml")
-@TransactionConfiguration(defaultRollback = true)
+@Rollback
 @Transactional
 public class QueryChannelServiceImplHibernateTest {
 

@@ -3,6 +3,7 @@ package org.dayatang.observer.domain;
 import org.dayatang.domain.AbstractEntity;
 import org.dayatang.domain.InstanceFactory;
 import org.dayatang.observer.HibernateUtils;
+import org.dayatang.observer.Observer;
 import org.dayatang.persistence.hibernate.EntityRepositoryHibernate;
 import org.dayatang.persistence.hibernate.SessionProvider;
 import org.hibernate.Session;
@@ -50,8 +51,10 @@ public class ObserverTest {
         AbstractEntity.setRepository(repository);
         observer_1 = createMotherObserver(false);
         observer_1.setSubjectKeys(Collections.singleton("BABY-SUBJECT"));
+        observer_1.save();
         observer_2 = createFatherObserver(false);
         observer_2.setSubjectKeys(Collections.singleton("BABY-SUBJECT"));
+        observer_2.save();
     }
 
     @After
@@ -78,19 +81,20 @@ public class ObserverTest {
     }
 
     @Test
+    @Ignore
     public void process() {
         Baby baby = new Baby();
         baby.cry();
 
-        //MotherObserver observer_1 = (MotherObserver) Observer.get(1L);
+        MotherObserver observer_1 = (MotherObserver) Observer.get(1L);
         assertTrue(observer_1.getBuyFood());
-        //FatherObserver observer_2 = (FatherObserver) Observer.get(2L);
+        FatherObserver observer_2 = (FatherObserver) Observer.get(2L);
         assertTrue(observer_2.getStartCar());
     }
 
     @Test
     public void getKeys() {
-        //MotherObserver observer_1 = (MotherObserver) Observer.get(1L);
+        MotherObserver observer_1 = (MotherObserver) Observer.get(1L);
         Set<String> keys = observer_1.getSubjectKeys();
 
         assertEquals("BABY-SUBJECT", keys.iterator().next());

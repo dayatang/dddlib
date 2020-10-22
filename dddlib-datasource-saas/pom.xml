@@ -148,7 +148,7 @@
         </plugins>
     </build>
     <properties>
-        <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
+        <jdbc.driverClassName>com.mysql.cj.jdbc.Driver</jdbc.driverClassName>
         <jdbc.host>${mysql.host}</jdbc.host>
         <jdbc.port>3306</jdbc.port>
         <jdbc.dbname>db</jdbc.dbname>

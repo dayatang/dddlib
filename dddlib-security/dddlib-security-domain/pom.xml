@@ -22,6 +22,12 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>1.10.17</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
             <groupId>org.dayatang.dddlib</groupId>
             <artifactId>dddlib-spring-test</artifactId>
             <version>${project.version}</version>
