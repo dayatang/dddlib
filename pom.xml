@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.dayatang.dddlib</groupId>
     <artifactId>dddlib-project</artifactId>
-    <version>4.6.4-SNAPSHOT</version>
+    <version>4.6.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>DDDLib Project</name>
     <url>http://dddlib.dayatang.org/</url>
