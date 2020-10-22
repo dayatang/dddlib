@@ -78,23 +78,6 @@
         <tag>HEAD</tag>
     </scm>
 
-    <ciManagement>
-        <system>jenkins</system>
-        <url>http://jenkins.dayatang.org/job/dddlib/</url>
-        <notifiers>
-            <notifier>
-                <type>mail</type>
-                <configuration>
-                    <committers>true</committers>
-                </configuration>
-                <sendOnError>true</sendOnError>
-                <sendOnFailure>true</sendOnFailure>
-                <sendOnWarning>false</sendOnWarning>
-                <sendOnSuccess>false</sendOnSuccess>
-            </notifier>
-        </notifiers>
-    </ciManagement>
-
     <issueManagement>
         <system>GitHub</system>
         <url>https://github.com/dayatang/dddlib/issues</url>
@@ -115,7 +98,7 @@
             <id>dayatang-site</id>
             <name>Deployment through GitHub's site deployment plugin</name>
             <!--<url>git:ssh://git@github.com/dayatang/dddlib.git?gh-pages#</url>-->
-            <url>scp://www.dddlib.org/home/apache/sites/dddlib.dayatang.org</url>
+            <url>scp://www.dayatang.org/data/dddlib/site</url>
         </site>
     </distributionManagement>
 
