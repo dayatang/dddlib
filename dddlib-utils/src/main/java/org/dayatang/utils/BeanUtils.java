@@ -62,7 +62,7 @@ public class BeanUtils {
 
     /**
      * 获得指定的JavaBean类型的所有属性的类型，包括从父类继承的属性
-     *
+     * @param propName 属性名
      * @return 一个Map，Key为属性名， Value为属性所属的类
      */
     public Class<?> getPropType(String propName) {
