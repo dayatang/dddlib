@@ -635,6 +635,7 @@
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>3.2.0</version>
                     <configuration>
+                        <source>8</source>
                         <additionalJOptions>
                             <additionalJOption>-Xdoclint:none</additionalJOption>
                         </additionalJOptions>
@@ -687,6 +688,17 @@
 
     <reporting>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <source>8</source>
+                    <additionalJOptions>
+                        <additionalJOption>-Xdoclint:none</additionalJOption>
+                    </additionalJOptions>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
