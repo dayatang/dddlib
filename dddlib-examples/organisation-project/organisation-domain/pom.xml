@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.dddlib.organisation</groupId>
         <artifactId>organisation-project</artifactId>
-        <version>4.6.2-SNAPSHOT</version>
+        <version>4.7.1</version>
     </parent>
     <artifactId>organisation-domain</artifactId>
     <packaging>jar</packaging>
