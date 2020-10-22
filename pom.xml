@@ -631,6 +631,16 @@
                     </executions>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>3.2.0</version>
+                    <configuration>
+                        <additionalJOptions>
+                            <additionalJOption>-Xdoclint:none</additionalJOption>
+                        </additionalJOptions>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <!-- The gmavenplus plugin is used to compile Groovy code. To learn more about this plugin,
                     visit https://github.com/groovy/GMavenPlus/wiki -->
                     <groupId>org.codehaus.gmavenplus</groupId>
