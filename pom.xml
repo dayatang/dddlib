@@ -631,41 +631,6 @@
                     </executions>
                 </plugin>
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>3.2.0</version>
-                    <configuration>
-                        <minmemory>128m</minmemory>
-                        <maxmemory>1024m</maxmemory>
-                        <locale>en_US</locale>
-                        <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
-                        <docletArtifact>
-                            <groupId>org.umlgraph</groupId>
-                            <artifactId>umlgraph</artifactId>
-                            <version>5.7.2</version>
-                        </docletArtifact>
-                        <additionalparam>-Xdoclint:none</additionalparam>
-                        <additionalparam>-enumerations</additionalparam>
-                        <additionalparam>-enumconstants</additionalparam>
-                        <additionalparam>-views</additionalparam>
-                        <additionalparam>-inferrel</additionalparam>
-                        <additionalparam>-inferdep</additionalparam>
-                        <additionalparam>-collapsible</additionalparam>
-                        <additionalparam>-hide java.*</additionalparam>
-                        <additionalparam>-collpackages</additionalparam>
-                        <additionalparam>-qualify</additionalparam>
-                        <additionalparam>-postfixpackage</additionalparam>
-                        <additionalparam>-types</additionalparam>
-                        <additionalparam>-visibility</additionalparam>
-                        <additionalparam>-outputencoding UTF-8</additionalparam>
-                        <additionalparam>-nodefontsize 9</additionalparam>
-                        <additionalparam>-nodefontpackagesize 7</additionalparam>
-                        <additionalparam>-link http://docs.oracle.com/javase/7/docs/jdk/api/javadoc/doclet/</additionalparam>
-                        <additionalparam>-link http://download.oracle.com/javase/7/docs/api/</additionalparam>
-                        <useStandardDocletOptions>true</useStandardDocletOptions>
-                    </configuration>
-                </plugin>
-                <plugin>
                     <!-- The gmavenplus plugin is used to compile Groovy code. To learn more about this plugin,
                     visit https://github.com/groovy/GMavenPlus/wiki -->
                     <groupId>org.codehaus.gmavenplus</groupId>
@@ -720,42 +685,7 @@
                     <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <minmemory>128m</minmemory>
-                    <maxmemory>1024m</maxmemory>
-                    <locale>en_US</locale>
-                    <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
-                    <docletArtifact>
-                        <groupId>org.umlgraph</groupId>
-                        <artifactId>umlgraph</artifactId>
-                        <version>5.7.2</version>
-                    </docletArtifact>
-                    <additionalparam>-enumerations</additionalparam>
-                    <additionalparam>-enumconstants</additionalparam>
-                    <additionalparam>-views</additionalparam>
-                    <additionalparam>-inferrel</additionalparam>
-                    <additionalparam>-inferdep</additionalparam>
-                    <additionalparam>-collapsible</additionalparam>
-                    <additionalparam>-hide java.*</additionalparam>
-                    <additionalparam>-collpackages</additionalparam>
-                    <additionalparam>-qualify</additionalparam>
-                    <additionalparam>-postfixpackage</additionalparam>
-                    <additionalparam>-types</additionalparam>
-                    <additionalparam>-visibility</additionalparam>
-                    <additionalparam>-outputencoding UTF-8</additionalparam>
-                    <additionalparam>-nodefontsize 9</additionalparam>
-                    <additionalparam>-nodefontpackagesize 7</additionalparam>
-                    <additionalparam>-link http://docs.oracle.com/javase/7/docs/jdk/api/javadoc/doclet/</additionalparam>
-                    <additionalparam>-link http://download.oracle.com/javase/7/docs/api/</additionalparam>
-                    <additionalparam>-Xdoclint:none</additionalparam>
-                    <useStandardDocletOptions>true</useStandardDocletOptions>
-                </configuration>
-            </plugin>
-            <plugin>
+           <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jxr-plugin</artifactId>
                 <version>3.0.0</version>
