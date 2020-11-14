@@ -75,34 +75,6 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <extensions>true</extensions>
-                <configuration>
-                    <instructions>
-                        <Export-Package>
-                            org.dayatang.dsrouter,
-                            org.dayatang.mysql.jdbc
-                        </Export-Package>
-                    </instructions>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>generate-manifest</id>
-                        <goals>
-                            <goal>manifest</goal>
-                            <goal>bundle</goal>
-                        </goals>
-                        <phase>package</phase>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
     <properties>
         <maven.test.skip>true</maven.test.skip>
         <rep.jdbc.driverClassName>org.beyond.gemini.mysql.jdbc.GeminiReplicationDriver</rep.jdbc.driverClassName>
@@ -110,7 +82,7 @@
         <jdbc.groupId>mysql</jdbc.groupId>
         <jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
         <jdbc.version>${mysql.version}</jdbc.version>
-        <jdbc.driverClassName>com.mysql.cj.jdbc.Driver</jdbc.driverClassName>
+        <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
         <database-url-prefix><![CDATA[jdbc:mysql://localhost,127.0.0.1/]]></database-url-prefix>
         <database-name><![CDATA[test]]></database-name>
         <jdbc.url>${database-url-prefix}${database-name}<![CDATA[?characterEncoding=UTF-8&amp;useUnicode=true]]></jdbc.url>

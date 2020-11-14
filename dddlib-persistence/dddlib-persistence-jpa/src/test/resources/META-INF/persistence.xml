@@ -16,7 +16,7 @@
                     value="drop-and-create"/>
             <!-- Auto detect annotation model classes -->
             <property name="hibernate.archive.autodetection" value="class" />
-            <property name="hibernate.dialect" value="${hibernate.dialect}"/>
+            <property name="hibernate.dialect.storage_engine" value="${hibernate.dialect.storage_engine}"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.use_sql_comments" value="true"/>
             <!--

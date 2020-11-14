@@ -774,7 +774,7 @@
                 <db.type>mysql</db.type>
                 <db.port>3306</db.port>
                 <dbunit.dataTypeFactoryName>org.dbunit.ext.mysql.MySqlDataTypeFactory</dbunit.dataTypeFactoryName>
-                <hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>
+                <hibernate.dialect.storage_engine>innodb</hibernate.dialect.storage_engine>
                 <jdbc.groupId>mysql</jdbc.groupId>
                 <jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
                 <jdbc.version>${mysql.version}</jdbc.version>
@@ -813,7 +813,7 @@
         <mysql.username>root</mysql.username>
         <mysql.password />
         <mysql.host>localhost</mysql.host>
-        <mysql.version>5.1.35</mysql.version>
+        <mysql.version>8.0.22</mysql.version>
         <derby.username>any</derby.username>
         <derby.password>value</derby.password>
         <postgresql.username>postgres</postgresql.username>
