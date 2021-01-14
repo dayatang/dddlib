@@ -74,6 +74,6 @@
         </plugins>
 	</build>
 	<properties>
-		<poi.version>3.16</poi.version>
+		<poi.version>4.1.2</poi.version>
 	</properties>
 </project>
