@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.dddlib.organisation</groupId>
         <artifactId>organisation-project</artifactId>
-        <version>4.6.3-SNAPSHOT</version>
+        <version>4.6.3</version>
     </parent>
     <artifactId>organisation-application</artifactId>
     <name>DDDLib Example - Organization Structure - Application</name>
