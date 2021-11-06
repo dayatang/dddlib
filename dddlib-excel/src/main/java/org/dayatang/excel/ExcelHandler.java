@@ -3,7 +3,6 @@ package org.dayatang.excel;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,7 +69,7 @@ public class ExcelHandler {
 			Row row = sheet.getRow(rowIndex);
 			Object[] rowData = new Object[excelRange.getColumnTo() - excelRange.getColumnFrom() + 1];
 			for (int columnIndex = excelRange.getColumnFrom(); columnIndex <= excelRange.getColumnTo(); columnIndex++) {
-				Cell cell = row.getCell(columnIndex, Row.CREATE_NULL_AS_BLANK);
+				Cell cell = row.getCell(columnIndex);
 				rowData[columnIndex - excelRange.getColumnFrom()] = getCellValue(cell);
 			}
 			data.add(rowData);

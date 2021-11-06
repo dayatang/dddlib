@@ -13,7 +13,6 @@
         高速缓存。
     </description>
     <modules>
-        <module>dddlib-cache-memcached</module>
         <module>dddlib-cache-api</module>
         <module>dddlib-cache-ehcache</module>
         <module>dddlib-cache-redis</module>
