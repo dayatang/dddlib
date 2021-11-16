@@ -97,7 +97,7 @@
             <id>dayatang-site</id>
             <name>Deployment through GitHub's site deployment plugin</name>
             <!--<url>git:ssh://git@github.com/dayatang/dddlib.git?gh-pages#</url>-->
-            <url>scp://www.dayatang.org/data/dddlib/site</url>
+            <url>scp://www.dayatang.org:/data/sites/dddlib</url>
         </site>
     </distributionManagement>
 
