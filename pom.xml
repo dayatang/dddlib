@@ -855,7 +855,7 @@
         <profile>
             <id>jdk7</id>
             <properties>
-                <jdk.version>1.7</jdk.version>
+                <jdk.version>11</jdk.version>
             </properties>
         </profile>
     </profiles>
@@ -865,18 +865,18 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <jdk.version>1.8</jdk.version>
+        <jdk.version>11</jdk.version>
         <slf4j.version>1.7.30</slf4j.version>
-        <spring.version>5.2.9.RELEASE</spring.version>
+        <spring.version>5.2.25.RELEASE</spring.version>
         <tapestry.version>5.6.1</tapestry.version>
-        <hibernate.version>5.4.22.Final</hibernate.version>
-        <shiro.version>1.6.0</shiro.version>
+        <hibernate.version>5.6.15.Final</hibernate.version>
+        <shiro.version>1.10.1</shiro.version>
         <cucumber.version>1.2.4</cucumber.version>
         <asm.version>3.3.1</asm.version>
         <!-- Database settings, default to H2 database -->
         <h2.username>sa</h2.username>
         <h2.password />
-        <h2.version>1.4.185</h2.version>
+        <h2.version>1.4.200</h2.version>
         <mysql.username>root</mysql.username>
         <mysql.password />
         <mysql.host>localhost</mysql.host>
